@@ -1,11 +1,11 @@
 {
-  "updated": "2026-04-19T21:19:07+00:00",
+  "updated": "2026-04-19T21:24:32+00:00",
   "scope": "free NTRIP sources delivering better than ~50 cm",
   "sources": {
     "rtk2go": {
       "url": "http://rtk2go.com:2101/",
       "status": "ok",
-      "fetched_at": "2026-04-19T21:18:59+00:00",
+      "fetched_at": "2026-04-19T21:24:23+00:00",
       "stations": [
         {
           "name": "ADS-SAH",
@@ -151,6 +151,19 @@
           "fee": "N"
         },
         {
+          "name": "AlabamaSylacauga",
+          "lat": 33.22,
+          "lon": -86.31,
+          "latStr": "33.22",
+          "lonStr": "-86.31",
+          "carrier": 2,
+          "carrierInferred": true,
+          "format": "RTCM 3.2",
+          "legacyFormat": false,
+          "country": "USA",
+          "fee": "N"
+        },
+        {
           "name": "Andrzej",
           "lat": 51.06,
           "lon": 22.84,
@@ -249,7 +262,7 @@
           "lonStr": "-97.85",
           "carrier": 2,
           "carrierInferred": true,
-          "format": "RTCM 3",
+          "format": "RTCM 3.2",
           "legacyFormat": false,
           "country": "MEX",
           "fee": "N"
@@ -652,7 +665,7 @@
           "lonStr": "-64.35",
           "carrier": 2,
           "carrierInferred": true,
-          "format": "RTCM 3",
+          "format": "RTCM 3.2",
           "legacyFormat": false,
           "country": "ARG",
           "fee": "N"
@@ -1094,7 +1107,7 @@
           "lonStr": "18.47",
           "carrier": 2,
           "carrierInferred": true,
-          "format": "RTCM 3.3",
+          "format": "RTCM 3",
           "legacyFormat": false,
           "country": "POL",
           "fee": "N"
@@ -4331,7 +4344,7 @@
           "lonStr": "55.45",
           "carrier": 2,
           "carrierInferred": true,
-          "format": "RTCM 3.2",
+          "format": "RTCM 3",
           "legacyFormat": false,
           "country": "ARE",
           "fee": "N"
@@ -5202,7 +5215,7 @@
           "lonStr": "17.76",
           "carrier": 2,
           "carrierInferred": true,
-          "format": "RTCM 3.2",
+          "format": "RTCM 3",
           "legacyFormat": false,
           "country": "POL",
           "fee": "N"
@@ -6918,7 +6931,7 @@
           "lonStr": "119.73",
           "carrier": 2,
           "carrierInferred": true,
-          "format": "RTCM 3.0",
+          "format": "RTCM 3",
           "legacyFormat": false,
           "country": "AUS",
           "fee": "N"
@@ -7490,7 +7503,7 @@
           "lonStr": "9.72",
           "carrier": 2,
           "carrierInferred": true,
-          "format": "RTCM 3.2",
+          "format": "RTCM 3",
           "legacyFormat": false,
           "country": "DEU",
           "fee": "N"
@@ -7763,7 +7776,7 @@
           "lonStr": "130.37",
           "carrier": 2,
           "carrierInferred": true,
-          "format": "RTCM 3.2",
+          "format": "RTCM 3",
           "legacyFormat": false,
           "country": "JPN",
           "fee": "N"
@@ -9700,7 +9713,7 @@
           "lonStr": "25.27",
           "carrier": 2,
           "carrierInferred": true,
-          "format": "RTCM 3.2",
+          "format": "RTCM 3",
           "legacyFormat": false,
           "country": "LTU",
           "fee": "N"
@@ -10233,7 +10246,7 @@
           "lonStr": "132.96",
           "carrier": 2,
           "carrierInferred": true,
-          "format": "RTCM 3.2",
+          "format": "RTCM 3",
           "legacyFormat": false,
           "country": "JPN",
           "fee": "N"
@@ -10623,7 +10636,7 @@
           "lonStr": "13.15",
           "carrier": 2,
           "carrierInferred": true,
-          "format": "RTCM 3",
+          "format": "RTCM 3.3",
           "legacyFormat": false,
           "country": "SWE",
           "fee": "N"
@@ -10730,6 +10743,19 @@
           "format": "RTCM 3.3",
           "legacyFormat": false,
           "country": "TWN",
+          "fee": "N"
+        },
+        {
+          "name": "toyosige110",
+          "lat": 33.54,
+          "lon": 132.45,
+          "latStr": "33.54",
+          "lonStr": "132.45",
+          "carrier": 2,
+          "carrierInferred": true,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": "JPN",
           "fee": "N"
         },
         {
@@ -10906,7 +10932,7 @@
     "centipede": {
       "url": "http://caster.centipede.fr:2101/",
       "status": "ok",
-      "fetched_at": "2026-04-19T21:19:00+00:00",
+      "fetched_at": "2026-04-19T21:24:25+00:00",
       "stations": [
         {
           "name": "1234",
@@ -15797,19 +15823,6 @@
           "fee": "N"
         },
         {
-          "name": "ETAA",
-          "lat": 48.27,
-          "lon": -3.316,
-          "latStr": "48.270",
-          "lonStr": "-3.316",
-          "carrier": 2,
-          "carrierInferred": false,
-          "format": "RTCM3",
-          "legacyFormat": false,
-          "country": "FRA",
-          "fee": "N"
-        },
-        {
           "name": "ETAB",
           "lat": 46.689,
           "lon": -1.421,
@@ -18735,19 +18748,6 @@
           "fee": "N"
         },
         {
-          "name": "KHAY",
-          "lat": 25.718,
-          "lon": 39.296,
-          "latStr": "25.718",
-          "lonStr": "39.296",
-          "carrier": 2,
-          "carrierInferred": false,
-          "format": "RTCM3",
-          "legacyFormat": false,
-          "country": "SAU",
-          "fee": "N"
-        },
-        {
           "name": "KIKI",
           "lat": 43.762,
           "lon": 6.759,
@@ -19053,6 +19053,19 @@
           "latStr": "46.459",
           "lonStr": "-0.658",
           "carrier": 3,
+          "carrierInferred": false,
+          "format": "RTCM3",
+          "legacyFormat": false,
+          "country": "FRA",
+          "fee": "N"
+        },
+        {
+          "name": "LAB1",
+          "lat": 49.466,
+          "lon": 2.073,
+          "latStr": "49.466",
+          "lonStr": "2.073",
+          "carrier": 2,
           "carrierInferred": false,
           "format": "RTCM3",
           "legacyFormat": false,
@@ -19525,19 +19538,6 @@
           "format": "RTCM3",
           "legacyFormat": false,
           "country": "HUN",
-          "fee": "N"
-        },
-        {
-          "name": "LH41",
-          "lat": 47.342,
-          "lon": 1.495,
-          "latStr": "47.342",
-          "lonStr": "1.495",
-          "carrier": 2,
-          "carrierInferred": false,
-          "format": "RTCM3",
-          "legacyFormat": false,
-          "country": "FRA",
           "fee": "N"
         },
         {
@@ -25196,19 +25196,6 @@
           "fee": "N"
         },
         {
-          "name": "TJMM",
-          "lat": 54.869,
-          "lon": -7.496,
-          "latStr": "54.869",
-          "lonStr": "-7.496",
-          "carrier": 2,
-          "carrierInferred": false,
-          "format": "RTCM3",
-          "legacyFormat": false,
-          "country": "IRL",
-          "fee": "N"
-        },
-        {
           "name": "TLB2",
           "lat": 48.555,
           "lon": -2.885,
@@ -26552,7 +26539,7 @@
     "frednet": {
       "url": "http://gnsscaster.regione.fvg.it:8080/",
       "status": "ok",
-      "fetched_at": "2026-04-19T21:19:01+00:00",
+      "fetched_at": "2026-04-19T21:24:25+00:00",
       "stations": [
         {
           "name": "Ampezzo_RTK",
