@@ -37,23 +37,52 @@ def fetch(url: str) -> str:
         return resp.read().decode("utf-8", errors="replace")
 
 
-def parse_sourcetable(text: str) -> list[dict]:
+def parse_sourcetable(text: str) -> tuple[list[dict], dict]:
+    """Parse an NTRIP sourcetable.
+
+    NTRIP STR line fields (0-based after splitting on ';'):
+      0 STR, 1 mountpoint, 2 identifier, 3 format, 4 format-details,
+      5 carrier, 6 nav-system, 7 network, 8 country,
+      9 latitude, 10 longitude, 11 nmea, 12 solution, ..., 15 auth, 16 fee.
+
+    Drops DGNSS-only mountpoints (carrier == 0) — out of the site's
+    sub-50-cm scope.
+    """
     stations: list[dict] = []
+    dropped_dgnss = 0
+    dropped_bad = 0
     for line in text.splitlines():
         if not line.startswith("STR;"):
             continue
         fields = line.split(";")
         if len(fields) < 11:
+            dropped_bad += 1
             continue
         name = fields[1].strip()
+        fmt = fields[3].strip() if len(fields) > 3 else ""
+        carrier_raw = fields[5].strip() if len(fields) > 5 else ""
+        country = fields[8].strip() if len(fields) > 8 else ""
         lat_str = fields[9].strip()
         lon_str = fields[10].strip()
+        fee = fields[16].strip().upper() if len(fields) > 16 else ""
+        try:
+            carrier = int(carrier_raw)
+        except ValueError:
+            carrier = -1
+        if carrier == 0:
+            dropped_dgnss += 1
+            continue
+        if carrier not in (1, 2):
+            dropped_bad += 1
+            continue
         try:
             lat = float(lat_str)
             lon = float(lon_str)
         except ValueError:
+            dropped_bad += 1
             continue
         if lat == 0 and lon == 0:
+            dropped_bad += 1
             continue
         stations.append({
             "name": name,
@@ -61,9 +90,15 @@ def parse_sourcetable(text: str) -> list[dict]:
             "lon": lon,
             "latStr": lat_str,
             "lonStr": lon_str,
+            "carrier": carrier,
+            "format": fmt,
+            "legacyFormat": fmt.startswith("RTCM 2"),
+            "country": country,
+            "fee": fee or "N",
         })
     stations.sort(key=lambda s: (s["name"], s["latStr"], s["lonStr"]))
-    return stations
+    stats = {"kept": len(stations), "dropped_dgnss": dropped_dgnss, "dropped_bad": dropped_bad}
+    return stations, stats
 
 
 def load_existing(path: Path) -> dict | None:
@@ -75,9 +110,9 @@ def load_existing(path: Path) -> dict | None:
         return None
 
 
-def station_fingerprint(source: dict) -> list[list[str]]:
+def station_fingerprint(source: dict) -> list[list]:
     return [
-        [s["name"], s["latStr"], s["lonStr"]]
+        [s["name"], s["latStr"], s["lonStr"], s.get("carrier"), s.get("format", "")]
         for s in source.get("stations", [])
     ]
 
@@ -100,22 +135,28 @@ def main() -> int:
                 "fetched_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
                 "raw_path": raw_path,
                 "text": text,
-                "stations": parse_sourcetable(text),
+                "stations": None,
             }
-            print(f"[{sid}] fetched {len(fetched[sid]['stations'])} stations")
+            stations, stats = parse_sourcetable(text)
+            fetched[sid]["stations"] = stations
+            fetched[sid]["parse_stats"] = stats
+            print(f"[{sid}] fetched {stats['kept']} stations "
+                  f"(dropped {stats['dropped_dgnss']} DGNSS, {stats['dropped_bad']} invalid)")
         except (URLError, socket.timeout, OSError, TimeoutError) as e:
             print(f"[{sid}] fetch failed: {e!r}", file=sys.stderr)
             if raw_path.exists():
                 text = raw_path.read_text()
+                stations, stats = parse_sourcetable(text)
                 fetched[sid] = {
                     "url": url,
                     "status": f"stale (fetch failed: {e!r})",
                     "fetched_at": None,
                     "raw_path": raw_path,
                     "text": text,
-                    "stations": parse_sourcetable(text),
+                    "stations": stations,
+                    "parse_stats": stats,
                 }
-                print(f"[{sid}] reusing cached sourcetable ({len(fetched[sid]['stations'])} stations)")
+                print(f"[{sid}] reusing cached sourcetable ({stats['kept']} stations)")
             else:
                 fetched[sid] = {
                     "url": url,
@@ -160,7 +201,9 @@ def main() -> int:
 
     payload = {
         "updated": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "scope": "free NTRIP sources delivering better than ~50 cm",
         "sources": payload_sources,
+        "networks": existing.get("networks", []) if existing else [],
     }
     out_path.write_text(json.dumps(payload, indent=2) + "\n")
     total = sum(len(s["stations"]) for s in payload_sources.values())

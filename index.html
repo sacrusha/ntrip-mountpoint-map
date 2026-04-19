@@ -7,20 +7,135 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
-  html,body,#map{height:100%;margin:0;padding:0;font-family:sans-serif;}
-  #status{position:absolute;top:10px;left:50%;transform:translateX(-50%);
+  html,body{height:100%;margin:0;padding:0;font-family:sans-serif;}
+  #map{position:absolute;top:0;left:0;right:0;bottom:0;}
+  body.banner-visible #map{top:56px;}
+  #status{position:absolute;top:66px;left:50%;transform:translateX(-50%);
     background:rgba(0,0,0,.65);color:#fff;padding:5px 14px;border-radius:4px;
     font-size:13px;z-index:9000;pointer-events:none;transition:opacity 1s;}
+  body:not(.banner-visible) #status{top:10px;}
   .slabel{font-size:10px;font-weight:700;color:#222;
     background:rgba(255,255,255,0.75);border:none;box-shadow:none;padding:0 2px;}
+  #banner{position:absolute;top:0;left:0;right:0;height:56px;
+    background:#1b2b3a;color:#e8eef4;z-index:10000;display:none;
+    align-items:center;padding:0 16px;font-size:13px;line-height:1.35;
+    border-bottom:1px solid #0d1922;}
+  body.banner-visible #banner{display:flex;}
+  #banner .msg{flex:1;}
+  #banner a.more{color:#9ec8ff;cursor:pointer;text-decoration:underline;
+    margin-left:6px;}
+  #banner .close{background:transparent;border:none;color:#e8eef4;
+    font-size:20px;line-height:1;cursor:pointer;padding:4px 10px;margin-left:8px;}
+  #banner-more{position:absolute;top:56px;left:0;right:0;max-width:720px;
+    margin:0 auto;background:#1b2b3a;color:#e8eef4;padding:12px 16px;
+    font-size:12px;line-height:1.5;border-radius:0 0 6px 6px;
+    box-shadow:0 4px 12px rgba(0,0,0,.25);z-index:9999;display:none;}
+  body.banner-expanded #banner-more{display:block;}
+  .popup-plain{font-size:12px;line-height:1.45;max-width:260px;}
+  .popup-plain h3{margin:0 0 4px 0;font-size:13px;}
+  .popup-plain .acc{color:#1a5d1a;font-weight:600;}
+  .popup-plain .tech{display:none;margin-top:6px;padding-top:6px;
+    border-top:1px solid #eee;color:#666;font-size:11px;}
+  .popup-plain.expanded .tech{display:block;}
+  .popup-plain .tech-toggle{color:#3b6ea8;cursor:pointer;font-size:11px;
+    margin-top:4px;display:inline-block;}
+  #toggles{background:white;padding:10px 12px;border-radius:5px;
+    border:1px solid #bbb;font-size:12px;line-height:1.6;color:#222;
+    max-width:220px;}
+  #toggles h4{margin:0 0 4px 0;font-size:12px;}
+  #toggles label{display:block;cursor:pointer;}
+  #toggles input{margin-right:6px;vertical-align:middle;}
+  #toggles details{margin-top:6px;}
+  #toggles summary{cursor:pointer;font-size:11px;color:#555;}
 </style>
 </head>
 <body>
+<div id="banner">
+  <div class="msg">
+    Free NTRIP corrections for better than ~50 cm GPS accuracy.
+    Only need ~30 cm? Use <b>Galileo HAS</b> — free, global, no signup required.
+    <a class="more" id="banner-more-btn">learn more</a>
+  </div>
+  <button class="close" id="banner-close" title="dismiss">×</button>
+</div>
+<div id="banner-more">
+  <p><b>What this map shows.</b> Public NTRIP mountpoints (RTK correction
+  streams) that are free to access and capable of cm-level accuracy
+  under good conditions, up to roughly 100 km from each station.</p>
+  <p><b>Colour bands around each station.</b>
+  Green &lt; 10 km (excellent cm-RTK) ·
+  yellow-green 10–30 km (good) ·
+  amber 30–50 km (marginal, sometimes float) ·
+  pale red 50–100 km (float decimetre, multi-band receivers only).</p>
+  <p><b>Not here:</b> sub-metre DGNSS services (use Galileo HAS instead),
+  commercial / paid VRS networks (HxGN SmartNet, Trimble, etc.), and
+  raw-observation networks like EPN that are for post-processing only.</p>
+</div>
 <div id="map"></div>
 <div id="status">Loading…</div>
 <script>
 (function(){
   var RTK_COL='#d00000', CP_COL='#e87500';
+
+  // Zoom bands — switch between raster-only, raster+dots, detailed view.
+  var ZOOM_DETAIL=10;   // z >= ZOOM_DETAIL: labels, accuracy rectangles, tooltips
+  var ZOOM_DOTS=6;      // z >= ZOOM_DOTS: individual station dots (no labels)
+                        // z <  ZOOM_DOTS: coverage raster only
+
+  // Coverage field radii (km). Colour per band is set inside CoverageLayer.
+  var R_EXCELLENT=10, R_GOOD=30, R_MARGINAL=50, R_FLOAT=100;
+
+  // Banner dismissal: bumped when content meaningfully changes.
+  var BANNER_VERSION='2026-04-a';
+
+  // CoverageLayer: tiled canvas drawing a radial gradient per nearby station.
+  // Closest station's colour wins via 'lighten' composite, so the composite
+  // approximates a distance-to-nearest field without a per-pixel query.
+  var CoverageLayer=L.GridLayer.extend({
+    options:{opacity:0.55,pane:'overlayPane'},
+    initialize:function(stations,opts){
+      L.Util.setOptions(this,opts);
+      this._stations=stations||[];
+    },
+    setStations:function(stations){
+      this._stations=stations||[];
+      this.redraw();
+    },
+    createTile:function(coords){
+      var size=this.getTileSize();
+      var tile=document.createElement('canvas');
+      tile.width=size.x; tile.height=size.y;
+      var ctx=tile.getContext('2d');
+      var z=coords.z;
+      var map=this._map;
+      var nwPx=coords.scaleBy(size);
+      // pixels per km at this tile's latitude (roughly — use tile centre).
+      var center=map.unproject(nwPx.add([size.x/2,size.y/2]),z);
+      var metresPerPx=40075016.686*Math.cos(center.lat*Math.PI/180)/
+                       Math.pow(2,z+8);
+      var pxPerKm=1000/metresPerPx;
+      var rFloatPx=R_FLOAT*pxPerKm;
+      ctx.globalCompositeOperation='lighten';
+      for(var i=0;i<this._stations.length;i++){
+        var s=this._stations[i];
+        var pt=map.project([s.lat,s.lon],z).subtract(nwPx);
+        if(pt.x<-rFloatPx||pt.x>size.x+rFloatPx||
+           pt.y<-rFloatPx||pt.y>size.y+rFloatPx) continue;
+        var g=ctx.createRadialGradient(pt.x,pt.y,0,pt.x,pt.y,rFloatPx);
+        g.addColorStop(0,                          'rgba(0,170,0,0.65)');
+        g.addColorStop(R_EXCELLENT/R_FLOAT,        'rgba(0,170,0,0.55)');
+        g.addColorStop(R_GOOD/R_FLOAT,             'rgba(180,200,30,0.42)');
+        g.addColorStop(R_MARGINAL/R_FLOAT,         'rgba(220,150,30,0.28)');
+        g.addColorStop(0.999,                      'rgba(210,90,90,0.10)');
+        g.addColorStop(1,                          'rgba(210,90,90,0)');
+        ctx.fillStyle=g;
+        ctx.beginPath();
+        ctx.arc(pt.x,pt.y,rFloatPx,0,2*Math.PI);
+        ctx.fill();
+      }
+      return tile;
+    }
+  });
 
   function precFromStr(s){
     if(!s) return 0.005;
@@ -35,8 +150,12 @@
       var lat=(typeof s.lat==='number')?s.lat:parseFloat(s.latStr);
       var lon=(typeof s.lon==='number')?s.lon:parseFloat(s.lonStr);
       if(!isFinite(lat)||!isFinite(lon)||(lat===0&&lon===0)) return;
-      out.push({name:s.name,lat:lat,lon:lon,latStr:s.latStr,lonStr:s.lonStr,
-                dLat:precFromStr(s.latStr),dLon:precFromStr(s.lonStr)});
+      out.push({
+        name:s.name,lat:lat,lon:lon,latStr:s.latStr,lonStr:s.lonStr,
+        dLat:precFromStr(s.latStr),dLon:precFromStr(s.lonStr),
+        carrier:s.carrier, format:s.format||'',
+        legacyFormat:!!s.legacyFormat, country:s.country||''
+      });
     });
     return out;
   }
@@ -60,33 +179,40 @@
   function roundPos(v){ return Math.round(v*100)/100; }
   function posKey(s){ return roundPos(s.lat)+','+roundPos(s.lon); }
 
+  function bestCarrier(a,b){
+    // Prefer L1+L2 over L1. Any known carrier beats unknown.
+    var ac=a&&a.carrier, bc=b&&b.carrier;
+    return (ac||0)>=(bc||0)?ac:bc;
+  }
   function mergeStations(rtkList,cpList){
     var cpByName={},usedCp=new Set(),merged={};
     cpList.forEach(function(s){ cpByName[s.name.toLowerCase()]=s; });
+    function entry(rtkSt,cpSt,pos){
+      var e={lat:pos.lat,lon:pos.lon,dLat:pos.dLat,dLon:pos.dLon,
+             rtk:[],cp:[],
+             carrier:bestCarrier(rtkSt,cpSt),
+             format:(rtkSt&&rtkSt.format)||(cpSt&&cpSt.format)||'',
+             legacyFormat:!!((rtkSt&&rtkSt.legacyFormat)||
+                             (cpSt&&cpSt.legacyFormat))};
+      if(rtkSt) e.rtk.push(rtkSt.name);
+      if(cpSt)  e.cp.push(cpSt.name);
+      return e;
+    }
     rtkList.forEach(function(rtkSt){
       var key=rtkSt.name.toLowerCase(),pkey=posKey(rtkSt);
       var cpM=cpByName[key];
-      if(cpM){
-        if(posKey(cpM)===pkey){
-          var best=(cpM.dLat<=rtkSt.dLat)?cpM:rtkSt;
-          merged[pkey+'|'+key]={lat:best.lat,lon:best.lon,dLat:best.dLat,dLon:best.dLon,
-                                  rtk:[rtkSt.name],cp:[cpM.name]};
-          usedCp.add(key);
-        } else {
-          merged['rtk|'+pkey+'|'+key]={lat:rtkSt.lat,lon:rtkSt.lon,dLat:rtkSt.dLat,dLon:rtkSt.dLon,
-                                        rtk:[rtkSt.name],cp:[]};
-        }
+      if(cpM&&posKey(cpM)===pkey){
+        var best=(cpM.dLat<=rtkSt.dLat)?cpM:rtkSt;
+        merged[pkey+'|'+key]=entry(rtkSt,cpM,best);
+        usedCp.add(key);
       } else {
-        merged['rtk|'+pkey+'|'+key]={lat:rtkSt.lat,lon:rtkSt.lon,dLat:rtkSt.dLat,dLon:rtkSt.dLon,
-                                      rtk:[rtkSt.name],cp:[]};
+        merged['rtk|'+pkey+'|'+key]=entry(rtkSt,null,rtkSt);
       }
     });
     cpList.forEach(function(cpSt){
       var key=cpSt.name.toLowerCase();
       if(usedCp.has(key)) return;
-      var pkey=posKey(cpSt);
-      merged['cp|'+pkey+'|'+key]={lat:cpSt.lat,lon:cpSt.lon,dLat:cpSt.dLat,dLon:cpSt.dLon,
-                                    rtk:[],cp:[cpSt.name]};
+      merged['cp|'+posKey(cpSt)+'|'+key]=entry(null,cpSt,cpSt);
     });
     return Object.values(merged);
   }
@@ -104,6 +230,40 @@
       +'<circle cx="'+r+'" cy="'+r+'" r="'+(r-0.75)+'" fill="'+col+'" stroke="white" stroke-width="1.5"/></svg>';
   }
 
+  function esc(t){
+    return (t==null?'':String(t))
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  function accuracySummary(carrier){
+    if(carrier===2) return '~1 cm within 10 km · good to 30 km · usable to 50 km';
+    if(carrier===1) return 'up to ~1 cm within 10 km (L1-only; more sensitive to ionosphere) · good to 20 km';
+    return 'RTK stream — accuracy depends on receiver and baseline';
+  }
+
+  function buildPopup(s){
+    var label=s.rtk.concat(s.cp).join(' / ');
+    var networks=[];
+    if(s.rtk.length) networks.push('<span style="color:'+RTK_COL+'">\u25a0</span> rtk2go');
+    if(s.cp.length)  networks.push('<span style="color:'+CP_COL+'">\u25a0</span> Centipede');
+    var legacyNote=s.legacyFormat
+      ? '<div style="color:#a60">Uses legacy RTCM 2.x — some modern receivers can\'t use this.</div>'
+      : '';
+    var tech=[
+      'Carrier: '+(s.carrier===2?'L1+L2':(s.carrier===1?'L1 only':'unknown')),
+      'Format: '+(esc(s.format)||'unknown'),
+      'Coordinates: '+s.lat.toFixed(6)+', '+s.lon.toFixed(6),
+      'Location uncertainty: '+precLabel(s.dLat,s.dLon)
+    ].join('<br>');
+    return '<div class="popup-plain"><h3>'+esc(label)+'</h3>'
+      +'<div class="acc">'+accuracySummary(s.carrier)+'</div>'
+      +'<div>Free to use · '+networks.join(' &middot; ')+'</div>'
+      +legacyNote
+      +'<span class="tech-toggle" onclick="this.parentNode.classList.toggle(\'expanded\')">technical details</span>'
+      +'<div class="tech">'+tech+'</div>'
+      +'</div>';
+  }
+
   function precLabel(dLat,dLon){
     var mLat=Math.round(dLat*111000);
     var mLon=Math.round(dLon*111000*Math.cos(47*Math.PI/180));
@@ -118,53 +278,167 @@
     if(fade) setTimeout(function(){ el.style.opacity='0'; },3500);
   }
 
-  function renderStationsBatched(stations,map,onDone){
-    var BATCH=100,i=0;
-    function renderChunk(){
+  // Build layer groups for the three zoom bands. `detail` carries labels
+  // + accuracy rectangles (z >= ZOOM_DETAIL); `dots` carries plain dots
+  // (ZOOM_DOTS <= z < ZOOM_DETAIL). The coverage raster (z < ZOOM_DOTS)
+  // is managed as a separate CoverageLayer by the caller.
+  function buildStationLayers(stations,map,onDone){
+    var detail=L.layerGroup();
+    var dots=L.layerGroup();
+    var BATCH=150,i=0;
+    function chunk(){
       var end=Math.min(i+BATCH,stations.length);
       for(;i<end;i++){
         var s=stations[i];
         try{
-          var isBoth=s.rtk.length>0&&s.cp.length>0,isRtk=s.rtk.length>0&&s.cp.length===0;
-          var svg=isBoth?splitSVG(RTK_COL,CP_COL):solidSVG(isRtk?RTK_COL:CP_COL);
-          var r=7,icon=L.divIcon({className:'',html:svg,iconSize:[r*2,r*2],iconAnchor:[r,r]});
-          var rc=isBoth?'#a05000':(isRtk?RTK_COL:CP_COL);
-          L.rectangle([[s.lat-s.dLat,s.lon-s.dLon],[s.lat+s.dLat,s.lon+s.dLon]],
-            {color:rc,weight:1,fillColor:rc,fillOpacity:0.12,dashArray:'4 3'}).addTo(map);
-          var mk=L.marker([s.lat,s.lon],{icon:icon}).addTo(map);
-          var label=s.rtk.concat(s.cp).join(' / ');
-          mk.bindTooltip(label,{permanent:true,direction:'right',offset:[9,0],className:'slabel'});
-          var pop='<b>'+label+'</b><br>';
-          if(s.rtk.length) pop+='<span style="color:'+RTK_COL+'">\u25a0 rtk2go:</span> '+s.rtk.join(', ')+'<br>';
-          if(s.cp.length)  pop+='<span style="color:'+CP_COL+'">\u25a0 Centipede:</span> '+s.cp.join(', ')+'<br>';
-          pop+='Lat: '+s.lat+', Lon: '+s.lon+'<br>';
-          pop+='<span style="color:#888;font-size:10px">Location uncertainty: '+precLabel(s.dLat,s.dLon)+'</span>';
-          mk.bindPopup(pop);
-        } catch(e){ console.warn('render err',e); }
+          var isBoth=s.rtk.length>0&&s.cp.length>0;
+          var isRtk=s.rtk.length>0&&!isBoth;
+          var fill=isBoth?'#a05000':(isRtk?RTK_COL:CP_COL);
+          // dots layer: plain coloured circleMarker on canvas
+          L.circleMarker([s.lat,s.lon],{radius:4,color:'#fff',weight:1,
+            fillColor:fill,fillOpacity:0.95,pane:'markerPane'})
+            .bindPopup(buildPopup(s))
+            .addTo(dots);
+          // detail layer: accuracy rectangle + labelled marker
+          var detailGroup=L.layerGroup();
+          L.rectangle([[s.lat-s.dLat,s.lon-s.dLon],
+                       [s.lat+s.dLat,s.lon+s.dLon]],
+            {color:fill,weight:1,fillColor:fill,fillOpacity:0.12,
+             dashArray:'4 3'}).addTo(detailGroup);
+          var svg=isBoth?splitSVG(RTK_COL,CP_COL):solidSVG(fill);
+          var icon=L.divIcon({className:'',html:svg,iconSize:[14,14],
+                              iconAnchor:[7,7]});
+          var mk=L.marker([s.lat,s.lon],{icon:icon});
+          mk.bindTooltip(s.rtk.concat(s.cp).join(' / '),
+            {permanent:true,direction:'right',offset:[9,0],
+             className:'slabel'});
+          mk.bindPopup(buildPopup(s));
+          mk.addTo(detailGroup);
+          detailGroup.addTo(detail);
+        }catch(e){ console.warn('render err',e); }
       }
       if(i<stations.length){
         setStatus('Rendering\u2026 '+i+' / '+stations.length);
-        requestAnimationFrame(renderChunk);
-      } else {
-        if(onDone) onDone();
-      }
+        requestAnimationFrame(chunk);
+      } else if(onDone){ onDone({detail:detail,dots:dots}); }
     }
-    requestAnimationFrame(renderChunk);
+    requestAnimationFrame(chunk);
   }
 
-  function getViewerPos(){
-    return new Promise(function(resolve){
-      if(!navigator.geolocation){ resolve(null); return; }
-      navigator.geolocation.getCurrentPosition(
-        function(pos){ resolve({lat:pos.coords.latitude,lon:pos.coords.longitude}); },
-        function(){ resolve(null); },
-        {timeout:4000,maximumAge:60000}
-      );
+  // NRTK networks: polygon + centroid marker. No-op when data has no
+  // networks (the current case; schema anticipates future ingestion).
+  function buildNetworkLayers(networks){
+    var group=L.layerGroup();
+    (networks||[]).forEach(function(n){
+      if(!n||!n.coveragePolygon||!n.coveragePolygon.length) return;
+      var poly=L.polygon(n.coveragePolygon,
+        {color:'#1a5d1a',weight:1,fillColor:'#1a5d1a',fillOpacity:0.15,
+         dashArray:'3 3'}).addTo(group);
+      var b=poly.getBounds(), c=b.getCenter();
+      var access=({free:'Free, no signup',
+                   registration:'Free with registration',
+                   category:'Free for some user categories',
+                   restricted:'Restricted access'})[n.access]||n.access||'';
+      var popup='<div class="popup-plain"><h3>'+esc(n.name||n.id)+'</h3>'
+        +'<div class="acc">NRTK coverage area — cm-level inside the hull</div>'
+        +'<div>'+esc(access)+'</div>'
+        +(n.registrationUrl
+          ? '<div><a href="'+esc(n.registrationUrl)+'" target="_blank" rel="noopener">Signup / details</a></div>'
+          : '')
+        +'<div style="color:#666;font-size:11px;margin-top:4px">'
+          +((n.stationIds||[]).length)+' reference stations</div></div>';
+      L.marker(c,{
+        icon:L.divIcon({className:'',iconSize:[18,18],iconAnchor:[9,9],
+          html:'<svg width="18" height="18" viewBox="0 0 18 18">'
+            +'<circle cx="9" cy="9" r="7.5" fill="#1a5d1a" stroke="white" stroke-width="2"/>'
+            +'<text x="9" y="12" text-anchor="middle" font-size="9" font-weight="bold" fill="white">N</text>'
+            +'</svg>'})
+      }).bindPopup(popup).addTo(group);
     });
+    return group;
+  }
+
+  // Banner: show until user dismisses; version key lets future content
+  // changes re-surface the banner for repeat visitors.
+  function setupBanner(){
+    var dismissed=false;
+    try{ dismissed=localStorage.getItem('ntrip-banner-dismissed')===BANNER_VERSION; }
+    catch(e){}
+    if(!dismissed) document.body.classList.add('banner-visible');
+    var close=document.getElementById('banner-close');
+    var more=document.getElementById('banner-more-btn');
+    if(close) close.onclick=function(){
+      document.body.classList.remove('banner-visible');
+      document.body.classList.remove('banner-expanded');
+      try{ localStorage.setItem('ntrip-banner-dismissed',BANNER_VERSION); }
+      catch(e){}
+    };
+    if(more) more.onclick=function(ev){
+      ev.preventDefault();
+      document.body.classList.toggle('banner-expanded');
+    };
+  }
+
+  // Toggle panel: controls which sources & access tiers show. Calls
+  // onChange with a predicate (station -> bool).
+  function buildTogglePanel(sources,onChange){
+    var state={rtk2go:true,centipede:true,
+               free:true,registration:true,category:true,restricted:true};
+    function pred(){
+      return function(s){
+        var src=(s.rtk.length>0 && state.rtk2go) ||
+                (s.cp.length>0 && state.centipede);
+        if(!src) return false;
+        // Access tier: currently every mountpoint in scope is "free".
+        // NRTK networks will carry their own tier when ingested.
+        return state.free;
+      };
+    }
+    var ctrl=L.control({position:'topright'});
+    ctrl.onAdd=function(){
+      var d=L.DomUtil.create('div','','leaflet-control');
+      d.id='toggles';
+      L.DomEvent.disableClickPropagation(d);
+      L.DomEvent.disableScrollPropagation(d);
+      d.innerHTML=
+        '<h4>Sources</h4>'
+        +'<label><input type="checkbox" data-k="rtk2go" checked> rtk2go'
+          +' <span style="color:#888">('+(sources.rtk2go||0)+')</span></label>'
+        +'<label><input type="checkbox" data-k="centipede" checked> Centipede'
+          +' <span style="color:#888">('+(sources.centipede||0)+')</span></label>'
+        +'<details><summary>Access</summary>'
+          +'<label><input type="checkbox" data-k="free" checked> Free, no signup</label>'
+          +'<label><input type="checkbox" data-k="registration" checked> Free with registration</label>'
+          +'<label><input type="checkbox" data-k="category" checked> Free for some users</label>'
+          +'<label><input type="checkbox" data-k="restricted" checked> Restricted</label>'
+        +'</details>';
+      d.querySelectorAll('input[type=checkbox]').forEach(function(cb){
+        cb.addEventListener('change',function(){
+          state[cb.dataset.k]=cb.checked;
+          onChange(pred());
+        });
+      });
+      return d;
+    };
+    return {control:ctrl,predicate:pred};
+  }
+
+  // IP-based geolocation — ~city-level accuracy, no permission prompt.
+  // Used only to centre the initial map view; fail-open to the default.
+  function getViewerPos(){
+    return fetchWithTimeout('https://ipwho.is/',3000,{cache:'no-store'})
+      .then(function(r){ return r.ok?r.json():null; })
+      .then(function(j){
+        if(j&&j.success&&isFinite(j.latitude)&&isFinite(j.longitude))
+          return {lat:j.latitude,lon:j.longitude};
+        return null;
+      })
+      .catch(function(){ return null; });
   }
 
   window.addEventListener('load',function(){
-    var map=L.map('map').setView([47.0,8.0],8);
+    setupBanner();
+    var map=L.map('map',{preferCanvas:true}).setView([47.0,8.0],8);
 
     // OSM canonical tile URL (no subdomain rotation per OSM tile policy)
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{
@@ -175,14 +449,21 @@
     var leg=L.control({position:'bottomleft'});
     leg.onAdd=function(){
       var d=L.DomUtil.create('div');
-      d.style.cssText='background:white;padding:8px 12px;border-radius:5px;border:1px solid #bbb;'
-        +'font-size:11px;line-height:1.7;width:190px;color:#222;';
-      d.innerHTML='<b style="font-size:12px">RTK Stations</b><br>'
-        +'<svg width="12" height="12" viewBox="0 0 12 12"><circle cx="6" cy="6" r="5" fill="'+RTK_COL+'" stroke="white" stroke-width="1.5"/></svg> rtk2go only<br>'
-        +'<svg width="12" height="12" viewBox="0 0 12 12"><circle cx="6" cy="6" r="5" fill="'+CP_COL+'" stroke="white" stroke-width="1.5"/></svg> Centipede only<br>'
-        +'<svg width="12" height="12" viewBox="0 0 12 12"><path d="M6 0 A6 6 0 0 0 6 12 Z" fill="'+RTK_COL+'"\/><path d="M6 0 A6 6 0 0 1 6 12 Z" fill="'+CP_COL+'"\/><circle cx="6" cy="6" r="5" fill="none" stroke="white" stroke-width="1.5"\/></svg> Both networks<br>'
-        +'<hr style="margin:3px 0;border-color:#eee">'
-        +'<span style="font-size:10px;color:#666">\u25a1 = location uncertainty<br>(from coordinate string precision)</span><br>'
+      d.style.cssText='background:white;padding:8px 12px;border-radius:5px;'
+        +'border:1px solid #bbb;font-size:11px;line-height:1.55;width:200px;color:#222;';
+      d.innerHTML=
+        '<b style="font-size:12px">Coverage (per station)</b><br>'
+        +'<span style="display:inline-block;width:12px;height:12px;background:rgb(0,170,0);vertical-align:middle"></span>'
+          +' &lt; 10 km · cm-RTK excellent<br>'
+        +'<span style="display:inline-block;width:12px;height:12px;background:rgb(180,200,30);vertical-align:middle"></span>'
+          +' 10–30 km · cm-RTK good<br>'
+        +'<span style="display:inline-block;width:12px;height:12px;background:rgb(220,150,30);vertical-align:middle"></span>'
+          +' 30–50 km · marginal / float<br>'
+        +'<span style="display:inline-block;width:12px;height:12px;background:rgb(210,90,90);vertical-align:middle"></span>'
+          +' 50–100 km · float decimetre<br>'
+        +'<hr style="margin:4px 0;border-color:#eee">'
+        +'<svg width="10" height="10" viewBox="0 0 12 12"><circle cx="6" cy="6" r="5" fill="'+RTK_COL+'" stroke="white" stroke-width="1.5"/></svg> rtk2go · '
+        +'<svg width="10" height="10" viewBox="0 0 12 12"><circle cx="6" cy="6" r="5" fill="'+CP_COL+'" stroke="white" stroke-width="1.5"/></svg> Centipede<br>'
         +'<small id="leg-info" style="color:#999;font-size:10px">Loading\u2026</small>';
       return d;
     };
@@ -191,51 +472,95 @@
     (async function(){
       setStatus('Loading station data\u2026');
       var t0=performance.now();
-
       var data=null;
       try{
         var r=await fetchWithTimeout('./data/stations.json?ts='+Date.now(),10000,{cache:'no-cache'});
         if(r.ok) data=await r.json();
       }catch(e){}
-
       var fetchMs=Math.round(performance.now()-t0);
+
       var rtkSrc=(data&&data.sources&&data.sources.rtk2go)||{stations:[],status:'unavailable'};
       var cpSrc=(data&&data.sources&&data.sources.centipede)||{stations:[],status:'unavailable'};
-      var rtkR={stations:normalizeStations(rtkSrc.stations),via:rtkSrc.status||'unknown'};
-      var cpR={stations:normalizeStations(cpSrc.stations),via:cpSrc.status||'unknown'};
+      var rtkList=normalizeStations(rtkSrc.stations);
+      var cpList=normalizeStations(cpSrc.stations);
       var updated=(data&&data.updated)||null;
+      var networks=(data&&data.networks)||[];
 
-      setStatus('Merging '+rtkR.stations.length+' rtk2go + '+cpR.stations.length+' Centipede\u2026');
-
-      var stations=mergeStations(rtkR.stations,cpR.stations);
+      setStatus('Merging '+rtkList.length+' rtk2go + '+cpList.length+' Centipede\u2026');
+      var allStations=mergeStations(rtkList,cpList);
 
       setStatus('Locating viewer\u2026');
       var vp=await getViewerPos();
-      var refLat,refLon;
-      if(vp){
-        refLat=vp.lat; refLon=vp.lon;
-        map.setView([refLat,refLon],map.getZoom());
-      } else {
-        var c=map.getCenter();
-        refLat=c.lat; refLon=c.lng;
-      }
-      stations.sort(function(a,b){
-        return haversineDist(refLat,refLon,a.lat,a.lon)
-              -haversineDist(refLat,refLon,b.lat,b.lon);
+      if(vp) map.setView([vp.lat,vp.lon],map.getZoom());
+      var refC=vp||{lat:map.getCenter().lat,lon:map.getCenter().lng};
+      allStations.sort(function(a,b){
+        return haversineDist(refC.lat,refC.lon,a.lat,a.lon)
+              -haversineDist(refC.lat,refC.lon,b.lat,b.lon);
       });
 
-      setStatus('Rendering '+stations.length+' stations (nearest first)\u2026');
-      renderStationsBatched(stations,map,function(){
+      // Network (NRTK) layer — empty for current data; ready for future.
+      var netLayer=buildNetworkLayers(networks);
+      netLayer.addTo(map);
+
+      // Coverage raster layer (single-base stations).
+      var coverage=new CoverageLayer(allStations);
+      coverage.addTo(map);
+
+      // Zoom-aware station layer groups.
+      var filter=function(_s){ return true; };
+      var visible=allStations;
+      var layers={detail:L.layerGroup(),dots:L.layerGroup()};
+
+      function applyZoom(){
+        var z=map.getZoom();
+        var showDots=z>=ZOOM_DOTS;
+        var showDetail=z>=ZOOM_DETAIL;
+        if(showDetail){
+          if(!map.hasLayer(layers.detail)) layers.detail.addTo(map);
+          if(map.hasLayer(layers.dots)) map.removeLayer(layers.dots);
+        }else if(showDots){
+          if(!map.hasLayer(layers.dots)) layers.dots.addTo(map);
+          if(map.hasLayer(layers.detail)) map.removeLayer(layers.detail);
+        }else{
+          if(map.hasLayer(layers.detail)) map.removeLayer(layers.detail);
+          if(map.hasLayer(layers.dots)) map.removeLayer(layers.dots);
+        }
+      }
+
+      function rebuildStationLayers(){
+        if(map.hasLayer(layers.detail)) map.removeLayer(layers.detail);
+        if(map.hasLayer(layers.dots)) map.removeLayer(layers.dots);
+        visible=allStations.filter(filter);
+        setStatus('Rendering '+visible.length+' stations\u2026');
+        buildStationLayers(visible,map,function(built){
+          layers=built;
+          coverage.setStations(visible);
+          applyZoom();
+          finishLoad();
+        });
+      }
+
+      var togglePanel=buildTogglePanel(
+        {rtk2go:rtkList.length,centipede:cpList.length},
+        function(pred){ filter=pred; rebuildStationLayers(); });
+      togglePanel.control.addTo(map);
+
+      map.on('zoomend',applyZoom);
+
+      function finishLoad(){
         var li=document.getElementById('leg-info');
-        var updatedLabel=updated?new Date(updated).toISOString().replace('T',' ').slice(0,16)+' UTC':'never';
+        var updatedLabel=updated
+          ? new Date(updated).toISOString().replace('T',' ').slice(0,16)+' UTC'
+          : 'never';
         if(li) li.innerHTML='updated: '+updatedLabel
-          +'<br>rtk2go.com:2101 ('+rtkR.via+')'
-          +'<br>caster.centipede.fr:2101 ('+cpR.via+')'
+          +'<br>rtk2go ('+esc(rtkSrc.status||'?')+')'
+          +'<br>centipede ('+esc(cpSrc.status||'?')+')'
           +'<br><span style="color:#bbb">load: '+fetchMs+' ms</span>';
-        setStatus('\u2713 '+stations.length+' stations'
-          +' ('+rtkR.stations.length+' rtk2go,'
-          +' '+cpR.stations.length+' Centipede)',true);
-      });
+        setStatus('\u2713 '+visible.length+' stations'
+          +' ('+rtkList.length+' rtk2go, '+cpList.length+' Centipede)',true);
+      }
+
+      rebuildStationLayers();
     })();
   });
 })();

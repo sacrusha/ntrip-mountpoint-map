@@ -1,5 +1,6 @@
 {
   "updated": null,
+  "scope": "free NTRIP sources delivering better than ~50 cm",
   "sources": {
     "rtk2go": {
       "url": "http://rtk2go.com:2101/",
@@ -13,5 +14,6 @@
       "fetched_at": null,
       "stations": []
     }
-  }
+  },
+  "networks": []
 }
