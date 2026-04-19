@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>NTRIP Mountpoint Map</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+  html,body,#map{height:100%;margin:0;padding:0;font-family:sans-serif;}
+  #status{position:absolute;top:10px;left:50%;transform:translateX(-50%);
+    background:rgba(0,0,0,.65);color:#fff;padding:5px 14px;border-radius:4px;
+    font-size:13px;z-index:9000;pointer-events:none;transition:opacity 1s;}
+  .slabel{font-size:10px;font-weight:700;color:#222;
+    background:rgba(255,255,255,0.75);border:none;box-shadow:none;padding:0 2px;}
+</style>
+</head>
+<body>
+<div id="map"></div>
+<div id="status">Loading…</div>
+<script>
+(function(){
+  var RTK_COL='#d00000', CP_COL='#e87500';
+
+  function precFromStr(s){
+    if(!s) return 0.005;
+    var m=s.match(/\.([0-9]+)$/);
+    if(!m) return 0.5;
+    return 5*Math.pow(10,-(m[1].length+1));
+  }
+
+  function parseSourcetable(text){
+    var out=[];
+    (text||'').split('\n').forEach(function(line){
+      if(!line.startsWith('STR;')) return;
+      var f=line.split(';');
+      if(f.length<11) return;
+      var name=f[1].trim(), latStr=f[9].trim(), lonStr=f[10].trim();
+      var lat=parseFloat(latStr), lon=parseFloat(lonStr);
+      if(!isFinite(lat)||!isFinite(lon)||(lat===0&&lon===0)) return;
+      out.push({name:name,lat:lat,lon:lon,latStr:latStr,lonStr:lonStr,
+                dLat:precFromStr(latStr),dLon:precFromStr(lonStr)});
+    });
+    return out;
+  }
+
+  function fetchWithTimeout(url,ms,opts){
+    opts=opts||{};
+    var controller=new AbortController();
+    var tid=setTimeout(function(){ controller.abort(); },ms);
+    return fetch(url,Object.assign({signal:controller.signal},opts))
+      .finally(function(){ clearTimeout(tid); });
+  }
+
+  function haversineDist(lat1,lon1,lat2,lon2){
+    var R=6371,dLat=(lat2-lat1)*Math.PI/180,dLon=(lon2-lon1)*Math.PI/180;
+    var a=Math.sin(dLat/2)*Math.sin(dLat/2)
+          +Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)
+          *Math.sin(dLon/2)*Math.sin(dLon/2);
+    return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
+  }
+
+  function roundPos(v){ return Math.round(v*100)/100; }
+  function posKey(s){ return roundPos(s.lat)+','+roundPos(s.lon); }
+
+  function mergeStations(rtkList,cpList){
+    var cpByName={},usedCp=new Set(),merged={};
+    cpList.forEach(function(s){ cpByName[s.name.toLowerCase()]=s; });
+    rtkList.forEach(function(rtkSt){
+      var key=rtkSt.name.toLowerCase(),pkey=posKey(rtkSt);
+      var cpM=cpByName[key];
+      if(cpM){
+        if(posKey(cpM)===pkey){
+          var best=(cpM.dLat<=rtkSt.dLat)?cpM:rtkSt;
+          merged[pkey+'|'+key]={lat:best.lat,lon:best.lon,dLat:best.dLat,dLon:best.dLon,
+                                  rtk:[rtkSt.name],cp:[cpM.name]};
+          usedCp.add(key);
+        } else {
+          merged['rtk|'+pkey+'|'+key]={lat:rtkSt.lat,lon:rtkSt.lon,dLat:rtkSt.dLat,dLon:rtkSt.dLon,
+                                        rtk:[rtkSt.name],cp:[]};
+        }
+      } else {
+        merged['rtk|'+pkey+'|'+key]={lat:rtkSt.lat,lon:rtkSt.lon,dLat:rtkSt.dLat,dLon:rtkSt.dLon,
+                                      rtk:[rtkSt.name],cp:[]};
+      }
+    });
+    cpList.forEach(function(cpSt){
+      var key=cpSt.name.toLowerCase();
+      if(usedCp.has(key)) return;
+      var pkey=posKey(cpSt);
+      merged['cp|'+pkey+'|'+key]={lat:cpSt.lat,lon:cpSt.lon,dLat:cpSt.dLat,dLon:cpSt.dLon,
+                                    rtk:[],cp:[cpSt.name]};
+    });
+    return Object.values(merged);
+  }
+
+  function splitSVG(c1,c2,r){
+    r=r||7; var d=r*2;
+    return '<svg width="'+d+'" height="'+d+'" viewBox="0 0 '+d+' '+d+'" xmlns="http://www.w3.org/2000/svg">'
+      +'<path d="M'+r+' 0 A'+r+' '+r+' 0 0 0 '+r+' '+d+' Z" fill="'+c1+'"/>'
+      +'<path d="M'+r+' 0 A'+r+' '+r+' 0 0 1 '+r+' '+d+' Z" fill="'+c2+'"/>'
+      +'<circle cx="'+r+'" cy="'+r+'" r="'+(r-0.75)+'" fill="none" stroke="white" stroke-width="1.5"/></svg>';
+  }
+  function solidSVG(col,r){
+    r=r||7; var d=r*2;
+    return '<svg width="'+d+'" height="'+d+'" viewBox="0 0 '+d+' '+d+'" xmlns="http://www.w3.org/2000/svg">'
+      +'<circle cx="'+r+'" cy="'+r+'" r="'+(r-0.75)+'" fill="'+col+'" stroke="white" stroke-width="1.5"/></svg>';
+  }
+
+  function precLabel(dLat,dLon){
+    var mLat=Math.round(dLat*111000);
+    var mLon=Math.round(dLon*111000*Math.cos(47*Math.PI/180));
+    return mLat===mLon?'\u00b1'+mLat+' m':'\u00b1'+mLat+' m N-S / \u00b1'+mLon+' m E-W';
+  }
+
+  function setStatus(msg,fade){
+    var el=document.getElementById('status');
+    if(!el) return;
+    el.textContent=msg;
+    el.style.opacity='1';
+    if(fade) setTimeout(function(){ el.style.opacity='0'; },3500);
+  }
+
+  function renderStationsBatched(stations,map,onDone){
+    var BATCH=100,i=0;
+    function renderChunk(){
+      var end=Math.min(i+BATCH,stations.length);
+      for(;i<end;i++){
+        var s=stations[i];
+        try{
+          var isBoth=s.rtk.length>0&&s.cp.length>0,isRtk=s.rtk.length>0&&s.cp.length===0;
+          var svg=isBoth?splitSVG(RTK_COL,CP_COL):solidSVG(isRtk?RTK_COL:CP_COL);
+          var r=7,icon=L.divIcon({className:'',html:svg,iconSize:[r*2,r*2],iconAnchor:[r,r]});
+          var rc=isBoth?'#a05000':(isRtk?RTK_COL:CP_COL);
+          L.rectangle([[s.lat-s.dLat,s.lon-s.dLon],[s.lat+s.dLat,s.lon+s.dLon]],
+            {color:rc,weight:1,fillColor:rc,fillOpacity:0.12,dashArray:'4 3'}).addTo(map);
+          var mk=L.marker([s.lat,s.lon],{icon:icon}).addTo(map);
+          var label=s.rtk.concat(s.cp).join(' / ');
+          mk.bindTooltip(label,{permanent:true,direction:'right',offset:[9,0],className:'slabel'});
+          var pop='<b>'+label+'</b><br>';
+          if(s.rtk.length) pop+='<span style="color:'+RTK_COL+'">\u25a0 rtk2go:</span> '+s.rtk.join(', ')+'<br>';
+          if(s.cp.length)  pop+='<span style="color:'+CP_COL+'">\u25a0 Centipede:</span> '+s.cp.join(', ')+'<br>';
+          pop+='Lat: '+s.lat+', Lon: '+s.lon+'<br>';
+          pop+='<span style="color:#888;font-size:10px">Location uncertainty: '+precLabel(s.dLat,s.dLon)+'</span>';
+          mk.bindPopup(pop);
+        } catch(e){ console.warn('render err',e); }
+      }
+      if(i<stations.length){
+        setStatus('Rendering\u2026 '+i+' / '+stations.length);
+        requestAnimationFrame(renderChunk);
+      } else {
+        if(onDone) onDone();
+      }
+    }
+    requestAnimationFrame(renderChunk);
+  }
+
+  function getViewerPos(){
+    return new Promise(function(resolve){
+      if(!navigator.geolocation){ resolve(null); return; }
+      navigator.geolocation.getCurrentPosition(
+        function(pos){ resolve({lat:pos.coords.latitude,lon:pos.coords.longitude}); },
+        function(){ resolve(null); },
+        {timeout:4000,maximumAge:60000}
+      );
+    });
+  }
+
+  window.addEventListener('load',function(){
+    var map=L.map('map').setView([47.0,8.0],8);
+
+    // OSM canonical tile URL (no subdomain rotation per OSM tile policy)
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{
+      maxZoom:19,
+      attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    var leg=L.control({position:'bottomleft'});
+    leg.onAdd=function(){
+      var d=L.DomUtil.create('div');
+      d.style.cssText='background:white;padding:8px 12px;border-radius:5px;border:1px solid #bbb;'
+        +'font-size:11px;line-height:1.7;width:190px;color:#222;';
+      d.innerHTML='<b style="font-size:12px">RTK Stations</b><br>'
+        +'<svg width="12" height="12" viewBox="0 0 12 12"><circle cx="6" cy="6" r="5" fill="'+RTK_COL+'" stroke="white" stroke-width="1.5"/></svg> rtk2go only<br>'
+        +'<svg width="12" height="12" viewBox="0 0 12 12"><circle cx="6" cy="6" r="5" fill="'+CP_COL+'" stroke="white" stroke-width="1.5"/></svg> Centipede only<br>'
+        +'<svg width="12" height="12" viewBox="0 0 12 12"><path d="M6 0 A6 6 0 0 0 6 12 Z" fill="'+RTK_COL+'"\/><path d="M6 0 A6 6 0 0 1 6 12 Z" fill="'+CP_COL+'"\/><circle cx="6" cy="6" r="5" fill="none" stroke="white" stroke-width="1.5"\/></svg> Both networks<br>'
+        +'<hr style="margin:3px 0;border-color:#eee">'
+        +'<span style="font-size:10px;color:#666">\u25a1 = location uncertainty<br>(from coordinate string precision)</span><br>'
+        +'<small id="leg-info" style="color:#999;font-size:10px">Loading\u2026</small>';
+      return d;
+    };
+    leg.addTo(map);
+
+    (async function(){
+      setStatus('Fetching RTK data\u2026');
+      var t0=performance.now();
+
+      var [rtkR,cpR]=await Promise.all([
+        (async function(){
+          try{
+            var r=await fetchWithTimeout(
+              'https://api.codetabs.com/v1/proxy?quest=http://rtk2go.com:2101/',5000,{});
+            if(r.ok) return {stations:parseSourcetable(await r.text()),via:'proxy'};
+          }catch(e){}
+          return {stations:[],via:'failed'};
+        })(),
+        (async function(){
+          try{
+            var r=await fetchWithTimeout('http://caster.centipede.fr:2101/',5000,{mode:'cors'});
+            if(r.ok) return {stations:parseSourcetable(await r.text()),via:'direct'};
+          }catch(e){}
+          return {stations:[],via:'failed'};
+        })()
+      ]);
+
+      var fetchMs=Math.round(performance.now()-t0);
+      setStatus('Merging '+rtkR.stations.length+' rtk2go + '+cpR.stations.length+' Centipede\u2026');
+
+      var stations=mergeStations(rtkR.stations,cpR.stations);
+
+      setStatus('Locating viewer\u2026');
+      var vp=await getViewerPos();
+      var refLat,refLon;
+      if(vp){
+        refLat=vp.lat; refLon=vp.lon;
+        map.setView([refLat,refLon],map.getZoom());
+      } else {
+        var c=map.getCenter();
+        refLat=c.lat; refLon=c.lng;
+      }
+      stations.sort(function(a,b){
+        return haversineDist(refLat,refLon,a.lat,a.lon)
+              -haversineDist(refLat,refLon,b.lat,b.lon);
+      });
+
+      setStatus('Rendering '+stations.length+' stations (nearest first)\u2026');
+      renderStationsBatched(stations,map,function(){
+        var li=document.getElementById('leg-info');
+        if(li) li.innerHTML=new Date().toISOString().slice(0,10)
+          +'<br>rtk2go.com:2101 ('+rtkR.via+')'
+          +'<br>caster.centipede.fr:2101 ('+cpR.via+')'
+          +'<br><span style="color:#bbb">fetch: '+fetchMs+' ms</span>';
+        setStatus('\u2713 '+stations.length+' stations'
+          +' ('+rtkR.stations.length+' rtk2go ['+rtkR.via+'],'
+          +' '+cpR.stations.length+' Centipede ['+cpR.via+'])',true);
+      });
+    })();
+  });
+})();
+</script>
+</body>
+</html>
