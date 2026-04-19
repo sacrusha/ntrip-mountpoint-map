@@ -21,7 +21,7 @@ DATA_DIR = ROOT / "data"
 
 SOURCES = [
     {"id": "rtk2go",        "url": "http://rtk2go.com:2101/"},
-    {"id": "centipede",     "url": "http://caster.centipede.fr:2101/"},
+    {"id": "centipede",     "url": "http://crtk.net:2101/"},        # migrated from caster.centipede.fr 2025-03-18
     # FReDNet (OGS, Italy — north-east): confirmed free, no registration.
     {"id": "frednet",       "url": "http://gnsscaster.regione.fvg.it:8080/"},
     # RTKdata.online: community caster, low-confidence operational status;
