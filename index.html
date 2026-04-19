@@ -97,6 +97,29 @@
   // Banner dismissal: bumped when content meaningfully changes.
   var BANNER_VERSION='2026-04-a';
 
+  // Coverage-raster colour lookup. Built once from the strength bands
+  // (strength = 1 - distance/R_FLOAT, produced by the alpha-pass). Each
+  // entry i maps strength i/255 to a pre-multiplied-by-layer-opacity RGBA.
+  // Bands align with the four radius bands:
+  //   strength > 0.9  → <10 km    → green          (cm-RTK excellent)
+  //   0.7–0.9         → 10–30 km  → yellow-green   (cm-RTK good)
+  //   0.5–0.7         → 30–50 km  → amber          (marginal / float)
+  //   0.01–0.5        → 50–100 km → pale red       (float decimetre)
+  //   <0.01           → no station in range        → transparent
+  var COVERAGE_LUT=(function(){
+    var lut=new Uint8ClampedArray(256*4);
+    for(var i=0;i<256;i++){
+      var s=i/255, rgba;
+      if(s<0.01)      rgba=[0,0,0,0];
+      else if(s<0.5)  rgba=[210,90,90,50];
+      else if(s<0.7)  rgba=[220,150,30,95];
+      else if(s<0.9)  rgba=[180,200,30,130];
+      else            rgba=[0,170,0,165];
+      lut[i*4]=rgba[0]; lut[i*4+1]=rgba[1]; lut[i*4+2]=rgba[2]; lut[i*4+3]=rgba[3];
+    }
+    return lut;
+  })();
+
   // Build a KDBush static spatial index over station lat/lon (x=lon, y=lat).
   // Returns null if KDBush failed to load or the set is empty — callers
   // fall back to linear iteration in that case.
@@ -111,7 +134,7 @@
   // Closest station's colour wins via 'lighten' composite, so the composite
   // approximates a distance-to-nearest field without a per-pixel query.
   var CoverageLayer=L.GridLayer.extend({
-    options:{opacity:0.55,pane:'overlayPane'},
+    options:{opacity:1,pane:'overlayPane'},
     initialize:function(stations,opts){
       L.Util.setOptions(this,opts);
       this.setStations(stations,null,true);
@@ -152,6 +175,12 @@
       }
       var count=ids?ids.length:this._stations.length;
 
+      // Pass 1 — accumulate "closest station strength" per pixel.
+      // Each station paints a white radial gradient whose alpha is linear
+      // in distance (1 at centre, 0 at R_FLOAT). `lighten` composites them
+      // as max-per-channel, so the pixel alpha ends up = max alpha across
+      // all stations reaching it = 1 − (distance to nearest) / R_FLOAT.
+      var drew=false;
       ctx.globalCompositeOperation='lighten';
       for(var k=0;k<count;k++){
         var s=this._stations[ids?ids[k]:k];
@@ -159,17 +188,30 @@
         if(pt.x<-rFloatPx||pt.x>size.x+rFloatPx||
            pt.y<-rFloatPx||pt.y>size.y+rFloatPx) continue;
         var g=ctx.createRadialGradient(pt.x,pt.y,0,pt.x,pt.y,rFloatPx);
-        g.addColorStop(0,                          'rgba(0,170,0,0.65)');
-        g.addColorStop(R_EXCELLENT/R_FLOAT,        'rgba(0,170,0,0.55)');
-        g.addColorStop(R_GOOD/R_FLOAT,             'rgba(180,200,30,0.42)');
-        g.addColorStop(R_MARGINAL/R_FLOAT,         'rgba(220,150,30,0.28)');
-        g.addColorStop(0.999,                      'rgba(210,90,90,0.10)');
-        g.addColorStop(1,                          'rgba(210,90,90,0)');
+        g.addColorStop(0,'rgba(255,255,255,1)');
+        g.addColorStop(1,'rgba(255,255,255,0)');
         ctx.fillStyle=g;
         ctx.beginPath();
         ctx.arc(pt.x,pt.y,rFloatPx,0,2*Math.PI);
         ctx.fill();
+        drew=true;
       }
+      if(!drew) return tile;
+
+      // Pass 2 — replace every pixel's colour by looking up its alpha
+      // (strength) in COVERAGE_LUT. This turns the max-alpha field into
+      // discrete distance bands and drops the "overlap → yellow smear"
+      // artefact of the prior single-pass approach.
+      var imd=ctx.getImageData(0,0,size.x,size.y);
+      var d=imd.data;
+      for(var p=0;p<d.length;p+=4){
+        var li=d[p+3]*4;
+        d[p]=COVERAGE_LUT[li];
+        d[p+1]=COVERAGE_LUT[li+1];
+        d[p+2]=COVERAGE_LUT[li+2];
+        d[p+3]=COVERAGE_LUT[li+3];
+      }
+      ctx.putImageData(imd,0,0);
       return tile;
     }
   });
