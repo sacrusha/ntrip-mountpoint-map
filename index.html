@@ -135,13 +135,16 @@
   //   <0.01           → >100 km   → transparent
   var COVERAGE_LUT=(function(){
     var lut=new Uint8ClampedArray(256*4);
+    var tEx=1-R_EXCELLENT/R_FLOAT; // 0.9 → <10 km green
+    var tGd=1-R_GOOD/R_FLOAT;      // 0.7 → <30 km yellow-green
+    var tMg=1-R_MARGINAL/R_FLOAT;  // 0.5 → <50 km amber
     for(var i=0;i<256;i++){
       var s=i/255, rgba;
-      if(s<0.01)      rgba=[0,0,0,0];
-      else if(s<0.5)  rgba=[210,90,90,50];
-      else if(s<0.7)  rgba=[220,150,30,95];
-      else if(s<0.9)  rgba=[180,200,30,130];
-      else            rgba=[0,170,0,165];
+      if(s<0.01) rgba=[0,0,0,0];
+      else if(s<tMg) rgba=[210,90,90,50];
+      else if(s<tGd) rgba=[220,150,30,95];
+      else if(s<tEx) rgba=[180,200,30,130];
+      else           rgba=[0,170,0,165];
       lut[i*4]=rgba[0]; lut[i*4+1]=rgba[1]; lut[i*4+2]=rgba[2]; lut[i*4+3]=rgba[3];
     }
     return lut;
