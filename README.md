@@ -6,7 +6,7 @@ Interactive map of NTRIP RTK correction mountpoints, aggregated live from [rtk2g
 
 ## Features
 
-- Fetches live data from two public NTRIP casters on every page load
+- Reads pre-aggregated station data from `data/stations.json`, refreshed hourly by a GitHub Actions workflow
 - Derives positional accuracy from coordinate string precision (trailing zeros preserved)
 - Draws a dashed uncertainty box around each station scaled to its coordinate precision
 - Merges stations that appear in both networks at the same location under one marker
@@ -14,12 +14,24 @@ Interactive map of NTRIP RTK correction mountpoints, aggregated live from [rtk2g
 - Colour coding: red = rtk2go only, orange = Centipede only, split circle = both networks
 - Click any marker for network membership, coordinates, and location uncertainty in metres
 
-## Data sources
+## Data pipeline
 
-| Source | URL | Access |
-|--------|-----|--------|
-| rtk2go.com | `http://rtk2go.com:2101/` | via CORS proxy (codetabs.com) |
-| Centipede | `http://caster.centipede.fr:2101/` | direct (CORS enabled) |
+Sourcetables are fetched server-side by `.github/workflows/update-stations.yml`
+(hourly, plus `workflow_dispatch`), parsed by `scripts/fetch_stations.py`, and
+committed to `main` as:
+
+- `data/rtk2go.sourcetable` — raw sourcetable (archival)
+- `data/centipede.sourcetable` — raw sourcetable (archival)
+- `data/stations.json` — parsed, structured view consumed by `index.html`
+
+Commits only happen when the parsed station set actually changed, so the
+timestamp in `stations.json` only moves on real data changes. If a caster is
+temporarily unreachable, its last-known good sourcetable is reused.
+
+| Source | URL |
+|--------|-----|
+| rtk2go.com | `http://rtk2go.com:2101/` |
+| Centipede | `http://caster.centipede.fr:2101/` |
 
 The NTRIP sourcetable is a public protocol endpoint (RTCM 10402.1) — reading it is its intended use.
 
@@ -27,7 +39,7 @@ The NTRIP sourcetable is a public protocol endpoint (RTCM 10402.1) — reading i
 
 - [Leaflet](https://leafletjs.com/) — BSD-2-Clause
 - [OpenStreetMap](https://www.openstreetmap.org/) tiles — data © OpenStreetMap contributors, [ODbL](https://opendatacommons.org/licenses/odbl/)
-- [codetabs.com CORS proxy](https://codetabs.com/cors-proxy/cors-proxy.html) — for rtk2go cross-origin fetch
+- GitHub Actions — hourly sourcetable fetch + commit to `main`
 
 ## Usage
 
