@@ -126,15 +126,13 @@
   // Banner dismissal: bumped when content meaningfully changes.
   var BANNER_VERSION='2026-04-a';
 
-  // Coverage-raster colour lookup. Built once from the strength bands
-  // (strength = 1 - distance/R_FLOAT, produced by the alpha-pass). Each
-  // entry i maps strength i/255 to a pre-multiplied-by-layer-opacity RGBA.
-  // Bands align with the four radius bands:
+  // Coverage-raster colour lookup. Entry i maps strength i/255 to RGBA,
+  // where strength = 1 - dist_to_nearest_km / R_FLOAT:
   //   strength > 0.9  → <10 km    → green          (cm-RTK excellent)
   //   0.7–0.9         → 10–30 km  → yellow-green   (cm-RTK good)
   //   0.5–0.7         → 30–50 km  → amber          (marginal / float)
   //   0.01–0.5        → 50–100 km → pale red       (float decimetre)
-  //   <0.01           → no station in range        → transparent
+  //   <0.01           → >100 km   → transparent
   var COVERAGE_LUT=(function(){
     var lut=new Uint8ClampedArray(256*4);
     for(var i=0;i<256;i++){
@@ -159,9 +157,8 @@
       function(s){ return s.lat; });
   }
 
-  // CoverageLayer: tiled canvas drawing a radial gradient per nearby station.
-  // Closest station's colour wins via 'lighten' composite, so the composite
-  // approximates a distance-to-nearest field without a per-pixel query.
+  // CoverageLayer: tiled canvas raster showing distance to nearest station.
+  // Each pixel is coloured by its exact nearest-station distance via COVERAGE_LUT.
   var CoverageLayer=L.GridLayer.extend({
     options:{opacity:1,pane:'overlayPane'},
     initialize:function(stations,opts){
