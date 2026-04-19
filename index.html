@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/kdbush@3.0.0/kdbush.min.js"></script>
 <style>
   html,body{height:100%;margin:0;padding:0;font-family:sans-serif;}
   #map{position:absolute;top:0;left:0;right:0;bottom:0;}
@@ -96,6 +97,16 @@
   // Banner dismissal: bumped when content meaningfully changes.
   var BANNER_VERSION='2026-04-a';
 
+  // Build a KDBush static spatial index over station lat/lon (x=lon, y=lat).
+  // Returns null if KDBush failed to load or the set is empty — callers
+  // fall back to linear iteration in that case.
+  function buildStationIndex(stations){
+    if(typeof KDBush==='undefined'||!stations||!stations.length) return null;
+    return new KDBush(stations,
+      function(s){ return s.lon; },
+      function(s){ return s.lat; });
+  }
+
   // CoverageLayer: tiled canvas drawing a radial gradient per nearby station.
   // Closest station's colour wins via 'lighten' composite, so the composite
   // approximates a distance-to-nearest field without a per-pixel query.
@@ -103,11 +114,12 @@
     options:{opacity:0.55,pane:'overlayPane'},
     initialize:function(stations,opts){
       L.Util.setOptions(this,opts);
-      this._stations=stations||[];
+      this.setStations(stations,null,true);
     },
-    setStations:function(stations){
+    setStations:function(stations,index,skipRedraw){
       this._stations=stations||[];
-      this.redraw();
+      this._index=index||buildStationIndex(this._stations);
+      if(!skipRedraw) this.redraw();
     },
     createTile:function(coords){
       var size=this.getTileSize();
@@ -117,15 +129,32 @@
       var z=coords.z;
       var map=this._map;
       var nwPx=coords.scaleBy(size);
-      // pixels per km at this tile's latitude (roughly — use tile centre).
       var center=map.unproject(nwPx.add([size.x/2,size.y/2]),z);
       var metresPerPx=40075016.686*Math.cos(center.lat*Math.PI/180)/
                        Math.pow(2,z+8);
       var pxPerKm=1000/metresPerPx;
       var rFloatPx=R_FLOAT*pxPerKm;
+
+      // Restrict per-tile work to stations whose R_FLOAT circle can reach
+      // this tile. Pad the tile's lat/lon bbox by R_FLOAT converted to
+      // degrees (lon pad widens with latitude).
+      var ids;
+      if(this._index){
+        var nwLL=map.unproject(nwPx,z);
+        var seLL=map.unproject(nwPx.add([size.x,size.y]),z);
+        var padLat=R_FLOAT/111;
+        var padLon=R_FLOAT/(111*Math.max(0.01,Math.cos(center.lat*Math.PI/180)));
+        ids=this._index.range(
+          Math.min(nwLL.lng,seLL.lng)-padLon,
+          Math.min(nwLL.lat,seLL.lat)-padLat,
+          Math.max(nwLL.lng,seLL.lng)+padLon,
+          Math.max(nwLL.lat,seLL.lat)+padLat);
+      }
+      var count=ids?ids.length:this._stations.length;
+
       ctx.globalCompositeOperation='lighten';
-      for(var i=0;i<this._stations.length;i++){
-        var s=this._stations[i];
+      for(var k=0;k<count;k++){
+        var s=this._stations[ids?ids[k]:k];
         var pt=map.project([s.lat,s.lon],z).subtract(nwPx);
         if(pt.x<-rFloatPx||pt.x>size.x+rFloatPx||
            pt.y<-rFloatPx||pt.y>size.y+rFloatPx) continue;
@@ -263,7 +292,7 @@
     }
   };
 
-  // Source metadata — server host:port for NTRIP-client configuration.
+  // Source metadata — server host + port for NTRIP-client configuration.
   // Populated from stations.json URLs at load time.
   var SERVERS={};
   function setServers(data){
@@ -274,7 +303,7 @@
       try{
         var p=new URL(u);
         var port=p.port||(p.protocol==='https:'?'443':'80');
-        SERVERS[k]={label:k,host:p.hostname+':'+port};
+        SERVERS[k]={label:k,host:p.hostname,port:port};
       }catch(e){}
     });
   }
@@ -285,21 +314,22 @@
     return 'RTK stream — accuracy depends on receiver and baseline';
   }
 
+  function cpRow(lblHtml,value){
+    var v=esc(value);
+    return '<div class="row"><span class="lbl">'+lblHtml+'</span>'
+      +'<code>'+v+'</code>'
+      +'<button class="cp" onclick="__ntripCopy(this,\''+v+'\')">copy</button>'
+      +'</div>';
+  }
   function serverBlock(serverKey,mountpoint,dotCol){
     var srv=SERVERS[serverKey];
     if(!srv||!mountpoint) return '';
-    var host=esc(srv.host), mp=esc(mountpoint);
+    var dot='<span style="display:inline-block;width:8px;height:8px;background:'
+      +dotCol+';border-radius:50%;margin-right:4px"></span>';
     return '<div class="srv">'
-      +'<div class="row"><span class="lbl">'
-        +'<span style="display:inline-block;width:8px;height:8px;background:'
-        +dotCol+';border-radius:50%;margin-right:4px"></span>Server</span>'
-        +'<code>'+host+'</code>'
-        +'<button class="cp" onclick="__ntripCopy(this,\''+host+'\')">copy</button>'
-      +'</div>'
-      +'<div class="row"><span class="lbl">Mountpoint</span>'
-        +'<code>'+mp+'</code>'
-        +'<button class="cp" onclick="__ntripCopy(this,\''+mp+'\')">copy</button>'
-      +'</div>'
+      +cpRow(dot+'Server',srv.host)
+      +cpRow('Port',srv.port)
+      +cpRow('Mountpoint',mountpoint)
       +'</div>';
   }
 
@@ -361,14 +391,20 @@
   }
 
   // Rebuild the detail layer for the current viewport (plus a small
-  // padding buffer for smooth pans). Discards previous entries.
-  function refreshDetailLayer(map,stations,detail){
+  // padding buffer for smooth pans). Discards previous entries. When
+  // `index` is provided, uses it to pull just the stations inside the
+  // padded bounds in O(log N + k); otherwise falls back to a linear scan.
+  function refreshDetailLayer(map,stations,detail,index){
     detail.clearLayers();
     var b=map.getBounds().pad(0.2);
+    var ids=index
+      ? index.range(b.getWest(),b.getSouth(),b.getEast(),b.getNorth())
+      : null;
+    var count=ids?ids.length:stations.length;
     var shown=0;
-    for(var i=0;i<stations.length;i++){
-      var s=stations[i];
-      if(!b.contains([s.lat,s.lon])) continue;
+    for(var k=0;k<count;k++){
+      var s=stations[ids?ids[k]:k];
+      if(!ids&&!b.contains([s.lat,s.lon])) continue;
       try{
         var isBoth=s.rtk.length>0&&s.cp.length>0;
         var isRtk=s.rtk.length>0&&!isBoth;
@@ -576,6 +612,7 @@
       // Zoom-aware station layer groups.
       var filter=function(_s){ return true; };
       var visible=allStations;
+      var stationIndex=null;
       var layers={detail:L.layerGroup(),dots:L.layerGroup()};
 
       function applyZoom(){
@@ -583,7 +620,7 @@
         var showDots=z>=ZOOM_DOTS;
         var showDetail=z>=ZOOM_DETAIL;
         if(showDetail){
-          refreshDetailLayer(map,visible,layers.detail);
+          refreshDetailLayer(map,visible,layers.detail,stationIndex);
           if(!map.hasLayer(layers.detail)) layers.detail.addTo(map);
           if(map.hasLayer(layers.dots)) map.removeLayer(layers.dots);
         }else if(showDots){
@@ -600,7 +637,7 @@
       // At detail zoom, also refresh when the user pans to a new area.
       map.on('moveend',function(){
         if(map.getZoom()>=ZOOM_DETAIL){
-          refreshDetailLayer(map,visible,layers.detail);
+          refreshDetailLayer(map,visible,layers.detail,stationIndex);
         }
       });
 
@@ -608,10 +645,11 @@
         if(map.hasLayer(layers.detail)) map.removeLayer(layers.detail);
         if(map.hasLayer(layers.dots)) map.removeLayer(layers.dots);
         visible=allStations.filter(filter);
+        stationIndex=buildStationIndex(visible);
         setStatus('Rendering '+visible.length+' stations\u2026');
         buildStationLayers(visible,map,function(built){
           layers=built;
-          coverage.setStations(visible);
+          coverage.setStations(visible,stationIndex);
           applyZoom();
           finishLoad();
         });
