@@ -1,11 +1,11 @@
 {
-  "updated": "2026-04-19T20:47:27+00:00",
+  "updated": "2026-04-19T21:19:07+00:00",
   "scope": "free NTRIP sources delivering better than ~50 cm",
   "sources": {
     "rtk2go": {
       "url": "http://rtk2go.com:2101/",
       "status": "ok",
-      "fetched_at": "2026-04-19T20:47:25+00:00",
+      "fetched_at": "2026-04-19T21:18:59+00:00",
       "stations": [
         {
           "name": "ADS-SAH",
@@ -146,19 +146,6 @@
           "carrier": 3,
           "carrierInferred": false,
           "format": "RTCM 3.0",
-          "legacyFormat": false,
-          "country": "USA",
-          "fee": "N"
-        },
-        {
-          "name": "AlabamaSylacauga",
-          "lat": 33.22,
-          "lon": -86.31,
-          "latStr": "33.22",
-          "lonStr": "-86.31",
-          "carrier": 2,
-          "carrierInferred": true,
-          "format": "RTCM 3.2",
           "legacyFormat": false,
           "country": "USA",
           "fee": "N"
@@ -665,7 +652,7 @@
           "lonStr": "-64.35",
           "carrier": 2,
           "carrierInferred": true,
-          "format": "RTCM 3.2",
+          "format": "RTCM 3",
           "legacyFormat": false,
           "country": "ARG",
           "fee": "N"
@@ -733,19 +720,6 @@
           "format": "RTCM 3.2",
           "legacyFormat": false,
           "country": "ESP",
-          "fee": "N"
-        },
-        {
-          "name": "CHCH-NW",
-          "lat": -43.5,
-          "lon": 172.6,
-          "latStr": "-43.50",
-          "lonStr": "172.60",
-          "carrier": 2,
-          "carrierInferred": true,
-          "format": "RTCM 3.2",
-          "legacyFormat": false,
-          "country": "NZL",
           "fee": "N"
         },
         {
@@ -1120,7 +1094,7 @@
           "lonStr": "18.47",
           "carrier": 2,
           "carrierInferred": true,
-          "format": "RTCM 3",
+          "format": "RTCM 3.3",
           "legacyFormat": false,
           "country": "POL",
           "fee": "N"
@@ -1406,7 +1380,7 @@
           "lonStr": "17.83",
           "carrier": 2,
           "carrierInferred": true,
-          "format": "RTCM 3",
+          "format": "RTCM 3.2",
           "legacyFormat": false,
           "country": "POL",
           "fee": "N"
@@ -1617,19 +1591,6 @@
           "format": "RTCM 3.2",
           "legacyFormat": false,
           "country": "FRA",
-          "fee": "N"
-        },
-        {
-          "name": "EZTR",
-          "lat": 32.08,
-          "lon": 34.81,
-          "latStr": "32.08",
-          "lonStr": "34.81",
-          "carrier": 2,
-          "carrierInferred": true,
-          "format": "RTCM 3.2",
-          "legacyFormat": false,
-          "country": "ISR",
           "fee": "N"
         },
         {
@@ -2358,6 +2319,19 @@
           "format": "RTCM 3.3",
           "legacyFormat": false,
           "country": "ITA",
+          "fee": "N"
+        },
+        {
+          "name": "Gine-Albrk",
+          "lat": 9.52,
+          "lon": -13.72,
+          "latStr": "9.52",
+          "lonStr": "-13.72",
+          "carrier": 2,
+          "carrierInferred": true,
+          "format": "RTCM 3.0",
+          "legacyFormat": false,
+          "country": "GIN",
           "fee": "N"
         },
         {
@@ -3151,19 +3125,6 @@
           "format": "RTCM 3.3",
           "legacyFormat": false,
           "country": "DEU",
-          "fee": "N"
-        },
-        {
-          "name": "JOVAID",
-          "lat": 45.19,
-          "lon": 20.51,
-          "latStr": "45.19",
-          "lonStr": "20.51",
-          "carrier": 2,
-          "carrierInferred": true,
-          "format": "RTCM 3.2",
-          "legacyFormat": false,
-          "country": "SRB",
           "fee": "N"
         },
         {
@@ -4435,7 +4396,7 @@
           "lonStr": "-76.60",
           "carrier": 2,
           "carrierInferred": true,
-          "format": "RTCM 3",
+          "format": "RTCM 3.2",
           "legacyFormat": false,
           "country": "USA",
           "fee": "N"
@@ -4581,19 +4542,6 @@
           "format": "RTCM 3.2",
           "legacyFormat": false,
           "country": "ESP",
-          "fee": "N"
-        },
-        {
-          "name": "MP17626",
-          "lat": 39.34,
-          "lon": -98.23,
-          "latStr": "39.34",
-          "lonStr": "-98.23",
-          "carrier": 2,
-          "carrierInferred": true,
-          "format": "RTCM 3.2",
-          "legacyFormat": false,
-          "country": "USA",
           "fee": "N"
         },
         {
@@ -5267,7 +5215,7 @@
           "lonStr": "19.97",
           "carrier": 2,
           "carrierInferred": true,
-          "format": "RTCM 3",
+          "format": "RTCM 3.2",
           "legacyFormat": false,
           "country": "POL",
           "fee": "N"
@@ -6281,7 +6229,7 @@
           "lonStr": "11.44",
           "carrier": 2,
           "carrierInferred": true,
-          "format": "RTCM 3.2",
+          "format": "RTCM 3",
           "legacyFormat": false,
           "country": "DEU",
           "fee": "N"
@@ -7815,7 +7763,7 @@
           "lonStr": "130.37",
           "carrier": 2,
           "carrierInferred": true,
-          "format": "RTCM 3",
+          "format": "RTCM 3.2",
           "legacyFormat": false,
           "country": "JPN",
           "fee": "N"
@@ -8117,6 +8065,19 @@
           "format": "RTCM 3.2",
           "legacyFormat": false,
           "country": "NLD",
+          "fee": "N"
+        },
+        {
+          "name": "TohokuUniv",
+          "lat": 38.26,
+          "lon": 140.84,
+          "latStr": "38.26",
+          "lonStr": "140.84",
+          "carrier": 2,
+          "carrierInferred": true,
+          "format": "RTCM 3.2",
+          "legacyFormat": false,
+          "country": "JPN",
           "fee": "N"
         },
         {
@@ -8608,7 +8569,7 @@
           "lonStr": "142.15",
           "carrier": 2,
           "carrierInferred": true,
-          "format": "RTCM 3.2",
+          "format": "RTCM 3",
           "legacyFormat": false,
           "country": "AUS",
           "fee": "N"
@@ -9037,7 +8998,7 @@
           "lonStr": "19.49",
           "carrier": 2,
           "carrierInferred": true,
-          "format": "RTCM 3",
+          "format": "RTCM 3.2",
           "legacyFormat": false,
           "country": "POL",
           "fee": "N"
@@ -10265,6 +10226,19 @@
           "fee": "N"
         },
         {
+          "name": "noushin-RTK",
+          "lat": 34.56,
+          "lon": 132.96,
+          "latStr": "34.56",
+          "lonStr": "132.96",
+          "carrier": 2,
+          "carrierInferred": true,
+          "format": "RTCM 3.2",
+          "legacyFormat": false,
+          "country": "JPN",
+          "fee": "N"
+        },
+        {
           "name": "ntripbg",
           "lat": -29.16,
           "lon": -51.52,
@@ -10610,7 +10584,7 @@
           "lonStr": "9.42",
           "carrier": 2,
           "carrierInferred": true,
-          "format": "RTCM 3",
+          "format": "RTCM 3.2",
           "legacyFormat": false,
           "country": "NOR",
           "fee": "N"
@@ -10649,7 +10623,7 @@
           "lonStr": "13.15",
           "carrier": 2,
           "carrierInferred": true,
-          "format": "RTCM 3.3",
+          "format": "RTCM 3",
           "legacyFormat": false,
           "country": "SWE",
           "fee": "N"
@@ -10756,19 +10730,6 @@
           "format": "RTCM 3.3",
           "legacyFormat": false,
           "country": "TWN",
-          "fee": "N"
-        },
-        {
-          "name": "toyosige110",
-          "lat": 33.54,
-          "lon": 132.45,
-          "latStr": "33.54",
-          "lonStr": "132.45",
-          "carrier": 2,
-          "carrierInferred": true,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": "JPN",
           "fee": "N"
         },
         {
@@ -10909,7 +10870,7 @@
           "lonStr": "-2.48",
           "carrier": 2,
           "carrierInferred": true,
-          "format": "RTCM 3",
+          "format": "RTCM 3.2",
           "legacyFormat": false,
           "country": "GBR",
           "fee": "N"
@@ -10945,7 +10906,7 @@
     "centipede": {
       "url": "http://caster.centipede.fr:2101/",
       "status": "ok",
-      "fetched_at": "2026-04-19T20:47:27+00:00",
+      "fetched_at": "2026-04-19T21:19:00+00:00",
       "stations": [
         {
           "name": "1234",
@@ -17461,6 +17422,19 @@
           "fee": "N"
         },
         {
+          "name": "GUIL",
+          "lat": 44.62,
+          "lon": 6.66,
+          "latStr": "44.62",
+          "lonStr": "6.66",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 3.2 MSM7",
+          "legacyFormat": false,
+          "country": "FRA",
+          "fee": "N"
+        },
+        {
           "name": "GUISS",
           "lat": 48.633,
           "lon": -4.408,
@@ -18761,6 +18735,19 @@
           "fee": "N"
         },
         {
+          "name": "KHAY",
+          "lat": 25.718,
+          "lon": 39.296,
+          "latStr": "25.718",
+          "lonStr": "39.296",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM3",
+          "legacyFormat": false,
+          "country": "SAU",
+          "fee": "N"
+        },
+        {
           "name": "KIKI",
           "lat": 43.762,
           "lon": 6.759,
@@ -19066,19 +19053,6 @@
           "latStr": "46.459",
           "lonStr": "-0.658",
           "carrier": 3,
-          "carrierInferred": false,
-          "format": "RTCM3",
-          "legacyFormat": false,
-          "country": "FRA",
-          "fee": "N"
-        },
-        {
-          "name": "LAB1",
-          "lat": 49.466,
-          "lon": 2.073,
-          "latStr": "49.466",
-          "lonStr": "2.073",
-          "carrier": 2,
           "carrierInferred": false,
           "format": "RTCM3",
           "legacyFormat": false,
@@ -22063,6 +22037,19 @@
           "fee": "N"
         },
         {
+          "name": "PALI",
+          "lat": 43.38,
+          "lon": 4.81,
+          "latStr": "43.38",
+          "lonStr": "4.81",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 3.2 MSM7",
+          "legacyFormat": false,
+          "country": "FRA",
+          "fee": "N"
+        },
+        {
           "name": "PALLU",
           "lat": 45.685,
           "lon": 6.394,
@@ -23308,19 +23295,6 @@
           "format": "RTCM3",
           "legacyFormat": false,
           "country": "HUN",
-          "fee": "N"
-        },
-        {
-          "name": "RTKM",
-          "lat": 46.115,
-          "lon": 20.056,
-          "latStr": "46.115",
-          "lonStr": "20.056",
-          "carrier": 2,
-          "carrierInferred": false,
-          "format": "RTCM3",
-          "legacyFormat": false,
-          "country": "SER",
           "fee": "N"
         },
         {
@@ -25222,6 +25196,19 @@
           "fee": "N"
         },
         {
+          "name": "TJMM",
+          "lat": 54.869,
+          "lon": -7.496,
+          "latStr": "54.869",
+          "lonStr": "-7.496",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM3",
+          "legacyFormat": false,
+          "country": "IRL",
+          "fee": "N"
+        },
+        {
           "name": "TLB2",
           "lat": 48.555,
           "lon": -2.885,
@@ -26405,19 +26392,6 @@
           "fee": "N"
         },
         {
-          "name": "YMON",
-          "lat": 53.227,
-          "lon": -4.437,
-          "latStr": "53.227",
-          "lonStr": "-4.437",
-          "carrier": 2,
-          "carrierInferred": false,
-          "format": "RTCM3",
-          "legacyFormat": false,
-          "country": "ENG",
-          "fee": "N"
-        },
-        {
           "name": "YOYO",
           "lat": 48.051,
           "lon": 3.748,
@@ -26574,6 +26548,526 @@
           "fee": "N"
         }
       ]
+    },
+    "frednet": {
+      "url": "http://gnsscaster.regione.fvg.it:8080/",
+      "status": "ok",
+      "fetched_at": "2026-04-19T21:19:01+00:00",
+      "stations": [
+        {
+          "name": "Ampezzo_RTK",
+          "lat": 46.41,
+          "lon": 12.8,
+          "latStr": "46.41",
+          "lonStr": "12.80",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 2.3",
+          "legacyFormat": true,
+          "country": "ITA",
+          "fee": "N"
+        },
+        {
+          "name": "Barcis_RTK",
+          "lat": 46.19,
+          "lon": 12.56,
+          "latStr": "46.19",
+          "lonStr": "12.56",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 2.3",
+          "legacyFormat": true,
+          "country": "ITA",
+          "fee": "N"
+        },
+        {
+          "name": "Bevazzana_RTK",
+          "lat": 45.67,
+          "lon": 13.07,
+          "latStr": "45.67",
+          "lonStr": "13.07",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 2.3",
+          "legacyFormat": true,
+          "country": "ITA",
+          "fee": "N"
+        },
+        {
+          "name": "Bovec_RTK",
+          "lat": 46.33,
+          "lon": 13.54,
+          "latStr": "46.33",
+          "lonStr": "13.54",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 2",
+          "legacyFormat": true,
+          "country": "ITA",
+          "fee": "N"
+        },
+        {
+          "name": "Cervignano_RTK",
+          "lat": 45.83,
+          "lon": 13.34,
+          "latStr": "45.83",
+          "lonStr": "13.34",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 2",
+          "legacyFormat": true,
+          "country": "ITA",
+          "fee": "N"
+        },
+        {
+          "name": "Codroipo_RTK",
+          "lat": 45.96,
+          "lon": 12.98,
+          "latStr": "45.96",
+          "lonStr": "12.98",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 2",
+          "legacyFormat": true,
+          "country": "ITA",
+          "fee": "N"
+        },
+        {
+          "name": "Gorizia_RTK",
+          "lat": 45.94,
+          "lon": 13.62,
+          "latStr": "45.94",
+          "lonStr": "13.62",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 2",
+          "legacyFormat": true,
+          "country": "ITA",
+          "fee": "N"
+        },
+        {
+          "name": "IMAC_RTCM3",
+          "lat": 46.06,
+          "lon": 13.23,
+          "latStr": "46.06",
+          "lonStr": "13.23",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": "ITA",
+          "fee": "N"
+        },
+        {
+          "name": "IMAC_RTCM32",
+          "lat": 46.06,
+          "lon": 13.23,
+          "latStr": "46.06",
+          "lonStr": "13.23",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": "ITA",
+          "fee": "N"
+        },
+        {
+          "name": "Idrija_RTK",
+          "lat": 46.0,
+          "lon": 14.03,
+          "latStr": "46.00",
+          "lonStr": "14.03",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 2",
+          "legacyFormat": true,
+          "country": "ITA",
+          "fee": "N"
+        },
+        {
+          "name": "Koper_RTK",
+          "lat": 45.55,
+          "lon": 13.73,
+          "latStr": "45.55",
+          "lonStr": "13.73",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 2",
+          "legacyFormat": true,
+          "country": "ITA",
+          "fee": "N"
+        },
+        {
+          "name": "MAC_RTCM31",
+          "lat": 46.06,
+          "lon": 13.23,
+          "latStr": "46.06",
+          "lonStr": "13.23",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": "ITA",
+          "fee": "N"
+        },
+        {
+          "name": "MoggioUdinese_RTK",
+          "lat": 46.41,
+          "lon": 13.2,
+          "latStr": "46.41",
+          "lonStr": "13.20",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 2.3",
+          "legacyFormat": true,
+          "country": "ITA",
+          "fee": "N"
+        },
+        {
+          "name": "OGS_ACOM",
+          "lat": 46.54,
+          "lon": 13.51,
+          "latStr": "46.54",
+          "lonStr": "13.51",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM",
+          "legacyFormat": false,
+          "country": "ITA",
+          "fee": "N"
+        },
+        {
+          "name": "OGS_AFAL",
+          "lat": 46.52,
+          "lon": 12.17,
+          "latStr": "46.52",
+          "lonStr": "12.17",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM",
+          "legacyFormat": false,
+          "country": "ITA",
+          "fee": "N"
+        },
+        {
+          "name": "OGS_CODR",
+          "lat": 45.96,
+          "lon": 12.98,
+          "latStr": "45.96",
+          "lonStr": "12.98",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM",
+          "legacyFormat": false,
+          "country": "ITA",
+          "fee": "N"
+        },
+        {
+          "name": "OGS_FUSE",
+          "lat": 46.41,
+          "lon": 13.0,
+          "latStr": "46.41",
+          "lonStr": "13.00",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM",
+          "legacyFormat": false,
+          "country": "ITA",
+          "fee": "N"
+        },
+        {
+          "name": "OGS_JOAN",
+          "lat": 46.18,
+          "lon": 13.42,
+          "latStr": "46.18",
+          "lonStr": "13.42",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM",
+          "legacyFormat": false,
+          "country": "ITA",
+          "fee": "N"
+        },
+        {
+          "name": "OGS_MDEA",
+          "lat": 45.92,
+          "lon": 13.93,
+          "latStr": "45.92",
+          "lonStr": "13.93",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RAW",
+          "legacyFormat": false,
+          "country": "ITA",
+          "fee": "N"
+        },
+        {
+          "name": "OGS_MPRA",
+          "lat": 46.24,
+          "lon": 12.99,
+          "latStr": "46.24",
+          "lonStr": "12.99",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM",
+          "legacyFormat": false,
+          "country": "ITA",
+          "fee": "N"
+        },
+        {
+          "name": "OGS_NOVE",
+          "lat": 45.67,
+          "lon": 12.59,
+          "latStr": "45.67",
+          "lonStr": "12.59",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RAW",
+          "legacyFormat": false,
+          "country": "ITA",
+          "fee": "N"
+        },
+        {
+          "name": "OGS_PAZO",
+          "lat": 45.81,
+          "lon": 13.05,
+          "latStr": "45.81",
+          "lonStr": "13.05",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RAW",
+          "legacyFormat": false,
+          "country": "ITA",
+          "fee": "N"
+        },
+        {
+          "name": "OGS_TRIE",
+          "lat": 45.71,
+          "lon": 13.76,
+          "latStr": "45.71",
+          "lonStr": "13.76",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RAW",
+          "legacyFormat": false,
+          "country": "ITA",
+          "fee": "N"
+        },
+        {
+          "name": "OGS_UDI1",
+          "lat": 46.04,
+          "lon": 13.25,
+          "latStr": "46.04",
+          "lonStr": "13.25",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RAW",
+          "legacyFormat": false,
+          "country": "ITA",
+          "fee": "N"
+        },
+        {
+          "name": "OGS_ZOUF",
+          "lat": 46.56,
+          "lon": 12.97,
+          "latStr": "46.56",
+          "lonStr": "12.97",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RAW",
+          "legacyFormat": false,
+          "country": "ITA",
+          "fee": "N"
+        },
+        {
+          "name": "Paularo_RTK",
+          "lat": 46.54,
+          "lon": 13.12,
+          "latStr": "46.54",
+          "lonStr": "13.12",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 2",
+          "legacyFormat": true,
+          "country": "ITA",
+          "fee": "N"
+        },
+        {
+          "name": "Pordenone_RTK",
+          "lat": 45.96,
+          "lon": 12.66,
+          "latStr": "45.96",
+          "lonStr": "12.66",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 2.3",
+          "legacyFormat": true,
+          "country": "ITA",
+          "fee": "N"
+        },
+        {
+          "name": "Sappada_RTK",
+          "lat": 46.57,
+          "lon": 12.69,
+          "latStr": "46.57",
+          "lonStr": "12.69",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 2",
+          "legacyFormat": true,
+          "country": "ITA",
+          "fee": "N"
+        },
+        {
+          "name": "SingleBase_RTCM23",
+          "lat": 46.41,
+          "lon": 12.8,
+          "latStr": "46.41",
+          "lonStr": "12.80",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 2.3",
+          "legacyFormat": true,
+          "country": "ITA",
+          "fee": "N"
+        },
+        {
+          "name": "SingleBase_RTCM31",
+          "lat": 46.41,
+          "lon": 12.8,
+          "latStr": "46.41",
+          "lonStr": "12.80",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 3.1",
+          "legacyFormat": false,
+          "country": "ITA",
+          "fee": "N"
+        },
+        {
+          "name": "SingleBase_RTCM32",
+          "lat": 46.41,
+          "lon": 12.8,
+          "latStr": "46.41",
+          "lonStr": "12.80",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": "ITA",
+          "fee": "N"
+        },
+        {
+          "name": "Tarvisio_RTK",
+          "lat": 46.5,
+          "lon": 13.59,
+          "latStr": "46.50",
+          "lonStr": "13.59",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 2.3",
+          "legacyFormat": true,
+          "country": "ITA",
+          "fee": "N"
+        },
+        {
+          "name": "Trieste_RTK",
+          "lat": 45.66,
+          "lon": 13.79,
+          "latStr": "45.66",
+          "lonStr": "13.79",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 2.3",
+          "legacyFormat": true,
+          "country": "ITA",
+          "fee": "N"
+        },
+        {
+          "name": "Udine_RTK",
+          "lat": 46.06,
+          "lon": 13.23,
+          "latStr": "46.06",
+          "lonStr": "13.23",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 2.3",
+          "legacyFormat": true,
+          "country": "ITA",
+          "fee": "N"
+        },
+        {
+          "name": "VRS_CMR",
+          "lat": 46.06,
+          "lon": 13.23,
+          "latStr": "46.06",
+          "lonStr": "13.23",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "CMR",
+          "legacyFormat": false,
+          "country": "ITA",
+          "fee": "N"
+        },
+        {
+          "name": "VRS_CMR_GPS",
+          "lat": 46.06,
+          "lon": 13.23,
+          "latStr": "46.06",
+          "lonStr": "13.23",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "CMR",
+          "legacyFormat": false,
+          "country": "ITA",
+          "fee": "N"
+        },
+        {
+          "name": "VRS_RTCM23",
+          "lat": 46.06,
+          "lon": 13.23,
+          "latStr": "46.06",
+          "lonStr": "13.23",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 2",
+          "legacyFormat": true,
+          "country": "ITA",
+          "fee": "N"
+        },
+        {
+          "name": "VRS_RTCM31",
+          "lat": 46.06,
+          "lon": 13.23,
+          "latStr": "46.06",
+          "lonStr": "13.23",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": "ITA",
+          "fee": "N"
+        },
+        {
+          "name": "VRS_RTCM32",
+          "lat": 46.06,
+          "lon": 13.23,
+          "latStr": "46.06",
+          "lonStr": "13.23",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": "ITA",
+          "fee": "N"
+        }
+      ]
+    },
+    "rtkdataonline": {
+      "url": "http://rtkdata.online:2101/",
+      "status": "error: RemoteDisconnected('Remote end closed connection without response')",
+      "fetched_at": null,
+      "stations": []
     }
   },
   "networks": []
