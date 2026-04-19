@@ -44,4 +44,19 @@ jobs:
           rtk=$(python -c "import json; d=json.load(open('data/stations.json')); print(len(d['sources'].get('rtk2go',{}).get('stations',[])))")
           cp=$(python -c  "import json; d=json.load(open('data/stations.json')); print(len(d['sources'].get('centipede',{}).get('stations',[])))")
           git commit -m "chore(data): refresh NTRIP stations (${rtk} rtk2go, ${cp} centipede)"
-          git push origin HEAD:${GITHUB_REF_NAME}
+
+          # Push with rebase-retry: a human PR merge or another run can
+          # land on the branch between our checkout and our push. Rebase
+          # our data-only commit onto the latest head and try again.
+          for attempt in 1 2 3; do
+            if git push origin HEAD:${GITHUB_REF_NAME}; then
+              echo "Push succeeded on attempt ${attempt}."
+              exit 0
+            fi
+            echo "Push rejected on attempt ${attempt}; rebasing on latest ${GITHUB_REF_NAME}…"
+            git fetch origin ${GITHUB_REF_NAME}
+            git rebase origin/${GITHUB_REF_NAME}
+            sleep $((attempt * 2))
+          done
+          echo "Failed to push after 3 attempts."
+          exit 1
