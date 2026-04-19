@@ -206,7 +206,7 @@
         })(),
         (async function(){
           try{
-            var r=await fetchWithTimeout('http://caster.centipede.fr:2101/',5000,{mode:'cors'});
+            var r=await fetchWithTimeout('https://api.codetabs.com/v1/proxy?quest=http://caster.centipede.fr:2101/',5000,{});
             if(r.ok) return {stations:parseSourcetable(await r.text()),via:'direct'};
           }catch(e){}
           return {stations:[],via:'failed'};
