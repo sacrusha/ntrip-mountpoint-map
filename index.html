@@ -448,7 +448,7 @@
     }
     var ctrl=L.control({position:'topright'});
     ctrl.onAdd=function(){
-      var d=L.DomUtil.create('div','','leaflet-control');
+      var d=L.DomUtil.create('div');
       d.id='toggles';
       L.DomEvent.disableClickPropagation(d);
       L.DomEvent.disableScrollPropagation(d);
