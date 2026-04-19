@@ -29,17 +29,14 @@
     return 5*Math.pow(10,-(m[1].length+1));
   }
 
-  function parseSourcetable(text){
+  function normalizeStations(list){
     var out=[];
-    (text||'').split('\n').forEach(function(line){
-      if(!line.startsWith('STR;')) return;
-      var f=line.split(';');
-      if(f.length<11) return;
-      var name=f[1].trim(), latStr=f[9].trim(), lonStr=f[10].trim();
-      var lat=parseFloat(latStr), lon=parseFloat(lonStr);
+    (list||[]).forEach(function(s){
+      var lat=(typeof s.lat==='number')?s.lat:parseFloat(s.latStr);
+      var lon=(typeof s.lon==='number')?s.lon:parseFloat(s.lonStr);
       if(!isFinite(lat)||!isFinite(lon)||(lat===0&&lon===0)) return;
-      out.push({name:name,lat:lat,lon:lon,latStr:latStr,lonStr:lonStr,
-                dLat:precFromStr(latStr),dLon:precFromStr(lonStr)});
+      out.push({name:s.name,lat:lat,lon:lon,latStr:s.latStr,lonStr:s.lonStr,
+                dLat:precFromStr(s.latStr),dLon:precFromStr(s.lonStr)});
     });
     return out;
   }
@@ -192,28 +189,22 @@
     leg.addTo(map);
 
     (async function(){
-      setStatus('Fetching RTK data\u2026');
+      setStatus('Loading station data\u2026');
       var t0=performance.now();
 
-      var [rtkR,cpR]=await Promise.all([
-        (async function(){
-          try{
-            var r=await fetchWithTimeout(
-              'https://api.codetabs.com/v1/proxy?quest=http://rtk2go.com:2101/',5000,{});
-            if(r.ok) return {stations:parseSourcetable(await r.text()),via:'proxy'};
-          }catch(e){}
-          return {stations:[],via:'failed'};
-        })(),
-        (async function(){
-          try{
-            var r=await fetchWithTimeout('https://api.codetabs.com/v1/proxy?quest=http://caster.centipede.fr:2101/',5000,{});
-            if(r.ok) return {stations:parseSourcetable(await r.text()),via:'direct'};
-          }catch(e){}
-          return {stations:[],via:'failed'};
-        })()
-      ]);
+      var data=null;
+      try{
+        var r=await fetchWithTimeout('./data/stations.json?ts='+Date.now(),10000,{cache:'no-cache'});
+        if(r.ok) data=await r.json();
+      }catch(e){}
 
       var fetchMs=Math.round(performance.now()-t0);
+      var rtkSrc=(data&&data.sources&&data.sources.rtk2go)||{stations:[],status:'unavailable'};
+      var cpSrc=(data&&data.sources&&data.sources.centipede)||{stations:[],status:'unavailable'};
+      var rtkR={stations:normalizeStations(rtkSrc.stations),via:rtkSrc.status||'unknown'};
+      var cpR={stations:normalizeStations(cpSrc.stations),via:cpSrc.status||'unknown'};
+      var updated=(data&&data.updated)||null;
+
       setStatus('Merging '+rtkR.stations.length+' rtk2go + '+cpR.stations.length+' Centipede\u2026');
 
       var stations=mergeStations(rtkR.stations,cpR.stations);
@@ -236,13 +227,14 @@
       setStatus('Rendering '+stations.length+' stations (nearest first)\u2026');
       renderStationsBatched(stations,map,function(){
         var li=document.getElementById('leg-info');
-        if(li) li.innerHTML=new Date().toISOString().slice(0,10)
+        var updatedLabel=updated?new Date(updated).toISOString().replace('T',' ').slice(0,16)+' UTC':'never';
+        if(li) li.innerHTML='updated: '+updatedLabel
           +'<br>rtk2go.com:2101 ('+rtkR.via+')'
           +'<br>caster.centipede.fr:2101 ('+cpR.via+')'
-          +'<br><span style="color:#bbb">fetch: '+fetchMs+' ms</span>';
+          +'<br><span style="color:#bbb">load: '+fetchMs+' ms</span>';
         setStatus('\u2713 '+stations.length+' stations'
-          +' ('+rtkR.stations.length+' rtk2go ['+rtkR.via+'],'
-          +' '+cpR.stations.length+' Centipede ['+cpR.via+'])',true);
+          +' ('+rtkR.stations.length+' rtk2go,'
+          +' '+cpR.stations.length+' Centipede)',true);
       });
     })();
   });

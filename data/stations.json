@@ -1,0 +1,17 @@
+{
+  "updated": null,
+  "sources": {
+    "rtk2go": {
+      "url": "http://rtk2go.com:2101/",
+      "status": "pending: awaiting first workflow run",
+      "fetched_at": null,
+      "stations": []
+    },
+    "centipede": {
+      "url": "http://caster.centipede.fr:2101/",
+      "status": "pending: awaiting first workflow run",
+      "fetched_at": null,
+      "stations": []
+    }
+  }
+}
