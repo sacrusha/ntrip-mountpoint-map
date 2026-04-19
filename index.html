@@ -84,7 +84,36 @@
 <div id="status">Loading…</div>
 <script>
 (function(){
-  var RTK_COL='#d00000', CP_COL='#e87500';
+  // Per-source presentation. Keys match stations.json source ids.
+  // Any source emitted by the pipeline that is not listed here renders
+  // with UNKNOWN_SOURCE_COLOR and uses the source id as its label.
+  var SOURCE_COLORS={
+    rtk2go:       '#d00000',
+    centipede:    '#e87500',
+    frednet:      '#2e6fb0',
+    rtkdataonline:'#8f3fb3'
+  };
+  var SOURCE_LABELS={
+    rtk2go:       'rtk2go',
+    centipede:    'Centipede',
+    frednet:      'FReDNet',
+    rtkdataonline:'RTKdata.online'
+  };
+  var MIXED_COLOR='#555', UNKNOWN_SOURCE_COLOR='#888';
+
+  function sourceLabel(sid){ return SOURCE_LABELS[sid]||sid; }
+  function sourceColor(sid){ return SOURCE_COLORS[sid]||UNKNOWN_SOURCE_COLOR; }
+
+  function stationSourceIds(s){
+    var out=[]; var m=s.sources||{};
+    for(var k in m) if(m[k]&&m[k].length) out.push(k);
+    return out;
+  }
+  function stationColor(s){
+    var ids=stationSourceIds(s);
+    if(ids.length>1) return MIXED_COLOR;
+    return sourceColor(ids[0]);
+  }
 
   // Zoom bands — switch between raster-only, raster+dots, detailed view.
   var ZOOM_DETAIL=10;   // z >= ZOOM_DETAIL: labels, accuracy rectangles, tooltips
@@ -96,6 +125,29 @@
 
   // Banner dismissal: bumped when content meaningfully changes.
   var BANNER_VERSION='2026-04-a';
+
+  // Coverage-raster colour lookup. Built once from the strength bands
+  // (strength = 1 - distance/R_FLOAT, produced by the alpha-pass). Each
+  // entry i maps strength i/255 to a pre-multiplied-by-layer-opacity RGBA.
+  // Bands align with the four radius bands:
+  //   strength > 0.9  → <10 km    → green          (cm-RTK excellent)
+  //   0.7–0.9         → 10–30 km  → yellow-green   (cm-RTK good)
+  //   0.5–0.7         → 30–50 km  → amber          (marginal / float)
+  //   0.01–0.5        → 50–100 km → pale red       (float decimetre)
+  //   <0.01           → no station in range        → transparent
+  var COVERAGE_LUT=(function(){
+    var lut=new Uint8ClampedArray(256*4);
+    for(var i=0;i<256;i++){
+      var s=i/255, rgba;
+      if(s<0.01)      rgba=[0,0,0,0];
+      else if(s<0.5)  rgba=[210,90,90,50];
+      else if(s<0.7)  rgba=[220,150,30,95];
+      else if(s<0.9)  rgba=[180,200,30,130];
+      else            rgba=[0,170,0,165];
+      lut[i*4]=rgba[0]; lut[i*4+1]=rgba[1]; lut[i*4+2]=rgba[2]; lut[i*4+3]=rgba[3];
+    }
+    return lut;
+  })();
 
   // Build a KDBush static spatial index over station lat/lon (x=lon, y=lat).
   // Returns null if KDBush failed to load or the set is empty — callers
@@ -111,7 +163,7 @@
   // Closest station's colour wins via 'lighten' composite, so the composite
   // approximates a distance-to-nearest field without a per-pixel query.
   var CoverageLayer=L.GridLayer.extend({
-    options:{opacity:0.55,pane:'overlayPane'},
+    options:{opacity:1,pane:'overlayPane'},
     initialize:function(stations,opts){
       L.Util.setOptions(this,opts);
       this.setStations(stations,null,true);
@@ -152,6 +204,12 @@
       }
       var count=ids?ids.length:this._stations.length;
 
+      // Pass 1 — accumulate "closest station strength" per pixel.
+      // Each station paints a white radial gradient whose alpha is linear
+      // in distance (1 at centre, 0 at R_FLOAT). `lighten` composites them
+      // as max-per-channel, so the pixel alpha ends up = max alpha across
+      // all stations reaching it = 1 − (distance to nearest) / R_FLOAT.
+      var drew=false;
       ctx.globalCompositeOperation='lighten';
       for(var k=0;k<count;k++){
         var s=this._stations[ids?ids[k]:k];
@@ -159,17 +217,30 @@
         if(pt.x<-rFloatPx||pt.x>size.x+rFloatPx||
            pt.y<-rFloatPx||pt.y>size.y+rFloatPx) continue;
         var g=ctx.createRadialGradient(pt.x,pt.y,0,pt.x,pt.y,rFloatPx);
-        g.addColorStop(0,                          'rgba(0,170,0,0.65)');
-        g.addColorStop(R_EXCELLENT/R_FLOAT,        'rgba(0,170,0,0.55)');
-        g.addColorStop(R_GOOD/R_FLOAT,             'rgba(180,200,30,0.42)');
-        g.addColorStop(R_MARGINAL/R_FLOAT,         'rgba(220,150,30,0.28)');
-        g.addColorStop(0.999,                      'rgba(210,90,90,0.10)');
-        g.addColorStop(1,                          'rgba(210,90,90,0)');
+        g.addColorStop(0,'rgba(255,255,255,1)');
+        g.addColorStop(1,'rgba(255,255,255,0)');
         ctx.fillStyle=g;
         ctx.beginPath();
         ctx.arc(pt.x,pt.y,rFloatPx,0,2*Math.PI);
         ctx.fill();
+        drew=true;
       }
+      if(!drew) return tile;
+
+      // Pass 2 — replace every pixel's colour by looking up its alpha
+      // (strength) in COVERAGE_LUT. This turns the max-alpha field into
+      // discrete distance bands and drops the "overlap → yellow smear"
+      // artefact of the prior single-pass approach.
+      var imd=ctx.getImageData(0,0,size.x,size.y);
+      var d=imd.data;
+      for(var p=0;p<d.length;p+=4){
+        var li=d[p+3]*4;
+        d[p]=COVERAGE_LUT[li];
+        d[p+1]=COVERAGE_LUT[li+1];
+        d[p+2]=COVERAGE_LUT[li+2];
+        d[p+3]=COVERAGE_LUT[li+3];
+      }
+      ctx.putImageData(imd,0,0);
       return tile;
     }
   });
@@ -216,51 +287,40 @@
   function roundPos(v){ return Math.round(v*100)/100; }
   function posKey(s){ return roundPos(s.lat)+','+roundPos(s.lon); }
 
-  function bestCarrier(a,b){
-    // Prefer L1+L2 over L1. Any known carrier beats unknown.
-    var ac=a&&a.carrier, bc=b&&b.carrier;
-    return (ac||0)>=(bc||0)?ac:bc;
-  }
-  function mergeStations(rtkList,cpList){
-    var cpByName={},usedCp=new Set(),merged={};
-    cpList.forEach(function(s){ cpByName[s.name.toLowerCase()]=s; });
-    function entry(rtkSt,cpSt,pos){
-      var e={lat:pos.lat,lon:pos.lon,dLat:pos.dLat,dLon:pos.dLon,
-             rtk:[],cp:[],
-             carrier:bestCarrier(rtkSt,cpSt),
-             format:(rtkSt&&rtkSt.format)||(cpSt&&cpSt.format)||'',
-             legacyFormat:!!((rtkSt&&rtkSt.legacyFormat)||
-                             (cpSt&&cpSt.legacyFormat))};
-      if(rtkSt) e.rtk.push(rtkSt.name);
-      if(cpSt)  e.cp.push(cpSt.name);
-      return e;
-    }
-    rtkList.forEach(function(rtkSt){
-      var key=rtkSt.name.toLowerCase(),pkey=posKey(rtkSt);
-      var cpM=cpByName[key];
-      if(cpM&&posKey(cpM)===pkey){
-        var best=(cpM.dLat<=rtkSt.dLat)?cpM:rtkSt;
-        merged[pkey+'|'+key]=entry(rtkSt,cpM,best);
-        usedCp.add(key);
-      } else {
-        merged['rtk|'+pkey+'|'+key]=entry(rtkSt,null,rtkSt);
-      }
+  // Merge an {sourceId: normalizedStations[]} map into a flat list of
+  // entries. Two raw stations merge iff they share a (name, rounded
+  // position) key — regardless of which sources they came from. The
+  // merged entry tracks each mountpoint by source id, keeps the highest-
+  // precision coordinate it saw, and OR-s the legacy-format flag.
+  function mergeStations(bySource){
+    var byKey={};
+    Object.keys(bySource).forEach(function(sid){
+      bySource[sid].forEach(function(st){
+        var nkey=st.name.toLowerCase();
+        var k=nkey+'|'+posKey(st);
+        var e=byKey[k];
+        if(e){
+          (e.sources[sid]=e.sources[sid]||[]).push(st.name);
+          if(st.dLat<e.dLat){
+            e.lat=st.lat; e.lon=st.lon; e.dLat=st.dLat; e.dLon=st.dLon;
+          }
+          if((st.carrier||0)>(e.carrier||0)) e.carrier=st.carrier;
+          if(st.legacyFormat) e.legacyFormat=true;
+        } else {
+          e={
+            lat:st.lat,lon:st.lon,dLat:st.dLat,dLon:st.dLon,
+            carrier:st.carrier,format:st.format||'',
+            legacyFormat:!!st.legacyFormat,
+            sources:{}
+          };
+          e.sources[sid]=[st.name];
+          byKey[k]=e;
+        }
+      });
     });
-    cpList.forEach(function(cpSt){
-      var key=cpSt.name.toLowerCase();
-      if(usedCp.has(key)) return;
-      merged['cp|'+posKey(cpSt)+'|'+key]=entry(null,cpSt,cpSt);
-    });
-    return Object.values(merged);
+    return Object.values(byKey);
   }
 
-  function splitSVG(c1,c2,r){
-    r=r||7; var d=r*2;
-    return '<svg width="'+d+'" height="'+d+'" viewBox="0 0 '+d+' '+d+'" xmlns="http://www.w3.org/2000/svg">'
-      +'<path d="M'+r+' 0 A'+r+' '+r+' 0 0 0 '+r+' '+d+' Z" fill="'+c1+'"/>'
-      +'<path d="M'+r+' 0 A'+r+' '+r+' 0 0 1 '+r+' '+d+' Z" fill="'+c2+'"/>'
-      +'<circle cx="'+r+'" cy="'+r+'" r="'+(r-0.75)+'" fill="none" stroke="white" stroke-width="1.5"/></svg>';
-  }
   function solidSVG(col,r){
     r=r||7; var d=r*2;
     return '<svg width="'+d+'" height="'+d+'" viewBox="0 0 '+d+' '+d+'" xmlns="http://www.w3.org/2000/svg">'
@@ -334,13 +394,18 @@
   }
 
   function buildPopup(s){
-    var label=s.rtk.concat(s.cp).join(' / ');
+    var names=[], blocks='';
+    stationSourceIds(s).forEach(function(sid){
+      var col=sourceColor(sid);
+      s.sources[sid].forEach(function(n){
+        names.push(n);
+        blocks+=serverBlock(sid,n,col);
+      });
+    });
+    var label=names.join(' / ');
     var warn=s.legacyFormat
       ? '<div class="warn">Legacy RTCM 2.x — many modern receivers can\'t use this.</div>'
       : '';
-    var blocks='';
-    s.rtk.forEach(function(n){ blocks+=serverBlock('rtk2go',n,RTK_COL); });
-    s.cp.forEach(function(n){ blocks+=serverBlock('centipede',n,CP_COL); });
     return '<div class="popup-plain"><h3>'+esc(label)+'</h3>'
       +'<div class="acc">'+accuracySummary(s.carrier)+'</div>'
       +warn+blocks+'</div>';
@@ -373,11 +438,8 @@
       for(;i<end;i++){
         var s=stations[i];
         try{
-          var isBoth=s.rtk.length>0&&s.cp.length>0;
-          var isRtk=s.rtk.length>0&&!isBoth;
-          var fill=isBoth?'#a05000':(isRtk?RTK_COL:CP_COL);
           L.circleMarker([s.lat,s.lon],{radius:4,color:'#fff',weight:1,
-            fillColor:fill,fillOpacity:0.95})
+            fillColor:stationColor(s),fillOpacity:0.95})
             .bindPopup(buildPopup(s))
             .addTo(dots);
         }catch(e){ console.warn('render err',e); }
@@ -406,18 +468,19 @@
       var s=stations[ids?ids[k]:k];
       if(!ids&&!b.contains([s.lat,s.lon])) continue;
       try{
-        var isBoth=s.rtk.length>0&&s.cp.length>0;
-        var isRtk=s.rtk.length>0&&!isBoth;
-        var fill=isBoth?'#a05000':(isRtk?RTK_COL:CP_COL);
+        var fill=stationColor(s);
         L.rectangle([[s.lat-s.dLat,s.lon-s.dLon],
                      [s.lat+s.dLat,s.lon+s.dLon]],
           {color:fill,weight:1,fillColor:fill,fillOpacity:0.12,
            dashArray:'4 3'}).addTo(detail);
-        var svg=isBoth?splitSVG(RTK_COL,CP_COL):solidSVG(fill);
-        var icon=L.divIcon({className:'',html:svg,iconSize:[14,14],
-                            iconAnchor:[7,7]});
+        var icon=L.divIcon({className:'',html:solidSVG(fill),
+                            iconSize:[14,14],iconAnchor:[7,7]});
         var mk=L.marker([s.lat,s.lon],{icon:icon});
-        mk.bindTooltip(s.rtk.concat(s.cp).join(' / '),
+        var names=[];
+        stationSourceIds(s).forEach(function(sid){
+          s.sources[sid].forEach(function(n){ names.push(n); });
+        });
+        mk.bindTooltip(names.join(' / '),
           {permanent:true,direction:'right',offset:[9,0],className:'slabel'});
         mk.bindPopup(buildPopup(s));
         mk.addTo(detail);
@@ -481,19 +544,18 @@
     };
   }
 
-  // Toggle panel: controls which sources & access tiers show. Calls
-  // onChange with a predicate (station -> bool).
-  function buildTogglePanel(sources,onChange){
-    var state={rtk2go:true,centipede:true,
-               free:true,registration:true,category:true,restricted:true};
+  // Toggle panel: generates a source checkbox per entry in `sourceCounts`
+  // ({ sourceId: stationCount }). Station predicate passes a station iff
+  // it belongs to at least one enabled source. Access tier is a
+  // placeholder (only "free" currently has backing data).
+  function buildTogglePanel(sourceCounts,onChange){
+    var state={free:true,registration:true,category:true,restricted:true};
+    Object.keys(sourceCounts).forEach(function(sid){ state[sid]=true; });
     function pred(){
       return function(s){
-        var src=(s.rtk.length>0 && state.rtk2go) ||
-                (s.cp.length>0 && state.centipede);
-        if(!src) return false;
-        // Access tier: currently every mountpoint in scope is "free".
-        // NRTK networks will carry their own tier when ingested.
-        return state.free;
+        var ids=stationSourceIds(s);
+        for(var i=0;i<ids.length;i++) if(state[ids[i]]) return state.free;
+        return false;
       };
     }
     var ctrl=L.control({position:'topright'});
@@ -502,12 +564,16 @@
       d.id='toggles';
       L.DomEvent.disableClickPropagation(d);
       L.DomEvent.disableScrollPropagation(d);
-      d.innerHTML=
-        '<h4>Sources</h4>'
-        +'<label><input type="checkbox" data-k="rtk2go" checked> rtk2go'
-          +' <span style="color:#888">('+(sources.rtk2go||0)+')</span></label>'
-        +'<label><input type="checkbox" data-k="centipede" checked> Centipede'
-          +' <span style="color:#888">('+(sources.centipede||0)+')</span></label>'
+      var rows=Object.keys(sourceCounts).map(function(sid){
+        var col=sourceColor(sid);
+        return '<label><input type="checkbox" data-k="'+sid+'" checked> '
+          +'<span style="display:inline-block;width:9px;height:9px;'
+            +'background:'+col+';border-radius:50%;vertical-align:middle;'
+            +'margin-right:4px"></span>'
+          +esc(sourceLabel(sid))
+          +' <span style="color:#888">('+sourceCounts[sid]+')</span></label>';
+      }).join('');
+      d.innerHTML='<h4>Sources</h4>'+rows
         +'<details><summary>Access</summary>'
           +'<label><input type="checkbox" data-k="free" checked> Free, no signup</label>'
           +'<label><input type="checkbox" data-k="registration" checked> Free with registration</label>'
@@ -549,10 +615,12 @@
     }).addTo(map);
 
     var leg=L.control({position:'bottomleft'});
+    leg.sourceSwatches='';
     leg.onAdd=function(){
       var d=L.DomUtil.create('div');
+      d.id='legend';
       d.style.cssText='background:white;padding:8px 12px;border-radius:5px;'
-        +'border:1px solid #bbb;font-size:11px;line-height:1.55;width:200px;color:#222;';
+        +'border:1px solid #bbb;font-size:11px;line-height:1.55;width:210px;color:#222;';
       d.innerHTML=
         '<b style="font-size:12px">Coverage (per station)</b><br>'
         +'<span style="display:inline-block;width:12px;height:12px;background:rgb(0,170,0);vertical-align:middle"></span>'
@@ -564,12 +632,27 @@
         +'<span style="display:inline-block;width:12px;height:12px;background:rgb(210,90,90);vertical-align:middle"></span>'
           +' 50–100 km · float decimetre<br>'
         +'<hr style="margin:4px 0;border-color:#eee">'
-        +'<svg width="10" height="10" viewBox="0 0 12 12"><circle cx="6" cy="6" r="5" fill="'+RTK_COL+'" stroke="white" stroke-width="1.5"/></svg> rtk2go · '
-        +'<svg width="10" height="10" viewBox="0 0 12 12"><circle cx="6" cy="6" r="5" fill="'+CP_COL+'" stroke="white" stroke-width="1.5"/></svg> Centipede<br>'
+        +'<div id="leg-sources"></div>'
         +'<small id="leg-info" style="color:#999;font-size:10px">Loading\u2026</small>';
       return d;
     };
     leg.addTo(map);
+    // Render the source swatches once we know which sources are present.
+    function renderLegendSources(ids){
+      var el=document.getElementById('leg-sources');
+      if(!el) return;
+      var parts=ids.map(function(sid){
+        return '<svg width="10" height="10" viewBox="0 0 12 12">'
+          +'<circle cx="6" cy="6" r="5" fill="'+sourceColor(sid)
+          +'" stroke="white" stroke-width="1.5"/></svg> '+esc(sourceLabel(sid));
+      });
+      if(ids.length>1){
+        parts.push('<svg width="10" height="10" viewBox="0 0 12 12">'
+          +'<circle cx="6" cy="6" r="5" fill="'+MIXED_COLOR
+          +'" stroke="white" stroke-width="1.5"/></svg> mixed');
+      }
+      el.innerHTML=parts.join(' · ')+'<br>';
+    }
 
     (async function(){
       setStatus('Loading station data\u2026');
@@ -582,15 +665,23 @@
       var fetchMs=Math.round(performance.now()-t0);
       setServers(data);
 
-      var rtkSrc=(data&&data.sources&&data.sources.rtk2go)||{stations:[],status:'unavailable'};
-      var cpSrc=(data&&data.sources&&data.sources.centipede)||{stations:[],status:'unavailable'};
-      var rtkList=normalizeStations(rtkSrc.stations);
-      var cpList=normalizeStations(cpSrc.stations);
+      var rawSources=(data&&data.sources)||{};
+      var sourceIds=Object.keys(rawSources);
+      var bySource={}, sourceCounts={}, sourceStatus={};
+      sourceIds.forEach(function(sid){
+        bySource[sid]=normalizeStations(rawSources[sid].stations);
+        sourceCounts[sid]=bySource[sid].length;
+        sourceStatus[sid]=rawSources[sid].status||'unknown';
+      });
       var updated=(data&&data.updated)||null;
       var networks=(data&&data.networks)||[];
+      renderLegendSources(sourceIds);
 
-      setStatus('Merging '+rtkList.length+' rtk2go + '+cpList.length+' Centipede\u2026');
-      var allStations=mergeStations(rtkList,cpList);
+      var mergeSummary=sourceIds.map(function(sid){
+        return sourceCounts[sid]+' '+sourceLabel(sid);
+      }).join(' + ')||'0';
+      setStatus('Merging '+mergeSummary+'\u2026');
+      var allStations=mergeStations(bySource);
 
       setStatus('Locating viewer\u2026');
       var vp=await getViewerPos();
@@ -655,8 +746,7 @@
         });
       }
 
-      var togglePanel=buildTogglePanel(
-        {rtk2go:rtkList.length,centipede:cpList.length},
+      var togglePanel=buildTogglePanel(sourceCounts,
         function(pred){ filter=pred; rebuildStationLayers(); });
       togglePanel.control.addTo(map);
 
@@ -667,12 +757,16 @@
         var updatedLabel=updated
           ? new Date(updated).toISOString().replace('T',' ').slice(0,16)+' UTC'
           : 'never';
+        var statusLines=sourceIds.map(function(sid){
+          return esc(sourceLabel(sid))+' ('+esc(sourceStatus[sid])+')';
+        }).join('<br>');
         if(li) li.innerHTML='updated: '+updatedLabel
-          +'<br>rtk2go ('+esc(rtkSrc.status||'?')+')'
-          +'<br>centipede ('+esc(cpSrc.status||'?')+')'
+          +'<br>'+statusLines
           +'<br><span style="color:#bbb">load: '+fetchMs+' ms</span>';
-        setStatus('\u2713 '+visible.length+' stations'
-          +' ('+rtkList.length+' rtk2go, '+cpList.length+' Centipede)',true);
+        var summary=sourceIds.map(function(sid){
+          return sourceCounts[sid]+' '+sourceLabel(sid);
+        }).join(', ');
+        setStatus('\u2713 '+visible.length+' stations ('+summary+')',true);
       }
 
       rebuildStationLayers();

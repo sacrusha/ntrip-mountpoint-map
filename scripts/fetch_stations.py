@@ -20,8 +20,13 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT / "data"
 
 SOURCES = [
-    {"id": "rtk2go",    "url": "http://rtk2go.com:2101/"},
-    {"id": "centipede", "url": "http://caster.centipede.fr:2101/"},
+    {"id": "rtk2go",        "url": "http://rtk2go.com:2101/"},
+    {"id": "centipede",     "url": "http://caster.centipede.fr:2101/"},
+    # FReDNet (OGS, Italy — north-east): confirmed free, no registration.
+    {"id": "frednet",       "url": "http://gnsscaster.regione.fvg.it:8080/"},
+    # RTKdata.online: community caster, low-confidence operational status;
+    # fetch will be attempted best-effort and fall through on failure.
+    {"id": "rtkdataonline", "url": "http://rtkdata.online:2101/"},
 ]
 
 FETCH_TIMEOUT = 60
