@@ -330,14 +330,14 @@
     if(fade) setTimeout(function(){ el.style.opacity='0'; },3500);
   }
 
-  // Build layer groups for the three zoom bands. `detail` carries labels
-  // + accuracy rectangles (z >= ZOOM_DETAIL); `dots` carries plain dots
-  // (ZOOM_DOTS <= z < ZOOM_DETAIL). The coverage raster (z < ZOOM_DOTS)
-  // is managed as a separate CoverageLayer by the caller.
+  // Build the `dots` layer eagerly for all stations (cheap; canvas-rendered
+  // circleMarkers). The `detail` layer (accuracy rectangles + labelled
+  // markers with permanent tooltips + popups) is expensive — built lazily
+  // per-viewport by refreshDetailLayer.
   function buildStationLayers(stations,map,onDone){
     var detail=L.layerGroup();
     var dots=L.layerGroup();
-    var BATCH=150,i=0;
+    var BATCH=300,i=0;
     function chunk(){
       var end=Math.min(i+BATCH,stations.length);
       for(;i<end;i++){
@@ -346,27 +346,10 @@
           var isBoth=s.rtk.length>0&&s.cp.length>0;
           var isRtk=s.rtk.length>0&&!isBoth;
           var fill=isBoth?'#a05000':(isRtk?RTK_COL:CP_COL);
-          // dots layer: plain coloured circleMarker on canvas
           L.circleMarker([s.lat,s.lon],{radius:4,color:'#fff',weight:1,
-            fillColor:fill,fillOpacity:0.95,pane:'markerPane'})
+            fillColor:fill,fillOpacity:0.95})
             .bindPopup(buildPopup(s))
             .addTo(dots);
-          // detail layer: accuracy rectangle + labelled marker
-          var detailGroup=L.layerGroup();
-          L.rectangle([[s.lat-s.dLat,s.lon-s.dLon],
-                       [s.lat+s.dLat,s.lon+s.dLon]],
-            {color:fill,weight:1,fillColor:fill,fillOpacity:0.12,
-             dashArray:'4 3'}).addTo(detailGroup);
-          var svg=isBoth?splitSVG(RTK_COL,CP_COL):solidSVG(fill);
-          var icon=L.divIcon({className:'',html:svg,iconSize:[14,14],
-                              iconAnchor:[7,7]});
-          var mk=L.marker([s.lat,s.lon],{icon:icon});
-          mk.bindTooltip(s.rtk.concat(s.cp).join(' / '),
-            {permanent:true,direction:'right',offset:[9,0],
-             className:'slabel'});
-          mk.bindPopup(buildPopup(s));
-          mk.addTo(detailGroup);
-          detailGroup.addTo(detail);
         }catch(e){ console.warn('render err',e); }
       }
       if(i<stations.length){
@@ -375,6 +358,37 @@
       } else if(onDone){ onDone({detail:detail,dots:dots}); }
     }
     requestAnimationFrame(chunk);
+  }
+
+  // Rebuild the detail layer for the current viewport (plus a small
+  // padding buffer for smooth pans). Discards previous entries.
+  function refreshDetailLayer(map,stations,detail){
+    detail.clearLayers();
+    var b=map.getBounds().pad(0.2);
+    var shown=0;
+    for(var i=0;i<stations.length;i++){
+      var s=stations[i];
+      if(!b.contains([s.lat,s.lon])) continue;
+      try{
+        var isBoth=s.rtk.length>0&&s.cp.length>0;
+        var isRtk=s.rtk.length>0&&!isBoth;
+        var fill=isBoth?'#a05000':(isRtk?RTK_COL:CP_COL);
+        L.rectangle([[s.lat-s.dLat,s.lon-s.dLon],
+                     [s.lat+s.dLat,s.lon+s.dLon]],
+          {color:fill,weight:1,fillColor:fill,fillOpacity:0.12,
+           dashArray:'4 3'}).addTo(detail);
+        var svg=isBoth?splitSVG(RTK_COL,CP_COL):solidSVG(fill);
+        var icon=L.divIcon({className:'',html:svg,iconSize:[14,14],
+                            iconAnchor:[7,7]});
+        var mk=L.marker([s.lat,s.lon],{icon:icon});
+        mk.bindTooltip(s.rtk.concat(s.cp).join(' / '),
+          {permanent:true,direction:'right',offset:[9,0],className:'slabel'});
+        mk.bindPopup(buildPopup(s));
+        mk.addTo(detail);
+        shown++;
+      }catch(e){ console.warn('detail err',e); }
+    }
+    return shown;
   }
 
   // NRTK networks: polygon + centroid marker. No-op when data has no
@@ -569,16 +583,26 @@
         var showDots=z>=ZOOM_DOTS;
         var showDetail=z>=ZOOM_DETAIL;
         if(showDetail){
+          refreshDetailLayer(map,visible,layers.detail);
           if(!map.hasLayer(layers.detail)) layers.detail.addTo(map);
           if(map.hasLayer(layers.dots)) map.removeLayer(layers.dots);
         }else if(showDots){
           if(!map.hasLayer(layers.dots)) layers.dots.addTo(map);
           if(map.hasLayer(layers.detail)) map.removeLayer(layers.detail);
+          layers.detail.clearLayers();
         }else{
           if(map.hasLayer(layers.detail)) map.removeLayer(layers.detail);
           if(map.hasLayer(layers.dots)) map.removeLayer(layers.dots);
+          layers.detail.clearLayers();
         }
       }
+
+      // At detail zoom, also refresh when the user pans to a new area.
+      map.on('moveend',function(){
+        if(map.getZoom()>=ZOOM_DETAIL){
+          refreshDetailLayer(map,visible,layers.detail);
+        }
+      });
 
       function rebuildStationLayers(){
         if(map.hasLayer(layers.detail)) map.removeLayer(layers.detail);
