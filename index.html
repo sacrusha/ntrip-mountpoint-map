@@ -204,43 +204,57 @@
       }
       var count=ids?ids.length:this._stations.length;
 
-      // Pass 1 — accumulate "closest station strength" per pixel.
-      // Each station paints a white radial gradient whose alpha is linear
-      // in distance (1 at centre, 0 at R_FLOAT). `lighten` composites them
-      // as max-per-channel, so the pixel alpha ends up = max alpha across
-      // all stations reaching it = 1 − (distance to nearest) / R_FLOAT.
-      var drew=false;
-      ctx.globalCompositeOperation='lighten';
+      // Pre-project candidate stations to tile pixel coords; skip those whose
+      // R_FLOAT circle cannot reach this tile at all.
+      var sx=new Float32Array(count);
+      var sy=new Float32Array(count);
+      var n=0;
       for(var k=0;k<count;k++){
         var s=this._stations[ids?ids[k]:k];
         var pt=map.project([s.lat,s.lon],z).subtract(nwPx);
         if(pt.x<-rFloatPx||pt.x>size.x+rFloatPx||
            pt.y<-rFloatPx||pt.y>size.y+rFloatPx) continue;
-        var g=ctx.createRadialGradient(pt.x,pt.y,0,pt.x,pt.y,rFloatPx);
-        g.addColorStop(0,'rgba(255,255,255,1)');
-        g.addColorStop(1,'rgba(255,255,255,0)');
-        ctx.fillStyle=g;
-        ctx.beginPath();
-        ctx.arc(pt.x,pt.y,rFloatPx,0,2*Math.PI);
-        ctx.fill();
-        drew=true;
+        sx[n]=pt.x; sy[n]=pt.y; n++;
       }
-      if(!drew) return tile;
+      if(!n) return tile;
 
-      // Pass 2 — replace every pixel's colour by looking up its alpha
-      // (strength) in COVERAGE_LUT. This turns the max-alpha field into
-      // discrete distance bands and drops the "overlap → yellow smear"
-      // artefact of the prior single-pass approach.
-      var imd=ctx.getImageData(0,0,size.x,size.y);
+      // Per-pixel direct nearest-station distance field. Sub-sample at low
+      // zooms (many stations, tiny rFloatPx) so the JS loop stays fast; scale
+      // back up with nearest-neighbour to preserve hard band edges.
+      var sub=z<=3?8:z<=6?4:1;
+      var sw=Math.ceil(size.x/sub);
+      var sh=Math.ceil(size.y/sub);
+      var rSq=rFloatPx*rFloatPx;
+      var imd=ctx.createImageData(sw,sh);
       var d=imd.data;
-      for(var p=0;p<d.length;p+=4){
-        var li=d[p+3]*4;
-        d[p]=COVERAGE_LUT[li];
-        d[p+1]=COVERAGE_LUT[li+1];
-        d[p+2]=COVERAGE_LUT[li+2];
-        d[p+3]=COVERAGE_LUT[li+3];
+      var hasData=false;
+      for(var spy=0;spy<sh;spy++){
+        for(var spx=0;spx<sw;spx++){
+          var px=(spx+0.5)*sub, py=(spy+0.5)*sub;
+          var minSq=rSq;
+          for(var i=0;i<n;i++){
+            var dx=px-sx[i], dy=py-sy[i];
+            var dsq=dx*dx+dy*dy;
+            if(dsq<minSq) minSq=dsq;
+          }
+          if(minSq>=rSq) continue;
+          var li=((1-Math.sqrt(minSq)/rFloatPx)*255|0)*4;
+          var base=(spy*sw+spx)*4;
+          d[base]=COVERAGE_LUT[li]; d[base+1]=COVERAGE_LUT[li+1];
+          d[base+2]=COVERAGE_LUT[li+2]; d[base+3]=COVERAGE_LUT[li+3];
+          hasData=true;
+        }
       }
-      ctx.putImageData(imd,0,0);
+      if(!hasData) return tile;
+      if(sub===1){
+        ctx.putImageData(imd,0,0);
+      } else {
+        var sc=document.createElement('canvas');
+        sc.width=sw; sc.height=sh;
+        sc.getContext('2d').putImageData(imd,0,0);
+        ctx.imageSmoothingEnabled=false;
+        ctx.drawImage(sc,0,0,size.x,size.y);
+      }
       return tile;
     }
   });
