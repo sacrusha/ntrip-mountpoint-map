@@ -766,28 +766,10 @@
           +' 30–50 km · marginal / float<br>'
         +'<span style="display:inline-block;width:12px;height:12px;background:rgb(210,90,90);vertical-align:middle"></span>'
           +' 50–100 km · float decimetre<br>'
-        +'<hr style="margin:4px 0;border-color:#eee">'
-        +'<div id="leg-sources"></div>'
         +'<small id="leg-info" style="color:#999;font-size:10px">Loading\u2026</small>';
       return d;
     };
     leg.addTo(map);
-    // Render the source swatches once we know which sources are present.
-    function renderLegendSources(ids){
-      var el=document.getElementById('leg-sources');
-      if(!el) return;
-      var parts=ids.map(function(sid){
-        return '<svg width="10" height="10" viewBox="0 0 12 12">'
-          +'<circle cx="6" cy="6" r="5" fill="'+sourceColor(sid)
-          +'" stroke="white" stroke-width="1.5"/></svg> '+esc(sourceLabel(sid));
-      });
-      if(ids.length>1){
-        parts.push('<svg width="10" height="10" viewBox="0 0 12 12">'
-          +'<circle cx="6" cy="6" r="5" fill="'+MIXED_COLOR
-          +'" stroke="white" stroke-width="1.5"/></svg> mixed');
-      }
-      el.innerHTML=parts.join(' · ')+'<br>';
-    }
 
     (async function(){
       setStatus('Loading station data\u2026');
@@ -810,8 +792,6 @@
       });
       var updated=(data&&data.updated)||null;
       var networks=(data&&data.networks)||[];
-      renderLegendSources(sourceIds);
-
       var mergeSummary=sourceIds.map(function(sid){
         return sourceCounts[sid]+' '+sourceLabel(sid);
       }).join(' + ')||'0';
