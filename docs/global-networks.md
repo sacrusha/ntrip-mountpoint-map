@@ -42,6 +42,12 @@ the SNIP Pro cost.
   `http://rtk2go.com:2101/`. Carrier-inference fallback active (see
   CLAUDE.md gotchas) — most rtk2go entries have a blank carrier field
   despite broadcasting RTCM 3.x MSM.
+- **Regional sub-casters:** rtk2go exposes country-filtered views on
+  separate ports: `:2103` (Poland), `:2104` (Japan). Same US server,
+  same station set — no latency benefit, just a smaller sourcetable.
+  Not added as separate SOURCES (would duplicate stations). Popup UI
+  should surface the regional port as a secondary connection option for
+  stations whose country code matches, using the dual-mountpoint display.
 - **Gotcha:** Mountpoint churn is high — volunteer bases go offline
   frequently. Fingerprint-based idempotency check catches this correctly.
   The `NEAR` mountpoint itself appears in the sourcetable as a synthetic
@@ -60,8 +66,16 @@ Partnership with Packet Clearing House (PCH) for global expansion.
   20 km of a base). Growing clusters in Senegal, Serbia, UK, Ireland,
   Norway, Denmark, and Canada.
 - **Geographic spread:** Originally France-centric; now actively
-  internationalising. French overseas territories (DOM-TOM) have
-  some bases. Volunteer quality comparable to rtk2go.
+  internationalising. French overseas territories (DOM-TOM) included:
+  4 Réunion stations confirmed in main sourcetable. Volunteer quality
+  comparable to rtk2go.
+- **Separate Millipede instances:** None confirmed. Millipede supports
+  federation/proxy to merge sourcetables from regional deployments, but
+  all known nodes (including DOM-TOM and international clusters) appear
+  in the single `crtk.net:2101` sourcetable. No independent country-
+  specific caster hostnames found. Non-ISO country codes in sourcetable
+  (ENG, CHZ, SER, DAN, ROM) are quirks of Centipede's registration form,
+  not separate deployments.
 - **Protocol / formats:** NTRIP 1.0 and 2.0; RTCM 3.x MSM.
 - **Rover credentials:** Username = `centipede` (or `c`); Password =
   `centipede` (or `c`). `NEAR` requires NMEA GGA from rover; `NEAR4`
@@ -192,9 +206,16 @@ subscribers pay for RTK corrections.
   $40/month or $400/year via HYFIX.AI resellers. No ongoing free tier.
 - **TOS:** Paid subscription required for continued use. Token-earning
   model for base station operators.
-- **Pipeline status:** **DROP — paid after trial.** Note for map UI:
-  GEODNET has the densest global coverage of any commercial RTK network
-  as of 2025; worth mentioning in a "paid alternatives" tooltip.
+- **Paid source cutoff:** This project uses a cutoff of **< $200/year**
+  for typical hobbyist usage (< 4 months/year, < 90 hours/year), using
+  yearly pricing unless monthly is massively cheaper for that pattern.
+  GEODNET: $400/year exceeds the cutoff. Monthly at $40 × 4 months =
+  $160 < $200 — qualifies seasonally. Worth surfacing in a "paid
+  alternatives" banner note for users in areas with sparse free coverage.
+- **Pipeline status:** **DROP — not fetched.** No public sourcetable
+  without an active subscription. GEODNET's dense global coverage makes
+  it the best paid fallback; mention it in the UI for users whose area
+  has no free sources within 50 km.
 
 ### Emlid Caster (`caster.emlid.com`)
 
@@ -244,9 +265,9 @@ Network of the Americas (NOTA) — geophysical sensor network spanning
 - **TOS caveat:** "Non-commercial" — hobbyist and small shop use is
   within scope of this map's target audience; commercial surveying
   firms need a paid seat. The map should note this restriction.
-- **Pipeline status:** **Candidate — registration required.** Non-
-  commercial NULA should cover the pipeline's automated fetch. Obtain
-  credentials and store as GitHub Actions secret.
+- **Pipeline status:** **Candidate — registration required.** This
+  project is non-commercial; the NULA confirmed in scope. Obtain
+  credentials and store as GitHub Actions secret to activate ingestion.
 
 ---
 
@@ -274,30 +295,44 @@ the Slovenia and Austria border zone.
 
 ---
 
-## 7. Open questions specific to global networks
+## 7. Resolved questions (global networks)
 
-1. **EarthScope NOTA NULA + automated fetch:** Confirm that the GitHub
-   Actions bot fetching the sourcetable hourly falls under "non-
-   commercial" — the NULA restricts data *use*, not metadata display.
-   Email earthscope.org data team to confirm before ingesting.
-2. **GEODNET trial sourcetable for coverage display:** The 30-day free
-   trial gives sourcetable access. Could capture station locations once
-   for the map's gap-analysis layer, clearly labelled as "paid service".
-   Low priority; rtk2go already covers most of the same geography.
-3. **Centipede non-France station coords:** Verify that non-France
-   stations report accurate (non-zero) coords in the sourcetable.
-   GeoRTK has a pattern of ~130 offline bases reporting 0/0 — check
-   whether Centipede has a similar problem for its 860 international nodes.
-4. **rtk2go regional sub-casters:** rtk2go exposes country-filtered
-   sub-tables (e.g. Japan, Poland). These are views of the same global
-   sourcetable — do not add as separate SOURCES entries (would
-   duplicate all stations). The main caster contains all stations.
-5. **EUREF-IP mirror at ROB (`www.euref-ip.be:2101`):** Carries same EPN
-   streams as euref-ip.net. Out of scope for RTK — no action needed.
-6. **Centipede DOM-TOM and overseas territories:** French overseas
-   territories (Réunion, Martinique, Guadeloupe, Guyane, etc.) may have
-   Centipede nodes. Verify whether `crtk.net` sourcetable includes them
-   or if they are on a separate Millipede instance.
+1. **EarthScope NOTA NULA + automated fetch:** ✓ Closed. This project
+   is non-commercial; the NULA covers non-commercial, educational, and
+   humanitarian use. Automated sourcetable fetch for metadata display
+   is within scope. Activate by obtaining credentials and adding as
+   GitHub Actions secret.
+
+2. **GEODNET affordability:** ✓ Closed. Paid source cutoff set at
+   < $200/year for < 4 months / < 90 hours annual use (monthly pricing
+   applies when massively cheaper than yearly). GEODNET at $40/month
+   × 4 months = $160 qualifies as an affordable seasonal fallback.
+   Not in pipeline (no public sourcetable). Surface as a "paid
+   alternative" in the UI for areas with no free sources within 50 km.
+
+3. **Centipede non-France station coords:** ✓ Closed — non-issue.
+   Verified from live data: 485 of 1,203 centipede stations are non-
+   France; all have valid (non-zero) coordinates. No GeoRTK-style
+   0/0 offline-base problem in the international nodes.
+
+4. **rtk2go regional sub-casters:** ✓ Closed. Confirmed filtered views
+   on the same US server: `:2103` Poland, `:2104` Japan. No latency
+   benefit; just a smaller sourcetable. Do NOT add as separate SOURCES.
+   Plan: popup dual-mountpoint display should offer the regional port as
+   a secondary connection option for stations whose country code matches.
+
+5. **EUREF-IP / EPN RTK capability:** ✓ Closed — confirmed no RTK.
+   EPN broadcasts raw GNSS observations only; operators explicitly state
+   "not suitable for real-time kinematic positioning". ROB mirror
+   (euref-ip.be:2101) carries the same streams — same out-of-scope
+   ruling. Multiple independent sources agree; no conflicting evidence.
+
+6. **Separate Millipede instances / Centipede DOM-TOM:** ✓ Closed.
+   No independent country-specific Millipede instances found. Millipede
+   uses federation/proxy to aggregate regional deployments into the main
+   `crtk.net` sourcetable. DOM-TOM confirmed present: 4 Réunion (REU)
+   stations visible in live data. Caribbean territories not yet in
+   sourcetable — likely not yet deployed, not a separate caster.
 
 ---
 
@@ -306,8 +341,9 @@ the Slovenia and Austria border zone.
 | Status | Network |
 |---|---|
 | **In pipeline** | rtk2go, Centipede-RTK, GeoRTK (JP), FReDNet (IT), SAPOS ×13 (DE) |
-| **Candidate — registration required** | EarthScope NOTA (US/Americas, non-commercial NULA) |
-| **Out of scope — scientific raw obs** | EUREF-IP, IGS-IP, products.igs-ip.net |
-| **Paid — drop** | GEODNET ($40/mo after 30-day trial), Emlid Caster (not a shared network) |
+| **Candidate — registration required** | EarthScope NOTA (US/Americas; non-commercial NULA confirmed in scope) |
+| **Out of scope — scientific raw obs** | EUREF-IP, IGS-IP, products.igs-ip.net (confirmed no RTK) |
+| **Paid — mention as fallback** | GEODNET ($40/mo; $160 for 4-month season < $200 cutoff — no pipeline, UI note only) |
+| **Paid — not applicable** | Emlid Caster (point-to-point relay, no shared sourcetable) |
 | **Removed** | RTKdata.online (server unreachable; no independent data) |
 
