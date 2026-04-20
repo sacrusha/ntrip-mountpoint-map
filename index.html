@@ -701,8 +701,9 @@
         +'</div>';
       L.circleMarker([n.lat,n.lon],{
         radius:10,color:VRS_COLOR,weight:2,
-        fillColor:VRS_COLOR,fillOpacity:0.25,renderer:renderer
-      }).bindTooltip(label,{sticky:false}).bindPopup(popup).addTo(group);
+        fillColor:VRS_COLOR,fillOpacity:0.25,
+        renderer:renderer,pane:'vrsPane'
+      }).bindTooltip(label+' (VRS)',{sticky:false}).bindPopup(popup).addTo(group);
     });
     return group;
   }
