@@ -1,0 +1,9 @@
+STR;VRS_3_3G_BW;SAPOS-BW_VRS_3_3G;RTCM 3.2;MSM4;2;GPS+GLO+GAL;SAPOS-BW;DEU;49;8.4;1;1;Trimble Pivot Platform;none;B;Y;5000;http://www.sapos.de;
+STR;VRS_3_2G_BW;SAPOS-BW_VRS_3_2G;RTCM 3.1;1004/1012(1),1030/1031(30),1007,1033,1005,1032,4094(10),1021/1023;2;GPS+GLO;SAPOS-BW;DEU;49;8.4;1;1;Trimble Pivot Platform;none;B;Y;3000;http://www.sapos.de;
+STR;VRS_3_4G_BW;SAPOS-BW_VRS_3_4G;RTCM 3.2;MSM4;2;GPS+GLO+GAL+BDS;SAPOS-BW;DEU;49;8.4;1;1;Trimble Pivot Platform;none;B;Y;7000;https://www.sapos.de;
+CAS;www.sapos-bw-ntrip.de;2101;SAPOS-BW;LGL Baden-Wuerttemberg;1;DEU;49;8.4;0.0.0.0;0;;
+CAS;www.sapos-by-ntrip.de;2101;SAPOS-BY;LDBV Bayern;1;DEU;48.5;11.5;0.0.0.0;0;;
+CAS;www.sapos-he-ntrip.de;2101;SAPOS-HE;HLBG Hessen;1;DEU;50.1;8.2;0.0.0.0;0;;
+CAS;www.sapos-rp-ntrip.de;2101;SAPOS-RP;LVermGeo Rheinland-Pfalz;1;DEU;50.4;7.8;0.0.0.0;0;;
+NET;SAPOS-BW;LGL Baden-Wuerttemberg;B;Y;https://www.sapos-bw.de;https://www.sapos-bw.de;https://www.lgl-bw.de;;
+ENDSOURCETABLE
