@@ -4,8 +4,9 @@ _How is RTK positioning solved (or not) in each country? Who runs it, is it
 free, what are the gaps, and what does a hobbyist or small shop actually get?_
 
 _Technical detail (endpoints, credentials, pipeline status) lives in
-`docs/networks.md`. This file references networks by name; grep `networks.md`
-for the corresponding entry._
+`docs/networks.md`. Network references use the pattern `→ networks.md: \`id\``
+at the end of the relevant bullet — preserving this exact form lets you audit
+coverage with `grep "networks.md:" docs/country-survey.md`._
 
 _Volunteer station counts (rtk2go / Centipede) are drawn from live
 `data/stations.json` as of 2026-04-19 and will drift over time._
