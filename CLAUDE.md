@@ -6,8 +6,9 @@ subscription. Two use modes: discovery ("what exists nearby? is any of it
 useful for me?") and migration ("my old mountpoint stopped working, show me
 alternatives"). Enterprise / B2B is explicitly out of scope. DGNSS (sub-metre
 but often misleadingly reported) is filtered out. PPP/SSR/HAS (standalone,
-no coverage needed, $1,000+) are mentioned in the UI as a pointer but not
-covered by the map.
+no coverage needed; fee-free complete units from ~$2,900, subscription-
+dependent hardware from ~$850 + fees) are mentioned in the UI as a pointer
+but not covered by the map.
 
 ## Pointers
 
@@ -84,7 +85,8 @@ exercised.
 - Dismissible banner with localStorage persistence. Banner copy rewritten
   for hobbyist audience (session info-panel): plain-language framing of the
   GPS accuracy problem; expandable "how it works" panel distinguishes
-  PPP/HAS standalone devices ($1,000+) from free network RTK; links to
+  PPP/HAS standalone devices (fee-free units ~$2,900+; subscription hardware
+  ~$850 + fees) from free network RTK; links to
   `guide.html`. BANNER_VERSION bumped to `2026-04-b`.
 - **`guide.html`** — standalone plain-English primer (session info-panel).
   Covers: why GPS drifts, how RTK works, compatibility check for existing

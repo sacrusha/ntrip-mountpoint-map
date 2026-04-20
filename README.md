@@ -26,7 +26,8 @@ hobbyists and small shops looking for cm-accurate GPS corrections within
   trust in the data.
 - Plain-language banner and expandable "how it works" panel aimed at
   hobbyists: explains why GPS drifts, distinguishes standalone PPP/HAS
-  devices ($1,000+) from free network RTK, and gives honest hardware price
+  devices (fee-free units from ~$2,900; subscription hardware from ~$850 +
+  fees) from free network RTK, and gives honest hardware price
   ranges. Links to a full hobbyist guide (`guide.html`).
 - `guide.html` — standalone primer covering: compatibility check for
   existing survey gear (Trimble, Leica, Topcon), complete assembled unit
