@@ -12,13 +12,16 @@ sub-metre DGNSS sources.
 
 - [`docs/requirements.md`](docs/requirements.md) — product spec, target users,
   out-of-scope, data-model, visual design, tech choices, deferred items.
-- [`docs/networks.md`](docs/networks.md) — refined list of free public
-  NTRIP casters. Confidence tiers + explicit paid/restricted drops + candidates
-  for future ingestion.
-- [`docs/country-survey.md`](docs/country-survey.md) — country-by-country
-  ground truth: endpoints, free/paid basis, registration paths, open questions.
-- [`docs/global-networks.md`](docs/global-networks.md) — multi-country and
-  satellite PPP services (RTK2go, Centipede, EarthScope, Galileo HAS, etc.).
+- [`docs/networks.md`](docs/networks.md) — **authoritative technical record for
+  every investigated network**, whether included or not. Endpoints, credentials,
+  pricing, pipeline status, confidence tiers, drop rationale. Read this before
+  touching code. If it's not here, don't add it to the pipeline.
+- [`docs/country-survey.md`](docs/country-survey.md) — how RTK works country
+  by country: which networks exist, access model (free/paid/registration),
+  open questions. Not a network reference — detail lives in networks.md.
+- [`docs/global-networks.md`](docs/global-networks.md) — same scope as
+  country-survey.md but for multi-country and global networks (RTK2go,
+  Centipede, EarthScope, Galileo HAS, etc.). Not a network reference.
 
 ## Repository layout
 

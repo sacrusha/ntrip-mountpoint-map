@@ -28,19 +28,21 @@ SOURCES = [
     # FReDNet (OGS, Italy — north-east): confirmed free, no registration.
     {"id": "frednet",       "url": "http://gnsscaster.regione.fvg.it:8080/"},
     # GeoRTK (Geosense, Japan): free indefinitely (1-yr advance notice if changed).
-    # ~338 STR lines; ~200 have valid coords (rest report 0/0 — dropped by parser).
+    # Sourcetable has shrunk over time — currently ~66 STR lines; ~41 have valid
+    # coords (rest report 0/0 for registered but inactive bases, dropped by parser).
     {"id": "geortk",        "url": "http://geortk.jp:2101/"},
     # SAPOS — German federal-state RTK networks. Sourcetables are publicly readable;
-    # RTCM streams require per-Länder registration. Most Länder free; BY free for
-    # agriculture, ~€20/yr for others; RP confirmed free (LVermGeo). SN (Sachsen)
-    # omitted — endpoint unconfirmed. Fee field per station reveals paid vs free.
+    # RTCM streams require per-Länder registration. Most Länder free; BY €20/yr
+    # flat rate for non-agricultural use (free for agriculture; well under $200/yr
+    # cutoff); RP confirmed free (LVermGeo). Fee field per station reveals paid vs free.
     {"id": "sapos_SH_HH",   "url": "http://www.sapos.geonord.de:2101/"},     # Schleswig-Holstein + Hamburg
     {"id": "sapos_NI",      "url": "http://www.sapos-ni-ntrip.de:2101/"},    # Niedersachsen (incl. Bremen)
     {"id": "sapos_NW",      "url": "http://www.sapos-nw-ntrip.de:2101/"},    # Nordrhein-Westfalen
     {"id": "sapos_HE",      "url": "http://www.sapos-he-ntrip.de:2101/"},    # Hessen
     {"id": "sapos_RP",      "url": "http://www.sapos-ntrip.rlp.de:2101/"},   # Rheinland-Pfalz
     {"id": "sapos_BW",      "url": "http://www.sapos-bw-ntrip.de:2101/"},    # Baden-Württemberg
-    {"id": "sapos_BY",      "url": "http://www.sapos-by-ntrip.de:2101/"},    # Bayern (~€20/yr)
+    {"id": "sapos_BY",      "url": "http://www.sapos-by-ntrip.de:2101/"},    # Bayern (€20/yr non-agri flat rate)
+    {"id": "sapos_SN",      "url": "http://ntrip.sachsen.de:2101/"},         # Sachsen (GeoSN)
     {"id": "sapos_SL",      "url": "http://www.sapos-sl-ntrip.de:2101/"},    # Saarland
     {"id": "sapos_BE",      "url": "http://www.sapos-be-ntrip.de:2101/"},    # Berlin
     {"id": "sapos_BB",      "url": "http://www.sapos-bb-ntrip.de:2101/"},    # Brandenburg
@@ -104,10 +106,24 @@ SOURCES = [
     # CORS-KOREA (South Korea): free, ~100 stations VRS+FKP.
     # Rover: gnssdata.or.kr  (Korean-only portal; national ID may be required)
     {"id": "cors_korea",  "url": "http://www.gnssdata.or.kr:2101/"},
-    # KSA-CORS (Saudi Arabia): free, 209 stations VRS.
-    # Rover: ksacors.geoportal.sa (registration; email signed form to info@geosa.gov.sa)
-    # KSACORS.gcs.gov.sa dead (NXDOMAIN 2026-04); migrated to ksacors.geoportal.sa.
+    # IceCORS (Iceland): free ("data is free of charge" — natt.is). GNCASTER,
+    # same software as SAPOS. Sourcetable public. Offers VRS (VRS30, FKP30)
+    # and single-base (RTCM30). Stream credentials via icecors@natt.is.
+    {"id": "icecors",     "url": "http://178.19.53.126:2101/"},
+    # KSA-CORS (Saudi Arabia): free, 209 stations VRS. Sourcetable returns all
+    # stations at a single coordinate — dropped by VRS filter.
+    # Rover: ksacors.geoportal.sa
     {"id": "ksa_cors",    "url": "http://ksacors.geoportal.sa:2101/"},
+    # GEODNET (HYFIX.AI): paid RTK network, 20,000+ nodes, 153 countries.
+    # Stream access requires a subscription; sourcetable accessibility without
+    # auth is unverified. Added to test whether the sourcetable is publicly
+    # readable per NTRIP spec. If stations are returned, display as paid layer.
+    # $40/month; <4-month seasonal use ($160) is under the $200/yr cutoff.
+    # Four regional AWS servers — all port 2101.
+    {"id": "geodnet_usa", "url": "http://rtk.geodnet.com:2101/"},
+    {"id": "geodnet_eu",  "url": "http://eu.geodnet.com:2101/"},
+    {"id": "geodnet_aus", "url": "http://aus.geodnet.com:2101/"},
+    {"id": "geodnet_sa",  "url": "http://sa.geodnet.com:2101/"},
 ]
 # RTKdata.online removed 2026-04-20: server unreachable since launch (RemoteDisconnected);
 # 0 stations ever collected. Operated by Kansi Solutions GmbH (same parent as paid
@@ -229,6 +245,21 @@ def parse_sourcetable(text: str) -> tuple[list[dict], dict]:
     return stations, stats
 
 
+def filter_vrs(stations: list[dict]) -> tuple[list[dict], int]:
+    """Drop all stations when every entry shares the same coordinate.
+
+    VRS casters report all virtual mountpoints at a single reference point
+    (often a rounded city centre). Real CORS networks have distinct lat/lon
+    per antenna.  Returning an empty list causes the source to be treated as
+    0-station so the UI hides it automatically.
+    """
+    if len(stations) < 2:
+        return stations, 0
+    if len({(s["lat"], s["lon"]) for s in stations}) == 1:
+        return [], len(stations)
+    return stations, 0
+
+
 def load_existing(path: Path) -> dict | None:
     if not path.exists():
         return None
@@ -266,15 +297,18 @@ def main() -> int:
                 "stations": None,
             }
             stations, stats = parse_sourcetable(text)
+            stations, dropped_vrs = filter_vrs(stations)
             fetched[sid]["stations"] = stations
             fetched[sid]["parse_stats"] = stats
-            print(f"[{sid}] fetched {stats['kept']} stations "
-                  f"(dropped {stats['dropped_dgnss']} DGNSS, {stats['dropped_bad']} invalid)")
+            vrs_note = f", {dropped_vrs} VRS" if dropped_vrs else ""
+            print(f"[{sid}] fetched {len(stations)} stations "
+                  f"(dropped {stats['dropped_dgnss']} DGNSS, {stats['dropped_bad']} invalid{vrs_note})")
         except Exception as e:
             print(f"[{sid}] fetch failed: {e!r}", file=sys.stderr)
             if raw_path.exists():
                 text = raw_path.read_text()
                 stations, stats = parse_sourcetable(text)
+                stations, dropped_vrs = filter_vrs(stations)
                 fetched[sid] = {
                     "url": url,
                     "status": f"stale (fetch failed: {e!r})",
@@ -284,7 +318,8 @@ def main() -> int:
                     "stations": stations,
                     "parse_stats": stats,
                 }
-                print(f"[{sid}] reusing cached sourcetable ({stats['kept']} stations)")
+                vrs_note = f", {dropped_vrs} VRS" if dropped_vrs else ""
+                print(f"[{sid}] reusing cached sourcetable ({len(stations)} stations{vrs_note})")
             else:
                 fetched[sid] = {
                     "url": url,
