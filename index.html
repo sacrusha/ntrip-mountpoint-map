@@ -889,11 +889,7 @@
         var updatedLabel=updated
           ? new Date(updated).toISOString().replace('T',' ').slice(0,16)+' UTC'
           : 'never';
-        var statusLines=sourceIds.map(function(sid){
-          return esc(sourceLabel(sid))+' ('+esc(sourceStatus[sid])+')';
-        }).join('<br>');
         if(li) li.innerHTML='updated: '+updatedLabel
-          +'<br>'+statusLines
           +'<br><span style="color:#bbb">load: '+fetchMs+' ms</span>';
         var summary=sourceIds.map(function(sid){
           return sourceCounts[sid]+' '+sourceLabel(sid);
