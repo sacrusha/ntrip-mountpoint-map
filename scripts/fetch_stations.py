@@ -24,6 +24,9 @@ SOURCES = [
     {"id": "centipede",     "url": "http://crtk.net:2101/"},        # migrated from caster.centipede.fr 2025-03-18
     # FReDNet (OGS, Italy — north-east): confirmed free, no registration.
     {"id": "frednet",       "url": "http://gnsscaster.regione.fvg.it:8080/"},
+    # GeoRTK (Geosense, Japan): free indefinitely (1-yr advance notice if changed).
+    # ~338 STR lines; ~200 have valid coords (rest report 0/0 — dropped by parser).
+    {"id": "geortk",        "url": "http://geortk.jp:2101/"},
 ]
 # RTKdata.online removed 2026-04-20: server unreachable since launch (RemoteDisconnected);
 # 0 stations ever collected. Operated by Kansi Solutions GmbH (same parent as paid
