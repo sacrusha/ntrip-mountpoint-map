@@ -726,7 +726,7 @@
         +(regUrl?'<div class="anote"><a href="'+esc(regUrl)+'" target="_blank" rel="noopener noreferrer">Sign up / details \u2197</a></div>':'')
         +'</div>';
       L.circle([n.lat,n.lon],{
-        radius:15000,color:VRS_COLOR,weight:2,
+        radius:25000,color:VRS_COLOR,weight:2,
         fillColor:VRS_COLOR,fillOpacity:0.25,
         renderer:renderer,pane:'vrsPane'
       }).bindTooltip(label+' (VRS)',{sticky:false}).bindPopup(popup).addTo(group);
