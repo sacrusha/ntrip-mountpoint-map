@@ -50,7 +50,7 @@ _Last updated: 2026-04-20. Supersedes `.tmp/country-coverage.md`._
 ## Europe — Southern
 
 ### ES — Spain
-- **ERGNSS** (IGN): `ergnss-ip.ign.es:2101`, ~120 stations, VRS. Free, web self-signup (ergnss.ign.es/gnuserportal/), immediate. CC-compatible (Orden FOM/2807/2015); attribution to IGN required. GPS+GLO+GAL+BDS. Candidate for pipeline.
+- **ERGNSS** (IGN): `ergnss-ip.ign.es:2101`, ~120 stations, VRS. Free, web self-signup (ergnss.ign.es/gnuserportal/), immediate. CC-compatible (Orden FOM/2807/2015); attribution to IGN required. GPS+GLO+GAL+BDS. Server confirmed operational (SNIP monitor shows up as of Mar 2026). Candidate for pipeline.
 - **RAP** (Andalucia, Junta): supplements ERGNSS in the south; separate signup (rap@juntadeandalucia.es).
 
 ### PT — Portugal
@@ -67,7 +67,7 @@ _Last updated: 2026-04-20. Supersedes `.tmp/country-coverage.md`._
 - **SIGNAL** (GURS): **PAID €829.44/yr** (€622.08 early discount). No free tier. DROP.
 
 ### GR — Greece
-- **HEPOS** (HEPOS S.A.): €480/yr. No free tier. User-facing: "Paid VRS available (HEPOS ~€480/yr)."
+- **HEPOS** (HEPOS S.A.): ~€480/yr for 1-year unlimited RTK; also €160 for 3 months or per-minute pricing. No free tier. User-facing: "Paid VRS available (HEPOS ~€480/yr)."
 - **URANUS**: commercial TopNET Live (Topcon). DROP.
 
 ### CY — Cyprus
@@ -87,7 +87,7 @@ _Last updated: 2026-04-20. Supersedes `.tmp/country-coverage.md`._
 - **GPSnet** (privatised ~2000): no public free caster. Market fully private (Leica/Hexagon). User-facing: "Paid VRS available."
 
 ### FI — Finland
-- **FINPOS** (NLS): free for 3-month research applications only; no general public tier. DGNSS free but sub-metre. User-facing: "No public free RTK; research applications only."
+- **FINPOS** (NLS / Maanmittauslaitos): RTK service (`finpos.nls.fi:2101`) granted only for research/testing; applicants must justify need, access is 3 months renewable with feedback. No general public tier. DGNSS free (open data, best ~0.5 m accuracy) but sub-metre. User-facing: "No public free RTK; research applications only."
 
 ### IS — Iceland
 - **IceCORS** (LMÍ — Landmælingar Íslands, National Land Survey of Iceland): `moe.lmi.is:2101` (IP 178.19.53.126:2101), ~20+ stations, VRS/single-base. Registration required (lmi.is/is/maelingar/thjonustur/icecors); operated by Geo++ GNNET software. Free status unconfirmed — likely charged as a professional service given sparse population / cost recovery model. **Verify cost before including; low priority.**
@@ -233,13 +233,13 @@ _Last updated: 2026-04-20. Supersedes `.tmp/country-coverage.md`._
 - **SoI-CORS** (Survey of India): 1,105+ stations. NTRIP caster at `cors.surveyofindia.gov.in`. Free for Central/State Government and government academic institutions. Private users charged (₹5,032/month or similar cost-recovery rate). Promotional free 3-month window Nov 2025–Jan 2026 expired; no confirmed extension as of Apr 2026. Worth revisiting if policy changes (SoI social media channels for announcements).
 
 ### ID — Indonesia
-- **InaCORS** (BIG): `nrtk.big.go.id:2001` (**port 2001, not 2101**), 200+ stations, VRS (MAX, i-MAX, VRS). Free, self-service registration (nrtk.big.go.id). Law No. 4/2011 mandates free public geospatial service. Candidate for pipeline.
+- **InaCORS** (BIG — Badan Informasi Geospasial): `nrtk.big.go.id:2001` (**port 2001, not 2101**; IP 103.22.171.6), 200+ stations, VRS (MAX, i-MAX, VRS). Free, self-service registration at nrtk.big.go.id. Over 16,800 registered users as of last report. Law No. 4/2011 mandates free public geospatial service. Candidate for pipeline.
 
 ### TH — Thailand
-- **DOL LandGNSS** (Dept of Lands): 100–250 stations. Registration at dol-rtknetwork.com (Thai language only). Free vs paid **unconfirmed**; NTRIP host:port not publicly documented in English. **Direct contact with Dept of Lands required before including.**
+- **DOL LandGNSS** (Dept of Lands, Ministry of Interior): website dol-rtknetwork.com (Thai language). Network managed by Technology Mapping Division. NTRIP connection details documented in Thai-language manual at dol-rtknetwork.com/index.php/npage/manual. Free vs paid status **unconfirmed for public/hobbyist use**; registration page available (dol-rtknetwork.com/index.php/register_gnss_beta). **Direct contact with Dept of Lands required before including.**
 
 ### VN — Vietnam
-- **VNGEONET**: 65 stations. Free until Aug 2024; Circular 47/2024/TT-BTC imposed fees Sep 2024. Out of scope.
+- **VNGEONET** (National Centre for Satellite Positioning Station Management): 65 CORS stations (24 geodetic + 41 NRTK, 50–80 km spacing). Free until Aug 2024; Circular 47/2024/TT-BTC (Ministry of Finance) imposed fees effective Sep 2024. Fees apply to all stations with average spacing ≤80 km. **Out of scope.**
 
 ### MY — Malaysia
 - **MyRTKnet** (JUPEM): 78 stations. Paid subscription (Survey Act cost-recovery). No free tier.
@@ -255,13 +255,16 @@ _Last updated: 2026-04-20. Supersedes `.tmp/country-coverage.md`._
 ## Middle East & Africa
 
 ### SA — Saudi Arabia
-- **KSA-CORS** (GASGI/GEOSA): `KSACORS.gcs.gov.sa:2101`, 209 stations, VRS. Free, download + email signed form to info@geosa.gov.sa (ksacors.gcs.gov.sa/RegisterAccount.aspx). GPS+GLO+GAL+BDS. Candidate for pipeline.
+- **KSA-CORS** (GASGI/GEOSA): `KSACORS.gcs.gov.sa:2101` (also accessible at `ksacors.geoportal.sa`), 209 active stations, VRS. Free, registration: download form from ksacors.gcs.gov.sa/RegisterAccount.aspx, sign and email to info@geosa.gov.sa; credentials sent by return email. GPS+GLO+GAL+BDS. Candidate for pipeline.
 
 ### IL — Israel
-- **APN** (Survey of Israel): `mapigps.co.il`, likely free for licensed surveyors/researchers (email apn@mapi.gov.il). **Important caveat: intense military GNSS spoofing/jamming active across Israel + Lebanon/Jordan/Sinai/Cyprus since October 2023. RTK unreliable regardless of NTRIP access.** Map UI should flag this region.
+- **APN** (Survey of Israel): `mapigps.co.il`, likely free for licensed surveyors/researchers (email apn@mapi.gov.il). **Critical caveat: pervasive military GNSS spoofing traced to Ein Shemer Airfield active continuously since October 2023, affecting Israel + Lebanon + Jordan + Sinai + Cyprus + southern Turkey. 50,000+ flights affected in 2024 alone. GPS signals show false locations (e.g. receiver "appears" to be in Beirut or Cairo). RTK is unreliable regardless of NTRIP access.** Map UI should flag this entire region. DROP from pipeline until spoofing ceases.
 
 ### AE — UAE
 - **DVRS** (Dubai Municipality): 18+ stations, VRS, 4-constellation. Professional application only (dm.gov.ae). No public hobbyist path.
+
+### TR — Turkey
+- **TUSAGA-Aktif** (TKGM/HGM joint): `212.156.70.42:2101` (also port 55600), 146 stations, VRS/FKP/MAC. **Paid subscription required.** Membership + annual fee to General Directorate of Land Registry (TKGM). DROP for free pipeline.
 
 ### IR — Iran
 - **IPGN/SHIMIM** (NCC): inward-facing governance; US/EU sanctions; geospatial data treated as sensitive. No public endpoint.
@@ -279,19 +282,22 @@ _Last updated: 2026-04-20. Supersedes `.tmp/country-coverage.md`._
 - **NIGNET**: 11–15 stations at 500–1,000 km spacing — far too wide for RTK. No public caster.
 
 ### ZA — South Africa
-- **TrigNet** (NGI): `trignet.co.za:2101`, 55+ stations. Mixed: DGPS (~0.35 m) + single-base RTK + VRS clusters in Gauteng, Western Cape, KwaZulu-Natal only. Free, register at trignet.co.za. No explicit CC licence; public mandate. Candidate for pipeline.
+- **TrigNet** (NGI / National Geospatial Information, DALRRD): `trignet.co.za:2101`, 55+ stations. Products: DGPS (~0.35 m) countrywide; single-base RTK (~5 cm) within 30–40 km; Network RTK (~3 cm) in Gauteng, Western Cape, KwaZulu-Natal clusters only. **All NGI products and services free of charge.** Register at trignet.co.za for credentials. No explicit CC licence; public mandate. Candidate for pipeline.
 
 ---
 
 ## Open questions
 
-1. **LitPOS (LT)**: contact LitPOS@geoportal.lt to confirm free status before ingesting.
-2. **IceCORS (IS)**: confirm NTRIP host:port and free status (low priority).
-3. **Thailand DOL LandGNSS**: contact Dept of Lands directly; host:port and free status unconfirmed.
-4. **GPSBru/AGN (BE-Brussels)**: single station; confirm host and operational status if including.
+1. **LitPOS (LT)**: contact LitPOS@geoportal.lt to confirm free status before ingesting. NTRIP endpoint not publicly listed — need credentials to confirm host.
+2. **IceCORS (IS)**: endpoint likely `moe.lmi.is:2101`; free vs paid status unconfirmed. Contact LMÍ (lmi.is/is/maelingar/thjonustur/icecors) before including. Low priority.
+3. **Thailand DOL LandGNSS**: registration available at dol-rtknetwork.com; Thai-language manual present. Contact Dept of Lands directly for free vs paid confirmation and NTRIP host:port.
+4. **GPSBru/AGN (BE-Brussels)**: endpoint at agn.ngi.be; single-base (Uccle). Operational as of mid-2024. Low priority — only covers ~30 km radius around Brussels.
 5. **Registration credentials**: obtain for registration-required networks (ASG-EUPOS, FLEPOS, WALCORS, ERGNSS, AUSCORS, PositioNZ, CORS-KOREA, InaCORS, KSA-CORS, etc.) to store as GitHub Actions secrets and ingest.
-6. **ESTPOS (EE) expiry**: service is free until Aug 2026; review before that date.
-7. **MIRAI (JP) authorization flow**: confirm whether bot/automated fetch is permitted under the registration TOS.
+6. **ESTPOS (EE) expiry**: service is free until 31 Aug 2026 per current directive; review before that date for renewal/extension announcement.
+7. **MIRAI (JP) authorization flow**: TOS confirmed to permit commercial and automated use ("for peaceful purposes"). Automated fetch appears permitted; obtain registration credentials for pipeline.
+8. **CORS-KOREA (KR) international registration**: portal is Korean-only; Korean national ID may be required for registration — verify if international users can register.
+9. **ReNEP (PT) host:port**: withheld until post-registration; complete DGT registration to obtain NTRIP host for pipeline.
+10. **SAPOS GEPOS (DE) receiver compatibility**: SSRZ format requires Geo++ SSR2OBS software or SSR-capable receiver (most hobbyist receivers do not support SSR natively). Consider whether to include in pipeline or note as "requires special software."
 
 ## Pipeline status summary
 
@@ -299,6 +305,7 @@ _Last updated: 2026-04-20. Supersedes `.tmp/country-coverage.md`._
 |---|---|
 | **In pipeline** | rtk2go, Centipede, FReDNet (IT), GeoRTK (JP), SAPOS ×13 (DE) |
 | **Candidate — no-registration** | SPSLux (LU) |
-| **Candidate — registration required** | ASG-EUPOS (PL), FLEPOS (BE), WALCORS (BE), ERGNSS (ES), CROPOS (HR), ESTPOS (EE), LatPos (LV), AUSCORS (AU), PositioNZ-RT (NZ), RBMC-IP (BR), RAMSAC (AR), IGAC MAGNA-ECO (CO), TrigNet (ZA), KSA-CORS (SA), InaCORS (ID), CORS-KOREA (KR), SatRef (HK), EarthScope NOTA (US) |
-| **Verify first** | LitPOS (LT), IceCORS (IS), Thailand DOL LandGNSS, GPSBru (BE) |
-| **Paid / drop** | swipos (CH), SWEPOS (SE), CPOS (NO), SIGNAL (SI), HEPOS (GR), ROMPOS (RO), SiReNT (SG), e-GNSS (TW), MyRTKnet (MY), PAGeNet (PH) |
+| **Candidate — registration required** | ASG-EUPOS (PL), FLEPOS (BE), WALCORS (BE), ERGNSS (ES), CROPOS (HR), ESTPOS (EE, free until Aug 2026), LatPos (LV), AUSCORS (AU), PositioNZ-RT (NZ), RBMC-IP (BR), RAMSAC (AR), IGAC MAGNA-ECO (CO), TrigNet (ZA), KSA-CORS (SA), InaCORS (ID), CORS-KOREA (KR), SatRef (HK), EarthScope NOTA (US), MIRAI (JP) |
+| **Verify first** | LitPOS (LT), IceCORS (IS), Thailand DOL LandGNSS, ReNEP (PT, host withheld pre-registration) |
+| **Paid / drop** | swipos (CH), SWEPOS RTK (SE), CPOS (NO), SIGNAL (SI), HEPOS (GR), ROMPOS (RO), SiReNT (SG), e-GNSS (TW), MyRTKnet (MY), PAGeNet (PH), TUSAGA-Aktif (TR), VNGEONET (VN, fees since Sep 2024), SoI-CORS (IN, paid for private users) |
+| **Out of scope (spoofing)** | APN (IL) — active GNSS spoofing makes RTK unreliable across Israel/Lebanon/Jordan/Sinai/Cyprus |
