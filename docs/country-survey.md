@@ -54,14 +54,14 @@ _Last updated: 2026-04-20. Supersedes `.tmp/country-coverage.md`._
 - **RAP** (Andalucia, Junta): supplements ERGNSS in the south; separate signup (rap@juntadeandalucia.es).
 
 ### PT — Portugal
-- **ReNEP** (DGT): 47 stations, VRS. Free, portal signup at renep.dgterritorio.gov.pt. Host:port **withheld until post-registration** — stations publicly listed; host provided after approval.
+- **ReNEP** (DGT — Direção-Geral do Território): 47 stations, VRS + single-base. Free, portal signup at renep.dgterritorio.gov.pt (renep@dgterritorio.pt). Host:port **withheld until post-registration** — stations and RINEX publicly visible; NTRIP credentials provided after account approval. ETRS89 datum (mainland), ITRF93 (autonomous regions). Candidate for pipeline (requires registration first to get host).
 
 ### IT — Italy
 - No national free public caster. Regional networks vary per region.
 - **FReDNet** (OGS, Friuli-Venezia Giulia): `gnsscaster.regione.fvg.it:8080`, 16 stations, VRS. Sourcetable publicly readable; stream requires email registration (rete.gnss.marussi@regione.fvg.it, free). **Already in pipeline** (sourcetable fetch confirmed working, 39 STR lines).
 
 ### HR — Croatia
-- **CROPOS** (DGU): `gnss.cropos.hr:2101`, 35 stations, VRS. **Free since Apr 2022** (Narodne novine 39/2022). Email/web registration dgu@dgu.hr. DPS (~0.3–0.5 m) and VPPS (~2 cm) free; GPPS post-processing paid. Candidate for pipeline.
+- **CROPOS** (DGU): `gnss.cropos.hr:2101`, 35 stations, VRS. **Free since Apr 2022** (Narodne novine 39/2022 — DPS and VPPS no longer charged). Email/web registration dgu@dgu.hr. DPS (~0.3–0.5 m) and VPPS (~2 cm) free; GPPS post-processing paid. Note: NTRIP caster IP changed Nov 2023 (old: 195.29.118.122 → new: 195.29.198.194); DNS hostname `gnss.cropos.hr` should resolve correctly but verify if pipeline has connectivity issues. Candidate for pipeline.
 
 ### SI — Slovenia
 - **SIGNAL** (GURS): **PAID €829.44/yr** (€622.08 early discount). No free tier. DROP.
@@ -155,7 +155,7 @@ _Last updated: 2026-04-20. Supersedes `.tmp/country-coverage.md`._
 ## Americas — North
 
 ### US — United States
-- **EarthScope NOTA**: `ntrip.earthscope.org:2101`, ~1000+ stations, single-base raw RTCM 3.x. Free for non-commercial use (annual license renewal). Americas-wide; station spacing ~30–50 km in many states. Legacy UNAVCO platform retired 2025-07-29. Candidate for pipeline (non-commercial TOS; metadata/station-list display permitted per NULA).
+- **EarthScope NOTA**: `ntrip.earthscope.org:2101` (RTCM 3.3), also `:2105` (BINEX), `:2108` (PPP solutions). ~1000+ stations, single-base raw RTCM 3.3 MSM. Free for non-commercial use (annual NULA renewal; unlimited seats). Commercial use licensed per-seat. Legacy UNAVCO platform fully retired 2025-07-29; all users must use ntrip.earthscope.org. Americas-wide; station spacing ~30–50 km in many states. Candidate for pipeline (non-commercial TOS; metadata/station-list display permitted per NULA).
 - **State DOT networks** (representative free ones): NYSNet (NY), MDOT CORS/MSRN (MI), MnCORS (MN), WISCORS (WI, 115+ stations), ORGN (OR). Many more exist; EarthScope fills gaps.
 - **Restricted state networks**: TxDOT RTN (employees/contractors only), CaltransRTN (vetted partners only), WSRN WA (~$1,900/yr).
 - No federal free NTRIP: NOAA/NGS real-time service shut Apr 2013 (budget sequestration). Not revived.
@@ -168,13 +168,13 @@ _Last updated: 2026-04-20. Supersedes `.tmp/country-coverage.md`._
 ## Americas — Latin
 
 ### BR — Brazil
-- **RBMC-IP** (IBGE): `170.84.40.52:2101` (alt: `gps-ntrip.ibge.gov.br:2101`), 150 stations, single-base RTCM 3.2 MSM. Free, gov.br signup. 5-station limit per user; 1,000 concurrent max. Candidate for pipeline.
+- **RBMC-IP** (IBGE): `170.84.40.52:2101` (alt: `gps-ntrip.ibge.gov.br:2101`), 150 stations as of Dec 2024 (IBGE inaugurated 5 new stations Dec 2024; 2 more planned 2025), single-base RTCM 3.2 MSM. Free, gov.br signup. 5-station limit per user; 1,000 concurrent max. Candidate for pipeline.
 
 ### AR — Argentina
 - **RAMSAC-NTRIP** (IGN): `ntrip.ign.gob.ar:2101`, ~69 stations, single-base. Free, email ntrip@ign.gob.ar or portal. 8-hour session cap per connection. POSGAR 07 reference frame. Candidate for pipeline.
 
 ### CO — Colombia
-- **IGAC MAGNA-ECO**: `sbc.igac.gov.co:2101` (VRS) / `:2102` (single-base), 233 stations (120 IGAC + 105 SGC + others), VRS capable. Free, email/web signup (sbc.igac.gov.co). Law 1955/2019 mandates public access. First confirmed free VRS/NRTK in Latin America. Candidate for pipeline.
+- **IGAC MAGNA-ECO**: `sbc.igac.gov.co:2101` (VRS/network) / `:2102` (single-base), 233 stations (IGAC + SGC + others), VRS capable. Registration at redgeodesica-sbc.igac.gov.co/sbc (Spider Business Center); free after account approval. Law 1955/2019 mandates public access. National Geodetic Control Centre launched Apr 2024 (Resolution 1771/2024 established portal). First confirmed free VRS/NRTK in Latin America. Candidate for pipeline.
 
 ### MX — Mexico
 - **RGNA** (INEGI): RINEX post-processing only; no streaming NTRIP caster. User-facing: "No free public RTK."
@@ -193,11 +193,11 @@ _Last updated: 2026-04-20. Supersedes `.tmp/country-coverage.md`._
 ## Asia Pacific — Oceania
 
 ### AU — Australia
-- **AUSCORS** (Geoscience Australia): `ntrip.data.gnss.ga.gov.au:2101` (also port 443 TLS), 700+ stations, single-base RTCM 3.x. Free, web signup (gnss.ga.gov.au/registration). **CC BY 4.0** — attribute "© Commonwealth of Australia (Geoscience Australia)". Old host `auscors.ga.gov.au` dead since Jul 2022. Candidate for pipeline.
+- **AUSCORS** (Geoscience Australia): `ntrip.data.gnss.ga.gov.au:2101` (also port 443 TLS), 700+ stations (5,500+ registered users as of 2024), single-base RTCM 3.x. Free, web signup (gnss.ga.gov.au/stream then register). **CC BY 4.0** — attribute "© Commonwealth of Australia (Geoscience Australia) [year]". Old host `auscors.ga.gov.au` dead since Jul 2022. Candidate for pipeline.
 - State VRS (CORSnet-NSW, GPSnet VIC, etc.): cost-recovery, paid.
 
 ### NZ — New Zealand
-- **PositioNZ-RT** (LINZ): `positionz-rt.linz.govt.nz:2101`, 100+ stations, single-base. Free, LINZ account + email positionz@linz.govt.nz. **CC BY 4.0 NZ** — attribute "Source: Land Information New Zealand". NZ mainland + offshore islands. Candidate for pipeline.
+- **PositioNZ-RT** (LINZ / Toitū Te Whenua): `positionz-rt.linz.govt.nz:2101`, 37 CORS stations (NZ mainland + Chatham Islands + Antarctica), single-base RTCM. Free, LINZ account required (linz.govt.nz); email positionz@linz.govt.nz for credentials. **CC BY 4.0 NZ** — attribute "Source: Land Information New Zealand". Streaming latency reduced ~90% (Dec 2023 upgrade). Service is 24/7 with best-efforts uptime. Candidate for pipeline.
 
 ---
 
@@ -205,13 +205,13 @@ _Last updated: 2026-04-20. Supersedes `.tmp/country-coverage.md`._
 
 ### JP — Japan
 - **GEONET** (GSI): post-processing RINEX only; no public NTRIP.
-- **MIRAI** (Cabinet Office SPAC): `ntrip.go.gnss.go.jp:2101`, ~300+ stations including overseas partners, single-base raw RTCM 3 observations. Free with registration + separate authorization form. Accounts deleted after 365 days inactivity. Raw observations only (rover computes RTK baseline) — adequate for <50 cm use. Candidate for pipeline.
+- **MIRAI** (Cabinet Office SPAC / Go!GNSS): `ntrip.go.gnss.go.jp:2101`, ~300+ stations including overseas partners, single-base raw RTCM 3 observations. Free for scientific, educational, and **commercial** use (all peaceful purposes). Registration at go.gnss.go.jp + separate NtripCaster authorization application. Accounts deleted after 365 days inactivity. Raw observations only (rover computes RTK baseline). TOS permits automated fetching — data shared openly for all users. L1C/B support for QZSS QZS-6 added Jun 2025. Candidate for pipeline.
 - **QZSS CLAS**: satellite-delivered (L6 band), not NTRIP; free, cm-level, no internet. Out of scope for this map.
 - **GeoRTK** (Geosense): `geortk.jp:2101`, free, no registration. **Already in pipeline** (~200 stations with valid coords).
 - Commercial: SoftBank ichimill ¥5–8k/month; Docomo GNSS.
 
 ### KR — South Korea
-- **CORS-KOREA** (NGII): `www.gnssdata.or.kr:2101`, public password `gnss`, ~90 stations at ~40 km spacing, VRS + FKP. Free, registration via ngii.go.kr (Korean-only portal). Login mandatory since ~2023. Candidate for pipeline.
+- **CORS-KOREA** (NGII): `www.gnssdata.or.kr:2101`, ~90–100 stations at ~40 km spacing, VRS + FKP. Free (NGII provides network RTK free of charge). Login uses registered email as NTRIP username. Registration via gnssdata.or.kr (Korean-language portal; Korean national ID may be required — verify if international access is practical). Candidate for pipeline.
 
 ### CN — China
 - **Qianxun** (千寻知寸, Alibaba+Norinco JV): ~¥3,600–3,800/yr. No free tier. Surveying and Mapping Law 2017 restricts CORS; provincial networks for licensed surveyors only. User-facing: "Paid VRS available; no free public access."
@@ -220,7 +220,7 @@ _Last updated: 2026-04-20. Supersedes `.tmp/country-coverage.md`._
 - **e-GNSS** (NLSC/MoI): pay-per-use + paper form registration (mail/fax). Cost-recovery. DROP.
 
 ### HK — Hong Kong
-- **SatRef** (Lands Dept): `ntrip.geodetic.gov.hk:2101`, mountpoint `VRS32G`, 19 stations, VRS. Free, email geodetic@landsd.gov.hk. 4-constellation. Open data policy. Migrated to current domain Jun 2023. Accounts inactive 12+ months terminated. Candidate for pipeline.
+- **SatRef** (Lands Department / Survey & Mapping Office): `ntrip.geodetic.gov.hk:2101`, mountpoints including `VRS32G` (GPS+GLONASS+Galileo+BeiDou VRS). 19 CORS (16 reference + 3 integrity monitoring). Free, email geodetic@landsd.gov.hk for account, or via DATA.GOV.HK open-data path. 4-constellation. Open data policy (commercial and non-commercial reuse permitted). Migrated to `ntrip.geodetic.gov.hk` Jun 2023 (old `www.geodetic.gov.hk` domain for NTRIP decommissioned). Accounts inactive 12+ months terminated. Candidate for pipeline.
 
 ### SG — Singapore
 - **SiReNT** (SLA): SGD $107/month. 3-day trial requires SingPass (residents only). DROP.
@@ -230,7 +230,7 @@ _Last updated: 2026-04-20. Supersedes `.tmp/country-coverage.md`._
 ## Asia Pacific — South & SE Asia
 
 ### IN — India
-- **SoI-CORS** (Survey of India): 1,105+ stations. Free for government/academic use; ₹5,032/month for private users. Promotional free window Nov 2025–Jan 2026 expired. Worth revisiting if policy changes.
+- **SoI-CORS** (Survey of India): 1,105+ stations. NTRIP caster at `cors.surveyofindia.gov.in`. Free for Central/State Government and government academic institutions. Private users charged (₹5,032/month or similar cost-recovery rate). Promotional free 3-month window Nov 2025–Jan 2026 expired; no confirmed extension as of Apr 2026. Worth revisiting if policy changes (SoI social media channels for announcements).
 
 ### ID — Indonesia
 - **InaCORS** (BIG): `nrtk.big.go.id:2001` (**port 2001, not 2101**), 200+ stations, VRS (MAX, i-MAX, VRS). Free, self-service registration (nrtk.big.go.id). Law No. 4/2011 mandates free public geospatial service. Candidate for pipeline.
