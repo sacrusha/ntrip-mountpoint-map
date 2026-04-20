@@ -439,8 +439,9 @@
   function esc(t){
     return (t==null?'':String(t))
       .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
-      .replace(/"/g,'&quot;');
+      .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
   }
+  function safeUrl(u){return /^https?:\/\//i.test(u)?u:'';}
 
   // Copy-to-clipboard helper, reachable from inline onclick in popups.
   window.__ntripCopy=function(btn,text){
@@ -513,7 +514,7 @@
       h+=cpRow('Password',auth.pass);
     if(auth.openNote)
       h+='<div class="anote">'+esc(auth.openNote)+'</div>';
-    var regUrl=SOURCE_REG[serverKey];
+    var regUrl=safeUrl(SOURCE_REG[serverKey]||'');
     if(regUrl)
       h+='<div class="anote"><a href="'+esc(regUrl)+'" target="_blank" rel="noopener noreferrer">Sign up / details ↗</a></div>';
     return h+'</div>';
@@ -636,8 +637,8 @@
       var popup='<div class="popup-plain"><h3>'+esc(n.name||n.id)+'</h3>'
         +'<div class="acc">NRTK coverage area — cm-level inside the hull</div>'
         +'<div>'+esc(access)+'</div>'
-        +(n.registrationUrl
-          ? '<div><a href="'+esc(n.registrationUrl)+'" target="_blank" rel="noopener">Signup / details</a></div>'
+        +(safeUrl(n.registrationUrl||'')
+          ? '<div><a href="'+esc(safeUrl(n.registrationUrl))+'" target="_blank" rel="noopener">Signup / details</a></div>'
           : '')
         +'<div style="color:#666;font-size:11px;margin-top:4px">'
           +((n.stationIds||[]).length)+' reference stations</div></div>';
@@ -901,6 +902,7 @@
 
       function rebuildStationLayers(){
         if(map.hasLayer(layers.detail)) map.removeLayer(layers.detail);
+        var prevDots=layers.dots;
         visible=allStations.filter(filter);
         stationIndex=buildStationIndex(visible);
         setStatus('Rendering '+visible.length+' stations\u2026');
@@ -908,7 +910,7 @@
           // Remove old dots here (not at the top of rebuildStationLayers) so
           // the path-list churn is bounded to filter-toggle rebuilds, which
           // are infrequent, not to every zoom transition.
-          if(map.hasLayer(layers.dots)) map.removeLayer(layers.dots);
+          if(map.hasLayer(prevDots)) map.removeLayer(prevDots);
           layers=built;
           layers.dots.addTo(map); // added once; zoom transitions CSS-toggle the pane
           coverage.setStations(visible,stationIndex);
