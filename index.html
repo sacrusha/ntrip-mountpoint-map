@@ -24,8 +24,6 @@
   #banner-more p{margin:0 0 8px 0;}
   #banner-more p:last-child{margin-bottom:0;}
   #banner-more a{color:#9ec8ff;}
-  #banner .close{background:transparent;border:none;color:#e8eef4;
-    font-size:20px;line-height:1;cursor:pointer;padding:4px 10px;margin-left:8px;}
   #banner-more{position:absolute;top:56px;left:0;right:0;max-width:720px;
     margin:0 auto;background:#1b2b3a;color:#e8eef4;padding:12px 16px;
     font-size:12px;line-height:1.5;border-radius:0 0 6px 6px;
@@ -98,7 +96,6 @@
     GPS can achieve centimetre accuracy — this map shows the free correction networks.
     <a class="more" id="banner-more-btn">how it works</a>
   </div>
-  <button class="close" id="banner-close" title="dismiss">×</button>
 </div>
 <div id="banner-more">
   <p><b>Why your GPS reads in metres</b><br>
@@ -231,7 +228,6 @@
   var STALE_GREY_DAYS=3, STALE_HIDE_DAYS=7;
 
   // Banner dismissal: bumped when content meaningfully changes.
-  var BANNER_VERSION='2026-04-b';
 
   // Coverage-raster colour lookup. Entry i maps strength i/255 to RGBA,
   // where strength = 1 - dist_to_nearest_km / R_FLOAT:
@@ -711,24 +707,18 @@
     return {group:group,bySid:bySid};
   }
 
-  // Banner: show until user dismisses; version key lets future content
-  // changes re-surface the banner for repeat visitors.
+  // Banner: always visible. Auto-expands "how it works" for first-time
+  // visitors; localStorage marks it seen on first toggle.
   function setupBanner(){
-    var dismissed=false;
-    try{ dismissed=typeof localStorage!=='undefined'&&localStorage.getItem('ntrip-banner-dismissed')===BANNER_VERSION; }
-    catch(e){}
-    if(!dismissed) document.body.classList.add('banner-visible');
-    var close=document.getElementById('banner-close');
+    document.body.classList.add('banner-visible');
+    var seen=false;
+    try{ seen=typeof localStorage!=='undefined'&&!!localStorage.getItem('ntrip-howit-seen'); }catch(e){}
+    if(!seen) document.body.classList.add('banner-expanded');
     var more=document.getElementById('banner-more-btn');
-    if(close) close.onclick=function(){
-      document.body.classList.remove('banner-visible');
-      document.body.classList.remove('banner-expanded');
-      try{ typeof localStorage!=='undefined'&&localStorage.setItem('ntrip-banner-dismissed',BANNER_VERSION); }
-      catch(e){}
-    };
     if(more) more.onclick=function(ev){
       ev.preventDefault();
       document.body.classList.toggle('banner-expanded');
+      try{ typeof localStorage!=='undefined'&&localStorage.setItem('ntrip-howit-seen','1'); }catch(e){}
     };
   }
 
