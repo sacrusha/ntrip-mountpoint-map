@@ -98,6 +98,8 @@ gracefully — stations remain in the JSON from the last successful fetch.
   KSA-CORS, and most SAPOS states — sourcetables expose only VRS virtual
   mountpoints (lat=0, lon=0 or single shared coord), correctly dropped.
   Coverage representation via NRTK polygons is deferred (see below).
+  ESTPOS additionally has a service expiry (free until Aug 2026) —
+  re-confirm or remove from pipeline before then.
 - UI shows 0 stations identically for VRS-by-design and fetch failures —
   no distinction visible to users. Process gap: need a "VRS — no pins
   expected" status separate from "error — pins missing".
@@ -121,11 +123,9 @@ gracefully — stations remain in the JSON from the last successful fetch.
 5. Deferred networks (ReNEP PT, LitPOS LT, Thailand DOL, APOS AT) —
    marked deferred pending endpoint discovery or registration. Revisit
    with fresh research; may have been prematurely deferred.
-6. ESTPOS: free until Aug 2026 — no automated reminder. Review before
-   then; either re-confirm extension or remove from pipeline.
-7. RTK/DGNSS/PPP/HAS primer — banner copy jargon audit + "learn more"
+6. RTK/DGNSS/PPP/HAS primer — banner copy jargon audit + "learn more"
    rewrite for hobbyist audience.
-8. NRTK polygon data for VRS networks — big feature, see above.
+7. NRTK polygon data for VRS networks — big feature, see above.
 
 ## Design notes worth preserving
 
