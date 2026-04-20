@@ -155,6 +155,81 @@ SOURCES = [
     {"id": "ksa_cors",    "url": "http://ksacors.geoportal.sa:2101/",
      "color": "#a0522d", "label": "KSA-CORS",
      "access": "conditions",   "registration": "https://ksacors.geoportal.sa"},          # old gcs.gov.sa domain is NXDOMAIN
+    # Italy — regional networks
+    {"id": "spin3",       "url": "http://spingnss.it:2101/",                             # Piemonte + Lombardia + VdA (CSI Piemonte)
+     "color": "#1565c0", "label": "SPIN3 GNSS",
+     "access": "registration", "registration": "https://www.spingnss.it"},
+    {"id": "gpsumbria",   "url": "http://gpsumbria.regione.umbria.it:2101/",
+     "color": "#2e7d32", "label": "GPS-UMBRIA",
+     "access": "registration", "registration": "https://gpsumbria.regione.umbria.it"},
+    {"id": "gnss_abruzzo_lazio", "url": "http://gnss-rtk.regione.abruzzo.it:2101/",     # Abruzzo + Lazio (merged Dec 2022)
+     "color": "#558b2f", "label": "GNSS Abruzzo+Lazio",
+     "access": "registration", "registration": "https://gnss-rtk.regione.abruzzo.it"},
+    {"id": "sit_puglia",  "url": "http://gps.sit.puglia.it:2101/",
+     "color": "#0288d1", "label": "SIT Puglia",
+     "access": "registration", "registration": "https://sit.puglia.it"},
+    {"id": "gnss_campania", "url": "http://gps-sit.regione.campania.it:2101/",           # SPID required for new users
+     "color": "#6a1b9a", "label": "GNSS Campania",
+     "access": "conditions",   "registration": "https://www.regione.campania.it"},
+    # US state DOT / CORS networks — physical-coordinate stations
+    {"id": "wiscors",     "url": "http://wiscors.dot.wi.gov:2101/",                      # WI DOT
+     "color": "#bf360c", "label": "WISCORS",
+     "access": "registration", "registration": "https://wiscors.dot.wi.gov"},
+    {"id": "fprn",        "url": "http://ntrip.myfloridagps.com:2101/",                  # FL DOT
+     "color": "#f57f17", "label": "FPRN",
+     "access": "registration", "registration": "https://myfloridagps.com"},
+    {"id": "ardot_rtn",   "url": "http://gps.ardot.gov:2101/",                           # AR DOT
+     "color": "#827717", "label": "ARDOT RTN",
+     "access": "registration", "registration": "https://gps.ardot.gov"},
+    {"id": "macors",      "url": "http://macorsrtk.massdot.state.ma.us:2101/",           # MA DOT
+     "color": "#33691e", "label": "MaCORS",
+     "access": "registration", "registration": "https://macorsrtk.massdot.state.ma.us"},
+    {"id": "vector",      "url": "http://20.185.11.35:2101/",                            # VT VCGI; bare IP
+     "color": "#1b5e20", "label": "VECTOR VT",
+     "access": "registration", "registration": "https://vcgi.vermont.gov"},
+    {"id": "azcors",      "url": "http://azcors.azwater.gov:2101/",                      # AZ ADWR; 51 stations
+     "color": "#e65100", "label": "AzCORS",
+     "access": "registration", "registration": "https://azcors.azwater.gov"},
+    {"id": "gcgc_rtn",    "url": "http://rtn.usm.edu:2101/",                             # MS Gulf Coast Geodetic Consortium/USM
+     "color": "#01579b", "label": "GCGC RTN",
+     "access": "registration", "registration": "https://rtn.usm.edu"},
+    {"id": "alcors",      "url": "http://aldotcors.dot.state.al.us:10011/",              # AL DOT; port 10011 (Leica)
+     "color": "#880e4f", "label": "AlCORS",
+     "access": "registration", "registration": "https://dot.state.al.us"},
+    {"id": "orgn",        "url": "http://167.131.0.205:9879/",                           # OR DOT; bare IP; port 9879 (Leica)
+     "color": "#004d40", "label": "ORGN",
+     "access": "registration", "registration": "https://www.oregon.gov/odot"},
+    {"id": "msrn",        "url": "http://mdotcors.michigan.gov:10700/",                  # MI DOT; port 10700 (Leica)
+     "color": "#006064", "label": "MSRN",
+     "access": "registration", "registration": "https://www.michigan.gov/mdot"},
+    {"id": "nysnet",      "url": "http://cors.dot.ny.gov:2101/",                         # NY DOT
+     "color": "#311b92", "label": "NYSNet",
+     "access": "registration", "registration": "https://www.dot.ny.gov"},
+    {"id": "incors",      "url": "http://incors.in.gov:10000/",                          # IN DOA; port 10000
+     "color": "#4e342e", "label": "InCORS",
+     "access": "registration", "registration": "https://incors.in.gov"},
+    {"id": "iartn",       "url": "http://iartnsbc.iowadot.gov:2101/",                    # IA DOT; 83 stations
+     "color": "#37474f", "label": "IARTN",
+     "access": "registration", "registration": "https://iowadot.gov"},
+    # US state DOT — VRS-only (filter_vrs drops all pins; shown as stopgap circles)
+    {"id": "kycors",      "url": "http://kycors.ky.gov:2101/",                           # KY Transportation Cabinet
+     "color": "#546e7a", "label": "KyCORS",
+     "access": "registration", "registration": "https://kycors.ky.gov"},
+    {"id": "mncors",      "url": "http://mncors.dot.state.mn.us:9000/",                  # MN DOT; port 9000; VRS-only
+     "color": "#455a64", "label": "MnCORS",
+     "access": "registration", "registration": "https://www.mndot.gov"},
+    {"id": "odot_rtn",    "url": "http://156.63.133.115:2101/",                          # OH DOT; bare IP; VRS-only
+     "color": "#607d8b", "label": "ODOT RTN",
+     "access": "registration", "registration": "https://transportation.ohio.gov"},
+    {"id": "modot_rtn",   "url": "http://rtk3.modot.mo.gov:2101/",                       # MO DOT; VRS-only; notarized agreement
+     "color": "#78909c", "label": "MoDOT RTN",
+     "access": "conditions",   "registration": "https://modot.mo.gov"},
+    {"id": "wvrtn",       "url": "http://wvrtn.cors.us:2101/",                           # WV DOH; VRS-only
+     "color": "#90a4ae", "label": "WVRTN",
+     "access": "registration", "registration": "https://transportation.wv.gov"},
+    {"id": "mainedot",    "url": "http://mdotcors.maine.gov:2101/",                      # ME DOT; VRS-only (transitioning)
+     "color": "#b0bec5", "label": "MaineDOT",
+     "access": "registration", "registration": "https://www.maine.gov/mdot"},
 ]
 # RTKdata.online removed 2026-04-20: server unreachable since launch (RemoteDisconnected);
 # 0 stations ever collected. Operated by Kansi Solutions GmbH (same parent as paid
