@@ -27,6 +27,23 @@ SOURCES = [
     # GeoRTK (Geosense, Japan): free indefinitely (1-yr advance notice if changed).
     # ~338 STR lines; ~200 have valid coords (rest report 0/0 — dropped by parser).
     {"id": "geortk",        "url": "http://geortk.jp:2101/"},
+    # SAPOS — German federal-state RTK networks. Sourcetables are publicly readable;
+    # RTCM streams require per-Länder registration (most free, BY ~€20/yr, RP paid).
+    # SN (Sachsen) omitted — endpoint unconfirmed. Fee field per station reveals
+    # paid vs free on first run; paid stations stay in data, marked at display layer.
+    {"id": "sapos_SH_HH",   "url": "http://www.sapos.geonord.de:2101/"},     # Schleswig-Holstein + Hamburg
+    {"id": "sapos_NI",      "url": "http://www.sapos-ni-ntrip.de:2101/"},    # Niedersachsen (incl. Bremen)
+    {"id": "sapos_NW",      "url": "http://www.sapos-nw-ntrip.de:2101/"},    # Nordrhein-Westfalen
+    {"id": "sapos_HE",      "url": "http://www.sapos-he-ntrip.de:2101/"},    # Hessen
+    {"id": "sapos_RP",      "url": "http://www.sapos-ntrip.rlp.de:2101/"},   # Rheinland-Pfalz
+    {"id": "sapos_BW",      "url": "http://www.sapos-bw-ntrip.de:2101/"},    # Baden-Württemberg
+    {"id": "sapos_BY",      "url": "http://www.sapos-by-ntrip.de:2101/"},    # Bayern (~€20/yr)
+    {"id": "sapos_SL",      "url": "http://www.sapos-sl-ntrip.de:2101/"},    # Saarland
+    {"id": "sapos_BE",      "url": "http://www.sapos-be-ntrip.de:2101/"},    # Berlin
+    {"id": "sapos_BB",      "url": "http://www.sapos-bb-ntrip.de:2101/"},    # Brandenburg
+    {"id": "sapos_MV",      "url": "http://www.sapos-mv-ntrip.de:2101/"},    # Mecklenburg-Vorpommern
+    {"id": "sapos_LSA",     "url": "http://www.sapos-lsa-ntrip.de:2101/"},   # Sachsen-Anhalt
+    {"id": "sapos_TH",      "url": "http://www.sapos-th-ntrip.de:2101/"},    # Thüringen
 ]
 # RTKdata.online removed 2026-04-20: server unreachable since launch (RemoteDisconnected);
 # 0 stations ever collected. Operated by Kansi Solutions GmbH (same parent as paid
