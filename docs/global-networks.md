@@ -212,10 +212,12 @@ subscribers pay for RTK corrections.
   GEODNET: $400/year exceeds the cutoff. Monthly at $40 × 4 months =
   $160 < $200 — qualifies seasonally. Worth surfacing in a "paid
   alternatives" banner note for users in areas with sparse free coverage.
-- **Pipeline status:** **DROP — not fetched.** No public sourcetable
-  without an active subscription. GEODNET's dense global coverage makes
-  it the best paid fallback; mention it in the UI for users whose area
-  has no free sources within 50 km.
+- **Pipeline status:** **Not yet in pipeline.** GEODNET requires account
+  credentials for stream access; whether the sourcetable is publicly
+  readable without auth is unverified — needs a test fetch. If the
+  sourcetable is accessible unauthenticated, station locations could be
+  ingested and displayed as a "paid service" layer. Surface in UI as a
+  "paid alternative" for users with no free sources within 50 km.
 
 ### Emlid Caster (`caster.emlid.com`)
 
