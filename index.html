@@ -86,63 +86,11 @@
 <div id="status">Loading…</div>
 <script>
 (function(){
-  // Per-source presentation. Keys match stations.json source ids.
-  // Any source emitted by the pipeline that is not listed here renders
-  // with UNKNOWN_SOURCE_COLOR and uses the source id as its label.
-  var SOURCE_COLORS={
-    rtk2go:       '#d00000',
-    centipede:    '#e87500',
-    frednet:      '#2e6fb0',
-    geortk:       '#1a7a4a',
-    ergnss:       '#b05000',
-    auscors:      '#b8860b',
-    positionz:    '#2e8b57',
-    satref:       '#8b008b',
-    inacors:      '#1a5fa0',
-    trignet:      '#556b2f',
-    rbmc_ip:      '#008b8b',
-    ramsac:       '#7b3f9e',
-    flepos:       '#3a7ca5',
-    walcors:      '#2c6e8a',
-    spslux:       '#5c6bc0',
-    asg_eupos:    '#7b5ea7',
-    cropos:       '#c0392b',
-    estpos:       '#16a085',
-    latpos:       '#1a6b3c',
-    igac:         '#d4a017',
-    earthscope:   '#8b4513',
-    mirai:        '#2471a3',
-    cors_korea:   '#a93226',
-    ksa_cors:     '#a0522d',
-    icecors:      '#1e6b8c'
-  };
-  var SOURCE_LABELS={
-    rtk2go:       'rtk2go',
-    centipede:    'Centipede',
-    frednet:      'FReDNet',
-    geortk:       'GeoRTK (Japan)',
-    ergnss:       'ERGNSS (Spain)',
-    auscors:      'AUSCORS (Australia)',
-    positionz:    'PositioNZ (NZ)',
-    satref:       'SatRef (HK)',
-    inacors:      'InaCORS (Indonesia)',
-    trignet:      'TrigNet (South Africa)',
-    rbmc_ip:      'RBMC-IP (Brazil)',
-    ramsac:       'RAMSAC (Argentina)',
-    flepos:       'FLEPOS (Belgium)',
-    walcors:      'WALCORS (Belgium)',
-    spslux:       'SPSLux (Luxembourg)',
-    asg_eupos:    'ASG-EUPOS (Poland)',
-    cropos:       'CROPOS (Croatia)',
-    estpos:       'ESTPOS (Estonia)',
-    latpos:       'LatPos (Latvia)',
-    igac:         'IGAC (Colombia)',
-    earthscope:   'EarthScope NOTA',
-    mirai:        'MIRAI (Japan)',
-    cors_korea:   'CORS-KOREA',
-    ksa_cors:     'KSA-CORS (Saudi Arabia)',
-    icecors:      'IceCORS (Iceland)'
-  };
+  // Per-source presentation. Populated at load time from data/stations.json
+  // (color/label fields). The fallbacks in sourceColor/sourceLabel apply to
+  // any source whose JSON entry lacks these fields.
+  var SOURCE_COLORS={};
+  var SOURCE_LABELS={};
   // Per-source auth/access hints shown in popups.
   // user/pass → copyable rows. userNote → plain-text hint (e.g. "any email").
   // near → show NEAR-mountpoint tip. openNote → italic note (no-auth or reg info).
@@ -704,7 +652,9 @@
   // staleDays mirrors SOURCE_STALE_DAYS from the load context; markers are
   // suppressed when the source is absent from the pipeline or >= 7 days stale,
   // matching the hidden-station threshold used for regular pins.
-  function buildVrsMarkers(renderer,staleDays){
+  // sourceCounts: {sid: n} — pins:false entries with real physical stations
+  // suppress their VRS circle (the source is not VRS-only after all).
+  function buildVrsMarkers(renderer,staleDays,sourceCounts){
     var group=L.layerGroup();
     var bySid={};
     VRS_NETWORKS.forEach(function(n){
@@ -712,6 +662,7 @@
         if(!(n.sid in staleDays)) return;      // source dropped from pipeline
         if(staleDays[n.sid]>=7) return;        // source stale — hide like regular pins
       }
+      if(!n.pins && sourceCounts && sourceCounts[n.sid]>0) return; // has real pins; not VRS-only
       var label=SOURCE_LABELS[n.sid]
         ||(n.sid.indexOf('sapos_')===0?'SAPOS '+n.sid.slice(6):n.sid);
       var auth=SOURCE_AUTH[n.sid]
@@ -819,7 +770,7 @@
             color:sourceColor(sid),count:sourceCounts[sid],vrsOnly:false});
         } else if(vrsLayerBySid[sid]){
           // VRS-only source: 0 physical pins but a visible VRS circle on the map.
-          entries.push({members:[sid],label:sourceLabel(sid)+' \u2009(VRS)',
+          entries.push({members:[sid],label:sourceLabel(sid),
             color:null,count:0,vrsOnly:true});
         }
       });
@@ -924,6 +875,8 @@
     var now=Date.now();
     var SOURCE_STALE_DAYS={};
     Object.keys(rawSources).forEach(function(sid){
+      if(rawSources[sid].color) SOURCE_COLORS[sid]=rawSources[sid].color;
+      if(rawSources[sid].label) SOURCE_LABELS[sid]=rawSources[sid].label;
       if(rawSources[sid].registration) SOURCE_REG[sid]=rawSources[sid].registration;
       SOURCE_ACCESS[sid]=rawSources[sid].access||'registration';
       var lo=rawSources[sid].last_ok;
@@ -971,7 +924,7 @@
     map.createPane('vrsPane');
     map.getPane('vrsPane').style.zIndex=401; // above overlayPane (400)
     var vrsRenderer=L.canvas({pane:'vrsPane',padding:0.5});
-    var vrsResult=buildVrsMarkers(vrsRenderer,SOURCE_STALE_DAYS);
+    var vrsResult=buildVrsMarkers(vrsRenderer,SOURCE_STALE_DAYS,sourceCounts);
     vrsResult.group.addTo(map);
     var vrsLayerBySid=vrsResult.bySid;
 
