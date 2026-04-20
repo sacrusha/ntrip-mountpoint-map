@@ -114,7 +114,8 @@
     earthscope:   '#8b4513',
     mirai:        '#2471a3',
     cors_korea:   '#a93226',
-    ksa_cors:     '#a0522d'
+    ksa_cors:     '#a0522d',
+    icecors:      '#1e6b8c'
   };
   var SOURCE_LABELS={
     rtk2go:       'rtk2go',
@@ -140,7 +141,8 @@
     earthscope:   'EarthScope NOTA',
     mirai:        'MIRAI (Japan)',
     cors_korea:   'CORS-KOREA',
-    ksa_cors:     'KSA-CORS (Saudi Arabia)'
+    ksa_cors:     'KSA-CORS (Saudi Arabia)',
+    icecors:      'IceCORS (Iceland)'
   };
   // Per-source auth/access hints shown in popups.
   // user/pass → copyable rows. userNote → plain-text hint (e.g. "any email").
@@ -171,6 +173,7 @@
     mirai:      {openNote:'Stream access requires free registration — go.gnss.go.jp'},
     cors_korea: {openNote:'Stream access requires free registration — gnssdata.or.kr'},
     ksa_cors:   {openNote:'Stream access requires free registration — ksacors.gcs.gov.sa/RegisterAccount.aspx'},
+    icecors:    {openNote:'Stream access: free — email icecors@natt.is with name and contact details'},
   };
   // Groups collapse multiple source IDs into one toggle row.
   // match(sid) → true means the source belongs to this group.

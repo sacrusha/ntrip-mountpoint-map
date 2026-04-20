@@ -104,6 +104,10 @@ SOURCES = [
     # CORS-KOREA (South Korea): free, ~100 stations VRS+FKP.
     # Rover: gnssdata.or.kr  (Korean-only portal; national ID may be required)
     {"id": "cors_korea",  "url": "http://www.gnssdata.or.kr:2101/"},
+    # IceCORS (Iceland): free ("data is free of charge" — natt.is). GNCASTER,
+    # same software as SAPOS. Sourcetable public. Offers VRS (VRS30, FKP30)
+    # and single-base (RTCM30). Stream credentials via icecors@natt.is.
+    {"id": "icecors",     "url": "http://178.19.53.126:2101/"},
     # KSA-CORS (Saudi Arabia): free, 209 stations VRS.
     # Rover: ksacors.geoportal.sa (registration; email signed form to info@geosa.gov.sa)
     # KSACORS.gcs.gov.sa dead (NXDOMAIN 2026-04); migrated to ksacors.geoportal.sa.

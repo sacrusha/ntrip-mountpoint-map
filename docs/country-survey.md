@@ -379,10 +379,10 @@ Coverage in each territory is thin (1–4 nodes over large areas), but where a b
    geoportal.lt/web/litpos-en). NTRIP host:port not publicly listed — find via
    public aggregators (ArduSimple, Alberding caster directory) before ingesting.
 
-2. **IceCORS (IS)**: Network operational — 23 cGNSS stations operated by LMÍ
-   (National Land Survey of Iceland), primarily for tectonic/volcanic monitoring.
-   Free vs paid status for hobbyist RTK use not determinable from public sources.
-   Low priority.
+2. **IceCORS (IS)**: ✓ Confirmed free ("The data is free of charge" — natt.is).
+   Endpoint `178.19.53.126:2101` (GNCASTER, same software as SAPOS). Sourcetable
+   publicly accessible without auth. Offers VRS (VRS30, FKP30) and single-base
+   (RTCM30). Stream credentials via email to icecors@natt.is. Added to pipeline.
 
 3. **Thailand DOL LandGNSS**: ✓ Confirmed free government service. Registration at
    dol-rtknetwork.com. Move to pipeline candidate — find NTRIP host:port from
@@ -403,9 +403,9 @@ _As of 2026-04-20. "In pipeline" = present in `SOURCES` in `scripts/fetch_statio
 |---|---|
 | **In pipeline** | rtk2go, Centipede, FReDNet (IT), GeoRTK (JP), SAPOS ×13 (DE) |
 | **Candidate — no-registration** | SPSLux (LU), Thailand DOL LandGNSS (TH) |
-| **Candidate — registration required** | ASG-EUPOS (PL), FLEPOS (BE), WALCORS (BE), ERGNSS (ES), CROPOS (HR), LatPos (LV), AUSCORS (AU), PositioNZ-RT (NZ), RBMC-IP (BR), RAMSAC (AR), IGAC MAGNA-ECO (CO), TrigNet (ZA), KSA-CORS (SA), InaCORS (ID), CORS-KOREA (KR), SatRef (HK), EarthScope NOTA (US, non-commercial NULA), MIRAI (JP), LitPOS (LT) |
+| **Candidate — registration required** | ASG-EUPOS (PL), FLEPOS (BE), WALCORS (BE), ERGNSS (ES), CROPOS (HR), LatPos (LV), AUSCORS (AU), PositioNZ-RT (NZ), RBMC-IP (BR), RAMSAC (AR), IGAC MAGNA-ECO (CO), TrigNet (ZA), KSA-CORS (SA), InaCORS (ID), CORS-KOREA (KR), SatRef (HK), EarthScope NOTA (US, non-commercial NULA), MIRAI (JP), LitPOS (LT), IceCORS (IS) |
 | **VRS — 0 stations** | ESTPOS (EE, VRS; also times out), CROPOS (HR, VRS) |
-| **Verify first** | IceCORS (IS, free status unclear), ReNEP (PT, host withheld pre-registration) |
+| **Verify first** | ReNEP (PT, host withheld pre-registration) |
 | **Paid / drop** | swipos (CH), SWEPOS RTK (SE), CPOS (NO), SIGNAL (SI), HEPOS (GR), ROMPOS (RO), SiReNT (SG), e-GNSS (TW), MyRTKnet (MY), PAGeNet (PH), TUSAGA-Aktif (TR), VNGEONET (VN, fees since Sep 2024), SoI-CORS (IN, paid for private users), NETPOS/Kadaster (NL, restricted internal use) |
 | **Out of scope (spoofing)** | APN (IL) — active GNSS spoofing makes RTK unreliable across Israel/Lebanon/Jordan/Sinai/Cyprus |
 | **Out of scope (raw obs only)** | EUREF-IP, IGS-IP — no RTK streams; suitable for post-processing only |
