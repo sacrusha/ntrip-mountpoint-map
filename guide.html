@@ -71,20 +71,36 @@ a:hover{color:#1b2b3a;}
   <thead><tr><th>Unit</th><th>Approx. price</th><th>Notes</th></tr></thead>
   <tbody>
     <tr>
+      <td><strong>ArduSimple RTK Handheld 2 Kit</strong></td>
+      <td class="price">~€449 / $490</td>
+      <td><strong>Android preferred.</strong> Compact, battery included, Bluetooth. On iOS works only within apps with built-in driver support (SW Maps is the main example) — cannot serve as system GPS for ArcGIS, QField, etc. Made in Spain, ships worldwide.</td>
+    </tr>
+    <tr>
       <td><strong>Emlid Reach RX</strong></td>
       <td class="price">~€630 / $700</td>
-      <td>Compact rover antenna; pairs with the free Emlid Flow app (Android / iOS). NTRIP client built in. Ships worldwide. Good starting point for most users.</td>
+      <td>Compact rover antenna; pairs with Emlid Flow (Android / iOS). NTRIP client built in. Full system-level iOS support. Ships worldwide.</td>
+    </tr>
+    <tr>
+      <td><strong>Bad Elf Flex Mini Extreme</strong></td>
+      <td class="price">~$1,499</td>
+      <td>Pocketable. MFi certified — works system-wide on iPhone / iPad with any app. One-time permanent unlock, no ongoing fees. Works with free NTRIP sources. US brand.</td>
+    </tr>
+    <tr>
+      <td><strong>Emlid Reach RS3</strong></td>
+      <td class="price">~$2,999</td>
+      <td>Current survey-grade flagship. IMU tilt compensation (accurate shots without levelling the pole). UHF radio. Full iOS support via Emlid Flow.</td>
     </tr>
     <tr>
       <td><strong>Emlid Reach RS2+</strong></td>
-      <td class="price">~€1,650 / $1,800<br><small>used: €800–1,200</small></td>
-      <td>Survey-grade complete receiver with integrated display and long battery. Well-known in professional surveying. Also available second-hand.</td>
+      <td class="price">~$2,200<br><small>used: €800–1,200</small></td>
+      <td>Previous flagship, still sold. No tilt compensation. Good value as a budget rover or fixed base station. Full iOS support.</td>
     </tr>
   </tbody>
 </table>
-<p>Emlid (<a href="https://emlid.com" rel="noopener noreferrer">emlid.com</a>) is an Estonian company that ships globally and has extensive documentation and an active community forum.</p>
+<p>Emlid (<a href="https://emlid.com" rel="noopener noreferrer">emlid.com</a>) is an Estonian company. ArduSimple (<a href="https://www.ardusimple.com" rel="noopener noreferrer">ardusimple.com</a>) is Spanish. Both ship globally with extensive documentation and active community forums.</p>
+<div class="callout"><strong>iOS / iPad users:</strong> MFi-certified receivers (Bad Elf, Emlid) provide system-wide GPS and work with any mapping app. Non-certified receivers like the ArduSimple Handheld 2 are Android-preferred — on iOS they work only within apps that include built-in driver support (currently SW Maps).</div>
 <h3>Hobbyist / tinkerer path</h3>
-<p>If you are comfortable with some hands-on setup, the <strong>ArduSimple simpleRTK2B Basic Starter Kit</strong> (€275, includes receiver board and antenna) is the most widely-used hobbyist option. It requires a computer or phone running separate NTRIP client software. Expect a few hours for first setup. ArduSimple is a Spanish company that ships worldwide: <a href="https://www.ardusimple.com" rel="noopener noreferrer">ardusimple.com</a>.</p>
+<p>If you are comfortable with some hands-on setup, the <strong>ArduSimple simpleRTK2B Basic Starter Kit</strong> (€275, includes receiver board and antenna) is the most widely-used hobbyist option. It requires a computer or phone running separate NTRIP client software. Expect a few hours for first setup.</p>
 
 <h2 id="map">Using the map to find free corrections</h2>
 <p>Open the <a href="./">map</a> and zoom to your work area. The colour zones around each pin show how far corrections reliably reach:</p>
@@ -96,9 +112,10 @@ a:hover{color:#1b2b3a;}
 <p>Click any pin to see the server address, port, and mountpoint name you need to configure your NTRIP client. If several stations are within range, any of them will do — pick the nearest one in the green zone. Some networks also offer a <code>NEAR</code> mountpoint that selects the closest station automatically.</p>
 
 <h2 id="connect">Connecting — step by step</h2>
-<p>Most survey receivers have an NTRIP client built into their settings menu. For Emlid receivers, use the Emlid Flow app. For other hardware, free options include:</p>
+<p>Most survey receivers have an NTRIP client built into their settings menu. For Emlid receivers, use the Emlid Flow app. The typical workflow for standalone receivers: your phone or tablet connects to the receiver via Bluetooth, pulls correction data from the internet, and forwards it to the receiver automatically. For other hardware, free client apps include:</p>
 <ul>
-  <li><strong>Android:</strong> Lefebure NTRIP Client — connects to your receiver via Bluetooth</li>
+  <li><strong>Android:</strong> SW Maps (free, full GIS + NTRIP client in one app) or Lefebure NTRIP Client (lightweight bridge to other apps)</li>
+  <li><strong>iOS / iPadOS:</strong> Emlid Flow (best if using Emlid hardware); SW Maps also available on iOS</li>
   <li><strong>Windows:</strong> Lefebure NTRIP Client — connects via serial or USB</li>
   <li><strong>Linux / Raspberry Pi:</strong> RTKBase (open-source, web interface) or RTKLIB <code>str2str</code></li>
 </ul>
