@@ -792,6 +792,12 @@
             color:null,count:0,vrsOnly:true});
         }
       });
+      var tierOrder={open:0,registration:1,conditions:2};
+      entries.sort(function(a,b){
+        var ta=a.vrsOnly?3:(tierOrder[SOURCE_ACCESS[a.members[0]]]||1);
+        var tb=b.vrsOnly?3:(tierOrder[SOURCE_ACCESS[b.members[0]]]||1);
+        return ta!==tb ? ta-tb : b.count-a.count;
+      });
       var rows=entries.map(function(e){
         var mj=esc(JSON.stringify(e.members));
         var swatch=e.vrsOnly
