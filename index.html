@@ -749,6 +749,8 @@
         var tier='tier_'+(SOURCE_ACCESS[sid]||'registration');
         var show=!!(state[sid]&&state[tier]);
         vrsLayerBySid[sid].setStyle({opacity:show?1:0,fillOpacity:show?0.25:0});
+        var el=vrsLayerBySid[sid].getElement();
+        if(el) el.style.pointerEvents=show?'stroke':'none';
       });
     }
     function pred(){
@@ -953,6 +955,12 @@
     var vrsResult=buildVrsMarkers(vrsRenderer,SOURCE_STALE_DAYS,sourceCounts);
     vrsResult.group.addTo(map);
     var vrsLayerBySid=vrsResult.bySid;
+    // Restrict VRS circle hit-testing to the stroke ring only (pointer-events:stroke).
+    // Clicks/hovers on the fill area fall through to station dots on the dotsPane canvas
+    // below — the CSS equivalent of a Qt item not calling event->accept().
+    Object.values(vrsLayerBySid).forEach(function(c){
+      var el=c.getElement(); if(el) el.style.pointerEvents='stroke';
+    });
 
     // Stations fresh enough for coverage raster (< 3 days stale).
     // Grey-dot stations (3–7 days) are shown on map but excluded from coverage
