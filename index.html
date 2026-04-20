@@ -178,6 +178,9 @@
   // Registration URLs per source, populated from data/stations.json at load time.
   // SOURCE_AUTH.openNote gives the short description; SOURCE_REG gives the link.
   var SOURCE_REG={};
+  // Access tier per source: "open" | "registration" | "conditions".
+  // Populated from data/stations.json at load time.
+  var SOURCE_ACCESS={};
   // Groups collapse multiple source IDs into one toggle row.
   // match(sid) → true means the source belongs to this group.
   var SOURCE_GROUPS=[
@@ -566,7 +569,7 @@
         var s=stations[i];
         try{
           L.circleMarker([s.lat,s.lon],{radius:4,color:'#fff',weight:1,
-            fillColor:stationColor(s),fillOpacity:0.95,renderer:renderer})
+            fillColor:stationStaleDays(s)>=3?'#aaa':stationColor(s),fillOpacity:0.95,renderer:renderer})
             .bindPopup(getCachedPopup(s))
             .addTo(dots);
         }catch(e){ console.warn('render err',e); }
@@ -595,7 +598,7 @@
       var s=stations[ids?ids[k]:k];
       if(!ids&&!b.contains([s.lat,s.lon])) continue;
       try{
-        var fill=stationColor(s);
+        var fill=stationStaleDays(s)>=3?'#aaa':stationColor(s);
         if(showRect){
           L.rectangle([[s.lat-s.dLat,s.lon-s.dLon],
                        [s.lat+s.dLat,s.lon+s.dLon]],
@@ -676,15 +679,20 @@
 
   // Toggle panel: generates a source checkbox per entry in `sourceCounts`
   // ({ sourceId: stationCount }). Station predicate passes a station iff
-  // it belongs to at least one enabled source. Access tier is a
-  // placeholder (only "free" currently has backing data).
+  // it belongs to at least one enabled source AND its access tier is enabled.
+  // Access tiers: "open" = Free, "registration" = Free (registration), "conditions" = Free*
   function buildTogglePanel(sourceCounts,onChange){
-    var state={free:true,registration:true,category:true,restricted:true};
+    var state={tier_open:true,tier_registration:true,tier_conditions:true};
     Object.keys(sourceCounts).forEach(function(sid){ state[sid]=true; });
     function pred(){
       return function(s){
         var ids=stationSourceIds(s);
-        for(var i=0;i<ids.length;i++) if(state[ids[i]]) return state.free;
+        for(var i=0;i<ids.length;i++){
+          var sid=ids[i];
+          if(!state[sid]) continue;
+          var tier='tier_'+(SOURCE_ACCESS[sid]||'registration');
+          if(state[tier]) return true;
+        }
         return false;
       };
     }
@@ -720,10 +728,10 @@
       }).join('');
       d.innerHTML='<h4>Sources</h4>'+rows
         +'<details><summary>Access</summary>'
-          +'<label><input type="checkbox" data-k="free" checked> Free, no signup</label>'
-          +'<label><input type="checkbox" data-k="registration" checked> Free with registration</label>'
-          +'<label><input type="checkbox" data-k="category" checked> Free for some users</label>'
-          +'<label><input type="checkbox" data-k="restricted" checked> Restricted</label>'
+          +'<label><input type="checkbox" data-k="tier_open" checked> Free, no signup</label>'
+          +'<label><input type="checkbox" data-k="tier_registration" checked> Free (registration)</label>'
+          +'<label title="Free, but conditions may exclude you (non-commercial only, national ID required, fee for some uses, etc.)">'
+            +'<input type="checkbox" data-k="tier_conditions" checked> Free* (conditions apply)</label>'
         +'</details>';
       d.querySelectorAll('input[data-m]').forEach(function(cb){
         cb.addEventListener('change',function(){
@@ -816,9 +824,23 @@
       setServers(data);
 
       var rawSources=(data&&data.sources)||{};
+      var now=Date.now();
+      var SOURCE_STALE_DAYS={};
       Object.keys(rawSources).forEach(function(sid){
         if(rawSources[sid].registration) SOURCE_REG[sid]=rawSources[sid].registration;
+        SOURCE_ACCESS[sid]=rawSources[sid].access||'registration';
+        var lo=rawSources[sid].last_ok;
+        // Treat missing last_ok as fresh — field absent in older JSON snapshots.
+        SOURCE_STALE_DAYS[sid]=lo?(now-new Date(lo).getTime())/86400000:0;
       });
+      function stationStaleDays(s){
+        var min=Infinity;
+        stationSourceIds(s).forEach(function(sid){
+          var d=SOURCE_STALE_DAYS[sid]||0;
+          if(d<min) min=d;
+        });
+        return min;
+      }
       var sourceIds=Object.keys(rawSources);
       var bySource={}, sourceCounts={}, sourceStatus={};
       sourceIds.forEach(function(sid){
@@ -851,8 +873,15 @@
       var netLayer=buildNetworkLayers(networks);
       netLayer.addTo(map);
 
-      // Coverage raster layer (single-base stations).
-      var coverage=new CoverageLayer(allStations);
+      // Stations fresh enough for coverage raster (< 3 days stale).
+      // Grey-dot stations (3–7 days) are shown on map but excluded from coverage
+      // so the raster reflects currently-live infrastructure only.
+      // Stations stale >= 7 days are hidden entirely.
+      var coverageStations=allStations.filter(function(s){ return stationStaleDays(s)<3; });
+      var displayStations=allStations.filter(function(s){ return stationStaleDays(s)<7; });
+
+      // Coverage raster layer (fresh stations only).
+      var coverage=new CoverageLayer(coverageStations);
       coverage.addTo(map);
 
       // Dedicated canvas renderer for dots, isolated in its own pane so zoom
@@ -903,7 +932,7 @@
       function rebuildStationLayers(){
         if(map.hasLayer(layers.detail)) map.removeLayer(layers.detail);
         var prevDots=layers.dots;
-        visible=allStations.filter(filter);
+        visible=displayStations.filter(filter);
         stationIndex=buildStationIndex(visible);
         setStatus('Rendering '+visible.length+' stations\u2026');
         buildStationLayers(visible,map,dotsRenderer,function(built){
