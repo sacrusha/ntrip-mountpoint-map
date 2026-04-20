@@ -53,8 +53,7 @@ needs to land on `main` to be exercised.
 **Implemented:**
 - Hourly GitHub Actions workflow with rebase-retry, DGNSS filter, carrier/
   format tagging, carrier-inference fallback for rtk2go's empty-field lines.
-- Four sources attempted in the pipeline: rtk2go, Centipede, FReDNet,
-  RTKdata.online.
+- Four sources in the pipeline: rtk2go, Centipede, FReDNet, GeoRTK (Japan).
 - Three-band zoom UX: coverage raster only at z ≤ 5, canvas circleMarker
   dots 6 ≤ z ≤ 9, viewport-culled detail layer (labels + accuracy
   rectangles + popups) at z ≥ 10.
@@ -77,10 +76,8 @@ needs to land on `main` to be exercised.
   `SOURCE_LABELS` for presentation — no other code change required.
 
 **Open / deferred (by priority):**
-1. Verify FReDNet and RTKdata.online actually serve data — both were added
-   in the last session and the first post-merge workflow run will reveal
-   whether they return valid sourcetables. If RTKdata.online is dead,
-   drop it from `SOURCES`.
+1. Verify FReDNet actually serves data — added in the last session; first
+   post-merge workflow run will confirm the sourcetable fetch succeeds.
 2. Access-tier toggles (Registration / Category / Restricted) currently
    have no backing data — they're shown but filter nothing. Either hide
    them until data exists or populate the tier per-station in the pipeline.

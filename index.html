@@ -48,6 +48,9 @@
     color:#2a5894;}
   .popup-plain button.cp:hover{background:#eef2f7;}
   .popup-plain button.cp.ok{background:#e6f3e6;color:#1a5d1a;border-color:#b8d8b8;}
+  .popup-plain .anote{color:#555;font-size:11px;font-style:italic;margin:3px 0 1px 0;}
+  .popup-plain .anote code{background:#f2f4f7;border:1px solid #e2e6eb;
+    border-radius:3px;padding:0 4px;font-size:11px;font-style:normal;}
   #toggles{background:white;padding:10px 12px;border-radius:5px;
     border:1px solid #bbb;font-size:12px;line-height:1.6;color:#222;
     max-width:220px;}
@@ -91,13 +94,22 @@
     rtk2go:       '#d00000',
     centipede:    '#e87500',
     frednet:      '#2e6fb0',
-    rtkdataonline:'#8f3fb3'
+    geortk:       '#1a7a4a'
   };
   var SOURCE_LABELS={
     rtk2go:       'rtk2go',
     centipede:    'Centipede',
     frednet:      'FReDNet',
-    rtkdataonline:'RTKdata.online'
+    geortk:       'GeoRTK (Japan)'
+  };
+  // Per-source auth/access hints shown in popups.
+  // user/pass → copyable rows. userNote → plain-text hint (e.g. "any email").
+  // near → show NEAR-mountpoint tip. openNote → italic note (no-auth or reg info).
+  var SOURCE_AUTH={
+    rtk2go:    {userNote:'your email address', pass:'none',      near:true},
+    centipede: {user:'centipede',              pass:'centipede', near:true},
+    frednet:   {openNote:'Stream access requires free registration — email rete.gnss.marussi@regione.fvg.it'},
+    geortk:    {openNote:'No authentication required'},
   };
   var MIXED_COLOR='#555', UNKNOWN_SOURCE_COLOR='#888';
 
@@ -126,24 +138,25 @@
   // Banner dismissal: bumped when content meaningfully changes.
   var BANNER_VERSION='2026-04-a';
 
-  // Coverage-raster colour lookup. Built once from the strength bands
-  // (strength = 1 - distance/R_FLOAT, produced by the alpha-pass). Each
-  // entry i maps strength i/255 to a pre-multiplied-by-layer-opacity RGBA.
-  // Bands align with the four radius bands:
+  // Coverage-raster colour lookup. Entry i maps strength i/255 to RGBA,
+  // where strength = 1 - dist_to_nearest_km / R_FLOAT:
   //   strength > 0.9  → <10 km    → green          (cm-RTK excellent)
   //   0.7–0.9         → 10–30 km  → yellow-green   (cm-RTK good)
   //   0.5–0.7         → 30–50 km  → amber          (marginal / float)
   //   0.01–0.5        → 50–100 km → pale red       (float decimetre)
-  //   <0.01           → no station in range        → transparent
+  //   <0.01           → >100 km   → transparent
   var COVERAGE_LUT=(function(){
     var lut=new Uint8ClampedArray(256*4);
+    var tEx=1-R_EXCELLENT/R_FLOAT; // 0.9 → <10 km green
+    var tGd=1-R_GOOD/R_FLOAT;      // 0.7 → <30 km yellow-green
+    var tMg=1-R_MARGINAL/R_FLOAT;  // 0.5 → <50 km amber
     for(var i=0;i<256;i++){
       var s=i/255, rgba;
-      if(s<0.01)      rgba=[0,0,0,0];
-      else if(s<0.5)  rgba=[210,90,90,50];
-      else if(s<0.7)  rgba=[220,150,30,95];
-      else if(s<0.9)  rgba=[180,200,30,130];
-      else            rgba=[0,170,0,165];
+      if(s<0.01) rgba=[0,0,0,0];
+      else if(s<tMg) rgba=[210,90,90,50];
+      else if(s<tGd) rgba=[220,150,30,95];
+      else if(s<tEx) rgba=[180,200,30,130];
+      else           rgba=[0,170,0,165];
       lut[i*4]=rgba[0]; lut[i*4+1]=rgba[1]; lut[i*4+2]=rgba[2]; lut[i*4+3]=rgba[3];
     }
     return lut;
@@ -159,9 +172,8 @@
       function(s){ return s.lat; });
   }
 
-  // CoverageLayer: tiled canvas drawing a radial gradient per nearby station.
-  // Closest station's colour wins via 'lighten' composite, so the composite
-  // approximates a distance-to-nearest field without a per-pixel query.
+  // CoverageLayer: tiled canvas raster showing distance to nearest station.
+  // Each pixel is coloured by its exact nearest-station distance via COVERAGE_LUT.
   var CoverageLayer=L.GridLayer.extend({
     options:{opacity:1,pane:'overlayPane'},
     initialize:function(stations,opts){
@@ -204,43 +216,57 @@
       }
       var count=ids?ids.length:this._stations.length;
 
-      // Pass 1 — accumulate "closest station strength" per pixel.
-      // Each station paints a white radial gradient whose alpha is linear
-      // in distance (1 at centre, 0 at R_FLOAT). `lighten` composites them
-      // as max-per-channel, so the pixel alpha ends up = max alpha across
-      // all stations reaching it = 1 − (distance to nearest) / R_FLOAT.
-      var drew=false;
-      ctx.globalCompositeOperation='lighten';
+      // Pre-project candidate stations to tile pixel coords; skip those whose
+      // R_FLOAT circle cannot reach this tile at all.
+      var sx=new Float32Array(count);
+      var sy=new Float32Array(count);
+      var n=0;
       for(var k=0;k<count;k++){
         var s=this._stations[ids?ids[k]:k];
         var pt=map.project([s.lat,s.lon],z).subtract(nwPx);
         if(pt.x<-rFloatPx||pt.x>size.x+rFloatPx||
            pt.y<-rFloatPx||pt.y>size.y+rFloatPx) continue;
-        var g=ctx.createRadialGradient(pt.x,pt.y,0,pt.x,pt.y,rFloatPx);
-        g.addColorStop(0,'rgba(255,255,255,1)');
-        g.addColorStop(1,'rgba(255,255,255,0)');
-        ctx.fillStyle=g;
-        ctx.beginPath();
-        ctx.arc(pt.x,pt.y,rFloatPx,0,2*Math.PI);
-        ctx.fill();
-        drew=true;
+        sx[n]=pt.x; sy[n]=pt.y; n++;
       }
-      if(!drew) return tile;
+      if(!n) return tile;
 
-      // Pass 2 — replace every pixel's colour by looking up its alpha
-      // (strength) in COVERAGE_LUT. This turns the max-alpha field into
-      // discrete distance bands and drops the "overlap → yellow smear"
-      // artefact of the prior single-pass approach.
-      var imd=ctx.getImageData(0,0,size.x,size.y);
+      // Per-pixel direct nearest-station distance field. Sub-sample at low
+      // zooms (many stations, tiny rFloatPx) so the JS loop stays fast; scale
+      // back up with nearest-neighbour to preserve hard band edges.
+      var sub=z<=3?8:z<=6?4:1;
+      var sw=Math.ceil(size.x/sub);
+      var sh=Math.ceil(size.y/sub);
+      var rSq=rFloatPx*rFloatPx;
+      var imd=ctx.createImageData(sw,sh);
       var d=imd.data;
-      for(var p=0;p<d.length;p+=4){
-        var li=d[p+3]*4;
-        d[p]=COVERAGE_LUT[li];
-        d[p+1]=COVERAGE_LUT[li+1];
-        d[p+2]=COVERAGE_LUT[li+2];
-        d[p+3]=COVERAGE_LUT[li+3];
+      var hasData=false;
+      for(var spy=0;spy<sh;spy++){
+        for(var spx=0;spx<sw;spx++){
+          var px=(spx+0.5)*sub, py=(spy+0.5)*sub;
+          var minSq=rSq;
+          for(var i=0;i<n;i++){
+            var dx=px-sx[i], dy=py-sy[i];
+            var dsq=dx*dx+dy*dy;
+            if(dsq<minSq) minSq=dsq;
+          }
+          if(minSq>=rSq) continue;
+          var li=((1-Math.sqrt(minSq)/rFloatPx)*255|0)*4;
+          var base=(spy*sw+spx)*4;
+          d[base]=COVERAGE_LUT[li]; d[base+1]=COVERAGE_LUT[li+1];
+          d[base+2]=COVERAGE_LUT[li+2]; d[base+3]=COVERAGE_LUT[li+3];
+          hasData=true;
+        }
       }
-      ctx.putImageData(imd,0,0);
+      if(!hasData) return tile;
+      if(sub===1){
+        ctx.putImageData(imd,0,0);
+      } else {
+        var sc=document.createElement('canvas');
+        sc.width=sw; sc.height=sh;
+        sc.getContext('2d').putImageData(imd,0,0);
+        ctx.imageSmoothingEnabled=false;
+        ctx.drawImage(sc,0,0,size.x,size.y);
+      }
       return tile;
     }
   });
@@ -386,11 +412,23 @@
     if(!srv||!mountpoint) return '';
     var dot='<span style="display:inline-block;width:8px;height:8px;background:'
       +dotCol+';border-radius:50%;margin-right:4px"></span>';
-    return '<div class="srv">'
+    var auth=SOURCE_AUTH[serverKey]||{};
+    var h='<div class="srv">'
       +cpRow(dot+'Server',srv.host)
       +cpRow('Port',srv.port)
-      +cpRow('Mountpoint',mountpoint)
-      +'</div>';
+      +cpRow('Mountpoint',mountpoint);
+    if(auth.near)
+      h+='<div class="anote">or use <code>NEAR</code> as mountpoint to auto-select nearest base</div>';
+    if(auth.user)
+      h+=cpRow('Username',auth.user);
+    else if(auth.userNote)
+      h+='<div class="row"><span class="lbl">Username</span>'
+        +'<span style="font-size:11px;color:#555;font-style:italic">'+esc(auth.userNote)+'</span></div>';
+    if(auth.pass)
+      h+=cpRow('Password',auth.pass);
+    if(auth.openNote)
+      h+='<div class="anote">'+esc(auth.openNote)+'</div>';
+    return h+'</div>';
   }
 
   function buildPopup(s){

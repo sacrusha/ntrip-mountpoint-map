@@ -17,8 +17,7 @@ swipos CH, TUSAGA-Aktif TR.
 PositioNZ NZ (same), URANUS GR/CY (may have migrated to commercial TopNet Live),
 GeoDAF/ASI IT (actually EUREF raw, borderline out of scope).
 
-**Low:** GPSBru BE Brussels (endpoint undocumented), RTKdata.online (community
-caster, unclear operational status).
+**Low:** GPSBru BE Brussels (endpoint undocumented).
 
 ## Drops from the starting list
 
@@ -28,27 +27,41 @@ caster, unclear operational status).
 | EUREF-IP | Raw GNSS observations only; operators say "unsuitable for real-time kinematic positioning". |
 | FINPOS RTK (FI) | RTK granted only for research with written justification. DGNSS is free but sub-metre — out of scope here. |
 
-## Keep / add
+## In pipeline
 
-| id | name | country | type | access | ntrip_host:port | signup_url | notes |
-|---|---|---|---|---|---|---|---|
-| `rtk2go` | RTK2GO | global | single-base | free | `rtk2go.com:2101` |  | ~800 volunteer bases; rovers connect with any email + password `none`. |
-| `centipede` | CentipedeRTK | FR (+30) | single-base | free | `caster.centipede.fr:2101` |  | ~860 bases; dense in metro FR; NEAR pseudo-mountpoint selects nearest. |
-| `asg-eupos` | ASG-EUPOS | PL | nrtk | registration | `system.asgeupos.pl:2101`; `:8080`/`:8086` for VRS | https://system.asgeupos.pl/ | Free since Oct 2022; VRS/MAC via NAWGIS/KODGIS; admin approval required. |
-| `flepos` | FLEPOS 3.0 | BE (Flanders) | nrtk | registration | `flepos.vlaanderen.be:2101` | https://flepos.vlaanderen.be/ | Free; VRS mountpoints `FLEPOSVRS31GR`, `FLEPOSVRS32GREC`; 45 stations. |
-| `walcors` | WALCORS | BE (Wallonia) | nrtk | category | `gnss.wallonie.be:2101` | https://gnss.wallonie.be/walcors/acces-au-reseau.html | Free for guidance/ag; surveyors submit written form; 23 stations; all BE since 2017. |
-| `gpsbru` | GPSBru / AGN | BE (Brussels) | single-base | registration | _unconfirmed_ | https://agn.ngi.be/ | Free-with-reg likely; caster host not in public English docs — verify. |
-| `renep` | ReNEP (DGT) | PT | single-base | registration | _not public_ | https://renep.dgterritorio.gov.pt/node/add/registo | Caster host sent after approval; contact renep@dgterritorio.pt. |
-| `frednet` | FReDNet (OGS) | IT (FVG/Veneto) | nrtk | free | `gnsscaster.regione.fvg.it:8080` |  | No registration; 16-station network; VRS + single-base; north-east IT only. |
-| `geodaf-asi` | GeoDAF / ASI EUREF | IT | single-base | registration | `euref-ip.asi.it:2101` | http://geodaf.mt.asi.it/gps_caster_access.php | Raw EUREF observations, not computed RTK; 5-connection cap — borderline, probably drop. |
-| `uranus` | URANUS | GR / CY | nrtk | registration | _unconfirmed_ | https://www.uranus.gr/ | May have merged into commercial TopNet Live — verify before including. |
-| `sapos` | SAPOS | DE | nrtk | registration | `sapos-ntrip.de:2101` (central ZSS) | https://zentrale-stelle-sapos.de/en/fees-registration/ | Free in most Länder (NRW, HH, SH, BE, TH, BW; BY ag only); some still charge; Galileo+BeiDou since Mar 2024. |
-| `cropos` | CROPOS | HR | nrtk | registration | `gnss.cropos.hr:2101` (likely) | https://gnss.cropos.hr/ | Free since Apr 2022 (NN 39/2022); DPS + VPPS VRS ~2 cm; verify current reg fee. |
-| `earthscope` | EarthScope NOTA | global (US) | single-base | registration | `ntrip.earthscope.org:2101` | https://www.earthscope.org/data/gnss-realtime/ | Raw RTCM 3.3 + BINEX, not computed corrections; free for non-commercial; ~1000 stations Americas. Borderline. |
-| `ibge-rbmc` | RBMC-IP (IBGE) | BR | single-base | registration | `170.84.40.52:2101` | https://www.gov.br/pt-br/servicos/obter-acesso-a-rbmc-ip | Free; 150 CORS; RTCM 3.2 MSM; single-base only. |
-| `auscors` | AUSCORS (Geoscience AU) | AU | single-base | registration | `ntrip.data.gnss.ga.gov.au:2101` | https://gnss.ga.gov.au/registration | Free; single-base + SSR/PPP; TLS required; AU-wide. |
-| `positionz` | PositioNZ-RT (LINZ) | NZ | single-base | registration | _unconfirmed_ | https://www.linz.govt.nz/products-services/geodetic/positionz/positionz-real-time-service | Free with LINZ account; recommend ≤15 km baseline; contact positionz@linz.govt.nz. |
-| `rtkdata-online` | RTKdata.online | global | single-base | free | `rtkdata.online:2101` (unconfirmed) |  | Community caster; limited docs; verify operational status before listing. |
+| id | name | host:port | credentials | notes |
+|---|---|---|---|---|
+| `rtk2go` | RTK2GO | `rtk2go.com:2101` | Username: any email · Password: `none` · Mountpoint: `NEAR` auto-selects nearest | ~800 volunteer bases globally |
+| `centipede` | CentipedeRTK | `crtk.net:2101` | Username: `centipede` · Password: `centipede` · Mountpoint: `NEAR` auto-selects nearest | ~860 bases; dense in France; migrated from caster.centipede.fr 2025-03-18 |
+| `frednet` | FReDNet (OGS) | `gnsscaster.regione.fvg.it:8080` | Sourcetable open (no auth). Stream: email `rete.gnss.marussi@regione.fvg.it` for free credentials | 16 stations, NE Italy + Slovenia/Austria border; VRS |
+| `geortk` | GeoRTK (Geosense) | `geortk.jp:2101` | No authentication required | ~200 stations with valid coords; Japan only; RTCM 3.x MSM; free indefinitely |
+
+## Registration required — pipeline candidates
+
+| id | name | host:port | how to register | notes |
+|---|---|---|---|---|
+| `asg-eupos` | ASG-EUPOS | `system.asgeupos.pl:2101` (`:8080`/`:8086` for VRS) | Web self-signup at system.asgeupos.pl — admin approval 1–2 working days | Free since Oct 2022; VRS/MAC; 130+ stations; PL |
+| `flepos` | FLEPOS | `ntrip.flepos.be:2101` | Web self-signup at flepos.vlaanderen.be | 45 stations; VRS; BE Flanders |
+| `walcors` | WALCORS | `gnss.wallonie.be:2101` | Email/web form at gnss.wallonie.be/walcors/inscription.html | 23 stations; VRS; free for survey/GIS; paid for ag auto-guidance; BE Wallonia |
+| `ergnss` | ERGNSS (IGN) | `ergnss-ip.ign.es:2101` | Web self-signup at ergnss.ign.es/gnuserportal/ — immediate | ~120 stations; VRS; ES; CC-compatible, attribute IGN |
+| `sapos` | SAPOS HEPS/EPS | per-Länder (central: `sapos-ntrip.de:2101`) | Per-state web forms at sapos.de | ~270 stations; VRS; 12/16 Länder free (BY ~€20/yr, RP paid); DE |
+| `cropos` | CROPOS | `gnss.cropos.hr:2101` | Email dgu@dgu.hr or web form | 35 stations; VRS; free since Apr 2022; HR |
+| `estpos` | ESTPOS | `gnss-rtk.maaamet.ee:8083` | Portal at geoportaal.maaamet.ee | 40 stations; VRS; free until Aug 2026; EE |
+| `latpos` | LatPos | `latpos.lgia.gov.lv:2101` | SBC portal at latpos.lgia.gov.lv/SBC | 27 LV + border stations; VRS; free since 2018; LV |
+| `spslux` | SPSLux | `stream.spslux.lu:5005` | SBC portal at spslux.lu/sbc/ | **Port 5005** (not 2101); full country VRS; LU open data |
+| `trignet` | TrigNet | `trignet.co.za:2101` | Register at trignet.co.za | 55+ stations; VRS in 3 clusters + single-base; ZA |
+| `ibge-rbmc` | RBMC-IP (IBGE) | `170.84.40.52:2101` | gov.br signup at gov.br/pt-br/servicos/obter-acesso-a-rbmc-ip | 150 stations; single-base; BR |
+| `ramsac` | RAMSAC-NTRIP | `ntrip.ign.gob.ar:2101` | Email ntrip@ign.gob.ar or portal ign.gob.ar | ~69 stations; single-base; 8-hr session cap; AR |
+| `igac` | IGAC MAGNA-ECO | `sbc.igac.gov.co:2101` (VRS) / `:2102` (single) | Email/web at sbc.igac.gov.co | 233 stations; VRS; CO — first confirmed free VRS in LATAM |
+| `ksa-cors` | KSA-CORS | `KSACORS.gcs.gov.sa:2101` | Email signed form to info@geosa.gov.sa | 209 stations; VRS; SA |
+| `inacors` | InaCORS | `nrtk.big.go.id:2001` | Self-register at nrtk.big.go.id | **Port 2001**; 200+ stations; VRS; ID |
+| `cors-korea` | CORS-KOREA | `www.gnssdata.or.kr:2101` | Register at ngii.go.kr (Korean-language portal) · Password: `gnss` (public) | ~90 stations; VRS+FKP; KR |
+| `satref` | SatRef HK | `ntrip.geodetic.gov.hk:2101` | Email geodetic@landsd.gov.hk | 19 stations; VRS; mountpoint `VRS32G`; HK |
+| `auscors` | AUSCORS | `ntrip.data.gnss.ga.gov.au:2101` | Web signup at gnss.ga.gov.au/registration | 700+ stations; single-base; TLS also on :443; CC BY 4.0; AU |
+| `positionz` | PositioNZ-RT | `positionz-rt.linz.govt.nz:2101` | LINZ account + email positionz@linz.govt.nz | 100+ stations; single-base; CC BY 4.0 NZ; NZ |
+| `earthscope` | EarthScope NOTA | `ntrip.earthscope.org:2101` | Annual non-commercial license at earthscope.org/data/gnss-realtime/ | ~1000 stations; raw RTCM 3.x obs; Americas; non-commercial only |
+| `renep` | ReNEP (DGT) | host sent post-registration | Register at renep.dgterritorio.gov.pt/node/add/registo | 47 stations; host withheld until approved; PT |
+| `gpsbru` | GPSBru / AGN | _unconfirmed_ (likely `ntrip.ngi.be:2101`) | Register at agn.ngi.be | Single station (Brussels/Uccle); operational status uncertain; BE |
 
 ## Paid / drop
 

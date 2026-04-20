@@ -21,13 +21,16 @@ DATA_DIR = ROOT / "data"
 
 SOURCES = [
     {"id": "rtk2go",        "url": "http://rtk2go.com:2101/"},
-    {"id": "centipede",     "url": "http://caster.centipede.fr:2101/"},
+    {"id": "centipede",     "url": "http://crtk.net:2101/"},        # migrated from caster.centipede.fr 2025-03-18
     # FReDNet (OGS, Italy — north-east): confirmed free, no registration.
     {"id": "frednet",       "url": "http://gnsscaster.regione.fvg.it:8080/"},
-    # RTKdata.online: community caster, low-confidence operational status;
-    # fetch will be attempted best-effort and fall through on failure.
-    {"id": "rtkdataonline", "url": "http://rtkdata.online:2101/"},
+    # GeoRTK (Geosense, Japan): free indefinitely (1-yr advance notice if changed).
+    # ~338 STR lines; ~200 have valid coords (rest report 0/0 — dropped by parser).
+    {"id": "geortk",        "url": "http://geortk.jp:2101/"},
 ]
+# RTKdata.online removed 2026-04-20: server unreachable since launch (RemoteDisconnected);
+# 0 stations ever collected. Operated by Kansi Solutions GmbH (same parent as paid
+# rtkdata.com); aggregates rtk2go/Centipede visually — no independent value.
 
 FETCH_TIMEOUT = 60
 
