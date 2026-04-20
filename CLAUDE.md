@@ -21,7 +21,7 @@ sub-metre DGNSS sources.
 - [`docs/country-survey.md`](docs/country-survey.md) — how RTK works country
   by country: which networks exist, access model (free/paid/registration),
   open questions. Not a network reference — detail lives in networks.md.
-- [`docs/global-networks.md`](docs/global-networks.md) — same scope as
+- [`docs/global-survey.md`](docs/global-survey.md) — same scope as
   country-survey.md but for multi-country and global networks (RTK2go,
   Centipede, EarthScope, Galileo HAS, etc.). Not a network reference.
 

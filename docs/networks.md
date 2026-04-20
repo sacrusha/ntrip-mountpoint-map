@@ -2,7 +2,7 @@
 
 _Authoritative reference for every network investigated, whether in pipeline or not._
 _Read before touching `scripts/fetch_stations.py` or `index.html`._
-_Networks are identified via `docs/country-survey.md` and `docs/global-networks.md`;_
+_Networks are identified via `docs/country-survey.md` and `docs/global-survey.md`;_
 _detail, endpoints, and pipeline status live here._
 
 _Last updated: 2026-04-20._
