@@ -30,6 +30,7 @@ STR;Mbrg-SB;Mbrg-SB;RTCM 3.1;1004/1012(1),1005/1007/1033(5);2;GPS+GLONASS;TrigNe
 STR;Nyls-SB;Nyls-SB;RTCM 3.1;1004/1012(1),1005/1007/1033(5);2;GPS+GLONASS;TrigNet;ZAF;-24.66;28.47;0;0;Trimble Pivot Platform;None;B;N;0;;
 STR;Kstd-SB;Kstd-SB;RTCM 3.1;1004/1012(1),1005/1007/1033(5);2;GPS+GLO;TrigNet;ZAF;-27.66;27.25;0;0;Trimble Pivot Platform;None;B;N;0;;
 STR;Heid-SB;Heid-SB;RTCM 3.1;1004/1012(1),1005/1007/1033(5);2;GPS+GLONASS;TrigNet;ZAF;-26.5;28.37;0;0;Trimble Pivot Platform;None;B;N;0;;
+STR;Uldi-SB;Uldi-SB;RTCM 3.1;1004/1012(1),1005/1007/1033(5);2;GPS+GLO;TrigNet;ZAF;-28.28;31.42;0;0;Trimble Pivot Platform;None;B;N;0;;
 STR;Grnt-SB;Grnt-SB;RTCM 3.1;1004/1012(1),1005/1007/1033(5);2;GPS+GLO;TrigNet;ZAF;-32.23;24.53;0;0;Trimble Pivot Platform;None;B;N;0;;
 STR;Ptbg-SB;Ptbg-SB;RTCM 3.1;1004/1012(1),1005/1007/1033(5);2;GPS+GLO;TrigNet;ZAF;-23.92;29.45;0;0;Trimble Pivot Platform;None;B;N;0;;
 STR;Brit-SB;Brit-SB;RTCM 3.1;1004/1012(1),1005/1007/1033(5);2;GPS+GLONASS;TrigNet;ZAF;-25.63;27.77;0;0;Trimble Pivot Platform;None;B;N;0;;
