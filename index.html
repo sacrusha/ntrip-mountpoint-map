@@ -844,6 +844,7 @@
       .catch(function(){ return null; });
   }
 
+  var stationStaleDays;
   window.addEventListener('load',function(){
     setupBanner();
     var map=L.map('map',{preferCanvas:true}).setView([47.0,8.0],8);
@@ -878,7 +879,6 @@
     };
     leg.addTo(map);
 
-    var stationStaleDays=function(){ return 0; };
     (async function(){
       setStatus('Loading station data\u2026');
       var t0=performance.now();
