@@ -531,10 +531,10 @@
       +warn+blocks+'</div>';
   }
 
-  function precLabel(dLat,dLon){
+  function precLabel(dLat,dLon,lat){
     var mLat=Math.round(dLat*111000);
-    var mLon=Math.round(dLon*111000*Math.cos(47*Math.PI/180));
-    return mLat===mLon?'\u00b1'+mLat+' m':'\u00b1'+mLat+' m N-S / \u00b1'+mLon+' m E-W';
+    var mLon=Math.round(dLon*111000*Math.cos(lat*Math.PI/180));
+    return mLat===mLon?'\u00b1'+mLat+' m':'\u00b1'+mLat+' m N\u2013S / \u00b1'+mLon+' m E\u2013W';
   }
 
   function setStatus(msg,fade){
@@ -592,7 +592,10 @@
         L.rectangle([[s.lat-s.dLat,s.lon-s.dLon],
                      [s.lat+s.dLat,s.lon+s.dLon]],
           {color:fill,weight:1,fillColor:fill,fillOpacity:0.12,
-           dashArray:'4 3'}).addTo(detail);
+           dashArray:'4 3'})
+          .bindTooltip('Station within '+precLabel(s.dLat,s.dLon,s.lat),
+            {sticky:true,className:'prec-tip'})
+          .addTo(detail);
         var icon=L.divIcon({className:'',html:solidSVG(fill),
                             iconSize:[14,14],iconAnchor:[7,7]});
         var mk=L.marker([s.lat,s.lon],{icon:icon});

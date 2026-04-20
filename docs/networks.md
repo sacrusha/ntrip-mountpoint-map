@@ -333,7 +333,7 @@ free of charge.
 **host:port**: `178.19.53.126:2101`
 **type**:      physical-coord-vrs
 **access**:    free ("data is free of charge" — natt.is); register at natt.is/is/landmaelingar/jardstodvakerfi
-**stations**:  TBD
+**stations**:  ~20 (populates on fetch; recently added to pipeline)
 **source**:    natt.is (LMÍ — Landmælingar Íslands)
 
 GNCASTER software (same as SAPOS). Offers VRS (VRS30, FKP30) and single-base
@@ -366,7 +366,7 @@ SAPOS casters do not speak standard HTTP.
 | `sapos_RP` | Rheinland-Pfalz | `sapos-ntrip.rlp.de:2101` | physical-coord VRS | ~17 stations (5 unique coords); confirmed free (LVermGeo) |
 | `sapos_BW` | Baden-Württemberg | `sapos-bw-ntrip.de:2101` | single-coord VRS | 0 stations |
 | `sapos_BY` | Bayern | `sapos-by-ntrip.de:2101` | single-coord VRS | €20/yr non-agri flat rate; free for agriculture |
-| `sapos_SN` | Sachsen (GeoSN) | `ntrip.sachsen.de:2101` | TBD | newly confirmed endpoint; station count TBD |
+| `sapos_SN` | Sachsen (GeoSN) | `ntrip.sachsen.de:2101` | populates on fetch | endpoint confirmed 2026-04; first successful CI fetch will populate count |
 | `sapos_SL` | Saarland | `sapos-sl-ntrip.de:2101` | physical-coord VRS | ~14 stations (9 unique coords) |
 | `sapos_BE` | Berlin | `sapos-be-ntrip.de:2101` | single-coord VRS | 52.48, 13.3 |
 | `sapos_BB` | Brandenburg | `sapos-bb-ntrip.de:2101` | single-coord VRS | 52.23, 13.05 |
