@@ -71,9 +71,14 @@ a:hover{color:#1b2b3a;}
   <thead><tr><th>Unit</th><th>Approx. price</th><th>Notes</th></tr></thead>
   <tbody>
     <tr>
+      <td><strong>ArduSimple RTK Handheld 2 Kit</strong></td>
+      <td class="price">~€449 / $490</td>
+      <td>Compact handheld unit with built-in Bluetooth, battery, and pole mount. Works with any NTRIP client app on Android or iOS. Made in Spain, ships worldwide.</td>
+    </tr>
+    <tr>
       <td><strong>Emlid Reach RX</strong></td>
       <td class="price">~€630 / $700</td>
-      <td>Compact rover antenna; pairs with the free Emlid Flow app (Android / iOS). NTRIP client built in. Ships worldwide. Good starting point for most users.</td>
+      <td>Compact rover antenna; pairs with the free Emlid Flow app (Android / iOS). NTRIP client built in. Ships worldwide.</td>
     </tr>
     <tr>
       <td><strong>Emlid Reach RS2+</strong></td>
@@ -82,9 +87,10 @@ a:hover{color:#1b2b3a;}
     </tr>
   </tbody>
 </table>
-<p>Emlid (<a href="https://emlid.com" rel="noopener noreferrer">emlid.com</a>) is an Estonian company that ships globally and has extensive documentation and an active community forum.</p>
+<p>Emlid (<a href="https://emlid.com" rel="noopener noreferrer">emlid.com</a>) is an Estonian company. ArduSimple (<a href="https://www.ardusimple.com" rel="noopener noreferrer">ardusimple.com</a>) is Spanish. Both ship globally with good documentation and community support.</p>
+<div class="callout"><strong>iOS / iPad users:</strong> check that any receiver you buy explicitly supports iOS before purchasing. Apple's Bluetooth restrictions mean some cheaper receivers work only on Android or require workarounds on iPad. Both Emlid units and the ArduSimple Handheld 2 support iOS.</div>
 <h3>Hobbyist / tinkerer path</h3>
-<p>If you are comfortable with some hands-on setup, the <strong>ArduSimple simpleRTK2B Basic Starter Kit</strong> (€275, includes receiver board and antenna) is the most widely-used hobbyist option. It requires a computer or phone running separate NTRIP client software. Expect a few hours for first setup. ArduSimple is a Spanish company that ships worldwide: <a href="https://www.ardusimple.com" rel="noopener noreferrer">ardusimple.com</a>.</p>
+<p>If you are comfortable with some hands-on setup, the <strong>ArduSimple simpleRTK2B Basic Starter Kit</strong> (€275, includes receiver board and antenna) is the most widely-used hobbyist option. It requires a computer or phone running separate NTRIP client software. Expect a few hours for first setup.</p>
 
 <h2 id="map">Using the map to find free corrections</h2>
 <p>Open the <a href="./">map</a> and zoom to your work area. The colour zones around each pin show how far corrections reliably reach:</p>
@@ -98,7 +104,8 @@ a:hover{color:#1b2b3a;}
 <h2 id="connect">Connecting — step by step</h2>
 <p>Most survey receivers have an NTRIP client built into their settings menu. For Emlid receivers, use the Emlid Flow app. The typical workflow for standalone receivers: your phone or tablet connects to the receiver via Bluetooth, pulls correction data from the internet, and forwards it to the receiver automatically. For other hardware, free client apps include:</p>
 <ul>
-  <li><strong>Android:</strong> Lefebure NTRIP Client — connects to your receiver via Bluetooth</li>
+  <li><strong>Android:</strong> SW Maps (free, full GIS + NTRIP client in one app) or Lefebure NTRIP Client (lightweight bridge to other apps)</li>
+  <li><strong>iOS / iPadOS:</strong> Emlid Flow (best if using Emlid hardware); SW Maps also available on iOS</li>
   <li><strong>Windows:</strong> Lefebure NTRIP Client — connects via serial or USB</li>
   <li><strong>Linux / Raspberry Pi:</strong> RTKBase (open-source, web interface) or RTKLIB <code>str2str</code></li>
 </ul>
