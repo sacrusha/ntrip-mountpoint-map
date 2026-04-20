@@ -66,7 +66,6 @@ access requires registration where noted.
 | SPSLux (ACT) | Luxembourg | ~17 VRS | spslux.lu/SBC/ |
 | ASG-EUPOS | Poland | VRS | system.asgeupos.pl |
 | CROPOS | Croatia | VRS | cropos.hr |
-| ESTPOS | Estonia | 40 VRS | geoportaal.maaamet.ee |
 | LatPos (LGIA) | Latvia | VRS | latpos.lgia.gov.lv/SBC |
 | IGAC MAGNA-ECO | Colombia | ~17 | redgeodesica-sbc.igac.gov.co/sbc |
 | MIRAI (Go!GNSS) | Japan | ~325 | go.gnss.go.jp |
@@ -78,7 +77,7 @@ access requires registration where noted.
 |--------|--------|----------|-----------|
 | EarthScope NOTA | Americas | ~1,096 | Non-commercial use only (annual NULA) |
 | CORS-KOREA | South Korea | ~498 | Korean national ID may be required |
-| KSA-CORS (GEOSA) | Saudi Arabia | 209 VRS | ksacors.geoportal.sa |
+| KSA-CORS (GEOSA) | Saudi Arabia | 209 VRS | Saudi government network; registration may require local credentials |
 | ESTPOS | Estonia | 40 VRS | Free until Aug 2026 only |
 
 VRS-only networks (CROPOS, ASG-EUPOS, FLEPOS, WALCORS, etc.) expose virtual
