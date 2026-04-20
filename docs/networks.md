@@ -32,7 +32,7 @@ GeoDAF/ASI IT (actually EUREF raw, borderline out of scope).
 | id | name | host:port | credentials | notes |
 |---|---|---|---|---|
 | `rtk2go` | RTK2GO | `rtk2go.com:2101` | Username: any email · Password: `none` · Mountpoint: `NEAR` auto-selects nearest (client must send NMEA GGA) | ~800 volunteer bases globally |
-| `centipede` | CentipedeRTK | `crtk.net:2101` | Username: `centipede` · Password: `centipede` · Mountpoint: `NEAR` auto-selects nearest | ~860 bases; dense in France; migrated from caster.centipede.fr 2025-03-18 |
+| `centipede` | CentipedeRTK | `crtk.net:2101` | Username: `centipede` (or `c`) · Password: `centipede` (or `c`) · Mountpoint: `NEAR` (requires NMEA GGA); use `NEAR4` on older equipment (John Deere etc.) | ~860 bases; dense in France; migrated from caster.centipede.fr 2025-03-18 |
 | `frednet` | FReDNet (OGS) | `gnsscaster.regione.fvg.it:8080` | Sourcetable open (no auth). Stream: email `rete.gnss.marussi@regione.fvg.it` for free credentials | 16 stations, NE Italy + Slovenia/Austria border; VRS |
 | `geortk` | GeoRTK (Geosense) | `geortk.jp:2101` | No authentication required | ~200 stations with valid coords; Japan only; RTCM 3.x MSM; free indefinitely |
 
@@ -43,9 +43,10 @@ GeoDAF/ASI IT (actually EUREF raw, borderline out of scope).
 - Source: use-snip.com/near-mount-points/, use-snip.com/rtk2go/
 
 ### Centipede — technical notes
-- **NEAR** pseudo-mountpoint is Centipede's own implementation (not SNIP). Routes to the nearest Centipede node based on connected rover GGA position.
+- Login accepts `c` or `centipede`; password likewise. Both work.
+- **NEAR** requires client to send NMEA GGA (same as rtk2go). On older/proprietary equipment (John Deere, some legacy displays) use `NEAR4` instead.
 - Migrated from `caster.centipede.fr:2101` → `crtk.net:2101` on 2025-03-18. Old host is dead.
-- Source: forum.geocommuns.fr migration announcement
+- Source: centipede-rtk.org/the-centipede-rtk-network (official connection credentials page)
 
 ## Registration required — pipeline candidates
 
