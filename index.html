@@ -705,13 +705,25 @@
         +(auth.openNote?'<div class="anote">'+esc(auth.openNote)+'</div>':'')
         +(regUrl?'<div class="anote"><a href="'+esc(regUrl)+'" target="_blank" rel="noopener noreferrer">Sign up / details \u2197</a></div>':'')
         +'</div>';
-      var circle=L.circle([n.lat,n.lon],{
+      // Visual ring: purely decorative — no pointer events so station dots show through.
+      var visual=L.circle([n.lat,n.lon],{
         radius:25000,color:VRS_COLOR,weight:2,
         fillColor:VRS_COLOR,fillOpacity:0.25,
+        interactive:false,
+        renderer:renderer,pane:'vrsPane'
+      });
+      visual.addTo(group);
+      // Hit ring: invisible, ~40 px wide stroke centred on the ring boundary.
+      // pointer-events:stroke (set after addTo map) makes only the stroke band
+      // interactive, so taps on the fill fall through to station dots below.
+      // 40 px gives ≈20 px on each side of the ring — a usable touch target.
+      var hit=L.circle([n.lat,n.lon],{
+        radius:25000,color:VRS_COLOR,weight:40,
+        opacity:0,fillOpacity:0,
         renderer:renderer,pane:'vrsPane'
       }).bindTooltip(label+' (VRS)',{sticky:false}).bindPopup(popup);
-      circle.addTo(group);
-      bySid[n.sid]=circle;
+      hit.addTo(group);
+      bySid[n.sid]={visual:visual,hit:hit};
     });
     return {group:group,bySid:bySid};
   }
@@ -748,8 +760,9 @@
       Object.keys(vrsLayerBySid).forEach(function(sid){
         var tier='tier_'+(SOURCE_ACCESS[sid]||'registration');
         var show=!!(state[sid]&&state[tier]);
-        vrsLayerBySid[sid].setStyle({opacity:show?1:0,fillOpacity:show?0.25:0});
-        var el=vrsLayerBySid[sid].getElement();
+        var entry=vrsLayerBySid[sid];
+        entry.visual.setStyle({opacity:show?1:0,fillOpacity:show?0.25:0});
+        var el=entry.hit.getElement();
         if(el) el.style.pointerEvents=show?'stroke':'none';
       });
     }
@@ -955,11 +968,9 @@
     var vrsResult=buildVrsMarkers(vrsRenderer,SOURCE_STALE_DAYS,sourceCounts);
     vrsResult.group.addTo(map);
     var vrsLayerBySid=vrsResult.bySid;
-    // Restrict VRS circle hit-testing to the stroke ring only (pointer-events:stroke).
-    // Clicks/hovers on the fill area fall through to station dots on the dotsPane canvas
-    // below — the CSS equivalent of a Qt item not calling event->accept().
-    Object.values(vrsLayerBySid).forEach(function(c){
-      var el=c.getElement(); if(el) el.style.pointerEvents='stroke';
+    // Restrict hit rings to stroke-band only — fill area falls through to station dots.
+    Object.values(vrsLayerBySid).forEach(function(entry){
+      var el=entry.hit.getElement(); if(el) el.style.pointerEvents='stroke';
     });
 
     // Stations fresh enough for coverage raster (< 3 days stale).
