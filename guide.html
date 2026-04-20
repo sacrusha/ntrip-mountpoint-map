@@ -45,7 +45,12 @@ a:hover{color:#1b2b3a;}
 <p class="subtitle">A practical guide for hobbyists and small teams — no prior GNSS knowledge assumed.</p>
 
 <h2 id="scope">What this guide covers</h2>
-<p>This guide is about <strong>Network RTK</strong>: pairing a compatible GPS receiver with free correction data from a nearby reference station to achieve centimetre-level accuracy. If you need a standalone solution that works anywhere without an internet connection, search for <em>PPP receiver</em> or <em>Galileo HAS</em> — those devices start at around €1,000 / $1,100 and are a different product category not covered here.</p>
+<p>This guide is about <strong>Network RTK</strong>: pairing a compatible GPS receiver with free correction data from a nearby reference station to achieve centimetre-level accuracy. If you need a standalone solution that works anywhere without an internet connection, two categories exist:</p>
+<ul>
+  <li><strong>Complete standalone units</strong> (e.g. Galileo HAS receivers such as the Juniper Geode GNS3H or Eos Arrow Gold+): receive free satellite-delivered corrections with no ongoing fees. Complete units start around $2,900 / €2,700.</li>
+  <li><strong>Subscription-dependent hardware</strong> (e.g. Trimble Catalyst DA2, ~$850): requires paid correction service fees to function and typically will not work with free PPP services.</li>
+</ul>
+<p>Search for <em>PPP receiver</em>, <em>SSR GNSS</em>, or <em>Galileo HAS</em> to explore those options. This map isn't about them.</p>
 
 <h2 id="why">Why standard GPS is only accurate to metres</h2>
 <p>GPS satellites broadcast precise timing signals. By the time those signals reach your receiver they have been slowed by the atmosphere, distorted by satellite clock drift, and bounced off nearby surfaces. These errors compound to 5–10 metres under typical conditions. Nothing is wrong with your receiver — that is simply the limit of standalone GPS.</p>
