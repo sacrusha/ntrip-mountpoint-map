@@ -94,33 +94,38 @@ gracefully — stations remain in the JSON from the last successful fetch.
 - `ksa_cors` — domain fixed (`KSACORS.gcs.gov.sa` → `ksacors.geoportal.sa:2101`).
 
 **VRS-only networks (0 physical stations on map):**
-- CROPOS, ASG-EUPOS, FLEPOS, WALCORS, InaCORS, ERGNSS — sourcetables
-  expose only VRS virtual mountpoints (lat=0, lon=0), correctly dropped.
+- CROPOS, ASG-EUPOS, FLEPOS, WALCORS, InaCORS, ERGNSS, ESTPOS, LATPOS,
+  KSA-CORS, and most SAPOS states — sourcetables expose only VRS virtual
+  mountpoints (lat=0, lon=0 or single shared coord), correctly dropped.
   Coverage representation via NRTK polygons is deferred (see below).
+- UI shows 0 stations identically for VRS-by-design and fetch failures —
+  no distinction visible to users. Process gap: need a "VRS — no pins
+  expected" status separate from "error — pins missing".
 
 **Open / deferred (by priority):**
-1. Fix 5 failing CI sources (see above). FLEPOS and KSA-CORS need new
-   endpoints confirmed; others may be transient or firewalled.
-2. KSA-CORS: new NTRIP endpoint on `ksacors.geoportal.sa` needs
-   verification (port, path). Contact info@geosa.gov.sa.
-3. NRTK / VRS coverage polygons: NRTK rendering is scaffolded
+1. Failing CI sources — 5 sources (FLEPOS, WALCORS, ESTPOS, LATPOS,
+   KSA-CORS) consistently time out. Likely cause: stale endpoint URL
+   (as seen with IceCORS raw IP and Centipede domain migration) or
+   location-based firewall on the operator's side. Each needs manual
+   endpoint verification before assuming it's dead.
+2. NRTK / VRS coverage polygons: NRTK rendering is scaffolded
    (`networks: []` in JSON, polygon + centroid marker ready) but no data
-   ingested. VRS-only networks (CROPOS etc.) don't expose physical
-   station coordinates — manual polygon config needed for those.
-4. Access-tier toggles (Registration / Category / Restricted) shown in
+   ingested. VRS-only networks don't expose physical station coordinates —
+   manual polygon config needed for those.
+3. Access-tier toggles (Registration / Category / Restricted) shown in
    UI but filter nothing — no backing data yet. Either hide or populate
    per-station in pipeline.
-5. SAPOS BY: free only for agriculture (~€20/yr general use). Currently
-   in pipeline with 3 stations. Decide whether to keep (shows up as
-   requiring registration), mark as partially paid, or drop.
-6. SAPOS SN (Sachsen): endpoint unconfirmed, omitted from pipeline.
-7. ReNEP (Portugal): host:port withheld until post-registration. Needs
-   a registered account to discover the endpoint.
-8. `precLabel` (in `index.html`) uses hardcoded `cos(47°)` for the
-   lon-to-metres conversion in accuracy-rectangle tooltips. Low severity;
-   fix: use station's own latitude.
-9. Jargon audit of banner/onboarding copy — plain-language rewrite.
-10. Mountpoint text search + URL deep-link (`?m=NAME`) — deferred.
+4. SAPOS BY: fee (€20/yr non-agricultural) shown in popup; keeps the
+   source in pipeline. Decide long-term whether to separate it out or
+   leave as-is.
+5. Deferred networks (ReNEP PT, LitPOS LT, Thailand DOL, APOS AT) —
+   marked deferred pending endpoint discovery or registration. Revisit
+   with fresh research; may have been prematurely deferred.
+6. ESTPOS: free until Aug 2026 — no automated reminder. Review before
+   then; either re-confirm extension or remove from pipeline.
+7. RTK/DGNSS/PPP/HAS primer — banner copy jargon audit + "learn more"
+   rewrite for hobbyist audience.
+8. NRTK polygon data for VRS networks — big feature, see above.
 
 ## Design notes worth preserving
 
