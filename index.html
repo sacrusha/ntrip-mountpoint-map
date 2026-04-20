@@ -94,27 +94,98 @@
     rtk2go:       '#d00000',
     centipede:    '#e87500',
     frednet:      '#2e6fb0',
-    geortk:       '#1a7a4a'
+    geortk:       '#1a7a4a',
+    ergnss:       '#b05000',
+    auscors:      '#b8860b',
+    positionz:    '#2e8b57',
+    satref:       '#8b008b',
+    inacors:      '#1a5fa0',
+    trignet:      '#556b2f',
+    rbmc_ip:      '#008b8b',
+    ramsac:       '#7b3f9e',
+    flepos:       '#3a7ca5',
+    walcors:      '#2c6e8a',
+    spslux:       '#5c6bc0',
+    asg_eupos:    '#7b5ea7',
+    cropos:       '#c0392b',
+    estpos:       '#16a085',
+    latpos:       '#1a6b3c',
+    igac:         '#d4a017',
+    earthscope:   '#8b4513',
+    mirai:        '#2471a3',
+    cors_korea:   '#a93226',
+    ksa_cors:     '#a0522d'
   };
   var SOURCE_LABELS={
     rtk2go:       'rtk2go',
     centipede:    'Centipede',
     frednet:      'FReDNet',
-    geortk:       'GeoRTK (Japan)'
+    geortk:       'GeoRTK (Japan)',
+    ergnss:       'ERGNSS (Spain)',
+    auscors:      'AUSCORS (Australia)',
+    positionz:    'PositioNZ (NZ)',
+    satref:       'SatRef (HK)',
+    inacors:      'InaCORS (Indonesia)',
+    trignet:      'TrigNet (South Africa)',
+    rbmc_ip:      'RBMC-IP (Brazil)',
+    ramsac:       'RAMSAC (Argentina)',
+    flepos:       'FLEPOS (Belgium)',
+    walcors:      'WALCORS (Belgium)',
+    spslux:       'SPSLux (Luxembourg)',
+    asg_eupos:    'ASG-EUPOS (Poland)',
+    cropos:       'CROPOS (Croatia)',
+    estpos:       'ESTPOS (Estonia)',
+    latpos:       'LatPos (Latvia)',
+    igac:         'IGAC (Colombia)',
+    earthscope:   'EarthScope NOTA',
+    mirai:        'MIRAI (Japan)',
+    cors_korea:   'CORS-KOREA',
+    ksa_cors:     'KSA-CORS (Saudi Arabia)'
   };
   // Per-source auth/access hints shown in popups.
   // user/pass → copyable rows. userNote → plain-text hint (e.g. "any email").
   // near → show NEAR-mountpoint tip. openNote → italic note (no-auth or reg info).
   var SOURCE_AUTH={
-    rtk2go:    {userNote:'your email address', pass:'none',      near:true},
-    centipede: {user:'centipede',              pass:'centipede', near:true},
+    rtk2go:    {userNote:'your email address', pass:'none', near:true, nearNote:'requires receiver to send NMEA GGA (most do by default)'},
+    centipede: {user:'centipede',              pass:'centipede', near:true, nearNote:'requires NMEA GGA; use NEAR4 on older equipment (John Deere etc.)'},
     frednet:   {openNote:'Stream access requires free registration — email rete.gnss.marussi@regione.fvg.it'},
     geortk:    {openNote:'No authentication required'},
+    'sapos_':  {openNote:'Stream access requires free registration — see sapos.de for your federal state'},
+    ergnss:    {openNote:'Stream access requires free registration — ergnss.ign.es/gnuserportal/'},
+    auscors:   {openNote:'Stream access requires free registration — gnss.ga.gov.au/stream'},
+    positionz: {openNote:'Stream access: LINZ account at linz.govt.nz + email positionz@linz.govt.nz'},
+    satref:    {openNote:'Stream access: email geodetic@landsd.gov.hk · Mountpoint: VRS32G'},
+    inacors:   {openNote:'Stream access requires free registration — nrtk.big.go.id'},
+    trignet:   {openNote:'Stream access requires free registration — trignet.co.za'},
+    rbmc_ip:   {openNote:'Stream access requires free gov.br signup (5-station limit per user)'},
+    ramsac:     {openNote:'Stream access: ntrip@ign.gob.ar or ign.gob.ar portal (8-hr session cap)'},
+    flepos:     {openNote:'Stream access requires free registration — flepos.vlaanderen.be'},
+    walcors:    {openNote:'Stream access requires free registration — gnss.wallonie.be'},
+    spslux:     {openNote:'Stream access requires free registration — spslux.lu/SBC/Account/Register'},
+    asg_eupos:  {openNote:'Stream access requires free registration — system.asgeupos.pl'},
+    cropos:     {openNote:'Stream access requires free registration — cropos.hr'},
+    estpos:     {openNote:'Stream access requires free registration — geoportaal.maaamet.ee'},
+    latpos:     {openNote:'Stream access requires free registration — latpos.lgia.gov.lv/SBC'},
+    igac:       {openNote:'Stream access requires free registration — redgeodesica-sbc.igac.gov.co/sbc'},
+    earthscope: {openNote:'Stream access: non-commercial annual license — earthscope.org/data/gnss-realtime/'},
+    mirai:      {openNote:'Stream access requires free registration — go.gnss.go.jp'},
+    cors_korea: {openNote:'Stream access requires free registration — gnssdata.or.kr'},
+    ksa_cors:   {openNote:'Stream access requires free registration — ksacors.gcs.gov.sa/RegisterAccount.aspx'},
   };
+  // Groups collapse multiple source IDs into one toggle row.
+  // match(sid) → true means the source belongs to this group.
+  var SOURCE_GROUPS=[
+    {label:'SAPOS (Germany)', color:'#2d6e6e',
+     match:function(sid){ return sid.indexOf('sapos_')===0; }},
+  ];
   var MIXED_COLOR='#555', UNKNOWN_SOURCE_COLOR='#888';
 
-  function sourceLabel(sid){ return SOURCE_LABELS[sid]||sid; }
-  function sourceColor(sid){ return SOURCE_COLORS[sid]||UNKNOWN_SOURCE_COLOR; }
+  function sourceLabel(sid){
+    return SOURCE_LABELS[sid]||(sid.indexOf('sapos_')===0?'SAPOS '+sid.slice(6):sid);
+  }
+  function sourceColor(sid){
+    return SOURCE_COLORS[sid]||(sid.indexOf('sapos_')===0?'#2d6e6e':UNKNOWN_SOURCE_COLOR);
+  }
 
   function stationSourceIds(s){
     var out=[]; var m=s.sources||{};
@@ -412,13 +483,15 @@
     if(!srv||!mountpoint) return '';
     var dot='<span style="display:inline-block;width:8px;height:8px;background:'
       +dotCol+';border-radius:50%;margin-right:4px"></span>';
-    var auth=SOURCE_AUTH[serverKey]||{};
+    var auth=SOURCE_AUTH[serverKey]
+      ||(serverKey.indexOf('sapos_')===0?SOURCE_AUTH['sapos_']:null)||{};
     var h='<div class="srv">'
       +cpRow(dot+'Server',srv.host)
       +cpRow('Port',srv.port)
       +cpRow('Mountpoint',mountpoint);
     if(auth.near)
-      h+='<div class="anote">or use <code>NEAR</code> as mountpoint to auto-select nearest base</div>';
+      h+='<div class="anote">or use <code>NEAR</code> as mountpoint to auto-select nearest base'
+        +(auth.nearNote?' ('+esc(auth.nearNote)+')':'')+'</div>';
     if(auth.user)
       h+=cpRow('Username',auth.user);
     else if(auth.userNote)
@@ -602,14 +675,27 @@
       d.id='toggles';
       L.DomEvent.disableClickPropagation(d);
       L.DomEvent.disableScrollPropagation(d);
-      var rows=Object.keys(sourceCounts).map(function(sid){
-        var col=sourceColor(sid);
-        return '<label><input type="checkbox" data-k="'+sid+'" checked> '
-          +'<span style="display:inline-block;width:9px;height:9px;'
-            +'background:'+col+';border-radius:50%;vertical-align:middle;'
-            +'margin-right:4px"></span>'
-          +esc(sourceLabel(sid))
-          +' <span style="color:#888">('+sourceCounts[sid]+')</span></label>';
+      // Collapse grouped sources (e.g. all sapos_*) into one row.
+      var claimed={};
+      var entries=[];
+      SOURCE_GROUPS.forEach(function(g){
+        var members=Object.keys(sourceCounts).filter(g.match);
+        if(!members.length) return;
+        members.forEach(function(s){ claimed[s]=true; });
+        var n=members.reduce(function(a,s){ return a+(sourceCounts[s]||0); },0);
+        entries.push({members:members,label:g.label,color:g.color,count:n});
+      });
+      Object.keys(sourceCounts).forEach(function(sid){
+        if(claimed[sid]) return;
+        entries.push({members:[sid],label:sourceLabel(sid),
+          color:sourceColor(sid),count:sourceCounts[sid]});
+      });
+      var rows=entries.map(function(e){
+        var mj=esc(JSON.stringify(e.members));
+        return '<label><input type="checkbox" data-m="'+mj+'" checked>'
+          +'<span style="display:inline-block;width:9px;height:9px;background:'+e.color
+            +';border-radius:50%;vertical-align:middle;margin-right:4px"></span>'
+          +esc(e.label)+' <span style="color:#888">('+e.count+')</span></label>';
       }).join('');
       d.innerHTML='<h4>Sources</h4>'+rows
         +'<details><summary>Access</summary>'
@@ -618,7 +704,13 @@
           +'<label><input type="checkbox" data-k="category" checked> Free for some users</label>'
           +'<label><input type="checkbox" data-k="restricted" checked> Restricted</label>'
         +'</details>';
-      d.querySelectorAll('input[type=checkbox]').forEach(function(cb){
+      d.querySelectorAll('input[data-m]').forEach(function(cb){
+        cb.addEventListener('change',function(){
+          JSON.parse(cb.dataset.m).forEach(function(sid){ state[sid]=cb.checked; });
+          onChange(pred());
+        });
+      });
+      d.querySelectorAll('input[data-k]').forEach(function(cb){
         cb.addEventListener('change',function(){
           state[cb.dataset.k]=cb.checked;
           onChange(pred());
