@@ -476,6 +476,9 @@
     if(!s._popup) s._popup=buildPopup(s);
     return s._popup;
   }
+  // Returns a function that opens the popup lazily, correctly capturing `s`
+  // per-iteration so loop closures don't share the last value of `s`.
+  function makePopupFn(s){ return function(){ return getCachedPopup(s); }; }
 
   function esc(t){
     return (t==null?'':String(t))
@@ -608,7 +611,7 @@
         try{
           L.circleMarker([s.lat,s.lon],{radius:4,color:'#fff',weight:1,
             fillColor:stationStaleDays(s)>=3?'#aaa':stationColor(s),fillOpacity:0.95,renderer:renderer})
-            .bindPopup(getCachedPopup(s))
+            .bindPopup(makePopupFn(s))
             .addTo(dots);
         }catch(e){ console.warn('render err',e); }
       }
@@ -875,7 +878,7 @@
     };
     leg.addTo(map);
 
-    var stationStaleDays;
+    var stationStaleDays=function(){ return 0; };
     (async function(){
       setStatus('Loading station data\u2026');
       var t0=performance.now();
@@ -906,11 +909,10 @@
         return min;
       };
       var sourceIds=Object.keys(rawSources);
-      var bySource={}, sourceCounts={}, sourceStatus={};
+      var bySource={}, sourceCounts={};
       sourceIds.forEach(function(sid){
         bySource[sid]=normalizeStations(rawSources[sid].stations);
         sourceCounts[sid]=bySource[sid].length;
-        sourceStatus[sid]=rawSources[sid].status||'unknown';
       });
       var updated=(data&&data.updated)||null;
       var networks=(data&&data.networks)||[];
@@ -1012,7 +1014,11 @@
           if(map.hasLayer(prevDots)) map.removeLayer(prevDots);
           layers=built;
           layers.dots.addTo(map); // added once; zoom transitions CSS-toggle the pane
-          coverage.setStations(visible,stationIndex);
+          // Coverage raster must only include fresh stations (<3d stale) even
+          // after filter changes — stale (3–7d) stations stay grey on the dots
+          // layer but must not contribute to the green/amber distance field.
+          var coverageVisible=visible.filter(function(s){ return stationStaleDays(s)<3; });
+          coverage.setStations(coverageVisible,null);
           applyZoom();
           finishLoad();
         });
