@@ -970,8 +970,10 @@
         var showLabels=z>=ZOOM_LABELS;
         // CSS-toggle the dots pane rather than removing/re-adding 5600 paths
         // from the canvas renderer, which corrupts its path list over time.
-        map.getPane('dotsPane').style.display=
-          (!showLabels&&z>=ZOOM_DOTS)?'':'none';
+        // visibility:hidden (not display:none) keeps the pane in the layout/render
+        // pipeline so canvas coordinate transforms stay in sync during zoom animations.
+        map.getPane('dotsPane').style.visibility=
+          (!showLabels&&z>=ZOOM_DOTS)?'visible':'hidden';
         if(showLabels){
           refreshDetailLayer(map,visible,layers.detail,stationIndex,z>=ZOOM_DETAIL);
           if(!map.hasLayer(layers.detail)) layers.detail.addTo(map);
