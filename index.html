@@ -819,7 +819,7 @@
             color:sourceColor(sid),count:sourceCounts[sid],vrsOnly:false});
         } else if(vrsLayerBySid[sid]){
           // VRS-only source: 0 physical pins but a visible VRS circle on the map.
-          entries.push({members:[sid],label:sourceLabel(sid)+' \u2009(VRS)',
+          entries.push({members:[sid],label:sourceLabel(sid),
             color:null,count:0,vrsOnly:true});
         }
       });
