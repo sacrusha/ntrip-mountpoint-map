@@ -9,6 +9,7 @@ not wipe known-good data.
 from __future__ import annotations
 
 import json
+import math
 import socket
 import sys
 from datetime import datetime, timezone
@@ -180,6 +181,9 @@ def parse_sourcetable(text: str) -> tuple[list[dict], dict]:
         if lat == 0 and lon == 0:
             dropped_bad += 1
             continue
+        if not (math.isfinite(lat) and math.isfinite(lon)):
+            dropped_bad += 1
+            continue
         stations.append({
             "name": name,
             "lat": lat,
@@ -239,7 +243,7 @@ def main() -> int:
             fetched[sid]["parse_stats"] = stats
             print(f"[{sid}] fetched {stats['kept']} stations "
                   f"(dropped {stats['dropped_dgnss']} DGNSS, {stats['dropped_bad']} invalid)")
-        except (URLError, socket.timeout, OSError, TimeoutError) as e:
+        except Exception as e:
             print(f"[{sid}] fetch failed: {e!r}", file=sys.stderr)
             if raw_path.exists():
                 text = raw_path.read_text()
