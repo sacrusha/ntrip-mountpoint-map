@@ -106,7 +106,7 @@
   // user/pass → copyable rows. userNote → plain-text hint (e.g. "any email").
   // near → show NEAR-mountpoint tip. openNote → italic note (no-auth or reg info).
   var SOURCE_AUTH={
-    rtk2go:    {userNote:'your email address', pass:'none'},
+    rtk2go:    {userNote:'your email address', pass:'none', near:true, nearNote:'requires receiver to send NMEA GGA (most do by default)'},
     centipede: {user:'centipede',              pass:'centipede', near:true},
     frednet:   {openNote:'Stream access requires free registration — email rete.gnss.marussi@regione.fvg.it'},
     geortk:    {openNote:'No authentication required'},
@@ -418,7 +418,8 @@
       +cpRow('Port',srv.port)
       +cpRow('Mountpoint',mountpoint);
     if(auth.near)
-      h+='<div class="anote">or use <code>NEAR</code> as mountpoint to auto-select nearest base</div>';
+      h+='<div class="anote">or use <code>NEAR</code> as mountpoint to auto-select nearest base'
+        +(auth.nearNote?' ('+esc(auth.nearNote)+')':'')+'</div>';
     if(auth.user)
       h+=cpRow('Username',auth.user);
     else if(auth.userNote)
