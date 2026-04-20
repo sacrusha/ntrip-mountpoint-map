@@ -1036,16 +1036,21 @@
     function rebuildStationLayers(){
       var gen=++_rebuildGen;
       if(map.hasLayer(layers.detail)) map.removeLayer(layers.detail);
-      var prevDots=layers.dots;
-      visible=displayStations.filter(filter);
+      var staleDots=layers.dots;      // kept alive until new render is ready
+      var currentFilter=filter;       // capture at generation boundary
+      visible=displayStations.filter(currentFilter);
       stationIndex=buildStationIndex(visible);
       setStatus('Rendering '+visible.length+' stations\u2026');
+      // Watchdog: if the rAF chain stalls (e.g. tab hidden), surface whatever
+      // count was computed so the status bar doesn't stay "Rendering…" forever.
+      var watchdog=setTimeout(function(){ if(gen===_rebuildGen) finishLoad(); },5000);
       buildStationLayers(visible,map,dotsRenderer,function(built){
+        clearTimeout(watchdog);
         if(gen!==_rebuildGen) return; // stale — newer rebuild in flight, discard
         // Remove old dots here (not at the top of rebuildStationLayers) so
         // the path-list churn is bounded to filter-toggle rebuilds, which
         // are infrequent, not to every zoom transition.
-        if(map.hasLayer(prevDots)) map.removeLayer(prevDots);
+        if(map.hasLayer(staleDots)) map.removeLayer(staleDots);
         layers=built;
         layers.dots.addTo(map); // added once; zoom transitions CSS-toggle the pane
         // Coverage raster must only include fresh stations (<3d stale) even
