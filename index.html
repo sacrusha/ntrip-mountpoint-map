@@ -875,6 +875,7 @@
     };
     leg.addTo(map);
 
+    var stationStaleDays;
     (async function(){
       setStatus('Loading station data\u2026');
       var t0=performance.now();
@@ -896,14 +897,14 @@
         // Treat missing last_ok as fresh — field absent in older JSON snapshots.
         SOURCE_STALE_DAYS[sid]=lo?(now-new Date(lo).getTime())/86400000:0;
       });
-      function stationStaleDays(s){
+      stationStaleDays=function(s){
         var min=Infinity;
         stationSourceIds(s).forEach(function(sid){
           var d=SOURCE_STALE_DAYS[sid]||0;
           if(d<min) min=d;
         });
         return min;
-      }
+      };
       var sourceIds=Object.keys(rawSources);
       var bySource={}, sourceCounts={}, sourceStatus={};
       sourceIds.forEach(function(sid){
