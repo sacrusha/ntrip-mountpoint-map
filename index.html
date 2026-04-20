@@ -713,13 +713,15 @@
         renderer:renderer,pane:'vrsPane'
       });
       visual.addTo(group);
-      // Hit ring: invisible, ~40 px wide stroke centred on the ring boundary.
-      // pointer-events:stroke (set after addTo map) makes only the stroke band
-      // interactive, so taps on the fill fall through to station dots below.
-      // 40 px gives ≈20 px on each side of the ring — a usable touch target.
+      // Hit ring: invisible wide stroke (~40 px) centred on the ring boundary.
+      // fill:false → SVG fill="none" (no fill geometry). pointer-events:all
+      // (set after addTo map) is geometric-only and ignores opacity, so the
+      // invisible stroke is still hittable. pointer-events:stroke cannot be
+      // used here because browsers skip hit-testing on strokes with opacity:0.
+      // 40 px gives ≈20 px each side — a usable touch/stylus target.
       var hit=L.circle([n.lat,n.lon],{
         radius:25000,color:VRS_COLOR,weight:40,
-        opacity:0,fillOpacity:0,
+        opacity:0,fill:false,
         renderer:renderer,pane:'vrsPane'
       }).bindTooltip(label+' (VRS)',{sticky:false}).bindPopup(popup);
       hit.addTo(group);
@@ -763,7 +765,7 @@
         var entry=vrsLayerBySid[sid];
         entry.visual.setStyle({opacity:show?1:0,fillOpacity:show?0.25:0});
         var el=entry.hit.getElement();
-        if(el) el.style.pointerEvents=show?'stroke':'none';
+        if(el) el.style.pointerEvents=show?'all':'none';
       });
     }
     function pred(){
@@ -970,9 +972,11 @@
     var vrsResult=buildVrsMarkers(vrsRenderer,SOURCE_STALE_DAYS,sourceCounts);
     vrsResult.group.addTo(map);
     var vrsLayerBySid=vrsResult.bySid;
-    // Restrict hit rings to stroke-band only — fill area falls through to station dots.
+    // pointer-events:all is geometric — fires on the stroke band regardless of opacity.
+    // fill:false on the hit circle means no fill geometry, so the fill area is
+    // not hittable and station dots inside the ring remain reachable.
     Object.values(vrsLayerBySid).forEach(function(entry){
-      var el=entry.hit.getElement(); if(el) el.style.pointerEvents='stroke';
+      var el=entry.hit.getElement(); if(el) el.style.pointerEvents='all';
     });
 
     // Stations fresh enough for coverage raster (< 3 days stale).
