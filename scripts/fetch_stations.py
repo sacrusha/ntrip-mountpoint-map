@@ -8,6 +8,7 @@ not wipe known-good data.
 """
 from __future__ import annotations
 
+import http.client
 import json
 import math
 import socket
@@ -15,6 +16,7 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.error import URLError
+from urllib.parse import urlparse
 from urllib.request import Request, urlopen
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -113,14 +115,38 @@ SOURCES = [
 FETCH_TIMEOUT = 60
 
 
+def _fetch_ntrip1(host: str, port: int) -> str:
+    """Raw-TCP fetch for NTRIP 1.0 casters (respond SOURCETABLE 200 OK, not HTTP)."""
+    with socket.create_connection((host, port), timeout=FETCH_TIMEOUT) as sock:
+        sock.sendall(
+            b"GET / HTTP/1.0\r\n"
+            b"User-Agent: NTRIP ntrip-mountpoint-map/1.0\r\n"
+            b"Ntrip-Version: Ntrip/1.0\r\n"
+            b"\r\n"
+        )
+        chunks: list[bytes] = []
+        while True:
+            chunk = sock.recv(4096)
+            if not chunk:
+                break
+            chunks.append(chunk)
+            if b"ENDSOURCETABLE" in chunk:
+                break
+    return b"".join(chunks).decode("utf-8", errors="replace")
+
+
 def fetch(url: str) -> str:
     req = Request(url, headers={
         "User-Agent": "NTRIP ntrip-mountpoint-map/1.0",
         "Ntrip-Version": "Ntrip/2.0",
         "Accept": "*/*",
     })
-    with urlopen(req, timeout=FETCH_TIMEOUT) as resp:
-        return resp.read().decode("utf-8", errors="replace")
+    try:
+        with urlopen(req, timeout=FETCH_TIMEOUT) as resp:
+            return resp.read().decode("utf-8", errors="replace")
+    except http.client.BadStatusLine:
+        parsed = urlparse(url)
+        return _fetch_ntrip1(parsed.hostname, parsed.port or 2101)
 
 
 def parse_sourcetable(text: str) -> tuple[list[dict], dict]:
