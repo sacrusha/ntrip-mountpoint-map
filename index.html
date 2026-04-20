@@ -187,7 +187,31 @@
     {label:'SAPOS (Germany)', color:'#2d6e6e',
      match:function(sid){ return sid.indexOf('sapos_')===0; }},
   ];
-  var MIXED_COLOR='#555', UNKNOWN_SOURCE_COLOR='#888';
+  var MIXED_COLOR='#555', UNKNOWN_SOURCE_COLOR='#888', VRS_COLOR='#6a5acd';
+
+  // Centroids for single-coord-VRS sources that yield 0 physical station pins.
+  // SAPOS states with physical-coord data (HE, RP, SL, SN) are excluded here
+  // because they already show station pins. Coords for SAPOS states from
+  // networks.md where noted; others are approximate state centroids.
+  var VRS_NETWORKS=[
+    {sid:'asg_eupos', lat:52.0,  lon:21.0,  region:'Poland',                     declared:130},
+    {sid:'cropos',    lat:45.2,  lon:15.5,  region:'Croatia',                    declared:35},
+    {sid:'flepos',    lat:51.0,  lon:4.5,   region:'Belgium (Flanders)',         declared:45},
+    {sid:'walcors',   lat:50.3,  lon:4.8,   region:'Belgium (Wallonia)',         declared:23},
+    {sid:'latpos',    lat:56.9,  lon:24.1,  region:'Latvia',                     declared:27},
+    {sid:'estpos',    lat:58.6,  lon:25.0,  region:'Estonia',                    declared:40},
+    {sid:'ksa_cors',  lat:24.0,  lon:45.0,  region:'Saudi Arabia',               declared:209},
+    {sid:'sapos_SH_HH',lat:54.30,lon:9.90,  region:'Schleswig-Holstein + Hamburg',declared:null},
+    {sid:'sapos_NI',  lat:52.62, lon:9.00,  region:'Niedersachsen + Bremen',     declared:null},
+    {sid:'sapos_NW',  lat:51.43, lon:7.66,  region:'Nordrhein-Westfalen',        declared:null},
+    {sid:'sapos_BW',  lat:48.52, lon:9.06,  region:'Baden-Württemberg',          declared:null},
+    {sid:'sapos_BY',  lat:48.14, lon:11.58, region:'Bayern',                     declared:null},
+    {sid:'sapos_BE',  lat:52.48, lon:13.30, region:'Berlin',                     declared:null},
+    {sid:'sapos_BB',  lat:52.23, lon:13.05, region:'Brandenburg',                declared:null},
+    {sid:'sapos_MV',  lat:53.61, lon:12.43, region:'Mecklenburg-Vorpommern',     declared:null},
+    {sid:'sapos_LSA', lat:51.90, lon:11.70, region:'Sachsen-Anhalt',             declared:null},
+    {sid:'sapos_TH',  lat:51.01, lon:11.03, region:'Thüringen',                  declared:null},
+  ];
 
   function sourceLabel(sid){
     return SOURCE_LABELS[sid]||(sid.indexOf('sapos_')===0?'SAPOS '+sid.slice(6):sid);
@@ -656,6 +680,33 @@
     return group;
   }
 
+  // VRS network markers: one per entry in VRS_NETWORKS. Rendered on a
+  // dedicated pane so they are always visible regardless of zoom band.
+  function buildVrsMarkers(renderer){
+    var group=L.layerGroup();
+    VRS_NETWORKS.forEach(function(n){
+      var label=SOURCE_LABELS[n.sid]
+        ||(n.sid.indexOf('sapos_')===0?'SAPOS '+n.sid.slice(6):n.sid);
+      var auth=SOURCE_AUTH[n.sid]
+        ||(n.sid.indexOf('sapos_')===0?SOURCE_AUTH['sapos_']:null)||{};
+      var regUrl=safeUrl(SOURCE_REG[n.sid]||'');
+      var declaredStr=n.declared?'~'+n.declared+' reference stations':'reference stations (varies by state)';
+      var popup='<div class="popup-plain"><h3>'+esc(label)+'</h3>'
+        +'<div class="acc" style="color:'+VRS_COLOR+'">VRS network \u2014 virtual mountpoints only</div>'
+        +'<div style="margin:4px 0 6px;font-size:12px">Covers <b>'+esc(n.region)+'</b>'
+          +' \u2014 '+esc(declaredStr)+'.'
+          +' Your NTRIP client connects to a virtual base synthesised near your rover\u2019s position.</div>'
+        +(auth.openNote?'<div class="anote">'+esc(auth.openNote)+'</div>':'')
+        +(regUrl?'<div class="anote"><a href="'+esc(regUrl)+'" target="_blank" rel="noopener noreferrer">Sign up / details \u2197</a></div>':'')
+        +'</div>';
+      L.circleMarker([n.lat,n.lon],{
+        radius:10,color:VRS_COLOR,weight:2,
+        fillColor:VRS_COLOR,fillOpacity:0.25,renderer:renderer
+      }).bindTooltip(label,{sticky:false}).bindPopup(popup).addTo(group);
+    });
+    return group;
+  }
+
   // Banner: show until user dismisses; version key lets future content
   // changes re-surface the banner for repeat visitors.
   function setupBanner(){
@@ -789,6 +840,9 @@
           +' 30–50 km · marginal / float<br>'
         +'<span style="display:inline-block;width:12px;height:12px;background:rgb(210,90,90);vertical-align:middle"></span>'
           +' 50–100 km · float decimetre<br>'
+        +'<span style="display:inline-block;width:12px;height:12px;border:2px solid '+VRS_COLOR
+          +';border-radius:50%;background:rgba(106,90,205,0.22);vertical-align:middle"></span>'
+          +' VRS network \u2014 click for coverage<br>'
         +'<small id="leg-info" style="color:#999;font-size:10px">Loading\u2026</small>';
       return d;
     };
@@ -852,6 +906,12 @@
       // Network (NRTK) layer — empty for current data; ready for future.
       var netLayer=buildNetworkLayers(networks);
       netLayer.addTo(map);
+
+      // VRS network layer — always visible, not zoom-band gated.
+      map.createPane('vrsPane');
+      map.getPane('vrsPane').style.zIndex=401; // above overlayPane (400)
+      var vrsRenderer=L.canvas({pane:'vrsPane',padding:0.5});
+      buildVrsMarkers(vrsRenderer).addTo(map);
 
       // Stations fresh enough for coverage raster (< 3 days stale).
       // Grey-dot stations (3–7 days) are shown on map but excluded from coverage
