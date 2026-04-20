@@ -57,7 +57,7 @@ a:hover{color:#1b2b3a;}
 
 <h2 id="existing">Do you already have compatible hardware?</h2>
 <p>If you own survey equipment from <strong>Trimble, Leica, Topcon, Sokkia, South, Hi-Target</strong> or similar brands, look for an <em>Internet RTK</em>, <em>Network RTK</em>, or <em>NTRIP</em> option in the receiver's settings. Most professional receivers made in the past 15 years support it. If the menu exists, you are already equipped — find a nearby station on the <a href="./">map</a> and enter the connection details.</p>
-<div class="callout"><strong>Note:</strong> the receiver must be dual-frequency (L1+L2 minimum). Single-frequency receivers and consumer GPS units — including most smartphone chips and handheld hiking GPS devices — cannot do RTK.</div>
+<div class="callout"><strong>Compatibility check:</strong> the receiver must be dual-frequency (L1+L2 minimum). To check, look for "L1/L2", "dual-frequency", or "dual-band" in the receiver's datasheet or specifications page. Single-frequency receivers and consumer GPS units — including most smartphone chips and handheld hiking GPS devices — cannot do RTK regardless of how they are configured.</div>
 
 <h2 id="hardware">Hardware if you don't have a compatible receiver</h2>
 <p>Prices below are approximate and vary by region and retailer. Check manufacturer websites for current local pricing.</p>
@@ -88,7 +88,7 @@ a:hover{color:#1b2b3a;}
 <div class="cov"><span class="sw" style="background:rgb(220,150,30)"></span><span><strong>Amber</strong> — 30–50 km. Usable; accuracy grows with distance.</span></div>
 <div class="cov"><span class="sw" style="background:rgb(210,90,90)"></span><span><strong>Pale red</strong> — 50–100 km. Decimetre range; may not achieve a fix.</span></div>
 <p style="margin-top:10px"><strong>Purple circles</strong> are virtual networks (VRS): the network synthesises a virtual reference near your location from multiple real stations. You connect to one server address; the network does the rest. Click a circle for details.</p>
-<p>Click any pin to see the server address, port, and mountpoint name you need to configure your NTRIP client.</p>
+<p>Click any pin to see the server address, port, and mountpoint name you need to configure your NTRIP client. If several stations are within range, any of them will do — pick the nearest one in the green zone. Some networks also offer a <code>NEAR</code> mountpoint that selects the closest station automatically.</p>
 
 <h2 id="connect">Connecting — step by step</h2>
 <p>Most survey receivers have an NTRIP client built into their settings menu. For Emlid receivers, use the Emlid Flow app. For other hardware, free options include:</p>
@@ -104,7 +104,12 @@ a:hover{color:#1b2b3a;}
   <li><strong>Mountpoint</strong> — the correction stream name</li>
 </ol>
 <p>Most clients will ask you to send your approximate position to the server (a NMEA GGA sentence). Most receivers and clients do this automatically — it lets the server pick the best corrections for your location.</p>
-<div class="callout">If you connect successfully but your receiver stays on <em>float</em> after a minute or two, try a different mountpoint on the same server — correction formats vary and not all are compatible with all receivers.</div>
+<p><strong>Your antenna must be outdoors</strong> with a clear, unobstructed view of the sky. Mount it vertically. Indoors, under tree cover, or near tall buildings, RTK will not work reliably regardless of how close the reference station is.</p>
+<p><strong>What success looks like:</strong> your client will show the correction stream as connected. Within about 30–60 seconds your receiver should report a <em>fix</em> (some receivers show this as "RTK Fixed" or a green indicator). Once fixed, position updates will reflect centimetre-level accuracy. If your software shows coordinates jumping around at metre scale, the receiver is still in <em>float</em> — wait another minute or try a different mountpoint.</p>
+<div class="callout"><strong>Troubleshooting</strong><br>
+<strong>Connection refused or times out:</strong> check the host and port; some networks use a non-standard port listed in the map popup.<br>
+<strong>Connected but stays float:</strong> the mountpoint format may not suit your receiver — try another mountpoint on the same server, or try an MSM7 stream if available (look for "RTCM3" with a high stream number).<br>
+<strong>Fix achieved but accuracy is worse than expected:</strong> the station is likely at the edge of its reliable range, or multipath from nearby buildings is affecting your antenna. Move the antenna to a clearer location.</div>
 
 <h2 id="base">Outside coverage: setting up your own base station</h2>
 <p>If the map shows no stations within useful range, you can run your own. A second RTK receiver sits at a fixed point you have surveyed; it broadcasts corrections via the internet through a free caster, which your rover connects to as normal.</p>
