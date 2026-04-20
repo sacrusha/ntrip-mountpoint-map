@@ -30,87 +30,127 @@ SOURCES = [
     #                          non-commercial only, fee for some uses, expiring)
     # registration: URL shown in the map popup as a clickable "Sign up" link.
     # None = no account needed (open access).
+    # color/label: consumed by the frontend; single source of truth here.
     # See docs/networks.md for per-source detail.
     {"id": "rtk2go",      "url": "http://rtk2go.com:2101/",
+     "color": "#d00000", "label": "rtk2go",
      "access": "open",         "registration": None},                            # username=any email, pass=none
     {"id": "centipede",   "url": "http://crtk.net:2101/",                       # migrated from caster.centipede.fr 2025-03-18
+     "color": "#e87500", "label": "Centipede",
      "access": "open",         "registration": None},                            # user=centipede pass=centipede
     {"id": "frednet",     "url": "http://gnsscaster.regione.fvg.it:8080/",
+     "color": "#2e6fb0", "label": "FReDNet",
      "access": "registration", "registration": "https://frednet.crs.ogs.it/"},  # free email registration
     {"id": "geortk",      "url": "http://geortk.jp:2101/",
+     "color": "#1a7a4a", "label": "GeoRTK (Japan)",
      "access": "open",         "registration": None},                            # no auth
     # SAPOS — German federal-state RTK networks. Sourcetables publicly readable;
     # RTCM streams require per-Länder registration. Most Länder free; BY €20/yr
     # flat rate for non-agricultural use. Raw TCP (NTRIP 1.0) fallback required.
     {"id": "sapos_SH_HH", "url": "http://www.sapos.geonord.de:2101/",          # Schleswig-Holstein + Hamburg
+     "color": "#2d6e6e", "label": "SAPOS (Schleswig-Holstein + Hamburg)",
      "access": "registration", "registration": "https://www.sapos.de"},
     {"id": "sapos_NI",    "url": "http://www.sapos-ni-ntrip.de:2101/",         # Niedersachsen (incl. Bremen)
+     "color": "#2d6e6e", "label": "SAPOS (Niedersachsen)",
      "access": "registration", "registration": "https://www.sapos.de"},
     {"id": "sapos_NW",    "url": "http://www.sapos-nw-ntrip.de:2101/",         # Nordrhein-Westfalen
+     "color": "#2d6e6e", "label": "SAPOS (Nordrhein-Westfalen)",
      "access": "registration", "registration": "https://www.sapos.de"},
     {"id": "sapos_HE",    "url": "http://www.sapos-he-ntrip.de:2101/",         # Hessen
+     "color": "#2d6e6e", "label": "SAPOS (Hessen)",
      "access": "registration", "registration": "https://www.sapos.de"},
     {"id": "sapos_RP",    "url": "http://www.sapos-ntrip.rlp.de:2101/",        # Rheinland-Pfalz; confirmed free (LVermGeo)
+     "color": "#2d6e6e", "label": "SAPOS (Rheinland-Pfalz)",
      "access": "registration", "registration": "https://www.sapos.de"},
     {"id": "sapos_BW",    "url": "http://www.sapos-bw-ntrip.de:2101/",         # Baden-Württemberg
+     "color": "#2d6e6e", "label": "SAPOS (Baden-Württemberg)",
      "access": "registration", "registration": "https://www.sapos.de"},
     {"id": "sapos_BY",    "url": "http://www.sapos-by-ntrip.de:2101/",         # Bayern: free agri, €20/yr otherwise
+     "color": "#2d6e6e", "label": "SAPOS (Bayern)",
      "access": "conditions",   "registration": "https://www.sapos.de"},
     {"id": "sapos_SN",    "url": "http://ntrip.sachsen.de:2101/",               # Sachsen (GeoSN)
+     "color": "#2d6e6e", "label": "SAPOS (Sachsen)",
      "access": "registration", "registration": "https://www.sapos.de"},
     {"id": "sapos_SL",    "url": "http://www.sapos-sl-ntrip.de:2101/",         # Saarland
+     "color": "#2d6e6e", "label": "SAPOS (Saarland)",
      "access": "registration", "registration": "https://www.sapos.de"},
     {"id": "sapos_BE",    "url": "http://www.sapos-be-ntrip.de:2101/",         # Berlin
+     "color": "#2d6e6e", "label": "SAPOS (Berlin)",
      "access": "registration", "registration": "https://www.sapos.de"},
     {"id": "sapos_BB",    "url": "http://www.sapos-bb-ntrip.de:2101/",         # Brandenburg
+     "color": "#2d6e6e", "label": "SAPOS (Brandenburg)",
      "access": "registration", "registration": "https://www.sapos.de"},
     {"id": "sapos_MV",    "url": "http://www.sapos-mv-ntrip.de:2101/",         # Mecklenburg-Vorpommern
+     "color": "#2d6e6e", "label": "SAPOS (Mecklenburg-Vorpommern)",
      "access": "registration", "registration": "https://www.sapos.de"},
     {"id": "sapos_LSA",   "url": "http://www.sapos-lsa-ntrip.de:2101/",        # Sachsen-Anhalt
+     "color": "#2d6e6e", "label": "SAPOS (Sachsen-Anhalt)",
      "access": "registration", "registration": "https://www.sapos.de"},
     {"id": "sapos_TH",    "url": "http://www.sapos-th-ntrip.de:2101/",         # Thüringen
+     "color": "#2d6e6e", "label": "SAPOS (Thüringen)",
      "access": "registration", "registration": "https://www.sapos.de"},
     {"id": "ergnss",      "url": "http://ergnss-ip.ign.es:2101/",
+     "color": "#b05000", "label": "ERGNSS (Spain)",
      "access": "registration", "registration": "https://ergnss.ign.es/gnuserportal/"},   # free, immediate; attribute IGN
     {"id": "auscors",     "url": "http://ntrip.data.gnss.ga.gov.au:2101/",
+     "color": "#b8860b", "label": "AUSCORS (Australia)",
      "access": "registration", "registration": "https://gnss.ga.gov.au/registration"},   # CC BY 4.0
     {"id": "positionz",   "url": "http://positionz-rt.linz.govt.nz:2101/",
+     "color": "#2e8b57", "label": "PositioNZ (NZ)",
      "access": "registration", "registration": "https://www.linz.govt.nz/"},             # LINZ account; CC BY 4.0 NZ
     {"id": "satref",      "url": "http://ntrip.geodetic.gov.hk:2101/",
+     "color": "#8b008b", "label": "SatRef (HK)",
      "access": "registration", "registration": "https://www.geodetic.gov.hk/"},          # mountpoint VRS32G; open data
     {"id": "inacors",     "url": "http://nrtk.big.go.id:2001/",                 # NOTE: port 2001, not 2101
+     "color": "#1a5fa0", "label": "InaCORS (Indonesia)",
      "access": "registration", "registration": "https://nrtk.big.go.id"},
     {"id": "trignet",     "url": "http://trignet.co.za:2101/",
+     "color": "#556b2f", "label": "TrigNet (South Africa)",
      "access": "registration", "registration": "https://www.trignet.co.za"},
     {"id": "rbmc_ip",     "url": "http://gps-ntrip.ibge.gov.br:2101/",
+     "color": "#008b8b", "label": "RBMC-IP (Brazil)",
      "access": "registration", "registration": "https://gps-ntrip.ibge.gov.br"},         # gov.br signup; 5-station limit
     {"id": "ramsac",      "url": "http://ntrip.ign.gob.ar:2101/",
+     "color": "#7b3f9e", "label": "RAMSAC (Argentina)",
      "access": "registration", "registration": "https://www.ign.gob.ar"},                # 8-hr session cap
     {"id": "flepos",      "url": "http://flepos.vlaanderen.be:2101/",           # ntrip.flepos.be NXDOMAIN as of 2026-04
+     "color": "#3a7ca5", "label": "FLEPOS (Belgium)",
      "access": "registration", "registration": "https://flepos.vlaanderen.be"},
     {"id": "walcors",     "url": "http://gnss.wallonie.be:2101/",
+     "color": "#2c6e8a", "label": "WALCORS (Belgium)",
      "access": "registration", "registration": "https://gnss.wallonie.be"},
     {"id": "spslux",      "url": "http://stream.spslux.lu:5005/",               # NOTE: port 5005, not 2101
+     "color": "#5c6bc0", "label": "SPSLux (Luxembourg)",
      "access": "registration", "registration": "https://www.spslux.lu/SBC/Account/Register"},
     {"id": "asg_eupos",   "url": "http://system.asgeupos.pl:2101/",
+     "color": "#7b5ea7", "label": "ASG-EUPOS (Poland)",
      "access": "registration", "registration": "https://system.asgeupos.pl"},            # admin approval 1–2 working days
     {"id": "cropos",      "url": "http://gnss.cropos.hr:2101/",
+     "color": "#c0392b", "label": "CROPOS (Croatia)",
      "access": "registration", "registration": "https://www.cropos.hr"},
     {"id": "estpos",      "url": "http://gnss-rtk.maaamet.ee:8083/",            # NOTE: port 8083; free until Aug 2026
+     "color": "#16a085", "label": "ESTPOS (Estonia)",
      "access": "conditions",   "registration": "https://geoportaal.maaamet.ee"},
     {"id": "latpos",      "url": "http://latpos.lgia.gov.lv:5001/",             # NOTE: port 5001, not 2101
+     "color": "#1a6b3c", "label": "LatPos (Latvia)",
      "access": "registration", "registration": "https://latpos.lgia.gov.lv/SBC"},
     {"id": "igac",        "url": "http://sbc.igac.gov.co:2101/",
+     "color": "#d4a017", "label": "IGAC (Colombia)",
      "access": "registration", "registration": "https://redgeodesica-sbc.igac.gov.co/sbc"},
     {"id": "earthscope",  "url": "http://ntrip.earthscope.org:2101/",
+     "color": "#8b4513", "label": "EarthScope NOTA",
      "access": "conditions",   "registration": "https://www.earthscope.org/data/gnss-realtime/"},  # non-commercial NULA
     {"id": "mirai",       "url": "http://ntrip.go.gnss.go.jp:2101/",
+     "color": "#2471a3", "label": "MIRAI (Japan)",
      "access": "registration", "registration": "https://go.gnss.go.jp"},                 # + separate NtripCaster auth form
     {"id": "cors_korea",  "url": "http://www.gnssdata.or.kr:2101/",
+     "color": "#a93226", "label": "CORS-KOREA",
      "access": "conditions",   "registration": "https://www.gnssdata.or.kr"},            # national ID may be required
     {"id": "icecors",     "url": "http://178.19.53.126:2101/",
+     "color": "#1e6b8c", "label": "IceCORS (Iceland)",
      "access": "registration", "registration": "https://www.natt.is/is/landmaelingar/jardstodvakerfi"},
     {"id": "ksa_cors",    "url": "http://ksacors.geoportal.sa:2101/",
+     "color": "#a0522d", "label": "KSA-CORS (Saudi Arabia)",
      "access": "conditions",   "registration": "https://ksacors.geoportal.sa"},          # old gcs.gov.sa domain is NXDOMAIN
 ]
 # RTKdata.online removed 2026-04-20: server unreachable since launch (RemoteDisconnected);
@@ -268,6 +308,8 @@ def fetch_source(src: dict) -> tuple[str, dict, bool]:
     sid, url = src["id"], src["url"]
     registration = src.get("registration")
     access = src.get("access", "registration")
+    color = src.get("color", "")
+    label = src.get("label", "")
     prev_last_ok = src.get("_prev_last_ok")
     raw_path = DATA_DIR / f"{sid}.sourcetable"
     try:
@@ -280,6 +322,8 @@ def fetch_source(src: dict) -> tuple[str, dict, bool]:
               f"(dropped {stats['dropped_dgnss']} DGNSS, {stats['dropped_bad']} invalid{vrs_note})")
         return sid, {
             "url": url,
+            "color": color,
+            "label": label,
             "registration": registration,
             "access": access,
             "status": "ok",
@@ -300,6 +344,8 @@ def fetch_source(src: dict) -> tuple[str, dict, bool]:
             print(f"[{sid}] reusing cached sourcetable ({len(stations)} stations{vrs_note})")
             return sid, {
                 "url": url,
+                "color": color,
+                "label": label,
                 "registration": registration,
                 "access": access,
                 "status": f"stale (fetch failed: {e!r})",
@@ -312,6 +358,8 @@ def fetch_source(src: dict) -> tuple[str, dict, bool]:
             }, False
         return sid, {
             "url": url,
+            "color": color,
+            "label": label,
             "registration": registration,
             "access": access,
             "status": f"error: {e!r}",
@@ -355,6 +403,8 @@ def main() -> int:
     for sid, data in fetched.items():
         payload_sources[sid] = {
             "url": data["url"],
+            "color": data.get("color", ""),
+            "label": data.get("label", ""),
             "registration": data.get("registration"),
             "access": data.get("access", "registration"),
             "status": data["status"],
@@ -365,12 +415,21 @@ def main() -> int:
 
     # Compare against previous JSON, ignoring the "updated" wall clock so an
     # unchanged station list produces no diff (and therefore no commit).
+    # Source metadata (color/label) is included so that editing SOURCES in this
+    # file triggers a re-write on the next pipeline run without requiring a
+    # station change.
     if existing is not None:
-        unchanged = all(
-            station_fingerprint(existing.get("sources", {}).get(sid, {}))
-            == station_fingerprint(payload_sources[sid])
-            for sid in payload_sources
-        ) and set(existing.get("sources", {}).keys()) == set(payload_sources.keys())
+        ex_sources = existing.get("sources", {})
+        unchanged = (
+            all(
+                station_fingerprint(ex_sources.get(sid, {}))
+                == station_fingerprint(payload_sources[sid])
+                and ex_sources.get(sid, {}).get("color") == payload_sources[sid].get("color")
+                and ex_sources.get(sid, {}).get("label") == payload_sources[sid].get("label")
+                for sid in payload_sources
+            )
+            and set(ex_sources.keys()) == set(payload_sources.keys())
+        )
         if unchanged:
             print("Station data unchanged since last run; leaving files untouched.")
             return 0

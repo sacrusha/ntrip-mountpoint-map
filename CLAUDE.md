@@ -45,15 +45,16 @@ data/
    rebase-retry loop and pushes to `main`.
 5. GitHub Pages rebuilds. `index.html` fetches `./data/stations.json` on load.
 
-Adding a new source: one entry in `SOURCES` in `fetch_stations.py` +
-optional `SOURCE_COLORS` / `SOURCE_LABELS` / `SOURCE_AUTH` in `index.html`.
+Adding a new source: one entry in `SOURCES` in `fetch_stations.py` with
+`color` and `label` fields — no frontend changes needed. Optionally add an
+entry to `SOURCE_AUTH` in `index.html` for connection hints in popups.
 
 ## Branch convention
 
 Develop on feature branches, PR into `main`. The workflow only runs against
 `main`, so ingestion changes need to land there to be exercised.
 
-## Current state (2026-04-20)
+## Current state (2026-04-20, PRs #18 + #20)
 
 **37 sources, ~5,600 stations** in `data/stations.json`. Sources: rtk2go,
 Centipede, FReDNet, GeoRTK, 13× SAPOS Länder, ERGNSS, AUSCORS, PositioNZ,
@@ -61,10 +62,22 @@ SatRef HK, InaCORS, TrigNet, RBMC-IP, RAMSAC, FLEPOS, WALCORS, SPSLux,
 ASG-EUPOS, CROPOS, ESTPOS, LatPos, IGAC, EarthScope NOTA, MIRAI, CORS-KOREA,
 KSA-CORS.
 
+**Source config in one place:** `color` and `label` live in `SOURCES` in
+`fetch_stations.py` and are emitted to `stations.json`. `SOURCE_COLORS` /
+`SOURCE_LABELS` in the frontend are populated from JSON at load time — not
+hardcoded. `SOURCE_AUTH` (credentials and popup hints) stays in `index.html`.
+
 **VRS-only networks** (CROPOS, ASG-EUPOS, FLEPOS, WALCORS, ESTPOS, LatPos,
 KSA-CORS, 10 SAPOS states) expose only virtual mountpoints — correctly
-dropped to 0 stations by `filter_vrs()`. Represented by purple stopgap
-markers (`VRS_NETWORKS` in `index.html`); full NRTK polygons are deferred.
+dropped to 0 stations by `filter_vrs()`. Shown as purple stopgap circles in
+the Sources toggle panel with a ring swatch and `(VRS)` count badge. Toggling
+hides/shows the circle and respects tier filters. `VRS_NETWORKS` in
+`index.html` holds the centroids; SAPOS states with physical-coord data (HE,
+RP, SL, SN) are excluded. Full NRTK polygons are deferred.
+
+**Longitude normalisation:** `parse_sourcetable` now normalises 0-360°
+longitudes to ±180 (ERGNSS: 114/128 affected; AUSCORS: 2/808). `lon` is
+included in `station_fingerprint` so the next pipeline run rewrites JSON.
 
 **5 sources timing out in CI:** FLEPOS, WALCORS, ESTPOS, LatPos, KSA-CORS.
 Handled gracefully by fallback-to-cached-sourcetable. See `**investigate**:`
@@ -73,12 +86,11 @@ in `docs/networks.md`.
 **Open / deferred (by priority):**
 1. NRTK / VRS coverage polygons: rendering scaffolded (`networks: []` in JSON)
    but no polygon data ingested. VRS stopgap markers are the placeholder.
-2. Toggle panel for VRS sources: `buildTogglePanel` skips sources with
-   `sourceCounts[sid] === 0`, so VRS sources never appear in the Sources list
-   despite having visible markers. Fix: include `VRS_NETWORKS` entries,
-   labelled "(VRS)".
-3. Network endpoint verification — see `docs/networks.md` `**investigate**:`
+2. Network endpoint verification — see `docs/networks.md` `**investigate**:`
    (5 CI-failing) and `**missing**:` (4 deferred) entries.
+3. `SOURCE_AUTH.openNote` strings are derivable from `access`+`registration`
+   already in JSON; could be dropped from `index.html`. Deferred — requires
+   popup refactor.
 
 ## Design notes
 
@@ -90,11 +102,17 @@ in `docs/networks.md`.
   raster carry the load to ~15k stations. Reconsider only beyond that.
 - **KDBush over RBush:** stations are static per render, range queries
   dominate, KDBush is ~1 KB smaller. Rebuilt on toggle-filter change.
-- **Workflow idempotency:** fingerprint includes carrier + format. `carrierInferred`
-  is NOT in the fingerprint — flip this if you change the inference rule.
+- **Workflow idempotency:** fingerprint includes carrier, format, and `lon`
+  (normalised float). `carrierInferred` is NOT in the fingerprint — flip this
+  if you change the inference rule.
 
 ## Gotchas
 
+- **Corrupt cached sourcetable kills the fetch thread:** in `fetch_source`,
+  `parse_sourcetable()` on the cached file is called outside the
+  `try/except` block. A corrupted `.sourcetable` would raise an unhandled
+  exception and kill that thread. Pre-existing; low probability (files are
+  written atomically). Fix when adding per-source retry logic.
 - **rtk2go carrier field:** blank for most entries even on RTCM 3.x MSM
   streams. Parser infers `carrier = 2` when format starts with `RTCM 3`;
   without this, only ~2 of 800+ rtk2go mountpoints survive. Preserve this.
