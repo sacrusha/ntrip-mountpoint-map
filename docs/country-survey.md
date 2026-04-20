@@ -13,12 +13,12 @@ _Last updated: 2026-04-20. Supersedes `.tmp/country-coverage.md`._
 ## Europe — Western
 
 ### DE — Germany
-- **SAPOS GEPOS** (BKG federal): `bkg1.positioning-service.net:2101` — no registration, CC-BY 4.0. PPP-RTK/SSR corrections (not standard RTK RTCM); requires SSR-capable receiver. Permanent from Apr 2026.
-- **SAPOS HEPS/EPS** (per-Bundesland): ~270 stations, VRS. **12/16 Länder free** (BW, BE, BB, HB, HH, HE, MV, NI, NRW, SL, SN, TH); **paid**: BY (~€20/yr), RP (price TBC); **mixed**: ST. Per-state casters (e.g. `sapos-bw-ntrip.de:2101`, `sapos-th-ntrip.de:2101`); all require per-Länder web registration. **Already in pipeline** (13 state casters; see `SOURCES` prefix `sapos_`).
+- **SAPOS GEPOS** (BKG federal): `bkg1.positioning-service.net:2101` (alt: `caster.gepos.sapos.de:2101`) — no registration, CC-BY 4.0, free. PPP-RTK/SSR corrections via SSRZ format (not standard OSR RTCM); requires SSR-capable receiver or Geo++ SSR2OBS converter software (freely available). Continuous from Apr 2026 (was in optimization phase 2025–Mar 2026). Also broadcast via DAB+ radio.
+- **SAPOS HEPS/EPS** (per-Bundesland): ~270 stations, VRS. **All 16 Länder now free** — RP confirmed free (LVermGeo), ST confirmed free (LVermGeo), and BY agricultural-use free via Landwirtschaftskammer. Per-state casters (e.g. `sapos-bw-ntrip.de:2101`, `sapos-th-ntrip.de:2101`); all require per-Länder web registration. **Already in pipeline** (13 state casters; see `SOURCES` prefix `sapos_`).
 - **Centipede**: a handful of volunteer DE nodes.
 
 ### AT — Austria
-- **APOS** (BEV): `aposrtk.bev.gv.at:2101`, 37 stations, VRS. Free **only for agriculture/forestry** (eAMA credentials). Professional/hobbyist use paid. User-facing: "Paid VRS available (free only for ag/forestry sector)."
+- **APOS** (BEV): `aposrtk.bev.gv.at:2101`, 37 stations, VRS. Free for agriculture/forestry since Feb 2021 (requires eAMA credentials — farm client number + PIN from Agrarmarkt Austria). Professional/hobbyist use paid (BEV portal subscription). User-facing: "Paid VRS available (free only for ag/forestry sector via eAMA)."
 - Centipede: minimal AT nodes.
 
 ### CH — Switzerland
@@ -29,15 +29,15 @@ _Last updated: 2026-04-20. Supersedes `.tmp/country-coverage.md`._
 - Commercial VRS: Teria (Hexagon), Orphéon (Trimble) — paid.
 
 ### BE — Belgium
-- **FLEPOS** (Flanders): `ntrip.flepos.be:2101`, 45 stations, VRS. Free, web self-signup at flepos.vlaanderen.be. Candidate for pipeline.
-- **WALCORS** (Wallonia): `gnss.wallonie.be:2101`, 23 stations, VRS. Free for survey/GIS; paid for precision ag/auto-guidance since Jan 2013. Candidate for pipeline.
-- **GPSBru/AGN** (Brussels): likely `ntrip.ngi.be:2101` (unconfirmed). Single station (Uccle); operational status uncertain. Low priority.
+- **FLEPOS** (Flanders): `ntrip.flepos.be:2101`, 45 stations, VRS. Free for all uses (surveying and machine control), web self-signup at flepos.vlaanderen.be. Candidate for pipeline.
+- **WALCORS** (Wallonia): `gnss.wallonie.be:2101`, 23 stations, VRS. Free for "positioning" uses (survey, GIS, drones). Paid for machine-control/auto-guidance since Jan 2013 (commercial resellers buy raw stream; not a hobbyist restriction in practice). Registration at gnss.wallonie.be (gnss@spw.wallonie.be). Candidate for pipeline.
+- **GPSBru/AGN** (Brussels NGI): `agn.ngi.be` — endpoint confirmed at ngi.be; single station (Uccle observatory); NTRIP access via AGN portal. Operational as of mid-2024 (status page at agn.ngi.be). Free, registration via NGI. Low priority (single base; useful only within ~30 km of Brussels).
 
 ### NL — Netherlands
 - No public free NTRIP. Market fully privatised since ~2000 (06-GPS/Trimble). User-facing: "Paid VRS available."
 
 ### LU — Luxembourg
-- **SPSLux** (ACT): `stream.spslux.lu:5005` (**port 5005, not 2101**), VRS. Luxembourg open-data policy. SBC portal free signup. Candidate for pipeline.
+- **SPSLux** (ACT — Administration du Cadastre et de la Topographie): `stream.spslux.lu:5005` (**port 5005, not 2101**; IP 185.106.24.68), VRS. Luxembourg open-data policy — all services free of charge. Free self-signup at spslux.lu/SBC/Account/Register; then subscribe to "SPSLUX (N)RTK" package in the SBC shop. Candidate for pipeline.
 
 ### IE — Ireland
 - No public free NTRIP. OSi routes users to Trimble VRS Now (commercial). Some Centipede volunteer nodes exist.
@@ -78,7 +78,7 @@ _Last updated: 2026-04-20. Supersedes `.tmp/country-coverage.md`._
 ## Europe — Northern
 
 ### SE — Sweden
-- **SWEPOS** (Lantmäteriet): RTK tier ~SEK 15,000/yr. DGNSS tier (`dgnss-swepos.lm.se:2101`) is free but RTCM 2.3 sub-metre only — **out of scope**. User-facing: "Paid VRS available (SWEPOS ~SEK 15,000/yr)."
+- **SWEPOS** (Lantmäteriet): RTK tier paid (subscription). DGNSS tier (`dgnss-swepos.lm.se:2101`) is free, requires account (free registration), RTCM 2.3 — **~0.2 m horizontal accuracy, sub-metre only, out of scope**. User-facing: "Paid VRS available (SWEPOS Network RTK); free DGNSS at ~0.2 m not sufficient for this map."
 
 ### NO — Norway
 - **CPOS/ETPOS** (Kartverket): NOK 8,000+/yr. No free RTK tier. User-facing: "Paid VRS available."
@@ -90,19 +90,19 @@ _Last updated: 2026-04-20. Supersedes `.tmp/country-coverage.md`._
 - **FINPOS** (NLS): free for 3-month research applications only; no general public tier. DGNSS free but sub-metre. User-facing: "No public free RTK; research applications only."
 
 ### IS — Iceland
-- **IceCORS** (NLSI): reportedly free; NTRIP endpoint unconfirmed. Low priority — sparse population. Verify before including.
+- **IceCORS** (LMÍ — Landmælingar Íslands, National Land Survey of Iceland): `moe.lmi.is:2101` (IP 178.19.53.126:2101), ~20+ stations, VRS/single-base. Registration required (lmi.is/is/maelingar/thjonustur/icecors); operated by Geo++ GNNET software. Free status unconfirmed — likely charged as a professional service given sparse population / cost recovery model. **Verify cost before including; low priority.**
 
 ### EE — Estonia
-- **ESTPOS** (Maa-amet): `gnss-rtk.maaamet.ee:8083`, 40 stations, VRS. **Free until 31 August 2026.** Portal account + service agreement required (geoportaal.maaamet.ee). VRS, iMAX, nearest-base; MSM5 available. Candidate for pipeline (note expiry).
+- **ESTPOS** (Maa-amet / Land and Spatial Development Board): `gnss-rtk.maaamet.ee:8083`, 40 stations, VRS. **Free until 31 August 2026** per director-general directive. Portal account + service agreement required (geoportaal.maaamet.ee). VRS, iMAX, nearest-base; MSM5 available. Candidate for pipeline (note expiry; review before Aug 2026).
 
 ### LV — Latvia
 - **LatPos** (LGIA): `latpos.lgia.gov.lv:2101`, 27 LV + 5 EE + 4 LT border stations, VRS. **Free since 2018.** SBC portal signup (latpos.lgia.gov.lv/SBC). Candidate for pipeline.
 
 ### LT — Lithuania
-- **LitPOS** (Geoportal.lt): 35 stations, VRS likely. **Free status unconfirmed** — pricing not publicly displayed. Likely free given EUPOS/government mandate. Contact LitPOS@geoportal.lt before ingesting.
+- **LitPOS** (GIS-Centras, Geoportal.lt): 35 stations, VRS + DGPS. Services: RTK (~2 cm), DGPS (~0.3–0.5 m), GPPS post-processing. RTCM 2.1/2.3/3.1/3.2, CMR, CMR+, CMRx formats available. NTRIP endpoint not publicly listed without registration. **Free status confirmed uncertain** — registration at geoportal.lt/geoportal/web/litpos-en; pricing not displayed publicly. Contact LitPOS@geoportal.lt to confirm free status before ingesting.
 
 ### PL — Poland
-- **ASG-EUPOS** (GUGiK): `system.asgeupos.pl:2101` (also :8080/:8082/:8083/:8086 for VRS variants), 130+ stations. **Free since Oct 2022.** Web self-signup, admin approval 1–2 working days. GPS+GLO+GAL+BDS. VRS (NAWGIS/KODGIS/FKP/MAC). Candidate for pipeline.
+- **ASG-EUPOS** (GUGiK): `system.asgeupos.pl:2101` (also :8080/:8082/:8083/:8086 for VRS variants), 130+ stations. **Free since Oct 2022** (all services, including RTK and DGNSS). Web self-signup at system.asgeupos.pl, admin approval 1–2 working days. GPS+GLO+GAL+BDS. VRS (NAWGIS/KODGIS/FKP/MAC). Candidate for pipeline.
 
 ---
 
