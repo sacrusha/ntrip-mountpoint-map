@@ -2,8 +2,8 @@ name: Update NTRIP station data
 
 on:
   schedule:
-    # Every hour on the hour (UTC). GitHub may delay or skip runs under load.
-    - cron: "0 * * * *"
+    # Four times a day: 01:00, 07:00, 13:00, 19:00 UTC.
+    - cron: "0 1,7,13,19 * * *"
   workflow_dispatch:
 
 concurrency:
