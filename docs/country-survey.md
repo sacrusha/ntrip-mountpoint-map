@@ -33,7 +33,7 @@ _Last updated: 2026-04-20._
   - WALCORS (Wallonia, `gnss.wallonie.be:2101`, 23 stations VRS) — free for
     positioning; paid for machine-control/auto-guidance. → networks.md: `walcors`
   - GPSBru/AGN (Brussels NGI, `agn.ngi.be`, 1 station) — free, registration;
-    useful only within ~30 km of Brussels. Low priority.
+    useful only within ~30 km of Brussels. Low priority. → networks.md: `gpsbru`
 - **Volunteer**: rtk2go ~24 NL+BE volunteer bases (mixed), Centipede ~25 BE/NL nodes.
 - **Gap**: FLEPOS and WALCORS are VRS-only (0 physical pins on map); NRTK polygons deferred.
 
