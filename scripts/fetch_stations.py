@@ -268,6 +268,10 @@ def station_fingerprint(source: dict) -> list[list]:
 def main() -> int:
     DATA_DIR.mkdir(exist_ok=True)
 
+    out_path = DATA_DIR / "stations.json"
+    existing = load_existing(out_path)
+    existing_sources: dict = (existing or {}).get("sources", {})
+
     fetched: dict[str, dict] = {}
     any_fresh = False
 
@@ -275,14 +279,17 @@ def main() -> int:
         sid, url = src["id"], src["url"]
         registration = src.get("registration")
         raw_path = DATA_DIR / f"{sid}.sourcetable"
+        prev_last_ok = existing_sources.get(sid, {}).get("last_ok")
         try:
             text = fetch(url)
             any_fresh = True
+            now_iso = datetime.now(timezone.utc).isoformat(timespec="seconds")
             fetched[sid] = {
                 "url": url,
                 "registration": registration,
                 "status": "ok",
-                "fetched_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+                "fetched_at": now_iso,
+                "last_ok": now_iso,
                 "raw_path": raw_path,
                 "text": text,
                 "stations": None,
@@ -305,6 +312,7 @@ def main() -> int:
                     "registration": registration,
                     "status": f"stale (fetch failed: {e!r})",
                     "fetched_at": None,
+                    "last_ok": prev_last_ok,
                     "raw_path": raw_path,
                     "text": text,
                     "stations": stations,
@@ -318,6 +326,7 @@ def main() -> int:
                     "registration": registration,
                     "status": f"error: {e!r}",
                     "fetched_at": None,
+                    "last_ok": prev_last_ok,
                     "raw_path": raw_path,
                     "text": None,
                     "stations": [],
@@ -334,13 +343,12 @@ def main() -> int:
             "registration": data.get("registration"),
             "status": data["status"],
             "fetched_at": data["fetched_at"],
+            "last_ok": data.get("last_ok"),
             "stations": data["stations"],
         }
 
     # Compare against previous JSON, ignoring the "updated" wall clock so an
     # unchanged station list produces no diff (and therefore no commit).
-    out_path = DATA_DIR / "stations.json"
-    existing = load_existing(out_path)
     if existing is not None:
         unchanged = all(
             station_fingerprint(existing.get("sources", {}).get(sid, {}))

@@ -559,8 +559,9 @@
       for(;i<end;i++){
         var s=stations[i];
         try{
+          var dotFill=stationStaleDays(s)>=3?'#aaa':stationColor(s);
           L.circleMarker([s.lat,s.lon],{radius:4,color:'#fff',weight:1,
-            fillColor:stationColor(s),fillOpacity:0.95})
+            fillColor:dotFill,fillOpacity:0.95})
             .bindPopup(buildPopup(s))
             .addTo(dots);
         }catch(e){ console.warn('render err',e); }
@@ -589,7 +590,7 @@
       var s=stations[ids?ids[k]:k];
       if(!ids&&!b.contains([s.lat,s.lon])) continue;
       try{
-        var fill=stationColor(s);
+        var fill=stationStaleDays(s)>=3?'#aaa':stationColor(s);
         L.rectangle([[s.lat-s.dLat,s.lon-s.dLon],
                      [s.lat+s.dLat,s.lon+s.dLon]],
           {color:fill,weight:1,fillColor:fill,fillOpacity:0.12,
@@ -811,9 +812,23 @@
       setServers(data);
 
       var rawSources=(data&&data.sources)||{};
+      var now=Date.now();
+      var SOURCE_STALE_DAYS={};
       Object.keys(rawSources).forEach(function(sid){
         if(rawSources[sid].registration) SOURCE_REG[sid]=rawSources[sid].registration;
+        var lo=rawSources[sid].last_ok;
+        SOURCE_STALE_DAYS[sid]=lo?(now-new Date(lo).getTime())/86400000:Infinity;
       });
+      // Minimum staleness across all sources a station belongs to.
+      // A station with at least one fresh source is considered fresh.
+      function stationStaleDays(s){
+        var min=Infinity;
+        stationSourceIds(s).forEach(function(sid){
+          var d=SOURCE_STALE_DAYS[sid]||0;
+          if(d<min) min=d;
+        });
+        return min;
+      }
       var sourceIds=Object.keys(rawSources);
       var bySource={}, sourceCounts={}, sourceStatus={};
       sourceIds.forEach(function(sid){
@@ -844,13 +859,20 @@
       var netLayer=buildNetworkLayers(networks);
       netLayer.addTo(map);
 
+      // Stations fresh enough for coverage raster (< 3 days stale).
+      // Grey-dot stations (3–7 days) are shown on map but excluded from coverage
+      // so the raster reflects currently-live infrastructure only.
+      // Stations stale >= 7 days are hidden entirely.
+      var coverageStations=allStations.filter(function(s){ return stationStaleDays(s)<3; });
+      var displayStations=allStations.filter(function(s){ return stationStaleDays(s)<7; });
+
       // Coverage raster layer (single-base stations).
-      var coverage=new CoverageLayer(allStations);
+      var coverage=new CoverageLayer(coverageStations);
       coverage.addTo(map);
 
       // Zoom-aware station layer groups.
       var filter=function(_s){ return true; };
-      var visible=allStations;
+      var visible=displayStations;
       var stationIndex=null;
       var layers={detail:L.layerGroup(),dots:L.layerGroup()};
 
@@ -883,7 +905,7 @@
       function rebuildStationLayers(){
         if(map.hasLayer(layers.detail)) map.removeLayer(layers.detail);
         if(map.hasLayer(layers.dots)) map.removeLayer(layers.dots);
-        visible=allStations.filter(filter);
+        visible=displayStations.filter(filter);
         stationIndex=buildStationIndex(visible);
         setStatus('Rendering '+visible.length+' stations\u2026');
         buildStationLayers(visible,map,function(built){
