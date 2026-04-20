@@ -253,6 +253,9 @@
   // Coverage field radii (km). Colour per band is set inside CoverageLayer.
   var R_EXCELLENT=10, R_GOOD=30, R_MARGINAL=50, R_FLOAT=100;
 
+  // Staleness thresholds (days). Must match STALE_GREY_DAYS / STALE_HIDE_DAYS in fetch_stations.py.
+  var STALE_GREY_DAYS=3, STALE_HIDE_DAYS=7;
+
   // Banner dismissal: bumped when content meaningfully changes.
   var BANNER_VERSION='2026-04-a';
 
@@ -610,7 +613,7 @@
         var s=stations[i];
         try{
           L.circleMarker([s.lat,s.lon],{radius:4,color:'#fff',weight:1,
-            fillColor:stationStaleDays(s)>=3?'#aaa':stationColor(s),fillOpacity:0.95,renderer:renderer})
+            fillColor:stationStaleDays(s)>=STALE_GREY_DAYS?'#aaa':stationColor(s),fillOpacity:0.95,renderer:renderer})
             .bindPopup(makePopupFn(s))
             .addTo(dots);
         }catch(e){ console.warn('render err',e); }
@@ -639,7 +642,7 @@
       var s=stations[ids?ids[k]:k];
       if(!ids&&!b.contains([s.lat,s.lon])) continue;
       try{
-        var fill=stationStaleDays(s)>=3?'#aaa':stationColor(s);
+        var fill=stationStaleDays(s)>=STALE_GREY_DAYS?'#aaa':stationColor(s);
         if(showRect){
           L.rectangle([[s.lat-s.dLat,s.lon-s.dLon],
                        [s.lat+s.dLat,s.lon+s.dLon]],
@@ -741,7 +744,7 @@
   // changes re-surface the banner for repeat visitors.
   function setupBanner(){
     var dismissed=false;
-    try{ dismissed=localStorage.getItem('ntrip-banner-dismissed')===BANNER_VERSION; }
+    try{ dismissed=typeof localStorage!=='undefined'&&localStorage.getItem('ntrip-banner-dismissed')===BANNER_VERSION; }
     catch(e){}
     if(!dismissed) document.body.classList.add('banner-visible');
     var close=document.getElementById('banner-close');
@@ -749,7 +752,7 @@
     if(close) close.onclick=function(){
       document.body.classList.remove('banner-visible');
       document.body.classList.remove('banner-expanded');
-      try{ localStorage.setItem('ntrip-banner-dismissed',BANNER_VERSION); }
+      try{ typeof localStorage!=='undefined'&&localStorage.setItem('ntrip-banner-dismissed',BANNER_VERSION); }
       catch(e){}
     };
     if(more) more.onclick=function(ev){
@@ -947,8 +950,8 @@
       // Grey-dot stations (3–7 days) are shown on map but excluded from coverage
       // so the raster reflects currently-live infrastructure only.
       // Stations stale >= 7 days are hidden entirely.
-      var coverageStations=allStations.filter(function(s){ return stationStaleDays(s)<3; });
-      var displayStations=allStations.filter(function(s){ return stationStaleDays(s)<7; });
+      var coverageStations=allStations.filter(function(s){ return stationStaleDays(s)<STALE_GREY_DAYS; });
+      var displayStations=allStations.filter(function(s){ return stationStaleDays(s)<STALE_HIDE_DAYS; });
 
       // Coverage raster layer (fresh stations only).
       var coverage=new CoverageLayer(coverageStations);
@@ -1017,7 +1020,7 @@
           // Coverage raster must only include fresh stations (<3d stale) even
           // after filter changes — stale (3–7d) stations stay grey on the dots
           // layer but must not contribute to the green/amber distance field.
-          var coverageVisible=visible.filter(function(s){ return stationStaleDays(s)<3; });
+          var coverageVisible=visible.filter(function(s){ return stationStaleDays(s)<STALE_GREY_DAYS; });
           coverage.setStations(coverageVisible,null);
           applyZoom();
           finishLoad();
