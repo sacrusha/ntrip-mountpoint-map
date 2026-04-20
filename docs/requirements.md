@@ -209,12 +209,7 @@ Collapsible panel, top-right:
   IBGE RBMC-IP, AUSCORS, PositioNZ) — need credentials as Actions
   secrets.
 - Real NRTK polygon data (concave-hull computation in the workflow).
-- Access-tier toggles: either populate `access` per-station in the
-  pipeline or hide the extra checkboxes until they mean something.
-- Mobile-specific banner collapse to "?" pill.
 - Colourblind-friendly palette tuning.
-- Banner copy jargon audit — leads with "NTRIP" / "50 cm"; discovery
-  users need benefit-first framing.
 - `precLabel` hardcoded at `cos(47°)`; fix to use station latitude.
 - Pseudo / dynamic mountpoints like Centipede's `NEAR` — auto-route to
   nearest base from rover's NMEA-GGA. Not fixed geographic points; need
