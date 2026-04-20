@@ -437,8 +437,33 @@ def main() -> int:
             and set(ex_sources.keys()) == set(payload_sources.keys())
         )
         if unchanged:
-            print("Station data unchanged since last run; leaving files untouched.")
-            return 0
+            print("Station data unchanged since last run; leaving stations.json untouched.")
+            write_stations = False
+        else:
+            write_stations = True
+    else:
+        write_stations = True
+
+    # Always write source_health.json so the frontend gets fresh last_ok timestamps
+    # on every pipeline run, regardless of whether station data changed. This keeps
+    # staleness display accurate to the cron interval (±6 h) without committing the
+    # full stations.json unnecessarily.
+    health_path = DATA_DIR / "source_health.json"
+    health = {
+        "checked_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "sources": {
+            sid: {
+                "last_ok": payload_sources[sid].get("last_ok"),
+                "status": payload_sources[sid].get("status"),
+            }
+            for sid in payload_sources
+        },
+    }
+    health_path.write_text(json.dumps(health, indent=2) + "\n")
+    print(f"Wrote {health_path}.")
+
+    if not write_stations:
+        return 0
 
     # Data changed — write raw copies (only for sources we fetched fresh) and JSON.
     for sid, data in fetched.items():
