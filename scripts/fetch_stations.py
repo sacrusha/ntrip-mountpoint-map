@@ -183,15 +183,12 @@ def parse_sourcetable(text: str) -> tuple[list[dict], dict]:
         country = fields[8].strip() if len(fields) > 8 else ""
         lat_str = fields[9].strip()
         lon_str = fields[10].strip()
-        fee = fields[16].strip().upper() if len(fields) > 16 else ""
         # rtk2go leaves the carrier field blank for most entries even though
         # they broadcast RTCM 3.x carrier-phase observations. Trust the
         # format string as a fallback: RTCM 3.x MSM streams are cm-capable.
-        carrier_inferred = False
         if carrier_raw == "":
             if fmt.startswith("RTCM 3"):
                 carrier = 2
-                carrier_inferred = True
             else:
                 carrier = -1
         else:

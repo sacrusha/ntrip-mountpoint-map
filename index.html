@@ -207,8 +207,7 @@
   // Zoom bands — switch between raster-only, raster+dots, detailed view.
   var ZOOM_DETAIL=10;   // z >= ZOOM_DETAIL: labels + accuracy rectangles + tooltips
   var ZOOM_LABELS=8;    // z >= ZOOM_LABELS: labels only (no accuracy rectangles)
-  var ZOOM_DOTS=6;      // z >= ZOOM_DOTS: individual station dots (no labels)
-                        // z <  ZOOM_DOTS: coverage raster only
+  var ZOOM_DOTS=6;      // z >= ZOOM_DOTS: dots; z < ZOOM_DOTS: coverage raster only
 
   // Coverage field radii (km). Colour per band is set inside CoverageLayer.
   var R_EXCELLENT=10, R_GOOD=30, R_MARGINAL=50, R_FLOAT=100;
@@ -380,13 +379,6 @@
       .finally(function(){ clearTimeout(tid); });
   }
 
-  function haversineDist(lat1,lon1,lat2,lon2){
-    var R=6371,dLat=(lat2-lat1)*Math.PI/180,dLon=(lon2-lon1)*Math.PI/180;
-    var a=Math.sin(dLat/2)*Math.sin(dLat/2)
-          +Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)
-          *Math.sin(dLon/2)*Math.sin(dLon/2);
-    return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
-  }
 
   function roundPos(v){ return Math.round(v*100)/100; }
   function posKey(s){ return roundPos(s.lat)+','+roundPos(s.lon); }
@@ -566,7 +558,7 @@
   function buildStationLayers(stations,map,onDone){
     var detail=L.layerGroup();
     var dots=L.layerGroup();
-    var BATCH=1000,i=0;
+    var BATCH=1000,i=0; // stations processed per rAF tick
     function chunk(){
       var end=Math.min(i+BATCH,stations.length);
       for(;i<end;i++){
@@ -773,7 +765,6 @@
     }).addTo(map);
 
     var leg=L.control({position:'bottomleft'});
-    leg.sourceSwatches='';
     leg.onAdd=function(){
       var d=L.DomUtil.create('div');
       d.id='legend';
@@ -848,8 +839,6 @@
       var vp=await getViewerPos();
       if(vp) map.setView([vp.lat,vp.lon],map.getZoom());
       var refC=vp||{lat:map.getCenter().lat,lon:map.getCenter().lng};
-      // Equirectangular squared-distance is accurate enough for sort order
-      // and avoids the 8 trig ops per comparison that haversineDist requires.
       var _cosRef=Math.cos(refC.lat*Math.PI/180);
       allStations.sort(function(a,b){
         var dlaA=a.lat-refC.lat, dloA=(a.lon-refC.lon)*_cosRef;
@@ -866,7 +855,7 @@
       coverage.addTo(map);
 
       // Zoom-aware station layer groups.
-      var filter=function(_s){ return true; };
+      var filter=function(){ return true; };
       var visible=allStations;
       var stationIndex=null;
       var layers={detail:L.layerGroup(),dots:L.layerGroup()};
