@@ -21,9 +21,14 @@
   #banner .msg{flex:1;}
   #banner a.more{color:#9ec8ff;cursor:pointer;text-decoration:underline;
     margin-left:6px;}
+  #banner a.more::after{content:' \25be';}
+  body.banner-expanded #banner a.more::after{content:' \25b4';}
   #banner-more p{margin:0 0 8px 0;}
   #banner-more p:last-child{margin-bottom:0;}
   #banner-more a{color:#9ec8ff;}
+  #banner-more-close{display:none;float:right;background:transparent;border:none;
+    color:#e8eef4;font-size:20px;line-height:1;cursor:pointer;padding:0 0 8px 12px;}
+  @media(max-width:600px){#banner-more-close{display:block;}}
   #banner-more{position:absolute;top:56px;left:0;right:0;max-width:720px;
     margin:0 auto;background:#1b2b3a;color:#e8eef4;padding:12px 16px;
     font-size:12px;line-height:1.5;border-radius:0 0 6px 6px;
@@ -101,6 +106,7 @@
   </div>
 </div>
 <div id="banner-more">
+  <button id="banner-more-close" title="close">×</button>
   <p><b>Why your GPS reads in metres</b><br>
   GPS satellites broadcast timing signals. Atmospheric delays and other errors compound to 5–10 metres under typical conditions. The chip in your receiver is capable of much better — it just needs a correction signal.</p>
   <p><b>Two routes to centimetre accuracy</b></p>
@@ -718,11 +724,14 @@
     try{ seen=typeof localStorage!=='undefined'&&!!localStorage.getItem('ntrip-howit-seen'); }catch(e){}
     if(!seen) document.body.classList.add('banner-expanded');
     var more=document.getElementById('banner-more-btn');
-    if(more) more.onclick=function(ev){
-      ev.preventDefault();
+    var closeBtn=document.getElementById('banner-more-close');
+    function toggleMore(ev){
+      if(ev) ev.preventDefault();
       document.body.classList.toggle('banner-expanded');
       try{ typeof localStorage!=='undefined'&&localStorage.setItem('ntrip-howit-seen','1'); }catch(e){}
-    };
+    }
+    if(more) more.onclick=toggleMore;
+    if(closeBtn) closeBtn.onclick=toggleMore;
   }
 
   // Toggle panel: generates a source checkbox per entry in `sourceCounts`
