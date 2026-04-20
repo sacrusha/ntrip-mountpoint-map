@@ -863,15 +863,23 @@
 
     setStatus('Loading station data\u2026');
     var t0=performance.now();
-    var data=null;
+    var data=null, health=null;
     try{
-      var r=await fetchWithTimeout('./data/stations.json?ts='+Date.now(),10000,{cache:'no-cache'});
-      if(r.ok) data=await r.json();
+      var ts=Date.now();
+      var results=await Promise.allSettled([
+        fetchWithTimeout('./data/stations.json?ts='+ts,10000,{cache:'no-cache'}),
+        fetchWithTimeout('./data/source_health.json?ts='+ts,5000,{cache:'no-cache'})
+      ]);
+      if(results[0].status==='fulfilled'&&results[0].value.ok)
+        data=await results[0].value.json();
+      if(results[1].status==='fulfilled'&&results[1].value.ok)
+        health=await results[1].value.json();
     }catch(e){}
     var fetchMs=Math.round(performance.now()-t0);
     setServers(data);
 
     var rawSources=(data&&data.sources)||{};
+    var healthSources=(health&&health.sources)||{};
     var now=Date.now();
     var SOURCE_STALE_DAYS={};
     Object.keys(rawSources).forEach(function(sid){
@@ -879,8 +887,9 @@
       if(rawSources[sid].label) SOURCE_LABELS[sid]=rawSources[sid].label;
       if(rawSources[sid].registration) SOURCE_REG[sid]=rawSources[sid].registration;
       SOURCE_ACCESS[sid]=rawSources[sid].access||'registration';
-      var lo=rawSources[sid].last_ok;
-      // Treat missing last_ok as fresh — field absent in older JSON snapshots.
+      // Prefer source_health.json last_ok (always current) over stations.json
+      // (only updated when station data changes).
+      var lo=(healthSources[sid]&&healthSources[sid].last_ok)||rawSources[sid].last_ok;
       SOURCE_STALE_DAYS[sid]=lo?(now-new Date(lo).getTime())/86400000:0;
     });
     stationStaleDays=function(s){
