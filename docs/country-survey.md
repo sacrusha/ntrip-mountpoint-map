@@ -19,12 +19,13 @@ _Last updated: 2026-04-20._
 
 ### AT — Austria
 
-- **Free government RTK**: APOS (BEV, `aposrtk.bev.gv.at:2101`, 37 stations, VRS) —
-  free only for agriculture/forestry via eAMA credentials (farm client number + PIN
-  from Agrarmarkt Austria); professional/hobbyist use paid via BEV portal.
+- **Free* government RTK**: APOS (BEV, `aposrtk.bev.gv.at:2101`, 37 stations, VRS) —
+  free for agriculture/forestry via eAMA credentials (farm client number + PIN from
+  Agrarmarkt Austria); professional/hobbyist use paid via bev.gv.at portal. In pipeline
+  as `conditions` access (Free* in UI). → networks.md: `apos`
 - **Volunteer**: rtk2go ~14 AT bases, Centipede ~1 AT node.
-- **Paid only**: BEV portal subscription for non-agricultural use.
-- **Gap**: no free general-public RTK; volunteers are the only free option for hobbyists.
+- **Gap**: hobbyists without agricultural credentials must pay via BEV portal;
+  volunteers (rtk2go) are the only unconditionally free option.
 
 ### BE — Belgium
 
@@ -232,7 +233,8 @@ _Last updated: 2026-04-20._
 
 ### BA — Bosnia and Herzegovina
 
-- **Free government RTK**: BiHPOS — dual-entity administrative split; likely paid; limited resources.
+- **Free government RTK**: BiHPOS — dual-entity administrative split; paid; limited resources.
+  → networks.md: `bihos`
 - **Volunteer**: negligible.
 
 ### BG — Bulgaria
@@ -259,7 +261,7 @@ _Last updated: 2026-04-20._
 
 ### ME — Montenegro
 
-- **Free government RTK**: MONTEPOS — paid subscription tiers.
+- **Free government RTK**: MONTEPOS — paid subscription tiers. → networks.md: `montepos`
 - **Volunteer**: negligible.
 
 ### MK — North Macedonia
@@ -276,7 +278,7 @@ _Last updated: 2026-04-20._
 
 ### RS — Serbia
 
-- **Free government RTK**: AGROS (RGZ) — paid; no English pricing page.
+- **Free government RTK**: AGROS (RGZ) — paid; no English pricing page. → networks.md: `agros`
 - **Volunteer**: Centipede ~11 SER + ~3 SRB nodes, rtk2go ~28 RS bases. Together
   ~42 bases — one of the denser volunteer clusters in the Western Balkans.
 
@@ -292,7 +294,8 @@ _Last updated: 2026-04-20._
 
 ### UA — Ukraine
 
-- **Free government RTK**: ZAKPOS — disrupted since Feb 2022 (Russian invasion). Status unknown.
+- **Free government RTK**: ZAKPOS — disrupted since Feb 2022 (Russian invasion). Status unknown;
+  deferred until service is confirmed operational post-conflict. → networks.md: `zakpos`
 - **Volunteer**: rtk2go ~3 UA bases; status uncertain given the conflict.
 
 ---
@@ -339,8 +342,10 @@ Centipede volunteer nodes in several French overseas territories, served via `cr
   stations, single-base, non-commercial NULA) — Americas-wide, dense in western USA.
   → networks.md: `earthscope`
   State DOT networks (representative free ones): NYSNet (NY), MDOT CORS/MSRN (MI),
-  MnCORS (MN), WISCORS (WI, 115+ stations), ORGN (OR). Many more exist; EarthScope
-  fills gaps. Restricted state networks: TxDOT RTN (employees/contractors only),
+  MnCORS (MN), WISCORS (WI, ~180 stations), ORGN (OR). Many more exist; EarthScope
+  fills gaps. State networks are deferred pending endpoint verification and overlap
+  check with EarthScope (→ networks.md: `nysnet`, `msrn`, `mncors`, `wiscors`, `orgn`).
+  Restricted state networks: TxDOT RTN (employees/contractors only),
   CaltransRTN (vetted partners only), WSRN WA (~$1,900/yr).
   No federal free NTRIP: NOAA/NGS real-time service shut Apr 2013 (budget sequestration).
 - **Volunteer**: rtk2go ~142 US bases (largest single-country cluster on rtk2go);

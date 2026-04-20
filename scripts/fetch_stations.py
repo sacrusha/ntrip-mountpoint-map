@@ -89,6 +89,9 @@ SOURCES = [
     {"id": "sapos_TH",    "url": "http://www.sapos-th-ntrip.de:2101/",         # Thüringen
      "color": "#2d6e6e", "label": "SAPOS (Thüringen)",
      "access": "registration", "registration": "https://www.sapos.de"},
+    {"id": "apos",        "url": "http://aposrtk.bev.gv.at:2101/",             # Austria BEV; free for agri/forestry (eAMA); paid otherwise
+     "color": "#9b0000",  "label": "APOS",
+     "access": "conditions",   "registration": "https://www.bev.gv.at"},
     {"id": "ergnss",      "url": "http://ergnss-ip.ign.es:2101/",
      "color": "#b05000", "label": "ERGNSS",
      "access": "registration", "registration": "https://ergnss.ign.es/gnuserportal/"},   # free, immediate; attribute IGN

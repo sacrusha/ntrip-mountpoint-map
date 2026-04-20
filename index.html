@@ -154,6 +154,7 @@
     cors_korea:{openNote:'Free registration required (Korean portal; national ID may be required)'},
     ksa_cors:  {openNote:'Free registration required'},
     icecors:   {openNote:'Free registration required'},
+    apos:      {openNote:'Free for agriculture/forestry (eAMA credentials); paid via bev.gv.at for other users'},
   };
   // Registration URLs per source, populated from data/stations.json at load time.
   // SOURCE_AUTH.openNote gives the short description; SOURCE_REG gives the link.
@@ -205,6 +206,7 @@
     {sid:'spslux',     lat:49.8,  lon:6.1,   region:'Luxembourg',                           pins:true},
     {sid:'icecors',    lat:64.9,  lon:-18.5, region:'Iceland',                              pins:true},
     {sid:'cors_korea', lat:36.5,  lon:127.8, region:'South Korea',                          pins:true},
+    {sid:'apos',       lat:47.5,  lon:14.1,  region:'Austria',                    declared:37,   pins:true},
   ];
 
   function sourceLabel(sid){

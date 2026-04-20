@@ -54,13 +54,13 @@ entry to `SOURCE_AUTH` in `index.html` for connection hints in popups.
 Develop on feature branches, PR into `main`. The workflow only runs against
 `main`, so ingestion changes need to land there to be exercised.
 
-## Current state (2026-04-20, PRs #18 + #20)
+## Current state (2026-04-20, PRs #18 + #20 + claude/add-bike-networks-OsR6J)
 
-**37 sources, ~5,600 stations** in `data/stations.json`. Sources: rtk2go,
-Centipede, FReDNet, GeoRTK, 13× SAPOS Länder, ERGNSS, AUSCORS, PositioNZ,
-SatRef HK, InaCORS, TrigNet, RBMC-IP, RAMSAC, FLEPOS, WALCORS, SPSLux,
-ASG-EUPOS, CROPOS, ESTPOS, LatPos, IGAC, EarthScope NOTA, MIRAI, CORS-KOREA,
-KSA-CORS.
+**40 sources, ~5,600+ stations** in `data/stations.json`. Sources: rtk2go,
+Centipede, FReDNet, GeoRTK, 14× SAPOS Länder, ERGNSS, APOS (AT, Free*),
+AUSCORS, PositioNZ, SatRef HK, InaCORS, TrigNet, RBMC-IP, RAMSAC, FLEPOS,
+WALCORS, SPSLux, ASG-EUPOS, CROPOS, ESTPOS, LatPos, IGAC, EarthScope NOTA,
+MIRAI, CORS-KOREA, IceCORS, KSA-CORS.
 
 **Source config in one place:** `color` and `label` live in `SOURCES` in
 `fetch_stations.py` and are emitted to `stations.json`. `SOURCE_COLORS` /
@@ -73,7 +73,12 @@ dropped to 0 stations by `filter_vrs()`. Shown as purple stopgap circles in
 the Sources toggle panel with a ring swatch and `(VRS)` count badge. Toggling
 hides/shows the circle and respects tier filters. `VRS_NETWORKS` in
 `index.html` holds the centroids; SAPOS states with physical-coord data (HE,
-RP, SL, SN) are excluded. Full NRTK polygons are deferred.
+RP, SL, SN) are excluded. APOS (AT) is physical-coord-vrs with 37 distinct
+station coords — shows as regular pins with a pins:true VRS badge. Full NRTK
+polygons are deferred.
+
+**`yearly_cost` field in `docs/networks.md`:** all paid and paid-affordable
+entries now carry a `**yearly_cost**:` field for reference (not yet in JSON).
 
 **Longitude normalisation:** `parse_sourcetable` now normalises 0-360°
 longitudes to ±180 (ERGNSS: 114/128 affected; AUSCORS: 2/808). `lon` is
@@ -87,8 +92,11 @@ in `docs/networks.md`.
 1. NRTK / VRS coverage polygons: rendering scaffolded (`networks: []` in JSON)
    but no polygon data ingested. VRS stopgap markers are the placeholder.
 2. Network endpoint verification — see `docs/networks.md` `**investigate**:`
-   (5 CI-failing) and `**missing**:` (4 deferred) entries.
-3. `SOURCE_AUTH.openNote` strings are derivable from `access`+`registration`
+   (5 CI-failing) and `**missing**:` (9 deferred: renep, litpos, thailand_dol,
+   mncors, orgn, msrn, nysnet, wiscors candidate, zakpos).
+3. US state DOT networks (WISCORS, MnCORS, ORGN, MSRN, NYSNet) — deferred;
+   need endpoint verification and EarthScope overlap check.
+4. `SOURCE_AUTH.openNote` strings are derivable from `access`+`registration`
    already in JSON; could be dropped from `index.html`. Deferred — requires
    popup refactor.
 

@@ -358,6 +358,28 @@ SSR-capable receiver or Geo++ SSR2OBS converter. Out of scope for this pipeline.
 
 ---
 
+## apos — APOS (AT)
+
+**status**:    in-pipeline
+**host:port**: `aposrtk.bev.gv.at:2101`
+**type**:      physical-coord-vrs
+**access**:    conditions — free for agriculture/forestry via eAMA credentials
+               (farm client number + PIN from Agrarmarkt Austria);
+               professional/hobbyist use paid via bev.gv.at portal
+**yearly_cost**: pricing via bev.gv.at for professional/hobbyist use;
+               eAMA free for agriculture/forestry
+**stations**:  37
+**source**:    bev.gv.at (BEV — Bundesamt für Eich- und Vermessungswesen)
+
+Austria's national VRS network (Free* in UI). Sourcetable is publicly readable;
+RTCM stream authentication requires valid credentials. Hobbyists without farm
+credentials register and pay via the BEV portal. 37 physical reference stations
+with distinct coordinates are exposed in the sourcetable; these show on the map
+as regular pins. SAPOS Bavaria (DE) and FReDNet (IT) provide partial coverage
+across the AT border.
+
+---
+
 ## In-pipeline — single-coord VRS / connectivity failures
 
 Networks in pipeline that yield 0 map stations: either all sourcetable entries
@@ -548,6 +570,27 @@ If stations returned, display as paid-service layer. $40/mo × 4 months = $160
 
 Single station; useful only within ~30 km of Brussels. Low priority.
 
+**missing**: confirm NTRIP port (standard 2101? try ncat/telnet agn.ngi.be 2101).
+
+---
+
+## wiscors — WISCORS (US-WI)
+
+**status**:    candidate
+**host:port**: `wi-cors.wisc.edu:2101` (to verify)
+**type**:      physical-coord-vrs (single-base + VRS)
+**access**:    free; registration at wi-cors.wisc.edu
+**stations**:  ~180
+**source**:    wi-cors.wisc.edu (University of Wisconsin–Madison Survey Science)
+
+Wisconsin CORS Network operated by UW-Madison. Offers both single-base streams
+and VRS corrections. Note: many WI stations also appear in EarthScope NOTA —
+verify overlap before ingesting to avoid duplicate pins. Physical stations should
+show distinct coordinates.
+
+**missing**: verify `wi-cors.wisc.edu:2101` returns an NTRIP sourcetable and confirm
+station overlap with EarthScope NOTA.
+
 ---
 
 ## Deferred — free, endpoint not yet obtainable
@@ -607,20 +650,86 @@ dol-rtknetwork.com or contact rtk@dol.go.th.
 
 ---
 
-## apos — APOS (AT)
+## mncors — MnCORS (US-MN)
 
 **status**:    deferred
-**host:port**: `aposrtk.bev.gv.at:2101`
+**host:port**: not confirmed
+**type**:      physical-coord-vrs (single-base + Network RTK)
+**access**:    free; registration at mndot.gov
+**stations**:  ~125
+**source**:    mndot.gov (Minnesota Department of Transportation)
+
+Minnesota CORS Network operated by MnDOT. Note: significant overlap expected
+with EarthScope NOTA — verify before ingesting.
+
+**missing**: confirm NTRIP host:port (search MNDOT CORS manual or Alberding
+caster list); verify EarthScope overlap.
+
+---
+
+## orgn — ORGN (US-OR)
+
+**status**:    deferred
+**host:port**: not confirmed
+**type**:      single-base
+**access**:    free; registration at oregon.gov
+**stations**:  ~100
+**source**:    oregon.gov (Oregon Department of Transportation)
+
+Oregon GPS Network (ORGN) operated by ODOT. Primarily single-base streams.
+Significant overlap with EarthScope expected.
+
+**missing**: confirm NTRIP host:port.
+
+---
+
+## msrn — MSRN (US-MI)
+
+**status**:    deferred
+**host:port**: not confirmed
 **type**:      physical-coord-vrs
-**access**:    free only for agriculture/forestry (eAMA credentials — farm client + PIN);
-               professional/hobbyist use paid via BEV portal
-**stations**:  37
-**source**:    bev.gv.at (BEV)
+**access**:    free; registration at michigan.gov
+**stations**:  ~120
+**source**:    michigan.gov (Michigan Department of Transportation)
 
-Not free for general hobbyist use. Deferred unless eAMA path is navigable.
+Michigan Spatial Reference Network operated by MDOT. Significant overlap
+with EarthScope expected.
 
-**missing**: confirmation of whether non-farmers can obtain eAMA credentials, or
-a separate public-access tier — check bev.gv.at or contact BEV directly.
+**missing**: confirm NTRIP host:port.
+
+---
+
+## nysnet — NYSNet (US-NY)
+
+**status**:    deferred
+**host:port**: not confirmed
+**type**:      physical-coord-vrs
+**access**:    free; registration via Cornell/NRCC
+**stations**:  ~150
+**source**:    nrcc.cornell.edu (Northeast Regional Climate Center / Cornell)
+
+New York State GPS Network. Provides RTCM 3.x and VRS corrections. Significant
+overlap with EarthScope expected.
+
+**missing**: confirm current NTRIP host:port; verify whether Cornell NRCC still
+operates this or whether it has been transferred to NYS DOT.
+
+---
+
+## zakpos — ZAKPOS (UA)
+
+**status**:    deferred
+**host:port**: not currently accessible
+**type**:      physical-coord-vrs
+**access**:    was free; registration at zakhid.net.ua
+**stations**:  ~50 (pre-conflict)
+**source**:    zakhid.net.ua (Western Ukraine positioning service)
+
+Ukrainian regional positioning service, disrupted since the Russian full-scale
+invasion (Feb 2022). Operational status and endpoint availability unknown.
+Do not add to pipeline until the service is confirmed operational.
+
+**missing**: confirm service is operational and endpoint is reachable post-conflict.
 
 ---
 
@@ -635,6 +744,8 @@ Surface in UI as paid alternatives for users in areas with no free coverage.
 **status**:    paid-affordable
 **host:port**: `uranus.gr:2101`
 **access**:    paid; ~€160/3 months or ~€480/yr unlimited; also per-minute pricing
+**yearly_cost**: €160 per 3-month block (~$170); ~€480/yr unlimited (~$520) — 3-month
+               option is under the $200 cutoff for seasonal hobbyist use
 **stations**:  unknown
 **source**:    ktimatologio.gr (HEPOS S.A.)
 
@@ -645,6 +756,7 @@ Surface in UI as paid alternatives for users in areas with no free coverage.
 **status**:    paid-affordable
 **host:port**: unknown
 **access**:    paid credit-based system; ~€169/yr
+**yearly_cost**: ~€169/yr (~$183) — under $200 cutoff
 **stations**:  unknown
 **source**:    rompos.ro
 
@@ -660,6 +772,7 @@ Brief entries only.
 
 **status**:    paid
 **access**:    €829.44/yr (€622.08 early discount)
+**yearly_cost**: €829.44/yr (~$905); €622.08 early-discount (~$680)
 **source**:    gu-signal.si
 
 ---
@@ -668,6 +781,7 @@ Brief entries only.
 
 **status**:    paid
 **access**:    ~9,000 SEK/yr ≈ $850; free DGNSS tier sub-metre only (out of scope)
+**yearly_cost**: ~9,000 SEK/yr (~$850)
 **source**:    lantmateriet.se
 
 ---
@@ -676,6 +790,7 @@ Brief entries only.
 
 **status**:    paid
 **access**:    NOK 8,000+/yr ≈ $740
+**yearly_cost**: NOK 8,000+/yr (~$740)
 **source**:    kartverket.no
 
 ---
@@ -684,6 +799,7 @@ Brief entries only.
 
 **status**:    paid
 **access**:    CHF 1,500/yr ≈ $1,650; *Geoinformationsgesetz* SR 510.62 classifies RTK as value-added service
+**yearly_cost**: CHF 1,500/yr (~$1,650)
 **source**:    swisstopo.admin.ch
 
 ---
@@ -692,6 +808,7 @@ Brief entries only.
 
 **status**:    paid
 **access**:    SGD $107/month ≈ $950/yr; 3-day trial requires SingPass (residents only)
+**yearly_cost**: SGD $107/month (~SGD $1,284/yr, ~$960/yr)
 **source**:    sla.gov.sg
 
 ---
@@ -701,6 +818,7 @@ Brief entries only.
 **status**:    paid
 **access**:    free only for Central/State Government and academic institutions;
                private users ₹5,032/month ≈ $240/yr × ongoing
+**yearly_cost**: ₹5,032/month (~$720/yr) for private users
 **source**:    surveyofindia.gov.in
 
 Promotional free 3-month window (Nov 2025–Jan 2026) expired. Worth revisiting if policy changes.
@@ -712,6 +830,7 @@ Promotional free 3-month window (Nov 2025–Jan 2026) expired. Worth revisiting 
 **status**:    paid
 **host:port**: `212.156.70.42:2101` (also port 55600)
 **access**:    paid; membership + annual fee to TKGM/HGM
+**yearly_cost**: annual fee (amount not publicly listed); contact TKGM/harita.gov.tr
 **stations**:  146
 **source**:    tkgm.gov.tr; harita.gov.tr
 
@@ -721,6 +840,7 @@ Promotional free 3-month window (Nov 2025–Jan 2026) expired. Worth revisiting 
 
 **status**:    paid
 **access**:    fees since Sep 2024 per Circular 47/2024/TT-BTC; pricing not public
+**yearly_cost**: not publicly listed (fees per Circular 47/2024/TT-BTC since Sep 2024)
 **stations**:  65
 **source**:    vngeonet.vn (National Centre for Satellite Positioning Station Management)
 
@@ -732,6 +852,7 @@ Was free until Aug 2024.
 
 **status**:    paid
 **access**:    commercial; pricing not public
+**yearly_cost**: not publicly listed
 **source**:    gnssnet.hu
 
 ---
@@ -740,6 +861,7 @@ Was free until Aug 2024.
 
 **status**:    paid
 **access**:    pay-per-use + paper form registration (mail/fax)
+**yearly_cost**: pay-per-use (pricing not publicly listed)
 **source**:    nlsc.gov.tw (NLSC/MoI)
 
 ---
@@ -748,6 +870,7 @@ Was free until Aug 2024.
 
 **status**:    paid
 **access**:    paid subscription (Survey Act cost-recovery); 78 stations
+**yearly_cost**: not publicly listed
 **source**:    jupem.gov.my
 
 ---
@@ -756,6 +879,7 @@ Was free until Aug 2024.
 
 **status**:    paid
 **access**:    PHP 1,000 one-time + ongoing subscription (EO 471); 52 stations
+**yearly_cost**: PHP 1,000 one-time (~$17) + subscription (ongoing amount not publicly listed)
 **source**:    namria.gov.ph
 
 ---
@@ -764,6 +888,7 @@ Was free until Aug 2024.
 
 **status**:    paid
 **access**:    free for education/government; commercial use paid (ČÚZK Decree 31/1995)
+**yearly_cost**: not publicly listed for commercial use
 **source**:    czepos.cuzk.gov.cz
 
 Not a general hobbyist path.
@@ -774,9 +899,47 @@ Not a general hobbyist path.
 
 **status**:    paid
 **access**:    free for public sector/municipalities; commercial use paid
+**yearly_cost**: not publicly listed for commercial use
 **source**:    skpos.gku.sk
 
 Not a general hobbyist path.
+
+---
+
+## agros — AGROS (RS)
+
+**status**:    paid
+**access**:    paid; no English pricing page; contact rgz.gov.rs
+**yearly_cost**: not publicly listed (contact RGZ/Republicka geodetska uprava)
+**stations**:  ~30
+**source**:    rgz.gov.rs (Republički geodetski zavod)
+
+Serbia's national positioning network. Subscription required; no public free tier.
+
+---
+
+## montepos — MONTEPOS (ME)
+
+**status**:    paid
+**access**:    paid subscription tiers; contact upco.gov.me
+**yearly_cost**: not publicly listed
+**stations**:  ~20
+**source**:    upco.gov.me (Uprava za nekretnine)
+
+Montenegro's national CORS network. Paid service.
+
+---
+
+## bihos — BiHPOS (BA)
+
+**status**:    paid
+**access**:    paid; dual-entity administration (FBiH + RS) complicates access; limited resources
+**yearly_cost**: not publicly listed
+**stations**:  ~25 (estimate)
+**source**:    fgu.com.ba / rgurs.rs (dual entity)
+
+Bosnia and Herzegovina's CORS network, split between the Federation of BiH and
+Republika Srpska geodetic authorities. Operational status uncertain.
 
 ---
 
