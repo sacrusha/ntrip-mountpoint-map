@@ -1,11 +1,11 @@
 {
-  "updated": "2026-04-20T07:09:37+00:00",
+  "updated": "2026-04-20T07:29:46+00:00",
   "scope": "free NTRIP sources delivering better than ~50 cm",
   "sources": {
     "rtk2go": {
       "url": "http://rtk2go.com:2101/",
       "status": "ok",
-      "fetched_at": "2026-04-20T07:09:29+00:00",
+      "fetched_at": "2026-04-20T07:29:44+00:00",
       "stations": [
         {
           "name": "ADS-SAH",
@@ -1120,7 +1120,7 @@
           "lonStr": "18.47",
           "carrier": 2,
           "carrierInferred": true,
-          "format": "RTCM 3.3",
+          "format": "RTCM 3",
           "legacyFormat": false,
           "country": "POL",
           "fee": "N"
@@ -2088,6 +2088,19 @@
           "fee": "N"
         },
         {
+          "name": "GETRTK",
+          "lat": 28.84,
+          "lon": 77.08,
+          "latStr": "28.84",
+          "lonStr": "77.08",
+          "carrier": 2,
+          "carrierInferred": true,
+          "format": "RTCM 3.2",
+          "legacyFormat": false,
+          "country": "IND",
+          "fee": "N"
+        },
+        {
           "name": "GILGA",
           "lat": 34.33,
           "lon": -83.68,
@@ -2163,19 +2176,6 @@
           "format": "RTCM 3.3",
           "legacyFormat": false,
           "country": "FRA",
-          "fee": "N"
-        },
-        {
-          "name": "GRGY00AUS0",
-          "lat": -23.15,
-          "lon": 148.39,
-          "latStr": "-23.15",
-          "lonStr": "148.39",
-          "carrier": 2,
-          "carrierInferred": true,
-          "format": "RTCM 3.2",
-          "legacyFormat": false,
-          "country": "AUS",
           "fee": "N"
         },
         {
@@ -3265,7 +3265,7 @@
           "lonStr": "109.67",
           "carrier": 2,
           "carrierInferred": true,
-          "format": "RTCM 3.2",
+          "format": "RTCM 3",
           "legacyFormat": false,
           "country": "IDN",
           "fee": "N"
@@ -3541,19 +3541,6 @@
           "format": "RTCM 3.3",
           "legacyFormat": false,
           "country": "FIN",
-          "fee": "N"
-        },
-        {
-          "name": "KRAGELUND",
-          "lat": 56.78,
-          "lon": 9.84,
-          "latStr": "56.78",
-          "lonStr": "9.84",
-          "carrier": 2,
-          "carrierInferred": true,
-          "format": "RTCM 3.2",
-          "legacyFormat": false,
-          "country": "DNK",
           "fee": "N"
         },
         {
@@ -4207,6 +4194,19 @@
           "fee": "N"
         },
         {
+          "name": "Lempo",
+          "lat": 60.55,
+          "lon": 22.23,
+          "latStr": "60.55",
+          "lonStr": "22.23",
+          "carrier": 2,
+          "carrierInferred": true,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": "FIN",
+          "fee": "N"
+        },
+        {
           "name": "Lengenfeld_AUT",
           "lat": 48.48,
           "lon": 15.6,
@@ -4256,6 +4256,19 @@
           "format": "RTCM 3.3",
           "legacyFormat": false,
           "country": "THA",
+          "fee": "N"
+        },
+        {
+          "name": "LodeFarm",
+          "lat": 52.28,
+          "lon": 0.23,
+          "latStr": "52.28",
+          "lonStr": "0.23",
+          "carrier": 2,
+          "carrierInferred": true,
+          "format": "RTCM 3.3",
+          "legacyFormat": false,
+          "country": "GBR",
           "fee": "N"
         },
         {
@@ -4344,7 +4357,7 @@
           "lonStr": "22.17",
           "carrier": 2,
           "carrierInferred": true,
-          "format": "RTCM 3",
+          "format": "RTCM 3.2",
           "legacyFormat": false,
           "country": "FIN",
           "fee": "N"
@@ -4448,7 +4461,7 @@
           "lonStr": "-9.59",
           "carrier": 2,
           "carrierInferred": true,
-          "format": "RTCM 3.2",
+          "format": "RTCM 3",
           "legacyFormat": false,
           "country": "IRL",
           "fee": "N"
@@ -5527,7 +5540,7 @@
           "lonStr": "17.43",
           "carrier": 2,
           "carrierInferred": true,
-          "format": "RTCM 3.2",
+          "format": "RTCM 3",
           "legacyFormat": false,
           "country": "POL",
           "fee": "N"
@@ -6050,6 +6063,19 @@
           "format": "RTCM 3.3",
           "legacyFormat": false,
           "country": "CHE",
+          "fee": "N"
+        },
+        {
+          "name": "PSKSW1251",
+          "lat": 13.89,
+          "lon": 101.14,
+          "latStr": "13.89",
+          "lonStr": "101.14",
+          "carrier": 2,
+          "carrierInferred": true,
+          "format": "RTCM 3.2",
+          "legacyFormat": false,
+          "country": "THA",
           "fee": "N"
         },
         {
@@ -6866,7 +6892,7 @@
           "lonStr": "24.96",
           "carrier": 2,
           "carrierInferred": true,
-          "format": "RTCM 3.2",
+          "format": "RTCM 3",
           "legacyFormat": false,
           "country": "EST",
           "fee": "N"
@@ -7633,7 +7659,7 @@
           "lonStr": "-75.00",
           "carrier": 2,
           "carrierInferred": true,
-          "format": "RTCM 3.2",
+          "format": "RTCM 3",
           "legacyFormat": false,
           "country": "USA",
           "fee": "N"
@@ -7828,7 +7854,7 @@
           "lonStr": "130.37",
           "carrier": 2,
           "carrierInferred": true,
-          "format": "RTCM 3",
+          "format": "RTCM 3.2",
           "legacyFormat": false,
           "country": "JPN",
           "fee": "N"
@@ -7945,7 +7971,7 @@
           "lonStr": "5.22",
           "carrier": 2,
           "carrierInferred": true,
-          "format": "RTCM 3.2",
+          "format": "RTCM 3",
           "legacyFormat": false,
           "country": "FRA",
           "fee": "N"
@@ -8013,6 +8039,19 @@
           "format": "RTCM 3.2",
           "legacyFormat": false,
           "country": "NZL",
+          "fee": "N"
+        },
+        {
+          "name": "Talo",
+          "lat": 63.73,
+          "lon": 26.64,
+          "latStr": "63.73",
+          "lonStr": "26.64",
+          "carrier": 2,
+          "carrierInferred": true,
+          "format": "RTCM 3.3",
+          "legacyFormat": false,
+          "country": "FIN",
           "fee": "N"
         },
         {
@@ -8647,7 +8686,7 @@
           "lonStr": "142.15",
           "carrier": 2,
           "carrierInferred": true,
-          "format": "RTCM 3.2",
+          "format": "RTCM 3",
           "legacyFormat": false,
           "country": "AUS",
           "fee": "N"
@@ -8933,7 +8972,7 @@
           "lonStr": "27.22",
           "carrier": 2,
           "carrierInferred": true,
-          "format": "RTCM 3",
+          "format": "RTCM 3.2",
           "legacyFormat": false,
           "country": "FIN",
           "fee": "N"
@@ -9279,12 +9318,12 @@
         {
           "name": "bvhid",
           "lat": 47.68,
-          "lon": 17.98,
+          "lon": 17.97,
           "latStr": "47.68",
-          "lonStr": "17.98",
+          "lonStr": "17.97",
           "carrier": 2,
           "carrierInferred": true,
-          "format": "RTCM 3",
+          "format": "RTCM 3.2",
           "legacyFormat": false,
           "country": "HUN",
           "fee": "N"
@@ -9313,19 +9352,6 @@
           "format": "RTCM 3.3",
           "legacyFormat": false,
           "country": "FIN",
-          "fee": "N"
-        },
-        {
-          "name": "ceva2",
-          "lat": 46.41,
-          "lon": 29.34,
-          "latStr": "46.41",
-          "lonStr": "29.34",
-          "carrier": 2,
-          "carrierInferred": true,
-          "format": "RTCM 3.3",
-          "legacyFormat": false,
-          "country": "UKR",
           "fee": "N"
         },
         {
@@ -9625,19 +9651,6 @@
           "format": "RTCM 3.3",
           "legacyFormat": false,
           "country": "USA",
-          "fee": "N"
-        },
-        {
-          "name": "hestiaRTK1",
-          "lat": 52.79,
-          "lon": -106.56,
-          "latStr": "52.79",
-          "lonStr": "-106.56",
-          "carrier": 2,
-          "carrierInferred": true,
-          "format": "RTCM 3.2",
-          "legacyFormat": false,
-          "country": "CAN",
           "fee": "N"
         },
         {
@@ -10350,7 +10363,7 @@
           "lonStr": "132.96",
           "carrier": 2,
           "carrierInferred": true,
-          "format": "RTCM 3",
+          "format": "RTCM 3.2",
           "legacyFormat": false,
           "country": "JPN",
           "fee": "N"
@@ -10746,19 +10759,6 @@
           "fee": "N"
         },
         {
-          "name": "storakarr",
-          "lat": 56.31,
-          "lon": 13.15,
-          "latStr": "56.31",
-          "lonStr": "13.15",
-          "carrier": 2,
-          "carrierInferred": true,
-          "format": "RTCM 3.3",
-          "legacyFormat": false,
-          "country": "SWE",
-          "fee": "N"
-        },
-        {
           "name": "stw_bael_x5",
           "lat": 37.13,
           "lon": -97.08,
@@ -10909,7 +10909,7 @@
           "lonStr": "-6.42",
           "carrier": 2,
           "carrierInferred": true,
-          "format": "RTCM 3.2",
+          "format": "RTCM 3",
           "legacyFormat": false,
           "country": "IRL",
           "fee": "N"
@@ -11013,7 +11013,7 @@
           "lonStr": "-2.48",
           "carrier": 2,
           "carrierInferred": true,
-          "format": "RTCM 3",
+          "format": "RTCM 3.2",
           "legacyFormat": false,
           "country": "GBR",
           "fee": "N"
@@ -11047,9 +11047,9 @@
       ]
     },
     "centipede": {
-      "url": "http://caster.centipede.fr:2101/",
+      "url": "http://crtk.net:2101/",
       "status": "ok",
-      "fetched_at": "2026-04-20T07:09:30+00:00",
+      "fetched_at": "2026-04-20T07:29:45+00:00",
       "stations": [
         {
           "name": "1234",
@@ -12188,19 +12188,6 @@
           "lon": 2.404,
           "latStr": "47.503",
           "lonStr": "2.404",
-          "carrier": 2,
-          "carrierInferred": false,
-          "format": "RTCM3",
-          "legacyFormat": false,
-          "country": "FRA",
-          "fee": "N"
-        },
-        {
-          "name": "AURAY",
-          "lat": 47.67,
-          "lon": -2.997,
-          "latStr": "47.670",
-          "lonStr": "-2.997",
           "carrier": 2,
           "carrierInferred": false,
           "format": "RTCM3",
@@ -15914,6 +15901,19 @@
           "fee": "N"
         },
         {
+          "name": "ETAA",
+          "lat": 48.27,
+          "lon": -3.316,
+          "latStr": "48.270",
+          "lonStr": "-3.316",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM3",
+          "legacyFormat": false,
+          "country": "FRA",
+          "fee": "N"
+        },
+        {
           "name": "ETAB",
           "lat": 46.689,
           "lon": -1.421,
@@ -17521,6 +17521,19 @@
           "carrier": 2,
           "carrierInferred": false,
           "format": "RTCM3",
+          "legacyFormat": false,
+          "country": "FRA",
+          "fee": "N"
+        },
+        {
+          "name": "GUIL",
+          "lat": 44.62,
+          "lon": 6.66,
+          "latStr": "44.62",
+          "lonStr": "6.66",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 3.2 MSM7",
           "legacyFormat": false,
           "country": "FRA",
           "fee": "N"
@@ -19788,6 +19801,19 @@
           "fee": "N"
         },
         {
+          "name": "LODE",
+          "lat": 52.281,
+          "lon": 0.229,
+          "latStr": "52.281",
+          "lonStr": "0.229",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM3",
+          "legacyFormat": false,
+          "country": "ENG",
+          "fee": "N"
+        },
+        {
           "name": "LOHA",
           "lat": 47.978,
           "lon": 0.95,
@@ -20699,13 +20725,13 @@
         },
         {
           "name": "MICH",
-          "lat": 43.92,
-          "lon": 5.72,
-          "latStr": "43.92",
-          "lonStr": "5.72",
+          "lat": 43.924,
+          "lon": 5.717,
+          "latStr": "43.924",
+          "lonStr": "5.717",
           "carrier": 2,
           "carrierInferred": false,
-          "format": "RTCM 3.2 MSM7",
+          "format": "RTCM3",
           "legacyFormat": false,
           "country": "FRA",
           "fee": "N"
@@ -25235,6 +25261,19 @@
           "fee": "N"
         },
         {
+          "name": "TJMM",
+          "lat": 54.869,
+          "lon": -7.496,
+          "latStr": "54.869",
+          "lonStr": "-7.496",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM3",
+          "legacyFormat": false,
+          "country": "IRL",
+          "fee": "N"
+        },
+        {
           "name": "TLB2",
           "lat": 48.555,
           "lon": -2.885,
@@ -26405,6 +26444,19 @@
           "fee": "N"
         },
         {
+          "name": "YMON",
+          "lat": 53.227,
+          "lon": -4.437,
+          "latStr": "53.227",
+          "lonStr": "-4.437",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM3",
+          "legacyFormat": false,
+          "country": "ENG",
+          "fee": "N"
+        },
+        {
           "name": "YOYO",
           "lat": 48.051,
           "lon": 3.748,
@@ -26565,7 +26617,7 @@
     "frednet": {
       "url": "http://gnsscaster.regione.fvg.it:8080/",
       "status": "ok",
-      "fetched_at": "2026-04-20T07:09:30+00:00",
+      "fetched_at": "2026-04-20T07:29:45+00:00",
       "stations": [
         {
           "name": "Ampezzo_RTK",
@@ -27076,11 +27128,545 @@
         }
       ]
     },
-    "rtkdataonline": {
-      "url": "http://rtkdata.online:2101/",
-      "status": "error: RemoteDisconnected('Remote end closed connection without response')",
-      "fetched_at": null,
-      "stations": []
+    "geortk": {
+      "url": "http://geortk.jp:2101/",
+      "status": "ok",
+      "fetched_at": "2026-04-20T07:29:46+00:00",
+      "stations": [
+        {
+          "name": "989Shibata",
+          "lat": 38.07,
+          "lon": 140.77,
+          "latStr": "38.07",
+          "lonStr": "140.77",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 3.3",
+          "legacyFormat": false,
+          "country": "JPN",
+          "fee": "N"
+        },
+        {
+          "name": "HGT612",
+          "lat": 43.84,
+          "lon": 142.39,
+          "latStr": "43.84",
+          "lonStr": "142.39",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 3.3",
+          "legacyFormat": false,
+          "country": "JPN",
+          "fee": "N"
+        },
+        {
+          "name": "KAKAMIGAHARAUM",
+          "lat": 35.4,
+          "lon": 136.88,
+          "latStr": "35.40",
+          "lonStr": "136.88",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 3.2",
+          "legacyFormat": false,
+          "country": "JPN",
+          "fee": "N"
+        },
+        {
+          "name": "KPCT",
+          "lat": 32.89,
+          "lon": 130.83,
+          "latStr": "32.89",
+          "lonStr": "130.83",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 3.3",
+          "legacyFormat": false,
+          "country": "JPN",
+          "fee": "N"
+        },
+        {
+          "name": "Meijo-A-RTCM3",
+          "lat": 35.13,
+          "lon": 136.97,
+          "latStr": "35.13",
+          "lonStr": "136.97",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 3.3",
+          "legacyFormat": false,
+          "country": "JPN",
+          "fee": "N"
+        },
+        {
+          "name": "RTK-MIKAGE",
+          "lat": 42.89,
+          "lon": 142.93,
+          "latStr": "42.89",
+          "lonStr": "142.93",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 3.2",
+          "legacyFormat": false,
+          "country": "JPN",
+          "fee": "N"
+        },
+        {
+          "name": "RTK-MIKAGE2",
+          "lat": 42.89,
+          "lon": 142.93,
+          "latStr": "42.89",
+          "lonStr": "142.93",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 3.2",
+          "legacyFormat": false,
+          "country": "JPN",
+          "fee": "N"
+        },
+        {
+          "name": "SANJO-RTCM",
+          "lat": 37.63,
+          "lon": 138.96,
+          "latStr": "37.63",
+          "lonStr": "138.96",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 3.3",
+          "legacyFormat": false,
+          "country": "JPN",
+          "fee": "N"
+        },
+        {
+          "name": "SBC-BASE01",
+          "lat": 43.32,
+          "lon": 144.61,
+          "latStr": "43.32",
+          "lonStr": "144.61",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 3.2",
+          "legacyFormat": false,
+          "country": "JPN",
+          "fee": "N"
+        },
+        {
+          "name": "Saga-T",
+          "lat": 33.36,
+          "lon": 130.51,
+          "latStr": "33.36",
+          "lonStr": "130.51",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 3.3",
+          "legacyFormat": false,
+          "country": "JPN",
+          "fee": "N"
+        },
+        {
+          "name": "Shihoro",
+          "lat": 43.16,
+          "lon": 143.17,
+          "latStr": "43.16",
+          "lonStr": "143.17",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 3.3",
+          "legacyFormat": false,
+          "country": "JPN",
+          "fee": "N"
+        },
+        {
+          "name": "UEMATSUDENKI-F9P",
+          "lat": 43.58,
+          "lon": 142.0,
+          "latStr": "43.58",
+          "lonStr": "142.00",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 3.3",
+          "legacyFormat": false,
+          "country": "JPN",
+          "fee": "N"
+        },
+        {
+          "name": "YAHIKO2",
+          "lat": 37.68,
+          "lon": 138.87,
+          "latStr": "37.68",
+          "lonStr": "138.87",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 3.3",
+          "legacyFormat": false,
+          "country": "JPN",
+          "fee": "N"
+        },
+        {
+          "name": "YONEZAWA-SENKOUKA",
+          "lat": 37.92,
+          "lon": 140.15,
+          "latStr": "37.92",
+          "lonStr": "140.15",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 3.2",
+          "legacyFormat": false,
+          "country": "JPN",
+          "fee": "N"
+        },
+        {
+          "name": "fukuoka-nakagawa",
+          "lat": 33.49,
+          "lon": 130.42,
+          "latStr": "33.49",
+          "lonStr": "130.42",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 3.3",
+          "legacyFormat": false,
+          "country": "JPN",
+          "fee": "N"
+        },
+        {
+          "name": "geosense_f9p_rtcm",
+          "lat": 34.65,
+          "lon": 135.0,
+          "latStr": "34.65",
+          "lonStr": "135.00",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 3.2",
+          "legacyFormat": false,
+          "country": "JPN",
+          "fee": "N"
+        },
+        {
+          "name": "kfarm",
+          "lat": 43.0,
+          "lon": 143.0,
+          "latStr": "43.00",
+          "lonStr": "143.00",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 3.3",
+          "legacyFormat": false,
+          "country": "JPN",
+          "fee": "N"
+        },
+        {
+          "name": "kirishima",
+          "lat": 31.67,
+          "lon": 130.86,
+          "latStr": "31.67",
+          "lonStr": "130.86",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 3.x",
+          "legacyFormat": false,
+          "country": "JPN",
+          "fee": "N"
+        },
+        {
+          "name": "kunitomi-B",
+          "lat": 31.99,
+          "lon": 131.34,
+          "latStr": "31.99",
+          "lonStr": "131.34",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 3.3",
+          "legacyFormat": false,
+          "country": "JPN",
+          "fee": "N"
+        },
+        {
+          "name": "kushiro-nct",
+          "lat": 43.01,
+          "lon": 144.26,
+          "latStr": "43.01",
+          "lonStr": "144.26",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 3.3",
+          "legacyFormat": false,
+          "country": "JPN",
+          "fee": "N"
+        },
+        {
+          "name": "kzlab2",
+          "lat": 42.92,
+          "lon": 143.04,
+          "latStr": "42.92",
+          "lonStr": "143.04",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 3.3",
+          "legacyFormat": false,
+          "country": "JPN",
+          "fee": "N"
+        },
+        {
+          "name": "mikami-farm",
+          "lat": 42.99,
+          "lon": 141.63,
+          "latStr": "42.99",
+          "lonStr": "141.63",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 3.3",
+          "legacyFormat": false,
+          "country": "JPN",
+          "fee": "N"
+        },
+        {
+          "name": "n-survey",
+          "lat": 42.92,
+          "lon": 143.04,
+          "latStr": "42.92",
+          "lonStr": "143.04",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 3.3",
+          "legacyFormat": false,
+          "country": "JPN",
+          "fee": "N"
+        },
+        {
+          "name": "n-survey2",
+          "lat": 42.92,
+          "lon": 143.04,
+          "latStr": "42.92",
+          "lonStr": "143.04",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 3.3",
+          "legacyFormat": false,
+          "country": "JPN",
+          "fee": "N"
+        },
+        {
+          "name": "naganuma",
+          "lat": 43.0,
+          "lon": 141.63,
+          "latStr": "43.00",
+          "lonStr": "141.63",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 3.3",
+          "legacyFormat": false,
+          "country": "JPN",
+          "fee": "N"
+        },
+        {
+          "name": "naganuma29",
+          "lat": 43.01,
+          "lon": 141.64,
+          "latStr": "43.01",
+          "lonStr": "141.64",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 3.3",
+          "legacyFormat": false,
+          "country": "JPN",
+          "fee": "N"
+        },
+        {
+          "name": "nagaokaut",
+          "lat": 37.42,
+          "lon": 138.78,
+          "latStr": "37.42",
+          "lonStr": "138.78",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 3.3",
+          "legacyFormat": false,
+          "country": "JPN",
+          "fee": "N"
+        },
+        {
+          "name": "naie",
+          "lat": 43.44,
+          "lon": 141.87,
+          "latStr": "43.44",
+          "lonStr": "141.87",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 3.3",
+          "legacyFormat": false,
+          "country": "JPN",
+          "fee": "N"
+        },
+        {
+          "name": "saito-B",
+          "lat": 32.11,
+          "lon": 131.4,
+          "latStr": "32.11",
+          "lonStr": "131.40",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 3.3",
+          "legacyFormat": false,
+          "country": "JPN",
+          "fee": "N"
+        },
+        {
+          "name": "sano",
+          "lat": 36.56,
+          "lon": 140.2,
+          "latStr": "36.56",
+          "lonStr": "140.20",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 3.3",
+          "legacyFormat": false,
+          "country": "JPN",
+          "fee": "N"
+        },
+        {
+          "name": "sg-farm31",
+          "lat": 36.33,
+          "lon": 139.85,
+          "latStr": "36.33",
+          "lonStr": "139.85",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 3.1",
+          "legacyFormat": false,
+          "country": "JPN",
+          "fee": "N"
+        },
+        {
+          "name": "sg-farm324",
+          "lat": 36.33,
+          "lon": 139.85,
+          "latStr": "36.33",
+          "lonStr": "139.85",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 3.2",
+          "legacyFormat": false,
+          "country": "JPN",
+          "fee": "N"
+        },
+        {
+          "name": "sg-farm325",
+          "lat": 36.33,
+          "lon": 139.85,
+          "latStr": "36.33",
+          "lonStr": "139.85",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 3.2",
+          "legacyFormat": false,
+          "country": "JPN",
+          "fee": "N"
+        },
+        {
+          "name": "sg-farm327",
+          "lat": 36.33,
+          "lon": 139.85,
+          "latStr": "36.33",
+          "lonStr": "139.85",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 3.2",
+          "legacyFormat": false,
+          "country": "JPN",
+          "fee": "N"
+        },
+        {
+          "name": "shinkotoni",
+          "lat": 43.12,
+          "lon": 141.33,
+          "latStr": "43.12",
+          "lonStr": "141.33",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 3.3",
+          "legacyFormat": false,
+          "country": "JPN",
+          "fee": "N"
+        },
+        {
+          "name": "sugamafuji2",
+          "lat": 35.95,
+          "lon": 139.49,
+          "latStr": "35.95",
+          "lonStr": "139.49",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 3.2",
+          "legacyFormat": false,
+          "country": "JPN",
+          "fee": "N"
+        },
+        {
+          "name": "tagashira-lab_kgs",
+          "lat": 31.41,
+          "lon": 130.32,
+          "latStr": "31.41",
+          "lonStr": "130.32",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "u-blox RAW",
+          "legacyFormat": false,
+          "country": "JPN",
+          "fee": "N"
+        },
+        {
+          "name": "tagashira-lab_kgs2",
+          "lat": 31.41,
+          "lon": 130.32,
+          "latStr": "31.41",
+          "lonStr": "130.32",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 3.3",
+          "legacyFormat": false,
+          "country": "JPN",
+          "fee": "N"
+        },
+        {
+          "name": "tamtam",
+          "lat": 35.55,
+          "lon": 139.58,
+          "latStr": "35.55",
+          "lonStr": "139.58",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 3.3",
+          "legacyFormat": false,
+          "country": "JPN",
+          "fee": "N"
+        },
+        {
+          "name": "tikuzen1",
+          "lat": 33.45,
+          "lon": 130.6,
+          "latStr": "33.45",
+          "lonStr": "130.60",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 3.3",
+          "legacyFormat": false,
+          "country": "JPN",
+          "fee": "N"
+        },
+        {
+          "name": "toyota_test1",
+          "lat": 35.04,
+          "lon": 137.08,
+          "latStr": "35.04",
+          "lonStr": "137.08",
+          "carrier": 2,
+          "carrierInferred": false,
+          "format": "RTCM 3.3",
+          "legacyFormat": false,
+          "country": "JPN",
+          "fee": "N"
+        }
+      ]
     }
   },
   "networks": []
