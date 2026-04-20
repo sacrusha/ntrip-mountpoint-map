@@ -13,6 +13,7 @@ import json
 import math
 import socket
 import sys
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.error import URLError
@@ -23,98 +24,96 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT / "data"
 
 SOURCES = [
-    # access: "open"       = connect immediately, no account needed
-    #         "conditions" = free but registration, fee, or usage restriction applies
     # registration: URL shown in the map popup as a clickable "Sign up" link.
     # None = no account needed (open access).
     # See docs/networks.md for per-source detail.
     {"id": "rtk2go",      "url": "http://rtk2go.com:2101/",
-     "access": "open", "registration": None},                                  # username=any email, pass=none
+     "registration": None},                                                    # open; username=any email, pass=none
     {"id": "centipede",   "url": "http://crtk.net:2101/",                     # migrated from caster.centipede.fr 2025-03-18
-     "access": "open", "registration": None},                                  # user=centipede pass=centipede
+     "registration": None},                                                    # open; user=centipede pass=centipede
     {"id": "frednet",     "url": "http://gnsscaster.regione.fvg.it:8080/",
-     "access": "registration", "registration": "https://frednet.crs.ogs.it/"},  # free email registration
+     "registration": "https://frednet.crs.ogs.it/"},                          # free email registration
     {"id": "geortk",      "url": "http://geortk.jp:2101/",
-     "access": "open", "registration": None},                                  # no auth
+     "registration": None},                                                    # open; no auth
     # SAPOS — German federal-state RTK networks. Sourcetables publicly readable;
     # RTCM streams require per-Länder registration. Most Länder free; BY €20/yr
     # flat rate for non-agricultural use. Raw TCP (NTRIP 1.0) fallback required.
     {"id": "sapos_SH_HH", "url": "http://www.sapos.geonord.de:2101/",        # Schleswig-Holstein + Hamburg
-     "access": "registration", "registration": "https://www.sapos.de"},
+     "registration": "https://www.sapos.de"},
     {"id": "sapos_NI",    "url": "http://www.sapos-ni-ntrip.de:2101/",       # Niedersachsen (incl. Bremen)
-     "access": "registration", "registration": "https://www.sapos.de"},
+     "registration": "https://www.sapos.de"},
     {"id": "sapos_NW",    "url": "http://www.sapos-nw-ntrip.de:2101/",       # Nordrhein-Westfalen
-     "access": "registration", "registration": "https://www.sapos.de"},
+     "registration": "https://www.sapos.de"},
     {"id": "sapos_HE",    "url": "http://www.sapos-he-ntrip.de:2101/",       # Hessen
-     "access": "registration", "registration": "https://www.sapos.de"},
+     "registration": "https://www.sapos.de"},
     {"id": "sapos_RP",    "url": "http://www.sapos-ntrip.rlp.de:2101/",      # Rheinland-Pfalz; confirmed free (LVermGeo)
-     "access": "registration", "registration": "https://www.sapos.de"},
+     "registration": "https://www.sapos.de"},
     {"id": "sapos_BW",    "url": "http://www.sapos-bw-ntrip.de:2101/",       # Baden-Württemberg
-     "access": "registration", "registration": "https://www.sapos.de"},
-    {"id": "sapos_BY",    "url": "http://www.sapos-by-ntrip.de:2101/",       # Bayern: free for agriculture, €20/yr otherwise
-     "access": "conditions",   "registration": "https://www.sapos.de"},
+     "registration": "https://www.sapos.de"},
+    {"id": "sapos_BY",    "url": "http://www.sapos-by-ntrip.de:2101/",       # Bayern (€20/yr non-agri flat rate)
+     "registration": "https://www.sapos.de"},
     {"id": "sapos_SN",    "url": "http://ntrip.sachsen.de:2101/",             # Sachsen (GeoSN)
-     "access": "registration", "registration": "https://www.sapos.de"},
+     "registration": "https://www.sapos.de"},
     {"id": "sapos_SL",    "url": "http://www.sapos-sl-ntrip.de:2101/",       # Saarland
-     "access": "registration", "registration": "https://www.sapos.de"},
+     "registration": "https://www.sapos.de"},
     {"id": "sapos_BE",    "url": "http://www.sapos-be-ntrip.de:2101/",       # Berlin
-     "access": "registration", "registration": "https://www.sapos.de"},
+     "registration": "https://www.sapos.de"},
     {"id": "sapos_BB",    "url": "http://www.sapos-bb-ntrip.de:2101/",       # Brandenburg
-     "access": "registration", "registration": "https://www.sapos.de"},
+     "registration": "https://www.sapos.de"},
     {"id": "sapos_MV",    "url": "http://www.sapos-mv-ntrip.de:2101/",       # Mecklenburg-Vorpommern
-     "access": "registration", "registration": "https://www.sapos.de"},
+     "registration": "https://www.sapos.de"},
     {"id": "sapos_LSA",   "url": "http://www.sapos-lsa-ntrip.de:2101/",      # Sachsen-Anhalt
-     "access": "registration", "registration": "https://www.sapos.de"},
+     "registration": "https://www.sapos.de"},
     {"id": "sapos_TH",    "url": "http://www.sapos-th-ntrip.de:2101/",       # Thüringen
-     "access": "registration", "registration": "https://www.sapos.de"},
+     "registration": "https://www.sapos.de"},
     {"id": "ergnss",      "url": "http://ergnss-ip.ign.es:2101/",
-     "access": "registration", "registration": "https://ergnss.ign.es/gnuserportal/"},   # free, immediate; attribute IGN
+     "registration": "https://ergnss.ign.es/gnuserportal/"},                  # free, immediate; attribute IGN
     {"id": "auscors",     "url": "http://ntrip.data.gnss.ga.gov.au:2101/",
-     "access": "registration", "registration": "https://gnss.ga.gov.au/registration"},   # CC BY 4.0
+     "registration": "https://gnss.ga.gov.au/registration"},                  # CC BY 4.0
     {"id": "positionz",   "url": "http://positionz-rt.linz.govt.nz:2101/",
-     "access": "registration", "registration": "https://www.linz.govt.nz/"},             # LINZ account; CC BY 4.0 NZ
+     "registration": "https://www.linz.govt.nz/"},                            # LINZ account; CC BY 4.0 NZ
     {"id": "satref",      "url": "http://ntrip.geodetic.gov.hk:2101/",
-     "access": "registration", "registration": "https://www.geodetic.gov.hk/"},          # mountpoint VRS32G; open data
+     "registration": "https://www.geodetic.gov.hk/"},                         # mountpoint VRS32G; open data
     {"id": "inacors",     "url": "http://nrtk.big.go.id:2001/",               # NOTE: port 2001, not 2101
-     "access": "registration", "registration": "https://nrtk.big.go.id"},
+     "registration": "https://nrtk.big.go.id"},
     {"id": "trignet",     "url": "http://trignet.co.za:2101/",
-     "access": "registration", "registration": "https://www.trignet.co.za"},
+     "registration": "https://www.trignet.co.za"},
     {"id": "rbmc_ip",     "url": "http://gps-ntrip.ibge.gov.br:2101/",
-     "access": "registration", "registration": "https://gps-ntrip.ibge.gov.br"},         # gov.br signup; 5-station limit
+     "registration": "https://gps-ntrip.ibge.gov.br"},                        # gov.br signup; 5-station limit
     {"id": "ramsac",      "url": "http://ntrip.ign.gob.ar:2101/",
-     "access": "registration", "registration": "https://www.ign.gob.ar"},                # 8-hr session cap
+     "registration": "https://www.ign.gob.ar"},                               # 8-hr session cap
     {"id": "flepos",      "url": "http://flepos.vlaanderen.be:2101/",         # ntrip.flepos.be NXDOMAIN as of 2026-04
-     "access": "registration", "registration": "https://flepos.vlaanderen.be"},
+     "registration": "https://flepos.vlaanderen.be"},
     {"id": "walcors",     "url": "http://gnss.wallonie.be:2101/",
-     "access": "registration", "registration": "https://gnss.wallonie.be"},
+     "registration": "https://gnss.wallonie.be"},
     {"id": "spslux",      "url": "http://stream.spslux.lu:5005/",             # NOTE: port 5005, not 2101
-     "access": "registration", "registration": "https://www.spslux.lu/SBC/Account/Register"},
+     "registration": "https://www.spslux.lu/SBC/Account/Register"},
     {"id": "asg_eupos",   "url": "http://system.asgeupos.pl:2101/",
-     "access": "registration", "registration": "https://system.asgeupos.pl"},            # admin approval 1–2 working days
+     "registration": "https://system.asgeupos.pl"},                           # admin approval 1–2 working days
     {"id": "cropos",      "url": "http://gnss.cropos.hr:2101/",
-     "access": "registration", "registration": "https://www.cropos.hr"},
+     "registration": "https://www.cropos.hr"},
     {"id": "estpos",      "url": "http://gnss-rtk.maaamet.ee:8083/",          # NOTE: port 8083; free until Aug 2026
-     "access": "conditions",   "registration": "https://geoportaal.maaamet.ee"},
+     "registration": "https://geoportaal.maaamet.ee"},
     {"id": "latpos",      "url": "http://latpos.lgia.gov.lv:5001/",           # NOTE: port 5001, not 2101
-     "access": "registration", "registration": "https://latpos.lgia.gov.lv/SBC"},
+     "registration": "https://latpos.lgia.gov.lv/SBC"},
     {"id": "igac",        "url": "http://sbc.igac.gov.co:2101/",
-     "access": "registration", "registration": "https://redgeodesica-sbc.igac.gov.co/sbc"},
+     "registration": "https://redgeodesica-sbc.igac.gov.co/sbc"},
     {"id": "earthscope",  "url": "http://ntrip.earthscope.org:2101/",
-     "access": "conditions",   "registration": "https://www.earthscope.org/data/gnss-realtime/"},  # non-commercial NULA; annual renewal
+     "registration": "https://www.earthscope.org/data/gnss-realtime/"},       # non-commercial NULA; annual renewal
     {"id": "mirai",       "url": "http://ntrip.go.gnss.go.jp:2101/",
-     "access": "registration", "registration": "https://go.gnss.go.jp"},                 # + separate NtripCaster auth form
+     "registration": "https://go.gnss.go.jp"},                                # + separate NtripCaster auth form
     {"id": "cors_korea",  "url": "http://www.gnssdata.or.kr:2101/",
-     "access": "conditions",   "registration": "https://www.gnssdata.or.kr"},            # national ID may be required
+     "registration": "https://www.gnssdata.or.kr"},                           # Korean portal; national ID may be required
     {"id": "icecors",     "url": "http://178.19.53.126:2101/",
-     "access": "registration", "registration": "https://www.natt.is/is/landmaelingar/jardstodvakerfi"},
+     "registration": "https://www.natt.is/is/landmaelingar/jardstodvakerfi"},
     {"id": "ksa_cors",    "url": "http://ksacors.geoportal.sa:2101/",
-     "access": "conditions",   "registration": "https://ksacors.geoportal.sa"},          # old gcs.gov.sa domain is NXDOMAIN
+     "registration": "https://ksacors.geoportal.sa"},                         # old gcs.gov.sa domain is NXDOMAIN
     # GEODNET (HYFIX.AI): paid; $40/month. Testing whether sourcetable is publicly
     # readable without auth. If stations returned, display as paid-service layer.
-    {"id": "geodnet_usa", "url": "http://rtk.geodnet.com:2101/",    "access": "conditions", "registration": None},
-    {"id": "geodnet_eu",  "url": "http://eu.geodnet.com:2101/",     "access": "conditions", "registration": None},
-    {"id": "geodnet_aus", "url": "http://aus.geodnet.com:2101/",    "access": "conditions", "registration": None},
-    {"id": "geodnet_sa",  "url": "http://sa.geodnet.com:2101/",     "access": "conditions", "registration": None},
+    {"id": "geodnet_usa", "url": "http://rtk.geodnet.com:2101/",    "registration": None},
+    {"id": "geodnet_eu",  "url": "http://eu.geodnet.com:2101/",     "registration": None},
+    {"id": "geodnet_aus", "url": "http://aus.geodnet.com:2101/",    "registration": None},
+    {"id": "geodnet_sa",  "url": "http://sa.geodnet.com:2101/",     "registration": None},
 ]
 # RTKdata.online removed 2026-04-20: server unreachable since launch (RemoteDisconnected);
 # 0 stations ever collected. Operated by Kansi Solutions GmbH (same parent as paid
@@ -184,15 +183,12 @@ def parse_sourcetable(text: str) -> tuple[list[dict], dict]:
         country = fields[8].strip() if len(fields) > 8 else ""
         lat_str = fields[9].strip()
         lon_str = fields[10].strip()
-        fee = fields[16].strip().upper() if len(fields) > 16 else ""
         # rtk2go leaves the carrier field blank for most entries even though
         # they broadcast RTCM 3.x carrier-phase observations. Trust the
         # format string as a fallback: RTCM 3.x MSM streams are cm-capable.
-        carrier_inferred = False
         if carrier_raw == "":
             if fmt.startswith("RTCM 3"):
                 carrier = 2
-                carrier_inferred = True
             else:
                 carrier = -1
         else:
@@ -225,11 +221,9 @@ def parse_sourcetable(text: str) -> tuple[list[dict], dict]:
             "latStr": lat_str,
             "lonStr": lon_str,
             "carrier": carrier,
-            "carrierInferred": carrier_inferred,
             "format": fmt,
             "legacyFormat": fmt.startswith("RTCM 2"),
             "country": country,
-            "fee": fee or "N",
         })
     stations.sort(key=lambda s: (s["name"], s["latStr"], s["lonStr"]))
     stats = {"kept": len(stations), "dropped_dgnss": dropped_dgnss, "dropped_bad": dropped_bad}
@@ -267,76 +261,70 @@ def station_fingerprint(source: dict) -> list[list]:
     ]
 
 
+def fetch_source(src: dict) -> tuple[str, dict, bool]:
+    """Fetch and parse a single NTRIP source. Returns (sid, result, was_fresh)."""
+    sid, url = src["id"], src["url"]
+    registration = src.get("registration")
+    raw_path = DATA_DIR / f"{sid}.sourcetable"
+    try:
+        text = fetch(url)
+        stations, stats = parse_sourcetable(text)
+        stations, dropped_vrs = filter_vrs(stations)
+        vrs_note = f", {dropped_vrs} VRS" if dropped_vrs else ""
+        print(f"[{sid}] fetched {len(stations)} stations "
+              f"(dropped {stats['dropped_dgnss']} DGNSS, {stats['dropped_bad']} invalid{vrs_note})")
+        return sid, {
+            "url": url,
+            "registration": registration,
+            "status": "ok",
+            "fetched_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+            "raw_path": raw_path,
+            "text": text,
+            "stations": stations,
+            "parse_stats": stats,
+        }, True
+    except Exception as e:
+        print(f"[{sid}] fetch failed: {e!r}", file=sys.stderr)
+        if raw_path.exists():
+            text = raw_path.read_text()
+            stations, stats = parse_sourcetable(text)
+            stations, dropped_vrs = filter_vrs(stations)
+            vrs_note = f", {dropped_vrs} VRS" if dropped_vrs else ""
+            print(f"[{sid}] reusing cached sourcetable ({len(stations)} stations{vrs_note})")
+            return sid, {
+                "url": url,
+                "registration": registration,
+                "status": f"stale (fetch failed: {e!r})",
+                "fetched_at": None,
+                "raw_path": raw_path,
+                "text": text,
+                "stations": stations,
+                "parse_stats": stats,
+            }, False
+        return sid, {
+            "url": url,
+            "registration": registration,
+            "status": f"error: {e!r}",
+            "fetched_at": None,
+            "raw_path": raw_path,
+            "text": None,
+            "stations": [],
+        }, False
+
+
 def main() -> int:
     DATA_DIR.mkdir(exist_ok=True)
-
-    out_path = DATA_DIR / "stations.json"
-    existing = load_existing(out_path)
-    existing_sources: dict = (existing or {}).get("sources", {})
 
     fetched: dict[str, dict] = {}
     any_fresh = False
 
-    for src in SOURCES:
-        sid, url = src["id"], src["url"]
-        registration = src.get("registration")
-        access = src.get("access", "registration")
-        raw_path = DATA_DIR / f"{sid}.sourcetable"
-        prev_last_ok = existing_sources.get(sid, {}).get("last_ok")
-        try:
-            text = fetch(url)
-            any_fresh = True
-            now_iso = datetime.now(timezone.utc).isoformat(timespec="seconds")
-            fetched[sid] = {
-                "url": url,
-                "registration": registration,
-                "access": access,
-                "status": "ok",
-                "fetched_at": now_iso,
-                "last_ok": now_iso,
-                "raw_path": raw_path,
-                "text": text,
-                "stations": None,
-            }
-            stations, stats = parse_sourcetable(text)
-            stations, dropped_vrs = filter_vrs(stations)
-            fetched[sid]["stations"] = stations
-            fetched[sid]["parse_stats"] = stats
-            vrs_note = f", {dropped_vrs} VRS" if dropped_vrs else ""
-            print(f"[{sid}] fetched {len(stations)} stations "
-                  f"(dropped {stats['dropped_dgnss']} DGNSS, {stats['dropped_bad']} invalid{vrs_note})")
-        except Exception as e:
-            print(f"[{sid}] fetch failed: {e!r}", file=sys.stderr)
-            if raw_path.exists():
-                text = raw_path.read_text()
-                stations, stats = parse_sourcetable(text)
-                stations, dropped_vrs = filter_vrs(stations)
-                fetched[sid] = {
-                    "url": url,
-                    "registration": registration,
-                    "access": access,
-                    "status": f"stale (fetch failed: {e!r})",
-                    "fetched_at": None,
-                    "last_ok": prev_last_ok,
-                    "raw_path": raw_path,
-                    "text": text,
-                    "stations": stations,
-                    "parse_stats": stats,
-                }
-                vrs_note = f", {dropped_vrs} VRS" if dropped_vrs else ""
-                print(f"[{sid}] reusing cached sourcetable ({len(stations)} stations{vrs_note})")
-            else:
-                fetched[sid] = {
-                    "url": url,
-                    "registration": registration,
-                    "access": access,
-                    "status": f"error: {e!r}",
-                    "fetched_at": None,
-                    "last_ok": prev_last_ok,
-                    "raw_path": raw_path,
-                    "text": None,
-                    "stations": [],
-                }
+    with ThreadPoolExecutor(max_workers=8) as executor:
+        futures = {executor.submit(fetch_source, src): src for src in SOURCES}
+        for future in as_completed(futures):
+            sid, result, was_fresh = future.result()
+            fetched[sid] = result
+            if was_fresh:
+                any_fresh = True
 
     if not any_fresh:
         print("All sources failed and no cached data was refreshed; exiting without changes.")
@@ -347,15 +335,15 @@ def main() -> int:
         payload_sources[sid] = {
             "url": data["url"],
             "registration": data.get("registration"),
-            "access": data.get("access", "registration"),
             "status": data["status"],
             "fetched_at": data["fetched_at"],
-            "last_ok": data.get("last_ok"),
             "stations": data["stations"],
         }
 
     # Compare against previous JSON, ignoring the "updated" wall clock so an
     # unchanged station list produces no diff (and therefore no commit).
+    out_path = DATA_DIR / "stations.json"
+    existing = load_existing(out_path)
     if existing is not None:
         unchanged = all(
             station_fingerprint(existing.get("sources", {}).get(sid, {}))
