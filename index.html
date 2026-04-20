@@ -112,6 +112,12 @@
     geortk:    {openNote:'No authentication required'},
     'sapos_':  {openNote:'Stream access requires free registration — see sapos.de for your federal state'},
   };
+  // Groups collapse multiple source IDs into one toggle row.
+  // match(sid) → true means the source belongs to this group.
+  var SOURCE_GROUPS=[
+    {label:'SAPOS (Germany)', color:'#2d6e6e',
+     match:function(sid){ return sid.indexOf('sapos_')===0; }},
+  ];
   var MIXED_COLOR='#555', UNKNOWN_SOURCE_COLOR='#888';
 
   function sourceLabel(sid){
@@ -609,14 +615,27 @@
       d.id='toggles';
       L.DomEvent.disableClickPropagation(d);
       L.DomEvent.disableScrollPropagation(d);
-      var rows=Object.keys(sourceCounts).map(function(sid){
-        var col=sourceColor(sid);
-        return '<label><input type="checkbox" data-k="'+sid+'" checked> '
-          +'<span style="display:inline-block;width:9px;height:9px;'
-            +'background:'+col+';border-radius:50%;vertical-align:middle;'
-            +'margin-right:4px"></span>'
-          +esc(sourceLabel(sid))
-          +' <span style="color:#888">('+sourceCounts[sid]+')</span></label>';
+      // Collapse grouped sources (e.g. all sapos_*) into one row.
+      var claimed={};
+      var entries=[];
+      SOURCE_GROUPS.forEach(function(g){
+        var members=Object.keys(sourceCounts).filter(g.match);
+        if(!members.length) return;
+        members.forEach(function(s){ claimed[s]=true; });
+        var n=members.reduce(function(a,s){ return a+(sourceCounts[s]||0); },0);
+        entries.push({members:members,label:g.label,color:g.color,count:n});
+      });
+      Object.keys(sourceCounts).forEach(function(sid){
+        if(claimed[sid]) return;
+        entries.push({members:[sid],label:sourceLabel(sid),
+          color:sourceColor(sid),count:sourceCounts[sid]});
+      });
+      var rows=entries.map(function(e){
+        var mj=esc(JSON.stringify(e.members));
+        return '<label><input type="checkbox" data-m="'+mj+'" checked>'
+          +'<span style="display:inline-block;width:9px;height:9px;background:'+e.color
+            +';border-radius:50%;vertical-align:middle;margin-right:4px"></span>'
+          +esc(e.label)+' <span style="color:#888">('+e.count+')</span></label>';
       }).join('');
       d.innerHTML='<h4>Sources</h4>'+rows
         +'<details><summary>Access</summary>'
@@ -625,7 +644,13 @@
           +'<label><input type="checkbox" data-k="category" checked> Free for some users</label>'
           +'<label><input type="checkbox" data-k="restricted" checked> Restricted</label>'
         +'</details>';
-      d.querySelectorAll('input[type=checkbox]').forEach(function(cb){
+      d.querySelectorAll('input[data-m]').forEach(function(cb){
+        cb.addEventListener('change',function(){
+          JSON.parse(cb.dataset.m).forEach(function(sid){ state[sid]=cb.checked; });
+          onChange(pred());
+        });
+      });
+      d.querySelectorAll('input[data-k]').forEach(function(cb){
         cb.addEventListener('change',function(){
           state[cb.dataset.k]=cb.checked;
           onChange(pred());
