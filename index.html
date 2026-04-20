@@ -707,6 +707,7 @@
   // matching the hidden-station threshold used for regular pins.
   function buildVrsMarkers(renderer,staleDays){
     var group=L.layerGroup();
+    var bySid={};
     VRS_NETWORKS.forEach(function(n){
       if(staleDays){
         if(!(n.sid in staleDays)) return;      // source dropped from pipeline
@@ -731,13 +732,15 @@
         +(auth.openNote?'<div class="anote">'+esc(auth.openNote)+'</div>':'')
         +(regUrl?'<div class="anote"><a href="'+esc(regUrl)+'" target="_blank" rel="noopener noreferrer">Sign up / details \u2197</a></div>':'')
         +'</div>';
-      L.circle([n.lat,n.lon],{
+      var circle=L.circle([n.lat,n.lon],{
         radius:25000,color:VRS_COLOR,weight:2,
         fillColor:VRS_COLOR,fillOpacity:0.25,
         renderer:renderer,pane:'vrsPane'
-      }).bindTooltip(label+' (VRS)',{sticky:false}).bindPopup(popup).addTo(group);
+      }).bindTooltip(label+' (VRS)',{sticky:false}).bindPopup(popup);
+      circle.addTo(group);
+      bySid[n.sid]=circle;
     });
-    return group;
+    return {group:group,bySid:bySid};
   }
 
   // Banner: show until user dismisses; version key lets future content
@@ -764,10 +767,20 @@
   // Toggle panel: generates a source checkbox per entry in `sourceCounts`
   // ({ sourceId: stationCount }). Station predicate passes a station iff
   // it belongs to at least one enabled source AND its access tier is enabled.
+  // vrsLayerBySid: {sid: L.circle} — VRS circles are shown/hidden via setStyle
+  // whenever source or tier state changes (applyVrs), keeping them in sync with pins.
   // Access tiers: "open" = Free, "registration" = Free (registration), "conditions" = Free*
-  function buildTogglePanel(sourceCounts,onChange){
+  function buildTogglePanel(sourceCounts,vrsLayerBySid,onChange){
     var state={tier_open:true,tier_registration:true,tier_conditions:true};
     Object.keys(sourceCounts).forEach(function(sid){ state[sid]=true; });
+    Object.keys(vrsLayerBySid).forEach(function(sid){ if(!(sid in state)) state[sid]=true; });
+    function applyVrs(){
+      Object.keys(vrsLayerBySid).forEach(function(sid){
+        var tier='tier_'+(SOURCE_ACCESS[sid]||'registration');
+        var show=!!(state[sid]&&state[tier]);
+        vrsLayerBySid[sid].setStyle({opacity:show?1:0,fillOpacity:show?0.25:0});
+      });
+    }
     function pred(){
       return function(s){
         var ids=stationSourceIds(s);
@@ -786,7 +799,9 @@
       d.id='toggles';
       L.DomEvent.disableClickPropagation(d);
       L.DomEvent.disableScrollPropagation(d);
-      // Collapse grouped sources (e.g. all sapos_*) into one row.
+      // Collapse grouped sources (e.g. all sapos_*) into one row. Members include
+      // all matching sids from sourceCounts so VRS-only states in the group are
+      // controlled by the single group checkbox.
       var claimed={};
       var entries=[];
       SOURCE_GROUPS.forEach(function(g){
@@ -795,20 +810,30 @@
         members.forEach(function(s){ claimed[s]=true; });
         var n=members.reduce(function(a,s){ return a+(sourceCounts[s]||0); },0);
         if(!n) return;
-        entries.push({members:members,label:g.label,color:g.color,count:n});
+        entries.push({members:members,label:g.label,color:g.color,count:n,vrsOnly:false});
       });
       Object.keys(sourceCounts).forEach(function(sid){
         if(claimed[sid]) return;
-        if(!sourceCounts[sid]) return;
-        entries.push({members:[sid],label:sourceLabel(sid),
-          color:sourceColor(sid),count:sourceCounts[sid]});
+        if(sourceCounts[sid]){
+          // Source has physical stations — solid colour swatch.
+          entries.push({members:[sid],label:sourceLabel(sid),
+            color:sourceColor(sid),count:sourceCounts[sid],vrsOnly:false});
+        } else if(vrsLayerBySid[sid]){
+          // VRS-only source: 0 physical pins but a visible VRS circle on the map.
+          entries.push({members:[sid],label:sourceLabel(sid)+' \u2009(VRS)',
+            color:null,count:0,vrsOnly:true});
+        }
       });
       var rows=entries.map(function(e){
         var mj=esc(JSON.stringify(e.members));
+        var swatch=e.vrsOnly
+          ? '<span style="display:inline-block;width:9px;height:9px;border:2px solid '+VRS_COLOR
+              +';border-radius:50%;vertical-align:middle;margin-right:4px"></span>'
+          : '<span style="display:inline-block;width:9px;height:9px;background:'+e.color
+              +';border-radius:50%;vertical-align:middle;margin-right:4px"></span>';
+        var countStr=e.vrsOnly?'(VRS)':'('+e.count+')';
         return '<label><input type="checkbox" data-m="'+mj+'" checked>'
-          +'<span style="display:inline-block;width:9px;height:9px;background:'+e.color
-            +';border-radius:50%;vertical-align:middle;margin-right:4px"></span>'
-          +esc(e.label)+' <span style="color:#888">('+e.count+')</span></label>';
+          +swatch+esc(e.label)+' <span style="color:#888">'+countStr+'</span></label>';
       }).join('');
       d.innerHTML='<h4>Sources</h4>'+rows
         +'<details><summary>Access</summary>'
@@ -820,12 +845,14 @@
       d.querySelectorAll('input[data-m]').forEach(function(cb){
         cb.addEventListener('change',function(){
           JSON.parse(cb.dataset.m).forEach(function(sid){ state[sid]=cb.checked; });
+          applyVrs();
           onChange(pred());
         });
       });
       d.querySelectorAll('input[data-k]').forEach(function(cb){
         cb.addEventListener('change',function(){
           state[cb.dataset.k]=cb.checked;
+          applyVrs();
           onChange(pred());
         });
       });
@@ -848,7 +875,7 @@
   }
 
   var stationStaleDays;
-  window.addEventListener('load',function(){
+  window.addEventListener('load',async function(){
     setupBanner();
     var map=L.map('map',{preferCanvas:true}).setView([47.0,8.0],8);
 
@@ -882,172 +909,175 @@
     };
     leg.addTo(map);
 
-    (async function(){
-      setStatus('Loading station data\u2026');
-      var t0=performance.now();
-      var data=null;
-      try{
-        var r=await fetchWithTimeout('./data/stations.json?ts='+Date.now(),10000,{cache:'no-cache'});
-        if(r.ok) data=await r.json();
-      }catch(e){}
-      var fetchMs=Math.round(performance.now()-t0);
-      setServers(data);
+    setStatus('Loading station data\u2026');
+    var t0=performance.now();
+    var data=null;
+    try{
+      var r=await fetchWithTimeout('./data/stations.json?ts='+Date.now(),10000,{cache:'no-cache'});
+      if(r.ok) data=await r.json();
+    }catch(e){}
+    var fetchMs=Math.round(performance.now()-t0);
+    setServers(data);
 
-      var rawSources=(data&&data.sources)||{};
-      var now=Date.now();
-      var SOURCE_STALE_DAYS={};
-      Object.keys(rawSources).forEach(function(sid){
-        if(rawSources[sid].registration) SOURCE_REG[sid]=rawSources[sid].registration;
-        SOURCE_ACCESS[sid]=rawSources[sid].access||'registration';
-        var lo=rawSources[sid].last_ok;
-        // Treat missing last_ok as fresh — field absent in older JSON snapshots.
-        SOURCE_STALE_DAYS[sid]=lo?(now-new Date(lo).getTime())/86400000:0;
+    var rawSources=(data&&data.sources)||{};
+    var now=Date.now();
+    var SOURCE_STALE_DAYS={};
+    Object.keys(rawSources).forEach(function(sid){
+      if(rawSources[sid].registration) SOURCE_REG[sid]=rawSources[sid].registration;
+      SOURCE_ACCESS[sid]=rawSources[sid].access||'registration';
+      var lo=rawSources[sid].last_ok;
+      // Treat missing last_ok as fresh — field absent in older JSON snapshots.
+      SOURCE_STALE_DAYS[sid]=lo?(now-new Date(lo).getTime())/86400000:0;
+    });
+    stationStaleDays=function(s){
+      var min=Infinity;
+      stationSourceIds(s).forEach(function(sid){
+        var d=SOURCE_STALE_DAYS[sid]||0;
+        if(d<min) min=d;
       });
-      stationStaleDays=function(s){
-        var min=Infinity;
-        stationSourceIds(s).forEach(function(sid){
-          var d=SOURCE_STALE_DAYS[sid]||0;
-          if(d<min) min=d;
-        });
-        return min;
-      };
-      var sourceIds=Object.keys(rawSources);
-      var bySource={}, sourceCounts={};
-      sourceIds.forEach(function(sid){
-        bySource[sid]=normalizeStations(rawSources[sid].stations);
-        sourceCounts[sid]=bySource[sid].length;
-      });
-      var updated=(data&&data.updated)||null;
-      var networks=(data&&data.networks)||[];
-      var mergeSummary=sourceIds.map(function(sid){
-        return sourceCounts[sid]+' '+sourceLabel(sid);
-      }).join(' + ')||'0';
-      setStatus('Merging '+mergeSummary+'\u2026');
-      var allStations=mergeStations(bySource);
+      return min;
+    };
+    var sourceIds=Object.keys(rawSources);
+    var bySource={}, sourceCounts={};
+    sourceIds.forEach(function(sid){
+      bySource[sid]=normalizeStations(rawSources[sid].stations);
+      sourceCounts[sid]=bySource[sid].length;
+    });
+    var updated=(data&&data.updated)||null;
+    var networks=(data&&data.networks)||[];
+    var mergeSummary=sourceIds.map(function(sid){
+      return sourceCounts[sid]+' '+sourceLabel(sid);
+    }).join(' + ')||'0';
+    setStatus('Merging '+mergeSummary+'\u2026');
+    var allStations=mergeStations(bySource);
 
-      setStatus('Locating viewer\u2026');
-      var vp=await getViewerPos();
-      if(vp) map.setView([vp.lat,vp.lon],map.getZoom());
-      var refC=vp||{lat:map.getCenter().lat,lon:map.getCenter().lng};
-      var _cosRef=Math.cos(refC.lat*Math.PI/180);
-      allStations.sort(function(a,b){
-        var dlaA=a.lat-refC.lat, dloA=(a.lon-refC.lon)*_cosRef;
-        var dlaB=b.lat-refC.lat, dloB=(b.lon-refC.lon)*_cosRef;
-        return (dlaA*dlaA+dloA*dloA)-(dlaB*dlaB+dloB*dloB);
-      });
+    setStatus('Locating viewer\u2026');
+    var vp=await getViewerPos();
+    if(vp) map.setView([vp.lat,vp.lon],map.getZoom());
+    var refC=vp||{lat:map.getCenter().lat,lon:map.getCenter().lng};
+    var _cosRef=Math.cos(refC.lat*Math.PI/180);
+    allStations.sort(function(a,b){
+      var dlaA=a.lat-refC.lat, dloA=(a.lon-refC.lon)*_cosRef;
+      var dlaB=b.lat-refC.lat, dloB=(b.lon-refC.lon)*_cosRef;
+      return (dlaA*dlaA+dloA*dloA)-(dlaB*dlaB+dloB*dloB);
+    });
 
-      // Network (NRTK) layer — empty for current data; ready for future.
-      var netLayer=buildNetworkLayers(networks);
-      netLayer.addTo(map);
+    // Network (NRTK) layer — empty for current data; ready for future.
+    var netLayer=buildNetworkLayers(networks);
+    netLayer.addTo(map);
 
-      // VRS network layer — always visible, not zoom-band gated.
-      map.createPane('vrsPane');
-      map.getPane('vrsPane').style.zIndex=401; // above overlayPane (400)
-      var vrsRenderer=L.canvas({pane:'vrsPane',padding:0.5});
-      buildVrsMarkers(vrsRenderer,SOURCE_STALE_DAYS).addTo(map);
+    // VRS network layer — always visible, not zoom-band gated.
+    map.createPane('vrsPane');
+    map.getPane('vrsPane').style.zIndex=401; // above overlayPane (400)
+    var vrsRenderer=L.canvas({pane:'vrsPane',padding:0.5});
+    var vrsResult=buildVrsMarkers(vrsRenderer,SOURCE_STALE_DAYS);
+    vrsResult.group.addTo(map);
+    var vrsLayerBySid=vrsResult.bySid;
 
-      // Stations fresh enough for coverage raster (< 3 days stale).
-      // Grey-dot stations (3–7 days) are shown on map but excluded from coverage
-      // so the raster reflects currently-live infrastructure only.
-      // Stations stale >= 7 days are hidden entirely.
-      var coverageStations=allStations.filter(function(s){ return stationStaleDays(s)<STALE_GREY_DAYS; });
-      var displayStations=allStations.filter(function(s){ return stationStaleDays(s)<STALE_HIDE_DAYS; });
+    // Stations fresh enough for coverage raster (< 3 days stale).
+    // Grey-dot stations (3–7 days) are shown on map but excluded from coverage
+    // so the raster reflects currently-live infrastructure only.
+    // Stations stale >= 7 days are hidden entirely.
+    var coverageStations=allStations.filter(function(s){ return stationStaleDays(s)<STALE_GREY_DAYS; });
+    var displayStations=allStations.filter(function(s){ return stationStaleDays(s)<STALE_HIDE_DAYS; });
 
-      // Coverage raster layer (fresh stations only).
-      var coverage=new CoverageLayer(coverageStations);
-      coverage.addTo(map);
+    // Coverage raster layer (fresh stations only).
+    var coverage=new CoverageLayer(coverageStations);
+    coverage.addTo(map);
 
-      // Dedicated canvas renderer for dots, isolated in its own pane so zoom
-      // transitions can toggle visibility via CSS instead of removing 5600
-      // paths from the shared canvas renderer on every zoom boundary crossing.
-      map.createPane('dotsPane');
-      map.getPane('dotsPane').style.zIndex=402; // above overlayPane (400) and vrsPane (401)
-      var dotsRenderer=L.canvas({pane:'dotsPane',padding:0.5});
+    // Dedicated canvas renderer for dots, isolated in its own pane so zoom
+    // transitions can toggle visibility via CSS instead of removing 5600
+    // paths from the shared canvas renderer on every zoom boundary crossing.
+    map.createPane('dotsPane');
+    map.getPane('dotsPane').style.zIndex=402; // above overlayPane (400) and vrsPane (401)
+    var dotsRenderer=L.canvas({pane:'dotsPane',padding:0.5});
 
-      // Zoom-aware station layer groups.
-      var filter=function(){ return true; };
-      var visible=allStations;
-      var stationIndex=null;
-      var layers={detail:L.layerGroup(),dots:L.layerGroup()};
+    // Zoom-aware station layer groups.
+    var filter=function(){ return true; };
+    var visible=allStations;
+    var stationIndex=null;
+    var layers={detail:L.layerGroup(),dots:L.layerGroup()};
+    var _rebuildGen=0; // generation counter — stale rAF callbacks are discarded
 
-      function applyZoom(){
-        var z=map.getZoom();
-        var showLabels=z>=ZOOM_LABELS;
-        // CSS-toggle the dots pane rather than removing/re-adding 5600 paths
-        // from the canvas renderer, which corrupts its path list over time.
-        // visibility:hidden (not display:none) keeps the pane in the layout/render
-        // pipeline so canvas coordinate transforms stay in sync during zoom animations.
-        map.getPane('dotsPane').style.visibility=
-          (!showLabels&&z>=ZOOM_DOTS)?'visible':'hidden';
-        if(showLabels){
-          refreshDetailLayer(map,visible,layers.detail,stationIndex,z>=ZOOM_DETAIL);
-          if(!map.hasLayer(layers.detail)) layers.detail.addTo(map);
-        }else{
-          if(map.hasLayer(layers.detail)) map.removeLayer(layers.detail);
-          layers.detail.clearLayers();
-        }
-      }
-
-      // At label zoom or above, refresh after panning settles (debounced to
-      // avoid redundant DOM rebuilds mid-pan on slower devices). Read zoom
-      // inside the timeout so a zoom change before it fires uses the current
-      // level, not the one captured at moveend time.
-      var _detailTimer=null;
-      map.on('moveend',function(){
-        if(map.getZoom()>=ZOOM_LABELS){
-          clearTimeout(_detailTimer);
-          _detailTimer=setTimeout(function(){
-            var z=map.getZoom();
-            if(z>=ZOOM_LABELS)
-              refreshDetailLayer(map,visible,layers.detail,stationIndex,z>=ZOOM_DETAIL);
-          },250);
-        }
-      });
-
-      function rebuildStationLayers(){
+    function applyZoom(){
+      var z=map.getZoom();
+      var showLabels=z>=ZOOM_LABELS;
+      // CSS-toggle the dots pane rather than removing/re-adding 5600 paths
+      // from the canvas renderer, which corrupts its path list over time.
+      // visibility:hidden (not display:none) keeps the pane in the layout/render
+      // pipeline so canvas coordinate transforms stay in sync during zoom animations.
+      map.getPane('dotsPane').style.visibility=
+        (!showLabels&&z>=ZOOM_DOTS)?'visible':'hidden';
+      if(showLabels){
+        refreshDetailLayer(map,visible,layers.detail,stationIndex,z>=ZOOM_DETAIL);
+        if(!map.hasLayer(layers.detail)) layers.detail.addTo(map);
+      }else{
         if(map.hasLayer(layers.detail)) map.removeLayer(layers.detail);
-        var prevDots=layers.dots;
-        visible=displayStations.filter(filter);
-        stationIndex=buildStationIndex(visible);
-        setStatus('Rendering '+visible.length+' stations\u2026');
-        buildStationLayers(visible,map,dotsRenderer,function(built){
-          // Remove old dots here (not at the top of rebuildStationLayers) so
-          // the path-list churn is bounded to filter-toggle rebuilds, which
-          // are infrequent, not to every zoom transition.
-          if(map.hasLayer(prevDots)) map.removeLayer(prevDots);
-          layers=built;
-          layers.dots.addTo(map); // added once; zoom transitions CSS-toggle the pane
-          // Coverage raster must only include fresh stations (<3d stale) even
-          // after filter changes — stale (3–7d) stations stay grey on the dots
-          // layer but must not contribute to the green/amber distance field.
-          var coverageVisible=visible.filter(function(s){ return stationStaleDays(s)<STALE_GREY_DAYS; });
-          coverage.setStations(coverageVisible,null);
-          applyZoom();
-          finishLoad();
-        });
+        layers.detail.clearLayers();
       }
+    }
 
-      var togglePanel=buildTogglePanel(sourceCounts,
-        function(pred){ filter=pred; rebuildStationLayers(); });
-      togglePanel.control.addTo(map);
-
-      map.on('zoomend',applyZoom);
-
-      function finishLoad(){
-        var li=document.getElementById('leg-info');
-        var updatedLabel=updated
-          ? new Date(updated).toISOString().replace('T',' ').slice(0,16)+' UTC'
-          : 'never';
-        if(li) li.innerHTML='updated: '+updatedLabel
-          +'<br><span style="color:#bbb">load: '+fetchMs+' ms</span>';
-        var summary=sourceIds.map(function(sid){
-          return sourceCounts[sid]+' '+sourceLabel(sid);
-        }).join(', ');
-        setStatus('\u2713 '+visible.length+' stations ('+summary+')',true);
+    // At label zoom or above, refresh after panning settles (debounced to
+    // avoid redundant DOM rebuilds mid-pan on slower devices). Read zoom
+    // inside the timeout so a zoom change before it fires uses the current
+    // level, not the one captured at moveend time.
+    var _detailTimer=null;
+    map.on('moveend',function(){
+      if(map.getZoom()>=ZOOM_LABELS){
+        clearTimeout(_detailTimer);
+        _detailTimer=setTimeout(function(){
+          var z=map.getZoom();
+          if(z>=ZOOM_LABELS)
+            refreshDetailLayer(map,visible,layers.detail,stationIndex,z>=ZOOM_DETAIL);
+        },250);
       }
+    });
 
-      rebuildStationLayers();
-    })();
+    function rebuildStationLayers(){
+      var gen=++_rebuildGen;
+      if(map.hasLayer(layers.detail)) map.removeLayer(layers.detail);
+      var prevDots=layers.dots;
+      visible=displayStations.filter(filter);
+      stationIndex=buildStationIndex(visible);
+      setStatus('Rendering '+visible.length+' stations\u2026');
+      buildStationLayers(visible,map,dotsRenderer,function(built){
+        if(gen!==_rebuildGen) return; // stale — newer rebuild in flight, discard
+        // Remove old dots here (not at the top of rebuildStationLayers) so
+        // the path-list churn is bounded to filter-toggle rebuilds, which
+        // are infrequent, not to every zoom transition.
+        if(map.hasLayer(prevDots)) map.removeLayer(prevDots);
+        layers=built;
+        layers.dots.addTo(map); // added once; zoom transitions CSS-toggle the pane
+        // Coverage raster must only include fresh stations (<3d stale) even
+        // after filter changes — stale (3–7d) stations stay grey on the dots
+        // layer but must not contribute to the green/amber distance field.
+        var coverageVisible=visible.filter(function(s){ return stationStaleDays(s)<STALE_GREY_DAYS; });
+        coverage.setStations(coverageVisible,null);
+        applyZoom();
+        finishLoad();
+      });
+    }
+
+    var togglePanel=buildTogglePanel(sourceCounts,vrsLayerBySid,
+      function(pred){ filter=pred; rebuildStationLayers(); });
+    togglePanel.control.addTo(map);
+
+    map.on('zoomend',applyZoom);
+
+    function finishLoad(){
+      var li=document.getElementById('leg-info');
+      var updatedLabel=updated
+        ? new Date(updated).toISOString().replace('T',' ').slice(0,16)+' UTC'
+        : 'never';
+      if(li) li.innerHTML='updated: '+updatedLabel
+        +'<br><span style="color:#bbb">load: '+fetchMs+' ms</span>';
+      var summary=sourceIds.map(function(sid){
+        return sourceCounts[sid]+' '+sourceLabel(sid);
+      }).join(', ');
+      setStatus('\u2713 '+visible.length+' stations ('+summary+')',true);
+    }
+
+    rebuildStationLayers();
   });
 })();
 </script>
