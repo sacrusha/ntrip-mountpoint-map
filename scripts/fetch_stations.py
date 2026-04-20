@@ -250,6 +250,12 @@ def parse_sourcetable(text: str) -> tuple[list[dict], dict]:
         except ValueError:
             dropped_bad += 1
             continue
+        # Normalize 0-360 longitude to ±180 (some casters, e.g. ERGNSS, report
+        # western longitudes as e.g. 353.65 instead of -6.35).
+        if lon > 180:
+            lon -= 360
+        elif lon < -180:
+            lon += 360
         if lat == 0 and lon == 0:
             dropped_bad += 1
             continue
@@ -298,7 +304,7 @@ def load_existing(path: Path) -> dict | None:
 
 def station_fingerprint(source: dict) -> list[list]:
     return [
-        [s["name"], s["latStr"], s["lonStr"], s.get("carrier"), s.get("format", "")]
+        [s["name"], s["lat"], s["latStr"], s["lon"], s["lonStr"], s.get("carrier"), s.get("format", "")]
         for s in source.get("stations", [])
     ]
 
