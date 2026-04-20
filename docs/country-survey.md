@@ -406,7 +406,9 @@ _As of 2026-04-20. "In pipeline" = present in `SOURCES` in `scripts/fetch_statio
 | **Candidate — registration required** | ASG-EUPOS (PL), FLEPOS (BE), WALCORS (BE), ERGNSS (ES), CROPOS (HR), LatPos (LV), AUSCORS (AU), PositioNZ-RT (NZ), RBMC-IP (BR), RAMSAC (AR), IGAC MAGNA-ECO (CO), TrigNet (ZA), KSA-CORS (SA), InaCORS (ID), CORS-KOREA (KR), SatRef (HK), EarthScope NOTA (US, non-commercial NULA), MIRAI (JP), LitPOS (LT), IceCORS (IS) |
 | **VRS — 0 stations** | ESTPOS (EE, VRS; also times out), CROPOS (HR, VRS) |
 | **Verify first** | ReNEP (PT, host withheld pre-registration) |
-| **Paid / drop** | swipos (CH), SWEPOS RTK (SE), CPOS (NO), SIGNAL (SI), HEPOS (GR), ROMPOS (RO), SiReNT (SG), e-GNSS (TW), MyRTKnet (MY), PAGeNet (PH), TUSAGA-Aktif (TR), VNGEONET (VN, fees since Sep 2024), SoI-CORS (IN, paid for private users), NETPOS/Kadaster (NL, restricted internal use) |
+| **Paid / affordable** | HEPOS GR €160/yr≈$174 ✓; ROMPOS RO €169/yr≈$183 ✓ — both under $200/yr cutoff; mention as paid alternatives in UI |
+| **Paid / over cutoff** | swipos CH CHF 1,500/yr≈$1,650; SWEPOS SE ~9,000 SEK/yr≈$850; CPOS NO NOK 8,000/yr≈$740; SIGNAL SI €200/yr≈$215; SiReNT SG SGD 107/mo≈$950/yr; SoI-CORS IN ₹5,000/mo×4mo≈$240; NETPOS NL €475/yr (restricted internal use only) |
+| **Paid / pricing unclear** | e-GNSS (TW), MyRTKnet (MY), PAGeNet (PH), TUSAGA-Aktif (TR), VNGEONET (VN, fees since Sep 2024) |
 | **Out of scope (spoofing)** | APN (IL) — active GNSS spoofing makes RTK unreliable across Israel/Lebanon/Jordan/Sinai/Cyprus |
 | **Out of scope (raw obs only)** | EUREF-IP, IGS-IP — no RTK streams; suitable for post-processing only |
 | **Removed from pipeline** | RTKdata.online — server unreachable since launch; 0 stations ever collected; no independent data (Kansi Solutions GmbH, same parent as paid rtkdata.com) |
