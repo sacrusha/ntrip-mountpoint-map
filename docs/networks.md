@@ -31,7 +31,7 @@ GeoDAF/ASI IT (actually EUREF raw, borderline out of scope).
 
 | id | name | host:port | credentials | notes |
 |---|---|---|---|---|
-| `rtk2go` | RTK2GO | `rtk2go.com:2101` | Username: any email · Password: `none` · Mountpoint: `NEAR` auto-selects nearest | ~800 volunteer bases globally |
+| `rtk2go` | RTK2GO | `rtk2go.com:2101` | Username: any email · Password: `none` | ~800 volunteer bases globally |
 | `centipede` | CentipedeRTK | `crtk.net:2101` | Username: `centipede` · Password: `centipede` · Mountpoint: `NEAR` auto-selects nearest | ~860 bases; dense in France; migrated from caster.centipede.fr 2025-03-18 |
 | `frednet` | FReDNet (OGS) | `gnsscaster.regione.fvg.it:8080` | Sourcetable open (no auth). Stream: email `rete.gnss.marussi@regione.fvg.it` for free credentials | 16 stations, NE Italy + Slovenia/Austria border; VRS |
 | `geortk` | GeoRTK (Geosense) | `geortk.jp:2101` | No authentication required | ~200 stations with valid coords; Japan only; RTCM 3.x MSM; free indefinitely |
