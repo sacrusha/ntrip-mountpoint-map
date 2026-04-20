@@ -24,7 +24,10 @@ candidates whose endpoint is withheld).
 **stations**:  N (approximate)
 **source**:    url [, url …]
 
-[Notes: gotchas, drop rationale, open questions — 1–5 lines.]
+[Notes: gotchas, drop rationale — 1–5 lines.]
+
+**investigate**: what to verify before the next pipeline change (CI-failing entries)
+**missing**:    what a new session must find before this can be ingested (deferred entries)
 ```
 
 Status glossary:
@@ -46,32 +49,7 @@ Physical stations with distinct coordinates shown on map.
 ## rtk2go — RTK2GO (global)
 
 **status**:    in-pipeline
-**host:port**: 
-**registration**: https://www.cropos.hr
-**registration**: https://ksacors.geoportal.sa
-**registration**: https://geoportaal.maaamet.ee
-**registration**: https://latpos.lgia.gov.lv/SBC
-**registration**: https://gnss.wallonie.be
-**registration**: https://flepos.vlaanderen.be
-**registration**: https://system.asgeupos.pl
-**registration**: https://www.gnssdata.or.kr
-**registration**: https://www.natt.is/is/landmaelingar/jardstodvakerfi
-**registration**: https://www.spslux.lu/SBC/Account/Register
-**registration**: https://redgeodesica-sbc.igac.gov.co/sbc
-**registration**: https://nrtk.big.go.id
-**registration**: https://www.geodetic.gov.hk/
-**registration**: https://ergnss.ign.es/gnuserportal/
-**registration**: https://frednet.crs.ogs.it/
-**registration**: https://go.gnss.go.jp
-**registration**: https://www.earthscope.org/data/gnss-realtime/
-**registration**: https://www.ign.gob.ar
-**registration**: https://gps-ntrip.ibge.gov.br
-**registration**: https://www.trignet.co.za
-**registration**: https://www.linz.govt.nz/
-**registration**: https://gnss.ga.gov.au/registration
-**registration**: none (open access)
-**registration**: none (open access)
-**registration**: none (open access)`rtk2go.com:2101`
+**host:port**: `rtk2go.com:2101`
 **type**:      single-base
 **access**:    free, no registration (username = any email, password = `none`)
 **stations**:  ~863
@@ -413,7 +391,10 @@ VRS (NAWGIS/KODGIS/FKP/MAC). Coverage requires NRTK polygon (deferred).
 **source**:    flepos.vlaanderen.be
 
 Old endpoint `ntrip.flepos.be` is NXDOMAIN as of 2026-04. Currently timing out
-in CI (suspected egress firewall on port 2101). Coverage requires NRTK polygon (deferred).
+in CI. Coverage requires NRTK polygon (deferred).
+
+**investigate**: connect from a European IP — could be location-based firewall rather
+than egress block; also verify `flepos.vlaanderen.be:2101` still resolves correctly.
 
 ---
 
@@ -428,6 +409,9 @@ in CI (suspected egress firewall on port 2101). Coverage requires NRTK polygon (
 
 Intermittent outages documented. Currently timing out in CI.
 
+**investigate**: check gnss.wallonie.be status page or contact gnss@spw.wallonie.be;
+distinguish persistent outage from intermittent — if dead >4 weeks, drop from pipeline.
+
 ---
 
 ## latpos — LatPos (LV)
@@ -440,7 +424,10 @@ Intermittent outages documented. Currently timing out in CI.
 **source**:    latpos.lgia.gov.lv (LGIA)
 
 Port 5001, not 2101 (confirmed per Alberding caster directory). Currently timing
-out in CI — likely egress firewall on non-standard port.
+out in CI.
+
+**investigate**: re-verify port 5001 at latpos.lgia.gov.lv directly (try telnet/ncat
+from a Baltic-region IP); also check LGIA website for endpoint changes.
 
 ---
 
@@ -455,6 +442,10 @@ out in CI — likely egress firewall on non-standard port.
 
 Port 8083. Currently timing out in CI. Service expiry Aug 2026 — review before then.
 
+**investigate**: verify `gnss-rtk.maaamet.ee:8083` from an Estonian IP; check
+geoportaal.maaamet.ee for credential requirement (may now need service agreement
+before sourcetable is served). Re-confirm free status before Aug 2026 or drop.
+
 ---
 
 ## ksa_cors — KSA-CORS (SA)
@@ -468,6 +459,10 @@ Port 8083. Currently timing out in CI. Service expiry Aug 2026 — review before
 
 Old endpoint `KSACORS.gcs.gov.sa` is NXDOMAIN as of 2026-04. Currently timing
 out in CI. Coverage requires NRTK polygon (deferred).
+
+**investigate**: verify `ksacors.geoportal.sa:2101` resolves and is reachable; try
+connecting from a GCC-region IP; check geoportal.sa for updated endpoint or
+registration requirement changes.
 
 ---
 
@@ -571,6 +566,9 @@ Single station; useful only within ~30 km of Brussels. Low priority.
 Host:port disclosed only after account approval. ETRS89 datum (mainland),
 ITRF93 (autonomous regions). Stations and RINEX publicly visible.
 
+**missing**: caster host:port — register at renep.dgterritorio.gov.pt to obtain;
+or check Alberding directory / EUREF caster list for a public mirror.
+
 ---
 
 ## litpos — LitPOS (LT)
@@ -585,6 +583,9 @@ ITRF93 (autonomous regions). Stations and RINEX publicly visible.
 RTCM 2.1/2.3/3.1/3.2, CMR, CMR+, CMRx. NTRIP host:port not publicly listed —
 find via ArduSimple or Alberding caster directory before ingesting.
 Contact LitPOS@geoportal.lt to confirm.
+
+**missing**: caster host:port — search Alberding EUPOS directory (eupos.org),
+ArduSimple country list, or email LitPOS@geoportal.lt.
 
 ---
 
@@ -601,6 +602,9 @@ Thai-language portal and manual. Connection details documented in Thai-language
 manual at dol-rtknetwork.com. Host:port not found in public aggregators.
 Direct contact with Dept of Lands required before ingesting.
 
+**missing**: caster host:port and station count — download Thai manual from
+dol-rtknetwork.com or contact rtk@dol.go.th.
+
 ---
 
 ## apos — APOS (AT)
@@ -614,6 +618,9 @@ Direct contact with Dept of Lands required before ingesting.
 **source**:    bev.gv.at (BEV)
 
 Not free for general hobbyist use. Deferred unless eAMA path is navigable.
+
+**missing**: confirmation of whether non-farmers can obtain eAMA credentials, or
+a separate public-access tier — check bev.gv.at or contact BEV directly.
 
 ---
 

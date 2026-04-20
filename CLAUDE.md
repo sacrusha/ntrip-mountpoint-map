@@ -14,8 +14,10 @@ sub-metre DGNSS sources.
   out-of-scope, data-model, visual design, tech choices, deferred items.
 - [`docs/networks.md`](docs/networks.md) — **authoritative technical record for
   every investigated network**, whether included or not. Endpoints, credentials,
-  pricing, pipeline status, confidence tiers, drop rationale. Read this before
-  touching code. If it's not here, don't add it to the pipeline.
+  pricing, pipeline status, drop rationale. Read this before touching code.
+  If it's not here, don't add it to the pipeline. Entries with `**investigate**:`
+  need endpoint/connectivity verification; entries with `**missing**:` need
+  research before they can be ingested.
 - [`docs/country-survey.md`](docs/country-survey.md) — how RTK works country
   by country: which networks exist, access model (free/paid/registration),
   open questions. Not a network reference — detail lives in networks.md.
@@ -82,50 +84,26 @@ exercised.
   for all 37 sources. Adding a new source only requires a `SOURCES` entry
   in `fetch_stations.py` + optional frontend config — no other changes.
 
-**5 sources currently failing in CI:**
-Endpoint fixes applied this session; all 5 remain timing out in GitHub Actions.
-Diagnosis: GitHub Actions egress firewall blocks outbound ports 2101/5001/8083
-to government NTRIP casters. Fallback-to-cached-sourcetable logic handles this
-gracefully — stations remain in the JSON from the last successful fetch.
-- `flepos` — URL fixed (`ntrip.flepos.be` → `flepos.vlaanderen.be:2101`); still times out.
-- `walcors` — correct endpoint (`gnss.wallonie.be:2101`); intermittent outages documented.
-- `estpos` — correct endpoint (`gnss-rtk.maaamet.ee:8083`); also requires credentials.
-- `latpos` — port fixed (2101 → 5001 per Alberding caster directory); still times out.
-- `ksa_cors` — domain fixed (`KSACORS.gcs.gov.sa` → `ksacors.geoportal.sa:2101`).
-
 **VRS-only networks (0 physical stations on map):**
-- CROPOS, ASG-EUPOS, FLEPOS, WALCORS, InaCORS, ERGNSS, ESTPOS, LATPOS,
-  KSA-CORS, and most SAPOS states — sourcetables expose only VRS virtual
-  mountpoints (lat=0, lon=0 or single shared coord), correctly dropped.
-  Coverage representation via NRTK polygons is deferred (see below).
-  ESTPOS additionally has a service expiry (free until Aug 2026) —
-  re-confirm or remove from pipeline before then.
-- UI shows 0 stations identically for VRS-by-design and fetch failures —
-  no distinction visible to users. Process gap: need a "VRS — no pins
-  expected" status separate from "error — pins missing".
+CROPOS, ASG-EUPOS, FLEPOS, WALCORS, InaCORS, ERGNSS, ESTPOS, LATPOS,
+KSA-CORS, and most SAPOS states expose only VRS virtual mountpoints
+(lat=0, lon=0 or a single shared coord), correctly dropped by `filter_vrs()`.
+UI shows 0 stations identically for VRS-by-design and fetch failures —
+process gap: no "VRS — no pins expected" status separate from "error — pins missing".
+Coverage for these networks requires NRTK polygons (deferred).
+
+**5 sources timing out in CI:** FLEPOS, WALCORS, ESTPOS, LATPOS, KSA-CORS.
+Fallback-to-cached-sourcetable logic handles this gracefully.
+See `**investigate**:` fields in `docs/networks.md` for what to verify.
 
 **Open / deferred (by priority):**
-1. Failing CI sources — 5 sources (FLEPOS, WALCORS, ESTPOS, LATPOS,
-   KSA-CORS) consistently time out. Likely cause: stale endpoint URL
-   (as seen with IceCORS raw IP and Centipede domain migration) or
-   location-based firewall on the operator's side. Each needs manual
-   endpoint verification before assuming it's dead.
-2. NRTK / VRS coverage polygons: NRTK rendering is scaffolded
-   (`networks: []` in JSON, polygon + centroid marker ready) but no data
-   ingested. VRS-only networks don't expose physical station coordinates —
-   manual polygon config needed for those.
-3. Access-tier toggles (Registration / Category / Restricted) shown in
-   UI but filter nothing — no backing data yet. Either hide or populate
-   per-station in pipeline.
-4. SAPOS BY: fee (€20/yr non-agricultural) shown in popup; keeps the
-   source in pipeline. Decide long-term whether to separate it out or
-   leave as-is.
-5. Deferred networks (ReNEP PT, LitPOS LT, Thailand DOL, APOS AT) —
-   marked deferred pending endpoint discovery or registration. Revisit
-   with fresh research; may have been prematurely deferred.
-6. RTK/DGNSS/PPP/HAS primer — banner copy jargon audit + "learn more"
+1. NRTK / VRS coverage polygons: rendering scaffolded (`networks: []` in JSON,
+   polygon + centroid marker ready) but no data ingested. VRS-only networks need
+   manual polygon config.
+2. RTK/DGNSS/PPP/HAS/SSR primer — banner copy jargon audit + "learn more"
    rewrite for hobbyist audience.
-7. NRTK polygon data for VRS networks — big feature, see above.
+3. Network endpoint verification and deferred ingestion — see `docs/networks.md`
+   entries with `**investigate**:` (5 CI-failing) and `**missing**:` (4 deferred).
 
 ## Design notes worth preserving
 
