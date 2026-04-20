@@ -817,7 +817,8 @@
       Object.keys(rawSources).forEach(function(sid){
         if(rawSources[sid].registration) SOURCE_REG[sid]=rawSources[sid].registration;
         var lo=rawSources[sid].last_ok;
-        SOURCE_STALE_DAYS[sid]=lo?(now-new Date(lo).getTime())/86400000:Infinity;
+        // Treat missing last_ok as fresh — field absent in older JSON snapshots.
+        SOURCE_STALE_DAYS[sid]=lo?(now-new Date(lo).getTime())/86400000:0;
       });
       // Minimum staleness across all sources a station belongs to.
       // A station with at least one fresh source is considered fresh.
