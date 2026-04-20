@@ -375,18 +375,25 @@ Coverage in each territory is thin (1–4 nodes over large areas), but where a b
 
 ## Open questions
 
-1. **LitPOS (LT)**: contact LitPOS@geoportal.lt to confirm free status before ingesting. NTRIP endpoint not publicly listed — need credentials to confirm host.
-2. **IceCORS (IS)**: endpoint likely `moe.lmi.is:2101`; free vs paid status unconfirmed. Contact LMÍ (lmi.is/is/maelingar/thjonustur/icecors) before including. Low priority.
-3. **Thailand DOL LandGNSS**: registration available at dol-rtknetwork.com; Thai-language manual present. Contact Dept of Lands directly for free vs paid confirmation and NTRIP host:port.
-4. **GPSBru/AGN (BE-Brussels)**: endpoint at agn.ngi.be; single-base (Uccle). Operational as of mid-2024. Low priority — only covers ~30 km radius around Brussels.
-5. **Registration credentials**: obtain for registration-required networks (ASG-EUPOS, FLEPOS, WALCORS, ERGNSS, AUSCORS, PositioNZ, CORS-KOREA, InaCORS, KSA-CORS, etc.) to store as GitHub Actions secrets and ingest.
-6. **ESTPOS (EE) expiry**: service is free until 31 Aug 2026 per current directive; review before that date for renewal/extension announcement.
-7. **MIRAI (JP) authorization flow**: TOS confirmed to permit commercial and automated use ("for peaceful purposes"). Automated fetch appears permitted; obtain registration credentials for pipeline.
-8. **CORS-KOREA (KR) international registration**: portal is Korean-only; Korean national ID may be required for registration — verify if international users can register.
-9. **ReNEP (PT) host:port**: withheld until post-registration; complete DGT registration to obtain NTRIP host for pipeline.
-10. **SAPOS GEPOS (DE) receiver compatibility**: SSRZ format requires Geo++ SSR2OBS software or SSR-capable receiver (most hobbyist receivers do not support SSR natively). Consider whether to include in pipeline or note as "requires special software." Most likely outcome: exclude from pipeline; reference in the banner's "learn more" for advanced users.
-11. **Centipede non-standard country codes**: The sourcetable uses non-ISO-3166 codes for some territories — `ENG` (England/GB), `CHZ` (Switzerland), `SER`/`SRB` (Serbia), `DAN`/`DNK` (Denmark), `ROM`/`ROU` (Romania), `ALA` (Åland Islands). The pipeline handles these as opaque strings; no action needed in the data path, but the map UI's country-filter feature (if added) should map these codes to their display countries.
-12. **Finland volunteer density**: rtk2go shows 111 FI-coded stations — verify whether all are genuinely independent volunteer stations vs. a subset of FINPOS base station locations being re-broadcast without NLS authorisation. If the latter, those streams may be subject to NLS licence restrictions.
+1. **LitPOS (LT)**: Confirmed free (publicly-funded EUPOS member, registration at
+   geoportal.lt/web/litpos-en). NTRIP host:port not publicly listed — find via
+   public aggregators (ArduSimple, Alberding caster directory) before ingesting.
+
+2. **IceCORS (IS)**: Network operational — 23 cGNSS stations operated by LMÍ
+   (National Land Survey of Iceland), primarily for tectonic/volcanic monitoring.
+   Free vs paid status for hobbyist RTK use not determinable from public sources.
+   Low priority.
+
+3. **Thailand DOL LandGNSS**: ✓ Confirmed free government service. Registration at
+   dol-rtknetwork.com. Move to pipeline candidate — find NTRIP host:port from
+   public sources (ArduSimple list, user forums) before ingesting.
+
+4. **CORS-KOREA (KR)**: Sourcetable publicly accessible without credentials (NTRIP
+   spec). Stream registration portal is Korean-language only; Korean national ID
+   likely required — limits practical utility for international users.
+
+5. **ReNEP (PT) host:port**: Not disclosed pre-registration. Complete DGT
+   registration at dgterritorio.gov.pt to obtain the NTRIP endpoint.
 
 ## Pipeline status summary
 
@@ -395,9 +402,10 @@ _As of 2026-04-20. "In pipeline" = present in `SOURCES` in `scripts/fetch_statio
 | Status | Networks |
 |---|---|
 | **In pipeline** | rtk2go, Centipede, FReDNet (IT), GeoRTK (JP), SAPOS ×13 (DE) |
-| **Candidate — no-registration** | SPSLux (LU) |
-| **Candidate — registration required** | ASG-EUPOS (PL), FLEPOS (BE), WALCORS (BE), ERGNSS (ES), CROPOS (HR), ESTPOS (EE, free until Aug 2026), LatPos (LV), AUSCORS (AU), PositioNZ-RT (NZ), RBMC-IP (BR), RAMSAC (AR), IGAC MAGNA-ECO (CO), TrigNet (ZA), KSA-CORS (SA), InaCORS (ID), CORS-KOREA (KR), SatRef (HK), EarthScope NOTA (US, non-commercial NULA), MIRAI (JP) |
-| **Verify first** | LitPOS (LT), IceCORS (IS), Thailand DOL LandGNSS, ReNEP (PT, host withheld pre-registration) |
+| **Candidate — no-registration** | SPSLux (LU), Thailand DOL LandGNSS (TH) |
+| **Candidate — registration required** | ASG-EUPOS (PL), FLEPOS (BE), WALCORS (BE), ERGNSS (ES), CROPOS (HR), LatPos (LV), AUSCORS (AU), PositioNZ-RT (NZ), RBMC-IP (BR), RAMSAC (AR), IGAC MAGNA-ECO (CO), TrigNet (ZA), KSA-CORS (SA), InaCORS (ID), CORS-KOREA (KR), SatRef (HK), EarthScope NOTA (US, non-commercial NULA), MIRAI (JP), LitPOS (LT) |
+| **VRS — 0 stations** | ESTPOS (EE, VRS; also times out), CROPOS (HR, VRS) |
+| **Verify first** | IceCORS (IS, free status unclear), ReNEP (PT, host withheld pre-registration) |
 | **Paid / drop** | swipos (CH), SWEPOS RTK (SE), CPOS (NO), SIGNAL (SI), HEPOS (GR), ROMPOS (RO), SiReNT (SG), e-GNSS (TW), MyRTKnet (MY), PAGeNet (PH), TUSAGA-Aktif (TR), VNGEONET (VN, fees since Sep 2024), SoI-CORS (IN, paid for private users), NETPOS/Kadaster (NL, restricted internal use) |
 | **Out of scope (spoofing)** | APN (IL) — active GNSS spoofing makes RTK unreliable across Israel/Lebanon/Jordan/Sinai/Cyprus |
 | **Out of scope (raw obs only)** | EUREF-IP, IGS-IP — no RTK streams; suitable for post-processing only |
