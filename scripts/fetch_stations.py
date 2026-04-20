@@ -42,7 +42,7 @@ SOURCES = [
      "color": "#2e6fb0", "label": "FReDNet",
      "access": "registration", "registration": "https://frednet.crs.ogs.it/"},  # free email registration
     {"id": "geortk",      "url": "http://geortk.jp:2101/",
-     "color": "#1a7a4a", "label": "GeoRTK (Japan)",
+     "color": "#1a7a4a", "label": "GeoRTK",
      "access": "open",         "registration": None},                            # no auth
     # SAPOS — German federal-state RTK networks. Sourcetables publicly readable;
     # RTCM streams require per-Länder registration. Most Länder free; BY €20/yr
@@ -90,67 +90,67 @@ SOURCES = [
      "color": "#2d6e6e", "label": "SAPOS (Thüringen)",
      "access": "registration", "registration": "https://www.sapos.de"},
     {"id": "ergnss",      "url": "http://ergnss-ip.ign.es:2101/",
-     "color": "#b05000", "label": "ERGNSS (Spain)",
+     "color": "#b05000", "label": "ERGNSS",
      "access": "registration", "registration": "https://ergnss.ign.es/gnuserportal/"},   # free, immediate; attribute IGN
     {"id": "auscors",     "url": "http://ntrip.data.gnss.ga.gov.au:2101/",
-     "color": "#b8860b", "label": "AUSCORS (Australia)",
+     "color": "#b8860b", "label": "AUSCORS",
      "access": "registration", "registration": "https://gnss.ga.gov.au/registration"},   # CC BY 4.0
     {"id": "positionz",   "url": "http://positionz-rt.linz.govt.nz:2101/",
-     "color": "#2e8b57", "label": "PositioNZ (NZ)",
+     "color": "#2e8b57", "label": "PositioNZ",
      "access": "registration", "registration": "https://www.linz.govt.nz/"},             # LINZ account; CC BY 4.0 NZ
     {"id": "satref",      "url": "http://ntrip.geodetic.gov.hk:2101/",
-     "color": "#8b008b", "label": "SatRef (HK)",
+     "color": "#8b008b", "label": "SatRef",
      "access": "registration", "registration": "https://www.geodetic.gov.hk/"},          # mountpoint VRS32G; open data
     {"id": "inacors",     "url": "http://nrtk.big.go.id:2001/",                 # NOTE: port 2001, not 2101
-     "color": "#1a5fa0", "label": "InaCORS (Indonesia)",
+     "color": "#1a5fa0", "label": "InaCORS",
      "access": "registration", "registration": "https://nrtk.big.go.id"},
     {"id": "trignet",     "url": "http://trignet.co.za:2101/",
-     "color": "#556b2f", "label": "TrigNet (South Africa)",
+     "color": "#556b2f", "label": "TrigNet",
      "access": "registration", "registration": "https://www.trignet.co.za"},
     {"id": "rbmc_ip",     "url": "http://gps-ntrip.ibge.gov.br:2101/",
-     "color": "#008b8b", "label": "RBMC-IP (Brazil)",
+     "color": "#008b8b", "label": "RBMC-IP",
      "access": "registration", "registration": "https://gps-ntrip.ibge.gov.br"},         # gov.br signup; 5-station limit
     {"id": "ramsac",      "url": "http://ntrip.ign.gob.ar:2101/",
-     "color": "#7b3f9e", "label": "RAMSAC (Argentina)",
+     "color": "#7b3f9e", "label": "RAMSAC",
      "access": "registration", "registration": "https://www.ign.gob.ar"},                # 8-hr session cap
     {"id": "flepos",      "url": "http://flepos.vlaanderen.be:2101/",           # ntrip.flepos.be NXDOMAIN as of 2026-04
-     "color": "#3a7ca5", "label": "FLEPOS (Belgium)",
+     "color": "#3a7ca5", "label": "FLEPOS",
      "access": "registration", "registration": "https://flepos.vlaanderen.be"},
     {"id": "walcors",     "url": "http://gnss.wallonie.be:2101/",
-     "color": "#2c6e8a", "label": "WALCORS (Belgium)",
+     "color": "#2c6e8a", "label": "WALCORS",
      "access": "registration", "registration": "https://gnss.wallonie.be"},
     {"id": "spslux",      "url": "http://stream.spslux.lu:5005/",               # NOTE: port 5005, not 2101
-     "color": "#5c6bc0", "label": "SPSLux (Luxembourg)",
+     "color": "#5c6bc0", "label": "SPSLux",
      "access": "registration", "registration": "https://www.spslux.lu/SBC/Account/Register"},
     {"id": "asg_eupos",   "url": "http://system.asgeupos.pl:2101/",
-     "color": "#7b5ea7", "label": "ASG-EUPOS (Poland)",
+     "color": "#7b5ea7", "label": "ASG-EUPOS",
      "access": "registration", "registration": "https://system.asgeupos.pl"},            # admin approval 1–2 working days
     {"id": "cropos",      "url": "http://gnss.cropos.hr:2101/",
-     "color": "#c0392b", "label": "CROPOS (Croatia)",
+     "color": "#c0392b", "label": "CROPOS",
      "access": "registration", "registration": "https://www.cropos.hr"},
     {"id": "estpos",      "url": "http://gnss-rtk.maaamet.ee:8083/",            # NOTE: port 8083; free until Aug 2026
-     "color": "#16a085", "label": "ESTPOS (Estonia)",
+     "color": "#16a085", "label": "ESTPOS",
      "access": "conditions",   "registration": "https://geoportaal.maaamet.ee"},
     {"id": "latpos",      "url": "http://latpos.lgia.gov.lv:5001/",             # NOTE: port 5001, not 2101
-     "color": "#1a6b3c", "label": "LatPos (Latvia)",
+     "color": "#1a6b3c", "label": "LatPos",
      "access": "registration", "registration": "https://latpos.lgia.gov.lv/SBC"},
     {"id": "igac",        "url": "http://sbc.igac.gov.co:2101/",
-     "color": "#d4a017", "label": "IGAC (Colombia)",
+     "color": "#d4a017", "label": "IGAC",
      "access": "registration", "registration": "https://redgeodesica-sbc.igac.gov.co/sbc"},
     {"id": "earthscope",  "url": "http://ntrip.earthscope.org:2101/",
-     "color": "#8b4513", "label": "EarthScope NOTA",
+     "color": "#8b4513", "label": "EarthScope",
      "access": "conditions",   "registration": "https://www.earthscope.org/data/gnss-realtime/"},  # non-commercial NULA
     {"id": "mirai",       "url": "http://ntrip.go.gnss.go.jp:2101/",
-     "color": "#2471a3", "label": "MIRAI (Japan)",
+     "color": "#2471a3", "label": "MIRAI",
      "access": "registration", "registration": "https://go.gnss.go.jp"},                 # + separate NtripCaster auth form
     {"id": "cors_korea",  "url": "http://www.gnssdata.or.kr:2101/",
      "color": "#a93226", "label": "CORS-KOREA",
      "access": "conditions",   "registration": "https://www.gnssdata.or.kr"},            # national ID may be required
     {"id": "icecors",     "url": "http://178.19.53.126:2101/",
-     "color": "#1e6b8c", "label": "IceCORS (Iceland)",
+     "color": "#1e6b8c", "label": "IceCORS",
      "access": "registration", "registration": "https://www.natt.is/is/landmaelingar/jardstodvakerfi"},
     {"id": "ksa_cors",    "url": "http://ksacors.geoportal.sa:2101/",
-     "color": "#a0522d", "label": "KSA-CORS (Saudi Arabia)",
+     "color": "#a0522d", "label": "KSA-CORS",
      "access": "conditions",   "registration": "https://ksacors.geoportal.sa"},          # old gcs.gov.sa domain is NXDOMAIN
 ]
 # RTKdata.online removed 2026-04-20: server unreachable since launch (RemoteDisconnected);

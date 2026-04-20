@@ -11,11 +11,7 @@
   html,body{height:100%;margin:0;padding:0;font-family:sans-serif;}
   #map{position:absolute;top:0;left:0;right:0;bottom:0;}
   body.banner-visible #map{top:56px;}
-  #status{position:absolute;top:66px;left:50%;transform:translateX(-50%);
-    background:rgba(0,0,0,.65);color:#fff;padding:5px 14px;border-radius:4px;
-    font-size:13px;z-index:9000;pointer-events:none;transition:opacity 1s;}
-  body:not(.banner-visible) #status{top:10px;}
-  .slabel{font-size:10px;font-weight:700;color:#222;
+.slabel{font-size:10px;font-weight:700;color:#222;
     background:rgba(255,255,255,0.75);border:none;box-shadow:none;padding:0 2px;}
   #banner{position:absolute;top:0;left:0;right:0;height:56px;
     background:#1b2b3a;color:#e8eef4;z-index:10000;display:none;
@@ -25,16 +21,22 @@
   #banner .msg{flex:1;}
   #banner a.more{color:#9ec8ff;cursor:pointer;text-decoration:underline;
     margin-left:6px;}
+  #banner a.more::after{content:' \25be';}
+  body.banner-expanded #banner a.more::after{content:' \25b4';}
   #banner-more p{margin:0 0 8px 0;}
   #banner-more p:last-child{margin-bottom:0;}
   #banner-more a{color:#9ec8ff;}
-  #banner .close{background:transparent;border:none;color:#e8eef4;
-    font-size:20px;line-height:1;cursor:pointer;padding:4px 10px;margin-left:8px;}
+  #banner-more-close{display:none;float:right;background:transparent;border:none;
+    color:#e8eef4;font-size:20px;line-height:1;cursor:pointer;padding:0 0 8px 12px;}
+  @media(max-width:600px){#banner-more-close{display:block;}}
   #banner-more{position:absolute;top:56px;left:0;right:0;max-width:720px;
     margin:0 auto;background:#1b2b3a;color:#e8eef4;padding:12px 16px;
     font-size:12px;line-height:1.5;border-radius:0 0 6px 6px;
     box-shadow:0 4px 12px rgba(0,0,0,.25);z-index:9999;display:none;}
   body.banner-expanded #banner-more{display:block;}
+  @media(max-width:600px){
+    #banner-more{position:fixed;top:56px;bottom:0;max-width:100%;border-radius:0;overflow-y:auto;}
+  }
   .popup-plain{font-size:12px;line-height:1.45;max-width:280px;}
   .popup-plain h3{margin:0 0 4px 0;font-size:13px;}
   .popup-plain .acc{color:#1a5d1a;font-weight:600;margin-bottom:6px;}
@@ -57,22 +59,54 @@
   #toggles{background:white;padding:10px 12px;border-radius:5px;
     border:1px solid #bbb;font-size:12px;line-height:1.6;color:#222;
     max-width:220px;}
-  #toggles h4{margin:0 0 4px 0;font-size:12px;}
   #toggles label{display:block;cursor:pointer;}
   #toggles input{margin-right:6px;vertical-align:middle;}
   #toggles details{margin-top:6px;}
   #toggles summary{cursor:pointer;font-size:11px;color:#555;}
+  #toggles #src-sum{cursor:pointer;font-size:12px;font-weight:700;list-style:none;margin:0;user-select:none;color:inherit;}
+  #toggles #src-sum::-webkit-details-marker{display:none;}
+  #toggles #src-sum::after{content:' \25be';font-size:9px;opacity:0.5;}
+  #src-det:not([open]) #src-sum::after{content:' \25b8';}
+  @media(max-width:600px){#toggles{max-height:55vh;overflow-y:auto;}}
+  #legend{background:white;padding:8px 12px;border-radius:5px;border:1px solid #bbb;font-size:11px;line-height:1.55;color:#222;}
+  #leg-sum{cursor:pointer;font-size:12px;font-weight:700;list-style:none;margin:0 0 4px;user-select:none;}
+  #leg-sum::-webkit-details-marker{display:none;}
+  #leg-sum::after{content:' \25be';font-size:9px;opacity:0.5;}
+  #leg-det:not([open]) #leg-sum::after{content:' \25b8';}
+  #leg-det:not([open]) #leg-sum{margin:0;}
+  #leg-info{color:#999;font-size:10px;}
+  @media(prefers-color-scheme:dark){
+    :root{color-scheme:dark;}
+    .slabel{color:#e8eef4;background:rgba(0,0,0,0.7);}
+    .leaflet-popup-content-wrapper,.leaflet-popup-tip{background:#1e3048;color:#e8eef4;}
+    .leaflet-popup-close-button{color:#94a7b8 !important;}
+    .leaflet-popup-close-button:hover{color:#e8eef4 !important;}
+    .popup-plain .acc{color:#4caf77;}
+    .popup-plain .warn{color:#d4a030;}
+    .popup-plain .srv{border-top-color:#2d4256;}
+    .popup-plain .row .lbl{color:#94a7b8;}
+    .popup-plain .row code{background:#0d1922;border-color:#2d4256;color:#e8eef4;}
+    .popup-plain button.cp{background:#243447;border-color:#2d4256;color:#9ec8ff;}
+    .popup-plain button.cp:hover{background:#2d4256;}
+    .popup-plain button.cp.ok{background:#1a3d2a;color:#4caf77;border-color:#2d6040;}
+    .popup-plain .anote{color:#94a7b8;}
+    .popup-plain .anote code{background:#0d1922;border-color:#2d4256;}
+    #toggles{background:#1e3048;border-color:#2d4256;color:#e8eef4;}
+    #toggles summary{color:#94a7b8;}
+    #legend{background:#1e3048;border-color:#2d4256;color:#e8eef4;}
+    #leg-info{color:#94a7b8;}
+  }
 </style>
 </head>
 <body>
 <div id="banner">
   <div class="msg">
-    Professional GPS can achieve centimeter accuracy — but it needs real-time correction data. Commercial data services are available for a price. This map shows the free public alternatives.
+    GPS can achieve centimetre accuracy — this map shows the free correction networks.
     <a class="more" id="banner-more-btn">how it works</a>
   </div>
-  <button class="close" id="banner-close" title="dismiss">×</button>
 </div>
 <div id="banner-more">
+  <button id="banner-more-close" title="close">×</button>
   <p><b>Why your GPS reads in metres</b><br>
   GPS satellites broadcast timing signals. Atmospheric delays and other errors compound to 5–10 metres under typical conditions. The chip in your receiver is capable of much better — it just needs a correction signal.</p>
   <p><b>Two routes to centimetre accuracy</b></p>
@@ -83,7 +117,6 @@
   <p><a href="./guide.html">&#x2192; Full guide: hardware options, how to connect, and how to set up your own base station if you're outside coverage</a></p>
 </div>
 <div id="map"></div>
-<div id="status">Loading…</div>
 <script>
 (function(){
   // Per-source presentation. Populated at load time from data/stations.json
@@ -131,7 +164,7 @@
   // Groups collapse multiple source IDs into one toggle row.
   // match(sid) → true means the source belongs to this group.
   var SOURCE_GROUPS=[
-    {label:'SAPOS (Germany)', color:'#2d6e6e',
+    {label:'SAPOS', color:'#2d6e6e',
      match:function(sid){ return sid.indexOf('sapos_')===0; }},
   ];
   var MIXED_COLOR='#555', UNKNOWN_SOURCE_COLOR='#888', VRS_COLOR='#6a5acd';
@@ -204,7 +237,6 @@
   var STALE_GREY_DAYS=3, STALE_HIDE_DAYS=7;
 
   // Banner dismissal: bumped when content meaningfully changes.
-  var BANNER_VERSION='2026-04-b';
 
   // Coverage-raster colour lookup. Entry i maps strength i/255 to RGBA,
   // where strength = 1 - dist_to_nearest_km / R_FLOAT:
@@ -538,15 +570,7 @@
     return mLat===mLon?'\u00b1'+mLat+' m':'\u00b1'+mLat+' m N\u2013S / \u00b1'+mLon+' m E\u2013W';
   }
 
-  function setStatus(msg,fade){
-    var el=document.getElementById('status');
-    if(!el) return;
-    el.textContent=msg;
-    el.style.opacity='1';
-    if(fade) setTimeout(function(){ el.style.opacity='0'; },3500);
-  }
-
-  // Build the `dots` layer eagerly for all stations (cheap; canvas-rendered
+// Build the `dots` layer eagerly for all stations (cheap; canvas-rendered
   // circleMarkers). The `detail` layer (accuracy rectangles + labelled
   // markers with permanent tooltips + popups) is expensive — built lazily
   // per-viewport by refreshDetailLayer.
@@ -566,7 +590,6 @@
         }catch(e){ console.warn('render err',e); }
       }
       if(i<stations.length){
-        setStatus('Rendering\u2026 '+i+' / '+stations.length);
         requestAnimationFrame(chunk);
       } else if(onDone){ onDone({detail:detail,dots:dots}); }
     }
@@ -693,25 +716,22 @@
     return {group:group,bySid:bySid};
   }
 
-  // Banner: show until user dismisses; version key lets future content
-  // changes re-surface the banner for repeat visitors.
+  // Banner: always visible. Auto-expands "how it works" for first-time
+  // visitors; localStorage marks it seen on first toggle.
   function setupBanner(){
-    var dismissed=false;
-    try{ dismissed=typeof localStorage!=='undefined'&&localStorage.getItem('ntrip-banner-dismissed')===BANNER_VERSION; }
-    catch(e){}
-    if(!dismissed) document.body.classList.add('banner-visible');
-    var close=document.getElementById('banner-close');
+    document.body.classList.add('banner-visible');
+    var seen=false;
+    try{ seen=typeof localStorage!=='undefined'&&!!localStorage.getItem('ntrip-howit-seen'); }catch(e){}
+    if(!seen) document.body.classList.add('banner-expanded');
     var more=document.getElementById('banner-more-btn');
-    if(close) close.onclick=function(){
-      document.body.classList.remove('banner-visible');
-      document.body.classList.remove('banner-expanded');
-      try{ typeof localStorage!=='undefined'&&localStorage.setItem('ntrip-banner-dismissed',BANNER_VERSION); }
-      catch(e){}
-    };
-    if(more) more.onclick=function(ev){
-      ev.preventDefault();
+    var closeBtn=document.getElementById('banner-more-close');
+    function toggleMore(ev){
+      if(ev) ev.preventDefault();
       document.body.classList.toggle('banner-expanded');
-    };
+      try{ typeof localStorage!=='undefined'&&localStorage.setItem('ntrip-howit-seen','1'); }catch(e){}
+    }
+    if(more) more.onclick=toggleMore;
+    if(closeBtn) closeBtn.onclick=toggleMore;
   }
 
   // Toggle panel: generates a source checkbox per entry in `sourceCounts`
@@ -774,6 +794,12 @@
             color:null,count:0,vrsOnly:true});
         }
       });
+      var tierOrder={open:0,registration:1,conditions:2};
+      entries.sort(function(a,b){
+        var ta=a.vrsOnly?3:(tierOrder[SOURCE_ACCESS[a.members[0]]]||1);
+        var tb=b.vrsOnly?3:(tierOrder[SOURCE_ACCESS[b.members[0]]]||1);
+        return ta!==tb ? ta-tb : b.count-a.count;
+      });
       var rows=entries.map(function(e){
         var mj=esc(JSON.stringify(e.members));
         var swatch=e.vrsOnly
@@ -781,16 +807,17 @@
               +';border-radius:50%;vertical-align:middle;margin-right:4px"></span>'
           : '<span style="display:inline-block;width:9px;height:9px;background:'+e.color
               +';border-radius:50%;vertical-align:middle;margin-right:4px"></span>';
-        var countStr=e.vrsOnly?'(VRS)':'('+e.count+')';
+        var countStr=e.vrsOnly?'':' <span style="color:#888">('+e.count+')</span>';
         return '<label><input type="checkbox" data-m="'+mj+'" checked>'
-          +swatch+esc(e.label)+' <span style="color:#888">'+countStr+'</span></label>';
+          +swatch+esc(e.label)+countStr+'</label>';
       }).join('');
-      d.innerHTML='<h4>Sources</h4>'+rows
+      d.innerHTML='<details id="src-det" open><summary id="src-sum">Sources</summary>'+rows
         +'<details><summary>Access</summary>'
           +'<label><input type="checkbox" data-k="tier_open" checked> Free, no signup</label>'
           +'<label><input type="checkbox" data-k="tier_registration" checked> Free (registration)</label>'
           +'<label title="Free, but conditions may exclude you (non-commercial only, national ID required, fee for some uses, etc.)">'
             +'<input type="checkbox" data-k="tier_conditions" checked> Free* (conditions apply)</label>'
+        +'</details>'
         +'</details>';
       d.querySelectorAll('input[data-m]').forEach(function(cb){
         cb.addEventListener('change',function(){
@@ -839,30 +866,23 @@
     leg.onAdd=function(){
       var d=L.DomUtil.create('div');
       d.id='legend';
-      d.style.cssText='background:white;padding:8px 12px;border-radius:5px;'
-        +'border:1px solid #bbb;font-size:11px;line-height:1.55;width:210px;color:#222;';
+      var sw=function(s){return '<span style="display:inline-block;width:12px;height:12px;vertical-align:middle;'+s+'"></span>';};
       d.innerHTML=
-        '<b style="font-size:12px">Coverage (per station)</b><br>'
-        +'<span style="display:inline-block;width:12px;height:12px;background:rgb(0,170,0);vertical-align:middle"></span>'
-          +' &lt; 10 km · cm-RTK excellent<br>'
-        +'<span style="display:inline-block;width:12px;height:12px;background:rgb(180,200,30);vertical-align:middle"></span>'
-          +' 10–30 km · cm-RTK good<br>'
-        +'<span style="display:inline-block;width:12px;height:12px;background:rgb(220,150,30);vertical-align:middle"></span>'
-          +' 30–50 km · marginal / float<br>'
-        +'<span style="display:inline-block;width:12px;height:12px;background:rgb(210,90,90);vertical-align:middle"></span>'
-          +' 50–100 km · float decimetre<br>'
-        +'<span style="display:inline-block;width:12px;height:12px;border:2px solid '+VRS_COLOR
-          +';border-radius:50%;background:rgba(106,90,205,0.22);vertical-align:middle"></span>'
-          +' VRS network \u2014 click for coverage<br>'
-        +'<span style="display:inline-block;width:12px;height:12px;background:#aaa;border-radius:50%;vertical-align:middle"></span>'
-          +' Station data stale (3\u20137 days)<br>'
-        +'<small id="leg-info" style="color:#999;font-size:10px">Loading\u2026</small>';
+        '<details id="leg-det" open>'
+        +'<summary id="leg-sum">Coverage</summary>'
+        +sw('background:rgb(0,170,0)')+' &lt; 10 km \u2014 ~2 cm<br>'
+        +sw('background:rgb(180,200,30)')+' 10\u201330 km \u2014 ~3 cm<br>'
+        +sw('background:rgb(220,150,30)')+' 30\u201350 km \u2014 ~5 cm<br>'
+        +sw('background:rgb(210,90,90)')+' 50\u2013100 km \u2014 ~10 cm\u20131 m<br>'
+        +sw('border:2px solid '+VRS_COLOR+';background:rgba(106,90,205,0.22);border-radius:50%')+' VRS network<br>'
+        +sw('background:#aaa;border-radius:50%')+' Station data stale (3\u20137 days)<br>'
+        +'<small id="leg-info">Loading\u2026</small>'
+        +'</details>';
       return d;
     };
     leg.addTo(map);
+    if(window.innerWidth<600){var ld=document.getElementById('leg-det');if(ld)ld.removeAttribute('open');}
 
-    setStatus('Loading station data\u2026');
-    var t0=performance.now();
     var data=null, health=null;
     try{
       var ts=Date.now();
@@ -875,7 +895,6 @@
       if(results[1].status==='fulfilled'&&results[1].value.ok)
         health=await results[1].value.json();
     }catch(e){}
-    var fetchMs=Math.round(performance.now()-t0);
     setServers(data);
 
     var rawSources=(data&&data.sources)||{};
@@ -911,10 +930,8 @@
     var mergeSummary=sourceIds.map(function(sid){
       return sourceCounts[sid]+' '+sourceLabel(sid);
     }).join(' + ')||'0';
-    setStatus('Merging '+mergeSummary+'\u2026');
     var allStations=mergeStations(bySource);
 
-    setStatus('Locating viewer\u2026');
     var vp=await getViewerPos();
     if(vp) map.setView([vp.lat,vp.lon],map.getZoom());
     var refC=vp||{lat:map.getCenter().lat,lon:map.getCenter().lng};
@@ -1003,9 +1020,7 @@
       var currentFilter=filter;       // capture at generation boundary
       visible=displayStations.filter(currentFilter);
       stationIndex=buildStationIndex(visible);
-      setStatus('Rendering '+visible.length+' stations\u2026');
-      // Watchdog: if the rAF chain stalls (e.g. tab hidden), surface whatever
-      // count was computed so the status bar doesn't stay "Rendering…" forever.
+      // Watchdog: if the rAF chain stalls (e.g. tab hidden), call finishLoad.
       var watchdog=setTimeout(function(){ if(gen===_rebuildGen) finishLoad(); },5000);
       buildStationLayers(visible,map,dotsRenderer,function(built){
         clearTimeout(watchdog);
@@ -1029,6 +1044,7 @@
     var togglePanel=buildTogglePanel(sourceCounts,vrsLayerBySid,
       function(pred){ filter=pred; rebuildStationLayers(); });
     togglePanel.control.addTo(map);
+    if(window.innerWidth<600){var sd=document.getElementById('src-det');if(sd)sd.removeAttribute('open');}
 
     map.on('zoomend',applyZoom);
 
@@ -1036,13 +1052,8 @@
       var li=document.getElementById('leg-info');
       var updatedLabel=updated
         ? new Date(updated).toISOString().replace('T',' ').slice(0,16)+' UTC'
-        : 'never';
-      if(li) li.innerHTML='updated: '+updatedLabel
-        +'<br><span style="color:#bbb">load: '+fetchMs+' ms</span>';
-      var summary=sourceIds.map(function(sid){
-        return sourceCounts[sid]+' '+sourceLabel(sid);
-      }).join(', ');
-      setStatus('\u2713 '+visible.length+' stations ('+summary+')',true);
+        : 'unknown';
+      if(li) li.textContent=visible.length.toLocaleString()+' stations \u00b7 updated '+updatedLabel;
     }
 
     rebuildStationLayers();
