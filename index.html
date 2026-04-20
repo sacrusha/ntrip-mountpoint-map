@@ -53,11 +53,15 @@
   #toggles{background:white;padding:10px 12px;border-radius:5px;
     border:1px solid #bbb;font-size:12px;line-height:1.6;color:#222;
     max-width:220px;}
-  #toggles h4{margin:0 0 4px 0;font-size:12px;}
   #toggles label{display:block;cursor:pointer;}
   #toggles input{margin-right:6px;vertical-align:middle;}
   #toggles details{margin-top:6px;}
   #toggles summary{cursor:pointer;font-size:11px;color:#555;}
+  #toggles #src-sum{cursor:pointer;font-size:12px;font-weight:700;list-style:none;margin:0;user-select:none;color:inherit;}
+  #toggles #src-sum::-webkit-details-marker{display:none;}
+  #toggles #src-sum::after{content:' \25be';font-size:9px;opacity:0.5;}
+  #src-det:not([open]) #src-sum::after{content:' \25b8';}
+  @media(max-width:600px){#toggles{max-height:55vh;overflow-y:auto;}}
   #legend{background:white;padding:8px 12px;border-radius:5px;border:1px solid #bbb;font-size:11px;line-height:1.55;color:#222;}
   #leg-sum{cursor:pointer;font-size:12px;font-weight:700;list-style:none;margin:0 0 4px;user-select:none;}
   #leg-sum::-webkit-details-marker{display:none;}
@@ -799,12 +803,13 @@
         return '<label><input type="checkbox" data-m="'+mj+'" checked>'
           +swatch+esc(e.label)+' <span style="color:#888">'+countStr+'</span></label>';
       }).join('');
-      d.innerHTML='<h4>Sources</h4>'+rows
+      d.innerHTML='<details id="src-det" open><summary id="src-sum">Sources</summary>'+rows
         +'<details><summary>Access</summary>'
           +'<label><input type="checkbox" data-k="tier_open" checked> Free, no signup</label>'
           +'<label><input type="checkbox" data-k="tier_registration" checked> Free (registration)</label>'
           +'<label title="Free, but conditions may exclude you (non-commercial only, national ID required, fee for some uses, etc.)">'
             +'<input type="checkbox" data-k="tier_conditions" checked> Free* (conditions apply)</label>'
+        +'</details>'
         +'</details>';
       d.querySelectorAll('input[data-m]').forEach(function(cb){
         cb.addEventListener('change',function(){
@@ -1022,6 +1027,7 @@
     var togglePanel=buildTogglePanel(sourceCounts,vrsLayerBySid,
       function(pred){ filter=pred; rebuildStationLayers(); });
     togglePanel.control.addTo(map);
+    if(window.innerWidth<600){var sd=document.getElementById('src-det');if(sd)sd.removeAttribute('open');}
 
     map.on('zoomend',applyZoom);
 
