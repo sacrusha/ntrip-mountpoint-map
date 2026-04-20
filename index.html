@@ -153,7 +153,6 @@
     frednet:   {openNote:'Free registration required (email only)'},
     geortk:    {openNote:'No authentication required'},
     'sapos_':  {openNote:'Free registration required — select your federal state'},
-    sapos_BY:  {openNote:'Registration required — free for agricultural use; €20/yr flat rate for all other uses'},
     ergnss:    {openNote:'Free registration, approved immediately'},
     auscors:   {openNote:'Free registration required — CC BY 4.0'},
     positionz: {openNote:'LINZ account required — CC BY 4.0 NZ'},
@@ -179,9 +178,6 @@
   // Registration URLs per source, populated from data/stations.json at load time.
   // SOURCE_AUTH.openNote gives the short description; SOURCE_REG gives the link.
   var SOURCE_REG={};
-  // Access tier per source: "open" | "registration" | "conditions".
-  // Populated from data/stations.json at load time.
-  var SOURCE_ACCESS={};
   // Groups collapse multiple source IDs into one toggle row.
   // match(sid) → true means the source belongs to this group.
   var SOURCE_GROUPS=[
@@ -354,9 +350,9 @@
 
   function precFromStr(s){
     if(!s) return 0.005;
-    var m=s.match(/\.([0-9]+)$/);
-    if(!m) return 0.5;
-    return 5*Math.pow(10,-(m[1].length+1));
+    var dot=s.lastIndexOf('.');
+    if(dot===-1) return 0.5;
+    return 5*Math.pow(10,-(s.length-dot));
   }
 
   function normalizeStations(list){
@@ -432,6 +428,19 @@
     r=r||7; var d=r*2;
     return '<svg width="'+d+'" height="'+d+'" viewBox="0 0 '+d+' '+d+'" xmlns="http://www.w3.org/2000/svg">'
       +'<circle cx="'+r+'" cy="'+r+'" r="'+(r-0.75)+'" fill="'+col+'" stroke="white" stroke-width="1.5"/></svg>';
+  }
+  // Pre-built icon objects keyed by hex color string; reused across all
+  // refreshDetailLayer calls instead of allocating new objects each pan.
+  var _iconCache={};
+  function cachedIcon(col){
+    if(!_iconCache[col]) _iconCache[col]=L.divIcon(
+      {className:'',html:solidSVG(col),iconSize:[14,14],iconAnchor:[7,7]});
+    return _iconCache[col];
+  }
+  // Lazy popup HTML cache attached to each merged station object.
+  function getCachedPopup(s){
+    if(!s._popup) s._popup=buildPopup(s);
+    return s._popup;
   }
 
   function esc(t){
@@ -556,16 +565,15 @@
   function buildStationLayers(stations,map,onDone){
     var detail=L.layerGroup();
     var dots=L.layerGroup();
-    var BATCH=300,i=0;
+    var BATCH=1000,i=0;
     function chunk(){
       var end=Math.min(i+BATCH,stations.length);
       for(;i<end;i++){
         var s=stations[i];
         try{
-          var dotFill=stationStaleDays(s)>=3?'#aaa':stationColor(s);
           L.circleMarker([s.lat,s.lon],{radius:4,color:'#fff',weight:1,
-            fillColor:dotFill,fillOpacity:0.95})
-            .bindPopup(buildPopup(s))
+            fillColor:stationColor(s),fillOpacity:0.95})
+            .bindPopup(getCachedPopup(s))
             .addTo(dots);
         }catch(e){ console.warn('render err',e); }
       }
@@ -593,7 +601,7 @@
       var s=stations[ids?ids[k]:k];
       if(!ids&&!b.contains([s.lat,s.lon])) continue;
       try{
-        var fill=stationStaleDays(s)>=3?'#aaa':stationColor(s);
+        var fill=stationColor(s);
         L.rectangle([[s.lat-s.dLat,s.lon-s.dLon],
                      [s.lat+s.dLat,s.lon+s.dLon]],
           {color:fill,weight:1,fillColor:fill,fillOpacity:0.12,
@@ -601,16 +609,14 @@
           .bindTooltip('Station within '+precLabel(s.dLat,s.dLon,s.lat),
             {sticky:true,className:'prec-tip'})
           .addTo(detail);
-        var icon=L.divIcon({className:'',html:solidSVG(fill),
-                            iconSize:[14,14],iconAnchor:[7,7]});
-        var mk=L.marker([s.lat,s.lon],{icon:icon});
+        var mk=L.marker([s.lat,s.lon],{icon:cachedIcon(fill)});
         var names=[];
         stationSourceIds(s).forEach(function(sid){
           s.sources[sid].forEach(function(n){ names.push(n); });
         });
         mk.bindTooltip(names.join(' / '),
           {permanent:true,direction:'right',offset:[9,0],className:'slabel'});
-        mk.bindPopup(buildPopup(s));
+        mk.bindPopup(getCachedPopup(s));
         mk.addTo(detail);
         shown++;
       }catch(e){ console.warn('detail err',e); }
@@ -674,20 +680,15 @@
 
   // Toggle panel: generates a source checkbox per entry in `sourceCounts`
   // ({ sourceId: stationCount }). Station predicate passes a station iff
-  // it belongs to at least one enabled source AND its access tier is enabled.
-  // Access tiers: "open" = Free, "registration" = Free (registration), "conditions" = Free*
+  // it belongs to at least one enabled source. Access tier is a
+  // placeholder (only "free" currently has backing data).
   function buildTogglePanel(sourceCounts,onChange){
-    var state={tier_open:true,tier_registration:true,tier_conditions:true};
+    var state={free:true,registration:true,category:true,restricted:true};
     Object.keys(sourceCounts).forEach(function(sid){ state[sid]=true; });
     function pred(){
       return function(s){
         var ids=stationSourceIds(s);
-        for(var i=0;i<ids.length;i++){
-          var sid=ids[i];
-          if(!state[sid]) continue;
-          var tier='tier_'+(SOURCE_ACCESS[sid]||'registration');
-          if(state[tier]) return true;
-        }
+        for(var i=0;i<ids.length;i++) if(state[ids[i]]) return state.free;
         return false;
       };
     }
@@ -723,10 +724,10 @@
       }).join('');
       d.innerHTML='<h4>Sources</h4>'+rows
         +'<details><summary>Access</summary>'
-          +'<label><input type="checkbox" data-k="tier_open" checked> Free, no signup</label>'
-          +'<label><input type="checkbox" data-k="tier_registration" checked> Free (registration)</label>'
-          +'<label title="Free, but conditions may exclude you (non-commercial only, national ID required, fee for some uses, etc.)">'
-            +'<input type="checkbox" data-k="tier_conditions" checked> Free* (conditions apply)</label>'
+          +'<label><input type="checkbox" data-k="free" checked> Free, no signup</label>'
+          +'<label><input type="checkbox" data-k="registration" checked> Free with registration</label>'
+          +'<label><input type="checkbox" data-k="category" checked> Free for some users</label>'
+          +'<label><input type="checkbox" data-k="restricted" checked> Restricted</label>'
         +'</details>';
       d.querySelectorAll('input[data-m]').forEach(function(cb){
         cb.addEventListener('change',function(){
@@ -820,25 +821,9 @@
       setServers(data);
 
       var rawSources=(data&&data.sources)||{};
-      var now=Date.now();
-      var SOURCE_STALE_DAYS={};
       Object.keys(rawSources).forEach(function(sid){
         if(rawSources[sid].registration) SOURCE_REG[sid]=rawSources[sid].registration;
-        SOURCE_ACCESS[sid]=rawSources[sid].access||'registration';
-        var lo=rawSources[sid].last_ok;
-        // Treat missing last_ok as fresh — field absent in older JSON snapshots.
-        SOURCE_STALE_DAYS[sid]=lo?(now-new Date(lo).getTime())/86400000:0;
       });
-      // Minimum staleness across all sources a station belongs to.
-      // A station with at least one fresh source is considered fresh.
-      function stationStaleDays(s){
-        var min=Infinity;
-        stationSourceIds(s).forEach(function(sid){
-          var d=SOURCE_STALE_DAYS[sid]||0;
-          if(d<min) min=d;
-        });
-        return min;
-      }
       var sourceIds=Object.keys(rawSources);
       var bySource={}, sourceCounts={}, sourceStatus={};
       sourceIds.forEach(function(sid){
@@ -860,29 +845,26 @@
       var vp=await getViewerPos();
       if(vp) map.setView([vp.lat,vp.lon],map.getZoom());
       var refC=vp||{lat:map.getCenter().lat,lon:map.getCenter().lng};
+      // Equirectangular squared-distance is accurate enough for sort order
+      // and avoids the 8 trig ops per comparison that haversineDist requires.
+      var _cosRef=Math.cos(refC.lat*Math.PI/180);
       allStations.sort(function(a,b){
-        return haversineDist(refC.lat,refC.lon,a.lat,a.lon)
-              -haversineDist(refC.lat,refC.lon,b.lat,b.lon);
+        var dlaA=a.lat-refC.lat, dloA=(a.lon-refC.lon)*_cosRef;
+        var dlaB=b.lat-refC.lat, dloB=(b.lon-refC.lon)*_cosRef;
+        return (dlaA*dlaA+dloA*dloA)-(dlaB*dlaB+dloB*dloB);
       });
 
       // Network (NRTK) layer — empty for current data; ready for future.
       var netLayer=buildNetworkLayers(networks);
       netLayer.addTo(map);
 
-      // Stations fresh enough for coverage raster (< 3 days stale).
-      // Grey-dot stations (3–7 days) are shown on map but excluded from coverage
-      // so the raster reflects currently-live infrastructure only.
-      // Stations stale >= 7 days are hidden entirely.
-      var coverageStations=allStations.filter(function(s){ return stationStaleDays(s)<3; });
-      var displayStations=allStations.filter(function(s){ return stationStaleDays(s)<7; });
-
       // Coverage raster layer (single-base stations).
-      var coverage=new CoverageLayer(coverageStations);
+      var coverage=new CoverageLayer(allStations);
       coverage.addTo(map);
 
       // Zoom-aware station layer groups.
       var filter=function(_s){ return true; };
-      var visible=displayStations;
+      var visible=allStations;
       var stationIndex=null;
       var layers={detail:L.layerGroup(),dots:L.layerGroup()};
 
@@ -905,17 +887,22 @@
         }
       }
 
-      // At detail zoom, also refresh when the user pans to a new area.
+      // At detail zoom, refresh after panning settles (debounced to avoid
+      // redundant DOM rebuilds mid-pan on slower devices).
+      var _detailTimer=null;
       map.on('moveend',function(){
         if(map.getZoom()>=ZOOM_DETAIL){
-          refreshDetailLayer(map,visible,layers.detail,stationIndex);
+          clearTimeout(_detailTimer);
+          _detailTimer=setTimeout(function(){
+            refreshDetailLayer(map,visible,layers.detail,stationIndex);
+          },250);
         }
       });
 
       function rebuildStationLayers(){
         if(map.hasLayer(layers.detail)) map.removeLayer(layers.detail);
         if(map.hasLayer(layers.dots)) map.removeLayer(layers.dots);
-        visible=displayStations.filter(filter);
+        visible=allStations.filter(filter);
         stationIndex=buildStationIndex(visible);
         setStatus('Rendering '+visible.length+' stations\u2026');
         buildStationLayers(visible,map,function(built){
