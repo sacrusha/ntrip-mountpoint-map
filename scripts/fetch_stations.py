@@ -8,6 +8,7 @@ not wipe known-good data.
 """
 from __future__ import annotations
 
+import http.client
 import json
 import math
 import socket
@@ -15,6 +16,7 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.error import URLError
+from urllib.parse import urlparse
 from urllib.request import Request, urlopen
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -29,9 +31,9 @@ SOURCES = [
     # ~338 STR lines; ~200 have valid coords (rest report 0/0 — dropped by parser).
     {"id": "geortk",        "url": "http://geortk.jp:2101/"},
     # SAPOS — German federal-state RTK networks. Sourcetables are publicly readable;
-    # RTCM streams require per-Länder registration (most free, BY ~€20/yr, RP paid).
-    # SN (Sachsen) omitted — endpoint unconfirmed. Fee field per station reveals
-    # paid vs free on first run; paid stations stay in data, marked at display layer.
+    # RTCM streams require per-Länder registration. Most Länder free; BY free for
+    # agriculture, ~€20/yr for others; RP confirmed free (LVermGeo). SN (Sachsen)
+    # omitted — endpoint unconfirmed. Fee field per station reveals paid vs free.
     {"id": "sapos_SH_HH",   "url": "http://www.sapos.geonord.de:2101/"},     # Schleswig-Holstein + Hamburg
     {"id": "sapos_NI",      "url": "http://www.sapos-ni-ntrip.de:2101/"},    # Niedersachsen (incl. Bremen)
     {"id": "sapos_NW",      "url": "http://www.sapos-nw-ntrip.de:2101/"},    # Nordrhein-Westfalen
@@ -70,8 +72,8 @@ SOURCES = [
     # Rover: ntrip@ign.gob.ar or ign.gob.ar portal; 8-hr session cap.
     {"id": "ramsac",        "url": "http://ntrip.ign.gob.ar:2101/"},
     # FLEPOS (Flanders, BE): free all uses, 45 stations VRS.
-    # Rover: flepos.vlaanderen.be
-    {"id": "flepos",      "url": "http://ntrip.flepos.be:2101/"},
+    # Rover: flepos.vlaanderen.be  — NOTE: ntrip.flepos.be is dead (NXDOMAIN as of 2026-04).
+    {"id": "flepos",      "url": "http://flepos.vlaanderen.be:2101/"},
     # WALCORS (Wallonia, BE): free for positioning, 23 stations VRS.
     # Rover: gnss.wallonie.be  (gnss@spw.wallonie.be)
     {"id": "walcors",     "url": "http://gnss.wallonie.be:2101/"},
@@ -88,8 +90,8 @@ SOURCES = [
     # Rover: geoportaal.maaamet.ee
     {"id": "estpos",      "url": "http://gnss-rtk.maaamet.ee:8083/"},
     # LatPos (Latvia): free since 2018, VRS.
-    # Rover: latpos.lgia.gov.lv/SBC
-    {"id": "latpos",      "url": "http://latpos.lgia.gov.lv:2101/"},
+    # Rover: latpos.lgia.gov.lv/SBC  — NOTE: port 5001, not 2101 (per Alberding caster directory).
+    {"id": "latpos",      "url": "http://latpos.lgia.gov.lv:5001/"},
     # IGAC MAGNA-ECO (Colombia): free (law-mandated), 233 stations VRS.
     # Rover: redgeodesica-sbc.igac.gov.co/sbc
     {"id": "igac",        "url": "http://sbc.igac.gov.co:2101/"},
@@ -103,8 +105,9 @@ SOURCES = [
     # Rover: gnssdata.or.kr  (Korean-only portal; national ID may be required)
     {"id": "cors_korea",  "url": "http://www.gnssdata.or.kr:2101/"},
     # KSA-CORS (Saudi Arabia): free, 209 stations VRS.
-    # Rover: ksacors.gcs.gov.sa/RegisterAccount.aspx  (email signed form to info@geosa.gov.sa)
-    {"id": "ksa_cors",    "url": "http://KSACORS.gcs.gov.sa:2101/"},
+    # Rover: ksacors.geoportal.sa (registration; email signed form to info@geosa.gov.sa)
+    # KSACORS.gcs.gov.sa dead (NXDOMAIN 2026-04); migrated to ksacors.geoportal.sa.
+    {"id": "ksa_cors",    "url": "http://ksacors.geoportal.sa:2101/"},
 ]
 # RTKdata.online removed 2026-04-20: server unreachable since launch (RemoteDisconnected);
 # 0 stations ever collected. Operated by Kansi Solutions GmbH (same parent as paid
@@ -113,14 +116,38 @@ SOURCES = [
 FETCH_TIMEOUT = 60
 
 
+def _fetch_ntrip1(host: str, port: int) -> str:
+    """Raw-TCP fetch for NTRIP 1.0 casters (respond SOURCETABLE 200 OK, not HTTP)."""
+    with socket.create_connection((host, port), timeout=FETCH_TIMEOUT) as sock:
+        sock.sendall(
+            b"GET / HTTP/1.0\r\n"
+            b"User-Agent: NTRIP ntrip-mountpoint-map/1.0\r\n"
+            b"Ntrip-Version: Ntrip/1.0\r\n"
+            b"\r\n"
+        )
+        chunks: list[bytes] = []
+        while True:
+            chunk = sock.recv(4096)
+            if not chunk:
+                break
+            chunks.append(chunk)
+            if b"ENDSOURCETABLE" in chunk:
+                break
+    return b"".join(chunks).decode("utf-8", errors="replace")
+
+
 def fetch(url: str) -> str:
     req = Request(url, headers={
         "User-Agent": "NTRIP ntrip-mountpoint-map/1.0",
         "Ntrip-Version": "Ntrip/2.0",
         "Accept": "*/*",
     })
-    with urlopen(req, timeout=FETCH_TIMEOUT) as resp:
-        return resp.read().decode("utf-8", errors="replace")
+    try:
+        with urlopen(req, timeout=FETCH_TIMEOUT) as resp:
+            return resp.read().decode("utf-8", errors="replace")
+    except http.client.BadStatusLine:
+        parsed = urlparse(url)
+        return _fetch_ntrip1(parsed.hostname, parsed.port or 2101)
 
 
 def parse_sourcetable(text: str) -> tuple[list[dict], dict]:

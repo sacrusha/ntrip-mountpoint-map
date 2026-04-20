@@ -31,17 +31,50 @@ better.
 
 ## Data sources currently fetched
 
-| Source | URL | Access |
-|--------|-----|--------|
-| rtk2go.com | `http://rtk2go.com:2101/` | free, no registration for rovers |
-| CentipedeRTK | `http://caster.centipede.fr:2101/` | free, no registration |
-| FReDNet (OGS, IT-NE) | `http://gnsscaster.regione.fvg.it:8080/` | free, no registration |
-| RTKdata.online | `http://rtkdata.online:2101/` | community caster, best-effort |
+**~5,600 stations** across 37 casters as of 2026-04. Sourcetable fetches are
+public (RTCM 10402.1 — reading the sourcetable is its intended use); stream
+access requires registration where noted.
 
-See [`docs/networks.md`](docs/networks.md) for research on additional free
-networks (FLEPOS, WALCORS, ASG-EUPOS, SAPOS, CROPOS, IBGE RBMC-IP, AUSCORS,
-PositioNZ, …) — most require registration, so adding them needs credentials
-stored as GitHub Actions secrets.
+### Open access
+
+| Source | Endpoint | Notes |
+|--------|----------|-------|
+| rtk2go.com | `rtk2go.com:2101` | ~860 volunteer bases globally; any email as username |
+| CentipedeRTK | `crtk.net:2101` | ~1,200 bases; dense in France; login `centipede`/`centipede` |
+| FReDNet (OGS) | `gnsscaster.regione.fvg.it:8080` | 39 stations, NE Italy; stream needs free email signup |
+| GeoRTK (Geosense) | `geortk.jp:2101` | ~40 stations, Japan; no auth |
+
+### Registration required (free)
+
+| Source | Region | Stations | Registration |
+|--------|--------|----------|--------------|
+| SAPOS (13 Länder) | Germany | ~80 | per-state forms at sapos.de |
+| ERGNSS (IGN) | Spain | ~128 | ergnss.ign.es/gnuserportal/ |
+| AUSCORS (GA) | Australia | ~811 | gnss.ga.gov.au/stream |
+| PositioNZ-RT (LINZ) | New Zealand | ~62 | LINZ account + positionz@linz.govt.nz |
+| SatRef (Lands Dept) | Hong Kong | ~22 | geodetic@landsd.gov.hk |
+| InaCORS (BIG) | Indonesia | ~4 | nrtk.big.go.id |
+| TrigNet (NGI) | South Africa | ~72 | trignet.co.za |
+| RBMC-IP (IBGE) | Brazil | ~140 | gov.br RBMC-IP signup |
+| RAMSAC (IGN) | Argentina | ~204 | ign.gob.ar portal |
+| FLEPOS | Belgium (FL) | 45 VRS | flepos.vlaanderen.be |
+| WALCORS | Belgium (WA) | 23 VRS | gnss.wallonie.be |
+| SPSLux (ACT) | Luxembourg | VRS | spslux.lu/SBC/ |
+| ASG-EUPOS | Poland | ~11 | system.asgeupos.pl |
+| CROPOS | Croatia | VRS only | dgu@dgu.hr |
+| ESTPOS | Estonia | 40 VRS | geoportaal.maaamet.ee |
+| LatPos (LGIA) | Latvia | VRS | latpos.lgia.gov.lv/SBC |
+| IGAC MAGNA-ECO | Colombia | ~17 | redgeodesica-sbc.igac.gov.co/sbc |
+| EarthScope NOTA | Americas | ~1,106 | earthscope.org (non-commercial NULA) |
+| MIRAI (Go!GNSS) | Japan | ~325 | go.gnss.go.jp |
+| CORS-KOREA | South Korea | ~498 | gnssdata.or.kr |
+| KSA-CORS (GEOSA) | Saudi Arabia | 209 VRS | info@geosa.gov.sa |
+
+VRS-only networks (CROPOS, ASG-EUPOS, FLEPOS, WALCORS, etc.) expose virtual
+mountpoints only — no physical station coordinates — so they appear on the map
+via coverage polygons rather than individual dots (polygons not yet rendered;
+deferred). See [`docs/networks.md`](docs/networks.md) for confidence tiers,
+free/paid classification, and candidates for future ingestion.
 
 The NTRIP sourcetable is a public protocol endpoint (RTCM 10402.1) — reading
 it is its intended use.

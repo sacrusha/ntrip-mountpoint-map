@@ -8,8 +8,9 @@ classifications._
 
 ## Confidence
 
-**High:** RTK2GO, CentipedeRTK, ASG-EUPOS, FLEPOS, WALCORS, SAPOS (all 16
-Länder now free), CROPOS, FReDNet (IT), IBGE RBMC-IP, AUSCORS, PositioNZ NZ,
+**High:** RTK2GO, CentipedeRTK, ASG-EUPOS, FLEPOS, WALCORS, SAPOS (most
+Länder free; BY free for agriculture only, ~€20/yr for general use; RP
+confirmed free), CROPOS, FReDNet (IT), IBGE RBMC-IP, AUSCORS, PositioNZ NZ,
 MIRAI JP (commercial + automated use confirmed). Also confirmed paid (drop):
 SIGNAL SI, SKPOS SK (both public-sector-only), CZEPOS CZ, ROMPOS RO, HEPOS GR,
 SWEPOS RTK, swipos CH, TUSAGA-Aktif TR, VNGEONET VN (fees since Sep 2024).
@@ -54,19 +55,19 @@ international access), GeoDAF/ASI IT (EUREF raw, borderline out of scope).
 | id | name | host:port | how to register | notes |
 |---|---|---|---|---|
 | `asg-eupos` | ASG-EUPOS | `system.asgeupos.pl:2101` (`:8080`/`:8086` for VRS) | Web self-signup at system.asgeupos.pl — admin approval 1–2 working days | Free since Oct 2022; VRS/MAC; 130+ stations; PL |
-| `flepos` | FLEPOS | `ntrip.flepos.be:2101` | Web self-signup at flepos.vlaanderen.be | 45 stations; VRS; BE Flanders |
+| `flepos` | FLEPOS | `flepos.vlaanderen.be:2101` (was `ntrip.flepos.be` — dead 2026-04) | Web self-signup at flepos.vlaanderen.be | 45 stations; VRS; BE Flanders |
 | `walcors` | WALCORS | `gnss.wallonie.be:2101` | Registration at gnss.wallonie.be (gnss@spw.wallonie.be) | 23 stations; VRS; free for positioning (survey, GIS, drones, hobbyist); "paid" restriction applies to commercial resellers of raw stream, not end-user positioning; BE Wallonia |
 | `ergnss` | ERGNSS (IGN) | `ergnss-ip.ign.es:2101` | Web self-signup at ergnss.ign.es/gnuserportal/ — immediate | ~120 stations; VRS; ES; CC-compatible, attribute IGN |
-| `sapos` | SAPOS HEPS/EPS | per-Länder (central: `sapos-ntrip.de:2101`) | Per-state web forms at sapos.de | ~270 stations; VRS; **all 16 Länder free** (incl. RP, ST, BY confirmed 2024–25); **already in pipeline** as 13 `sapos_*` casters; DE |
+| `sapos` | SAPOS HEPS/EPS | per-Länder (central: `sapos-ntrip.de:2101`) | Per-state web forms at sapos.de | ~270 stations; VRS; most Länder free; BY free for agriculture only (~€20/yr general); RP confirmed free; **already in pipeline** as 13 `sapos_*` casters; DE |
 | `cropos` | CROPOS | `gnss.cropos.hr:2101` | Email dgu@dgu.hr or web form | 35 stations; VRS; free since Apr 2022 (Narodne novine 39/2022); **caster IP changed Nov 2023** (→ 195.29.198.194); hostname should resolve correctly; HR |
 | `estpos` | ESTPOS | `gnss-rtk.maaamet.ee:8083` | Portal at geoportaal.maaamet.ee | 40 stations; VRS; free until Aug 2026; EE |
-| `latpos` | LatPos | `latpos.lgia.gov.lv:2101` | SBC portal at latpos.lgia.gov.lv/SBC | 27 LV + border stations; VRS; free since 2018; LV |
+| `latpos` | LatPos | `latpos.lgia.gov.lv:5001` (port 5001, not 2101 — per Alberding caster directory) | SBC portal at latpos.lgia.gov.lv/SBC | 27 LV + border stations; VRS; free since 2018; LV |
 | `spslux` | SPSLux | `stream.spslux.lu:5005` | SBC portal at spslux.lu/sbc/ | **Port 5005** (not 2101); full country VRS; LU open data |
 | `trignet` | TrigNet | `trignet.co.za:2101` | Register at trignet.co.za | 55+ stations; VRS in 3 clusters + single-base; ZA |
 | `ibge-rbmc` | RBMC-IP (IBGE) | `170.84.40.52:2101` | gov.br signup at gov.br/pt-br/servicos/obter-acesso-a-rbmc-ip | 150 stations; single-base; BR |
 | `ramsac` | RAMSAC-NTRIP | `ntrip.ign.gob.ar:2101` | Email ntrip@ign.gob.ar or portal ign.gob.ar | ~69 stations; single-base; 8-hr session cap; AR |
 | `igac` | IGAC MAGNA-ECO | `sbc.igac.gov.co:2101` (VRS/network) / `:2102` (single-base) | Spider Business Center at redgeodesica-sbc.igac.gov.co/sbc; free after approval | 233 stations; VRS; first confirmed free VRS in LATAM; Law 1955/2019; CO |
-| `ksa-cors` | KSA-CORS | `KSACORS.gcs.gov.sa:2101` | Email signed form to info@geosa.gov.sa | 209 stations; VRS; SA |
+| `ksa-cors` | KSA-CORS | `ksacors.geoportal.sa:2101` (migrated from dead `KSACORS.gcs.gov.sa` 2026-04) | Email signed form to info@geosa.gov.sa | 209 stations; VRS; SA |
 | `inacors` | InaCORS | `nrtk.big.go.id:2001` | Self-register at nrtk.big.go.id | **Port 2001**; 200+ stations; VRS; ID |
 | `cors-korea` | CORS-KOREA | `www.gnssdata.or.kr:2101` | Register at gnssdata.or.kr (Korean-language portal); login uses registered email as NTRIP username | ~90–100 stations; VRS+FKP; free; **Korean national ID may be required — verify international access before pipeline**; KR |
 | `satref` | SatRef HK | `ntrip.geodetic.gov.hk:2101` | Email geodetic@landsd.gov.hk | 19 stations; VRS; mountpoint `VRS32G`; HK |

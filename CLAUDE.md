@@ -15,6 +15,10 @@ sub-metre DGNSS sources.
 - [`docs/networks.md`](docs/networks.md) — refined list of free public
   NTRIP casters. Confidence tiers + explicit paid/restricted drops + candidates
   for future ingestion.
+- [`docs/country-survey.md`](docs/country-survey.md) — country-by-country
+  ground truth: endpoints, free/paid basis, registration paths, open questions.
+- [`docs/global-networks.md`](docs/global-networks.md) — multi-country and
+  satellite PPP services (RTK2go, Centipede, EarthScope, Galileo HAS, etc.).
 
 ## Repository layout
 
@@ -44,63 +48,76 @@ data/
 
 ## Branch convention
 
-Develop on `claude/move-data-loading-workflow-8y7Vl`, PR into `main`. The
-workflow only runs against `main`, so anything touching data ingestion
-needs to land on `main` to be exercised.
+Develop on feature branches, PR into `main`. The workflow only runs against
+`main`, so anything touching data ingestion needs to land on `main` to be
+exercised.
 
-## Current state (end of last session)
+## Current state (end of session 2026-04-20)
 
 **Implemented:**
 - Hourly GitHub Actions workflow with rebase-retry, DGNSS filter, carrier/
   format tagging, carrier-inference fallback for rtk2go's empty-field lines.
-- Four sources in the pipeline: rtk2go, Centipede, FReDNet, GeoRTK (Japan).
+- **37 sources** in the pipeline; **~5,600 stations** in `data/stations.json`.
+  Sources include rtk2go, Centipede, FReDNet, GeoRTK, 13× SAPOS Länder,
+  ERGNSS, AUSCORS, PositioNZ, SatRef HK, InaCORS, TrigNet, RBMC-IP, RAMSAC,
+  FLEPOS, WALCORS, SPSLux, ASG-EUPOS, CROPOS, ESTPOS, LatPos, IGAC,
+  EarthScope NOTA, MIRAI, CORS-KOREA, KSA-CORS.
+- **NTRIP 1.0 raw-TCP fallback** in `fetch()`: catches `BadStatusLine` (which
+  Python's urllib does NOT wrap in URLError) and retries via raw socket.
+  Required for SAPOS casters and SatRef HK.
 - Three-band zoom UX: coverage raster only at z ≤ 5, canvas circleMarker
   dots 6 ≤ z ≤ 9, viewport-culled detail layer (labels + accuracy
   rectangles + popups) at z ≥ 10.
-- Coverage raster is a proper distance-to-nearest field: two-pass
-  alpha-accumulate + 256-entry colour LUT (green < 10 km → pale red 50–100
-  km). No overlap-colour artefacts.
-- KDBush v3 spatial index over visible stations; used by the coverage tile
-  loop and the detail-layer viewport cull. Linear fallback if the CDN
-  script fails.
-- IP-based geolocation via ipwho.is for initial map centre, no permission
-  prompt.
-- Popups: accuracy summary in plain language, legacy-RTCM-2 warning, one
-  server / port / mountpoint block per source the station is in — each
-  line with its own copy button.
-- Dismissible top banner with localStorage-persisted dismissal and a
-  "learn more" expander. HAS fallback is named explicitly.
-- Source-agnostic frontend: sources map + colour/label config at the top
-  of `index.html`. Adding a new source is "add to `SOURCES` in
-  `fetch_stations.py`" plus optional entries in `SOURCE_COLORS` /
-  `SOURCE_LABELS` for presentation — no other code change required.
+- Coverage raster: two-pass alpha-accumulate + 256-entry colour LUT
+  (green < 10 km → pale red 50–100 km).
+- KDBush v3 spatial index; linear fallback if CDN fails.
+- IP-based geolocation via ipwho.is for initial map centre.
+- Popups: accuracy summary, legacy-RTCM-2 warning, per-source connection
+  block with copy buttons.
+- Dismissible banner with localStorage persistence and HAS fallback mention.
+- `SOURCE_COLORS`, `SOURCE_LABELS`, `SOURCE_AUTH` config in `index.html`
+  for all 37 sources. Adding a new source only requires a `SOURCES` entry
+  in `fetch_stations.py` + optional frontend config — no other changes.
+
+**5 sources currently failing in CI:**
+Endpoint fixes applied this session; all 5 remain timing out in GitHub Actions.
+Diagnosis: GitHub Actions egress firewall blocks outbound ports 2101/5001/8083
+to government NTRIP casters. Fallback-to-cached-sourcetable logic handles this
+gracefully — stations remain in the JSON from the last successful fetch.
+- `flepos` — URL fixed (`ntrip.flepos.be` → `flepos.vlaanderen.be:2101`); still times out.
+- `walcors` — correct endpoint (`gnss.wallonie.be:2101`); intermittent outages documented.
+- `estpos` — correct endpoint (`gnss-rtk.maaamet.ee:8083`); also requires credentials.
+- `latpos` — port fixed (2101 → 5001 per Alberding caster directory); still times out.
+- `ksa_cors` — domain fixed (`KSACORS.gcs.gov.sa` → `ksacors.geoportal.sa:2101`).
+
+**VRS-only networks (0 physical stations on map):**
+- CROPOS, ASG-EUPOS, FLEPOS, WALCORS, InaCORS, ERGNSS — sourcetables
+  expose only VRS virtual mountpoints (lat=0, lon=0), correctly dropped.
+  Coverage representation via NRTK polygons is deferred (see below).
 
 **Open / deferred (by priority):**
-1. Verify FReDNet actually serves data — added in the last session; first
-   post-merge workflow run will confirm the sourcetable fetch succeeds.
-2. Access-tier toggles (Registration / Category / Restricted) currently
-   have no backing data — they're shown but filter nothing. Either hide
-   them until data exists or populate the tier per-station in the pipeline.
-3. Next caster candidates with confirmed endpoints (see
-   `docs/networks.md`): FReDNet is already in. Registration-required ones
-   (ASG-EUPOS, FLEPOS, WALCORS, SAPOS, CROPOS, IBGE RBMC-IP, AUSCORS,
-   PositioNZ) need credentials stored as GitHub Actions secrets before
-   they can be fetched.
-4. NRTK rendering is scaffolded (`networks: []` in the JSON, polygon +
-   clickable centroid marker ready) but no NRTK data is ingested yet.
-   First target when adding an NRTK source (e.g. ASG-EUPOS with its
-   national service area) should produce the first non-empty `networks[]`
-   entry — compute the coverage hull in the workflow.
-5. `precLabel` (in `index.html`) still uses a hardcoded `cos(47°)` for the
-   longitude-to-metres conversion. Only used inside the accuracy-rectangle
-   tooltip (which is already off by default). Fix: use the station's own
-   latitude. Flagged earlier by review, low severity.
-6. Mountpoint text search + URL deep-link (`?m=NAME`) — not in this
-   iteration's scope; users know geographically where they need coverage,
-   so map panning is the main interaction.
-7. Jargon audit of the banner / onboarding copy: the banner leads with
-   "NTRIP" and "50 cm", which a first-time user without vocabulary may
-   bounce from. Plain-language rewrite is a cheap win.
+1. Fix 5 failing CI sources (see above). FLEPOS and KSA-CORS need new
+   endpoints confirmed; others may be transient or firewalled.
+2. KSA-CORS: new NTRIP endpoint on `ksacors.geoportal.sa` needs
+   verification (port, path). Contact info@geosa.gov.sa.
+3. NRTK / VRS coverage polygons: NRTK rendering is scaffolded
+   (`networks: []` in JSON, polygon + centroid marker ready) but no data
+   ingested. VRS-only networks (CROPOS etc.) don't expose physical
+   station coordinates — manual polygon config needed for those.
+4. Access-tier toggles (Registration / Category / Restricted) shown in
+   UI but filter nothing — no backing data yet. Either hide or populate
+   per-station in pipeline.
+5. SAPOS BY: free only for agriculture (~€20/yr general use). Currently
+   in pipeline with 3 stations. Decide whether to keep (shows up as
+   requiring registration), mark as partially paid, or drop.
+6. SAPOS SN (Sachsen): endpoint unconfirmed, omitted from pipeline.
+7. ReNEP (Portugal): host:port withheld until post-registration. Needs
+   a registered account to discover the endpoint.
+8. `precLabel` (in `index.html`) uses hardcoded `cos(47°)` for the
+   lon-to-metres conversion in accuracy-rectangle tooltips. Low severity;
+   fix: use station's own latitude.
+9. Jargon audit of banner/onboarding copy — plain-language rewrite.
+10. Mountpoint text search + URL deep-link (`?m=NAME`) — deferred.
 
 ## Design notes worth preserving
 

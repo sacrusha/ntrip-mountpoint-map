@@ -18,7 +18,7 @@ on/off-line. Use them as order-of-magnitude guidance, not precise figures._
 
 ### DE — Germany
 - **SAPOS GEPOS** (BKG federal): `bkg1.positioning-service.net:2101` (alt: `caster.gepos.sapos.de:2101`) — no registration, CC-BY 4.0, free. PPP-RTK/SSR corrections via SSRZ format (not standard OSR RTCM); requires SSR-capable receiver or Geo++ SSR2OBS converter software (freely available). Continuous from Apr 2026 (was in optimization phase 2025–Mar 2026). Also broadcast via DAB+ radio.
-- **SAPOS HEPS/EPS** (per-Bundesland): ~270 stations, VRS. **All 16 Länder now free** — RP confirmed free (LVermGeo), ST confirmed free (LVermGeo), and BY agricultural-use free via Landwirtschaftskammer. Per-state casters (e.g. `sapos-bw-ntrip.de:2101`, `sapos-th-ntrip.de:2101`); all require per-Länder web registration. **Already in pipeline** (13 state casters; see `SOURCES` prefix `sapos_`).
+- **SAPOS HEPS/EPS** (per-Bundesland): ~270 stations, VRS. Most Länder free. RP confirmed free (LVermGeo). ST confirmed free (LVermGeo). BY: free for agriculture via Landwirtschaftskammer; ~€20/yr for general/hobbyist use — **not fully free**. SN (Sachsen) endpoint unconfirmed, omitted from pipeline. All require per-Länder web registration. **Already in pipeline** (13 state casters; see `SOURCES` prefix `sapos_`).
 - **Centipede**: ~3 volunteer DE nodes — negligible for a country already well-served by SAPOS.
 
 ### AT — Austria
@@ -37,7 +37,7 @@ on/off-line. Use them as order-of-magnitude guidance, not precise figures._
 - Commercial VRS: Teria (Hexagon), Orphéon (Trimble) — paid.
 
 ### BE — Belgium
-- **FLEPOS** (Flanders): `ntrip.flepos.be:2101`, 45 stations, VRS. Free for all uses (surveying and machine control), web self-signup at flepos.vlaanderen.be. Candidate for pipeline.
+- **FLEPOS** (Flanders): `flepos.vlaanderen.be:2101` (old `ntrip.flepos.be` dead 2026-04), 45 stations, VRS. Free for all uses (surveying and machine control), web self-signup at flepos.vlaanderen.be. In pipeline (endpoint currently timing out in CI — under investigation).
 - **WALCORS** (Wallonia): `gnss.wallonie.be:2101`, 23 stations, VRS. Free for "positioning" uses (survey, GIS, drones). Paid for machine-control/auto-guidance since Jan 2013 (commercial resellers buy raw stream; not a hobbyist restriction in practice). Registration at gnss.wallonie.be (gnss@spw.wallonie.be). Candidate for pipeline.
 - **GPSBru/AGN** (Brussels NGI): `agn.ngi.be` — endpoint confirmed at ngi.be; single station (Uccle observatory); NTRIP access via AGN portal. Operational as of mid-2024 (status page at agn.ngi.be). Free, registration via NGI. Low priority (single base; useful only within ~30 km of Brussels).
 
@@ -116,7 +116,7 @@ on/off-line. Use them as order-of-magnitude guidance, not precise figures._
 - **ESTPOS** (Maa-amet / Land and Spatial Development Board): `gnss-rtk.maaamet.ee:8083`, 40 stations, VRS. **Free until 31 August 2026** per director-general directive. Portal account + service agreement required (geoportaal.maaamet.ee). VRS, iMAX, nearest-base; MSM5 available. Candidate for pipeline (note expiry; review before Aug 2026).
 
 ### LV — Latvia
-- **LatPos** (LGIA): `latpos.lgia.gov.lv:2101`, 27 LV + 5 EE + 4 LT border stations, VRS. **Free since 2018.** SBC portal signup (latpos.lgia.gov.lv/SBC). Candidate for pipeline.
+- **LatPos** (LGIA): `latpos.lgia.gov.lv:5001` (**port 5001, not 2101** — confirmed per Alberding caster directory), 27 LV + 5 EE + 4 LT border stations, VRS. Free since 2018. SBC portal signup (latpos.lgia.gov.lv/SBC). In pipeline (CI times out — likely egress firewall on non-standard port).
 
 ### LT — Lithuania
 - **LitPOS** (GIS-Centras, Geoportal.lt): 35 stations, VRS + DGPS. Services: RTK (~2 cm), DGPS (~0.3–0.5 m), GPPS post-processing. RTCM 2.1/2.3/3.1/3.2, CMR, CMR+, CMRx formats available. NTRIP endpoint not publicly listed without registration. **Free status confirmed uncertain** — registration at geoportal.lt/geoportal/web/litpos-en; pricing not displayed publicly. Contact LitPOS@geoportal.lt to confirm free status before ingesting.
@@ -328,7 +328,7 @@ Coverage in each territory is thin (1–4 nodes over large areas), but where a b
 ## Middle East & Africa
 
 ### SA — Saudi Arabia
-- **KSA-CORS** (GASGI/GEOSA): `KSACORS.gcs.gov.sa:2101` (also accessible at `ksacors.geoportal.sa`), 209 active stations, VRS. Free, registration: download form from ksacors.gcs.gov.sa/RegisterAccount.aspx, sign and email to info@geosa.gov.sa; credentials sent by return email. GPS+GLO+GAL+BDS. Candidate for pipeline.
+- **KSA-CORS** (GASGI/GEOSA): `ksacors.geoportal.sa:2101` (migrated from `KSACORS.gcs.gov.sa` which is dead/NXDOMAIN 2026-04), 209 active stations, VRS. Free, registration: sign form and email to info@geosa.gov.sa. GPS+GLO+GAL+BDS. In pipeline (CI times out — egress firewall).
 
 ### IL — Israel
 - **APN** (Survey of Israel): `mapigps.co.il`, likely free for licensed surveyors/researchers (email apn@mapi.gov.il). **Critical caveat: pervasive military GNSS spoofing traced to Ein Shemer Airfield active continuously since October 2023, affecting Israel + Lebanon + Jordan + Sinai + Cyprus + southern Turkey. 50,000+ flights affected in 2024 alone. GPS signals show false locations (e.g. receiver "appears" to be in Beirut or Cairo). RTK is unreliable regardless of NTRIP access.** Map UI should flag this entire region. DROP from pipeline until spoofing ceases.
