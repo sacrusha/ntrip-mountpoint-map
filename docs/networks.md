@@ -16,10 +16,11 @@ SIGNAL SI, SKPOS SK (both public-sector-only), CZEPOS CZ, ROMPOS RO, HEPOS GR,
 SWEPOS RTK, swipos CH, TUSAGA-Aktif TR, VNGEONET VN (fees since Sep 2024).
 
 **Moderate:** ReNEP PT (free+reg confirmed; host withheld until post-registration),
-CORS-KOREA KR (free confirmed; registration may require Korean national ID — verify
-international access), GeoDAF/ASI IT (EUREF raw, borderline out of scope).
+CORS-KOREA KR (free confirmed; sourcetable public without auth; stream registration
+portal Korean-only, national ID likely required — international utility limited),
+GeoDAF/ASI IT (EUREF raw, borderline out of scope).
 
-**Low:** IceCORS IS (endpoint found: `moe.lmi.is:2101`; free status unconfirmed).
+**Low:** IceCORS IS — resolved: confirmed free ("data is free of charge" — natt.is), endpoint `178.19.53.126:2101` (GNCASTER), VRS + single-base, registration via natt.is/is/landmaelingar/jardstodvakerfi.
 
 ## Drops from the starting list
 
@@ -80,11 +81,25 @@ international access), GeoDAF/ASI IT (EUREF raw, borderline out of scope).
 
 ## Paid / drop
 
-SIGNAL (SI, €829/yr), SKPOS (SK, public-sector only), CZEPOS (CZ, ČÚZK Decree 31/1995),
-ROMPOS (RO), HEPOS (GR, €160/3mo), SWEPOS RTK (SE, paid; free DGNSS tier is sub-metre only),
-swipos (CH, CHF 1,500/yr), TUSAGA-Aktif (TR, `212.156.70.42:2101`, 146 stations, paid subscription),
-GNSSnet.hu (HU, appears commercial), VNGEONET (VN, fees since Sep 2024 per Circular 47/2024/TT-BTC),
-SoI-CORS (IN, paid for private users; free only for government/academic).
+**Affordable (under $200/yr cutoff):**
+HEPOS (GR, €160/yr ≈ $174 — confirmed annual, not per-quarter),
+ROMPOS (RO, ~€169/yr ≈ $183).
+
+**Over cutoff:**
+SIGNAL (SI, €200/yr ≈ $215 — pay-per-minute also available at €0.12/min; earlier €829/yr figure appears to be a higher tier or stale),
+SWEPOS RTK (SE, ~9,000 SEK/yr ≈ $850; free DGNSS tier is sub-metre only),
+swipos (CH, CHF 1,500/yr ≈ $1,650),
+CPOS (NO, NOK 8,000/yr ≈ $740),
+SiReNT (SG, SGD 107/mo ≈ $950/yr),
+SoI-CORS (IN, ₹5,000/mo; paid for private users; free only for government/academic),
+TUSAGA-Aktif (TR, `212.156.70.42:2101`, 146 stations; pricing not public),
+GNSSnet.hu (HU, appears commercial; pricing not public),
+VNGEONET (VN, fees since Sep 2024 per Circular 47/2024/TT-BTC; pricing not public),
+e-GNSS (TW), MyRTKnet (MY), PAGeNet (PH) — pricing not public.
+
+**Structural drop:**
+SKPOS (SK, public-sector only), CZEPOS (CZ, ČÚZK Decree 31/1995),
+NETPOS/Kadaster (NL, restricted to Kadaster/Rijkswaterstaat internal use).
 
 **Drop — operational obstruction:** APN (IL, `mapigps.co.il`) — pervasive military GNSS spoofing
 active continuously since Oct 2023 across Israel/Lebanon/Jordan/Sinai/Cyprus makes RTK unreliable
