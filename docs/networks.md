@@ -46,7 +46,32 @@ Physical stations with distinct coordinates shown on map.
 ## rtk2go — RTK2GO (global)
 
 **status**:    in-pipeline
-**host:port**: `rtk2go.com:2101`
+**host:port**: 
+**registration**: https://www.cropos.hr
+**registration**: https://ksacors.geoportal.sa
+**registration**: https://geoportaal.maaamet.ee
+**registration**: https://latpos.lgia.gov.lv/SBC
+**registration**: https://gnss.wallonie.be
+**registration**: https://flepos.vlaanderen.be
+**registration**: https://system.asgeupos.pl
+**registration**: https://www.gnssdata.or.kr
+**registration**: https://www.natt.is/is/landmaelingar/jardstodvakerfi
+**registration**: https://www.spslux.lu/SBC/Account/Register
+**registration**: https://redgeodesica-sbc.igac.gov.co/sbc
+**registration**: https://nrtk.big.go.id
+**registration**: https://www.geodetic.gov.hk/
+**registration**: https://ergnss.ign.es/gnuserportal/
+**registration**: https://frednet.crs.ogs.it/
+**registration**: https://go.gnss.go.jp
+**registration**: https://www.earthscope.org/data/gnss-realtime/
+**registration**: https://www.ign.gob.ar
+**registration**: https://gps-ntrip.ibge.gov.br
+**registration**: https://www.trignet.co.za
+**registration**: https://www.linz.govt.nz/
+**registration**: https://gnss.ga.gov.au/registration
+**registration**: none (open access)
+**registration**: none (open access)
+**registration**: none (open access)`rtk2go.com:2101`
 **type**:      single-base
 **access**:    free, no registration (username = any email, password = `none`)
 **stations**:  ~863
@@ -321,6 +346,7 @@ GNCASTER software (same as SAPOS). Offers VRS (VRS30, FKP30) and single-base
 **status**:    in-pipeline (all 16 states)
 **type**:      physical-coord-vrs (some states); single-coord-vrs (others — 0 map stations)
 **access**:    sourcetable public; streams require per-Länder web registration
+**registration**: https://www.sapos.de  (central portal links to each state's signup)
 **source**:    sapos.de; zentrale-stelle-sapos.de
 
 Federal-state RTK network. Each Bundesland operates its own NTRIP caster with

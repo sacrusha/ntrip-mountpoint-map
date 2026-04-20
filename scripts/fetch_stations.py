@@ -23,107 +23,96 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT / "data"
 
 SOURCES = [
-    {"id": "rtk2go",        "url": "http://rtk2go.com:2101/"},
-    {"id": "centipede",     "url": "http://crtk.net:2101/"},        # migrated from caster.centipede.fr 2025-03-18
-    # FReDNet (OGS, Italy — north-east): confirmed free, no registration.
-    {"id": "frednet",       "url": "http://gnsscaster.regione.fvg.it:8080/"},
-    # GeoRTK (Geosense, Japan): free indefinitely (1-yr advance notice if changed).
-    # Sourcetable has shrunk over time — currently ~66 STR lines; ~41 have valid
-    # coords (rest report 0/0 for registered but inactive bases, dropped by parser).
-    {"id": "geortk",        "url": "http://geortk.jp:2101/"},
-    # SAPOS — German federal-state RTK networks. Sourcetables are publicly readable;
+    # registration: URL shown in the map popup as a clickable "Sign up" link.
+    # None = no account needed (open access).
+    # See docs/networks.md for per-source detail.
+    {"id": "rtk2go",      "url": "http://rtk2go.com:2101/",
+     "registration": None},                                                    # open; username=any email, pass=none
+    {"id": "centipede",   "url": "http://crtk.net:2101/",                     # migrated from caster.centipede.fr 2025-03-18
+     "registration": None},                                                    # open; user=centipede pass=centipede
+    {"id": "frednet",     "url": "http://gnsscaster.regione.fvg.it:8080/",
+     "registration": "https://frednet.crs.ogs.it/"},                          # free email registration
+    {"id": "geortk",      "url": "http://geortk.jp:2101/",
+     "registration": None},                                                    # open; no auth
+    # SAPOS — German federal-state RTK networks. Sourcetables publicly readable;
     # RTCM streams require per-Länder registration. Most Länder free; BY €20/yr
-    # flat rate for non-agricultural use (free for agriculture; well under $200/yr
-    # cutoff); RP confirmed free (LVermGeo). Fee field per station reveals paid vs free.
-    {"id": "sapos_SH_HH",   "url": "http://www.sapos.geonord.de:2101/"},     # Schleswig-Holstein + Hamburg
-    {"id": "sapos_NI",      "url": "http://www.sapos-ni-ntrip.de:2101/"},    # Niedersachsen (incl. Bremen)
-    {"id": "sapos_NW",      "url": "http://www.sapos-nw-ntrip.de:2101/"},    # Nordrhein-Westfalen
-    {"id": "sapos_HE",      "url": "http://www.sapos-he-ntrip.de:2101/"},    # Hessen
-    {"id": "sapos_RP",      "url": "http://www.sapos-ntrip.rlp.de:2101/"},   # Rheinland-Pfalz
-    {"id": "sapos_BW",      "url": "http://www.sapos-bw-ntrip.de:2101/"},    # Baden-Württemberg
-    {"id": "sapos_BY",      "url": "http://www.sapos-by-ntrip.de:2101/"},    # Bayern (€20/yr non-agri flat rate)
-    {"id": "sapos_SN",      "url": "http://ntrip.sachsen.de:2101/"},         # Sachsen (GeoSN)
-    {"id": "sapos_SL",      "url": "http://www.sapos-sl-ntrip.de:2101/"},    # Saarland
-    {"id": "sapos_BE",      "url": "http://www.sapos-be-ntrip.de:2101/"},    # Berlin
-    {"id": "sapos_BB",      "url": "http://www.sapos-bb-ntrip.de:2101/"},    # Brandenburg
-    {"id": "sapos_MV",      "url": "http://www.sapos-mv-ntrip.de:2101/"},    # Mecklenburg-Vorpommern
-    {"id": "sapos_LSA",     "url": "http://www.sapos-lsa-ntrip.de:2101/"},   # Sachsen-Anhalt
-    {"id": "sapos_TH",      "url": "http://www.sapos-th-ntrip.de:2101/"},    # Thüringen
-    # ERGNSS (IGN, Spain): ~120 stations, VRS. Free, immediate signup.
-    # Rover: ergnss.ign.es/gnuserportal/ — attribute IGN per Orden FOM/2807/2015.
-    {"id": "ergnss",        "url": "http://ergnss-ip.ign.es:2101/"},
-    # AUSCORS (Geoscience Australia): 700+ stations, single-base. CC BY 4.0.
-    # Rover: gnss.ga.gov.au/stream
-    {"id": "auscors",       "url": "http://ntrip.data.gnss.ga.gov.au:2101/"},
-    # PositioNZ-RT (LINZ, New Zealand): 37 stations, single-base. CC BY 4.0 NZ.
-    # Rover: linz.govt.nz account + positionz@linz.govt.nz
-    {"id": "positionz",     "url": "http://positionz-rt.linz.govt.nz:2101/"},
-    # SatRef (Lands Dept, Hong Kong): 19 stations, VRS. Open data policy.
-    # Rover: geodetic@landsd.gov.hk · Mountpoint VRS32G (GPS+GLO+GAL+BDS).
-    {"id": "satref",        "url": "http://ntrip.geodetic.gov.hk:2101/"},
-    # InaCORS (BIG, Indonesia): 200+ stations, VRS. Free (Law 4/2011 mandate).
-    # Rover: nrtk.big.go.id — NOTE: port 2001, not 2101.
-    {"id": "inacors",       "url": "http://nrtk.big.go.id:2001/"},
-    # TrigNet (NGI/DALRRD, South Africa): 55+ stations. All products free.
-    # Rover: trignet.co.za
-    {"id": "trignet",       "url": "http://trignet.co.za:2101/"},
-    # RBMC-IP (IBGE, Brazil): 150 stations, single-base. Free, gov.br signup.
-    # Rover: 5-station limit per user.
-    {"id": "rbmc_ip",       "url": "http://gps-ntrip.ibge.gov.br:2101/"},
-    # RAMSAC-NTRIP (IGN Argentina): ~69 stations, single-base. Free.
-    # Rover: ntrip@ign.gob.ar or ign.gob.ar portal; 8-hr session cap.
-    {"id": "ramsac",        "url": "http://ntrip.ign.gob.ar:2101/"},
-    # FLEPOS (Flanders, BE): free all uses, 45 stations VRS.
-    # Rover: flepos.vlaanderen.be  — NOTE: ntrip.flepos.be is dead (NXDOMAIN as of 2026-04).
-    {"id": "flepos",      "url": "http://flepos.vlaanderen.be:2101/"},
-    # WALCORS (Wallonia, BE): free for positioning, 23 stations VRS.
-    # Rover: gnss.wallonie.be  (gnss@spw.wallonie.be)
-    {"id": "walcors",     "url": "http://gnss.wallonie.be:2101/"},
-    # SPSLux (Luxembourg): free, VRS. Port 5005 — not 2101.
-    # Rover: spslux.lu/SBC/Account/Register (subscribe SPSLUX (N)RTK package)
-    {"id": "spslux",      "url": "http://stream.spslux.lu:5005/"},
-    # ASG-EUPOS (Poland): free since Oct 2022, 130+ stations VRS.
-    # Rover: system.asgeupos.pl  (admin approval 1–2 working days)
-    {"id": "asg_eupos",   "url": "http://system.asgeupos.pl:2101/"},
-    # CROPOS (Croatia): free since Apr 2022, 35 stations VRS.
-    # Rover: cropos.hr  (or dgu@dgu.hr). Caster IP changed Nov 2023.
-    {"id": "cropos",      "url": "http://gnss.cropos.hr:2101/"},
-    # ESTPOS (Estonia): free until Aug 2026, 40 stations VRS.
-    # Rover: geoportaal.maaamet.ee
-    {"id": "estpos",      "url": "http://gnss-rtk.maaamet.ee:8083/"},
-    # LatPos (Latvia): free since 2018, VRS.
-    # Rover: latpos.lgia.gov.lv/SBC  — NOTE: port 5001, not 2101 (per Alberding caster directory).
-    {"id": "latpos",      "url": "http://latpos.lgia.gov.lv:5001/"},
-    # IGAC MAGNA-ECO (Colombia): free (law-mandated), 233 stations VRS.
-    # Rover: redgeodesica-sbc.igac.gov.co/sbc
-    {"id": "igac",        "url": "http://sbc.igac.gov.co:2101/"},
-    # EarthScope NOTA (USA/Americas): ~1000 stations; non-commercial NULA.
-    # Rover: earthscope.org/data/gnss-realtime/  (annual renewal)
-    {"id": "earthscope",  "url": "http://ntrip.earthscope.org:2101/"},
-    # MIRAI/Go!GNSS (Japan): free incl. commercial + automated, 300+ stations.
-    # Rover: go.gnss.go.jp  (+ separate NtripCaster authorization form)
-    {"id": "mirai",       "url": "http://ntrip.go.gnss.go.jp:2101/"},
-    # CORS-KOREA (South Korea): free, ~100 stations VRS+FKP.
-    # Rover: gnssdata.or.kr  (Korean-only portal; national ID may be required)
-    {"id": "cors_korea",  "url": "http://www.gnssdata.or.kr:2101/"},
-    # IceCORS (Iceland): free ("data is free of charge" — natt.is). GNCASTER,
-    # same software as SAPOS. Sourcetable public. Offers VRS (VRS30, FKP30)
-    # and single-base (RTCM30). Stream credentials via icecors@natt.is.
-    {"id": "icecors",     "url": "http://178.19.53.126:2101/"},
-    # KSA-CORS (Saudi Arabia): free, 209 stations VRS. Sourcetable returns all
-    # stations at a single coordinate — dropped by VRS filter.
-    # Rover: ksacors.geoportal.sa
-    {"id": "ksa_cors",    "url": "http://ksacors.geoportal.sa:2101/"},
-    # GEODNET (HYFIX.AI): paid RTK network, 20,000+ nodes, 153 countries.
-    # Stream access requires a subscription; sourcetable accessibility without
-    # auth is unverified. Added to test whether the sourcetable is publicly
-    # readable per NTRIP spec. If stations are returned, display as paid layer.
-    # $40/month; <4-month seasonal use ($160) is under the $200/yr cutoff.
-    # Four regional AWS servers — all port 2101.
-    {"id": "geodnet_usa", "url": "http://rtk.geodnet.com:2101/"},
-    {"id": "geodnet_eu",  "url": "http://eu.geodnet.com:2101/"},
-    {"id": "geodnet_aus", "url": "http://aus.geodnet.com:2101/"},
-    {"id": "geodnet_sa",  "url": "http://sa.geodnet.com:2101/"},
+    # flat rate for non-agricultural use. Raw TCP (NTRIP 1.0) fallback required.
+    {"id": "sapos_SH_HH", "url": "http://www.sapos.geonord.de:2101/",        # Schleswig-Holstein + Hamburg
+     "registration": "https://www.sapos.de"},
+    {"id": "sapos_NI",    "url": "http://www.sapos-ni-ntrip.de:2101/",       # Niedersachsen (incl. Bremen)
+     "registration": "https://www.sapos.de"},
+    {"id": "sapos_NW",    "url": "http://www.sapos-nw-ntrip.de:2101/",       # Nordrhein-Westfalen
+     "registration": "https://www.sapos.de"},
+    {"id": "sapos_HE",    "url": "http://www.sapos-he-ntrip.de:2101/",       # Hessen
+     "registration": "https://www.sapos.de"},
+    {"id": "sapos_RP",    "url": "http://www.sapos-ntrip.rlp.de:2101/",      # Rheinland-Pfalz; confirmed free (LVermGeo)
+     "registration": "https://www.sapos.de"},
+    {"id": "sapos_BW",    "url": "http://www.sapos-bw-ntrip.de:2101/",       # Baden-Württemberg
+     "registration": "https://www.sapos.de"},
+    {"id": "sapos_BY",    "url": "http://www.sapos-by-ntrip.de:2101/",       # Bayern (€20/yr non-agri flat rate)
+     "registration": "https://www.sapos.de"},
+    {"id": "sapos_SN",    "url": "http://ntrip.sachsen.de:2101/",             # Sachsen (GeoSN)
+     "registration": "https://www.sapos.de"},
+    {"id": "sapos_SL",    "url": "http://www.sapos-sl-ntrip.de:2101/",       # Saarland
+     "registration": "https://www.sapos.de"},
+    {"id": "sapos_BE",    "url": "http://www.sapos-be-ntrip.de:2101/",       # Berlin
+     "registration": "https://www.sapos.de"},
+    {"id": "sapos_BB",    "url": "http://www.sapos-bb-ntrip.de:2101/",       # Brandenburg
+     "registration": "https://www.sapos.de"},
+    {"id": "sapos_MV",    "url": "http://www.sapos-mv-ntrip.de:2101/",       # Mecklenburg-Vorpommern
+     "registration": "https://www.sapos.de"},
+    {"id": "sapos_LSA",   "url": "http://www.sapos-lsa-ntrip.de:2101/",      # Sachsen-Anhalt
+     "registration": "https://www.sapos.de"},
+    {"id": "sapos_TH",    "url": "http://www.sapos-th-ntrip.de:2101/",       # Thüringen
+     "registration": "https://www.sapos.de"},
+    {"id": "ergnss",      "url": "http://ergnss-ip.ign.es:2101/",
+     "registration": "https://ergnss.ign.es/gnuserportal/"},                  # free, immediate; attribute IGN
+    {"id": "auscors",     "url": "http://ntrip.data.gnss.ga.gov.au:2101/",
+     "registration": "https://gnss.ga.gov.au/registration"},                  # CC BY 4.0
+    {"id": "positionz",   "url": "http://positionz-rt.linz.govt.nz:2101/",
+     "registration": "https://www.linz.govt.nz/"},                            # LINZ account; CC BY 4.0 NZ
+    {"id": "satref",      "url": "http://ntrip.geodetic.gov.hk:2101/",
+     "registration": "https://www.geodetic.gov.hk/"},                         # mountpoint VRS32G; open data
+    {"id": "inacors",     "url": "http://nrtk.big.go.id:2001/",               # NOTE: port 2001, not 2101
+     "registration": "https://nrtk.big.go.id"},
+    {"id": "trignet",     "url": "http://trignet.co.za:2101/",
+     "registration": "https://www.trignet.co.za"},
+    {"id": "rbmc_ip",     "url": "http://gps-ntrip.ibge.gov.br:2101/",
+     "registration": "https://gps-ntrip.ibge.gov.br"},                        # gov.br signup; 5-station limit
+    {"id": "ramsac",      "url": "http://ntrip.ign.gob.ar:2101/",
+     "registration": "https://www.ign.gob.ar"},                               # 8-hr session cap
+    {"id": "flepos",      "url": "http://flepos.vlaanderen.be:2101/",         # ntrip.flepos.be NXDOMAIN as of 2026-04
+     "registration": "https://flepos.vlaanderen.be"},
+    {"id": "walcors",     "url": "http://gnss.wallonie.be:2101/",
+     "registration": "https://gnss.wallonie.be"},
+    {"id": "spslux",      "url": "http://stream.spslux.lu:5005/",             # NOTE: port 5005, not 2101
+     "registration": "https://www.spslux.lu/SBC/Account/Register"},
+    {"id": "asg_eupos",   "url": "http://system.asgeupos.pl:2101/",
+     "registration": "https://system.asgeupos.pl"},                           # admin approval 1–2 working days
+    {"id": "cropos",      "url": "http://gnss.cropos.hr:2101/",
+     "registration": "https://www.cropos.hr"},
+    {"id": "estpos",      "url": "http://gnss-rtk.maaamet.ee:8083/",          # NOTE: port 8083; free until Aug 2026
+     "registration": "https://geoportaal.maaamet.ee"},
+    {"id": "latpos",      "url": "http://latpos.lgia.gov.lv:5001/",           # NOTE: port 5001, not 2101
+     "registration": "https://latpos.lgia.gov.lv/SBC"},
+    {"id": "igac",        "url": "http://sbc.igac.gov.co:2101/",
+     "registration": "https://redgeodesica-sbc.igac.gov.co/sbc"},
+    {"id": "earthscope",  "url": "http://ntrip.earthscope.org:2101/",
+     "registration": "https://www.earthscope.org/data/gnss-realtime/"},       # non-commercial NULA; annual renewal
+    {"id": "mirai",       "url": "http://ntrip.go.gnss.go.jp:2101/",
+     "registration": "https://go.gnss.go.jp"},                                # + separate NtripCaster auth form
+    {"id": "cors_korea",  "url": "http://www.gnssdata.or.kr:2101/",
+     "registration": "https://www.gnssdata.or.kr"},                           # Korean portal; national ID may be required
+    {"id": "icecors",     "url": "http://178.19.53.126:2101/",
+     "registration": "https://www.natt.is/is/landmaelingar/jardstodvakerfi"},
+    {"id": "ksa_cors",    "url": "http://ksacors.geoportal.sa:2101/",
+     "registration": "https://ksacors.geoportal.sa"},                         # old gcs.gov.sa domain is NXDOMAIN
+    # GEODNET (HYFIX.AI): paid; $40/month. Testing whether sourcetable is publicly
+    # readable without auth. If stations returned, display as paid-service layer.
+    {"id": "geodnet_usa", "url": "http://rtk.geodnet.com:2101/",    "registration": None},
+    {"id": "geodnet_eu",  "url": "http://eu.geodnet.com:2101/",     "registration": None},
+    {"id": "geodnet_aus", "url": "http://aus.geodnet.com:2101/",    "registration": None},
+    {"id": "geodnet_sa",  "url": "http://sa.geodnet.com:2101/",     "registration": None},
 ]
 # RTKdata.online removed 2026-04-20: server unreachable since launch (RemoteDisconnected);
 # 0 stations ever collected. Operated by Kansi Solutions GmbH (same parent as paid
@@ -284,12 +273,14 @@ def main() -> int:
 
     for src in SOURCES:
         sid, url = src["id"], src["url"]
+        registration = src.get("registration")
         raw_path = DATA_DIR / f"{sid}.sourcetable"
         try:
             text = fetch(url)
             any_fresh = True
             fetched[sid] = {
                 "url": url,
+                "registration": registration,
                 "status": "ok",
                 "fetched_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
                 "raw_path": raw_path,
@@ -311,6 +302,7 @@ def main() -> int:
                 stations, dropped_vrs = filter_vrs(stations)
                 fetched[sid] = {
                     "url": url,
+                    "registration": registration,
                     "status": f"stale (fetch failed: {e!r})",
                     "fetched_at": None,
                     "raw_path": raw_path,
@@ -323,6 +315,7 @@ def main() -> int:
             else:
                 fetched[sid] = {
                     "url": url,
+                    "registration": registration,
                     "status": f"error: {e!r}",
                     "fetched_at": None,
                     "raw_path": raw_path,
@@ -338,6 +331,7 @@ def main() -> int:
     for sid, data in fetched.items():
         payload_sources[sid] = {
             "url": data["url"],
+            "registration": data.get("registration"),
             "status": data["status"],
             "fetched_at": data["fetched_at"],
             "stations": data["stations"],
