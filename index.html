@@ -705,13 +705,25 @@
         +(auth.openNote?'<div class="anote">'+esc(auth.openNote)+'</div>':'')
         +(regUrl?'<div class="anote"><a href="'+esc(regUrl)+'" target="_blank" rel="noopener noreferrer">Sign up / details \u2197</a></div>':'')
         +'</div>';
-      var circle=L.circle([n.lat,n.lon],{
+      // Visual ring: purely decorative — no pointer events so station dots show through.
+      var visual=L.circle([n.lat,n.lon],{
         radius:25000,color:VRS_COLOR,weight:2,
         fillColor:VRS_COLOR,fillOpacity:0.25,
+        interactive:false,
+        renderer:renderer,pane:'vrsPane'
+      });
+      visual.addTo(group);
+      // Hit ring: invisible, ~40 px wide stroke centred on the ring boundary.
+      // pointer-events:stroke (set after addTo map) makes only the stroke band
+      // interactive, so taps on the fill fall through to station dots below.
+      // 40 px gives ≈20 px on each side of the ring — a usable touch target.
+      var hit=L.circle([n.lat,n.lon],{
+        radius:25000,color:VRS_COLOR,weight:40,
+        opacity:0,fillOpacity:0,
         renderer:renderer,pane:'vrsPane'
       }).bindTooltip(label+' (VRS)',{sticky:false}).bindPopup(popup);
-      circle.addTo(group);
-      bySid[n.sid]=circle;
+      hit.addTo(group);
+      bySid[n.sid]={visual:visual,hit:hit};
     });
     return {group:group,bySid:bySid};
   }
@@ -748,7 +760,10 @@
       Object.keys(vrsLayerBySid).forEach(function(sid){
         var tier='tier_'+(SOURCE_ACCESS[sid]||'registration');
         var show=!!(state[sid]&&state[tier]);
-        vrsLayerBySid[sid].setStyle({opacity:show?1:0,fillOpacity:show?0.25:0});
+        var entry=vrsLayerBySid[sid];
+        entry.visual.setStyle({opacity:show?1:0,fillOpacity:show?0.25:0});
+        var el=entry.hit.getElement();
+        if(el) el.style.pointerEvents=show?'stroke':'none';
       });
     }
     function pred(){
@@ -854,7 +869,9 @@
   var stationStaleDays;
   window.addEventListener('load',async function(){
     setupBanner();
-    var map=L.map('map',{preferCanvas:true}).setView([47.0,8.0],8);
+    // minZoom: world ≥ 2/3 viewport width → at most ~1.5 world copies visible.
+    var minZoom=Math.max(1,Math.ceil(Math.log2(window.innerWidth/384)));
+    var map=L.map('map',{preferCanvas:true,worldCopyJump:true,minZoom:minZoom}).setView([47.0,8.0],8);
 
     // OSM canonical tile URL (no subdomain rotation per OSM tile policy)
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{
@@ -948,11 +965,15 @@
 
     // VRS network layer — always visible, not zoom-band gated.
     map.createPane('vrsPane');
-    map.getPane('vrsPane').style.zIndex=401; // above overlayPane (400)
-    var vrsRenderer=L.canvas({pane:'vrsPane',padding:0.5});
+    map.getPane('vrsPane').style.zIndex=403; // above dotsPane (402); SVG paths receive events, container passes them through
+    var vrsRenderer=L.svg({pane:'vrsPane',padding:0.5});
     var vrsResult=buildVrsMarkers(vrsRenderer,SOURCE_STALE_DAYS,sourceCounts);
     vrsResult.group.addTo(map);
     var vrsLayerBySid=vrsResult.bySid;
+    // Restrict hit rings to stroke-band only — fill area falls through to station dots.
+    Object.values(vrsLayerBySid).forEach(function(entry){
+      var el=entry.hit.getElement(); if(el) el.style.pointerEvents='stroke';
+    });
 
     // Stations fresh enough for coverage raster (< 3 days stale).
     // Grey-dot stations (3–7 days) are shown on map but excluded from coverage
@@ -969,7 +990,7 @@
     // transitions can toggle visibility via CSS instead of removing 5600
     // paths from the shared canvas renderer on every zoom boundary crossing.
     map.createPane('dotsPane');
-    map.getPane('dotsPane').style.zIndex=402; // above overlayPane (400) and vrsPane (401)
+    map.getPane('dotsPane').style.zIndex=402; // above overlayPane (400); below vrsPane SVG (403)
     var dotsRenderer=L.canvas({pane:'dotsPane',padding:0.5});
 
     // Zoom-aware station layer groups.
