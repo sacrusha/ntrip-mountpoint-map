@@ -229,6 +229,21 @@ def parse_sourcetable(text: str) -> tuple[list[dict], dict]:
     return stations, stats
 
 
+def filter_vrs(stations: list[dict]) -> tuple[list[dict], int]:
+    """Drop all stations when every entry shares the same coordinate.
+
+    VRS casters report all virtual mountpoints at a single reference point
+    (often a rounded city centre). Real CORS networks have distinct lat/lon
+    per antenna.  Returning an empty list causes the source to be treated as
+    0-station so the UI hides it automatically.
+    """
+    if len(stations) < 2:
+        return stations, 0
+    if len({(s["lat"], s["lon"]) for s in stations}) == 1:
+        return [], len(stations)
+    return stations, 0
+
+
 def load_existing(path: Path) -> dict | None:
     if not path.exists():
         return None
@@ -266,15 +281,18 @@ def main() -> int:
                 "stations": None,
             }
             stations, stats = parse_sourcetable(text)
+            stations, dropped_vrs = filter_vrs(stations)
             fetched[sid]["stations"] = stations
             fetched[sid]["parse_stats"] = stats
-            print(f"[{sid}] fetched {stats['kept']} stations "
-                  f"(dropped {stats['dropped_dgnss']} DGNSS, {stats['dropped_bad']} invalid)")
+            vrs_note = f", {dropped_vrs} VRS" if dropped_vrs else ""
+            print(f"[{sid}] fetched {len(stations)} stations "
+                  f"(dropped {stats['dropped_dgnss']} DGNSS, {stats['dropped_bad']} invalid{vrs_note})")
         except Exception as e:
             print(f"[{sid}] fetch failed: {e!r}", file=sys.stderr)
             if raw_path.exists():
                 text = raw_path.read_text()
                 stations, stats = parse_sourcetable(text)
+                stations, dropped_vrs = filter_vrs(stations)
                 fetched[sid] = {
                     "url": url,
                     "status": f"stale (fetch failed: {e!r})",
@@ -284,7 +302,8 @@ def main() -> int:
                     "stations": stations,
                     "parse_stats": stats,
                 }
-                print(f"[{sid}] reusing cached sourcetable ({stats['kept']} stations)")
+                vrs_note = f", {dropped_vrs} VRS" if dropped_vrs else ""
+                print(f"[{sid}] reusing cached sourcetable ({len(stations)} stations{vrs_note})")
             else:
                 fetched[sid] = {
                     "url": url,
