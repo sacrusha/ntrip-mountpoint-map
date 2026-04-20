@@ -23,96 +23,98 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT / "data"
 
 SOURCES = [
+    # access: "open"       = connect immediately, no account needed
+    #         "conditions" = free but registration, fee, or usage restriction applies
     # registration: URL shown in the map popup as a clickable "Sign up" link.
     # None = no account needed (open access).
     # See docs/networks.md for per-source detail.
     {"id": "rtk2go",      "url": "http://rtk2go.com:2101/",
-     "registration": None},                                                    # open; username=any email, pass=none
+     "access": "open", "registration": None},                                  # username=any email, pass=none
     {"id": "centipede",   "url": "http://crtk.net:2101/",                     # migrated from caster.centipede.fr 2025-03-18
-     "registration": None},                                                    # open; user=centipede pass=centipede
+     "access": "open", "registration": None},                                  # user=centipede pass=centipede
     {"id": "frednet",     "url": "http://gnsscaster.regione.fvg.it:8080/",
-     "registration": "https://frednet.crs.ogs.it/"},                          # free email registration
+     "access": "registration", "registration": "https://frednet.crs.ogs.it/"},  # free email registration
     {"id": "geortk",      "url": "http://geortk.jp:2101/",
-     "registration": None},                                                    # open; no auth
+     "access": "open", "registration": None},                                  # no auth
     # SAPOS — German federal-state RTK networks. Sourcetables publicly readable;
     # RTCM streams require per-Länder registration. Most Länder free; BY €20/yr
     # flat rate for non-agricultural use. Raw TCP (NTRIP 1.0) fallback required.
     {"id": "sapos_SH_HH", "url": "http://www.sapos.geonord.de:2101/",        # Schleswig-Holstein + Hamburg
-     "registration": "https://www.sapos.de"},
+     "access": "registration", "registration": "https://www.sapos.de"},
     {"id": "sapos_NI",    "url": "http://www.sapos-ni-ntrip.de:2101/",       # Niedersachsen (incl. Bremen)
-     "registration": "https://www.sapos.de"},
+     "access": "registration", "registration": "https://www.sapos.de"},
     {"id": "sapos_NW",    "url": "http://www.sapos-nw-ntrip.de:2101/",       # Nordrhein-Westfalen
-     "registration": "https://www.sapos.de"},
+     "access": "registration", "registration": "https://www.sapos.de"},
     {"id": "sapos_HE",    "url": "http://www.sapos-he-ntrip.de:2101/",       # Hessen
-     "registration": "https://www.sapos.de"},
+     "access": "registration", "registration": "https://www.sapos.de"},
     {"id": "sapos_RP",    "url": "http://www.sapos-ntrip.rlp.de:2101/",      # Rheinland-Pfalz; confirmed free (LVermGeo)
-     "registration": "https://www.sapos.de"},
+     "access": "registration", "registration": "https://www.sapos.de"},
     {"id": "sapos_BW",    "url": "http://www.sapos-bw-ntrip.de:2101/",       # Baden-Württemberg
-     "registration": "https://www.sapos.de"},
-    {"id": "sapos_BY",    "url": "http://www.sapos-by-ntrip.de:2101/",       # Bayern (€20/yr non-agri flat rate)
-     "registration": "https://www.sapos.de"},
+     "access": "registration", "registration": "https://www.sapos.de"},
+    {"id": "sapos_BY",    "url": "http://www.sapos-by-ntrip.de:2101/",       # Bayern: free for agriculture, €20/yr otherwise
+     "access": "conditions",   "registration": "https://www.sapos.de"},
     {"id": "sapos_SN",    "url": "http://ntrip.sachsen.de:2101/",             # Sachsen (GeoSN)
-     "registration": "https://www.sapos.de"},
+     "access": "registration", "registration": "https://www.sapos.de"},
     {"id": "sapos_SL",    "url": "http://www.sapos-sl-ntrip.de:2101/",       # Saarland
-     "registration": "https://www.sapos.de"},
+     "access": "registration", "registration": "https://www.sapos.de"},
     {"id": "sapos_BE",    "url": "http://www.sapos-be-ntrip.de:2101/",       # Berlin
-     "registration": "https://www.sapos.de"},
+     "access": "registration", "registration": "https://www.sapos.de"},
     {"id": "sapos_BB",    "url": "http://www.sapos-bb-ntrip.de:2101/",       # Brandenburg
-     "registration": "https://www.sapos.de"},
+     "access": "registration", "registration": "https://www.sapos.de"},
     {"id": "sapos_MV",    "url": "http://www.sapos-mv-ntrip.de:2101/",       # Mecklenburg-Vorpommern
-     "registration": "https://www.sapos.de"},
+     "access": "registration", "registration": "https://www.sapos.de"},
     {"id": "sapos_LSA",   "url": "http://www.sapos-lsa-ntrip.de:2101/",      # Sachsen-Anhalt
-     "registration": "https://www.sapos.de"},
+     "access": "registration", "registration": "https://www.sapos.de"},
     {"id": "sapos_TH",    "url": "http://www.sapos-th-ntrip.de:2101/",       # Thüringen
-     "registration": "https://www.sapos.de"},
+     "access": "registration", "registration": "https://www.sapos.de"},
     {"id": "ergnss",      "url": "http://ergnss-ip.ign.es:2101/",
-     "registration": "https://ergnss.ign.es/gnuserportal/"},                  # free, immediate; attribute IGN
+     "access": "registration", "registration": "https://ergnss.ign.es/gnuserportal/"},   # free, immediate; attribute IGN
     {"id": "auscors",     "url": "http://ntrip.data.gnss.ga.gov.au:2101/",
-     "registration": "https://gnss.ga.gov.au/registration"},                  # CC BY 4.0
+     "access": "registration", "registration": "https://gnss.ga.gov.au/registration"},   # CC BY 4.0
     {"id": "positionz",   "url": "http://positionz-rt.linz.govt.nz:2101/",
-     "registration": "https://www.linz.govt.nz/"},                            # LINZ account; CC BY 4.0 NZ
+     "access": "registration", "registration": "https://www.linz.govt.nz/"},             # LINZ account; CC BY 4.0 NZ
     {"id": "satref",      "url": "http://ntrip.geodetic.gov.hk:2101/",
-     "registration": "https://www.geodetic.gov.hk/"},                         # mountpoint VRS32G; open data
+     "access": "registration", "registration": "https://www.geodetic.gov.hk/"},          # mountpoint VRS32G; open data
     {"id": "inacors",     "url": "http://nrtk.big.go.id:2001/",               # NOTE: port 2001, not 2101
-     "registration": "https://nrtk.big.go.id"},
+     "access": "registration", "registration": "https://nrtk.big.go.id"},
     {"id": "trignet",     "url": "http://trignet.co.za:2101/",
-     "registration": "https://www.trignet.co.za"},
+     "access": "registration", "registration": "https://www.trignet.co.za"},
     {"id": "rbmc_ip",     "url": "http://gps-ntrip.ibge.gov.br:2101/",
-     "registration": "https://gps-ntrip.ibge.gov.br"},                        # gov.br signup; 5-station limit
+     "access": "registration", "registration": "https://gps-ntrip.ibge.gov.br"},         # gov.br signup; 5-station limit
     {"id": "ramsac",      "url": "http://ntrip.ign.gob.ar:2101/",
-     "registration": "https://www.ign.gob.ar"},                               # 8-hr session cap
+     "access": "registration", "registration": "https://www.ign.gob.ar"},                # 8-hr session cap
     {"id": "flepos",      "url": "http://flepos.vlaanderen.be:2101/",         # ntrip.flepos.be NXDOMAIN as of 2026-04
-     "registration": "https://flepos.vlaanderen.be"},
+     "access": "registration", "registration": "https://flepos.vlaanderen.be"},
     {"id": "walcors",     "url": "http://gnss.wallonie.be:2101/",
-     "registration": "https://gnss.wallonie.be"},
+     "access": "registration", "registration": "https://gnss.wallonie.be"},
     {"id": "spslux",      "url": "http://stream.spslux.lu:5005/",             # NOTE: port 5005, not 2101
-     "registration": "https://www.spslux.lu/SBC/Account/Register"},
+     "access": "registration", "registration": "https://www.spslux.lu/SBC/Account/Register"},
     {"id": "asg_eupos",   "url": "http://system.asgeupos.pl:2101/",
-     "registration": "https://system.asgeupos.pl"},                           # admin approval 1–2 working days
+     "access": "registration", "registration": "https://system.asgeupos.pl"},            # admin approval 1–2 working days
     {"id": "cropos",      "url": "http://gnss.cropos.hr:2101/",
-     "registration": "https://www.cropos.hr"},
+     "access": "registration", "registration": "https://www.cropos.hr"},
     {"id": "estpos",      "url": "http://gnss-rtk.maaamet.ee:8083/",          # NOTE: port 8083; free until Aug 2026
-     "registration": "https://geoportaal.maaamet.ee"},
+     "access": "conditions",   "registration": "https://geoportaal.maaamet.ee"},
     {"id": "latpos",      "url": "http://latpos.lgia.gov.lv:5001/",           # NOTE: port 5001, not 2101
-     "registration": "https://latpos.lgia.gov.lv/SBC"},
+     "access": "registration", "registration": "https://latpos.lgia.gov.lv/SBC"},
     {"id": "igac",        "url": "http://sbc.igac.gov.co:2101/",
-     "registration": "https://redgeodesica-sbc.igac.gov.co/sbc"},
+     "access": "registration", "registration": "https://redgeodesica-sbc.igac.gov.co/sbc"},
     {"id": "earthscope",  "url": "http://ntrip.earthscope.org:2101/",
-     "registration": "https://www.earthscope.org/data/gnss-realtime/"},       # non-commercial NULA; annual renewal
+     "access": "conditions",   "registration": "https://www.earthscope.org/data/gnss-realtime/"},  # non-commercial NULA; annual renewal
     {"id": "mirai",       "url": "http://ntrip.go.gnss.go.jp:2101/",
-     "registration": "https://go.gnss.go.jp"},                                # + separate NtripCaster auth form
+     "access": "registration", "registration": "https://go.gnss.go.jp"},                 # + separate NtripCaster auth form
     {"id": "cors_korea",  "url": "http://www.gnssdata.or.kr:2101/",
-     "registration": "https://www.gnssdata.or.kr"},                           # Korean portal; national ID may be required
+     "access": "conditions",   "registration": "https://www.gnssdata.or.kr"},            # national ID may be required
     {"id": "icecors",     "url": "http://178.19.53.126:2101/",
-     "registration": "https://www.natt.is/is/landmaelingar/jardstodvakerfi"},
+     "access": "registration", "registration": "https://www.natt.is/is/landmaelingar/jardstodvakerfi"},
     {"id": "ksa_cors",    "url": "http://ksacors.geoportal.sa:2101/",
-     "registration": "https://ksacors.geoportal.sa"},                         # old gcs.gov.sa domain is NXDOMAIN
+     "access": "conditions",   "registration": "https://ksacors.geoportal.sa"},          # old gcs.gov.sa domain is NXDOMAIN
     # GEODNET (HYFIX.AI): paid; $40/month. Testing whether sourcetable is publicly
     # readable without auth. If stations returned, display as paid-service layer.
-    {"id": "geodnet_usa", "url": "http://rtk.geodnet.com:2101/",    "registration": None},
-    {"id": "geodnet_eu",  "url": "http://eu.geodnet.com:2101/",     "registration": None},
-    {"id": "geodnet_aus", "url": "http://aus.geodnet.com:2101/",    "registration": None},
-    {"id": "geodnet_sa",  "url": "http://sa.geodnet.com:2101/",     "registration": None},
+    {"id": "geodnet_usa", "url": "http://rtk.geodnet.com:2101/",    "access": "conditions", "registration": None},
+    {"id": "geodnet_eu",  "url": "http://eu.geodnet.com:2101/",     "access": "conditions", "registration": None},
+    {"id": "geodnet_aus", "url": "http://aus.geodnet.com:2101/",    "access": "conditions", "registration": None},
+    {"id": "geodnet_sa",  "url": "http://sa.geodnet.com:2101/",     "access": "conditions", "registration": None},
 ]
 # RTKdata.online removed 2026-04-20: server unreachable since launch (RemoteDisconnected);
 # 0 stations ever collected. Operated by Kansi Solutions GmbH (same parent as paid
@@ -278,6 +280,7 @@ def main() -> int:
     for src in SOURCES:
         sid, url = src["id"], src["url"]
         registration = src.get("registration")
+        access = src.get("access", "registration")
         raw_path = DATA_DIR / f"{sid}.sourcetable"
         prev_last_ok = existing_sources.get(sid, {}).get("last_ok")
         try:
@@ -287,6 +290,7 @@ def main() -> int:
             fetched[sid] = {
                 "url": url,
                 "registration": registration,
+                "access": access,
                 "status": "ok",
                 "fetched_at": now_iso,
                 "last_ok": now_iso,
@@ -310,6 +314,7 @@ def main() -> int:
                 fetched[sid] = {
                     "url": url,
                     "registration": registration,
+                    "access": access,
                     "status": f"stale (fetch failed: {e!r})",
                     "fetched_at": None,
                     "last_ok": prev_last_ok,
@@ -324,6 +329,7 @@ def main() -> int:
                 fetched[sid] = {
                     "url": url,
                     "registration": registration,
+                    "access": access,
                     "status": f"error: {e!r}",
                     "fetched_at": None,
                     "last_ok": prev_last_ok,
@@ -341,6 +347,7 @@ def main() -> int:
         payload_sources[sid] = {
             "url": data["url"],
             "registration": data.get("registration"),
+            "access": data.get("access", "registration"),
             "status": data["status"],
             "fetched_at": data["fetched_at"],
             "last_ok": data.get("last_ok"),

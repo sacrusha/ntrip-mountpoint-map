@@ -179,6 +179,9 @@
   // Registration URLs per source, populated from data/stations.json at load time.
   // SOURCE_AUTH.openNote gives the short description; SOURCE_REG gives the link.
   var SOURCE_REG={};
+  // Access tier per source: "open" | "registration" | "conditions".
+  // Populated from data/stations.json at load time.
+  var SOURCE_ACCESS={};
   // Groups collapse multiple source IDs into one toggle row.
   // match(sid) → true means the source belongs to this group.
   var SOURCE_GROUPS=[
@@ -671,15 +674,20 @@
 
   // Toggle panel: generates a source checkbox per entry in `sourceCounts`
   // ({ sourceId: stationCount }). Station predicate passes a station iff
-  // it belongs to at least one enabled source. Access tier is a
-  // placeholder (only "free" currently has backing data).
+  // it belongs to at least one enabled source AND its access tier is enabled.
+  // Access tiers: "open" = Free, "registration" = Free (registration), "conditions" = Free*
   function buildTogglePanel(sourceCounts,onChange){
-    var state={free:true,registration:true,category:true,restricted:true};
+    var state={tier_open:true,tier_registration:true,tier_conditions:true};
     Object.keys(sourceCounts).forEach(function(sid){ state[sid]=true; });
     function pred(){
       return function(s){
         var ids=stationSourceIds(s);
-        for(var i=0;i<ids.length;i++) if(state[ids[i]]) return state.free;
+        for(var i=0;i<ids.length;i++){
+          var sid=ids[i];
+          if(!state[sid]) continue;
+          var tier='tier_'+(SOURCE_ACCESS[sid]||'registration');
+          if(state[tier]) return true;
+        }
         return false;
       };
     }
@@ -715,10 +723,10 @@
       }).join('');
       d.innerHTML='<h4>Sources</h4>'+rows
         +'<details><summary>Access</summary>'
-          +'<label><input type="checkbox" data-k="free" checked> Free, no signup</label>'
-          +'<label><input type="checkbox" data-k="registration" checked> Free with registration</label>'
-          +'<label><input type="checkbox" data-k="category" checked> Free for some users</label>'
-          +'<label><input type="checkbox" data-k="restricted" checked> Restricted</label>'
+          +'<label><input type="checkbox" data-k="tier_open" checked> Free, no signup</label>'
+          +'<label><input type="checkbox" data-k="tier_registration" checked> Free (registration)</label>'
+          +'<label title="Free, but conditions may exclude you (non-commercial only, national ID required, fee for some uses, etc.)">'
+            +'<input type="checkbox" data-k="tier_conditions" checked> Free* (conditions apply)</label>'
         +'</details>';
       d.querySelectorAll('input[data-m]').forEach(function(cb){
         cb.addEventListener('change',function(){
@@ -816,6 +824,7 @@
       var SOURCE_STALE_DAYS={};
       Object.keys(rawSources).forEach(function(sid){
         if(rawSources[sid].registration) SOURCE_REG[sid]=rawSources[sid].registration;
+        SOURCE_ACCESS[sid]=rawSources[sid].access||'registration';
         var lo=rawSources[sid].last_ok;
         // Treat missing last_ok as fresh — field absent in older JSON snapshots.
         SOURCE_STALE_DAYS[sid]=lo?(now-new Date(lo).getTime())/86400000:0;
