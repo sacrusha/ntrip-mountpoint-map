@@ -24,10 +24,10 @@ SOURCES = [
     {"id": "centipede",     "url": "http://crtk.net:2101/"},        # migrated from caster.centipede.fr 2025-03-18
     # FReDNet (OGS, Italy — north-east): confirmed free, no registration.
     {"id": "frednet",       "url": "http://gnsscaster.regione.fvg.it:8080/"},
-    # RTKdata.online: community caster, low-confidence operational status;
-    # fetch will be attempted best-effort and fall through on failure.
-    {"id": "rtkdataonline", "url": "http://rtkdata.online:2101/"},
 ]
+# RTKdata.online removed 2026-04-20: server unreachable since launch (RemoteDisconnected);
+# 0 stations ever collected. Operated by Kansi Solutions GmbH (same parent as paid
+# rtkdata.com); aggregates rtk2go/Centipede visually — no independent value.
 
 FETCH_TIMEOUT = 60
 
