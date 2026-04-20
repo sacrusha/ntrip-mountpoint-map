@@ -112,18 +112,16 @@ SOURCES = [
      "access": "registration", "registration": "https://www.natt.is/is/landmaelingar/jardstodvakerfi"},
     {"id": "ksa_cors",    "url": "http://ksacors.geoportal.sa:2101/",
      "access": "conditions",   "registration": "https://ksacors.geoportal.sa"},          # old gcs.gov.sa domain is NXDOMAIN
-    # GEODNET (HYFIX.AI): paid; $40/month. Testing whether sourcetable is publicly
-    # readable without auth. If stations returned, display as paid-service layer.
-    {"id": "geodnet_usa", "url": "http://rtk.geodnet.com:2101/",    "access": "conditions", "registration": None},
-    {"id": "geodnet_eu",  "url": "http://eu.geodnet.com:2101/",     "access": "conditions", "registration": None},
-    {"id": "geodnet_aus", "url": "http://aus.geodnet.com:2101/",    "access": "conditions", "registration": None},
-    {"id": "geodnet_sa",  "url": "http://sa.geodnet.com:2101/",     "access": "conditions", "registration": None},
 ]
 # RTKdata.online removed 2026-04-20: server unreachable since launch (RemoteDisconnected);
 # 0 stations ever collected. Operated by Kansi Solutions GmbH (same parent as paid
 # rtkdata.com); aggregates rtk2go/Centipede visually — no independent value.
+# GEODNET (HYFIX.AI) removed 2026-04-20: paid service ($40/month); sourcetable is
+# publicly readable but returns 0 free stations after filter. Not in scope.
 
 FETCH_TIMEOUT = 60
+STALE_GREY_DAYS = 3   # sources offline this long shown as grey dots, excluded from coverage raster
+STALE_HIDE_DAYS = 7   # sources offline this long hidden entirely
 
 
 def _fetch_ntrip1(host: str, port: int) -> str:
@@ -292,7 +290,7 @@ def fetch_source(src: dict) -> tuple[str, dict, bool]:
             "stations": stations,
             "parse_stats": stats,
         }, True
-    except Exception as e:
+    except (URLError, OSError, http.client.HTTPException, ValueError) as e:
         print(f"[{sid}] fetch failed: {e!r}", file=sys.stderr)
         if raw_path.exists():
             text = raw_path.read_text()
