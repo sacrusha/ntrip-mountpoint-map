@@ -24,8 +24,16 @@ hobbyists and small shops looking for cm-accurate GPS corrections within
 - Accuracy rectangle at close zoom encodes the precision of the reported
   coordinates, so pins in physically implausible locations don't destroy
   trust in the data.
-- Dismissible scope banner with a pointer to Galileo HAS for users who
-  don't need cm-level accuracy.
+- Plain-language banner and expandable "how it works" panel aimed at
+  hobbyists: explains why GPS drifts, distinguishes standalone PPP/HAS
+  devices (fee-free units from ~$2,900; subscription hardware from ~$850 +
+  fees) from free network RTK, and gives honest hardware price
+  ranges. Links to a full hobbyist guide (`guide.html`).
+- `guide.html` — standalone primer covering: compatibility check for
+  existing survey gear (Trimble, Leica, Topcon), complete assembled unit
+  recommendations (Emlid), DIY path (ArduSimple), step-by-step NTRIP
+  connection with NTRIP client pointers, DIY base station setup, and
+  plain-English glossary. Prices in €/$; no US-only products.
 - Filters DGNSS-only mountpoints (sub-metre, out of scope) and flags legacy
   RTCM 2.x streams in popups.
 - IP-based geolocation (ipwho.is) for initial map centre — no permission

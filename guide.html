@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>RTK GPS: a plain-English guide — NTRIP Mountpoint Map</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;font-family:system-ui,-apple-system,sans-serif;background:#f4f6f8;color:#1a1a1a;}
+header{background:#1b2b3a;color:#e8eef4;padding:12px 20px;display:flex;align-items:center;gap:16px;border-bottom:1px solid #0d1922;position:sticky;top:0;z-index:10;}
+header a{color:#9ec8ff;text-decoration:none;font-size:13px;white-space:nowrap;}
+header a:hover{text-decoration:underline;}
+header .title{font-size:14px;font-weight:600;}
+main{max-width:760px;margin:0 auto;padding:32px 20px 64px;}
+h1{font-size:22px;font-weight:700;margin:0 0 6px;}
+.subtitle{color:#555;font-size:14px;margin:0 0 32px;}
+h2{font-size:16px;font-weight:700;margin:32px 0 10px;color:#1b2b3a;border-bottom:2px solid #e2e8f0;padding-bottom:4px;}
+h3{font-size:14px;font-weight:600;margin:16px 0 6px;color:#333;}
+p{font-size:14px;line-height:1.65;margin:0 0 12px;color:#333;}
+ul,ol{font-size:14px;line-height:1.65;margin:0 0 12px;padding-left:22px;color:#333;}
+li{margin-bottom:4px;}
+.callout{background:#f0f4ff;border-left:3px solid #4a7fc1;padding:10px 14px;border-radius:0 4px 4px 0;margin:16px 0;font-size:13px;line-height:1.6;}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:12px 0 16px;}
+th{background:#1b2b3a;color:#e8eef4;padding:7px 10px;text-align:left;}
+td{padding:7px 10px;border-bottom:1px solid #e2e8f0;vertical-align:top;}
+tr:nth-child(even) td{background:#f9fafb;}
+.price{white-space:nowrap;font-weight:600;}
+code{background:#f0f2f5;border:1px solid #dde2e8;border-radius:3px;padding:1px 5px;font-size:12px;font-family:ui-monospace,monospace;}
+dl.glossary dt{font-weight:600;margin-top:14px;color:#1b2b3a;}
+dl.glossary dd{margin:2px 0 0;font-size:14px;line-height:1.6;color:#444;}
+a{color:#2a5894;}
+a:hover{color:#1b2b3a;}
+.cov{display:flex;align-items:center;gap:8px;margin:4px 0;font-size:13px;}
+.sw{width:14px;height:14px;border-radius:2px;flex-shrink:0;}
+@media(max-width:600px){main{padding:20px 14px 48px;}h1{font-size:18px;}table{font-size:12px;}}
+</style>
+</head>
+<body>
+<header>
+  <a href="./">← back to map</a>
+  <span class="title">RTK GPS: a plain-English guide</span>
+</header>
+<main>
+<h1>Getting centimetre-accurate GPS for free</h1>
+<p class="subtitle">A practical guide for hobbyists and small teams — no prior GNSS knowledge assumed.</p>
+
+<h2 id="scope">What this guide covers</h2>
+<p>This guide is about <strong>Network RTK</strong>: pairing a compatible GPS receiver with free correction data from a nearby reference station to achieve centimetre-level accuracy. If you need a standalone solution that works anywhere without an internet connection, two categories exist:</p>
+<ul>
+  <li><strong>Complete standalone units</strong> (e.g. Galileo HAS receivers such as the Juniper Geode GNS3H or Eos Arrow Gold+): receive free satellite-delivered corrections with no ongoing fees. Complete units start around $2,900 / €2,700.</li>
+  <li><strong>Subscription-dependent hardware</strong> (e.g. Trimble Catalyst DA2, ~$850): requires paid correction service fees to function and typically will not work with free PPP services.</li>
+</ul>
+<p>Search for <em>PPP receiver</em>, <em>SSR GNSS</em>, or <em>Galileo HAS</em> to explore those options. This map isn't about them.</p>
+
+<h2 id="why">Why standard GPS is only accurate to metres</h2>
+<p>GPS satellites broadcast precise timing signals. By the time those signals reach your receiver they have been slowed by the atmosphere, distorted by satellite clock drift, and bounced off nearby surfaces. These errors compound to 5–10 metres under typical conditions. Nothing is wrong with your receiver — that is simply the limit of standalone GPS.</p>
+<p>The chip in your receiver is capable of much better. What it lacks is a way to measure those errors in real time. A reference station at a precisely-surveyed fixed point can measure the same errors and broadcast a correction. Your receiver applies the correction and the error largely cancels out.</p>
+
+<h2 id="how">How RTK works</h2>
+<p>Two receivers looking at the same sky experience the same atmospheric and satellite errors. The base station — fixed at a known point — measures what those errors are and continuously streams that information to your rover over the internet. Your rover applies the corrections and computes a position accurate to 1–3 cm within about 10 km of the station, and typically better than 5 cm within 30 km.</p>
+<p>The public reference stations on the <a href="./">map</a> are permanent installations run by national survey agencies, universities, and cooperatives. You use their correction stream for free; you need only an internet connection and a compatible receiver.</p>
+
+<h2 id="existing">Do you already have compatible hardware?</h2>
+<p>If you own survey equipment from <strong>Trimble, Leica, Topcon, Sokkia, South, Hi-Target</strong> or similar brands, look for an <em>Internet RTK</em>, <em>Network RTK</em>, or <em>NTRIP</em> option in the receiver's settings. Most professional receivers made in the past 15 years support it. If the menu exists, you are already equipped — find a nearby station on the <a href="./">map</a> and enter the connection details.</p>
+<div class="callout"><strong>Compatibility check:</strong> the receiver must be dual-frequency (L1+L2 minimum). To check, look for "L1/L2", "dual-frequency", or "dual-band" in the receiver's datasheet or specifications page. Single-frequency receivers and consumer GPS units — including most smartphone chips and handheld hiking GPS devices — cannot do RTK regardless of how they are configured.</div>
+
+<h2 id="hardware">Hardware if you don't have a compatible receiver</h2>
+<p>Prices below are approximate and vary by region and retailer. Check manufacturer websites for current local pricing.</p>
+<h3>Complete assembled units</h3>
+<table>
+  <thead><tr><th>Unit</th><th>Approx. price</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><strong>Emlid Reach RX</strong></td>
+      <td class="price">~€630 / $700</td>
+      <td>Compact rover antenna; pairs with the free Emlid Flow app (Android / iOS). NTRIP client built in. Ships worldwide. Good starting point for most users.</td>
+    </tr>
+    <tr>
+      <td><strong>Emlid Reach RS2+</strong></td>
+      <td class="price">~€1,650 / $1,800<br><small>used: €800–1,200</small></td>
+      <td>Survey-grade complete receiver with integrated display and long battery. Well-known in professional surveying. Also available second-hand.</td>
+    </tr>
+  </tbody>
+</table>
+<p>Emlid (<a href="https://emlid.com" rel="noopener noreferrer">emlid.com</a>) is an Estonian company that ships globally and has extensive documentation and an active community forum.</p>
+<h3>Hobbyist / tinkerer path</h3>
+<p>If you are comfortable with some hands-on setup, the <strong>ArduSimple simpleRTK2B Basic Starter Kit</strong> (€275, includes receiver board and antenna) is the most widely-used hobbyist option. It requires a computer or phone running separate NTRIP client software. Expect a few hours for first setup. ArduSimple is a Spanish company that ships worldwide: <a href="https://www.ardusimple.com" rel="noopener noreferrer">ardusimple.com</a>.</p>
+
+<h2 id="map">Using the map to find free corrections</h2>
+<p>Open the <a href="./">map</a> and zoom to your work area. The colour zones around each pin show how far corrections reliably reach:</p>
+<div class="cov"><span class="sw" style="background:rgb(0,170,0)"></span><span><strong>Green</strong> — within 10 km. Best results; typically under 2 cm.</span></div>
+<div class="cov"><span class="sw" style="background:rgb(180,200,30)"></span><span><strong>Yellow-green</strong> — 10–30 km. Reliable centimetre-level.</span></div>
+<div class="cov"><span class="sw" style="background:rgb(220,150,30)"></span><span><strong>Amber</strong> — 30–50 km. Usable; accuracy grows with distance.</span></div>
+<div class="cov"><span class="sw" style="background:rgb(210,90,90)"></span><span><strong>Pale red</strong> — 50–100 km. Decimetre range; may not achieve a fix.</span></div>
+<p style="margin-top:10px"><strong>Purple circles</strong> are virtual networks (VRS): the network synthesises a virtual reference near your location from multiple real stations. You connect to one server address; the network does the rest. Click a circle for details.</p>
+<p>Click any pin to see the server address, port, and mountpoint name you need to configure your NTRIP client. If several stations are within range, any of them will do — pick the nearest one in the green zone. Some networks also offer a <code>NEAR</code> mountpoint that selects the closest station automatically.</p>
+
+<h2 id="connect">Connecting — step by step</h2>
+<p>Most survey receivers have an NTRIP client built into their settings menu. For Emlid receivers, use the Emlid Flow app. For other hardware, free options include:</p>
+<ul>
+  <li><strong>Android:</strong> Lefebure NTRIP Client — connects to your receiver via Bluetooth</li>
+  <li><strong>Windows:</strong> Lefebure NTRIP Client — connects via serial or USB</li>
+  <li><strong>Linux / Raspberry Pi:</strong> RTKBase (open-source, web interface) or RTKLIB <code>str2str</code></li>
+</ul>
+<p>In whichever client you use, enter three values from the map pin popup:</p>
+<ol>
+  <li><strong>Host</strong> — the server address</li>
+  <li><strong>Port</strong> — usually 2101</li>
+  <li><strong>Mountpoint</strong> — the correction stream name</li>
+</ol>
+<p>Most clients will ask you to send your approximate position to the server (a NMEA GGA sentence). Most receivers and clients do this automatically — it lets the server pick the best corrections for your location.</p>
+<p><strong>Your antenna must be outdoors</strong> with a clear, unobstructed view of the sky. Mount it vertically. Indoors, under tree cover, or near tall buildings, RTK will not work reliably regardless of how close the reference station is.</p>
+<p><strong>What success looks like:</strong> your client will show the correction stream as connected. Within about 30–60 seconds your receiver should report a <em>fix</em> (some receivers show this as "RTK Fixed" or a green indicator). Once fixed, position updates will reflect centimetre-level accuracy. If your software shows coordinates jumping around at metre scale, the receiver is still in <em>float</em> — wait another minute or try a different mountpoint.</p>
+<div class="callout"><strong>Troubleshooting</strong><br>
+<strong>Connection refused or times out:</strong> check the host and port; some networks use a non-standard port listed in the map popup.<br>
+<strong>Connected but stays float:</strong> the mountpoint format may not suit your receiver — try another mountpoint on the same server, or try an MSM7 stream if available (look for "RTCM3" with a high stream number).<br>
+<strong>Fix achieved but accuracy is worse than expected:</strong> the station is likely at the edge of its reliable range, or multipath from nearby buildings is affecting your antenna. Move the antenna to a clearer location.</div>
+
+<h2 id="base">Outside coverage: setting up your own base station</h2>
+<p>If the map shows no stations within useful range, you can run your own. A second RTK receiver sits at a fixed point you have surveyed; it broadcasts corrections via the internet through a free caster, which your rover connects to as normal.</p>
+<p>The most accessible route:</p>
+<ul>
+  <li><strong>Hardware:</strong> any dual-frequency RTK receiver at the base site (the ArduSimple starter kit above works well)</li>
+  <li><strong>Software:</strong> <a href="https://github.com/Stefal/rtkbase" rel="noopener noreferrer">RTKBase</a> — open-source, runs on a Raspberry Pi, has a web interface</li>
+  <li><strong>Caster:</strong> <a href="http://rtk2go.com" rel="noopener noreferrer">RTK2Go</a> — free public NTRIP caster; register your base and it becomes accessible from anywhere. It is also one of the networks shown on this map, so your station may help others too.</li>
+</ul>
+<div class="callout"><strong>Honest effort estimate:</strong> first setup takes a weekend if you are comfortable with Linux and basic networking. The base antenna needs a clear view of the sky and a stable mounting point. Total additional hardware cost is roughly €200–450 depending on what you already have.</div>
+
+<h2 id="glossary">Glossary</h2>
+<dl class="glossary">
+  <dt>RTK (Real-Time Kinematic)</dt>
+  <dd>A positioning technique that uses carrier-phase measurements and corrections from a nearby base station to achieve centimetre-level accuracy in real time.</dd>
+  <dt>Base station / reference station</dt>
+  <dd>A GNSS receiver fixed at a precisely-known location that measures and continuously broadcasts position correction data.</dd>
+  <dt>Rover</dt>
+  <dd>The mobile receiver that applies corrections from a base station to compute its own accurate position.</dd>
+  <dt>NTRIP</dt>
+  <dd>The standard internet protocol used to stream correction data to your receiver. You only need to know three settings: host, port, and mountpoint.</dd>
+  <dt>Mountpoint</dt>
+  <dd>An individual correction stream on an NTRIP caster, identified by a short name. One caster typically hosts streams from hundreds of stations in various formats.</dd>
+  <dt>RTCM</dt>
+  <dd>The message format corrections are encoded in. Your receiver handles this automatically; you may see it listed as the mountpoint format.</dd>
+  <dt>VRS (Virtual Reference Station)</dt>
+  <dd>A network service that synthesises a virtual base station near your rover from the data of multiple real stations. You connect to one address; the network handles the rest.</dd>
+  <dt>L1 / L2 / L5</dt>
+  <dd>Radio frequency bands broadcast by GNSS satellites. Dual-frequency (L1+L2) is the minimum for reliable RTK. Tri-band (L1+L2+L5) performs better in difficult environments such as tree cover or urban areas.</dd>
+  <dt>Fix / float</dt>
+  <dd><em>Fix</em> means the receiver has resolved phase ambiguities and is producing centimetre-accurate positions. <em>Float</em> means it is using corrections but has not fully resolved ambiguities — accuracy is decimetre range. A fix typically takes under a minute once connected to a good correction source within range.</dd>
+</dl>
+</main>
+</body>
+</html>

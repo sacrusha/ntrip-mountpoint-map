@@ -25,6 +25,9 @@
   #banner .msg{flex:1;}
   #banner a.more{color:#9ec8ff;cursor:pointer;text-decoration:underline;
     margin-left:6px;}
+  #banner-more p{margin:0 0 8px 0;}
+  #banner-more p:last-child{margin-bottom:0;}
+  #banner-more a{color:#9ec8ff;}
   #banner .close{background:transparent;border:none;color:#e8eef4;
     font-size:20px;line-height:1;cursor:pointer;padding:4px 10px;margin-left:8px;}
   #banner-more{position:absolute;top:56px;left:0;right:0;max-width:720px;
@@ -64,24 +67,20 @@
 <body>
 <div id="banner">
   <div class="msg">
-    Free NTRIP corrections for better than ~50 cm GPS accuracy.
-    Only need ~30 cm? Use <b>Galileo HAS</b> — free, global, no signup required.
-    <a class="more" id="banner-more-btn">learn more</a>
+    Professional GPS can achieve centimeter accuracy — but it needs real-time correction data. Commercial data services are available for a price. This map shows the free public alternatives.
+    <a class="more" id="banner-more-btn">how it works</a>
   </div>
   <button class="close" id="banner-close" title="dismiss">×</button>
 </div>
 <div id="banner-more">
-  <p><b>What this map shows.</b> Public NTRIP mountpoints (RTK correction
-  streams) that are free to access and capable of cm-level accuracy
-  under good conditions, up to roughly 100 km from each station.</p>
-  <p><b>Colour bands around each station.</b>
-  Green &lt; 10 km (excellent cm-RTK) ·
-  yellow-green 10–30 km (good) ·
-  amber 30–50 km (marginal, sometimes float) ·
-  pale red 50–100 km (float decimetre, multi-band receivers only).</p>
-  <p><b>Not here:</b> sub-metre DGNSS services (use Galileo HAS instead),
-  commercial / paid VRS networks (HxGN SmartNet, Trimble, etc.), and
-  raw-observation networks like EPN that are for post-processing only.</p>
+  <p><b>Why your GPS reads in metres</b><br>
+  GPS satellites broadcast timing signals. Atmospheric delays and other errors compound to 5–10 metres under typical conditions. The chip in your receiver is capable of much better — it just needs a correction signal.</p>
+  <p><b>Two routes to centimetre accuracy</b></p>
+  <p><i>Standalone correction receivers</i> process satellite-delivered correction signals — no internet, no coverage map needed. Complete units with no ongoing fees (e.g. Galileo HAS receivers) start around $2,900 / €2,700. Subscription-dependent hardware exists from ~$850, but requires paid correction fees on top and typically won't work with free PPP services. Search for "PPP receiver" or "Galileo HAS" to explore those. This map isn't about them.</p>
+  <p><i>Network RTK — what this map is about</i> — pairs a dual-band receiver with corrections streamed over the internet from a nearby reference station. Within 30 km of a station, centimetre accuracy is typical. If you already own a survey-grade or dual-frequency receiver, it likely supports this. New hobbyist hardware starts around €170 for a bare board, or €300–600 ready to use.</p>
+  <p><b>What the map shows</b><br>
+  Each pin is a free public reference station. Click it for connection details. The colour zones show reliable range: green &lt; 10 km (typically &lt; 2 cm) · yellow-green 10–30 km · amber 30–50 km · pale red 50–100 km (decimetre range). Purple circles are virtual networks — one connection point, the network synthesises a nearby reference for you.</p>
+  <p><a href="./guide.html">&#x2192; Full guide: hardware options, how to connect, and how to set up your own base station if you're outside coverage</a></p>
 </div>
 <div id="map"></div>
 <div id="status">Loading…</div>
@@ -254,7 +253,7 @@
   var R_EXCELLENT=10, R_GOOD=30, R_MARGINAL=50, R_FLOAT=100;
 
   // Banner dismissal: bumped when content meaningfully changes.
-  var BANNER_VERSION='2026-04-a';
+  var BANNER_VERSION='2026-04-b';
 
   // Coverage-raster colour lookup. Entry i maps strength i/255 to RGBA,
   // where strength = 1 - dist_to_nearest_km / R_FLOAT:
@@ -873,6 +872,8 @@
         +'<span style="display:inline-block;width:12px;height:12px;border:2px solid '+VRS_COLOR
           +';border-radius:50%;background:rgba(106,90,205,0.22);vertical-align:middle"></span>'
           +' VRS network \u2014 click for coverage<br>'
+        +'<span style="display:inline-block;width:12px;height:12px;background:#aaa;border-radius:50%;vertical-align:middle"></span>'
+          +' Station data stale (3\u20137 days)<br>'
         +'<small id="leg-info" style="color:#999;font-size:10px">Loading\u2026</small>';
       return d;
     };
