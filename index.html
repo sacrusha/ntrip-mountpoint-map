@@ -871,9 +871,7 @@
   var stationStaleDays;
   window.addEventListener('load',async function(){
     setupBanner();
-    // minZoom: world ≥ 2/3 viewport width → at most ~1.5 world copies visible.
-    var minZoom=Math.max(1,Math.ceil(Math.log2(window.innerWidth/384)));
-    var map=L.map('map',{preferCanvas:true,worldCopyJump:true,minZoom:minZoom}).setView([47.0,8.0],8);
+    var map=L.map('map',{preferCanvas:true,worldCopyJump:true,minZoom:2}).setView([47.0,8.0],8);
 
     // OSM canonical tile URL (no subdomain rotation per OSM tile policy)
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{
