@@ -1,12 +1,13 @@
 # Start here — handover for the next session
 
-A map of **free NTRIP corrections capable of better than ~50 cm GPS
-accuracy**. Target users are hobbyists and small shops (<20 people) in two
-modes: discovery ("what exists? what's nearby? is any of it useful for me?")
-and migration ("my old mountpoint stopped working, show me alternatives near
-where I work"). Enterprise / B2B is explicitly out of scope — if a user only
-needs ~30 cm, the banner points them at Galileo HAS instead of listing
-sub-metre DGNSS sources.
+A map of **free public RTK correction networks** for hobbyists and small
+shops (<20 people) who need better than ~5–10 m GPS accuracy without a paid
+subscription. Two use modes: discovery ("what exists nearby? is any of it
+useful for me?") and migration ("my old mountpoint stopped working, show me
+alternatives"). Enterprise / B2B is explicitly out of scope. DGNSS (sub-metre
+but often misleadingly reported) is filtered out. PPP/SSR/HAS (standalone,
+no coverage needed, $1,000+) are mentioned in the UI as a pointer but not
+covered by the map.
 
 ## Pointers
 
@@ -29,6 +30,7 @@ sub-metre DGNSS sources.
 
 ```
 index.html                    # Single-page Leaflet app — all UI.
+guide.html                    # Plain-English hobbyist primer (static page).
 scripts/fetch_stations.py     # Hourly sourcetable fetch + parse + diff.
 .github/workflows/
   update-stations.yml         # Cron + workflow_dispatch, runs the Python.
@@ -57,7 +59,7 @@ Develop on feature branches, PR into `main`. The workflow only runs against
 `main`, so anything touching data ingestion needs to land on `main` to be
 exercised.
 
-## Current state (end of session 2026-04-20)
+## Current state (end of session 2026-04-20, updated info-panel session)
 
 **Implemented:**
 - Hourly GitHub Actions workflow with rebase-retry, DGNSS filter, carrier/
@@ -79,7 +81,20 @@ exercised.
 - IP-based geolocation via ipwho.is for initial map centre.
 - Popups: accuracy summary, legacy-RTCM-2 warning, per-source connection
   block with copy buttons.
-- Dismissible banner with localStorage persistence and HAS fallback mention.
+- Dismissible banner with localStorage persistence. Banner copy rewritten
+  for hobbyist audience (session info-panel): plain-language framing of the
+  GPS accuracy problem; expandable "how it works" panel distinguishes
+  PPP/HAS standalone devices ($1,000+) from free network RTK; links to
+  `guide.html`. BANNER_VERSION bumped to `2026-04-b`.
+- **`guide.html`** — standalone plain-English primer (session info-panel).
+  Covers: why GPS drifts, how RTK works, compatibility check for existing
+  Trimble/Leica/Topcon gear, assembled unit recommendations (Emlid Reach RX
+  ~€630, RS2+ ~€1,650), DIY path (ArduSimple Basic Starter Kit €275),
+  map usage + station selection, step-by-step NTRIP connection (Lefebure /
+  RTKBase / str2str), antenna mounting requirement, success-state description,
+  troubleshooting, DIY base station (RTKBase + RTK2Go), glossary. Prices in
+  €/$; no US-only products or bare chipset recommendations.
+- Legend now includes grey/stale pin entry (3–7 days offline).
 - `SOURCE_COLORS`, `SOURCE_LABELS`, `SOURCE_AUTH` config in `index.html`
   for all 37 sources. Adding a new source only requires a `SOURCES` entry
   in `fetch_stations.py` + optional frontend config — no other changes.
@@ -116,8 +131,8 @@ See `**investigate**:` fields in `docs/networks.md` for what to verify.
    `sourceCounts[sid] === 0`, so VRS sources never appear in the Sources list
    even though they now have visible markers. Fix: include sources present in
    `VRS_NETWORKS` in the panel, labelled "(VRS)".
-3. RTK/DGNSS/PPP/HAS/SSR primer — banner copy jargon audit + "learn more"
-   rewrite for hobbyist audience.
+3. ~~RTK/DGNSS/PPP/HAS/SSR primer~~ — **done** (session info-panel):
+   banner rewritten, guide.html created.
 4. Network endpoint verification and deferred ingestion — see `docs/networks.md`
    entries with `**investigate**:` (5 CI-failing) and `**missing**:` (4 deferred).
 
