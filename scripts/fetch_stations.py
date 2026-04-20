@@ -108,6 +108,16 @@ SOURCES = [
     # Rover: ksacors.geoportal.sa (registration; email signed form to info@geosa.gov.sa)
     # KSACORS.gcs.gov.sa dead (NXDOMAIN 2026-04); migrated to ksacors.geoportal.sa.
     {"id": "ksa_cors",    "url": "http://ksacors.geoportal.sa:2101/"},
+    # GEODNET (HYFIX.AI): paid RTK network, 20,000+ nodes, 153 countries.
+    # Stream access requires a subscription; sourcetable accessibility without
+    # auth is unverified. Added to test whether the sourcetable is publicly
+    # readable per NTRIP spec. If stations are returned, display as paid layer.
+    # $40/month; <4-month seasonal use ($160) is under the $200/yr cutoff.
+    # Four regional AWS servers — all port 2101.
+    {"id": "geodnet_usa", "url": "http://rtk.geodnet.com:2101/"},
+    {"id": "geodnet_eu",  "url": "http://eu.geodnet.com:2101/"},
+    {"id": "geodnet_aus", "url": "http://aus.geodnet.com:2101/"},
+    {"id": "geodnet_sa",  "url": "http://sa.geodnet.com:2101/"},
 ]
 # RTKdata.online removed 2026-04-20: server unreachable since launch (RemoteDisconnected);
 # 0 stations ever collected. Operated by Kansi Solutions GmbH (same parent as paid
