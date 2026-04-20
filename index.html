@@ -94,13 +94,29 @@
     rtk2go:       '#d00000',
     centipede:    '#e87500',
     frednet:      '#2e6fb0',
-    geortk:       '#1a7a4a'
+    geortk:       '#1a7a4a',
+    ergnss:       '#b05000',
+    auscors:      '#b8860b',
+    positionz:    '#2e8b57',
+    satref:       '#8b008b',
+    inacors:      '#1a5fa0',
+    trignet:      '#556b2f',
+    rbmc_ip:      '#008b8b',
+    ramsac:       '#7b3f9e'
   };
   var SOURCE_LABELS={
     rtk2go:       'rtk2go',
     centipede:    'Centipede',
     frednet:      'FReDNet',
-    geortk:       'GeoRTK (Japan)'
+    geortk:       'GeoRTK (Japan)',
+    ergnss:       'ERGNSS (Spain)',
+    auscors:      'AUSCORS (Australia)',
+    positionz:    'PositioNZ (NZ)',
+    satref:       'SatRef (HK)',
+    inacors:      'InaCORS (Indonesia)',
+    trignet:      'TrigNet (South Africa)',
+    rbmc_ip:      'RBMC-IP (Brazil)',
+    ramsac:       'RAMSAC (Argentina)'
   };
   // Per-source auth/access hints shown in popups.
   // user/pass → copyable rows. userNote → plain-text hint (e.g. "any email").
@@ -111,6 +127,14 @@
     frednet:   {openNote:'Stream access requires free registration — email rete.gnss.marussi@regione.fvg.it'},
     geortk:    {openNote:'No authentication required'},
     'sapos_':  {openNote:'Stream access requires free registration — see sapos.de for your federal state'},
+    ergnss:    {openNote:'Stream access requires free registration — ergnss.ign.es/gnuserportal/'},
+    auscors:   {openNote:'Stream access requires free registration — gnss.ga.gov.au/stream'},
+    positionz: {openNote:'Stream access: LINZ account at linz.govt.nz + email positionz@linz.govt.nz'},
+    satref:    {openNote:'Stream access: email geodetic@landsd.gov.hk · Mountpoint: VRS32G'},
+    inacors:   {openNote:'Stream access requires free registration — nrtk.big.go.id'},
+    trignet:   {openNote:'Stream access requires free registration — trignet.co.za'},
+    rbmc_ip:   {openNote:'Stream access requires free gov.br signup (5-station limit per user)'},
+    ramsac:    {openNote:'Stream access: ntrip@ign.gob.ar or ign.gob.ar portal (8-hr session cap)'},
   };
   // Groups collapse multiple source IDs into one toggle row.
   // match(sid) → true means the source belongs to this group.
