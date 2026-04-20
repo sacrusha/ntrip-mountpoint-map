@@ -17,8 +17,7 @@ swipos CH, TUSAGA-Aktif TR.
 PositioNZ NZ (same), URANUS GR/CY (may have migrated to commercial TopNet Live),
 GeoDAF/ASI IT (actually EUREF raw, borderline out of scope).
 
-**Low:** GPSBru BE Brussels (endpoint undocumented), RTKdata.online (community
-caster, unclear operational status).
+**Low:** GPSBru BE Brussels (endpoint undocumented).
 
 ## Drops from the starting list
 
@@ -48,7 +47,6 @@ caster, unclear operational status).
 | `ibge-rbmc` | RBMC-IP (IBGE) | BR | single-base | registration | `170.84.40.52:2101` | https://www.gov.br/pt-br/servicos/obter-acesso-a-rbmc-ip | Free; 150 CORS; RTCM 3.2 MSM; single-base only. |
 | `auscors` | AUSCORS (Geoscience AU) | AU | single-base | registration | `ntrip.data.gnss.ga.gov.au:2101` | https://gnss.ga.gov.au/registration | Free; single-base + SSR/PPP; TLS required; AU-wide. |
 | `positionz` | PositioNZ-RT (LINZ) | NZ | single-base | registration | _unconfirmed_ | https://www.linz.govt.nz/products-services/geodetic/positionz/positionz-real-time-service | Free with LINZ account; recommend ≤15 km baseline; contact positionz@linz.govt.nz. |
-| `rtkdata-online` | RTKdata.online | global | single-base | free | `rtkdata.online:2101` (unconfirmed) |  | Community caster; limited docs; verify operational status before listing. |
 
 ## Paid / drop
 
