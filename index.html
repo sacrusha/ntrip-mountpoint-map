@@ -205,7 +205,8 @@
   }
 
   // Zoom bands — switch between raster-only, raster+dots, detailed view.
-  var ZOOM_DETAIL=10;   // z >= ZOOM_DETAIL: labels, accuracy rectangles, tooltips
+  var ZOOM_DETAIL=10;   // z >= ZOOM_DETAIL: labels + accuracy rectangles + tooltips
+  var ZOOM_LABELS=8;    // z >= ZOOM_LABELS: labels only (no accuracy rectangles)
   var ZOOM_DOTS=6;      // z >= ZOOM_DOTS: individual station dots (no labels)
                         // z <  ZOOM_DOTS: coverage raster only
 
@@ -589,7 +590,7 @@
   // padding buffer for smooth pans). Discards previous entries. When
   // `index` is provided, uses it to pull just the stations inside the
   // padded bounds in O(log N + k); otherwise falls back to a linear scan.
-  function refreshDetailLayer(map,stations,detail,index){
+  function refreshDetailLayer(map,stations,detail,index,showRect){
     detail.clearLayers();
     var b=map.getBounds().pad(0.2);
     var ids=index
@@ -602,13 +603,15 @@
       if(!ids&&!b.contains([s.lat,s.lon])) continue;
       try{
         var fill=stationColor(s);
-        L.rectangle([[s.lat-s.dLat,s.lon-s.dLon],
-                     [s.lat+s.dLat,s.lon+s.dLon]],
-          {color:fill,weight:1,fillColor:fill,fillOpacity:0.12,
-           dashArray:'4 3'})
-          .bindTooltip('Station within '+precLabel(s.dLat,s.dLon,s.lat),
-            {sticky:true,className:'prec-tip'})
-          .addTo(detail);
+        if(showRect){
+          L.rectangle([[s.lat-s.dLat,s.lon-s.dLon],
+                       [s.lat+s.dLat,s.lon+s.dLon]],
+            {color:fill,weight:1,fillColor:fill,fillOpacity:0.12,
+             dashArray:'4 3'})
+            .bindTooltip('Station within '+precLabel(s.dLat,s.dLon,s.lat),
+              {sticky:true,className:'prec-tip'})
+            .addTo(detail);
+        }
         var mk=L.marker([s.lat,s.lon],{icon:cachedIcon(fill)});
         var names=[];
         stationSourceIds(s).forEach(function(sid){
@@ -870,13 +873,13 @@
 
       function applyZoom(){
         var z=map.getZoom();
-        var showDots=z>=ZOOM_DOTS;
         var showDetail=z>=ZOOM_DETAIL;
-        if(showDetail){
-          refreshDetailLayer(map,visible,layers.detail,stationIndex);
+        var showLabels=z>=ZOOM_LABELS;
+        if(showLabels){
+          refreshDetailLayer(map,visible,layers.detail,stationIndex,showDetail);
           if(!map.hasLayer(layers.detail)) layers.detail.addTo(map);
           if(map.hasLayer(layers.dots)) map.removeLayer(layers.dots);
-        }else if(showDots){
+        }else if(z>=ZOOM_DOTS){
           if(!map.hasLayer(layers.dots)) layers.dots.addTo(map);
           if(map.hasLayer(layers.detail)) map.removeLayer(layers.detail);
           layers.detail.clearLayers();
@@ -887,14 +890,16 @@
         }
       }
 
-      // At detail zoom, refresh after panning settles (debounced to avoid
-      // redundant DOM rebuilds mid-pan on slower devices).
+      // At label zoom or above, refresh after panning settles (debounced to
+      // avoid redundant DOM rebuilds mid-pan on slower devices).
       var _detailTimer=null;
       map.on('moveend',function(){
-        if(map.getZoom()>=ZOOM_DETAIL){
+        var z=map.getZoom();
+        if(z>=ZOOM_LABELS){
           clearTimeout(_detailTimer);
           _detailTimer=setTimeout(function(){
-            refreshDetailLayer(map,visible,layers.detail,stationIndex);
+            refreshDetailLayer(map,visible,layers.detail,stationIndex,
+                               z>=ZOOM_DETAIL);
           },250);
         }
       });
