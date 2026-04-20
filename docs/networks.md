@@ -36,6 +36,17 @@ GeoDAF/ASI IT (actually EUREF raw, borderline out of scope).
 | `frednet` | FReDNet (OGS) | `gnsscaster.regione.fvg.it:8080` | Sourcetable open (no auth). Stream: email `rete.gnss.marussi@regione.fvg.it` for free credentials | 16 stations, NE Italy + Slovenia/Austria border; VRS |
 | `geortk` | GeoRTK (Geosense) | `geortk.jp:2101` | No authentication required | ~200 stations with valid coords; Japan only; RTCM 3.x MSM; free indefinitely |
 
+### rtk2go — technical notes
+- Runs **SNIP Pro** (use-snip.com). SNIP is paid software for self-hosters; rtk2go absorbs that cost, so users get it free.
+- **NEAR** is a SNIP Pro feature (not available in SNIP Lite). The client connects to the mountpoint named `NEAR` and sends a NMEA `$GGA` sentence; the caster routes to the closest active base. Most rover setups send GGA automatically; some cheap NTRIP clients require it to be enabled manually.
+- SNIP Pro allows up to 5 NEAR streams per instance; rtk2go has several regional NEAR variants (e.g. `NEAR_RTCM3` etc.) — check the live sourcetable for current names.
+- Source: use-snip.com/near-mount-points/, use-snip.com/rtk2go/
+
+### Centipede — technical notes
+- **NEAR** pseudo-mountpoint is Centipede's own implementation (not SNIP). Routes to the nearest Centipede node based on connected rover GGA position.
+- Migrated from `caster.centipede.fr:2101` → `crtk.net:2101` on 2025-03-18. Old host is dead.
+- Source: forum.geocommuns.fr migration announcement
+
 ## Registration required — pipeline candidates
 
 | id | name | host:port | how to register | notes |
