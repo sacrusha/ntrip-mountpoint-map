@@ -555,7 +555,7 @@
   // circleMarkers). The `detail` layer (accuracy rectangles + labelled
   // markers with permanent tooltips + popups) is expensive — built lazily
   // per-viewport by refreshDetailLayer.
-  function buildStationLayers(stations,map,onDone){
+  function buildStationLayers(stations,map,renderer,onDone){
     var detail=L.layerGroup();
     var dots=L.layerGroup();
     var BATCH=1000,i=0; // stations processed per rAF tick
@@ -565,7 +565,7 @@
         var s=stations[i];
         try{
           L.circleMarker([s.lat,s.lon],{radius:4,color:'#fff',weight:1,
-            fillColor:stationColor(s),fillOpacity:0.95})
+            fillColor:stationColor(s),fillOpacity:0.95,renderer:renderer})
             .bindPopup(getCachedPopup(s))
             .addTo(dots);
         }catch(e){ console.warn('render err',e); }
@@ -854,6 +854,13 @@
       var coverage=new CoverageLayer(allStations);
       coverage.addTo(map);
 
+      // Dedicated canvas renderer for dots, isolated in its own pane so zoom
+      // transitions can toggle visibility via CSS instead of removing 5600
+      // paths from the shared canvas renderer on every zoom boundary crossing.
+      map.createPane('dotsPane');
+      map.getPane('dotsPane').style.zIndex=399; // just below overlayPane (400)
+      var dotsRenderer=L.canvas({pane:'dotsPane',padding:0.5});
+
       // Zoom-aware station layer groups.
       var filter=function(){ return true; };
       var visible=allStations;
@@ -862,45 +869,48 @@
 
       function applyZoom(){
         var z=map.getZoom();
-        var showDetail=z>=ZOOM_DETAIL;
         var showLabels=z>=ZOOM_LABELS;
+        // CSS-toggle the dots pane rather than removing/re-adding 5600 paths
+        // from the canvas renderer, which corrupts its path list over time.
+        map.getPane('dotsPane').style.display=
+          (!showLabels&&z>=ZOOM_DOTS)?'':'none';
         if(showLabels){
-          refreshDetailLayer(map,visible,layers.detail,stationIndex,showDetail);
+          refreshDetailLayer(map,visible,layers.detail,stationIndex,z>=ZOOM_DETAIL);
           if(!map.hasLayer(layers.detail)) layers.detail.addTo(map);
-          if(map.hasLayer(layers.dots)) map.removeLayer(layers.dots);
-        }else if(z>=ZOOM_DOTS){
-          if(!map.hasLayer(layers.dots)) layers.dots.addTo(map);
-          if(map.hasLayer(layers.detail)) map.removeLayer(layers.detail);
-          layers.detail.clearLayers();
         }else{
           if(map.hasLayer(layers.detail)) map.removeLayer(layers.detail);
-          if(map.hasLayer(layers.dots)) map.removeLayer(layers.dots);
           layers.detail.clearLayers();
         }
       }
 
       // At label zoom or above, refresh after panning settles (debounced to
-      // avoid redundant DOM rebuilds mid-pan on slower devices).
+      // avoid redundant DOM rebuilds mid-pan on slower devices). Read zoom
+      // inside the timeout so a zoom change before it fires uses the current
+      // level, not the one captured at moveend time.
       var _detailTimer=null;
       map.on('moveend',function(){
-        var z=map.getZoom();
-        if(z>=ZOOM_LABELS){
+        if(map.getZoom()>=ZOOM_LABELS){
           clearTimeout(_detailTimer);
           _detailTimer=setTimeout(function(){
-            refreshDetailLayer(map,visible,layers.detail,stationIndex,
-                               z>=ZOOM_DETAIL);
+            var z=map.getZoom();
+            if(z>=ZOOM_LABELS)
+              refreshDetailLayer(map,visible,layers.detail,stationIndex,z>=ZOOM_DETAIL);
           },250);
         }
       });
 
       function rebuildStationLayers(){
         if(map.hasLayer(layers.detail)) map.removeLayer(layers.detail);
-        if(map.hasLayer(layers.dots)) map.removeLayer(layers.dots);
         visible=allStations.filter(filter);
         stationIndex=buildStationIndex(visible);
         setStatus('Rendering '+visible.length+' stations\u2026');
-        buildStationLayers(visible,map,function(built){
+        buildStationLayers(visible,map,dotsRenderer,function(built){
+          // Remove old dots here (not at the top of rebuildStationLayers) so
+          // the path-list churn is bounded to filter-toggle rebuilds, which
+          // are infrequent, not to every zoom transition.
+          if(map.hasLayer(layers.dots)) map.removeLayer(layers.dots);
           layers=built;
+          layers.dots.addTo(map); // added once; zoom transitions CSS-toggle the pane
           coverage.setStations(visible,stationIndex);
           applyZoom();
           finishLoad();
