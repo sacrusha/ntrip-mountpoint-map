@@ -68,47 +68,43 @@ SOURCES = [
     # RAMSAC-NTRIP (IGN Argentina): ~69 stations, single-base. Free.
     # Rover: ntrip@ign.gob.ar or ign.gob.ar portal; 8-hr session cap.
     {"id": "ramsac",        "url": "http://ntrip.ign.gob.ar:2101/"},
+    # FLEPOS (Flanders, BE): free all uses, 45 stations VRS.
+    # Rover: flepos.vlaanderen.be
+    {"id": "flepos",      "url": "http://ntrip.flepos.be:2101/"},
+    # WALCORS (Wallonia, BE): free for positioning, 23 stations VRS.
+    # Rover: gnss.wallonie.be  (gnss@spw.wallonie.be)
+    {"id": "walcors",     "url": "http://gnss.wallonie.be:2101/"},
+    # SPSLux (Luxembourg): free, VRS. Port 5005 — not 2101.
+    # Rover: spslux.lu/SBC/Account/Register (subscribe SPSLUX (N)RTK package)
+    {"id": "spslux",      "url": "http://stream.spslux.lu:5005/"},
+    # ASG-EUPOS (Poland): free since Oct 2022, 130+ stations VRS.
+    # Rover: system.asgeupos.pl  (admin approval 1–2 working days)
+    {"id": "asg_eupos",   "url": "http://system.asgeupos.pl:2101/"},
+    # CROPOS (Croatia): free since Apr 2022, 35 stations VRS.
+    # Rover: cropos.hr  (or dgu@dgu.hr). Caster IP changed Nov 2023.
+    {"id": "cropos",      "url": "http://gnss.cropos.hr:2101/"},
+    # ESTPOS (Estonia): free until Aug 2026, 40 stations VRS.
+    # Rover: geoportaal.maaamet.ee
+    {"id": "estpos",      "url": "http://gnss-rtk.maaamet.ee:8083/"},
+    # LatPos (Latvia): free since 2018, VRS.
+    # Rover: latpos.lgia.gov.lv/SBC
+    {"id": "latpos",      "url": "http://latpos.lgia.gov.lv:2101/"},
+    # IGAC MAGNA-ECO (Colombia): free (law-mandated), 233 stations VRS.
+    # Rover: redgeodesica-sbc.igac.gov.co/sbc
+    {"id": "igac",        "url": "http://sbc.igac.gov.co:2101/"},
+    # EarthScope NOTA (USA/Americas): ~1000 stations; non-commercial NULA.
+    # Rover: earthscope.org/data/gnss-realtime/  (annual renewal)
+    {"id": "earthscope",  "url": "http://ntrip.earthscope.org:2101/"},
+    # MIRAI/Go!GNSS (Japan): free incl. commercial + automated, 300+ stations.
+    # Rover: go.gnss.go.jp  (+ separate NtripCaster authorization form)
+    {"id": "mirai",       "url": "http://ntrip.go.gnss.go.jp:2101/"},
+    # CORS-KOREA (South Korea): free, ~100 stations VRS+FKP.
+    # Rover: gnssdata.or.kr  (Korean-only portal; national ID may be required)
+    {"id": "cors_korea",  "url": "http://www.gnssdata.or.kr:2101/"},
+    # KSA-CORS (Saudi Arabia): free, 209 stations VRS.
+    # Rover: ksacors.gcs.gov.sa/RegisterAccount.aspx  (email signed form to info@geosa.gov.sa)
+    {"id": "ksa_cors",    "url": "http://KSACORS.gcs.gov.sa:2101/"},
 ]
-# Pending — sourcetable likely requires auth; obtain credentials, store as GitHub
-# Actions secrets, extend fetch() with basic-auth for the source ID, then uncomment.
-#
-# FLEPOS (Flanders, BE): free all uses, 45 stations VRS.
-#   Register → flepos.vlaanderen.be
-#   # {"id": "flepos",     "url": "http://ntrip.flepos.be:2101/"},
-# WALCORS (Wallonia, BE): free for positioning, 23 stations VRS.
-#   Register → gnss.wallonie.be  (gnss@spw.wallonie.be)
-#   # {"id": "walcors",    "url": "http://gnss.wallonie.be:2101/"},
-# SPSLux (Luxembourg): free, VRS. Port 5005 — not 2101.
-#   Register → spslux.lu/SBC/Account/Register (subscribe SPSLUX (N)RTK package)
-#   # {"id": "spslux",     "url": "http://stream.spslux.lu:5005/"},
-# ASG-EUPOS (Poland): free since Oct 2022, 130+ stations VRS.
-#   Register → system.asgeupos.pl  (admin approval 1–2 working days)
-#   # {"id": "asg_eupos",  "url": "http://system.asgeupos.pl:2101/"},
-# CROPOS (Croatia): free since Apr 2022, 35 stations VRS. Caster IP changed Nov 2023.
-#   Register → cropos.hr  (or dgu@dgu.hr)
-#   # {"id": "cropos",     "url": "http://gnss.cropos.hr:2101/"},
-# ESTPOS (Estonia): free until Aug 2026, 40 stations VRS.
-#   Register → geoportaal.maaamet.ee
-#   # {"id": "estpos",     "url": "http://gnss-rtk.maaamet.ee:8083/"},
-# LatPos (Latvia): free since 2018, VRS.
-#   Register → latpos.lgia.gov.lv/SBC
-#   # {"id": "latpos",     "url": "http://latpos.lgia.gov.lv:2101/"},
-# IGAC MAGNA-ECO (Colombia): free (law-mandated), 233 stations VRS.
-#   Register → redgeodesica-sbc.igac.gov.co/sbc
-#   # {"id": "igac",       "url": "http://sbc.igac.gov.co:2101/"},
-# EarthScope NOTA (USA/Americas): ~1000 stations; non-commercial NULA only.
-#   Register → earthscope.org/data/gnss-realtime/  (annual renewal)
-#   # {"id": "earthscope", "url": "http://ntrip.earthscope.org:2101/"},
-# MIRAI/Go!GNSS (Japan): free incl. commercial + automated, 300+ stations.
-#   Register → go.gnss.go.jp  (+ separate NtripCaster authorization form)
-#   # {"id": "mirai",      "url": "http://ntrip.go.gnss.go.jp:2101/"},
-# CORS-KOREA (South Korea): free, ~100 stations VRS+FKP.
-#   Register → gnssdata.or.kr  (Korean-only portal; national ID may be required)
-#   # {"id": "cors_korea", "url": "http://www.gnssdata.or.kr:2101/"},
-# KSA-CORS (Saudi Arabia): free, 209 stations VRS.
-#   Register → ksacors.gcs.gov.sa/RegisterAccount.aspx  (email signed form to info@geosa.gov.sa)
-#   # {"id": "ksa_cors",   "url": "http://KSACORS.gcs.gov.sa:2101/"},
-#
 # RTKdata.online removed 2026-04-20: server unreachable since launch (RemoteDisconnected);
 # 0 stations ever collected. Operated by Kansi Solutions GmbH (same parent as paid
 # rtkdata.com); aggregates rtk2go/Centipede visually — no independent value.
