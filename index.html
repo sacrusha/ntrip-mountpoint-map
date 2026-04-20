@@ -696,9 +696,16 @@
 
   // VRS network markers: one per entry in VRS_NETWORKS. Rendered on a
   // dedicated pane so they are always visible regardless of zoom band.
-  function buildVrsMarkers(renderer){
+  // staleDays mirrors SOURCE_STALE_DAYS from the load context; markers are
+  // suppressed when the source is absent from the pipeline or >= 7 days stale,
+  // matching the hidden-station threshold used for regular pins.
+  function buildVrsMarkers(renderer,staleDays){
     var group=L.layerGroup();
     VRS_NETWORKS.forEach(function(n){
+      if(staleDays){
+        if(!(n.sid in staleDays)) return;      // source dropped from pipeline
+        if(staleDays[n.sid]>=7) return;        // source stale — hide like regular pins
+      }
       var label=SOURCE_LABELS[n.sid]
         ||(n.sid.indexOf('sapos_')===0?'SAPOS '+n.sid.slice(6):n.sid);
       var auth=SOURCE_AUTH[n.sid]
@@ -931,7 +938,7 @@
       map.createPane('vrsPane');
       map.getPane('vrsPane').style.zIndex=401; // above overlayPane (400)
       var vrsRenderer=L.canvas({pane:'vrsPane',padding:0.5});
-      buildVrsMarkers(vrsRenderer).addTo(map);
+      buildVrsMarkers(vrsRenderer,SOURCE_STALE_DAYS).addTo(map);
 
       // Stations fresh enough for coverage raster (< 3 days stale).
       // Grey-dot stations (3–7 days) are shown on map but excluded from coverage
