@@ -83,14 +83,25 @@ exercised.
 - `SOURCE_COLORS`, `SOURCE_LABELS`, `SOURCE_AUTH` config in `index.html`
   for all 37 sources. Adding a new source only requires a `SOURCES` entry
   in `fetch_stations.py` + optional frontend config — no other changes.
+- **VRS stopgap markers:** `VRS_NETWORKS` array in `index.html` defines
+  centroids for 17 single-coord-VRS sources (7 country-level + 10 SAPOS
+  states). `buildVrsMarkers()` places a radius-10 translucent purple
+  (`#6a5acd`) circleMarker on a dedicated `vrsPane` (z-index 401, always
+  visible). Clicking shows network name, coverage region, declared station
+  count, one-line VRS explanation, auth note, and sign-up link. Legend has
+  matching ring swatch. SAPOS states with physical-coord data (HE, RP, SL,
+  SN) are excluded from `VRS_NETWORKS` — they already have station pins.
+  VRS markers are NOT wired to the toggle panel (no toggle for 0-station
+  sources yet).
 
 **VRS-only networks (0 physical stations on map):**
-CROPOS, ASG-EUPOS, FLEPOS, WALCORS, InaCORS, ERGNSS, ESTPOS, LATPOS,
-KSA-CORS, and most SAPOS states expose only VRS virtual mountpoints
-(lat=0, lon=0 or a single shared coord), correctly dropped by `filter_vrs()`.
-UI shows 0 stations identically for VRS-by-design and fetch failures —
-process gap: no "VRS — no pins expected" status separate from "error — pins missing".
-Coverage for these networks requires NRTK polygons (deferred).
+CROPOS, ASG-EUPOS, FLEPOS, WALCORS, ESTPOS, LATPOS, KSA-CORS, and 10 SAPOS
+states expose only virtual mountpoints (single shared coord), correctly
+dropped by `filter_vrs()`. These now show VRS stopgap markers (above).
+Coverage for these networks still requires NRTK polygons for full
+representation (deferred). The "VRS by design vs fetch failure" ambiguity
+in the toggle panel remains: VRS sources are omitted from the Sources list
+because `sourceCounts[sid] === 0`.
 
 **5 sources timing out in CI:** FLEPOS, WALCORS, ESTPOS, LATPOS, KSA-CORS.
 Fallback-to-cached-sourcetable logic handles this gracefully.
@@ -99,10 +110,15 @@ See `**investigate**:` fields in `docs/networks.md` for what to verify.
 **Open / deferred (by priority):**
 1. NRTK / VRS coverage polygons: rendering scaffolded (`networks: []` in JSON,
    polygon + centroid marker ready) but no data ingested. VRS-only networks need
-   manual polygon config.
-2. RTK/DGNSS/PPP/HAS/SSR primer — banner copy jargon audit + "learn more"
+   manual polygon config. The VRS stopgap markers are a placeholder until this
+   is done.
+2. Toggle panel for VRS sources: `buildTogglePanel` skips sources with
+   `sourceCounts[sid] === 0`, so VRS sources never appear in the Sources list
+   even though they now have visible markers. Fix: include sources present in
+   `VRS_NETWORKS` in the panel, labelled "(VRS)".
+3. RTK/DGNSS/PPP/HAS/SSR primer — banner copy jargon audit + "learn more"
    rewrite for hobbyist audience.
-3. Network endpoint verification and deferred ingestion — see `docs/networks.md`
+4. Network endpoint verification and deferred ingestion — see `docs/networks.md`
    entries with `**investigate**:` (5 CI-failing) and `**missing**:` (4 deferred).
 
 ## Design notes worth preserving
