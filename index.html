@@ -9,21 +9,16 @@
 <script src="https://unpkg.com/kdbush@3.0.0/kdbush.min.js"></script>
 <style>
   html,body{height:100%;margin:0;padding:0;font-family:sans-serif;}
-  :root{--sw:320px;}
-  #shell{position:absolute;top:0;left:0;right:0;bottom:0;display:grid;
-    grid-template-columns:var(--sw) 1fr;}
+  #shell{position:absolute;top:0;left:0;right:0;bottom:0;}
   body.banner-visible #shell{top:32px;}
-  #map{min-width:0;min-height:0;}
-  #sidebar{overflow:hidden;display:flex;flex-direction:column;
-    background:#fff;border-right:1px solid #dde3ea;z-index:400;}
-  #sidebar-inner{flex:1;overflow-y:auto;padding:8px;}
-  @media(min-width:601px) and (max-width:1024px) and (orientation:portrait){
-    :root{--sw:280px;}
-  }
+  #map{position:absolute;top:0;left:0;right:0;bottom:0;}
+  #sidebar{display:none;}
   @media(max-width:600px){
-    :root{--sw:0px;}
-    #shell{grid-template-columns:1fr;}
-    #sidebar{overflow:hidden;}
+    #shell{display:grid;grid-template-columns:1fr;}
+    #map{position:static;min-width:0;min-height:0;}
+    #sidebar{display:flex;flex-direction:column;overflow:hidden;
+      background:#fff;border-right:1px solid #dde3ea;z-index:400;}
+    #sidebar-inner{flex:1;overflow-y:auto;padding:8px;}
   }
 .slabel{font-size:10px;font-weight:700;color:#222;
     background:rgba(255,255,255,0.75);border:none;box-shadow:none;padding:0 2px;}
@@ -115,7 +110,6 @@
       background:#1b2b3a;color:#e8eef4;border:none;border-radius:24px;
       padding:10px 16px;font-size:13px;font-weight:600;gap:6px;
       align-items:center;cursor:pointer;box-shadow:0 2px 12px rgba(0,0,0,.3);}
-    body.sidebar-open{--sw:280px;}
     body.sidebar-open::before{content:'';position:fixed;inset:0;background:rgba(0,0,0,.35);
       z-index:399;pointer-events:auto;}
     #sidebar{position:absolute;top:0;bottom:0;left:0;width:280px;
@@ -159,6 +153,8 @@
     #detail-panel,#detail-panel-hd{background:#1e3048;color:#e8eef4;border-bottom-color:#2d4256;}
     #detail-panel-close{color:#94a7b8;}
     #filter-fab{background:#2d4256;color:#e8eef4;}
+  }
+  @media(max-width:600px) and (prefers-color-scheme:dark){
     #sidebar{background:#1e3048;border-right-color:#2d4256;}
   }
 </style>
@@ -1299,34 +1295,27 @@
       togglePanel.applyDeclutter(counts);
     }
 
-    // Filter panel lives permanently in #sidebar-inner (CSS grid handles all viewport sizes).
-    // On mobile (≤600px), the FAB toggles body.sidebar-open which slides the sidebar in.
-    var sidebarInner=document.getElementById('sidebar-inner');
-    var sidebar=document.getElementById('sidebar');
-    if(sidebarInner) sidebarInner.appendChild(togglePanel.dom);
-    var fab=document.getElementById('filter-fab');
-    if(fab){
-      function afterSlide(){
-        if(!sidebar) return;
-        sidebar.addEventListener('transitionend',function h(){
-          sidebar.removeEventListener('transitionend',h);
-          map.invalidateSize();
+    // Desktop: Leaflet control in top-right. Mobile (≤600px): sidebar toggled by FAB.
+    if(window.matchMedia('(max-width:600px)').matches){
+      var sidebarInner=document.getElementById('sidebar-inner');
+      var sidebar=document.getElementById('sidebar');
+      if(sidebarInner) sidebarInner.appendChild(togglePanel.dom);
+      var fab=document.getElementById('filter-fab');
+      if(fab){
+        fab.onclick=function(){
+          var open=document.body.classList.toggle('sidebar-open');
+          fab.setAttribute('aria-expanded',open?'true':'false');
+        };
+        document.addEventListener('click',function(e){
+          if(document.body.classList.contains('sidebar-open') &&
+             !e.target.closest('#sidebar') && e.target!==fab && !fab.contains(e.target)){
+            document.body.classList.remove('sidebar-open');
+            fab.setAttribute('aria-expanded','false');
+          }
         });
       }
-      fab.onclick=function(){
-        var open=document.body.classList.toggle('sidebar-open');
-        fab.setAttribute('aria-expanded',open?'true':'false');
-        afterSlide();
-      };
-      // Tap on the overlay closes sidebar
-      document.addEventListener('click',function(e){
-        if(document.body.classList.contains('sidebar-open') &&
-           !e.target.closest('#sidebar') && e.target!==fab && !fab.contains(e.target)){
-          document.body.classList.remove('sidebar-open');
-          fab.setAttribute('aria-expanded','false');
-          afterSlide();
-        }
-      });
+    } else {
+      togglePanel.control.addTo(map);
     }
 
     map.on('zoomend',function(){ applyZoom(); updateViewCounts(); });
