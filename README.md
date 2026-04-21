@@ -43,9 +43,10 @@ hobbyists and small shops looking for cm-accurate GPS corrections within
 
 ## Data sources currently fetched
 
-**~5,600 stations** across ~40 casters as of 2026-04. Sourcetable fetches are
+**~6,000+ stations** across 64 sources as of 2026-04. Sourcetable fetches are
 public (RTCM 10402.1 — reading the sourcetable is its intended use); stream
-access requires registration where noted.
+access requires registration where noted. Station count is an estimate — US
+state DOT networks overlap with EarthScope NOTA on some physical stations.
 
 ### Open access (no account needed)
 
@@ -59,11 +60,11 @@ access requires registration where noted.
 
 | Source | Region | Stations | Registration |
 |--------|--------|----------|--------------|
-| FReDNet (OGS) | NE Italy | ~39 | frednet.crs.ogs.it |
-| SAPOS (14 Länder) | Germany | ~80 | per-state forms at sapos.de (Bayern: free for agriculture, €20/yr otherwise) |
+| FReDNet (OGS) | NE Italy + border AT/SI | ~39 | frednet.crs.ogs.it |
+| SAPOS (14 Länder) | Germany | ~80 VRS/physical | per-state at sapos.de |
 | ERGNSS (IGN) | Spain | ~128 | ergnss.ign.es/gnuserportal/ |
 | AUSCORS (GA) | Australia | ~811 | gnss.ga.gov.au/registration |
-| PositioNZ-RT (LINZ) | New Zealand | ~62 | LINZ account + positionz@linz.govt.nz |
+| PositioNZ-RT (LINZ) | New Zealand | ~62 | linz.govt.nz |
 | SatRef (Lands Dept) | Hong Kong | ~22 | geodetic.gov.hk |
 | InaCORS (BIG) | Indonesia | ~4 | nrtk.big.go.id |
 | TrigNet (NGI) | South Africa | ~72 | trignet.co.za |
@@ -78,6 +79,28 @@ access requires registration where noted.
 | IGAC MAGNA-ECO | Colombia | ~17 | redgeodesica-sbc.igac.gov.co/sbc |
 | MIRAI (Go!GNSS) | Japan | ~325 | go.gnss.go.jp |
 | IceCORS (LMÍ) | Iceland | ~20 | natt.is |
+| **SPIN3 GNSS** | Italy — Piemonte + Lombardia + VdA | ~39 | spingnss.it |
+| **GPS-UMBRIA** | Italy — Umbria | 12 | gpsumbria.regione.umbria.it |
+| **GNSS Abruzzo+Lazio** | Italy — Abruzzo + Lazio | ~29 | gnss-rtk.regione.abruzzo.it |
+| **SIT Puglia** | Italy — Puglia | 12 | sit.puglia.it |
+| **WISCORS** | US — Wisconsin | ~180 | wiscors.dot.wi.gov |
+| **FPRN** | US — Florida | ~120 | myfloridagps.com |
+| **ARDOT RTN** | US — Arkansas | ~50 | gps.ardot.gov |
+| **MaCORS** | US — Massachusetts | 22 | macorsrtk.massdot.state.ma.us |
+| **VECTOR VT** | US — Vermont | ~15 | vcgi.vermont.gov |
+| **AzCORS** | US — Arizona | 51 | azcors.azwater.gov |
+| **GCGC RTN** | US — Mississippi / Gulf Coast | ~35 | rtn.usm.edu |
+| **AlCORS** | US — Alabama | ~50 | dot.state.al.us |
+| **KyCORS** | US — Kentucky | VRS | kycors.ky.gov |
+| **MnCORS** | US — Minnesota | VRS | mndot.gov |
+| **ORGN** | US — Oregon | ~100 | oregon.gov/odot |
+| **MSRN** | US — Michigan | ~120 | michigan.gov/mdot |
+| **NYSNet** | US — New York | ~150 | dot.ny.gov |
+| **InCORS** | US — Indiana | ~70 | incors.in.gov |
+| **IARTN** | US — Iowa | 83 | iowadot.gov |
+| **ODOT RTN** | US — Ohio | VRS | transportation.ohio.gov |
+| **WVRTN** | US — West Virginia | VRS | transportation.wv.gov |
+| **MaineDOT** | US — Maine | VRS | maine.gov/mdot |
 
 ### Free with conditions
 
@@ -85,14 +108,17 @@ access requires registration where noted.
 |--------|--------|----------|-----------|
 | EarthScope NOTA | Americas | ~1,096 | Non-commercial use only (annual NULA) |
 | CORS-KOREA | South Korea | ~498 | Korean national ID may be required |
-| KSA-CORS (GEOSA) | Saudi Arabia | 209 VRS | Saudi government network; registration may require local credentials |
+| KSA-CORS (GEOSA) | Saudi Arabia | 209 VRS | Registration may require local credentials |
 | ESTPOS | Estonia | 40 VRS | Free until Aug 2026 only |
+| APOS (BEV) | Austria | 37 | Free for agriculture/forestry (eAMA); paid for others |
+| **GNSS Campania** | Italy — Campania | ~18 | SPID digital identity required for new users |
+| **MoDOT RTN** | US — Missouri | VRS | Notarized access agreement required |
 
-VRS-only networks (CROPOS, ASG-EUPOS, FLEPOS, WALCORS, etc.) expose virtual
-mountpoints only — no physical station coordinates — so they show 0 pins on
-the map. Coverage polygons for these are deferred. See
+VRS-only networks expose virtual mountpoints only — no physical station
+coordinates — so they appear as stopgap circles in the toggle panel with 0
+pins on the map. Coverage polygons are deferred. See
 [`docs/networks.md`](docs/networks.md) for endpoints, credentials, and
-candidates for future ingestion.
+remaining candidates (11 deferred including 6 Italian regional networks).
 
 ## Contributing / Next-session handover
 

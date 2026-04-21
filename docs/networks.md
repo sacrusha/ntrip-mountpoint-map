@@ -358,6 +358,28 @@ SSR-capable receiver or Geo++ SSR2OBS converter. Out of scope for this pipeline.
 
 ---
 
+## apos — APOS (AT)
+
+**status**:    in-pipeline
+**host:port**: `aposrtk.bev.gv.at:2101`
+**type**:      physical-coord-vrs
+**access**:    conditions — free for agriculture/forestry via eAMA credentials
+               (farm client number + PIN from Agrarmarkt Austria);
+               professional/hobbyist use paid via bev.gv.at portal
+**yearly_cost**: pricing via bev.gv.at for professional/hobbyist use;
+               eAMA free for agriculture/forestry
+**stations**:  37
+**source**:    bev.gv.at (BEV — Bundesamt für Eich- und Vermessungswesen)
+
+Austria's national VRS network (Free* in UI). Sourcetable is publicly readable;
+RTCM stream authentication requires valid credentials. Hobbyists without farm
+credentials register and pay via the BEV portal. 37 physical reference stations
+with distinct coordinates are exposed in the sourcetable; these show on the map
+as regular pins. SAPOS Bavaria (DE) and FReDNet (IT) provide partial coverage
+across the AT border.
+
+---
+
 ## In-pipeline — single-coord VRS / connectivity failures
 
 Networks in pipeline that yield 0 map stations: either all sourcetable entries
@@ -548,6 +570,341 @@ If stations returned, display as paid-service layer. $40/mo × 4 months = $160
 
 Single station; useful only within ~30 km of Brussels. Low priority.
 
+**missing**: confirm NTRIP port (standard 2101? try ncat/telnet agn.ngi.be 2101).
+
+---
+
+## wiscors — WISCORS (US-WI)
+
+**status**:    candidate
+**host:port**: `wiscors.dot.wi.gov:2101`
+**type**:      physical-coord-vrs (single-base + VRS)
+**access**:    registration; free via wiscors.dot.wi.gov (Wisconsin DOT)
+**stations**:  ~180
+**source**:    wiscors.dot.wi.gov (Wisconsin Department of Transportation)
+
+Wisconsin CORS Network operated by WisDOT. Offers both single-base streams
+and VRS corrections. Many WI stations also appear in EarthScope NOTA —
+verify overlap before ingesting to avoid duplicate pins.
+
+---
+
+## spin3 — SPIN3 GNSS (IT — Piemonte, Lombardia, Valle d'Aosta)
+
+**status**:    candidate
+**host:port**: `spingnss.it:2101`
+**type**:      physical-coord-vrs
+**access**:    registration; free via spingnss.it (CSI Piemonte public portal)
+**stations**:  ~39
+**source**:    spingnss.it (CSI Piemonte on behalf of Regione Piemonte, Lombardia, VdA)
+
+Inter-regional public network covering Piemonte, Lombardia, and Valle d'Aosta.
+Operated by CSI Piemonte. Provides single-base RTCM 3.x streams and VRS.
+Free public access with simple registration; no annual fee documented.
+
+---
+
+## gpsumbria — GPS-UMBRIA (IT — Umbria)
+
+**status**:    candidate
+**host:port**: `gpsumbria.regione.umbria.it:2101`
+**type**:      physical-coord-vrs
+**access**:    registration; free via gpsumbria.regione.umbria.it
+**stations**:  12
+**source**:    gpsumbria.regione.umbria.it (Regione Umbria)
+
+Regional GNSS network for Umbria. Free public service with 12 physical reference stations.
+
+---
+
+## gnss_abruzzo_lazio — Rete GNSS Abruzzo + Lazio (IT — Abruzzo + Lazio)
+
+**status**:    candidate
+**host:port**: `gnss-rtk.regione.abruzzo.it:2101`
+**type**:      physical-coord-vrs
+**access**:    registration; free via Abruzzo regional geoportal
+**stations**:  ~29
+**source**:    gnss-rtk.regione.abruzzo.it (Regione Abruzzo / Regione Lazio)
+
+Since December 2022, Regione Lazio's stations were integrated into the Abruzzo
+caster. A single endpoint serves both regions' physical reference stations.
+
+---
+
+## sit_puglia — SIT Puglia GNSS (IT — Puglia)
+
+**status**:    candidate
+**host:port**: `gps.sit.puglia.it:2101`
+**type**:      physical-coord-vrs
+**access**:    registration; free via sit.puglia.it (Sistema Informativo Territoriale)
+**stations**:  12
+**source**:    gps.sit.puglia.it (Regione Puglia)
+
+Puglia regional GNSS network. 12 physical reference stations. Free registration.
+
+---
+
+## gnss_campania — Rete GNSS Campania (IT — Campania)
+
+**status**:    candidate
+**host:port**: `gps-sit.regione.campania.it:2101`
+**type**:      physical-coord-vrs
+**access**:    conditions; new users require SPID (Italian national digital identity)
+               via the campania.it GNSS portal; legacy credentials publicly documented
+               in Italian surveying forums may still work on the old endpoint
+**stations**:  ~18
+**source**:    regione.campania.it GNSS section (Regione Campania)
+
+Campania regional GNSS network. Access upgraded to SPID-authenticated portal;
+legacy endpoint may accept old credentials. Free for SPID holders.
+
+---
+
+## fprn — FPRN (US-FL)
+
+**status**:    candidate
+**host:port**: `ntrip.myfloridagps.com:2101`
+**type**:      physical-coord-vrs
+**access**:    registration; free via myfloridagps.com (Florida DOT)
+**stations**:  ~120
+**source**:    myfloridagps.com (Florida Department of Transportation)
+
+Florida Permanent Reference Network operated by FDOT. Single-base and VRS
+corrections. Some overlap with EarthScope NOTA expected.
+
+---
+
+## ardot_rtn — ARDOT RTN (US-AR)
+
+**status**:    candidate
+**host:port**: `gps.ardot.gov:2101`
+**type**:      physical-coord-vrs
+**access**:    registration; free via ardot.gov (Arkansas DOT)
+**stations**:  ~50
+**source**:    ardot.gov (Arkansas Department of Transportation)
+
+Arkansas real-time network. Free after registration.
+
+---
+
+## macors — MaCORS (US-MA)
+
+**status**:    candidate
+**host:port**: `macorsrtk.massdot.state.ma.us:2101`
+**type**:      physical-coord-vrs
+**access**:    registration; free via massdot.state.ma.us (MassDOT)
+**stations**:  22
+**source**:    massdot.state.ma.us (Massachusetts Department of Transportation)
+
+Massachusetts CORS network. 22 stations; free registration.
+
+---
+
+## vector — VECTOR VT (US-VT)
+
+**status**:    candidate
+**host:port**: `20.185.11.35:2101`
+**type**:      physical-coord-vrs
+**access**:    registration; free via vcgi.vermont.gov (Vermont Center for Geographic Information)
+**stations**:  ~15
+**source**:    vcgi.vermont.gov (Vermont Center for Geographic Information)
+
+Vermont CORS network operated by VCGI. Bare IP address; no hostname. Free registration.
+
+---
+
+## azcors — AzCORS (US-AZ)
+
+**status**:    candidate
+**host:port**: `azcors.azwater.gov:2101`
+**type**:      physical-coord-vrs
+**access**:    registration; free via azwater.gov (Arizona Dept. of Water Resources)
+**stations**:  51
+**source**:    azwater.gov (Arizona Department of Water Resources)
+
+Arizona CORS Network operated by ADWR. 51 stations; free registration. Moderate
+overlap with EarthScope NOTA expected.
+
+---
+
+## gcgc_rtn — GCGC RTN (US-MS)
+
+**status**:    candidate
+**host:port**: `rtn.usm.edu:2101`
+**type**:      physical-coord-vrs
+**access**:    registration; free via usm.edu GCGC portal
+**stations**:  ~35
+**source**:    rtn.usm.edu (Gulf Coast Geodetic Consortium / University of Southern Mississippi)
+
+Gulf Coast Geodetic Consortium real-time network via University of Southern Mississippi.
+Covers Mississippi and adjacent Gulf Coast states. Free registration.
+
+---
+
+## alcors — AlCORS (US-AL)
+
+**status**:    candidate
+**host:port**: `aldotcors.dot.state.al.us:10011`
+**type**:      physical-coord-vrs
+**access**:    registration; free via dot.state.al.us (Alabama DOT)
+**stations**:  ~50
+**source**:    dot.state.al.us (Alabama Department of Transportation)
+
+Alabama CORS network operated by ALDOT. Non-standard port 10011 (Leica GNSS Spider
+default). Free registration.
+
+---
+
+## kycors — KyCORS (US-KY)
+
+**status**:    candidate
+**host:port**: `kycors.ky.gov:2101`
+**type**:      single-coord-vrs
+**access**:    registration; free via kycors.ky.gov (Kentucky Transportation Cabinet)
+**stations**:  VRS only
+**source**:    kycors.ky.gov (Kentucky Transportation Cabinet)
+
+Kentucky CORS Network. VRS-only service; no physical-coordinate mountpoints.
+Register at kycors.ky.gov.
+
+---
+
+## mncors — MnCORS (US-MN)
+
+**status**:    candidate
+**host:port**: `mncors.dot.state.mn.us:9000`
+**type**:      single-coord-vrs
+**access**:    registration; free via mndot.gov (Minnesota DOT)
+**stations**:  VRS only (underlying ~125 physical stations)
+**source**:    mndot.gov (Minnesota Department of Transportation)
+
+Minnesota CORS Network operated by MnDOT. Non-standard port 9000. VRS-only
+sourcetable; physical stations not individually listed. Significant overlap
+with EarthScope NOTA expected.
+
+---
+
+## orgn — ORGN (US-OR)
+
+**status**:    candidate
+**host:port**: `167.131.0.205:9879`
+**type**:      physical-coord-vrs
+**access**:    registration; free via oregon.gov (Oregon DOT)
+**stations**:  ~100
+**source**:    oregon.gov (Oregon Department of Transportation)
+
+Oregon GPS Network operated by ODOT. Bare IP address; non-standard port 9879
+(Leica). Significant overlap with EarthScope NOTA expected.
+
+---
+
+## msrn — MSRN (US-MI)
+
+**status**:    candidate
+**host:port**: `mdotcors.michigan.gov:10700`
+**type**:      physical-coord-vrs
+**access**:    registration; free via michigan.gov (Michigan DOT)
+**stations**:  ~120
+**source**:    michigan.gov (Michigan Department of Transportation)
+
+Michigan Spatial Reference Network operated by MDOT. Non-standard port 10700
+(Leica GNSS Spider). Significant overlap with EarthScope NOTA expected.
+
+---
+
+## nysnet — NYSNet (US-NY)
+
+**status**:    candidate
+**host:port**: `cors.dot.ny.gov:2101`
+**type**:      physical-coord-vrs
+**access**:    registration; free via dot.ny.gov (New York State DOT)
+**stations**:  ~150
+**source**:    dot.ny.gov (New York State Department of Transportation)
+
+New York State GPS Network operated by NYSDOT. Significant overlap with
+EarthScope NOTA expected.
+
+---
+
+## incors — InCORS (US-IN)
+
+**status**:    candidate
+**host:port**: `incors.in.gov:10000`
+**type**:      physical-coord-vrs
+**access**:    registration; free via incors.in.gov (Indiana Dept. of Administration)
+**stations**:  ~70
+**source**:    incors.in.gov (Indiana Department of Administration)
+
+Indiana CORS Network. Non-standard port 10000. Free registration.
+
+---
+
+## iartn — IARTN (US-IA)
+
+**status**:    candidate
+**host:port**: `iartnsbc.iowadot.gov:2101`
+**type**:      physical-coord-vrs
+**access**:    registration; free via iowadot.gov (Iowa DOT)
+**stations**:  83
+**source**:    iowadot.gov (Iowa Department of Transportation)
+
+Iowa Real-Time Network operated by Iowa DOT. 83 physical stations. Free registration.
+
+---
+
+## odot_rtn — ODOT RTN (US-OH)
+
+**status**:    candidate
+**host:port**: `156.63.133.115:2101`
+**type**:      single-coord-vrs
+**access**:    registration; free via transportation.ohio.gov (Ohio DOT)
+**stations**:  VRS only
+**source**:    transportation.ohio.gov (Ohio Department of Transportation)
+
+Ohio DOT real-time network. Bare IP address; VRS-only sourcetable. Free registration.
+
+---
+
+## modot_rtn — MoDOT RTN (US-MO)
+
+**status**:    candidate
+**host:port**: `rtk3.modot.mo.gov:2101`
+**type**:      single-coord-vrs
+**access**:    conditions; requires signed and notarized MoDOT CORS access agreement;
+               free once approved — contact via modot.mo.gov
+**stations**:  VRS only
+**source**:    modot.mo.gov (Missouri Department of Transportation)
+
+Missouri DOT CORS network. VRS-only. Requires notarized access agreement
+submitted to MoDOT before credentials are issued.
+
+---
+
+## wvrtn — WVRTN (US-WV)
+
+**status**:    candidate
+**host:port**: `wvrtn.cors.us:2101`
+**type**:      single-coord-vrs
+**access**:    registration; free via wvrtn.cors.us (WV Division of Highways)
+**stations**:  VRS only
+**source**:    transportation.wv.gov (West Virginia Division of Highways)
+
+West Virginia Real-Time Network. VRS-only sourcetable. Free registration.
+
+---
+
+## mainedot — MaineDOT CORS (US-ME)
+
+**status**:    candidate
+**host:port**: `mdotcors.maine.gov:2101`
+**type**:      single-coord-vrs
+**access**:    registration; free via maine.gov/mdot (Maine DOT)
+**stations**:  VRS only (transitioning from single-base)
+**source**:    maine.gov/mdot (Maine Department of Transportation)
+
+Maine DOT CORS network. Currently transitioning; sourcetable may show only VRS
+streams until physical-coordinate mountpoints are published.
+
 ---
 
 ## Deferred — free, endpoint not yet obtainable
@@ -607,20 +964,135 @@ dol-rtknetwork.com or contact rtk@dol.go.th.
 
 ---
 
-## apos — APOS (AT)
+## zakpos — ZAKPOS (UA)
 
 **status**:    deferred
-**host:port**: `aposrtk.bev.gv.at:2101`
+**host:port**: not currently accessible
 **type**:      physical-coord-vrs
-**access**:    free only for agriculture/forestry (eAMA credentials — farm client + PIN);
-               professional/hobbyist use paid via BEV portal
-**stations**:  37
-**source**:    bev.gv.at (BEV)
+**access**:    was free; registration at zakhid.net.ua
+**stations**:  ~50 (pre-conflict)
+**source**:    zakhid.net.ua (Western Ukraine positioning service)
 
-Not free for general hobbyist use. Deferred unless eAMA path is navigable.
+Ukrainian regional positioning service, disrupted since the Russian full-scale
+invasion (Feb 2022). Operational status and endpoint availability unknown.
+Do not add to pipeline until the service is confirmed operational.
 
-**missing**: confirmation of whether non-farmers can obtain eAMA credentials, or
-a separate public-access tier — check bev.gv.at or contact BEV directly.
+**missing**: confirm service is operational and endpoint is reachable post-conflict.
+
+---
+
+## tpos — TPOS (IT — Trentino)
+
+**status**:    deferred
+**host:port**: withheld until post-registration
+**type**:      physical-coord-vrs
+**access**:    registration; free via tpos.provincia.tn.it (Provincia Autonoma di Trento)
+**stations**:  11
+**source**:    tpos.provincia.tn.it (PAT — Provincia Autonoma di Trento)
+
+Trentino Positioning Service operated by the Autonomous Province of Trento. 11 physical
+reference stations. Credentials disclosed only after account approval.
+
+**missing**: caster host:port — register at tpos.provincia.tn.it; contact info at
+https://www.provincia.tn.it/en/Services/TPOS-Trentino-POsitioning-Service
+
+---
+
+## stpos — STPOS (IT — South Tyrol / Alto Adige)
+
+**status**:    deferred
+**host:port**: withheld until post-registration
+**type**:      physical-coord-vrs
+**access**:    registration; free via stpos.it (Provincia Autonoma di Bolzano)
+**stations**:  10
+**source**:    stpos.it (Autonome Provinz Bozen / Provincia Autonoma di Bolzano)
+
+South Tyrol Positioning Service operated by the Autonomous Province of Bolzano.
+Bilingual (German/Italian). 10 physical reference stations.
+
+**missing**: caster host:port — register at stpos.it; contact info at
+https://www.provincia.bz.it/costruire-abitare/catasto-librofondiario/catasto/stpos-reti-appoggio-geodetico.asp
+
+---
+
+## gnss_veneto — Rete GNSS Veneto (IT — Veneto)
+
+**status**:    deferred
+**host:port**: not publicly listed
+**type**:      physical-coord-vrs
+**access**:    registration; apply via retegnssveneto.cisas.unipd.it
+**stations**:  ~20
+**source**:    retegnssveneto.cisas.unipd.it (CISAS — Università degli Studi di Padova)
+
+Veneto regional GNSS network operated by CISAS (Centro Interdipartimentale di Studi e
+Attività Spaziali), University of Padua. Credentials provided on request.
+
+**missing**: caster host:port — contact via http://retegnssveneto.cisas.unipd.it/
+
+---
+
+## gnss_liguria — Rete GNSS Liguria (IT — Liguria)
+
+**status**:    deferred
+**host:port**: not publicly listed
+**type**:      physical-coord-vrs
+**access**:    registration; register via Liguria geoportal
+**stations**:  10
+**source**:    geoportal.regione.liguria.it (Regione Liguria)
+
+Liguria regional GNSS network. 10 reference stations. Credentials via regional geoportal.
+
+**missing**: caster host:port — contact via
+https://geoportal.regione.liguria.it/servizi/rete-gnss-liguria.html
+
+---
+
+## sicilianet — Sicili@net (IT — Sicily + S. Calabria)
+
+**status**:    deferred
+**host:port**: not publicly listed
+**type**:      physical-coord-vrs
+**access**:    registration; apply via INGV Catania portal
+**stations**:  ~80
+**source**:    ct.ingv.it (INGV — Istituto Nazionale di Geofisica e Vulcanologia, Catania)
+
+INGV Catania seismic monitoring network covering Sicily and southern Calabria. ~80 stations.
+RTK service available to registered users; primarily a geophysical research network but open
+to external applicants.
+
+**missing**: caster host:port — contact via https://www.ct.ingv.it/index.php/risorse-e-servizi/sicil-net
+
+---
+
+## molise_gnss — Rete GNSS Molise (IT — Molise)
+
+**status**:    deferred
+**host:port**: not confirmed
+**type**:      unknown
+**access**:    unknown; likely registration-based
+**stations**:  ~4
+**source**:    regione.molise.it (Regione Molise)
+
+Small regional GNSS network. NTRIP delivery unconfirmed; only ~4 reference stations
+documented. Lowest-priority Italian regional network.
+
+**missing**: confirm NTRIP delivery and endpoint — contact via regione.molise.it
+
+---
+
+## acorn — ACORN (US-AK)
+
+**status**:    deferred
+**host:port**: not confirmed
+**type**:      physical-coord-vrs
+**access**:    intended to be free; operated by Alaska DOT/PF
+**stations**:  unknown
+**source**:    dot.alaska.gov (Alaska Department of Transportation and Public Facilities)
+
+Alaska CORS network. Free-intended service but NTRIP endpoint not confirmed from
+public sources.
+
+**missing**: confirm NTRIP host:port — search DOT/PF CORS documentation or Alberding directory.
 
 ---
 
@@ -635,6 +1107,8 @@ Surface in UI as paid alternatives for users in areas with no free coverage.
 **status**:    paid-affordable
 **host:port**: `uranus.gr:2101`
 **access**:    paid; ~€160/3 months or ~€480/yr unlimited; also per-minute pricing
+**yearly_cost**: €160 per 3-month block (~$170); ~€480/yr unlimited (~$520) — 3-month
+               option is under the $200 cutoff for seasonal hobbyist use
 **stations**:  unknown
 **source**:    ktimatologio.gr (HEPOS S.A.)
 
@@ -645,6 +1119,7 @@ Surface in UI as paid alternatives for users in areas with no free coverage.
 **status**:    paid-affordable
 **host:port**: unknown
 **access**:    paid credit-based system; ~€169/yr
+**yearly_cost**: ~€169/yr (~$183) — under $200 cutoff
 **stations**:  unknown
 **source**:    rompos.ro
 
@@ -660,6 +1135,7 @@ Brief entries only.
 
 **status**:    paid
 **access**:    €829.44/yr (€622.08 early discount)
+**yearly_cost**: €829.44/yr (~$905); €622.08 early-discount (~$680)
 **source**:    gu-signal.si
 
 ---
@@ -668,6 +1144,7 @@ Brief entries only.
 
 **status**:    paid
 **access**:    ~9,000 SEK/yr ≈ $850; free DGNSS tier sub-metre only (out of scope)
+**yearly_cost**: ~9,000 SEK/yr (~$850)
 **source**:    lantmateriet.se
 
 ---
@@ -676,6 +1153,7 @@ Brief entries only.
 
 **status**:    paid
 **access**:    NOK 8,000+/yr ≈ $740
+**yearly_cost**: NOK 8,000+/yr (~$740)
 **source**:    kartverket.no
 
 ---
@@ -684,6 +1162,7 @@ Brief entries only.
 
 **status**:    paid
 **access**:    CHF 1,500/yr ≈ $1,650; *Geoinformationsgesetz* SR 510.62 classifies RTK as value-added service
+**yearly_cost**: CHF 1,500/yr (~$1,650)
 **source**:    swisstopo.admin.ch
 
 ---
@@ -692,6 +1171,7 @@ Brief entries only.
 
 **status**:    paid
 **access**:    SGD $107/month ≈ $950/yr; 3-day trial requires SingPass (residents only)
+**yearly_cost**: SGD $107/month (~SGD $1,284/yr, ~$960/yr)
 **source**:    sla.gov.sg
 
 ---
@@ -701,6 +1181,7 @@ Brief entries only.
 **status**:    paid
 **access**:    free only for Central/State Government and academic institutions;
                private users ₹5,032/month ≈ $240/yr × ongoing
+**yearly_cost**: ₹5,032/month (~$720/yr) for private users
 **source**:    surveyofindia.gov.in
 
 Promotional free 3-month window (Nov 2025–Jan 2026) expired. Worth revisiting if policy changes.
@@ -712,6 +1193,7 @@ Promotional free 3-month window (Nov 2025–Jan 2026) expired. Worth revisiting 
 **status**:    paid
 **host:port**: `212.156.70.42:2101` (also port 55600)
 **access**:    paid; membership + annual fee to TKGM/HGM
+**yearly_cost**: annual fee (amount not publicly listed); contact TKGM/harita.gov.tr
 **stations**:  146
 **source**:    tkgm.gov.tr; harita.gov.tr
 
@@ -721,6 +1203,7 @@ Promotional free 3-month window (Nov 2025–Jan 2026) expired. Worth revisiting 
 
 **status**:    paid
 **access**:    fees since Sep 2024 per Circular 47/2024/TT-BTC; pricing not public
+**yearly_cost**: not publicly listed (fees per Circular 47/2024/TT-BTC since Sep 2024)
 **stations**:  65
 **source**:    vngeonet.vn (National Centre for Satellite Positioning Station Management)
 
@@ -732,6 +1215,7 @@ Was free until Aug 2024.
 
 **status**:    paid
 **access**:    commercial; pricing not public
+**yearly_cost**: not publicly listed
 **source**:    gnssnet.hu
 
 ---
@@ -740,6 +1224,7 @@ Was free until Aug 2024.
 
 **status**:    paid
 **access**:    pay-per-use + paper form registration (mail/fax)
+**yearly_cost**: pay-per-use (pricing not publicly listed)
 **source**:    nlsc.gov.tw (NLSC/MoI)
 
 ---
@@ -748,6 +1233,7 @@ Was free until Aug 2024.
 
 **status**:    paid
 **access**:    paid subscription (Survey Act cost-recovery); 78 stations
+**yearly_cost**: not publicly listed
 **source**:    jupem.gov.my
 
 ---
@@ -756,6 +1242,7 @@ Was free until Aug 2024.
 
 **status**:    paid
 **access**:    PHP 1,000 one-time + ongoing subscription (EO 471); 52 stations
+**yearly_cost**: PHP 1,000 one-time (~$17) + subscription (ongoing amount not publicly listed)
 **source**:    namria.gov.ph
 
 ---
@@ -764,6 +1251,7 @@ Was free until Aug 2024.
 
 **status**:    paid
 **access**:    free for education/government; commercial use paid (ČÚZK Decree 31/1995)
+**yearly_cost**: not publicly listed for commercial use
 **source**:    czepos.cuzk.gov.cz
 
 Not a general hobbyist path.
@@ -774,9 +1262,136 @@ Not a general hobbyist path.
 
 **status**:    paid
 **access**:    free for public sector/municipalities; commercial use paid
+**yearly_cost**: not publicly listed for commercial use
 **source**:    skpos.gku.sk
 
 Not a general hobbyist path.
+
+---
+
+## agros — AGROS (RS)
+
+**status**:    paid
+**access**:    paid; no English pricing page; contact rgz.gov.rs
+**yearly_cost**: not publicly listed (contact RGZ/Republicka geodetska uprava)
+**stations**:  ~30
+**source**:    rgz.gov.rs (Republički geodetski zavod)
+
+Serbia's national positioning network. Subscription required; no public free tier.
+
+---
+
+## montepos — MONTEPOS (ME)
+
+**status**:    paid
+**access**:    paid subscription tiers; contact upco.gov.me
+**yearly_cost**: not publicly listed
+**stations**:  ~20
+**source**:    upco.gov.me (Uprava za nekretnine)
+
+Montenegro's national CORS network. Paid service.
+
+---
+
+## bihos — BiHPOS (BA)
+
+**status**:    paid
+**access**:    paid; dual-entity administration (FBiH + RS) complicates access; limited resources
+**yearly_cost**: not publicly listed
+**stations**:  ~25 (estimate)
+**source**:    fgu.com.ba / rgurs.rs (dual entity)
+
+Bosnia and Herzegovina's CORS network, split between the Federation of BiH and
+Republika Srpska geodetic authorities. Operational status uncertain.
+
+---
+
+## scrtn — SCRTN (US-SC)
+
+**status**:    paid
+**access**:    paid subscription; pricing via scdot.org
+**yearly_cost**: not publicly listed (contact SCDOT)
+**source**:    scdot.org (South Carolina Department of Transportation)
+
+---
+
+## ncrtn — NCRTN (US-NC)
+
+**status**:    paid
+**access**:    ~$500/yr; subscription via ncems.org
+**yearly_cost**: ~$500/yr
+**source**:    ncems.org (North Carolina Emergency Management / NCDOT)
+
+---
+
+## tdot_rtn — TDOT RTN (US-TN)
+
+**status**:    paid
+**access**:    ~$450/yr; subscription via tn.gov/tdot
+**yearly_cost**: ~$450/yr
+**source**:    tn.gov/tdot (Tennessee Department of Transportation)
+
+---
+
+## turn_gps — TURN GPS (US-UT)
+
+**status**:    paid
+**access**:    ~$600/yr; subscription via turngps.org
+**yearly_cost**: ~$600/yr
+**source**:    turngps.org (State of Utah)
+
+---
+
+## mtsrn — MTSRN (US-MT)
+
+**status**:    paid
+**access**:    ~$1,500/yr; subscription via mdt.mt.gov
+**yearly_cost**: ~$1,500/yr
+**source**:    mdt.mt.gov (Montana Department of Transportation)
+
+---
+
+## wsrn — WSRN (US-WA)
+
+**status**:    paid
+**access**:    ~$1,900/yr; subscription via wsdot.wa.gov
+**yearly_cost**: ~$1,900/yr
+**source**:    wsdot.wa.gov (Washington State Department of Transportation)
+
+---
+
+## bc_rtn — BC RTN (CA-BC)
+
+**status**:    paid
+**access**:    paid regional subscription; contact GeoBC via gov.bc.ca/geobc
+**yearly_cost**: not publicly listed
+**source**:    gov.bc.ca/geobc (Province of British Columbia)
+
+British Columbia real-time network. No free tier. No Canadian province offers free
+public NTRIP — confirmed across BC, QC, ON, AB, SK, MB.
+
+---
+
+## netgeo — NetGEO (IT — national)
+
+**status**:    paid
+**access**:    ~€360/yr commercial subscription
+**yearly_cost**: ~€360/yr (~$390)
+**source**:    netgeo.it (TopNET Live)
+
+Commercial RTK network covering Italy. Includes some publicly-funded reference stations
+made available commercially after regional network restructuring (e.g. Emilia-Romagna).
+
+---
+
+## pegasonow — PegasoNow (IT — national)
+
+**status**:    paid
+**access**:    commercial subscription; pricing not publicly listed
+**yearly_cost**: not publicly listed
+**source**:    pegasonow.it (Hexagon / Leica Geosystems Italy)
+
+Enterprise-focused commercial NRTK network covering Italy. Not free.
 
 ---
 
@@ -839,3 +1454,34 @@ Not a general hobbyist path.
 **reason**:    server unreachable since launch; 0 stations ever collected; operated by
                Kansi Solutions GmbH (same parent as paid rtkdata.com); no independent
                data — aggregates rtk2go/Centipede visually
+
+---
+
+## txrtn — TXDOT CORS (US-TX)
+
+**status**:    rejected
+**reason**:    restricted to TXDOT employees and contractors only; no public or hobbyist registration
+
+---
+
+## calrtns — CalRTNS / Caltrans CORS (US-CA)
+
+**status**:    rejected
+**reason**:    access restricted to vetted state/county agency partners; no general public
+               or hobbyist registration available
+
+---
+
+## gps_emiliaromagna — Rete GPS Emilia-Romagna (IT)
+
+**status**:    rejected
+**reason**:    public regional service discontinued; stations now commercially operated
+               via NetGEO/TopNET Live (netgeo.it); not free
+
+---
+
+## qc_mern — Réseau GNSS du Québec / MERN (CA-QC)
+
+**status**:    rejected
+**reason**:    per-station direct TCP streams (not NTRIP aggregated); incompatible with
+               standard NTRIP pipeline; no NTRIP caster endpoint published

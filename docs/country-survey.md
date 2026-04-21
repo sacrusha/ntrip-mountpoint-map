@@ -19,12 +19,13 @@ _Last updated: 2026-04-20._
 
 ### AT — Austria
 
-- **Free government RTK**: APOS (BEV, `aposrtk.bev.gv.at:2101`, 37 stations, VRS) —
-  free only for agriculture/forestry via eAMA credentials (farm client number + PIN
-  from Agrarmarkt Austria); professional/hobbyist use paid via BEV portal.
+- **Free* government RTK**: APOS (BEV, `aposrtk.bev.gv.at:2101`, 37 stations, VRS) —
+  free for agriculture/forestry via eAMA credentials (farm client number + PIN from
+  Agrarmarkt Austria); professional/hobbyist use paid via bev.gv.at portal. In pipeline
+  as `conditions` access (Free* in UI). → networks.md: `apos`
 - **Volunteer**: rtk2go ~14 AT bases, Centipede ~1 AT node.
-- **Paid only**: BEV portal subscription for non-agricultural use.
-- **Gap**: no free general-public RTK; volunteers are the only free option for hobbyists.
+- **Gap**: hobbyists without agricultural credentials must pay via BEV portal;
+  volunteers (rtk2go) are the only unconditionally free option.
 
 ### BE — Belgium
 
@@ -130,11 +131,42 @@ _Last updated: 2026-04-20._
 
 ### IT — Italy
 
-- **Free government RTK**: no national free public caster. Regional variation.
-  FReDNet (OGS, `gnsscaster.regione.fvg.it:8080`, NE Italy + border SI/AT) — free
-  email registration. → networks.md: `frednet`
+- **Free government RTK**: no national free public caster. Strongly regional.
+  - **FReDNet** (OGS/FVG, `gnsscaster.regione.fvg.it:8080`, ~39 stations) — Friuli-Venezia
+    Giulia + border SI/AT. Free email registration. In pipeline. → networks.md: `frednet`
+  - **SPIN3 GNSS** (CSI Piemonte, `spingnss.it:2101`, ~39 stations) — Piemonte + Lombardia +
+    Valle d'Aosta. Free registration. Candidate. → networks.md: `spin3`
+  - **GPS-UMBRIA** (Regione Umbria, `gpsumbria.regione.umbria.it:2101`, 12 stations) — Free
+    registration. Candidate. → networks.md: `gpsumbria`
+  - **Abruzzo + Lazio** (`gnss-rtk.regione.abruzzo.it:2101`, ~29 stations) — Single endpoint
+    since Dec 2022. Free registration. Candidate. → networks.md: `gnss_abruzzo_lazio`
+  - **SIT Puglia** (`gps.sit.puglia.it:2101`, 12 stations) — Free registration. Candidate.
+    → networks.md: `sit_puglia`
+  - **Campania** (`gps-sit.regione.campania.it:2101`, ~18 stations) — SPID identity required
+    for new users; legacy credentials may work on old endpoint. Conditions access. Candidate.
+    → networks.md: `gnss_campania`
+  - **TPOS** (Provincia Autonoma di Trento, 11 stations) — Free; endpoint withheld until
+    post-registration. Deferred. → networks.md: `tpos`
+  - **STPOS** (Provincia Autonoma di Bolzano, 10 stations) — Free; endpoint withheld. Deferred.
+    → networks.md: `stpos`
+  - **Rete GNSS Veneto** (CISAS-Unipd, ~20 stations) — Free on request; endpoint not public.
+    Deferred. → networks.md: `gnss_veneto`
+  - **Rete GNSS Liguria** (Regione Liguria, 10 stations) — Free; endpoint not public. Deferred.
+    → networks.md: `gnss_liguria`
+  - **Sicili@net** (INGV Catania, ~80 stations) — Sicily + S. Calabria; free registration;
+    endpoint not public. Deferred. → networks.md: `sicilianet`
+  - **Molise** (Regione Molise, ~4 stations) — NTRIP delivery unconfirmed. Deferred.
+    → networks.md: `molise_gnss`
+  - **Emilia-Romagna** — public service discontinued; now commercial via NetGEO/TopNET.
+    Rejected. → networks.md: `gps_emiliaromagna`
+  - Regions **not yet confirmed**: Sardinia, Toscana, Basilicata. Calabria partially via
+    Sicili@net (INGV Catania).
+- **Commercial paid**: NetGEO/TopNET (~€360/yr, national), PegasoNow/Hexagon.
+  → networks.md: `netgeo`, `pegasonow`
 - **Volunteer**: rtk2go ~12 IT bases, Centipede ~3 IT nodes.
-- **Gap**: most of Italy has no free government RTK; FReDNet covers only Friuli-Venezia Giulia.
+- **Gap**: central Italy (Toscana, Basilicata) has no confirmed free NTRIP. Northern Italy
+  well covered by SPIN3 + FReDNet once candidates are ingested. Southern Italy improving
+  (Puglia, Campania, Sicily via Sicili@net deferred).
 
 ### PT — Portugal
 
@@ -232,7 +264,8 @@ _Last updated: 2026-04-20._
 
 ### BA — Bosnia and Herzegovina
 
-- **Free government RTK**: BiHPOS — dual-entity administrative split; likely paid; limited resources.
+- **Free government RTK**: BiHPOS — dual-entity administrative split; paid; limited resources.
+  → networks.md: `bihos`
 - **Volunteer**: negligible.
 
 ### BG — Bulgaria
@@ -259,7 +292,7 @@ _Last updated: 2026-04-20._
 
 ### ME — Montenegro
 
-- **Free government RTK**: MONTEPOS — paid subscription tiers.
+- **Free government RTK**: MONTEPOS — paid subscription tiers. → networks.md: `montepos`
 - **Volunteer**: negligible.
 
 ### MK — North Macedonia
@@ -276,7 +309,7 @@ _Last updated: 2026-04-20._
 
 ### RS — Serbia
 
-- **Free government RTK**: AGROS (RGZ) — paid; no English pricing page.
+- **Free government RTK**: AGROS (RGZ) — paid; no English pricing page. → networks.md: `agros`
 - **Volunteer**: Centipede ~11 SER + ~3 SRB nodes, rtk2go ~28 RS bases. Together
   ~42 bases — one of the denser volunteer clusters in the Western Balkans.
 
@@ -292,7 +325,8 @@ _Last updated: 2026-04-20._
 
 ### UA — Ukraine
 
-- **Free government RTK**: ZAKPOS — disrupted since Feb 2022 (Russian invasion). Status unknown.
+- **Free government RTK**: ZAKPOS — disrupted since Feb 2022 (Russian invasion). Status unknown;
+  deferred until service is confirmed operational post-conflict. → networks.md: `zakpos`
 - **Volunteer**: rtk2go ~3 UA bases; status uncertain given the conflict.
 
 ---
@@ -328,24 +362,63 @@ Centipede volunteer nodes in several French overseas territories, served via `cr
 
 ### CA — Canada
 
-- **Free government RTK**: none. NRCan is post-processing only (CACS/CSRS RINEX). Vast geography, low rural density.
+- **Free government RTK**: none confirmed in any province.
+  - NRCan: post-processing only (CACS/CSRS RINEX archive; NRCAN-PPP web tool). No streaming NTRIP.
+  - Quebec MERN: per-station direct TCP streams; not NTRIP-aggregated — pipeline-incompatible.
+    → networks.md: `qc_mern` (rejected)
+  - BC RTN: paid regional service via GeoBC. → networks.md: `bc_rtn`
+  - Ontario, Alberta, Saskatchewan, Manitoba: no confirmed free public NTRIP.
 - **Volunteer**: rtk2go ~56 CA bases, Centipede ~13 CA nodes. Concentrated heavily
   in BC, Ontario, and southern Quebec; very thin elsewhere.
-- **Gap**: no free national NTRIP; volunteer coverage poor outside urban corridors.
+- **Gap**: no free national or provincial NTRIP in Canada. Volunteer networks are
+  the only free path for hobbyists.
 
 ### US — United States
 
 - **Free government RTK**: EarthScope NOTA (`ntrip.earthscope.org:2101`, ~1,000+
   stations, single-base, non-commercial NULA) — Americas-wide, dense in western USA.
   → networks.md: `earthscope`
-  State DOT networks (representative free ones): NYSNet (NY), MDOT CORS/MSRN (MI),
-  MnCORS (MN), WISCORS (WI, 115+ stations), ORGN (OR). Many more exist; EarthScope
-  fills gaps. Restricted state networks: TxDOT RTN (employees/contractors only),
-  CaltransRTN (vetted partners only), WSRN WA (~$1,900/yr).
+
+  State DOT/CORS networks with confirmed endpoints (all free registration unless noted):
+
+  | Network    | State | Host:Port                             | Type           | Stations |
+  |------------|-------|---------------------------------------|----------------|----------|
+  | WISCORS    | WI    | `wiscors.dot.wi.gov:2101`             | physical + VRS | ~180     |
+  | FPRN       | FL    | `ntrip.myfloridagps.com:2101`         | physical + VRS | ~120     |
+  | ARDOT RTN  | AR    | `gps.ardot.gov:2101`                  | physical + VRS | ~50      |
+  | MaCORS     | MA    | `macorsrtk.massdot.state.ma.us:2101`  | physical + VRS | 22       |
+  | VECTOR     | VT    | `20.185.11.35:2101` (bare IP)         | physical + VRS | ~15      |
+  | AzCORS     | AZ    | `azcors.azwater.gov:2101`             | physical + VRS | 51       |
+  | GCGC RTN   | MS    | `rtn.usm.edu:2101`                    | physical + VRS | ~35      |
+  | AlCORS     | AL    | `aldotcors.dot.state.al.us:10011`     | physical + VRS | ~50      |
+  | KyCORS     | KY    | `kycors.ky.gov:2101`                  | VRS only       | —        |
+  | MnCORS     | MN    | `mncors.dot.state.mn.us:9000`         | VRS only       | —        |
+  | ORGN       | OR    | `167.131.0.205:9879` (bare IP)        | physical + VRS | ~100     |
+  | MSRN       | MI    | `mdotcors.michigan.gov:10700`         | physical + VRS | ~120     |
+  | NYSNet     | NY    | `cors.dot.ny.gov:2101`                | physical + VRS | ~150     |
+  | InCORS     | IN    | `incors.in.gov:10000`                 | physical + VRS | ~70      |
+  | IARTN      | IA    | `iartnsbc.iowadot.gov:2101`           | physical + VRS | 83       |
+  | ODOT RTN   | OH    | `156.63.133.115:2101` (bare IP)       | VRS only       | —        |
+  | MoDOT RTN  | MO    | `rtk3.modot.mo.gov:2101`              | VRS only       | —        |
+  | WVRTN      | WV    | `wvrtn.cors.us:2101`                  | VRS only       | —        |
+  | MaineDOT   | ME    | `mdotcors.maine.gov:2101`             | VRS only       | —        |
+
+  Note: MnCORS, ORGN, MSRN, NYSNet, AzCORS have significant EarthScope NOTA overlap —
+  expect duplicate physical pins until deduplication is added. VRS-only entries (KyCORS,
+  MnCORS, ODOT, MoDOT, WVRTN, MaineDOT) produce no physical pins; shown as VRS stopgap circles.
+
+  MoDOT requires notarized access agreement (conditions access). → networks.md: `modot_rtn`
+  ACORN (AK) — endpoint unconfirmed, deferred. → networks.md: `acorn`
+
+  Paid/restricted states: SCRTN (SC, price not listed), NCRTN (NC ~$500/yr), TDOT (TN ~$450/yr),
+  TURN GPS (UT ~$600/yr), MTSRN (MT ~$1,500/yr), WSRN (WA ~$1,900/yr), TxDOT (employees-only),
+  Caltrans (vetted agency partners only). → networks.md: `scrtn`, `ncrtn`, `tdot_rtn`,
+  `turn_gps`, `mtsrn`, `wsrn`, `txrtn`, `calrtns`
+
   No federal free NTRIP: NOAA/NGS real-time service shut Apr 2013 (budget sequestration).
 - **Volunteer**: rtk2go ~142 US bases (largest single-country cluster on rtk2go);
   dense in upper Midwest, Pacific Northwest, mid-Atlantic. Centipede ~3 US nodes.
-- **Gap**: Great Plains and interior South have sparse coverage.
+- **Gap**: Great Plains and interior South have sparse coverage despite state networks.
 
 ---
 

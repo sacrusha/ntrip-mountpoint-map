@@ -54,13 +54,18 @@ entry to `SOURCE_AUTH` in `index.html` for connection hints in popups.
 Develop on feature branches, PR into `main`. The workflow only runs against
 `main`, so ingestion changes need to land there to be exercised.
 
-## Current state (2026-04-20, PRs #18 + #20)
+## Current state (2026-04-21, branch claude/add-bike-networks-OsR6J)
 
-**37 sources, ~5,600 stations** in `data/stations.json`. Sources: rtk2go,
-Centipede, FReDNet, GeoRTK, 13× SAPOS Länder, ERGNSS, AUSCORS, PositioNZ,
-SatRef HK, InaCORS, TrigNet, RBMC-IP, RAMSAC, FLEPOS, WALCORS, SPSLux,
-ASG-EUPOS, CROPOS, ESTPOS, LatPos, IGAC, EarthScope NOTA, MIRAI, CORS-KOREA,
-KSA-CORS.
+**64 sources, ~6,000+ stations** in `data/stations.json` (estimate; EarthScope
+overlap means US state DOT additions may not all produce net-new pins). Sources:
+rtk2go, Centipede, FReDNet, GeoRTK, 14× SAPOS Länder, ERGNSS, APOS (AT),
+AUSCORS, PositioNZ, SatRef HK, InaCORS, TrigNet, RBMC-IP, RAMSAC, FLEPOS,
+WALCORS, SPSLux, ASG-EUPOS, CROPOS, ESTPOS, LatPos, IGAC, EarthScope NOTA,
+MIRAI, CORS-KOREA, IceCORS, KSA-CORS,
+**Italian regional**: SPIN3, GPS-UMBRIA, GNSS Abruzzo+Lazio, SIT Puglia, GNSS Campania,
+**US state DOT (physical+VRS)**: WISCORS, FPRN, ARDOT RTN, MaCORS, VECTOR VT,
+AzCORS, GCGC RTN, AlCORS, ORGN, MSRN, NYSNet, InCORS, IARTN,
+**US state DOT (VRS-only)**: KyCORS, MnCORS, ODOT RTN, MoDOT RTN, WVRTN, MaineDOT.
 
 **Source config in one place:** `color` and `label` live in `SOURCES` in
 `fetch_stations.py` and are emitted to `stations.json`. `SOURCE_COLORS` /
@@ -68,12 +73,18 @@ KSA-CORS.
 hardcoded. `SOURCE_AUTH` (credentials and popup hints) stays in `index.html`.
 
 **VRS-only networks** (CROPOS, ASG-EUPOS, FLEPOS, WALCORS, ESTPOS, LatPos,
-KSA-CORS, 10 SAPOS states) expose only virtual mountpoints — correctly
+KSA-CORS, 10 SAPOS states, + 6 US state DOT: KyCORS, MnCORS, ODOT RTN,
+MoDOT RTN, WVRTN, MaineDOT) expose only virtual mountpoints — correctly
 dropped to 0 stations by `filter_vrs()`. Shown as purple stopgap circles in
 the Sources toggle panel with a ring swatch and `(VRS)` count badge. Toggling
 hides/shows the circle and respects tier filters. `VRS_NETWORKS` in
 `index.html` holds the centroids; SAPOS states with physical-coord data (HE,
-RP, SL, SN) are excluded. Full NRTK polygons are deferred.
+RP, SL, SN) are excluded. APOS (AT) and all Italian regional networks are
+physical-coord-vrs — show as regular pins with `pins:true` VRS badges. Full
+NRTK polygons are deferred.
+
+**`yearly_cost` field in `docs/networks.md`:** all paid and paid-affordable
+entries carry a `**yearly_cost**:` field for reference (not yet in JSON).
 
 **Longitude normalisation:** `parse_sourcetable` now normalises 0-360°
 longitudes to ±180 (ERGNSS: 114/128 affected; AUSCORS: 2/808). `lon` is
@@ -83,12 +94,28 @@ included in `station_fingerprint` so the next pipeline run rewrites JSON.
 Handled gracefully by fallback-to-cached-sourcetable. See `**investigate**:`
 in `docs/networks.md`.
 
+**Non-standard ports in pipeline:** spslux:5005, inacors:2001, latpos:5001,
+alcors:10011, mncors:9000, orgn:9879, msrn:10700, incors:10000. All handled
+by standard urllib/socket — no special-casing needed.
+
+**Bare IPs in pipeline:** vector (`20.185.11.35`), orgn (`167.131.0.205`),
+odot_rtn (`156.63.133.115`). Valid URLs, handled normally.
+
+**EarthScope overlap:** US state DOT networks (especially ORGN, MSRN, NYSNet,
+AzCORS, MnCORS) may share physical stations with EarthScope NOTA, producing
+duplicate pins at identical coordinates. VRS-only state networks avoid this.
+Deduplication is a future task.
+
 **Open / deferred (by priority):**
 1. NRTK / VRS coverage polygons: rendering scaffolded (`networks: []` in JSON)
    but no polygon data ingested. VRS stopgap markers are the placeholder.
 2. Network endpoint verification — see `docs/networks.md` `**investigate**:`
-   (5 CI-failing) and `**missing**:` (4 deferred) entries.
-3. `SOURCE_AUTH.openNote` strings are derivable from `access`+`registration`
+   (5 CI-failing) and `**missing**:` (11 deferred: renep, litpos, thailand_dol,
+   zakpos; Italian: tpos, stpos, gnss_veneto, gnss_liguria, sicilianet,
+   molise_gnss; US: acorn).
+3. EarthScope overlap deduplication — US state DOT physical stations may
+   duplicate EarthScope NOTA pins.
+4. `SOURCE_AUTH.openNote` strings are derivable from `access`+`registration`
    already in JSON; could be dropped from `index.html`. Deferred — requires
    popup refactor.
 
