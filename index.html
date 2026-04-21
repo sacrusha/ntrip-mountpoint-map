@@ -19,10 +19,9 @@
     border-bottom:1px solid #0d1922;}
   body.banner-visible #banner{display:flex;}
   #banner .msg{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-  #banner-info-btn{background:transparent;border:1px solid rgba(255,255,255,0.35);
-    border-radius:50%;width:20px;height:20px;color:#9ec8ff;font-size:11px;
-    cursor:pointer;flex-shrink:0;padding:0;line-height:20px;}
-  #banner-info-btn:hover{background:rgba(255,255,255,0.12);}
+  #banner-info-btn{background:transparent;border:none;color:#9ec8ff;font-size:12px;
+    cursor:pointer;flex-shrink:0;padding:0;text-decoration:underline;white-space:nowrap;}
+  #banner-info-btn:hover{color:#c8deff;}
   .popup-plain{font-size:12px;line-height:1.45;max-width:280px;}
   .popup-plain h3{margin:0 0 4px 0;font-size:13px;}
   .popup-plain .acc{color:#1a5d1a;font-weight:600;margin-bottom:6px;}
@@ -140,21 +139,20 @@
 </head>
 <body>
 <div id="banner">
-  <div class="msg">Free RTK correction networks — centimetre-accurate GPS</div>
-  <button id="banner-info-btn" title="How it works" aria-haspopup="dialog">ⓘ</button>
+  <div class="msg">GPS can achieve centimetre accuracy — this map shows the free correction networks.</div>
+  <button id="banner-info-btn" aria-haspopup="dialog">Learn more</button>
 </div>
 <dialog id="how-dialog">
   <div id="how-dialog-inner">
     <button id="how-dialog-close" title="close">×</button>
-    <h2>How it works</h2>
+    <h2>Getting centimetre-accurate GPS</h2>
     <p><b>Why your GPS reads in metres</b><br>
-    GPS satellites broadcast timing signals. Atmospheric delays and other errors compound to 5–10 metres under typical conditions. The chip in your receiver is capable of much better — it just needs a correction signal.</p>
-    <p><b>Two routes to centimetre accuracy</b></p>
+    GPS satellites broadcast timing signals. Atmospheric delays and other errors compound to 5–10 metres under typical conditions. The chip in your receiver is capable of much better — it just needs a correction signal, delivered one of two ways.</p>
     <p><i>Standalone correction receivers</i> process satellite-delivered correction signals — no internet, no coverage map needed. Complete units with no ongoing fees (e.g. Galileo HAS receivers) start around $2,900 / €2,700. Subscription-dependent hardware exists from ~$850, but requires paid correction fees on top and typically won't work with free PPP services. Search for "PPP receiver" or "Galileo HAS" to explore those. This map isn't about them.</p>
-    <p><i>Network RTK — what this map is about</i> — pairs a dual-band receiver with corrections streamed over the internet from a nearby reference station. Within 30 km of a station, centimetre accuracy is typical. If you already own a survey-grade or dual-frequency receiver, it likely supports this. Complete ready-to-use units start around €630 / $700; tinkerer kits from ~€275.</p>
+    <p><i>Network RTK — what this map is about</i> — pairs a dual-band receiver with corrections streamed over the internet from a nearby reference station. Within 30 km of a station, centimetre accuracy is typical. If you already own a survey-grade or dual-frequency receiver, it likely supports this. Complete ready-to-use units start around €449 / $490; tinkerer kits from ~€275.</p>
     <p><b>What the map shows</b><br>
     Each pin is a free public reference station. Click it for connection details. The colour zones show reliable range: green &lt; 10 km (typically &lt; 2 cm) · yellow-green 10–30 km · amber 30–50 km · pale red 50–100 km (decimetre range). Purple circles are virtual networks — one connection point, the network synthesises a nearby reference for you.</p>
-    <p><a href="./guide.html">&#x2192; Full guide: hardware options, how to connect, and how to set up your own base station if you're outside coverage</a></p>
+    <p style="border-top:1px solid rgba(128,128,128,0.25);margin-top:14px;padding-top:10px"><a href="./guide.html" style="font-weight:600">&#x2192; Full guide: hardware options, how to connect, and how to set up your own base station if you're outside coverage</a></p>
   </div>
 </dialog>
 <div id="detail-panel" role="complementary" aria-label="Details">
