@@ -1,0 +1,10 @@
+STR;CMRplus;CMRplus;CMR+;Obs(1),Info(10),PrsInfo(11);2;GPS+GLONASS;WISCORS;USA;0;0;1;1;Trimble Pivot Platform;none;B;N;0;;
+STR;CMRplusGPS;CMRplusGPS;CMR+;Obs(1),Info(10),PrsInfo(11);2;GPS;WISCORS;USA;0;0;1;1;Trimble Pivot Platform;none;B;N;0;;
+STR;CMRxGNSS;CMRxGNSS;CMRx;Obs(1),Info(10),PrsInfo(11);2;GPS+GLO+GAL+BDS+QZS;WISCORS;USA;0;0;1;1;Trimble Pivot Platform;none;B;N;0;;
+STR;RTCM23;RTCM23;RTCM 2.3;1(1),3(10),20(1),21(1);2;GPS;WISCORS;USA;0;0;1;1;Trimble Pivot Platform;none;B;N;0;;
+STR;RTCM31;RTCM31;RTCM 3.1;1004(1),1005/1007(5),PBS(10);2;GPS+GLO;WISCORS;USA;0;0;1;1;Trimble Pivot Platform;none;B;N;0;;
+STR;RTCM3Net;RTCM3Net;RTCM3Net;1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs);2;GPS+GLONASS;WISCORS;USA;0;0;1;1;Trimble Pivot Platform;none;B;N;0;;
+STR;SingleBase_CMRplus;SingleBase_CMRplus;CMR+;Obs(1),Info(10),PrsInfo(11);2;GPS+GLONASS;WISCORS;USA;0;0;1;0;Trimble Pivot Platform;none;B;N;0;;
+STR;SingleBase_RTCM31;SingleBase_RTCM31;RTCM 3.1;1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs);2;GPS+GLONASS;WISCORS;USA;0;0;1;0;Trimble Pivot Platform;none;B;N;0;;
+STR;RTCM34;RTCM34;RTCM 3.4;1004(1),1005/1007(5),PBS(10);2;GPS+GLO+GAL+BDS+QZS;WISCORS;USA;0;0;1;1;Trimble Pivot Platform;none;B;N;0;;
+ENDSOURCETABLE

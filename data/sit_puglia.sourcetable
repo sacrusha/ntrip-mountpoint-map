@@ -1,0 +1,13 @@
+SOURCETABLE 200 OK
+Server: GNSS Spider 4.3.0.4633/1.0
+Date: mar, 21 apr 2026 03:59:41 GMT Standard Time
+Content-Type: text/plain
+Content-Length: 534
+
+STR;NRT2;Single Base;RTCM 2;;2;GPS & GLONASS;;;0.00;0.00;1;0;Leica GPS Spider;none;B;N;9600;
+STR;IMAX3;Area;RTCM 3;;2;GPS & GLONASS;;;41.02;16.90;1;1;Leica GPS Spider;none;B;N;9600;
+STR;MAX3;Area;RTCM 3;;2;GPS & GLONASS;;;41.02;16.90;1;1;Leica GPS Spider;none;B;N;9600;
+STR;IMAX2;Area;RTCM 2;;2;GPS & GLONASS;;;41.02;16.90;1;1;Leica GPS Spider;none;B;N;9600;
+STR;CMR;CMR;CMR;;2;GPS & GLONASS;;;41.02;16.90;1;1;Leica GPS Spider;none;B;N;9600;
+STR;CMR+;CMR+;CMR+;;2;GPS & GLONASS;;;41.02;16.90;1;1;Leica GPS Spider;none;B;N;9600;
+ENDSOURCETABLE
