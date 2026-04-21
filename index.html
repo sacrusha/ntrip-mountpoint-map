@@ -106,10 +106,14 @@
   /* Filter FAB — mobile only (≤600px) */
   #filter-fab{display:none;}
   @media(max-width:600px){
-    #filter-fab{display:flex;position:fixed;bottom:20px;right:16px;z-index:10001;
-      background:#1b2b3a;color:#e8eef4;border:none;border-radius:24px;
-      padding:10px 16px;font-size:13px;font-weight:600;gap:6px;
-      align-items:center;cursor:pointer;box-shadow:0 2px 12px rgba(0,0,0,.3);}
+    #filter-fab{display:flex;position:fixed;top:50%;left:0;
+      transform:translateY(-50%);z-index:10001;
+      background:rgba(255,255,255,0.95);color:#444;
+      border:1px solid #c8cdd4;border-left:none;border-radius:0 6px 6px 0;
+      width:24px;height:48px;font-size:16px;padding:0;
+      align-items:center;justify-content:center;cursor:pointer;
+      transition:left 0.25s ease;}
+    body.sidebar-open #filter-fab{left:280px;}
     body.sidebar-open::before{content:'';position:fixed;inset:0;background:rgba(0,0,0,.35);
       z-index:399;pointer-events:auto;}
     #sidebar{position:absolute;top:0;bottom:0;left:0;width:280px;
@@ -117,6 +121,10 @@
     body.sidebar-open #sidebar{transform:translateX(0);}
   }
   #legend{background:white;padding:8px 12px;border-radius:5px;border:1px solid #bbb;font-size:11px;line-height:1.55;color:#222;}
+  @media(max-width:600px){
+    #sidebar-inner #legend{border-radius:0;border-left:none;border-right:none;border-bottom:none;
+      margin-top:8px;padding-left:8px;padding-right:8px;}
+  }
   #leg-sum{cursor:pointer;font-size:12px;font-weight:700;list-style:none;margin:0 0 4px;user-select:none;}
   #leg-sum::-webkit-details-marker{display:none;}
   #leg-sum::after{content:' \25be';font-size:9px;opacity:0.5;}
@@ -152,7 +160,7 @@
     #how-dialog-close{color:#94a7b8;}
     #detail-panel,#detail-panel-hd{background:#1e3048;color:#e8eef4;border-bottom-color:#2d4256;}
     #detail-panel-close{color:#94a7b8;}
-    #filter-fab{background:#2d4256;color:#e8eef4;}
+    #filter-fab{background:rgba(30,48,72,0.95);border-color:#2d4256;color:#94a7b8;}
   }
   @media(max-width:600px) and (prefers-color-scheme:dark){
     #sidebar{background:#1e3048;border-right-color:#2d4256;}
@@ -184,7 +192,7 @@
   </div>
   <div id="detail-panel-body"></div>
 </div>
-<button id="filter-fab" aria-label="Filter sources" aria-expanded="false">⚙ Filters</button>
+<button id="filter-fab" aria-label="Open filters" aria-expanded="false">&#x25ba;</button>
 <div id="shell">
   <div id="sidebar">
     <div id="sidebar-inner"></div>
@@ -1093,26 +1101,31 @@
       attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    var leg=L.control({position:'bottomleft'});
-    leg.onAdd=function(){
-      var d=L.DomUtil.create('div');
-      d.id='legend';
-      var sw=function(s){return '<span style="display:inline-block;width:12px;height:12px;vertical-align:middle;'+s+'"></span>';};
-      d.innerHTML=
-        '<details id="leg-det" open>'
-        +'<summary id="leg-sum">Legend</summary>'
-        +sw('background:rgb(0,170,0)')+' &lt; 10 km \u2014 ~2 cm<br>'
-        +sw('background:rgb(180,200,30)')+' 10\u201330 km \u2014 ~3 cm<br>'
-        +sw('background:rgb(220,150,30)')+' 30\u201350 km \u2014 ~5 cm<br>'
-        +sw('background:rgb(210,90,90)')+' 50\u2013100 km \u2014 &lt; 1 m<br>'
-        +sw('border:2px solid '+VRS_COLOR+';background:rgba(106,90,205,0.22);border-radius:50%')+' VRS network<br>'
-        +sw('background:#aaa;border-radius:50%')+' Mountpoint data stale<br>'
-        +'<small id="leg-info">Loading\u2026</small>'
-        +'</details>';
-      return d;
-    };
-    leg.addTo(map);
-    if(!DESKTOP_MQ.matches){var ld=document.getElementById('leg-det');if(ld)ld.removeAttribute('open');}
+    var isMobile=window.matchMedia('(max-width:600px)').matches;
+
+    var legDiv=L.DomUtil.create('div');
+    legDiv.id='legend';
+    var sw=function(s){return '<span style="display:inline-block;width:12px;height:12px;vertical-align:middle;'+s+'"></span>';};
+    legDiv.innerHTML=
+      '<details id="leg-det" open>'
+      +'<summary id="leg-sum">Legend</summary>'
+      +sw('background:rgb(0,170,0)')+' &lt; 10 km \u2014 ~2 cm<br>'
+      +sw('background:rgb(180,200,30)')+' 10\u201330 km \u2014 ~3 cm<br>'
+      +sw('background:rgb(220,150,30)')+' 30\u201350 km \u2014 ~5 cm<br>'
+      +sw('background:rgb(210,90,90)')+' 50\u2013100 km \u2014 &lt; 1 m<br>'
+      +sw('border:2px solid '+VRS_COLOR+';background:rgba(106,90,205,0.22);border-radius:50%')+' VRS network<br>'
+      +sw('background:#aaa;border-radius:50%')+' Mountpoint data stale<br>'
+      +'<small id="leg-info">Loading\u2026</small>'
+      +'</details>';
+
+    if(isMobile){
+      map.zoomControl.setPosition('bottomright');
+    } else {
+      var leg=L.control({position:'bottomleft'});
+      leg.onAdd=function(){ return legDiv; };
+      leg.addTo(map);
+      if(!DESKTOP_MQ.matches){var ld=legDiv.querySelector('#leg-det');if(ld)ld.removeAttribute('open');}
+    }
 
     var data=null, health=null;
     try{
@@ -1295,21 +1308,27 @@
       togglePanel.applyDeclutter(counts);
     }
 
-    // Desktop: Leaflet control in top-right. Mobile (≤600px): sidebar toggled by FAB.
-    if(window.matchMedia('(max-width:600px)').matches){
+    // Desktop: Leaflet control in top-right. Mobile (<=600px): sidebar toggled by FAB.
+    if(isMobile){
       var sidebarInner=document.getElementById('sidebar-inner');
-      var sidebar=document.getElementById('sidebar');
-      if(sidebarInner) sidebarInner.appendChild(togglePanel.dom);
+      if(sidebarInner){
+        sidebarInner.appendChild(togglePanel.dom);
+        sidebarInner.appendChild(legDiv);
+      }
       var fab=document.getElementById('filter-fab');
       if(fab){
         fab.onclick=function(){
           var open=document.body.classList.toggle('sidebar-open');
+          fab.textContent=open?'◄':'►';
+          fab.setAttribute('aria-label',open?'Close filters':'Open filters');
           fab.setAttribute('aria-expanded',open?'true':'false');
         };
         document.addEventListener('click',function(e){
           if(document.body.classList.contains('sidebar-open') &&
              !e.target.closest('#sidebar') && e.target!==fab && !fab.contains(e.target)){
             document.body.classList.remove('sidebar-open');
+            fab.textContent='►';
+            fab.setAttribute('aria-label','Open filters');
             fab.setAttribute('aria-expanded','false');
           }
         });
