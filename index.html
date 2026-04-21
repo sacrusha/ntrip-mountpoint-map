@@ -690,7 +690,7 @@
         try{
           L.circleMarker([s.lat,s.lon],{radius:4,color:'#fff',weight:1,
             fillColor:stationStaleDays(s)>=STALE_GREY_DAYS?'#aaa':stationColor(s),fillOpacity:0.95,renderer:renderer})
-            .on('click',function(e){ L.DomEvent.stopPropagation(e); openDetailPanel(stationTitle(s),getCachedPopup(s)); })
+            .bindPopup(makePopupFn(s))
             .addTo(dots);
         }catch(e){ console.warn('render err',e); }
       }
@@ -734,7 +734,7 @@
         });
         mk.bindTooltip(names.join(' / '),
           {permanent:true,direction:'right',offset:[9,0],className:'slabel'});
-        mk.on('click',function(e){ L.DomEvent.stopPropagation(e); openDetailPanel(stationTitle(s),getCachedPopup(s)); });
+        mk.bindPopup(getCachedPopup(s));
         mk.addTo(detail);
         shown++;
       }catch(e){ console.warn('detail err',e); }
@@ -833,7 +833,7 @@
         opacity:0,fill:false,
         renderer:renderer,pane:'vrsPane'
       }).bindTooltip(label+' (VRS)',{sticky:false})
-        .on('click',(function(lbl,pop){ return function(e){ L.DomEvent.stopPropagation(e); openDetailPanel(lbl+' (VRS)',pop); }; })(label,popup));
+        .bindPopup(popup);
       hit.addTo(group);
       bySid[n.sid]={visual:visual,hit:hit};
     });
