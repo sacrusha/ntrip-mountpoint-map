@@ -11,7 +11,7 @@ coverage with `grep "networks.md:" docs/country-survey.md`._
 _Volunteer station counts (rtk2go / Centipede) are drawn from live
 `data/stations.json` as of 2026-04-19 and will drift over time._
 
-_Last updated: 2026-04-20._
+_Last updated: 2026-04-21._
 
 ---
 
@@ -128,6 +128,25 @@ _Last updated: 2026-04-20._
   — free since Apr 2022 (Narodne novine 39/2022). → networks.md: `cropos`
 - **Volunteer**: rtk2go ~4 HR bases, Centipede ~5 HR nodes.
 - **Gap**: CROPOS VRS only (0 physical pins on map); NRTK polygon deferred.
+
+### MT — Malta
+
+- **Free government RTK**: none confirmed. The Malta Environment and Planning
+  Authority (MEPA, now MCESD/PA) and the Land Registry do not operate a public
+  NTRIP caster. No national CORS network with public NTRIP has been identified
+  through Alberding directory or EUREF listings.
+- **Volunteer**: rtk2go 1 base — `EneGIS` at Naxxar (35.92°N, 14.44°E), RTCM
+  3.2 MSM, carrier L1+L2, country code `MLT`. Single station covering the
+  Maltese archipelago; baseline to Gozo ~25 km (marginal RTK range). No
+  Centipede nodes detected in Malta bounding box.
+- **Gap**: one rtk2go volunteer base is the only free RTK option for the entire
+  archipelago (Malta + Gozo + Comino, ~316 km²). Coverage is practical for
+  Malta island; Gozo is at the edge of a single-base baseline. No government
+  network, no VRS. Nearest government NTRIP is ERGNSS (ES, ~1,700 km) or APOS
+  (AT, ~1,400 km) — both useless at that range.
+- **Closest paid alternative**: commercial surveying networks in Italy
+  (NetGEO/TopNET ~€360/yr) offer no Malta coverage. GEODNET EU node density
+  for Malta is unknown; worth checking if a node exists on the island.
 
 ### IT — Italy
 
@@ -464,6 +483,44 @@ Centipede volunteer nodes in several French overseas territories, served via `cr
 
 - **Free government RTK**: REGPMOC (IGN/MoD, `190.12.71.75:2101`) — requires MoD-issued licence (professional/commercial only). Not accessible for hobbyists.
 
+### UY — Uruguay
+
+- **Free government RTK**: REGNA-ROU (IGM — Instituto Geográfico Militar,
+  `rtk.igm.gub.uy:2101`, ~26 stations, single-base + VRS) — confirmed free
+  ("El Servicio no tiene costo"); web registration at
+  `rtk.igm.gub.uy/SBC/Account/Register`. VRS capable (1–2 cm horizontal
+  with dual-frequency equipment). Network expanded Dec 2025 with 8 additional
+  multiconstellation CORS; 1,000+ registered users. Reference frame
+  SIRGAS-ROU (ITRF-compatible). → networks.md: `regna_rou` (candidate)
+- **Volunteer**: rtk2go ~2 bases near the Argentinian border (border-area
+  RAMSAC stations); no dedicated UY volunteer streams confirmed. Centipede —
+  negligible.
+- **Gap**: REGNA-ROU provides free national coverage; main friction is a
+  registration step and Spanish-language portal. Candidate for pipeline
+  ingestion once sourcetable accessibility is verified.
+
+### VE — Venezuela
+
+- **Free government RTK**: REMOS (IGVSB — Instituto Geográfico de Venezuela
+  Simón Bolívar). 29 permanent stations installed nationally, 27 with NTRIP
+  capability; Maracaibo (MARA) became the first to transmit corrections via
+  NTRIP experimentally from Oct 2008. NTRIP caster endpoint **not publicly
+  confirmed**: igvsb.gob.ve lists geodetic services but no public-facing
+  host:port or registration portal has been found. The REMOS NTRIP service
+  appears to have been limited in practice (only MARA streaming, with plans
+  for the remainder — status of those plans is unclear post-2018). IGVSB is
+  under the Ministry of Environment; economic and infrastructure constraints
+  have historically slowed deployment.
+- **Volunteer**: rtk2go — 0 confirmed mainland VE bases (3 rtk2go bases
+  visible at coordinates 12°N, 68–69°W are on Curaçao/Aruba — Netherlands
+  Antilles, not Venezuelan territory). Negligible Centipede presence.
+- **Gap**: no confirmed free public NTRIP caster for mainland Venezuela.
+  IGVSB/REMOS infrastructure exists on paper (29 stations, NTRIP-capable)
+  but the caster endpoint is not publicly discoverable, and operational
+  continuity is uncertain given Venezuela's infrastructure situation.
+  GEODNET's South America server (`sa.geodnet.com:2101`, paid $40/month)
+  is the nearest practical paid fallback. → networks.md: `remos_ven` (deferred)
+
 ---
 
 ## Asia Pacific — Oceania
@@ -519,6 +576,36 @@ Centipede volunteer nodes in several French overseas territories, served via `cr
 - **Volunteer**: rtk2go ~3 KR bases.
 - **Gap**: Korean-language portal only; international hobbyists may be blocked by national ID requirement.
 
+### MO — Macao SAR (China)
+
+- **Free government RTK**: none confirmed with a public NTRIP endpoint. The
+  Cartography and Cadastre Bureau (DSCC / Direcção dos Serviços de Cartografia
+  e Cadastro) operates reference stations but does not publish a public NTRIP
+  caster. No Macao entry found in Alberding directory, EUREF listings, or any
+  cached sourcetable.
+- **Adjacent network — SatRef (HK)**: Hong Kong SatRef
+  (`ntrip.geodetic.gov.hk:2101`, free with email registration) has three
+  stations within practical range of Macao:
+  - `HKCL_32`: 22.30°N, 113.91°E — ~40 km from Macao peninsula
+  - `HKNP_32`: 22.25°N, 113.89°E — ~37 km from Macao peninsula
+  - `HKSL_32`: 22.37°N, 113.93°E — ~45 km from Macao peninsula
+
+  These baselines (37–45 km) are at the edge of reliable single-base RTK
+  (~30–40 km practical limit for cm-level accuracy). VRS mountpoint `VRS32G`
+  covers all of Hong Kong and potentially reaches Macao; whether SatRef's
+  NRTK VRS engine extends virtual reference points to Macao coordinates is
+  not confirmed — depends on server-side polygon extent. → networks.md: `satref`
+- **Volunteer**: none. Zero rtk2go or Centipede stations in the Macao bounding
+  box (~32 km² peninsula/island cluster).
+- **Gap**: no local free RTK. The most practical path is SatRef (HK) VRS —
+  free, requires email registration, and the VRS virtual reference is
+  compute-generated at the rover's reported position, so it may extend to
+  Macao coordinates if the server polygon covers it. Mainland China's Qianxun
+  and provincial CORS networks are restricted to licensed surveyors under
+  Surveying and Mapping Law 2017 — not a hobbyist path. GEODNET has nodes in
+  the Pearl River Delta; the $40/month tier (~$160 for 4-month season) is
+  under the $200/yr cutoff.
+
 ### SG — Singapore
 
 - **Free government RTK**: SiReNT (SLA) SGD $107/month; 3-day trial requires SingPass (residents only).
@@ -532,6 +619,18 @@ Centipede volunteer nodes in several French overseas territories, served via `cr
 ---
 
 ## Asia Pacific — South & SE Asia
+
+### AF — Afghanistan
+
+- **Free government RTK**: none. AGCHO (Afghan Geodesy and Cartography Head
+  Office) operated two stations decommissioned by 2010–2011. The Taliban
+  takeover (August 2021) and subsequent withdrawal of international
+  development assistance make further infrastructure development highly
+  unlikely. No public NTRIP endpoint has ever been discovered.
+- **Volunteer**: none. Zero AF stations on rtk2go or Centipede.
+- **Gap**: no RTK infrastructure accessible to hobbyists. Security environment,
+  internet infrastructure gaps, and collapse of international geodetic
+  cooperation since 2021 make a public NTRIP caster implausible near-term.
 
 ### BD — Bangladesh
 
@@ -552,15 +651,59 @@ Centipede volunteer nodes in several French overseas territories, served via `cr
   Worth revisiting if policy changes.
 - **Volunteer**: negligible.
 
+### MM — Myanmar
+
+- **Free government RTK**: none confirmed for public access. Survey Department
+  (`surveydepartment.gov.mm`) has established a CORS network concept with a
+  Yangon CORS Data Center, but no public NTRIP host:port, open sourcetable,
+  or registration portal has been found. The February 2021 military coup and
+  subsequent civil conflict have severely degraded civilian infrastructure and
+  internet access; geospatial data is treated as sensitive under military
+  governance.
+- **Volunteer**: none. Zero MM stations on rtk2go or Centipede.
+- **Gap**: no free public RTK for hobbyists. Survey Department CORS may exist
+  internally but is not publicly accessible. No commercial NTRIP provider
+  lists Myanmar coverage.
+
 ### MY — Malaysia
 
 - **Free government RTK**: MyRTKnet (JUPEM, 78 stations) — paid; Survey Act cost-recovery.
 - **Volunteer**: negligible.
 
+### NP — Nepal
+
+- **Free government RTK**: none confirmed for public/hobbyist access. Survey
+  Department (Geodetic Survey Division, `dos.gov.np`) is building a CORS
+  network (~4 stations established, mandate to expand to 27–50 at ~70–80 km
+  inter-station spacing). No public NTRIP caster or open registration portal
+  found; network serves geodetic reference frame maintenance, not real-time
+  public streaming. EarthScope NOTA hosts ~11+ research CORS in Nepal (operated
+  with Dept of Mines and Geology; research-use orientation, sparse coverage).
+- **Volunteer**: none. Zero NP stations on rtk2go or Centipede.
+- **Gap**: no free public RTK for hobbyists. Survey Department CORS rollout
+  is ongoing but endpoint is internal; research stations are sparse and require
+  account approval. Nepal's terrain and limited internet outside urban centres
+  further constrain practical NTRIP use.
+
 ### PH — Philippines
 
 - **Free government RTK**: PAGeNet (NAMRIA, 52 stations) — PHP 1,000 one-time + ongoing (EO 471). Paid.
 - **Volunteer**: negligible.
+
+### PK — Pakistan
+
+- **Free government RTK**: none confirmed for hobbyists. SUPARCO (Space and
+  Upper Atmosphere Research Commission) operates Pak-Rehber, an NRTK service
+  delivering cm-level corrections to "authorized users"; no public-facing
+  NTRIP host:port, open registration portal, or sourcetable has been found.
+  Access appears to require direct contact with SUPARCO. SUPARCO is also
+  deploying Pak-SBAS (L-band SBAS) for sub-metre accuracy — satellite-delivered,
+  out of scope.
+- **Volunteer**: none. Zero PK stations on rtk2go or Centipede.
+- **Gap**: no free public RTK for hobbyists. Pak-Rehber is restricted to
+  authorized users; endpoint and registration path are not publicly documented.
+  Pakistan's large area (881,000 km²) and varied terrain mean hobbyists must
+  deploy a local base station or contact SUPARCO directly.
 
 ### TH — Thailand
 
@@ -585,19 +728,83 @@ Centipede volunteer nodes in several French overseas territories, served via `cr
   — professional application only (dm.gov.ae); no public hobbyist path.
 - **Volunteer**: negligible.
 
-### DZ — Algeria
+### AO — Angola
 
-- **Free government RTK**: AL-CORS-Net / REGAT (INCT) — under Ministry of National Defence; security-sensitive. No public caster.
-- **Volunteer**: negligible.
+- **Free government RTK**: none. Instituto Geográfico e Cadastral de
+  Angola (IGCA) is rebuilding post-conflict geodetic infrastructure;
+  AFREF reference sites exist but are internal/research-only — no
+  public NTRIP delivery.
+- **Volunteer**: none. Zero AO stations on rtk2go or Centipede.
+- **Gap**: no free RTK for hobbyists. No confirmed public CORS network
+  or NTRIP caster anywhere in Angola.
+
+### BH — Bahrain
+
+- **Free government RTK**: none confirmed with a public NTRIP endpoint.
+  The Survey and Land Registration Bureau (SLRB) manages geodetic
+  infrastructure (Bahrain Geodetic Datum 2000 / BGD2000) and a small
+  number of CORS; access restricted to licensed surveyors.
+  Bahrain's entire territory is ~765 km² — a single station would
+  theoretically cover it, but no public caster has been identified.
+- **Volunteer**: none. Zero BH stations on rtk2go or Centipede.
+- **Gap**: no free NTRIP path. KSA-CORS VRS may spill ~50 km into
+  Bahrain from nearby Dammam/Al-Ahsa stations, but that service is
+  Saudi-licensed. → networks.md: `ksa_cors`
+
+### CD — DR Congo
+
+- **Free government RTK**: none. Institut Géographique du Congo (IGC)
+  formally responsible for geodesy; limited AFREF contributions. No
+  public CORS caster found; connectivity and power constraints make
+  continuous RTK streaming very unlikely near-term.
+- **Volunteer**: none. Zero CD stations on rtk2go or Centipede.
+- **Gap**: no free RTK for hobbyists. No confirmed public CORS network
+  or NTRIP caster anywhere in DR Congo.
 
 ### CI — Côte d'Ivoire
 
 - **Volunteer**: Centipede ~2 CI nodes (country code `CIV`). No national NTRIP caster.
 
+### CM — Cameroon
+
+- **Free government RTK**: none. Institut National de Cartographie (INC)
+  manages geodetic infrastructure; no public CORS caster found. AFREF
+  contributions are raw archives, not streaming RTK.
+- **Volunteer**: none. Zero CM stations on rtk2go or Centipede.
+- **Gap**: no free RTK for hobbyists. No confirmed public CORS network
+  or NTRIP caster anywhere in Cameroon.
+
+### DZ — Algeria
+
+- **Free government RTK**: AL-CORS-Net / REGAT (INCT) — under Ministry of National Defence; security-sensitive. No public caster.
+- **Volunteer**: negligible.
+
 ### EG — Egypt
 
 - **Free government RTK**: ESA CORS + NACN (~40 stations) — internal use only; Nile Delta + Cairo corridor.
 - **Volunteer**: negligible.
+
+### ET — Ethiopia
+
+- **Free government RTK**: nascent. ETCORS (SSGI, `ssgi.gov.et`) — ~10 stations
+  launched December 2025 in Addis Ababa and six regional cities; aims for 30
+  stations within 2 years, 200 for national coverage. Intended as free public
+  service ("for Ethiopia and neighboring countries") but NTRIP host:port not
+  yet publicly discoverable. Deferred.
+- **Volunteer**: none. Zero ET stations on rtk2go or Centipede.
+- **Gap**: no confirmed public NTRIP for hobbyists as of April 2026. Even once
+  the endpoint is published, only ~10 stations serve Ethiopia's 1.1 million km²;
+  coverage will be extremely sparse outside the capital and the handful of
+  instrumented cities for the foreseeable future.
+
+### GH — Ghana
+
+- **Free government RTK**: none. Survey and Mapping Division (Lands
+  Commission) and GSSTI operate a handful of IGS/AFREF reference sites
+  (Accra); raw-observation archives only — no NTRIP streaming.
+- **Volunteer**: none. Zero GH stations on rtk2go or Centipede.
+- **Gap**: no free RTK for hobbyists. No confirmed public CORS network
+  or NTRIP caster anywhere in Ghana.
 
 ### IL — Israel
 
@@ -621,14 +828,74 @@ Centipede volunteer nodes in several French overseas territories, served via `cr
 
 - **Volunteer**: rtk2go ~1 KE base. No known national RTK network with public access.
 
+### KW — Kuwait
+
+- **Free government RTK**: none confirmed with a public NTRIP endpoint.
+  PACI and Kuwait Municipality operate GNSS reference stations for
+  cadastral/infrastructure use (Kuwait Geodetic Network / KGN); streams
+  issued only to licensed surveying firms under municipal contract —
+  no public caster host:port identified.
+- **Volunteer**: none. Zero KW stations on rtk2go or Centipede.
+- **Gap**: no free NTRIP path. Kuwait is small (~17,800 km²) and flat;
+  a modest CORS network would suffice for national RTK if opened, but
+  no open-access mandate exists.
+
 ### MA — Morocco
 
 - **Volunteer**: rtk2go ~1 MA base. No known national RTK network with public access.
+
+### MZ — Mozambique
+
+- **Free government RTK**: none. CENACARTA (national mapping authority) has CORS
+  stations in the AFREF/Corsmap continental dataset but no public NTRIP caster
+  or RTK streaming endpoint found.
+- **Volunteer**: none. Zero MZ stations on rtk2go or Centipede. Four TrigNet ZA
+  stations near the Limpopo border (Nspt, Pbwa, Sprt, Tdou) are in pipeline via
+  TrigNet and provide incidental single-base RTK coverage in southern Mozambique
+  (Gaza/Maputo provinces) — not a Mozambique service.
+- **Gap**: no free RTK for hobbyists within Mozambique proper. Southernmost
+  provinces may benefit from nearby TrigNet coverage.
+
+### NE — Niger
+
+- **Free government RTK**: none. Institut Géographique National du
+  Niger (IGNN) is responsible for geodesy; sparse IGS-affiliated
+  research stations only — no public NTRIP delivery. Saharan geography
+  and infrastructure constraints make a sustained physical RTK network
+  very difficult.
+- **Volunteer**: none. Zero NE stations on rtk2go or Centipede.
+- **Gap**: no free RTK for hobbyists. No confirmed public CORS network
+  or NTRIP caster anywhere in Niger.
 
 ### NG — Nigeria
 
 - **Free government RTK**: NIGNET — 11–15 stations at 500–1,000 km spacing; far too wide for RTK. No public caster.
 - **Volunteer**: negligible.
+
+### OM — Oman
+
+- **Free government RTK**: none confirmed with a public NTRIP endpoint.
+  National Accurate Geodetic Survey Network (NAGSN), supporting ONGD14
+  and geoid model OmG2016, is operationally managed by the National Survey
+  Authority; streams issued to licensed surveying companies via formal
+  application — no public caster URL identified for hobbyists. IGS station
+  at Muscat (MUSK) broadcasts raw observations via EarthScope/IGS-IP, not
+  RTK streams.
+- **Volunteer**: none. Zero OM stations on rtk2go or Centipede.
+- **Gap**: no free NTRIP path. Oman's ~309,500 km² and mountainous terrain
+  (Al Hajar range) mean useful national coverage requires ~20–30 stations;
+  NAGSN appears to exist at that scale but remains closed to public access.
+
+### QA — Qatar
+
+- **Free government RTK**: none confirmed with a public NTRIP endpoint.
+  Ministry of Municipality manages CORS tied to the Qatar National Spatial
+  Reference System (QNSRS / QND95); internal use by licensed surveyors and
+  government contractors only — no public caster URL identified.
+- **Volunteer**: none. Zero QA stations on rtk2go or Centipede.
+- **Gap**: no free NTRIP path for hobbyists. Qatar is small (~11,600 km²);
+  a single Doha reference station would theoretically cover the territory,
+  but no such public stream exists.
 
 ### SA — Saudi Arabia
 
@@ -636,6 +903,16 @@ Centipede volunteer nodes in several French overseas territories, served via `cr
   stations, VRS) — free, registration via info@geosa.gov.sa. → networks.md: `ksa_cors`
 - **Volunteer**: negligible.
 - **Gap**: KSA-CORS VRS (0 physical pins); currently timing out in CI; NRTK polygon deferred.
+
+### SD — Sudan
+
+- **Free government RTK**: none. Sudan Survey Authority (SSA) planned a GNSS CORS
+  network as part of AFREF participation (55 station sites identified) but no
+  operational public caster has been found. Ongoing armed conflict (April 2023–)
+  severely disrupts civil infrastructure; status unknown.
+- **Volunteer**: none. Zero SD stations on rtk2go or Centipede.
+- **Gap**: no free RTK for hobbyists. Do not pursue until conflict ends and
+  infrastructure is confirmed operational.
 
 ### SN — Senegal
 
@@ -646,8 +923,68 @@ Centipede volunteer nodes in several French overseas territories, served via `cr
 - **Free government RTK**: none. TUSAGA-Aktif (TKGM/HGM) — paid membership + annual fee.
 - **Volunteer**: rtk2go ~3 TR bases.
 
+### TZ — Tanzania
+
+- **Free government RTK**: none. Survey and Mapping Division / TNGC
+  (`tngc.lands.go.tz`) operate national geodetic control; no public NTRIP caster
+  found. AFREF/IGS contributions are raw-observation archives, not RTK streaming.
+- **Volunteer**: none. Zero TZ stations on rtk2go or Centipede.
+- **Gap**: no free RTK for hobbyists anywhere in Tanzania.
+
+### UG — Uganda
+
+- **Free government RTK**: UGRF CORS (Ministry of Lands, Housing & Urban
+  Development, `ugrf.mlhud.go.ug`, 40 government + 38 private stations, VRS +
+  single-base) — stated free as of 2024 ("absolutely free of charge"); web
+  registration via Spider Business Center (`ugrf.go.ug/SBC`); host:port
+  disclosed post-registration. Single-base mountpoints: ENTB, GULU, SRTI, MBRA.
+  Deferred (endpoint withheld until post-registration).
+- **Volunteer**: 1 AUSCORS station (MBAR00UGA0, Mbarara) via EarthScope/AUSCORS;
+  raw observations under non-commercial NULA — functional for RTK within range.
+- **Gap**: UGRF is the only confirmed free government NTRIP in East Africa but
+  is not yet in pipeline (endpoint not publicly findable). EagleCORS
+  (`eaglecors.com`) is a separate commercial service — out of scope.
+
+### YE — Yemen
+
+- **Free government RTK**: none. General Survey Authority (GAS) operated a small
+  CORS network pre-conflict; civil war since 2015 has severely disrupted all
+  public infrastructure. No functioning public NTRIP caster is known.
+- **Volunteer**: rtk2go 1 base — `s9123A22404` at Sanaa (15.29°N, 44.24°E),
+  RTCM 3.2, GPS + BDS dual-frequency. Single independent hobbyist installation;
+  connectivity and uptime unreliable given ongoing conflict.
+- **Gap**: effectively no RTK coverage for hobbyists. The single rtk2go station
+  provides a ~50–70 km useful radius under good conditions but cannot be relied
+  upon. Note for map completeness only; recommending RTK activity in Yemen is
+  not appropriate given the conflict context.
+
 ### ZA — South Africa
 
 - **Free government RTK**: TrigNet (NGI/DALRRD, `trignet.co.za:2101`, 55+ stations,
   single-base + Network RTK in major clusters) — all products free. → networks.md: `trignet`
 - **Volunteer**: rtk2go ~1 ZA base, Centipede ~1 ZA node.
+
+---
+
+## Central Asia
+
+### KZ — Kazakhstan
+
+- **Free government RTK**: none confirmed publicly accessible.
+  KazGeoDesy (Committee on Land Management) operates a CORS network of 120+
+  stations; access requires an institutional licence or commercial reseller
+  contract — no open self-service path found.
+- **Volunteer**: negligible. Zero KZ stations on rtk2go or Centipede.
+- **Gap**: no free RTK for hobbyists. Country is ~2.7 million km² with
+  most stations concentrated around Almaty, Astana, and the northern corridor;
+  even a public caster would yield long baselines outside urban centres.
+
+### UZ — Uzbekistan
+
+- **Free government RTK**: none confirmed publicly accessible.
+  UzGeodezKadastr operates national CORS stations (referenced in GNSS/seismic
+  literature); no public NTRIP endpoint found. Access restricted to licensed
+  surveyors and state agencies.
+- **Volunteer**: negligible. Zero UZ stations on rtk2go or Centipede.
+- **Gap**: no free RTK for hobbyists. Coverage demand concentrated in
+  Tashkent and the Fergana Valley; no open-data geodesy policy identified.

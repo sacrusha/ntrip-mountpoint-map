@@ -185,6 +185,22 @@ POSGAR 07 reference frame.
 
 ---
 
+## regna_rou — REGNA-ROU (UY)
+
+**status**:    in-pipeline
+**host:port**: `rtk.igm.gub.uy:2101`
+**type**:      single-base + VRS
+**access**:    free; web registration at rtk.igm.gub.uy/SBC/Account/Register
+**stations**:  ~26
+**source**:    igm.gub.uy
+
+Uruguay IGM (Instituto Geográfico Militar). "El Servicio no tiene costo."
+SIRGAS-ROU reference frame (ITRF-compatible). 1,000+ registered users as of 2025.
+Expanded Dec 2025 with 8 new SinoGNSS M300 Pro CORS stations.
+1–2 cm horizontal with dual-frequency receiver.
+
+---
+
 ## earthscope — EarthScope NOTA (Americas)
 
 **status**:    in-pipeline

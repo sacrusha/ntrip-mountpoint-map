@@ -54,13 +54,13 @@ entry to `SOURCE_AUTH` in `index.html` for connection hints in popups.
 Develop on feature branches, PR into `main`. The workflow only runs against
 `main`, so ingestion changes need to land there to be exercised.
 
-## Current state (2026-04-21, branch claude/add-bike-networks-OsR6J)
+## Current state (2026-04-21, branch claude/generate-top-countries-list-J9YKK)
 
-**64 sources, ~6,000+ stations** in `data/stations.json` (estimate; EarthScope
+**65 sources, ~6,000+ stations** in `data/stations.json` (estimate; EarthScope
 overlap means US state DOT additions may not all produce net-new pins). Sources:
 rtk2go, Centipede, FReDNet, GeoRTK, 14× SAPOS Länder, ERGNSS, APOS (AT),
-AUSCORS, PositioNZ, SatRef HK, InaCORS, TrigNet, RBMC-IP, RAMSAC, FLEPOS,
-WALCORS, SPSLux, ASG-EUPOS, CROPOS, ESTPOS, LatPos, IGAC, EarthScope NOTA,
+AUSCORS, PositioNZ, SatRef HK, InaCORS, TrigNet, RBMC-IP, RAMSAC, REGNA-ROU (UY),
+FLEPOS, WALCORS, SPSLux, ASG-EUPOS, CROPOS, ESTPOS, LatPos, IGAC, EarthScope NOTA,
 MIRAI, CORS-KOREA, IceCORS, KSA-CORS,
 **Italian regional**: SPIN3, GPS-UMBRIA, GNSS Abruzzo+Lazio, SIT Puglia, GNSS Campania,
 **US state DOT (physical+VRS)**: WISCORS, FPRN, ARDOT RTN, MaCORS, VECTOR VT,
@@ -118,6 +118,9 @@ Deduplication is a future task.
 4. `SOURCE_AUTH.openNote` strings are derivable from `access`+`registration`
    already in JSON; could be dropped from `index.html`. Deferred — requires
    popup refactor.
+5. Uganda UGRF CORS (ugrf.mlhud.go.ug, 78 stations, free as of 2024) — public
+   NTRIP endpoint not discoverable without completing registration. Revisit if
+   host:port is confirmed publicly.
 
 ## Design notes
 
