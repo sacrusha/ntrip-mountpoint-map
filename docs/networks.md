@@ -30,6 +30,13 @@ candidates whose endpoint is withheld).
 **missing**:    what a new session must find before this can be ingested (deferred entries)
 ```
 
+**Popup notes (`SOURCE_AUTH.openNote` in `index.html`)** are derived from the
+`**access**:` field here. When access is `conditions`, the restricting condition
+must survive into the note — do not flatten to "Free registration required".
+Conditions that must be preserved verbatim: paid tiers for certain use cases
+(walcors), national identity requirements (gnss_campania: SPID), non-commercial
+licence (earthscope), access deadlines (estpos), per-user limits (rbmc_ip).
+
 Status glossary:
 - **in-pipeline** — present in `SOURCES` in `scripts/fetch_stations.py`
 - **candidate** — confirmed free, endpoint known, not yet ingested

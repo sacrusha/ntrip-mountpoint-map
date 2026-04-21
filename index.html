@@ -172,10 +172,10 @@
   var SOURCE_LABELS={};
   // Per-source auth/access hints shown in popups.
   // user/pass → copyable rows. userNote → plain-text hint (e.g. "any email").
-  // near → show NEAR-mountpoint tip. openNote → italic note (no-auth or reg info).
+  // near → show NEAR-mountpoint tip. openNote → italic access note.
   var SOURCE_AUTH={
-    rtk2go:    {userNote:'your email address', pass:'none', near:true, nearNote:'requires receiver to send NMEA GGA (most do by default)'},
-    centipede: {user:'centipede',              pass:'centipede', near:true, nearNote:'requires NMEA GGA; use NEAR4 on older equipment (John Deere etc.)'},
+    rtk2go:    {userNote:'your email address', pass:'none', near:true},
+    centipede: {user:'centipede',              pass:'centipede', near:true},
     frednet:   {openNote:'Free registration required (email only)'},
     geortk:    {openNote:'No authentication required'},
     'sapos_':  {openNote:'Free registration required — select your federal state'},
@@ -188,7 +188,7 @@
     rbmc_ip:   {openNote:'Free registration required (5-station limit per user)'},
     ramsac:    {openNote:'Free registration required (8-hr session cap)'},
     flepos:    {openNote:'Free registration required'},
-    walcors:   {openNote:'Free registration required'},
+    walcors:   {openNote:'Free registration required (paid for machine-control / auto-guidance)'},
     spslux:    {openNote:'Free registration required'},
     asg_eupos: {openNote:'Free registration required (approval 1–2 working days)'},
     cropos:    {openNote:'Free registration required'},
@@ -206,7 +206,7 @@
     gpsumbria: {openNote:'Free registration required'},
     gnss_abruzzo_lazio:{openNote:'Free registration required (Regione Abruzzo portal; covers Abruzzo + Lazio)'},
     sit_puglia:{openNote:'Free registration required (SIT Puglia geoportal)'},
-    gnss_campania:{openNote:'SPID identity required for new users; free once registered'},
+    gnss_campania:{openNote:'Free registration required — SPID identity (Italy)'},
     // US state DOT networks
     wiscors:   {openNote:'Free registration required (Wisconsin DOT)'},
     fprn:      {openNote:'Free registration required (Florida DOT)'},
@@ -606,9 +606,9 @@
   }
 
   function accuracySummary(carrier){
-    if(carrier===2) return '~1 cm within 10 km · good to 30 km · usable to 50 km';
+    if(carrier===2) return '~1–2 cm (dual-frequency L1+L2)';
     if(carrier===1) return 'up to ~1 cm within 10 km (L1-only; more sensitive to ionosphere) · good to 20 km';
-    return 'RTK stream — accuracy depends on receiver and baseline';
+    return 'Accuracy unverified';
   }
 
   function cpRow(lblHtml,value){
@@ -626,12 +626,12 @@
     var auth=SOURCE_AUTH[serverKey]
       ||(serverKey.indexOf('sapos_')===0?SOURCE_AUTH['sapos_']:null)||{};
     var h='<div class="srv">'
-      +cpRow(dot+'Server',srv.host)
+      +'<div style="font-weight:600;font-size:11px;margin-bottom:2px">'+dot+esc(sourceLabel(serverKey))+'</div>'
+      +cpRow('Server',srv.host)
       +cpRow('Port',srv.port)
       +cpRow('Mountpoint',mountpoint);
     if(auth.near)
-      h+='<div class="anote">or use <code>NEAR</code> as mountpoint to auto-select nearest base'
-        +(auth.nearNote?' ('+esc(auth.nearNote)+')':'')+'</div>';
+      h+='<div class="anote">or use mountpoint <code>NEAR</code> to auto-select nearest</div>';
     if(auth.user)
       h+=cpRow('Username',auth.user);
     else if(auth.userNote)
@@ -792,14 +792,18 @@
       var auth=SOURCE_AUTH[n.sid]
         ||(n.sid.indexOf('sapos_')===0?SOURCE_AUTH['sapos_']:null)||{};
       var regUrl=safeUrl(SOURCE_REG[n.sid]||'');
+      var hasPins=sourceCounts&&(sourceCounts[n.sid]||0)>0;
       var body=n.pins
-        ? 'Covers <b>'+esc(n.region)+'</b>. Reference stations are shown on the map.'
+        ? 'Covers <b>'+esc(n.region)+'</b>.'
+          +(hasPins?' Reference stations are shown on the map.':'')
           +' Connect via a VRS mountpoint for uniform cm-accuracy across the network'
           +' without manual base selection.'
-        : 'Covers <b>'+esc(n.region)+'</b>'
-          +(n.declared?' \u2014 ~'+n.declared+' reference stations':'')+'.'
-          +' Your NTRIP client connects to a virtual base synthesised near your rover\u2019s position.';
-      var accText=n.pins?'VRS/NRTK network \u2014 regional coverage':'VRS network \u2014 virtual mountpoints only';
+        : 'Covers <b>'+esc(n.region)+'</b>.'
+          +(n.declared?' Uses ~'+n.declared+' physical reference stations.':'')
+          +' Your NTRIP client connects to a virtual base synthesised near your location.';
+      var accText=n.pins
+        ? (hasPins?'VRS/NRTK network \u2014 fixed stations on map':'VRS/NRTK network \u2014 virtual mountpoints')
+        : 'VRS network \u2014 virtual mountpoints only';
       var popup='<div class="popup-plain"><h3>'+esc(label)+'</h3>'
         +'<div class="acc" style="color:'+VRS_COLOR+'">'+accText+'</div>'
         +'<div style="margin:4px 0 6px;font-size:12px">'+body+'</div>'
