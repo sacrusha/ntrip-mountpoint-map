@@ -53,6 +53,10 @@
   #toggles #src-sum::-webkit-details-marker{display:none;}
   #toggles #src-sum::after{content:' \25be';font-size:9px;opacity:0.5;}
   #src-det:not([open]) #src-sum::after{content:' \25b8';}
+  #vrs-sum{list-style:none;user-select:none;}
+  #vrs-sum::-webkit-details-marker{display:none;}
+  #vrs-sum::after{content:' \25be';font-size:9px;opacity:0.5;}
+  #vrs-det:not([open]) #vrs-sum::after{content:' \25b8';}
   /* How-it-works dialog */
   #how-dialog{border:none;border-radius:8px;padding:0;max-width:640px;width:90vw;
     box-shadow:0 8px 32px rgba(0,0,0,.35);color:#222;}
@@ -960,7 +964,7 @@
       return ta!==tb ? ta-tb : b.count-a.count;
     });
 
-    var rows=entries.map(function(e){
+    function renderRow(e){
       var mj=esc(JSON.stringify(e.members));
       var swatch=e.vrsOnly
         ? '<span style="display:inline-block;width:9px;height:9px;border:2px solid '+VRS_COLOR
@@ -971,7 +975,12 @@
       return '<label data-row="1"'+(e.vrsOnly?' data-vrs="1"':'')+' style="display:flex;align-items:center;gap:0">'
         +'<input type="checkbox" data-m="'+mj+'" checked style="margin-right:4px;flex-shrink:0">'
         +swatch+esc(e.label)+badge+'</label>';
-    }).join('');
+    }
+    var physEntries=entries.filter(function(e){ return !e.vrsOnly; });
+    var vrsEntries=entries.filter(function(e){ return e.vrsOnly; });
+    var physRows=physEntries.map(renderRow).join('');
+    var vrsRows=vrsEntries.map(renderRow).join('');
+    var vrsCount=vrsEntries.length;
 
     // Build the DOM element once; reused by both Leaflet control and mobile panel.
     var d=document.createElement('div');
@@ -980,17 +989,26 @@
     L.DomEvent.disableScrollPropagation(d);
 
     var sepStyle='border-bottom:1px solid #ddd;margin-bottom:4px;padding-bottom:4px;';
+    var fullSep='border-top:1px solid #ddd;margin-top:4px;padding-top:4px;'+sepStyle;
+    var vrsSwatchHtml='<span style="display:inline-block;width:9px;height:9px;border:2px solid '
+      +VRS_COLOR+';border-radius:50%;vertical-align:middle;margin-right:4px;flex-shrink:0"></span>';
     d.innerHTML='<details id="src-det" open><summary id="src-sum">Sources</summary>'
-      // VRS global toggle
-      +'<label style="'+sepStyle+'display:flex;align-items:center;gap:4px">'
-        +'<input type="checkbox" data-k="vrs_global" checked>'
-        +'<span style="display:inline-block;width:9px;height:9px;border:2px solid '+VRS_COLOR
-          +';border-radius:50%;flex-shrink:0"></span>VRS circles</label>'
-      // Declutter toggle
-      +'<label style="'+sepStyle+'display:flex;align-items:center;gap:4px" '
+      +physRows
+      +'<label style="'+fullSep+'display:flex;align-items:center;gap:4px" '
         +'title="Hide sources with no stations in the current map view">'
         +'<input type="checkbox" id="declutter-cb" checked> Hide out-of-view sources</label>'
-      +rows
+      +(vrsCount
+        ? '<details id="vrs-det" style="'+sepStyle+'">'
+            +'<summary id="vrs-sum" style="display:flex;align-items:center;gap:4px;font-size:12px">'
+              +'<input type="checkbox" data-k="vrs_global" checked style="flex-shrink:0;margin-right:0">'
+              +vrsSwatchHtml
+              +'VRS networks ('+vrsCount+')'
+            +'</summary>'
+            +vrsRows
+          +'</details>'
+        : '<label style="'+sepStyle+'display:flex;align-items:center;gap:4px">'
+            +'<input type="checkbox" data-k="vrs_global" checked>'
+            +vrsSwatchHtml+'VRS circles</label>')
       +'<details><summary>Access</summary>'
         +'<label><input type="checkbox" data-k="tier_open" checked> Free, no signup</label>'
         +'<label><input type="checkbox" data-k="tier_registration" checked> Free (registration)</label>'
@@ -998,6 +1016,10 @@
           +'<input type="checkbox" data-k="tier_conditions" checked> Free* (conditions apply)</label>'
       +'</details>'
       +'</details>';
+
+    // Prevent the VRS master checkbox from toggling the <details> open/closed.
+    var vrsGlobalCb=d.querySelector('input[data-k="vrs_global"]');
+    if(vrsGlobalCb) vrsGlobalCb.addEventListener('click',function(e){ e.stopPropagation(); });
 
     d.querySelectorAll('input[data-m]').forEach(function(cb){
       cb.addEventListener('change',function(){
