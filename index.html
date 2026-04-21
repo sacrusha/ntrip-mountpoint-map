@@ -1289,14 +1289,21 @@
     // Filter panel lives permanently in #sidebar-inner (CSS grid handles all viewport sizes).
     // On mobile (≤600px), the FAB toggles body.sidebar-open which slides the sidebar in.
     var sidebarInner=document.getElementById('sidebar-inner');
+    var sidebar=document.getElementById('sidebar');
     if(sidebarInner) sidebarInner.appendChild(togglePanel.dom);
     var fab=document.getElementById('filter-fab');
     if(fab){
+      function afterSlide(){
+        if(!sidebar) return;
+        sidebar.addEventListener('transitionend',function h(){
+          sidebar.removeEventListener('transitionend',h);
+          map.invalidateSize();
+        });
+      }
       fab.onclick=function(){
         var open=document.body.classList.toggle('sidebar-open');
-        fab.setAttribute('aria-expanded', open ? 'true' : 'false');
-        // map column width changes — tell Leaflet
-        setTimeout(function(){ map.invalidateSize(); }, 260);
+        fab.setAttribute('aria-expanded',open?'true':'false');
+        afterSlide();
       };
       // Tap on the overlay closes sidebar
       document.addEventListener('click',function(e){
@@ -1304,7 +1311,7 @@
            !e.target.closest('#sidebar') && e.target!==fab && !fab.contains(e.target)){
           document.body.classList.remove('sidebar-open');
           fab.setAttribute('aria-expanded','false');
-          setTimeout(function(){ map.invalidateSize(); }, 260);
+          afterSlide();
         }
       });
     }
