@@ -22,7 +22,7 @@
     #sidebar-inner{flex:1;overflow-y:auto;padding:8px;}
   }
 .slabel{font-size:10px;font-weight:700;color:#222;
-    background:rgba(255,255,255,0.75);border:none;box-shadow:none;padding:0 2px;}
+    background:#fff;border:none;box-shadow:none;padding:0 2px;}
   #banner{position:absolute;top:0;left:0;right:0;height:32px;
     background:#1b2b3a;color:#e8eef4;z-index:10000;display:none;
     align-items:center;padding:0 12px;font-size:12px;gap:8px;
@@ -143,7 +143,7 @@
   #leg-info{color:#999;font-size:10px;}
   @media(prefers-color-scheme:dark){
     :root{color-scheme:dark;}
-    .slabel{color:#e8eef4;background:rgba(0,0,0,0.7);}
+    .slabel{color:#e8eef4;background:#1e3048;}
     .leaflet-popup-content-wrapper,.leaflet-popup-tip{background:#1e3048;color:#e8eef4;}
     .leaflet-popup-close-button{color:#94a7b8 !important;}
     .leaflet-popup-close-button:hover{color:#e8eef4 !important;}
@@ -426,9 +426,10 @@
   }
 
   function stationSourceIds(s){
+    if(s._sourceIds) return s._sourceIds;
     var out=[]; var m=s.sources||{};
     for(var k in m) if(m[k]&&m[k].length) out.push(k);
-    return out;
+    return (s._sourceIds=out);
   }
   function stationColor(s){
     var ids=stationSourceIds(s);
@@ -471,6 +472,17 @@
       lut[i*4]=rgba[0]; lut[i*4+1]=rgba[1]; lut[i*4+2]=rgba[2]; lut[i*4+3]=rgba[3];
     }
     return lut;
+  })();
+
+  var COVERAGE_LUT32=(function(){
+    var buf=new ArrayBuffer(256*4);
+    var u32=new Uint32Array(buf);
+    var u8=new Uint8ClampedArray(buf);
+    for(var i=0;i<256;i++){
+      u8[i*4]=COVERAGE_LUT[i*4]; u8[i*4+1]=COVERAGE_LUT[i*4+1];
+      u8[i*4+2]=COVERAGE_LUT[i*4+2]; u8[i*4+3]=COVERAGE_LUT[i*4+3];
+    }
+    return u32;
   })();
 
   // Build a KDBush static spatial index over station lat/lon (x=lon, y=lat).
@@ -548,8 +560,9 @@
       var sw=Math.ceil(size.x/sub);
       var sh=Math.ceil(size.y/sub);
       var rSq=rFloatPx*rFloatPx;
-      var imd=ctx.createImageData(sw,sh);
-      var d=imd.data;
+      var _tileBuf=new ArrayBuffer(sw*sh*4);
+      var d32=new Uint32Array(_tileBuf);
+      var imd=new ImageData(new Uint8ClampedArray(_tileBuf),sw,sh);
       var hasData=false;
       for(var spy=0;spy<sh;spy++){
         for(var spx=0;spx<sw;spx++){
@@ -561,10 +574,7 @@
             if(dsq<minSq) minSq=dsq;
           }
           if(minSq>=rSq) continue;
-          var li=((1-Math.sqrt(minSq)/rFloatPx)*255|0)*4;
-          var base=(spy*sw+spx)*4;
-          d[base]=COVERAGE_LUT[li]; d[base+1]=COVERAGE_LUT[li+1];
-          d[base+2]=COVERAGE_LUT[li+2]; d[base+3]=COVERAGE_LUT[li+3];
+          d32[spy*sw+spx]=COVERAGE_LUT32[(1-Math.sqrt(minSq)/rFloatPx)*255|0];
           hasData=true;
         }
       }
@@ -797,7 +807,7 @@
         let s=stations[i];
         try{
           L.circleMarker([s.lat,s.lon],{radius:4,color:'#fff',weight:1,
-            fillColor:stationStaleDays(s)>=STALE_GREY_DAYS?'#aaa':stationColor(s),fillOpacity:0.95,renderer:renderer})
+            fillColor:s._color,fillOpacity:0.95,renderer:renderer})
             .bindPopup(makePopupFn(s))
             .addTo(dots);
         }catch(e){ console.warn('render err',e); }
@@ -809,45 +819,67 @@
     requestAnimationFrame(chunk);
   }
 
-  // Rebuild the detail layer for the current viewport (plus a small
-  // padding buffer for smooth pans). Discards previous entries. When
-  // `index` is provided, uses it to pull just the stations inside the
-  // padded bounds in O(log N + k); otherwise falls back to a linear scan.
+  // Incremental detail layer: tracks currently-shown entries in _detailMap
+  // so pan operations only add/remove the viewport delta instead of
+  // clearing and rebuilding all markers on every moveend.
+  var _detailMap=new Map(); // posKey → {rect, marker}
+  var _detailShowRect=false;
+  function resetDetailMap(){_detailMap.clear();}
+
   function refreshDetailLayer(map,stations,detail,index,showRect){
-    detail.clearLayers();
     var b=map.getBounds().pad(0.2);
+    if(showRect!==_detailShowRect){
+      _detailMap.clear();
+      detail.clearLayers();
+      _detailShowRect=showRect;
+    }
     var ids=index
       ? index.range(b.getWest(),b.getSouth(),b.getEast(),b.getNorth())
       : null;
     var count=ids?ids.length:stations.length;
-    var shown=0;
+    var inView=new Set();
     for(var k=0;k<count;k++){
-      let s=stations[ids?ids[k]:k];
+      var s=stations[ids?ids[k]:k];
       if(!ids&&!b.contains([s.lat,s.lon])) continue;
+      inView.add(posKey(s));
+    }
+    _detailMap.forEach(function(entry,key){
+      if(!inView.has(key)){
+        if(entry.rect) detail.removeLayer(entry.rect);
+        detail.removeLayer(entry.marker);
+        _detailMap.delete(key);
+      }
+    });
+    for(var k=0;k<count;k++){
+      var s=stations[ids?ids[k]:k];
+      if(!ids&&!b.contains([s.lat,s.lon])) continue;
+      var pk=posKey(s);
+      if(_detailMap.has(pk)) continue;
+      var entry={};
+      var fill=s._color;
       try{
-        var fill=stationStaleDays(s)>=STALE_GREY_DAYS?'#aaa':stationColor(s);
         if(showRect){
-          L.rectangle([[s.lat-s.dLat,s.lon-s.dLon],
-                       [s.lat+s.dLat,s.lon+s.dLon]],
+          entry.rect=L.rectangle([[s.lat-s.dLat,s.lon-s.dLon],
+                     [s.lat+s.dLat,s.lon+s.dLon]],
             {color:fill,weight:1,fillColor:fill,fillOpacity:0.12,
              dashArray:'4 3'})
             .bindTooltip('Station within '+precLabel(s.dLat,s.dLon,s.lat),
               {sticky:true,className:'prec-tip'})
             .addTo(detail);
         }
-        var mk=L.marker([s.lat,s.lon],{icon:cachedIcon(fill)});
         var names=[];
         stationSourceIds(s).forEach(function(sid){
           s.sources[sid].forEach(function(n){ names.push(n); });
         });
-        mk.bindTooltip(names.join(' / '),
-          {permanent:true,direction:'right',offset:[9,0],className:'slabel'});
-        mk.bindPopup(getCachedPopup(s));
-        mk.addTo(detail);
-        shown++;
+        entry.marker=L.marker([s.lat,s.lon],{icon:cachedIcon(fill)})
+          .bindTooltip(names.join(' / '),
+            {permanent:true,direction:'right',offset:[9,0],className:'slabel'})
+          .bindPopup(getCachedPopup(s))
+          .addTo(detail);
+        _detailMap.set(pk,entry);
       }catch(e){ console.warn('detail err',e); }
     }
-    return shown;
+    return _detailMap.size;
   }
 
   // NRTK networks: polygon + centroid marker. No-op when data has no
@@ -1313,10 +1345,8 @@
     function applyZoom(){
       var z=map.getZoom();
       var showLabels=z>=ZOOM_LABELS;
-      // CSS-toggle the dots pane rather than removing/re-adding 5600 paths
-      // from the canvas renderer, which corrupts its path list over time.
       // visibility:hidden (not display:none) keeps the pane in the layout/render
-      // pipeline so canvas coordinate transforms stay in sync during zoom animations.
+      // pipeline so canvas transforms stay in sync during zoom transitions.
       map.getPane('dotsPane').style.visibility=
         (!showLabels&&z>=ZOOM_DOTS)?'visible':'hidden';
       if(showLabels){
@@ -1324,6 +1354,7 @@
         if(!map.hasLayer(layers.detail)) layers.detail.addTo(map);
       }else{
         if(map.hasLayer(layers.detail)) map.removeLayer(layers.detail);
+        resetDetailMap();
         layers.detail.clearLayers();
       }
     }
@@ -1351,6 +1382,9 @@
       var staleDots=layers.dots;      // kept alive until new render is ready
       var currentFilter=filter;       // capture at generation boundary
       visible=displayStations.filter(currentFilter);
+      visible.forEach(function(s){
+        s._color=stationStaleDays(s)>=STALE_GREY_DAYS?'#aaa':stationColor(s);
+      });
       stationIndex=buildStationIndex(visible);
       // Watchdog: if the rAF chain stalls (e.g. tab hidden), call finishLoad.
       var watchdog=setTimeout(function(){ if(gen===_rebuildGen) finishLoad(); },5000);
@@ -1361,11 +1395,9 @@
         // the path-list churn is bounded to filter-toggle rebuilds, which
         // are infrequent, not to every zoom transition.
         if(map.hasLayer(staleDots)) map.removeLayer(staleDots);
+        resetDetailMap();
         layers=built;
         layers.dots.addTo(map); // added once; zoom transitions CSS-toggle the pane
-        // Coverage raster must only include fresh stations (<3d stale) even
-        // after filter changes — stale (3–7d) stations stay grey on the dots
-        // layer but must not contribute to the green/amber distance field.
         var coverageVisible=visible.filter(function(s){ return stationStaleDays(s)<STALE_GREY_DAYS; });
         coverage.setStations(coverageVisible,null);
         applyZoom();
@@ -1382,10 +1414,14 @@
     function updateViewCounts(){
       var b=map.getBounds();
       var counts={};
-      visible.forEach(function(s){
-        if(!b.contains([s.lat,s.lon])) return;
+      var ids=stationIndex
+        ?stationIndex.range(b.getWest(),b.getSouth(),b.getEast(),b.getNorth())
+        :null;
+      var n=ids?ids.length:visible.length;
+      for(var i=0;i<n;i++){
+        var s=visible[ids?ids[i]:i];
         stationSourceIds(s).forEach(function(sid){ counts[sid]=(counts[sid]||0)+1; });
-      });
+      }
       togglePanel.applyDeclutter(counts);
     }
 
