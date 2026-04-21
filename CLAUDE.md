@@ -55,7 +55,7 @@ entry to `SOURCE_AUTH` in `index.html` for connection hints in popups.
 Develop on feature branches, PR into `main`. The workflow only runs against
 `main`, so ingestion changes need to land there to be exercised.
 
-## Current state (2026-04-21, branch claude/vrs-batch-mountpoints-lkoxd)
+## Current state (2026-04-21, branch claude/extend-network-types-1BjIy)
 
 **65 sources, ~5,472 stations** in `data/stations.json`. Sources:
 rtk2go, Centipede, FReDNet, GeoRTK, 14× SAPOS Länder, ERGNSS, APOS (AT),
@@ -91,21 +91,21 @@ F9P stations). Any future source with the same issue gets the same exception.
 **VRS-only networks** (CROPOS, ASG-EUPOS, FLEPOS, WALCORS, ESTPOS, LatPos,
 KSA-CORS, 10 SAPOS states, + 6 US state DOT: KyCORS, MnCORS, ODOT RTN,
 MoDOT RTN, WVRTN, MaineDOT) expose only virtual mountpoints — correctly
-dropped to 0 stations by the nmea filter or `filter_vrs()`. Shown as purple
-stopgap circles in the Sources toggle panel with a ring swatch and `(VRS)`
-count badge. Toggling hides/shows the circle and respects tier filters.
-`VRS_NETWORKS` in `index.html` holds the centroids; SAPOS states with
-physical-coord data (HE, RP, SL, SN) are excluded. APOS (AT) and all Italian
-regional networks are physical-coord-vrs — show as regular pins with
-`pins:true` VRS badges. Full NRTK polygons are deferred.
+dropped to 0 stations by the nmea filter or `filter_vrs()`. Rendered as
+coloured VRS circles when live data is present; stale or never-fetched sources
+fall through to grey circles. The old hardcoded `VRS_NETWORKS` array has been
+replaced by `buildCountryMarkers()`, which reads all three tiers directly from
+`data/country_markers.json`. APOS (AT) and all Italian regional networks are
+physical-coord-vrs — show as regular pins with `pins:true` VRS badges. Full
+NRTK polygons are deferred.
 
 **`data/country_markers.json`:** static file (not pipeline-generated) with
 104 entries across three tiers — `vrs` (23 VRS-only circles + 39 pinned-network
 fallbacks with `"pins":true`), `deferred` (14 grey circles: ReNEP, LitPOS,
 UGRF, ETCORS, DOL Thailand, Italian deferred regionals, ACORN, ZAKPOS, GPSBru),
-`info` (28 circled-? markers: paid and restricted networks). The `pins:false`
-subset of `VRS_NETWORKS` is now in this file; frontend migration pending —
-`VRS_NETWORKS` is still the live source until index.html is updated.
+`info` (28 circled-? markers: paid and restricted networks). All three tiers
+are live in `index.html` via `buildCountryMarkers()`. Toggle panel shows
+"VRS networks (N)", "Pending (N)", "Restricted (N)" sections.
 Design spec in `docs/requirements.md` § Country-level markers.
 
 **`yearly_cost` field in `docs/networks.md`:** all paid and paid-affordable
@@ -177,6 +177,11 @@ Deduplication is a future task.
   page. Use `L.DomUtil.create('div')` with no extra args.
 - **`preferCanvas: true`** — required so `L.circleMarker` renders to canvas;
   without it, per-station SVG blows the DOM budget at ~2k+ stations.
+- **Country marker state keys:** VRS uses `state[sid]` (bare) so that
+  `pins:true` networks share the same key as their physical-station checkbox —
+  adding a `vrs_` prefix would silently decouple them. Grey uses
+  `state['grey:'+id]`, info uses `state['info:'+id]`. The `:` separator cannot
+  appear in any id (`[a-zA-Z0-9_]`), so no collision is possible.
 
 ## Testing
 
