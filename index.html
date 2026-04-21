@@ -352,8 +352,8 @@
   }
 
   // Zoom bands — switch between raster-only, raster+dots, detailed view.
-  var ZOOM_DETAIL=10;   // z >= ZOOM_DETAIL: labels + accuracy rectangles + tooltips
-  var ZOOM_LABELS=8;    // z >= ZOOM_LABELS: labels only (no accuracy rectangles)
+  var ZOOM_DETAIL=11;   // z >= ZOOM_DETAIL: labels + accuracy rectangles + tooltips
+  var ZOOM_LABELS=9;    // z >= ZOOM_LABELS: labels only (no accuracy rectangles)
   var ZOOM_DOTS=6;      // z >= ZOOM_DOTS: dots; z < ZOOM_DOTS: coverage raster only
 
   // Coverage field radii (km). Colour per band is set inside CoverageLayer.
@@ -707,25 +707,31 @@
 
   var DotsLayer=L.Layer.extend({
     options:{pane:'dotsPane',padding:0.5},
-    initialize:function(opts){ L.Util.setOptions(this,opts); this._stations=[]; },
+    initialize:function(opts){ L.Util.setOptions(this,opts); this._stations=[]; this._rafId=null; },
     onAdd:function(map){
       this._map=map;
       var canvas=L.DomUtil.create('canvas');
       canvas.style.position='absolute';
       map.getPane(this.options.pane).appendChild(canvas);
       this._canvas=canvas; this._ctx=canvas.getContext('2d');
-      map.on('viewreset moveend',this._update,this);
-      this._update();
+      map.on('viewreset move moveend',this._scheduleUpdate,this);
+      this._scheduleUpdate();
     },
     onRemove:function(map){
-      map.off('viewreset moveend',this._update,this);
+      map.off('viewreset move moveend',this._scheduleUpdate,this);
+      if(this._rafId){ cancelAnimationFrame(this._rafId); this._rafId=null; }
       L.DomUtil.remove(this._canvas);
       this._canvas=null; this._ctx=null; this._map=null;
     },
     setStations:function(stations,index){
       this._stations=stations||[];
       this._index=index||null;
-      if(this._map) this._update();
+      if(this._map) this._scheduleUpdate();
+    },
+    _scheduleUpdate:function(){
+      if(this._rafId) return;
+      var self=this;
+      this._rafId=requestAnimationFrame(function(){ self._rafId=null; self._update(); });
     },
     _update:function(){
       var map=this._map, canvas=this._canvas, ctx=this._ctx;
@@ -1435,7 +1441,7 @@
       // visibility:hidden (not display:none) keeps canvas transforms in sync
       // during zoom transitions.
       map.getPane('dotsPane').style.visibility=
-        (z>=ZOOM_DOTS&&z<ZOOM_LABELS)?'visible':'hidden';
+        z>=ZOOM_DOTS?'visible':'hidden';
       if(z>=ZOOM_LABELS){
         refreshDetailLayer(stationIndex,z>=ZOOM_DETAIL);
         if(!map.hasLayer(detailGroup)) detailGroup.addTo(map);
@@ -1541,7 +1547,7 @@
 
     map.on('zoomanim',function(e){
       map.getPane('dotsPane').style.visibility=
-        (e.zoom>=ZOOM_DOTS&&e.zoom<ZOOM_LABELS)?'visible':'hidden';
+        e.zoom>=ZOOM_DOTS?'visible':'hidden';
     });
     map.on('zoomend',function(){ applyZoom(); updateViewCounts(); });
 
