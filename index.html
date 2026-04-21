@@ -1092,13 +1092,13 @@
       var sw=function(s){return '<span style="display:inline-block;width:12px;height:12px;vertical-align:middle;'+s+'"></span>';};
       d.innerHTML=
         '<details id="leg-det" open>'
-        +'<summary id="leg-sum">Coverage</summary>'
+        +'<summary id="leg-sum">Legend</summary>'
         +sw('background:rgb(0,170,0)')+' &lt; 10 km \u2014 ~2 cm<br>'
         +sw('background:rgb(180,200,30)')+' 10\u201330 km \u2014 ~3 cm<br>'
         +sw('background:rgb(220,150,30)')+' 30\u201350 km \u2014 ~5 cm<br>'
-        +sw('background:rgb(210,90,90)')+' 50\u2013100 km \u2014 ~10 cm\u20131 m<br>'
+        +sw('background:rgb(210,90,90)')+' 50\u2013100 km \u2014 &lt; 1 m<br>'
         +sw('border:2px solid '+VRS_COLOR+';background:rgba(106,90,205,0.22);border-radius:50%')+' VRS network<br>'
-        +sw('background:#aaa;border-radius:50%')+' Station data stale (3\u20137 days)<br>'
+        +sw('background:#aaa;border-radius:50%')+' Mountpoint data stale<br>'
         +'<small id="leg-info">Loading\u2026</small>'
         +'</details>';
       return d;
@@ -1314,10 +1314,13 @@
 
     function finishLoad(){
       var li=document.getElementById('leg-info');
-      var updatedLabel=updated
-        ? new Date(updated).toISOString().replace('T',' ').slice(0,16)+' UTC'
-        : 'unknown';
-      if(li) li.textContent=visible.length.toLocaleString()+' stations \u00b7 updated '+updatedLabel;
+      var updatedLabel;
+      if(!updated){ updatedLabel='unknown'; }
+      else {
+        var h=Math.round((Date.now()-new Date(updated).getTime())/3600000);
+        updatedLabel=(h<1?'< 1':h)+' h ago';
+      }
+      if(li) li.innerHTML=visible.length.toLocaleString()+' stations<br>updated '+updatedLabel;
       updateViewCounts();
     }
 
