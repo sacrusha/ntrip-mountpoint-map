@@ -121,6 +121,15 @@
     body.sidebar-open #sidebar{transform:translateX(0);}
   }
   #legend{background:white;padding:8px 12px;border-radius:5px;border:1px solid #bbb;font-size:11px;line-height:1.55;color:#222;}
+  /* Frosted-glass backgrounds when used as Leaflet controls (desktop only) */
+  .leaflet-control #toggles{
+    background:rgba(255,255,255,0.88);
+    -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+    padding:8px 12px;border-radius:5px;border:1px solid rgba(0,0,0,0.12);}
+  .leaflet-control #legend{
+    background:rgba(255,255,255,0.88);
+    -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+    border-color:rgba(0,0,0,0.12);}
   @media(max-width:600px){
     #sidebar-inner #legend{border-radius:0;border-left:none;border-right:none;border-bottom:none;
       margin-top:8px;padding-left:8px;padding-right:8px;}
@@ -154,6 +163,8 @@
     #toggles{color:#e8eef4;}
     #toggles summary{color:#94a7b8;}
     #legend{background:#1e3048;border-color:#2d4256;color:#e8eef4;}
+    .leaflet-control #toggles{background:rgba(14,22,34,0.88);border-color:rgba(255,255,255,0.1);}
+    .leaflet-control #legend{background:rgba(14,22,34,0.88);border-color:rgba(255,255,255,0.1);color:#e8eef4;}
     #leg-info{color:#94a7b8;}
     #how-dialog{background:#1e3048;color:#e8eef4;}
     #how-dialog a{color:#9ec8ff;}
