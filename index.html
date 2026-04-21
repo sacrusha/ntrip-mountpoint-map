@@ -82,28 +82,6 @@
   @media(max-width:600px){
     #how-dialog{width:100%;max-width:100%;margin:auto 0 0 0;border-radius:12px 12px 0 0;}
   }
-  /* Detail / filter panel */
-  #detail-panel{position:fixed;left:0;right:0;bottom:0;z-index:10002;
-    background:white;border-radius:12px 12px 0 0;
-    box-shadow:0 -4px 24px rgba(0,0,0,.2);
-    transform:translateY(110%);transition:transform 0.25s ease;
-    max-height:70vh;overflow-y:auto;}
-  #detail-panel.open{transform:translateY(0);}
-  #detail-panel-hd{display:flex;align-items:center;padding:10px 16px 8px;
-    border-bottom:1px solid #eee;position:sticky;top:0;background:inherit;z-index:1;}
-  #detail-panel-title{flex:1;font-weight:700;font-size:13px;}
-  #detail-panel-close{background:transparent;border:none;font-size:22px;
-    line-height:1;cursor:pointer;color:#555;padding:0 0 0 8px;
-    min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:flex-end;}
-  #detail-panel-body{padding:12px 16px calc(32px + env(safe-area-inset-bottom));}
-  #detail-panel-body .popup-plain{max-width:none;}
-  /* Detail panel as right sidebar: landscape mid-size, or any screen ≥1025px wide. */
-  @media(min-width:601px) and (min-aspect-ratio:1/1),(min-width:1025px){
-    #detail-panel{left:auto;right:0;top:0;bottom:0;width:320px;
-      border-radius:0;max-height:none;
-      transform:translateX(110%);}
-    #detail-panel.open{transform:translateX(0);}
-  }
   /* Filter FAB — mobile only (≤600px) */
   #filter-fab{display:none;}
   @media(max-width:600px){
@@ -170,8 +148,6 @@
     #how-dialog{background:#1e3048;color:#e8eef4;}
     #how-dialog a{color:#9ec8ff;}
     #how-dialog-close{color:#94a7b8;}
-    #detail-panel,#detail-panel-hd{background:#1e3048;color:#e8eef4;border-bottom-color:#2d4256;}
-    #detail-panel-close{color:#94a7b8;}
     #filter-fab{background:rgba(30,48,72,0.95);border-color:#2d4256;color:#94a7b8;}
   }
   @media(max-width:600px) and (prefers-color-scheme:dark){
@@ -258,13 +234,6 @@
   </div>
   <div id="guide-dialog-body"></div>
 </dialog>
-<div id="detail-panel" role="complementary" aria-label="Details">
-  <div id="detail-panel-hd">
-    <span id="detail-panel-title"></span>
-    <button id="detail-panel-close" aria-label="Close">×</button>
-  </div>
-  <div id="detail-panel-body"></div>
-</div>
 <button id="filter-fab" aria-label="Open filters" aria-expanded="false">&#x25ba;</button>
 <div id="shell">
   <div id="sidebar">
@@ -474,6 +443,8 @@
     return lut;
   })();
 
+  // Uint32 packing of COVERAGE_LUT for 4× fewer array writes per pixel.
+  // Relies on little-endian byte order (universal on x86/ARM/WASM).
   var COVERAGE_LUT32=(function(){
     var buf=new ArrayBuffer(256*4);
     var u32=new Uint32Array(buf);
@@ -663,8 +634,6 @@
     return '<svg width="'+d+'" height="'+d+'" viewBox="0 0 '+d+' '+d+'" xmlns="http://www.w3.org/2000/svg">'
       +'<circle cx="'+r+'" cy="'+r+'" r="'+(r-0.75)+'" fill="'+col+'" stroke="white" stroke-width="1.5"/></svg>';
   }
-  // Pre-built icon objects keyed by hex color string; reused across all
-  // refreshDetailLayer calls instead of allocating new objects each pan.
   var _iconCache={};
   function cachedIcon(col){
     if(!_iconCache[col]) _iconCache[col]=L.divIcon(
@@ -851,65 +820,12 @@
         ctx.fillStyle=col; ctx.fill();
       }
       ctx.beginPath();
-      for(var i=0;i<n;i++){
+      for(i=0;i<n;i++){
         ctx.moveTo(pts[i*2]+R,pts[i*2+1]); ctx.arc(pts[i*2],pts[i*2+1],R,0,TAU);
       }
       ctx.strokeStyle='#fff'; ctx.lineWidth=1; ctx.stroke();
     }
   });
-
-  var _detailMap=new Map(); // posKey → {rect, marker}
-  var _detailShowRect=false;
-  function resetDetailMap(){_detailMap.clear();}
-
-  function refreshDetailLayer(map,stations,detail,index,showRect){
-    if(!index) return;
-    var b=map.getBounds().pad(0.2);
-    if(showRect!==_detailShowRect){
-      _detailMap.clear();
-      detail.clearLayers();
-      _detailShowRect=showRect;
-    }
-    var ids=index.range(b.getWest(),b.getSouth(),b.getEast(),b.getNorth());
-    var inView=new Set();
-    for(var k=0;k<ids.length;k++) inView.add(posKey(stations[ids[k]]));
-    _detailMap.forEach(function(entry,key){
-      if(!inView.has(key)){
-        if(entry.rect) detail.removeLayer(entry.rect);
-        detail.removeLayer(entry.marker);
-        _detailMap.delete(key);
-      }
-    });
-    for(var k=0;k<ids.length;k++){
-      var s=stations[ids[k]];
-      var pk=posKey(s);
-      if(_detailMap.has(pk)) continue;
-      var entry={};
-      var fill=s._color;
-      try{
-        if(showRect){
-          entry.rect=L.rectangle([[s.lat-s.dLat,s.lon-s.dLon],
-                     [s.lat+s.dLat,s.lon+s.dLon]],
-            {color:fill,weight:1,fillColor:fill,fillOpacity:0.12,
-             dashArray:'4 3'})
-            .bindTooltip('Station within '+precLabel(s.dLat,s.dLon,s.lat),
-              {sticky:true,className:'prec-tip'})
-            .addTo(detail);
-        }
-        var names=[];
-        stationSourceIds(s).forEach(function(sid){
-          s.sources[sid].forEach(function(n){ names.push(n); });
-        });
-        entry.marker=L.marker([s.lat,s.lon],{icon:cachedIcon(fill)})
-          .bindTooltip(names.join(' / '),
-            {permanent:true,direction:'right',offset:[9,0],className:'slabel'})
-          .bindPopup(getCachedPopup(s))
-          .addTo(detail);
-        _detailMap.set(pk,entry);
-      }catch(e){ console.warn('detail err',e); }
-    }
-    return _detailMap.size;
-  }
 
   // NRTK networks: polygon + centroid marker. No-op when data has no
   // networks (the current case; schema anticipates future ingestion).
@@ -1009,14 +925,6 @@
     return {group:group,bySid:bySid};
   }
 
-  function closeDetailPanel(){
-    var panel=document.getElementById('detail-panel');
-    if(panel) panel.classList.remove('open');
-  }
-  (function(){
-    var closeBtn=document.getElementById('detail-panel-close');
-    if(closeBtn) closeBtn.onclick=closeDetailPanel;
-  })();
   function setupBanner(){
     document.body.classList.add('banner-visible');
     var dlg=document.getElementById('how-dialog');
@@ -1345,6 +1253,57 @@
     var visible=allStations;
     var stationIndex=null;
     var detailGroup=L.layerGroup();
+    var _detailMap=new Map(); // posKey → {rect, marker}
+    var _detailShowRect=false;
+    function resetDetailMap(){_detailMap.clear();}
+
+    function refreshDetailLayer(index,showRect){
+      if(!index) return;
+      var b=map.getBounds().pad(0.2);
+      if(showRect!==_detailShowRect){
+        _detailMap.clear();
+        detailGroup.clearLayers();
+        _detailShowRect=showRect;
+      }
+      var ids=index.range(b.getWest(),b.getSouth(),b.getEast(),b.getNorth());
+      var inView=new Set();
+      for(var k=0;k<ids.length;k++) inView.add(posKey(visible[ids[k]]));
+      _detailMap.forEach(function(entry,key){
+        if(!inView.has(key)){
+          if(entry.rect) detailGroup.removeLayer(entry.rect);
+          detailGroup.removeLayer(entry.marker);
+          _detailMap.delete(key);
+        }
+      });
+      for(var k=0;k<ids.length;k++){
+        var s=visible[ids[k]];
+        var pk=posKey(s);
+        if(_detailMap.has(pk)) continue;
+        var entry={};
+        var fill=s._color;
+        try{
+          if(showRect){
+            entry.rect=L.rectangle([[s.lat-s.dLat,s.lon-s.dLon],
+                       [s.lat+s.dLat,s.lon+s.dLon]],
+              {color:fill,weight:1,fillColor:fill,fillOpacity:0.12,
+               dashArray:'4 3'})
+              .bindTooltip('Station within '+precLabel(s.dLat,s.dLon,s.lat),
+                {sticky:true,className:'prec-tip'})
+              .addTo(detailGroup);
+          }
+          var names=[];
+          stationSourceIds(s).forEach(function(sid){
+            s.sources[sid].forEach(function(n){ names.push(n); });
+          });
+          entry.marker=L.marker([s.lat,s.lon],{icon:cachedIcon(fill)})
+            .bindTooltip(names.join(' / '),
+              {permanent:true,direction:'right',offset:[9,0],className:'slabel'})
+            .bindPopup(getCachedPopup(s))
+            .addTo(detailGroup);
+          _detailMap.set(pk,entry);
+        }catch(e){ console.warn('detail err',e); }
+      }
+    }
 
     function applyZoom(){
       var z=map.getZoom();
@@ -1353,7 +1312,7 @@
       map.getPane('dotsPane').style.visibility=
         (z>=ZOOM_DOTS&&z<ZOOM_LABELS)?'visible':'hidden';
       if(z>=ZOOM_LABELS){
-        refreshDetailLayer(map,visible,detailGroup,stationIndex,z>=ZOOM_DETAIL);
+        refreshDetailLayer(stationIndex,z>=ZOOM_DETAIL);
         if(!map.hasLayer(detailGroup)) detailGroup.addTo(map);
       }else{
         if(map.hasLayer(detailGroup)) map.removeLayer(detailGroup);
@@ -1370,7 +1329,7 @@
         _detailTimer=setTimeout(function(){
           var z=map.getZoom();
           if(z>=ZOOM_LABELS)
-            refreshDetailLayer(map,visible,detailGroup,stationIndex,z>=ZOOM_DETAIL);
+            refreshDetailLayer(stationIndex,z>=ZOOM_DETAIL);
         },250);
       }
     });
@@ -1394,7 +1353,6 @@
     var togglePanel=buildTogglePanel(sourceCounts,vrsLayerBySid,
       function(pred){ filter=pred; rebuildStationLayers(); });
     map.on('click',function(e){
-      closeDetailPanel();
       if(!stationIndex||!visible.length) return;
       var z=map.getZoom();
       var mpp=40075016.686*Math.cos(e.latlng.lat*Math.PI/180)/Math.pow(2,z+8);
