@@ -34,8 +34,9 @@ hobbyists and small shops looking for cm-accurate GPS corrections within
   recommendations (Emlid), DIY path (ArduSimple), step-by-step NTRIP
   connection with NTRIP client pointers, DIY base station setup, and
   plain-English glossary. Prices in €/$; no US-only products.
-- Filters DGNSS-only mountpoints (sub-metre, out of scope) and flags legacy
-  RTCM 2.x streams in popups.
+- Filters DGNSS-only mountpoints (sub-metre, out of scope), VRS/network-
+  solution streams (no fixed coordinates), and flags legacy RTCM 2.x streams
+  in popups.
 - IP-based geolocation (ipwho.is) for initial map centre — no permission
   prompt.
 - Source-agnostic frontend and pipeline: adding a caster is one line in
@@ -43,10 +44,10 @@ hobbyists and small shops looking for cm-accurate GPS corrections within
 
 ## Data sources currently fetched
 
-**~6,000+ stations** across 64 sources as of 2026-04. Sourcetable fetches are
+**~5,472 stations** across 65 sources as of 2026-04. Sourcetable fetches are
 public (RTCM 10402.1 — reading the sourcetable is its intended use); stream
-access requires registration where noted. Station count is an estimate — US
-state DOT networks overlap with EarthScope NOTA on some physical stations.
+access requires registration where noted. VRS-only sources appear in the
+toggle panel with 0 pins (virtual mountpoints have no fixed coordinates).
 
 ### Open access (no account needed)
 
@@ -60,25 +61,25 @@ state DOT networks overlap with EarthScope NOTA on some physical stations.
 
 | Source | Region | Stations | Registration |
 |--------|--------|----------|--------------|
-| FReDNet (OGS) | NE Italy + border AT/SI | ~39 | frednet.crs.ogs.it |
+| FReDNet (OGS) | NE Italy + border AT/SI | ~28 | frednet.crs.ogs.it |
 | SAPOS (14 Länder) | Germany | ~80 VRS/physical | per-state at sapos.de |
 | ERGNSS (IGN) | Spain | ~128 | ergnss.ign.es/gnuserportal/ |
 | AUSCORS (GA) | Australia | ~811 | gnss.ga.gov.au/registration |
 | PositioNZ-RT (LINZ) | New Zealand | ~62 | linz.govt.nz |
 | SatRef (Lands Dept) | Hong Kong | ~22 | geodetic.gov.hk |
-| InaCORS (BIG) | Indonesia | ~4 | nrtk.big.go.id |
+| InaCORS (BIG) | Indonesia | VRS only | nrtk.big.go.id |
 | TrigNet (NGI) | South Africa | ~72 | trignet.co.za |
 | RBMC-IP (IBGE) | Brazil | ~140 | gov.br RBMC-IP signup |
 | RAMSAC (IGN) | Argentina | ~204 | ign.gob.ar portal |
 | FLEPOS | Belgium (Flanders) | 45 VRS | flepos.vlaanderen.be |
 | WALCORS | Belgium (Wallonia) | 23 VRS | gnss.wallonie.be |
-| SPSLux (ACT) | Luxembourg | ~17 VRS | spslux.lu/SBC/ |
+| SPSLux (ACT) | Luxembourg | VRS only | spslux.lu/SBC/ |
 | ASG-EUPOS | Poland | VRS | system.asgeupos.pl |
 | CROPOS | Croatia | VRS | cropos.hr |
 | LatPos (LGIA) | Latvia | VRS | latpos.lgia.gov.lv/SBC |
-| IGAC MAGNA-ECO | Colombia | ~17 | redgeodesica-sbc.igac.gov.co/sbc |
+| IGAC MAGNA-ECO | Colombia | VRS only | redgeodesica-sbc.igac.gov.co/sbc |
 | MIRAI (Go!GNSS) | Japan | ~325 | go.gnss.go.jp |
-| IceCORS (LMÍ) | Iceland | ~20 | natt.is |
+| IceCORS (LMÍ) | Iceland | VRS only | natt.is |
 | **SPIN3 GNSS** | Italy — Piemonte + Lombardia + VdA | ~39 | spingnss.it |
 | **GPS-UMBRIA** | Italy — Umbria | 12 | gpsumbria.regione.umbria.it |
 | **GNSS Abruzzo+Lazio** | Italy — Abruzzo + Lazio | ~29 | gnss-rtk.regione.abruzzo.it |
