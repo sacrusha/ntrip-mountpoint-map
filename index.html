@@ -68,6 +68,14 @@
   #vrs-sum::-webkit-details-marker{display:none;}
   #vrs-sum::after{content:' \25be';font-size:9px;opacity:0.5;}
   #vrs-det:not([open]) #vrs-sum::after{content:' \25b8';}
+  #grey-sum{list-style:none;user-select:none;}
+  #grey-sum::-webkit-details-marker{display:none;}
+  #grey-sum::after{content:' \25be';font-size:9px;opacity:0.5;}
+  #grey-det:not([open]) #grey-sum::after{content:' \25b8';}
+  #info-sum{list-style:none;user-select:none;}
+  #info-sum::-webkit-details-marker{display:none;}
+  #info-sum::after{content:' \25be';font-size:9px;opacity:0.5;}
+  #info-det:not([open]) #info-sum::after{content:' \25b8';}
   /* How-it-works dialog */
   #how-dialog{border:none;border-radius:8px;padding:0;max-width:640px;width:90vw;
     box-shadow:0 8px 32px rgba(0,0,0,.35);color:#222;}
@@ -223,7 +231,7 @@
     <p><i>Standalone correction receivers</i> process satellite-delivered correction signals — no internet, no coverage map needed. Complete units with no ongoing fees (e.g. Galileo HAS receivers) start around $2,900 / €2,700. Subscription-dependent hardware exists from ~$850, but requires paid correction fees on top and typically won't work with free PPP services. Search for "PPP receiver" or "Galileo HAS" to explore those. This map isn't about them.</p>
     <p><i>Network RTK — what this map is about</i> — pairs a dual-band receiver with corrections streamed over the internet from a nearby reference station. Within 30 km of a station, centimetre accuracy is typical. If you already own a survey-grade or dual-frequency receiver, it likely supports this. Complete ready-to-use units start around €449 / $490; tinkerer kits from ~€275.</p>
     <p><b>What the map shows</b><br>
-    Each pin is a free public reference station. Click it for connection details. The colour zones show reliable range: green &lt; 10 km (typically &lt; 2 cm) · yellow-green 10–30 km · amber 30–50 km · pale red 50–100 km (decimetre range). Purple circles are virtual networks — one connection point, the network synthesises a nearby reference for you.</p>
+    Each pin is a free public reference station. Click it for connection details. The colour zones show reliable range: green &lt; 10 km (typically &lt; 2 cm) · yellow-green 10–30 km · amber 30–50 km · pale red 50–100 km (decimetre range). Purple circles are virtual networks — one connection point, the network synthesises a nearby reference for you. Grey circles mark free networks not yet in the live feed — click for registration details. Circled&nbsp;<b>?</b> marks paid or restricted networks.</p>
     <p class="how-cta"><a href="./guide.html" onclick="event.preventDefault();openGuideDialog();">&#x2192; Full guide: hardware, how to connect, setting up your own base station</a></p>
   </div>
 </dialog>
@@ -320,72 +328,9 @@
      match:function(sid){ return sid.indexOf('sapos_')===0; }},
   ];
   var MULTI_COLOR='#222', UNKNOWN_SOURCE_COLOR='#888', VRS_COLOR='#c0196a';
+  var GREY_MARKER_COLOR='#aaa';   // matches stale-pin colour
+  var INFO_MARKER_COLOR='#888';   // circled-? paid/restricted markers
 
-  // VRS centroid markers.
-  // pins:false — single-coord-VRS: no physical stations on map; centroid is
-  //              the only visual representation of the network.
-  // pins:true  — physical-coord-VRS: reference stations already shown as pins;
-  //              centroid marker indicates network-wide VRS/NRTK service is
-  //              available beyond individual pin coverage radii.
-  // SAPOS states with physical-coord data (HE, RP, SL, SN) are omitted from
-  // the pins:false block — they already have station pins.
-  var VRS_NETWORKS=[
-    // --- single-coord VRS (0 physical pins) ---
-    {sid:'asg_eupos', lat:52.0,  lon:21.0,  region:'Poland',                      declared:130,  pins:false},
-    {sid:'cropos',    lat:45.2,  lon:15.5,  region:'Croatia',                     declared:35,   pins:false},
-    {sid:'flepos',    lat:51.0,  lon:4.5,   region:'Belgium (Flanders)',          declared:45,   pins:false},
-    {sid:'walcors',   lat:50.3,  lon:4.8,   region:'Belgium (Wallonia)',          declared:23,   pins:false},
-    {sid:'latpos',    lat:56.9,  lon:24.1,  region:'Latvia',                      declared:27,   pins:false},
-    {sid:'estpos',    lat:58.6,  lon:25.0,  region:'Estonia',                     declared:40,   pins:false},
-    {sid:'ksa_cors',  lat:24.0,  lon:45.0,  region:'Saudi Arabia',                declared:209,  pins:false},
-    {sid:'sapos_SH_HH',lat:54.30,lon:9.90,  region:'Schleswig-Holstein + Hamburg',declared:null, pins:false},
-    {sid:'sapos_NI',  lat:52.62, lon:9.00,  region:'Niedersachsen + Bremen',      declared:null, pins:false},
-    {sid:'sapos_NW',  lat:51.43, lon:7.66,  region:'Nordrhein-Westfalen',         declared:null, pins:false},
-    {sid:'sapos_BW',  lat:48.52, lon:9.06,  region:'Baden-Württemberg',           declared:null, pins:false},
-    {sid:'sapos_BY',  lat:48.14, lon:11.58, region:'Bayern',                      declared:null, pins:false},
-    {sid:'sapos_BE',  lat:52.48, lon:13.30, region:'Berlin',                      declared:null, pins:false},
-    {sid:'sapos_BB',  lat:52.23, lon:13.05, region:'Brandenburg',                 declared:null, pins:false},
-    {sid:'sapos_MV',  lat:53.61, lon:12.43, region:'Mecklenburg-Vorpommern',      declared:null, pins:false},
-    {sid:'sapos_LSA', lat:51.90, lon:11.70, region:'Sachsen-Anhalt',              declared:null, pins:false},
-    {sid:'sapos_TH',  lat:51.01, lon:11.03, region:'Thüringen',                   declared:null, pins:false},
-    // --- physical-coord VRS (reference pins on map; VRS mountpoints also available) ---
-    {sid:'frednet',    lat:46.0,  lon:13.5,  region:'Friuli-Venezia Giulia + border AT/SI', pins:true},
-    {sid:'ergnss',     lat:40.4,  lon:-3.7,  region:'Spain',                                pins:true},
-    {sid:'satref',     lat:22.3,  lon:114.2, region:'Hong Kong',                            pins:true},
-    {sid:'inacors',    lat:-2.5,  lon:118.0, region:'Indonesia',                            pins:true},
-    {sid:'igac',       lat:4.7,   lon:-74.1, region:'Colombia',                             pins:true},
-    {sid:'spslux',     lat:49.8,  lon:6.1,   region:'Luxembourg',                           pins:true},
-    {sid:'icecors',    lat:64.9,  lon:-18.5, region:'Iceland',                              pins:true},
-    {sid:'cors_korea', lat:36.5,  lon:127.8, region:'South Korea',                          pins:true},
-    {sid:'apos',       lat:47.5,  lon:14.1,  region:'Austria',                    declared:37,   pins:true},
-    // US state DOT — VRS-only (single-coord sourcetable; no physical pins)
-    {sid:'kycors',    lat:37.8,  lon:-84.9, region:'Kentucky',                   declared:null, pins:false},
-    {sid:'mncors',    lat:46.4,  lon:-94.0, region:'Minnesota',                  declared:null, pins:false},
-    {sid:'odot_rtn',  lat:40.4,  lon:-82.8, region:'Ohio',                       declared:null, pins:false},
-    {sid:'modot_rtn', lat:38.4,  lon:-92.5, region:'Missouri',                   declared:null, pins:false},
-    {sid:'wvrtn',     lat:38.6,  lon:-80.5, region:'West Virginia',              declared:null, pins:false},
-    {sid:'mainedot',  lat:44.9,  lon:-69.0, region:'Maine',                      declared:null, pins:false},
-    // Italy — regional networks (physical reference stations on map)
-    {sid:'spin3',              lat:45.5,  lon:8.0,   region:'Piemonte + Lombardia + VdA', pins:true},
-    {sid:'gpsumbria',          lat:43.0,  lon:12.5,  region:'Umbria',             declared:12,   pins:true},
-    {sid:'gnss_abruzzo_lazio', lat:42.0,  lon:13.5,  region:'Abruzzo + Lazio',   declared:29,   pins:true},
-    {sid:'sit_puglia',         lat:40.5,  lon:17.0,  region:'Puglia',             declared:12,   pins:true},
-    {sid:'gnss_campania',      lat:40.8,  lon:14.5,  region:'Campania',           declared:18,   pins:true},
-    // US state DOT — physical-coordinate stations on map
-    {sid:'wiscors',   lat:44.5,  lon:-90.0, region:'Wisconsin',                  declared:180,  pins:true},
-    {sid:'fprn',      lat:27.8,  lon:-82.5, region:'Florida',                    declared:120,  pins:true},
-    {sid:'ardot_rtn', lat:34.8,  lon:-92.3, region:'Arkansas',                   declared:50,   pins:true},
-    {sid:'macors',    lat:42.3,  lon:-71.5, region:'Massachusetts',              declared:22,   pins:true},
-    {sid:'vector',    lat:44.0,  lon:-72.7, region:'Vermont',                    declared:15,   pins:true},
-    {sid:'azcors',    lat:34.0,  lon:-111.9,region:'Arizona',                    declared:51,   pins:true},
-    {sid:'gcgc_rtn',  lat:31.0,  lon:-89.5, region:'Mississippi / Gulf Coast',   declared:35,   pins:true},
-    {sid:'alcors',    lat:32.7,  lon:-86.7, region:'Alabama',                    declared:50,   pins:true},
-    {sid:'orgn',      lat:44.0,  lon:-120.5,region:'Oregon',                     declared:100,  pins:true},
-    {sid:'msrn',      lat:43.9,  lon:-84.7, region:'Michigan',                   declared:120,  pins:true},
-    {sid:'nysnet',    lat:42.9,  lon:-75.6, region:'New York',                   declared:150,  pins:true},
-    {sid:'incors',    lat:39.8,  lon:-86.2, region:'Indiana',                    declared:70,   pins:true},
-    {sid:'iartn',     lat:42.0,  lon:-93.5, region:'Iowa',                       declared:83,   pins:true},
-  ];
 
   function sourceLabel(sid){
     return SOURCE_LABELS[sid]||(sid.indexOf('sapos_')===0?'SAPOS '+sid.slice(6):sid);
@@ -859,70 +804,145 @@
     });
     return group;
   }
-
-  // VRS network markers: one per entry in VRS_NETWORKS. Rendered on a
-  // dedicated pane so they are always visible regardless of zoom band.
-  // staleDays mirrors SOURCE_STALE_DAYS from the load context; markers are
-  // suppressed when the source is absent from the pipeline or >= 7 days stale,
-  // matching the hidden-station threshold used for regular pins.
-  // sourceCounts: {sid: n} — pins:false entries with real physical stations
-  // suppress their VRS circle (the source is not VRS-only after all).
-  function buildVrsMarkers(renderer,staleDays,sourceCounts){
+  // Country-level markers driven by data/country_markers.json.
+  // tier:'vrs' + live source   -> coloured VRS ring  -> bySid[source_id]
+  // tier:'vrs' + stale/absent  -> grey ring           -> greyById[m.id]
+  // tier:'deferred'            -> grey ring           -> greyById[m.id]
+  // tier:'info'                -> circled-? marker    -> infoById[m.id]
+  function buildCountryMarkers(markers,renderer,staleDays,sourceCounts){
     var group=L.layerGroup();
-    var bySid={};
-    VRS_NETWORKS.forEach(function(n){
-      if(staleDays){
-        if(!(n.sid in staleDays)) return;      // source dropped from pipeline
-        if(staleDays[n.sid]>=7) return;        // source stale — hide like regular pins
+    var bySid={}, greyById={}, infoById={};
+    (markers||[]).forEach(function(m){
+      var lat=m.lat, lon=m.lon;
+      var label=m.name||m.id;
+      var region=m.region||'';
+      var regUrl=safeUrl(m.registration||'');
+
+      if(m.tier==='vrs'){
+        var sid=m.source_id;
+        var auth=SOURCE_AUTH[sid]
+          ||(sid&&sid.indexOf('sapos_')===0?SOURCE_AUTH['sapos_']:null)||{};
+        if(!m.pins&&sourceCounts&&(sourceCounts[sid]||0)>0) return;
+        var isLive=staleDays&&(sid in staleDays)&&staleDays[sid]<7;
+        if(isLive){
+          var col=SOURCE_COLORS[sid]||VRS_COLOR;
+          var hasPinsPinned=sourceCounts&&(sourceCounts[sid]||0)>0;
+          var declared=m.stations_declared;
+          var body=m.pins
+            ? 'Covers <b>'+esc(region)+'</b>.'
+              +(hasPinsPinned?' Reference stations are shown on the map.':'')
+              +' Connect via a VRS mountpoint for uniform cm-accuracy across the network'
+              +' without manual base selection.'
+            : 'Covers <b>'+esc(region)+'</b>.'
+              +(declared?' Uses ~'+declared+' physical reference stations.':'')
+              +' Your NTRIP client connects to a virtual base synthesised near your location.';
+          var accText=m.pins
+            ? (hasPinsPinned?'VRS/NRTK network — fixed stations on map'
+                             :'VRS/NRTK network — virtual mountpoints')
+            : 'VRS network — virtual mountpoints only';
+          var popReg=safeUrl(SOURCE_REG[sid]||'');
+          var popup='<div class="popup-plain"><h3>'+esc(label)+'</h3>'
+            +'<div class="acc" style="color:'+VRS_COLOR+'">'+accText+'</div>'
+            +'<div style="margin:4px 0 6px;font-size:12px">'+body+'</div>'
+            +(auth.openNote?'<div class="anote">'+esc(auth.openNote)+'</div>':'')
+            +(popReg?'<div class="anote"><a href="'+esc(popReg)
+              +'" target="_blank" rel="noopener noreferrer">Sign up / details ↗</a></div>':'')
+            +'</div>';
+          // Visual ring: no pointer events so station dots show through.
+          var visual=L.circle([lat,lon],{
+            radius:25000,color:col,weight:2,
+            fillColor:col,fillOpacity:0.25,
+            interactive:false,renderer:renderer,pane:'vrsPane'
+          });
+          visual.addTo(group);
+          // Hit ring: invisible wide stroke, pointer-events set after addTo.
+          var hit=L.circle([lat,lon],{
+            radius:25000,color:col,weight:40,
+            opacity:0,fill:false,
+            renderer:renderer,pane:'vrsPane'
+          }).bindTooltip(label+' (VRS)',{sticky:false})
+            .bindPopup(popup);
+          hit.addTo(group);
+          bySid[sid]={visual:visual,hit:hit};
+        } else {
+          var note=m.note||auth.openNote||'';
+          var gr=safeUrl(SOURCE_REG[sid]||'')||regUrl;
+          var ge=addGreyCircle(group,lat,lon,renderer,label,buildGreyPopup(label,region,note,gr));
+          ge.label=label; greyById[m.id]=ge;
+        }
+
+      } else if(m.tier==='deferred'){
+        var ge=addGreyCircle(group,lat,lon,renderer,label,
+          buildGreyPopup(label,region,m.note||'',regUrl));
+        ge.label=label; greyById[m.id]=ge;
+
+      } else if(m.tier==='info'){
+        var mk=addInfoMarker(group,lat,lon,buildInfoPopup(m),label);
+        infoById[m.id]={marker:mk,label:label};
       }
-      if(!n.pins && sourceCounts && sourceCounts[n.sid]>0) return; // has real pins; not VRS-only
-      var label=SOURCE_LABELS[n.sid]
-        ||(n.sid.indexOf('sapos_')===0?'SAPOS '+n.sid.slice(6):n.sid);
-      var auth=SOURCE_AUTH[n.sid]
-        ||(n.sid.indexOf('sapos_')===0?SOURCE_AUTH['sapos_']:null)||{};
-      var regUrl=safeUrl(SOURCE_REG[n.sid]||'');
-      var hasPins=sourceCounts&&(sourceCounts[n.sid]||0)>0;
-      var body=n.pins
-        ? 'Covers <b>'+esc(n.region)+'</b>.'
-          +(hasPins?' Reference stations are shown on the map.':'')
-          +' Connect via a VRS mountpoint for uniform cm-accuracy across the network'
-          +' without manual base selection.'
-        : 'Covers <b>'+esc(n.region)+'</b>.'
-          +(n.declared?' Uses ~'+n.declared+' physical reference stations.':'')
-          +' Your NTRIP client connects to a virtual base synthesised near your location.';
-      var accText=n.pins
-        ? (hasPins?'VRS/NRTK network \u2014 fixed stations on map':'VRS/NRTK network \u2014 virtual mountpoints')
-        : 'VRS network \u2014 virtual mountpoints only';
-      var popup='<div class="popup-plain"><h3>'+esc(label)+'</h3>'
-        +'<div class="acc" style="color:'+VRS_COLOR+'">'+accText+'</div>'
-        +'<div style="margin:4px 0 6px;font-size:12px">'+body+'</div>'
-        +(auth.openNote?'<div class="anote">'+esc(auth.openNote)+'</div>':'')
-        +(regUrl?'<div class="anote"><a href="'+esc(regUrl)+'" target="_blank" rel="noopener noreferrer">Sign up / details \u2197</a></div>':'')
-        +'</div>';
-      // Visual ring: purely decorative — no pointer events so station dots show through.
-      var visual=L.circle([n.lat,n.lon],{
-        radius:25000,color:VRS_COLOR,weight:2,
-        fillColor:VRS_COLOR,fillOpacity:0.25,
-        interactive:false,
-        renderer:renderer,pane:'vrsPane'
-      });
-      visual.addTo(group);
-      // Hit ring: invisible wide stroke (~40 px) centred on the ring boundary.
-      // fill:false → SVG fill="none" (no fill geometry). pointer-events:all
-      // (set after addTo map) is geometric-only and ignores opacity, so the
-      // invisible stroke is still hittable. pointer-events:stroke cannot be
-      // used here because browsers skip hit-testing on strokes with opacity:0.
-      // 40 px gives ≈20 px each side — a usable touch/stylus target.
-      var hit=L.circle([n.lat,n.lon],{
-        radius:25000,color:VRS_COLOR,weight:40,
-        opacity:0,fill:false,
-        renderer:renderer,pane:'vrsPane'
-      }).bindTooltip(label+' (VRS)',{sticky:false})
-        .bindPopup(popup);
-      hit.addTo(group);
-      bySid[n.sid]={visual:visual,hit:hit};
     });
-    return {group:group,bySid:bySid};
+    return {group:group,bySid:bySid,greyById:greyById,infoById:infoById};
+  }
+
+  function buildGreyPopup(label,region,note,regUrl){
+    return '<div class="popup-plain"><h3>'+esc(label)+'</h3>'
+      +'<div style="color:#888;font-weight:600;margin-bottom:6px">'
+      +'Free network (pending)</div>'
+      +'<div style="font-size:12px;margin:4px 0 6px">Covers <b>'+esc(region)+'</b>.</div>'
+      +(note?'<div class="anote">'+esc(note)+'</div>':'')
+      +(regUrl?'<div class="anote"><a href="'+esc(regUrl)
+        +'" target="_blank" rel="noopener noreferrer">More info / sign up ↗</a></div>':'')
+      +'</div>';
+  }
+
+  function addGreyCircle(group,lat,lon,renderer,label,popup){
+    var visual=L.circle([lat,lon],{
+      radius:25000,color:GREY_MARKER_COLOR,weight:2,
+      fillColor:GREY_MARKER_COLOR,fillOpacity:0.12,
+      interactive:false,renderer:renderer,pane:'vrsPane'
+    });
+    visual.addTo(group);
+    var hit=L.circle([lat,lon],{
+      radius:25000,color:GREY_MARKER_COLOR,weight:40,
+      opacity:0,fill:false,
+      renderer:renderer,pane:'vrsPane'
+    }).bindTooltip(label,{sticky:false})
+      .bindPopup(popup);
+    hit.addTo(group);
+    return {visual:visual,hit:hit};
+  }
+
+  function buildInfoPopup(m){
+    var accessLabel=({
+      'paid':'Paid subscription required',
+      'paid-affordable':'Paid subscription (affordable)',
+      'restricted':'Access restricted'
+    })[m.access]||'Not freely accessible';
+    var regUrl=safeUrl(m.registration||'');
+    return '<div class="popup-plain"><h3>'+esc(m.name||m.id)+'</h3>'
+      +'<div class="warn">'+esc(accessLabel)+'</div>'
+      +(m.yearly_cost?'<div style="font-size:11px;color:#555;margin:2px 0 4px">'+esc(m.yearly_cost)+'</div>':'')
+      +'<div style="font-size:12px;margin:4px 0 6px">Covers <b>'+esc(m.region||'')+'</b>.</div>'
+      +(m.note?'<div class="anote">'+esc(m.note)+'</div>':'')
+      +(regUrl?'<div class="anote"><a href="'+esc(regUrl)
+        +'" target="_blank" rel="noopener noreferrer">More info ↗</a></div>':'')
+      +'</div>';
+  }
+
+  function addInfoMarker(group,lat,lon,popup,label){
+    var icon=L.divIcon({
+      className:'',iconSize:[14,14],iconAnchor:[7,7],
+      html:'<svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">'
+        +'<circle cx="7" cy="7" r="5.75" fill="white" stroke="'+INFO_MARKER_COLOR+'" stroke-width="1.5"/>'
+        +'<text x="7" y="10.5" text-anchor="middle" font-size="8" font-weight="bold" fill="'
+        +INFO_MARKER_COLOR+'">?</text>'
+        +'</svg>'
+    });
+    var mk=L.marker([lat,lon],{icon:icon,pane:'vrsPane'})
+      .bindTooltip(label,{sticky:false})
+      .bindPopup(popup);
+    mk.addTo(group);
+    return mk;
   }
 
   function setupBanner(){
@@ -945,12 +965,15 @@
     if(!seen) openHow();
   }
 
-  function buildTogglePanel(sourceCounts,vrsLayerBySid,onChange){
-    var state={tier_open:true,tier_registration:true,tier_conditions:true,vrs_global:true};
+  function buildTogglePanel(sourceCounts,vrsLayerBySid,greyLayerById,infoLayerById,onChange){
+    var state={tier_open:true,tier_registration:true,tier_conditions:true,vrs_global:true,
+               grey_global:true,info_global:true};
     Object.keys(sourceCounts).forEach(function(sid){ state[sid]=true; });
     Object.keys(vrsLayerBySid).forEach(function(sid){ if(!(sid in state)) state[sid]=true; });
+    Object.keys(greyLayerById).forEach(function(id){ state['grey:'+id]=true; });
+    Object.keys(infoLayerById).forEach(function(id){ state['info:'+id]=true; });
 
-    function applyVrs(){
+    function applyMarkers(){
       Object.keys(vrsLayerBySid).forEach(function(sid){
         var tier='tier_'+(SOURCE_ACCESS[sid]||'registration');
         var show=!!(state[sid]&&state[tier]&&state.vrs_global);
@@ -958,6 +981,19 @@
         entry.visual.setStyle({opacity:show?1:0,fillOpacity:show?0.25:0});
         var el=entry.hit.getElement();
         if(el) el.style.pointerEvents=show?'all':'none';
+      });
+      Object.keys(greyLayerById).forEach(function(id){
+        var show=!!(state['grey:'+id]&&state.grey_global);
+        var entry=greyLayerById[id];
+        entry.visual.setStyle({opacity:show?1:0,fillOpacity:show?0.12:0});
+        var el=entry.hit.getElement();
+        if(el) el.style.pointerEvents=show?'all':'none';
+      });
+      Object.keys(infoLayerById).forEach(function(id){
+        var show=!!(state['info:'+id]&&state.info_global);
+        var mk=infoLayerById[id].marker;
+        var el=mk&&mk.getElement&&mk.getElement();
+        if(el) el.style.display=show?'':'none';
       });
     }
     function filterPred(s){
@@ -998,6 +1034,36 @@
       return ta!==tb ? ta-tb : b.count-a.count;
     });
 
+    // Grey and info rows (sorted by label).
+    var greyIds=Object.keys(greyLayerById).sort(function(a,b){
+      var la=(greyLayerById[a].label||a).toLowerCase();
+      var lb=(greyLayerById[b].label||b).toLowerCase();
+      return la<lb?-1:la>lb?1:0;
+    });
+    var infoIds=Object.keys(infoLayerById).sort(function(a,b){
+      var la=(infoLayerById[a].label||a).toLowerCase();
+      var lb=(infoLayerById[b].label||b).toLowerCase();
+      return la<lb?-1:la>lb?1:0;
+    });
+    var greyCount=greyIds.length, infoCount=infoIds.length;
+    var greyRows=greyIds.map(function(id){
+      var lbl=esc(greyLayerById[id].label||id);
+      return '<label style="display:flex;align-items:center;gap:0">'
+        +'<input type="checkbox" data-k="grey:'+id+'" checked style="margin-right:4px;flex-shrink:0">'
+        +'<span style="display:inline-block;width:9px;height:9px;border:2px solid '+GREY_MARKER_COLOR
+          +';border-radius:50%;vertical-align:middle;margin-right:4px"></span>'
+        +lbl+'</label>';
+    }).join('');
+    var infoRows=infoIds.map(function(id){
+      var lbl=esc(infoLayerById[id].label||id);
+      return '<label style="display:flex;align-items:center;gap:0">'
+        +'<input type="checkbox" data-k="info:'+id+'" checked style="margin-right:4px;flex-shrink:0">'
+        +'<span style="display:inline-block;width:11px;height:11px;border:1.5px solid '+INFO_MARKER_COLOR
+          +';border-radius:50%;text-align:center;font-size:8px;font-weight:700;color:'+INFO_MARKER_COLOR
+          +';line-height:8px;vertical-align:middle;margin-right:4px">?</span>'
+        +lbl+'</label>';
+    }).join('');
+
     function renderRow(e){
       var mj=esc(JSON.stringify(e.members));
       var swatch=e.vrsOnly
@@ -1026,6 +1092,11 @@
     var fullSep='border-top:1px solid #ddd;margin-top:4px;padding-top:4px;'+sepStyle;
     var vrsSwatchHtml='<span style="display:inline-block;width:9px;height:9px;border:2px solid '
       +VRS_COLOR+';border-radius:50%;vertical-align:middle;margin-right:4px;flex-shrink:0"></span>';
+    var greySwatchHtml='<span style="display:inline-block;width:9px;height:9px;border:2px solid '
+      +GREY_MARKER_COLOR+';border-radius:50%;vertical-align:middle;margin-right:4px;flex-shrink:0"></span>';
+    var infoSwatchHtml='<span style="display:inline-block;width:11px;height:11px;border:1.5px solid '
+      +INFO_MARKER_COLOR+';border-radius:50%;text-align:center;font-size:8px;font-weight:700;color:'
+      +INFO_MARKER_COLOR+';line-height:8px;vertical-align:middle;margin-right:4px;flex-shrink:0">?</span>';
     d.innerHTML='<details id="src-det" open><summary id="src-sum">Sources</summary>'
       +physRows
       +'<label style="'+fullSep+'display:flex;align-items:center;gap:4px" '
@@ -1043,6 +1114,26 @@
         : '<label style="'+sepStyle+'display:flex;align-items:center;gap:4px">'
             +'<input type="checkbox" data-k="vrs_global" checked>'
             +vrsSwatchHtml+'VRS circles</label>')
+      +(greyCount
+        ? '<details id="grey-det" style="'+sepStyle+'">'
+            +'<summary id="grey-sum" style="display:flex;align-items:center;gap:4px;font-size:12px">'
+              +'<input type="checkbox" data-k="grey_global" checked style="flex-shrink:0;margin-right:0">'
+              +greySwatchHtml
+              +'Pending ('+greyCount+')'
+            +'</summary>'
+            +greyRows
+          +'</details>'
+        : '')
+      +(infoCount
+        ? '<details id="info-det" style="'+sepStyle+'">'
+            +'<summary id="info-sum" style="display:flex;align-items:center;gap:4px;font-size:12px">'
+              +'<input type="checkbox" data-k="info_global" checked style="flex-shrink:0;margin-right:0">'
+              +infoSwatchHtml
+              +'Restricted ('+infoCount+')'
+            +'</summary>'
+            +infoRows
+          +'</details>'
+        : '')
       +'<details><summary>Access</summary>'
         +'<label><input type="checkbox" data-k="tier_open" checked> Free, no signup</label>'
         +'<label><input type="checkbox" data-k="tier_registration" checked> Free (registration)</label>'
@@ -1061,20 +1152,22 @@
       _rows.push({label:label, members:members, badge:label.querySelector('.view-badge')});
     });
 
-    // Prevent the VRS master checkbox from toggling the <details> open/closed.
-    var vrsGlobalCb=d.querySelector('input[data-k="vrs_global"]');
-    if(vrsGlobalCb) vrsGlobalCb.addEventListener('click',function(e){ e.stopPropagation(); });
+    // Prevent master checkboxes from toggling their <details> open/closed.
+    ['vrs_global','grey_global','info_global'].forEach(function(k){
+      var cb=d.querySelector('input[data-k="'+k+'"]');
+      if(cb) cb.addEventListener('click',function(e){ e.stopPropagation(); });
+    });
 
     d.querySelectorAll('input[data-m]').forEach(function(cb){
       cb.addEventListener('change',function(){
         JSON.parse(cb.dataset.m).forEach(function(sid){ state[sid]=cb.checked; });
-        applyVrs(); onChange(filterPred);
+        applyMarkers(); onChange(filterPred);
       });
     });
     d.querySelectorAll('input[data-k]').forEach(function(cb){
       cb.addEventListener('change',function(){
         state[cb.dataset.k]=cb.checked;
-        applyVrs(); onChange(filterPred);
+        applyMarkers(); onChange(filterPred);
       });
     });
 
@@ -1146,8 +1239,10 @@
       +sw('background:rgb(180,200,30)')+' 10\u201330 km \u2014 ~3 cm<br>'
       +sw('background:rgb(220,150,30)')+' 30\u201350 km \u2014 ~5 cm<br>'
       +sw('background:rgb(210,90,90)')+' 50\u2013100 km \u2014 &lt; 1 m<br>'
-      +sw('border:2px solid '+VRS_COLOR+';background:rgba(106,90,205,0.22);border-radius:50%')+' VRS network<br>'
       +sw('background:#aaa;border-radius:50%')+' Mountpoint data stale<br>'
+      +sw('border:2px solid '+VRS_COLOR+';background:rgba(192,25,106,0.25);border-radius:50%')+' VRS network<br>'
+      +sw('border:2px solid #aaa;background:rgba(170,170,170,0.12);border-radius:50%')+' Free (pending)<br>'
+      +'<span style="display:inline-block;width:12px;height:12px;border:1.5px solid #888;border-radius:50%;text-align:center;font-size:9px;font-weight:700;color:#888;line-height:11px;vertical-align:middle">?</span> Restricted<br>'
       +'<small id="leg-info">Loading\u2026</small>'
       +'</details>';
 
@@ -1165,12 +1260,16 @@
       var ts=Date.now();
       var results=await Promise.allSettled([
         fetchWithTimeout('./data/stations.json?ts='+ts,10000,{cache:'no-cache'}),
-        fetchWithTimeout('./data/source_health.json?ts='+ts,5000,{cache:'no-cache'})
+        fetchWithTimeout('./data/source_health.json?ts='+ts,5000,{cache:'no-cache'}),
+        fetchWithTimeout('./data/country_markers.json?ts='+ts,5000,{cache:'no-cache'})
       ]);
       if(results[0].status==='fulfilled'&&results[0].value.ok)
         data=await results[0].value.json();
       if(results[1].status==='fulfilled'&&results[1].value.ok)
         health=await results[1].value.json();
+      var cmRaw=null;
+      if(results[2].status==='fulfilled'&&results[2].value.ok)
+        cmRaw=await results[2].value.json();
     }catch(e){}
     setServers(data);
 
@@ -1224,13 +1323,19 @@
     map.createPane('vrsPane');
     map.getPane('vrsPane').style.zIndex=403; // above dotsPane (402); SVG paths receive events, container passes them through
     var vrsRenderer=L.svg({pane:'vrsPane',padding:0.5});
-    var vrsResult=buildVrsMarkers(vrsRenderer,SOURCE_STALE_DAYS,sourceCounts);
-    vrsResult.group.addTo(map);
-    var vrsLayerBySid=vrsResult.bySid;
+    var countryMarkers=(cmRaw&&cmRaw.markers)||[];
+    var cmResult=buildCountryMarkers(countryMarkers,vrsRenderer,SOURCE_STALE_DAYS,sourceCounts);
+    cmResult.group.addTo(map);
+    var vrsLayerBySid=cmResult.bySid;
+    var greyLayerById=cmResult.greyById;
+    var infoLayerById=cmResult.infoById;
     // pointer-events:all is geometric — fires on the stroke band regardless of opacity.
     // fill:false on the hit circle means no fill geometry, so the fill area is
     // not hittable and station dots inside the ring remain reachable.
     Object.values(vrsLayerBySid).forEach(function(entry){
+      var el=entry.hit.getElement(); if(el) el.style.pointerEvents='all';
+    });
+    Object.values(greyLayerById).forEach(function(entry){
       var el=entry.hit.getElement(); if(el) el.style.pointerEvents='all';
     });
 
@@ -1350,7 +1455,7 @@
     }
 
     var _clickPopup=L.popup({maxWidth:320});
-    var togglePanel=buildTogglePanel(sourceCounts,vrsLayerBySid,
+    var togglePanel=buildTogglePanel(sourceCounts,vrsLayerBySid,greyLayerById,infoLayerById,
       function(pred){ filter=pred; rebuildStationLayers(); });
     map.on('click',function(e){
       if(!stationIndex||!visible.length) return;

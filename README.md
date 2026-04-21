@@ -18,6 +18,10 @@ hobbyists and small shops looking for cm-accurate GPS corrections within
   (Free / Free with registration / Free with conditions).
 - Staleness display: sources offline 3–7 days shown as grey dots and excluded
   from the coverage raster; sources offline ≥7 days hidden entirely.
+- Country-level markers for regions with no physical pins: coloured VRS circles
+  (virtual networks with live data), grey circles (free networks pending
+  ingestion — Portugal, Lithuania, Thailand…), circled ? (paid or restricted
+  networks). All driven by `data/country_markers.json`.
 - Popups surface the three strings you need for your NTRIP client —
   server host, port, mountpoint name — each with a one-click copy button,
   plus a direct link to the registration page where one is needed.
@@ -121,10 +125,10 @@ pins on the map. Coverage polygons are deferred.
 
 A companion file `data/country_markers.json` (static, not pipeline-generated)
 records country-level knowledge for all 65 in-pipeline networks plus known
-networks not yet ingested: free networks with withheld endpoints (Portugal,
-Lithuania, Thailand, Uganda…), and paid or restricted networks (swipos, CPOS,
-SIGNAL, HEPOS, ROMPOS, AGROS, various US state paid networks, etc.). This
-backs a planned tier of country-centroid markers for blank map areas.
+networks not yet ingested. Three marker tiers appear on the map for regions
+with no physical pins: coloured VRS circles (virtual networks with live data),
+grey circles (free networks pending ingestion — Portugal, Lithuania, Thailand…),
+and circled ? (paid or restricted networks — swipos, CPOS, HEPOS, ROMPOS, etc.).
 
 See [`docs/networks.md`](docs/networks.md) for endpoints, credentials, and
 remaining candidates (11 deferred including 6 Italian regional networks).
