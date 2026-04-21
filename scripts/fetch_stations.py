@@ -116,6 +116,9 @@ SOURCES = [
     {"id": "ramsac",      "url": "http://ntrip.ign.gob.ar:2101/",
      "color": "#7b3f9e", "label": "RAMSAC",
      "access": "registration", "registration": "https://www.ign.gob.ar"},                # 8-hr session cap
+    {"id": "regna_rou",  "url": "http://rtk.igm.gub.uy:2101/",                          # Uruguay IGM; ~26 stations + VRS
+     "color": "#1a9e5c", "label": "REGNA-ROU",
+     "access": "registration", "registration": "https://rtk.igm.gub.uy/SBC/Account/Register"},  # free; 1000+ users
     {"id": "flepos",      "url": "http://flepos.vlaanderen.be:2101/",           # ntrip.flepos.be NXDOMAIN as of 2026-04
      "color": "#3a7ca5", "label": "FLEPOS",
      "access": "registration", "registration": "https://flepos.vlaanderen.be"},
