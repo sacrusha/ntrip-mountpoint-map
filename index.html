@@ -165,6 +165,60 @@
   @media(max-width:600px) and (prefers-color-scheme:dark){
     #sidebar{background:#1e3048;border-right-color:#2d4256;}
   }
+  /* Guide modal */
+  #guide-dialog{border:none;padding:0;max-width:780px;width:90vw;max-height:90vh;
+    border-radius:8px;box-shadow:0 8px 32px rgba(0,0,0,.35);
+    display:flex;flex-direction:column;overflow:hidden;}
+  #guide-dialog::backdrop{background:rgba(0,0,0,.5);}
+  #guide-dialog-hd{display:flex;align-items:center;padding:12px 16px;
+    background:#1b2b3a;color:#e8eef4;font-size:14px;font-weight:600;flex-shrink:0;}
+  #guide-dialog-title{flex:1;}
+  #guide-dialog-close{background:transparent;border:none;color:#94a7b8;font-size:22px;
+    cursor:pointer;padding:0 0 0 12px;line-height:1;}
+  #guide-dialog-body{overflow-y:auto;flex:1;}
+  #guide-dialog-body main{max-width:none;padding:20px 24px 40px;
+    font-family:system-ui,-apple-system,sans-serif;color:#1a1a1a;}
+  #guide-dialog-body h1{font-size:20px;font-weight:700;margin:0 0 6px;}
+  #guide-dialog-body .subtitle{color:#555;font-size:14px;margin:0 0 24px;display:block;}
+  #guide-dialog-body h2{font-size:15px;font-weight:700;margin:24px 0 8px;
+    color:#1b2b3a;border-bottom:2px solid #e2e8f0;padding-bottom:4px;}
+  #guide-dialog-body h3{font-size:13px;font-weight:600;margin:14px 0 5px;color:#333;}
+  #guide-dialog-body p,#guide-dialog-body ul,#guide-dialog-body ol{
+    font-size:14px;line-height:1.65;margin:0 0 10px;color:#333;}
+  #guide-dialog-body ul,#guide-dialog-body ol{padding-left:20px;}
+  #guide-dialog-body li{margin-bottom:3px;}
+  #guide-dialog-body a{color:#2a5894;}
+  #guide-dialog-body .callout{background:#f0f4ff;border-left:3px solid #4a7fc1;
+    padding:10px 14px;border-radius:0 4px 4px 0;margin:14px 0;font-size:13px;line-height:1.6;}
+  #guide-dialog-body table{width:100%;border-collapse:collapse;font-size:13px;margin:10px 0 14px;}
+  #guide-dialog-body th{background:#1b2b3a;color:#e8eef4;padding:7px 10px;text-align:left;}
+  #guide-dialog-body td{padding:7px 10px;border-bottom:1px solid #e2e8f0;vertical-align:top;}
+  #guide-dialog-body tr:nth-child(even) td{background:#f9fafb;}
+  #guide-dialog-body .price{white-space:nowrap;font-weight:600;}
+  #guide-dialog-body code{background:#f0f2f5;border:1px solid #dde2e8;
+    border-radius:3px;padding:1px 5px;font-size:12px;font-family:ui-monospace,monospace;}
+  #guide-dialog-body dl.glossary dt{font-weight:600;margin-top:12px;color:#1b2b3a;}
+  #guide-dialog-body dl.glossary dd{margin:2px 0 0;font-size:14px;line-height:1.6;color:#444;}
+  #guide-dialog-body .cov{display:flex;align-items:center;gap:8px;margin:3px 0;font-size:13px;}
+  #guide-dialog-body .sw{width:14px;height:14px;border-radius:2px;flex-shrink:0;}
+  @media(max-width:600px){
+    #guide-dialog{width:100%;max-width:100%;max-height:100%;border-radius:0;margin:0;}
+    #guide-dialog-body main{padding:16px 14px 40px;}
+  }
+  @media(prefers-color-scheme:dark){
+    #guide-dialog-body main{color:#e8eef4;background:#121921;}
+    #guide-dialog-body h2{color:#9ec8ff;border-bottom-color:#243447;}
+    #guide-dialog-body h3{color:#c8d8e8;}
+    #guide-dialog-body .subtitle{color:#94a7b8;}
+    #guide-dialog-body p,#guide-dialog-body ul,#guide-dialog-body ol{color:#c8d8e8;}
+    #guide-dialog-body a{color:#9ec8ff;}
+    #guide-dialog-body .callout{background:#1a2d40;border-left-color:#5a8fc1;}
+    #guide-dialog-body td{border-bottom-color:#243447;}
+    #guide-dialog-body tr:nth-child(even) td{background:#1a2d40;}
+    #guide-dialog-body code{background:#0d1922;border-color:#2d4256;color:#9ec8ff;}
+    #guide-dialog-body dl.glossary dt{color:#9ec8ff;}
+    #guide-dialog-body dl.glossary dd{color:#94a7b8;}
+  }
 </style>
 </head>
 <body>
@@ -182,8 +236,15 @@
     <p><i>Network RTK — what this map is about</i> — pairs a dual-band receiver with corrections streamed over the internet from a nearby reference station. Within 30 km of a station, centimetre accuracy is typical. If you already own a survey-grade or dual-frequency receiver, it likely supports this. Complete ready-to-use units start around €449 / $490; tinkerer kits from ~€275.</p>
     <p><b>What the map shows</b><br>
     Each pin is a free public reference station. Click it for connection details. The colour zones show reliable range: green &lt; 10 km (typically &lt; 2 cm) · yellow-green 10–30 km · amber 30–50 km · pale red 50–100 km (decimetre range). Purple circles are virtual networks — one connection point, the network synthesises a nearby reference for you.</p>
-    <p class="how-cta"><a href="./guide.html?from=map" target="_blank" rel="noopener noreferrer">&#x2192; Full guide: hardware, how to connect, setting up your own base station</a></p>
+    <p class="how-cta"><a href="./guide.html" onclick="event.preventDefault();openGuideDialog();">&#x2192; Full guide: hardware, how to connect, setting up your own base station</a></p>
   </div>
+</dialog>
+<dialog id="guide-dialog" aria-label="RTK GPS guide">
+  <div id="guide-dialog-hd">
+    <span id="guide-dialog-title">RTK GPS: a plain-English guide</span>
+    <button id="guide-dialog-close" aria-label="Close">×</button>
+  </div>
+  <div id="guide-dialog-body"></div>
 </dialog>
 <div id="detail-panel" role="complementary" aria-label="Details">
   <div id="detail-panel-hd">
@@ -699,7 +760,7 @@
     return '<div class="popup-plain"><h3>'+esc(label)+'</h3>'
       +'<div class="acc">'+accuracySummary(s.carrier)+'</div>'
       +warn+blocks
-      +'<p class="guide-link"><a href="./guide.html?from=map" target="_blank" rel="noopener noreferrer">'
+      +'<p class="guide-link"><a href="./guide.html" onclick="event.preventDefault();openGuideDialog();">'
       +'Receiver setup guide →</a></p>'
       +'</div>';
   }
@@ -1353,6 +1414,31 @@
 
     rebuildStationLayers();
   });
+})();
+
+// Guide modal — must be global for inline onclick in popup HTML
+var _guideLoaded=false;
+function openGuideDialog(){
+  var dlg=document.getElementById('guide-dialog');
+  if(!dlg) return;
+  if(_guideLoaded){dlg.showModal();return;}
+  fetch('./guide.html')
+    .then(function(r){return r.text();})
+    .then(function(html){
+      var doc=new DOMParser().parseFromString(html,'text/html');
+      var main=doc.querySelector('main');
+      var body=document.getElementById('guide-dialog-body');
+      if(main&&body) body.appendChild(document.adoptNode(main));
+      _guideLoaded=true;
+      dlg.showModal();
+    })
+    .catch(function(){window.open('./guide.html','_blank');});
+}
+(function(){
+  var dlg=document.getElementById('guide-dialog');
+  if(!dlg) return;
+  document.getElementById('guide-dialog-close').onclick=function(){dlg.close();};
+  dlg.addEventListener('click',function(e){if(e.target===dlg)dlg.close();});
 })();
 </script>
 </body>
