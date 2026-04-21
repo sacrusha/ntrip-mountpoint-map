@@ -69,7 +69,7 @@ a:hover{color:#1b2b3a;}
 <p>Search for <em>PPP receiver</em>, <em>SSR GNSS</em>, or <em>Galileo HAS</em> to explore those options. This map isn't about them.</p>
 
 <h2 id="why">Why standard GPS is only accurate to metres</h2>
-<p>GPS satellites broadcast precise timing signals. By the time those signals reach your receiver they have been slowed by the atmosphere, distorted by satellite clock drift, and bounced off nearby surfaces. These errors compound to 5–10 metres under typical conditions. Nothing is wrong with your receiver — that is simply the limit of standalone GPS.</p>
+<p>GPS satellites broadcast precise timing signals. By the time those signals reach your receiver, they have been slowed by the atmosphere, distorted by satellite clock drift, and bounced off nearby surfaces. These errors compound to 5–10 metres under typical conditions. Nothing is wrong with your receiver — that is simply the limit of standalone GPS.</p>
 <p>The chip in your receiver is capable of much better. What it lacks is a way to measure those errors in real time. A reference station at a precisely-surveyed fixed point can measure the same errors and broadcast a correction. Your receiver applies the correction and the error largely cancels out.</p>
 
 <h2 id="how">How RTK works</h2>
@@ -89,12 +89,12 @@ a:hover{color:#1b2b3a;}
     <tr>
       <td><strong>ArduSimple RTK Handheld 2 Kit</strong></td>
       <td class="price">~€449 / $490</td>
-      <td><strong>Android preferred.</strong> Compact, battery included, Bluetooth. On Android, works system-wide via mock location — ArcGIS, QField, and any mapping app see it. On iOS, works only within apps with built-in driver support (SW Maps is currently the only option). Made in Spain, ships worldwide.</td>
+      <td><strong>Android preferred.</strong> Compact, battery included, Bluetooth. On Android, it works system-wide via mock location — ArcGIS, QField, and any mapping app see it. On iOS, it works only within apps with built-in driver support (SW Maps is currently the only option).</td>
     </tr>
     <tr>
       <td><strong>SparkFun RTK Facet</strong></td>
       <td class="price">~$739</td>
-      <td><strong>Android preferred.</strong> All-in-one rover with built-in antenna. NTRIP client built in; connects via Bluetooth. On Android, works system-wide — ArcGIS, QField, and any mapping app see it. On iOS, works only within apps with built-in driver support (SW Maps is currently the only option). Open-source firmware. Available from Mouser, Digi-Key, and SparkFun directly.</td>
+      <td><strong>Android preferred.</strong> All-in-one rover with built-in antenna. NTRIP client built in; connects via Bluetooth. On Android, it works system-wide — ArcGIS, QField, and any mapping app see it. On iOS, it works only within apps with built-in driver support (SW Maps is currently the only option). Open-source firmware. Available from Mouser, Digi-Key, and SparkFun directly.</td>
     </tr>
     <tr>
       <td><strong>Bad Elf Flex Mini Extreme</strong></td>
@@ -141,8 +141,8 @@ a:hover{color:#1b2b3a;}
   <li><strong>Port</strong> — usually 2101</li>
   <li><strong>Mountpoint</strong> — the correction stream name</li>
 </ol>
-<p>Most clients will ask you to send your approximate position to the server (a NMEA GGA sentence). Most receivers and clients do this automatically — it lets the server pick the best corrections for your location.</p>
-<p><strong>Your antenna must be outdoors</strong> with a clear, unobstructed view of the sky. Mount it vertically. Indoors, under tree cover, or near tall buildings, RTK will not work reliably regardless of how close the reference station is.</p>
+<p>Most clients will ask you to send your approximate position to the server (an NMEA GGA sentence). Most receivers and clients do this automatically — it lets the server pick the best corrections for your location.</p>
+<p><strong>Your antenna must be outdoors</strong> with a clear, unobstructed view of the sky. Indoors, under tree cover, or near tall buildings, RTK will not work reliably regardless of how close the reference station is.</p>
 <p><strong>What success looks like:</strong> your client will show the correction stream as connected. Within about 30–60 seconds your receiver should report a <em>fix</em> (some receivers show this as "RTK Fixed" or a green indicator). Once fixed, position updates will reflect centimetre-level accuracy. If your software shows coordinates jumping around at metre scale, the receiver is still in <em>float</em> — wait another minute or try a different mountpoint.</p>
 <div class="callout"><strong>Troubleshooting</strong><br>
 <strong>Connection refused or times out:</strong> check the host and port; some networks use a non-standard port listed in the map popup.<br>
