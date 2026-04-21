@@ -54,10 +54,9 @@ entry to `SOURCE_AUTH` in `index.html` for connection hints in popups.
 Develop on feature branches, PR into `main`. The workflow only runs against
 `main`, so ingestion changes need to land there to be exercised.
 
-## Current state (2026-04-21, branch claude/generate-top-countries-list-J9YKK)
+## Current state (2026-04-21, branch claude/vrs-batch-mountpoints-lkoxd)
 
-**65 sources, ~6,000+ stations** in `data/stations.json` (estimate; EarthScope
-overlap means US state DOT additions may not all produce net-new pins). Sources:
+**65 sources, ~5,472 stations** in `data/stations.json`. Sources:
 rtk2go, Centipede, FReDNet, GeoRTK, 14× SAPOS Länder, ERGNSS, APOS (AT),
 AUSCORS, PositioNZ, SatRef HK, InaCORS, TrigNet, RBMC-IP, RAMSAC, REGNA-ROU (UY),
 FLEPOS, WALCORS, SPSLux, ASG-EUPOS, CROPOS, ESTPOS, LatPos, IGAC, EarthScope NOTA,
@@ -72,16 +71,32 @@ AzCORS, GCGC RTN, AlCORS, ORGN, MSRN, NYSNet, InCORS, IARTN,
 `SOURCE_LABELS` in the frontend are populated from JSON at load time — not
 hardcoded. `SOURCE_AUTH` (credentials and popup hints) stays in `index.html`.
 
+**VRS / network-solution filtering:** `parse_sourcetable` now drops mountpoints
+where the NTRIP `nmea` field (field 11) is `"1"`. NMEA=1 means the caster
+requires the rover to send its position, which is the defining trait of VRS,
+iMAX, MAC, FKP, and NEAREST streams — they have no fixed antenna and report a
+fake reference coordinate. Physical single-base stations always have NMEA=0.
+This drops 104 virtual mountpoints across sources that the old `filter_vrs`
+heuristic (same-coordinate pile) couldn't catch: FReDNet (−11), IGAC (−17),
+InaCORS (−4), REGNA-ROU (−19), SAPOS HE (−4) / RP (−11) / SL (−6), SPSLux
+(−17), IceCORS (−12), Centipede (−2 NEAR/NEAR4), CORS-KOREA (−5 format
+variants).
+
+Two casters incorrectly tag their physical stations with NMEA=1 and get
+`"nmea_filter": False` in `SOURCES`: **rtk2go** (caster-wide misconfiguration
+— all 764 physical stations tagged nmea=1) and **GeoRTK** (2 physical u-blox
+F9P stations). Any future source with the same issue gets the same exception.
+
 **VRS-only networks** (CROPOS, ASG-EUPOS, FLEPOS, WALCORS, ESTPOS, LatPos,
 KSA-CORS, 10 SAPOS states, + 6 US state DOT: KyCORS, MnCORS, ODOT RTN,
 MoDOT RTN, WVRTN, MaineDOT) expose only virtual mountpoints — correctly
-dropped to 0 stations by `filter_vrs()`. Shown as purple stopgap circles in
-the Sources toggle panel with a ring swatch and `(VRS)` count badge. Toggling
-hides/shows the circle and respects tier filters. `VRS_NETWORKS` in
-`index.html` holds the centroids; SAPOS states with physical-coord data (HE,
-RP, SL, SN) are excluded. APOS (AT) and all Italian regional networks are
-physical-coord-vrs — show as regular pins with `pins:true` VRS badges. Full
-NRTK polygons are deferred.
+dropped to 0 stations by the nmea filter or `filter_vrs()`. Shown as purple
+stopgap circles in the Sources toggle panel with a ring swatch and `(VRS)`
+count badge. Toggling hides/shows the circle and respects tier filters.
+`VRS_NETWORKS` in `index.html` holds the centroids; SAPOS states with
+physical-coord data (HE, RP, SL, SN) are excluded. APOS (AT) and all Italian
+regional networks are physical-coord-vrs — show as regular pins with
+`pins:true` VRS badges. Full NRTK polygons are deferred.
 
 **`yearly_cost` field in `docs/networks.md`:** all paid and paid-affordable
 entries carry a `**yearly_cost**:` field for reference (not yet in JSON).
@@ -141,6 +156,10 @@ Deduplication is a future task.
 - **rtk2go carrier field:** blank for most entries even on RTCM 3.x MSM
   streams. Parser infers `carrier = 2` when format starts with `RTCM 3`;
   without this, only ~2 of 800+ rtk2go mountpoints survive. Preserve this.
+- **rtk2go nmea field:** all entries (including physical single-base stations)
+  have `nmea=1`. This is a caster misconfiguration. `"nmea_filter": False` in
+  SOURCES prevents the nmea filter from dropping the entire network. If you
+  remove that flag, rtk2go drops to 0 stations.
 - **Workflow push race:** cron runs can race human PR merges. The push step
   has a 3-attempt rebase-retry loop; don't simplify it.
 - **Leaflet `L.DomUtil.create` signature:** third arg is a DOM parent, not a

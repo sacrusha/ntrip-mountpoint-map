@@ -34,7 +34,8 @@ SOURCES = [
     # See docs/networks.md for per-source detail.
     {"id": "rtk2go",      "url": "http://rtk2go.com:2101/",
      "color": "#d00000", "label": "rtk2go",
-     "access": "open",         "registration": None},                            # username=any email, pass=none
+     "access": "open",         "registration": None,                             # username=any email, pass=none
+     "nmea_filter": False},                                                       # caster tags all physical stations nmea=1
     {"id": "centipede",   "url": "http://crtk.net:2101/",                       # migrated from caster.centipede.fr 2025-03-18
      "color": "#e87500", "label": "Centipede",
      "access": "open",         "registration": None},                            # user=centipede pass=centipede
@@ -43,7 +44,8 @@ SOURCES = [
      "access": "registration", "registration": "https://frednet.crs.ogs.it/"},  # free email registration
     {"id": "geortk",      "url": "http://geortk.jp:2101/",
      "color": "#1a7a4a", "label": "GeoRTK",
-     "access": "open",         "registration": None},                            # no auth
+     "access": "open",         "registration": None,                             # no auth
+     "nmea_filter": False},                                                       # caster tags physical stations nmea=1
     # SAPOS — German federal-state RTK networks. Sourcetables publicly readable;
     # RTCM streams require per-Länder registration. Most Länder free; BY €20/yr
     # flat rate for non-agricultural use. Raw TCP (NTRIP 1.0) fallback required.
@@ -279,7 +281,7 @@ def fetch(url: str) -> str:
         return _fetch_ntrip1(parsed.hostname, parsed.port or 2101)
 
 
-def parse_sourcetable(text: str) -> tuple[list[dict], dict]:
+def parse_sourcetable(text: str, nmea_filter: bool = True) -> tuple[list[dict], dict]:
     """Parse an NTRIP sourcetable.
 
     NTRIP STR line fields (0-based after splitting on ';'):
@@ -289,9 +291,18 @@ def parse_sourcetable(text: str) -> tuple[list[dict], dict]:
 
     Drops DGNSS-only mountpoints (carrier == 0) — out of the site's
     sub-50-cm scope.
+
+    When nmea_filter is True (default), also drops mountpoints where the NMEA
+    field is "1".  NMEA=1 means the caster requires the rover to send its
+    position, which is the defining trait of VRS/network-solution streams
+    (iMAX, MAC, FKP, NEAREST, etc.) — they have no fixed antenna location and
+    report a fake reference coordinate.  Physical single-base stations always
+    have NMEA=0.  Set nmea_filter=False in SOURCES for any caster that
+    incorrectly tags real physical stations with NMEA=1.
     """
     stations: list[dict] = []
     dropped_dgnss = 0
+    dropped_net = 0
     dropped_bad = 0
     for line in text.splitlines():
         if not line.startswith("STR;"):
@@ -306,6 +317,7 @@ def parse_sourcetable(text: str) -> tuple[list[dict], dict]:
         country = fields[8].strip() if len(fields) > 8 else ""
         lat_str = fields[9].strip()
         lon_str = fields[10].strip()
+        nmea = fields[11].strip() if len(fields) > 11 else ""
         # rtk2go leaves the carrier field blank for most entries even though
         # they broadcast RTCM 3.x carrier-phase observations. Trust the
         # format string as a fallback: RTCM 3.x MSM streams are cm-capable.
@@ -324,6 +336,9 @@ def parse_sourcetable(text: str) -> tuple[list[dict], dict]:
             continue
         if carrier not in (1, 2, 3):
             dropped_bad += 1
+            continue
+        if nmea_filter and nmea == "1":
+            dropped_net += 1
             continue
         try:
             lat = float(lat_str)
@@ -355,7 +370,8 @@ def parse_sourcetable(text: str) -> tuple[list[dict], dict]:
             "country": country,
         })
     stations.sort(key=lambda s: (s["name"], s["latStr"], s["lonStr"]))
-    stats = {"kept": len(stations), "dropped_dgnss": dropped_dgnss, "dropped_bad": dropped_bad}
+    stats = {"kept": len(stations), "dropped_dgnss": dropped_dgnss,
+             "dropped_net": dropped_net, "dropped_bad": dropped_bad}
     return stations, stats
 
 
@@ -398,15 +414,17 @@ def fetch_source(src: dict) -> tuple[str, dict, bool]:
     color = src.get("color", "")
     label = src.get("label", "")
     prev_last_ok = src.get("_prev_last_ok")
+    nmea_filter = src.get("nmea_filter", True)
     raw_path = DATA_DIR / f"{sid}.sourcetable"
     try:
         text = fetch(url)
-        stations, stats = parse_sourcetable(text)
+        stations, stats = parse_sourcetable(text, nmea_filter=nmea_filter)
         stations, dropped_vrs = filter_vrs(stations)
+        net_note = f", {stats['dropped_net']} net-sol" if stats["dropped_net"] else ""
         vrs_note = f", {dropped_vrs} VRS" if dropped_vrs else ""
         now_iso = datetime.now(timezone.utc).isoformat(timespec="seconds")
         print(f"[{sid}] fetched {len(stations)} stations "
-              f"(dropped {stats['dropped_dgnss']} DGNSS, {stats['dropped_bad']} invalid{vrs_note})")
+              f"(dropped {stats['dropped_dgnss']} DGNSS, {stats['dropped_bad']} invalid{net_note}{vrs_note})")
         return sid, {
             "url": url,
             "color": color,
@@ -426,10 +444,11 @@ def fetch_source(src: dict) -> tuple[str, dict, bool]:
         if raw_path.exists():
             try:
                 text = raw_path.read_text()
-                stations, stats = parse_sourcetable(text)
+                stations, stats = parse_sourcetable(text, nmea_filter=nmea_filter)
                 stations, dropped_vrs = filter_vrs(stations)
+                net_note = f", {stats['dropped_net']} net-sol" if stats["dropped_net"] else ""
                 vrs_note = f", {dropped_vrs} VRS" if dropped_vrs else ""
-                print(f"[{sid}] reusing cached sourcetable ({len(stations)} stations{vrs_note})")
+                print(f"[{sid}] reusing cached sourcetable ({len(stations)} stations{net_note}{vrs_note})")
                 return sid, {
                     "url": url,
                     "color": color,

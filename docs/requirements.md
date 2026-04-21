@@ -40,7 +40,11 @@ Hourly GitHub Actions workflow (`.github/workflows/update-stations.yml`):
 2. Parse STR lines. Drop `carrier == 0` (DGNSS-only). When the carrier
    field is empty and format begins with `RTCM 3.x`, infer `carrier = 2`
    (rtk2go publishes most entries with blank carrier — required to
-   retain them).
+   retain them). Drop mountpoints where `nmea == 1` — the defining trait
+   of VRS/iMAX/MAC/FKP/NEAREST streams, which have no fixed antenna and
+   report a fake reference coordinate. Sources where the caster
+   misconfigures physical stations as `nmea=1` get `"nmea_filter": false`
+   in `SOURCES` (currently rtk2go and GeoRTK).
 3. Tag each station with `carrier` (1 = L1, 2 = L1+L2, 3 = tri-band),
    `carrierInferred` flag, `format`, `legacyFormat` (RTCM 2.x), and
    `country`.
