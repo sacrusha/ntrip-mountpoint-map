@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <title>NTRIP Mountpoint Map</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="https://unpkg.com/kdbush@3.0.0/kdbush.min.js"></script>
@@ -122,11 +123,11 @@
   }
   #legend{background:white;padding:8px 12px;border-radius:5px;border:1px solid #bbb;font-size:11px;line-height:1.55;color:#222;}
   /* Frosted-glass backgrounds when used as Leaflet controls (desktop only) */
-  .leaflet-control #toggles{
+  #toggles.leaflet-control{
     background:rgba(255,255,255,0.88);
     -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
     padding:8px 12px;border-radius:5px;border:1px solid rgba(0,0,0,0.12);}
-  .leaflet-control #legend{
+  #legend.leaflet-control{
     background:rgba(255,255,255,0.88);
     -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
     border-color:rgba(0,0,0,0.12);}
@@ -163,8 +164,8 @@
     #toggles{color:#e8eef4;}
     #toggles summary{color:#94a7b8;}
     #legend{background:#1e3048;border-color:#2d4256;color:#e8eef4;}
-    .leaflet-control #toggles{background:rgba(14,22,34,0.88);border-color:rgba(255,255,255,0.1);}
-    .leaflet-control #legend{background:rgba(14,22,34,0.88);border-color:rgba(255,255,255,0.1);color:#e8eef4;}
+    #toggles.leaflet-control{background:rgba(14,22,34,0.88);border-color:rgba(255,255,255,0.1);}
+    #legend.leaflet-control{background:rgba(14,22,34,0.88);border-color:rgba(255,255,255,0.1);color:#e8eef4;}
     #leg-info{color:#94a7b8;}
     #how-dialog{background:#1e3048;color:#e8eef4;}
     #how-dialog a{color:#9ec8ff;}
