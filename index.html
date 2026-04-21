@@ -15,8 +15,7 @@
   body.banner-visible #shell{top:32px;}
   #map{min-width:0;min-height:0;}
   #sidebar{overflow:hidden;display:flex;flex-direction:column;
-    background:#fff;border-right:1px solid #dde3ea;z-index:400;
-    transition:width 0.25s ease;}
+    background:#fff;border-right:1px solid #dde3ea;z-index:400;}
   #sidebar-inner{flex:1;overflow-y:auto;padding:8px;}
   @media(min-width:601px) and (max-width:1024px) and (orientation:portrait){
     :root{--sw:280px;}
@@ -55,9 +54,11 @@
   .popup-plain .anote{color:#555;font-size:11px;font-style:italic;margin:3px 0 1px 0;}
   .popup-plain .anote code{background:#f2f4f7;border:1px solid #e2e6eb;
     border-radius:3px;padding:0 4px;font-size:11px;font-style:normal;}
-  #toggles{background:white;padding:10px 12px;border-radius:5px;
-    border:1px solid #bbb;font-size:12px;line-height:1.6;color:#222;
-    max-width:220px;}
+  .popup-plain .guide-link{margin:8px 0 0;padding-top:8px;border-top:1px solid #eee;font-size:11px;}
+  .popup-plain .guide-link a{color:#2a5894;}
+  .how-cta{margin:14px 0 0;padding:8px 12px;background:#f0f4ff;border-left:3px solid #4a7fc1;border-radius:0 4px 4px 0;font-size:13px;}
+  .how-cta a{color:#2a5894;font-weight:600;}
+  #toggles{font-size:12px;line-height:1.6;color:#222;}
   #toggles label{display:block;cursor:pointer;}
   #toggles input{margin-right:6px;vertical-align:middle;}
   #toggles details{margin-top:6px;}
@@ -97,15 +98,16 @@
   #detail-panel-close{background:transparent;border:none;font-size:22px;
     line-height:1;cursor:pointer;color:#555;padding:0 0 0 8px;
     min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:flex-end;}
-  #detail-panel-body{padding:12px 16px 32px;}
+  #detail-panel-body{padding:12px 16px calc(32px + env(safe-area-inset-bottom));}
   #detail-panel-body .popup-plain{max-width:none;}
-  @media(min-width:601px){
+  /* Detail panel as right sidebar: landscape mid-size, or any screen ≥1025px wide. */
+  @media(min-width:601px) and (min-aspect-ratio:1/1),(min-width:1025px){
     #detail-panel{left:auto;right:0;top:0;bottom:0;width:320px;
       border-radius:0;max-height:none;
       transform:translateX(110%);}
     #detail-panel.open{transform:translateX(0);}
   }
-  /* Filter FAB — mobile only */
+  /* Filter FAB — mobile only (≤600px) */
   #filter-fab{display:none;}
   @media(max-width:600px){
     #filter-fab{display:flex;position:fixed;bottom:20px;right:16px;z-index:10001;
@@ -141,8 +143,12 @@
     .popup-plain button.cp:hover{background:#2d4256;}
     .popup-plain button.cp.ok{background:#1a3d2a;color:#4caf77;border-color:#2d6040;}
     .popup-plain .anote{color:#94a7b8;}
+    .popup-plain .guide-link{border-top-color:#2d4256;}
+    .popup-plain .guide-link a{color:#9ec8ff;}
+    .how-cta{background:#1a2d40;border-left-color:#5a8fc1;}
+    .how-cta a{color:#9ec8ff;}
     .popup-plain .anote code{background:#0d1922;border-color:#2d4256;}
-    #toggles{background:#1e3048;border-color:#2d4256;color:#e8eef4;}
+    #toggles{color:#e8eef4;}
     #toggles summary{color:#94a7b8;}
     #legend{background:#1e3048;border-color:#2d4256;color:#e8eef4;}
     #leg-info{color:#94a7b8;}
@@ -152,6 +158,7 @@
     #detail-panel,#detail-panel-hd{background:#1e3048;color:#e8eef4;border-bottom-color:#2d4256;}
     #detail-panel-close{color:#94a7b8;}
     #filter-fab{background:#2d4256;color:#e8eef4;}
+    #sidebar{background:#1e3048;border-right-color:#2d4256;}
   }
 </style>
 </head>
@@ -170,7 +177,7 @@
     <p><i>Network RTK — what this map is about</i> — pairs a dual-band receiver with corrections streamed over the internet from a nearby reference station. Within 30 km of a station, centimetre accuracy is typical. If you already own a survey-grade or dual-frequency receiver, it likely supports this. Complete ready-to-use units start around €449 / $490; tinkerer kits from ~€275.</p>
     <p><b>What the map shows</b><br>
     Each pin is a free public reference station. Click it for connection details. The colour zones show reliable range: green &lt; 10 km (typically &lt; 2 cm) · yellow-green 10–30 km · amber 30–50 km · pale red 50–100 km (decimetre range). Purple circles are virtual networks — one connection point, the network synthesises a nearby reference for you.</p>
-    <p style="border-top:1px solid rgba(128,128,128,0.25);margin-top:14px;padding-top:10px"><a href="./guide.html" style="font-weight:600">&#x2192; Full guide: hardware options, how to connect, and how to set up your own base station if you're outside coverage</a></p>
+    <p class="how-cta"><a href="./guide.html" target="_blank" rel="noopener noreferrer">&#x2192; Full guide: hardware, how to connect, setting up your own base station</a></p>
   </div>
 </dialog>
 <div id="detail-panel" role="complementary" aria-label="Details">
@@ -686,7 +693,10 @@
       : '';
     return '<div class="popup-plain"><h3>'+esc(label)+'</h3>'
       +'<div class="acc">'+accuracySummary(s.carrier)+'</div>'
-      +warn+blocks+'</div>';
+      +warn+blocks
+      +'<p class="guide-link"><a href="./guide.html" target="_blank" rel="noopener noreferrer">'
+      +'Receiver setup guide →</a></p>'
+      +'</div>';
   }
 
   function precLabel(dLat,dLon,lat){
@@ -1076,6 +1086,10 @@
     setupBanner();
     var map=L.map('map',{preferCanvas:true,worldCopyJump:true,minZoom:2}).setView([47.0,8.0],8);
 
+    // Single source of truth for desktop vs mobile layout — must match the CSS
+    // @media(min-width:601px) and (min-aspect-ratio:1/1),(min-width:1025px) rule.
+    var DESKTOP_MQ=window.matchMedia('(min-width:601px) and (min-aspect-ratio:1/1),(min-width:1025px)');
+
     // OSM canonical tile URL (no subdomain rotation per OSM tile policy)
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{
       maxZoom:19,
@@ -1089,19 +1103,19 @@
       var sw=function(s){return '<span style="display:inline-block;width:12px;height:12px;vertical-align:middle;'+s+'"></span>';};
       d.innerHTML=
         '<details id="leg-det" open>'
-        +'<summary id="leg-sum">Coverage</summary>'
+        +'<summary id="leg-sum">Legend</summary>'
         +sw('background:rgb(0,170,0)')+' &lt; 10 km \u2014 ~2 cm<br>'
         +sw('background:rgb(180,200,30)')+' 10\u201330 km \u2014 ~3 cm<br>'
         +sw('background:rgb(220,150,30)')+' 30\u201350 km \u2014 ~5 cm<br>'
-        +sw('background:rgb(210,90,90)')+' 50\u2013100 km \u2014 ~10 cm\u20131 m<br>'
+        +sw('background:rgb(210,90,90)')+' 50\u2013100 km \u2014 &lt; 1 m<br>'
         +sw('border:2px solid '+VRS_COLOR+';background:rgba(106,90,205,0.22);border-radius:50%')+' VRS network<br>'
-        +sw('background:#aaa;border-radius:50%')+' Station data stale (3\u20137 days)<br>'
+        +sw('background:#aaa;border-radius:50%')+' Mountpoint data stale<br>'
         +'<small id="leg-info">Loading\u2026</small>'
         +'</details>';
       return d;
     };
     leg.addTo(map);
-    if(window.innerWidth<600){var ld=document.getElementById('leg-det');if(ld)ld.removeAttribute('open');}
+    if(!DESKTOP_MQ.matches){var ld=document.getElementById('leg-det');if(ld)ld.removeAttribute('open');}
 
     var data=null, health=null;
     try{
@@ -1287,14 +1301,21 @@
     // Filter panel lives permanently in #sidebar-inner (CSS grid handles all viewport sizes).
     // On mobile (≤600px), the FAB toggles body.sidebar-open which slides the sidebar in.
     var sidebarInner=document.getElementById('sidebar-inner');
+    var sidebar=document.getElementById('sidebar');
     if(sidebarInner) sidebarInner.appendChild(togglePanel.dom);
     var fab=document.getElementById('filter-fab');
     if(fab){
+      function afterSlide(){
+        if(!sidebar) return;
+        sidebar.addEventListener('transitionend',function h(){
+          sidebar.removeEventListener('transitionend',h);
+          map.invalidateSize();
+        });
+      }
       fab.onclick=function(){
         var open=document.body.classList.toggle('sidebar-open');
-        fab.setAttribute('aria-expanded', open ? 'true' : 'false');
-        // map column width changes — tell Leaflet
-        setTimeout(function(){ map.invalidateSize(); }, 260);
+        fab.setAttribute('aria-expanded',open?'true':'false');
+        afterSlide();
       };
       // Tap on the overlay closes sidebar
       document.addEventListener('click',function(e){
@@ -1302,7 +1323,7 @@
            !e.target.closest('#sidebar') && e.target!==fab && !fab.contains(e.target)){
           document.body.classList.remove('sidebar-open');
           fab.setAttribute('aria-expanded','false');
-          setTimeout(function(){ map.invalidateSize(); }, 260);
+          afterSlide();
         }
       });
     }
@@ -1311,10 +1332,13 @@
 
     function finishLoad(){
       var li=document.getElementById('leg-info');
-      var updatedLabel=updated
-        ? new Date(updated).toISOString().replace('T',' ').slice(0,16)+' UTC'
-        : 'unknown';
-      if(li) li.textContent=visible.length.toLocaleString()+' stations \u00b7 updated '+updatedLabel;
+      var updatedLabel;
+      if(!updated){ updatedLabel='unknown'; }
+      else {
+        var h=Math.round((Date.now()-new Date(updated).getTime())/3600000);
+        updatedLabel=(h<1?'< 1':h)+' h ago';
+      }
+      if(li) li.innerHTML=visible.length.toLocaleString()+' stations<br>updated '+updatedLabel;
       updateViewCounts();
     }
 
