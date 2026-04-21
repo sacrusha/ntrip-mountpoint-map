@@ -135,11 +135,6 @@ Deduplication is a future task.
 
 ## Gotchas
 
-- **Corrupt cached sourcetable kills the fetch thread:** in `fetch_source`,
-  `parse_sourcetable()` on the cached file is called outside the
-  `try/except` block. A corrupted `.sourcetable` would raise an unhandled
-  exception and kill that thread. Pre-existing; low probability (files are
-  written atomically). Fix when adding per-source retry logic.
 - **rtk2go carrier field:** blank for most entries even on RTCM 3.x MSM
   streams. Parser infers `carrier = 2` when format starts with `RTCM 3`;
   without this, only ~2 of 800+ rtk2go mountpoints survive. Preserve this.

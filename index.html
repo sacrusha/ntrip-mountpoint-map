@@ -244,7 +244,7 @@
     {label:'SAPOS', color:'#2d6e6e',
      match:function(sid){ return sid.indexOf('sapos_')===0; }},
   ];
-  var MIXED_COLOR='#555', UNKNOWN_SOURCE_COLOR='#888', VRS_COLOR='#c0196a';
+  var MULTI_COLOR='#222', UNKNOWN_SOURCE_COLOR='#888', VRS_COLOR='#c0196a';
 
   // VRS centroid markers.
   // pins:false — single-coord-VRS: no physical stations on map; centroid is
@@ -326,8 +326,8 @@
   }
   function stationColor(s){
     var ids=stationSourceIds(s);
-    if(ids.length>1) return MIXED_COLOR;
-    return sourceColor(ids[0]);
+    if(ids.length===1) return sourceColor(ids[0]);
+    return MULTI_COLOR;
   }
 
   // Zoom bands — switch between raster-only, raster+dots, detailed view.
@@ -520,8 +520,7 @@
     var byKey={};
     Object.keys(bySource).forEach(function(sid){
       bySource[sid].forEach(function(st){
-        var nkey=st.name.toLowerCase();
-        var k=nkey+'|'+posKey(st);
+        var k=posKey(st);
         var e=byKey[k];
         if(e){
           (e.sources[sid]=e.sources[sid]||[]).push(st.name);
