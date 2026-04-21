@@ -1,0 +1,256 @@
+{
+  "_note": "Static country-level markers for networks with no physical station pins. Consumed by index.html alongside stations.json. Three tiers: 'vrs' (in-pipeline VRS-only, coloured circle), 'deferred' (free network not yet ingested, grey circle), 'info' (paid or restricted, circled ?). VRS entries use source_id to look up color and registration URL from stations.json at runtime. Replaces the pins:false subset of VRS_NETWORKS in index.html — frontend migration pending.",
+  "markers": [
+
+    {"id":"asg_eupos",   "name":"ASG-EUPOS", "region":"Poland",                       "country":"PL", "lat":52.00, "lon":21.00,  "tier":"vrs", "source_id":"asg_eupos",   "stations_declared":130},
+    {"id":"cropos",      "name":"CROPOS",     "region":"Croatia",                      "country":"HR", "lat":45.20, "lon":15.50,  "tier":"vrs", "source_id":"cropos",      "stations_declared":35},
+    {"id":"flepos",      "name":"FLEPOS",     "region":"Belgium (Flanders)",           "country":"BE", "lat":51.00, "lon":4.50,   "tier":"vrs", "source_id":"flepos",      "stations_declared":45},
+    {"id":"walcors",     "name":"WALCORS",    "region":"Belgium (Wallonia)",           "country":"BE", "lat":50.30, "lon":4.80,   "tier":"vrs", "source_id":"walcors",     "stations_declared":23},
+    {"id":"latpos",      "name":"LatPos",     "region":"Latvia",                       "country":"LV", "lat":56.90, "lon":24.10,  "tier":"vrs", "source_id":"latpos",      "stations_declared":27},
+    {"id":"estpos",      "name":"ESTPOS",     "region":"Estonia",                      "country":"EE", "lat":58.60, "lon":25.00,  "tier":"vrs", "source_id":"estpos",      "stations_declared":40},
+    {"id":"ksa_cors",    "name":"KSA-CORS",   "region":"Saudi Arabia",                 "country":"SA", "lat":24.00, "lon":45.00,  "tier":"vrs", "source_id":"ksa_cors",    "stations_declared":209},
+
+    {"id":"sapos_SH_HH", "name":"SAPOS",      "region":"Schleswig-Holstein + Hamburg", "country":"DE", "lat":54.30, "lon":9.90,   "tier":"vrs", "source_id":"sapos_SH_HH", "stations_declared":null},
+    {"id":"sapos_NI",    "name":"SAPOS",      "region":"Niedersachsen + Bremen",       "country":"DE", "lat":52.62, "lon":9.00,   "tier":"vrs", "source_id":"sapos_NI",    "stations_declared":null},
+    {"id":"sapos_NW",    "name":"SAPOS",      "region":"Nordrhein-Westfalen",          "country":"DE", "lat":51.43, "lon":7.66,   "tier":"vrs", "source_id":"sapos_NW",    "stations_declared":null},
+    {"id":"sapos_BW",    "name":"SAPOS",      "region":"Baden-Württemberg",            "country":"DE", "lat":48.52, "lon":9.06,   "tier":"vrs", "source_id":"sapos_BW",    "stations_declared":null},
+    {"id":"sapos_BY",    "name":"SAPOS",      "region":"Bayern",                       "country":"DE", "lat":48.14, "lon":11.58,  "tier":"vrs", "source_id":"sapos_BY",    "stations_declared":null},
+    {"id":"sapos_BE",    "name":"SAPOS",      "region":"Berlin",                       "country":"DE", "lat":52.48, "lon":13.30,  "tier":"vrs", "source_id":"sapos_BE",    "stations_declared":null},
+    {"id":"sapos_BB",    "name":"SAPOS",      "region":"Brandenburg",                  "country":"DE", "lat":52.23, "lon":13.05,  "tier":"vrs", "source_id":"sapos_BB",    "stations_declared":null},
+    {"id":"sapos_MV",    "name":"SAPOS",      "region":"Mecklenburg-Vorpommern",       "country":"DE", "lat":53.61, "lon":12.43,  "tier":"vrs", "source_id":"sapos_MV",    "stations_declared":null},
+    {"id":"sapos_LSA",   "name":"SAPOS",      "region":"Sachsen-Anhalt",               "country":"DE", "lat":51.90, "lon":11.70,  "tier":"vrs", "source_id":"sapos_LSA",   "stations_declared":null},
+    {"id":"sapos_TH",    "name":"SAPOS",      "region":"Thüringen",                    "country":"DE", "lat":51.01, "lon":11.03,  "tier":"vrs", "source_id":"sapos_TH",    "stations_declared":null},
+
+    {"id":"kycors",      "name":"KyCORS",     "region":"Kentucky",                     "country":"US", "lat":37.80, "lon":-84.90, "tier":"vrs", "source_id":"kycors",      "stations_declared":null},
+    {"id":"mncors",      "name":"MnCORS",     "region":"Minnesota",                    "country":"US", "lat":46.40, "lon":-94.00, "tier":"vrs", "source_id":"mncors",      "stations_declared":null},
+    {"id":"odot_rtn",    "name":"ODOT RTN",   "region":"Ohio",                         "country":"US", "lat":40.40, "lon":-82.80, "tier":"vrs", "source_id":"odot_rtn",    "stations_declared":null},
+    {"id":"modot_rtn",   "name":"MoDOT RTN",  "region":"Missouri",                     "country":"US", "lat":38.40, "lon":-92.50, "tier":"vrs", "source_id":"modot_rtn",   "stations_declared":null},
+    {"id":"wvrtn",       "name":"WVRTN",      "region":"West Virginia",                "country":"US", "lat":38.60, "lon":-80.50, "tier":"vrs", "source_id":"wvrtn",       "stations_declared":null},
+    {"id":"mainedot",    "name":"MaineDOT",   "region":"Maine",                        "country":"US", "lat":44.90, "lon":-69.00, "tier":"vrs", "source_id":"mainedot",    "stations_declared":null},
+
+    {"id":"renep",       "name":"ReNEP",           "region":"Portugal",               "country":"PT", "lat":39.50, "lon":-8.00,
+     "tier":"deferred", "access":"registration", "registration":"https://renep.dgterritorio.gov.pt",
+     "stations_declared":47,
+     "note":"47 stations, free. Endpoint disclosed only after account approval — register at renep.dgterritorio.gov.pt."},
+
+    {"id":"litpos",      "name":"LitPOS",           "region":"Lithuania",             "country":"LT", "lat":55.90, "lon":23.90,
+     "tier":"deferred", "access":"registration", "registration":"https://geoportal.lt/web/litpos-en",
+     "stations_declared":35,
+     "note":"35 stations, free (publicly-funded EUPOS member). NTRIP host:port not publicly listed — contact LitPOS@geoportal.lt."},
+
+    {"id":"zakpos",      "name":"ZAKPOS",           "region":"Ukraine (west)",        "country":"UA", "lat":49.50, "lon":26.00,
+     "tier":"deferred", "access":"registration",
+     "stations_declared":50,
+     "note":"~50 stations; was free. Service disrupted since Feb 2022 invasion. Status unknown — do not rely on."},
+
+    {"id":"gpsbru",      "name":"GPSBru / AGN",     "region":"Belgium (Brussels)",    "country":"BE", "lat":50.85, "lon":4.35,
+     "tier":"deferred", "access":"registration", "registration":"https://agn.ngi.be",
+     "stations_declared":1,
+     "note":"Single station at Uccle observatory, free. Port unconfirmed. Useful only within ~30 km of Brussels."},
+
+    {"id":"ugrf",        "name":"UGRF CORS",        "region":"Uganda",                "country":"UG", "lat":1.30,  "lon":32.30,
+     "tier":"deferred", "access":"registration", "registration":"https://ugrf.go.ug/SBC",
+     "stations_declared":78,
+     "note":"78 stations, free as of 2024. Endpoint disclosed only post-registration at ugrf.go.ug."},
+
+    {"id":"etcors",      "name":"ETCORS",           "region":"Ethiopia",              "country":"ET", "lat":9.00,  "lon":38.70,
+     "tier":"deferred", "access":"registration",
+     "stations_declared":10,
+     "note":"~10 stations, intended free. Launched Dec 2025 by SSGI; NTRIP endpoint not yet publicly discoverable."},
+
+    {"id":"thailand_dol","name":"DOL LandGNSS",     "region":"Thailand",              "country":"TH", "lat":15.00, "lon":101.00,
+     "tier":"deferred", "access":"registration", "registration":"https://dol-rtknetwork.com",
+     "stations_declared":null,
+     "note":"Free government service. Host:port not found in public aggregators; manual available in Thai at dol-rtknetwork.com."},
+
+    {"id":"tpos",        "name":"TPOS",             "region":"Trentino",              "country":"IT", "lat":46.10, "lon":11.10,
+     "tier":"deferred", "access":"registration", "registration":"https://tpos.provincia.tn.it",
+     "stations_declared":11,
+     "note":"11 stations, free. Endpoint disclosed only after account approval at tpos.provincia.tn.it."},
+
+    {"id":"stpos",       "name":"STPOS",            "region":"South Tyrol / Alto Adige", "country":"IT", "lat":46.50, "lon":11.40,
+     "tier":"deferred", "access":"registration", "registration":"https://stpos.it",
+     "stations_declared":10,
+     "note":"10 stations, free. Endpoint disclosed only after account approval at stpos.it."},
+
+    {"id":"gnss_veneto", "name":"Rete GNSS Veneto", "region":"Veneto",               "country":"IT", "lat":45.70, "lon":12.00,
+     "tier":"deferred", "access":"registration", "registration":"https://retegnssveneto.cisas.unipd.it",
+     "stations_declared":20,
+     "note":"~20 stations, free on request. Endpoint not publicly listed — contact via retegnssveneto.cisas.unipd.it."},
+
+    {"id":"gnss_liguria","name":"Rete GNSS Liguria", "region":"Liguria",             "country":"IT", "lat":44.40, "lon":8.60,
+     "tier":"deferred", "access":"registration",
+     "stations_declared":10,
+     "note":"10 stations, free. Endpoint not publicly listed — contact via geoportal.regione.liguria.it."},
+
+    {"id":"sicilianet",  "name":"Sicili@net",       "region":"Sicily + S. Calabria", "country":"IT", "lat":37.60, "lon":14.00,
+     "tier":"deferred", "access":"registration", "registration":"https://www.ct.ingv.it",
+     "stations_declared":80,
+     "note":"~80 stations (INGV Catania seismic network), free registration. Endpoint not publicly listed."},
+
+    {"id":"molise_gnss", "name":"Rete GNSS Molise", "region":"Molise",               "country":"IT", "lat":41.60, "lon":14.70,
+     "tier":"deferred", "access":"registration",
+     "stations_declared":4,
+     "note":"~4 stations. NTRIP delivery unconfirmed — contact regione.molise.it."},
+
+    {"id":"acorn",       "name":"ACORN",            "region":"Alaska",                "country":"US", "lat":64.20, "lon":-153.40,
+     "tier":"deferred", "access":"registration",
+     "stations_declared":null,
+     "note":"Free-intended Alaska CORS network (Alaska DOT/PF). NTRIP endpoint not confirmed from public sources."},
+
+    {"id":"hepos",       "name":"HEPOS",            "region":"Greece",                "country":"GR", "lat":38.50, "lon":23.80,
+     "tier":"info", "access":"paid-affordable", "yearly_cost":"~€160 per 3-month block (~$170)",
+     "note":"~€160/3 months — worth considering for seasonal use. Subscribe at ktimatologio.gr."},
+
+    {"id":"rompos",      "name":"ROMPOS",           "region":"Romania",               "country":"RO", "lat":45.90, "lon":25.00,
+     "tier":"info", "access":"paid-affordable", "yearly_cost":"~€169/yr (~$183)",
+     "note":"~€169/yr — under the cost of a capable base station. Subscribe at rompos.ro."},
+
+    {"id":"swipos",      "name":"swipos",           "region":"Switzerland",           "country":"CH", "lat":46.80, "lon":8.20,
+     "tier":"info", "access":"paid", "yearly_cost":"CHF 1,500/yr (~$1,650)",
+     "note":"CHF 1,500/yr. At this price a local base station is likely more practical. Volunteer rtk2go/Centipede bases provide partial free coverage."},
+
+    {"id":"cpos",        "name":"CPOS / ETPOS",     "region":"Norway",                "country":"NO", "lat":65.50, "lon":16.30,
+     "tier":"info", "access":"paid", "yearly_cost":"NOK 8,000+/yr (~$740)",
+     "note":"NOK 8,000+/yr via kartverket.no. Volunteer rtk2go/Centipede bases exist in populated areas (Oslofjord, Vestlandet)."},
+
+    {"id":"signal",      "name":"SIGNAL",           "region":"Slovenia",              "country":"SI", "lat":46.10, "lon":14.80,
+     "tier":"info", "access":"paid", "yearly_cost":"€829/yr (~$905)",
+     "note":"€829/yr (€622 early discount) via gu-signal.si. Volunteer rtk2go/Centipede bases provide partial free coverage."},
+
+    {"id":"swepos",      "name":"SWEPOS Network RTK","region":"Sweden",               "country":"SE", "lat":62.00, "lon":15.50,
+     "tier":"info", "access":"paid", "yearly_cost":"~9,000 SEK/yr (~$850)",
+     "note":"~SEK 9,000/yr via lantmateriet.se. Free DGNSS tier available but sub-metre only (out of scope)."},
+
+    {"id":"sirent",      "name":"SiReNT",           "region":"Singapore",             "country":"SG", "lat":1.35,  "lon":103.82,
+     "tier":"info", "access":"paid", "yearly_cost":"SGD $107/month (~$960/yr)",
+     "note":"SGD $107/month via sla.gov.sg. 3-day trial requires SingPass (residents only)."},
+
+    {"id":"myrtk",       "name":"MyRTKnet",         "region":"Malaysia",              "country":"MY", "lat":3.80,  "lon":109.70,
+     "tier":"info", "access":"paid",
+     "note":"Paid subscription (Survey Act cost-recovery). 78 stations. Contact jupem.gov.my."},
+
+    {"id":"tusaga",      "name":"TUSAGA-Aktif",     "region":"Turkey",                "country":"TR", "lat":39.00, "lon":35.00,
+     "tier":"info", "access":"paid",
+     "note":"Paid membership + annual fee. Pricing not publicly listed — contact harita.gov.tr."},
+
+    {"id":"vngeonet",    "name":"VNGEONET",         "region":"Vietnam",               "country":"VN", "lat":16.50, "lon":107.50,
+     "tier":"info", "access":"paid",
+     "note":"Was free until Aug 2024; fees apply since Sep 2024 per Circular 47/2024/TT-BTC. 65 stations."},
+
+    {"id":"pagenet",     "name":"PAGeNet",          "region":"Philippines",           "country":"PH", "lat":12.90, "lon":122.70,
+     "tier":"info", "access":"paid", "yearly_cost":"PHP 1,000 one-time + subscription",
+     "note":"PHP 1,000 one-time + ongoing subscription (EO 471). 52 stations. Contact namria.gov.ph."},
+
+    {"id":"gnssnet_hu",  "name":"GNSSnet.hu",       "region":"Hungary",               "country":"HU", "lat":47.20, "lon":19.30,
+     "tier":"info", "access":"paid",
+     "note":"Paid; pricing not public. Note: Centipede has ~223 volunteer nodes in Hungary — dense free alternative already on map."},
+
+    {"id":"agros",       "name":"AGROS",            "region":"Serbia",                "country":"RS", "lat":44.00, "lon":21.00,
+     "tier":"info", "access":"paid",
+     "note":"Paid subscription. No English pricing page — contact rgz.gov.rs."},
+
+    {"id":"montepos",    "name":"MONTEPOS",         "region":"Montenegro",            "country":"ME", "lat":42.70, "lon":19.40,
+     "tier":"info", "access":"paid",
+     "note":"Paid subscription tiers. Contact upco.gov.me."},
+
+    {"id":"bihos",       "name":"BiHPOS",           "region":"Bosnia and Herzegovina","country":"BA", "lat":44.20, "lon":17.50,
+     "tier":"info", "access":"paid",
+     "note":"Paid; dual-entity administration (FBiH + RS). Pricing not publicly listed."},
+
+    {"id":"egnss_tw",    "name":"e-GNSS",           "region":"Taiwan",                "country":"TW", "lat":23.70, "lon":121.00,
+     "tier":"info", "access":"paid",
+     "note":"Pay-per-use + paper form registration (mail/fax). Contact NLSC/MoI via nlsc.gov.tw."},
+
+    {"id":"czepos",      "name":"CZEPOS",           "region":"Czech Republic",        "country":"CZ", "lat":49.80, "lon":15.50,
+     "tier":"info", "access":"restricted",
+     "note":"Free for education/government; commercial use paid (ČÚZK Decree 31/1995). No general hobbyist path."},
+
+    {"id":"skpos",       "name":"SKPOS",            "region":"Slovakia",              "country":"SK", "lat":48.70, "lon":19.70,
+     "tier":"info", "access":"restricted",
+     "note":"Free for public sector/municipalities; commercial use paid. No general hobbyist path."},
+
+    {"id":"soi_cors",    "name":"SoI-CORS",         "region":"India",                 "country":"IN", "lat":20.60, "lon":78.90,
+     "tier":"info", "access":"restricted", "yearly_cost":"₹5,032/month (~$720/yr) for private users",
+     "note":"Free only for Central/State Government and academic institutions. Private users pay ₹5,032/month (~$720/yr)."},
+
+    {"id":"bc_rtn",      "name":"BC RTN",           "region":"British Columbia",      "country":"CA", "lat":53.70, "lon":-127.60,
+     "tier":"info", "access":"paid",
+     "note":"Paid regional subscription via GeoBC (gov.bc.ca/geobc). No Canadian province offers free public NTRIP."},
+
+    {"id":"scrtn",       "name":"SCRTN",            "region":"South Carolina",        "country":"US", "lat":33.80, "lon":-81.20,
+     "tier":"info", "access":"paid",
+     "note":"Paid subscription. Contact SCDOT for pricing (scdot.org)."},
+
+    {"id":"ncrtn",       "name":"NCRTN",            "region":"North Carolina",        "country":"US", "lat":35.80, "lon":-79.00,
+     "tier":"info", "access":"paid", "yearly_cost":"~$500/yr",
+     "note":"~$500/yr via ncems.org."},
+
+    {"id":"tdot_rtn",    "name":"TDOT RTN",         "region":"Tennessee",             "country":"US", "lat":35.90, "lon":-86.60,
+     "tier":"info", "access":"paid", "yearly_cost":"~$450/yr",
+     "note":"~$450/yr via tn.gov/tdot."},
+
+    {"id":"turn_gps",    "name":"TURN GPS",         "region":"Utah",                  "country":"US", "lat":39.30, "lon":-111.10,
+     "tier":"info", "access":"paid", "yearly_cost":"~$600/yr",
+     "note":"~$600/yr via turngps.org."},
+
+    {"id":"mtsrn",       "name":"MTSRN",            "region":"Montana",               "country":"US", "lat":47.00, "lon":-110.00,
+     "tier":"info", "access":"paid", "yearly_cost":"~$1,500/yr",
+     "note":"~$1,500/yr via mdt.mt.gov."},
+
+    {"id":"wsrn",        "name":"WSRN",             "region":"Washington",            "country":"US", "lat":47.40, "lon":-120.50,
+     "tier":"info", "access":"paid", "yearly_cost":"~$1,900/yr",
+     "note":"~$1,900/yr via wsdot.wa.gov."},
+
+    {"id":"txrtn",       "name":"TxDOT CORS",       "region":"Texas",                 "country":"US", "lat":31.00, "lon":-100.00,
+     "tier":"info", "access":"restricted",
+     "note":"TxDOT employees and contractors only. No public or hobbyist registration."},
+
+    {"id":"calrtns",     "name":"CalRTNS",          "region":"California",            "country":"US", "lat":37.50, "lon":-119.60,
+     "tier":"info", "access":"restricted",
+     "note":"Access restricted to vetted state/county agency partners. No general public registration."},
+
+    {"id":"frednet",     "name":"FReDNet",          "region":"Friuli-Venezia Giulia + border AT/SI", "country":"IT", "lat":46.00, "lon":13.50,  "tier":"vrs", "pins":true, "source_id":"frednet"},
+    {"id":"ergnss",      "name":"ERGNSS",           "region":"Spain",                "country":"ES", "lat":40.40, "lon":-3.70,  "tier":"vrs", "pins":true, "source_id":"ergnss",    "stations_declared":128},
+    {"id":"satref",      "name":"SatRef",           "region":"Hong Kong",            "country":"HK", "lat":22.30, "lon":114.20, "tier":"vrs", "pins":true, "source_id":"satref",    "stations_declared":19},
+    {"id":"inacors",     "name":"InaCORS",          "region":"Indonesia",            "country":"ID", "lat":-2.50, "lon":118.00, "tier":"vrs", "pins":true, "source_id":"inacors",   "stations_declared":200},
+    {"id":"igac",        "name":"IGAC MAGNA-ECO",   "region":"Colombia",             "country":"CO", "lat":4.70,  "lon":-74.10, "tier":"vrs", "pins":true, "source_id":"igac",      "stations_declared":233},
+    {"id":"spslux",      "name":"SPSLux",           "region":"Luxembourg",           "country":"LU", "lat":49.80, "lon":6.10,   "tier":"vrs", "pins":true, "source_id":"spslux",    "stations_declared":17},
+    {"id":"icecors",     "name":"IceCORS",          "region":"Iceland",              "country":"IS", "lat":64.90, "lon":-18.50, "tier":"vrs", "pins":true, "source_id":"icecors",   "stations_declared":20},
+    {"id":"cors_korea",  "name":"CORS-KOREA",       "region":"South Korea",          "country":"KR", "lat":36.50, "lon":127.80, "tier":"vrs", "pins":true, "source_id":"cors_korea","stations_declared":100},
+    {"id":"apos",        "name":"APOS",             "region":"Austria",              "country":"AT", "lat":47.50, "lon":14.10,  "tier":"vrs", "pins":true, "source_id":"apos",      "stations_declared":37},
+    {"id":"auscors",     "name":"AUSCORS",          "region":"Australia",            "country":"AU", "lat":-25.30,"lon":133.80, "tier":"vrs", "pins":true, "source_id":"auscors",   "stations_declared":813},
+    {"id":"positionz",   "name":"PositioNZ",        "region":"New Zealand",          "country":"NZ", "lat":-41.30,"lon":174.80, "tier":"vrs", "pins":true, "source_id":"positionz", "stations_declared":62},
+    {"id":"trignet",     "name":"TrigNet",          "region":"South Africa",         "country":"ZA", "lat":-29.00,"lon":25.00,  "tier":"vrs", "pins":true, "source_id":"trignet",   "stations_declared":72},
+    {"id":"rbmc_ip",     "name":"RBMC-IP",          "region":"Brazil",               "country":"BR", "lat":-14.20,"lon":-53.20, "tier":"vrs", "pins":true, "source_id":"rbmc_ip",   "stations_declared":150},
+    {"id":"ramsac",      "name":"RAMSAC",           "region":"Argentina",            "country":"AR", "lat":-34.00,"lon":-64.00, "tier":"vrs", "pins":true, "source_id":"ramsac",    "stations_declared":203},
+    {"id":"regna_rou",   "name":"REGNA-ROU",        "region":"Uruguay",              "country":"UY", "lat":-33.00,"lon":-56.00, "tier":"vrs", "pins":true, "source_id":"regna_rou", "stations_declared":26},
+    {"id":"mirai",       "name":"MIRAI / Go!GNSS",  "region":"Japan",               "country":"JP", "lat":36.20, "lon":138.30, "tier":"vrs", "pins":true, "source_id":"mirai",     "stations_declared":325},
+    {"id":"geortk",      "name":"GeoRTK",           "region":"Japan",                "country":"JP", "lat":36.20, "lon":138.30, "tier":"vrs", "pins":true, "source_id":"geortk",    "stations_declared":41},
+    {"id":"sapos_HE",    "name":"SAPOS",            "region":"Hessen",               "country":"DE", "lat":50.60, "lon":9.10,   "tier":"vrs", "pins":true, "source_id":"sapos_HE",  "stations_declared":4},
+    {"id":"sapos_RP",    "name":"SAPOS",            "region":"Rheinland-Pfalz",      "country":"DE", "lat":50.00, "lon":7.30,   "tier":"vrs", "pins":true, "source_id":"sapos_RP",  "stations_declared":17},
+    {"id":"sapos_SL",    "name":"SAPOS",            "region":"Saarland",             "country":"DE", "lat":49.40, "lon":7.00,   "tier":"vrs", "pins":true, "source_id":"sapos_SL",  "stations_declared":14},
+    {"id":"sapos_SN",    "name":"SAPOS",            "region":"Sachsen",              "country":"DE", "lat":51.10, "lon":13.20,  "tier":"vrs", "pins":true, "source_id":"sapos_SN",  "stations_declared":null},
+
+    {"id":"spin3",             "name":"SPIN3 GNSS",        "region":"Piemonte + Lombardia + VdA","country":"IT","lat":45.50,"lon":8.00,  "tier":"vrs","pins":true,"source_id":"spin3",             "stations_declared":39},
+    {"id":"gpsumbria",         "name":"GPS-UMBRIA",        "region":"Umbria",               "country":"IT","lat":43.00,"lon":12.50, "tier":"vrs","pins":true,"source_id":"gpsumbria",         "stations_declared":12},
+    {"id":"gnss_abruzzo_lazio","name":"GNSS Abruzzo+Lazio","region":"Abruzzo + Lazio",      "country":"IT","lat":42.00,"lon":13.50, "tier":"vrs","pins":true,"source_id":"gnss_abruzzo_lazio","stations_declared":29},
+    {"id":"sit_puglia",        "name":"SIT Puglia",        "region":"Puglia",               "country":"IT","lat":40.50,"lon":17.00, "tier":"vrs","pins":true,"source_id":"sit_puglia",        "stations_declared":12},
+    {"id":"gnss_campania",     "name":"GNSS Campania",     "region":"Campania",             "country":"IT","lat":40.80,"lon":14.50, "tier":"vrs","pins":true,"source_id":"gnss_campania",     "stations_declared":18},
+
+    {"id":"wiscors",   "name":"WISCORS",   "region":"Wisconsin",           "country":"US","lat":44.50,"lon":-90.00, "tier":"vrs","pins":true,"source_id":"wiscors",   "stations_declared":180},
+    {"id":"fprn",      "name":"FPRN",      "region":"Florida",             "country":"US","lat":27.80,"lon":-82.50, "tier":"vrs","pins":true,"source_id":"fprn",      "stations_declared":120},
+    {"id":"ardot_rtn", "name":"ARDOT RTN", "region":"Arkansas",            "country":"US","lat":34.80,"lon":-92.30, "tier":"vrs","pins":true,"source_id":"ardot_rtn", "stations_declared":50},
+    {"id":"macors",    "name":"MaCORS",    "region":"Massachusetts",       "country":"US","lat":42.30,"lon":-71.50, "tier":"vrs","pins":true,"source_id":"macors",    "stations_declared":22},
+    {"id":"vector",    "name":"VECTOR VT", "region":"Vermont",             "country":"US","lat":44.00,"lon":-72.70, "tier":"vrs","pins":true,"source_id":"vector",    "stations_declared":15},
+    {"id":"azcors",    "name":"AzCORS",    "region":"Arizona",             "country":"US","lat":34.00,"lon":-111.90,"tier":"vrs","pins":true,"source_id":"azcors",    "stations_declared":51},
+    {"id":"gcgc_rtn",  "name":"GCGC RTN",  "region":"Mississippi / Gulf Coast","country":"US","lat":31.00,"lon":-89.50,"tier":"vrs","pins":true,"source_id":"gcgc_rtn",  "stations_declared":35},
+    {"id":"alcors",    "name":"AlCORS",    "region":"Alabama",             "country":"US","lat":32.70,"lon":-86.70, "tier":"vrs","pins":true,"source_id":"alcors",    "stations_declared":50},
+    {"id":"orgn",      "name":"ORGN",      "region":"Oregon",              "country":"US","lat":44.00,"lon":-120.50,"tier":"vrs","pins":true,"source_id":"orgn",      "stations_declared":100},
+    {"id":"msrn",      "name":"MSRN",      "region":"Michigan",            "country":"US","lat":43.90,"lon":-84.70, "tier":"vrs","pins":true,"source_id":"msrn",      "stations_declared":120},
+    {"id":"nysnet",    "name":"NYSNet",    "region":"New York",            "country":"US","lat":42.90,"lon":-75.60, "tier":"vrs","pins":true,"source_id":"nysnet",    "stations_declared":150},
+    {"id":"incors",    "name":"InCORS",    "region":"Indiana",             "country":"US","lat":39.80,"lon":-86.20, "tier":"vrs","pins":true,"source_id":"incors",    "stations_declared":70},
+    {"id":"iartn",     "name":"IARTN",     "region":"Iowa",                "country":"US","lat":42.00,"lon":-93.50, "tier":"vrs","pins":true,"source_id":"iartn",     "stations_declared":83}
+
+  ]
+}
