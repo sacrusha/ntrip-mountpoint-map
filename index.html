@@ -486,8 +486,7 @@
   })();
 
   // Build a KDBush static spatial index over station lat/lon (x=lon, y=lat).
-  // Returns null if KDBush failed to load or the set is empty — callers
-  // fall back to linear iteration in that case.
+  // Returns null if KDBush failed to load or the set is empty.
   function buildStationIndex(stations){
     if(typeof KDBush==='undefined'||!stations||!stations.length) return null;
     return new KDBush(stations,
@@ -805,8 +804,9 @@
       L.DomUtil.remove(this._canvas);
       this._canvas=null; this._ctx=null; this._map=null;
     },
-    setStations:function(stations){
+    setStations:function(stations,index){
       this._stations=stations||[];
+      this._index=index||null;
       if(this._map) this._update();
     },
     _update:function(){
@@ -823,12 +823,20 @@
       ctx.setTransform(1,0,0,1,0,0);
       ctx.clearRect(0,0,size.x,size.y);
       ctx.translate(-bounds.min.x,-bounds.min.y);
-      var stations=this._stations, n=stations.length;
+      var stations=this._stations;
+      if(!stations.length) return;
+      var nw=map.layerPointToLatLng(bounds.min);
+      var se=map.layerPointToLatLng(bounds.max);
+      var ids=this._index
+        ?this._index.range(Math.min(nw.lng,se.lng),Math.min(nw.lat,se.lat),
+                           Math.max(nw.lng,se.lng),Math.max(nw.lat,se.lat))
+        :null;
+      var n=ids?ids.length:stations.length;
       if(!n) return;
       var R=4, TAU=Math.PI*2;
       var pts=new Float32Array(n*2), byColor={};
       for(var i=0;i<n;i++){
-        var s=stations[i], pt=map.latLngToLayerPoint([s.lat,s.lon]);
+        var s=stations[ids?ids[i]:i], pt=map.latLngToLayerPoint([s.lat,s.lon]);
         pts[i*2]=pt.x; pts[i*2+1]=pt.y;
         (byColor[s._color]||(byColor[s._color]=[])).push(i);
       }
@@ -850,30 +858,21 @@
     }
   });
 
-  // Incremental detail layer: tracks currently-shown entries in _detailMap
-  // so pan operations only add/remove the viewport delta instead of
-  // clearing and rebuilding all markers on every moveend.
   var _detailMap=new Map(); // posKey → {rect, marker}
   var _detailShowRect=false;
   function resetDetailMap(){_detailMap.clear();}
 
   function refreshDetailLayer(map,stations,detail,index,showRect){
+    if(!index) return;
     var b=map.getBounds().pad(0.2);
     if(showRect!==_detailShowRect){
       _detailMap.clear();
       detail.clearLayers();
       _detailShowRect=showRect;
     }
-    var ids=index
-      ? index.range(b.getWest(),b.getSouth(),b.getEast(),b.getNorth())
-      : null;
-    var count=ids?ids.length:stations.length;
+    var ids=index.range(b.getWest(),b.getSouth(),b.getEast(),b.getNorth());
     var inView=new Set();
-    for(var k=0;k<count;k++){
-      var s=stations[ids?ids[k]:k];
-      if(!ids&&!b.contains([s.lat,s.lon])) continue;
-      inView.add(posKey(s));
-    }
+    for(var k=0;k<ids.length;k++) inView.add(posKey(stations[ids[k]]));
     _detailMap.forEach(function(entry,key){
       if(!inView.has(key)){
         if(entry.rect) detail.removeLayer(entry.rect);
@@ -881,9 +880,8 @@
         _detailMap.delete(key);
       }
     });
-    for(var k=0;k<count;k++){
-      var s=stations[ids?ids[k]:k];
-      if(!ids&&!b.contains([s.lat,s.lon])) continue;
+    for(var k=0;k<ids.length;k++){
+      var s=stations[ids[k]];
       var pk=posKey(s);
       if(_detailMap.has(pk)) continue;
       var entry={};
@@ -1385,7 +1383,7 @@
       });
       stationIndex=buildStationIndex(visible);
       resetDetailMap();
-      dotsLayer.setStations(visible);
+      dotsLayer.setStations(visible,stationIndex);
       var coverageVisible=visible.filter(function(s){ return stationStaleDays(s)<STALE_GREY_DAYS; });
       coverage.setStations(coverageVisible,null);
       applyZoom();
@@ -1418,17 +1416,13 @@
         .setContent(getCachedPopup(visible[best])).openOn(map);
     });
 
-    // In-view count: tally visible stations per source within current bounds.
     function updateViewCounts(){
       var b=map.getBounds();
       var counts={};
-      var ids=stationIndex
-        ?stationIndex.range(b.getWest(),b.getSouth(),b.getEast(),b.getNorth())
-        :null;
-      var n=ids?ids.length:visible.length;
-      for(var i=0;i<n;i++){
-        var s=visible[ids?ids[i]:i];
-        stationSourceIds(s).forEach(function(sid){ counts[sid]=(counts[sid]||0)+1; });
+      if(stationIndex){
+        var ids=stationIndex.range(b.getWest(),b.getSouth(),b.getEast(),b.getNorth());
+        for(var i=0;i<ids.length;i++)
+          stationSourceIds(visible[ids[i]]).forEach(function(sid){ counts[sid]=(counts[sid]||0)+1; });
       }
       togglePanel.applyDeclutter(counts);
     }
