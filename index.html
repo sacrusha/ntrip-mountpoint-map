@@ -182,7 +182,7 @@
     <p><i>Network RTK — what this map is about</i> — pairs a dual-band receiver with corrections streamed over the internet from a nearby reference station. Within 30 km of a station, centimetre accuracy is typical. If you already own a survey-grade or dual-frequency receiver, it likely supports this. Complete ready-to-use units start around €449 / $490; tinkerer kits from ~€275.</p>
     <p><b>What the map shows</b><br>
     Each pin is a free public reference station. Click it for connection details. The colour zones show reliable range: green &lt; 10 km (typically &lt; 2 cm) · yellow-green 10–30 km · amber 30–50 km · pale red 50–100 km (decimetre range). Purple circles are virtual networks — one connection point, the network synthesises a nearby reference for you.</p>
-    <p class="how-cta"><a href="./guide.html" target="_blank" rel="noopener noreferrer">&#x2192; Full guide: hardware, how to connect, setting up your own base station</a></p>
+    <p class="how-cta"><a href="./guide.html?from=map" target="_blank" rel="noopener noreferrer">&#x2192; Full guide: hardware, how to connect, setting up your own base station</a></p>
   </div>
 </dialog>
 <div id="detail-panel" role="complementary" aria-label="Details">
@@ -699,7 +699,7 @@
     return '<div class="popup-plain"><h3>'+esc(label)+'</h3>'
       +'<div class="acc">'+accuracySummary(s.carrier)+'</div>'
       +warn+blocks
-      +'<p class="guide-link"><a href="./guide.html" target="_blank" rel="noopener noreferrer">'
+      +'<p class="guide-link"><a href="./guide.html?from=map" target="_blank" rel="noopener noreferrer">'
       +'Receiver setup guide →</a></p>'
       +'</div>';
   }

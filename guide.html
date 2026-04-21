@@ -53,7 +53,7 @@ a:hover{color:#1b2b3a;}
 </head>
 <body>
 <header>
-  <a href="./" onclick="if(history.length>1){event.preventDefault();history.back()}">← back to map</a>
+  <a href="./" onclick="event.preventDefault();if(new URLSearchParams(location.search).has('from')){window.close();}else if(history.length>1){history.back();}else{location.href='./';}">← back to map</a>
   <span class="title">RTK GPS: a plain-English guide</span>
 </header>
 <main>
