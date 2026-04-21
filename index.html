@@ -54,6 +54,10 @@
   .popup-plain .anote{color:#555;font-size:11px;font-style:italic;margin:3px 0 1px 0;}
   .popup-plain .anote code{background:#f2f4f7;border:1px solid #e2e6eb;
     border-radius:3px;padding:0 4px;font-size:11px;font-style:normal;}
+  .popup-plain .guide-link{margin:8px 0 0;padding-top:8px;border-top:1px solid #eee;font-size:11px;}
+  .popup-plain .guide-link a{color:#2a5894;}
+  .how-cta{margin:14px 0 0;padding:8px 12px;background:#f0f4ff;border-left:3px solid #4a7fc1;border-radius:0 4px 4px 0;font-size:13px;}
+  .how-cta a{color:#2a5894;font-weight:600;}
   #toggles{font-size:12px;line-height:1.6;color:#222;}
   #toggles label{display:block;cursor:pointer;}
   #toggles input{margin-right:6px;vertical-align:middle;}
@@ -139,6 +143,10 @@
     .popup-plain button.cp:hover{background:#2d4256;}
     .popup-plain button.cp.ok{background:#1a3d2a;color:#4caf77;border-color:#2d6040;}
     .popup-plain .anote{color:#94a7b8;}
+    .popup-plain .guide-link{border-top-color:#2d4256;}
+    .popup-plain .guide-link a{color:#9ec8ff;}
+    .how-cta{background:#1a2d40;border-left-color:#5a8fc1;}
+    .how-cta a{color:#9ec8ff;}
     .popup-plain .anote code{background:#0d1922;border-color:#2d4256;}
     #toggles{color:#e8eef4;}
     #toggles summary{color:#94a7b8;}
@@ -169,7 +177,7 @@
     <p><i>Network RTK — what this map is about</i> — pairs a dual-band receiver with corrections streamed over the internet from a nearby reference station. Within 30 km of a station, centimetre accuracy is typical. If you already own a survey-grade or dual-frequency receiver, it likely supports this. Complete ready-to-use units start around €449 / $490; tinkerer kits from ~€275.</p>
     <p><b>What the map shows</b><br>
     Each pin is a free public reference station. Click it for connection details. The colour zones show reliable range: green &lt; 10 km (typically &lt; 2 cm) · yellow-green 10–30 km · amber 30–50 km · pale red 50–100 km (decimetre range). Purple circles are virtual networks — one connection point, the network synthesises a nearby reference for you.</p>
-    <p style="border-top:1px solid rgba(128,128,128,0.25);margin-top:14px;padding-top:10px"><a href="./guide.html" style="font-weight:600">&#x2192; Full guide: hardware options, how to connect, and how to set up your own base station if you're outside coverage</a></p>
+    <p class="how-cta"><a href="./guide.html" target="_blank" rel="noopener noreferrer">&#x2192; Full guide: hardware, how to connect, setting up your own base station</a></p>
   </div>
 </dialog>
 <div id="detail-panel" role="complementary" aria-label="Details">
@@ -684,7 +692,10 @@
       : '';
     return '<div class="popup-plain"><h3>'+esc(label)+'</h3>'
       +'<div class="acc">'+accuracySummary(s.carrier)+'</div>'
-      +warn+blocks+'</div>';
+      +warn+blocks
+      +'<p class="guide-link"><a href="./guide.html" target="_blank" rel="noopener noreferrer">'
+      +'New to RTK? Setup guide →</a></p>'
+      +'</div>';
   }
 
   function precLabel(dLat,dLon,lat){
