@@ -31,6 +31,7 @@ scripts/fetch_stations.py     # Sourcetable fetch + parse + diff.
   update-stations.yml         # Cron + workflow_dispatch, runs the Python.
 data/
   stations.json               # Canonical JSON, consumed by index.html.
+  country_markers.json        # Static; country-level markers (104 entries, 3 tiers).
   <source>.sourcetable        # Raw archives per caster.
 ```
 
@@ -97,6 +98,15 @@ count badge. Toggling hides/shows the circle and respects tier filters.
 physical-coord data (HE, RP, SL, SN) are excluded. APOS (AT) and all Italian
 regional networks are physical-coord-vrs — show as regular pins with
 `pins:true` VRS badges. Full NRTK polygons are deferred.
+
+**`data/country_markers.json`:** static file (not pipeline-generated) with
+104 entries across three tiers — `vrs` (23 VRS-only circles + 39 pinned-network
+fallbacks with `"pins":true`), `deferred` (14 grey circles: ReNEP, LitPOS,
+UGRF, ETCORS, DOL Thailand, Italian deferred regionals, ACORN, ZAKPOS, GPSBru),
+`info` (28 circled-? markers: paid and restricted networks). The `pins:false`
+subset of `VRS_NETWORKS` is now in this file; frontend migration pending —
+`VRS_NETWORKS` is still the live source until index.html is updated.
+Design spec in `docs/requirements.md` § Country-level markers.
 
 **`yearly_cost` field in `docs/networks.md`:** all paid and paid-affordable
 entries carry a `**yearly_cost**:` field for reference (not yet in JSON).

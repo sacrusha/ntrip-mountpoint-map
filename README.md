@@ -117,8 +117,16 @@ toggle panel with 0 pins (virtual mountpoints have no fixed coordinates).
 
 VRS-only networks expose virtual mountpoints only — no physical station
 coordinates — so they appear as stopgap circles in the toggle panel with 0
-pins on the map. Coverage polygons are deferred. See
-[`docs/networks.md`](docs/networks.md) for endpoints, credentials, and
+pins on the map. Coverage polygons are deferred.
+
+A companion file `data/country_markers.json` (static, not pipeline-generated)
+records country-level knowledge for all 65 in-pipeline networks plus known
+networks not yet ingested: free networks with withheld endpoints (Portugal,
+Lithuania, Thailand, Uganda…), and paid or restricted networks (swipos, CPOS,
+SIGNAL, HEPOS, ROMPOS, AGROS, various US state paid networks, etc.). This
+backs a planned tier of country-centroid markers for blank map areas.
+
+See [`docs/networks.md`](docs/networks.md) for endpoints, credentials, and
 remaining candidates (11 deferred including 6 Italian regional networks).
 
 ## Contributing / Next-session handover
