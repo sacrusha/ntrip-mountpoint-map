@@ -208,7 +208,49 @@
 
     {"id":"calrtns",     "name":"CalRTNS",          "region":"California",            "country":"US", "lat":37.50, "lon":-119.60,
      "tier":"info", "access":"restricted",
-     "note":"Access restricted to vetted state/county agency partners. No general public registration."}
+     "note":"Access restricted to vetted state/county agency partners. No general public registration."},
+
+    {"id":"frednet",     "name":"FReDNet",          "region":"Friuli-Venezia Giulia + border AT/SI", "country":"IT", "lat":46.00, "lon":13.50,  "tier":"vrs", "pins":true, "source_id":"frednet"},
+    {"id":"ergnss",      "name":"ERGNSS",           "region":"Spain",                "country":"ES", "lat":40.40, "lon":-3.70,  "tier":"vrs", "pins":true, "source_id":"ergnss",    "stations_declared":128},
+    {"id":"satref",      "name":"SatRef",           "region":"Hong Kong",            "country":"HK", "lat":22.30, "lon":114.20, "tier":"vrs", "pins":true, "source_id":"satref",    "stations_declared":19},
+    {"id":"inacors",     "name":"InaCORS",          "region":"Indonesia",            "country":"ID", "lat":-2.50, "lon":118.00, "tier":"vrs", "pins":true, "source_id":"inacors",   "stations_declared":200},
+    {"id":"igac",        "name":"IGAC MAGNA-ECO",   "region":"Colombia",             "country":"CO", "lat":4.70,  "lon":-74.10, "tier":"vrs", "pins":true, "source_id":"igac",      "stations_declared":233},
+    {"id":"spslux",      "name":"SPSLux",           "region":"Luxembourg",           "country":"LU", "lat":49.80, "lon":6.10,   "tier":"vrs", "pins":true, "source_id":"spslux",    "stations_declared":17},
+    {"id":"icecors",     "name":"IceCORS",          "region":"Iceland",              "country":"IS", "lat":64.90, "lon":-18.50, "tier":"vrs", "pins":true, "source_id":"icecors",   "stations_declared":20},
+    {"id":"cors_korea",  "name":"CORS-KOREA",       "region":"South Korea",          "country":"KR", "lat":36.50, "lon":127.80, "tier":"vrs", "pins":true, "source_id":"cors_korea","stations_declared":100},
+    {"id":"apos",        "name":"APOS",             "region":"Austria",              "country":"AT", "lat":47.50, "lon":14.10,  "tier":"vrs", "pins":true, "source_id":"apos",      "stations_declared":37},
+    {"id":"auscors",     "name":"AUSCORS",          "region":"Australia",            "country":"AU", "lat":-25.30,"lon":133.80, "tier":"vrs", "pins":true, "source_id":"auscors",   "stations_declared":813},
+    {"id":"positionz",   "name":"PositioNZ",        "region":"New Zealand",          "country":"NZ", "lat":-41.30,"lon":174.80, "tier":"vrs", "pins":true, "source_id":"positionz", "stations_declared":62},
+    {"id":"trignet",     "name":"TrigNet",          "region":"South Africa",         "country":"ZA", "lat":-29.00,"lon":25.00,  "tier":"vrs", "pins":true, "source_id":"trignet",   "stations_declared":72},
+    {"id":"rbmc_ip",     "name":"RBMC-IP",          "region":"Brazil",               "country":"BR", "lat":-14.20,"lon":-53.20, "tier":"vrs", "pins":true, "source_id":"rbmc_ip",   "stations_declared":150},
+    {"id":"ramsac",      "name":"RAMSAC",           "region":"Argentina",            "country":"AR", "lat":-34.00,"lon":-64.00, "tier":"vrs", "pins":true, "source_id":"ramsac",    "stations_declared":203},
+    {"id":"regna_rou",   "name":"REGNA-ROU",        "region":"Uruguay",              "country":"UY", "lat":-33.00,"lon":-56.00, "tier":"vrs", "pins":true, "source_id":"regna_rou", "stations_declared":26},
+    {"id":"mirai",       "name":"MIRAI / Go!GNSS",  "region":"Japan",               "country":"JP", "lat":36.20, "lon":138.30, "tier":"vrs", "pins":true, "source_id":"mirai",     "stations_declared":325},
+    {"id":"geortk",      "name":"GeoRTK",           "region":"Japan",                "country":"JP", "lat":36.20, "lon":138.30, "tier":"vrs", "pins":true, "source_id":"geortk",    "stations_declared":41},
+    {"id":"sapos_HE",    "name":"SAPOS",            "region":"Hessen",               "country":"DE", "lat":50.60, "lon":9.10,   "tier":"vrs", "pins":true, "source_id":"sapos_HE",  "stations_declared":4},
+    {"id":"sapos_RP",    "name":"SAPOS",            "region":"Rheinland-Pfalz",      "country":"DE", "lat":50.00, "lon":7.30,   "tier":"vrs", "pins":true, "source_id":"sapos_RP",  "stations_declared":17},
+    {"id":"sapos_SL",    "name":"SAPOS",            "region":"Saarland",             "country":"DE", "lat":49.40, "lon":7.00,   "tier":"vrs", "pins":true, "source_id":"sapos_SL",  "stations_declared":14},
+    {"id":"sapos_SN",    "name":"SAPOS",            "region":"Sachsen",              "country":"DE", "lat":51.10, "lon":13.20,  "tier":"vrs", "pins":true, "source_id":"sapos_SN",  "stations_declared":null},
+
+    {"id":"spin3",             "name":"SPIN3 GNSS",        "region":"Piemonte + Lombardia + VdA","country":"IT","lat":45.50,"lon":8.00,  "tier":"vrs","pins":true,"source_id":"spin3",             "stations_declared":39},
+    {"id":"gpsumbria",         "name":"GPS-UMBRIA",        "region":"Umbria",               "country":"IT","lat":43.00,"lon":12.50, "tier":"vrs","pins":true,"source_id":"gpsumbria",         "stations_declared":12},
+    {"id":"gnss_abruzzo_lazio","name":"GNSS Abruzzo+Lazio","region":"Abruzzo + Lazio",      "country":"IT","lat":42.00,"lon":13.50, "tier":"vrs","pins":true,"source_id":"gnss_abruzzo_lazio","stations_declared":29},
+    {"id":"sit_puglia",        "name":"SIT Puglia",        "region":"Puglia",               "country":"IT","lat":40.50,"lon":17.00, "tier":"vrs","pins":true,"source_id":"sit_puglia",        "stations_declared":12},
+    {"id":"gnss_campania",     "name":"GNSS Campania",     "region":"Campania",             "country":"IT","lat":40.80,"lon":14.50, "tier":"vrs","pins":true,"source_id":"gnss_campania",     "stations_declared":18},
+
+    {"id":"wiscors",   "name":"WISCORS",   "region":"Wisconsin",           "country":"US","lat":44.50,"lon":-90.00, "tier":"vrs","pins":true,"source_id":"wiscors",   "stations_declared":180},
+    {"id":"fprn",      "name":"FPRN",      "region":"Florida",             "country":"US","lat":27.80,"lon":-82.50, "tier":"vrs","pins":true,"source_id":"fprn",      "stations_declared":120},
+    {"id":"ardot_rtn", "name":"ARDOT RTN", "region":"Arkansas",            "country":"US","lat":34.80,"lon":-92.30, "tier":"vrs","pins":true,"source_id":"ardot_rtn", "stations_declared":50},
+    {"id":"macors",    "name":"MaCORS",    "region":"Massachusetts",       "country":"US","lat":42.30,"lon":-71.50, "tier":"vrs","pins":true,"source_id":"macors",    "stations_declared":22},
+    {"id":"vector",    "name":"VECTOR VT", "region":"Vermont",             "country":"US","lat":44.00,"lon":-72.70, "tier":"vrs","pins":true,"source_id":"vector",    "stations_declared":15},
+    {"id":"azcors",    "name":"AzCORS",    "region":"Arizona",             "country":"US","lat":34.00,"lon":-111.90,"tier":"vrs","pins":true,"source_id":"azcors",    "stations_declared":51},
+    {"id":"gcgc_rtn",  "name":"GCGC RTN",  "region":"Mississippi / Gulf Coast","country":"US","lat":31.00,"lon":-89.50,"tier":"vrs","pins":true,"source_id":"gcgc_rtn",  "stations_declared":35},
+    {"id":"alcors",    "name":"AlCORS",    "region":"Alabama",             "country":"US","lat":32.70,"lon":-86.70, "tier":"vrs","pins":true,"source_id":"alcors",    "stations_declared":50},
+    {"id":"orgn",      "name":"ORGN",      "region":"Oregon",              "country":"US","lat":44.00,"lon":-120.50,"tier":"vrs","pins":true,"source_id":"orgn",      "stations_declared":100},
+    {"id":"msrn",      "name":"MSRN",      "region":"Michigan",            "country":"US","lat":43.90,"lon":-84.70, "tier":"vrs","pins":true,"source_id":"msrn",      "stations_declared":120},
+    {"id":"nysnet",    "name":"NYSNet",    "region":"New York",            "country":"US","lat":42.90,"lon":-75.60, "tier":"vrs","pins":true,"source_id":"nysnet",    "stations_declared":150},
+    {"id":"incors",    "name":"InCORS",    "region":"Indiana",             "country":"US","lat":39.80,"lon":-86.20, "tier":"vrs","pins":true,"source_id":"incors",    "stations_declared":70},
+    {"id":"iartn",     "name":"IARTN",     "region":"Iowa",                "country":"US","lat":42.00,"lon":-93.50, "tier":"vrs","pins":true,"source_id":"iartn",     "stations_declared":83}
 
   ]
 }
