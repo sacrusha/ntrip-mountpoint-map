@@ -609,7 +609,7 @@
         name:s.name,lat:lat,lon:lon,latStr:s.latStr,lonStr:s.lonStr,
         dLat:precFromStr(s.latStr),dLon:precFromStr(s.lonStr),
         carrier:s.carrier, format:s.format||'',
-        legacyFormat:!!s.legacyFormat, country:s.country||''
+        legacyFormat:!!s.legacyFormat
       });
     });
     return out;
@@ -622,7 +622,6 @@
     return fetch(url,Object.assign({signal:controller.signal},opts))
       .finally(function(){ clearTimeout(tid); });
   }
-
 
   function roundPos(v){ return Math.round(v*100)/100; }
   function posKey(s){ return roundPos(s.lat)+','+roundPos(s.lon); }
@@ -793,10 +792,6 @@
     return mLat===mLon?'\u00b1'+mLat+' m':'\u00b1'+mLat+' m N\u2013S / \u00b1'+mLon+' m E\u2013W';
   }
 
-// Build the `dots` layer eagerly for all stations (cheap; canvas-rendered
-  // circleMarkers). The `detail` layer (accuracy rectangles + labelled
-  // markers with permanent tooltips + popups) is expensive — built lazily
-  // per-viewport by refreshDetailLayer.
   function buildStationLayers(stations,map,renderer,onDone){
     var detail=L.layerGroup();
     var dots=L.layerGroup();
@@ -980,24 +975,6 @@
     return {group:group,bySid:bySid};
   }
 
-  function stationTitle(s){
-    var names=[];
-    stationSourceIds(s).forEach(function(sid){
-      s.sources[sid].forEach(function(n){ names.push(n); });
-    });
-    return names.join(' / ');
-  }
-
-  // Detail panel — station details overlay (slides in from right on desktop, up on mobile).
-  function openDetailPanel(title,contentHtml){
-    var panel=document.getElementById('detail-panel');
-    var panelTitle=document.getElementById('detail-panel-title');
-    var panelBody=document.getElementById('detail-panel-body');
-    if(!panel) return;
-    panelTitle.textContent=title;
-    panelBody.innerHTML=contentHtml;
-    panel.classList.add('open');
-  }
   function closeDetailPanel(){
     var panel=document.getElementById('detail-panel');
     if(panel) panel.classList.remove('open');
@@ -1041,17 +1018,14 @@
         if(el) el.style.pointerEvents=show?'all':'none';
       });
     }
-    function pred(){
-      return function(s){
-        var ids=stationSourceIds(s);
-        for(var i=0;i<ids.length;i++){
-          var sid=ids[i];
-          if(!state[sid]) continue;
-          var tier='tier_'+(SOURCE_ACCESS[sid]||'registration');
-          if(state[tier]) return true;
-        }
-        return false;
-      };
+    function filterPred(s){
+      var ids=stationSourceIds(s);
+      for(var i=0;i<ids.length;i++){
+        var sid=ids[i];
+        if(!state[sid]) continue;
+        if(state['tier_'+(SOURCE_ACCESS[sid]||'registration')]) return true;
+      }
+      return false;
     }
 
     // Build entry list (groups + individuals + VRS-only rows).
@@ -1135,6 +1109,16 @@
       +'</details>'
       +'</details>';
 
+    // Cache row references so applyDeclutter avoids querySelectorAll + JSON.parse on every pan.
+    var _rows=[];
+    d.querySelectorAll('label[data-row]').forEach(function(label){
+      if(label.dataset.vrs) return;
+      var cb=label.querySelector('input[data-m]');
+      if(!cb) return;
+      var members; try{ members=JSON.parse(cb.dataset.m); }catch(e){ return; }
+      _rows.push({label:label, members:members, badge:label.querySelector('.view-badge')});
+    });
+
     // Prevent the VRS master checkbox from toggling the <details> open/closed.
     var vrsGlobalCb=d.querySelector('input[data-k="vrs_global"]');
     if(vrsGlobalCb) vrsGlobalCb.addEventListener('click',function(e){ e.stopPropagation(); });
@@ -1142,30 +1126,24 @@
     d.querySelectorAll('input[data-m]').forEach(function(cb){
       cb.addEventListener('change',function(){
         JSON.parse(cb.dataset.m).forEach(function(sid){ state[sid]=cb.checked; });
-        applyVrs(); onChange(pred());
+        applyVrs(); onChange(filterPred);
       });
     });
     d.querySelectorAll('input[data-k]').forEach(function(cb){
       cb.addEventListener('change',function(){
         state[cb.dataset.k]=cb.checked;
-        applyVrs(); onChange(pred());
+        applyVrs(); onChange(filterPred);
       });
     });
 
-    // Declutter: hide rows whose in-view station count is 0.
     var _declutter=true;
     var _lastCounts={};
     function applyDeclutter(counts){
       _lastCounts=counts||{};
-      d.querySelectorAll('label[data-row]').forEach(function(label){
-        if(label.dataset.vrs) return; // VRS-only rows have no physical stations; always keep visible
-        var cb=label.querySelector('input[data-m]');
-        if(!cb) return;
-        var members; try{ members=JSON.parse(cb.dataset.m); }catch(e){ return; }
-        var n=members.reduce(function(a,sid){ return a+(_lastCounts[sid]||0); },0);
-        var badge=label.querySelector('.view-badge');
-        if(badge) badge.textContent=' ('+n+')';
-        label.style.display=(_declutter&&n===0)?'none':'';
+      _rows.forEach(function(row){
+        var n=row.members.reduce(function(a,sid){ return a+(_lastCounts[sid]||0); },0);
+        if(row.badge) row.badge.textContent=' ('+n+')';
+        row.label.style.display=(_declutter&&n===0)?'none':'';
       });
     }
     var declutterCb=d.querySelector('#declutter-cb');
@@ -1175,7 +1153,7 @@
 
     var ctrl=L.control({position:'topright'});
     ctrl.onAdd=function(){ return d; };
-    return {control:ctrl, predicate:pred, dom:d, applyDeclutter:applyDeclutter};
+    return {control:ctrl, dom:d, applyDeclutter:applyDeclutter};
   }
 
   // IP-based geolocation — ~city-level accuracy, no permission prompt.
@@ -1284,9 +1262,6 @@
     });
     var updated=(data&&data.updated)||null;
     var networks=(data&&data.networks)||[];
-    var mergeSummary=sourceIds.map(function(sid){
-      return sourceCounts[sid]+' '+sourceLabel(sid);
-    }).join(' + ')||'0';
     var allStations=mergeStations(bySource);
 
     var vp=await getViewerPos();
@@ -1328,9 +1303,6 @@
     var coverage=new CoverageLayer(coverageStations);
     coverage.addTo(map);
 
-    // Dedicated canvas renderer for dots, isolated in its own pane so zoom
-    // transitions can toggle visibility via CSS instead of removing 5600
-    // paths from the shared canvas renderer on every zoom boundary crossing.
     map.createPane('dotsPane');
     map.getPane('dotsPane').style.zIndex=402; // above overlayPane (400); below vrsPane SVG (403)
     var dotsRenderer=L.canvas({pane:'dotsPane',padding:0.5});
@@ -1391,9 +1363,6 @@
       buildStationLayers(visible,map,dotsRenderer,function(built){
         clearTimeout(watchdog);
         if(gen!==_rebuildGen) return; // stale — newer rebuild in flight, discard
-        // Remove old dots here (not at the top of rebuildStationLayers) so
-        // the path-list churn is bounded to filter-toggle rebuilds, which
-        // are infrequent, not to every zoom transition.
         if(map.hasLayer(staleDots)) map.removeLayer(staleDots);
         resetDetailMap();
         layers=built;
