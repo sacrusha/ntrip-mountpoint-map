@@ -413,7 +413,7 @@
   // CoverageLayer: tiled canvas raster showing distance to nearest station.
   // Each pixel is coloured by its exact nearest-station distance via COVERAGE_LUT.
   var CoverageLayer=L.GridLayer.extend({
-    options:{opacity:1,pane:'overlayPane'},
+    options:{opacity:1,pane:'overlayPane',updateWhenZooming:false},
     initialize:function(stations,opts){
       L.Util.setOptions(this,opts);
       this.setStations(stations,null,true);
@@ -423,7 +423,7 @@
       this._index=index||buildStationIndex(this._stations);
       if(!skipRedraw) this.redraw();
     },
-    createTile:function(coords){
+    createTile:function(coords,done){
       var size=this.getTileSize();
       var tile=document.createElement('canvas');
       tile.width=size.x; tile.height=size.y;
@@ -466,43 +466,47 @@
            pt.y<-rFloatPx||pt.y>size.y+rFloatPx) continue;
         sx[n]=pt.x; sy[n]=pt.y; n++;
       }
-      if(!n) return tile;
+      if(!n){ setTimeout(function(){ done(null,tile); },0); return tile; }
 
       // Per-pixel direct nearest-station distance field. Sub-sample at low
       // zooms (many stations, tiny rFloatPx) so the JS loop stays fast; scale
       // back up with nearest-neighbour to preserve hard band edges.
-      var sub=z<=3?8:z<=6?4:1;
+      var sub=z<=3?8:z<=6?4:z<=7?2:1;
       var sw=Math.ceil(size.x/sub);
       var sh=Math.ceil(size.y/sub);
       var rSq=rFloatPx*rFloatPx;
-      var _tileBuf=new ArrayBuffer(sw*sh*4);
-      var d32=new Uint32Array(_tileBuf);
-      var imd=new ImageData(new Uint8ClampedArray(_tileBuf),sw,sh);
-      var hasData=false;
-      for(var spy=0;spy<sh;spy++){
-        for(var spx=0;spx<sw;spx++){
-          var px=(spx+0.5)*sub, py=(spy+0.5)*sub;
-          var minSq=rSq;
-          for(var i=0;i<n;i++){
-            var dx=px-sx[i], dy=py-sy[i];
-            var dsq=dx*dx+dy*dy;
-            if(dsq<minSq) minSq=dsq;
+      setTimeout(function(){
+        var buf=new ArrayBuffer(sw*sh*4);
+        var d32=new Uint32Array(buf);
+        var imd=new ImageData(new Uint8ClampedArray(buf),sw,sh);
+        var hasData=false;
+        for(var spy=0;spy<sh;spy++){
+          for(var spx=0;spx<sw;spx++){
+            var px=(spx+0.5)*sub, py=(spy+0.5)*sub;
+            var minSq=rSq;
+            for(var i=0;i<n;i++){
+              var dx=px-sx[i], dy=py-sy[i];
+              var dsq=dx*dx+dy*dy;
+              if(dsq<minSq) minSq=dsq;
+            }
+            if(minSq>=rSq) continue;
+            d32[spy*sw+spx]=COVERAGE_LUT32[(1-Math.sqrt(minSq)/rFloatPx)*255|0];
+            hasData=true;
           }
-          if(minSq>=rSq) continue;
-          d32[spy*sw+spx]=COVERAGE_LUT32[(1-Math.sqrt(minSq)/rFloatPx)*255|0];
-          hasData=true;
         }
-      }
-      if(!hasData) return tile;
-      if(sub===1){
-        ctx.putImageData(imd,0,0);
-      } else {
-        var sc=document.createElement('canvas');
-        sc.width=sw; sc.height=sh;
-        sc.getContext('2d').putImageData(imd,0,0);
-        ctx.imageSmoothingEnabled=false;
-        ctx.drawImage(sc,0,0,size.x,size.y);
-      }
+        if(hasData){
+          if(sub===1){
+            ctx.putImageData(imd,0,0);
+          } else {
+            var sc=document.createElement('canvas');
+            sc.width=sw; sc.height=sh;
+            sc.getContext('2d').putImageData(imd,0,0);
+            ctx.imageSmoothingEnabled=false;
+            ctx.drawImage(sc,0,0,size.x,size.y);
+          }
+        }
+        done(null,tile);
+      },0);
       return tile;
     }
   });
@@ -1362,6 +1366,7 @@
     var _detailShowRect=false;
     function resetDetailMap(){_detailMap.clear();}
 
+    var MAX_DETAIL_MARKERS=150; // cap DOM markers at z=8,9 to limit layout cost
     function refreshDetailLayer(index,showRect){
       if(!index) return;
       var b=map.getBounds().pad(0.2);
@@ -1371,6 +1376,20 @@
         _detailShowRect=showRect;
       }
       var ids=index.range(b.getWest(),b.getSouth(),b.getEast(),b.getNorth());
+      // At label-only zoom (z=8,9), sort by distance to viewport centre so the
+      // most central stations are prioritised, then cap new *insertions* inside
+      // the loop below. inView is built from ALL in-range IDs so the eviction
+      // pass correctly removes off-screen markers regardless of the cap.
+      var capInsertions=!showRect&&ids.length>MAX_DETAIL_MARKERS;
+      if(capInsertions){
+        var ctr=map.getCenter();
+        ids=ids.slice().sort(function(ia,ib){
+          var sa=visible[ia],sb=visible[ib];
+          var da=(sa.lat-ctr.lat)*(sa.lat-ctr.lat)+(sa.lon-ctr.lng)*(sa.lon-ctr.lng);
+          var db=(sb.lat-ctr.lat)*(sb.lat-ctr.lat)+(sb.lon-ctr.lng)*(sb.lon-ctr.lng);
+          return da-db;
+        });
+      }
       var inView=new Set();
       for(var k=0;k<ids.length;k++) inView.add(posKey(visible[ids[k]]));
       _detailMap.forEach(function(entry,key){
@@ -1384,6 +1403,7 @@
         var s=visible[ids[k]];
         var pk=posKey(s);
         if(_detailMap.has(pk)) continue;
+        if(capInsertions&&_detailMap.size>=MAX_DETAIL_MARKERS) continue;
         var entry={};
         var fill=s._color;
         try{
