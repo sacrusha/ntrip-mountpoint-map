@@ -421,25 +421,28 @@ def fetch_source(src: dict) -> tuple[str, dict, bool]:
     except (URLError, OSError, http.client.HTTPException, ValueError) as e:
         print(f"[{sid}] fetch failed: {e!r}", file=sys.stderr)
         if raw_path.exists():
-            text = raw_path.read_text()
-            stations, stats = parse_sourcetable(text)
-            stations, dropped_vrs = filter_vrs(stations)
-            vrs_note = f", {dropped_vrs} VRS" if dropped_vrs else ""
-            print(f"[{sid}] reusing cached sourcetable ({len(stations)} stations{vrs_note})")
-            return sid, {
-                "url": url,
-                "color": color,
-                "label": label,
-                "registration": registration,
-                "access": access,
-                "status": f"stale (fetch failed: {e!r})",
-                "fetched_at": None,
-                "last_ok": prev_last_ok,
-                "raw_path": raw_path,
-                "text": text,
-                "stations": stations,
-                "parse_stats": stats,
-            }, False
+            try:
+                text = raw_path.read_text()
+                stations, stats = parse_sourcetable(text)
+                stations, dropped_vrs = filter_vrs(stations)
+                vrs_note = f", {dropped_vrs} VRS" if dropped_vrs else ""
+                print(f"[{sid}] reusing cached sourcetable ({len(stations)} stations{vrs_note})")
+                return sid, {
+                    "url": url,
+                    "color": color,
+                    "label": label,
+                    "registration": registration,
+                    "access": access,
+                    "status": f"stale (fetch failed: {e!r})",
+                    "fetched_at": None,
+                    "last_ok": prev_last_ok,
+                    "raw_path": raw_path,
+                    "text": text,
+                    "stations": stations,
+                    "parse_stats": stats,
+                }, False
+            except Exception as cache_err:
+                print(f"[{sid}] cached sourcetable unreadable: {cache_err!r}", file=sys.stderr)
         return sid, {
             "url": url,
             "color": color,
