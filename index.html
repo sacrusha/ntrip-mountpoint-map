@@ -1456,6 +1456,10 @@
       togglePanel.control.addTo(map);
     }
 
+    map.on('zoomanim',function(e){
+      map.getPane('dotsPane').style.visibility=
+        (e.zoom>=ZOOM_DOTS&&e.zoom<ZOOM_LABELS)?'visible':'hidden';
+    });
     map.on('zoomend',function(){ applyZoom(); updateViewCounts(); });
 
     function finishLoad(){
