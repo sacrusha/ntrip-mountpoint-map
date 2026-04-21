@@ -9,20 +9,16 @@
 <script src="https://unpkg.com/kdbush@3.0.0/kdbush.min.js"></script>
 <style>
   html,body{height:100%;margin:0;padding:0;font-family:sans-serif;}
-  :root{--sw:320px;}
-  #shell{position:absolute;top:0;left:0;right:0;bottom:0;display:grid;
-    grid-template-columns:var(--sw) 1fr;}
+  #shell{position:absolute;top:0;left:0;right:0;bottom:0;}
   body.banner-visible #shell{top:32px;}
-  #map{min-width:0;min-height:0;}
-  #sidebar{overflow:hidden;display:flex;flex-direction:column;
-    background:#fff;border-right:1px solid #dde3ea;z-index:400;}
-  #sidebar-inner{flex:1;overflow-y:auto;padding:8px;}
-  @media(min-width:601px) and (max-width:1024px) and (orientation:portrait){
-    :root{--sw:280px;}
-  }
+  #map{position:absolute;top:0;left:0;right:0;bottom:0;}
+  #sidebar{display:none;}
   @media(max-width:600px){
-    :root{--sw:0px;}
-    #sidebar{overflow:hidden;}
+    #shell{display:grid;grid-template-columns:1fr;}
+    #map{position:static;min-width:0;min-height:0;}
+    #sidebar{display:flex;flex-direction:column;overflow:hidden;
+      background:#fff;border-right:1px solid #dde3ea;z-index:400;}
+    #sidebar-inner{flex:1;overflow-y:auto;padding:8px;}
   }
 .slabel{font-size:10px;font-weight:700;color:#222;
     background:rgba(255,255,255,0.75);border:none;box-shadow:none;padding:0 2px;}
@@ -110,11 +106,14 @@
   /* Filter FAB — mobile only (≤600px) */
   #filter-fab{display:none;}
   @media(max-width:600px){
-    #filter-fab{display:flex;position:fixed;bottom:20px;right:16px;z-index:10001;
-      background:#1b2b3a;color:#e8eef4;border:none;border-radius:24px;
-      padding:10px 16px;font-size:13px;font-weight:600;gap:6px;
-      align-items:center;cursor:pointer;box-shadow:0 2px 12px rgba(0,0,0,.3);}
-    body.sidebar-open{--sw:280px;}
+    #filter-fab{display:flex;position:fixed;top:50%;left:0;
+      transform:translateY(-50%);z-index:10001;
+      background:rgba(255,255,255,0.95);color:#444;
+      border:1px solid #c8cdd4;border-left:none;border-radius:0 6px 6px 0;
+      width:24px;height:48px;font-size:16px;padding:0;
+      align-items:center;justify-content:center;cursor:pointer;
+      transition:left 0.25s ease;}
+    body.sidebar-open #filter-fab{left:280px;}
     body.sidebar-open::before{content:'';position:fixed;inset:0;background:rgba(0,0,0,.35);
       z-index:399;pointer-events:auto;}
     #sidebar{position:absolute;top:0;bottom:0;left:0;width:280px;
@@ -122,6 +121,10 @@
     body.sidebar-open #sidebar{transform:translateX(0);}
   }
   #legend{background:white;padding:8px 12px;border-radius:5px;border:1px solid #bbb;font-size:11px;line-height:1.55;color:#222;}
+  @media(max-width:600px){
+    #sidebar-inner #legend{border-radius:0;border-left:none;border-right:none;border-bottom:none;
+      margin-top:8px;padding-left:8px;padding-right:8px;}
+  }
   #leg-sum{cursor:pointer;font-size:12px;font-weight:700;list-style:none;margin:0 0 4px;user-select:none;}
   #leg-sum::-webkit-details-marker{display:none;}
   #leg-sum::after{content:' \25be';font-size:9px;opacity:0.5;}
@@ -157,8 +160,64 @@
     #how-dialog-close{color:#94a7b8;}
     #detail-panel,#detail-panel-hd{background:#1e3048;color:#e8eef4;border-bottom-color:#2d4256;}
     #detail-panel-close{color:#94a7b8;}
-    #filter-fab{background:#2d4256;color:#e8eef4;}
+    #filter-fab{background:rgba(30,48,72,0.95);border-color:#2d4256;color:#94a7b8;}
+  }
+  @media(max-width:600px) and (prefers-color-scheme:dark){
     #sidebar{background:#1e3048;border-right-color:#2d4256;}
+  }
+  /* Guide modal */
+  #guide-dialog{border:none;padding:0;max-width:780px;width:90vw;max-height:90vh;
+    border-radius:8px;box-shadow:0 8px 32px rgba(0,0,0,.35);
+    display:flex;flex-direction:column;overflow:hidden;}
+  #guide-dialog::backdrop{background:rgba(0,0,0,.5);}
+  #guide-dialog-hd{display:flex;align-items:center;padding:12px 16px;
+    background:#1b2b3a;color:#e8eef4;font-size:14px;font-weight:600;flex-shrink:0;}
+  #guide-dialog-title{flex:1;}
+  #guide-dialog-close{background:transparent;border:none;color:#94a7b8;font-size:22px;
+    cursor:pointer;padding:0 0 0 12px;line-height:1;}
+  #guide-dialog-body{overflow-y:auto;flex:1;}
+  #guide-dialog-body main{max-width:none;padding:20px 24px 40px;
+    font-family:system-ui,-apple-system,sans-serif;color:#1a1a1a;}
+  #guide-dialog-body h1{font-size:20px;font-weight:700;margin:0 0 6px;}
+  #guide-dialog-body .subtitle{color:#555;font-size:14px;margin:0 0 24px;display:block;}
+  #guide-dialog-body h2{font-size:15px;font-weight:700;margin:24px 0 8px;
+    color:#1b2b3a;border-bottom:2px solid #e2e8f0;padding-bottom:4px;}
+  #guide-dialog-body h3{font-size:13px;font-weight:600;margin:14px 0 5px;color:#333;}
+  #guide-dialog-body p,#guide-dialog-body ul,#guide-dialog-body ol{
+    font-size:14px;line-height:1.65;margin:0 0 10px;color:#333;}
+  #guide-dialog-body ul,#guide-dialog-body ol{padding-left:20px;}
+  #guide-dialog-body li{margin-bottom:3px;}
+  #guide-dialog-body a{color:#2a5894;}
+  #guide-dialog-body .callout{background:#f0f4ff;border-left:3px solid #4a7fc1;
+    padding:10px 14px;border-radius:0 4px 4px 0;margin:14px 0;font-size:13px;line-height:1.6;}
+  #guide-dialog-body table{width:100%;border-collapse:collapse;font-size:13px;margin:10px 0 14px;}
+  #guide-dialog-body th{background:#1b2b3a;color:#e8eef4;padding:7px 10px;text-align:left;}
+  #guide-dialog-body td{padding:7px 10px;border-bottom:1px solid #e2e8f0;vertical-align:top;}
+  #guide-dialog-body tr:nth-child(even) td{background:#f9fafb;}
+  #guide-dialog-body .price{white-space:nowrap;font-weight:600;}
+  #guide-dialog-body code{background:#f0f2f5;border:1px solid #dde2e8;
+    border-radius:3px;padding:1px 5px;font-size:12px;font-family:ui-monospace,monospace;}
+  #guide-dialog-body dl.glossary dt{font-weight:600;margin-top:12px;color:#1b2b3a;}
+  #guide-dialog-body dl.glossary dd{margin:2px 0 0;font-size:14px;line-height:1.6;color:#444;}
+  #guide-dialog-body .cov{display:flex;align-items:center;gap:8px;margin:3px 0;font-size:13px;}
+  #guide-dialog-body .sw{width:14px;height:14px;border-radius:2px;flex-shrink:0;}
+  @media(max-width:600px){
+    #guide-dialog{width:100%;max-width:100%;max-height:100%;border-radius:0;margin:0;}
+    #guide-dialog-body main{padding:16px 14px 40px;}
+  }
+  @media(prefers-color-scheme:dark){
+    #guide-dialog-body main{color:#e8eef4;background:#121921;}
+    #guide-dialog-body h2{color:#9ec8ff;border-bottom-color:#243447;}
+    #guide-dialog-body h3{color:#c8d8e8;}
+    #guide-dialog-body .subtitle{color:#94a7b8;}
+    #guide-dialog-body p,#guide-dialog-body ul,#guide-dialog-body ol{color:#c8d8e8;}
+    #guide-dialog-body a{color:#9ec8ff;}
+    #guide-dialog-body .callout{background:#1a2d40;border-left-color:#5a8fc1;}
+    #guide-dialog-body td{border-bottom-color:#243447;}
+    #guide-dialog-body tr:nth-child(even) td{background:#1a2d40;}
+    #guide-dialog-body code{background:#0d1922;border-color:#2d4256;color:#9ec8ff;}
+    #guide-dialog-body dl.glossary dt{color:#9ec8ff;}
+    #guide-dialog-body dl.glossary dd{color:#94a7b8;}
   }
 </style>
 </head>
@@ -177,8 +236,15 @@
     <p><i>Network RTK — what this map is about</i> — pairs a dual-band receiver with corrections streamed over the internet from a nearby reference station. Within 30 km of a station, centimetre accuracy is typical. If you already own a survey-grade or dual-frequency receiver, it likely supports this. Complete ready-to-use units start around €449 / $490; tinkerer kits from ~€275.</p>
     <p><b>What the map shows</b><br>
     Each pin is a free public reference station. Click it for connection details. The colour zones show reliable range: green &lt; 10 km (typically &lt; 2 cm) · yellow-green 10–30 km · amber 30–50 km · pale red 50–100 km (decimetre range). Purple circles are virtual networks — one connection point, the network synthesises a nearby reference for you.</p>
-    <p class="how-cta"><a href="./guide.html" target="_blank" rel="noopener noreferrer">&#x2192; Full guide: hardware, how to connect, setting up your own base station</a></p>
+    <p class="how-cta"><a href="./guide.html" onclick="event.preventDefault();openGuideDialog();">&#x2192; Full guide: hardware, how to connect, setting up your own base station</a></p>
   </div>
+</dialog>
+<dialog id="guide-dialog" aria-label="RTK GPS guide">
+  <div id="guide-dialog-hd">
+    <span id="guide-dialog-title">RTK GPS: a plain-English guide</span>
+    <button id="guide-dialog-close" aria-label="Close">×</button>
+  </div>
+  <div id="guide-dialog-body"></div>
 </dialog>
 <div id="detail-panel" role="complementary" aria-label="Details">
   <div id="detail-panel-hd">
@@ -187,7 +253,7 @@
   </div>
   <div id="detail-panel-body"></div>
 </div>
-<button id="filter-fab" aria-label="Filter sources" aria-expanded="false">⚙ Filters</button>
+<button id="filter-fab" aria-label="Open filters" aria-expanded="false">&#x25ba;</button>
 <div id="shell">
   <div id="sidebar">
     <div id="sidebar-inner"></div>
@@ -694,7 +760,7 @@
     return '<div class="popup-plain"><h3>'+esc(label)+'</h3>'
       +'<div class="acc">'+accuracySummary(s.carrier)+'</div>'
       +warn+blocks
-      +'<p class="guide-link"><a href="./guide.html" target="_blank" rel="noopener noreferrer">'
+      +'<p class="guide-link"><a href="./guide.html" onclick="event.preventDefault();openGuideDialog();">'
       +'Receiver setup guide →</a></p>'
       +'</div>';
   }
@@ -1096,26 +1162,31 @@
       attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    var leg=L.control({position:'bottomleft'});
-    leg.onAdd=function(){
-      var d=L.DomUtil.create('div');
-      d.id='legend';
-      var sw=function(s){return '<span style="display:inline-block;width:12px;height:12px;vertical-align:middle;'+s+'"></span>';};
-      d.innerHTML=
-        '<details id="leg-det" open>'
-        +'<summary id="leg-sum">Legend</summary>'
-        +sw('background:rgb(0,170,0)')+' &lt; 10 km \u2014 ~2 cm<br>'
-        +sw('background:rgb(180,200,30)')+' 10\u201330 km \u2014 ~3 cm<br>'
-        +sw('background:rgb(220,150,30)')+' 30\u201350 km \u2014 ~5 cm<br>'
-        +sw('background:rgb(210,90,90)')+' 50\u2013100 km \u2014 &lt; 1 m<br>'
-        +sw('border:2px solid '+VRS_COLOR+';background:rgba(106,90,205,0.22);border-radius:50%')+' VRS network<br>'
-        +sw('background:#aaa;border-radius:50%')+' Mountpoint data stale<br>'
-        +'<small id="leg-info">Loading\u2026</small>'
-        +'</details>';
-      return d;
-    };
-    leg.addTo(map);
-    if(!DESKTOP_MQ.matches){var ld=document.getElementById('leg-det');if(ld)ld.removeAttribute('open');}
+    var isMobile=window.matchMedia('(max-width:600px)').matches;
+
+    var legDiv=L.DomUtil.create('div');
+    legDiv.id='legend';
+    var sw=function(s){return '<span style="display:inline-block;width:12px;height:12px;vertical-align:middle;'+s+'"></span>';};
+    legDiv.innerHTML=
+      '<details id="leg-det" open>'
+      +'<summary id="leg-sum">Legend</summary>'
+      +sw('background:rgb(0,170,0)')+' &lt; 10 km \u2014 ~2 cm<br>'
+      +sw('background:rgb(180,200,30)')+' 10\u201330 km \u2014 ~3 cm<br>'
+      +sw('background:rgb(220,150,30)')+' 30\u201350 km \u2014 ~5 cm<br>'
+      +sw('background:rgb(210,90,90)')+' 50\u2013100 km \u2014 &lt; 1 m<br>'
+      +sw('border:2px solid '+VRS_COLOR+';background:rgba(106,90,205,0.22);border-radius:50%')+' VRS network<br>'
+      +sw('background:#aaa;border-radius:50%')+' Mountpoint data stale<br>'
+      +'<small id="leg-info">Loading\u2026</small>'
+      +'</details>';
+
+    if(isMobile){
+      map.zoomControl.setPosition('bottomright');
+    } else {
+      var leg=L.control({position:'bottomleft'});
+      leg.onAdd=function(){ return legDiv; };
+      leg.addTo(map);
+      if(!DESKTOP_MQ.matches){var ld=legDiv.querySelector('#leg-det');if(ld)ld.removeAttribute('open');}
+    }
 
     var data=null, health=null;
     try{
@@ -1298,34 +1369,33 @@
       togglePanel.applyDeclutter(counts);
     }
 
-    // Filter panel lives permanently in #sidebar-inner (CSS grid handles all viewport sizes).
-    // On mobile (≤600px), the FAB toggles body.sidebar-open which slides the sidebar in.
-    var sidebarInner=document.getElementById('sidebar-inner');
-    var sidebar=document.getElementById('sidebar');
-    if(sidebarInner) sidebarInner.appendChild(togglePanel.dom);
-    var fab=document.getElementById('filter-fab');
-    if(fab){
-      function afterSlide(){
-        if(!sidebar) return;
-        sidebar.addEventListener('transitionend',function h(){
-          sidebar.removeEventListener('transitionend',h);
-          map.invalidateSize();
+    // Desktop: Leaflet control in top-right. Mobile (<=600px): sidebar toggled by FAB.
+    if(isMobile){
+      var sidebarInner=document.getElementById('sidebar-inner');
+      if(sidebarInner){
+        sidebarInner.appendChild(togglePanel.dom);
+        sidebarInner.appendChild(legDiv);
+      }
+      var fab=document.getElementById('filter-fab');
+      if(fab){
+        fab.onclick=function(){
+          var open=document.body.classList.toggle('sidebar-open');
+          fab.textContent=open?'◄':'►';
+          fab.setAttribute('aria-label',open?'Close filters':'Open filters');
+          fab.setAttribute('aria-expanded',open?'true':'false');
+        };
+        document.addEventListener('click',function(e){
+          if(document.body.classList.contains('sidebar-open') &&
+             !e.target.closest('#sidebar') && e.target!==fab && !fab.contains(e.target)){
+            document.body.classList.remove('sidebar-open');
+            fab.textContent='►';
+            fab.setAttribute('aria-label','Open filters');
+            fab.setAttribute('aria-expanded','false');
+          }
         });
       }
-      fab.onclick=function(){
-        var open=document.body.classList.toggle('sidebar-open');
-        fab.setAttribute('aria-expanded',open?'true':'false');
-        afterSlide();
-      };
-      // Tap on the overlay closes sidebar
-      document.addEventListener('click',function(e){
-        if(document.body.classList.contains('sidebar-open') &&
-           !e.target.closest('#sidebar') && e.target!==fab && !fab.contains(e.target)){
-          document.body.classList.remove('sidebar-open');
-          fab.setAttribute('aria-expanded','false');
-          afterSlide();
-        }
-      });
+    } else {
+      togglePanel.control.addTo(map);
     }
 
     map.on('zoomend',function(){ applyZoom(); updateViewCounts(); });
@@ -1344,6 +1414,31 @@
 
     rebuildStationLayers();
   });
+})();
+
+// Guide modal — must be global for inline onclick in popup HTML
+var _guideLoaded=false;
+function openGuideDialog(){
+  var dlg=document.getElementById('guide-dialog');
+  if(!dlg) return;
+  if(_guideLoaded){dlg.showModal();return;}
+  fetch('./guide.html')
+    .then(function(r){return r.text();})
+    .then(function(html){
+      var doc=new DOMParser().parseFromString(html,'text/html');
+      var main=doc.querySelector('main');
+      var body=document.getElementById('guide-dialog-body');
+      if(main&&body) body.appendChild(document.adoptNode(main));
+      _guideLoaded=true;
+      dlg.showModal();
+    })
+    .catch(function(){window.open('./guide.html','_blank');});
+}
+(function(){
+  var dlg=document.getElementById('guide-dialog');
+  if(!dlg) return;
+  document.getElementById('guide-dialog-close').onclick=function(){dlg.close();};
+  dlg.addEventListener('click',function(e){if(e.target===dlg)dlg.close();});
 })();
 </script>
 </body>
