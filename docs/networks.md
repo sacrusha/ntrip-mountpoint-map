@@ -1600,8 +1600,8 @@ users pay per-day RTK access. Pricing and station geography viewable on the map.
 ## geospider — ГЕОСПАЙДЕР (RU — North-West)
 
 **status**:    paid
-**host:port**: contact mail@geospider.ru (not publicly listed)
-**access**:    paid; monthly/quarterly/annual subscriptions; contact mail@geospider.ru
+**host:port**: not publicly listed; obtain via geospider.ru
+**access**:    paid; monthly/quarterly/annual subscriptions; register via geospider.ru
 **yearly_cost**: not publicly listed
 **stations**:  49 (North-West Russia, centred on St. Petersburg)
 **source**:    geospider.ru (НПП «ГЕОМАТИК», St. Petersburg)
