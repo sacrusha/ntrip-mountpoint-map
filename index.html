@@ -55,7 +55,7 @@
   }
   html,body{height:100%;margin:0;padding:0;font-family:sans-serif;}
   #shell{position:absolute;top:0;left:0;right:0;bottom:0;}
-  body.banner-visible #shell{top:32px;}
+  body.banner-visible #shell{top:36px;}
   #map{position:absolute;top:0;left:0;right:0;bottom:0;}
   #sidebar{display:none;}
   @media(max-width:600px){
@@ -67,15 +67,20 @@
   }
   .slabel{font-size:10px;font-weight:700;color:var(--fg);
     background:var(--panel-bg);border:none;box-shadow:none;padding:0 2px;}
-  #banner{position:absolute;top:0;left:0;right:0;height:32px;
+  #banner{position:absolute;top:0;left:0;right:0;height:36px;
     background:#1b2b3a;color:#e8eef4;z-index:10000;display:none;
-    align-items:center;padding:0 12px;font-size:12px;gap:8px;
+    align-items:center;padding:0 12px;gap:8px;
     border-bottom:1px solid #0d1922;}
   body.banner-visible #banner{display:flex;}
-  #banner .msg{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-  #banner-info-btn{background:transparent;border:none;color:#9ec8ff;font-size:12px;
-    cursor:pointer;flex-shrink:0;padding:0;text-decoration:underline;white-space:nowrap;}
-  #banner-info-btn:hover{color:#c8deff;}
+  #banner-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#4caf77;margin-right:5px;flex-shrink:0;}
+  #banner-brand{font-weight:600;font-size:13px;white-space:nowrap;display:flex;align-items:center;}
+  #banner-meta{color:#7a9bbb;font-size:11px;white-space:nowrap;}
+  #banner-guide-btn{background:transparent;border:1px solid #3d5a73;color:#9ec8ff;
+    border-radius:4px;padding:2px 10px;font-size:12px;cursor:pointer;white-space:nowrap;flex-shrink:0;}
+  #banner-guide-btn:hover{background:#1f3a52;}
+  #banner-near-btn{background:#2d8a5a;border:none;color:#fff;
+    border-radius:4px;padding:2px 10px;font-size:12px;cursor:pointer;white-space:nowrap;flex-shrink:0;display:flex;align-items:center;gap:4px;}
+  #banner-near-btn:hover{background:#359e6a;}
   .popup-plain{font-size:12px;line-height:1.45;max-width:280px;max-height:75vh;overflow-y:auto;}
   .popup-plain h3{margin:0 0 4px 0;font-size:13px;}
   .popup-plain .acc{color:var(--accent);font-weight:600;margin-bottom:6px;}
@@ -200,8 +205,11 @@
 </head>
 <body>
 <div id="banner">
-  <div class="msg">GPS can achieve centimetre accuracy — this map shows the free correction networks.</div>
-  <button id="banner-info-btn" aria-haspopup="dialog">Learn more</button>
+  <span id="banner-brand"><span id="banner-dot"></span>NTRIP Map</span>
+  <span id="banner-meta">· <span id="banner-count">…</span> stations · <span id="banner-age">…</span></span>
+  <span style="flex:1"></span>
+  <button id="banner-guide-btn">Guide</button>
+  <button id="banner-near-btn">⊙ Near me</button>
 </div>
 <dialog id="how-dialog">
   <div id="how-dialog-inner">
@@ -870,14 +878,10 @@
 
   function setupBanner(){
     document.body.classList.add('banner-visible');
+    var guideBtn=document.getElementById('banner-guide-btn');
+    if(guideBtn) guideBtn.onclick=function(){ openGuideDialog(); };
     var dlg=document.getElementById('how-dialog');
-    var openBtn=document.getElementById('banner-info-btn');
     var closeBtn=document.getElementById('how-dialog-close');
-    function openHow(){
-      dlg.showModal();
-      try{ localStorage.setItem('ntrip-howit-seen','1'); }catch(e){}
-    }
-    if(openBtn) openBtn.onclick=openHow;
     if(closeBtn) closeBtn.onclick=function(){ dlg.close(); };
     dlg.addEventListener('click',function(e){
       var r=dlg.getBoundingClientRect();
@@ -885,7 +889,7 @@
     });
     var seen=false;
     try{ seen=!!localStorage.getItem('ntrip-howit-seen'); }catch(e){}
-    if(!seen) openHow();
+    if(!seen){ dlg.showModal(); try{ localStorage.setItem('ntrip-howit-seen','1'); }catch(e){} }
   }
 
   function buildTogglePanel(sourceCounts,vrsLayerBySid,greyLayerById,infoLayerById,onChange){
@@ -1417,14 +1421,27 @@
     function finishLoad(){
       var li=document.getElementById('leg-info');
       var updatedLabel;
-      if(!updated){ updatedLabel='unknown'; }
+      if(!updated){ updatedLabel='?'; }
       else {
         var h=Math.round((Date.now()-new Date(updated).getTime())/3600000);
-        updatedLabel=(h<1?'< 1':h)+' h ago';
+        updatedLabel=(h<1?'< 1':h)+'h ago';
       }
       if(li) li.innerHTML=visible.length.toLocaleString()+' stations<br>updated '+updatedLabel;
+      var bc=document.getElementById('banner-count');
+      var ba=document.getElementById('banner-age');
+      if(bc) bc.textContent=visible.length.toLocaleString();
+      if(ba) ba.textContent=updatedLabel;
       updateViewCounts();
     }
+
+    var nearBtn=document.getElementById('banner-near-btn');
+    if(nearBtn) nearBtn.onclick=function(){
+      if(!navigator.geolocation) return;
+      navigator.geolocation.getCurrentPosition(
+        function(p){ map.flyTo([p.coords.latitude,p.coords.longitude],12); },
+        function(){}
+      );
+    };
 
     rebuildStationLayers();
   });
