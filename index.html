@@ -662,9 +662,9 @@
       ||(serverKey.indexOf('sapos_')===0?SOURCE_AUTH['sapos_']:null)||{};
     var h=`<div class="srv"><div style="font-weight:600;font-size:11px;margin-bottom:2px">${dot}${esc(sourceLabel(serverKey))}</div>`
       +cpRow('Server',srv.host)+cpRow('Port',srv.port)
-      +`<div class="row"><span class="lbl">Mountpoint</span>${mountChip()}<code>${esc(mountpoint)}</code><button class="cp" onclick="__ntripCopy(this,'${esc(mountpoint)}')">copy</button></div>`;
+      +`<div class="row"><span class="lbl lbl-with-chip">Mount${mountChip()}</span><code>${esc(mountpoint)}</code><button class="cp" onclick="__ntripCopy(this,'${esc(mountpoint)}')">copy</button></div>`;
     if(auth.near)
-      h+='<div class="anote">or use mountpoint <code>NEAR</code> to auto-select nearest</div>';
+      h+='<div class="anote">or use <code>NEAR</code> to auto-select nearest</div>';
     if(auth.user)
       h+=cpRow('Username',auth.user);
     else if(auth.userNote)
