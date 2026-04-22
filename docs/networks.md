@@ -5,7 +5,7 @@ _Read before touching `scripts/fetch_stations.py` or `index.html`._
 _Networks are identified via `docs/country-survey.md` and `docs/global-survey.md`;_
 _detail, endpoints, and pipeline status live here._
 
-_Last updated: 2026-04-20._
+_Last updated: 2026-04-22._
 
 ---
 
@@ -1148,6 +1148,26 @@ Surface in UI as paid alternatives for users in areas with no free coverage.
 
 ---
 
+## tencent_rtk — Tencent RTK (CN)
+
+**status**:    paid-affordable
+**host:port**: `cors.tencent.com` (ports 8001–8005, CGCS2000 on 8003)
+**type**:      single-coord-vrs
+**access**:    paid; Tencent account (WeChat/QQ) required; no professional surveying licence needed
+**yearly_cost**: ~¥998/yr (~$138/yr) at 2022 launch pricing; current 2025/2026 pricing unconfirmed
+**stations**:  2,800+ virtual network stations; 33 provinces; 100% major urban road coverage
+**source**:    lbs.qq.com/rtk (Tencent Location Service)
+
+Launched 2022 as free public beta; moved to paid at ~¥998/yr. No surveying licence required —
+open to individuals. Requires a Tencent account (Chinese phone number typical for WeChat/QQ).
+If current pricing matches 2022 launch, this is the sole sub-$200/yr commercial option in China.
+Service status as of 2025/2026 not confirmed; verify at lbs.qq.com/rtk before recommending.
+
+**investigate**: confirm current pricing and service availability at lbs.qq.com/rtk; verify
+whether a non-Chinese Tencent account can be used to register.
+
+---
+
 ## Paid — over cutoff or structurally restricted
 
 Brief entries only.
@@ -1495,6 +1515,25 @@ Enterprise-focused commercial NRTK network covering Italy. Not free.
 
 ---
 
+## sdcm — СДКМ / SDCM (RU)
+
+**status**:    rejected
+**reason**:    satellite-based augmentation system (SBAS), not NTRIP; L-band broadcast
+               corrections (~20 cm sub-metre accuracy); requires SBAS-capable receiver,
+               no internet connection used; out of scope for this project
+
+---
+
+## bgas_china — 北斗地基增强系统 BeiDou GBAS (CN)
+
+**status**:    rejected
+**reason**:    access restricted to licensed surveying organisations under 测量法
+               (Surveying and Mapping Law of the PRC, Articles 27–29); no public
+               NTRIP endpoint for unlicensed individuals; hobbyist registration path
+               does not exist
+
+---
+
 ## gps_emiliaromagna — Rete GPS Emilia-Romagna (IT)
 
 **status**:    rejected
@@ -1508,3 +1547,96 @@ Enterprise-focused commercial NRTK network covering Italy. Not free.
 **status**:    rejected
 **reason**:    per-station direct TCP streams (not NTRIP aggregated); incompatible with
                standard NTRIP pipeline; no NTRIP caster endpoint published
+
+---
+
+## eft_cors — EFT-CORS / СДГС CORS (RU)
+
+**status**:    paid
+**host:port**: `ntrip.eft-cors.ru:2102` (all stations); `:2103` nearest; `:2104` sCMRx format;
+               port 70+region-code for regional subsets (e.g., 7040 = Kaluga Oblast)
+**access**:    paid; day/month/6-month/annual plans; 3-day free RTK trial; RINEX post-processing free
+**yearly_cost**: not publicly listed (annual price); updated tariffs from Sep 2025
+**stations**:  hundreds, growing; GPS+GLONASS+BDS+GAL
+**source**:    eft-cors.ru (EFT GROUP, Moscow)
+
+Russia's largest CORS aggregator. Operated by EFT GROUP (геодезическое оборудование). Stations
+added by partners across all federal districts. No free public tier for RTK; RINEX archives
+are free for post-processing (RINEX 2.11 and 3.02). Credentials provided after subscribing.
+
+---
+
+## rtknet — RTKNet (RU)
+
+**status**:    paid
+**host:port**: `ntrip.rtknet.ru`; ports by federal district: 6030 Central, 6031 North-West,
+               6033 Volga, 6034 Ural, 6038 North Caucasus, 6040 South, 6041 Siberia/Far East;
+               port 2101 for own mobile base
+**access**:    paid; 30,000 ₽/yr (~$333/yr); 20,000 ₽/6mo; 10,000 ₽/3mo; 4,000 ₽/mo;
+               3-day free trial; register at rtknet.ru
+**yearly_cost**: 30,000 ₽/yr (~$333/yr at ~90 ₽/USD)
+**stations**:  300+ across Russia; RTCM 3.0 and RTCM 3.2-MSM4; 1 Hz
+**source**:    rtknet.ru
+
+Growing since 2013; covers all federal districts. Some equipment resellers include 1-year
+RTKNet access with GNSS receiver purchases.
+
+---
+
+## hive_cors — HIVE (RU)
+
+**status**:    paid
+**host:port**: `hive.geosystems.aero` (exact port not confirmed)
+**access**:    pay-per-use — RTK charged daily, RINEX charged hourly; station owners
+               get free NTRIP caster software + storage; owners receive 50% revenue share
+**yearly_cost**: variable (pay-per-use)
+**source**:    hive.geosystems.aero (Geosystems Aero, Russia)
+
+Aggregation model: independent reference station owners connect their stations to HIVE;
+users pay per-day RTK access. Pricing and station geography viewable on the map.
+
+---
+
+## geospider — ГЕОСПАЙДЕР (RU — North-West)
+
+**status**:    paid
+**host:port**: contact mail@geospider.ru (not publicly listed)
+**access**:    paid; monthly/quarterly/annual subscriptions; contact mail@geospider.ru
+**yearly_cost**: not publicly listed
+**stations**:  49 (North-West Russia, centred on St. Petersburg)
+**source**:    geospider.ru (НПП «ГЕОМАТИК», St. Petersburg)
+
+Regional network for the North-West federal district. RTCM 3.1 in local coordinate systems.
+Operated by НПП «ГЕОМАТИК». Coverage extends over Leningrad Oblast and adjacent regions.
+
+---
+
+## qianxun — 千寻知寸 Qianxun (CN)
+
+**status**:    paid
+**host:port**: `rtk.ntrip.qxwz.com:8003` (CGCS2000); alt IP `60.205.8.49:8003`
+**access**:    paid; individuals register directly at qxwz.com; no surveying licence required;
+               monthly (~¥400/mo) or annual (~¥3,600–3,800/yr) subscription
+**yearly_cost**: ~¥3,600–3,800/yr (~$500–528/yr) — over $200/yr cutoff
+**stations**:  2,700+ base stations; 33 provinces; GPS+GLONASS+BDS+GAL
+**source**:    qxwz.com (千寻位置 Qianxun SI — Alibaba Group + Norinco JV)
+
+China's dominant commercial CORS network. Launched 2016; RTCM 3.x via NTRIP standard protocol.
+Open to individuals without professional licence. Most RTK survey equipment in China
+pre-configures Qianxun credentials. Coverage claimed as 100% of major highways and 95%+
+population coverage.
+
+---
+
+## cmcc_cors — 中国移动CORS China Mobile CORS (CN)
+
+**status**:    paid
+**access**:    paid; individual registration via China Mobile data account; no surveying
+               licence required; ~¥3,600/yr (~$500/yr); also available daily/monthly
+**yearly_cost**: ~¥3,600/yr (~$500/yr) — over $200/yr cutoff
+**stations**:  4,400+ nationwide
+**source**:    China Mobile (中国移动); NTRIP via CMCC network
+
+China Mobile's high-precision positioning service built on 4,400+ CORS base stations. NTRIP
+connection uses the CMCC interactive mode. Pricing comparable to Qianxun. Coverage and
+uptime depend on China Mobile cellular infrastructure.
