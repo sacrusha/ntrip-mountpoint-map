@@ -98,7 +98,7 @@ through one federation endpoint; no separate country-specific instances found.
 
 Operated by OGS (Istituto Nazionale di Oceanografia e Geofisica Sperimentale).
 Crustal-deformation network for Friuli-Venezia Giulia; coverage extends into
-Slovenia and W Austria. Register by emailing rete.gnss.marussi@regione.fvg.it.
+Slovenia and W Austria. Register via frednet.crs.ogs.it.
 
 ---
 
@@ -135,7 +135,7 @@ TLS also available on port 443. Attribute "© Commonwealth of Australia (Geoscie
 **status**:    in-pipeline
 **host:port**: `positionz-rt.linz.govt.nz:2101`
 **type**:      single-base
-**access**:    free; LINZ account + email positionz@linz.govt.nz; CC BY 4.0 NZ
+**access**:    free; LINZ account required; register via linz.govt.nz; CC BY 4.0 NZ
 **stations**:  ~62
 **source**:    linz.govt.nz; toitutewhenua.govt.nz
 
@@ -177,7 +177,7 @@ Alt IP: `170.84.40.52:2101`. 150 stations as of Dec 2024 (IBGE added 5 in Dec 20
 **status**:    in-pipeline
 **host:port**: `ntrip.ign.gob.ar:2101`
 **type**:      single-base
-**access**:    free; email ntrip@ign.gob.ar or ign.gob.ar portal; 8-hr session cap
+**access**:    free; register via ign.gob.ar portal; 8-hr session cap
 **stations**:  ~203
 **source**:    ign.gob.ar
 
@@ -272,7 +272,7 @@ Orden FOM/2807/2015. RAP (Andalucía) supplements in the south; separate signup.
 **status**:    in-pipeline
 **host:port**: `ntrip.geodetic.gov.hk:2101`
 **type**:      physical-coord-vrs
-**access**:    free; email geodetic@landsd.gov.hk or DATA.GOV.HK open-data path
+**access**:    free; register via geodetic.gov.hk or DATA.GOV.HK open-data path
 **stations**:  ~22
 **source**:    geodetic.gov.hk (Lands Department, Survey & Mapping Office)
 
@@ -338,7 +338,7 @@ free of charge.
 **source**:    natt.is (LMÍ — Landmælingar Íslands)
 
 GNCASTER software (same as SAPOS). Offers VRS (VRS30, FKP30) and single-base
-(RTCM30). Stream credentials via icecors@natt.is.
+(RTCM30). Stream credentials provided after registration at natt.is.
 
 ---
 
@@ -450,11 +450,11 @@ than egress block; also verify `flepos.vlaanderen.be:2101` still resolves correc
 **type**:      single-coord-vrs
 **access**:    free for positioning; paid for machine-control/auto-guidance (commercial resellers)
 **stations**:  0 (23 declared; single-coord VRS; intermittently unreachable)
-**source**:    gnss.wallonie.be (gnss@spw.wallonie.be, SPW)
+**source**:    gnss.wallonie.be (SPW)
 
 Intermittent outages documented. Currently timing out in CI.
 
-**investigate**: check gnss.wallonie.be status page or contact gnss@spw.wallonie.be;
+**investigate**: check gnss.wallonie.be status page;
 distinguish persistent outage from intermittent — if dead >4 weeks, drop from pipeline.
 
 ---
@@ -498,7 +498,7 @@ before sourcetable is served). Re-confirm free status before Aug 2026 or drop.
 **status**:    in-pipeline
 **host:port**: `ksacors.geoportal.sa:2101`
 **type**:      single-coord-vrs
-**access**:    free; registration: sign form + email info@geosa.gov.sa
+**access**:    free; register via ksacors.geoportal.sa
 **stations**:  0 (209 declared; single-coord; GPS+GLO+GAL+BDS)
 **source**:    ksacors.geoportal.sa (GASGI/GEOSA)
 
@@ -939,7 +939,7 @@ streams until physical-coordinate mountpoints are published.
 **status**:    deferred
 **host:port**: withheld until post-registration
 **type**:      physical-coord-vrs
-**access**:    free; register at renep.dgterritorio.gov.pt (renep@dgterritorio.pt)
+**access**:    free; register at renep.dgterritorio.gov.pt
 **stations**:  47
 **source**:    dgterritorio.gov.pt (DGT — Direção-Geral do Território)
 
@@ -962,10 +962,9 @@ or check Alberding directory / EUREF caster list for a public mirror.
 
 RTCM 2.1/2.3/3.1/3.2, CMR, CMR+, CMRx. NTRIP host:port not publicly listed —
 find via ArduSimple or Alberding caster directory before ingesting.
-Contact LitPOS@geoportal.lt to confirm.
 
 **missing**: caster host:port — search Alberding EUPOS directory (eupos.org),
-ArduSimple country list, or email LitPOS@geoportal.lt.
+ArduSimple country list, or contact via geoportal.lt/web/litpos-en.
 
 ---
 
@@ -983,7 +982,7 @@ manual at dol-rtknetwork.com. Host:port not found in public aggregators.
 Direct contact with Dept of Lands required before ingesting.
 
 **missing**: caster host:port and station count — download Thai manual from
-dol-rtknetwork.com or contact rtk@dol.go.th.
+dol-rtknetwork.com or contact via the Dept of Lands portal at dol.go.th.
 
 ---
 

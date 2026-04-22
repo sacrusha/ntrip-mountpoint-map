@@ -239,7 +239,7 @@ _Last updated: 2026-04-22._
   status confirmed (publicly-funded EUPOS member); NTRIP host:port not publicly listed.
   → networks.md: `litpos` (deferred)
 - **Volunteer**: negligible.
-- **Gap**: endpoint not discoverable without registration; contact LitPOS@geoportal.lt.
+- **Gap**: endpoint not discoverable without registration; register via geoportal.lt/web/litpos-en.
 
 ### LV — Latvia
 
@@ -612,7 +612,7 @@ Centipede volunteer nodes in several French overseas territories, served via `cr
 ### HK — Hong Kong
 
 - **Free government RTK**: SatRef (Lands Dept / SMO, `ntrip.geodetic.gov.hk:2101`,
-  19 stations, VRS, 4-constellation, open data) — free, email geodetic@landsd.gov.hk.
+  19 stations, VRS, 4-constellation, open data) — free, register via geodetic.gov.hk.
   → networks.md: `satref`
 - **Volunteer**: negligible (city-state).
 
@@ -958,7 +958,7 @@ Centipede volunteer nodes in several French overseas territories, served via `cr
 ### SA — Saudi Arabia
 
 - **Free government RTK**: KSA-CORS (GASGI/GEOSA, `ksacors.geoportal.sa:2101`, 209
-  stations, VRS) — free, registration via info@geosa.gov.sa. → networks.md: `ksa_cors`
+  stations, VRS) — free, register via ksacors.geoportal.sa. → networks.md: `ksa_cors`
 - **Volunteer**: negligible.
 - **Gap**: KSA-CORS VRS (0 physical pins); currently timing out in CI; NRTK polygon deferred.
 
