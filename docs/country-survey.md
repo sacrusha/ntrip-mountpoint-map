@@ -11,7 +11,7 @@ coverage with `grep "networks.md:" docs/country-survey.md`._
 _Volunteer station counts (rtk2go / Centipede) are drawn from live
 `data/stations.json` as of 2026-04-19 and will drift over time._
 
-_Last updated: 2026-04-21._
+_Last updated: 2026-04-22._
 
 ---
 
@@ -239,7 +239,7 @@ _Last updated: 2026-04-21._
   status confirmed (publicly-funded EUPOS member); NTRIP host:port not publicly listed.
   → networks.md: `litpos` (deferred)
 - **Volunteer**: negligible.
-- **Gap**: endpoint not discoverable without registration; contact LitPOS@geoportal.lt.
+- **Gap**: endpoint not discoverable without registration; register via geoportal.lt/web/litpos-en.
 
 ### LV — Latvia
 
@@ -334,8 +334,39 @@ _Last updated: 2026-04-21._
 
 ### RU — Russia
 
-- **Free government RTK**: SDCM — SBAS/L-band satellite only, not NTRIP. No public caster.
-- **Volunteer**: negligible.
+- **Government systems (not NTRIP)**:
+  - СДКМ / SDCM (Система Дифференциальной Коррекции и Мониторинга): Russia's SBAS; L-band
+    satellite corrections (~20 cm sub-metre); requires SBAS-capable receiver, no internet.
+    Out of scope. → networks.md: `sdcm`
+  - ФАГС / ВГС (Фундаментальная астрономо-геодезическая сеть / Высокоточная геодезическая
+    сеть — Fundamental and High-Accuracy Geodetic Networks): government reference frame
+    maintained by Росреестр; research/government use only, no public NTRIP delivery.
+- **Free government RTK**: none. No federal authority provides a free public NTRIP stream.
+- **Commercial RTK** (all paid; all over the $200/yr cutoff at current ₽/USD rates):
+  - **EFT-CORS** (EFT GROUP, `ntrip.eft-cors.ru:2102`): Russia's largest CORS aggregator;
+    hundreds of stations growing nationally; GPS+GLONASS+BDS+GAL; ports 2102 (all stations),
+    2103 (nearest), 2104 (sCMRx); day/month/annual plans; RINEX post-processing free;
+    3-day RTK trial. Updated tariffs from Sep 2025. → networks.md: `eft_cors`
+  - **RTKNet** (`ntrip.rtknet.ru`, ports 6030–6041 by federal district): 300+ stations since
+    2013; 30,000 ₽/yr annual (~$333/yr), 4,000 ₽/mo; 3-day free trial. → networks.md: `rtknet`
+  - **HIVE** (Geosystems Aero, `hive.geosystems.aero`): pay-per-use — daily RTK +
+    hourly RINEX; station owners contribute stations and receive revenue share. → networks.md: `hive_cors`
+  - **ГЕОСПАЙДЕР** (НПП «ГЕОМАТИК», North-West Russia, `geospider.ru`, 49 stations): regional
+    paid network centred on St. Petersburg; monthly/quarterly/annual subscriptions.
+    → networks.md: `geospider`
+  - **SmartNet** (Hexagon/Leica): international commercial VRS; Russia availability
+    uncertain post-2022 sanctions.
+- **Post-2022 sanctions**: Western GNSS correction services (Trimble VRS Now, Leica SmartNet)
+  suspended or restricted in Russia. Domestic services (EFT-CORS, RTKNet, HIVE) have
+  expanded. GNSS receiver imports complicated by component sanctions; parallel-import
+  workarounds exist.
+- **Volunteer**: negligible. rtk2go ~1 RU-tagged station (a MIRAI overseas station
+  miscoded); Centipede negligible. Russian hobbyists typically deploy a local base station
+  using SNIP Lite or open-source NTRIP casters.
+- **Gap**: no free RTK for hobbyists. Cheapest commercial option for occasional use is an
+  EFT-CORS day pass; annual plans (~30,000 ₽/yr, ~$333/yr at current rates) exceed the
+  project's $200/yr threshold. Hobbyists needing centimetre accuracy typically set up a
+  local base.
 
 ### SK — Slovakia
 
@@ -546,15 +577,42 @@ Centipede volunteer nodes in several French overseas territories, served via `cr
 
 ### CN — China
 
-- **Free government RTK**: none. Qianxun (千寻知寸, Alibaba+Norinco JV) ~¥3,600–3,800/yr.
-  Surveying and Mapping Law 2017 restricts CORS; provincial networks for licensed
-  surveyors only.
-- **Volunteer**: negligible.
+- **Legal framework**: 测量法 (Surveying and Mapping Law of the PRC, 2002, revised 2017),
+  Articles 27–29 require institutional surveying credentials (测绘资质) to operate or access
+  CORS networks. All government and provincial CORS are closed to unlicensed individuals.
+- **Government networks (licensed professionals only)**:
+  - 全国卫星导航定位基准站 (National CORS, Ministry of Natural Resources / NASG): 2,700+
+    stations; feeds the 北斗地基增强系统 (BeiDou Ground-Based Augmentation System / BGAS);
+    no public NTRIP endpoint. → networks.md: `bgas_china`
+  - 省级CORS网 (Provincial CORS — all 34 provinces/municipalities): first established by
+    深圳SZCORS (Shenzhen, 2003); every province now has its own network; registration
+    requires organisational credentials + surveying licence; some provinces free for
+    licensed organisations, others charge (e.g., Sichuan ¥8,000/yr). Not hobbyist-accessible.
+- **Commercial RTK** (no professional licence required; open to individuals):
+  - **千寻知寸 Qianxun** (Alibaba + Norinco JV, `rtk.ntrip.qxwz.com:8003`): 2,700+
+    stations, 33 provinces; ¥3,600–3,800/yr (~$500–528/yr) — over $200/yr cutoff;
+    individuals register directly. Most widely used commercial CORS in China.
+    → networks.md: `qianxun`
+  - **中国移动CORS China Mobile CORS** (CMCC, 4,400+ stations, nationwide): ~¥3,600/yr
+    (~$500/yr); NTRIP access via data plan; open to individuals. Same price bracket as
+    Qianxun. → networks.md: `cmcc_cors`
+  - **腾讯位置服务RTK Tencent RTK** (`cors.tencent.com`): launched 2022 as free beta; moved
+    to paid at ~¥998/yr (~$138/yr); 2,800+ virtual network stations; 33 provinces; requires
+    Tencent account (WeChat/QQ). If still offered at that price it is the only sub-$200/yr
+    option in China, but current status (2025/2026) is unconfirmed. → networks.md: `tencent_rtk`
+- **Volunteer**: negligible. rtk2go ~1 CHN-tagged volunteer station; Centipede negligible.
+  Chinese hobbyists (drone pilots, precision-agriculture DIY, autonomous-vehicle developers)
+  typically pay Qianxun at full price or deploy a local base using SinoGNSS / ComNav /
+  Unicore Communications receivers.
+- **Gap**: 测量法 closes all government CORS to unlicensed users. The lowest confirmed
+  commercial price is Tencent RTK at ~¥998/yr (~$138/yr), but its 2025/2026 operational
+  status is unconfirmed and requires a Chinese platform account. Qianxun/CMCC at ~$500/yr
+  are the reliable options.
 
 ### HK — Hong Kong
 
 - **Free government RTK**: SatRef (Lands Dept / SMO, `ntrip.geodetic.gov.hk:2101`,
-  19 stations, VRS, 4-constellation, open data) — free, email geodetic@landsd.gov.hk.
+  19 stations, VRS, 4-constellation, open data) — free, register via geodetic.gov.hk.
   → networks.md: `satref`
 - **Volunteer**: negligible (city-state).
 
@@ -900,7 +958,7 @@ Centipede volunteer nodes in several French overseas territories, served via `cr
 ### SA — Saudi Arabia
 
 - **Free government RTK**: KSA-CORS (GASGI/GEOSA, `ksacors.geoportal.sa:2101`, 209
-  stations, VRS) — free, registration via info@geosa.gov.sa. → networks.md: `ksa_cors`
+  stations, VRS) — free, register via ksacors.geoportal.sa. → networks.md: `ksa_cors`
 - **Volunteer**: negligible.
 - **Gap**: KSA-CORS VRS (0 physical pins); currently timing out in CI; NRTK polygon deferred.
 

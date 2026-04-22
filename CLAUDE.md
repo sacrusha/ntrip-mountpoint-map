@@ -55,7 +55,7 @@ entry to `SOURCE_AUTH` in `index.html` for connection hints in popups.
 Develop on feature branches, PR into `main`. The workflow only runs against
 `main`, so ingestion changes need to land there to be exercised.
 
-## Current state (2026-04-21, branch claude/extend-network-types-1BjIy)
+## Current state (2026-04-22, branch claude/add-russia-china-coverage-WMPJr)
 
 **65 sources, ~5,472 stations** in `data/stations.json`. Sources:
 rtk2go, Centipede, FReDNet, GeoRTK, 14× SAPOS Länder, ERGNSS, APOS (AT),
@@ -130,6 +130,23 @@ odot_rtn (`156.63.133.115`). Valid URLs, handled normally.
 AzCORS, MnCORS) may share physical stations with EarthScope NOTA, producing
 duplicate pins at identical coordinates. VRS-only state networks avoid this.
 Deduplication is a future task.
+
+**Documentation rule — no direct email addresses in docs:** `docs/networks.md`
+and `docs/country-survey.md` must not contain bare `user@domain` email addresses.
+Link to the relevant website instead; the website can describe a sign-up process
+that involves sending an email. Applied retroactively to all entries in this session.
+
+**Russia (RU) and China (CN) country-survey entries** are now fully documented
+(were 2–3 line stubs). RU: covers СДКМ/SDCM (SBAS only), ФАГС/ВГС (no public
+NTRIP), and four commercial networks (EFT-CORS, RTKNet, HIVE, ГЕОСПАЙДЕР) with
+₽ pricing and host:port detail plus post-2022 sanctions context. CN: covers
+测量法 legal barrier to all government/provincial CORS, BGAS/provincial CORS
+(licensed orgs only), and three commercial services (Qianxun ¥3,600/yr,
+China Mobile CORS ¥3,600/yr, Tencent RTK ~¥998/yr — status unconfirmed).
+Nine new `docs/networks.md` entries added: `tencent_rtk` (paid-affordable),
+`eft_cors`, `rtknet`, `hive_cors`, `geospider` (RU paid), `qianxun`, `cmcc_cors`
+(CN paid), `sdcm`, `bgas_china` (rejected). No pipeline additions — no free
+hobbyist NTRIP exists in either country.
 
 **Open / deferred (by priority):**
 1. NRTK / VRS coverage polygons: rendering scaffolded (`networks: []` in JSON)

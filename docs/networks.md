@@ -5,7 +5,7 @@ _Read before touching `scripts/fetch_stations.py` or `index.html`._
 _Networks are identified via `docs/country-survey.md` and `docs/global-survey.md`;_
 _detail, endpoints, and pipeline status live here._
 
-_Last updated: 2026-04-20._
+_Last updated: 2026-04-22._
 
 ---
 
@@ -98,7 +98,7 @@ through one federation endpoint; no separate country-specific instances found.
 
 Operated by OGS (Istituto Nazionale di Oceanografia e Geofisica Sperimentale).
 Crustal-deformation network for Friuli-Venezia Giulia; coverage extends into
-Slovenia and W Austria. Register by emailing rete.gnss.marussi@regione.fvg.it.
+Slovenia and W Austria. Register via frednet.crs.ogs.it.
 
 ---
 
@@ -135,7 +135,7 @@ TLS also available on port 443. Attribute "© Commonwealth of Australia (Geoscie
 **status**:    in-pipeline
 **host:port**: `positionz-rt.linz.govt.nz:2101`
 **type**:      single-base
-**access**:    free; LINZ account + email positionz@linz.govt.nz; CC BY 4.0 NZ
+**access**:    free; LINZ account required; register via linz.govt.nz; CC BY 4.0 NZ
 **stations**:  ~62
 **source**:    linz.govt.nz; toitutewhenua.govt.nz
 
@@ -177,7 +177,7 @@ Alt IP: `170.84.40.52:2101`. 150 stations as of Dec 2024 (IBGE added 5 in Dec 20
 **status**:    in-pipeline
 **host:port**: `ntrip.ign.gob.ar:2101`
 **type**:      single-base
-**access**:    free; email ntrip@ign.gob.ar or ign.gob.ar portal; 8-hr session cap
+**access**:    free; register via ign.gob.ar portal; 8-hr session cap
 **stations**:  ~203
 **source**:    ign.gob.ar
 
@@ -272,7 +272,7 @@ Orden FOM/2807/2015. RAP (Andalucía) supplements in the south; separate signup.
 **status**:    in-pipeline
 **host:port**: `ntrip.geodetic.gov.hk:2101`
 **type**:      physical-coord-vrs
-**access**:    free; email geodetic@landsd.gov.hk or DATA.GOV.HK open-data path
+**access**:    free; register via geodetic.gov.hk or DATA.GOV.HK open-data path
 **stations**:  ~22
 **source**:    geodetic.gov.hk (Lands Department, Survey & Mapping Office)
 
@@ -338,7 +338,7 @@ free of charge.
 **source**:    natt.is (LMÍ — Landmælingar Íslands)
 
 GNCASTER software (same as SAPOS). Offers VRS (VRS30, FKP30) and single-base
-(RTCM30). Stream credentials via icecors@natt.is.
+(RTCM30). Stream credentials provided after registration at natt.is.
 
 ---
 
@@ -450,11 +450,11 @@ than egress block; also verify `flepos.vlaanderen.be:2101` still resolves correc
 **type**:      single-coord-vrs
 **access**:    free for positioning; paid for machine-control/auto-guidance (commercial resellers)
 **stations**:  0 (23 declared; single-coord VRS; intermittently unreachable)
-**source**:    gnss.wallonie.be (gnss@spw.wallonie.be, SPW)
+**source**:    gnss.wallonie.be (SPW)
 
 Intermittent outages documented. Currently timing out in CI.
 
-**investigate**: check gnss.wallonie.be status page or contact gnss@spw.wallonie.be;
+**investigate**: check gnss.wallonie.be status page;
 distinguish persistent outage from intermittent — if dead >4 weeks, drop from pipeline.
 
 ---
@@ -498,7 +498,7 @@ before sourcetable is served). Re-confirm free status before Aug 2026 or drop.
 **status**:    in-pipeline
 **host:port**: `ksacors.geoportal.sa:2101`
 **type**:      single-coord-vrs
-**access**:    free; registration: sign form + email info@geosa.gov.sa
+**access**:    free; register via ksacors.geoportal.sa
 **stations**:  0 (209 declared; single-coord; GPS+GLO+GAL+BDS)
 **source**:    ksacors.geoportal.sa (GASGI/GEOSA)
 
@@ -939,7 +939,7 @@ streams until physical-coordinate mountpoints are published.
 **status**:    deferred
 **host:port**: withheld until post-registration
 **type**:      physical-coord-vrs
-**access**:    free; register at renep.dgterritorio.gov.pt (renep@dgterritorio.pt)
+**access**:    free; register at renep.dgterritorio.gov.pt
 **stations**:  47
 **source**:    dgterritorio.gov.pt (DGT — Direção-Geral do Território)
 
@@ -962,10 +962,9 @@ or check Alberding directory / EUREF caster list for a public mirror.
 
 RTCM 2.1/2.3/3.1/3.2, CMR, CMR+, CMRx. NTRIP host:port not publicly listed —
 find via ArduSimple or Alberding caster directory before ingesting.
-Contact LitPOS@geoportal.lt to confirm.
 
 **missing**: caster host:port — search Alberding EUPOS directory (eupos.org),
-ArduSimple country list, or email LitPOS@geoportal.lt.
+ArduSimple country list, or contact via geoportal.lt/web/litpos-en.
 
 ---
 
@@ -983,7 +982,7 @@ manual at dol-rtknetwork.com. Host:port not found in public aggregators.
 Direct contact with Dept of Lands required before ingesting.
 
 **missing**: caster host:port and station count — download Thai manual from
-dol-rtknetwork.com or contact rtk@dol.go.th.
+dol-rtknetwork.com or contact via the Dept of Lands portal at dol.go.th.
 
 ---
 
@@ -1145,6 +1144,26 @@ Surface in UI as paid alternatives for users in areas with no free coverage.
 **yearly_cost**: ~€169/yr (~$183) — under $200 cutoff
 **stations**:  unknown
 **source**:    rompos.ro
+
+---
+
+## tencent_rtk — Tencent RTK (CN)
+
+**status**:    paid-affordable
+**host:port**: `cors.tencent.com` (ports 8001–8005, CGCS2000 on 8003)
+**type**:      single-coord-vrs
+**access**:    paid; Tencent account (WeChat/QQ) required; no professional surveying licence needed
+**yearly_cost**: ~¥998/yr (~$138/yr) at 2022 launch pricing; current 2025/2026 pricing unconfirmed
+**stations**:  2,800+ virtual network stations; 33 provinces; 100% major urban road coverage
+**source**:    lbs.qq.com/rtk (Tencent Location Service)
+
+Launched 2022 as free public beta; moved to paid at ~¥998/yr. No surveying licence required —
+open to individuals. Requires a Tencent account (Chinese phone number typical for WeChat/QQ).
+If current pricing matches 2022 launch, this is the sole sub-$200/yr commercial option in China.
+Service status as of 2025/2026 not confirmed; verify at lbs.qq.com/rtk before recommending.
+
+**investigate**: confirm current pricing and service availability at lbs.qq.com/rtk; verify
+whether a non-Chinese Tencent account can be used to register.
 
 ---
 
@@ -1495,6 +1514,25 @@ Enterprise-focused commercial NRTK network covering Italy. Not free.
 
 ---
 
+## sdcm — СДКМ / SDCM (RU)
+
+**status**:    rejected
+**reason**:    satellite-based augmentation system (SBAS), not NTRIP; L-band broadcast
+               corrections (~20 cm sub-metre accuracy); requires SBAS-capable receiver,
+               no internet connection used; out of scope for this project
+
+---
+
+## bgas_china — 北斗地基增强系统 BeiDou GBAS (CN)
+
+**status**:    rejected
+**reason**:    access restricted to licensed surveying organisations under 测量法
+               (Surveying and Mapping Law of the PRC, Articles 27–29); no public
+               NTRIP endpoint for unlicensed individuals; hobbyist registration path
+               does not exist
+
+---
+
 ## gps_emiliaromagna — Rete GPS Emilia-Romagna (IT)
 
 **status**:    rejected
@@ -1508,3 +1546,96 @@ Enterprise-focused commercial NRTK network covering Italy. Not free.
 **status**:    rejected
 **reason**:    per-station direct TCP streams (not NTRIP aggregated); incompatible with
                standard NTRIP pipeline; no NTRIP caster endpoint published
+
+---
+
+## eft_cors — EFT-CORS / СДГС CORS (RU)
+
+**status**:    paid
+**host:port**: `ntrip.eft-cors.ru:2102` (all stations); `:2103` nearest; `:2104` sCMRx format;
+               port 70+region-code for regional subsets (e.g., 7040 = Kaluga Oblast)
+**access**:    paid; day/month/6-month/annual plans; 3-day free RTK trial; RINEX post-processing free
+**yearly_cost**: not publicly listed (annual price); updated tariffs from Sep 2025
+**stations**:  hundreds, growing; GPS+GLONASS+BDS+GAL
+**source**:    eft-cors.ru (EFT GROUP, Moscow)
+
+Russia's largest CORS aggregator. Operated by EFT GROUP (геодезическое оборудование). Stations
+added by partners across all federal districts. No free public tier for RTK; RINEX archives
+are free for post-processing (RINEX 2.11 and 3.02). Credentials provided after subscribing.
+
+---
+
+## rtknet — RTKNet (RU)
+
+**status**:    paid
+**host:port**: `ntrip.rtknet.ru`; ports by federal district: 6030 Central, 6031 North-West,
+               6033 Volga, 6034 Ural, 6038 North Caucasus, 6040 South, 6041 Siberia/Far East;
+               port 2101 for own mobile base
+**access**:    paid; 30,000 ₽/yr (~$333/yr); 20,000 ₽/6mo; 10,000 ₽/3mo; 4,000 ₽/mo;
+               3-day free trial; register at rtknet.ru
+**yearly_cost**: 30,000 ₽/yr (~$333/yr at ~90 ₽/USD)
+**stations**:  300+ across Russia; RTCM 3.0 and RTCM 3.2-MSM4; 1 Hz
+**source**:    rtknet.ru
+
+Growing since 2013; covers all federal districts. Some equipment resellers include 1-year
+RTKNet access with GNSS receiver purchases.
+
+---
+
+## hive_cors — HIVE (RU)
+
+**status**:    paid
+**host:port**: `hive.geosystems.aero` (exact port not confirmed)
+**access**:    pay-per-use — RTK charged daily, RINEX charged hourly; station owners
+               get free NTRIP caster software + storage; owners receive 50% revenue share
+**yearly_cost**: variable (pay-per-use)
+**source**:    hive.geosystems.aero (Geosystems Aero, Russia)
+
+Aggregation model: independent reference station owners connect their stations to HIVE;
+users pay per-day RTK access. Pricing and station geography viewable on the map.
+
+---
+
+## geospider — ГЕОСПАЙДЕР (RU — North-West)
+
+**status**:    paid
+**host:port**: not publicly listed; obtain via geospider.ru
+**access**:    paid; monthly/quarterly/annual subscriptions; register via geospider.ru
+**yearly_cost**: not publicly listed
+**stations**:  49 (North-West Russia, centred on St. Petersburg)
+**source**:    geospider.ru (НПП «ГЕОМАТИК», St. Petersburg)
+
+Regional network for the North-West federal district. RTCM 3.1 in local coordinate systems.
+Operated by НПП «ГЕОМАТИК». Coverage extends over Leningrad Oblast and adjacent regions.
+
+---
+
+## qianxun — 千寻知寸 Qianxun (CN)
+
+**status**:    paid
+**host:port**: `rtk.ntrip.qxwz.com:8003` (CGCS2000); alt IP `60.205.8.49:8003`
+**access**:    paid; individuals register directly at qxwz.com; no surveying licence required;
+               monthly (~¥400/mo) or annual (~¥3,600–3,800/yr) subscription
+**yearly_cost**: ~¥3,600–3,800/yr (~$500–528/yr) — over $200/yr cutoff
+**stations**:  2,700+ base stations; 33 provinces; GPS+GLONASS+BDS+GAL
+**source**:    qxwz.com (千寻位置 Qianxun SI — Alibaba Group + Norinco JV)
+
+China's dominant commercial CORS network. Launched 2016; RTCM 3.x via NTRIP standard protocol.
+Open to individuals without professional licence. Most RTK survey equipment in China
+pre-configures Qianxun credentials. Coverage claimed as 100% of major highways and 95%+
+population coverage.
+
+---
+
+## cmcc_cors — 中国移动CORS China Mobile CORS (CN)
+
+**status**:    paid
+**access**:    paid; individual registration via China Mobile data account; no surveying
+               licence required; ~¥3,600/yr (~$500/yr); also available daily/monthly
+**yearly_cost**: ~¥3,600/yr (~$500/yr) — over $200/yr cutoff
+**stations**:  4,400+ nationwide
+**source**:    China Mobile (中国移动); NTRIP via CMCC network
+
+China Mobile's high-precision positioning service built on 4,400+ CORS base stations. NTRIP
+connection uses the CMCC interactive mode. Pricing comparable to Qianxun. Coverage and
+uptime depend on China Mobile cellular infrastructure.
