@@ -72,5 +72,6 @@ STR;West-SB;West-SB;RTCM 3.1;1004/1012(1),1005/1007/1033(5);2;GPS+GLO;TrigNet;ZA
 STR;Lsma-SB;Lsma-SB;RTCM 3.1;1004/1012(1),1005/1007/1033(5);2;GPS+GLO;TrigNet;ZAF;28.55;29.76;0;0;Trimble Pivot Platform;none;B;N;0;;
 STR;Pshp-SB;Pshp-SB;RTCM 3.1;1004/1012(1),1005/1007/1033(5);2;GPS+GLO;TrigNet;ZAF;-30.73;30.46;0;0;Trimble Pivot Platform;none;B;N;0;;
 STR;Potg-SB;Potg-SB;RTCM 3.1;1004/1012(1),1005/1007/1033(5);2;GPS+GLO;Trignet;ZAF;-24;28.91;0;0;Trimble Pivot Platform;none;B;N;0;;
+STR;Vdal-SB;Vdal-SB;RTCM 3.1;1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs);2;GPS+GLO;Trignet;ZAF;-31.66;18.51;0;0;Trimble Pivot Platform;none;B;N;0;;
 STR;Plbb-SB_GPSGLOonly;Plbb-SB_GPSGLOonly;RTCM 3.1;1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs);2;GPS+GLO;TrigNet;ZAF;-34;25.5;0;0;Trimble Pivot Platform;none;B;N;0;;
 ENDSOURCETABLE
