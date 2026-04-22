@@ -1052,9 +1052,10 @@
     }
 
     document.getElementById('banner-near-btn').onclick=function(){
-      new Promise(function(res){
-        navigator.geolocation?navigator.geolocation.getCurrentPosition(res,res,{timeout:300,maximumAge:300000}):res(null);
-      }).then(function(p){
+      Promise.race([
+        navigator.geolocation?new Promise(function(r){navigator.geolocation.getCurrentPosition(r,r,{timeout:300,maximumAge:300000});}):viewerPosProm,
+        new Promise(function(r){setTimeout(r,350,null);})
+      ]).then(function(p){
         return p&&p.coords?{lat:p.coords.latitude,lon:p.coords.longitude}:viewerPosProm;
       }).then(function(loc){
         if(loc) map.flyTo([loc.lat,loc.lon],Math.max(map.getZoom(),ZOOM_LABELS));
