@@ -27,7 +27,7 @@
       "q": "What am I looking at?",
       "sub": "In 30 seconds",
       "lead": "This map shows free public reference stations that broadcast GPS corrections. Connect to one within ~30 km of where you're working and your GPS goes from metres-accurate to centimetres.",
-      "body": "<p>Each coloured dot is one station. The green halos show where its correction is reliable: <span style=\"color:#4caf77\">green &lt;10 km, ~2 cm</span> · <span style=\"color:#b8c832\">lime 10–30 km, ~3 cm</span> · <span style=\"color:#d4a030\">amber 30–50 km, ~5 cm</span> · <span style=\"color:#d46064\">red 50–100 km, ~1 m</span>.</p><p>Click any dot for the server / port / mountpoint you'll paste into your GPS receiver's NTRIP client.</p>",
+      "body": "<p>Each coloured dot is one station. The green halos show where its correction is reliable: <span style=\"color:#4caf77\">green &lt;10 km, ~2 cm</span> · <span style=\"color:#b8c832\">lime 10–30 km, ~3 cm</span> · <span style=\"color:#d4a030\">amber 30–50 km, ~5 cm</span> · <span style=\"color:#d46064\">red 50–100 km, ~1 m</span>.</p><p>Click any dot to get connection details — server, port, mountpoint, and credentials — to enter into your receiver or phone app.</p>",
       "deep": "Purple rings are VRS (virtual networks — one connection point, the network picks a base for you). Grey rings are networks that exist but aren't yet ingested into this feed. Circled ? marks paid or restricted networks, shown for reference only.",
       "related": ["is-my-gear-compatible", "how-to-connect-emlid"]
     },
@@ -36,7 +36,7 @@
       "icon": "◉",
       "q": "Is my receiver compatible?",
       "sub": "Dual-frequency check in 10 seconds",
-      "lead": "You need a dual-frequency (L1+L2) GNSS receiver. Single-frequency chips — phones, most handheld hiking GPSes — can't do RTK no matter how they're configured.",
+      "lead": "You need a dedicated dual-frequency (L1+L2) GNSS receiver — almost all phones and consumer GPS devices can't do RTK in real-time, and purpose-built units start around €250.",
       "body": "<p>How to check:</p><ol><li>Look in the receiver's datasheet for <code>L1+L2</code>, <code>dual-band</code>, or <code>dual-frequency</code>.</li><li>Or look for an <b>NTRIP</b>, <b>Network&nbsp;RTK</b>, or <b>Internet&nbsp;RTK</b> option in the receiver's settings menu. If it's there, you're compatible.</li></ol><p>Most professional surveying equipment from Trimble, Leica, Topcon, Sokkia, South and Hi-Target made in the past ~15 years supports this.</p>",
       "deep": "L5 is a third frequency — nice but not required. Triple-band receivers perform better under tree cover and converge faster. The hobbyist sweet spot is dual-band u-blox ZED-F9P (ArduSimple, SparkFun RTK, Emlid Reach RS2/RS3).",
       "related": ["what-to-buy", "how-to-connect-emlid"]
@@ -47,8 +47,8 @@
       "q": "I don't have gear yet — what should I buy?",
       "sub": "Tiered recommendation",
       "lead": "For free network RTK, ready-to-use kits start around €449 / $490. DIY tinkerer kits from ~€275. You don't need the €2,900+ standalone category unless you work somewhere with no mobile signal.",
-      "body": "<p>Three paths:</p><ul><li><b>Ready to use</b> — Emlid Reach RS2/RS3 (~€2,400). Rugged, waterproof, one-click NTRIP in Emlid Flow.</li><li><b>Enthusiast assembled</b> — SparkFun RTK kits (~€450). Good value, needs a phone for NTRIP.</li><li><b>DIY</b> — ArduSimple simpleRTK2B kit (~€275). Requires more tinkering; same u-blox F9P chip underneath.</li></ul>",
-      "deep": "Avoid anything sold as 'survey-grade' that doesn't explicitly list L1+L2 or NTRIP — it's usually SBAS/DGPS-grade and gets you sub-metre at best. Subscription-dependent hardware (from ~$850) like Trimble Catalyst DA2 needs paid correction fees on top and typically won't work with the free networks this map shows.",
+      "body": "<p>Three paths:</p><ul><li><b>DIY</b> — ArduSimple simpleRTK2B kit (~€275). Requires more tinkering; same u-blox F9P chip underneath. Also the standard choice for building your own base station.</li><li><b>Enthusiast assembled</b> — SparkFun RTK kits (~€450). Good value, needs a phone for NTRIP.</li><li><b>Ready to use</b> — Emlid Reach RS2/RS3 (~€2,400). Rugged, waterproof, one-click NTRIP in Emlid Flow.</li></ul>",
+      "deep": "Avoid anything sold as 'survey-grade' that doesn't explicitly list L1+L2 or NTRIP — it's usually SBAS/DGPS-grade and gets you sub-metre at best. Subscription-dependent hardware (from ~$850) like Trimble Catalyst DA2 needs paid correction fees on top and typically won't work with the free networks this map shows.\n\nIf you need centimetre accuracy with no mobile signal at all, look at standalone PPP receivers — Galileo HAS-capable units start around €2,700 / $2,900 with no ongoing fees. Search 'Galileo HAS receiver' or 'PPP receiver' to explore that category. This map is not about those.",
       "related": ["is-my-gear-compatible"]
     },
     "how-to-connect-emlid": {
@@ -57,7 +57,7 @@
       "q": "How do I connect this station in my app?",
       "sub": "Emlid Flow · SW Maps · other NTRIP clients",
       "lead": "Open your NTRIP client's 'correction input' or 'NTRIP' settings, paste the five values from the station popup, and press Connect.",
-      "body": "<p>Fields every NTRIP client asks for, mapped to the popup:</p><ul><li><b>Host / Caster address</b> → <code>Server</code> (e.g. <code>crtk.net</code>)</li><li><b>Port</b> → <code>Port</code> (almost always <code>2101</code>)</li><li><b>Mountpoint</b> → <code>Mount</code> (e.g. <code>AMPH</code>)</li><li><b>Username / Password</b> → from the popup; some sources use your email as username</li></ul><p>Once connected, your receiver needs a few seconds to reach \"RTK fix.\" If it sticks at \"float,\" your baseline is too long — pick a closer station.</p>",
+      "body": "<p>Fields every NTRIP client asks for, mapped to the popup:</p><ul><li><b>Host / Caster address</b> → <code>Server</code> (e.g. <code>crtk.net</code>)</li><li><b>Port</b> → <code>Port</code> (use the value shown in the popup)</li><li><b>Mountpoint</b> → <code>Mount</code> (e.g. <code>AMPH</code>)</li><li><b>Username / Password</b> → from the popup. For open sources, a generic user/pass is shown — paste it directly. Sources requiring registration use your account credentials.</li></ul><p>Once connected, your receiver needs a few seconds to reach \"RTK fix.\" If it sticks at \"float,\" your baseline is too long — pick a closer station.</p>",
       "deep": "App-specific tips:<br><br><b>Emlid Flow:</b> Settings → NTRIP → Add caster. Leave 'Receive GGA' on for VRS/NEAR mountpoints.<br><b>SW Maps:</b> Connection settings → External NTRIP Caster. SW Maps can forward corrections to bluetooth receivers.<br><b>u-center:</b> Receiver → NTRIP Client. Remember to enable UBX-RXM-RTCM output if you want to verify fix quality.",
       "related": ["near-mountpoint", "float-vs-fix"]
     },
@@ -67,7 +67,7 @@
       "q": "What is the NEAR mountpoint?",
       "sub": "Auto-pick nearest base",
       "lead": "Some networks (Centipede, rtk2go) publish a special mountpoint called NEAR. Connect to it and the caster automatically sends corrections from whichever base is closest to you.",
-      "body": "<p>Use NEAR when:</p><ul><li>You're mobile and crossing station boundaries.</li><li>You don't want to hardcode one station name and forget it's offline.</li></ul><p>Your NTRIP client must send a GGA sentence (its current position) back to the caster, otherwise NEAR has nothing to go on. Most clients do this by default.</p>",
+      "body": "<p>Use NEAR when:</p><ul><li>You're mobile and crossing station boundaries.</li><li>You don't want to hardcode one station name and forget it's offline.</li></ul><p>Your NTRIP client must send a GGA sentence (its current position) back to the caster, otherwise NEAR has nothing to go on. Most clients do this by default.</p><p>NEAR doesn't appear as a pin on this map — type it directly into your NTRIP client's mountpoint field.</p>",
       "deep": "NEAR isn't part of the NTRIP spec — it's a caster-side convention. Centipede, rtk2go and a few others implement it. If you paste 'NEAR' on a network that doesn't support it, you'll get a 404 or silent no-corrections.",
       "related": ["how-to-connect-emlid"]
     },
@@ -77,7 +77,7 @@
       "q": "What is VRS? (purple rings)",
       "sub": "Virtual Reference Station",
       "lead": "A VRS network synthesises a virtual reference station at your location, using real stations around you. One connection point, uniform cm-accuracy anywhere inside the coverage.",
-      "body": "<p>Purple rings on the map mark VRS networks. You connect once and never have to switch stations as you move.</p><p>VRS needs your approximate position to work (your NTRIP client sends a GGA sentence) — so it fails in tunnels or cold-start with no fix.</p>",
+      "body": "<p>Purple rings on the map mark VRS networks. You connect once and never have to switch stations as you move.</p><p>Your app needs to send your current position to the network — look for a 'send GGA', 'send NMEA position', or 'Receive GGA' toggle and make sure it's on. Most apps enable this by default.</p>",
       "deep": "Under the hood, the network runs a network-RTK solver (most commonly Trimble VRS or a Geo++ MAC equivalent) that models atmosphere from 3+ neighbouring bases. For users, the practical difference vs a single base is: (a) no baseline-distance penalty, (b) no station picking, (c) slightly longer time-to-first-fix on connection.",
       "related": ["how-to-connect-emlid", "near-mountpoint"]
     },
@@ -86,7 +86,7 @@
       "icon": "~",
       "q": "L1+L2 vs L1-only — what does it mean?",
       "sub": "Signal frequencies, accuracy impact",
-      "lead": "L1 and L2 are two frequencies the GPS satellite broadcasts. Using both lets the receiver measure and cancel ionospheric error, which is what makes cm-accurate RTK possible beyond ~10 km.",
+      "lead": "Your receiver tracks signals on two radio frequency bands. Using both lets it measure and remove ionospheric delay — the main error that grows with distance — extending reliable RTK from ~10 km out to ~30 km.",
       "body": "<p>Rough rule of thumb:</p><ul><li><b>L1+L2 (dual-frequency)</b> — ~1–2 cm out to ~30 km from a station.</li><li><b>L1-only</b> — up to ~1 cm within 10 km, but degrades fast beyond that and is much more ionosphere-sensitive.</li></ul><p>If a station is marked \"Accuracy unverified\" on this map, its sourcetable didn't declare the carrier field — doesn't mean it's bad, just that we can't confirm it.</p>",
       "deep": "Modern receivers use L1+L2+L5 (triple-band) for fastest convergence and best multipath rejection under canopy. For plain-open-sky work, dual-band is fine.",
       "related": ["is-my-gear-compatible"]
@@ -106,8 +106,8 @@
       "icon": "⇡",
       "q": "What is a 'mountpoint'?",
       "sub": "The address of one correction stream",
-      "lead": "A mountpoint is the name of one specific correction stream on the caster. One caster can host many mountpoints — one per physical reference station, or one per network (VRS).",
-      "body": "<p>Think of it like a Twitch channel name: the caster is the server, the mountpoint is the specific stream you tune into. Many NTRIP clients call this the 'stream' or 'base name'.</p>",
+      "lead": "A mountpoint is the name of the specific station you're connecting to — it's what you type into the 'Mountpoint', 'Stream', or 'Base name' field in your app.",
+      "body": "<p>When you click a pin on this map, the Mount value in the popup is exactly what goes in your app. One server can host hundreds of stations, each with its own mountpoint name.</p>",
       "deep": "Sourcetables (the caster's listing of mountpoints) follow RTCM spec 10402.1. Each entry declares: stream name, location, carrier, messages, auth. This map's data pipeline parses sourcetables 4× daily to build the pin list.",
       "related": ["near-mountpoint", "how-to-connect-emlid"]
     },
@@ -127,17 +127,17 @@
       "q": "Can I set up my own base station?",
       "sub": "Contribute back to the free networks",
       "lead": "Yes. Join Centipede or host on rtk2go. You need one dual-band receiver on a fixed, surveyed point with a clear sky view, plus a small always-on computer with internet.",
-      "body": "<p>High-level:</p><ol><li>Pick the receiver (ArduSimple simpleRTK2B is the typical hobby choice).</li><li>Mount the antenna on a rigid fixed point. Survey its coordinates with 24h of PPP.</li><li>Configure the receiver to output RTCM 3.x messages.</li><li>Forward the stream to Centipede or rtk2go per their docs.</li></ol>",
+      "body": "<p>High-level:</p><ol><li>Pick the receiver (ArduSimple simpleRTK2B is the typical hobby choice).</li><li>Mount the antenna on a rigid fixed point. Survey its coordinates with 24h of PPP — leave the antenna undisturbed for the entire collection window.</li><li>Configure the receiver to output RTCM 3.x messages.</li><li>Forward the stream to Centipede or rtk2go per their docs.</li></ol>",
       "deep": "A proper base needs: stable antenna (ground plane), clear 360° sky view, static precise position (PPP-post-processed), reliable power and internet. An improvised roof-mount is fine for experimenting but won't produce centimetre-accurate corrections. The longer you run PPP on the base location, the better the position — 24h minimum, a week is better.",
       "related": ["what-to-buy"]
     },
     "access-tiers": {
       "cat": "Concepts",
-      "icon": "🔒",
+      "icon": "≡",
       "q": "Open / Registration / Conditions — what's the difference?",
       "sub": "Free vs free-with-signup",
       "lead": "All stations on this map are free. The tier labels tell you what paperwork you need first.",
-      "body": "<ul><li><b>Open</b> — no signup. Paste credentials (often a generic user/pass) and connect.</li><li><b>Registration</b> — free account, usually approved instantly or in 1–2 days. An email and a form.</li><li><b>Conditions</b> — free only for specific users (e.g. non-commercial, agricultural) or during a window (ESTPOS until Aug 2026).</li></ul>",
+      "body": "<ul><li><b>Open</b> — no signup. Paste credentials (often a generic user/pass) and connect.</li><li><b>Registration</b> — free account, usually approved instantly or in 1–2 days. An email and a form.</li><li><b>Conditions</b> — free only for specific users (e.g. non-commercial, agricultural) or within a defined trial period. Check the network's site for current terms.</li></ul>",
       "deep": "The 'Restricted' tier (circled ? pins) is a separate category — paid or identity-gated networks shown on the map for reference only. They're not usable via this site's data.",
       "related": []
     },
@@ -147,7 +147,7 @@
       "q": "Can I share a link to a specific station?",
       "sub": "Deep-linking",
       "lead": "Yes — the URL updates as you pan, zoom, or select a pin. Copy the address bar to share a view; the recipient opens it and lands on the same centre, zoom and selected mountpoint.",
-      "body": "<p>Format: <code>?s=AMPH@crtk</code> for a direct mountpoint, or <code>#z=7&amp;c=46.5,9.2</code> for a map view.</p>",
+      "body": "<p>Just copy from the address bar — no extra steps needed.</p>",
       "deep": "",
       "related": []
     }
