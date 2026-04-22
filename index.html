@@ -103,22 +103,11 @@
   #toggles input{margin-right:6px;vertical-align:middle;}
   #toggles details{margin-top:6px;}
   #toggles summary{cursor:pointer;font-size:11px;color:var(--muted);}
-  #toggles #src-sum{cursor:pointer;font-size:12px;font-weight:700;list-style:none;margin:0;user-select:none;color:inherit;}
-  #toggles #src-sum::-webkit-details-marker{display:none;}
-  #toggles #src-sum::after{content:' \25be';font-size:9px;opacity:0.5;}
-  #src-det:not([open]) #src-sum::after{content:' \25b8';}
-  #vrs-sum{list-style:none;user-select:none;}
-  #vrs-sum::-webkit-details-marker{display:none;}
-  #vrs-sum::after{content:' \25be';font-size:9px;opacity:0.5;}
-  #vrs-det:not([open]) #vrs-sum::after{content:' \25b8';}
-  #grey-sum{list-style:none;user-select:none;}
-  #grey-sum::-webkit-details-marker{display:none;}
-  #grey-sum::after{content:' \25be';font-size:9px;opacity:0.5;}
-  #grey-det:not([open]) #grey-sum::after{content:' \25b8';}
-  #info-sum{list-style:none;user-select:none;}
-  #info-sum::-webkit-details-marker{display:none;}
-  #info-sum::after{content:' \25be';font-size:9px;opacity:0.5;}
-  #info-det:not([open]) #info-sum::after{content:' \25b8';}
+  .det-sum{list-style:none;user-select:none;}
+  .det-sum::-webkit-details-marker{display:none;}
+  .det-sum::after{content:' \25be';font-size:9px;opacity:0.5;}
+  details:not([open]) .det-sum::after{content:' \25b8';}
+  #src-sum{cursor:pointer;font-size:12px;font-weight:700;margin:0;color:inherit;}
   /* How-it-works dialog */
   #how-dialog{border:none;border-radius:8px;padding:0;max-width:640px;width:90vw;
     box-shadow:0 8px 32px rgba(0,0,0,.35);background:var(--panel-bg);color:var(--fg);}
@@ -163,10 +152,7 @@
     #sidebar-inner #legend{border-radius:0;border-left:none;border-right:none;border-bottom:none;
       margin-top:8px;padding-left:8px;padding-right:8px;}
   }
-  #leg-sum{cursor:pointer;font-size:12px;font-weight:700;list-style:none;margin:0 0 4px;user-select:none;}
-  #leg-sum::-webkit-details-marker{display:none;}
-  #leg-sum::after{content:' \25be';font-size:9px;opacity:0.5;}
-  #leg-det:not([open]) #leg-sum::after{content:' \25b8';}
+  #leg-sum{cursor:pointer;font-size:12px;font-weight:700;margin:0 0 4px;}
   #leg-det:not([open]) #leg-sum{margin:0;}
   #leg-info{color:var(--legend-info);font-size:10px;}
   /* Guide modal */
@@ -1100,14 +1086,14 @@
     var infoSwatchHtml='<span style="display:inline-block;width:11px;height:11px;border:1.5px solid '
       +INFO_MARKER_COLOR+';border-radius:50%;text-align:center;font-size:8px;font-weight:700;color:'
       +INFO_MARKER_COLOR+';line-height:8px;vertical-align:middle;margin-right:4px;flex-shrink:0">?</span>';
-    d.innerHTML='<details id="src-det" open><summary id="src-sum">Sources</summary>'
+    d.innerHTML='<details id="src-det" open><summary id="src-sum" class="det-sum">Sources</summary>'
       +physRows
       +'<label style="'+fullSep+'display:flex;align-items:center;gap:4px" '
         +'title="Hide sources with no stations in the current map view">'
         +'<input type="checkbox" id="declutter-cb" checked> Hide out-of-view sources</label>'
       +(vrsCount
         ? '<details id="vrs-det" style="'+sepStyle+'">'
-            +'<summary id="vrs-sum" style="display:flex;align-items:center;gap:4px;font-size:12px">'
+            +'<summary id="vrs-sum" class="det-sum" style="display:flex;align-items:center;gap:4px;font-size:12px">'
               +'<input type="checkbox" data-k="vrs_global" checked style="flex-shrink:0;margin-right:0">'
               +vrsSwatchHtml
               +'VRS networks ('+vrsCount+')'
@@ -1119,7 +1105,7 @@
             +vrsSwatchHtml+'VRS circles</label>')
       +(greyCount
         ? '<details id="grey-det" style="'+sepStyle+'">'
-            +'<summary id="grey-sum" style="display:flex;align-items:center;gap:4px;font-size:12px">'
+            +'<summary id="grey-sum" class="det-sum" style="display:flex;align-items:center;gap:4px;font-size:12px">'
               +'<input type="checkbox" data-k="grey_global" checked style="flex-shrink:0;margin-right:0">'
               +greySwatchHtml
               +'Pending ('+greyCount+')'
@@ -1129,7 +1115,7 @@
         : '')
       +(infoCount
         ? '<details id="info-det" style="'+sepStyle+'">'
-            +'<summary id="info-sum" style="display:flex;align-items:center;gap:4px;font-size:12px">'
+            +'<summary id="info-sum" class="det-sum" style="display:flex;align-items:center;gap:4px;font-size:12px">'
               +'<input type="checkbox" data-k="info_global" checked style="flex-shrink:0;margin-right:0">'
               +infoSwatchHtml
               +'Restricted ('+infoCount+')'
@@ -1237,7 +1223,7 @@
     var sw=function(s){return '<span style="display:inline-block;width:12px;height:12px;vertical-align:middle;'+s+'"></span>';};
     legDiv.innerHTML=
       '<details id="leg-det" open>'
-      +'<summary id="leg-sum">Legend</summary>'
+      +'<summary id="leg-sum" class="det-sum">Legend</summary>'
       +sw('background:rgb(0,170,0)')+' &lt; 10 km \u2014 ~2 cm<br>'
       +sw('background:rgb(180,200,30)')+' 10\u201330 km \u2014 ~3 cm<br>'
       +sw('background:rgb(220,150,30)')+' 30\u201350 km \u2014 ~5 cm<br>'
