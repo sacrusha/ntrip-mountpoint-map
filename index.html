@@ -679,8 +679,10 @@
     return h+'</div>';
   }
 
-  function carrierChip(){
-    return `<button class="help-chip" onclick="event.stopPropagation();__ntripShowPopover(this,'carrier','top-left')" aria-label="What does L1+L2 mean?"><span class="q">?</span></button>`;
+  function carrierChip(carrier){
+    var key=carrier===2?'carrier':carrier===1?'carrier-l1':'carrier-unknown';
+    var label=carrier===2?'What does L1+L2 mean?':carrier===1?'What does L1-only mean?':'What does this mean?';
+    return `<button class="help-chip" onclick="event.stopPropagation();__ntripShowPopover(this,'${key}','top-left')" aria-label="${label}"><span class="q">?</span></button>`;
   }
   function buildCopyAllPayload(s){
     var blocks=[];
@@ -711,7 +713,7 @@
       +`<button class="b-primary" onclick="__ntripCopyAll(this,'${payload}')">Copy all</button>`
       +`<button class="b-secondary" onclick="__ntripOpenHelp('how-to-connect-emlid')">How to connect ↗</button>`
       +`</div>`;
-    return `<div class="popup-plain"><h3>${esc(names.join(' / '))}</h3><div class="acc">${accuracySummary(s.carrier)}${carrierChip()}</div>${warn}${blocks}${footer}</div>`;
+    return `<div class="popup-plain"><h3>${esc(names.join(' / '))}</h3><div class="acc">${accuracySummary(s.carrier)}${carrierChip(s.carrier)}</div>${warn}${blocks}${footer}</div>`;
   }
 
   function precLabel(dLat,dLon,lat){
