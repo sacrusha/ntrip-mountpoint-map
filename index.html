@@ -232,7 +232,7 @@
   <h6>New here? <button onclick="__ntripDismissToast()" aria-label="Dismiss">✕</button></h6>
   <p>One-minute orientation: what this map shows, how to use a station.</p>
   <div class="toast-row">
-    <button class="tb a" id="help-toast-tour">Take the tour →</button>
+    <button class="tb a" id="help-toast-tour">Read the guide →</button>
     <button class="tb s" onclick="__ntripDismissToast()">I know RTK</button>
   </div>
 </div>
@@ -1133,7 +1133,7 @@
     if(tourBtn) tourBtn.onclick=function(){
       var t=document.getElementById('help-toast'); if(t) t.hidden=true;
       try{ localStorage.setItem('ntrip-howit-seen','1'); }catch(e){}
-      openHelp('whats-this-map');
+      window.open('guide.html','_blank');
     };
   });
 
