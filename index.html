@@ -607,6 +607,7 @@
     return 'Accuracy unverified';
   }
 
+  function visUrl(u){ return u.replace(/^https?:\/\//,''); }
   function cpRow(lblHtml,value){
     var v=esc(value);
     return `<div class="row"><span class="lbl">${lblHtml}</span><code>${v}</code><button class="cp" onclick="__ntripCopy(this,'${v}')">copy</button></div>`;
@@ -631,7 +632,7 @@
       h+=`<div class="anote">${esc(auth.openNote)}</div>`;
     var regUrl=safeUrl(SOURCE_REG[serverKey]||'');
     if(regUrl)
-      h+=`<div class="anote"><a href="${esc(regUrl)}" target="_blank" rel="noopener noreferrer">Sign up / details ↗</a></div>`;
+      h+=`<div class="anote"><a href="${esc(regUrl)}" target="_blank" rel="noopener noreferrer">${esc(visUrl(regUrl))} ↗</a></div>`;
     return h+'</div>';
   }
 
@@ -746,7 +747,7 @@
                    restricted:'Restricted access'})[n.access]||n.access||'';
       var regUrl=safeUrl(n.registrationUrl||'');
       var popup=`<div class="popup-plain"><h3>${esc(n.name||n.id)}</h3><div class="acc">NRTK coverage area — cm-level inside the hull</div><div>${esc(access)}</div>`
-        +(regUrl?`<div><a href="${esc(regUrl)}" target="_blank" rel="noopener">Signup / details</a></div>`:'')
+        +(regUrl?`<div><a href="${esc(regUrl)}" target="_blank" rel="noopener">${esc(visUrl(regUrl))} ↗</a></div>`:'')
         +`<div style="color:#666;font-size:11px;margin-top:4px">${(n.stationIds||[]).length} reference stations</div></div>`;
       L.marker(c,{
         icon:L.divIcon({className:'',iconSize:[18,18],iconAnchor:[9,9],
@@ -797,7 +798,7 @@
             +'<div style="margin:4px 0 6px;font-size:12px">'+body+'</div>'
             +(auth.openNote?'<div class="anote">'+esc(auth.openNote)+'</div>':'')
             +(popReg?'<div class="anote"><a href="'+esc(popReg)
-              +'" target="_blank" rel="noopener noreferrer">Sign up / details ↗</a></div>':'')
+              +'" target="_blank" rel="noopener noreferrer">'+esc(visUrl(popReg))+' ↗</a></div>':'')
             +'</div>';
           bySid[sid]=addRingMarker(group,lat,lon,renderer,col,0.25,label+' (VRS)',popup);
         } else {
@@ -823,7 +824,7 @@
   function buildGreyPopup(label,region,note,regUrl){
     return `<div class="popup-plain"><h3>${esc(label)}</h3><div style="color:#888;font-weight:600;margin-bottom:6px">Free network (pending)</div><div style="font-size:12px;margin:4px 0 6px">Covers <b>${esc(region)}</b>.</div>`
       +(note?`<div class="anote">${esc(note)}</div>`:'')
-      +(regUrl?`<div class="anote"><a href="${esc(regUrl)}" target="_blank" rel="noopener noreferrer">More info / sign up ↗</a></div>`:'')
+      +(regUrl?`<div class="anote"><a href="${esc(regUrl)}" target="_blank" rel="noopener noreferrer">${esc(visUrl(regUrl))} ↗</a></div>`:'')
       +'</div>';
   }
 
@@ -853,7 +854,7 @@
       +(m.yearly_cost?`<div style="font-size:11px;color:#555;margin:2px 0 4px">${esc(m.yearly_cost)}</div>`:'')
       +`<div style="font-size:12px;margin:4px 0 6px">Covers <b>${esc(m.region||'')}</b>.</div>`
       +(m.note?`<div class="anote">${esc(m.note)}</div>`:'')
-      +(regUrl?`<div class="anote"><a href="${esc(regUrl)}" target="_blank" rel="noopener noreferrer">More info ↗</a></div>`:'')
+      +(regUrl?`<div class="anote"><a href="${esc(regUrl)}" target="_blank" rel="noopener noreferrer">${esc(visUrl(regUrl))} ↗</a></div>`:'')
       +'</div>';
   }
 
