@@ -135,10 +135,10 @@
       "cat": "Advanced",
       "icon": "⚒",
       "q": "Can I set up my own base station?",
-      "sub": "Contribute back to the free networks",
-      "lead": "Yes. Join Centipede or host on rtk2go. You need one dual-band receiver on a fixed, surveyed point with a clear sky view, plus a small always-on computer with internet.",
-      "body": "<p>High-level:</p><ol><li>Pick the receiver (ArduSimple simpleRTK2B is the typical hobby choice).</li><li>Mount the antenna on a rigid fixed point. Survey its coordinates with 24h of PPP — leave the antenna undisturbed for the entire collection window.</li><li>Configure the receiver to output RTCM 3.x messages.</li><li>Forward the stream to Centipede or rtk2go per their docs.</li></ol>",
-      "deep": "A proper base needs: stable antenna (ground plane), clear 360° sky view, static precise position (PPP-post-processed), reliable power and internet. An improvised roof-mount is fine for experimenting but won't produce centimetre-accurate corrections. The longer you run PPP on the base location, the better the position — 24h minimum, a week is better.",
+      "sub": "If the map shows no coverage near you",
+      "lead": "Yes. A second RTK receiver at a fixed surveyed point broadcasts corrections through a free caster; your rover connects to it like any other station on this map.",
+      "body": "<ul><li><b>Hardware:</b> any dual-frequency RTK receiver (the ArduSimple simpleRTK2B starter kit works well), power, internet</li><li><b>Software:</b> <a href=\"https://github.com/Stefal/rtkbase\" target=\"_blank\" rel=\"noopener\">RTKBase</a> — open-source, runs on a Raspberry Pi, web interface</li><li><b>Caster:</b> <a href=\"https://www.centipede-rtk.org/host-rtk-base\" target=\"_blank\" rel=\"noopener\">Centipede</a> and/or <a href=\"http://rtk2go.com\" target=\"_blank\" rel=\"noopener\">RTK2Go</a> — free public NTRIP casters; register your base and it becomes accessible from anywhere</li></ul>",
+      "deep": "Honest effort: first setup takes a weekend if you're comfortable with Linux and basic networking. Additional hardware cost roughly €200–450 depending on what you already have.\n\nFor a properly accurate base: stable antenna mount with ground plane, clear 360° sky view, position surveyed by PPP (24h minimum, a week is better). An improvised roof-mount is fine for experimenting but won't produce centimetre-accurate corrections.",
       "related": ["what-to-buy"]
     },
     "access-tiers": {
