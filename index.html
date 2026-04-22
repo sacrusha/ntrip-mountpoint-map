@@ -294,7 +294,7 @@
      match:function(sid){ return sid.indexOf('sapos_')===0; }},
   ];
   var MULTI_COLOR='#222', UNKNOWN_SOURCE_COLOR='#888', VRS_COLOR='#c0196a';
-  var GREY_MARKER_COLOR='#aaa';   // matches stale-pin colour
+  var GREY_MARKER_COLOR='#666';   // matches stale-pin colour
   var INFO_MARKER_COLOR='#888';   // circled-? paid/restricted markers
 
 
@@ -803,12 +803,12 @@
         } else {
           var note=m.note||auth.openNote||'';
           var gr=safeUrl(SOURCE_REG[sid]||'')||regUrl;
-          var ge=addRingMarker(group,lat,lon,renderer,GREY_MARKER_COLOR,0.12,label,buildGreyPopup(label,region,note,gr));
+          var ge=addRingMarker(group,lat,lon,renderer,GREY_MARKER_COLOR,0.18,label,buildGreyPopup(label,region,note,gr));
           ge.label=label; greyById[m.id]=ge;
         }
 
       } else if(m.tier==='deferred'){
-        var ge=addRingMarker(group,lat,lon,renderer,GREY_MARKER_COLOR,0.12,label,
+        var ge=addRingMarker(group,lat,lon,renderer,GREY_MARKER_COLOR,0.18,label,
           buildGreyPopup(label,region,m.note||'',regUrl));
         ge.label=label; greyById[m.id]=ge;
 
@@ -907,7 +907,7 @@
       Object.keys(greyLayerById).forEach(function(id){
         var show=!!(state['grey:'+id]&&state.grey_global);
         var entry=greyLayerById[id];
-        entry.visual.setStyle({opacity:show?1:0,fillOpacity:show?0.12:0});
+        entry.visual.setStyle({opacity:show?1:0,fillOpacity:show?0.18:0});
         var el=entry.hit.getElement();
         if(el) el.style.pointerEvents=show?'all':'none';
       });
@@ -1145,7 +1145,7 @@
       +sw('background:rgb(210,90,90)')+' 50\u2013100 km \u2014 &lt; 1 m<br>'
       +sw('background:#aaa;border-radius:50%')+' Mountpoint data stale<br>'
       +sw('border:2px solid '+VRS_COLOR+';background:rgba(192,25,106,0.25);border-radius:50%')+' VRS network<br>'
-      +sw('border:2px solid #aaa;background:rgba(170,170,170,0.12);border-radius:50%')+' Free (pending)<br>'
+      +sw('border:2px solid '+GREY_MARKER_COLOR+';background:rgba(102,102,102,0.18);border-radius:50%')+' Free (pending)<br>'
       +'<span style="display:inline-block;width:12px;height:12px;border:1.5px solid #888;border-radius:50%;text-align:center;font-size:9px;font-weight:700;color:#888;line-height:11px;vertical-align:middle">?</span> Restricted<br>'
       +'<small id="leg-info">Loading\u2026</small>'
       +'</details>';
