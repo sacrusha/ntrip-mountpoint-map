@@ -1057,20 +1057,21 @@
     (function(){
       var btn=document.getElementById('banner-near-btn');
       var orig=btn.innerHTML;
+      function nearFallback(){
+        getViewerPos().then(function(vp){
+          btn.innerHTML=orig; btn.disabled=false;
+          if(vp) map.flyTo([vp.lat,vp.lon],10);
+        });
+      }
       btn.onclick=function(){
-        if(!navigator.geolocation) return;
         btn.textContent='Locating…'; btn.disabled=true;
+        if(!navigator.geolocation){ nearFallback(); return; }
         navigator.geolocation.getCurrentPosition(
           function(p){
             btn.innerHTML=orig; btn.disabled=false;
             map.flyTo([p.coords.latitude,p.coords.longitude],14);
           },
-          function(){
-            getViewerPos().then(function(vp){
-              btn.innerHTML=orig; btn.disabled=false;
-              if(vp) map.flyTo([vp.lat,vp.lon],map.getZoom());
-            });
-          },
+          nearFallback,
           {timeout:8000,maximumAge:60000}
         );
       };
