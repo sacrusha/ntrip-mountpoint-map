@@ -1066,7 +1066,10 @@
             map.flyTo([p.coords.latitude,p.coords.longitude],14);
           },
           function(){
-            btn.innerHTML=orig; btn.disabled=false;
+            getViewerPos().then(function(vp){
+              btn.innerHTML=orig; btn.disabled=false;
+              if(vp) map.flyTo([vp.lat,vp.lon],map.getZoom());
+            });
           },
           {timeout:8000,maximumAge:60000}
         );
