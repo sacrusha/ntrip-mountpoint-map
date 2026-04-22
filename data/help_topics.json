@@ -37,7 +37,7 @@
       "q": "What am I looking at?",
       "sub": "In 30 seconds",
       "lead": "This map shows free public reference stations that broadcast GPS corrections. Connect to one within ~30 km of where you're working and your GPS goes from metres-accurate to centimetres.",
-      "body": "<p>Each coloured dot is one station. The green halos show where its correction is reliable: <span style=\"color:#4caf77\">green &lt;10 km, ~2 cm</span> · <span style=\"color:#b8c832\">lime 10–30 km, ~3 cm</span> · <span style=\"color:#d4a030\">amber 30–50 km, ~5 cm</span> · <span style=\"color:#d46064\">red 50–100 km, ~1 m</span>.</p><p>Click any dot to get connection details — server, port, mountpoint, and credentials — to enter into your receiver or phone app.</p>",
+      "body": "<p>Each coloured dot is one station. The green halos show where its correction is reliable: <span style=\"color:#4caf77\">green &lt;10 km, ~2 cm</span> · <span style=\"color:#b8c832\">lime 10–30 km, centimetre-level</span> · <span style=\"color:#d4a030\">amber 30–50 km, accuracy grows with distance</span> · <span style=\"color:#d46064\">red 50–100 km, decimetre range</span>.</p><p>Click any dot to get connection details — server, port, mountpoint, and credentials — to enter into your receiver or phone app.</p>",
       "deep": "Purple rings are VRS (virtual networks — one connection point, the network picks a base for you). Grey rings are networks that exist but aren't yet ingested into this feed. Circled ? marks paid or restricted networks, shown for reference only.",
       "related": ["is-my-gear-compatible", "how-to-connect-emlid"]
     },
@@ -46,7 +46,7 @@
       "icon": "◉",
       "q": "Is my receiver compatible?",
       "sub": "Dual-frequency check in 10 seconds",
-      "lead": "You need a dedicated dual-frequency (L1+L2) GNSS receiver — almost all phones and consumer GPS devices can't do RTK in real-time, and purpose-built units start around €250.",
+      "lead": "You need a dedicated dual-frequency (L1+L2) GNSS receiver — almost all phones and consumer GPS devices can't do RTK in real-time, and purpose-built units start around €275.",
       "body": "<p>How to check:</p><ol><li>Look in the receiver's datasheet for <code>L1+L2</code>, <code>dual-band</code>, or <code>dual-frequency</code>.</li><li>Or look for an <b>NTRIP</b>, <b>Network&nbsp;RTK</b>, or <b>Internet&nbsp;RTK</b> option in the receiver's settings menu. If it's there, you're compatible.</li></ol><p>Most professional surveying equipment from Trimble, Leica, Topcon, Sokkia, South and Hi-Target made in the past ~15 years supports this.</p>",
       "deep": "L5 is a third frequency — nice but not required. Triple-band receivers perform better under tree cover and converge faster. The hobbyist sweet spot is dual-band u-blox ZED-F9P (ArduSimple, SparkFun RTK, Emlid Reach RS2/RS3).",
       "related": ["what-to-buy", "how-to-connect-emlid"]
@@ -57,7 +57,7 @@
       "q": "I don't have gear yet — what should I buy?",
       "sub": "Tiered recommendation",
       "lead": "For free network RTK, ready-to-use kits start around €449 / $490. DIY tinkerer kits from ~€275. You don't need the €2,900+ standalone category unless you work somewhere with no mobile signal.",
-      "body": "<p>Three paths:</p><ul><li><b>DIY</b> — ArduSimple simpleRTK2B kit (~€275). Requires more tinkering; same u-blox F9P chip underneath. Also the standard choice for building your own base station.</li><li><b>Enthusiast assembled</b> — SparkFun RTK kits (~€450). Good value, needs a phone for NTRIP.</li><li><b>Ready to use</b> — Emlid Reach RS2/RS3 (~€2,400). Rugged, waterproof, one-click NTRIP in Emlid Flow.</li></ul>",
+      "body": "<p>Three paths:</p><ul><li><b>DIY</b> — ArduSimple simpleRTK2B kit (~€275). Requires more tinkering; same u-blox F9P chip underneath. Also the standard choice for building your own base station.</li><li><b>Enthusiast assembled</b> — SparkFun RTK Facet (~$739). All-in-one rover with NTRIP client built in; connects via Bluetooth.</li><li><b>Ready to use</b> — Emlid Reach RS2+ (~$2,200) or RS3 (~$3,000). Rugged, waterproof, one-click NTRIP in Emlid Flow.</li></ul>",
       "deep": "Avoid anything sold as 'survey-grade' that doesn't explicitly list L1+L2 or NTRIP — it's usually SBAS/DGPS-grade and gets you sub-metre at best. Subscription-dependent hardware (from ~$850) like Trimble Catalyst DA2 needs paid correction fees on top and typically won't work with the free networks this map shows.\n\nIf you need centimetre accuracy with no mobile signal at all, look at standalone PPP receivers — Galileo HAS-capable units start around €2,700 / $2,900 with no ongoing fees. Search 'Galileo HAS receiver' or 'PPP receiver' to explore that category. This map is not about those.",
       "related": ["is-my-gear-compatible"]
     },
@@ -97,7 +97,7 @@
       "q": "L1+L2 vs L1-only — what does it mean?",
       "sub": "Signal frequencies, accuracy impact",
       "lead": "Your receiver tracks signals on two radio frequency bands. Using both lets it measure and remove ionospheric delay — the main error that grows with distance — extending reliable RTK from ~10 km out to ~30 km.",
-      "body": "<p>Rough rule of thumb:</p><ul><li><b>L1+L2 (dual-frequency)</b> — ~1–2 cm out to ~30 km from a station.</li><li><b>L1-only</b> — up to ~1 cm within 10 km, but degrades fast beyond that and is much more ionosphere-sensitive.</li></ul><p>If a station is marked \"Accuracy unverified\" on this map, its sourcetable didn't declare the carrier field — doesn't mean it's bad, just that we can't confirm it.</p>",
+      "body": "<p>Rough rule of thumb:</p><ul><li><b>L1+L2 (dual-frequency)</b> — 1–3 cm within 10 km of a station; typically better than 5 cm within 30 km.</li><li><b>L1-only</b> — centimetre-level within ~10 km, but degrades fast beyond that and is much more ionosphere-sensitive.</li></ul><p>If a station is marked \"Accuracy unverified\" on this map, its sourcetable didn't declare the carrier field — doesn't mean it's bad, just that we can't confirm it.</p>",
       "deep": "Modern receivers use L1+L2+L5 (triple-band) for fastest convergence and best multipath rejection under canopy. For plain-open-sky work, dual-band is fine.",
       "related": ["is-my-gear-compatible"]
     },
