@@ -48,7 +48,7 @@
       "sub": "Tiered recommendation",
       "lead": "For free network RTK, ready-to-use kits start around €449 / $490. DIY tinkerer kits from ~€275. You don't need the €2,900+ standalone category unless you work somewhere with no mobile signal.",
       "body": "<p>Three paths:</p><ul><li><b>Ready to use</b> — Emlid Reach RS2/RS3 (~€2,400). Rugged, waterproof, one-click NTRIP in Emlid Flow.</li><li><b>Enthusiast assembled</b> — SparkFun RTK kits (~€450). Good value, needs a phone for NTRIP.</li><li><b>DIY</b> — ArduSimple simpleRTK2B kit (~€275). Requires more tinkering; same u-blox F9P chip underneath.</li></ul>",
-      "deep": "Avoid anything sold as 'survey-grade' that doesn't explicitly list L1+L2 or NTRIP — it's usually SBAS/DGPS-grade and gets you sub-metre at best. Subscription-dependent hardware (from ~$850) like Trimble Catalyst DA2 needs paid correction fees on top and typically won't work with the free networks this map shows.",
+      "deep": "Avoid anything sold as 'survey-grade' that doesn't explicitly list L1+L2 or NTRIP — it's usually SBAS/DGPS-grade and gets you sub-metre at best. Subscription-dependent hardware (from ~$850) like Trimble Catalyst DA2 needs paid correction fees on top and typically won't work with the free networks this map shows.\n\nIf you need centimetre accuracy with no mobile signal at all, look at standalone PPP receivers — Galileo HAS-capable units start around €2,700 / $2,900 with no ongoing fees. Search 'Galileo HAS receiver' or 'PPP receiver' to explore that category. This map is not about those.",
       "related": ["is-my-gear-compatible"]
     },
     "how-to-connect-emlid": {
