@@ -401,16 +401,16 @@
       // zooms (many stations, tiny rFloatPx) so the JS loop stays fast; scale
       // back up with nearest-neighbour to preserve hard band edges.
       var sub=z<=3?8:z<=6?4:z<=7?2:1;
-      var sw=Math.ceil(size.x/sub);
-      var sh=Math.ceil(size.y/sub);
+      var tw=Math.ceil(size.x/sub);
+      var th=Math.ceil(size.y/sub);
       var rSq=rFloatPx*rFloatPx;
       setTimeout(function(){
-        var buf=new ArrayBuffer(sw*sh*4);
+        var buf=new ArrayBuffer(tw*th*4);
         var d32=new Uint32Array(buf);
-        var imd=new ImageData(new Uint8ClampedArray(buf),sw,sh);
+        var imd=new ImageData(new Uint8ClampedArray(buf),tw,th);
         var hasData=false;
-        for(var spy=0;spy<sh;spy++){
-          for(var spx=0;spx<sw;spx++){
+        for(var spy=0;spy<th;spy++){
+          for(var spx=0;spx<tw;spx++){
             var px=(spx+0.5)*sub, py=(spy+0.5)*sub;
             var minSq=rSq;
             for(var i=0;i<n;i++){
@@ -419,7 +419,7 @@
               if(dsq<minSq) minSq=dsq;
             }
             if(minSq>=rSq) continue;
-            d32[spy*sw+spx]=COVERAGE_LUT32[(1-Math.sqrt(minSq)/rFloatPx)*255|0];
+            d32[spy*tw+spx]=COVERAGE_LUT32[(1-Math.sqrt(minSq)/rFloatPx)*255|0];
             hasData=true;
           }
         }
@@ -428,7 +428,7 @@
             ctx.putImageData(imd,0,0);
           } else {
             var sc=document.createElement('canvas');
-            sc.width=sw; sc.height=sh;
+            sc.width=tw; sc.height=th;
             sc.getContext('2d').putImageData(imd,0,0);
             ctx.imageSmoothingEnabled=false;
             ctx.drawImage(sc,0,0,size.x,size.y);
@@ -943,7 +943,7 @@
     L.DomEvent.disableClickPropagation(d);
     L.DomEvent.disableScrollPropagation(d);
 
-    var sep='border-top:1px solid #ddd;margin-top:5px;padding-top:5px;';
+    var sep='border-top:1px solid var(--srv-border);margin-top:5px;padding-top:5px;';
     var infoQ='<span style="display:inline-block;width:12px;height:12px;border:1.5px solid #888;border-radius:50%;text-align:center;font-size:9px;font-weight:700;color:#888;line-height:12px;vertical-align:middle;background:white">?</span>';
     d.innerHTML=
       '<b style="font-size:12px">Legend</b><br>'
@@ -1356,11 +1356,13 @@
 })();
 
 // Guide modal — must be global for inline onclick in popup HTML
-var _guideLoaded=false;
+var _guideLoaded=false, _guideLoading=false;
 function openGuideDialog(){
   var dlg=document.getElementById('guide-dialog');
   if(!dlg) return;
   if(_guideLoaded){dlg.showModal();return;}
+  if(_guideLoading) return;
+  _guideLoading=true;
   fetch('./guide.html')
     .then(function(r){return r.text();})
     .then(function(html){
