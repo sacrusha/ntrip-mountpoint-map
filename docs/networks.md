@@ -1478,6 +1478,47 @@ but stream access requires an official licence — no general hobbyist path.
 
 ---
 
+## igrs — IGRS (IQ)
+
+**status**:    paid
+**access**:    restricted; no public NTRIP caster identified
+**stations**:  7
+**source**:    Not publicly listed (Iraq Geodetic Reference System)
+
+Only 7 reference stations at 500–800 km inter-station spacing — far too sparse for
+RTK (baseline ≫ 100 km). No public NTRIP caster found. Documented for completeness;
+not a usable RTK resource for hobbyists.
+
+---
+
+## pak_rehber — Pak-Rehber (PK)
+
+**status**:    paid
+**access**:    restricted; authorized users only — contact suparco.gov.pk (SUPARCO)
+**stations**:  unknown
+**source**:    suparco.gov.pk (SUPARCO — Space and Upper Atmosphere Research Commission)
+
+Government NRTK service delivering cm-level corrections to "authorized users." No
+public-facing NTRIP host:port, open registration portal, or sourcetable found.
+Access requires direct contact with SUPARCO. Pak-SBAS (sub-metre satellite corrections,
+L-band) is a separate out-of-scope service also under SUPARCO.
+
+---
+
+## kazgeodesy — KazGeoDesy (KZ)
+
+**status**:    paid
+**access**:    restricted; institutional licence or commercial reseller contract required
+**stations**:  120+
+**source**:    Not publicly listed (Committee on Land Management, Republic of Kazakhstan)
+
+120+ CORS stations concentrated around Almaty, Astana, and the northern corridor.
+No open self-service registration — access through official institutional channels
+or a commercial reseller. Country is ~2.7 million km²; baselines will be long
+outside urban centres even with a subscription.
+
+---
+
 ## netgeo — NetGEO (IT — national)
 
 **status**:    paid

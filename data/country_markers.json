@@ -219,6 +219,22 @@
      "tier":"info", "access":"restricted",
      "note":"Access restricted to vetted state/county agency partners. No general public registration."},
 
+    {"id":"apn",         "name":"APN",              "region":"Israel",               "country":"IL", "lat":31.77, "lon":35.22,
+     "tier":"info", "access":"restricted", "registration":"https://mapigps.co.il",
+     "note":"Government NTRIP service (Survey of Israel). Restricted to licensed surveyors. WARNING: pervasive military GNSS spoofing active across Israel and surrounding region since Oct 2023 — RTK unreliable regardless of NTRIP access."},
+
+    {"id":"igrs",        "name":"IGRS",             "region":"Iraq",                 "country":"IQ", "lat":33.34, "lon":44.40,
+     "tier":"info", "access":"restricted",
+     "note":"Iraq Geodetic Reference System. Only 7 reference stations at 500–800 km spacing — far too sparse for RTK. No public NTRIP caster; documented for completeness."},
+
+    {"id":"pak_rehber",  "name":"Pak-Rehber",       "region":"Pakistan",             "country":"PK", "lat":30.38, "lon":69.35,
+     "tier":"info", "access":"restricted",
+     "note":"Government NRTK service (SUPARCO). Restricted to authorized users — no public registration or host:port listed. Contact SUPARCO directly (suparco.gov.pk)."},
+
+    {"id":"kazgeodesy",  "name":"KazGeoDesy",       "region":"Kazakhstan",           "country":"KZ", "lat":51.18, "lon":71.45,
+     "tier":"info", "access":"restricted", "stations_declared":120,
+     "note":"Government CORS network (Committee on Land Management, 120+ stations). Institutional licence or commercial reseller contract required — no self-service registration path."},
+
     {"id":"dvrs",        "name":"DVRS",             "region":"Dubai (UAE)",          "country":"AE", "lat":25.20, "lon":55.27,
      "tier":"info", "access":"restricted", "stations_declared":18,
      "note":"Dubai Virtual Reference System (Dubai Municipality). 18+ stations, 4-constellation. Professional application only via dm.gov.ae — no general hobbyist registration."},
