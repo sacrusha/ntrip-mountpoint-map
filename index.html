@@ -1031,13 +1031,9 @@
   // IP-based geolocation — ~city-level accuracy, no permission prompt.
   // Used only to centre the initial map view; fail-open to the default.
   function getViewerPos(){
-    return fetchWithTimeout('https://ipwho.is/',3000,{cache:'no-store'})
+    return fetchWithTimeout('https://ipapi.co/json/',3000,{cache:'no-store'})
       .then(function(r){ return r.ok?r.json():null; })
-      .then(function(j){
-        if(j&&j.success&&isFinite(j.latitude)&&isFinite(j.longitude))
-          return {lat:j.latitude,lon:j.longitude};
-        return null;
-      })
+      .then(function(j){ return j&&isFinite(j.latitude)?{lat:j.latitude,lon:j.longitude}:null; })
       .catch(function(){ return null; });
   }
 
@@ -1045,6 +1041,7 @@
   window.addEventListener('load',async function(){
     setupBanner();
     var map=L.map('map',{preferCanvas:true,worldCopyJump:true,minZoom:2}).setView([47.0,8.0],8);
+    var viewerPosProm=getViewerPos();
 
     // ResizeObserver fires after CSS layout settles — more reliable than
     // window 'resize' which can fire before the container has its final size
@@ -1054,28 +1051,16 @@
         .observe(document.getElementById('map'));
     }
 
-    (function(){
-      var btn=document.getElementById('banner-near-btn');
-      var orig=btn.innerHTML;
-      function nearFallback(){
-        getViewerPos().then(function(vp){
-          btn.innerHTML=orig; btn.disabled=false;
-          if(vp) map.flyTo([vp.lat,vp.lon],10);
-        });
-      }
-      btn.onclick=function(){
-        btn.textContent='Locating…'; btn.disabled=true;
-        if(!navigator.geolocation){ nearFallback(); return; }
-        navigator.geolocation.getCurrentPosition(
-          function(p){
-            btn.innerHTML=orig; btn.disabled=false;
-            map.flyTo([p.coords.latitude,p.coords.longitude],14);
-          },
-          nearFallback,
-          {timeout:8000,maximumAge:60000}
-        );
-      };
-    })();
+    document.getElementById('banner-near-btn').onclick=function(){
+      Promise.race([
+        navigator.geolocation?new Promise(function(r){navigator.geolocation.getCurrentPosition(r,r,{timeout:300,maximumAge:300000});}):viewerPosProm,
+        new Promise(function(r){setTimeout(r,350,null);})
+      ]).then(function(p){
+        return p&&p.coords?{lat:p.coords.latitude,lon:p.coords.longitude}:viewerPosProm;
+      }).then(function(loc){
+        if(loc) map.flyTo([loc.lat,loc.lon],Math.max(map.getZoom(),ZOOM_LABELS));
+      });
+    };
 
     // OSM canonical tile URL (no subdomain rotation per OSM tile policy)
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{
@@ -1133,7 +1118,7 @@
     var networks=(data&&data.networks)||[];
     var allStations=mergeStations(bySource);
 
-    var vp=await getViewerPos();
+    var vp=await viewerPosProm;
     if(vp) map.setView([vp.lat,vp.lon],map.getZoom());
     var refC=vp||{lat:map.getCenter().lat,lon:map.getCenter().lng};
     var _cosRef=Math.cos(refC.lat*Math.PI/180);
