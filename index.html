@@ -927,7 +927,7 @@
   function addInfoMarker(group,lat,lon,popup,label){
     var icon=L.divIcon({
       className:'',iconSize:[14,14],iconAnchor:[7,7],
-      html:`<svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.75" fill="white" stroke="${INFO_MARKER_COLOR}" stroke-width="1.5"/><text x="7" y="7" dominant-baseline="central" text-anchor="middle" font-size="8" font-weight="bold" fill="${INFO_MARKER_COLOR}">?</text></svg>`
+      html:`<svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.75" fill="white" stroke="${INFO_MARKER_COLOR}" stroke-width="1.5"/><text x="7" y="10" text-anchor="middle" font-size="8" font-weight="bold" fill="${INFO_MARKER_COLOR}">?</text></svg>`
     });
     return L.marker([lat,lon],{icon:icon,pane:'vrsPane'})
       .bindTooltip(label,{sticky:false})
