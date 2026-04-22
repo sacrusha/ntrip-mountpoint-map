@@ -861,7 +861,7 @@
   function addInfoMarker(group,lat,lon,popup,label){
     var icon=L.divIcon({
       className:'',iconSize:[14,14],iconAnchor:[7,7],
-      html:`<svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.75" fill="white" stroke="${INFO_MARKER_COLOR}" stroke-width="1.5"/><text x="7" y="10.5" text-anchor="middle" font-size="8" font-weight="bold" fill="${INFO_MARKER_COLOR}">?</text></svg>`
+      html:`<svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.75" fill="white" stroke="${INFO_MARKER_COLOR}" stroke-width="1.5"/><text x="7" y="7" dominant-baseline="central" text-anchor="middle" font-size="8" font-weight="bold" fill="${INFO_MARKER_COLOR}">?</text></svg>`
     });
     return L.marker([lat,lon],{icon:icon,pane:'vrsPane'})
       .bindTooltip(label,{sticky:false})
@@ -986,7 +986,7 @@
     var fullSep='border-top:1px solid #ddd;margin-top:4px;padding-top:4px;'+sepStyle;
     var vrsSwatchHtml=`<span class="msw" style="flex-shrink:0;border:2px solid ${VRS_COLOR}"></span>`;
     var greySwatchHtml=`<span class="msw" style="flex-shrink:0;border:2px solid ${GREY_MARKER_COLOR}"></span>`;
-    var infoSwatchHtml=`<span style="display:inline-block;width:11px;height:11px;border:1.5px solid ${INFO_MARKER_COLOR};border-radius:50%;text-align:center;font-size:8px;font-weight:700;color:${INFO_MARKER_COLOR};line-height:8px;vertical-align:middle;margin-right:4px;flex-shrink:0">?</span>`;
+    var infoSwatchHtml=`<span style="display:inline-block;width:11px;height:11px;border:1.5px solid ${INFO_MARKER_COLOR};border-radius:50%;text-align:center;font-size:8px;font-weight:700;color:${INFO_MARKER_COLOR};line-height:11px;vertical-align:middle;margin-right:4px;flex-shrink:0;background:white">?</span>`;
     d.innerHTML='<details id="src-det" open><summary id="src-sum" class="det-sum">Sources</summary>'
       +physRows
       +'<label style="'+fullSep+'display:flex;align-items:center;gap:4px" '
@@ -1115,7 +1115,7 @@
       +sw('background:#aaa;border-radius:50%')+' Mountpoint data stale<br>'
       +sw('border:2px solid '+VRS_COLOR+';background:rgba(192,25,106,0.25);border-radius:50%')+' VRS network<br>'
       +sw('border:2px solid '+GREY_MARKER_COLOR+';background:rgba(102,102,102,0.18);border-radius:50%')+' Free (pending)<br>'
-      +'<span style="display:inline-block;width:12px;height:12px;border:1.5px solid #888;border-radius:50%;text-align:center;font-size:9px;font-weight:700;color:#888;line-height:11px;vertical-align:middle">?</span> Restricted<br>'
+      +'<span style="display:inline-block;width:12px;height:12px;border:1.5px solid #888;border-radius:50%;text-align:center;font-size:9px;font-weight:700;color:#888;line-height:12px;vertical-align:middle;background:white">?</span> Restricted<br>'
       +'<small id="leg-info">Loading\u2026</small>'
       +'</details>';
 
