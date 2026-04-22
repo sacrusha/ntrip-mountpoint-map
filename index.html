@@ -1054,13 +1054,24 @@
         .observe(document.getElementById('map'));
     }
 
-    document.getElementById('banner-near-btn').onclick=function(){
-      if(!navigator.geolocation) return;
-      navigator.geolocation.getCurrentPosition(
-        function(p){ map.setView([p.coords.latitude,p.coords.longitude],14); },
-        function(){}
-      );
-    };
+    (function(){
+      var btn=document.getElementById('banner-near-btn');
+      var orig=btn.innerHTML;
+      btn.onclick=function(){
+        if(!navigator.geolocation) return;
+        btn.textContent='Locating…'; btn.disabled=true;
+        navigator.geolocation.getCurrentPosition(
+          function(p){
+            btn.innerHTML=orig; btn.disabled=false;
+            map.flyTo([p.coords.latitude,p.coords.longitude],14);
+          },
+          function(){
+            btn.innerHTML=orig; btn.disabled=false;
+          },
+          {timeout:8000,maximumAge:60000}
+        );
+      };
+    })();
 
     // OSM canonical tile URL (no subdomain rotation per OSM tile policy)
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{
