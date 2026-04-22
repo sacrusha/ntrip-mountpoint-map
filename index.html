@@ -624,7 +624,7 @@
     if(auth.user)
       h+=cpRow('Username',auth.user);
     else if(auth.userNote)
-      h+=`<div class="row"><span class="lbl">Username</span><span style="font-size:11px;color:#555;font-style:italic">${esc(auth.userNote)}</span></div>`;
+      h+=`<div class="row"><span class="lbl">Username</span><span style="font-size:11px;color:var(--muted);font-style:italic">${esc(auth.userNote)}</span></div>`;
     if(auth.pass)
       h+=cpRow('Password',auth.pass);
     if(auth.openNote)
