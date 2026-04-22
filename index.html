@@ -68,7 +68,7 @@
   #banner-help-btn .q{width:15px;height:15px;border-radius:50%;border:1.25px solid currentColor;
     display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;line-height:1;}
   #banner-near-btn{background:#2d8a5a;border:none;color:#fff;
-    border-radius:4px;padding:6px 14px;font-size:13px;cursor:pointer;white-space:nowrap;flex-shrink:0;display:flex;align-items:center;gap:6px;}
+    border-radius:4px;padding:6px 14px;font-size:13px;cursor:pointer;white-space:nowrap;flex-shrink:0;}
   #banner-near-btn:hover{background:#359e6a;}
   .popup-plain{font-size:12px;line-height:1.45;max-width:280px;max-height:75vh;overflow-y:auto;}
   .popup-plain h3{margin:0 0 4px 0;font-size:13px;}
@@ -215,7 +215,6 @@
   .help-popover .more:hover{text-decoration:underline;}
   @media(max-width:600px){
     #help-drawer{width:100%;top:44px;}
-    #banner-help-btn .btn-label{display:none;}
   }
 </style>
 </head>
@@ -224,8 +223,8 @@
   <span id="banner-brand"><span id="banner-dot"></span>NTRIP Map</span>
   <span id="banner-meta">· <span id="banner-count">…</span> stations · <span id="banner-age">…</span></span>
   <span style="flex:1"></span>
-  <button id="banner-help-btn" aria-label="Guide"><span class="q">?</span> <span class="btn-label">Guide</span></button>
-  <button id="banner-near-btn"><span style="width:8px;height:8px;border-radius:50%;border:1.5px solid currentColor;flex-shrink:0"></span>Near me</button>
+  <button id="banner-help-btn" aria-label="Help"><span class="q">?</span></button>
+  <button id="banner-near-btn">Guide</button>
 </div>
 <div id="shell"><div id="map"></div></div>
 <!-- first-run toast; shown only on first visit if !localStorage['ntrip-howit-seen'] -->
@@ -1369,13 +1368,7 @@
     }
 
     document.getElementById('banner-near-btn').onclick=function(){
-      new Promise(function(res){
-        navigator.geolocation?navigator.geolocation.getCurrentPosition(res,res,{timeout:300,maximumAge:300000}):res(null);
-      }).then(function(p){
-        return p&&p.coords?{lat:p.coords.latitude,lon:p.coords.longitude}:viewerPosProm;
-      }).then(function(loc){
-        if(loc) map.flyTo([loc.lat,loc.lon],Math.max(map.getZoom(),ZOOM_LABELS));
-      });
+      window.open('guide.html','_blank');
     };
 
     // OSM canonical tile URL (no subdomain rotation per OSM tile policy)
