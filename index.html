@@ -103,22 +103,11 @@
   #toggles input{margin-right:6px;vertical-align:middle;}
   #toggles details{margin-top:6px;}
   #toggles summary{cursor:pointer;font-size:11px;color:var(--muted);}
-  #toggles #src-sum{cursor:pointer;font-size:12px;font-weight:700;list-style:none;margin:0;user-select:none;color:inherit;}
-  #toggles #src-sum::-webkit-details-marker{display:none;}
-  #toggles #src-sum::after{content:' \25be';font-size:9px;opacity:0.5;}
-  #src-det:not([open]) #src-sum::after{content:' \25b8';}
-  #vrs-sum{list-style:none;user-select:none;}
-  #vrs-sum::-webkit-details-marker{display:none;}
-  #vrs-sum::after{content:' \25be';font-size:9px;opacity:0.5;}
-  #vrs-det:not([open]) #vrs-sum::after{content:' \25b8';}
-  #grey-sum{list-style:none;user-select:none;}
-  #grey-sum::-webkit-details-marker{display:none;}
-  #grey-sum::after{content:' \25be';font-size:9px;opacity:0.5;}
-  #grey-det:not([open]) #grey-sum::after{content:' \25b8';}
-  #info-sum{list-style:none;user-select:none;}
-  #info-sum::-webkit-details-marker{display:none;}
-  #info-sum::after{content:' \25be';font-size:9px;opacity:0.5;}
-  #info-det:not([open]) #info-sum::after{content:' \25b8';}
+  .det-sum{list-style:none;user-select:none;}
+  .det-sum::-webkit-details-marker{display:none;}
+  .det-sum::after{content:' \25be';font-size:9px;opacity:0.5;}
+  details:not([open]) .det-sum::after{content:' \25b8';}
+  #src-sum{cursor:pointer;font-size:12px;font-weight:700;margin:0;color:inherit;}
   /* How-it-works dialog */
   #how-dialog{border:none;border-radius:8px;padding:0;max-width:640px;width:90vw;
     box-shadow:0 8px 32px rgba(0,0,0,.35);background:var(--panel-bg);color:var(--fg);}
@@ -163,11 +152,10 @@
     #sidebar-inner #legend{border-radius:0;border-left:none;border-right:none;border-bottom:none;
       margin-top:8px;padding-left:8px;padding-right:8px;}
   }
-  #leg-sum{cursor:pointer;font-size:12px;font-weight:700;list-style:none;margin:0 0 4px;user-select:none;}
-  #leg-sum::-webkit-details-marker{display:none;}
-  #leg-sum::after{content:' \25be';font-size:9px;opacity:0.5;}
-  #leg-det:not([open]) #leg-sum::after{content:' \25b8';}
+  #leg-sum{cursor:pointer;font-size:12px;font-weight:700;margin:0 0 4px;}
   #leg-det:not([open]) #leg-sum{margin:0;}
+  /* Circular swatch used in the toggle panel (9 × 9 px) */
+  .msw{display:inline-block;width:9px;height:9px;border-radius:50%;vertical-align:middle;margin-right:4px;}
   #leg-info{color:var(--legend-info);font-size:10px;}
   /* Guide modal */
   #guide-dialog{border:none;padding:0;max-width:780px;width:90vw;max-height:90vh;
@@ -252,61 +240,46 @@
   // Per-source auth/access hints shown in popups.
   // user/pass → copyable rows. userNote → plain-text hint (e.g. "any email").
   // near → show NEAR-mountpoint tip. openNote → italic access note.
+  // _r(suffix) builds the standard "Free registration required [suffix]" note.
+  function _r(s){ return {openNote:'Free registration required'+(s?' '+s:'')}; }
   var SOURCE_AUTH={
     rtk2go:    {userNote:'your email address', pass:'none', near:true},
-    centipede: {user:'centipede',              pass:'centipede', near:true},
-    frednet:   {openNote:'Free registration required (email only)'},
+    centipede: {user:'centipede', pass:'centipede', near:true},
+    frednet:   _r('(email only)'),
     geortk:    {openNote:'No authentication required'},
-    'sapos_':  {openNote:'Free registration required — select your federal state'},
+    'sapos_':  _r('— select your federal state'),
     ergnss:    {openNote:'Free registration, approved immediately'},
-    auscors:   {openNote:'Free registration required — CC BY 4.0'},
+    auscors:   _r('— CC BY 4.0'),
     positionz: {openNote:'LINZ account required — CC BY 4.0 NZ'},
-    satref:    {openNote:'Free registration required — Mountpoint: VRS32G'},
-    inacors:   {openNote:'Free registration required'},
-    trignet:   {openNote:'Free registration required'},
-    rbmc_ip:   {openNote:'Free registration required (5-station limit per user)'},
-    ramsac:    {openNote:'Free registration required (8-hr session cap)'},
-    regna_rou: {openNote:'Free registration required'},
-    flepos:    {openNote:'Free registration required'},
-    walcors:   {openNote:'Free registration required (paid for machine-control / auto-guidance)'},
-    spslux:    {openNote:'Free registration required'},
-    asg_eupos: {openNote:'Free registration required (approval 1–2 working days)'},
-    cropos:    {openNote:'Free registration required'},
-    estpos:    {openNote:'Free registration required (free until Aug 2026)'},
-    latpos:    {openNote:'Free registration required'},
-    igac:      {openNote:'Free registration required'},
+    satref:    _r('— Mountpoint: VRS32G'),
+    inacors:   _r(), trignet:   _r(), rbmc_ip:   _r('(5-station limit per user)'),
+    ramsac:    _r('(8-hr session cap)'),
+    regna_rou: _r(), flepos: _r(),
+    walcors:   _r('(paid for machine-control / auto-guidance)'),
+    spslux:    _r(), asg_eupos: _r('(approval 1–2 working days)'),
+    cropos:    _r(), estpos: _r('(free until Aug 2026)'),
+    latpos:    _r(), igac: _r(),
     earthscope:{openNote:'Non-commercial annual license (NULA) required'},
-    mirai:     {openNote:'Free registration required (+ NtripCaster auth form)'},
-    cors_korea:{openNote:'Free registration required (Korean portal; national ID may be required)'},
-    ksa_cors:  {openNote:'Free registration required'},
-    icecors:   {openNote:'Free registration required'},
+    mirai:     _r('(+ NtripCaster auth form)'),
+    cors_korea:_r('(Korean portal; national ID may be required)'),
+    ksa_cors:  _r(), icecors: _r(),
     apos:      {openNote:'Free for agriculture/forestry (eAMA credentials); paid via bev.gv.at for other users'},
     // Italy — regional networks
-    spin3:     {openNote:'Free registration required (CSI Piemonte portal)'},
-    gpsumbria: {openNote:'Free registration required'},
-    gnss_abruzzo_lazio:{openNote:'Free registration required (Regione Abruzzo portal; covers Abruzzo + Lazio)'},
-    sit_puglia:{openNote:'Free registration required (SIT Puglia geoportal)'},
-    gnss_campania:{openNote:'Free registration required — SPID identity (Italy)'},
+    spin3:     _r('(CSI Piemonte portal)'), gpsumbria: _r(),
+    gnss_abruzzo_lazio:_r('(Regione Abruzzo portal; covers Abruzzo + Lazio)'),
+    sit_puglia:_r('(SIT Puglia geoportal)'), gnss_campania:_r('— SPID identity (Italy)'),
     // US state DOT networks
-    wiscors:   {openNote:'Free registration required (Wisconsin DOT)'},
-    fprn:      {openNote:'Free registration required (Florida DOT)'},
-    ardot_rtn: {openNote:'Free registration required (Arkansas DOT)'},
-    macors:    {openNote:'Free registration required (MassDOT)'},
-    vector:    {openNote:'Free registration required (Vermont VCGI)'},
-    azcors:    {openNote:'Free registration required (Arizona ADWR)'},
-    gcgc_rtn:  {openNote:'Free registration required (Gulf Coast Geodetic Consortium / USM)'},
-    alcors:    {openNote:'Free registration required (Alabama DOT)'},
-    orgn:      {openNote:'Free registration required (Oregon DOT)'},
-    msrn:      {openNote:'Free registration required (Michigan DOT)'},
-    nysnet:    {openNote:'Free registration required (New York State DOT)'},
-    incors:    {openNote:'Free registration required (Indiana DOA)'},
-    iartn:     {openNote:'Free registration required (Iowa DOT)'},
-    kycors:    {openNote:'Free registration required (Kentucky Transportation Cabinet)'},
-    mncors:    {openNote:'Free registration required (Minnesota DOT)'},
-    odot_rtn:  {openNote:'Free registration required (Ohio DOT)'},
+    wiscors:   _r('(Wisconsin DOT)'),    fprn:      _r('(Florida DOT)'),
+    ardot_rtn: _r('(Arkansas DOT)'),     macors:    _r('(MassDOT)'),
+    vector:    _r('(Vermont VCGI)'),     azcors:    _r('(Arizona ADWR)'),
+    gcgc_rtn:  _r('(Gulf Coast Geodetic Consortium / USM)'),
+    alcors:    _r('(Alabama DOT)'),      orgn:      _r('(Oregon DOT)'),
+    msrn:      _r('(Michigan DOT)'),     nysnet:    _r('(New York State DOT)'),
+    incors:    _r('(Indiana DOA)'),      iartn:     _r('(Iowa DOT)'),
+    kycors:    _r('(Kentucky Transportation Cabinet)'),
+    mncors:    _r('(Minnesota DOT)'),    odot_rtn:  _r('(Ohio DOT)'),
     modot_rtn: {openNote:'Notarized access agreement required (Missouri DOT); free once approved'},
-    wvrtn:     {openNote:'Free registration required (West Virginia DOH)'},
-    mainedot:  {openNote:'Free registration required (Maine DOT)'},
+    wvrtn:     _r('(West Virginia DOH)'), mainedot: _r('(Maine DOT)'),
   };
   // Registration URLs per source, populated from data/stations.json at load time.
   // SOURCE_AUTH.openNote gives the short description; SOURCE_REG gives the link.
@@ -573,8 +546,7 @@
 
   function solidSVG(col,r){
     r=r||7; var d=r*2;
-    return '<svg width="'+d+'" height="'+d+'" viewBox="0 0 '+d+' '+d+'" xmlns="http://www.w3.org/2000/svg">'
-      +'<circle cx="'+r+'" cy="'+r+'" r="'+(r-0.75)+'" fill="'+col+'" stroke="white" stroke-width="1.5"/></svg>';
+    return `<svg width="${d}" height="${d}" viewBox="0 0 ${d} ${d}" xmlns="http://www.w3.org/2000/svg"><circle cx="${r}" cy="${r}" r="${r-0.75}" fill="${col}" stroke="white" stroke-width="1.5"/></svg>`;
   }
   var _iconCache={};
   function cachedIcon(col){
@@ -637,37 +609,29 @@
 
   function cpRow(lblHtml,value){
     var v=esc(value);
-    return '<div class="row"><span class="lbl">'+lblHtml+'</span>'
-      +'<code>'+v+'</code>'
-      +'<button class="cp" onclick="__ntripCopy(this,\''+v+'\')">copy</button>'
-      +'</div>';
+    return `<div class="row"><span class="lbl">${lblHtml}</span><code>${v}</code><button class="cp" onclick="__ntripCopy(this,'${v}')">copy</button></div>`;
   }
   function serverBlock(serverKey,mountpoint,dotCol){
     var srv=SERVERS[serverKey];
     if(!srv||!mountpoint) return '';
-    var dot='<span style="display:inline-block;width:8px;height:8px;background:'
-      +dotCol+';border-radius:50%;margin-right:4px"></span>';
+    var dot=`<span style="display:inline-block;width:8px;height:8px;background:${dotCol};border-radius:50%;margin-right:4px"></span>`;
     var auth=SOURCE_AUTH[serverKey]
       ||(serverKey.indexOf('sapos_')===0?SOURCE_AUTH['sapos_']:null)||{};
-    var h='<div class="srv">'
-      +'<div style="font-weight:600;font-size:11px;margin-bottom:2px">'+dot+esc(sourceLabel(serverKey))+'</div>'
-      +cpRow('Server',srv.host)
-      +cpRow('Port',srv.port)
-      +cpRow('Mountpoint',mountpoint);
+    var h=`<div class="srv"><div style="font-weight:600;font-size:11px;margin-bottom:2px">${dot}${esc(sourceLabel(serverKey))}</div>`
+      +cpRow('Server',srv.host)+cpRow('Port',srv.port)+cpRow('Mountpoint',mountpoint);
     if(auth.near)
       h+='<div class="anote">or use mountpoint <code>NEAR</code> to auto-select nearest</div>';
     if(auth.user)
       h+=cpRow('Username',auth.user);
     else if(auth.userNote)
-      h+='<div class="row"><span class="lbl">Username</span>'
-        +'<span style="font-size:11px;color:#555;font-style:italic">'+esc(auth.userNote)+'</span></div>';
+      h+=`<div class="row"><span class="lbl">Username</span><span style="font-size:11px;color:#555;font-style:italic">${esc(auth.userNote)}</span></div>`;
     if(auth.pass)
       h+=cpRow('Password',auth.pass);
     if(auth.openNote)
-      h+='<div class="anote">'+esc(auth.openNote)+'</div>';
+      h+=`<div class="anote">${esc(auth.openNote)}</div>`;
     var regUrl=safeUrl(SOURCE_REG[serverKey]||'');
     if(regUrl)
-      h+='<div class="anote"><a href="'+esc(regUrl)+'" target="_blank" rel="noopener noreferrer">Sign up / details ↗</a></div>';
+      h+=`<div class="anote"><a href="${esc(regUrl)}" target="_blank" rel="noopener noreferrer">Sign up / details ↗</a></div>`;
     return h+'</div>';
   }
 
@@ -675,21 +639,12 @@
     var names=[], blocks='';
     stationSourceIds(s).forEach(function(sid){
       var col=sourceColor(sid);
-      s.sources[sid].forEach(function(n){
-        names.push(n);
-        blocks+=serverBlock(sid,n,col);
-      });
+      s.sources[sid].forEach(function(n){ names.push(n); blocks+=serverBlock(sid,n,col); });
     });
-    var label=names.join(' / ');
     var warn=s.legacyFormat
       ? '<div class="warn">Legacy RTCM 2.x — many modern receivers can\'t use this.</div>'
       : '';
-    return '<div class="popup-plain"><h3>'+esc(label)+'</h3>'
-      +'<div class="acc">'+accuracySummary(s.carrier)+'</div>'
-      +warn+blocks
-      +'<p class="guide-link"><a href="./guide.html" onclick="event.preventDefault();openGuideDialog();">'
-      +'Receiver setup guide →</a></p>'
-      +'</div>';
+    return `<div class="popup-plain"><h3>${esc(names.join(' / '))}</h3><div class="acc">${accuracySummary(s.carrier)}</div>${warn}${blocks}<p class="guide-link"><a href="./guide.html" onclick="event.preventDefault();openGuideDialog();">Receiver setup guide →</a></p></div>`;
   }
 
   function precLabel(dLat,dLon,lat){
@@ -789,20 +744,13 @@
                    registration:'Free with registration',
                    category:'Free for some user categories',
                    restricted:'Restricted access'})[n.access]||n.access||'';
-      var popup='<div class="popup-plain"><h3>'+esc(n.name||n.id)+'</h3>'
-        +'<div class="acc">NRTK coverage area — cm-level inside the hull</div>'
-        +'<div>'+esc(access)+'</div>'
-        +(safeUrl(n.registrationUrl||'')
-          ? '<div><a href="'+esc(safeUrl(n.registrationUrl))+'" target="_blank" rel="noopener">Signup / details</a></div>'
-          : '')
-        +'<div style="color:#666;font-size:11px;margin-top:4px">'
-          +((n.stationIds||[]).length)+' reference stations</div></div>';
+      var regUrl=safeUrl(n.registrationUrl||'');
+      var popup=`<div class="popup-plain"><h3>${esc(n.name||n.id)}</h3><div class="acc">NRTK coverage area — cm-level inside the hull</div><div>${esc(access)}</div>`
+        +(regUrl?`<div><a href="${esc(regUrl)}" target="_blank" rel="noopener">Signup / details</a></div>`:'')
+        +`<div style="color:#666;font-size:11px;margin-top:4px">${(n.stationIds||[]).length} reference stations</div></div>`;
       L.marker(c,{
         icon:L.divIcon({className:'',iconSize:[18,18],iconAnchor:[9,9],
-          html:'<svg width="18" height="18" viewBox="0 0 18 18">'
-            +'<circle cx="9" cy="9" r="7.5" fill="#1a5d1a" stroke="white" stroke-width="2"/>'
-            +'<text x="9" y="12" text-anchor="middle" font-size="9" font-weight="bold" fill="white">N</text>'
-            +'</svg>'})
+          html:'<svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="7.5" fill="#1a5d1a" stroke="white" stroke-width="2"/><text x="9" y="12" text-anchor="middle" font-size="9" font-weight="bold" fill="white">N</text></svg>'})
       }).bindPopup(popup).addTo(group);
     });
     return group;
@@ -851,31 +799,16 @@
             +(popReg?'<div class="anote"><a href="'+esc(popReg)
               +'" target="_blank" rel="noopener noreferrer">Sign up / details ↗</a></div>':'')
             +'</div>';
-          // Visual ring: no pointer events so station dots show through.
-          var visual=L.circle([lat,lon],{
-            radius:25000,color:col,weight:2,
-            fillColor:col,fillOpacity:0.25,
-            interactive:false,renderer:renderer,pane:'vrsPane'
-          });
-          visual.addTo(group);
-          // Hit ring: invisible wide stroke, pointer-events set after addTo.
-          var hit=L.circle([lat,lon],{
-            radius:25000,color:col,weight:40,
-            opacity:0,fill:false,
-            renderer:renderer,pane:'vrsPane'
-          }).bindTooltip(label+' (VRS)',{sticky:false})
-            .bindPopup(popup);
-          hit.addTo(group);
-          bySid[sid]={visual:visual,hit:hit};
+          bySid[sid]=addRingMarker(group,lat,lon,renderer,col,0.25,label+' (VRS)',popup);
         } else {
           var note=m.note||auth.openNote||'';
           var gr=safeUrl(SOURCE_REG[sid]||'')||regUrl;
-          var ge=addGreyCircle(group,lat,lon,renderer,label,buildGreyPopup(label,region,note,gr));
+          var ge=addRingMarker(group,lat,lon,renderer,GREY_MARKER_COLOR,0.12,label,buildGreyPopup(label,region,note,gr));
           ge.label=label; greyById[m.id]=ge;
         }
 
       } else if(m.tier==='deferred'){
-        var ge=addGreyCircle(group,lat,lon,renderer,label,
+        var ge=addRingMarker(group,lat,lon,renderer,GREY_MARKER_COLOR,0.12,label,
           buildGreyPopup(label,region,m.note||'',regUrl));
         ge.label=label; greyById[m.id]=ge;
 
@@ -888,30 +821,24 @@
   }
 
   function buildGreyPopup(label,region,note,regUrl){
-    return '<div class="popup-plain"><h3>'+esc(label)+'</h3>'
-      +'<div style="color:#888;font-weight:600;margin-bottom:6px">'
-      +'Free network (pending)</div>'
-      +'<div style="font-size:12px;margin:4px 0 6px">Covers <b>'+esc(region)+'</b>.</div>'
-      +(note?'<div class="anote">'+esc(note)+'</div>':'')
-      +(regUrl?'<div class="anote"><a href="'+esc(regUrl)
-        +'" target="_blank" rel="noopener noreferrer">More info / sign up ↗</a></div>':'')
+    return `<div class="popup-plain"><h3>${esc(label)}</h3><div style="color:#888;font-weight:600;margin-bottom:6px">Free network (pending)</div><div style="font-size:12px;margin:4px 0 6px">Covers <b>${esc(region)}</b>.</div>`
+      +(note?`<div class="anote">${esc(note)}</div>`:'')
+      +(regUrl?`<div class="anote"><a href="${esc(regUrl)}" target="_blank" rel="noopener noreferrer">More info / sign up ↗</a></div>`:'')
       +'</div>';
   }
 
-  function addGreyCircle(group,lat,lon,renderer,label,popup){
+  function addRingMarker(group,lat,lon,renderer,col,fillOpacity,tooltipLabel,popup){
     var visual=L.circle([lat,lon],{
-      radius:25000,color:GREY_MARKER_COLOR,weight:2,
-      fillColor:GREY_MARKER_COLOR,fillOpacity:0.12,
+      radius:25000,color:col,weight:2,
+      fillColor:col,fillOpacity:fillOpacity,
       interactive:false,renderer:renderer,pane:'vrsPane'
-    });
-    visual.addTo(group);
+    }).addTo(group);
     var hit=L.circle([lat,lon],{
-      radius:25000,color:GREY_MARKER_COLOR,weight:40,
+      radius:25000,color:col,weight:40,
       opacity:0,fill:false,
       renderer:renderer,pane:'vrsPane'
-    }).bindTooltip(label,{sticky:false})
-      .bindPopup(popup);
-    hit.addTo(group);
+    }).bindTooltip(tooltipLabel,{sticky:false})
+      .bindPopup(popup).addTo(group);
     return {visual:visual,hit:hit};
   }
 
@@ -922,30 +849,22 @@
       'restricted':'Access restricted'
     })[m.access]||'Not freely accessible';
     var regUrl=safeUrl(m.registration||'');
-    return '<div class="popup-plain"><h3>'+esc(m.name||m.id)+'</h3>'
-      +'<div class="warn">'+esc(accessLabel)+'</div>'
-      +(m.yearly_cost?'<div style="font-size:11px;color:#555;margin:2px 0 4px">'+esc(m.yearly_cost)+'</div>':'')
-      +'<div style="font-size:12px;margin:4px 0 6px">Covers <b>'+esc(m.region||'')+'</b>.</div>'
-      +(m.note?'<div class="anote">'+esc(m.note)+'</div>':'')
-      +(regUrl?'<div class="anote"><a href="'+esc(regUrl)
-        +'" target="_blank" rel="noopener noreferrer">More info ↗</a></div>':'')
+    return `<div class="popup-plain"><h3>${esc(m.name||m.id)}</h3><div class="warn">${esc(accessLabel)}</div>`
+      +(m.yearly_cost?`<div style="font-size:11px;color:#555;margin:2px 0 4px">${esc(m.yearly_cost)}</div>`:'')
+      +`<div style="font-size:12px;margin:4px 0 6px">Covers <b>${esc(m.region||'')}</b>.</div>`
+      +(m.note?`<div class="anote">${esc(m.note)}</div>`:'')
+      +(regUrl?`<div class="anote"><a href="${esc(regUrl)}" target="_blank" rel="noopener noreferrer">More info ↗</a></div>`:'')
       +'</div>';
   }
 
   function addInfoMarker(group,lat,lon,popup,label){
     var icon=L.divIcon({
       className:'',iconSize:[14,14],iconAnchor:[7,7],
-      html:'<svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">'
-        +'<circle cx="7" cy="7" r="5.75" fill="white" stroke="'+INFO_MARKER_COLOR+'" stroke-width="1.5"/>'
-        +'<text x="7" y="10.5" text-anchor="middle" font-size="8" font-weight="bold" fill="'
-        +INFO_MARKER_COLOR+'">?</text>'
-        +'</svg>'
+      html:`<svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.75" fill="white" stroke="${INFO_MARKER_COLOR}" stroke-width="1.5"/><text x="7" y="10.5" text-anchor="middle" font-size="8" font-weight="bold" fill="${INFO_MARKER_COLOR}">?</text></svg>`
     });
-    var mk=L.marker([lat,lon],{icon:icon,pane:'vrsPane'})
+    return L.marker([lat,lon],{icon:icon,pane:'vrsPane'})
       .bindTooltip(label,{sticky:false})
-      .bindPopup(popup);
-    mk.addTo(group);
-    return mk;
+      .bindPopup(popup).addTo(group);
   }
 
   function setupBanner(){
@@ -1050,34 +969,20 @@
     });
     var greyCount=greyIds.length, infoCount=infoIds.length;
     var greyRows=greyIds.map(function(id){
-      var lbl=esc(greyLayerById[id].label||id);
-      return '<label style="display:flex;align-items:center;gap:0">'
-        +'<input type="checkbox" data-k="grey:'+id+'" checked style="margin-right:4px;flex-shrink:0">'
-        +'<span style="display:inline-block;width:9px;height:9px;border:2px solid '+GREY_MARKER_COLOR
-          +';border-radius:50%;vertical-align:middle;margin-right:4px"></span>'
-        +lbl+'</label>';
+      return `<label style="display:flex;align-items:center;gap:0"><input type="checkbox" data-k="grey:${id}" checked style="margin-right:4px;flex-shrink:0"><span class="msw" style="border:2px solid ${GREY_MARKER_COLOR}"></span>${esc(greyLayerById[id].label||id)}</label>`;
     }).join('');
     var infoRows=infoIds.map(function(id){
-      var lbl=esc(infoLayerById[id].label||id);
-      return '<label style="display:flex;align-items:center;gap:0">'
-        +'<input type="checkbox" data-k="info:'+id+'" checked style="margin-right:4px;flex-shrink:0">'
-        +'<span style="display:inline-block;width:11px;height:11px;border:1.5px solid '+INFO_MARKER_COLOR
-          +';border-radius:50%;text-align:center;font-size:8px;font-weight:700;color:'+INFO_MARKER_COLOR
-          +';line-height:8px;vertical-align:middle;margin-right:4px">?</span>'
-        +lbl+'</label>';
+      return `<label style="display:flex;align-items:center;gap:0"><input type="checkbox" data-k="info:${id}" checked style="margin-right:4px;flex-shrink:0"><span style="display:inline-block;width:11px;height:11px;border:1.5px solid ${INFO_MARKER_COLOR};border-radius:50%;text-align:center;font-size:8px;font-weight:700;color:${INFO_MARKER_COLOR};line-height:8px;vertical-align:middle;margin-right:4px">?</span>${esc(infoLayerById[id].label||id)}</label>`;
     }).join('');
 
     function renderRow(e){
       var mj=esc(JSON.stringify(e.members));
+      var vrs=e.vrsOnly?' data-vrs="1"':'';
       var swatch=e.vrsOnly
-        ? '<span style="display:inline-block;width:9px;height:9px;border:2px solid '+VRS_COLOR
-            +';border-radius:50%;vertical-align:middle;margin-right:4px"></span>'
-        : '<span style="display:inline-block;width:9px;height:9px;background:'+e.color
-            +';border-radius:50%;vertical-align:middle;margin-right:4px"></span>';
-      var badge=e.vrsOnly?'':'<span class="view-badge" data-m="'+mj+'" style="color:#888;font-size:10px"></span>';
-      return '<label data-row="1"'+(e.vrsOnly?' data-vrs="1"':'')+' style="display:flex;align-items:center;gap:0">'
-        +'<input type="checkbox" data-m="'+mj+'" checked style="margin-right:4px;flex-shrink:0">'
-        +swatch+esc(e.label)+badge+'</label>';
+        ? `<span class="msw" style="border:2px solid ${VRS_COLOR}"></span>`
+        : `<span class="msw" style="background:${e.color}"></span>`;
+      var badge=e.vrsOnly?'':`<span class="view-badge" data-m="${mj}" style="color:#888;font-size:10px"></span>`;
+      return `<label data-row="1"${vrs} style="display:flex;align-items:center;gap:0"><input type="checkbox" data-m="${mj}" checked style="margin-right:4px;flex-shrink:0">${swatch}${esc(e.label)}${badge}</label>`;
     }
     var physEntries=entries.filter(function(e){ return !e.vrsOnly; });
     var vrsEntries=entries.filter(function(e){ return e.vrsOnly; });
@@ -1093,21 +998,17 @@
 
     var sepStyle='border-bottom:1px solid #ddd;margin-bottom:4px;padding-bottom:4px;';
     var fullSep='border-top:1px solid #ddd;margin-top:4px;padding-top:4px;'+sepStyle;
-    var vrsSwatchHtml='<span style="display:inline-block;width:9px;height:9px;border:2px solid '
-      +VRS_COLOR+';border-radius:50%;vertical-align:middle;margin-right:4px;flex-shrink:0"></span>';
-    var greySwatchHtml='<span style="display:inline-block;width:9px;height:9px;border:2px solid '
-      +GREY_MARKER_COLOR+';border-radius:50%;vertical-align:middle;margin-right:4px;flex-shrink:0"></span>';
-    var infoSwatchHtml='<span style="display:inline-block;width:11px;height:11px;border:1.5px solid '
-      +INFO_MARKER_COLOR+';border-radius:50%;text-align:center;font-size:8px;font-weight:700;color:'
-      +INFO_MARKER_COLOR+';line-height:8px;vertical-align:middle;margin-right:4px;flex-shrink:0">?</span>';
-    d.innerHTML='<details id="src-det" open><summary id="src-sum">Sources</summary>'
+    var vrsSwatchHtml=`<span class="msw" style="flex-shrink:0;border:2px solid ${VRS_COLOR}"></span>`;
+    var greySwatchHtml=`<span class="msw" style="flex-shrink:0;border:2px solid ${GREY_MARKER_COLOR}"></span>`;
+    var infoSwatchHtml=`<span style="display:inline-block;width:11px;height:11px;border:1.5px solid ${INFO_MARKER_COLOR};border-radius:50%;text-align:center;font-size:8px;font-weight:700;color:${INFO_MARKER_COLOR};line-height:8px;vertical-align:middle;margin-right:4px;flex-shrink:0">?</span>`;
+    d.innerHTML='<details id="src-det" open><summary id="src-sum" class="det-sum">Sources</summary>'
       +physRows
       +'<label style="'+fullSep+'display:flex;align-items:center;gap:4px" '
         +'title="Hide sources with no stations in the current map view">'
         +'<input type="checkbox" id="declutter-cb" checked> Hide out-of-view sources</label>'
       +(vrsCount
         ? '<details id="vrs-det" style="'+sepStyle+'">'
-            +'<summary id="vrs-sum" style="display:flex;align-items:center;gap:4px;font-size:12px">'
+            +'<summary id="vrs-sum" class="det-sum" style="display:flex;align-items:center;gap:4px;font-size:12px">'
               +'<input type="checkbox" data-k="vrs_global" checked style="flex-shrink:0;margin-right:0">'
               +vrsSwatchHtml
               +'VRS networks ('+vrsCount+')'
@@ -1119,7 +1020,7 @@
             +vrsSwatchHtml+'VRS circles</label>')
       +(greyCount
         ? '<details id="grey-det" style="'+sepStyle+'">'
-            +'<summary id="grey-sum" style="display:flex;align-items:center;gap:4px;font-size:12px">'
+            +'<summary id="grey-sum" class="det-sum" style="display:flex;align-items:center;gap:4px;font-size:12px">'
               +'<input type="checkbox" data-k="grey_global" checked style="flex-shrink:0;margin-right:0">'
               +greySwatchHtml
               +'Pending ('+greyCount+')'
@@ -1129,7 +1030,7 @@
         : '')
       +(infoCount
         ? '<details id="info-det" style="'+sepStyle+'">'
-            +'<summary id="info-sum" style="display:flex;align-items:center;gap:4px;font-size:12px">'
+            +'<summary id="info-sum" class="det-sum" style="display:flex;align-items:center;gap:4px;font-size:12px">'
               +'<input type="checkbox" data-k="info_global" checked style="flex-shrink:0;margin-right:0">'
               +infoSwatchHtml
               +'Restricted ('+infoCount+')'
@@ -1237,7 +1138,7 @@
     var sw=function(s){return '<span style="display:inline-block;width:12px;height:12px;vertical-align:middle;'+s+'"></span>';};
     legDiv.innerHTML=
       '<details id="leg-det" open>'
-      +'<summary id="leg-sum">Legend</summary>'
+      +'<summary id="leg-sum" class="det-sum">Legend</summary>'
       +sw('background:rgb(0,170,0)')+' &lt; 10 km \u2014 ~2 cm<br>'
       +sw('background:rgb(180,200,30)')+' 10\u201330 km \u2014 ~3 cm<br>'
       +sw('background:rgb(220,150,30)')+' 30\u201350 km \u2014 ~5 cm<br>'
