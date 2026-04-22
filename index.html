@@ -22,7 +22,7 @@
     --ctrl-bg:rgba(255,255,255,0.88); --ctrl-border:rgba(0,0,0,0.12);
     --fab-bg:rgba(255,255,255,0.95); --fab-border:#c8cdd4; --fab-fg:#444;
     --sidebar-border:#dde3ea;
-    --legend-border:#bbb; --legend-info:#999;
+    --legend-info:#999;
     --guide-fg:#1a1a1a; --guide-bg:#fff; --guide-head:#1b2b3a;
     --guide-border:#e2e8f0; --guide-h3:#333; --guide-para:#333;
     --guide-td-even:#f9fafb;
@@ -42,7 +42,7 @@
       --ctrl-bg:rgba(14,22,34,0.88); --ctrl-border:rgba(255,255,255,0.1);
       --fab-bg:rgba(30,48,72,0.95); --fab-border:#2d4256; --fab-fg:#94a7b8;
       --sidebar-border:#2d4256;
-      --legend-border:#2d4256; --legend-info:#94a7b8;
+      --legend-info:#94a7b8;
       --guide-fg:#e8eef4; --guide-bg:#121921; --guide-head:#9ec8ff;
       --guide-border:#243447; --guide-h3:#c8d8e8; --guide-para:#c8d8e8;
       --guide-td-even:#1a2d40;
@@ -143,22 +143,12 @@
       transform:translateX(-100%);transition:transform 0.25s ease;z-index:401;}
     body.sidebar-open #sidebar{transform:translateX(0);}
   }
-  #legend{background:var(--panel-bg);color:var(--fg);padding:8px 12px;border-radius:5px;border:1px solid var(--legend-border);font-size:11px;line-height:1.55;}
-  /* Frosted-glass backgrounds when used as Leaflet controls (desktop only) */
+  /* Frosted-glass background for the combined panel (desktop only) */
   #toggles.leaflet-control{
     background:var(--ctrl-bg);
     -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
-    padding:8px 12px;border-radius:5px;border:1px solid var(--ctrl-border);}
-  #legend.leaflet-control{
-    background:var(--ctrl-bg);
-    -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
-    border-color:var(--ctrl-border);}
-  @media(max-width:600px){
-    #sidebar-inner #legend{border-radius:0;border-left:none;border-right:none;border-bottom:none;
-      margin-top:8px;padding-left:8px;padding-right:8px;}
-  }
-  #leg-sum{cursor:pointer;font-size:12px;font-weight:700;margin:0 0 4px;}
-  #leg-det:not([open]) #leg-sum{margin:0;}
+    padding:8px 12px;border-radius:5px;border:1px solid var(--ctrl-border);
+    max-height:calc(100vh - 80px);overflow-y:auto;}
   /* Circular swatch used in the toggle panel (9 × 9 px) */
   .msw{display:inline-block;width:9px;height:9px;border-radius:50%;vertical-align:middle;margin-right:4px;}
   #leg-info{color:var(--legend-info);font-size:10px;}
@@ -892,6 +882,8 @@
     if(!seen){ dlg.showModal(); try{ localStorage.setItem('ntrip-howit-seen','1'); }catch(e){} }
   }
 
+  function sw(s){ return '<span style="display:inline-block;width:12px;height:12px;vertical-align:middle;'+s+'"></span>'; }
+
   function buildTogglePanel(sourceCounts,vrsLayerBySid,greyLayerById,infoLayerById,onChange){
     var state={tier_open:true,tier_registration:true,tier_conditions:true,vrs_global:true,
                grey_global:true,info_global:true};
@@ -986,39 +978,49 @@
     L.DomEvent.disableClickPropagation(d);
     L.DomEvent.disableScrollPropagation(d);
 
-    var sepStyle='border-bottom:1px solid #ddd;margin-bottom:4px;padding-bottom:4px;';
-    var fullSep='border-top:1px solid #ddd;margin-top:4px;padding-top:4px;'+sepStyle;
-    var vrsSwatchHtml=`<span class="msw" style="flex-shrink:0;border:2px solid ${VRS_COLOR}"></span>`;
-    var greySwatchHtml=`<span class="msw" style="flex-shrink:0;border:2px solid ${GREY_MARKER_COLOR}"></span>`;
-    var infoSwatchHtml=`<span style="display:inline-block;width:11px;height:11px;border:1.5px solid ${INFO_MARKER_COLOR};border-radius:50%;text-align:center;font-size:8px;font-weight:700;color:${INFO_MARKER_COLOR};line-height:11px;vertical-align:middle;margin-right:4px;flex-shrink:0;background:white">?</span>`;
-    d.innerHTML='<details id="src-det" open><summary id="src-sum" class="det-sum">Sources</summary>'
-      +physRows
-      +'<label style="'+fullSep+'display:flex;align-items:center;gap:4px" '
-        +'title="Hide sources with no stations in the current map view">'
-        +'<input type="checkbox" id="declutter-cb" checked> Hide out-of-view sources</label>'
-      +'<label style="'+sepStyle+'display:flex;align-items:center;gap:4px">'
+    var sep='border-top:1px solid #ddd;margin-top:5px;padding-top:5px;';
+    var infoQ='<span style="display:inline-block;width:12px;height:12px;border:1.5px solid #888;border-radius:50%;text-align:center;font-size:9px;font-weight:700;color:#888;line-height:12px;vertical-align:middle;background:white">?</span>';
+    d.innerHTML=
+      '<b style="font-size:12px">Legend</b><br>'
+      +sw('background:rgb(0,170,0)')+' &lt;10 km — ~2 cm<br>'
+      +sw('background:rgb(180,200,30)')+' 10–30 km — ~3 cm<br>'
+      +sw('background:rgb(220,150,30)')+' 30–50 km — ~5 cm<br>'
+      +sw('background:rgb(210,90,90)')+' 50–100 km — &lt;1 m<br>'
+      +'<label style="display:flex;align-items:center;gap:4px;margin-top:2px">'
         +'<input type="checkbox" data-k="vrs_global" checked>'
-        +vrsSwatchHtml+(vrsCount?'VRS networks ('+vrsCount+')':'VRS circles')
+        +sw('border:2px solid '+VRS_COLOR+';background:rgba(192,25,106,0.25);border-radius:50%')
+        +(vrsCount?'VRS networks ('+vrsCount+')':'VRS circles')
       +'</label>'
       +(greyCount
-        ? '<label style="'+sepStyle+'display:flex;align-items:center;gap:4px">'
+        ? '<label style="display:flex;align-items:center;gap:4px">'
             +'<input type="checkbox" data-k="grey_global" checked>'
-            +greySwatchHtml+'Pending ('+greyCount+')'
+            +sw('border:2px solid '+GREY_MARKER_COLOR+';background:rgba(102,102,102,0.18);border-radius:50%')
+            +'Pending ('+greyCount+')'
           +'</label>'
         : '')
       +(infoCount
-        ? '<label style="'+sepStyle+'display:flex;align-items:center;gap:4px">'
+        ? '<label style="display:flex;align-items:center;gap:4px">'
             +'<input type="checkbox" data-k="info_global" checked>'
-            +infoSwatchHtml+'Restricted ('+infoCount+')'
+            +infoQ+' Restricted ('+infoCount+')'
           +'</label>'
         : '')
-      +'<details><summary>Access</summary>'
+      +'<small id="leg-info" style="display:block;margin-top:2px">Loading…</small>'
+      +'<details id="src-det" open style="'+sep+'">'
+        +'<summary id="src-sum" class="det-sum" style="font-weight:700;font-size:12px">Sources</summary>'
+        +physRows
+      +'</details>'
+      +'<details style="'+sep+'">'
+        +'<summary>Access</summary>'
         +'<label><input type="checkbox" data-k="tier_open" checked> Free, no signup</label>'
         +'<label><input type="checkbox" data-k="tier_registration" checked> Free (registration)</label>'
         +'<label title="Free, but conditions may exclude you (non-commercial only, national ID required, fee for some uses, etc.)">'
           +'<input type="checkbox" data-k="tier_conditions" checked> Free* (conditions apply)</label>'
       +'</details>'
-      +'</details>';
+      +'<label style="display:flex;justify-content:space-between;align-items:center;gap:8px;'+sep+'cursor:pointer;font-size:11px" '
+        +'title="Hide sources with no stations in the current map view">'
+        +'Hide out-of-view'
+        +'<input type="checkbox" id="declutter-cb" checked>'
+      +'</label>';
 
     // Cache row references so applyDeclutter avoids querySelectorAll + JSON.parse on every pan.
     var _rows=[];
@@ -1106,31 +1108,7 @@
 
     var isMobile=window.matchMedia('(max-width:600px)').matches;
 
-    var legDiv=L.DomUtil.create('div');
-    legDiv.id='legend';
-    var sw=function(s){return '<span style="display:inline-block;width:12px;height:12px;vertical-align:middle;'+s+'"></span>';};
-    legDiv.innerHTML=
-      '<details id="leg-det" open>'
-      +'<summary id="leg-sum" class="det-sum">Legend</summary>'
-      +sw('background:rgb(0,170,0)')+' &lt; 10 km \u2014 ~2 cm<br>'
-      +sw('background:rgb(180,200,30)')+' 10\u201330 km \u2014 ~3 cm<br>'
-      +sw('background:rgb(220,150,30)')+' 30\u201350 km \u2014 ~5 cm<br>'
-      +sw('background:rgb(210,90,90)')+' 50\u2013100 km \u2014 &lt; 1 m<br>'
-      +sw('background:#aaa;border-radius:50%')+' Mountpoint data stale<br>'
-      +sw('border:2px solid '+VRS_COLOR+';background:rgba(192,25,106,0.25);border-radius:50%')+' VRS network<br>'
-      +sw('border:2px solid '+GREY_MARKER_COLOR+';background:rgba(102,102,102,0.18);border-radius:50%')+' Free (pending)<br>'
-      +'<span style="display:inline-block;width:12px;height:12px;border:1.5px solid #888;border-radius:50%;text-align:center;font-size:9px;font-weight:700;color:#888;line-height:12px;vertical-align:middle;background:white">?</span> Restricted<br>'
-      +'<small id="leg-info">Loading\u2026</small>'
-      +'</details>';
-
-    if(isMobile){
-      map.zoomControl.setPosition('bottomright');
-    } else {
-      var leg=L.control({position:'bottomleft'});
-      leg.onAdd=function(){ return legDiv; };
-      leg.addTo(map);
-      if(!DESKTOP_MQ.matches){var ld=legDiv.querySelector('#leg-det');if(ld)ld.removeAttribute('open');}
-    }
+    if(isMobile) map.zoomControl.setPosition('bottomright');
 
     var data=null, health=null;
     try{
@@ -1388,7 +1366,6 @@
       var sidebarInner=document.getElementById('sidebar-inner');
       if(sidebarInner){
         sidebarInner.appendChild(togglePanel.dom);
-        sidebarInner.appendChild(legDiv);
       }
       var fab=document.getElementById('filter-fab');
       if(fab){
