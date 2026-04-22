@@ -179,6 +179,10 @@
      "tier":"info", "access":"restricted", "yearly_cost":"₹5,032/month (~$720/yr) for private users",
      "note":"Free only for Central/State Government and academic institutions. Private users pay ₹5,032/month (~$720/yr)."},
 
+    {"id":"qc_mern",     "name":"Réseau GNSS du Québec (MERN)", "region":"Quebec", "country":"CA", "lat":48.00, "lon":-72.00,
+     "tier":"info", "access":"restricted", "stations_declared":18,
+     "note":"18 free government CORS stations (Ministère de l'Énergie et des Ressources naturelles). NOT standard NTRIP — each station delivers raw TCP streams (per-station IP:port, CMR+/RTCM 3.2). Standard NTRIP clients won't connect. Technical workaround: use a TCP-capable receiver (e.g. Emlid RS2) or bridge via RTKLIB str2str. Register at mern.gouv.qc.ca."},
+
     {"id":"bc_rtn",      "name":"BC RTN",           "region":"British Columbia",      "country":"CA", "lat":53.70, "lon":-127.60,
      "tier":"info", "access":"paid",
      "note":"Paid regional subscription via GeoBC (gov.bc.ca/geobc). No Canadian province offers free public NTRIP."},
