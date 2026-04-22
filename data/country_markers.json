@@ -36,7 +36,7 @@
     {"id":"litpos",      "name":"LitPOS",           "region":"Lithuania",             "country":"LT", "lat":55.90, "lon":23.90,
      "tier":"deferred", "access":"registration", "registration":"https://geoportal.lt/web/litpos-en",
      "stations_declared":35,
-     "note":"35 stations, free (publicly-funded EUPOS member). NTRIP host:port not publicly listed — contact LitPOS@geoportal.lt."},
+     "note":"35 stations, free (publicly-funded EUPOS member). NTRIP host:port not publicly listed — register at geoportal.lt/web/litpos-en to obtain."},
 
     {"id":"zakpos",      "name":"ZAKPOS",           "region":"Ukraine (west)",        "country":"UA", "lat":49.50, "lon":26.00,
      "tier":"deferred", "access":"registration",
@@ -209,6 +209,34 @@
     {"id":"calrtns",     "name":"CalRTNS",          "region":"California",            "country":"US", "lat":37.50, "lon":-119.60,
      "tier":"info", "access":"restricted",
      "note":"Access restricted to vetted state/county agency partners. No general public registration."},
+
+    {"id":"eft_cors",    "name":"EFT-CORS",         "region":"Russia (nationwide)",  "country":"RU", "lat":55.75, "lon":37.62,
+     "tier":"info", "access":"paid",
+     "note":"Hundreds of stations across Russia. GPS+GLONASS+BDS+GAL. 3-day free trial; RINEX data free. Subscribe at eft-cors.ru."},
+
+    {"id":"rtknet",     "name":"RTKNet",            "region":"Russia (nationwide)",  "country":"RU", "lat":56.85, "lon":60.61,
+     "tier":"info", "access":"paid", "yearly_cost":"~30,000 ₽/yr (~$333/yr)",
+     "note":"300+ stations nationwide. RTCM 3.0 and 3.2-MSM4; 1 Hz. Ports 6030-6041 by federal district. 3-day trial. Subscribe at rtknet.ru."},
+
+    {"id":"hive_cors",  "name":"HIVE",              "region":"Russia (nationwide)",  "country":"RU", "lat":55.02, "lon":82.92,
+     "tier":"info", "access":"paid",
+     "note":"Pay-per-use: daily RTK or hourly RINEX. Station owners get free caster access. See hive.geosystems.aero."},
+
+    {"id":"geospider",  "name":"ГЕОСПАЙДЕР",       "region":"Russia (North-West)",  "country":"RU", "lat":59.95, "lon":30.30,
+     "tier":"info", "access":"paid",
+     "note":"49 stations covering NW Russia centred on St. Petersburg. RTCM 3.1. Monthly/quarterly/annual plans at geospider.ru."},
+
+    {"id":"qianxun",    "name":"千寻知寸 Qianxun",  "region":"China (nationwide)",   "country":"CN", "lat":39.90, "lon":116.40,
+     "tier":"info", "access":"paid", "yearly_cost":"~¥3,600-3,800/yr (~$500-528/yr)",
+     "note":"2,700+ stations across 33 provinces. GPS+GLONASS+BDS+GAL. Individuals register directly — no surveying licence required. Subscribe at qxwz.com."},
+
+    {"id":"cmcc_cors",  "name":"中国移动CORS",      "region":"China (nationwide)",   "country":"CN", "lat":31.20, "lon":121.50,
+     "tier":"info", "access":"paid", "yearly_cost":"~¥3,600/yr (~$500/yr)",
+     "note":"4,400+ stations nationwide. Individual registration available via China Mobile. Largest station count of the three commercial options."},
+
+    {"id":"tencent_rtk","name":"Tencent RTK",       "region":"China (nationwide)",   "country":"CN", "lat":22.55, "lon":114.10,
+     "tier":"info", "access":"paid", "yearly_cost":"~¥998/yr (~$138/yr) at 2022 launch — current pricing unconfirmed",
+     "note":"~2,800+ virtual stations; 33 provinces. WeChat/QQ account required; no surveying licence. Pricing unconfirmed beyond 2022 launch. See lbs.qq.com/rtk."},
 
     {"id":"frednet",     "name":"FReDNet",          "region":"Friuli-Venezia Giulia + border AT/SI", "country":"IT", "lat":46.00, "lon":13.50,  "tier":"vrs", "pins":true, "source_id":"frednet"},
     {"id":"ergnss",      "name":"ERGNSS",           "region":"Spain",                "country":"ES", "lat":40.40, "lon":-3.70,  "tier":"vrs", "pins":true, "source_id":"ergnss",    "stations_declared":128},
