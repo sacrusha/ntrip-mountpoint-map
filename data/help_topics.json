@@ -14,6 +14,16 @@
       "body": "This station broadcasts on both GPS frequencies — enough for cm-accurate fixes out to ~30 km. L1-only stations work closer in but degrade faster with distance.",
       "deepKey": "carrier-l1l2"
     },
+    "carrier-l1": {
+      "title": "L1-only (single-frequency)",
+      "body": "This station broadcasts on one GPS frequency. Reliable RTK fixes up to ~10 km; beyond that ionospheric error grows fast and accuracy degrades.",
+      "deepKey": "carrier-l1l2"
+    },
+    "carrier-unknown": {
+      "title": "Accuracy unverified",
+      "body": "This station's sourcetable didn't declare its carrier field — we can't confirm whether it's single- or dual-frequency. It may still work fine; connect and check your receiver's RTK fix quality.",
+      "deepKey": "carrier-l1l2"
+    },
     "mountpoint": {
       "title": "Mountpoint",
       "body": "The name of the specific correction stream on this caster. You'll paste it into your NTRIP client's 'Mountpoint' or 'Base' field.",

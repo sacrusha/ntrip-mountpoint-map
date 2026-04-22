@@ -68,7 +68,7 @@
   #banner-help-btn .q{width:15px;height:15px;border-radius:50%;border:1.25px solid currentColor;
     display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;line-height:1;}
   #banner-near-btn{background:#2d8a5a;border:none;color:#fff;
-    border-radius:4px;padding:6px 14px;font-size:13px;cursor:pointer;white-space:nowrap;flex-shrink:0;display:flex;align-items:center;gap:6px;}
+    border-radius:4px;padding:6px 14px;font-size:13px;cursor:pointer;white-space:nowrap;flex-shrink:0;}
   #banner-near-btn:hover{background:#359e6a;}
   .popup-plain{font-size:12px;line-height:1.45;max-width:280px;max-height:75vh;overflow-y:auto;}
   .popup-plain h3{margin:0 0 4px 0;font-size:13px;}
@@ -215,7 +215,6 @@
   .help-popover .more:hover{text-decoration:underline;}
   @media(max-width:600px){
     #help-drawer{width:100%;top:44px;}
-    #banner-help-btn .btn-label{display:none;}
   }
 </style>
 </head>
@@ -224,8 +223,8 @@
   <span id="banner-brand"><span id="banner-dot"></span>NTRIP Map</span>
   <span id="banner-meta">· <span id="banner-count">…</span> stations · <span id="banner-age">…</span></span>
   <span style="flex:1"></span>
-  <button id="banner-help-btn" aria-label="Guide"><span class="q">?</span> <span class="btn-label">Guide</span></button>
-  <button id="banner-near-btn"><span style="width:8px;height:8px;border-radius:50%;border:1.5px solid currentColor;flex-shrink:0"></span>Near me</button>
+  <button id="banner-help-btn" aria-label="Help"><span class="q">?</span></button>
+  <button id="banner-near-btn">Guide</button>
 </div>
 <div id="shell"><div id="map"></div></div>
 <!-- first-run toast; shown only on first visit if !localStorage['ntrip-howit-seen'] -->
@@ -241,7 +240,7 @@
 <div id="help-scrim"></div>
 <aside id="help-drawer" aria-label="Help">
   <div class="dh">
-    <h3>Guide</h3>
+    <h3>Help</h3>
     <button class="x" id="help-close" aria-label="Close">✕</button>
   </div>
   <div class="help-dsearch">
@@ -320,7 +319,6 @@
   var GREY_MARKER_COLOR='#666';   // matches stale-pin colour
   var INFO_MARKER_COLOR='#888';   // circled-? paid/restricted markers
 
-
   function sourceLabel(sid){
     return SOURCE_LABELS[sid]||(sid.indexOf('sapos_')===0?'SAPOS '+sid.slice(6):sid);
   }
@@ -350,8 +348,6 @@
 
   // Staleness thresholds (days). Must match STALE_GREY_DAYS / STALE_HIDE_DAYS in fetch_stations.py.
   var STALE_GREY_DAYS=3, STALE_HIDE_DAYS=7;
-
-  // Banner dismissal: bumped when content meaningfully changes.
 
   // Coverage-raster colour lookup. Entry i maps strength i/255 to RGBA,
   // where strength = 1 - dist_to_nearest_km / R_FLOAT:
@@ -662,9 +658,9 @@
       ||(serverKey.indexOf('sapos_')===0?SOURCE_AUTH['sapos_']:null)||{};
     var h=`<div class="srv"><div style="font-weight:600;font-size:11px;margin-bottom:2px">${dot}${esc(sourceLabel(serverKey))}</div>`
       +cpRow('Server',srv.host)+cpRow('Port',srv.port)
-      +`<div class="row"><span class="lbl">Mountpoint</span>${mountChip()}<code>${esc(mountpoint)}</code><button class="cp" onclick="__ntripCopy(this,'${esc(mountpoint)}')">copy</button></div>`;
+      +`<div class="row"><span class="lbl lbl-with-chip">Mount${mountChip()}</span><code>${esc(mountpoint)}</code><button class="cp" onclick="__ntripCopy(this,'${esc(mountpoint)}')">copy</button></div>`;
     if(auth.near)
-      h+='<div class="anote">or use mountpoint <code>NEAR</code> to auto-select nearest</div>';
+      h+='<div class="anote">or use <code>NEAR</code> to auto-select nearest</div>';
     if(auth.user)
       h+=cpRow('Username',auth.user);
     else if(auth.userNote)
@@ -679,8 +675,10 @@
     return h+'</div>';
   }
 
-  function carrierChip(){
-    return `<button class="help-chip" onclick="event.stopPropagation();__ntripShowPopover(this,'carrier','top-left')" aria-label="What does L1+L2 mean?"><span class="q">?</span></button>`;
+  function carrierChip(carrier){
+    var key=carrier===2?'carrier':carrier===1?'carrier-l1':'carrier-unknown';
+    var label=carrier===2?'What does L1+L2 mean?':carrier===1?'What does L1-only mean?':'What does this mean?';
+    return `<button class="help-chip" onclick="event.stopPropagation();__ntripShowPopover(this,'${key}','top-left')" aria-label="${label}"><span class="q">?</span></button>`;
   }
   function buildCopyAllPayload(s){
     var blocks=[];
@@ -711,7 +709,7 @@
       +`<button class="b-primary" onclick="__ntripCopyAll(this,'${payload}')">Copy all</button>`
       +`<button class="b-secondary" onclick="__ntripOpenHelp('how-to-connect-emlid')">How to connect ↗</button>`
       +`</div>`;
-    return `<div class="popup-plain"><h3>${esc(names.join(' / '))}</h3><div class="acc">${accuracySummary(s.carrier)}${carrierChip()}</div>${warn}${blocks}${footer}</div>`;
+    return `<div class="popup-plain"><h3>${esc(names.join(' / '))}</h3><div class="acc">${accuracySummary(s.carrier)}${carrierChip(s.carrier)}</div>${warn}${blocks}${footer}</div>`;
   }
 
   function precLabel(dLat,dLon,lat){
@@ -927,22 +925,15 @@
   function addInfoMarker(group,lat,lon,popup,label){
     var icon=L.divIcon({
       className:'',iconSize:[14,14],iconAnchor:[7,7],
-      html:`<svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.75" fill="white" stroke="${INFO_MARKER_COLOR}" stroke-width="1.5"/><text x="7" y="7" dominant-baseline="central" text-anchor="middle" font-size="8" font-weight="bold" fill="${INFO_MARKER_COLOR}">?</text></svg>`
+      html:`<svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.75" fill="white" stroke="${INFO_MARKER_COLOR}" stroke-width="1.5"/><text x="7" y="10" text-anchor="middle" font-size="8" font-weight="bold" fill="${INFO_MARKER_COLOR}">?</text></svg>`
     });
     return L.marker([lat,lon],{icon:icon,pane:'vrsPane'})
       .bindTooltip(label,{sticky:false})
       .bindPopup(popup).addTo(group);
   }
 
-
   /* ——— Help drawer & popover ——— */
   var HELP_CATS=['Getting started','Before you start','Connect','Concepts','Troubleshooting','Advanced','Meta'];
-
-  function helpEsc(s){
-    return (s==null?'':String(s))
-      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
-      .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
-  }
 
   function openHelp(highlightId){
     hideHelpPopover();
@@ -984,7 +975,7 @@
     });
     if(!keys.length){
       body.innerHTML='<div style="padding:40px 24px;text-align:center;color:var(--muted);font-size:13px;">'
-        +'No matches for "'+helpEsc(query)+'".<br>'
+        +'No matches for "'+esc(query)+'".<br>'
         +'<span style="font-size:11px;">Try: connect · compatible · buy · VRS · base · NEAR · legacy</span></div>';
       return;
     }
@@ -997,13 +988,13 @@
     var html='';
     HELP_CATS.forEach(function(cat){
       if(!byCat[cat]) return;
-      html+='<h5>'+helpEsc(cat)+'</h5>';
+      html+='<h5>'+esc(cat)+'</h5>';
       byCat[cat].forEach(function(id){
         var t=topics[id];
         var isOpen=(id===highlightId)||(keys.length===1);
-        html+='<div class="help-topic'+(isOpen?' open':'')+'" data-id="'+helpEsc(id)+'">'
-          +'<div class="ic">'+helpEsc(t.icon)+'</div>'
-          +'<div class="t">'+helpEsc(t.q)+'<small>'+helpEsc(t.sub)+'</small></div>'
+        html+='<div class="help-topic'+(isOpen?' open':'')+'" data-id="'+esc(id)+'">'
+          +'<div class="ic">'+esc(t.icon)+'</div>'
+          +'<div class="t">'+esc(t.q)+'<small>'+esc(t.sub)+'</small></div>'
           +'<div class="chev">&#x203a;</div>'
           +'</div>';
         if(isOpen) html+=renderHelpAnswer(id, t, topics);
@@ -1033,12 +1024,12 @@
     if(t.related&&t.related.length){
       rel='<div class="chips">'+t.related.map(function(rid){
         var rt=topics[rid];
-        return rt?'<button class="rel" data-go="'+helpEsc(rid)+'">&#x2192; '+helpEsc(rt.q)+'</button>':'';
+        return rt?'<button class="rel" data-go="'+esc(rid)+'">&#x2192; '+esc(rt.q)+'</button>':'';
       }).join('')+'</div>';
     }
     var deep=t.deep?('<details class="deep"><summary>Deep dive</summary><div class="inner">'+t.deep+'</div></details>'):'';
-    return '<div class="help-answer" data-id="'+helpEsc(id)+'">'
-      +'<p class="lead">'+helpEsc(t.lead)+'</p>'
+    return '<div class="help-answer" data-id="'+esc(id)+'">'
+      +'<p class="lead">'+esc(t.lead)+'</p>'
       +(t.body||'')
       +deep
       +rel
@@ -1065,9 +1056,9 @@
     var el=document.createElement('div');
     el.className='help-popover';
     el.dataset.arrow=arrow||'top-left';
-    el.innerHTML='<h6>'+helpEsc(c.title)+'<button class="close" aria-label="Close">×</button></h6>'
-      +'<p>'+helpEsc(c.body)+'</p>'
-      +(c.deepKey?'<button class="more" data-deep="'+helpEsc(c.deepKey)+'">Learn more →</button>':'');
+    el.innerHTML='<h6>'+esc(c.title)+'<button class="close" aria-label="Close">×</button></h6>'
+      +'<p>'+esc(c.body)+'</p>'
+      +(c.deepKey?'<button class="more" data-deep="'+esc(c.deepKey)+'">Learn more →</button>':'');
     document.body.appendChild(el);
 
     var chipR=chip.getBoundingClientRect();
@@ -1367,13 +1358,7 @@
     }
 
     document.getElementById('banner-near-btn').onclick=function(){
-      new Promise(function(res){
-        navigator.geolocation?navigator.geolocation.getCurrentPosition(res,res,{timeout:300,maximumAge:300000}):res(null);
-      }).then(function(p){
-        return p&&p.coords?{lat:p.coords.latitude,lon:p.coords.longitude}:viewerPosProm;
-      }).then(function(loc){
-        if(loc) map.flyTo([loc.lat,loc.lon],Math.max(map.getZoom(),ZOOM_LABELS));
-      });
+      window.open('guide.html','_blank');
     };
 
     // OSM canonical tile URL (no subdomain rotation per OSM tile policy)
