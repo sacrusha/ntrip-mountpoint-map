@@ -110,7 +110,7 @@
      "tier":"info", "access":"paid", "yearly_cost":"CHF 1,500/yr (~$1,650)",
      "note":"CHF 1,500/yr. At this price a local base station is likely more practical. Volunteer rtk2go/Centipede bases provide partial free coverage."},
 
-    {"id":"cpos",        "name":"CPOS / ETPOS",     "region":"Norway",                "country":"NO", "lat":60.50, "lon":13.30,
+    {"id":"cpos",        "name":"CPOS / ETPOS",     "region":"Norway",                "country":"NO", "lat":63.50, "lon":10.30,
      "tier":"info", "access":"paid", "yearly_cost":"NOK 8,000+/yr (~$740)",
      "note":"NOK 8,000+/yr via kartverket.no. Volunteer rtk2go/Centipede bases exist in populated areas (Oslofjord, Vestlandet)."},
 
