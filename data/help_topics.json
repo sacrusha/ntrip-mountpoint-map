@@ -48,7 +48,7 @@
       "sub": "Dual-frequency check in 10 seconds",
       "lead": "You need a dedicated dual-frequency (L1+L2) GNSS receiver — almost all phones and consumer GPS devices can't do RTK in real-time, and purpose-built units start around €275.",
       "body": "<p>How to check:</p><ol><li>Look in the receiver's datasheet for <code>L1+L2</code>, <code>dual-band</code>, or <code>dual-frequency</code>.</li><li>Or look for an <b>NTRIP</b>, <b>Network&nbsp;RTK</b>, or <b>Internet&nbsp;RTK</b> option in the receiver's settings menu. If it's there, you're compatible.</li></ol><p>Most professional surveying equipment from Trimble, Leica, Topcon, Sokkia, South and Hi-Target made in the past ~15 years supports this.</p>",
-      "deep": "L5 is a third frequency — nice but not required. Triple-band receivers perform better under tree cover and converge faster. The hobbyist sweet spot is dual-band u-blox ZED-F9P (ArduSimple, SparkFun RTK, Emlid Reach RS2/RS3).",
+      "deep": "L5 is a third frequency — nice but not required. Triple-band receivers perform better under tree cover and converge faster. The hobbyist sweet spot is dual-band u-blox ZED-F9P (ArduSimple, SparkFun RTK, Emlid Reach RS2+).",
       "related": ["what-to-buy", "how-to-connect-emlid"]
     },
     "what-to-buy": {
@@ -57,7 +57,7 @@
       "q": "I don't have gear yet — what should I buy?",
       "sub": "Tiered recommendation",
       "lead": "For free network RTK, ready-to-use kits start around €449 / $490. DIY tinkerer kits from ~€275. You don't need the €2,900+ standalone category unless you work somewhere with no mobile signal.",
-      "body": "<p>Three paths:</p><ul><li><b>DIY</b> — ArduSimple simpleRTK2B kit (~€275). Requires more tinkering; same u-blox F9P chip underneath. Also the standard choice for building your own base station.</li><li><b>Enthusiast assembled</b> — SparkFun RTK Facet (~$739). All-in-one rover with NTRIP client built in; connects via Bluetooth.</li><li><b>Ready to use</b> — Emlid Reach RS2+ (~$2,200) or RS3 (~$3,000). Rugged, waterproof, one-click NTRIP in Emlid Flow.</li></ul>",
+      "body": "<p>Four paths:</p><ul><li><b>DIY</b> — ArduSimple simpleRTK2B kit (~€275). Requires more setup; standard choice for building your own base station too.</li><li><b>Ready-to-use hobbyist</b> — ArduSimple RTK Handheld 2 Kit (~€449 / $490). Compact, battery included, Bluetooth. Android-preferred (iOS: SW Maps only).</li><li><b>All-in-one rover</b> — SparkFun RTK Facet (~$739). NTRIP client built in; connects via Bluetooth. Android-preferred (iOS: SW Maps only).</li><li><b>Survey-grade</b> — Emlid Reach RS2+ (~$2,200) or RS3 (~$3,000). Rugged, waterproof, one-click NTRIP in Emlid Flow. Full iOS support.</li></ul>",
       "deep": "Avoid anything sold as 'survey-grade' that doesn't explicitly list L1+L2 or NTRIP — it's usually SBAS/DGPS-grade and gets you sub-metre at best. Subscription-dependent hardware (from ~$850) like Trimble Catalyst DA2 needs paid correction fees on top and typically won't work with the free networks this map shows.\n\nIf you need centimetre accuracy with no mobile signal at all, look at standalone PPP receivers — Galileo HAS-capable units start around €2,700 / $2,900 with no ongoing fees. Search 'Galileo HAS receiver' or 'PPP receiver' to explore that category. This map is not about those.",
       "related": ["is-my-gear-compatible"]
     },
@@ -66,7 +66,7 @@
       "icon": "→",
       "q": "How do I connect this station in my app?",
       "sub": "Emlid Flow · SW Maps · other NTRIP clients",
-      "lead": "Open your NTRIP client's 'correction input' or 'NTRIP' settings, paste the five values from the station popup, and press Connect.",
+      "lead": "Open your NTRIP client's 'correction input' or 'NTRIP' settings, paste the values from the station popup, and press Connect.",
       "body": "<p>Fields every NTRIP client asks for, mapped to the popup:</p><ul><li><b>Host / Caster address</b> → <code>Server</code> (e.g. <code>crtk.net</code>)</li><li><b>Port</b> → <code>Port</code> (use the value shown in the popup)</li><li><b>Mountpoint</b> → <code>Mount</code> (e.g. <code>AMPH</code>)</li><li><b>Username / Password</b> → from the popup. For open sources, a generic user/pass is shown — paste it directly. Sources requiring registration use your account credentials.</li></ul><p>Once connected, your receiver needs a few seconds to reach \"RTK fix.\" If it sticks at \"float,\" your baseline is too long — pick a closer station.</p>",
       "deep": "App-specific tips:<br><br><b>Emlid Flow:</b> Settings → NTRIP → Add caster. Leave 'Receive GGA' on for VRS/NEAR mountpoints.<br><b>SW Maps:</b> Connection settings → External NTRIP Caster. SW Maps can forward corrections to bluetooth receivers.<br><b>u-center:</b> Receiver → NTRIP Client. Remember to enable UBX-RXM-RTCM output if you want to verify fix quality.",
       "related": ["near-mountpoint", "float-vs-fix"]
