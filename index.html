@@ -154,6 +154,8 @@
   }
   #leg-sum{cursor:pointer;font-size:12px;font-weight:700;margin:0 0 4px;}
   #leg-det:not([open]) #leg-sum{margin:0;}
+  /* Circular swatch used in the toggle panel (9 × 9 px) */
+  .msw{display:inline-block;width:9px;height:9px;border-radius:50%;vertical-align:middle;margin-right:4px;}
   #leg-info{color:var(--legend-info);font-size:10px;}
   /* Guide modal */
   #guide-dialog{border:none;padding:0;max-width:780px;width:90vw;max-height:90vh;
@@ -967,34 +969,20 @@
     });
     var greyCount=greyIds.length, infoCount=infoIds.length;
     var greyRows=greyIds.map(function(id){
-      var lbl=esc(greyLayerById[id].label||id);
-      return '<label style="display:flex;align-items:center;gap:0">'
-        +'<input type="checkbox" data-k="grey:'+id+'" checked style="margin-right:4px;flex-shrink:0">'
-        +'<span style="display:inline-block;width:9px;height:9px;border:2px solid '+GREY_MARKER_COLOR
-          +';border-radius:50%;vertical-align:middle;margin-right:4px"></span>'
-        +lbl+'</label>';
+      return `<label style="display:flex;align-items:center;gap:0"><input type="checkbox" data-k="grey:${id}" checked style="margin-right:4px;flex-shrink:0"><span class="msw" style="border:2px solid ${GREY_MARKER_COLOR}"></span>${esc(greyLayerById[id].label||id)}</label>`;
     }).join('');
     var infoRows=infoIds.map(function(id){
-      var lbl=esc(infoLayerById[id].label||id);
-      return '<label style="display:flex;align-items:center;gap:0">'
-        +'<input type="checkbox" data-k="info:'+id+'" checked style="margin-right:4px;flex-shrink:0">'
-        +'<span style="display:inline-block;width:11px;height:11px;border:1.5px solid '+INFO_MARKER_COLOR
-          +';border-radius:50%;text-align:center;font-size:8px;font-weight:700;color:'+INFO_MARKER_COLOR
-          +';line-height:8px;vertical-align:middle;margin-right:4px">?</span>'
-        +lbl+'</label>';
+      return `<label style="display:flex;align-items:center;gap:0"><input type="checkbox" data-k="info:${id}" checked style="margin-right:4px;flex-shrink:0"><span style="display:inline-block;width:11px;height:11px;border:1.5px solid ${INFO_MARKER_COLOR};border-radius:50%;text-align:center;font-size:8px;font-weight:700;color:${INFO_MARKER_COLOR};line-height:8px;vertical-align:middle;margin-right:4px">?</span>${esc(infoLayerById[id].label||id)}</label>`;
     }).join('');
 
     function renderRow(e){
       var mj=esc(JSON.stringify(e.members));
+      var vrs=e.vrsOnly?' data-vrs="1"':'';
       var swatch=e.vrsOnly
-        ? '<span style="display:inline-block;width:9px;height:9px;border:2px solid '+VRS_COLOR
-            +';border-radius:50%;vertical-align:middle;margin-right:4px"></span>'
-        : '<span style="display:inline-block;width:9px;height:9px;background:'+e.color
-            +';border-radius:50%;vertical-align:middle;margin-right:4px"></span>';
-      var badge=e.vrsOnly?'':'<span class="view-badge" data-m="'+mj+'" style="color:#888;font-size:10px"></span>';
-      return '<label data-row="1"'+(e.vrsOnly?' data-vrs="1"':'')+' style="display:flex;align-items:center;gap:0">'
-        +'<input type="checkbox" data-m="'+mj+'" checked style="margin-right:4px;flex-shrink:0">'
-        +swatch+esc(e.label)+badge+'</label>';
+        ? `<span class="msw" style="border:2px solid ${VRS_COLOR}"></span>`
+        : `<span class="msw" style="background:${e.color}"></span>`;
+      var badge=e.vrsOnly?'':`<span class="view-badge" data-m="${mj}" style="color:#888;font-size:10px"></span>`;
+      return `<label data-row="1"${vrs} style="display:flex;align-items:center;gap:0"><input type="checkbox" data-m="${mj}" checked style="margin-right:4px;flex-shrink:0">${swatch}${esc(e.label)}${badge}</label>`;
     }
     var physEntries=entries.filter(function(e){ return !e.vrsOnly; });
     var vrsEntries=entries.filter(function(e){ return e.vrsOnly; });
@@ -1010,13 +998,9 @@
 
     var sepStyle='border-bottom:1px solid #ddd;margin-bottom:4px;padding-bottom:4px;';
     var fullSep='border-top:1px solid #ddd;margin-top:4px;padding-top:4px;'+sepStyle;
-    var vrsSwatchHtml='<span style="display:inline-block;width:9px;height:9px;border:2px solid '
-      +VRS_COLOR+';border-radius:50%;vertical-align:middle;margin-right:4px;flex-shrink:0"></span>';
-    var greySwatchHtml='<span style="display:inline-block;width:9px;height:9px;border:2px solid '
-      +GREY_MARKER_COLOR+';border-radius:50%;vertical-align:middle;margin-right:4px;flex-shrink:0"></span>';
-    var infoSwatchHtml='<span style="display:inline-block;width:11px;height:11px;border:1.5px solid '
-      +INFO_MARKER_COLOR+';border-radius:50%;text-align:center;font-size:8px;font-weight:700;color:'
-      +INFO_MARKER_COLOR+';line-height:8px;vertical-align:middle;margin-right:4px;flex-shrink:0">?</span>';
+    var vrsSwatchHtml=`<span class="msw" style="flex-shrink:0;border:2px solid ${VRS_COLOR}"></span>`;
+    var greySwatchHtml=`<span class="msw" style="flex-shrink:0;border:2px solid ${GREY_MARKER_COLOR}"></span>`;
+    var infoSwatchHtml=`<span style="display:inline-block;width:11px;height:11px;border:1.5px solid ${INFO_MARKER_COLOR};border-radius:50%;text-align:center;font-size:8px;font-weight:700;color:${INFO_MARKER_COLOR};line-height:8px;vertical-align:middle;margin-right:4px;flex-shrink:0">?</span>`;
     d.innerHTML='<details id="src-det" open><summary id="src-sum" class="det-sum">Sources</summary>'
       +physRows
       +'<label style="'+fullSep+'display:flex;align-items:center;gap:4px" '
