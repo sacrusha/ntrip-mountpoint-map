@@ -544,8 +544,7 @@
 
   function solidSVG(col,r){
     r=r||7; var d=r*2;
-    return '<svg width="'+d+'" height="'+d+'" viewBox="0 0 '+d+' '+d+'" xmlns="http://www.w3.org/2000/svg">'
-      +'<circle cx="'+r+'" cy="'+r+'" r="'+(r-0.75)+'" fill="'+col+'" stroke="white" stroke-width="1.5"/></svg>';
+    return `<svg width="${d}" height="${d}" viewBox="0 0 ${d} ${d}" xmlns="http://www.w3.org/2000/svg"><circle cx="${r}" cy="${r}" r="${r-0.75}" fill="${col}" stroke="white" stroke-width="1.5"/></svg>`;
   }
   var _iconCache={};
   function cachedIcon(col){
@@ -608,37 +607,29 @@
 
   function cpRow(lblHtml,value){
     var v=esc(value);
-    return '<div class="row"><span class="lbl">'+lblHtml+'</span>'
-      +'<code>'+v+'</code>'
-      +'<button class="cp" onclick="__ntripCopy(this,\''+v+'\')">copy</button>'
-      +'</div>';
+    return `<div class="row"><span class="lbl">${lblHtml}</span><code>${v}</code><button class="cp" onclick="__ntripCopy(this,'${v}')">copy</button></div>`;
   }
   function serverBlock(serverKey,mountpoint,dotCol){
     var srv=SERVERS[serverKey];
     if(!srv||!mountpoint) return '';
-    var dot='<span style="display:inline-block;width:8px;height:8px;background:'
-      +dotCol+';border-radius:50%;margin-right:4px"></span>';
+    var dot=`<span style="display:inline-block;width:8px;height:8px;background:${dotCol};border-radius:50%;margin-right:4px"></span>`;
     var auth=SOURCE_AUTH[serverKey]
       ||(serverKey.indexOf('sapos_')===0?SOURCE_AUTH['sapos_']:null)||{};
-    var h='<div class="srv">'
-      +'<div style="font-weight:600;font-size:11px;margin-bottom:2px">'+dot+esc(sourceLabel(serverKey))+'</div>'
-      +cpRow('Server',srv.host)
-      +cpRow('Port',srv.port)
-      +cpRow('Mountpoint',mountpoint);
+    var h=`<div class="srv"><div style="font-weight:600;font-size:11px;margin-bottom:2px">${dot}${esc(sourceLabel(serverKey))}</div>`
+      +cpRow('Server',srv.host)+cpRow('Port',srv.port)+cpRow('Mountpoint',mountpoint);
     if(auth.near)
       h+='<div class="anote">or use mountpoint <code>NEAR</code> to auto-select nearest</div>';
     if(auth.user)
       h+=cpRow('Username',auth.user);
     else if(auth.userNote)
-      h+='<div class="row"><span class="lbl">Username</span>'
-        +'<span style="font-size:11px;color:#555;font-style:italic">'+esc(auth.userNote)+'</span></div>';
+      h+=`<div class="row"><span class="lbl">Username</span><span style="font-size:11px;color:#555;font-style:italic">${esc(auth.userNote)}</span></div>`;
     if(auth.pass)
       h+=cpRow('Password',auth.pass);
     if(auth.openNote)
-      h+='<div class="anote">'+esc(auth.openNote)+'</div>';
+      h+=`<div class="anote">${esc(auth.openNote)}</div>`;
     var regUrl=safeUrl(SOURCE_REG[serverKey]||'');
     if(regUrl)
-      h+='<div class="anote"><a href="'+esc(regUrl)+'" target="_blank" rel="noopener noreferrer">Sign up / details ↗</a></div>';
+      h+=`<div class="anote"><a href="${esc(regUrl)}" target="_blank" rel="noopener noreferrer">Sign up / details ↗</a></div>`;
     return h+'</div>';
   }
 
@@ -646,21 +637,12 @@
     var names=[], blocks='';
     stationSourceIds(s).forEach(function(sid){
       var col=sourceColor(sid);
-      s.sources[sid].forEach(function(n){
-        names.push(n);
-        blocks+=serverBlock(sid,n,col);
-      });
+      s.sources[sid].forEach(function(n){ names.push(n); blocks+=serverBlock(sid,n,col); });
     });
-    var label=names.join(' / ');
     var warn=s.legacyFormat
       ? '<div class="warn">Legacy RTCM 2.x — many modern receivers can\'t use this.</div>'
       : '';
-    return '<div class="popup-plain"><h3>'+esc(label)+'</h3>'
-      +'<div class="acc">'+accuracySummary(s.carrier)+'</div>'
-      +warn+blocks
-      +'<p class="guide-link"><a href="./guide.html" onclick="event.preventDefault();openGuideDialog();">'
-      +'Receiver setup guide →</a></p>'
-      +'</div>';
+    return `<div class="popup-plain"><h3>${esc(names.join(' / '))}</h3><div class="acc">${accuracySummary(s.carrier)}</div>${warn}${blocks}<p class="guide-link"><a href="./guide.html" onclick="event.preventDefault();openGuideDialog();">Receiver setup guide →</a></p></div>`;
   }
 
   function precLabel(dLat,dLon,lat){
@@ -760,20 +742,13 @@
                    registration:'Free with registration',
                    category:'Free for some user categories',
                    restricted:'Restricted access'})[n.access]||n.access||'';
-      var popup='<div class="popup-plain"><h3>'+esc(n.name||n.id)+'</h3>'
-        +'<div class="acc">NRTK coverage area — cm-level inside the hull</div>'
-        +'<div>'+esc(access)+'</div>'
-        +(safeUrl(n.registrationUrl||'')
-          ? '<div><a href="'+esc(safeUrl(n.registrationUrl))+'" target="_blank" rel="noopener">Signup / details</a></div>'
-          : '')
-        +'<div style="color:#666;font-size:11px;margin-top:4px">'
-          +((n.stationIds||[]).length)+' reference stations</div></div>';
+      var regUrl=safeUrl(n.registrationUrl||'');
+      var popup=`<div class="popup-plain"><h3>${esc(n.name||n.id)}</h3><div class="acc">NRTK coverage area — cm-level inside the hull</div><div>${esc(access)}</div>`
+        +(regUrl?`<div><a href="${esc(regUrl)}" target="_blank" rel="noopener">Signup / details</a></div>`:'')
+        +`<div style="color:#666;font-size:11px;margin-top:4px">${(n.stationIds||[]).length} reference stations</div></div>`;
       L.marker(c,{
         icon:L.divIcon({className:'',iconSize:[18,18],iconAnchor:[9,9],
-          html:'<svg width="18" height="18" viewBox="0 0 18 18">'
-            +'<circle cx="9" cy="9" r="7.5" fill="#1a5d1a" stroke="white" stroke-width="2"/>'
-            +'<text x="9" y="12" text-anchor="middle" font-size="9" font-weight="bold" fill="white">N</text>'
-            +'</svg>'})
+          html:'<svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="7.5" fill="#1a5d1a" stroke="white" stroke-width="2"/><text x="9" y="12" text-anchor="middle" font-size="9" font-weight="bold" fill="white">N</text></svg>'})
       }).bindPopup(popup).addTo(group);
     });
     return group;
@@ -844,13 +819,9 @@
   }
 
   function buildGreyPopup(label,region,note,regUrl){
-    return '<div class="popup-plain"><h3>'+esc(label)+'</h3>'
-      +'<div style="color:#888;font-weight:600;margin-bottom:6px">'
-      +'Free network (pending)</div>'
-      +'<div style="font-size:12px;margin:4px 0 6px">Covers <b>'+esc(region)+'</b>.</div>'
-      +(note?'<div class="anote">'+esc(note)+'</div>':'')
-      +(regUrl?'<div class="anote"><a href="'+esc(regUrl)
-        +'" target="_blank" rel="noopener noreferrer">More info / sign up ↗</a></div>':'')
+    return `<div class="popup-plain"><h3>${esc(label)}</h3><div style="color:#888;font-weight:600;margin-bottom:6px">Free network (pending)</div><div style="font-size:12px;margin:4px 0 6px">Covers <b>${esc(region)}</b>.</div>`
+      +(note?`<div class="anote">${esc(note)}</div>`:'')
+      +(regUrl?`<div class="anote"><a href="${esc(regUrl)}" target="_blank" rel="noopener noreferrer">More info / sign up ↗</a></div>`:'')
       +'</div>';
   }
 
@@ -876,30 +847,22 @@
       'restricted':'Access restricted'
     })[m.access]||'Not freely accessible';
     var regUrl=safeUrl(m.registration||'');
-    return '<div class="popup-plain"><h3>'+esc(m.name||m.id)+'</h3>'
-      +'<div class="warn">'+esc(accessLabel)+'</div>'
-      +(m.yearly_cost?'<div style="font-size:11px;color:#555;margin:2px 0 4px">'+esc(m.yearly_cost)+'</div>':'')
-      +'<div style="font-size:12px;margin:4px 0 6px">Covers <b>'+esc(m.region||'')+'</b>.</div>'
-      +(m.note?'<div class="anote">'+esc(m.note)+'</div>':'')
-      +(regUrl?'<div class="anote"><a href="'+esc(regUrl)
-        +'" target="_blank" rel="noopener noreferrer">More info ↗</a></div>':'')
+    return `<div class="popup-plain"><h3>${esc(m.name||m.id)}</h3><div class="warn">${esc(accessLabel)}</div>`
+      +(m.yearly_cost?`<div style="font-size:11px;color:#555;margin:2px 0 4px">${esc(m.yearly_cost)}</div>`:'')
+      +`<div style="font-size:12px;margin:4px 0 6px">Covers <b>${esc(m.region||'')}</b>.</div>`
+      +(m.note?`<div class="anote">${esc(m.note)}</div>`:'')
+      +(regUrl?`<div class="anote"><a href="${esc(regUrl)}" target="_blank" rel="noopener noreferrer">More info ↗</a></div>`:'')
       +'</div>';
   }
 
   function addInfoMarker(group,lat,lon,popup,label){
     var icon=L.divIcon({
       className:'',iconSize:[14,14],iconAnchor:[7,7],
-      html:'<svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">'
-        +'<circle cx="7" cy="7" r="5.75" fill="white" stroke="'+INFO_MARKER_COLOR+'" stroke-width="1.5"/>'
-        +'<text x="7" y="10.5" text-anchor="middle" font-size="8" font-weight="bold" fill="'
-        +INFO_MARKER_COLOR+'">?</text>'
-        +'</svg>'
+      html:`<svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.75" fill="white" stroke="${INFO_MARKER_COLOR}" stroke-width="1.5"/><text x="7" y="10.5" text-anchor="middle" font-size="8" font-weight="bold" fill="${INFO_MARKER_COLOR}">?</text></svg>`
     });
-    var mk=L.marker([lat,lon],{icon:icon,pane:'vrsPane'})
+    return L.marker([lat,lon],{icon:icon,pane:'vrsPane'})
       .bindTooltip(label,{sticky:false})
-      .bindPopup(popup);
-    mk.addTo(group);
-    return mk;
+      .bindPopup(popup).addTo(group);
   }
 
   function setupBanner(){
