@@ -197,7 +197,7 @@ grey variant extends the same idiom to the not-yet-ingested case so that the
 deferred free tier (Portugal, Lithuania, Thailand, Uganda…) is visually
 recognisable as "same kind of thing, not done yet."
 
-Data backing: `data/country_markers.json` — static file, currently 111 entries.
+Data backing: `data/country_markers.json` — static file, currently 120 entries.
 Fields: `id`, `name`, `region`, `country` (ISO 3166-1 α-2), `lat`, `lon`,
 `tier`, `source_id` (vrs tier only — links to `stations.json` for colour and
 registration URL), `pins` (boolean; true = physical station pins already on

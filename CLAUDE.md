@@ -31,7 +31,7 @@ scripts/fetch_stations.py     # Sourcetable fetch + parse + diff.
   update-stations.yml         # Cron + workflow_dispatch, runs the Python.
 data/
   stations.json               # Canonical JSON, consumed by index.html.
-  country_markers.json        # Static; country-level markers (111 entries, 3 tiers).
+  country_markers.json        # Static; country-level markers (120 entries, 3 tiers).
   <source>.sourcetable        # Raw archives per caster.
 ```
 
@@ -100,10 +100,10 @@ physical-coord-vrs — show as regular pins with `pins:true` VRS badges. Full
 NRTK polygons are deferred.
 
 **`data/country_markers.json`:** static file (not pipeline-generated) with
-111 entries across three tiers — `vrs` (23 VRS-only circles + 39 pinned-network
-fallbacks with `"pins":true`), `deferred` (14 grey circles: ReNEP, LitPOS,
-UGRF, ETCORS, DOL Thailand, Italian deferred regionals, ACORN, ZAKPOS, GPSBru),
-`info` (35 circled-? markers: paid and restricted networks). All three tiers
+120 entries across three tiers — `vrs` (23 VRS-only circles + 39 pinned-network
+fallbacks with `"pins":true`), `deferred` (15 grey circles: ReNEP, LitPOS,
+UGRF, ETCORS, DOL Thailand, Italian deferred regionals, ACORN, ZAKPOS, GPSBru,
+REMOS Venezuela), `info` (43 circled-? markers: paid and restricted networks). All three tiers
 are live in `index.html` via `buildCountryMarkers()`. Toggle panel shows
 "VRS networks (N)", "Pending (N)", "Restricted (N)" sections.
 Design spec in `docs/requirements.md` § Country-level markers.

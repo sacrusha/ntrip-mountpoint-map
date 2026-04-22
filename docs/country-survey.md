@@ -417,7 +417,9 @@ Centipede volunteer nodes in several French overseas territories, served via `cr
   - Quebec MERN: per-station direct TCP streams; not NTRIP-aggregated — pipeline-incompatible.
     → networks.md: `qc_mern` (rejected)
   - BC RTN: paid regional service via GeoBC. → networks.md: `bc_rtn`
-  - Ontario, Alberta, Saskatchewan, Manitoba: no confirmed free public NTRIP.
+  - Nova Scotia NSACS: 40-station government CORS; real-time NRTK only via paid
+    commercial providers (Can-Net, SmartNet, Brandtnet). → networks.md: `nsacs`
+  - Ontario, Alberta, Saskatchewan, Manitoba: no provincial CORS; no confirmed public NTRIP.
 - **Volunteer**: rtk2go ~56 CA bases, Centipede ~13 CA nodes. Concentrated heavily
   in BC, Ontario, and southern Quebec; very thin elsewhere.
 - **Gap**: no free national or provincial NTRIP in Canada. Volunteer networks are
@@ -512,7 +514,7 @@ Centipede volunteer nodes in several French overseas territories, served via `cr
 
 ### PE — Peru
 
-- **Free government RTK**: REGPMOC (IGN/MoD, `190.12.71.75:2101`) — requires MoD-issued licence (professional/commercial only). Not accessible for hobbyists.
+- **Free government RTK**: REGPMOC (IGN/MoD, `190.12.71.75:2101`) — requires MoD-issued licence (professional/commercial only). Not accessible for hobbyists. → networks.md: `regpmoc`
 
 ### UY — Uruguay
 
@@ -756,7 +758,7 @@ Centipede volunteer nodes in several French overseas territories, served via `cr
   NTRIP host:port, open registration portal, or sourcetable has been found.
   Access appears to require direct contact with SUPARCO. SUPARCO is also
   deploying Pak-SBAS (L-band SBAS) for sub-metre accuracy — satellite-delivered,
-  out of scope.
+  out of scope. → networks.md: `pak_rehber`
 - **Volunteer**: none. Zero PK stations on rtk2go or Centipede.
 - **Gap**: no free public RTK for hobbyists. Pak-Rehber is restricted to
   authorized users; endpoint and registration path are not publicly documented.
@@ -783,7 +785,7 @@ Centipede volunteer nodes in several French overseas territories, served via `cr
 ### AE — UAE
 
 - **Free government RTK**: DVRS (Dubai Municipality, 18+ stations, 4-constellation, VRS)
-  — professional application only (dm.gov.ae); no public hobbyist path.
+  — professional application only (dm.gov.ae); no public hobbyist path. → networks.md: `dvrs`
 - **Volunteer**: negligible.
 
 ### AO — Angola
@@ -869,12 +871,12 @@ Centipede volunteer nodes in several French overseas territories, served via `cr
 - **Free government RTK**: APN (Survey of Israel, `mapigps.co.il`) — likely free for
   licensed surveyors. **Rejected from pipeline**: pervasive military GNSS spoofing
   active continuously since Oct 2023 across Israel/Lebanon/Jordan/Sinai/Cyprus (~50,000
-  flights affected in 2024). RTK unreliable regardless of NTRIP access.
+  flights affected in 2024). RTK unreliable regardless of NTRIP access. → networks.md: `apn`
 - **Volunteer**: negligible.
 
 ### IQ — Iraq
 
-- **Free government RTK**: IGRS — only 7 stations at 500–800 km spacing; far too wide for RTK. No public caster.
+- **Free government RTK**: IGRS — only 7 stations at 500–800 km spacing; far too wide for RTK. No public caster. → networks.md: `igrs`
 - **Volunteer**: negligible.
 
 ### IR — Iran
@@ -1031,7 +1033,7 @@ Centipede volunteer nodes in several French overseas territories, served via `cr
 - **Free government RTK**: none confirmed publicly accessible.
   KazGeoDesy (Committee on Land Management) operates a CORS network of 120+
   stations; access requires an institutional licence or commercial reseller
-  contract — no open self-service path found.
+  contract — no open self-service path found. → networks.md: `kazgeodesy`
 - **Volunteer**: negligible. Zero KZ stations on rtk2go or Centipede.
 - **Gap**: no free RTK for hobbyists. Country is ~2.7 million km² with
   most stations concentrated around Almaty, Astana, and the northern corridor;
