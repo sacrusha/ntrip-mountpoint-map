@@ -1057,21 +1057,33 @@
     (function(){
       var btn=document.getElementById('banner-near-btn');
       var orig=btn.innerHTML;
+      function showErr(){
+        btn.textContent='Location unavailable';
+        setTimeout(function(){ btn.innerHTML=orig; btn.disabled=false; },2000);
+      }
       function nearFallback(){
         getViewerPos().then(function(vp){
-          btn.innerHTML=orig; btn.disabled=false;
-          if(vp) map.flyTo([vp.lat,vp.lon],10);
+          if(vp){ btn.innerHTML=orig; btn.disabled=false; map.flyTo([vp.lat,vp.lon],10); }
+          else showErr();
         });
       }
       btn.onclick=function(){
         btn.textContent='Locating…'; btn.disabled=true;
         if(!navigator.geolocation){ nearFallback(); return; }
+        // Chromium ignores getCurrentPosition timeout while permission prompt is
+        // pending — guard timer ensures we always escape even if no callback fires.
+        var settled=false;
+        var guard=setTimeout(function(){ if(!settled){ settled=true; nearFallback(); } },10000);
         navigator.geolocation.getCurrentPosition(
           function(p){
+            if(settled) return; settled=true; clearTimeout(guard);
             btn.innerHTML=orig; btn.disabled=false;
             map.flyTo([p.coords.latitude,p.coords.longitude],14);
           },
-          nearFallback,
+          function(){
+            if(settled) return; settled=true; clearTimeout(guard);
+            nearFallback();
+          },
           {timeout:8000,maximumAge:60000}
         );
       };
