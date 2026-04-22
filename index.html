@@ -214,7 +214,7 @@
     border:none;background:transparent;padding:0;font-family:inherit;}
   .help-popover .more:hover{text-decoration:underline;}
   @media(max-width:600px){
-    #help-drawer{width:100%;}
+    #help-drawer{width:100%;top:44px;}
     #banner-help-btn .btn-label{display:none;}
   }
 </style>
@@ -662,7 +662,7 @@
       ||(serverKey.indexOf('sapos_')===0?SOURCE_AUTH['sapos_']:null)||{};
     var h=`<div class="srv"><div style="font-weight:600;font-size:11px;margin-bottom:2px">${dot}${esc(sourceLabel(serverKey))}</div>`
       +cpRow('Server',srv.host)+cpRow('Port',srv.port)
-      +cpRow(`Mountpoint${mountChip()}`,mountpoint);
+      +`<div class="row"><span class="lbl">Mountpoint</span>${mountChip()}<code>${esc(mountpoint)}</code><button class="cp" onclick="__ntripCopy(this,'${esc(mountpoint)}')">copy</button></div>`;
     if(auth.near)
       h+='<div class="anote">or use mountpoint <code>NEAR</code> to auto-select nearest</div>';
     if(auth.user)
@@ -706,7 +706,7 @@
     var warn=s.legacyFormat
       ? '<div class="warn">Legacy RTCM 2.x — many modern receivers can\'t use this.</div>'
       : '';
-    var payload=esc(buildCopyAllPayload(s));
+    var payload=esc(buildCopyAllPayload(s).replace(/\n/g,'\\n'));
     var footer=`<div class="popup-actions">`
       +`<button class="b-primary" onclick="__ntripCopyAll(this,'${payload}')">Copy all</button>`
       +`<button class="b-secondary" onclick="__ntripOpenHelp('how-to-connect-emlid')">How to connect ↗</button>`
@@ -945,6 +945,7 @@
   }
 
   function openHelp(highlightId){
+    hideHelpPopover();
     var drawer=document.getElementById('help-drawer');
     var scrim=document.getElementById('help-scrim');
     if(drawer) drawer.classList.add('on');
@@ -1050,7 +1051,7 @@
         e.stopPropagation();
         var sid=b.dataset.go;
         var si=document.getElementById('help-search'); if(si) si.value='';
-        renderHelp('', sid);
+        openHelp(sid);
       };
     });
   }
@@ -1099,7 +1100,6 @@
 
   var _activeChip=null;
   function _popoverOutside(e){
-    var layer=document.getElementById('help-popover-layer');
     var pop=document.querySelector('.help-popover');
     if(pop&&pop.contains(e.target)) return;
     if(_activeChip&&_activeChip.contains(e.target)) return;
@@ -1398,8 +1398,11 @@
       var cmRaw=null;
       if(results[2].status==='fulfilled'&&results[2].value.ok)
         cmRaw=await results[2].value.json();
-      if(results[3].status==='fulfilled'&&results[3].value.ok)
+      if(results[3].status==='fulfilled'&&results[3].value.ok){
         _helpTopics=await results[3].value.json();
+        var _hd=document.getElementById('help-drawer');
+        if(_hd&&_hd.classList.contains('on')) renderHelp('');
+      }
     }catch(e){}
     setServers(data);
 
