@@ -98,6 +98,11 @@
      "stations_declared":null,
      "note":"Free-intended Alaska CORS network (Alaska DOT/PF). NTRIP endpoint not confirmed from public sources."},
 
+    {"id":"remos_ven",   "name":"REMOS",            "region":"Venezuela",             "country":"VE", "lat":10.49, "lon":-66.88,
+     "tier":"deferred", "access":"registration",
+     "stations_declared":27,
+     "note":"Government RTK service (IGVSB, 27 NTRIP-capable stations). No public endpoint confirmed — operational status uncertain given infrastructure constraints. Free if accessible."},
+
     {"id":"hepos",       "name":"HEPOS",            "region":"Greece",                "country":"GR", "lat":38.50, "lon":23.80,
      "tier":"info", "access":"paid-affordable", "yearly_cost":"~€160 per 3-month block (~$170)",
      "note":"~€160/3 months — worth considering for seasonal use. Subscribe at ktimatologio.gr."},
@@ -209,6 +214,14 @@
     {"id":"calrtns",     "name":"CalRTNS",          "region":"California",            "country":"US", "lat":37.50, "lon":-119.60,
      "tier":"info", "access":"restricted",
      "note":"Access restricted to vetted state/county agency partners. No general public registration."},
+
+    {"id":"dvrs",        "name":"DVRS",             "region":"Dubai (UAE)",          "country":"AE", "lat":25.20, "lon":55.27,
+     "tier":"info", "access":"restricted", "stations_declared":18,
+     "note":"Dubai Virtual Reference System (Dubai Municipality). 18+ stations, 4-constellation. Professional application only via dm.gov.ae — no general hobbyist registration."},
+
+    {"id":"regpmoc",     "name":"REGPMOC",          "region":"Peru",                 "country":"PE", "lat":-12.05, "lon":-77.04,
+     "tier":"info", "access":"restricted",
+     "note":"Government RTK service (IGN/Ministry of Defence). Professional/commercial licence required — no hobbyist path. Host is known (190.12.71.75:2101) but access requires MoD authorisation."},
 
     {"id":"eft_cors",    "name":"EFT-CORS",         "region":"Russia (nationwide)",  "country":"RU", "lat":55.75, "lon":37.62,
      "tier":"info", "access":"paid",

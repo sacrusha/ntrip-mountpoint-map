@@ -1118,6 +1118,25 @@ public sources.
 
 ---
 
+## remos_ven — REMOS (VE)
+
+**status**:    deferred
+**host:port**: not publicly confirmed
+**type**:      unknown
+**access**:    intended free (IGVSB government service)
+**stations**:  27 (NTRIP-capable, out of 29 permanent)
+**source**:    igvsb.gob.ve (IGVSB — Instituto Geográfico de Venezuela Simón Bolívar)
+
+Maracaibo (MARA) was the first REMOS station to stream NTRIP corrections experimentally
+(Oct 2008); plans to bring remaining stations online were unclear post-2018. No public
+host:port or registration portal confirmed. Operational continuity uncertain given
+Venezuela's infrastructure constraints.
+
+**missing**: confirm whether a public NTRIP caster is operational — check igvsb.gob.ve
+or contact IGVSB; do not add to pipeline without a confirmed reachable endpoint.
+
+---
+
 ## Paid — affordable (under $200/yr cutoff)
 
 Surface in UI as paid alternatives for users in areas with no free coverage.
@@ -1411,6 +1430,34 @@ Republika Srpska geodetic authorities. Operational status uncertain.
 
 British Columbia real-time network. No free tier. No Canadian province offers free
 public NTRIP — confirmed across BC, QC, ON, AB, SK, MB.
+
+---
+
+## dvrs — DVRS (AE)
+
+**status**:    paid
+**access**:    restricted; professional application via dm.gov.ae (Dubai Municipality)
+**stations**:  18+
+**source**:    dm.gov.ae (Dubai Municipality)
+
+Dubai Virtual Reference System. 18+ 4-constellation reference stations covering Dubai
+Emirate. Access is by formal professional application only (licensed engineering/surveying
+firms) — no individual or hobbyist registration path.
+
+---
+
+## regpmoc — REGPMOC (PE)
+
+**status**:    paid
+**host:port**: `190.12.71.75:2101`
+**type**:      physical-coord-vrs
+**access**:    restricted; MoD-issued licence required (professional/commercial only)
+**stations**:  unknown
+**source**:    ign.gob.pe (IGN — Instituto Geográfico Nacional, under Ministry of Defence)
+
+Red Geodésica Permanente de Monitoreo Continuo. Government CORS network operated by
+Peru's IGN under the Ministry of Defence. Host:port is publicly known (190.12.71.75:2101)
+but stream access requires an official licence — no general hobbyist path.
 
 ---
 
