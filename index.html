@@ -822,31 +822,16 @@
             +(popReg?'<div class="anote"><a href="'+esc(popReg)
               +'" target="_blank" rel="noopener noreferrer">Sign up / details ↗</a></div>':'')
             +'</div>';
-          // Visual ring: no pointer events so station dots show through.
-          var visual=L.circle([lat,lon],{
-            radius:25000,color:col,weight:2,
-            fillColor:col,fillOpacity:0.25,
-            interactive:false,renderer:renderer,pane:'vrsPane'
-          });
-          visual.addTo(group);
-          // Hit ring: invisible wide stroke, pointer-events set after addTo.
-          var hit=L.circle([lat,lon],{
-            radius:25000,color:col,weight:40,
-            opacity:0,fill:false,
-            renderer:renderer,pane:'vrsPane'
-          }).bindTooltip(label+' (VRS)',{sticky:false})
-            .bindPopup(popup);
-          hit.addTo(group);
-          bySid[sid]={visual:visual,hit:hit};
+          bySid[sid]=addRingMarker(group,lat,lon,renderer,col,0.25,label+' (VRS)',popup);
         } else {
           var note=m.note||auth.openNote||'';
           var gr=safeUrl(SOURCE_REG[sid]||'')||regUrl;
-          var ge=addGreyCircle(group,lat,lon,renderer,label,buildGreyPopup(label,region,note,gr));
+          var ge=addRingMarker(group,lat,lon,renderer,GREY_MARKER_COLOR,0.12,label,buildGreyPopup(label,region,note,gr));
           ge.label=label; greyById[m.id]=ge;
         }
 
       } else if(m.tier==='deferred'){
-        var ge=addGreyCircle(group,lat,lon,renderer,label,
+        var ge=addRingMarker(group,lat,lon,renderer,GREY_MARKER_COLOR,0.12,label,
           buildGreyPopup(label,region,m.note||'',regUrl));
         ge.label=label; greyById[m.id]=ge;
 
@@ -869,20 +854,18 @@
       +'</div>';
   }
 
-  function addGreyCircle(group,lat,lon,renderer,label,popup){
+  function addRingMarker(group,lat,lon,renderer,col,fillOpacity,tooltipLabel,popup){
     var visual=L.circle([lat,lon],{
-      radius:25000,color:GREY_MARKER_COLOR,weight:2,
-      fillColor:GREY_MARKER_COLOR,fillOpacity:0.12,
+      radius:25000,color:col,weight:2,
+      fillColor:col,fillOpacity:fillOpacity,
       interactive:false,renderer:renderer,pane:'vrsPane'
-    });
-    visual.addTo(group);
+    }).addTo(group);
     var hit=L.circle([lat,lon],{
-      radius:25000,color:GREY_MARKER_COLOR,weight:40,
+      radius:25000,color:col,weight:40,
       opacity:0,fill:false,
       renderer:renderer,pane:'vrsPane'
-    }).bindTooltip(label,{sticky:false})
-      .bindPopup(popup);
-    hit.addTo(group);
+    }).bindTooltip(tooltipLabel,{sticky:false})
+      .bindPopup(popup).addTo(group);
     return {visual:visual,hit:hit};
   }
 
