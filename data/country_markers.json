@@ -98,6 +98,11 @@
      "stations_declared":null,
      "note":"Free-intended Alaska CORS network (Alaska DOT/PF). NTRIP endpoint not confirmed from public sources."},
 
+    {"id":"remos_ven",   "name":"REMOS",            "region":"Venezuela",             "country":"VE", "lat":10.49, "lon":-66.88,
+     "tier":"deferred", "access":"registration",
+     "stations_declared":27,
+     "note":"Government RTK service (IGVSB, 27 NTRIP-capable stations). No public endpoint confirmed — operational status uncertain given infrastructure constraints. Free if accessible."},
+
     {"id":"hepos",       "name":"HEPOS",            "region":"Greece",                "country":"GR", "lat":38.50, "lon":23.80,
      "tier":"info", "access":"paid-affordable", "yearly_cost":"~€160 per 3-month block (~$170)",
      "note":"~€160/3 months — worth considering for seasonal use. Subscribe at ktimatologio.gr."},
@@ -174,9 +179,17 @@
      "tier":"info", "access":"restricted", "yearly_cost":"₹5,032/month (~$720/yr) for private users",
      "note":"Free only for Central/State Government and academic institutions. Private users pay ₹5,032/month (~$720/yr)."},
 
+    {"id":"qc_mern",     "name":"Réseau GNSS du Québec (MERN)", "region":"Quebec", "country":"CA", "lat":48.00, "lon":-72.00,
+     "tier":"info", "access":"restricted", "stations_declared":18,
+     "note":"18 free government CORS stations (Ministère de l'Énergie et des Ressources naturelles). NOT standard NTRIP — each station delivers raw TCP streams (per-station IP:port, CMR+/RTCM 3.2). Standard NTRIP clients won't connect. Technical workaround: use a TCP-capable receiver (e.g. Emlid RS2) or bridge via RTKLIB str2str. Register at mern.gouv.qc.ca."},
+
     {"id":"bc_rtn",      "name":"BC RTN",           "region":"British Columbia",      "country":"CA", "lat":53.70, "lon":-127.60,
      "tier":"info", "access":"paid",
      "note":"Paid regional subscription via GeoBC (gov.bc.ca/geobc). No Canadian province offers free public NTRIP."},
+
+    {"id":"nsacs",       "name":"Nova Scotia NSACS","region":"Nova Scotia",           "country":"CA", "lat":44.65, "lon":-63.58,
+     "tier":"info", "access":"paid", "stations_declared":40,
+     "note":"40-station government CORS network (Nova Scotia Spatial Services). Real-time NRTK only via paid commercial subscriptions: Can-Net/Cansel, HxGN SmartNet, or Brandtnet. Free RINEX archives available via NRCan."},
 
     {"id":"scrtn",       "name":"SCRTN",            "region":"South Carolina",        "country":"US", "lat":33.80, "lon":-81.20,
      "tier":"info", "access":"paid",
@@ -209,6 +222,30 @@
     {"id":"calrtns",     "name":"CalRTNS",          "region":"California",            "country":"US", "lat":37.50, "lon":-119.60,
      "tier":"info", "access":"restricted",
      "note":"Access restricted to vetted state/county agency partners. No general public registration."},
+
+    {"id":"apn",         "name":"APN",              "region":"Israel",               "country":"IL", "lat":31.77, "lon":35.22,
+     "tier":"info", "access":"restricted", "registration":"https://mapigps.co.il",
+     "note":"Government NTRIP service (Survey of Israel). Restricted to licensed surveyors. WARNING: pervasive military GNSS spoofing active across Israel and surrounding region since Oct 2023 — RTK unreliable regardless of NTRIP access."},
+
+    {"id":"igrs",        "name":"IGRS",             "region":"Iraq",                 "country":"IQ", "lat":33.34, "lon":44.40,
+     "tier":"info", "access":"restricted",
+     "note":"Iraq Geodetic Reference System. Only 7 reference stations at 500–800 km spacing — far too sparse for RTK. No public NTRIP caster; documented for completeness."},
+
+    {"id":"pak_rehber",  "name":"Pak-Rehber",       "region":"Pakistan",             "country":"PK", "lat":30.38, "lon":69.35,
+     "tier":"info", "access":"restricted",
+     "note":"Government NRTK service (SUPARCO). Restricted to authorized users — no public registration or host:port listed. Contact SUPARCO directly (suparco.gov.pk)."},
+
+    {"id":"kazgeodesy",  "name":"KazGeoDesy",       "region":"Kazakhstan",           "country":"KZ", "lat":51.18, "lon":71.45,
+     "tier":"info", "access":"restricted", "stations_declared":120,
+     "note":"Government CORS network (Committee on Land Management, 120+ stations). Institutional licence or commercial reseller contract required — no self-service registration path."},
+
+    {"id":"dvrs",        "name":"DVRS",             "region":"Dubai (UAE)",          "country":"AE", "lat":25.20, "lon":55.27,
+     "tier":"info", "access":"restricted", "stations_declared":18,
+     "note":"Dubai Virtual Reference System (Dubai Municipality). 18+ stations, 4-constellation. Professional application only via dm.gov.ae — no general hobbyist registration."},
+
+    {"id":"regpmoc",     "name":"REGPMOC",          "region":"Peru",                 "country":"PE", "lat":-12.05, "lon":-77.04,
+     "tier":"info", "access":"restricted",
+     "note":"Government RTK service (IGN/Ministry of Defence). Professional/commercial licence required — no hobbyist path. Host is known (190.12.71.75:2101) but access requires MoD authorisation."},
 
     {"id":"eft_cors",    "name":"EFT-CORS",         "region":"Russia (nationwide)",  "country":"RU", "lat":55.75, "lon":37.62,
      "tier":"info", "access":"paid",

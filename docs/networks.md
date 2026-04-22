@@ -1118,6 +1118,25 @@ public sources.
 
 ---
 
+## remos_ven — REMOS (VE)
+
+**status**:    deferred
+**host:port**: not publicly confirmed
+**type**:      unknown
+**access**:    intended free (IGVSB government service)
+**stations**:  27 (NTRIP-capable, out of 29 permanent)
+**source**:    igvsb.gob.ve (IGVSB — Instituto Geográfico de Venezuela Simón Bolívar)
+
+Maracaibo (MARA) was the first REMOS station to stream NTRIP corrections experimentally
+(Oct 2008); plans to bring remaining stations online were unclear post-2018. No public
+host:port or registration portal confirmed. Operational continuity uncertain given
+Venezuela's infrastructure constraints.
+
+**missing**: confirm whether a public NTRIP caster is operational — check igvsb.gob.ve
+or contact IGVSB; do not add to pipeline without a confirmed reachable endpoint.
+
+---
+
 ## Paid — affordable (under $200/yr cutoff)
 
 Surface in UI as paid alternatives for users in areas with no free coverage.
@@ -1410,7 +1429,93 @@ Republika Srpska geodetic authorities. Operational status uncertain.
 **source**:    gov.bc.ca/geobc (Province of British Columbia)
 
 British Columbia real-time network. No free tier. No Canadian province offers free
-public NTRIP — confirmed across BC, QC, ON, AB, SK, MB.
+public NTRIP — confirmed across all ten provinces and three territories.
+
+---
+
+## nsacs — Nova Scotia NSACS (CA-NS)
+
+**status**:    paid
+**access**:    RINEX post-processing free via NRCan; real-time NRTK via paid commercial
+               providers only: Can-Net/Cansel (`gps.can-net.ca:2300`), HxGN SmartNet
+               NA, Brandtnet (`rtk.brandt.ca`)
+**stations**:  40
+**source**:    novascotia.ca (Nova Scotia Spatial Services)
+
+Nova Scotia Active Control System — 40 permanently installed government GNSS receivers
+forming the NSCRS (Nova Scotia Coordinate Referencing System). Province owns the
+stations; three commercial providers access the ACS data under data-licensing agreements
+and sell real-time NRTK subscriptions. No free real-time tier; no direct provincial
+NTRIP caster.
+
+---
+
+## dvrs — DVRS (AE)
+
+**status**:    paid
+**access**:    restricted; professional application via dm.gov.ae (Dubai Municipality)
+**stations**:  18+
+**source**:    dm.gov.ae (Dubai Municipality)
+
+Dubai Virtual Reference System. 18+ 4-constellation reference stations covering Dubai
+Emirate. Access is by formal professional application only (licensed engineering/surveying
+firms) — no individual or hobbyist registration path.
+
+---
+
+## regpmoc — REGPMOC (PE)
+
+**status**:    paid
+**host:port**: `190.12.71.75:2101`
+**type**:      physical-coord-vrs
+**access**:    restricted; MoD-issued licence required (professional/commercial only)
+**stations**:  unknown
+**source**:    ign.gob.pe (IGN — Instituto Geográfico Nacional, under Ministry of Defence)
+
+Red Geodésica Permanente de Monitoreo Continuo. Government CORS network operated by
+Peru's IGN under the Ministry of Defence. Host:port is publicly known (190.12.71.75:2101)
+but stream access requires an official licence — no general hobbyist path.
+
+---
+
+## igrs — IGRS (IQ)
+
+**status**:    paid
+**access**:    restricted; no public NTRIP caster identified
+**stations**:  7
+**source**:    Not publicly listed (Iraq Geodetic Reference System)
+
+Only 7 reference stations at 500–800 km inter-station spacing — far too sparse for
+RTK (baseline ≫ 100 km). No public NTRIP caster found. Documented for completeness;
+not a usable RTK resource for hobbyists.
+
+---
+
+## pak_rehber — Pak-Rehber (PK)
+
+**status**:    paid
+**access**:    restricted; authorized users only — contact suparco.gov.pk (SUPARCO)
+**stations**:  unknown
+**source**:    suparco.gov.pk (SUPARCO — Space and Upper Atmosphere Research Commission)
+
+Government NRTK service delivering cm-level corrections to "authorized users." No
+public-facing NTRIP host:port, open registration portal, or sourcetable found.
+Access requires direct contact with SUPARCO. Pak-SBAS (sub-metre satellite corrections,
+L-band) is a separate out-of-scope service also under SUPARCO.
+
+---
+
+## kazgeodesy — KazGeoDesy (KZ)
+
+**status**:    paid
+**access**:    restricted; institutional licence or commercial reseller contract required
+**stations**:  120+
+**source**:    Not publicly listed (Committee on Land Management, Republic of Kazakhstan)
+
+120+ CORS stations concentrated around Almaty, Astana, and the northern corridor.
+No open self-service registration — access through official institutional channels
+or a commercial reseller. Country is ~2.7 million km²; baselines will be long
+outside urban centres even with a subscription.
 
 ---
 
