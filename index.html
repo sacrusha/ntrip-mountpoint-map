@@ -1054,6 +1054,14 @@
         .observe(document.getElementById('map'));
     }
 
+    document.getElementById('banner-near-btn').onclick=function(){
+      if(!navigator.geolocation) return;
+      navigator.geolocation.getCurrentPosition(
+        function(p){ map.setView([p.coords.latitude,p.coords.longitude],14); },
+        function(){}
+      );
+    };
+
     // OSM canonical tile URL (no subdomain rotation per OSM tile policy)
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{
       maxZoom:19,
@@ -1332,15 +1340,6 @@
       if(ba) ba.textContent=updatedLabel;
       updateViewCounts();
     }
-
-    var nearBtn=document.getElementById('banner-near-btn');
-    if(nearBtn) nearBtn.onclick=function(){
-      if(!navigator.geolocation) return;
-      navigator.geolocation.getCurrentPosition(
-        function(p){ map.flyTo([p.coords.latitude,p.coords.longitude],12); },
-        function(){}
-      );
-    };
 
     rebuildStationLayers();
   });
