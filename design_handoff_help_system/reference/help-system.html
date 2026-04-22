@@ -1,0 +1,883 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NTRIP Map · Help system prototype</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#121921; --panel:#1e3048; --panel-2:#243447;
+    --fg:#e8eef4; --muted:#94a7b8; --dim:#6e7f92;
+    --border:#2d4256; --border-2:#3a5472;
+    --accent:#4caf77; --accent-2:#5cc587;
+    --link:#9ec8ff; --warn:#d4a030; --warn-2:#e8b850;
+    --code-bg:#0d1922; --code-border:#2d4256;
+    --sans:'IBM Plex Sans',system-ui,sans-serif;
+    --mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+    --serif:'IBM Plex Serif',Georgia,serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:#0a0f14;font-family:var(--sans);color:var(--fg);
+    font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;}
+
+  /* ——— side-by-side prototype + explainer ——— */
+  .page{display:grid;grid-template-columns:1fr 340px;gap:0;min-height:100vh;}
+  .stage{position:relative;background:var(--bg);overflow:hidden;min-height:760px;}
+  .notes{background:#f4f2ed;color:#1a1a18;padding:36px 28px;overflow-y:auto;
+    border-left:1px solid #dcd7cc;}
+  .notes .eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.14em;
+    text-transform:uppercase;color:#6e6a62;margin-bottom:10px;}
+  .notes h1{font-family:var(--serif);font-weight:400;font-size:28px;line-height:1.15;
+    margin:0 0 10px;letter-spacing:-0.005em;}
+  .notes p{font-size:13.5px;color:#3a3a36;margin:0 0 10px;line-height:1.6;}
+  .notes h3{font-family:var(--sans);font-weight:600;font-size:12px;letter-spacing:.1em;
+    text-transform:uppercase;color:#2d7a4a;margin:24px 0 10px;
+    display:flex;align-items:center;gap:10px;}
+  .notes h3::before{content:"";width:16px;height:1px;background:#2d7a4a;}
+  .notes ol{font-size:13px;padding-left:18px;margin:6px 0;color:#3a3a36;line-height:1.6;}
+  .notes ol li{margin-bottom:4px;}
+  .notes .demo-list{list-style:none;padding:0;margin:0;}
+  .notes .demo-list li{font-size:12.5px;padding:8px 10px;border:1px solid #dcd7cc;
+    background:#fbfaf6;margin-bottom:6px;cursor:pointer;
+    display:flex;justify-content:space-between;align-items:center;
+    transition:border-color .15s,background .15s;}
+  .notes .demo-list li:hover{border-color:#2d7a4a;background:#eef4e8;}
+  .notes .demo-list li.active{border-color:#2d7a4a;background:#e4ecd8;box-shadow:0 0 0 2px #2d7a4a inset;}
+  .notes .demo-list li .kbd{font-family:var(--mono);font-size:10px;
+    background:#ece8dd;padding:1px 6px;border-radius:2px;color:#6e6a62;}
+  .notes .muted{color:#6e6a62;font-size:11.5px;}
+  .notes .principle{background:#fbfaf6;border:1px solid #dcd7cc;padding:12px 14px;
+    font-size:12.5px;color:#3a3a36;line-height:1.55;margin:10px 0;}
+  .notes .principle b{color:#1a1a18;}
+
+  /* ——— the fake site ——— */
+  .top{height:48px;background:#0d1922;border-bottom:1px solid var(--border);
+    display:grid;grid-template-columns:auto 1fr auto;align-items:center;padding:0 14px;gap:16px;
+    position:relative;z-index:20;}
+  .brand{display:flex;align-items:center;gap:10px;font-family:var(--serif);
+    font-size:15px;white-space:nowrap;}
+  .brand .mark{width:18px;height:18px;border-radius:50%;border:1.75px solid var(--accent);
+    position:relative;flex-shrink:0;}
+  .brand .mark::after{content:"";position:absolute;inset:4px;border-radius:50%;background:var(--accent);}
+  .brand .stat{color:var(--muted);font-family:var(--mono);font-size:10.5px;
+    letter-spacing:.06em;margin-left:8px;white-space:nowrap;}
+  .search{min-width:0;}
+  /* progressively shed optional chrome at narrow widths */
+  @media(max-width:1100px){
+    .brand .stat .freshness{display:none;}
+  }
+  @media(max-width:960px){
+    .btn-label{display:none;}
+    .brand .stat{display:none;}
+  }
+  .brand .stat b{color:var(--fg);font-weight:500;}
+  .search{background:#1e3048;border:1px solid var(--border);border-radius:3px;
+    padding:6px 12px;font-size:12.5px;color:var(--muted);display:flex;align-items:center;gap:10px;
+    font-family:var(--mono);max-width:360px;}
+  .search .ph{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .search .kbd{font-size:10px;padding:1px 5px;border:1px solid var(--border);border-radius:2px;}
+  .actions{display:flex;gap:6px;align-items:center;}
+  .btn{font-size:12.5px;padding:6px 11px;border-radius:3px;
+    background:#243447;border:1px solid var(--border);color:var(--fg);
+    font-family:var(--sans);cursor:pointer;white-space:nowrap;
+    display:inline-flex;align-items:center;gap:6px;}
+  .btn:hover{background:#2d4256;}
+  .btn.primary{background:var(--accent);border-color:var(--accent);color:#0d1922;font-weight:600;}
+  .btn.primary:hover{background:var(--accent-2);}
+  .btn.ghost{background:transparent;}
+  .btn.round{width:30px;height:30px;padding:0;justify-content:center;}
+  .btn.round svg{width:15px;height:15px;}
+  .btn .q{width:17px;height:17px;border-radius:50%;border:1.25px solid currentColor;
+    display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;}
+
+  /* map body */
+  .body{position:absolute;top:48px;left:0;right:0;bottom:0;overflow:hidden;}
+  .map{position:absolute;inset:0;background:
+    radial-gradient(circle at 34% 36%,rgba(76,175,119,.38) 0,rgba(76,175,119,0) 9%),
+    radial-gradient(circle at 42% 30%,rgba(76,175,119,.4) 0,rgba(76,175,119,0) 8%),
+    radial-gradient(circle at 48% 41%,rgba(76,175,119,.42) 0,rgba(76,175,119,0) 10%),
+    radial-gradient(circle at 55% 33%,rgba(76,175,119,.38) 0,rgba(76,175,119,0) 9%),
+    radial-gradient(circle at 62% 40%,rgba(76,175,119,.4) 0,rgba(76,175,119,0) 10%),
+    radial-gradient(circle at 40% 52%,rgba(76,175,119,.4) 0,rgba(76,175,119,0) 11%),
+    radial-gradient(circle at 50% 58%,rgba(76,175,119,.42) 0,rgba(76,175,119,0) 11%),
+    radial-gradient(circle at 62% 55%,rgba(76,175,119,.4) 0,rgba(76,175,119,0) 10%),
+    radial-gradient(circle at 38% 68%,rgba(76,175,119,.38) 0,rgba(76,175,119,0) 10%),
+    radial-gradient(circle at 52% 75%,rgba(76,175,119,.36) 0,rgba(76,175,119,0) 9%),
+    radial-gradient(circle at 70% 72%,rgba(76,175,119,.35) 0,rgba(76,175,119,0) 9%),
+    radial-gradient(circle at 55% 46%,rgba(212,160,48,.28) 0,rgba(212,160,48,0) 6%),
+    radial-gradient(circle at 46% 64%,rgba(212,90,90,.25) 0,rgba(212,90,90,0) 5%),
+    linear-gradient(180deg,#2e2619 0%,#1e1d1a 50%,#1a1a18 100%);}
+
+  .zoom{position:absolute;top:12px;left:12px;background:rgba(14,22,34,.92);
+    border:1px solid var(--border);border-radius:3px;display:flex;flex-direction:column;z-index:3;}
+  .zoom button{width:26px;height:26px;background:transparent;border:none;color:var(--fg);font-size:14px;
+    border-bottom:1px solid var(--border);cursor:pointer;}
+  .zoom button:last-child{border-bottom:none;}
+  .rail{position:absolute;top:12px;right:12px;width:210px;background:rgba(14,22,34,.92);
+    backdrop-filter:blur(8px);border:1px solid var(--border);border-radius:4px;
+    padding:8px 12px;font-size:11.5px;z-index:3;max-height:calc(100vh - 80px);overflow-y:auto;}
+  .rail .sec{padding:6px 0;}
+  .rail .sec + .sec{border-top:1px solid var(--border);}
+  .rail h5,.rail summary{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--muted);font-weight:500;margin:0 0 5px;
+    list-style:none;cursor:pointer;user-select:none;}
+  .rail summary::-webkit-details-marker{display:none;}
+  .rail summary::after{content:' \25be';font-size:8px;opacity:.5;margin-left:3px;}
+  .rail details:not([open]) summary::after{content:' \25b8';}
+  .rail .row{display:flex;align-items:center;gap:6px;font-size:11px;padding:2px 0;}
+  .rail .row input{margin:0;transform:scale(.85);}
+  .rail .row .sw{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+  .rail .row .sw.sq{border-radius:2px;}
+  .rail .row .sw.qm{width:12px;height:12px;border:1.25px solid #888;border-radius:50%;
+    font-size:8px;font-weight:700;color:#888;display:inline-flex;align-items:center;
+    justify-content:center;background:#fff;}
+  .rail .row .ct{margin-left:auto;color:var(--muted);font-size:10px;}
+  .rail .decl{padding-top:6px;border-top:1px solid var(--border);margin-top:4px;
+    color:var(--muted);font-size:10.5px;cursor:pointer;}
+
+  /* ——— station popup with inline help chips ——— */
+  .popup{position:absolute;left:48%;top:42%;transform:translate(-50%,-50%);
+    background:var(--panel);border:1px solid var(--border);border-radius:5px;
+    width:290px;font-size:12px;color:var(--fg);
+    box-shadow:0 10px 28px rgba(0,0,0,.5);z-index:10;}
+  .popup .hd{padding:12px 14px 10px;border-bottom:1px solid var(--border);}
+  .popup .hd .name{font-family:var(--serif);font-weight:600;font-size:15px;
+    display:flex;align-items:center;gap:8px;margin-bottom:3px;}
+  .popup .hd .name .dot{width:8px;height:8px;border-radius:50%;background:#e98b1f;}
+  .popup .hd .tier-line{display:flex;gap:8px;align-items:center;font-size:11px;
+    color:var(--muted);margin-top:6px;flex-wrap:wrap;}
+  .popup .hd .tier{color:var(--accent);font-weight:600;}
+  .popup .hd .sep{color:var(--dim);}
+  .popup .kv{display:grid;grid-template-columns:64px 1fr 32px;gap:8px;
+    align-items:center;padding:5px 14px;font-size:11.5px;}
+  .popup .kv:first-of-type{padding-top:10px;}
+  .popup .kv:last-of-type{padding-bottom:10px;}
+  .popup .kv .k{color:var(--muted);font-family:var(--mono);font-size:10.5px;}
+  .popup .kv .v{background:var(--code-bg);border:1px solid var(--code-border);
+    padding:3px 7px;border-radius:2px;font-family:var(--mono);font-size:11px;
+    overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .popup .kv .cp{font-size:10px;color:var(--link);cursor:pointer;
+    text-align:right;border:none;background:transparent;font-family:var(--sans);padding:0;}
+  .popup .kv .cp:hover{color:#c8deff;text-decoration:underline;}
+  .popup .foot{padding:10px 14px;display:flex;gap:6px;
+    border-top:1px solid var(--border);background:#0d1922;border-radius:0 0 5px 5px;}
+  .popup .foot .b{flex:1;font-size:11.5px;padding:6px 10px;border-radius:2px;
+    background:var(--accent);color:#0d1922;border:none;font-weight:600;font-family:var(--sans);cursor:pointer;}
+  .popup .foot .b.s{flex:0 0 auto;background:transparent;color:var(--fg);
+    border:1px solid var(--border);font-weight:500;}
+  .popup .foot .b:hover{filter:brightness(1.08);}
+
+  /* ——— help chip — inline affordance ——— */
+  .chip{display:inline-flex;align-items:center;gap:3px;font-size:10.5px;
+    color:var(--link);padding:1px 7px;border:1px solid rgba(158,200,255,.25);
+    border-radius:99px;cursor:pointer;background:rgba(158,200,255,.08);
+    font-family:var(--sans);font-weight:500;transition:all .15s;white-space:nowrap;}
+  .chip:hover{background:rgba(158,200,255,.18);border-color:rgba(158,200,255,.5);}
+  .chip .q{width:10px;height:10px;border-radius:50%;border:1px solid currentColor;
+    display:inline-flex;align-items:center;justify-content:center;
+    font-size:7.5px;font-weight:700;line-height:1;opacity:.7;}
+  .chip.subtle{background:transparent;border-color:transparent;
+    color:var(--muted);padding:1px 3px;}
+  .chip.subtle:hover{color:var(--link);}
+  .chip.subtle .q{border-color:currentColor;}
+
+  /* ——— popover: 2 sentences + one link ——— */
+  .popover{position:absolute;background:#0d1922;border:1px solid var(--border-2);
+    border-radius:4px;padding:12px 14px;width:260px;font-size:12px;line-height:1.5;
+    color:var(--fg);box-shadow:0 8px 20px rgba(0,0,0,.55);z-index:60;
+    animation:pop .14s ease-out;}
+  @keyframes pop{from{opacity:0;transform:translateY(-4px);}to{opacity:1;transform:translateY(0);}}
+  .popover::before{content:"";position:absolute;width:10px;height:10px;
+    background:#0d1922;border:1px solid var(--border-2);
+    transform:rotate(45deg);border-right:none;border-bottom:none;}
+  .popover[data-arrow="top-left"]::before{top:-6px;left:18px;}
+  .popover[data-arrow="left"]::before{left:-6px;top:20px;transform:rotate(-45deg);border-top:none;border-right:none;border-left:1px solid var(--border-2);border-bottom:1px solid var(--border-2);}
+  .popover h6{font-size:12.5px;font-weight:600;margin:0 0 5px;color:var(--fg);
+    display:flex;justify-content:space-between;align-items:center;}
+  .popover .close{background:transparent;border:none;color:var(--muted);font-size:14px;
+    cursor:pointer;padding:0;line-height:1;}
+  .popover p{margin:0 0 8px;font-size:11.5px;color:var(--fg);line-height:1.55;}
+  .popover .more{font-size:11px;color:var(--link);cursor:pointer;font-weight:500;
+    display:inline-flex;align-items:center;gap:4px;text-decoration:none;
+    border:none;background:transparent;padding:0;font-family:var(--sans);}
+  .popover .more:hover{text-decoration:underline;}
+
+  /* ——— first-run toast (replaces modal) ——— */
+  .toast{position:absolute;bottom:16px;right:16px;width:270px;
+    background:var(--panel);border:1px solid var(--border-2);border-radius:5px;
+    padding:12px 14px;font-size:12.5px;z-index:15;
+    box-shadow:0 8px 22px rgba(0,0,0,.45);
+    animation:slide .25s ease-out;}
+  @keyframes slide{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .toast h6{font-family:var(--serif);font-weight:600;font-size:14px;margin:0 0 3px;
+    display:flex;justify-content:space-between;align-items:center;}
+  .toast h6 button{background:transparent;border:none;color:var(--muted);
+    font-size:15px;cursor:pointer;padding:0;line-height:1;}
+  .toast p{margin:0 0 10px;font-size:11.5px;color:var(--muted);line-height:1.5;}
+  .toast .row{display:flex;gap:6px;}
+  .toast .row .b{flex:1;font-size:11px;padding:5px 9px;border-radius:2px;cursor:pointer;
+    font-family:var(--sans);font-weight:500;}
+  .toast .row .b.a{background:var(--accent);border:1px solid var(--accent);color:#0d1922;}
+  .toast .row .b.s{background:transparent;border:1px solid var(--border-2);color:var(--fg);}
+
+  /* ——— help drawer ——— */
+  .scrim{position:absolute;inset:0;background:rgba(0,0,0,.35);z-index:30;
+    opacity:0;pointer-events:none;transition:opacity .2s;}
+  .scrim.on{opacity:1;pointer-events:auto;}
+  .drawer{position:absolute;top:0;right:0;bottom:0;width:420px;
+    background:var(--panel);border-left:1px solid var(--border-2);z-index:40;
+    transform:translateX(100%);transition:transform .24s cubic-bezier(.2,.8,.2,1);
+    display:flex;flex-direction:column;box-shadow:-8px 0 30px rgba(0,0,0,.4);}
+  .drawer.on{transform:translateX(0);}
+  .drawer .dh{padding:14px 18px;border-bottom:1px solid var(--border);
+    display:flex;align-items:center;gap:12px;background:#0d1922;}
+  .drawer .dh h3{font-family:var(--serif);font-weight:600;font-size:16px;margin:0;flex:1;}
+  .drawer .dh .x{background:transparent;border:none;color:var(--muted);font-size:18px;cursor:pointer;padding:0;}
+  .dsearch{padding:12px 18px 6px;background:#0d1922;border-bottom:1px solid var(--border);}
+  .dsearch input{width:100%;background:#1e3048;border:1px solid var(--border);
+    border-radius:3px;padding:8px 12px;font-family:var(--mono);font-size:12px;color:var(--fg);
+    outline:none;}
+  .dsearch input:focus{border-color:var(--accent);}
+  .dsearch input::placeholder{color:var(--dim);}
+  .dsearch .hint{font-size:10px;color:var(--dim);margin-top:4px;font-family:var(--mono);}
+  .dbody{flex:1;overflow-y:auto;padding:10px 0 24px;}
+  .dbody h5{font-family:var(--mono);font-size:10px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--muted);margin:14px 18px 6px;font-weight:500;}
+  .topic{padding:11px 18px;cursor:pointer;border-left:2px solid transparent;
+    display:grid;grid-template-columns:20px 1fr auto;gap:10px;align-items:start;
+    transition:background .12s;}
+  .topic:hover{background:rgba(158,200,255,.05);}
+  .topic.open{background:rgba(76,175,119,.08);border-left-color:var(--accent);}
+  .topic .ic{color:var(--muted);font-size:13px;line-height:1.2;padding-top:1px;}
+  .topic .t{font-size:12.5px;color:var(--fg);font-weight:500;line-height:1.35;}
+  .topic .t small{display:block;color:var(--muted);font-size:11px;margin-top:2px;font-weight:400;}
+  .topic .chev{color:var(--muted);font-size:11px;transition:transform .15s;}
+  .topic.open .chev{transform:rotate(90deg);}
+  .answer{padding:0 18px 14px 50px;font-size:12px;line-height:1.6;color:var(--fg);
+    background:rgba(76,175,119,.04);border-left:2px solid var(--accent);
+    animation:expand .2s ease-out;overflow:hidden;}
+  @keyframes expand{from{max-height:0;opacity:0;}to{max-height:800px;opacity:1;}}
+  .answer p{margin:0 0 8px;color:var(--fg);}
+  .answer p.lead{font-size:12.5px;color:var(--fg);font-weight:500;margin-bottom:10px;}
+  .answer code{font-family:var(--mono);background:var(--code-bg);
+    border:1px solid var(--code-border);padding:1px 5px;border-radius:2px;font-size:11px;}
+  .answer ol,.answer ul{margin:0 0 8px;padding-left:18px;color:var(--fg);font-size:11.5px;}
+  .answer li{margin-bottom:3px;}
+  .answer .deep{margin-top:8px;border-top:1px dashed var(--border);padding-top:8px;}
+  .answer .deep summary{cursor:pointer;color:var(--link);font-size:11px;
+    list-style:none;font-weight:500;display:inline-flex;align-items:center;gap:4px;}
+  .answer .deep summary::-webkit-details-marker{display:none;}
+  .answer .deep summary::before{content:"▸";font-size:8px;transition:transform .15s;display:inline-block;}
+  .answer .deep[open] summary::before{transform:rotate(90deg);}
+  .answer .deep[open] summary{margin-bottom:8px;}
+  .answer .deep .inner{font-size:11px;color:var(--muted);line-height:1.55;}
+  .answer .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;}
+  .answer .rel{font-size:10.5px;padding:3px 9px;border:1px solid var(--border);
+    border-radius:99px;color:var(--link);cursor:pointer;background:transparent;font-family:var(--sans);}
+  .answer .rel:hover{background:rgba(158,200,255,.08);}
+  .answer .cb{display:inline-flex;align-items:center;gap:6px;font-size:11px;
+    background:var(--code-bg);border:1px solid var(--code-border);padding:6px 10px;
+    border-radius:3px;font-family:var(--mono);color:var(--fg);margin:2px 0;}
+  .answer .cb button{background:transparent;border:none;color:var(--link);
+    font-size:10px;cursor:pointer;font-family:var(--sans);margin-left:auto;}
+  .answer .callout{background:#0d1922;border:1px solid var(--border);
+    border-left:2px solid var(--warn);padding:8px 10px;font-size:11px;color:var(--fg);
+    margin:8px 0;border-radius:0 3px 3px 0;}
+
+  /* marker on map showing that help chips are live, subtle */
+  .fab{position:absolute;bottom:16px;right:16px;z-index:6;}
+
+  /* smaller / crop rules */
+  @media(max-width:1100px){
+    .page{grid-template-columns:1fr;}
+    .notes{order:2;border-left:none;border-top:1px solid #dcd7cc;}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="stage" id="stage">
+    <!-- Top bar (from the redesign) -->
+    <div class="top">
+      <div class="brand">
+        <div class="mark"></div>
+        NTRIP&nbsp;Map
+        <div class="stat"><b>5,472</b> stations<span class="freshness"> · updated <b>2h</b> ago</span></div>
+      </div>
+      <div class="search">
+        <span>⌕</span>
+        <span class="ph">Search place, mountpoint, or source</span>
+        <span class="kbd">/</span>
+      </div>
+      <div class="actions">
+        <button class="btn ghost" id="help-open-btn" aria-label="Help">
+          <span class="q">?</span> <span class="btn-label">Help</span>
+        </button>
+        <button class="btn primary">⊙ <span class="btn-label">Near me</span></button>
+      </div>
+    </div>
+
+    <div class="body">
+      <div class="map"></div>
+
+      <div class="zoom"><button>+</button><button>−</button></div>
+
+      <!-- Unified toggles panel (matches live site #toggles: Legend → Networks → Mountpoints → Access) -->
+      <div class="rail">
+        <div class="sec">
+          <h5>Legend</h5>
+          <div class="row legend-row"><span class="sw sq" style="background:#4caf77"></span>&lt;10 km · ~2 cm</div>
+          <div class="row legend-row"><span class="sw sq" style="background:#b8c832"></span>10–30 km · ~3 cm</div>
+          <div class="row legend-row"><span class="sw sq" style="background:#d4a030"></span>30–50 km · ~5 cm</div>
+          <div class="row legend-row"><span class="sw sq" style="background:#d46064"></span>50–100 km · &lt;1 m</div>
+        </div>
+        <details class="sec" open>
+          <summary>Networks</summary>
+          <div class="row"><input type="checkbox" checked><span class="sw" style="background:rgba(192,25,106,.25);border:1.5px solid #c0196a"></span>VRS networks<span class="ct">62</span></div>
+          <div class="row"><input type="checkbox" checked><span class="sw" style="background:rgba(102,102,102,.2);border:1.5px solid #666"></span>Pending<span class="ct">14</span></div>
+          <div class="row"><input type="checkbox" checked><span class="sw qm">?</span>Restricted<span class="ct">28</span></div>
+        </details>
+        <details class="sec" open>
+          <summary>Mountpoints</summary>
+          <div class="row"><input type="checkbox" checked><span class="sw" style="background:#e98b1f"></span>Centipede<span class="ct">136</span></div>
+          <div class="row"><input type="checkbox" checked><span class="sw" style="background:#c33"></span>rtk2go<span class="ct">30</span></div>
+          <div class="row"><input type="checkbox" checked><span class="sw" style="background:#2d6e6e"></span>SAPOS<span class="ct">5</span></div>
+        </details>
+        <details class="sec">
+          <summary>Access</summary>
+          <div class="row"><input type="checkbox" checked>Free, no signup</div>
+          <div class="row"><input type="checkbox" checked>Free (registration)</div>
+          <div class="row"><input type="checkbox" checked>Free* (conditions apply)</div>
+        </details>
+        <div class="row decl"><span>Hide out-of-view</span><input type="checkbox" checked style="margin-left:auto;"></div>
+      </div>
+
+      <!-- popup with inline help chips — this is the key demo -->
+      <div class="popup" id="popup">
+        <div class="hd">
+          <div class="name"><span class="dot"></span>AMPH</div>
+          <div class="tier-line">
+            <span class="tier">Accuracy unverified</span>
+            <span class="sep">·</span>
+            <span>Centipede</span>
+            <button class="chip subtle" data-help="carrier" data-arrow="top-left">
+              <span class="q">?</span> L1+L2
+            </button>
+          </div>
+        </div>
+        <div class="kv"><div class="k">Server</div><div class="v">crtk.net</div><button class="cp">copy</button></div>
+        <div class="kv"><div class="k">Port</div><div class="v">2101</div><button class="cp">copy</button></div>
+        <div class="kv">
+          <div class="k" style="display:flex;align-items:center;gap:4px;">
+            Mount
+            <button class="chip subtle" data-help="mountpoint" data-arrow="left" style="padding:0 4px;">
+              <span class="q">?</span>
+            </button>
+          </div>
+          <div class="v">AMPH</div>
+          <button class="cp">copy</button>
+        </div>
+        <div class="kv"><div class="k">User</div><div class="v">centipede</div><button class="cp">copy</button></div>
+        <div class="kv"><div class="k">Pass</div><div class="v">centipede</div><button class="cp">copy</button></div>
+        <div class="foot">
+          <button class="b">Copy all</button>
+          <button class="b s" data-help="connect" data-drawer="connect">How to connect ↗</button>
+        </div>
+      </div>
+
+      <!-- first-run toast -->
+      <div class="toast" id="toast">
+        <h6>New here? <button onclick="document.getElementById('toast').style.display='none'">✕</button></h6>
+        <p>One-minute orientation: what this map shows, how to use a station.</p>
+        <div class="row">
+          <button class="b a" id="toast-start">Take the tour →</button>
+          <button class="b s" onclick="document.getElementById('toast').style.display='none'">I know RTK</button>
+        </div>
+      </div>
+
+      <!-- Help drawer (hidden by default) -->
+      <div class="scrim" id="scrim"></div>
+      <aside class="drawer" id="drawer" aria-label="Help">
+        <div class="dh">
+          <h3>Help</h3>
+          <button class="x" id="drawer-close">✕</button>
+        </div>
+        <div class="dsearch">
+          <input type="text" id="drawer-search" placeholder="Ask a question — e.g. 'Emlid', 'base station', 'VRS'" />
+          <div class="hint">Try: connect · compatible · buy · VRS · base station · NEAR · legacy</div>
+        </div>
+        <div class="dbody" id="drawer-body"></div>
+      </aside>
+
+      <!-- popover layer -->
+      <div id="popover-layer"></div>
+    </div>
+  </div>
+
+  <!-- Notes column -->
+  <aside class="notes">
+    <div class="eyebrow">Prototype · try the interactions</div>
+    <h1>A just-in-time help system.</h1>
+    <p>The two current guides try to answer every RTK question up front. This prototype answers the question the user is actually asking, <i>where</i> they are asking it. Three surfaces, no separate wiki page.</p>
+
+    <h3>Try these</h3>
+    <ul class="demo-list" id="demo-list">
+      <li data-demo="chip-l1l2">Click the <b>L1+L2</b> chip in the popup <span class="kbd">↓</span></li>
+      <li data-demo="chip-mount">Click the <b>?</b> next to "Mount" <span class="kbd">↓</span></li>
+      <li data-demo="connect">Click "How to connect ↗" in the popup <span class="kbd">↓</span></li>
+      <li data-demo="help">Click "Help" in the top bar <span class="kbd">↑</span></li>
+      <li data-demo="search-emlid">In help, search "Emlid" <span class="kbd">→</span></li>
+      <li data-demo="search-base">In help, search "base station" <span class="kbd">→</span></li>
+      <li data-demo="tour">First-run toast → "Take the tour" <span class="kbd">↓</span></li>
+    </ul>
+
+    <h3>The principles</h3>
+    <div class="principle">
+      <b>1 · Put help where the confusion is.</b> "L1+L2," "Mount," "VRS" are technical terms dropped into a UI that a newcomer can't parse. Inline <i>?</i> chips beside them expand to a two-sentence answer, not a new page.
+    </div>
+    <div class="principle">
+      <b>2 · Answer the task, not the topic.</b> Entries are phrased as user questions — "How do I connect this in Emlid Flow?" — not wiki topics. Each answer is 3–5 lines, with "Deep dive" progressive disclosure for the ~10% who need it.
+    </div>
+    <div class="principle">
+      <b>3 · Don't block the map.</b> The help drawer is a right-side slide-in. The map stays visible. Clicking a station behind it still updates context, so help + map work together.
+    </div>
+    <div class="principle">
+      <b>4 · Replace the first-visit wall-of-text</b> with a dismissible corner toast: tour or skip. Those who want the primer get a guided 4-step; those who don't are never blocked.
+    </div>
+
+    <h3>What disappears</h3>
+    <p class="muted">Both <span style="font-family:var(--mono);font-size:11.5px;">#how-dialog</span> (the 5-paragraph first-visit modal) and <span style="font-family:var(--mono);font-size:11.5px;">guide.html</span> (the long-form wiki) are retired, along with their respective entry points (first-visit popup, "Guide" top-bar button, and the "Receiver setup guide →" link in the popup footer — now "How to connect ↗"). Their content is re-cut into ~13 task answers inside the drawer, searchable and cross-linked. The full-length prose isn't deleted — it lives behind "Deep dive" disclosures where relevant.</p>
+  </aside>
+</div>
+
+<script>
+/* ============ content model — everything in one place ============ */
+const TOPICS = {
+  'whats-this-map': {
+    cat: 'Getting started', icon: '▦',
+    q: "What am I looking at?",
+    sub: "In 30 seconds",
+    lead: "This map shows free public reference stations that broadcast GPS corrections. Connect to one within ~30 km of where you're working and your GPS goes from metres-accurate to centimetres.",
+    body: `<p>Each coloured dot is one station. The green halos show where its correction is reliable: <span style="color:#4caf77">green &lt;10 km, ~2 cm</span> · <span style="color:#b8c832">lime 10–30 km, ~3 cm</span> · <span style="color:#d4a030">amber 30–50 km, ~5 cm</span> · <span style="color:#d46064">red 50–100 km, ~1 m</span>.</p>
+      <p>Click any dot for the server / port / mountpoint you'll paste into your GPS receiver's NTRIP client.</p>`,
+    deep: "Purple rings are VRS (virtual networks — one connection point, the network picks a base for you). Grey rings are networks that exist but aren't yet ingested into this feed. Circled ? marks paid or restricted networks, shown for reference only.",
+    related: ['is-my-gear-compatible', 'how-to-connect-emlid'],
+  },
+  'is-my-gear-compatible': {
+    cat: 'Before you start', icon: '◉',
+    q: "Is my receiver compatible?",
+    sub: "Dual-frequency check in 10 seconds",
+    lead: "You need a dual-frequency (L1+L2) GNSS receiver. Single-frequency chips — phones, most handheld hiking GPSes — can't do RTK no matter how they're configured.",
+    body: `<p>How to check:</p>
+      <ol>
+        <li>Look in the receiver's datasheet for <code>L1+L2</code>, <code>dual-band</code>, or <code>dual-frequency</code>.</li>
+        <li>Or look for an <b>NTRIP</b>, <b>Network&nbsp;RTK</b>, or <b>Internet&nbsp;RTK</b> option in the receiver's settings menu. If it's there, you're compatible.</li>
+      </ol>
+      <p>Most professional surveying equipment from Trimble, Leica, Topcon, Sokkia, South and Hi-Target made in the past ~15 years supports this.</p>`,
+    deep: "L5 is a third frequency — nice but not required. Triple-band receivers perform better under tree cover and converge faster. The hobbyist sweet spot is dual-band u-blox ZED-F9P (ArduSimple, SparkFun RTK, Emlid Reach RS2/RS3).",
+    related: ['what-to-buy', 'how-to-connect-emlid'],
+  },
+  'what-to-buy': {
+    cat: 'Before you start', icon: '€',
+    q: "I don't have gear yet — what should I buy?",
+    sub: "Tiered recommendation",
+    lead: "For free network RTK, ready-to-use kits start around €449 / $490. DIY tinkerer kits from ~€275. You don't need the €2,900+ standalone category unless you work somewhere with no mobile signal.",
+    body: `<p>Three paths:</p>
+      <ul>
+        <li><b>Ready to use</b> — Emlid Reach RS2/RS3 (~€2,400). Rugged, waterproof, one-click NTRIP in Emlid Flow.</li>
+        <li><b>Enthusiast assembled</b> — SparkFun RTK kits (~€450). Good value, needs a phone for NTRIP.</li>
+        <li><b>DIY</b> — ArduSimple simpleRTK2B kit (~€275). Requires more tinkering; same u-blox F9P chip underneath.</li>
+      </ul>`,
+    deep: "Avoid anything sold as 'survey-grade' that doesn't explicitly list L1+L2 or NTRIP — it's usually SBAS/DGPS-grade and gets you sub-metre at best. Subscription-dependent hardware (from ~$850) like Trimble Catalyst DA2 needs paid correction fees on top and typically won't work with the free networks this map shows.",
+    related: ['is-my-gear-compatible'],
+  },
+  'how-to-connect-emlid': {
+    cat: 'Connect', icon: '→', highlight:'connect',
+    q: "How do I connect this station in my app?",
+    sub: "Emlid Flow · SW Maps · other NTRIP clients",
+    lead: "Open your NTRIP client's 'correction input' or 'NTRIP' settings, paste the five values from the station popup, and press Connect.",
+    body: `<p>Fields every NTRIP client asks for, mapped to the popup:</p>
+      <ul>
+        <li><b>Host / Caster address</b> → <code>Server</code> (e.g. <code>crtk.net</code>)</li>
+        <li><b>Port</b> → <code>Port</code> (almost always <code>2101</code>)</li>
+        <li><b>Mountpoint</b> → <code>Mount</code> (e.g. <code>AMPH</code>)</li>
+        <li><b>Username / Password</b> → from the popup; some sources use your email as username</li>
+      </ul>
+      <p>Once connected, your receiver needs a few seconds to reach "RTK fix." If it sticks at "float," your baseline is too long — pick a closer station.</p>`,
+    deep: "App-specific tips:<br><br><b>Emlid Flow:</b> Settings → NTRIP → Add caster. Leave 'Receive GGA' on for VRS/NEAR mountpoints.<br><b>SW Maps:</b> Connection settings → External NTRIP Caster. SW Maps can forward corrections to bluetooth receivers.<br><b>u-center:</b> Receiver → NTRIP Client. Remember to enable UBX-RXM-RTCM output if you want to verify fix quality.",
+    related: ['near-mountpoint', 'float-vs-fix'],
+  },
+  'near-mountpoint': {
+    cat: 'Connect', icon: '⊙',
+    q: "What is the NEAR mountpoint?",
+    sub: "Auto-pick nearest base",
+    lead: "Some networks (Centipede, rtk2go) publish a special mountpoint called NEAR. Connect to it and the caster automatically sends corrections from whichever base is closest to you.",
+    body: `<p>Use NEAR when:</p>
+      <ul>
+        <li>You're mobile and crossing station boundaries.</li>
+        <li>You don't want to hardcode one station name and forget it's offline.</li>
+      </ul>
+      <p>Your NTRIP client must send a GGA sentence (its current position) back to the caster, otherwise NEAR has nothing to go on. Most clients do this by default.</p>`,
+    deep: "NEAR isn't part of the NTRIP spec — it's a caster-side convention. Centipede, rtk2go and a few others implement it. If you paste 'NEAR' on a network that doesn't support it, you'll get a 404 or silent no-corrections.",
+    related: ['how-to-connect-emlid'],
+  },
+  'vrs-explained': {
+    cat: 'Concepts', icon: '◎',
+    q: "What is VRS? (purple rings)",
+    sub: "Virtual Reference Station",
+    lead: "A VRS network synthesises a virtual reference station at your location, using real stations around you. One connection point, uniform cm-accuracy anywhere inside the coverage.",
+    body: `<p>Purple rings on the map mark VRS networks. You connect once and never have to switch stations as you move.</p>
+      <p>VRS needs your approximate position to work (your NTRIP client sends a GGA sentence) — so it fails in tunnels or cold-start with no fix.</p>`,
+    deep: "Under the hood, the network runs a network-RTK solver (most commonly Trimble VRS or a Geo++ MAC equivalent) that models atmosphere from 3+ neighbouring bases. For users, the practical difference vs a single base is: (a) no baseline-distance penalty, (b) no station picking, (c) slightly longer time-to-first-fix on connection.",
+    related: ['how-to-connect-emlid', 'near-mountpoint'],
+  },
+  'carrier-l1l2': {
+    cat: 'Concepts', icon: '~',
+    q: "L1+L2 vs L1-only — what does it mean?",
+    sub: "Signal frequencies, accuracy impact",
+    lead: "L1 and L2 are two frequencies the GPS satellite broadcasts. Using both lets the receiver measure and cancel ionospheric error, which is what makes cm-accurate RTK possible beyond ~10 km.",
+    body: `<p>Rough rule of thumb:</p>
+      <ul>
+        <li><b>L1+L2 (dual-frequency)</b> — ~1–2 cm out to ~30 km from a station.</li>
+        <li><b>L1-only</b> — up to ~1 cm within 10 km, but degrades fast beyond that and is much more ionosphere-sensitive.</li>
+      </ul>
+      <p>If a station is marked "Accuracy unverified" on this map, its sourcetable didn't declare the carrier field — doesn't mean it's bad, just that we can't confirm it.</p>`,
+    deep: "Modern receivers use L1+L2+L5 (triple-band) for fastest convergence and best multipath rejection under canopy. For plain-open-sky work, dual-band is fine.",
+    related: ['is-my-gear-compatible'],
+  },
+  'float-vs-fix': {
+    cat: 'Troubleshooting', icon: '⚠',
+    q: "Why is my receiver stuck in 'float'?",
+    sub: "RTK float vs RTK fix",
+    lead: "Float means your receiver is using corrections but hasn't resolved the carrier-phase ambiguities. Accuracy is ~decimetre, not centimetre. Common causes: baseline too long, poor sky view, weak correction stream.",
+    body: `<ol>
+        <li>Check the baseline — is the station within 30 km? Further out, float is normal.</li>
+        <li>Clear sky view? Trees and buildings block low-elevation satellites you need for ambiguity resolution.</li>
+        <li>Check your NTRIP client shows incoming bytes / RTCM messages. No data means the caster connection is dead.</li>
+        <li>Give it 60 seconds of clear sky. Fix can take 30–90 s on cold start.</li>
+      </ol>`,
+    deep: "In L1-only RTK, fix may never be achievable beyond ~15 km. In L1+L2, expect fix out to 30–40 km under good conditions. Legacy RTCM 2.x streams carry less information — modern receivers increasingly don't accept them; the popup warns when a station is 2.x only.",
+    related: ['carrier-l1l2', 'how-to-connect-emlid'],
+  },
+  'mountpoint': {
+    cat: 'Concepts', icon: '⇡',
+    q: "What is a 'mountpoint'?",
+    sub: "The address of one correction stream",
+    lead: "A mountpoint is the name of one specific correction stream on the caster. One caster can host many mountpoints — one per physical reference station, or one per network (VRS).",
+    body: `<p>Think of it like a Twitch channel name: the caster is the server, the mountpoint is the specific stream you tune into. Many NTRIP clients call this the 'stream' or 'base name'.</p>`,
+    deep: "Sourcetables (the caster's listing of mountpoints) follow RTCM spec 10402.1. Each entry declares: stream name, location, carrier, messages, auth. This map's data pipeline parses sourcetables 4× daily to build the pin list.",
+    related: ['near-mountpoint', 'how-to-connect-emlid'],
+  },
+  'legacy-rtcm': {
+    cat: 'Troubleshooting', icon: '⚠',
+    q: "What is 'Legacy RTCM 2.x' warning?",
+    sub: "Old-format streams",
+    lead: "RTCM 2.x is the 1990s-era correction message format. Many modern receivers — including consumer-grade F9P boards — no longer decode it reliably. We flag these streams so you don't waste an afternoon debugging.",
+    body: `<p>Most free networks now broadcast RTCM 3.x (messages 1005, 1074, 1084, 1094 etc.). If the popup shows the legacy warning, try another station first.</p>`,
+    deep: "Some older Trimble / Topcon hardware still prefers RTCM 2.x — if you own equipment from that era, the legacy streams might actually be what you want.",
+    related: ['float-vs-fix'],
+  },
+  'build-base': {
+    cat: 'Advanced', icon: '⚒',
+    q: "Can I set up my own base station?",
+    sub: "Contribute back to the free networks",
+    lead: "Yes. Join Centipede or host on rtk2go. You need one dual-band receiver on a fixed, surveyed point with a clear sky view, plus a small always-on computer with internet.",
+    body: `<p>High-level:</p>
+      <ol>
+        <li>Pick the receiver (ArduSimple simpleRTK2B is the typical hobby choice).</li>
+        <li>Mount the antenna on a rigid fixed point. Survey its coordinates with 24h of PPP.</li>
+        <li>Configure the receiver to output RTCM 3.x messages.</li>
+        <li>Forward the stream to Centipede or rtk2go per their docs.</li>
+      </ol>`,
+    deep: "A proper base needs: stable antenna (ground plane), clear 360° sky view, static precise position (PPP-post-processed), reliable power and internet. An improvised roof-mount is fine for experimenting but won't produce centimetre-accurate corrections. The longer you run PPP on the base location, the better the position — 24h minimum, a week is better.",
+    related: ['what-to-buy'],
+  },
+  'access-tiers': {
+    cat: 'Concepts', icon: '🔒',
+    q: "Open / Registration / Conditions — what's the difference?",
+    sub: "Free vs free-with-signup",
+    lead: "All stations on this map are free. The tier labels tell you what paperwork you need first.",
+    body: `<ul>
+        <li><b>Open</b> — no signup. Paste credentials (often a generic user/pass) and connect.</li>
+        <li><b>Registration</b> — free account, usually approved instantly or in 1–2 days. An email and a form.</li>
+        <li><b>Conditions</b> — free only for specific users (e.g. non-commercial, agricultural) or during a window (ESTPOS until Aug 2026).</li>
+      </ul>`,
+    deep: "The 'Restricted' tier (circled ? pins) is a separate category — paid or identity-gated networks shown on the map for reference only. They're not usable via this site's data.",
+    related: [],
+  },
+  'can-i-share': {
+    cat: 'Meta', icon: '↗',
+    q: "Can I share a link to a specific station?",
+    sub: "Deep-linking",
+    lead: "Yes — the URL updates as you pan, zoom, or select a pin. Copy the address bar to share a view; the recipient opens it and lands on the same centre, zoom and selected mountpoint.",
+    body: `<p>Format: <code>?s=AMPH@crtk</code> for a direct mountpoint, or <code>#z=7&c=46.5,9.2</code> for a map view.</p>`,
+    deep: "",
+    related: [],
+  },
+};
+
+const CATS = ['Getting started','Before you start','Connect','Concepts','Troubleshooting','Advanced','Meta'];
+
+/* ============ Popovers (inline chip help) ============ */
+
+const POPOVER_CONTENT = {
+  carrier: {
+    title: "L1+L2 (dual-frequency)",
+    body: "This station broadcasts on both GPS frequencies — enough for cm-accurate fixes out to ~30 km. L1-only stations work closer in but degrade faster with distance.",
+    deepKey: 'carrier-l1l2',
+  },
+  mountpoint: {
+    title: "Mountpoint",
+    body: "The name of the specific correction stream on this caster. You'll paste it into your NTRIP client's 'Mountpoint' or 'Base' field.",
+    deepKey: 'mountpoint',
+  },
+};
+
+function showPopover(chip) {
+  hidePopover();
+  const key = chip.dataset.help;
+  if (!key || !POPOVER_CONTENT[key]) return;
+  const c = POPOVER_CONTENT[key];
+  const el = document.createElement('div');
+  el.className = 'popover';
+  el.dataset.arrow = chip.dataset.arrow || 'top-left';
+  el.innerHTML = `
+    <h6>${c.title}<button class="close" aria-label="Close">✕</button></h6>
+    <p>${c.body}</p>
+    ${c.deepKey ? `<button class="more" data-deep="${c.deepKey}">Learn more →</button>` : ''}
+  `;
+  document.getElementById('popover-layer').appendChild(el);
+
+  // position
+  const stageRect = document.getElementById('stage').getBoundingClientRect();
+  const chipRect = chip.getBoundingClientRect();
+  const arrow = el.dataset.arrow;
+  let left, top;
+  if (arrow === 'left') {
+    left = chipRect.right - stageRect.left + 10;
+    top = chipRect.top - stageRect.top - 8;
+  } else {
+    left = chipRect.left - stageRect.left - 8;
+    top = chipRect.bottom - stageRect.top + 10;
+  }
+  // clamp
+  const w = 260, stageW = stageRect.width;
+  if (left + w > stageW - 12) left = stageW - w - 12;
+  if (left < 12) left = 12;
+  el.style.left = left + 'px';
+  el.style.top = top + 'px';
+
+  el.querySelector('.close').onclick = hidePopover;
+  const more = el.querySelector('.more');
+  if (more) more.onclick = () => {
+    hidePopover();
+    openDrawer(more.dataset.deep);
+  };
+
+  document.addEventListener('click', onOutside, true);
+  function onOutside(e) {
+    if (el.contains(e.target) || chip.contains(e.target)) return;
+    hidePopover();
+    document.removeEventListener('click', onOutside, true);
+  }
+}
+function hidePopover() {
+  const l = document.getElementById('popover-layer');
+  l.innerHTML = '';
+}
+
+/* ============ Drawer ============ */
+
+function renderDrawer(query='', highlightId=null) {
+  const body = document.getElementById('drawer-body');
+  const q = query.trim().toLowerCase();
+  const matches = Object.entries(TOPICS).filter(([id, t]) => {
+    if (!q) return true;
+    const hay = (t.q + ' ' + t.sub + ' ' + t.lead + ' ' + (t.body||'') + ' ' + (t.deep||'')).toLowerCase();
+    return hay.includes(q);
+  });
+  if (!matches.length) {
+    body.innerHTML = `<div style="padding:40px 24px;text-align:center;color:var(--muted);font-size:13px;">
+      No matches for "<b>${escapeHtml(query)}</b>".<br>
+      <span style="font-size:11px;">Try: connect · compatible · buy · VRS · base · NEAR · legacy</span>
+    </div>`;
+    return;
+  }
+  // group by category in the order CATS specifies
+  const byCat = {};
+  matches.forEach(([id, t]) => {
+    (byCat[t.cat] = byCat[t.cat] || []).push([id, t]);
+  });
+  let html = '';
+  CATS.forEach(cat => {
+    if (!byCat[cat]) return;
+    html += `<h5>${cat}</h5>`;
+    byCat[cat].forEach(([id, t]) => {
+      const open = id === highlightId || (matches.length === 1);
+      html += `
+        <div class="topic ${open ? 'open' : ''}" data-id="${id}">
+          <div class="ic">${t.icon}</div>
+          <div class="t">${t.q}<small>${t.sub}</small></div>
+          <div class="chev">›</div>
+        </div>
+        ${open ? renderAnswer(id, t) : ''}
+      `;
+    });
+  });
+  body.innerHTML = html;
+  // click handlers
+  body.querySelectorAll('.topic').forEach(el => {
+    el.addEventListener('click', () => {
+      const id = el.dataset.id;
+      const isOpen = el.classList.contains('open');
+      // collapse others
+      body.querySelectorAll('.topic').forEach(t => t.classList.remove('open'));
+      body.querySelectorAll('.answer').forEach(a => a.remove());
+      if (!isOpen) {
+        el.classList.add('open');
+        const t = TOPICS[id];
+        el.insertAdjacentHTML('afterend', renderAnswer(id, t));
+        bindAnswer(body);
+        el.scrollIntoViewIfNeeded ? el.scrollIntoViewIfNeeded() : null;
+      }
+    });
+  });
+  bindAnswer(body);
+}
+
+function renderAnswer(id, t) {
+  return `
+    <div class="answer" data-id="${id}">
+      <p class="lead">${t.lead}</p>
+      ${t.body || ''}
+      ${t.deep ? `<details class="deep"><summary>Deep dive</summary><div class="inner">${t.deep}</div></details>` : ''}
+      ${t.related && t.related.length ? `<div class="chips">${t.related.map(rid => `<button class="rel" data-go="${rid}">→ ${escapeHtml(TOPICS[rid].q)}</button>`).join('')}</div>` : ''}
+    </div>
+  `;
+}
+
+function bindAnswer(body) {
+  body.querySelectorAll('.rel').forEach(b => {
+    b.onclick = (e) => {
+      e.stopPropagation();
+      const id = b.dataset.go;
+      document.getElementById('drawer-search').value = '';
+      renderDrawer('', id);
+    };
+  });
+}
+
+function openDrawer(highlightId=null) {
+  document.getElementById('drawer').classList.add('on');
+  document.getElementById('scrim').classList.add('on');
+  renderDrawer('', highlightId);
+  if (highlightId) {
+    setTimeout(() => {
+      const el = document.querySelector(`.topic[data-id="${highlightId}"]`);
+      if (el) el.scrollIntoView({behavior:'smooth', block:'center'});
+    }, 260);
+  }
+  // focus search
+  setTimeout(() => document.getElementById('drawer-search').focus(), 260);
+}
+function closeDrawer() {
+  document.getElementById('drawer').classList.remove('on');
+  document.getElementById('scrim').classList.remove('on');
+}
+
+function escapeHtml(s) {
+  return (s==null?'':String(s))
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+/* ============ Bindings ============ */
+
+document.addEventListener('DOMContentLoaded', () => {
+  // chip clicks → popover
+  document.querySelectorAll('[data-help]').forEach(chip => {
+    chip.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const drawerKey = chip.dataset.drawer;
+      if (drawerKey) {
+        // direct-to-drawer target
+        openDrawer(drawerKey === 'connect' ? 'how-to-connect-emlid' : drawerKey);
+        return;
+      }
+      showPopover(chip);
+    });
+  });
+
+  // top-bar help
+  document.getElementById('help-open-btn').onclick = () => openDrawer();
+  document.getElementById('drawer-close').onclick = closeDrawer;
+  document.getElementById('scrim').onclick = closeDrawer;
+
+  // search
+  const search = document.getElementById('drawer-search');
+  search.addEventListener('input', () => renderDrawer(search.value));
+
+  // ESC closes drawer/popover
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      hidePopover();
+      closeDrawer();
+    }
+    if (e.key === '/' && !document.getElementById('drawer').classList.contains('on')) {
+      e.preventDefault();
+      openDrawer();
+    }
+  });
+
+  // toast tour
+  document.getElementById('toast-start').onclick = () => {
+    document.getElementById('toast').style.display = 'none';
+    openDrawer('whats-this-map');
+  };
+
+  // demo-list clickthrough
+  document.getElementById('demo-list').addEventListener('click', (e) => {
+    const li = e.target.closest('li');
+    if (!li) return;
+    document.querySelectorAll('#demo-list li').forEach(x => x.classList.remove('active'));
+    li.classList.add('active');
+    const d = li.dataset.demo;
+    if (d === 'chip-l1l2') {
+      hidePopover(); closeDrawer();
+      const chip = document.querySelector('.popup .chip[data-help="carrier"]');
+      setTimeout(() => showPopover(chip), 100);
+    } else if (d === 'chip-mount') {
+      hidePopover(); closeDrawer();
+      const chip = document.querySelector('.popup .chip[data-help="mountpoint"]');
+      setTimeout(() => showPopover(chip), 100);
+    } else if (d === 'connect') {
+      hidePopover();
+      openDrawer('how-to-connect-emlid');
+    } else if (d === 'help') {
+      hidePopover();
+      openDrawer();
+    } else if (d === 'search-emlid') {
+      openDrawer();
+      setTimeout(() => {
+        search.value = 'Emlid';
+        renderDrawer('Emlid');
+      }, 280);
+    } else if (d === 'search-base') {
+      openDrawer();
+      setTimeout(() => {
+        search.value = 'base station';
+        renderDrawer('base station');
+      }, 280);
+    } else if (d === 'tour') {
+      closeDrawer();
+      hidePopover();
+      const toast = document.getElementById('toast');
+      toast.style.display = '';
+    }
+  });
+});
+</script>
+</body>
+</html>
