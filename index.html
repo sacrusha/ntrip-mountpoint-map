@@ -776,7 +776,7 @@
         if(!m.pins&&sourceCounts&&(sourceCounts[sid]||0)>0) return;
         var isLive=staleDays&&(sid in staleDays)&&staleDays[sid]<7;
         if(isLive){
-          var col=SOURCE_COLORS[sid]||VRS_COLOR;
+          var col=VRS_COLOR;
           var hasPinsPinned=sourceCounts&&(sourceCounts[sid]||0)>0;
           var declared=m.stations_declared;
           var body=m.pins
