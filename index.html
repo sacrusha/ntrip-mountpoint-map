@@ -20,7 +20,6 @@
     --cta-bg:#f0f4ff; --cta-border:#4a7fc1;
     --srv-border:#eee;
     --ctrl-bg:rgba(255,255,255,0.88); --ctrl-border:rgba(0,0,0,0.12);
-    --legend-info:#999;
     --guide-fg:#1a1a1a; --guide-bg:#fff; --guide-head:#1b2b3a;
     --guide-border:#e2e8f0; --guide-h3:#333; --guide-para:#333;
     --guide-td-even:#f9fafb;
@@ -38,7 +37,6 @@
       --cta-bg:#1a2d40; --cta-border:#5a8fc1;
       --srv-border:#2d4256;
       --ctrl-bg:rgba(14,22,34,0.88); --ctrl-border:rgba(255,255,255,0.1);
-      --legend-info:#94a7b8;
       --guide-fg:#e8eef4; --guide-bg:#121921; --guide-head:#9ec8ff;
       --guide-border:#243447; --guide-h3:#c8d8e8; --guide-para:#c8d8e8;
       --guide-td-even:#1a2d40;
@@ -100,7 +98,6 @@
   .det-sum::-webkit-details-marker{display:none;}
   .det-sum::after{content:' \25be';font-size:9px;opacity:0.5;}
   details:not([open]) .det-sum::after{content:' \25b8';}
-  #src-sum{cursor:pointer;font-size:12px;font-weight:700;margin:0;color:inherit;}
   /* How-it-works dialog */
   #how-dialog{border:none;border-radius:8px;padding:0;max-width:640px;width:90vw;
     box-shadow:0 8px 32px rgba(0,0,0,.35);background:var(--panel-bg);color:var(--fg);}
@@ -122,7 +119,7 @@
     max-height:calc(100vh - 80px);overflow-y:auto;}
   /* Circular swatch used in the toggle panel (9 × 9 px) */
   .msw{display:inline-block;width:9px;height:9px;border-radius:50%;vertical-align:middle;margin-right:4px;}
-  #leg-info{color:var(--legend-info);font-size:10px;}
+
   /* Guide modal */
   #guide-dialog{border:none;padding:0;max-width:780px;width:90vw;max-height:90vh;
     border-radius:8px;box-shadow:0 8px 32px rgba(0,0,0,.35);overflow-y:auto;}
@@ -951,31 +948,33 @@
       +sw('background:rgb(180,200,30)')+' 10–30 km — ~3 cm<br>'
       +sw('background:rgb(220,150,30)')+' 30–50 km — ~5 cm<br>'
       +sw('background:rgb(210,90,90)')+' 50–100 km — &lt;1 m<br>'
-      +'<label style="display:flex;align-items:center;gap:4px;margin-top:2px">'
-        +'<input type="checkbox" data-k="vrs_global" checked>'
-        +sw('border:2px solid '+VRS_COLOR+';background:rgba(192,25,106,0.25);border-radius:50%')
-        +(vrsCount?'VRS networks ('+vrsCount+')':'VRS circles')
-      +'</label>'
-      +(greyCount
-        ? '<label style="display:flex;align-items:center;gap:4px">'
-            +'<input type="checkbox" data-k="grey_global" checked>'
-            +sw('border:2px solid '+GREY_MARKER_COLOR+';background:rgba(102,102,102,0.18);border-radius:50%')
-            +'Pending ('+greyCount+')'
-          +'</label>'
-        : '')
-      +(infoCount
-        ? '<label style="display:flex;align-items:center;gap:4px">'
-            +'<input type="checkbox" data-k="info_global" checked>'
-            +infoQ+' Restricted ('+infoCount+')'
-          +'</label>'
-        : '')
-      +'<small id="leg-info" style="display:block;margin-top:2px">Loading…</small>'
+      +'<details open style="'+sep+'">'
+        +'<summary class="det-sum">Networks</summary>'
+        +'<label style="display:flex;align-items:center;gap:4px">'
+          +'<input type="checkbox" data-k="vrs_global" checked>'
+          +sw('border:2px solid '+VRS_COLOR+';background:rgba(192,25,106,0.25);border-radius:50%')
+          +(vrsCount?'VRS networks ('+vrsCount+')':'VRS circles')
+        +'</label>'
+        +(greyCount
+          ? '<label style="display:flex;align-items:center;gap:4px">'
+              +'<input type="checkbox" data-k="grey_global" checked>'
+              +sw('border:2px solid '+GREY_MARKER_COLOR+';background:rgba(102,102,102,0.18);border-radius:50%')
+              +'Pending ('+greyCount+')'
+            +'</label>'
+          : '')
+        +(infoCount
+          ? '<label style="display:flex;align-items:center;gap:4px">'
+              +'<input type="checkbox" data-k="info_global" checked>'
+              +infoQ+' Restricted ('+infoCount+')'
+            +'</label>'
+          : '')
+      +'</details>'
       +'<details id="src-det" open style="'+sep+'">'
-        +'<summary id="src-sum" class="det-sum" style="font-weight:700;font-size:12px">Sources</summary>'
+        +'<summary class="det-sum">Mountpoints</summary>'
         +physRows
       +'</details>'
       +'<details style="'+sep+'">'
-        +'<summary>Access</summary>'
+        +'<summary class="det-sum">Access</summary>'
         +'<label><input type="checkbox" data-k="tier_open" checked> Free, no signup</label>'
         +'<label><input type="checkbox" data-k="tier_registration" checked> Free (registration)</label>'
         +'<label title="Free, but conditions may exclude you (non-commercial only, national ID required, fee for some uses, etc.)">'
@@ -994,12 +993,6 @@
       if(!cb) return;
       var members; try{ members=JSON.parse(cb.dataset.m); }catch(e){ return; }
       _rows.push({label:label, members:members, badge:label.querySelector('.view-badge')});
-    });
-
-    // Prevent master checkboxes from toggling their <details> open/closed.
-    ['vrs_global','grey_global','info_global'].forEach(function(k){
-      var cb=d.querySelector('input[data-k="'+k+'"]');
-      if(cb) cb.addEventListener('click',function(e){ e.stopPropagation(); });
     });
 
     d.querySelectorAll('input[data-m]').forEach(function(cb){
@@ -1327,14 +1320,12 @@
     map.on('zoomend',function(){ applyZoom(); updateViewCounts(); });
 
     function finishLoad(){
-      var li=document.getElementById('leg-info');
       var updatedLabel;
       if(!updated){ updatedLabel='?'; }
       else {
         var h=Math.round((Date.now()-new Date(updated).getTime())/3600000);
         updatedLabel=(h<1?'< 1':h)+'h ago';
       }
-      if(li) li.innerHTML=visible.length.toLocaleString()+' stations<br>updated '+updatedLabel;
       var bc=document.getElementById('banner-count');
       var ba=document.getElementById('banner-age');
       if(bc) bc.textContent=visible.length.toLocaleString();
