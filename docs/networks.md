@@ -1429,7 +1429,24 @@ Republika Srpska geodetic authorities. Operational status uncertain.
 **source**:    gov.bc.ca/geobc (Province of British Columbia)
 
 British Columbia real-time network. No free tier. No Canadian province offers free
-public NTRIP — confirmed across BC, QC, ON, AB, SK, MB.
+public NTRIP — confirmed across all ten provinces and three territories.
+
+---
+
+## nsacs — Nova Scotia NSACS (CA-NS)
+
+**status**:    paid
+**access**:    RINEX post-processing free via NRCan; real-time NRTK via paid commercial
+               providers only: Can-Net/Cansel (`gps.can-net.ca:2300`), HxGN SmartNet
+               NA, Brandtnet (`rtk.brandt.ca`)
+**stations**:  40
+**source**:    novascotia.ca (Nova Scotia Spatial Services)
+
+Nova Scotia Active Control System — 40 permanently installed government GNSS receivers
+forming the NSCRS (Nova Scotia Coordinate Referencing System). Province owns the
+stations; three commercial providers access the ACS data under data-licensing agreements
+and sell real-time NRTK subscriptions. No free real-time tier; no direct provincial
+NTRIP caster.
 
 ---
 

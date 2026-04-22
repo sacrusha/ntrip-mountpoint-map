@@ -183,6 +183,10 @@
      "tier":"info", "access":"paid",
      "note":"Paid regional subscription via GeoBC (gov.bc.ca/geobc). No Canadian province offers free public NTRIP."},
 
+    {"id":"nsacs",       "name":"Nova Scotia NSACS","region":"Nova Scotia",           "country":"CA", "lat":44.65, "lon":-63.58,
+     "tier":"info", "access":"paid", "stations_declared":40,
+     "note":"40-station government CORS network (Nova Scotia Spatial Services). Real-time NRTK only via paid commercial subscriptions: Can-Net/Cansel, HxGN SmartNet, or Brandtnet. Free RINEX archives available via NRCan."},
+
     {"id":"scrtn",       "name":"SCRTN",            "region":"South Carolina",        "country":"US", "lat":33.80, "lon":-81.20,
      "tier":"info", "access":"paid",
      "note":"Paid subscription. Contact SCDOT for pricing (scdot.org)."},
