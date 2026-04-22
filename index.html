@@ -319,7 +319,6 @@
   var GREY_MARKER_COLOR='#666';   // matches stale-pin colour
   var INFO_MARKER_COLOR='#888';   // circled-? paid/restricted markers
 
-
   function sourceLabel(sid){
     return SOURCE_LABELS[sid]||(sid.indexOf('sapos_')===0?'SAPOS '+sid.slice(6):sid);
   }
@@ -349,8 +348,6 @@
 
   // Staleness thresholds (days). Must match STALE_GREY_DAYS / STALE_HIDE_DAYS in fetch_stations.py.
   var STALE_GREY_DAYS=3, STALE_HIDE_DAYS=7;
-
-  // Banner dismissal: bumped when content meaningfully changes.
 
   // Coverage-raster colour lookup. Entry i maps strength i/255 to RGBA,
   // where strength = 1 - dist_to_nearest_km / R_FLOAT:
@@ -935,15 +932,8 @@
       .bindPopup(popup).addTo(group);
   }
 
-
   /* ——— Help drawer & popover ——— */
   var HELP_CATS=['Getting started','Before you start','Connect','Concepts','Troubleshooting','Advanced','Meta'];
-
-  function helpEsc(s){
-    return (s==null?'':String(s))
-      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
-      .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
-  }
 
   function openHelp(highlightId){
     hideHelpPopover();
@@ -985,7 +975,7 @@
     });
     if(!keys.length){
       body.innerHTML='<div style="padding:40px 24px;text-align:center;color:var(--muted);font-size:13px;">'
-        +'No matches for "'+helpEsc(query)+'".<br>'
+        +'No matches for "'+esc(query)+'".<br>'
         +'<span style="font-size:11px;">Try: connect · compatible · buy · VRS · base · NEAR · legacy</span></div>';
       return;
     }
@@ -998,13 +988,13 @@
     var html='';
     HELP_CATS.forEach(function(cat){
       if(!byCat[cat]) return;
-      html+='<h5>'+helpEsc(cat)+'</h5>';
+      html+='<h5>'+esc(cat)+'</h5>';
       byCat[cat].forEach(function(id){
         var t=topics[id];
         var isOpen=(id===highlightId)||(keys.length===1);
-        html+='<div class="help-topic'+(isOpen?' open':'')+'" data-id="'+helpEsc(id)+'">'
-          +'<div class="ic">'+helpEsc(t.icon)+'</div>'
-          +'<div class="t">'+helpEsc(t.q)+'<small>'+helpEsc(t.sub)+'</small></div>'
+        html+='<div class="help-topic'+(isOpen?' open':'')+'" data-id="'+esc(id)+'">'
+          +'<div class="ic">'+esc(t.icon)+'</div>'
+          +'<div class="t">'+esc(t.q)+'<small>'+esc(t.sub)+'</small></div>'
           +'<div class="chev">&#x203a;</div>'
           +'</div>';
         if(isOpen) html+=renderHelpAnswer(id, t, topics);
@@ -1034,12 +1024,12 @@
     if(t.related&&t.related.length){
       rel='<div class="chips">'+t.related.map(function(rid){
         var rt=topics[rid];
-        return rt?'<button class="rel" data-go="'+helpEsc(rid)+'">&#x2192; '+helpEsc(rt.q)+'</button>':'';
+        return rt?'<button class="rel" data-go="'+esc(rid)+'">&#x2192; '+esc(rt.q)+'</button>':'';
       }).join('')+'</div>';
     }
     var deep=t.deep?('<details class="deep"><summary>Deep dive</summary><div class="inner">'+t.deep+'</div></details>'):'';
-    return '<div class="help-answer" data-id="'+helpEsc(id)+'">'
-      +'<p class="lead">'+helpEsc(t.lead)+'</p>'
+    return '<div class="help-answer" data-id="'+esc(id)+'">'
+      +'<p class="lead">'+esc(t.lead)+'</p>'
       +(t.body||'')
       +deep
       +rel
@@ -1066,9 +1056,9 @@
     var el=document.createElement('div');
     el.className='help-popover';
     el.dataset.arrow=arrow||'top-left';
-    el.innerHTML='<h6>'+helpEsc(c.title)+'<button class="close" aria-label="Close">×</button></h6>'
-      +'<p>'+helpEsc(c.body)+'</p>'
-      +(c.deepKey?'<button class="more" data-deep="'+helpEsc(c.deepKey)+'">Learn more →</button>':'');
+    el.innerHTML='<h6>'+esc(c.title)+'<button class="close" aria-label="Close">×</button></h6>'
+      +'<p>'+esc(c.body)+'</p>'
+      +(c.deepKey?'<button class="more" data-deep="'+esc(c.deepKey)+'">Learn more →</button>':'');
     document.body.appendChild(el);
 
     var chipR=chip.getBoundingClientRect();
