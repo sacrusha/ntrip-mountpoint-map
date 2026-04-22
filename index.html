@@ -938,22 +938,19 @@
       members.forEach(function(s){ claimed[s]=true; });
       var n=members.reduce(function(a,s){ return a+(sourceCounts[s]||0); },0);
       if(!n) return;
-      entries.push({members:members,label:g.label,color:g.color,count:n,vrsOnly:false});
+      entries.push({members:members,label:g.label,color:g.color,count:n});
     });
     Object.keys(sourceCounts).forEach(function(sid){
       if(claimed[sid]) return;
       if(sourceCounts[sid]){
         entries.push({members:[sid],label:sourceLabel(sid),
-          color:sourceColor(sid),count:sourceCounts[sid],vrsOnly:false});
-      } else if(vrsLayerBySid[sid]){
-        entries.push({members:[sid],label:sourceLabel(sid),
-          color:null,count:0,vrsOnly:true});
+          color:sourceColor(sid),count:sourceCounts[sid]});
       }
     });
     var tierOrder={open:0,registration:1,conditions:2};
     entries.sort(function(a,b){
-      var ta=a.vrsOnly?3:(tierOrder[SOURCE_ACCESS[a.members[0]]]||1);
-      var tb=b.vrsOnly?3:(tierOrder[SOURCE_ACCESS[b.members[0]]]||1);
+      var ta=tierOrder[SOURCE_ACCESS[a.members[0]]]||1;
+      var tb=tierOrder[SOURCE_ACCESS[b.members[0]]]||1;
       return ta!==tb ? ta-tb : b.count-a.count;
     });
 
@@ -969,27 +966,15 @@
       return la<lb?-1:la>lb?1:0;
     });
     var greyCount=greyIds.length, infoCount=infoIds.length;
-    var greyRows=greyIds.map(function(id){
-      return `<label style="display:flex;align-items:center;gap:0"><input type="checkbox" data-k="grey:${id}" checked style="margin-right:4px;flex-shrink:0"><span class="msw" style="border:2px solid ${GREY_MARKER_COLOR}"></span>${esc(greyLayerById[id].label||id)}</label>`;
-    }).join('');
-    var infoRows=infoIds.map(function(id){
-      return `<label style="display:flex;align-items:center;gap:0"><input type="checkbox" data-k="info:${id}" checked style="margin-right:4px;flex-shrink:0"><span style="display:inline-block;width:11px;height:11px;border:1.5px solid ${INFO_MARKER_COLOR};border-radius:50%;text-align:center;font-size:8px;font-weight:700;color:${INFO_MARKER_COLOR};line-height:8px;vertical-align:middle;margin-right:4px">?</span>${esc(infoLayerById[id].label||id)}</label>`;
-    }).join('');
 
     function renderRow(e){
       var mj=esc(JSON.stringify(e.members));
-      var vrs=e.vrsOnly?' data-vrs="1"':'';
-      var swatch=e.vrsOnly
-        ? `<span class="msw" style="border:2px solid ${VRS_COLOR}"></span>`
-        : `<span class="msw" style="background:${e.color}"></span>`;
-      var badge=e.vrsOnly?'':`<span class="view-badge" data-m="${mj}" style="color:#888;font-size:10px"></span>`;
-      return `<label data-row="1"${vrs} style="display:flex;align-items:center;gap:0"><input type="checkbox" data-m="${mj}" checked style="margin-right:4px;flex-shrink:0">${swatch}${esc(e.label)}${badge}</label>`;
+      var swatch=`<span class="msw" style="background:${e.color}"></span>`;
+      var badge=`<span class="view-badge" data-m="${mj}" style="color:#888;font-size:10px"></span>`;
+      return `<label data-row="1" style="display:flex;align-items:center;gap:0"><input type="checkbox" data-m="${mj}" checked style="margin-right:4px;flex-shrink:0">${swatch}${esc(e.label)}${badge}</label>`;
     }
-    var physEntries=entries.filter(function(e){ return !e.vrsOnly; });
-    var vrsEntries=entries.filter(function(e){ return e.vrsOnly; });
-    var physRows=physEntries.map(renderRow).join('');
-    var vrsRows=vrsEntries.map(renderRow).join('');
-    var vrsCount=vrsEntries.length;
+    var physRows=entries.map(renderRow).join('');
+    var vrsCount=Object.keys(vrsLayerBySid).length;
 
     // Build the DOM element once; reused by both Leaflet control and mobile panel.
     var d=document.createElement('div');
@@ -1007,37 +992,21 @@
       +'<label style="'+fullSep+'display:flex;align-items:center;gap:4px" '
         +'title="Hide sources with no stations in the current map view">'
         +'<input type="checkbox" id="declutter-cb" checked> Hide out-of-view sources</label>'
-      +(vrsCount
-        ? '<details id="vrs-det" style="'+sepStyle+'">'
-            +'<summary id="vrs-sum" class="det-sum" style="display:flex;align-items:center;gap:4px;font-size:12px">'
-              +'<input type="checkbox" data-k="vrs_global" checked style="flex-shrink:0;margin-right:0">'
-              +vrsSwatchHtml
-              +'VRS networks ('+vrsCount+')'
-            +'</summary>'
-            +vrsRows
-          +'</details>'
-        : '<label style="'+sepStyle+'display:flex;align-items:center;gap:4px">'
-            +'<input type="checkbox" data-k="vrs_global" checked>'
-            +vrsSwatchHtml+'VRS circles</label>')
+      +'<label style="'+sepStyle+'display:flex;align-items:center;gap:4px">'
+        +'<input type="checkbox" data-k="vrs_global" checked>'
+        +vrsSwatchHtml+(vrsCount?'VRS networks ('+vrsCount+')':'VRS circles')
+      +'</label>'
       +(greyCount
-        ? '<details id="grey-det" style="'+sepStyle+'">'
-            +'<summary id="grey-sum" class="det-sum" style="display:flex;align-items:center;gap:4px;font-size:12px">'
-              +'<input type="checkbox" data-k="grey_global" checked style="flex-shrink:0;margin-right:0">'
-              +greySwatchHtml
-              +'Pending ('+greyCount+')'
-            +'</summary>'
-            +greyRows
-          +'</details>'
+        ? '<label style="'+sepStyle+'display:flex;align-items:center;gap:4px">'
+            +'<input type="checkbox" data-k="grey_global" checked>'
+            +greySwatchHtml+'Pending ('+greyCount+')'
+          +'</label>'
         : '')
       +(infoCount
-        ? '<details id="info-det" style="'+sepStyle+'">'
-            +'<summary id="info-sum" class="det-sum" style="display:flex;align-items:center;gap:4px;font-size:12px">'
-              +'<input type="checkbox" data-k="info_global" checked style="flex-shrink:0;margin-right:0">'
-              +infoSwatchHtml
-              +'Restricted ('+infoCount+')'
-            +'</summary>'
-            +infoRows
-          +'</details>'
+        ? '<label style="'+sepStyle+'display:flex;align-items:center;gap:4px">'
+            +'<input type="checkbox" data-k="info_global" checked>'
+            +infoSwatchHtml+'Restricted ('+infoCount+')'
+          +'</label>'
         : '')
       +'<details><summary>Access</summary>'
         +'<label><input type="checkbox" data-k="tier_open" checked> Free, no signup</label>'
@@ -1050,7 +1019,6 @@
     // Cache row references so applyDeclutter avoids querySelectorAll + JSON.parse on every pan.
     var _rows=[];
     d.querySelectorAll('label[data-row]').forEach(function(label){
-      if(label.dataset.vrs) return;
       var cb=label.querySelector('input[data-m]');
       if(!cb) return;
       var members; try{ members=JSON.parse(cb.dataset.m); }catch(e){ return; }
