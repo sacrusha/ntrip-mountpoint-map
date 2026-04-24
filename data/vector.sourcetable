@@ -16,6 +16,7 @@ STR;VTRI_RTCM3;VTRI_RTCM3;RTCM 3.1;1(1),3(10),20(1),21(1);2;GPS+GLONASS;Vtrans;U
 STR;VTRU_RTCM3;VTRU_RTCM3;RTCM 3.1;1(1),3(10),20(1),21(1);2;GPS;Vtrans;USA;0;0;0;0;Trimble Pivot Platform;none;B;N;0;;
 STR;VTSA_RTCM3;VTSA_RTCM3;RTCM 3.1;1(1),3(10),20(1),21(1);2;GPS+GLONASS;Vtrans;USA;0;0;0;0;Trimble Pivot Platform;none;B;N;0;;
 STR;VTSP_RTCM3;VTSP_RTCM3;RTCM 3.1;1(1),3(10),20(1),21(1);2;GPS+GLONASS;Vtrans;USA;0;0;0;0;Trimble Pivot Platform;none;B;N;0;;
+STR;VTWR_RTCM3;VTWR_RTCM3;RTCM 3.1;1(1),3(10),20(1),21(1);2;GPS+GLONASS;Vtrans;USA;0;0;0;0;Trimble Pivot Platform;none;B;N;0;;
 STR;VTRU_CMRp;VTRU_CMRp;CMR+;1004(1),1005/1007(5),PBS(10);2;GPS;Vtrans;USA;0;0;0;0;Trimble Pivot Platform;none;B;N;0;;
 STR;VTDA_CMRp;VTDA_CMRp;RTCM 3.1;1(1),3(10),20(1),21(1);2;GPS+GLONASS;Vtrans;USA;0;0;0;0;Trimble Pivot Platform;none;B;N;0;;
 STR;VTEB_CMRp;VTEB_CMRp;RTCM 3.1;1(1),3(10),20(1),21(1);2;GPS+GLONASS;Vtrans;USA;0;0;0;0;Trimble Pivot Platform;none;B;N;0;;
@@ -30,6 +31,7 @@ STR;VTIP_CMRx;VTIP_CMRx;CMRx;Obs(1),Info(10),PrsInfo(11);2;GPS+GLO+GAL+BDS;Vtran
 STR;VTMI_CMRx;VTMI_CMRx;CMRx;Obs(1),Info(10),PrsInfo(11);2;GPS+GLO+GAL+BDS;Vtrans;USA;0;0;0;0;Trimble Pivot Platform;none;B;N;0;;
 STR;VTOX_CMRx;VTOX_CMRx;CMRx;Obs(1),Info(10),PrsInfo(11);2;GPS+GLO+GAL+BDS;Vtrans;USA;0;0;0;0;Trimble Pivot Platform;none;B;N;0;;
 STR;VTRI_CMRx;VTRI_CMRx;CMRx;Obs(1),Info(10),PrsInfo(11);2;GPS+GLO+GAL+BDS;Vtrans;USA;0;0;0;0;Trimble Pivot Platform;none;B;N;0;;
+STR;VTWR_CMRx;VTWR_CMRx;CMRx;Obs(1),Info(10),PrsInfo(11);2;GPS+GLO+GAL+BDS;Vtrans;USA;0;0;0;0;Trimble Pivot Platform;none;B;N;0;;
 STR;VTD7_CMRx;VTD7_CMRx;CMRx;Obs(1),Info(10),PrsInfo(11);2;GPS+GLO+GAL+BDS;Vtrans;USA;0;0;0;0;Trimble Pivot Platform;none;B;N;0;;
 STR;VTSA_CMRx;VTSA_CMRx;CMRx;Obs(1),Info(10),PrsInfo(11);2;GPS+GLO+GAL+BDS;Vtrans;USA;0;0;0;0;Trimble Pivot Platform;none;B;N;0;;
 ENDSOURCETABLE
