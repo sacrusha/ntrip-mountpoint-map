@@ -1,193 +1,197 @@
 {
-  "checked_at": "2026-04-24T08:58:40+00:00",
+  "checked_at": "2026-04-24T14:31:15+00:00",
   "sources": {
-    "geortk": {
-      "last_ok": "2026-04-24T08:55:35+00:00",
+    "frednet": {
+      "last_ok": "2026-04-24T14:28:12+00:00",
       "status": "ok"
     },
-    "frednet": {
-      "last_ok": "2026-04-24T08:55:35+00:00",
+    "rtk2go": {
+      "last_ok": "2026-04-24T08:55:36+00:00",
+      "status": "stale (fetch failed: <HTTPError 406: ''>)"
+    },
+    "sapos_NW": {
+      "last_ok": "2026-04-24T14:28:12+00:00",
+      "status": "ok"
+    },
+    "geortk": {
+      "last_ok": "2026-04-24T14:28:12+00:00",
       "status": "ok"
     },
     "sapos_HE": {
-      "last_ok": "2026-04-24T08:55:36+00:00",
+      "last_ok": "2026-04-24T14:28:12+00:00",
       "status": "ok"
     },
-    "sapos_NW": {
-      "last_ok": "2026-04-24T08:55:36+00:00",
+    "sapos_NI": {
+      "last_ok": "2026-04-24T14:28:12+00:00",
+      "status": "ok"
+    },
+    "sapos_SH_HH": {
+      "last_ok": "2026-04-24T14:28:12+00:00",
+      "status": "ok"
+    },
+    "sapos_BW": {
+      "last_ok": "2026-04-24T14:28:12+00:00",
       "status": "ok"
     },
     "sapos_SN": {
       "last_ok": null,
       "status": "error: URLError(gaierror(-5, 'No address associated with hostname'))"
     },
-    "rtk2go": {
-      "last_ok": "2026-04-24T08:55:36+00:00",
-      "status": "ok"
-    },
-    "sapos_NI": {
-      "last_ok": "2026-04-24T08:55:36+00:00",
-      "status": "ok"
-    },
-    "sapos_SH_HH": {
-      "last_ok": "2026-04-24T08:55:36+00:00",
-      "status": "ok"
-    },
-    "sapos_BW": {
-      "last_ok": "2026-04-24T08:55:36+00:00",
-      "status": "ok"
-    },
     "centipede": {
-      "last_ok": "2026-04-24T08:55:36+00:00",
+      "last_ok": "2026-04-24T14:28:12+00:00",
       "status": "ok"
     },
     "sapos_BY": {
-      "last_ok": "2026-04-24T08:55:37+00:00",
-      "status": "ok"
-    },
-    "sapos_RP": {
-      "last_ok": "2026-04-24T08:55:37+00:00",
+      "last_ok": "2026-04-24T14:28:13+00:00",
       "status": "ok"
     },
     "sapos_BB": {
-      "last_ok": "2026-04-24T08:55:37+00:00",
+      "last_ok": "2026-04-24T14:28:13+00:00",
+      "status": "ok"
+    },
+    "sapos_RP": {
+      "last_ok": "2026-04-24T14:28:13+00:00",
       "status": "ok"
     },
     "sapos_TH": {
-      "last_ok": "2026-04-24T08:55:37+00:00",
+      "last_ok": "2026-04-24T14:28:13+00:00",
       "status": "ok"
     },
     "sapos_BE": {
-      "last_ok": "2026-04-24T08:55:37+00:00",
+      "last_ok": "2026-04-24T14:28:13+00:00",
       "status": "ok"
     },
     "ergnss": {
-      "last_ok": "2026-04-24T08:55:37+00:00",
+      "last_ok": "2026-04-24T14:28:13+00:00",
       "status": "ok"
     },
     "sapos_MV": {
-      "last_ok": "2026-04-24T08:55:37+00:00",
+      "last_ok": "2026-04-24T14:28:13+00:00",
       "status": "ok"
     },
     "sapos_LSA": {
-      "last_ok": "2026-04-24T08:55:37+00:00",
-      "status": "ok"
-    },
-    "positionz": {
-      "last_ok": "2026-04-24T08:55:38+00:00",
+      "last_ok": "2026-04-24T14:28:13+00:00",
       "status": "ok"
     },
     "apos": {
-      "last_ok": "2026-04-24T08:55:38+00:00",
-      "status": "ok"
-    },
-    "satref": {
-      "last_ok": "2026-04-24T08:55:38+00:00",
-      "status": "ok"
-    },
-    "rbmc_ip": {
-      "last_ok": "2026-04-24T08:55:38+00:00",
-      "status": "ok"
-    },
-    "inacors": {
-      "last_ok": "2026-04-24T08:55:38+00:00",
-      "status": "ok"
-    },
-    "flepos": {
-      "last_ok": "2026-04-24T08:55:38+00:00",
-      "status": "ok"
-    },
-    "auscors": {
-      "last_ok": "2026-04-24T08:55:38+00:00",
+      "last_ok": "2026-04-24T14:28:13+00:00",
       "status": "ok"
     },
     "trignet": {
-      "last_ok": "2026-04-24T08:55:38+00:00",
+      "last_ok": "2026-04-24T14:28:14+00:00",
       "status": "ok"
     },
-    "regna_rou": {
-      "last_ok": "2026-04-24T08:55:38+00:00",
+    "rbmc_ip": {
+      "last_ok": "2026-04-24T14:28:14+00:00",
       "status": "ok"
     },
-    "spslux": {
-      "last_ok": "2026-04-24T08:55:38+00:00",
+    "satref": {
+      "last_ok": "2026-04-24T14:28:14+00:00",
+      "status": "ok"
+    },
+    "inacors": {
+      "last_ok": "2026-04-24T14:28:14+00:00",
+      "status": "ok"
+    },
+    "positionz": {
+      "last_ok": "2026-04-24T14:28:14+00:00",
+      "status": "ok"
+    },
+    "flepos": {
+      "last_ok": "2026-04-24T14:28:14+00:00",
       "status": "ok"
     },
     "ramsac": {
-      "last_ok": "2026-04-24T08:55:39+00:00",
+      "last_ok": "2026-04-24T14:28:14+00:00",
       "status": "ok"
     },
-    "asg_eupos": {
-      "last_ok": "2026-04-24T08:55:39+00:00",
-      "status": "ok"
-    },
-    "igac": {
-      "last_ok": "2026-04-24T08:55:39+00:00",
-      "status": "ok"
-    },
-    "earthscope": {
-      "last_ok": "2026-04-24T08:55:39+00:00",
-      "status": "ok"
-    },
-    "cropos": {
-      "last_ok": "2026-04-24T08:55:39+00:00",
+    "spslux": {
+      "last_ok": "2026-04-24T14:28:14+00:00",
       "status": "ok"
     },
     "sapos_SL": {
-      "last_ok": "2026-04-24T08:55:39+00:00",
+      "last_ok": "2026-04-24T14:28:14+00:00",
       "status": "ok"
     },
-    "mirai": {
-      "last_ok": "2026-04-24T08:55:39+00:00",
+    "regna_rou": {
+      "last_ok": "2026-04-24T14:28:14+00:00",
+      "status": "ok"
+    },
+    "igac": {
+      "last_ok": "2026-04-24T14:28:14+00:00",
+      "status": "ok"
+    },
+    "asg_eupos": {
+      "last_ok": "2026-04-24T14:28:15+00:00",
+      "status": "ok"
+    },
+    "earthscope": {
+      "last_ok": "2026-04-24T14:28:15+00:00",
+      "status": "ok"
+    },
+    "cropos": {
+      "last_ok": "2026-04-24T14:28:15+00:00",
       "status": "ok"
     },
     "latpos": {
-      "last_ok": "2026-04-24T08:55:40+00:00",
-      "status": "ok"
-    },
-    "cors_korea": {
-      "last_ok": "2026-04-24T08:55:40+00:00",
+      "last_ok": "2026-04-24T14:28:15+00:00",
       "status": "ok"
     },
     "icecors": {
-      "last_ok": "2026-04-24T08:55:40+00:00",
+      "last_ok": "2026-04-24T14:28:15+00:00",
+      "status": "ok"
+    },
+    "mirai": {
+      "last_ok": "2026-04-24T14:28:15+00:00",
+      "status": "ok"
+    },
+    "auscors": {
+      "last_ok": "2026-04-24T14:28:15+00:00",
+      "status": "ok"
+    },
+    "ksa_cors": {
+      "last_ok": "2026-04-24T14:28:15+00:00",
       "status": "ok"
     },
     "gpsumbria": {
-      "last_ok": "2026-04-24T08:55:41+00:00",
+      "last_ok": "2026-04-24T14:28:16+00:00",
       "status": "ok"
     },
     "wiscors": {
-      "last_ok": "2026-04-24T08:55:41+00:00",
+      "last_ok": "2026-04-24T14:28:16+00:00",
       "status": "ok"
     },
     "sit_puglia": {
-      "last_ok": "2026-04-24T08:55:41+00:00",
+      "last_ok": "2026-04-24T14:28:16+00:00",
+      "status": "ok"
+    },
+    "cors_korea": {
+      "last_ok": "2026-04-24T14:28:16+00:00",
       "status": "ok"
     },
     "ardot_rtn": {
-      "last_ok": "2026-04-24T08:55:41+00:00",
+      "last_ok": "2026-04-24T14:28:16+00:00",
+      "status": "ok"
+    },
+    "vector": {
+      "last_ok": "2026-04-24T14:28:16+00:00",
       "status": "ok"
     },
     "walcors": {
       "last_ok": null,
       "status": "error: URLError(TimeoutError('timed out'))"
     },
-    "vector": {
-      "last_ok": "2026-04-24T08:56:38+00:00",
+    "gcgc_rtn": {
+      "last_ok": "2026-04-24T14:29:14+00:00",
       "status": "ok"
-    },
-    "estpos": {
-      "last_ok": null,
-      "status": "error: URLError(TimeoutError('timed out'))"
-    },
-    "ksa_cors": {
-      "last_ok": "2026-04-24T04:13:37+00:00",
-      "status": "stale (fetch failed: URLError(TimeoutError('timed out')))"
     },
     "alcors": {
       "last_ok": null,
       "status": "error: URLError(ConnectionRefusedError(111, 'Connection refused'))"
+    },
+    "estpos": {
+      "last_ok": null,
+      "status": "error: URLError(TimeoutError('timed out'))"
     },
     "gnss_abruzzo_lazio": {
       "last_ok": null,
@@ -197,44 +201,40 @@
       "last_ok": null,
       "status": "error: URLError(TimeoutError('timed out'))"
     },
+    "incors": {
+      "last_ok": null,
+      "status": "error: URLError(ConnectionRefusedError(111, 'Connection refused'))"
+    },
     "fprn": {
       "last_ok": null,
       "status": "error: URLError(TimeoutError('timed out'))"
     },
-    "incors": {
-      "last_ok": null,
-      "status": "error: URLError(ConnectionRefusedError(111, 'Connection refused'))"
+    "kycors": {
+      "last_ok": "2026-04-24T14:29:16+00:00",
+      "status": "ok"
+    },
+    "mncors": {
+      "last_ok": "2026-04-24T14:29:17+00:00",
+      "status": "ok"
     },
     "macors": {
       "last_ok": null,
       "status": "error: URLError(TimeoutError('timed out'))"
     },
-    "kycors": {
-      "last_ok": "2026-04-24T08:56:42+00:00",
-      "status": "ok"
-    },
-    "mncors": {
-      "last_ok": "2026-04-24T08:56:42+00:00",
-      "status": "ok"
-    },
     "odot_rtn": {
-      "last_ok": "2026-04-24T08:56:42+00:00",
-      "status": "ok"
-    },
-    "modot_rtn": {
-      "last_ok": "2026-04-24T08:56:42+00:00",
+      "last_ok": "2026-04-24T14:29:17+00:00",
       "status": "ok"
     },
     "wvrtn": {
-      "last_ok": "2026-04-24T08:56:42+00:00",
+      "last_ok": "2026-04-24T14:29:17+00:00",
       "status": "ok"
     },
     "mainedot": {
       "last_ok": null,
       "status": "error: URLError(gaierror(-5, 'No address associated with hostname'))"
     },
-    "gcgc_rtn": {
-      "last_ok": "2026-04-24T08:56:43+00:00",
+    "modot_rtn": {
+      "last_ok": "2026-04-24T14:29:17+00:00",
       "status": "ok"
     },
     "orgn": {
@@ -253,13 +253,13 @@
       "last_ok": null,
       "status": "error: URLError(OSError(101, 'Network is unreachable'))"
     },
-    "spin3": {
-      "last_ok": null,
-      "status": "error: URLError(TimeoutError('timed out'))"
-    },
     "msrn": {
       "last_ok": null,
       "status": "error: URLError(OSError(101, 'Network is unreachable'))"
+    },
+    "spin3": {
+      "last_ok": null,
+      "status": "error: URLError(TimeoutError('timed out'))"
     }
   }
 }
