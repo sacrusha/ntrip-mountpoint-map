@@ -22,6 +22,7 @@
 8. [Latency and Fix Quality](#8-latency-and-fix-quality)
 9. [Multipath](#9-multipath)
 10. [Base Station Setup](#10-base-station-setup)
+11. [Common Troubleshooting Scenarios](#11-common-troubleshooting-scenarios)
 
 ---
 
@@ -33,10 +34,10 @@
 |---|---|---|---|
 | GPS | USA (DoD) | 31 active | L1/L2/L5; oldest, most receiver support |
 | GLONASS | Russia (Roscosmos) | ~24 | FDMA on L1/L2 (legacy, different freq per satellite); CDMA on L1/L2/L3 (newer sats) ✓ |
-| Galileo | EU (GSA/EUSPA) | ~30 | E1/E5a/E5b/E6; E6 carries HAS corrections |
-| BeiDou (BDS-3) | China (CNSA) | ~45 | B1C/B1I/B2a/B2b/B3I; regional + global |
-| QZSS | Japan (JAXA/Cabinet Office) | 4 | Geosynchronous+inclined; augments GPS over Japan/Asia-Pacific ~ |
-| NavIC (IRNSS) | India (ISRO) | 7 | Regional only (Indian subcontinent + ~1500 km); limited receiver support ~ |
+| Galileo | EU (GSA/EUSPA) | ~30 | E1/E5a/E5b/E6; E6 carries HAS corrections ✓ |
+| BeiDou (BDS-3) | China (CNSA) | 45 (15 BDS-2 + 30 BDS-3) | B1C/B1I/B2a/B2b/B3I; regional + global ✓ |
+| QZSS | Japan (Cabinet Office) | 4 (expanding to 7) | Geosynchronous+inclined; augments GPS over Japan/Asia-Pacific; 7-satellite constellation actively being built ✓ |
+| NavIC (IRNSS) | India (ISRO) | ~3–4 operational | Regional only (Indian subcontinent + ~1500 km); severely degraded as of 2026 — atomic clock failures have reduced active satellites below the minimum operational threshold of 4; limited receiver support ✓ |
 
 ~ = model assumption; not yet source-verified.
 
@@ -49,19 +50,24 @@ differ per constellation but map to similar roles:
 |---|---|---|---|---|
 | L1 / primary | L1 1575.42 MHz | L1 1602+n×0.5625 MHz (FDMA) ✓ | E1 1575.42 MHz | B1C 1575.42 / B1I 1561.098 MHz |
 | L2 / secondary | L2 1227.60 MHz | L2 1246+n×0.4375 MHz (FDMA) ✓ | — | B2a 1176.45 / B2b 1207.14 MHz |
-| L5 / safety-of-life | L5 1176.45 MHz | L3 1202.025 MHz ✓ (CDMA, newer sats) | E5a 1176.45 / E5b 1207.14 MHz | B2a 1176.45 MHz |
+| L5 / safety-of-life | L5 1176.45 MHz | L3 1202.025 MHz ✓ (CDMA, GLONASS-K1/K2 only) | E5a 1176.45 / E5b 1207.14 MHz | B2a 1176.45 MHz |
 | E6 / data | — | — | E6 1278.75 MHz (HAS) | B3I 1268.52 MHz |
 
 GLONASS note: n is the satellite's frequency channel number (−7 to +6). ✓
-L1 and L2 use **different** channel spacings — 0.5625 MHz vs 0.4375 MHz
-respectively. This matters for GLONASS inter-frequency bias modelling.
-The `1230` RTCM message carries these biases for rover compensation.
+The 14 primary channels (k = −7 to +6) have been in use since 2005; antipodal
+satellite pairs share frequencies. L1 and L2 use **different** channel spacings —
+0.5625 MHz vs 0.4375 MHz respectively. This matters for GLONASS
+inter-frequency bias modelling. The `1230` RTCM message carries these biases
+for rover compensation. GLONASS-K1/K2 satellites also broadcast CDMA signals on
+L3 (1202.025 MHz), and K2 adds CDMA on L1/L2 — but CDMA GLONASS signals are
+not yet tracked by the u-blox F9P or most hobbyist hardware. ✓
 
 ### 1.3 Why Band Count Matters for RTK
 
 **Single-frequency (L1 only):**
 - Cannot remove ionospheric delay; relies on Klobuchar model correction
-  (~50–60% removal) ~
+  (~50–70% RMS removal globally; performance is worse at equatorial and
+  high latitudes) ✓
 - Reliable RTK fix roughly within 10 km of base; degrades fast beyond that
 - Increasingly uncommon in dedicated RTK hardware; avoid for new purchases
 
@@ -70,7 +76,8 @@ The `1230` RTCM message carries these biases for rover compensation.
   ~99% of first-order iono delay ~
 - Reliable fix out to ~30 km under normal conditions
 - The practical minimum for NTRIP RTK at useful baselines
-- Examples: ZED-F9P (GPS+GLONASS+Galileo+BeiDou L1/L2), Emlid RS2+
+- Examples: ZED-F9P (GPS L1/L2C + GLONASS L1OF/L2OF + Galileo E1/E5b +
+  BeiDou B1I/B2I) ✓; Emlid RS2+
 
 **Triple-band (L1+L2+L5 or L1+E5a+E5b etc.):**
 - The extra-widelane (EWL) combination of L2+L5 has a wavelength of
@@ -85,8 +92,10 @@ The `1230` RTCM message carries these biases for rover compensation.
   - Faster TTFF and re-init after signal loss
   - Better performance under canopy and in urban canyons
   - More robust during elevated ionospheric activity
-- Examples: ZED-F9P variants with L5 ~, Septentrio mosaic-X5 ~,
-  Emlid RS3, survey-grade Trimble/Leica
+- Examples: ZED-F9P-05B (L1/L5 variant, distinct hardware from the
+  standard L1/L2 F9P) ~, Septentrio mosaic-X5 ~, Emlid RS3,
+  survey-grade Trimble/Leica. Note: the standard ZED-F9P (most common
+  hobbyist variant) is L1/L2 only, not L5 ✓.
 
 **Quad-constellation (GPS+GLONASS+Galileo+BeiDou):**
 - More satellites visible at any sky position → faster ambiguity
@@ -102,7 +111,7 @@ recommendation. If they have a single-frequency receiver, the most
 impactful hardware change is moving to dual-band, not antenna or
 software changes.
 
-### 1.3 Signal Structure (GPS L1 example)
+### 1.4 Signal Structure (GPS L1 example)
 
 ~ A GNSS signal is a spread-spectrum carrier modulated with:
 - **PRN code (C/A or P(Y))** — enables pseudorange measurement (~metre
@@ -118,7 +127,7 @@ number of full cycles between satellite and antenna. RTK resolves that
 integer — the "ambiguity" — using double-differencing across satellites
 and between base/rover.
 
-### 1.4 GNSS vs GPS — terminology note
+### 1.5 GNSS vs GPS — terminology note
 
 "GPS" is often used colloquially to mean any GNSS. Modern receivers
 track all available constellations simultaneously. A receiver described
@@ -277,13 +286,18 @@ Single receiver; no base station. Uses precise satellite orbit and
 clock products (IGS, CNES, etc.) broadcast or downloaded. Must model
 or estimate all error sources independently. ~
 
-**Convergence time:** ~ Standard float PPP: typically 30–45 min to
-reach cm-level accuracy. PPP-AR (integer ambiguity resolution, e.g.
-CSRS-PPP with AR mode, Galileo HAS with PPP-AR): can reach cm-level
-in 10–20 min. These are different service tiers — don't conflate them.
-Galileo HAS and QZSS CLAS are free broadcast PPP services — cm-level
-after convergence, no subscription, no base station, works anywhere
-with satellite visibility.
+**Convergence time:** ~ Standard float PPP (GPS+Galileo): typically
+20–30 min to reach cm-level accuracy. PPP-AR (integer ambiguity
+resolution, e.g. CSRS-PPP with AR mode): can reach cm-level in
+10–20 min. These are different service tiers — don't conflate them.
+
+Galileo HAS (free broadcast PPP-RTK on E6-B, no subscription, no
+base station): official target convergence <300 s (~5 min); observed
+in 2024 studies is 7.5–15 min for GPS+Galileo static. Sub-20 cm
+horizontal at 95% after convergence ✓. QZSS CLAS (Japan/Asia-Pacific
+only) achieves 6 cm horizontal in static mode ✓. Both services work
+anywhere with satellite visibility and are the recommended alternative
+for users who cannot connect to an NTRIP caster.
 
 ~ PPP is not covered by this project's map (scope: NTRIP network RTK),
 but understanding it clarifies why "standalone" devices can still
@@ -320,9 +334,9 @@ Variable-length 30-bit word frames. Includes message types for GPS
 pseudorange corrections (type 1, 9), GLONASS (type 31), and carrier
 phase (type 18/19 for RTK). ~
 
-~ Increasingly unsupported by modern firmware. u-blox F9P dropped
-RTCM 2.x reception in firmware 1.x ~. The popup in this project
-warns when a mountpoint is RTCM 2.x only.
+~ Increasingly unsupported by modern firmware. The u-blox F9P does
+not support RTCM 2.x output or input in any released firmware. The
+popup in this project warns when a mountpoint is RTCM 2.x only.
 
 ### 4.2 RTCM 3.x — Legacy messages
 
@@ -354,15 +368,15 @@ constellations with a consistent structure.
 
 MSM type number = base + signal density:
 
-| MSM level | Pseudorange | Carrier phase | Doppler | Signal-to-noise | Notes |
+| MSM level | Pseudorange | Carrier phase | Doppler | CNR | Notes |
 |---|---|---|---|---|---|
-| MSM1 | compact | — | — | — | Low bandwidth |
-| MSM2 | — | compact | — | — | |
+| MSM1 | compact | — | — | — | Phase-range only, minimal bandwidth |
+| MSM2 | — | compact | — | — | Phase-range only |
 | MSM3 | compact | compact | — | — | |
-| MSM4 | full | full | — | half-cycle | Common RTK baseline |
-| MSM5 | full | full | full | half-cycle | Adds Doppler |
-| MSM6 | full high-res | — | — | full | |
-| MSM7 | full high-res | full high-res | full | full | Max precision; preferred |
+| MSM4 | full | full | — | half-cycle | Most common RTK baseline |
+| MSM5 | full | full | full | half-cycle | Adds Doppler; used where velocity matters |
+| MSM6 | full high-res | full high-res | — | full | High-res without Doppler |
+| MSM7 | full high-res | full high-res | full | full | Max precision; preferred for quality bases |
 
 Base numbers per constellation:
 - GPS: 1071–1077
@@ -540,6 +554,25 @@ These aliases share a defining NTRIP characteristic with VRS: they carry
 no meaningful fixed coordinates. Rovers use them by typing the name
 directly into the NTRIP client — they do not appear as map pins.
 
+### 5.9 NTRIP Client Software
+
+Common client implementations hobbyists encounter:
+
+| Client | Platform | Notes |
+|---|---|---|
+| **SW Maps** (Softwel) | Android | Popular in the field; connects to NTRIP and forwards to paired receiver via Bluetooth; free tier functional |
+| **RTKLIB rtkrcv / str2str** | Linux/macOS/Windows | CLI-based; str2str can relay an NTRIP stream to serial/USB/another TCP port; used in RTKBase |
+| **RTKLIB RTKGET** | Windows | GUI download tool; fetches RINEX from NTRIP; not real-time |
+| **lefebure NTRIP Client** | Android | Bare NTRIP client; pairs with Bluetooth GPS receivers; free |
+| **BNC (BKG Ntrip Client)** | Desktop | Advanced; can decode, log, QC, relay, and inject streams; mainly for analysis |
+| **u-center** (u-blox) | Windows | Can act as NTRIP client and push corrections to a connected F9P via USB; useful for bench tests |
+| **Emlid Flow** | iOS/Android | For Emlid Reach receivers; built-in NTRIP client; requires Emlid hardware |
+
+~ For hobbyist rover use in the field, SW Maps + a Bluetooth GNSS receiver
+(F9P-based) is the most common Android stack. For a permanent base setup,
+RTKBase's built-in source-push to an NTRIP caster replaces the need for a
+separate client.
+
 ---
 
 ## 6. Network RTK
@@ -595,15 +628,17 @@ several European national networks including some SAPOS states. ~
 ### 6.3 FKP and i-MAX (other NRTK modes)
 
 **FKP** (Flächen-Korrektur-Parameter, German origin / SAPOS): broadcasts
-a spatial gradient model; rover evaluates the polynomial at its own
-position rather than receiving a synthetic stream. RTCM msg 1034 ✓.
-Operationally identical to VRS for this project: mountpoints carry
-NMEA=1 and are dropped.
+a spatial gradient model (area correction parameters); rover evaluates
+the polynomial at its own position rather than receiving a synthetic
+stream. Originally transmitted in proprietary RTCM type 59 (Geo++
+message); standardised as RTCM 3.x message 1034 (GPS Network FKP
+Gradient) ✓. Operationally identical to VRS for this project: FKP
+mountpoints carry NMEA=1 (rover must send position) and are dropped.
 
 **i-MAX** ~ (Trimble): combines VRS and MAC ideas. Appears in some German
 and Swiss networks. Also NMEA=1 → dropped by the same filter.
 
-### 6.5 What this project shows
+### 6.4 What this project shows
 
 This project filters all NMEA=1 mountpoints as VRS/NRTK and shows
 the network as a coloured circle (if in-pipeline) or grey circle
@@ -629,9 +664,13 @@ amount proportional to Total Electron Content (TEC) and inversely
 proportional to f². ~
 
 TEC is measured in TECU (1 TECU = 10¹⁶ electrons/m²). Range delay
-at L1: ~0.16 m per TECU ✓ (formula: 40.3×10¹⁶/f² m/TECU, f in Hz). ~ During quiet conditions, vertical TEC
-over mid-latitudes is ~5–20 TECU; during severe storms it can reach
-200+ TECU over some regions. ~
+at L1: ~0.162 m per TECU ✓ (formula: 40.3×10¹⁶/f² m/TECU, f in Hz;
+at L1 1575.42 MHz → 40.3×10¹⁶ / (1575.42×10⁶)² ≈ 0.162 m/TECU).
+Note: the ionosphere advances the carrier phase by the same amount it
+delays the pseudorange (opposite sign) — this matters for PPP
+ambiguity resolution but not for RTK double-differencing.
+During quiet conditions, vertical TEC over mid-latitudes is ~5–20 TECU;
+during severe storms it can reach 200+ TECU over some regions. ~
 
 ### 7.2 Solar Cycle
 
@@ -640,9 +679,9 @@ The Sun follows an approximately 11-year activity cycle. ~
 - **Solar maximum**: increased UV and X-ray flux ionises more
   electrons; higher TEC, more variability, more frequent geomagnetic
   storms. Solar Cycle 25 peaked in October 2024 (smoothed sunspot
-  number ~161, exceeding the original prediction of 115) ✓ — the
-  2025–2026 period is early decline but still elevated; expect above-
-  average RTK degradation risk until ~2027–2028.
+  number 160.8, substantially exceeding the original prediction of ~115) ✓ —
+  the 2025–2026 period is declining phase but still elevated; expect
+  above-average RTK degradation risk until ~2027–2028. ✓
 - **Solar minimum**: lower TEC, quieter iono, longer RTK baselines
   work more reliably.
 
@@ -798,10 +837,12 @@ travelled a longer path than the direct signal. The receiver sees the
 superposition of the direct signal and one or more delayed copies. ~
 
 Effect on pseudorange: sinusoidal error with amplitude up to half the
-chip length. GPS C/A chip ≈ 293 m ✓ → theoretical half-chip ≈ 147 m,
-but correlator design limits the practical multipath error envelope to
-~15–30 m for consumer receivers. ~ P-code chip ≈ 29.3 m → half ≈ 15 m.
-Average real-world C/A pseudorange multipath: 0.5–3 m.
+chip length. GPS C/A chip ≈ 293 m ✓ → theoretical half-chip maximum
+≈ 146 m (for a reflected signal equal in amplitude to the direct),
+but narrow correlator design limits the practical multipath error
+envelope to ~5–15 m for modern consumer receivers; real-world values
+above 15 m are rarely observed ✓. P-code chip ≈ 29.3 m → theoretical
+half ≈ 15 m. Average real-world C/A pseudorange multipath: 0.5–3 m. ✓
 
 Effect on carrier phase: sinusoidal error with amplitude up to a
 quarter-wavelength (~5 cm at L1 ~). This is the critical number for
@@ -878,12 +919,13 @@ accuracy for everyone connected to that base.
 
 Minimum: dual-frequency (L1+L2) with RTCM 3.x output. The u-blox
 ZED-F9P is the dominant hobbyist reference receiver:
-- ~ Supports GPS L1/L2, GLONASS L1/L2, Galileo E1/E5b, BeiDou B1/B2
-- ~ RTCM 3.3 MSM4/MSM7 output
-- ~ Raw observable output for post-processing
-- ~ Up to 20 Hz output rate (1 Hz is standard for NTRIP base use)
-- ~ ~$130–180 for bare module; ~$250–400 in breakout boards (ArduSimple,
-  SparkFun, Ardusimple simpleRTK2B)
+- Supports GPS L1C/A+L2C, GLONASS L1OF+L2OF, Galileo E1B/C+E5b,
+  BeiDou B1I+B2I ✓ (note: E5b not E5a; L1/L2 not L5)
+- RTCM 3.3 MSM4/MSM7 output ✓
+- Raw observable output for post-processing ✓
+- Up to 20 Hz output rate (1 Hz is standard for NTRIP base use) ~
+- ~$88–180 for bare module (price has fallen since 2022); ~$200–400
+  in breakout boards (ArduSimple simpleRTK2B, SparkFun GPS-RTK2) ~
 
 For a permanent base feeding the public casters, a dedicated computer
 (Raspberry Pi 4 or equivalent) runs 24/7 — Pi consumes ~5W ~.
@@ -953,10 +995,14 @@ coordinate system), this is insufficient.
 Upload a RINEX file of 24h+ raw observations to a free PPP service:
 - **NRCAN CSRS-PPP** (Natural Resources Canada) — free automated web
   service; supports GPS+GLONASS, dual and single frequency, static and
-  kinematic modes; returns ITRF coordinates ✓. 24h observation →
-  cm-level absolute accuracy ✓.
+  kinematic modes; returns both ITRF and NAD83 coordinates ✓. 24h
+  observation → cm-level absolute accuracy ✓. Most useful service for
+  non-Canadian users who want ITRF; NAD83 vs ITRF difference is typically
+  0.5–1 m in North America and ~0.1–0.3 m elsewhere (epoch-dependent
+  plate-motion correction included in output).
+- **AUSPOS** (Geoscience Australia) — similar free web PPP service; returns
+  ITRF2014 coordinates; recommended for users in the Asia-Pacific region ~
 - GIPSY-OASIS (JPL) — similar, free for non-commercial ~
-- BKG's AUSPOS-type services ~
 
 After 24h processing, absolute accuracy: ~1–3 cm. ~
 After 1 week: sub-cm absolute. ~
@@ -1067,7 +1113,106 @@ Signs of problems:
   survey-in or autonomous — see §10.6
 - Caster connection dropping → check internet, caster-side limits
 
+### 10.8 RINEX Logging and Post-Processing
+
+RTKBase logs raw observations to RINEX format (via RTKLIB's convbin
+tool) alongside the real-time NTRIP source function. This enables two
+additional use cases beyond live RTK corrections:
+
+**PPP base position determination (§10.3 Method B):**  
+Upload the RINEX observation file from the first 24h of base operation
+to NRCAN CSRS-PPP (free). The service returns ITRF and NAD83 coordinates
+with cm-level absolute accuracy. Copy the ECEF or ellipsoidal coordinates
+into RTKBase's fixed-mode configuration to freeze the base position.
+
+**Post-processed kinematic (PPK):**  
+A rover recording raw RINEX observations in the field (e.g. a drone with
+an F9P logging module) can be post-processed against the base RINEX file
+using RTKLIB RTKPOST or RTKLIB-Explorer forks. PPK achieves the same 1–3 cm
+accuracy as real-time RTK but without a live internet link — important for
+UAV mapping where cellular connectivity is unavailable. The base RINEX
+log is the enabling asset.
+
+**RINEX file naming convention (standard):**  
+RINEX 3.x: `<StationName><MonumentCode>_R_<YYYY><DDD><HH><MM>_<duration>_<interval>_<system>O.rnx`  
+RINEX 2.x: `<station><DDD><session>.<YY>o`  
+RTKBase uses RINEX 3.x by default and rotates files hourly. The `.ubx`
+raw binary file is also retained, which can be re-converted to RINEX with
+different settings if needed.
+
 ---
+
+## 11. Common Troubleshooting Scenarios
+
+This section maps frequent user symptom reports to likely causes and
+diagnostic steps. "User" refers to a hobbyist connecting to one of
+the free NTRIP networks on this project's map.
+
+### 11.1 "I connected to NTRIP but I'm getting Float, not Fix"
+
+Float means corrections are flowing but integer ambiguities are not
+resolved. Most likely causes in descending order:
+
+1. **Baseline too long** — the selected mountpoint is >30 km away.
+   Solution: choose a closer station. Check map at close zoom.
+2. **Poor sky visibility** — fewer than 5–6 satellites with clean
+   signal prevents IAR. Check PDOP/satellite count in rover display.
+   Move to open sky; wait for satellite geometry to improve.
+3. **Elevated ionospheric activity** — check current Kp at swpc.noaa.gov.
+   If Kp ≥ 5, RTK may be unreliable; wait for conditions to improve.
+4. **Receiver warmup** — immediately after connecting, float is normal.
+   Allow 30–120 s in good conditions.
+5. **Format mismatch** — rover doesn't support the stream format (e.g.
+   legacy RTCM 2.x from an old base). Check legacyFormat flag in popup.
+6. **Missing 1005/1006** — base position message absent from stream.
+   The rover cannot compute a baseline without it. Check with SNIP or
+   str2str monitor. This is rare on established networks.
+
+### 11.2 "Fix drops every few minutes"
+
+Most likely: intermittent internet connectivity causing correction age
+to exceed the receiver's timeout (60 s default on F9P). Steps:
+1. Check NTRIP client's correction age display.
+2. Disable battery optimisation for the NTRIP app on Android.
+3. Test with a cellular data speed test — if latency spikes >500 ms,
+   move to better cellular coverage or switch to a closer caster
+   (fewer WAN hops).
+4. Consider a local str2str relay: `str2str -in ntrip://... -out tcpsvr://:2101`
+   on a laptop caches the stream and decouples the rover from cellular.
+
+### 11.3 "RTK worked last week, nothing has changed"
+
+If nothing physical changed (same location, same hardware):
+1. **Check if the mountpoint disappeared** — casters lose volunteer
+   bases when the base operator disconnects. Reload this map; look for
+   the mountpoint still being shown.
+2. **Check space weather** — a geomagnetic storm can persist 12–24 h
+   after Kp drops back below 4. Residual ionospheric irregularities
+   (travelling ionospheric disturbances, TIDs) can prevent fix long
+   after the storm index normalises.
+3. **Check if the caster's sourcetable changed** — the base may have
+   changed its format or coordinates in the NTRIP sourcetable, causing
+   the rover software to reject the stream as incompatible.
+
+### 11.4 "I get Fix but the position seems wrong by a metre or more"
+
+This is the "fixed but wrong" scenario. Most likely causes:
+
+1. **Base position set from short survey-in** — if the base used a
+   30-second or 5-minute survey-in (typical default), its reported
+   position may be 1–3 m off absolute. All rover fixes are correct
+   relative to that base, but wrong in absolute terms. Solution:
+   switch to a network caster (this project's sources), not a private
+   volunteer base.
+2. **Wrong coordinate frame** — if the base uses a local datum that
+   doesn't match the rover's display datum, there will be a systematic
+   offset. ITRF coordinates from PPP do not equal local datum
+   coordinates (difference is 0.2–1 m in many countries). For survey
+   work, apply a datum transformation.
+3. **Cycle slip that went undetected** — a cycle slip during a multipath
+   event can shift the fix by an integer number of carrier wavelengths
+   (~19 cm at L1). The receiver reports "Fix" but the solution jumped.
+   Reacquire fix in clean sky; compare before and after.
 
 ---
 
@@ -1087,19 +1232,29 @@ Signs of problems:
 - [GLONASS Signal Plan — ESA Navipedia](https://gssc.esa.int/navipedia/index.php/GLONASS_Signal_Plan)
 - [GLONASS CDMA signals — GPS World](https://www.gpsworld.com/glonass-cdma-signals-now-on-l1-l2/)
 - [Solar Cycle 25 forecast — NOAA SWPC](https://www.swpc.noaa.gov/news/solar-cycle-25-forecast-update)
-- [Solar Cycle 25 progression — NOAA SWPC](https://www.swpc.noaa.gov/products/solar-cycle-progression) (actual smoothed peak Oct 2024, SSN ~161)
+- [Solar Cycle 25 progression — NOAA SWPC](https://www.swpc.noaa.gov/products/solar-cycle-progression) (actual smoothed peak Oct 2024, SSN 160.8 ✓)
 - [Observed effects of geomagnetic storm on RTK — SWSC Journal](https://www.swsc-journal.org/articles/swsc/full_html/2012/01/swsc120026/swsc120026.html)
 - [High-lat GNSS disturbances at sub-minor storm — Andalsvik 2014](https://agupubs.onlinelibrary.wiley.com/doi/full/10.1002/2014RS005418)
 - [ZED-F9P Product Summary — u-blox](https://content.u-blox.com/sites/default/files/ZED-F9P_ProductSummary_UBX-17005151.pdf)
 - [ZED-F9P for geodetic measurement — ResearchGate](https://www.researchgate.net/publication/360316310_UBLOX_F9P_FOR_GEODETIC_MEASUREMENT)
+- [ZED-F9P Integration Manual — u-blox](https://content.u-blox.com/sites/default/files/ZED-F9P_IntegrationManual_UBX-18010802.pdf) (signal bands: L1C/A+L2C, L1OF+L2OF, E1+E5b, B1I+B2I ✓)
+- [ZED-F9P-05B Datasheet — u-blox](https://content.u-blox.com/sites/default/files/documents/ZED-F9P-05B_DataSheet_UBXDOC-963802114-12824.pdf) (L1/L5 variant ✓)
 - [CSRS-PPP — NRCAN](https://webapp.csrs-scrs.nrcan-rncan.gc.ca/geod/tools-outils/ppp.php)
 - [VRS vs MAC principles — Janssen 2009](https://www.spatial.nsw.gov.au/__data/assets/pdf_file/0003/129414/2009_Janssen_IGNSS2009_VRS_vs_MAC.pdf)
 - [VRS connection examples — SNIP Support](https://www.use-snip.com/kb/knowledge-base/virtual-reference-station-vrs-connection-examples/)
-- [GPS C/A multipath error — NovAtel tech talk](https://novatel.com/tech-talk/an-introduction-to-gnss/resources/understanding-and-mitigating-gnss-multipath-interference-and-error)
+- [GPS C/A multipath error envelope — NovAtel tech talk](https://novatel.com/tech-talk/an-introduction-to-gnss/resources/understanding-and-mitigating-gnss-multipath-interference-and-error)
+- [Multipath error envelopes — Navipedia](https://gssc.esa.int/navipedia/index.php/Multipath) (practical max ~15 m for C/A ✓)
 - [ZED-F9P survey-in CFG-TMODE3 — Drotek RTK docs](https://drotek.gitbook.io/rtk-f9p-positioning-solutions/tutorials/setting-survey-in-time-and-position-accuracy)
-- [ZED-F9P integration manual — u-blox](https://content.u-blox.com/sites/default/files/ZED-F9P_IntegrationManual_UBX-18010802.pdf)
+- [ZED-F9P DGNSS timeout (NAV5 60 s default) — u-blox portal](https://portal.u-blox.com/s/question/0D52p0000DHOvhwCQD/why-is-dgnss-timeout-in-nav5-navigation-5-configuration-default-set-to-60s-for-zedf9p-module-) ✓
 - [Triple-frequency RTK widelane review — JGPS 2018](https://jgps.springeropen.com/articles/10.1186/s41445-018-0010-y)
 - [RTCM 3 SSR message list — SNIP Support](https://www.use-snip.com/kb/knowledge-base/rtcm-3-message-list/)
-- [GLONASS Signal Plan — ESA Navipedia](https://gssc.esa.int/navipedia/index.php/GLONASS_Signal_Plan)
+- [GLONASS K2 signal analysis 2024 — DLR](https://elib.dlr.de/204822/1/Thoelert%20etal%202024_GLONASS%20K2%20signal%20analysis.pdf)
+- [RTCM Message Type 59-FKP — Geo++ White Paper](http://www.geopp.com/pdf/geopp-rtcm-fkp59.pdf) (FKP proprietary origin, standardised as RTCM 1034 ✓)
+- [Ionospheric Delay formula — Navipedia](https://gssc.esa.int/navipedia/index.php/Ionospheric_Delay) (40.3×10¹⁶/f² m/TECU ✓)
+- [QZSS seven-satellite constellation — Cabinet Office Japan](https://qzss.go.jp/en/overview/services/seven-satellite.html) ✓
+- [NavIC constellation status — GPS World, ISRO](https://www.gpsworld.com/indias-navic-constellation-in-jeopardy-as-majority-of-satellites-become-defunct/) ✓ (degraded to ≤3 operational as of March 2026)
+- [Galileo HAS PPP-RTK convergence — GPS Solutions 2024](https://link.springer.com/article/10.1007/s10291-024-01617-7)
+- [BDS-3 constellation completion — GPS World](https://www.gpsworld.com/two-new-beidou-satellites-complete-bds-3-constellation/) (45 total satellites, 30 BDS-3 ✓)
+- [Klobuchar model correction efficiency — Navipedia](https://gssc.esa.int/navipedia/index.php/Klobuchar_Ionospheric_Model) (~50–70% RMS removal globally ✓)
 
-_Last updated: 2026-04-24. Second validation pass: 2026-04-24._
+_Last updated: 2026-04-24. Third validation pass: 2026-04-24._
