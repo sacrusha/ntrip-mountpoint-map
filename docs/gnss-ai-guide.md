@@ -97,9 +97,12 @@ not yet tracked by the u-blox F9P or most hobbyist hardware. ✓
   F9P over an M8P is ~$50–100 and dual-band fixes the dominant failure
   modes, so for new purchases the rule remains "avoid for new purchases."
 - **False-fix risk is materially higher.** Single-frequency RTK published
-  false-fix rates reach ~15% of epochs ✓ (PMC/Sensors 2019 smartphone
-  study) — a structural argument against using L1-only for any decision
-  with monetary or safety consequence.
+  false-fix rates reach ~15% of epochs in the smartphone-class
+  measurement environment of Wanninger & Heßelbarth 2019 (a dual-band
+  chip run in single-band mode under typical handheld multipath) ~ — the
+  number does not transfer cleanly to a dedicated L1-only receiver on a
+  survey antenna, but the directional argument against L1-only for
+  decisions with monetary or safety consequence stands.
 
 **Dual-frequency (L1+L2 or equivalent):**
 - Forms the ionosphere-free (iono-free) linear combination: cancels
@@ -147,6 +150,15 @@ canopy, solar-max periods), upgrading to triple-band is a valid
 recommendation. If they have a single-frequency receiver, the most
 impactful hardware change is moving to dual-band, not antenna or
 software changes.
+
+> **Implication for `guide.html`:** the existing compatibility callout
+> ("the receiver must be dual-frequency (L1+L2 minimum)") is the right
+> shorthand for the target audience. The 5 km L1-only viability window is
+> too narrow to be useful for a hobbyist trying to find the *nearest*
+> available station, and the elevated false-fix risk is a safety
+> argument against softening the message. Do not edit guide.html to
+> claim "single-frequency can do RTK at short range" — even though that
+> statement is technically true.
 
 ### 1.4 Signal Structure (GPS L1 example)
 
@@ -641,10 +653,11 @@ break resets the corresponding ambiguity states. On a standard float PPP
 receiver, a full-sky blockage (bridge overpass, tunnel) requires 10–30 min
 to re-converge; a partial blockage affecting a few satellites takes less
 but still several minutes. On a PPP-AR receiver with atmospheric state
-bridging (NovAtel TerraStar-D, Septentrio with SPARTN), a 5-second
-interruption can recover in 1–3 minutes because the filter preserves the
-ionospheric and tropospheric state estimates across the gap. ✓ (NovAtel
-Velocity 2014; Banville & Langley, ResearchGate 289224452; FIG 2016)
+bridging (NovAtel TerraStar-C PRO, Septentrio with SPARTN, Trimble RTX
+FAST), a 5-second interruption can recover in ~30–90 s because the
+filter preserves the ionospheric and tropospheric state estimates across
+the gap. ✓ (NovAtel Velocity 2014; Banville & Langley, ResearchGate
+289224452; FIG 2016) See expanded mechanism below.
 
 **Galileo HAS Phase 1 early-convergence accuracy.** HAS Phase 1
 (currently available) does not include satellite phase bias products,
@@ -700,7 +713,7 @@ latency tiers, each with progressively better accuracy:
 | Ultra-rapid (predicted half) | Real-time (computed in advance) | ~5 cm RMS ~ | ~3 ns ~ | Real-time PPP via NTRIP feed (RTCM SSR) |
 | Ultra-rapid (observed half) | 3–9 h | ~3 cm RMS ✓ | ~150 ps ✓ | Near-real-time PPP, hourly updates |
 | Rapid | ~17 h | ~2.5 cm RMS ✓ | ~75 ps ✓ | Same-day batch PPP processing |
-| Final | 12–18 days | ~2.5 cm RMS ✓ | ~75 ps ✓ | Reference-grade post-processing; geodesy |
+| Final | 12–18 days | ~2.5 cm RMS ✓ | ~20 ps ✓ | Reference-grade post-processing; geodesy |
 
 (source: IGS Products page, igs.org/products) The free PPP web services
 (CSRS-PPP, AUSPOS, OPUS, magicGNSS) automatically use the best available
@@ -719,7 +732,7 @@ estimated atmosphere short-cuts the regression. ✓ (NovAtel Velocity
 
 - Without bridging: a 5-second sky obstruction triggers full re-
   convergence (10–30 min on float PPP).
-- With bridging (NovAtel TerraStar-D, Septentrio with SPARTN, Trimble
+- With bridging (NovAtel TerraStar-C PRO, Septentrio with SPARTN, Trimble
   RTX FAST): the same gap recovers in 30–90 s ~.
 
 This is why an IMU-equipped PPP-AR receiver with bridging (e.g. Trimble
@@ -733,22 +746,29 @@ tunnels that would invalidate a float-PPP-only receiver entirely.
 | **Galileo HAS SL1** | Free | Float PPP-RTK | <300 s spec / 6–15 min observed | Global | E6-B receiver (UM980, Mosaic-X5, Eos Arrow Gold+, LG290P) |
 | **QZSS CLAS** | Free | PPP-AR (with state-space) | <60 s spec, ~30 s observed ✓ | Japan + ~1500 km | L6-D receiver |
 | **BeiDou PPP-B2b** | Free | PPP-RTK | <30 min ~ | China + Asia-Pacific | B2b-tracking receiver |
-| **NavIC SPS** | Free | Standalone (no PPP) | n/a | India + ~1500 km | NavIC L5/S receiver |
-| **Trimble RTX (CenterPoint)** | ~$1,500/yr-equivalent | PPP-AR | <1 min (RTX FAST), ~5 min (RTX) | Global | Trimble GNSS hardware + subscription |
+| **Trimble RTX (CenterPoint)** | ~$1,500/yr-equivalent | PPP-AR + bridging | <1 min (RTX FAST), ~5 min (RTX) | Global | Trimble GNSS hardware + subscription |
 | **NovAtel TerraStar-C PRO** | Subscription | PPP-AR + bridging | 5–18 min | Global | NovAtel OEM7 / SMART7 + subscription |
 | **Hexagon HxGN SmartNet PPP** | Subscription | PPP-AR | 5–10 min | Global | Multi-vendor with subscription |
 | **u-blox PointPerfect** | Subscription | SPARTN PPP-RTK | <1 min | Continental US/EU + maritime | u-blox NEO-D9S + ZED-F9P/F9R |
 | **Swift Skylark** | Subscription | PPP-RTK | <1 min | US/EU + selected | Skylark-compatible Swift hardware |
 | **CSRS-PPP** (NRCan) | Free | PPP-AR (post-processed) | n/a (batch) | Global | Any RINEX upload |
-| **AUSPOS** (GA) | Free | PPP-AR (post-processed) | n/a (batch) | Global, Asia-Pacific tuned | Any RINEX upload |
+| **AUSPOS** (GA) | Free | Precise differential (post-processed; double-differenced against IGS/APREF via Bernese) ~ | n/a (batch) | Global, Asia-Pacific tuned | Any RINEX upload |
 
-For a hobbyist wanting cm-level positioning **without** an NTRIP caster:
-free real-time PPP-RTK is realistic only via Galileo HAS / QZSS CLAS /
-BeiDou PPP-B2b — and only on hardware that tracks the relevant E6 / L6 /
-B2b signal. This is the structural reason this project's map is still
-useful: NTRIP RTK on a standard ZED-F9P is the cheapest route to
-cm-class real-time accuracy in regions outside HAS/CLAS/B2b coverage or
-for users with hardware that does not track those signals.
+NavIC SPS is intentionally absent from the table: it is a standalone
+positioning service, not PPP-RTK. Galileo HAS / QZSS CLAS / BeiDou
+PPP-B2b are the only free SBAS-or-PPP-tier corrections in active service
+that deliver carrier-phase-driven accuracy to a compatible receiver. ~
+
+> **Implication for `guide.html`:** for a hobbyist wanting cm-level
+> positioning **without** an NTRIP caster, free real-time PPP-RTK is
+> realistic only via Galileo HAS / QZSS CLAS / BeiDou PPP-B2b — and only
+> on hardware that tracks the relevant E6 / L6 / B2b signal. This is the
+> structural reason this project's map remains useful: **NTRIP RTK on a
+> standard ZED-F9P is the cheapest route to cm-class real-time accuracy
+> in regions outside HAS/CLAS/B2b coverage or for users with hardware
+> that does not track those signals.** The user-facing guide's current
+> framing of HAS as "search elsewhere if you need standalone" is correct
+> and should be preserved.
 
 ### 3.6 SSR vs OSR
 
@@ -884,21 +904,25 @@ broadcasting MSM7 for four constellations at 1 Hz consumes ~4–8 kbps,
 well within capacity. (See §10.5 for the practical receiver-config
 implication: prefer MSM7 unless on a constrained link.)
 
-**Satellite mask encoding** uses constellation-specific PRN ordering
+**Satellite mask encoding** uses constellation-specific satellite ordering
 defined in the RTCM standard. ~ For GPS: bit 0 → PRN 1, bit 1 → PRN 2,
-…, bit 31 → PRN 32; bits 32–63 reserved. For GLONASS: bit i → slot
-number (i+1) using FDMA channel assignment. For Galileo: bit i →
-satellite ID (i+1).
+…, bit 31 → PRN 32; bits 32–63 reserved. For GLONASS: bit 0 → orbital
+slot R01, bit 1 → R02, …, bit 23 → R24; bits 24–63 reserved. The FDMA
+channel number (−7 to +6) is **not** in the satellite mask — it is
+carried separately in the GLONASS ephemeris (RTCM message 1020). For
+Galileo: bit i → satellite ID (i+1).
 
 **Signal mask encoding** is signal-and-band specific per constellation.
-For GPS, bit positions correspond to: 1C (L1 C/A), 1P (L1 P), 1W (L1 Z),
-2C (L2 C/A), 2P (L2 P), 2W (L2 Z), 2S (L2 CM), 2L (L2 CL), 2X (L2 C/A+P),
-5I (L5 I), 5Q (L5 Q), 5X (L5 I+Q), 1L (L1 cnav), 1S (L1 csav). ~ The
-specific bit-to-signal mapping is in the RTCM 3 standard — receivers must
-correctly interpret it or the carrier-phase observations are silently
-attributed to the wrong band. This is one source of "stream looks valid
-but rover stays float" reports: a non-standard signal-mask interpretation
-in legacy firmware.
+For GPS, bit positions correspond to RINEX 3 signal codes: 1C (L1 C/A),
+1P (L1 P), 1W (L1 Z-tracking), 1L / 1S (L1C pilot / data — modernised
+civil), 2C (L2C, the modernised civil signal — distinct from L1 C/A),
+2P (L2 P), 2W (L2 Z-tracking), 2S (L2 CM), 2L (L2 CL), 2X (L2 CM+CL
+combined tracking), 5I (L5 I), 5Q (L5 Q), 5X (L5 I+Q combined). ~
+The specific bit-to-signal mapping is in the RTCM 3 standard —
+receivers must correctly interpret it or the carrier-phase observations
+are silently attributed to the wrong band. This is one source of "stream
+looks valid but rover stays float" reports: a non-standard signal-mask
+interpretation in legacy firmware.
 
 **Why this matters operationally:**
 
@@ -1314,9 +1338,11 @@ FKP gradient), is:
 ```
 
 with separate `N` (geometric/tropospheric) and `I` (ionospheric)
-coefficients per satellite. ✓ (source: Geo++ FKP white paper; RTCM 3
-message 1034 specification) The reference point `(lat_ref, lon_ref)` is
-typically a master station near the rover.
+coefficients per satellite. ~ (source: Geo++ FKP white paper, originally
+proprietary RTCM Type 59-FKP; the cited PDF predates the RTCM 3.x
+standardisation and several published references disagree on whether the
+final assignment is RTCM 1034) The reference point `(lat_ref, lon_ref)`
+is typically a master station near the rover.
 
 **Why FKP exists alongside MAC:** historically a different industrial
 faction pushed FKP (Geo++/SAPOS) vs MAC (Leica/Trimble alliance). FKP is
@@ -1324,6 +1350,10 @@ slightly more bandwidth-efficient than MAC for very large networks
 (polynomial coefficients vs per-aux-station deltas). MAC is more
 adaptable to non-uniform station spacing. Both produce equivalent
 positioning accuracy in practice. ~
+
+**In this project's pipeline, FKP mountpoints carry `nmea=1` (the
+rover's position is needed to evaluate the polynomial) and are dropped
+by the same NMEA filter as VRS, MAC, and i-MAX.**
 
 **i-MAX** (Trimble's "individualised MAX") is a hybrid: the server
 performs the gradient interpolation per-rover (as in VRS) but emits the
@@ -2113,13 +2143,20 @@ clean RTCM. Diagnostic by symptom:
 | Stream stops cleanly after N seconds, no error | Mountpoint reached its max-connection-time limit (some casters disconnect after 1 h). Reconnect. |
 | GGA upstream produces "400 Bad Request" reply | NTRIP v1 caster expecting raw TCP; client sending HTTP/1.1 chunked GGA. Switch client to NTRIP v1 mode. |
 
-**Useful diagnostic tools:**
+**Useful diagnostic tools (developer-level):**
 - `str2str -in ntrip://user:pass@host:2101/MOUNT -out file://dump.rtcm`
   — logs the raw byte stream for offline inspection.
 - `convbin dump.rtcm` (RTKLIB) — converts to RINEX, validates that the
   bytes are well-formed RTCM 3.
 - `BNC` (BKG NTRIP Client) — desktop app with a built-in RTCM message
   decoder; shows per-message-type counts per second.
+
+> **Implication for `guide.html`:** only the beginner-actionable rows
+> from the table above belong in user-facing copy — wrong-mountpoint URL
+> (the `SOURCETABLE 200 OK` row), keep-alive padding from a dead base
+> (try a different mountpoint), and disconnect-on-time-limit (reconnect).
+> The `str2str` / `convbin` / BNC diagnostic flow is a developer tool
+> path; do not surface it in `guide.html`.
 
 ### 11.9 "Velocity output looks wrong / position is stable but velocity reads non-zero"
 
@@ -2137,10 +2174,13 @@ estimated velocity walks within its variance band.
 - **Velocity is non-zero but position is also drifting at the same
   rate** — receiver is in float mode, see §3.3 float drift mechanism.
 - **Velocity reads zero exactly** at a moving rover — the firmware is
-  in *static* mode; switch to kinematic via UBX-CFG-NAV5 dynModel = 4
-  for portable rovers (default for ZED-F9P) or 0 for genuinely
-  stationary applications. ✓ (source: u-blox F9 Interface Description,
-  CFG-NAV5)
+  in *static* mode (UBX-CFG-NAV5 `dynModel = 2`). Switch to a kinematic
+  model: `dynModel = 0` (Portable, the ZED-F9P default — general
+  hand-held / pole survey use); `dynModel = 4` (Automotive — only for
+  land-vehicle mounting); `dynModel = 6–8` (Airborne &lt;1g / &lt;2g / &lt;4g
+  for UAV). Picking the wrong model constrains the Kalman filter's
+  expected dynamics and degrades fix performance for the actual motion
+  profile. ✓ (source: u-blox F9 Interface Description, CFG-NAV5)
 
 **For PPK users:** velocity output from RTKLIB is a *derived* quantity
 from position differences between consecutive epochs unless the receiver
@@ -3224,24 +3264,22 @@ For `guide.html`:
 - [LINZ — PositioNZ data licensing terms](https://www.linz.govt.nz/data/linz-data/use-and-share-data) (CC BY 4.0 NZ ✓)
 - [Geoscience Australia — AUSCORS data terms](https://gnss.ga.gov.au/) (CC BY 4.0 plus operational ToS ✓)
 - [SAPOS — Free use vs paid commercial tier overview](https://sapos.de/) (per-state landesvermessungsamt portals; Bavaria €20/yr non-ag ✓)
-- [IGS Products — Orbit/clock latency tiers](https://igs.org/products/) (ultra-rapid predicted/observed, rapid, final accuracy ladder ✓)
-- [NRCan CSRS-PPP-AR — release notes 2018](https://webapp.csrs-scrs.nrcan-rncan.gc.ca/geod/tools-outils/ppp.php) (free PPP-AR mode for post-processing ✓)
+- [IGS Products — Orbit/clock latency tiers](https://igs.org/products/) (ultra-rapid predicted/observed, rapid, final accuracy ladder; Final clock ~20 ps ✓)
 - [Galileo HAS Phase 2 roadmap — GSC service definition](https://www.gsc-europa.eu/galileo/services/galileo-high-accuracy-service-has) (HAS Phase 2 includes phase bias products; not yet committed ~)
-- [QZSS CLAS service definition — Cabinet Office Japan](https://qzss.go.jp/en/technical/ps-is-qzss/ps-is-qzss.html) (CLAS PPP-AR convergence target <60 s ✓)
+- [QZSS CLAS Interface Specification IS-QZSS-L6-001 — Cabinet Office Japan](https://qzss.go.jp/en/technical/ps-is-qzss/ps-is-qzss.html#is-qzss-l6) (CLAS PPP-AR convergence target <60 s; the document index page links to the L6 spec PDF ~)
 - [BeiDou PPP-B2b service](http://en.beidou.gov.cn/SYSTEMS/Officialdocument/) (B2b PPP-RTK service definition ~)
 - [Trimble RTX positioning service](https://positioningservices.trimble.com/services/rtx/) (CenterPoint RTX/RTX FAST convergence specs ✓)
 - [u-blox PointPerfect SPARTN service](https://www.u-blox.com/en/product/pointperfect) (SPARTN PPP-RTK; <1 min convergence with NEO-D9S ✓)
 - [Swift Skylark precise positioning](https://www.swiftnav.com/precise-positioning-service) (Skylark PPP-RTK service specs ✓)
 - [SNIP knowledge base — RTCM 3 MSM message structure detail](https://www.use-snip.com/kb/knowledge-base/an-rtcm-3-message-cheat-sheet/) (header, satellite/signal/cell mask layout ✓)
 - [Tersus GNSS — RTCM3 MSM detailed reference](https://www.tersus-gnss.com/tech_blog/new-additions-in-rtcm3-and-What-is-msm) (MSM cell-mask sparse-matrix structure ✓)
-- [Geo++ FKP white paper — RTCM message 1034](http://www.geopp.com/pdf/geopp-rtcm-fkp59.pdf) (FKP polynomial form; geometric and ionospheric coefficients ✓)
 - [VRS vs MAC principles — Janssen 2009 IGNSS](https://www.spatial.nsw.gov.au/__data/assets/pdf_file/0003/129414/2009_Janssen_IGNSS2009_VRS_vs_MAC.pdf) (RTCM MAC message types 1014–1017; rover-side network reconstruction ✓)
-- [u-blox F9 Interface Description — UBX-CFG-VALSET layer flags](https://content.u-blox.com/sites/default/files/documents/u-blox-F9-HPG-1.50_InterfaceDescription_UBX-22010984.pdf) (RAM/BBR/FLASH layer persistence; CFG-NAV5 dynModel ✓)
-- [u-blox F9P TMODE3 fixed-mode configuration — Drotek RTK docs](https://drotek.gitbook.io/rtk-f9p-positioning-solutions/tutorials/setting-survey-in-time-and-position-accuracy) (CFG-TMODE-MODE values; survey-in vs fixed ✓)
+- [u-blox F9 Interface Description — UBX-CFG-VALSET layer flags + CFG-NAV5 + CFG-TMODE3](https://content.u-blox.com/sites/default/files/documents/u-blox-F9-HPG-1.50_InterfaceDescription_UBX-22010984.pdf) (authoritative source for RAM/BBR/FLASH layer persistence, CFG-NAV5 dynModel values 0/2/4/6–8, and CFG-TMODE-MODE survey-in vs fixed ✓)
+- [Geoscience Australia — AUSPOS processing methodology](https://gnss.ga.gov.au/auspos) (Bernese-based double-difference network solution against IGS/APREF; not PPP-AR ~)
 - [NMEA 0183 talker IDs — multi-constellation receivers emit GN prefix](https://gpsd.gitlab.io/gpsd/NMEA.html) (`GNGGA` for combined GPS+GLONASS+Galileo; `GPGGA` GPS-only ✓)
 - [rtklibexplorer — L1-only RTK feasibility](https://rtklibexplorer.wordpress.com/2017/04/26/rtklib-and-low-cost-l1-receivers/) (M8N + RTKLIB short-baseline single-frequency RTK ✓)
 - [Galileo NeQuick ionospheric model — ESA](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo_Ionospheric_Model.pdf) (NeQuick correction efficiency vs Klobuchar ~)
-- [Banville & Langley 2013 — Real-time PPP atmospheric state preservation](https://www.researchgate.net/publication/289224452_Rapid_re-convergence_in_real-time_precise_point_positioning_with_ambiguity_resolution) (atmospheric bridging mechanism in PPP-AR ✓)
 
 _Last updated: 2026-04-25. Eighth validation pass: 2026-04-25 (PR1 — added §14 Antennas, §15 Jamming/Spoofing, §16 PPK, §17 Tilt Compensation, §18 Data Licensing)._
 _Ninth validation pass: 2026-04-25 (PR2 — depth expansion of §1.3 single-frequency boundary, §3.5 PPP-AR/IGS-products/bridging/free-vs-commercial-PPP-RTK, §4.3 MSM internal structure, §6 NRTK algorithm comparison, §11.6–11.9 new troubleshooting scenarios)._
+_Tenth validation pass: 2026-04-25 (PR2 multi-perspective review fixes — §4.3 GLONASS satellite mask is orbital slots not FDMA; GPS 2C is L2C not L2 C/A; §3.5 IGS Final clock corrected to ~20 ps; §3.5 AUSPOS reclassified as DD network solution; NavIC removed from PPP table; TerraStar-D → C PRO consistency; FKP drop-rationale restored in §6.3; RTCM 1034 mark downgraded to ~; §11.9 dynModel = 0/4/6 disambiguated; smartphone-context qualifier on the 15% false-fix claim; explicit guide.html implication callouts in §1.3, §3.5, §11.8; four duplicate source-list entries removed; QZSS CLAS URL specified; Drotek attribution moved to authoritative u-blox spec)._
