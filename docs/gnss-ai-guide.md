@@ -32,11 +32,11 @@
 
 | Constellation | Operator | Satellites (approx) | Notes |
 |---|---|---|---|
-| GPS | USA (DoD) | 31 active | L1/L2/L5; oldest, most receiver support |
+| GPS | USA (DoD) | 32 active | L1/L2/L5; oldest, most receiver support; GPS III block complete Apr 2026 ✓ |
 | GLONASS | Russia (Roscosmos) | ~24 | FDMA on L1/L2 (legacy, different freq per satellite); CDMA on L1/L2/L3 (newer sats) ✓ |
-| Galileo | EU (GSA/EUSPA) | ~30 | E1/E5a/E5b/E6; E6 carries HAS corrections ✓ |
-| BeiDou (BDS-3) | China (CNSA) | 45 (15 BDS-2 + 30 BDS-3) | B1C/B1I/B2a/B2b/B3I; regional + global ✓ |
-| QZSS | Japan (Cabinet Office) | 4 (expanding to 7) | Geosynchronous+inclined; augments GPS over Japan/Asia-Pacific; 7-satellite constellation actively being built ✓ |
+| Galileo | EU (EUSPA, formerly GSA) | ~26–28 operational of 34 launched | E1/E5a/E5b/E6; E6 carries HAS corrections ✓ |
+| BeiDou (BDS-3) | China (CNSA) | 45 (15 BDS-2 + 30 BDS-3 core constellation) | B1C/B1I/B2a/B2b/B3I; regional + global ✓; additional satellites launched post-2020 |
+| QZSS | Japan (Cabinet Office) | 4 (planned expansion to 7) | Geosynchronous+inclined; augments GPS over Japan/Asia-Pacific; QZS-5 failed to reach orbit Dec 2025 — 7-satellite timeline uncertain ~ |
 | NavIC (IRNSS) | India (ISRO) | ~3–4 operational | Regional only (Indian subcontinent + ~1500 km); severely degraded as of 2026 — atomic clock failures have reduced active satellites below the minimum operational threshold of 4; limited receiver support ✓ |
 
 ~ = model assumption; not yet source-verified.
@@ -66,15 +66,20 @@ not yet tracked by the u-blox F9P or most hobbyist hardware. ✓
 
 **Single-frequency (L1 only):**
 - Cannot remove ionospheric delay; relies on Klobuchar model correction
-  (~50–70% RMS removal globally; performance is worse at equatorial and
-  high latitudes) ✓
+  (~50% RMS removal globally; up to ~60% at mid-latitudes under quiet
+  conditions; performance is worse at equatorial and high latitudes) ~
 - Reliable RTK fix roughly within 10 km of base; degrades fast beyond that
 - Increasingly uncommon in dedicated RTK hardware; avoid for new purchases
 
 **Dual-frequency (L1+L2 or equivalent):**
 - Forms the ionosphere-free (iono-free) linear combination: cancels
   ~99% of first-order iono delay ~
-- Reliable fix out to ~30 km under normal conditions
+- Reliable fix out to ~30 km under typical ionospheric conditions; range is
+  strongly ionosphere-dependent — the same hardware can hold fix at 50 km on
+  a quiet day and fail at 20 km during a geomagnetic storm ~. Emlid RS2+
+  published technical specification: 60 km RTK, 7 mm + 1 ppm horizontal ✓
+  (formal product spec, not marketing copy — manufacturers understate in specs
+  they can be held to legally; ionosphere is the dominant variable).
 - The practical minimum for NTRIP RTK at useful baselines
 - Examples: ZED-F9P (GPS L1/L2C + GLONASS L1OF/L2OF + Galileo E1/E5b +
   BeiDou B1I/B2I) ✓; Emlid RS2+
@@ -134,6 +139,93 @@ track all available constellations simultaneously. A receiver described
 as "GPS+GLONASS+Galileo+BeiDou" typically delivers better sky coverage
 (more satellites visible), faster ambiguity resolution, and more
 resilience to partial sky blockage than GPS-only.
+
+### 1.6 Phone and Consumer Device Limitations
+
+Modern flagship smartphones carry dual-frequency GNSS chips (L1+L5) yet
+cannot perform centimetre-level RTK. There are three distinct barriers;
+they do not all bind equally on iOS vs Android.
+
+**iOS — OS API is the absolute blocker:**  
+Apple's CoreLocation exposes only a processed `CLLocation` object (lat/lon/
+altitude/accuracy) to third-party apps. No pseudoranges, no carrier-phase
+(accumulated delta range), no per-satellite C/N0, and no RTCM injection
+point exist in any public or private entitlement as of 2026. ✓
+(source: Apple developer forums, confirmed by Apple engineer)  
+Apps that appear to show GNSS signal quality on iOS are re-parsing the
+processed CLLocation and almanac data — not reading raw observables from
+the chip. An iOS NTRIP client app can fetch RTCM from a caster and relay
+it byte-for-byte via Bluetooth to an *external* RTK receiver, but the
+phone's own chip never receives those corrections. RTK on the internal
+iPhone chip is impossible regardless of chip capability.
+
+**Android — API works, duty cycling and antenna bind:**  
+`android.location.GnssMeasurement` (API 24, Android 7+) exposes accumulated
+delta range (ADR — the carrier-phase proxy), pseudorange, C/N0, and Doppler
+per satellite. Raw measurement support is mandatory on Android 10+ hardware. ✓
+ADR itself is not mandatory in the Android CDD — Qualcomm Snapdragon devices
+historically do not report it. Broadcom-based Pixels (5, 6, 7, 8, 9 series)
+do expose ADR. ✓ (source: Android developer docs, Broadcom BCM47765 data)
+
+*Duty cycling* is the critical hidden problem: Android powers the GNSS chip
+on ~200 ms then off ~800 ms each second to save battery, causing a carrier-
+phase cycle slip every epoch. This makes the ADR stream useless for RTK
+without mitigation. Android 9+ added "Force full GNSS measurements" (buried
+in developer options) to disable duty cycling. Even with it enabled, thermal
+throttling or low-battery states can re-enable duty cycling. ✓
+(source: Barbeau 2018, GNSS Interrupted)
+
+Observed RTK performance on Android phones with best-case conditions (Pixel 6
+Pro, open sky, Force full GNSS on, short baseline, RTKLIB post-processing):
+~0.2–0.5 m horizontal. Not centimetre-level. ✓
+(source: Odolinski 2024 ION; GPS Solutions 2025 smartwatch/phone RTK study)
+
+**Antenna — the residual binding constraint on Android:**  
+Phone GNSS antennas are small PCB patches sharing RF space with 5G/Wi-Fi/BT.
+Key differences from survey antennas:
+- No RHCP polarisation → ground-reflected multipath signals are not rejected
+  (RHCP antennas suppress reflected signals because reflection flips to LHCP)
+- Phase center variation (PCV): **up to 2 cm at L1, up to 4 cm at L5** across
+  the visible hemisphere, orientation-dependent ✓
+  (source: Sensors 2024 — "Determining the Antenna Phase Center for
+  High-Precision Positioning of Smartphones")
+- C/N0 typically 8–10 dB-Hz below geodetic receivers ✓
+  (source: Sensors 2023 GNSS Observation Generation paper)
+
+A 4 cm L5 PCV — which shifts with hand grip — defeats integer ambiguity
+resolution, which requires carrier-phase stability at the centimetre level.
+This is why "phone RTK" papers reach decimetre accuracy regardless of chip or
+API improvements. The University of Texas 2014 finding (still directionally
+valid): the commodity Broadcom chip outperforms survey receivers in some signal
+processing metrics; the antenna is what fails. ✓
+
+Android 11 added `GnssAntennaInfo` (API 30) to expose PCO/PCV tables from the
+OEM via the HAL. Most OEMs do not populate these tables; even where populated,
+values are static and do not track orientation changes.
+
+**Summary table:**
+
+| Barrier | iOS | Android (Pixel 6+) |
+|---|---|---|
+| OS API — no raw carrier phase | **Hard block** | Not a block (ADR exposed) |
+| Duty cycling — cycle slips per epoch | N/A | Soft block (dev option mitigates) |
+| Antenna PCV / multipath | Contributes to noise | **Primary residual block** |
+| Chip capability | Not the problem | Not the problem |
+
+**Practical path for any phone user wanting centimetre RTK:**  
+External u-blox F9P-based receiver (~$150–300, e.g. ArduSimple simpleRTK2B)
+connected via Bluetooth. Phone runs an NTRIP client app (Lefebure on Android,
+or any app with external GNSS support on iOS) that fetches RTCM from a free
+public caster and relays it to the external receiver. The receiver computes the
+RTK fix and outputs centimetre NMEA.
+
+On Android: the NMEA stream can be injected as a mock location (developer
+option "allow mock location"), making all mapping apps see centimetre accuracy.  
+On iOS: the GIS app must natively read NMEA from the Bluetooth device directly
+(QField, SW Maps, Eos Tools Pro, iCMTGIS do this) — iOS has no mock location
+injection. ✓
+
+The phone's internal chip is not involved in the RTK computation in either case.
 
 ---
 
@@ -295,7 +387,8 @@ Galileo HAS (free broadcast PPP-RTK on E6-B, no subscription, no
 base station): official target convergence <300 s (~5 min); observed
 in 2024 studies is 7.5–15 min for GPS+Galileo static. Sub-20 cm
 horizontal at 95% after convergence ✓. QZSS CLAS (Japan/Asia-Pacific
-only) achieves 6 cm horizontal in static mode ✓. Both services work
+only): official spec <6 cm horizontal / <12 cm vertical (static) ✓;
+typical observed performance 1.3–2.7 cm horizontal (95%) ~. Both services work
 anywhere with satellite visibility and are the recommended alternative
 for users who cannot connect to an NTRIP caster.
 
@@ -383,8 +476,8 @@ Base numbers per constellation:
 - GLONASS: 1081–1087
 - Galileo: 1091–1097
 - SBAS: 1101–1107
-- QZSS: 1111–1117 ~
-- BeiDou: 1121–1127 ~
+- QZSS: 1111–1117 ✓
+- BeiDou: 1121–1127 ✓
 - NavIC: 1131–1137 ~
 
 ~ So `1074` = GPS MSM4, `1077` = GPS MSM7, `1097` = Galileo MSM7, etc.
@@ -406,8 +499,8 @@ constellation; the combination varies by network and caster config.
 ### 4.4 RTCM 3.x — SSR Messages
 
 SSR message ranges per constellation ✓:
-- GPS: 1057–1068 (orbit 1057, clock 1058, code bias 1059, …)
-- GLONASS: 1063–1068 (orbit 1063, clock 1064, code bias 1065, …)
+- GPS: 1057–1062 (orbit 1057, clock 1058, code bias 1059, combined 1060, URA 1061, high-rate clock 1062)
+- GLONASS: 1063–1068 (orbit 1063, clock 1064, code bias 1065, combined 1066, URA 1067, high-rate clock 1068)
 - Galileo: 1240–1245 (orbit 1240, clock 1241, code bias 1242, …)
 - QZSS: 1246–1251 ~
 - BeiDou: 1258–1263 ~
@@ -422,7 +515,7 @@ These messages are uncommon on the free public casters this project covers.
 |---|---|---|
 | CMR / CMR+ | Trimble | Older; common on legacy Trimble networks |
 | sPace | Leica ~ | Leica SmartNet proprietary |
-| SPARTN | u-blox / Swift / Septentrio ~ | SSR compressed; used by PointPerfect |
+| SPARTN | u-blox (via Sapcorda JV acquisition 2021) ~ | SSR compressed; used by PointPerfect; Swift and Septentrio are licensees/decoders, not developers |
 | ProMark / LandXML | Various | Not correction formats |
 
 ~ Most free public networks use RTCM 3.x exclusively. CMR/CMR+ appears
@@ -611,7 +704,7 @@ or similar (MAC/FKP/i-MAX also require rover position).
 
 ### 6.2 MAC — Master-Auxiliary Concept
 
-Developed by Geo++ (Germany). ~
+Jointly developed by Geo++ (Germany) and Leica Geosystems (Switzerland). ~
 
 Instead of synthesising observations, the server sends:
 - Full observations from a master station
@@ -1225,11 +1318,13 @@ This is the "fixed but wrong" scenario. Most likely causes:
 - [RTKBase default settings.conf — GitHub](https://github.com/Stefal/rtkbase/blob/master/settings.conf.default)
 - [RTCM 3 Message List — SNIP Support](https://www.use-snip.com/kb/knowledge-base/rtcm-3-message-list/)
 - [MSM message types — Tersus GNSS](https://www.tersus-gnss.com/tech_blog/new-additions-in-rtcm3-and-What-is-msm)
+- [Guidelines for IGS Real-Time Broadcasters and Stations — IGS](https://files.igs.org/pub/resource/guidelines/Guidelines_for_IGS_Real_Time_Broadcasters_and_Stations.pdf) (independent reference: RTCM MSM message type tables for all constellations including QZSS 1111–1117 and BeiDou 1121–1127 ✓)
 - [NTRIP v1 spec — ESA/GSSC (PDF)](https://gssc.esa.int/wp-content/uploads/2018/07/NtripDocumentation.pdf)
 - [NTRIP v1 vs v2 — SNIP Support](https://www.use-snip.com/kb/knowledge-base/ntrip-rev1-versus-rev2-formats/)
 - [BKG NtripCaster Manual](https://igs.bkg.bund.de/root_ftp/NTRIP/documentation/ntripcaster_manual.html)
 - [Ionospheric Delay — ESA Navipedia](https://gssc.esa.int/navipedia/index.php/Ionospheric_Delay)
 - [GLONASS Signal Plan — ESA Navipedia](https://gssc.esa.int/navipedia/index.php/GLONASS_Signal_Plan)
+- [GLONASS ICD v5.1 — Russian Institute of Space Device Engineering (via UNB)](http://gauss.gge.unb.ca/GLONASS.ICD.pdf) (primary specification: L1 = 1602 + n×0.5625 MHz, L2 = 1246 + n×0.4375 MHz, n = −7…+6 ✓)
 - [GLONASS CDMA signals — GPS World](https://www.gpsworld.com/glonass-cdma-signals-now-on-l1-l2/)
 - [Solar Cycle 25 forecast — NOAA SWPC](https://www.swpc.noaa.gov/news/solar-cycle-25-forecast-update)
 - [Solar Cycle 25 progression — NOAA SWPC](https://www.swpc.noaa.gov/products/solar-cycle-progression) (actual smoothed peak Oct 2024, SSN 160.8 ✓)
@@ -1244,6 +1339,8 @@ This is the "fixed but wrong" scenario. Most likely causes:
 - [VRS connection examples — SNIP Support](https://www.use-snip.com/kb/knowledge-base/virtual-reference-station-vrs-connection-examples/)
 - [GPS C/A multipath error envelope — NovAtel tech talk](https://novatel.com/tech-talk/an-introduction-to-gnss/resources/understanding-and-mitigating-gnss-multipath-interference-and-error)
 - [Multipath error envelopes — Navipedia](https://gssc.esa.int/navipedia/index.php/Multipath) (practical max ~15 m for C/A ✓)
+- [GNSS Carrier-Phase Multipath Modelling and Correction — Remote Sensing, MDPI 2024](https://www.mdpi.com/2072-4292/16/1/189) (peer-reviewed; confirms carrier-phase multipath max = quarter-wavelength, ~4.76 cm at GPS L1 ✓)
+- [User Guidelines for Single Base Real Time GNSS Positioning v3.1 — NOAA NGS](https://geodesy.noaa.gov/PUBS_LIB/UserGuidelinesForSingleBaseRealTimeGNSSPositioningv.3.1APR2014-1.pdf) (government authority: RTK relative accuracy ~1 cm + 1 ppm ✓)
 - [ZED-F9P survey-in CFG-TMODE3 — Drotek RTK docs](https://drotek.gitbook.io/rtk-f9p-positioning-solutions/tutorials/setting-survey-in-time-and-position-accuracy)
 - [ZED-F9P DGNSS timeout (NAV5 60 s default) — u-blox portal](https://portal.u-blox.com/s/question/0D52p0000DHOvhwCQD/why-is-dgnss-timeout-in-nav5-navigation-5-configuration-default-set-to-60s-for-zedf9p-module-) ✓
 - [Triple-frequency RTK widelane review — JGPS 2018](https://jgps.springeropen.com/articles/10.1186/s41445-018-0010-y)
@@ -1256,5 +1353,7 @@ This is the "fixed but wrong" scenario. Most likely causes:
 - [Galileo HAS PPP-RTK convergence — GPS Solutions 2024](https://link.springer.com/article/10.1007/s10291-024-01617-7)
 - [BDS-3 constellation completion — GPS World](https://www.gpsworld.com/two-new-beidou-satellites-complete-bds-3-constellation/) (45 total satellites, 30 BDS-3 ✓)
 - [Klobuchar model correction efficiency — Navipedia](https://gssc.esa.int/navipedia/index.php/Klobuchar_Ionospheric_Model) (~50–70% RMS removal globally ✓)
+- [Reach RS2+ Specifications — Emlid](https://docs.emlid.com/reachrs2/specifications/specs/) (technical spec: RTK range 60 km; 7 mm + 1 ppm horizontal ✓)
+- [Single-band VS Multi-band — Emlid](https://docs.emlid.com/reach/tutorials/basics/single-multi/) (technical spec: single-band RTK baseline 10 km; multi-band 60 km ✓)
 
-_Last updated: 2026-04-24. Third validation pass: 2026-04-24._
+_Last updated: 2026-04-25. Fifth validation pass: 2026-04-25._

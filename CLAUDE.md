@@ -189,6 +189,13 @@ entries added (one per network, each at its own region): `eft_cors` (Moscow),
 
 ## Gotchas
 
+- **Write tool — use skeleton-first for large files:** Generating a large
+  text block in a single Write call requires a long thinking phase that can
+  exceed the ~300 s idle timeout and produce nothing. Instead: Write a skeleton
+  (section headers + one-line placeholders) first, then fill each section with
+  a separate Write or Edit call. Each call keeps its thinking phase short and
+  the stream alive.
+
 - **rtk2go carrier field:** blank for most entries even on RTCM 3.x MSM
   streams. Parser infers `carrier = 2` when format starts with `RTCM 3`;
   without this, only ~2 of 800+ rtk2go mountpoints survive. Preserve this.
