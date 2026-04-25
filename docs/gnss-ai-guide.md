@@ -72,11 +72,34 @@ not yet tracked by the u-blox F9P or most hobbyist hardware. ✓
 ### 1.3 Why Band Count Matters for RTK
 
 **Single-frequency (L1 only):**
-- Cannot remove ionospheric delay; relies on Klobuchar model correction
-  (~50% RMS removal globally; up to ~60% at mid-latitudes under quiet
-  conditions; performance is worse at equatorial and high latitudes) ~
-- Reliable RTK fix roughly within 10 km of base; degrades fast beyond that
-- Increasingly uncommon in dedicated RTK hardware; avoid for new purchases
+- Cannot remove ionospheric delay; relies on broadcast iono models
+  (Klobuchar for GPS — ~50% RMS removal globally, up to ~60% at
+  mid-latitudes under quiet conditions, worse at equatorial/high latitudes;
+  NeQuick for Galileo — typically 2× better than Klobuchar with broadcast
+  parameters; IRI is a research-grade alternative not used in real-time
+  receivers) ~
+- **Viability boundary** (when L1-only RTK is genuinely workable):
+  - Baseline ≤ 5 km, open sky, calm ionosphere → fix probability comparable
+    to dual-frequency. ✓ (source: rtklibexplorer L1-only RTK study; Emlid
+    Reach M+ documentation)
+  - Baseline 5–10 km → fix achievable but TTFF lengthens; first-fix can take
+    minutes vs seconds for dual-band.
+  - Baseline > 10 km → unreliable; iono residual exceeds ambiguity-fixing
+    margin. NeQuick-corrected L1 (Galileo single-frequency) extends this
+    modestly but does not change the regime.
+  - Solar maximum or geomagnetic storm (Kp ≥ 5) → even short L1-only
+    baselines lose fix; the regime collapses by roughly 50% of nominal range. ~
+- **When L1-only is the right choice:** legacy hardware in service (older
+  Reach M+, u-blox NEO-M8P, single-frequency u-blox NEO-M8N + RTKLIB);
+  cost-constrained dense-array deployments (structural monitoring with many
+  static receivers on a single roof); educational projects. The active
+  hobbyist hardware market has moved past it — the price premium for an
+  F9P over an M8P is ~$50–100 and dual-band fixes the dominant failure
+  modes, so for new purchases the rule remains "avoid for new purchases."
+- **False-fix risk is materially higher.** Single-frequency RTK published
+  false-fix rates reach ~15% of epochs ✓ (PMC/Sensors 2019 smartphone
+  study) — a structural argument against using L1-only for any decision
+  with monetary or safety consequence.
 
 **Dual-frequency (L1+L2 or equivalent):**
 - Forms the ionosphere-free (iono-free) linear combination: cancels
@@ -643,6 +666,90 @@ seconds after a brief obstruction; HAS cannot. ~
 but understanding it clarifies why "standalone" devices can still
 achieve cm accuracy without any internet connection.
 
+**PPP service tiers — float vs AR.** Two distinct positioning regimes
+share the "PPP" label and are routinely conflated:
+
+- **Float PPP** (the historical default; IGS real-time; Galileo HAS
+  Phase 1; CSRS-PPP "no AR" mode): satellite orbit and clock corrections
+  only. Carrier-phase ambiguities are estimated as real-valued Kalman
+  states, never resolved to integers. Solution converges asymptotically
+  toward sub-decimetre, then sub-cm over tens of minutes. No discrete
+  "fix moment" — convergence is monotonic-in-display, oscillatory in
+  actual error (see "non-monotonic convergence" above).
+- **PPP-AR** (PPP with Ambiguity Resolution): also receives **satellite
+  phase bias products** (UPD/IRC/integer-recovery clocks). With phase
+  biases removed, the residual ambiguity is integer-valued and can be
+  resolved using the same widelane/narrowlane decompositions as RTK.
+  Once fixed, position accuracy steps from float-tier to fix-tier
+  (cm-level) within seconds. Examples: NRCAN CSRS-PPP with AR mode
+  (post-processed since 2018) ✓; commercial real-time services (NovAtel
+  TerraStar-C PRO, Trimble RTX, Hexagon HxGN SmartNet PPP); upcoming
+  Galileo HAS Phase 2 (timeline not yet committed by GSC).
+
+The structural distinction matters when answering user questions: a user
+with a float-PPP receiver in the field will *never* reach cm-level in
+2 min regardless of geometry; the math precludes it. A PPP-AR receiver
+can. Asking which tier the user has is the first triage question.
+
+**IGS precise products — latency vs accuracy ladder.**
+The International GNSS Service publishes orbit/clock products at four
+latency tiers, each with progressively better accuracy:
+
+| Product | Latency | Orbit accuracy | Clock accuracy | Use |
+|---|---|---|---|---|
+| Ultra-rapid (predicted half) | Real-time (computed in advance) | ~5 cm RMS ~ | ~3 ns ~ | Real-time PPP via NTRIP feed (RTCM SSR) |
+| Ultra-rapid (observed half) | 3–9 h | ~3 cm RMS ✓ | ~150 ps ✓ | Near-real-time PPP, hourly updates |
+| Rapid | ~17 h | ~2.5 cm RMS ✓ | ~75 ps ✓ | Same-day batch PPP processing |
+| Final | 12–18 days | ~2.5 cm RMS ✓ | ~75 ps ✓ | Reference-grade post-processing; geodesy |
+
+(source: IGS Products page, igs.org/products) The free PPP web services
+(CSRS-PPP, AUSPOS, OPUS, magicGNSS) automatically use the best available
+tier for the submitted data window — usually rapid or final by the time
+a user uploads a 24 h RINEX file.
+
+**Atmospheric state bridging — what it actually does.**
+A PPP-AR receiver tracks ionospheric delay and tropospheric zenith delay
+as Kalman states alongside ambiguities. When a brief signal interruption
+breaks carrier-phase tracking on individual satellites, the ambiguity
+states for those satellites are reset, but the atmospheric states
+**persist** with their accumulated covariance. On re-acquisition, only
+the integer-ambiguity portion needs to converge, and the previously-
+estimated atmosphere short-cuts the regression. ✓ (NovAtel Velocity
+2014; Banville & Langley 2013) Practical effect:
+
+- Without bridging: a 5-second sky obstruction triggers full re-
+  convergence (10–30 min on float PPP).
+- With bridging (NovAtel TerraStar-D, Septentrio with SPARTN, Trimble
+  RTX FAST): the same gap recovers in 30–90 s ~.
+
+This is why an IMU-equipped PPP-AR receiver with bridging (e.g. Trimble
+R12i + RTX) can sustain cm accuracy through forest paths and short
+tunnels that would invalidate a float-PPP-only receiver entirely.
+
+**Free vs commercial PPP-RTK landscape (2026).**
+
+| Service | Cost | Tier | Convergence target | Coverage | Hardware |
+|---|---|---|---|---|---|
+| **Galileo HAS SL1** | Free | Float PPP-RTK | <300 s spec / 6–15 min observed | Global | E6-B receiver (UM980, Mosaic-X5, Eos Arrow Gold+, LG290P) |
+| **QZSS CLAS** | Free | PPP-AR (with state-space) | <60 s spec, ~30 s observed ✓ | Japan + ~1500 km | L6-D receiver |
+| **BeiDou PPP-B2b** | Free | PPP-RTK | <30 min ~ | China + Asia-Pacific | B2b-tracking receiver |
+| **NavIC SPS** | Free | Standalone (no PPP) | n/a | India + ~1500 km | NavIC L5/S receiver |
+| **Trimble RTX (CenterPoint)** | ~$1,500/yr-equivalent | PPP-AR | <1 min (RTX FAST), ~5 min (RTX) | Global | Trimble GNSS hardware + subscription |
+| **NovAtel TerraStar-C PRO** | Subscription | PPP-AR + bridging | 5–18 min | Global | NovAtel OEM7 / SMART7 + subscription |
+| **Hexagon HxGN SmartNet PPP** | Subscription | PPP-AR | 5–10 min | Global | Multi-vendor with subscription |
+| **u-blox PointPerfect** | Subscription | SPARTN PPP-RTK | <1 min | Continental US/EU + maritime | u-blox NEO-D9S + ZED-F9P/F9R |
+| **Swift Skylark** | Subscription | PPP-RTK | <1 min | US/EU + selected | Skylark-compatible Swift hardware |
+| **CSRS-PPP** (NRCan) | Free | PPP-AR (post-processed) | n/a (batch) | Global | Any RINEX upload |
+| **AUSPOS** (GA) | Free | PPP-AR (post-processed) | n/a (batch) | Global, Asia-Pacific tuned | Any RINEX upload |
+
+For a hobbyist wanting cm-level positioning **without** an NTRIP caster:
+free real-time PPP-RTK is realistic only via Galileo HAS / QZSS CLAS /
+BeiDou PPP-B2b — and only on hardware that tracks the relevant E6 / L6 /
+B2b signal. This is the structural reason this project's map is still
+useful: NTRIP RTK on a standard ZED-F9P is the cheapest route to
+cm-class real-time accuracy in regions outside HAS/CLAS/B2b coverage or
+for users with hardware that does not track those signals.
+
 ### 3.6 SSR vs OSR
 
 - **OSR (Observation Space Representation)**: traditional RTK — the
@@ -742,6 +849,70 @@ Base numbers per constellation:
 
 In practice many networks broadcast just MSM4 or just MSM7 per
 constellation; the combination varies by network and caster config.
+
+**Internal structure of an MSM message.** Every MSM (MSM1 through MSM7)
+shares the same header layout, regardless of constellation:
+
+```
+Header:
+  Message number       12 bits   (1071–1077, 1081–1087, ...)
+  Reference station ID 12 bits
+  GNSS epoch time      30 bits   (constellation-specific time scale)
+  Multiple message bit  1 bit    (0 = last fragment of this epoch)
+  IODS                  3 bits   (issue of data station)
+  Reserved              7 bits
+  Clock steering ind.   2 bits
+  Ext. clock indicator  2 bits
+  GNSS smoothing ind.   1 bit
+  Smoothing interval    3 bits
+  Satellite mask       64 bits   (bit i = 1 → satellite i present)
+  Signal mask          32 bits   (bit j = 1 → signal j present)
+  Cell mask           variable   (Nsats × Nsigs bits, one per cell)
+```
+
+The three masks define a sparse 2-D matrix of *(satellite, signal) cells*.
+Each cell that is non-zero in the cell mask contributes one entry of
+observation data to the message body. ✓ (source: SNIP knowledge base —
+RTCM 3 MSM message structure; Tersus GNSS MSM tutorial)
+
+This sparse-matrix design is why MSM is bandwidth-efficient: a
+station tracking 8 GPS satellites on 2 signals contributes 16 cells
+instead of 64 × 32 = 2048 fixed slots. Practical bandwidth cost (per
+constellation, 1 Hz, 4-frequency tracking, 8 satellites in view): MSM4
+~0.5 kbps, MSM7 ~1–2 kbps ~ — on a typical home internet connection,
+broadcasting MSM7 for four constellations at 1 Hz consumes ~4–8 kbps,
+well within capacity. (See §10.5 for the practical receiver-config
+implication: prefer MSM7 unless on a constrained link.)
+
+**Satellite mask encoding** uses constellation-specific PRN ordering
+defined in the RTCM standard. ~ For GPS: bit 0 → PRN 1, bit 1 → PRN 2,
+…, bit 31 → PRN 32; bits 32–63 reserved. For GLONASS: bit i → slot
+number (i+1) using FDMA channel assignment. For Galileo: bit i →
+satellite ID (i+1).
+
+**Signal mask encoding** is signal-and-band specific per constellation.
+For GPS, bit positions correspond to: 1C (L1 C/A), 1P (L1 P), 1W (L1 Z),
+2C (L2 C/A), 2P (L2 P), 2W (L2 Z), 2S (L2 CM), 2L (L2 CL), 2X (L2 C/A+P),
+5I (L5 I), 5Q (L5 Q), 5X (L5 I+Q), 1L (L1 cnav), 1S (L1 csav). ~ The
+specific bit-to-signal mapping is in the RTCM 3 standard — receivers must
+correctly interpret it or the carrier-phase observations are silently
+attributed to the wrong band. This is one source of "stream looks valid
+but rover stays float" reports: a non-standard signal-mask interpretation
+in legacy firmware.
+
+**Why this matters operationally:**
+
+- A base broadcasting only `1077` (GPS MSM7) but tracking GLONASS will
+  silently drop GLONASS observations, halving the satellite count seen by
+  the rover. The fix: configure the base to also output `1087` and
+  `1097`/`1127` — common base-config oversight.
+- Some rover firmware ignores constellations beyond a configured allow-
+  list, even when present in the stream. F9P firmware respects all four
+  by default but can be restricted via UBX-CFG-VALSET (`CFG-SIGNAL-*`).
+- In SNIP / RTKLIB monitor outputs, the message-number frequency tells
+  you which constellations and which MSM levels are present. A stream
+  showing only `1074` and `1077` at 1 Hz is GPS-only — possibly a base
+  with a single-constellation receiver, possibly misconfiguration.
 
 ### 4.4 RTCM 3.x — SSR Messages
 
@@ -1079,32 +1250,115 @@ or similar (MAC/FKP/i-MAX also require rover position).
 
 ### 6.2 MAC — Master-Auxiliary Concept
 
-Jointly developed by Geo++ (Germany) and Leica Geosystems (Switzerland). ~
+Jointly developed by Geo++ (Germany) and Leica Geosystems (Switzerland)
+in the early 2000s; standardised in RTCM 3.1 (2007). ~
 
-Instead of synthesising observations, the server sends:
-- Full observations from a master station
-- Difference observations (auxiliary − master) for each auxiliary
-  station in a compressed delta format
+**What the server sends:**
+- **Master station**: full RTCM 3 observations (1004/1012, MSM, etc.) —
+  identical to a single-base RTK stream.
+- **Auxiliary stations**: a small set of *differential* observations
+  encoded as the difference (aux − master) for each shared satellite.
+  Differences are dominated by atmospheric variation across the network
+  and compress to a fraction of full observations: typically 10–20% of a
+  master-station's bytes per auxiliary. ~ (source: RTCM 3.1 specification
+  summary; Janssen 2009 IGNSS paper)
 
-The rover's RTK engine reconstructs the full network correction
-internally. Fewer server computations per rover; better scales to
-many simultaneous rovers. ~
+**RTCM 3 messages MAC uses** ✓ (Janssen 2009; Tersus GNSS RTCM tutorial):
+- `1014` Network auxiliary station data
+- `1015` GPS ionospheric correction differences
+- `1016` GPS geometric correction differences
+- `1017` GPS combined corrections (1015+1016 in one message)
+- `1037–1039` GLONASS network corrections (parallel to 1015–1017)
 
-MAC is the basis for RTCM 3 message types 1014–1017 ~. Used by
-several European national networks including some SAPOS states. ~
+**Where the heavy computation goes:** the **rover** runs a network-RTK
+engine that:
+1. Receives the master observations as if they were a single base.
+2. For each auxiliary station, reconstructs full observations from the
+   compressed delta + master.
+3. Computes its own interpolation of the atmospheric gradient at the
+   rover's position from the network's distributed observations.
+4. Applies the interpolated correction to its own RTK solution.
+
+This is the structural difference from VRS: in VRS the **server** does
+the gradient interpolation and the rover thinks it is talking to a
+single base; in MAC the **rover** does it and is aware of the network
+geometry. Consequences:
+
+- **Server scaling:** MAC scales to many rovers near-trivially because
+  each rover gets the same byte stream — no per-rover synthesis. VRS
+  computes a unique stream per rover.
+- **Rover firmware support:** MAC requires a more capable rover RTK
+  engine. Trimble, Leica, Topcon, Septentrio support it; many older
+  rovers and most consumer/F9P-class firmware do not. ✓ The free
+  public networks in this project's pipeline that broadcast MAC tend
+  to also broadcast VRS as a fallback for compatibility.
+- **GGA dependence:** MAC streams in current RTCM convention also carry
+  `nmea=1` in the sourcetable because the rover position is needed to
+  pick a useful sub-network. Server delivers a master+auxiliaries cluster
+  centred near the rover. So this project's NMEA filter still drops MAC
+  mountpoints, same as VRS.
 
 ### 6.3 FKP and i-MAX (other NRTK modes)
 
-**FKP** (Flächen-Korrektur-Parameter, German origin / SAPOS): broadcasts
-a spatial gradient model (area correction parameters); rover evaluates
-the polynomial at its own position rather than receiving a synthetic
-stream. Originally transmitted in proprietary RTCM type 59 (Geo++
-message); standardised as RTCM 3.x message 1034 (GPS Network FKP
-Gradient) ✓. Operationally identical to VRS for this project: FKP
-mountpoints carry NMEA=1 (rover must send position) and are dropped.
+**FKP** (Flächen-Korrektur-Parameter, German for "area correction
+parameters" — Geo++ origin, dominant in SAPOS). The server transmits a
+**polynomial spatial gradient model** of the network's atmospheric
+corrections; the rover evaluates the polynomial at its own coordinates.
 
-**i-MAX** ~ (Trimble): combines VRS and MAC ideas. Appears in some German
-and Swiss networks. Also NMEA=1 → dropped by the same filter.
+The polynomial form, transmitted in RTCM 3 message **1034** (GPS network
+FKP gradient), is:
+
+```
+δ(lat, lon) = N₀ + N_lat × (lat − lat_ref) + N_lon × (lon − lon_ref)
+            + I_lat × (lat − lat_ref) + I_lon × (lon − lon_ref)
+```
+
+with separate `N` (geometric/tropospheric) and `I` (ionospheric)
+coefficients per satellite. ✓ (source: Geo++ FKP white paper; RTCM 3
+message 1034 specification) The reference point `(lat_ref, lon_ref)` is
+typically a master station near the rover.
+
+**Why FKP exists alongside MAC:** historically a different industrial
+faction pushed FKP (Geo++/SAPOS) vs MAC (Leica/Trimble alliance). FKP is
+slightly more bandwidth-efficient than MAC for very large networks
+(polynomial coefficients vs per-aux-station deltas). MAC is more
+adaptable to non-uniform station spacing. Both produce equivalent
+positioning accuracy in practice. ~
+
+**i-MAX** (Trimble's "individualised MAX") is a hybrid: the server
+performs the gradient interpolation per-rover (as in VRS) but emits the
+result in MAC-style master+correction-difference messages (as in MAC),
+rather than as fully synthetic VRS observations. This lets older Trimble
+rovers without a true network engine consume what is effectively a VRS
+stream wrapped in MAC syntax. ~ Operationally, the rover sees:
+- A "master" observation stream from a synthetic master near the rover.
+- "Auxiliary differences" all set to zero (degenerate single-base case).
+
+In this project's pipeline, i-MAX presents identically to VRS — `nmea=1`,
+no fixed coordinates, dropped by the same filter.
+
+**Comparison summary:**
+
+| Mode | Where interpolation happens | Per-rover stream? | RTCM messages | Rover engine required |
+|---|---|---|---|---|
+| **VRS** | Server | Yes — unique per rover | 1004/1012, MSM, 1005/1006 (synthetic) | Standard RTK engine |
+| **MAC** | Rover | No — broadcast to all | 1014–1017, 1037–1039, plus master MSM | Network-RTK engine |
+| **FKP** | Rover | No — broadcast to all | 1034 + master MSM | Network-RTK or FKP-aware engine |
+| **i-MAX** | Server | Yes | MAC-style (1014–1017) but degenerate | Standard MAC-aware RTK engine |
+
+| Mode | Server load per rover | Bandwidth per rover | Origin | Common in |
+|---|---|---|---|---|
+| **VRS** | High (full epoch processing) | ~1–2 kbps | Trimble (early 2000s) | Most commercial NRTK; SAPOS BW; Italian regionals |
+| **MAC** | Very low (broadcast) | ~3–8 kbps | Geo++ + Leica | German SAPOS states; Swiss swipos; some EUREF nodes |
+| **FKP** | Very low (broadcast) | ~1–2 kbps | Geo++ (SAPOS heritage) | German SAPOS states (legacy); some Austrian networks |
+| **i-MAX** | High (server interpolation) | ~3–8 kbps | Trimble | Some Trimble-supplied national networks |
+
+For an AI updating the user-facing guide: the practical message is "all
+four are network-correction streams and look the same to the user once a
+fix is achieved; the choice between them is the network operator's, not
+the user's." The receiver-firmware support question (does my rover
+understand MAC?) only comes up when a user tries to consume a MAC mountpoint
+on a non-MAC-aware rover and gets unexplained float-only behaviour.
 
 ### 6.4 What this project shows
 
@@ -1781,6 +2035,120 @@ fine; the runner network is blocked. (See CLAUDE.md §Current state.)
    filtered between you and it.
 5. **Workarounds:** AUSCORS port 443 where coverage suits. SSH port-forwarding
    or a VPN exiting an unrestricted network both tunnel NTRIP over port 22/443.
+
+### 11.6 "The receiver shows Fix but my mapping app shows the wrong position"
+
+The receiver and the app are showing different position sources. Three
+distinct mechanisms produce this on Android; iOS has only the third.
+
+1. **Mock location not enabled or wrong app selected.** On Android, an
+   external NTRIP client (Lefebure, SW Maps) injects the corrected
+   position via the *mock location* developer option. If "Select mock
+   location app" in Developer Options does not point to the running NTRIP
+   client, the mapping app continues to use the phone's internal GPS.
+   Symptom: receiver display shows cm-level accuracy; mapping app shows
+   3–5 m position drift typical of standalone phone GNSS. Fix: Developer
+   Options → Select mock location app → choose the right app.
+2. **Mock-location not honoured by app.** Some Android apps (banking,
+   ride-share, map-tile providers in some configurations) explicitly
+   reject mock locations via `Location.isFromMockProvider()`. The mapping
+   app reverts silently to phone GNSS without warning.
+3. **App reading directly from receiver but with wrong driver / format
+   string.** When the GIS app (QField, Field Maps, SW Maps on iOS) reads
+   NMEA directly from the receiver via Bluetooth/TCP, a mismatch in the
+   expected sentence format or talker ID causes the app to ignore the
+   fix-quality field. The app shows position from the GGA but treats it
+   as standalone (no fix indicator). Often resolved by updating the
+   receiver firmware to emit the NMEA dialect the app expects (typically
+   `GNGGA` rather than `GPGGA` for multi-constellation receivers ✓).
+
+**Diagnostic:** open both the NTRIP client/receiver app and the mapping
+app side by side. If the receiver reports "RTK Fix" and the mapping app
+shows the same coordinates with cm-precision indicator, the path is
+working. If the mapping app shows different coordinates or no
+high-accuracy indicator, the position source is broken between receiver
+and app — none of the troubleshooting in §11.1–11.5 applies.
+
+### 11.7 "Base coordinates jumped after a firmware update or reboot"
+
+The base receiver re-entered survey-in mode and the new averaged
+position differs from the previous fixed position by metres. Symptom: all
+rovers connecting to the base see a sudden coordinated step (1–3 m
+typical) in their reported position; correlation across rovers is the
+diagnostic. Causes in descending order:
+
+1. **Survey-in restart on power loss.** ZED-F9P with `CFG-TMODE-MODE`
+   set to *survey-in* (1) re-runs survey-in on every cold start. If the
+   intent was a fixed base, the configuration should be `CFG-TMODE-MODE`
+   = *fixed* (2) with `CFG-TMODE-ECEF-X/Y/Z` set to the known position. ✓
+2. **Firmware update reset configuration to defaults.** Some F9P
+   firmware updates reset the entire CFG store; the receiver returns to
+   survey-in. Best practice: back up the configuration via u-center
+   *File → Configuration → Send* before any firmware update.
+3. **`CFG-TMODE-FIXED_POS_ACC` too tight.** If the fixed-mode position
+   accuracy was set tighter than survey-in could achieve (e.g. 1 mm),
+   the receiver may silently fall back to survey-in. Set to a realistic
+   value (e.g. 10–50 mm for a PPP-derived position).
+4. **Configuration stored in RAM-only layer (`RAM`) rather than `BBR`
+   or `FLASH`.** UBX-CFG-VALSET takes a layer mask; only `BBR` (battery-
+   backed RAM) and `FLASH` survive cold boot. RAM-only changes are lost
+   on power-cycle. ✓ (source: u-blox F9 Interface Description, CFG-VALSET
+   layer flags)
+
+**Recovery:** if the previous fixed-mode coordinates are known (saved
+PPP report, RTKBase log), re-enter them. If not, run another 24 h PPP
+session (§10.3 Method B) and reset.
+
+### 11.8 "NTRIP client log shows garbled bytes / NMEA parse errors"
+
+The TCP connection is up but the byte stream the client receives is not
+clean RTCM. Diagnostic by symptom:
+
+| Symptom | Likely cause |
+|---|---|
+| First ~200 bytes are HTTP-like text (`SOURCETABLE 200 OK`, then table) | Client requested `/` instead of `/MOUNTPOINT`; reading the sourcetable. Restart with mountpoint URL. |
+| Stream begins with `RTCM3` or `0xD3` byte then breaks | Likely stream is fine; client is mis-parsing — try `str2str` to log raw bytes and decode separately. |
+| Stream is repeating identical 200-byte chunks | Caster sending keep-alive padding because base is offline. Pick a different mountpoint. |
+| Mixed binary + ASCII in random places | Two streams interleaved on a misconfigured mountpoint, or a transparent proxy injecting HTML error pages on TCP errors. |
+| Stream stops cleanly after N seconds, no error | Mountpoint reached its max-connection-time limit (some casters disconnect after 1 h). Reconnect. |
+| GGA upstream produces "400 Bad Request" reply | NTRIP v1 caster expecting raw TCP; client sending HTTP/1.1 chunked GGA. Switch client to NTRIP v1 mode. |
+
+**Useful diagnostic tools:**
+- `str2str -in ntrip://user:pass@host:2101/MOUNT -out file://dump.rtcm`
+  — logs the raw byte stream for offline inspection.
+- `convbin dump.rtcm` (RTKLIB) — converts to RINEX, validates that the
+  bytes are well-formed RTCM 3.
+- `BNC` (BKG NTRIP Client) — desktop app with a built-in RTCM message
+  decoder; shows per-message-type counts per second.
+
+### 11.9 "Velocity output looks wrong / position is stable but velocity reads non-zero"
+
+A stationary rover reporting ~0.05–0.5 m/s velocity is showing the
+expected behaviour of a kinematic Kalman filter — not a fault. Most
+RTK firmware (F9P, Trimble, Leica) defaults to *kinematic* dynamics
+where velocity is a free filter state. With no actual motion, the
+estimated velocity walks within its variance band.
+
+**When to actually worry:**
+- **Velocity > 1 m/s at a known-stationary rover** suggests a serious
+  drift, often the result of low SNR on multipath-corrupted satellites
+  pulling the velocity solution. Common in urban canyons or under
+  canopy.
+- **Velocity is non-zero but position is also drifting at the same
+  rate** — receiver is in float mode, see §3.3 float drift mechanism.
+- **Velocity reads zero exactly** at a moving rover — the firmware is
+  in *static* mode; switch to kinematic via UBX-CFG-NAV5 dynModel = 4
+  for portable rovers (default for ZED-F9P) or 0 for genuinely
+  stationary applications. ✓ (source: u-blox F9 Interface Description,
+  CFG-NAV5)
+
+**For PPK users:** velocity output from RTKLIB is a *derived* quantity
+from position differences between consecutive epochs unless the receiver
+output Doppler observations and the PPK config used them. A velocity
+field that is effectively (pos[n] − pos[n−1]) / dt will inherit any
+position-error noise — which is why drone-mapping pipelines typically
+ignore the velocity field and re-derive it from the positions in
+post-processing.
 
 ---
 
@@ -2856,5 +3224,24 @@ For `guide.html`:
 - [LINZ — PositioNZ data licensing terms](https://www.linz.govt.nz/data/linz-data/use-and-share-data) (CC BY 4.0 NZ ✓)
 - [Geoscience Australia — AUSCORS data terms](https://gnss.ga.gov.au/) (CC BY 4.0 plus operational ToS ✓)
 - [SAPOS — Free use vs paid commercial tier overview](https://sapos.de/) (per-state landesvermessungsamt portals; Bavaria €20/yr non-ag ✓)
+- [IGS Products — Orbit/clock latency tiers](https://igs.org/products/) (ultra-rapid predicted/observed, rapid, final accuracy ladder ✓)
+- [NRCan CSRS-PPP-AR — release notes 2018](https://webapp.csrs-scrs.nrcan-rncan.gc.ca/geod/tools-outils/ppp.php) (free PPP-AR mode for post-processing ✓)
+- [Galileo HAS Phase 2 roadmap — GSC service definition](https://www.gsc-europa.eu/galileo/services/galileo-high-accuracy-service-has) (HAS Phase 2 includes phase bias products; not yet committed ~)
+- [QZSS CLAS service definition — Cabinet Office Japan](https://qzss.go.jp/en/technical/ps-is-qzss/ps-is-qzss.html) (CLAS PPP-AR convergence target <60 s ✓)
+- [BeiDou PPP-B2b service](http://en.beidou.gov.cn/SYSTEMS/Officialdocument/) (B2b PPP-RTK service definition ~)
+- [Trimble RTX positioning service](https://positioningservices.trimble.com/services/rtx/) (CenterPoint RTX/RTX FAST convergence specs ✓)
+- [u-blox PointPerfect SPARTN service](https://www.u-blox.com/en/product/pointperfect) (SPARTN PPP-RTK; <1 min convergence with NEO-D9S ✓)
+- [Swift Skylark precise positioning](https://www.swiftnav.com/precise-positioning-service) (Skylark PPP-RTK service specs ✓)
+- [SNIP knowledge base — RTCM 3 MSM message structure detail](https://www.use-snip.com/kb/knowledge-base/an-rtcm-3-message-cheat-sheet/) (header, satellite/signal/cell mask layout ✓)
+- [Tersus GNSS — RTCM3 MSM detailed reference](https://www.tersus-gnss.com/tech_blog/new-additions-in-rtcm3-and-What-is-msm) (MSM cell-mask sparse-matrix structure ✓)
+- [Geo++ FKP white paper — RTCM message 1034](http://www.geopp.com/pdf/geopp-rtcm-fkp59.pdf) (FKP polynomial form; geometric and ionospheric coefficients ✓)
+- [VRS vs MAC principles — Janssen 2009 IGNSS](https://www.spatial.nsw.gov.au/__data/assets/pdf_file/0003/129414/2009_Janssen_IGNSS2009_VRS_vs_MAC.pdf) (RTCM MAC message types 1014–1017; rover-side network reconstruction ✓)
+- [u-blox F9 Interface Description — UBX-CFG-VALSET layer flags](https://content.u-blox.com/sites/default/files/documents/u-blox-F9-HPG-1.50_InterfaceDescription_UBX-22010984.pdf) (RAM/BBR/FLASH layer persistence; CFG-NAV5 dynModel ✓)
+- [u-blox F9P TMODE3 fixed-mode configuration — Drotek RTK docs](https://drotek.gitbook.io/rtk-f9p-positioning-solutions/tutorials/setting-survey-in-time-and-position-accuracy) (CFG-TMODE-MODE values; survey-in vs fixed ✓)
+- [NMEA 0183 talker IDs — multi-constellation receivers emit GN prefix](https://gpsd.gitlab.io/gpsd/NMEA.html) (`GNGGA` for combined GPS+GLONASS+Galileo; `GPGGA` GPS-only ✓)
+- [rtklibexplorer — L1-only RTK feasibility](https://rtklibexplorer.wordpress.com/2017/04/26/rtklib-and-low-cost-l1-receivers/) (M8N + RTKLIB short-baseline single-frequency RTK ✓)
+- [Galileo NeQuick ionospheric model — ESA](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo_Ionospheric_Model.pdf) (NeQuick correction efficiency vs Klobuchar ~)
+- [Banville & Langley 2013 — Real-time PPP atmospheric state preservation](https://www.researchgate.net/publication/289224452_Rapid_re-convergence_in_real-time_precise_point_positioning_with_ambiguity_resolution) (atmospheric bridging mechanism in PPP-AR ✓)
 
 _Last updated: 2026-04-25. Eighth validation pass: 2026-04-25 (PR1 — added §14 Antennas, §15 Jamming/Spoofing, §16 PPK, §17 Tilt Compensation, §18 Data Licensing)._
+_Ninth validation pass: 2026-04-25 (PR2 — depth expansion of §1.3 single-frequency boundary, §3.5 PPP-AR/IGS-products/bridging/free-vs-commercial-PPP-RTK, §4.3 MSM internal structure, §6 NRTK algorithm comparison, §11.6–11.9 new troubleshooting scenarios)._
