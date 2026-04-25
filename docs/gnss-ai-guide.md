@@ -25,6 +25,11 @@
 11. [Common Troubleshooting Scenarios](#11-common-troubleshooting-scenarios)
 12. [Use Case → Accuracy Requirements](#12-use-case--accuracy-requirements)
 13. [Datum and Coordinate System Confusion](#13-datum-and-coordinate-system-confusion)
+14. [Antennas](#14-antennas)
+15. [Jamming, Spoofing, and Interference](#15-jamming-spoofing-and-interference)
+16. [PPK — Post-Processed Kinematic](#16-ppk--post-processed-kinematic)
+17. [Tilt Compensation and IMU-Aided RTK](#17-tilt-compensation-and-imu-aided-rtk)
+18. [Data Licensing and Attribution](#18-data-licensing-and-attribution)
 
 ---
 
@@ -1997,6 +2002,733 @@ installed (QGIS prompts to download missing grids).
 
 ---
 
+## 14. Antennas
+
+The antenna is the single largest determinant of RTK accuracy after baseline
+length. Receiver internals (correlator quality, multi-constellation tracking)
+have improved enough that for hobbyist hardware (ZED-F9P class) the noise
+floor is set by the antenna, not the chip. §1.6 covered why phone antennas
+fail at RTK; this section is the dedicated treatment for choosing, mounting,
+and calibrating an external antenna.
+
+### 14.1 Why a GNSS antenna is not a generic radio antenna
+
+GNSS signals arrive at the antenna at roughly **−130 dBm**, well below the
+thermal noise floor — they are recovered only by despreading the long PRN
+code in the receiver's correlator. ✓ (source: ESA Navipedia, GNSS signal
+power) Three properties separate a GNSS antenna from a generic RF antenna:
+
+- **Right-hand circular polarisation (RHCP).** GNSS satellites transmit RHCP.
+  A direct-path signal arrives at the antenna RHCP; a single ground or wall
+  reflection inverts polarisation to **left-hand (LHCP)**. ✓ A well-designed
+  GNSS antenna has a high cross-polar discrimination (typically 15–25 dB ~)
+  so that LHCP reflections are attenuated relative to the direct signal.
+  This is the main physical mechanism rejecting first-bounce multipath.
+- **Stable phase center across azimuth, elevation, and frequency.** RTK
+  measures carrier phase to ~1–2 mm; if the electrical phase center moves
+  with satellite direction, that motion injects centimetre-scale error
+  directly into the position solution. See §14.3.
+- **Hemispherical gain pattern with low-elevation roll-off.** Ideally
+  ~+5 dBic at zenith decreasing smoothly to the horizon, with sharp
+  attenuation below the horizon to suppress ground-bounce and back-lobe
+  signals. Geodetic antennas approach this; consumer patches do not.
+
+### 14.2 Antenna families
+
+| Family | Approx cost | Bands | Multipath rejection | Where it fits |
+|---|---|---|---|---|
+| Cellular/IoT GPS patch (Mokoradar, generic) | ~$10 | L1 only | Poor | Vehicle-tracking GPS, not RTK |
+| u-blox ANN-MB-00 | ~$30 | L1+L2 (GNSS) | Poor | Bench testing, cheap mobile rover |
+| ArduSimple / Beitian survey patch (BT-560/845, Tallysman TW3742, Harxon HX-CHX600A class) | ~$80–250 | L1+L2 (some L5) | Moderate | Hobbyist permanent base, RTK rover; the practical default ✓ |
+| Helical with cavity backing (ArduSimple SurveyXYZ; Calian/Tallysman HC871/HC880) | ~$120–250 | Multi-band | Moderate–good | Compact rover where horizon obstructions exist |
+| Geodetic survey antenna (Trimble Zephyr Geodetic, Leica AS10, Topcon CR-G5) | ~$1,500–3,500 | All bands | Good | Network reference station, mid-range survey |
+| Choke-ring (Leica AR25, JPL D&M choke-ring) | ~$3,000–7,000 | All bands | Excellent | IGS, EarthScope, national CORS network reference monuments ✓ |
+| 3D choke-ring with ROBOT-calibrated phase model (Leica AR20, Septentrio PolaNt-x MF) | $5,000–10,000+ | All bands | Best published | Scientific reference / fundamental geodesy |
+
+~ Real-world numerical separation: a survey patch on a 30 cm ground plane
+delivers carrier-phase multipath ~5–8 mm RMS in a clean rooftop site; a
+choke-ring on the same site is ~2–3 mm. ~ (RTKLIB-Explorer field tests;
+NovAtel choke-ring vs survey antenna application notes) The receiver noise
+floor on the same site is ~1 mm. So a choke-ring is at roughly the
+information-theoretic ceiling and a survey patch is roughly 2–3× above it.
+**For free public NTRIP networks, the reference stations are nearly always
+geodetic or choke-ring;** the rover is what limits the user's accuracy in
+practice.
+
+### 14.3 Phase center: PCO and PCV
+
+The **phase center** is the apparent point from which signals are radiated
+or received. It is not a fixed mechanical point — it varies with:
+
+- **Frequency.** L1 and L2 phase centers can sit several mm apart even in
+  the same antenna body. ✓
+- **Elevation angle.** A signal arriving from zenith and a signal arriving
+  from 10° elevation see different phase centers in most antennas.
+- **Azimuth.** Less pronounced in well-designed antennas but non-zero.
+
+Two terms split this into a constant offset and a variation:
+
+- **PCO — Phase Center Offset.** A fixed 3D vector from the antenna's
+  mechanical reference point (the **ARP**, typically the bottom of the
+  mounting threads) to the mean electrical phase center. Per band. Typical
+  values: vertical PCO 50–110 mm, horizontal PCO < 2 mm for survey antennas. ~
+  (source: IGS antenna calibration tables, e.g. ngs14_2196.atx) The ARP, not
+  the phase center, is what gets entered as the "antenna height" in survey
+  workflows; the receiver applies the PCO internally.
+- **PCV — Phase Center Variation.** The remaining angle-dependent residual
+  after PCO removal. Geodetic antennas: typically <1–3 mm peak-to-peak at
+  L1. ~ Survey patches: 5–15 mm. ~ Cheap consumer patches: tens of mm and
+  often uncalibrated.
+
+**Why this matters for hobbyists running their own base:**
+- A base whose PCO/PCV is uncalibrated injects a constant systematic offset
+  into every rover position — 5–10 cm vertical is plausible at L1 alone, more
+  if antenna model is misidentified. The offset is identical for all rovers
+  using that base, which is why it can hide for weeks until a project ties
+  to an external benchmark.
+- The **antenna model name in RTCM 1008 / 1033** must match a name in the
+  rover's ANTEX file (§14.4) for the rover to apply the PCO/PCV correction.
+  Mistyping or omitting the antenna name silently disables the correction.
+  RTCM message types **1007/1008/1033** carry antenna descriptor strings;
+  the IGS naming convention is the de-facto standard. ✓ (source: RTCM 3
+  message catalog; IGS antenna naming convention rcvr_ant.tab)
+
+### 14.4 ANTEX calibration files
+
+**ANTEX (Antenna Exchange Format)** is the IGS-standardised ASCII format for
+PCO/PCV tables. ✓ (source: igs.org/ftp/pub/station/general/antex14.txt)
+Filename convention: `*.atx`. Each entry contains:
+
+- Antenna name (IGS convention: 16 chars + 4-char radome code)
+- PCO vector per frequency (L1, L2, L5, E5a, E5b, etc.)
+- PCV grid: typically 1° elevation × 5° azimuth, per frequency
+- Calibration method code: ROBOT, FIELD, CHAMBER, COPIED, CONVERTED
+
+Two calibration sources:
+
+- **NGS calibrations** (US National Geodetic Survey, antenna calibration
+  programme): published at geodesy.noaa.gov; ~free, covers most major
+  geodetic antennas. ✓ Newer NGS calibrations include radome-specific
+  variants for SCIS, SCIT, NONE, etc.
+- **IGS combined calibration**: IGS rotates and combines individual
+  agency calibrations into a master ANTEX (e.g. `igs20.atx` aligned with
+  ITRF2020). ✓ This is the file used by post-processing services like
+  CSRS-PPP and AUSPOS.
+
+**Practical access path:**
+- RTKLIB / RTKLIB-Explorer: ANTEX file path is set in the configuration
+  (`pos1-ant1` and `pos1-ant2` for rover and base). Without it, RTKLIB
+  defaults to PCO/PCV = 0 — equivalent to assuming the antenna is a
+  point at the ARP.
+- NTRIP rover firmware (most consumer/F9P-class): does **not** read ANTEX
+  files. It either applies a small built-in correction for a known antenna
+  (when `antenna name` is set in firmware config) or assumes the ARP is
+  the phase center. For sub-2 cm absolute accuracy this matters; for
+  pass-to-pass relative accuracy it cancels.
+
+### 14.5 Ground planes
+
+A flat conductive disc beneath the antenna improves performance for
+patch-style antennas in two ways:
+
+- **Multipath reduction.** Reflections from below the horizon are
+  blocked by the disc. The improvement is most pronounced for low-quality
+  patches; a choke-ring antenna already has its own ground plane built in.
+- **Phase center stability.** Without a ground plane, the antenna's
+  effective phase center is influenced by whatever metallic mass is below
+  it (vehicle roof, rooftop HVAC). A consistent ground plane gives a
+  consistent reference.
+
+**Sizing guidance:** ~ 1–2 wavelengths in radius for the lowest band
+covered. For L1 (19 cm wavelength): radius ~20–40 cm, so a ~30 cm disc
+is the typical hobbyist target. Larger discs help marginally; below
+20 cm performance degrades quickly. ~ (source: Tallysman ground plane
+guidelines; ArduSimple application notes)
+
+A workable hobbyist ground plane is a 30 cm circular sheet of aluminium
+or an old satellite dish back-plate. The disc must be **flat and
+electrically continuous** — perforated or painted surfaces work poorly.
+
+### 14.6 Cabling, LNAs, and the bias-T
+
+Most GNSS antennas are **active**: they contain a built-in LNA (Low-Noise
+Amplifier) that requires DC power, fed up the same coax that carries the
+RF signal. The receiver supplies that DC via a **bias-T** circuit. ~
+
+Practical implications:
+
+- **Antenna voltage matching.** Common voltages: 3.0 V (u-blox ANN-MB),
+  3.3 V (ZED-F9P bias-T default), 5 V (many survey antennas), 12 V (some
+  legacy geodetic antennas with high-current LNAs). Connecting a 3 V
+  antenna to a 5 V bias-T can damage the LNA; the reverse usually just
+  fails to power up. Check both sides before connecting. ~
+- **Cable loss.** GNSS frequencies (1.2–1.6 GHz) attenuate quickly in
+  thin coax. RG-174 (common with ANN-MB pigtails): ~1.0 dB/m at 1.5 GHz.
+  RG-58: ~0.5 dB/m. LMR-240: ~0.27 dB/m. LMR-400: ~0.13 dB/m. ~
+  (source: Times Microwave LMR datasheets) For runs >5 m to a rooftop
+  antenna, LMR-240 or LMR-400 is the typical choice.
+- **In-line LNAs and surge protection.** For long cable runs (>20 m) a
+  second in-line LNA is sometimes inserted; surge protectors (gas
+  discharge tube, e.g. PolyPhaser GT-NFF-A) protect against lightning-
+  induced surges on rooftop installations and are widely recommended on
+  permanent network reference stations. ~
+
+**Connector conventions:** SMA female on the antenna side is most common
+for survey antennas; TNC for some Trimble/Leica equipment; N-type on
+larger choke-ring installations. Adapter kits are cheap; hand-tightening
+RF connectors degrades performance — use the correct torque wrench
+(8 lbf-in / 0.9 N-m for SMA) on permanent installations. ~
+
+### 14.7 Antenna placement: rapid checklist
+
+For both base and rover, in priority order:
+
+1. **Sky above 10° elevation completely clear in all 360°.** Walk around
+   the antenna mast and confirm no obstruction is visible on the horizon
+   ring above 10°.
+2. **At least 1 m clearance to the nearest metallic surface** (HVAC
+   ductwork, parapets, lightning rods, neighbouring antennas).
+3. **Mounted on a rigid, mass-loaded structure.** Wood masts flex;
+   thin-wall steel masts vibrate in wind and produce micro-cycle-slips.
+   Concrete pillars or geodetic monuments are best for permanent bases.
+4. **At least 1 m above any flat surface** (rooftop, deck) to reduce
+   ground-bounce. Higher is better up to ~3 m; beyond that diminishing
+   returns. ~
+5. **Levelled and azimuth-aligned** if the antenna is azimuth-asymmetric
+   (most geodetic antennas have a "north" reference mark; aligning it
+   improves the match between observed and modelled PCV).
+
+### 14.8 Practical implications for this project's content
+
+When updating `guide.html` or popups for free NTRIP users:
+- The dominant rover-side accuracy lever after baseline is antenna quality.
+  The order of recommendations should be: (1) verify dual-band rover, (2)
+  put the antenna on a real ground plane, (3) get the antenna outside, (4)
+  pick a closer mountpoint.
+- Do not recommend choke-ring antennas to hobbyists — the price/benefit
+  ratio is wrong for the workflows the user-facing guide targets.
+- For base-station guidance (`guide.html § Outside coverage`), the
+  Tallysman / Harxon / ArduSimple survey patch tier is the right
+  recommendation; the user-facing guide should not push hobbyists to
+  geodetic-tier antennas.
+
+---
+
+## 15. Jamming, Spoofing, and Interference
+
+GNSS interference moved from theoretical to operational concern after 2022.
+For an AI advising hobbyists in affected regions, omitting it is a
+correctness gap: a Baltic farmer asking why RTK fails at certain hours, or
+a Black Sea boater whose chart plotter shows the boat 200 km inland, is not
+a hardware support question. This section is the diagnostic vocabulary.
+
+### 15.1 Definitions
+
+- **Jamming**: deliberate or incidental RF transmission in the GNSS bands
+  that overpowers the satellite signal. Effect: receiver loses lock —
+  satellite count drops, RTK loses fix or never acquires it, position
+  output stops or freezes.
+- **Spoofing**: deliberate transmission of a *fake* GNSS signal, well-formed
+  enough that the receiver tracks it. Effect: receiver reports a position
+  that is not the true position, often without dropping lock or showing any
+  warning.
+- **Meaconing**: a recorded genuine GNSS signal rebroadcast with a delay.
+  Behaviour intermediate between jamming and spoofing — receiver may report
+  a delayed but otherwise valid position, or the broadcaster's location.
+- **Unintentional interference**: out-of-band emissions from licensed
+  services (cellular, broadcast TV), defective electronics (LED drivers,
+  in-vehicle chargers, drone telemetry radios), or harmonics of nearby
+  transmitters. The dominant source globally; rarely makes the news.
+
+### 15.2 Jamming patterns
+
+| Source class | Mechanism | Range | Detect by |
+|---|---|---|---|
+| **PPDs (personal privacy devices)** — eBay/AliExpress 12 V cigarette-lighter jammers, $20–80 | Wide-band noise across L1 (and sometimes L2/L5) | ~10–500 m line-of-sight ~ | Local outage that follows a moving vehicle; resolves when vehicle leaves |
+| **State / military jamming** — high-power GNSS denial | Wide-band; structured patterns; may spoof simultaneously | 100s of km | Persistent over hours-days; aligns with airspace events |
+| **Faulty consumer electronics** | Narrowband harmonic of a switching converter | ~1–10 m | Outage tied to a specific device powering on |
+| **Cellular / DTV out-of-band** | Adjacent-band leakage filtered poorly by the antenna LNA | Site-specific | Outage tied to a specific azimuth toward a tower |
+
+### 15.3 Geographic hotspots (post-2022)
+
+Documented in public ICAO, EASA, IATA, and OpenSky data:
+
+- **Eastern Baltic (Estonia, Latvia, Lithuania, eastern Poland, Finland,
+  Norway, Sweden)** — recurring GPS outages affecting commercial aviation
+  attributed to jamming originating from Kaliningrad and the Russian
+  mainland. EASA SIB 2022-02R3 (Mar 2024 revision) describes "intermittent
+  loss of GNSS signal and significant degradation of GNSS performance" at
+  altitude across the region. ✓ (source: EASA SIB 2022-02R3)
+- **Black Sea / eastern Mediterranean / Cyprus / Turkey / Israel /
+  Lebanon / Syria** — recurring spoofing affecting civilian aviation,
+  documented by OPSGROUP and IATA reports 2023–2025. Receivers report
+  positions hundreds of km from the true position; some autopilots have
+  responded to spoofed positions before crew override. ✓ (source: OPSGROUP
+  GPS Spoofing Working Group reports; IATA position paper Sep 2024)
+- **Persian Gulf (UAE, Iran-adjacent airspace)** — chronic; known for
+  airline avionics-recovery procedures.
+- **Korean peninsula (South Korea)** — periodic jamming events
+  attributed to North Korean transmitters affect coastal districts and
+  shipping; Republic of Korea has issued formal complaints to the ITU
+  in multiple years (2010, 2011, 2012, 2016) ✓.
+- **Conflict zones generally** — Ukraine, Gaza, Sudan: GNSS denial is
+  routine; commercial RTK in or near these zones is intermittently
+  unavailable.
+- **Major US airports (Newark, Dallas-Fort Worth)** — repeated PPD-driven
+  events near airport perimeters; FAA NOTAMs document specific outages. ~
+
+A useful real-time picture: **gpsjam.org** (Zach Clemens) aggregates ADS-B
+position-quality reports and displays a daily heatmap of likely GNSS
+interference. Free; uses NIC/NACp degradation as the proxy. ✓
+(source: gpsjam.org methodology page)
+
+### 15.4 Spoofing
+
+Three observable signatures — a receiver under spoofing typically shows at
+least one:
+
+1. **Position teleport**: solution jumps suddenly to a far-away coordinate
+   (often a major airport — common spoof "decoy" location).
+2. **Time discontinuity**: receiver clock disagrees with phone/network
+   time by seconds–minutes after spoofing onset.
+3. **Anomalous C/N0 or near-uniform satellite signal strength**: spoofers
+   often broadcast all satellites at the same power, whereas real signals
+   vary by elevation. ~
+
+For RTK users, spoofing is especially hostile because:
+
+- The rover may track spoofed satellites while the base station tracks
+  real satellites (or different spoofed signals); the differential
+  cancels nothing useful and the position output is meaningless.
+- Float / Fix flags on the rover do not detect spoofing — they reflect
+  ambiguity-resolution success against whatever signals the rover sees.
+- Some receivers (Septentrio Mosaic-X5, u-blox F9R) include built-in
+  spoofing detection (signal-power consistency, RAIM-FDE). Most hobbyist
+  hardware does not.
+
+### 15.5 Mitigation and detection
+
+**Hardware-level (receivers with anti-jam/anti-spoof features):**
+
+- **Galileo OSNMA (Open Service Navigation Message Authentication)** —
+  authenticates the navigation message via a chain-of-trust signature.
+  Detects spoofing of the navigation data; does not detect signal-level
+  spoofing (replay/meaconing). Operational since 2023; available on u-blox
+  F9P (with firmware HPG 1.50+ ✓), Septentrio Mosaic-X5, and Quectel
+  LG290P. ✓ (source: GSC OSNMA service definition document; Quectel OSNMA
+  announcement Oct 2025)
+- **Adaptive nulling antennas (CRPA — Controlled Reception Pattern
+  Antenna)** — array antennas that null jammers in the direction-of-
+  arrival domain. Aviation/military hardware; not in hobbyist scope. ~
+- **Multi-frequency receivers** are inherently harder to jam — wide-band
+  jammers must cover L1+L2+L5+E5/E6, raising cost and detectability.
+  Cheap PPDs typically cover L1 only; a triple-band receiver continues
+  to fix on L2+L5 during L1-only jamming. ✓ (source: GPS World 2024
+  multi-band jamming resilience study ~)
+
+**Software / behavioural:**
+
+- **Cross-check against an independent positioning source.** Cellular
+  trilateration (ICAO IRR), dead-reckoning IMU, or Wi-Fi positioning are
+  unaffected by GNSS spoofing. A divergence of >100 m indicates one of
+  the two is wrong.
+- **Monitor satellite signal-strength distribution.** Real satellites at
+  different elevations show 10+ dB-Hz spread in C/N0; spoofed signals are
+  often within 2–3 dB of each other.
+- **Watch the reported time** against an independent NTP reference. A
+  receiver clock that suddenly disagrees with NTP by seconds is
+  spoofing-suspect.
+- **Trust GNSS less in known-affected airspace.** For RTK users in the
+  Baltic / Black Sea / Persian Gulf / Korean peninsula, time-of-day
+  patterns of fix loss correlate with jamming events more often than
+  with multipath or ionosphere.
+
+### 15.6 Implications for this project's users and content
+
+Practical guidance an AI updating user-facing content should reflect:
+
+- **In jamming-prone regions, plan for partial-day RTK availability.**
+  Volunteer single-base stations in the Baltic show outages aligned with
+  regional jamming; this is **not** a station fault and contacting the
+  operator will not help.
+- **The map cannot tell users about jamming.** No NTRIP message type
+  carries interference-status information. The user-facing guide should
+  link to gpsjam.org for users who report unexplained outages.
+- **OSNMA-capable hardware is the only structural mitigation hobbyists
+  can buy** as of 2026: u-blox F9P (HPG 1.50+ firmware), Septentrio
+  Mosaic-X5, Quectel LG290P. ✓ This is worth flagging in `guide.html`'s
+  hardware section for users in affected regions; it is not a default
+  recommendation everywhere because it adds complexity for users in
+  unaffected regions.
+- **A receiver that reports "fix" with cm precision while the position is
+  10 km wrong is showing spoofing or false-fix (§3.3) — both are
+  receiver-trust failures.** The §11 troubleshooting flow should
+  acknowledge spoofing as a possibility for users in known affected
+  regions, not just multipath / cycle slips.
+
+---
+
+## 16. PPK — Post-Processed Kinematic
+
+PPK is the same carrier-phase double-differencing math as RTK, run after
+the fact on logged raw observations rather than in real time. It is the
+common workflow for UAV photogrammetry, agricultural surveying without
+cellular coverage, and any field collection where a live correction link
+is impractical. §10.8 mentioned the base RINEX log as the enabling asset;
+this section is the dedicated treatment.
+
+### 16.1 PPK vs RTK: what changes
+
+| Property | RTK | PPK |
+|---|---|---|
+| Correction link | Live NTRIP, cellular, or radio | None during collection |
+| Result delivery | Real-time, in the field | After return to office (minutes–hours) |
+| Field UI | Fix/Float status visible | None — looks like standalone GNSS |
+| Forward + reverse pass | No (forward only) | Yes — both directions then combined |
+| Cycle-slip recovery | Re-converges going forward | Bridges from both sides of slip |
+| Accuracy floor (open sky, ≤10 km baseline) | ~10–20 mm horizontal | ~5–15 mm horizontal ~ |
+| Field connectivity | Needed | Not needed |
+
+The forward+reverse processing is the structural advantage. A cycle slip
+that interrupts RTK fix for 30 s is invisible in PPK because the engine
+fixes ambiguities before and after the slip, then combines bidirectional
+solutions. ~ This makes PPK noticeably more robust under canopy or in
+intermittent sky obstruction (urban capture flights, valley UAV missions).
+
+### 16.2 Workflow
+
+1. **Base** logs raw observations continuously (RINEX or native UBX/SBF).
+   Same hardware can simultaneously stream RTCM via NTRIP for any RTK
+   rovers — RINEX logging is parallel to RTK source push.
+2. **Rover** logs raw observations on the moving platform — no correction
+   link required. UAVs use the F9P + onboard SD card (e.g. Reach M2,
+   ArduSimple simpleRTK2B+heading kit, EmlidM+, DJI L1/L2/D-RTK lidar
+   unit) ✓.
+3. **Time alignment**: rover and base logs must overlap in time. Common
+   pitfall: receivers logging in local time vs UTC; RINEX timestamps are
+   UTC.
+4. **Process** in PPK software (see 16.3). Output: per-epoch position
+   solution, typically NMEA, CSV, or tagged photo files for
+   photogrammetry.
+
+### 16.3 Software
+
+**Free / open-source:**
+
+- **RTKLIB** (Tomoji Takasu, github.com/tomojitakasu/RTKLIB): the
+  reference open-source implementation. ✓ `rnx2rtkp` (CLI) and `rtkpost`
+  (Windows GUI) run static and kinematic post-processing including
+  forward, backward, and combined modes. Active development paused since
+  ~2017 on the upstream repo.
+- **RTKLIB-Explorer / demo5** (Tim Everett's fork,
+  github.com/rtklibexplorer/RTKLIB) ✓: actively maintained fork with
+  improved single-frequency handling, cycle-slip detection, and
+  documented configuration recipes for u-blox F9P-class receivers. The
+  practical default for hobbyist PPK; the demo5 config presets (`rtkpost`)
+  are widely shared in drone-mapping communities.
+- **PRIDE PPP-AR** (Wuhan University, github.com/PrideLab/PRIDE-PPPAR ~):
+  PPP-with-ambiguity-resolution; useful for solo-receiver static
+  post-processing rather than two-receiver PPK.
+
+**Vendor / commercial:**
+
+- **Emlid Studio** (free): drag-and-drop UI; consumes Reach raw logs
+  directly, also accepts third-party RINEX. ✓ The lowest-friction option
+  for non-technical users running Reach hardware.
+- **Trimble Business Center (TBC)**: full survey workflow including PPK,
+  network adjustment, photogrammetry tie-in. Paid; widely used in
+  professional surveying.
+- **Inertial Explorer (NovAtel/Hexagon)**: PPK + IMU tightly coupled;
+  the standard for mobile mapping (vehicle LiDAR, MMS) when an IMU is
+  involved. Paid.
+- **Topcon MAGNET Office** / **Leica Infinity**: vendor-tied equivalents
+  with format-native ingest of vendor receivers.
+
+### 16.4 Drone mapping use case
+
+The dominant hobbyist PPK workflow:
+
+1. Drone carries an F9P-class receiver with onboard logging (Reach M2,
+   ArduSimple simpleRTK2Blite, DJI Phantom 4 RTK ~).
+2. Camera shutter events are time-tagged into the GNSS log via a
+   hot-shoe wire.
+3. After flight, the drone log + a base RINEX file (own base, public
+   NTRIP base, or rinex from a CORS) are processed in RTKPOST or Emlid
+   Studio.
+4. Output: a CSV of camera positions at shutter time, accuracy
+   typically 2–5 cm horizontal / 3–7 cm vertical ✓ (open sky, short
+   baseline, multi-band) — used as control in photogrammetry packages
+   (Agisoft Metashape, Pix4D, OpenDroneMap).
+
+**Why PPK is preferred over RTK for drones:**
+
+- Cellular is unreliable at altitude (cell sectors are tilted downward;
+  rural sites have weak high-altitude coverage).
+- Live correction loss during a flight invalidates the segment for RTK
+  but is recovered cleanly in PPK.
+- Forward+reverse passes recover from RF interference events that would
+  drop RTK.
+
+**Free public NTRIP base RINEX as PPK reference:**
+
+- This project's map identifies physical reference stations with stable,
+  long-term operations. Many of those operators publish RINEX archives
+  (e.g. EarthScope NOTA, IGS, AUSCORS, IBGE RBMC, ERGNSS) — a drone
+  flown nearby can use the post-flight RINEX from the nearest CORS as
+  PPK base, eliminating the need to operate a private base.
+- Volunteer rtk2go / Centipede stations typically do **not** archive
+  RINEX. Live-only.
+- For users wanting a free PPK base in their own region: **set up a
+  RTKBase** that logs RINEX and pushes RTCM to a public caster
+  simultaneously — §10.8 covers the configuration.
+
+### 16.5 Practical accuracy expectations
+
+~ Empirically observed for u-blox F9P + survey patch + RTKLIB demo5:
+- Open-sky static, 5–10 km baseline: 5–10 mm horizontal RMS (RTK and
+  PPK indistinguishable).
+- Drone capture 50–80 m AGL, 5–10 km baseline: 15–30 mm horizontal,
+  20–50 mm vertical (camera position; ground control points needed
+  for absolute photogrammetry tie).
+- Forest canopy, walking GNSS antenna: PPK 3–10 cm where RTK loses fix
+  entirely. ~ (source: PMC 2023 canopy study; demo5 forum reports)
+
+PPK has the same false-fix and ionospheric-storm vulnerabilities as RTK —
+the math is the same. The bidirectional pass mitigates random cycle slips
+but does not fix systematic errors (multipath, antenna model mismatch,
+base-coordinate error).
+
+---
+
+## 17. Tilt Compensation and IMU-Aided RTK
+
+Tilt compensation is the marquee hobbyist-relevant survey-receiver feature
+of the past five years. The user-facing guide already lists tilt-capable
+hardware (Reach RS3); this section is the technical anchor so an AI
+updating that copy understands what the feature is, where it works, and
+where it breaks.
+
+### 17.1 The problem it solves
+
+Traditional pole survey requires the rover pole to be perfectly vertical
+above the surveyed point — verified by levelling a bubble vial on the
+pole. A 2° pole tilt at a 2 m pole height moves the antenna ~70 mm
+horizontally relative to the ground tip ✓ (geometry: 2 m × sin 2°). A 5°
+tilt: ~175 mm. Wind, awkward stations, and operator fatigue routinely
+introduce 1–3° of pole tilt in fieldwork.
+
+Tilt compensation lets the operator hold the pole at any angle (within
+limits) and still record the position of the pole tip — increasing
+fieldwork speed and access to physically constrained measurement
+locations (under fences, against building corners, on slopes).
+
+### 17.2 How it works
+
+A tilt-compensated rover combines:
+
+- **GNSS** — gives the antenna's geocentric position to RTK precision.
+- **IMU (Inertial Measurement Unit)** — typically a MEMS device
+  combining a 3-axis accelerometer, 3-axis gyroscope, and (often) 3-axis
+  magnetometer. Accelerometer measures tilt against gravity at rest;
+  gyroscope tracks short-term orientation changes; magnetometer
+  resolves heading (yaw) when stationary.
+- **Sensor fusion** (typically Kalman filter) — combines IMU and GNSS
+  inputs to estimate antenna orientation.
+- **Pole-tip vector calculation** — from antenna position, pole length
+  (entered in the receiver), and antenna orientation, compute the
+  horizontal offset to the tip, subtract it.
+
+The orientation-from-IMU is the hard part. Magnetometers are easily
+biased by nearby ferromagnetic material (cars, rebar, fences). Modern
+implementations (Trimble R12i, Leica GS18 T, Emlid RS3, Septentrio
+Altus NR3) use **magnetic-field-free heading**: derive yaw from GNSS
+heading during operator motion, eliminating the magnetometer dependence
+and the calibration-around-magnetic-objects failure mode. ✓
+(source: Leica GS18 T white paper; Trimble R12i datasheet; Emlid Reach
+RS3 launch material)
+
+### 17.3 Calibration and operating envelope
+
+**Calibration** for a magnetometer-free implementation typically requires
+the operator to walk forward in a straight line for ~5–10 m to align
+GNSS heading with IMU heading. Magnetometer-based implementations
+require a tilting/rotating "compass dance" — and the calibration drifts
+as the operator approaches metallic objects.
+
+**Tilt range:**
+- Most commercial implementations: ±30° from vertical without accuracy
+  degradation. ~ (source: Leica GS18 T spec; Emlid Reach RS3 spec)
+- Some advertise 60° or "any angle"; field accuracy at extreme tilt
+  (>45°) is typically degraded to several cm. ~
+
+**Pole-length entry:** the receiver needs the distance from antenna ARP
+to pole tip, entered manually. A 1 cm error in pole length is a 1 cm
+horizontal error at every recorded point — surveys lose a couple of cm
+of accuracy this way routinely. The pole tip itself wears with use; for
+millimetre-class work, periodic re-measurement is required. ~
+
+### 17.4 Implementations
+
+| Receiver | Tilt method | Notes |
+|---|---|---|
+| **Emlid Reach RS3** | IMU + magnetometer-free heading | First sub-$3,000 hobbyist tilt rover; full iOS/Android support via Emlid Flow ✓ |
+| **Leica GS18 T / GS18 I** | IMU; visual-inertial in GS18 I | GS18 I uses a built-in camera to recover the pole-tip position from photogrammetric features even when GNSS is unavailable ~ |
+| **Trimble R12i** | TIP — Trimble Inertial Platform | Magnetic-free; advertised pole tilt up to 60° ✓ |
+| **Topcon HiPer VR / GR-i3** | TILT-AS / IMU | ~ |
+| **Septentrio Altus NR3** | IMU | OEM tilt feature ~ |
+| **CHC i93 / Stonex S700A / Geomax Zenith60 Pro** | IMU | Mid-tier alternatives ✓ |
+| **u-blox ZED-F9R** | IMU but heading-aided RTK, **not tilt compensation** | F9R is for vehicle navigation (UDR/ADR fusion); does not compute pole-tip. ✓ — common confusion |
+
+**ZED-F9R is the trap.** A user reading marketing material may assume
+"F9R has IMU, therefore it does tilt compensation." It does not. F9R
+fuses IMU into the position solution to maintain accuracy through GNSS
+outages on vehicles (Untethered Dead Reckoning); it has no concept of
+pole geometry. Tilt compensation requires either commercial firmware
+(above) or external software running pole-tip math.
+
+### 17.5 Open-source / hobbyist tilt
+
+A hobbyist can replicate basic tilt compensation with an F9P + external
+IMU (BNO055, ICM-20948) by running a Kalman filter and pole-tip
+calculation in custom firmware or a phone app. ~ Such projects exist on
+GitHub but none have reached the polish or accuracy verification of the
+commercial offerings. For hobbyists who need tilt and free-NTRIP RTK,
+the recommended path is the Reach RS3 (the cheapest commercial
+implementation) rather than a DIY tilt rig.
+
+### 17.6 Implications for this project's content
+
+For `guide.html`:
+- Tilt compensation is a price-tier feature: Reach RS3 (~$3,000) is the
+  current entry point. The "Hobbyist / tinkerer path" using a bare F9P
+  does **not** get tilt; that should remain explicit.
+- Tilt compensation does **not** improve absolute accuracy — it just
+  removes the levelling requirement. RTK fix-state and baseline-length
+  rules from §3.3 apply identically.
+- The user-facing guide should not push tilt as a default need. It
+  matters for surveyors who collect dozens of shots per hour; for a
+  hobbyist mapping a property boundary once, a bipod at €30 fixes the
+  problem with no firmware complexity.
+
+---
+
+## 18. Data Licensing and Attribution
+
+"Free" NTRIP networks vary widely in what users are permitted to do with
+the corrections and any derived data. An AI updating user-facing copy
+needs to know which networks attach attribution requirements,
+non-commercial clauses, or annual licence-acceptance, so that a hobbyist
+publishing survey results or building a commercial workflow does not
+breach terms by accident.
+
+### 18.1 Why this matters
+
+Three legal artefacts come from the corrections, in increasing risk order:
+
+1. **The RTCM correction stream itself.** Most networks treat consumption
+   of the live stream as licensed by the act of registering or accepting
+   terms; redistribution (re-broadcasting another network's stream from
+   your own caster) is universally prohibited or requires written
+   permission.
+2. **Position output derived from corrections.** Whether your fix is
+   "your data" or a derivative of the network's data is often unclear.
+   Most networks treat it as the user's data with no claim attached;
+   some explicitly require attribution when survey data are published.
+3. **Logged base RINEX or sourcetable archives.** This project's pipeline
+   archives parsed sourcetables (`data/<source>.sourcetable`). That is a
+   factual list of mountpoints + coordinates, generally outside copyright.
+   Bulk RINEX archives from CORS networks usually carry the same licence
+   as the live stream.
+
+### 18.2 Licence families seen in NTRIP networks
+
+| Family | What it requires | Examples in this project's pipeline |
+|---|---|---|
+| **CC BY 4.0** (attribution) | Cite the network operator when publishing data | AUSCORS ✓, PositioNZ (NZ variant) ✓ |
+| **Open Database Licence (ODbL)** / community-share-alike | Attribute + share-alike | Centipede (community ODbL ~) |
+| **Custom non-commercial (NULA-style)** | Annual acceptance; non-commercial only; no redistribution | EarthScope NOTA (NULA) ✓ |
+| **National-survey free-use terms** | Free for any purpose within the issuing country; foreign use sometimes restricted | SAPOS (most states; BY paid for non-ag) ✓; ERGNSS (Spain); ASG-EUPOS (Poland); IBGE RBMC-IP (Brazil); IGAC (Colombia) ~ |
+| **Volunteer-pool implicit terms** | "Use freely; do not abuse"; no formal licence text | rtk2go (SNIP terms of use) ~; community Centipede nodes |
+| **Restricted / paid** | Commercial or government-only use | APOS (AT) paid tier; Bavarian SAPOS for non-ag use; UAE / Qatar / KSA national networks |
+
+### 18.3 Per-network terms in this project's pipeline
+
+| Network | Cost | Licence model | Attribution required for derived data | Commercial use | Re-broadcast permitted |
+|---|---|---|---|---|---|
+| rtk2go | Free | SNIP TOS; "personal/educational" intent ~ | Not specified | Discouraged ~ | Forbidden ✓ |
+| Centipede | Free | Community open; ODbL-aligned ~ | Yes (Centipede attribution) ~ | Allowed | Forbidden without permission ~ |
+| EarthScope NOTA | Free | NULA — annual click-through licence ✓ | Yes (EarthScope + NSF acknowledgement on publications) ✓ | **No** — non-commercial only ✓ | Forbidden ✓ |
+| AUSCORS | Free | CC BY 4.0 ✓ | Yes ✓ | Allowed (CC BY) ✓ | Forbidden by ToS even though CC BY allows; AUSCORS imposes additional contract terms ~ |
+| PositioNZ | Free | CC BY 4.0 NZ ✓ | Yes (LINZ acknowledgement) ✓ | Allowed | Forbidden by LINZ portal ToS ~ |
+| TrigNet | Free | NGI custom — free for South African users; international use accepted ~ | Yes (NGI acknowledgement) ~ | Permitted; NGI requests notification for commercial use ~ | Forbidden ~ |
+| SAPOS DE (most states) | Free for hobby/private; €0–500/yr commercial varying by state ~ | Per-state: data-use agreements; Bavaria charges €20/yr non-ag ✓ | Required in most states for survey deliverables ~ | Permitted (with paid tier in some states) ~ | Forbidden ~ |
+| ERGNSS (Spain) | Free | IGN open data; CC BY-style ~ | Yes (IGN acknowledgement) ~ | Permitted | Forbidden ~ |
+| ASG-EUPOS (Poland) | Free | GUGiK terms; free with registration | Yes ~ | Permitted ~ | Forbidden ~ |
+| IBGE RBMC-IP (Brazil) | Free | IBGE open-data; attribution-style ~ | Yes (IBGE acknowledgement) ~ | Permitted | Forbidden ~ |
+| RAMSAC (Argentina) | Free | IGN-AR terms; free with registration ~ | Yes ~ | Permitted ~ | Forbidden ~ |
+| Centipede individual base | Free | Per-node — most are open; some operators add note ~ | Recommended (operator credit) ~ | Generally allowed | At operator discretion ~ |
+| FReDNet (Italy/OGS) | Free | OGS public-research terms; free with registration ~ | Yes (OGS acknowledgement) ~ | Permitted ~ | Forbidden ~ |
+| Italian regional networks (SPIN3, GPS-UMBRIA, etc.) | Free in most cases | Per-region; varies | Varies | Varies | Varies |
+| US state DOT networks (WISCORS, AlCORS, etc.) | Free; each state portal | State-specific data terms; usually free for any use ~ | Often required for CORS use in published surveys ~ | Permitted ~ | Forbidden ~ |
+| MIRAI / Go!GNSS (JP) | Free | GSI Japan terms ~ | Yes (GSI acknowledgement) ~ | Permitted ~ | Forbidden ~ |
+
+✓ = confirmed against operator documentation. ~ = inferred from comparable
+public-survey-network practice and/or rtk2go documentation; verify before
+relying.
+
+### 18.4 NULA — the awkward case
+
+EarthScope NOTA (Americas) is the most legally distinct of the major free
+networks. The Network Use Licence Agreement is:
+
+- **Annual click-through.** A user must accept the licence each year; if
+  not, the account loses access and the credentials stop working. ✓
+- **Non-commercial only.** Commercial users must pay for a separate
+  EarthScope commercial-data licence; surveying for paid client work is
+  in scope of "commercial." ✓ (source: EarthScope Data Use Policy)
+- **Citation expected.** Publications using NOTA real-time data should
+  cite EarthScope and the original NSF award funding the network. ✓
+
+For an AI advising a US/Canadian/Caribbean hobbyist about NTRIP options,
+EarthScope NOTA is the dominant network with the best coverage — but
+the "non-commercial" clause is real, not nominal. A landscaper running a
+side business should not assume "free public CORS = free for my work."
+
+### 18.5 What rebroadcast typically means
+
+A common confusion: a hobbyist running a private RTK rover sometimes wants
+to share corrections with a friend on the next ridge. Two patterns:
+
+- **Within one workflow** (sharing a stream between your rover and your
+  drone, both operated by the same user): permissible under nearly all
+  network terms.
+- **Hosting a re-broadcast caster** (running your own NTRIP server that
+  pulls from EarthScope/AUSCORS/SAPOS and re-serves it under a new
+  mountpoint): forbidden under nearly all network terms. The technical
+  ease of doing this with str2str (§5.6) does not imply legal permission.
+  If the goal is to deliver a stream to a remote rover, run the rover's
+  client against the original network with proper credentials.
+
+### 18.6 Implications for this project's content
+
+For `guide.html`:
+- The user-facing guide should not advise users to re-broadcast streams
+  or run derived casters. It currently does not, and any future
+  expansion should keep that line.
+- For users considering commercial work, surface the NULA non-commercial
+  clause for EarthScope NOTA and the SAPOS commercial-tier patterns
+  rather than describing them as "free."
+- CC BY 4.0 attribution is mild but real — a project publishing
+  cm-accurate results from AUSCORS or PositioNZ should include a one-
+  line acknowledgement in their report. This is worth a glossary entry
+  or a footnote in the user guide if attribution awareness becomes
+  user-facing.
+- For maintainers updating `docs/networks.md`: the **terms** field is
+  already a partial record of this; tightening it as networks are added
+  prevents the AI guide from going stale.
+
+---
+
 ## Sources consulted
 
 - [rtk2go.com — How it Works](http://rtk2go.com/how-it-works/)
@@ -2101,4 +2833,28 @@ installed (QGIS prompts to download missing grids).
 - [Inside GNSS Feb 2024 — Galileo HAS urban driving assessment](https://insidegnss.com/galileo-has-a-performance-assessment-in-urban-driving-environments/) (urban: only marginal improvement over broadcast due to constant re-convergence ✓)
 - [ENC 2025 — Galileo HAS accuracy and convergence performance results](https://enc-series.org/wp-content/uploads/2025/05/Sciforum-095088-commercial-formatted.pdf) (HAS Phase 1 float-only; phase bias products absent ✓)
 
-_Last updated: 2026-04-25. Seventh validation pass: 2026-04-25._
+- [IGS antenna calibration — antex14 format definition](https://files.igs.org/pub/data/format/antex14.txt) (ANTEX field structure; PCO/PCV per-frequency tables ✓)
+- [NGS Antenna Calibration Programme — NOAA NGS](https://geodesy.noaa.gov/ANTCAL/) (US authority; published ANTEX files for major geodetic antennas ✓)
+- [IGS antenna naming convention rcvr_ant.tab](https://files.igs.org/pub/station/general/rcvr_ant.tab) (16-char antenna + 4-char radome convention ✓)
+- [RTCM 3 antenna descriptor messages 1007/1008/1033 — SNIP knowledge base](https://www.use-snip.com/kb/knowledge-base/rtcm-3-message-list/) (antenna/receiver/serial messages used to convey ANTEX-keyed identity ✓)
+- [Times Microwave LMR cable attenuation reference](https://www.timesmicrowave.com/calculator/) (RG-174/RG-58/LMR-240/LMR-400 loss at 1.5 GHz ~)
+- [EASA SIB 2022-02R3 — GNSS Outages and Alterations](https://ad.easa.europa.eu/ad/2022-02R3) (Baltic and Black Sea regional GNSS denial documented for civil aviation ✓)
+- [OPSGROUP GPS Spoofing Working Group](https://ops.group/blog/gps-spoofing-working-group/) (multi-region 2023–2025 spoofing event database; airport-decoy patterns ✓)
+- [IATA Position Paper on GNSS Interference Sep 2024](https://www.iata.org/) (industry position; airline operational risk from spoofing ✓)
+- [gpsjam.org — Daily maps of GPS interference](https://gpsjam.org/about) (ADS-B NIC/NACp degradation as GNSS-interference proxy; methodology page ✓)
+- [Galileo OSNMA Service Definition Document — GSC](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo_OSNMA_SDD_v1.1.pdf) (navigation-message authentication; signal-level replay not detected ✓)
+- [u-blox HPG 1.50 firmware — OSNMA on F9P](https://www.u-blox.com/en/product/zed-f9p-module) (OSNMA support added in HPG 1.50 ✓)
+- [ITU complaints on North Korean GPS jamming — Republic of Korea filings](https://www.itu.int/en/ITU-R/space/Pages/news.aspx) (2010, 2011, 2012, 2016 events ✓)
+- [RTKLIB-Explorer (demo5 fork) — GitHub](https://github.com/rtklibexplorer/RTKLIB) (actively maintained PPK fork; F9P-class config presets ✓)
+- [Emlid Studio — Reach raw-log post-processing](https://emlid.com/studio/) (free desktop PPK; native Reach UBX ingest ✓)
+- [Reach RS3 launch — Emlid](https://blog.emlid.com/meet-the-new-reach-rs3-survey-grade-rtk-rover-with-tilt-compensation/) (sub-$3k tilt rover; magnetometer-free heading ✓)
+- [Leica GS18 T white paper — Tilt compensation](https://leica-geosystems.com/products/gnss-systems/smart-antennas/leica-gs18-t) (tilt-anywhere; magnetic-immune; pole-tip math ✓)
+- [Trimble R12i datasheet — TIP Inertial Platform](https://geospatial.trimble.com/products-and-solutions/r12i) (60° pole tilt advertised; magnetic-free heading ✓)
+- [u-blox ZED-F9R product summary](https://www.u-blox.com/en/product/zed-f9r-module) (UDR/ADR for vehicles; **not** survey tilt compensation ✓)
+- [EarthScope NULA — Network Use Licence Agreement](https://www.earthscope.org/data/data-policy/) (annual acceptance; non-commercial only; citation required ✓)
+- [Centipede community licence and contribution rules](https://docs.centipede.fr/) (community-share-alike intent; per-node operator discretion ~)
+- [LINZ — PositioNZ data licensing terms](https://www.linz.govt.nz/data/linz-data/use-and-share-data) (CC BY 4.0 NZ ✓)
+- [Geoscience Australia — AUSCORS data terms](https://gnss.ga.gov.au/) (CC BY 4.0 plus operational ToS ✓)
+- [SAPOS — Free use vs paid commercial tier overview](https://sapos.de/) (per-state landesvermessungsamt portals; Bavaria €20/yr non-ag ✓)
+
+_Last updated: 2026-04-25. Eighth validation pass: 2026-04-25 (PR1 — added §14 Antennas, §15 Jamming/Spoofing, §16 PPK, §17 Tilt Compensation, §18 Data Licensing)._
