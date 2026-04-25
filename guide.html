@@ -60,13 +60,29 @@ a:hover{color:#1b2b3a;}
 <h1>Getting centimetre-accurate GPS for free</h1>
 <p class="subtitle">A practical guide for hobbyists and small teams — no prior GNSS knowledge assumed.</p>
 
+<nav class="toc" style="background:#eef2f7;border-radius:4px;padding:10px 14px 10px 30px;margin:0 0 24px;">
+  <strong style="font-size:13px;display:block;margin:0 0 4px -16px;">On this page</strong>
+  <ul style="margin:0;padding:0 0 0 4px;font-size:13px;line-height:1.8;list-style:none;">
+    <li><a href="#scope">What this guide covers</a></li>
+    <li><a href="#why">Why standard GPS is only accurate to metres</a></li>
+    <li><a href="#how">How RTK works</a></li>
+    <li><a href="#existing">Do you already have compatible hardware?</a></li>
+    <li><a href="#hardware">Hardware if you don't have a compatible receiver</a></li>
+    <li><a href="#guide-map">Using the map to find free corrections</a></li>
+    <li><a href="#replace">Replacing a dead mountpoint</a></li>
+    <li><a href="#connect">Connecting — step by step</a></li>
+    <li><a href="#base">Setting up your own mountpoint</a></li>
+    <li><a href="#glossary">Glossary</a></li>
+  </ul>
+</nav>
+
 <h2 id="scope">What this guide covers</h2>
 <p>This guide is about <strong>Network RTK</strong>: pairing a compatible GPS receiver with free correction data from a nearby reference station to achieve centimetre-level accuracy. If you need a standalone solution that works anywhere without an internet connection, two categories exist:</p>
 <ul>
-  <li><strong>Complete standalone units</strong> (e.g. Galileo HAS receivers such as the Juniper Geode GNS3H or Eos Arrow Gold+): receive free satellite-delivered corrections with no ongoing fees. Complete units start around $2,900 / €2,700.</li>
-  <li><strong>Subscription-dependent hardware</strong> (e.g. Trimble Catalyst DA2, ~$850): requires paid correction service fees to function and typically will not work with free PPP services.</li>
+  <li><strong>Complete standalone units</strong> (e.g. Galileo HAS receivers such as the Juniper Geode GNS3H or Eos Arrow Gold+): receive free satellite-delivered corrections with no ongoing fees. Galileo HAS works globally; users in Japan and the Asia-Pacific have an analogous free service called <strong>QZSS CLAS</strong>; users in China and the Asia-Pacific have <strong>BeiDou PPP-B2b</strong>. Complete units start around $2,900 / €2,700. Accuracy with these services is typically 10–30 cm post-convergence — not the 1–3 cm you get from network RTK.</li>
+  <li><strong>Subscription-dependent hardware</strong> (e.g. Trimble Catalyst DA2, ~$850): requires paid correction service fees to function and will not work with the free networks shown on the map. If you have inherited Catalyst-style hardware, it is not a fit for this site's data.</li>
 </ul>
-<p>Search for <em>PPP receiver</em>, <em>SSR GNSS</em>, or <em>Galileo HAS</em> to explore those options. This map isn't about them.</p>
+<p>Search for <em>PPP receiver</em>, <em>SSR GNSS</em>, <em>Galileo HAS</em>, <em>QZSS CLAS</em>, or <em>BeiDou PPP-B2b</em> to explore those options. This map isn't about them.</p>
 
 <h2 id="why">Why standard GPS is only accurate to metres</h2>
 <p>GPS satellites broadcast precise timing signals. By the time those signals reach your receiver, they have been slowed by the atmosphere, distorted by satellite clock drift, and bounced off nearby surfaces. These errors compound to 5–10 metres under typical conditions. Nothing is wrong with your receiver — that is simply the limit of standalone GPS.</p>
@@ -78,7 +94,7 @@ a:hover{color:#1b2b3a;}
 
 <h2 id="existing">Do you already have compatible hardware?</h2>
 <p>If you own survey equipment from <strong>Trimble, Leica, Topcon, Sokkia, South, Hi-Target</strong> or similar brands, look for an <em>Internet RTK</em>, <em>Network RTK</em>, or <em>NTRIP</em> option in the receiver's settings. Most professional receivers made in the past 15 years support it. If the menu exists, you are already equipped — find a nearby station on the <a href="./">map</a> and enter the connection details.</p>
-<div class="callout"><strong>Compatibility check:</strong> the receiver must be dual-frequency (L1+L2 minimum). To check, look for "L1/L2", "dual-frequency", or "dual-band" in the receiver's datasheet or specifications page. Single-frequency receivers and consumer GPS units — including most smartphone chips and handheld hiking GPS devices — cannot do RTK regardless of how they are configured.</div>
+<div class="callout"><strong>Compatibility check:</strong> the receiver must be dual-frequency (L1+L2 minimum). To check, look for "L1/L2", "dual-frequency", or "dual-band" in the receiver's datasheet or specifications page. Single-frequency receivers and consumer GPS units — including most smartphone chips and handheld hiking GPS devices — cannot do RTK regardless of how they are configured. Subscription-only "RTK" hardware such as the Trimble Catalyst DA2 also won't work with the free networks on this map: it requires Trimble's paid correction service to compute a fix.</div>
 
 <h2 id="hardware">Hardware if you don't have a compatible receiver</h2>
 <p>Prices below are approximate and vary by region and retailer. Check manufacturer websites for current local pricing.</p>
@@ -104,7 +120,7 @@ a:hover{color:#1b2b3a;}
     <tr>
       <td><strong>Emlid Reach RS3</strong></td>
       <td class="price">~$2,999</td>
-      <td>Current survey-grade flagship. IMU tilt compensation (accurate shots without levelling the pole). UHF radio. Full iOS support via Emlid Flow.</td>
+      <td>Current survey-grade flagship. IMU tilt compensation (lets you take shots without levelling the pole — useful for high-volume work; a €30 bipod is fine for occasional shots). Tilt does not improve absolute accuracy; it removes the levelling step. UHF radio. Full iOS support via Emlid Flow.</td>
     </tr>
     <tr>
       <td><strong>Emlid Reach RS2+</strong></td>
@@ -126,6 +142,23 @@ a:hover{color:#1b2b3a;}
 <div class="cov"><span class="sw" style="background:rgb(210,90,90)"></span><span><strong>Pale red</strong> — 50–100 km. Decimetre range; may not achieve a fix.</span></div>
 <p style="margin-top:10px"><strong>Purple circles</strong> are virtual networks (VRS): the network synthesises a virtual reference near your location from multiple real stations. You connect to one server address; the network does the rest. Click a circle for details.</p>
 <p>Click any pin to see the server address, port, and mountpoint name you need to configure your NTRIP client. If several stations are within range, any of them will do — pick the nearest one in the green zone. Some networks also offer a <code>NEAR</code> mountpoint that selects the closest station automatically.</p>
+<div class="callout"><strong>Attribution and commercial use:</strong> a few networks place conditions on the data even when access is free. <strong>EarthScope NOTA</strong> (Americas) is non-commercial only — paid work using NOTA corrections is not permitted. <strong>AUSCORS</strong> (Australia) and <strong>PositioNZ</strong> (New Zealand) are CC BY 4.0: you can use the data for any purpose, including commercial work, but published deliverables need a one-line acknowledgement of the network operator. Country and Bavarian SAPOS (Germany) charges a small fee for non-agricultural commercial use. The pin popup links to the network's registration page where the current terms live.</div>
+
+<h2 id="replace">Replacing a dead mountpoint</h2>
+<p>If you arrived here because a mountpoint that worked last week stopped responding, the cause is usually one of three things, in this order of frequency:</p>
+<ol>
+  <li><strong>The base went offline.</strong> Volunteer bases on rtk2go and Centipede disappear from the sourcetable the moment they stop streaming. If the pin is no longer on the map, treat the station as unavailable. Volunteer base operators frequently lose their stream to a dynamic-IP change after an ISP reboot, a power outage without UPS, or a router firmware update — these are usually transient, but recovery time depends on the operator. Around 7% of registered rtk2go bases are live at any one time.</li>
+  <li><strong>The station is stale, not gone.</strong> Sources offline 3–7 days appear as grey dots and are excluded from the coverage shading. Sources offline ≥7 days are hidden entirely. If the dot is grey, the network is alive but this specific station is unreachable; pick another one in the same area.</li>
+  <li><strong>The network moved.</strong> Some networks change host or port (Centipede migrated from <code>caster.centipede.fr</code> to <code>crtk.net</code> in March 2025; AUSCORS retired its old hostname in 2022). Check the pin popup for the current host:port; if you're using saved credentials, they should still work.</li>
+</ol>
+<p>Recovery, in order of effort:</p>
+<ol>
+  <li>Open the map, zoom to your work area, and pick the nearest physical-station pin in the green or yellow-green zone. Any station within ~30 km will give you cm-RTK; within ~10 km is best.</li>
+  <li>If your area is covered only by a national survey network (SAPOS, ERGNSS, AUSCORS, PositioNZ, IBGE, etc.), register on its portal — these are professionally monitored and far more reliable than volunteer bases for production work. Registration is usually free and takes minutes to a few days.</li>
+  <li>If your area has no coverage and the work is non-critical, check the Centipede status page (<a href="https://centipede-rtk.org" rel="noopener noreferrer">centipede-rtk.org</a>) for the closest active community base.</li>
+  <li>If you are in the eastern Baltic, Black Sea, eastern Mediterranean, Persian Gulf, or Korean peninsula coast and outages cluster at certain times of day, regional GPS jamming may be the cause — not the base. Cross-check with <a href="https://gpsjam.org" rel="noopener noreferrer">gpsjam.org</a>.</li>
+</ol>
+<p>For mission-critical work — legal survey, machine control, production agriculture — volunteer mountpoints are not the right tool regardless of how reliable any individual operator runs theirs. Use a national CORS network or a commercial service with an SLA.</p>
 
 <h2 id="connect">Connecting — step by step</h2>
 <p>Most survey receivers have an NTRIP client built into their settings menu. For Emlid receivers, use the Emlid Flow app. The typical workflow for standalone receivers: your phone or tablet connects to the receiver via Bluetooth, pulls correction data from the internet, and forwards it to the receiver automatically. For other hardware, free client apps include:</p>
@@ -145,19 +178,63 @@ a:hover{color:#1b2b3a;}
 <p><strong>Your antenna must be outdoors</strong> with a clear, unobstructed view of the sky. Indoors, under tree cover, or near tall buildings, RTK will not work reliably regardless of how close the reference station is.</p>
 <p><strong>What success looks like:</strong> your client will show the correction stream as connected. Within about 30–60 seconds your receiver should report a <em>fix</em> (some receivers show this as "RTK Fixed" or a green indicator). Once fixed, position updates will reflect centimetre-level accuracy. If your software shows coordinates jumping around at metre scale, the receiver is still in <em>float</em> — wait another minute or try a different mountpoint.</p>
 <div class="callout"><strong>Troubleshooting</strong><br>
-<strong>Connection refused or times out:</strong> check the host and port; some networks use a non-standard port listed in the map popup.<br>
-<strong>Connected but stays float:</strong> the mountpoint format may not suit your receiver — try another mountpoint on the same server, or try an MSM7 stream if available (look for "RTCM3" with a high stream number).<br>
-<strong>Fix achieved but accuracy is worse than expected:</strong> the station is likely at the edge of its reliable range, or multipath from nearby buildings is affecting your antenna. Move the antenna to a clearer location.</div>
+<strong>Connection refused or times out:</strong> check the host and port; some networks use a non-standard port listed in the map popup. Corporate, campus, and public WiFi commonly block port 2101 — try a 4G/5G hotspot to confirm whether your network is the problem.<br>
+<strong>You see a long text listing instead of corrections:</strong> your client requested <code>/</code> rather than <code>/MOUNTPOINT</code>, so the caster is sending you the sourcetable. Re-enter the connection with the mountpoint name set.<br>
+<strong>Client connects, no error, but no corrections flow for tens of seconds before dropping:</strong> the base is offline and the caster is sending keep-alive padding. Pick a different mountpoint.<br>
+<strong>Connected but stays float:</strong> the mountpoint format may not suit your receiver — try another mountpoint on the same server, or try an MSM7 stream if available (look for "RTCM3" with a high stream number). On L1+L2 receivers, expect a fix within ~30 km; if you're further out, float is the correct outcome.<br>
+<strong>Fix achieved but accuracy is worse than expected:</strong> the station is likely at the edge of its reliable range, or multipath from nearby buildings is affecting your antenna. Move the antenna to a clearer location.<br>
+<strong>Intermittent fix loss at certain times of day in the eastern Baltic, Black Sea, eastern Mediterranean, Persian Gulf, or Korean peninsula coast:</strong> regional GPS jamming. Not a station fault. Check <a href="https://gpsjam.org" rel="noopener noreferrer">gpsjam.org</a>.<br>
+<strong>"Worked yesterday, not today" with no other change:</strong> check the geomagnetic Kp index at <a href="https://swpc.noaa.gov" rel="noopener noreferrer">swpc.noaa.gov</a>. Kp ≥ 5 collapses RTK fix reliability even on baselines that normally work fine; wait for the storm to pass (typically hours).</div>
 
-<h2 id="base">Outside coverage: setting up your own base station</h2>
-<p>If the map shows no stations within useful range, you can run your own. A second RTK receiver sits at a fixed point you have surveyed; it broadcasts corrections via the internet through a free caster, which your rover connects to as normal.</p>
-<p>The most accessible route:</p>
+<h2 id="base">Setting up your own mountpoint</h2>
+<p>If the map shows no stations within useful range, you can publish your own. A second RTK receiver, fixed at a surveyed point with a clear view of the sky, runs continuously and pushes RTCM correction messages to a free public caster. Your rover — and anyone else's, if you choose to share — connects to that caster like any other mountpoint on this map.</p>
+<p>Four decisions in order: hardware, antenna placement, base position, and caster.</p>
+
+<h3>1. Hardware</h3>
+<p>The base needs a dual-frequency RTK receiver, an antenna, and an always-on host (a Raspberry Pi 4 is the standard choice — ~5 W, runs 24/7). The receiver matters less than the antenna; an ArduSimple simpleRTK2B kit (~€275) or a SparkFun GPS-RTK2 (~$200) is the typical hobbyist starting point. The antenna is the dominant accuracy lever: a survey patch (Tallysman TW3742, ArduSimple Survey, Harxon HX-CSX600A class — ~€80–250) on a 30 cm flat metal ground plane outperforms a cheap patch with no ground plane by a wide margin. Choke-ring antennas (€3,000+) are overkill for a single-user base.</p>
+<p>Total additional hardware cost is typically €200–450 depending on what you already have.</p>
+
+<h3>2. Antenna placement</h3>
+<p>Antenna placement matters more than the price of the receiver. Priorities:</p>
 <ul>
-  <li><strong>Hardware:</strong> any dual-frequency RTK receiver at the base site (the ArduSimple starter kit above works well), power, internet</li>
-  <li><strong>Software:</strong> <a href="https://github.com/Stefal/rtkbase" rel="noopener noreferrer">RTKBase</a> — open-source, runs on a Raspberry Pi, has a web interface</li>
-  <li><strong>Caster:</strong> <a href="https://www.centipede-rtk.org/host-rtk-base" rel="noopener noreferrer">Centipede</a> and/or <a href="http://rtk2go.com" rel="noopener noreferrer">RTK2Go</a> — free public NTRIP casters; register your base and it becomes accessible from anywhere.</li>
+  <li>Clear sky above 10° elevation in all directions. Trees, buildings, and parapets occlude the low-elevation satellites that drive ambiguity resolution.</li>
+  <li>Mount on a ~30 cm flat metal disc (a satellite-dish back-plate or aluminium sheet) acting as a ground plane.</li>
+  <li>At least 1 m above any rooftop surface and at least 1 m away from HVAC units, lightning rods, or other antennas. Metal close to the antenna reflects signals and corrupts the carrier-phase measurement that everything else depends on.</li>
+  <li>A rigid, mass-loaded mount. Wood masts flex in wind and inject micro-cycle-slips into your stream; concrete pillars or a geodetic monument are best for permanence.</li>
+  <li>Radome (a plastic dome cover) on the antenna if it is exposed — wet rubber and water film add ~1 cm vertical error.</li>
 </ul>
-<div class="callout"><strong>Honest effort estimate:</strong> first setup takes a weekend if you are comfortable with Linux and basic networking. The base antenna needs a clear view of the sky and a stable mounting point. Total additional hardware cost is roughly €200–450 depending on what you already have.</div>
+<p>A poorly-sited €1,000 antenna will deliver corrections worse than a well-sited €100 one, and the multipath errors propagate to every rover that connects to your stream.</p>
+
+<h3>3. Determine the base's true position</h3>
+<p>Your rover is only as accurate as your base coordinates. There are three paths:</p>
+<ul>
+  <li><strong>Survey-in (autonomous averaging) — quick but rough.</strong> The receiver averages its standalone position over time. RTKBase and u-blox firmware do this with one click. Result is accurate to ~1–3 m absolute, which is fine if you only need <em>relative</em> accuracy (e.g. measuring distances within a site) but is wrong if you ever want to compare with maps or other surveys.</li>
+  <li><strong>PPP post-processing — recommended.</strong> Log 24 hours of raw observations (RTKBase records RINEX automatically alongside the live stream) and upload the file to a free PPP service: <a href="https://webapp.csrs-scrs.nrcan-rncan.gc.ca/geod/tools-outils/ppp.php" rel="noopener noreferrer">CSRS-PPP</a> (NRCan, global), <a href="https://gnss.ga.gov.au/auspos" rel="noopener noreferrer">AUSPOS</a> (Geoscience Australia, Asia-Pacific tuned), or <a href="https://geodesy.noaa.gov/OPUS/" rel="noopener noreferrer">OPUS</a> (NGS, North America). After ~24 hours of observation you'll typically get 1–3 cm absolute accuracy in ITRF/WGS84; a week of data gets you sub-cm. Enter the resulting ECEF coordinates into RTKBase's fixed-mode configuration.</li>
+  <li><strong>Known benchmark.</strong> If your antenna phase-centre sits over a published national geodetic mark, use the published coordinates directly. Best absolute accuracy possible.</li>
+</ul>
+<div class="callout"><strong>The "fixed but wrong" pitfall.</strong> If you forget to switch from survey-in to fixed mode, the base re-runs survey-in on every cold boot or firmware update — landing on a slightly different autonomous position each time. Your rover keeps reporting "RTK Fixed" with cm precision, but the position has shifted by 1–3 m. There is no warning. Always set the receiver to fixed mode with explicit ECEF coordinates after PPP, and back up the configuration before firmware updates.</div>
+
+<h3>4. Software and caster</h3>
+<p><a href="https://github.com/Stefal/rtkbase" rel="noopener noreferrer">RTKBase</a> is the standard open-source stack: it runs on a Raspberry Pi, has a web interface, configures the receiver, pushes RTCM to a caster, and logs RINEX simultaneously (handy if you also want to do PPK post-processing on rover logs after a drone flight or field session). Its defaults emit a sensible message set (1005, 1077, 1087, 1097, 1107, 1127, 1230) covering all four major constellations.</p>
+<p>Two free public casters accept hobbyist bases:</p>
+<ul>
+  <li><strong><a href="http://rtk2go.com" rel="noopener noreferrer">rtk2go.com</a></strong> — register at <a href="http://rtk2go.com/sample-page/new-reservation/" rel="noopener noreferrer">rtk2go.com/sample-page/new-reservation/</a>. Manual approval typically within hours. Free for personal and educational use; the SNIP terms of service discourage commercial redistribution. ~860 active bases globally.</li>
+  <li><strong><a href="https://centipede-rtk.org" rel="noopener noreferrer">Centipede</a></strong> — community network, registration via the Centipede docs (RTKBase has built-in integration). Densest in France but global. Community-friendly licence; expects attribution.</li>
+</ul>
+<p>You can register your base with both — there is no downside, and it provides redundancy if one caster has an outage.</p>
+
+<h3>Operator obligations</h3>
+<p>Once your mountpoint appears on this map and other people's casters, others may build their workflow around it. A few good-neighbour practices:</p>
+<ul>
+  <li>Run the base on a UPS — even a small one — so brief power blips don't disconnect you. Dynamic-IP changes after ISP reboots are the #1 reason volunteer bases disappear.</li>
+  <li>Pick a stable, descriptive mountpoint name (location plus a short tag is conventional). Avoid renaming after the fact — saved configurations elsewhere break silently.</li>
+  <li>If you take the base offline temporarily (relocation, hardware swap), let users know via the caster's contact channel where one exists.</li>
+  <li>Re-run PPP if you ever physically move the antenna by more than a few millimetres. A repositioned base streaming under its old coordinates is the worst case for downstream rovers — they will compute confidently wrong fixes and won't notice.</li>
+</ul>
+
+<div class="callout"><strong>Honest effort estimate:</strong> first setup takes a weekend if you are comfortable with Linux and basic networking. Plan another day for PPP coordinate determination — most of that is wall-clock time waiting for 24 hours of RINEX data. After that, a well-sited RTKBase installation needs minutes of attention per month.</div>
+
+<p>If you want to log raw observations for offline post-processed kinematic (PPK) workflows — common for drone photogrammetry where cellular is unreliable at altitude — RTKBase records RINEX alongside the live RTCM stream by default; no extra setup needed.</p>
 
 <h2 id="glossary">Glossary</h2>
 <dl class="glossary">

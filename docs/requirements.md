@@ -33,7 +33,8 @@ site is for users who need better than HAS.
 
 ## Data pipeline
 
-Hourly GitHub Actions workflow (`.github/workflows/update-stations.yml`):
+GitHub Actions workflow (`.github/workflows/update-stations.yml`) — runs four
+times a day (01/07/13/19 UTC) plus on `workflow_dispatch`:
 
 1. Fetch sourcetables from each configured caster (see `SOURCES` in
    `scripts/fetch_stations.py`).
