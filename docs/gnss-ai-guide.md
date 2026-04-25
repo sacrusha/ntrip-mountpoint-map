@@ -341,6 +341,36 @@ dominated by antenna quality and multipath rather than receiver noise.
 ~ All values are model assumptions. Actual values depend on sky
 conditions, receiver quality, and geomagnetic activity.
 
+**Receiver-displayed accuracy vs actual position error.** The numbers
+above describe what error survives *into* the solution. The accuracy
+figure your receiver *displays* (HDOP, HPA, estimated position error)
+is a different quantity: HDOP × σ_UERE, where σ_UERE is a fixed
+internal constant, or the diagonal of the Kalman filter covariance
+matrix. Neither of these tracks site-specific multipath, atmospheric
+spatial gradients, or base-station coordinate errors in real time —
+they capture only what the receiver's internal stochastic model
+assumes. Several important consequences follow from this gap:
+
+- **Multipath is the largest excluded source.** In an open field it
+  contributes <1 mm to carrier-phase error; beside a metal building it
+  can introduce 2–5 cm of systematic bias — yet the displayed HPA is
+  identical in both environments.
+- **Temporal correlation is ignored.** Standard covariance propagation
+  assumes white noise. GNSS errors (especially multipath and atmospheric
+  residuals) are correlated over minutes to tens of minutes; ignoring
+  this makes the formal covariance overly optimistic. ~ (RTKLIB docs;
+  ResearchGate RTK VCM studies; ScienceDirect unmodelled-error paper 2022)
+- **The gap is largest in RTK Float mode** (sub-dm display; actual
+  error can be 1–5 m) and in DGNSS mode (sub-m display; actual error
+  can be 5–40 m in urban canyons). RTK Fix in clean conditions is the
+  mode where the displayed figure is most likely realistic.
+- Industry and academic sources (RTKLIB, Swift Navigation, NovAtel,
+  published VCM studies) consistently describe formal covariance
+  estimates as "optimistic" in real-world deployments. ✓
+
+Mode-specific breakdowns follow in §3.2 (DGNSS), §3.3 (RTK), and
+§3.5 (PPP).
+
 ---
 
 ## 3. Positioning Modes
@@ -357,9 +387,27 @@ Differential GNSS: a reference station broadcasts pseudorange
 corrections; rover applies them. Removes common-mode satellite clock
 and orbit errors. Accuracy ~0.3–1 m. Does **not** use carrier phase.
 
+**Failure envelope:** those figures apply to open sky with a short
+baseline and no obstructions. The receiver computes its displayed
+accuracy as HDOP × σ_UERE, where σ_UERE is a fixed internal constant
+calibrated for open-sky conditions — the receiver has no real-time
+knowledge of site-specific multipath. ~ (NovAtel GNSS Error Sources;
+Penn State GEOG 862, UERE node) Multipath and non-line-of-sight (NLOS)
+signals are local to your antenna and survive differential correction
+entirely uncancelled: in a dense urban canyon they contribute 5–40 m
+of undetected pseudorange bias per satellite while the receiver display
+may still read "1 m." ✓ (IEEE Trans. ITS 2023, arXiv:2206.04457;
+NovAtel; Frontiers Robotics AI 2022) A perverse trap: in urban canyons
+HDOP can appear *low* because many reflected-signal satellites are
+tracked, masking the degradation rather than exposing it. Under suburban
+tree canopy or close to buildings, expect 2–5 m actual horizontal error
+regardless of the displayed figure. ✓ (PLOS ONE 2023; MDPI Sensors 2024)
+
 SBAS (WAAS, EGNOS, MSAS, GAGAN, SDCM) broadcasts DGNSS corrections
 via geostationary satellite — no internet connection needed, but
-accuracy ceiling is ~1 m. This is why DGNSS-only NTRIP mountpoints
+accuracy ceiling is ~1 m. SBAS has the same structural limitation as
+terrestrial DGNSS: multipath is not corrected and the displayed accuracy
+uses an open-sky UERE assumption. ~ This is why DGNSS-only NTRIP mountpoints
 are filtered out of this project: Galileo HAS is free, global, and
 better.
 
@@ -376,6 +424,35 @@ accuracy is 1–3 cm.
   (not integers). Accuracy ~0.1–0.5 m. Can drift.
 - **Fix**: integer ambiguities resolved. Accuracy 1–3 cm. Stable.
 - **DGNSS**: pseudorange-only fallback, ~0.5 m.
+
+**Accuracy display and false-fix caveat.** The Fix label and stated
+precision (HPA ~10–20 mm) are derived from Kalman filter covariance —
+they reflect satellite geometry and receiver noise, not actual position
+error. A **false fix** occurs when the ratio test accepts a wrong set
+of integers: the receiver continues displaying "Fix" and centimetre
+precision while the position is offset by multiples of the carrier
+wavelength (~19 cm per wrong integer, typically 0.3–1 m in practice
+when several integers are incorrect). ~ (rtklibexplorer; Li & Shen,
+J. Geodesy 2014) The receiver has no independent ground truth and
+cannot distinguish a false fix from a valid one; there is no alarm,
+LED change, or output flag. Risk is highest under multipath, with
+fewer than 8 satellite pairs, on a long baseline, or with single-
+frequency receivers — published single-frequency false-fix rates
+reach ~15% of epochs. ✓ (PMC/Sensors 2019 smartphone RTK study;
+Emlid Community Forum M2 false-fix thread)
+
+**Float drift mechanism.** In float mode the carrier-phase integer
+ambiguities are estimated as real-valued Kalman filter states coupled
+to the position estimate. As the ambiguities slowly converge, the
+position shifts with them; any unmodelled ionospheric or tropospheric
+change injects a smooth, correlated bias into both the ambiguity and
+position states simultaneously. This produces gradual positional
+drift — no obvious jumps, no alarm — that is invisible from the
+displayed accuracy. Under forest canopy or urban obstruction, where
+unmodelled multipath further corrupts the float ambiguities,
+field-measured float errors reach 1–2 m even with an active
+correction stream. ✓ (CREWES Research Report 2010; PMC 2023
+canopy study)
 
 ~ Time to first fix (TTFF) after connecting to corrections: typically
 30–90 s in good conditions (dual-band, open sky, short baseline).
@@ -437,6 +514,31 @@ the nearest physical station in a VRS network gets ~7–8 mm horizontal rather
 than ~27 mm, because the ppm residual of the network's iono model (~0.5 ppm
 of near-zero effective distance) is negligible. ~
 
+**VRS edge-of-network failure modes.** That cancellation holds when the rover
+is inside a well-spaced network (stations ≤ 70 km apart, calm ionosphere, flat
+terrain). It breaks down in four situations:
+
+1. **Outside the network hull:** the caster silently switches from interpolation
+   to extrapolation with no notification in the RTCM stream — height errors of
+   ~51 mm have been documented 10.5 km outside the hull; in field tests 30 km
+   outside, horizontal error stayed ~6 cm but vertical reached several metres. ~
+   (ResearchGate 254250991; IEEE 5069258)
+2. **Ionospheric storms:** the same 94%→31% IAR success rate collapse described
+   above applies to NRTK; decimeter-level horizontal errors occur even inside the
+   network. ✓ (J. Geodesy 2005, Springer doi:10.1007/s00190-005-0003-y)
+3. **Steep terrain:** when the rover is significantly above surrounding reference
+   stations, the tropospheric correction extrapolates vertically — uncorrected
+   height error is ~27 cm per 1,000 m of altitude difference. ~
+   (GPS Solutions 2023, doi:10.1007/s10291-023-01481-x)
+4. **Sparse networks (station spacing > 70–100 km):** the atmospheric
+   interpolation is too coarse for reliable instantaneous ambiguity fixing. ~
+
+In all four cases the rover's displayed HRMS, fix status, and PDOP reflect
+satellite geometry and ambiguity resolution — not correction quality. There is no
+standard quality-of-interpolation field in the RTCM 3.x message format; research
+has called for adding one but it has not been standardised. ✓
+(Southern Alberta Network RTK study, ResearchGate 228734118)
+
 ### 3.4 Network RTK (NRTK)
 
 Multiple reference stations in a network; a server models the spatial
@@ -494,12 +596,42 @@ individual users — not a mass-market drop-in for NTRIP RTK. ~
 - **HASPPP** (Wuhan University, C/C++; github.com/ZhangRunzhi20/HASPPP):
   embeds HAS decoding directly into the RTKLIB PPP engine ~
 
-**Critical UX limitation:** any signal interruption (under a tree, building,
-bridge overpass) fully resets the PPP convergence filter. There is no warm
-restart in current implementations — re-convergence takes as long as the initial
-10–15 min. HAS is suitable for open-sky static or slow-moving use and
-unsuitable for urban canyons or forested routes. NTRIP RTK re-acquires fix
-within seconds after a brief obstruction; HAS cannot. ~
+**Non-monotonic convergence.** PPP convergence is not a smooth one-way
+descent to accuracy. The Kalman filter's internal confidence estimate
+(what the receiver displays) shrinks relatively smoothly, but the actual
+position error oscillates around that trend. Every time a new satellite
+enters the solution, a carrier-phase cycle slip occurs, or the
+ionospheric delay shifts abruptly, the position estimate can jump by
+centimetres or decimetres before the filter re-absorbs the disturbance.
+The displayed accuracy can remain optimistically small for several epochs
+after accuracy has temporarily worsened, because the filter's noise model
+does not immediately account for the new uncertainty. ~ (FIG 2016,
+Choy et al.; Springer ScienceDirect, Dai et al. 2020; ESA Navipedia PPP)
+
+**Signal interruption and re-convergence.** Any carrier-phase tracking
+break resets the corresponding ambiguity states. On a standard float PPP
+receiver, a full-sky blockage (bridge overpass, tunnel) requires 10–30 min
+to re-converge; a partial blockage affecting a few satellites takes less
+but still several minutes. On a PPP-AR receiver with atmospheric state
+bridging (NovAtel TerraStar-D, Septentrio with SPARTN), a 5-second
+interruption can recover in 1–3 minutes because the filter preserves the
+ionospheric and tropospheric state estimates across the gap. ✓ (NovAtel
+Velocity 2014; Banville & Langley, ResearchGate 289224452; FIG 2016)
+
+**Galileo HAS Phase 1 early-convergence accuracy.** HAS Phase 1
+(currently available) does not include satellite phase bias products,
+meaning it is float-only PPP — no PPP-AR. During the first 1–3 minutes,
+horizontal error is typically 0.5–3 m. The official target of <300 s /
+<20 cm horizontal at 95% is not met in practice until 6–15 min static
+(GPS+Galileo). In urban environments with frequent signal loss, HAS
+provides only marginal improvement over broadcast-only positioning
+because constant re-convergence prevents accumulation of ambiguity
+estimates. ✓ (Eos HAS field tests 2023; Inside GNSS HAS urban driving
+assessment Feb 2024; ENC 2025 HAS accuracy paper)
+
+HAS is suitable for open-sky static or slow-moving use and unsuitable
+for urban canyons or forested routes. NTRIP RTK re-acquires fix within
+seconds after a brief obstruction; HAS cannot. ~
 (source: SparkFun UM980 test; GPS Solutions 2024; NAVIGATION journal 2024)
 
 ~ PPP is not covered by this project's map (scope: NTRIP network RTK),
@@ -1941,4 +2073,32 @@ installed (QGIS prompts to download missing grids).
 - [ASPRS Accuracy Standards for Digital Geospatial Data 2015](https://www.asprs.org/wp-content/uploads/2015/01/ASPRS_Accuracy_Standards.pdf) (photogrammetry GCP requirements ~)
 - [ASCE 38-22 Standard Guideline for Investigating and Documenting Existing Utilities](https://www.asce.org/publications-and-news/asce-bookstore) (utility quality levels QL-A/B/C ~)
 
-_Last updated: 2026-04-25. Sixth validation pass: 2026-04-25._
+- [NovAtel — GNSS Error Sources (Differential GNSS)](https://novatel.com/an-introduction-to-gnss/gnss-error-sources) (UERE budget; multipath not cancelled by DGNSS ✓)
+- [Penn State GEOG 862 — User Equivalent Range Error node](https://www.e-education.psu.edu/geog862/node/1713) (HDOP × UERE formula ✓)
+- [Penn State GEOG 862 — Multipath node](https://www.e-education.psu.edu/geog862/node/1721) (multipath not correlated between base and rover; not cancelled by differential ✓)
+- [IEEE Trans. ITS 2023 — Seamless Accurate Positioning in Deep Urban Area (arXiv:2206.04457)](https://arxiv.org/pdf/2206.04457) (DGNSS horizontal RMS 11.1 m in Seoul urban test; NLOS 7–52 m per satellite ✓)
+- [Frontiers Robotics AI 2022 — GNSS NLOS Signal Classification](https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2022.868608/full) (NLOS pseudorange bias "tens or hundreds of metres" ✓)
+- [PLOS ONE 2023 — Effects of Nearby Trees on Positional Accuracy of GNSS](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0283090) (Trimble: 1–5 m under forest canopy; sub-meter not achievable under dense canopy ✓)
+- [MDPI Sensors 2024 — Reduction of Multipath Effect (Pseudorange Acceleration Weight)](https://www.mdpi.com/1424-8220/24/21/6880) (urban DGNSS horizontal error 6.2 m 95th pct; with mitigation ~1.1 m ✓)
+- [Interpine Innovation — GPS Accuracy Estimate (EPE): What Is It?](https://interpine.nz/gps-accuracy-estimate-epe-what-is-it/) (EPE is precision not accuracy; half of fixes outside displayed circle ✓)
+- [rtklibexplorer — RTKLIB Solution Accuracy](https://rtklibexplorer.wordpress.com/2017/10/13/rtklib-solution-accuracy/) (formal covariance "optimistic"; assumes uncorrelated noise ✓)
+- [ScienceDirect 2022 — Unmodeled-Error-Corrected Stochastic Assessment for Standalone GNSS Receiver](https://www.sciencedirect.com/science/article/abs/pii/S0263224122014610) (unmodelled errors, especially multipath, "remain in GNSS measurements"; accuracy estimates "must not be used to infer precise accuracy" ✓)
+- [CREWES Research Report 2010 — GPS accuracy part 2: RTK float vs fixed (U. Calgary)](https://www.crewes.org/Documents/ResearchReports/2010/CRR201029.pdf) (float solutions: 1–2 dm convergence; up to 5 m with no way to tell ✓)
+- [PMC/MDPI Sensors 2019 — Single-Baseline RTK Using Dual-Frequency Receivers in Smartphones](https://pmc.ncbi.nlm.nih.gov/articles/PMC6806615/) (single-frequency false-fix rate ~15% of epochs ✓)
+- [PMC 2023 — Static Positioning Under Tree Canopy Using Low-Cost GNSS](https://pmc.ncbi.nlm.nih.gov/articles/PMC10056071/) (RTK float errors 1–2 m under forest canopy ✓)
+- [rtklibexplorer — Variable Ambiguity Resolution Threshold for RTKLIB (2021)](https://rtklibexplorer.wordpress.com/2021/07/22/a-variable-ambiguity-resolution-threshold-for-rtklib/) (RTKLIB default ratio threshold T=3.0; "if too low, false fixes will be common" ✓)
+- [Emlid Community Forum — Wrong false fake fix Emlid M2](https://community.emlid.com/t/wrong-false-fake-fix-emlid-m2/27542) (receiver displayed "Fix" with cm accuracy during false fix ✓)
+- [Li & Shen 2014 — GNSS ambiguity resolution with controllable failure rate — J. Geodesy (ResearchGate)](https://www.researchgate.net/publication/263006977_GNSS_ambiguity_resolution_with_controllable_failure_rate_for_long_baseline_network_RTK) (false fix displaces position by decimetre or more; 0.01% failure rate achievable ✓)
+- [ResearchGate 254250991 — How well does the VRS system perform?](https://www.researchgate.net/publication/254250991_How_well_does_the_Virtual_Reference_Station_VRS_system_of_GPS_base_stations_perform_in_comparison_to_conventional_RTK) (51 mm height error 10.5 km outside network hull ✓)
+- [IEEE 5069258 — Practical accuracy of VRS RTK outside MyRTKnet](https://ieeexplore.ieee.org/document/5069258/) (horizontal ~6 cm; vertical up to several metres 30 km outside hull ✓)
+- [Springer J. Geodesy 2005 — Long-range network RTK during severe ionospheric storm (doi:10.1007/s00190-005-0003-y)](https://link.springer.com/article/10.1007/s00190-005-0003-y) (IAR rate 94%→31%; decimeter horizontal errors inside network during storm ✓)
+- [GPS Solutions 2023 — Tropospheric model for large height-difference RTK (doi:10.1007/s10291-023-01481-x)](https://link.springer.com/article/10.1007/s10291-023-01481-x) (~27 cm height error per 1,000 m elevation difference without vertical tropo model ✓)
+- [ResearchGate 228734118 — Network RTK performance analysis using RTCM 3.0 (Southern Alberta)](https://www.researchgate.net/publication/228734118_Network_real-time_kinematic_performance_analysis_using_RTCM_30_and_the_Southern_Alberta_Network) (recommends adding network ambiguity resolution status flag to RTCM; not yet standardised ✓)
+- [FIG Article Sep 2016 — Choy et al. PPP signal interruption and re-convergence](https://www.fig.net/resources/monthly_articles/2016/september_2016/Suelynn_etal_september_2016.pdf) (full-sky blockage: re-convergence "regularly exceeds 30 min" ✓)
+- [ResearchGate 289224452 — Rapid re-convergence in real-time PPP with AR (Banville & Langley)](https://www.researchgate.net/publication/289224452_Rapid_re-convergence_in_real-time_precise_point_positioning_with_ambiguity_resolution) (PPP-AR: ~1-epoch recovery with integer cycle-slip fix ✓)
+- [NovAtel Velocity 2014 — PPP signal interruption and re-convergence](https://www.novatel.com/tech-talk/velocity/velocity-2014/advanced-gnss-positioning-solutions-with-precise-point-positioning-ppp/convergence-performance) (atmospheric state bridging over short gaps; PPP_CONVERGING vs PPP status ✓)
+- [Eos GNSS blog 2023 — Galileo HAS Early Observations](https://eos-gnss.com/blog/galileo-high-accuracy-service-early-observations) (HAS Phase 1 convergence 5–30 min; "about 30 min to 20 cm level" ✓)
+- [Inside GNSS Feb 2024 — Galileo HAS urban driving assessment](https://insidegnss.com/galileo-has-a-performance-assessment-in-urban-driving-environments/) (urban: only marginal improvement over broadcast due to constant re-convergence ✓)
+- [ENC 2025 — Galileo HAS accuracy and convergence performance results](https://enc-series.org/wp-content/uploads/2025/05/Sciforum-095088-commercial-formatted.pdf) (HAS Phase 1 float-only; phase bias products absent ✓)
+
+_Last updated: 2026-04-25. Seventh validation pass: 2026-04-25._
