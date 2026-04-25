@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-25T03:51:02+00:00",
+  "updated": "2026-04-25T08:02:55+00:00",
   "scope": "free NTRIP sources delivering better than ~50 cm",
   "sources": {
     "geortk": {
@@ -9,8 +9,8 @@
       "registration": null,
       "access": "open",
       "status": "ok",
-      "fetched_at": "2026-04-25T03:47:57+00:00",
-      "last_ok": "2026-04-25T03:47:57+00:00",
+      "fetched_at": "2026-04-25T07:59:50+00:00",
+      "last_ok": "2026-04-25T07:59:50+00:00",
       "stations": [
         {
           "name": "989Shibata",
@@ -498,6 +498,381 @@
         }
       ]
     },
+    "sapos_NW": {
+      "url": "http://www.sapos-nw-ntrip.de:2101/",
+      "color": "#2d6e6e",
+      "label": "SAPOS (Nordrhein-Westfalen)",
+      "registration": "https://www.sapos.de",
+      "access": "registration",
+      "status": "ok",
+      "fetched_at": "2026-04-25T07:59:50+00:00",
+      "last_ok": "2026-04-25T07:59:50+00:00",
+      "stations": []
+    },
+    "sapos_HE": {
+      "url": "http://www.sapos-he-ntrip.de:2101/",
+      "color": "#2d6e6e",
+      "label": "SAPOS (Hessen)",
+      "registration": "https://www.sapos.de",
+      "access": "registration",
+      "status": "ok",
+      "fetched_at": "2026-04-25T07:59:50+00:00",
+      "last_ok": "2026-04-25T07:59:50+00:00",
+      "stations": []
+    },
+    "frednet": {
+      "url": "http://gnsscaster.regione.fvg.it:8080/",
+      "color": "#2e6fb0",
+      "label": "FReDNet",
+      "registration": "https://frednet.crs.ogs.it/",
+      "access": "registration",
+      "status": "ok",
+      "fetched_at": "2026-04-25T07:59:50+00:00",
+      "last_ok": "2026-04-25T07:59:50+00:00",
+      "stations": [
+        {
+          "name": "Ampezzo_RTK",
+          "lat": 46.41,
+          "lon": 12.8,
+          "latStr": "46.41",
+          "lonStr": "12.80",
+          "carrier": 2,
+          "format": "RTCM 2.3",
+          "legacyFormat": true,
+          "country": "ITA"
+        },
+        {
+          "name": "Barcis_RTK",
+          "lat": 46.19,
+          "lon": 12.56,
+          "latStr": "46.19",
+          "lonStr": "12.56",
+          "carrier": 2,
+          "format": "RTCM 2.3",
+          "legacyFormat": true,
+          "country": "ITA"
+        },
+        {
+          "name": "Bevazzana_RTK",
+          "lat": 45.67,
+          "lon": 13.07,
+          "latStr": "45.67",
+          "lonStr": "13.07",
+          "carrier": 2,
+          "format": "RTCM 2.3",
+          "legacyFormat": true,
+          "country": "ITA"
+        },
+        {
+          "name": "Bovec_RTK",
+          "lat": 46.33,
+          "lon": 13.54,
+          "latStr": "46.33",
+          "lonStr": "13.54",
+          "carrier": 2,
+          "format": "RTCM 2",
+          "legacyFormat": true,
+          "country": "ITA"
+        },
+        {
+          "name": "Cervignano_RTK",
+          "lat": 45.83,
+          "lon": 13.34,
+          "latStr": "45.83",
+          "lonStr": "13.34",
+          "carrier": 2,
+          "format": "RTCM 2",
+          "legacyFormat": true,
+          "country": "ITA"
+        },
+        {
+          "name": "Codroipo_RTK",
+          "lat": 45.96,
+          "lon": 12.98,
+          "latStr": "45.96",
+          "lonStr": "12.98",
+          "carrier": 2,
+          "format": "RTCM 2",
+          "legacyFormat": true,
+          "country": "ITA"
+        },
+        {
+          "name": "Gorizia_RTK",
+          "lat": 45.94,
+          "lon": 13.62,
+          "latStr": "45.94",
+          "lonStr": "13.62",
+          "carrier": 2,
+          "format": "RTCM 2",
+          "legacyFormat": true,
+          "country": "ITA"
+        },
+        {
+          "name": "Idrija_RTK",
+          "lat": 46.0,
+          "lon": 14.03,
+          "latStr": "46.00",
+          "lonStr": "14.03",
+          "carrier": 2,
+          "format": "RTCM 2",
+          "legacyFormat": true,
+          "country": "ITA"
+        },
+        {
+          "name": "Koper_RTK",
+          "lat": 45.55,
+          "lon": 13.73,
+          "latStr": "45.55",
+          "lonStr": "13.73",
+          "carrier": 2,
+          "format": "RTCM 2",
+          "legacyFormat": true,
+          "country": "ITA"
+        },
+        {
+          "name": "MoggioUdinese_RTK",
+          "lat": 46.41,
+          "lon": 13.2,
+          "latStr": "46.41",
+          "lonStr": "13.20",
+          "carrier": 2,
+          "format": "RTCM 2.3",
+          "legacyFormat": true,
+          "country": "ITA"
+        },
+        {
+          "name": "OGS_ACOM",
+          "lat": 46.54,
+          "lon": 13.51,
+          "latStr": "46.54",
+          "lonStr": "13.51",
+          "carrier": 2,
+          "format": "RTCM",
+          "legacyFormat": false,
+          "country": "ITA"
+        },
+        {
+          "name": "OGS_AFAL",
+          "lat": 46.52,
+          "lon": 12.17,
+          "latStr": "46.52",
+          "lonStr": "12.17",
+          "carrier": 2,
+          "format": "RTCM",
+          "legacyFormat": false,
+          "country": "ITA"
+        },
+        {
+          "name": "OGS_CODR",
+          "lat": 45.96,
+          "lon": 12.98,
+          "latStr": "45.96",
+          "lonStr": "12.98",
+          "carrier": 2,
+          "format": "RTCM",
+          "legacyFormat": false,
+          "country": "ITA"
+        },
+        {
+          "name": "OGS_FUSE",
+          "lat": 46.41,
+          "lon": 13.0,
+          "latStr": "46.41",
+          "lonStr": "13.00",
+          "carrier": 2,
+          "format": "RTCM",
+          "legacyFormat": false,
+          "country": "ITA"
+        },
+        {
+          "name": "OGS_JOAN",
+          "lat": 46.18,
+          "lon": 13.42,
+          "latStr": "46.18",
+          "lonStr": "13.42",
+          "carrier": 2,
+          "format": "RTCM",
+          "legacyFormat": false,
+          "country": "ITA"
+        },
+        {
+          "name": "OGS_MDEA",
+          "lat": 45.92,
+          "lon": 13.93,
+          "latStr": "45.92",
+          "lonStr": "13.93",
+          "carrier": 2,
+          "format": "RAW",
+          "legacyFormat": false,
+          "country": "ITA"
+        },
+        {
+          "name": "OGS_MPRA",
+          "lat": 46.24,
+          "lon": 12.99,
+          "latStr": "46.24",
+          "lonStr": "12.99",
+          "carrier": 2,
+          "format": "RTCM",
+          "legacyFormat": false,
+          "country": "ITA"
+        },
+        {
+          "name": "OGS_NOVE",
+          "lat": 45.67,
+          "lon": 12.59,
+          "latStr": "45.67",
+          "lonStr": "12.59",
+          "carrier": 2,
+          "format": "RAW",
+          "legacyFormat": false,
+          "country": "ITA"
+        },
+        {
+          "name": "OGS_PAZO",
+          "lat": 45.81,
+          "lon": 13.05,
+          "latStr": "45.81",
+          "lonStr": "13.05",
+          "carrier": 2,
+          "format": "RAW",
+          "legacyFormat": false,
+          "country": "ITA"
+        },
+        {
+          "name": "OGS_TRIE",
+          "lat": 45.71,
+          "lon": 13.76,
+          "latStr": "45.71",
+          "lonStr": "13.76",
+          "carrier": 2,
+          "format": "RAW",
+          "legacyFormat": false,
+          "country": "ITA"
+        },
+        {
+          "name": "OGS_UDI1",
+          "lat": 46.04,
+          "lon": 13.25,
+          "latStr": "46.04",
+          "lonStr": "13.25",
+          "carrier": 2,
+          "format": "RAW",
+          "legacyFormat": false,
+          "country": "ITA"
+        },
+        {
+          "name": "OGS_ZOUF",
+          "lat": 46.56,
+          "lon": 12.97,
+          "latStr": "46.56",
+          "lonStr": "12.97",
+          "carrier": 2,
+          "format": "RAW",
+          "legacyFormat": false,
+          "country": "ITA"
+        },
+        {
+          "name": "Paularo_RTK",
+          "lat": 46.54,
+          "lon": 13.12,
+          "latStr": "46.54",
+          "lonStr": "13.12",
+          "carrier": 2,
+          "format": "RTCM 2",
+          "legacyFormat": true,
+          "country": "ITA"
+        },
+        {
+          "name": "Pordenone_RTK",
+          "lat": 45.96,
+          "lon": 12.66,
+          "latStr": "45.96",
+          "lonStr": "12.66",
+          "carrier": 2,
+          "format": "RTCM 2.3",
+          "legacyFormat": true,
+          "country": "ITA"
+        },
+        {
+          "name": "Sappada_RTK",
+          "lat": 46.57,
+          "lon": 12.69,
+          "latStr": "46.57",
+          "lonStr": "12.69",
+          "carrier": 2,
+          "format": "RTCM 2",
+          "legacyFormat": true,
+          "country": "ITA"
+        },
+        {
+          "name": "Tarvisio_RTK",
+          "lat": 46.5,
+          "lon": 13.59,
+          "latStr": "46.50",
+          "lonStr": "13.59",
+          "carrier": 2,
+          "format": "RTCM 2.3",
+          "legacyFormat": true,
+          "country": "ITA"
+        },
+        {
+          "name": "Trieste_RTK",
+          "lat": 45.66,
+          "lon": 13.79,
+          "latStr": "45.66",
+          "lonStr": "13.79",
+          "carrier": 2,
+          "format": "RTCM 2.3",
+          "legacyFormat": true,
+          "country": "ITA"
+        },
+        {
+          "name": "Udine_RTK",
+          "lat": 46.06,
+          "lon": 13.23,
+          "latStr": "46.06",
+          "lonStr": "13.23",
+          "carrier": 2,
+          "format": "RTCM 2.3",
+          "legacyFormat": true,
+          "country": "ITA"
+        }
+      ]
+    },
+    "sapos_SH_HH": {
+      "url": "http://www.sapos.geonord.de:2101/",
+      "color": "#2d6e6e",
+      "label": "SAPOS (Schleswig-Holstein + Hamburg)",
+      "registration": "https://www.sapos.de",
+      "access": "registration",
+      "status": "ok",
+      "fetched_at": "2026-04-25T07:59:50+00:00",
+      "last_ok": "2026-04-25T07:59:50+00:00",
+      "stations": []
+    },
+    "sapos_NI": {
+      "url": "http://www.sapos-ni-ntrip.de:2101/",
+      "color": "#2d6e6e",
+      "label": "SAPOS (Niedersachsen)",
+      "registration": "https://www.sapos.de",
+      "access": "registration",
+      "status": "ok",
+      "fetched_at": "2026-04-25T07:59:50+00:00",
+      "last_ok": "2026-04-25T07:59:50+00:00",
+      "stations": []
+    },
+    "sapos_SN": {
+      "url": "http://ntrip.sachsen.de:2101/",
+      "color": "#2d6e6e",
+      "label": "SAPOS (Sachsen)",
+      "registration": "https://www.sapos.de",
+      "access": "registration",
+      "status": "error: URLError(gaierror(-5, 'No address associated with hostname'))",
+      "fetched_at": null,
+      "last_ok": null,
+      "stations": []
+    },
     "rtk2go": {
       "url": "http://rtk2go.com:2101/",
       "color": "#d00000",
@@ -505,8 +880,8 @@
       "registration": null,
       "access": "open",
       "status": "ok",
-      "fetched_at": "2026-04-25T03:47:57+00:00",
-      "last_ok": "2026-04-25T03:47:57+00:00",
+      "fetched_at": "2026-04-25T07:59:51+00:00",
+      "last_ok": "2026-04-25T07:59:51+00:00",
       "stations": [
         {
           "name": "ADS-SAH",
@@ -515,7 +890,7 @@
           "latStr": "39.03",
           "lonStr": "-3.98",
           "carrier": 2,
-          "format": "RTCM 3",
+          "format": "RTCM 3.2",
           "legacyFormat": false,
           "country": "ESP"
         },
@@ -581,7 +956,7 @@
           "latStr": "48.29",
           "lonStr": "14.15",
           "carrier": 2,
-          "format": "RTCM 3",
+          "format": "RTCM 3.3",
           "legacyFormat": false,
           "country": "AUT"
         },
@@ -619,15 +994,15 @@
           "country": "USA"
         },
         {
-          "name": "AlabamaSylacauga",
-          "lat": 33.22,
-          "lon": -86.31,
-          "latStr": "33.22",
-          "lonStr": "-86.31",
+          "name": "AgPartner_2",
+          "lat": 52.7,
+          "lon": 19.57,
+          "latStr": "52.70",
+          "lonStr": "19.57",
           "carrier": 2,
-          "format": "RTCM 3.2",
+          "format": "RTCM 3.3",
           "legacyFormat": false,
-          "country": "USA"
+          "country": "POL"
         },
         {
           "name": "Andrzej",
@@ -1213,17 +1588,6 @@
           "country": "CAN"
         },
         {
-          "name": "COMPCONTRACT",
-          "lat": 51.99,
-          "lon": 0.09,
-          "latStr": "51.99",
-          "lonStr": "0.09",
-          "carrier": 2,
-          "format": "RTCM 3.3",
-          "legacyFormat": false,
-          "country": "GBR"
-        },
-        {
           "name": "CORNFIELD123",
           "lat": 40.98,
           "lon": -98.6,
@@ -1406,20 +1770,9 @@
           "latStr": "33.24",
           "lonStr": "-111.60",
           "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": "USA"
-        },
-        {
-          "name": "Chod7521",
-          "lat": 15.74,
-          "lon": 101.61,
-          "latStr": "15.74",
-          "lonStr": "101.61",
-          "carrier": 2,
           "format": "RTCM 3.2",
           "legacyFormat": false,
-          "country": "THA"
+          "country": "USA"
         },
         {
           "name": "CivilsEbbw",
@@ -1598,6 +1951,17 @@
           "country": "SRB"
         },
         {
+          "name": "DJURIC55",
+          "lat": 44.94,
+          "lon": 20.13,
+          "latStr": "44.94",
+          "lonStr": "20.13",
+          "carrier": 2,
+          "format": "RTCM 3.2",
+          "legacyFormat": false,
+          "country": "SRB"
+        },
+        {
           "name": "DR_TODOROV",
           "lat": 41.94,
           "lon": 25.55,
@@ -1695,6 +2059,17 @@
           "format": "RTCM 3.3",
           "legacyFormat": false,
           "country": "GBR"
+        },
+        {
+          "name": "DemeterBase",
+          "lat": 17.47,
+          "lon": 78.6,
+          "latStr": "17.47",
+          "lonStr": "78.60",
+          "carrier": 2,
+          "format": "RTCM 3.2",
+          "legacyFormat": false,
+          "country": "IND"
         },
         {
           "name": "Deny",
@@ -2429,7 +2804,7 @@
           "latStr": "39.94",
           "lonStr": "-105.08",
           "carrier": 2,
-          "format": "RTCM 3",
+          "format": "RTCM 3.2",
           "legacyFormat": false,
           "country": "USA"
         },
@@ -2726,7 +3101,7 @@
           "latStr": "38.44",
           "lonStr": "-8.46",
           "carrier": 2,
-          "format": "RTCM 3",
+          "format": "RTCM 3.2",
           "legacyFormat": false,
           "country": "PRT"
         },
@@ -2748,7 +3123,7 @@
           "latStr": "-20.73",
           "lonStr": "-70.18",
           "carrier": 2,
-          "format": "RTCM 3.2",
+          "format": "RTCM 3",
           "legacyFormat": false,
           "country": "CHL"
         },
@@ -2935,7 +3310,7 @@
           "latStr": "-38.00",
           "lonStr": "175.48",
           "carrier": 2,
-          "format": "RTCM 3",
+          "format": "RTCM 3.2",
           "legacyFormat": false,
           "country": "NZL"
         },
@@ -3303,6 +3678,17 @@
           "country": "USA"
         },
         {
+          "name": "JavaIoT",
+          "lat": -6.91,
+          "lon": 109.67,
+          "latStr": "-6.91",
+          "lonStr": "109.67",
+          "carrier": 2,
+          "format": "RTCM 3.2",
+          "legacyFormat": false,
+          "country": "IDN"
+        },
+        {
           "name": "Jhead_pm2424",
           "lat": 28.75,
           "lon": -81.28,
@@ -3334,17 +3720,6 @@
           "format": "RTCM 3.2",
           "legacyFormat": false,
           "country": "GBR"
-        },
-        {
-          "name": "JokelanTila",
-          "lat": 62.15,
-          "lon": 23.65,
-          "latStr": "62.15",
-          "lonStr": "23.65",
-          "carrier": 2,
-          "format": "RTCM 3.2",
-          "legacyFormat": false,
-          "country": "FIN"
         },
         {
           "name": "JueVoDamscheid",
@@ -3529,7 +3904,7 @@
           "latStr": "56.78",
           "lonStr": "9.84",
           "carrier": 2,
-          "format": "RTCM 3.2",
+          "format": "RTCM 3",
           "legacyFormat": false,
           "country": "DNK"
         },
@@ -3853,28 +4228,6 @@
           "country": "PER"
         },
         {
-          "name": "LINDE",
-          "lat": 52.65,
-          "lon": 6.47,
-          "latStr": "52.65",
-          "lonStr": "6.47",
-          "carrier": 2,
-          "format": "RTCM 3.3",
-          "legacyFormat": false,
-          "country": "NLD"
-        },
-        {
-          "name": "LJAC",
-          "lat": 1.52,
-          "lon": 110.32,
-          "latStr": "1.52",
-          "lonStr": "110.32",
-          "carrier": 2,
-          "format": "RTCM 3.2",
-          "legacyFormat": false,
-          "country": "MYS"
-        },
-        {
           "name": "LT05",
           "lat": 47.55,
           "lon": 8.68,
@@ -4079,7 +4432,7 @@
           "latStr": "60.32",
           "lonStr": "22.88",
           "carrier": 2,
-          "format": "RTCM 3.2",
+          "format": "RTCM 3",
           "legacyFormat": false,
           "country": "FIN"
         },
@@ -4090,7 +4443,7 @@
           "latStr": "15.46",
           "lonStr": "100.26",
           "carrier": 2,
-          "format": "RTCM 3",
+          "format": "RTCM 3.3",
           "legacyFormat": false,
           "country": "THA"
         },
@@ -4194,6 +4547,17 @@
           "country": "POL"
         },
         {
+          "name": "MAGARI",
+          "lat": 57.97,
+          "lon": 26.84,
+          "latStr": "57.97",
+          "lonStr": "26.84",
+          "carrier": 2,
+          "format": "RTCM 3.3",
+          "legacyFormat": false,
+          "country": "EST"
+        },
+        {
           "name": "MAJKIC",
           "lat": 45.27,
           "lon": 19.7,
@@ -4214,17 +4578,6 @@
           "format": "RTCM 3.2",
           "legacyFormat": false,
           "country": "BRA"
-        },
-        {
-          "name": "MARAKEB",
-          "lat": 25.32,
-          "lon": 55.45,
-          "latStr": "25.32",
-          "lonStr": "55.45",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": "ARE"
         },
         {
           "name": "MARKMB",
@@ -4541,7 +4894,7 @@
           "latStr": "-34.94",
           "lonStr": "138.63",
           "carrier": 2,
-          "format": "RTCM 3.2",
+          "format": "RTCM 3",
           "legacyFormat": false,
           "country": "AUS"
         },
@@ -4811,10 +5164,10 @@
         },
         {
           "name": "NEAR-England",
-          "lat": 52.18,
-          "lon": -1.49,
-          "latStr": "52.18",
-          "lonStr": "-1.49",
+          "lat": 52.26,
+          "lon": -1.46,
+          "latStr": "52.26",
+          "lonStr": "-1.46",
           "carrier": 2,
           "format": "RTCM 3",
           "legacyFormat": false,
@@ -4822,10 +5175,10 @@
         },
         {
           "name": "NEAR-Finland",
-          "lat": 62.2,
-          "lon": 24.22,
-          "latStr": "62.20",
-          "lonStr": "24.22",
+          "lat": 62.18,
+          "lon": 24.23,
+          "latStr": "62.18",
+          "lonStr": "24.23",
           "carrier": 2,
           "format": "RTCM 3",
           "legacyFormat": false,
@@ -4866,10 +5219,10 @@
         },
         {
           "name": "NEAR-JPNs",
-          "lat": 34.91,
-          "lon": 135.19,
-          "latStr": "34.91",
-          "lonStr": "135.19",
+          "lat": 34.87,
+          "lon": 134.98,
+          "latStr": "34.87",
+          "lonStr": "134.98",
           "carrier": 2,
           "format": "RTCM 3",
           "legacyFormat": false,
@@ -4877,10 +5230,10 @@
         },
         {
           "name": "NEAR-Netherlands",
-          "lat": 52.24,
-          "lon": 6.45,
-          "latStr": "52.24",
-          "lonStr": "6.45",
+          "lat": 52.21,
+          "lon": 6.48,
+          "latStr": "52.21",
+          "lonStr": "6.48",
           "carrier": 2,
           "format": "RTCM 3",
           "legacyFormat": false,
@@ -4889,9 +5242,9 @@
         {
           "name": "NEAR-POL",
           "lat": 51.67,
-          "lon": 19.0,
+          "lon": 19.07,
           "latStr": "51.67",
-          "lonStr": "19.00",
+          "lonStr": "19.07",
           "carrier": 2,
           "format": "RTCM 3",
           "legacyFormat": false,
@@ -4899,10 +5252,10 @@
         },
         {
           "name": "NEAR-SerbiaN",
-          "lat": 45.18,
-          "lon": 19.89,
-          "latStr": "45.18",
-          "lonStr": "19.89",
+          "lat": 45.17,
+          "lon": 19.9,
+          "latStr": "45.17",
+          "lonStr": "19.90",
           "carrier": 2,
           "format": "RTCM 3",
           "legacyFormat": false,
@@ -4910,9 +5263,9 @@
         },
         {
           "name": "NEAR-Swiss",
-          "lat": 47.07,
+          "lat": 47.12,
           "lon": 8.41,
-          "latStr": "47.07",
+          "latStr": "47.12",
           "lonStr": "8.41",
           "carrier": 2,
           "format": "RTCM 3",
@@ -4921,10 +5274,10 @@
         },
         {
           "name": "NEAR_DEU",
-          "lat": 51.41,
-          "lon": 9.01,
-          "latStr": "51.41",
-          "lonStr": "9.01",
+          "lat": 51.35,
+          "lon": 9.05,
+          "latStr": "51.35",
+          "lonStr": "9.05",
           "carrier": 2,
           "format": "RTCM 3",
           "legacyFormat": false,
@@ -4932,10 +5285,10 @@
         },
         {
           "name": "NEAR_Spain",
-          "lat": 39.06,
-          "lon": -4.45,
-          "latStr": "39.06",
-          "lonStr": "-4.45",
+          "lat": 38.97,
+          "lon": -4.96,
+          "latStr": "38.97",
+          "lonStr": "-4.96",
           "carrier": 2,
           "format": "RTCM 3",
           "legacyFormat": false,
@@ -5168,7 +5521,7 @@
           "latStr": "-41.14",
           "lonStr": "144.67",
           "carrier": 2,
-          "format": "RTCM 3",
+          "format": "RTCM 3.2",
           "legacyFormat": false,
           "country": "AUS"
         },
@@ -5943,17 +6296,6 @@
           "country": "DEU"
         },
         {
-          "name": "ProDiggY",
-          "lat": 52.11,
-          "lon": 14.73,
-          "latStr": "52.11",
-          "lonStr": "14.73",
-          "carrier": 2,
-          "format": "RTCM 3.3",
-          "legacyFormat": false,
-          "country": "POL"
-        },
-        {
           "name": "ProdairLAB",
           "lat": 31.65,
           "lon": -8.04,
@@ -5974,17 +6316,6 @@
           "format": "RTCM 3.2",
           "legacyFormat": false,
           "country": "IRL"
-        },
-        {
-          "name": "Qlinkki",
-          "lat": 62.46,
-          "lon": 22.97,
-          "latStr": "62.46",
-          "lonStr": "22.97",
-          "carrier": 2,
-          "format": "RTCM 3.3",
-          "legacyFormat": false,
-          "country": "FIN"
         },
         {
           "name": "R5CRTK",
@@ -6191,7 +6522,7 @@
           "latStr": "-6.31",
           "lonStr": "106.68",
           "carrier": 2,
-          "format": "RTCM 3",
+          "format": "RTCM 3.2",
           "legacyFormat": false,
           "country": "IDN"
         },
@@ -6273,6 +6604,17 @@
           "country": "BGR"
         },
         {
+          "name": "RV_AG",
+          "lat": 51.23,
+          "lon": -112.96,
+          "latStr": "51.23",
+          "lonStr": "-112.96",
+          "carrier": 2,
+          "format": "RTCM 3.2",
+          "legacyFormat": false,
+          "country": "CAN"
+        },
+        {
           "name": "RaabComputer",
           "lat": 49.4,
           "lon": 17.68,
@@ -6282,6 +6624,17 @@
           "format": "RTCM 3.2",
           "legacyFormat": false,
           "country": "CZE"
+        },
+        {
+          "name": "Rafal6020",
+          "lat": 50.42,
+          "lon": 17.39,
+          "latStr": "50.42",
+          "lonStr": "17.39",
+          "carrier": 2,
+          "format": "RTCM 3.2",
+          "legacyFormat": false,
+          "country": "POL"
         },
         {
           "name": "Ranta",
@@ -6521,7 +6874,7 @@
           "latStr": "41.12",
           "lonStr": "-81.52",
           "carrier": 2,
-          "format": "RTCM 3",
+          "format": "RTCM 3.2",
           "legacyFormat": false,
           "country": "USA"
         },
@@ -6565,7 +6918,7 @@
           "latStr": "-20.42",
           "lonStr": "118.61",
           "carrier": 2,
-          "format": "RTCM 3",
+          "format": "RTCM 3.2",
           "legacyFormat": false,
           "country": "AUS"
         },
@@ -6702,6 +7055,17 @@
           "country": "USA"
         },
         {
+          "name": "SSRA02IGS0",
+          "lat": 50.09,
+          "lon": 8.66,
+          "latStr": "50.09",
+          "lonStr": "8.66",
+          "carrier": 2,
+          "format": "RTCM 3.1",
+          "legacyFormat": false,
+          "country": "DEU"
+        },
+        {
           "name": "ST-WZL-JSN",
           "lat": 52.07,
           "lon": 11.48,
@@ -6746,15 +7110,15 @@
           "country": "NLD"
         },
         {
-          "name": "SVYKID",
-          "lat": -1.93,
-          "lon": 115.86,
-          "latStr": "-1.93",
-          "lonStr": "115.86",
+          "name": "SUXUANHONG",
+          "lat": 23.57,
+          "lon": 120.42,
+          "latStr": "23.57",
+          "lonStr": "120.42",
           "carrier": 2,
-          "format": "RTCM 3.2",
+          "format": "RTCM 3",
           "legacyFormat": false,
-          "country": "IDN"
+          "country": "TWN"
         },
         {
           "name": "SWE_Vaerlinge",
@@ -7065,6 +7429,17 @@
           "country": "NLD"
         },
         {
+          "name": "Stewgler",
+          "lat": 40.46,
+          "lon": -75.0,
+          "latStr": "40.46",
+          "lonStr": "-75.00",
+          "carrier": 2,
+          "format": "RTCM 3.2",
+          "legacyFormat": false,
+          "country": "USA"
+        },
+        {
           "name": "Stingray_tech",
           "lat": 24.89,
           "lon": 67.09,
@@ -7247,7 +7622,7 @@
           "latStr": "33.55",
           "lonStr": "130.37",
           "carrier": 2,
-          "format": "RTCM 3",
+          "format": "RTCM 3.2",
           "legacyFormat": false,
           "country": "JPN"
         },
@@ -7413,6 +7788,17 @@
           "lonStr": "23.73",
           "carrier": 2,
           "format": "RTCM 3.2",
+          "legacyFormat": false,
+          "country": "FIN"
+        },
+        {
+          "name": "Taroniemi",
+          "lat": 66.35,
+          "lon": 23.68,
+          "latStr": "66.35",
+          "lonStr": "23.68",
+          "carrier": 2,
+          "format": "RTCM 3.3",
           "legacyFormat": false,
           "country": "FIN"
         },
@@ -7731,7 +8117,7 @@
           "latStr": "57.88",
           "lonStr": "11.86",
           "carrier": 2,
-          "format": "RTCM 3.2",
+          "format": "RTCM 3",
           "legacyFormat": false,
           "country": "SWE"
         },
@@ -7910,6 +8296,28 @@
           "format": "RTCM 3.3",
           "legacyFormat": false,
           "country": "FIN"
+        },
+        {
+          "name": "WEBBPARTNERS",
+          "lat": 53.24,
+          "lon": -2.16,
+          "latStr": "53.24",
+          "lonStr": "-2.16",
+          "carrier": 2,
+          "format": "RTCM 3.2",
+          "legacyFormat": false,
+          "country": "GBR"
+        },
+        {
+          "name": "WEBBPARTNERS2",
+          "lat": 53.24,
+          "lon": -2.16,
+          "latStr": "53.24",
+          "lonStr": "-2.16",
+          "carrier": 2,
+          "format": "RTCM 3.0",
+          "legacyFormat": false,
+          "country": "GBR"
         },
         {
           "name": "WEXtmp",
@@ -8396,17 +8804,6 @@
           "country": "USA"
         },
         {
-          "name": "berryv1",
-          "lat": 39.15,
-          "lon": -77.97,
-          "latStr": "39.15",
-          "lonStr": "-77.97",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": "USA"
-        },
-        {
           "name": "bldr_SparkFun1",
           "lat": 40.09,
           "lon": -105.18,
@@ -8471,6 +8868,17 @@
           "format": "RTCM 3.3",
           "legacyFormat": false,
           "country": "GBR"
+        },
+        {
+          "name": "ceva2",
+          "lat": 46.41,
+          "lon": 29.34,
+          "latStr": "46.41",
+          "lonStr": "29.34",
+          "carrier": 2,
+          "format": "RTCM 3.3",
+          "legacyFormat": false,
+          "country": "UKR"
         },
         {
           "name": "chcnavfin",
@@ -8548,17 +8956,6 @@
           "format": "RTCM 3.3",
           "legacyFormat": false,
           "country": "CAN"
-        },
-        {
-          "name": "dha_bailey",
-          "lat": 39.97,
-          "lon": -80.36,
-          "latStr": "39.97",
-          "lonStr": "-80.36",
-          "carrier": 2,
-          "format": "RTCM 3.2",
-          "legacyFormat": false,
-          "country": "USA"
         },
         {
           "name": "discus",
@@ -8713,17 +9110,6 @@
           "format": "RTCM 3.3",
           "legacyFormat": false,
           "country": "USA"
-        },
-        {
-          "name": "hestiaRTK1",
-          "lat": 52.79,
-          "lon": -106.56,
-          "latStr": "52.79",
-          "lonStr": "-106.56",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": "CAN"
         },
         {
           "name": "hietalantila",
@@ -9287,17 +9673,6 @@
           "country": "FIN"
         },
         {
-          "name": "noushin-RTK",
-          "lat": 34.56,
-          "lon": 132.96,
-          "latStr": "34.56",
-          "lonStr": "132.96",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": "JPN"
-        },
-        {
           "name": "ntripbg",
           "lat": -29.16,
           "lon": -51.52,
@@ -9463,17 +9838,6 @@
           "country": "CAN"
         },
         {
-          "name": "rid3xx",
-          "lat": 16.01,
-          "lon": 100.37,
-          "latStr": "16.01",
-          "lonStr": "100.37",
-          "carrier": 2,
-          "format": "RTCM 3.3",
-          "legacyFormat": false,
-          "country": "THA"
-        },
-        {
           "name": "roesdal",
           "lat": 56.6,
           "lon": 8.79,
@@ -9505,6 +9869,17 @@
           "format": "RTCM 3.3",
           "legacyFormat": false,
           "country": "JPN"
+        },
+        {
+          "name": "s9123A22404",
+          "lat": 15.29,
+          "lon": 44.24,
+          "latStr": "15.29",
+          "lonStr": "44.24",
+          "carrier": 2,
+          "format": "RTCM 3.2",
+          "legacyFormat": false,
+          "country": "YEM"
         },
         {
           "name": "salmiac",
@@ -9546,7 +9921,7 @@
           "latStr": "37.55",
           "lonStr": "127.07",
           "carrier": 2,
-          "format": "RTCM 3.2",
+          "format": "RTCM 3.3",
           "legacyFormat": false,
           "country": "KOR"
         },
@@ -9683,17 +10058,6 @@
           "country": "THA"
         },
         {
-          "name": "taa324",
-          "lat": 14.67,
-          "lon": 101.22,
-          "latStr": "14.67",
-          "lonStr": "101.22",
-          "carrier": 2,
-          "format": "RTCM 3.2",
-          "legacyFormat": false,
-          "country": "THA"
-        },
-        {
           "name": "taltech-ict",
           "lat": 59.4,
           "lon": 24.66,
@@ -9703,6 +10067,17 @@
           "format": "RTCM 3.2",
           "legacyFormat": false,
           "country": "EST"
+        },
+        {
+          "name": "teerachet",
+          "lat": 9.73,
+          "lon": 100.01,
+          "latStr": "9.73",
+          "lonStr": "100.01",
+          "carrier": 2,
+          "format": "RTCM 3.2",
+          "legacyFormat": false,
+          "country": "THA"
         },
         {
           "name": "tenranch",
@@ -9843,7 +10218,7 @@
           "latStr": "53.16",
           "lonStr": "17.10",
           "carrier": 2,
-          "format": "RTCM 3",
+          "format": "RTCM 3.2",
           "legacyFormat": false,
           "country": "POL"
         },
@@ -9860,370 +10235,6 @@
         }
       ]
     },
-    "frednet": {
-      "url": "http://gnsscaster.regione.fvg.it:8080/",
-      "color": "#2e6fb0",
-      "label": "FReDNet",
-      "registration": "https://frednet.crs.ogs.it/",
-      "access": "registration",
-      "status": "ok",
-      "fetched_at": "2026-04-25T03:47:57+00:00",
-      "last_ok": "2026-04-25T03:47:57+00:00",
-      "stations": [
-        {
-          "name": "Ampezzo_RTK",
-          "lat": 46.41,
-          "lon": 12.8,
-          "latStr": "46.41",
-          "lonStr": "12.80",
-          "carrier": 2,
-          "format": "RTCM 2.3",
-          "legacyFormat": true,
-          "country": "ITA"
-        },
-        {
-          "name": "Barcis_RTK",
-          "lat": 46.19,
-          "lon": 12.56,
-          "latStr": "46.19",
-          "lonStr": "12.56",
-          "carrier": 2,
-          "format": "RTCM 2.3",
-          "legacyFormat": true,
-          "country": "ITA"
-        },
-        {
-          "name": "Bevazzana_RTK",
-          "lat": 45.67,
-          "lon": 13.07,
-          "latStr": "45.67",
-          "lonStr": "13.07",
-          "carrier": 2,
-          "format": "RTCM 2.3",
-          "legacyFormat": true,
-          "country": "ITA"
-        },
-        {
-          "name": "Bovec_RTK",
-          "lat": 46.33,
-          "lon": 13.54,
-          "latStr": "46.33",
-          "lonStr": "13.54",
-          "carrier": 2,
-          "format": "RTCM 2",
-          "legacyFormat": true,
-          "country": "ITA"
-        },
-        {
-          "name": "Cervignano_RTK",
-          "lat": 45.83,
-          "lon": 13.34,
-          "latStr": "45.83",
-          "lonStr": "13.34",
-          "carrier": 2,
-          "format": "RTCM 2",
-          "legacyFormat": true,
-          "country": "ITA"
-        },
-        {
-          "name": "Codroipo_RTK",
-          "lat": 45.96,
-          "lon": 12.98,
-          "latStr": "45.96",
-          "lonStr": "12.98",
-          "carrier": 2,
-          "format": "RTCM 2",
-          "legacyFormat": true,
-          "country": "ITA"
-        },
-        {
-          "name": "Gorizia_RTK",
-          "lat": 45.94,
-          "lon": 13.62,
-          "latStr": "45.94",
-          "lonStr": "13.62",
-          "carrier": 2,
-          "format": "RTCM 2",
-          "legacyFormat": true,
-          "country": "ITA"
-        },
-        {
-          "name": "Idrija_RTK",
-          "lat": 46.0,
-          "lon": 14.03,
-          "latStr": "46.00",
-          "lonStr": "14.03",
-          "carrier": 2,
-          "format": "RTCM 2",
-          "legacyFormat": true,
-          "country": "ITA"
-        },
-        {
-          "name": "Koper_RTK",
-          "lat": 45.55,
-          "lon": 13.73,
-          "latStr": "45.55",
-          "lonStr": "13.73",
-          "carrier": 2,
-          "format": "RTCM 2",
-          "legacyFormat": true,
-          "country": "ITA"
-        },
-        {
-          "name": "MoggioUdinese_RTK",
-          "lat": 46.41,
-          "lon": 13.2,
-          "latStr": "46.41",
-          "lonStr": "13.20",
-          "carrier": 2,
-          "format": "RTCM 2.3",
-          "legacyFormat": true,
-          "country": "ITA"
-        },
-        {
-          "name": "OGS_ACOM",
-          "lat": 46.54,
-          "lon": 13.51,
-          "latStr": "46.54",
-          "lonStr": "13.51",
-          "carrier": 2,
-          "format": "RTCM",
-          "legacyFormat": false,
-          "country": "ITA"
-        },
-        {
-          "name": "OGS_AFAL",
-          "lat": 46.52,
-          "lon": 12.17,
-          "latStr": "46.52",
-          "lonStr": "12.17",
-          "carrier": 2,
-          "format": "RTCM",
-          "legacyFormat": false,
-          "country": "ITA"
-        },
-        {
-          "name": "OGS_CODR",
-          "lat": 45.96,
-          "lon": 12.98,
-          "latStr": "45.96",
-          "lonStr": "12.98",
-          "carrier": 2,
-          "format": "RTCM",
-          "legacyFormat": false,
-          "country": "ITA"
-        },
-        {
-          "name": "OGS_FUSE",
-          "lat": 46.41,
-          "lon": 13.0,
-          "latStr": "46.41",
-          "lonStr": "13.00",
-          "carrier": 2,
-          "format": "RTCM",
-          "legacyFormat": false,
-          "country": "ITA"
-        },
-        {
-          "name": "OGS_JOAN",
-          "lat": 46.18,
-          "lon": 13.42,
-          "latStr": "46.18",
-          "lonStr": "13.42",
-          "carrier": 2,
-          "format": "RTCM",
-          "legacyFormat": false,
-          "country": "ITA"
-        },
-        {
-          "name": "OGS_MDEA",
-          "lat": 45.92,
-          "lon": 13.93,
-          "latStr": "45.92",
-          "lonStr": "13.93",
-          "carrier": 2,
-          "format": "RAW",
-          "legacyFormat": false,
-          "country": "ITA"
-        },
-        {
-          "name": "OGS_MPRA",
-          "lat": 46.24,
-          "lon": 12.99,
-          "latStr": "46.24",
-          "lonStr": "12.99",
-          "carrier": 2,
-          "format": "RTCM",
-          "legacyFormat": false,
-          "country": "ITA"
-        },
-        {
-          "name": "OGS_NOVE",
-          "lat": 45.67,
-          "lon": 12.59,
-          "latStr": "45.67",
-          "lonStr": "12.59",
-          "carrier": 2,
-          "format": "RAW",
-          "legacyFormat": false,
-          "country": "ITA"
-        },
-        {
-          "name": "OGS_PAZO",
-          "lat": 45.81,
-          "lon": 13.05,
-          "latStr": "45.81",
-          "lonStr": "13.05",
-          "carrier": 2,
-          "format": "RAW",
-          "legacyFormat": false,
-          "country": "ITA"
-        },
-        {
-          "name": "OGS_TRIE",
-          "lat": 45.71,
-          "lon": 13.76,
-          "latStr": "45.71",
-          "lonStr": "13.76",
-          "carrier": 2,
-          "format": "RAW",
-          "legacyFormat": false,
-          "country": "ITA"
-        },
-        {
-          "name": "OGS_UDI1",
-          "lat": 46.04,
-          "lon": 13.25,
-          "latStr": "46.04",
-          "lonStr": "13.25",
-          "carrier": 2,
-          "format": "RAW",
-          "legacyFormat": false,
-          "country": "ITA"
-        },
-        {
-          "name": "OGS_ZOUF",
-          "lat": 46.56,
-          "lon": 12.97,
-          "latStr": "46.56",
-          "lonStr": "12.97",
-          "carrier": 2,
-          "format": "RAW",
-          "legacyFormat": false,
-          "country": "ITA"
-        },
-        {
-          "name": "Paularo_RTK",
-          "lat": 46.54,
-          "lon": 13.12,
-          "latStr": "46.54",
-          "lonStr": "13.12",
-          "carrier": 2,
-          "format": "RTCM 2",
-          "legacyFormat": true,
-          "country": "ITA"
-        },
-        {
-          "name": "Pordenone_RTK",
-          "lat": 45.96,
-          "lon": 12.66,
-          "latStr": "45.96",
-          "lonStr": "12.66",
-          "carrier": 2,
-          "format": "RTCM 2.3",
-          "legacyFormat": true,
-          "country": "ITA"
-        },
-        {
-          "name": "Sappada_RTK",
-          "lat": 46.57,
-          "lon": 12.69,
-          "latStr": "46.57",
-          "lonStr": "12.69",
-          "carrier": 2,
-          "format": "RTCM 2",
-          "legacyFormat": true,
-          "country": "ITA"
-        },
-        {
-          "name": "Tarvisio_RTK",
-          "lat": 46.5,
-          "lon": 13.59,
-          "latStr": "46.50",
-          "lonStr": "13.59",
-          "carrier": 2,
-          "format": "RTCM 2.3",
-          "legacyFormat": true,
-          "country": "ITA"
-        },
-        {
-          "name": "Trieste_RTK",
-          "lat": 45.66,
-          "lon": 13.79,
-          "latStr": "45.66",
-          "lonStr": "13.79",
-          "carrier": 2,
-          "format": "RTCM 2.3",
-          "legacyFormat": true,
-          "country": "ITA"
-        },
-        {
-          "name": "Udine_RTK",
-          "lat": 46.06,
-          "lon": 13.23,
-          "latStr": "46.06",
-          "lonStr": "13.23",
-          "carrier": 2,
-          "format": "RTCM 2.3",
-          "legacyFormat": true,
-          "country": "ITA"
-        }
-      ]
-    },
-    "sapos_NW": {
-      "url": "http://www.sapos-nw-ntrip.de:2101/",
-      "color": "#2d6e6e",
-      "label": "SAPOS (Nordrhein-Westfalen)",
-      "registration": "https://www.sapos.de",
-      "access": "registration",
-      "status": "ok",
-      "fetched_at": "2026-04-25T03:47:57+00:00",
-      "last_ok": "2026-04-25T03:47:57+00:00",
-      "stations": []
-    },
-    "sapos_HE": {
-      "url": "http://www.sapos-he-ntrip.de:2101/",
-      "color": "#2d6e6e",
-      "label": "SAPOS (Hessen)",
-      "registration": "https://www.sapos.de",
-      "access": "registration",
-      "status": "ok",
-      "fetched_at": "2026-04-25T03:47:57+00:00",
-      "last_ok": "2026-04-25T03:47:57+00:00",
-      "stations": []
-    },
-    "sapos_SH_HH": {
-      "url": "http://www.sapos.geonord.de:2101/",
-      "color": "#2d6e6e",
-      "label": "SAPOS (Schleswig-Holstein + Hamburg)",
-      "registration": "https://www.sapos.de",
-      "access": "registration",
-      "status": "ok",
-      "fetched_at": "2026-04-25T03:47:58+00:00",
-      "last_ok": "2026-04-25T03:47:58+00:00",
-      "stations": []
-    },
-    "sapos_NI": {
-      "url": "http://www.sapos-ni-ntrip.de:2101/",
-      "color": "#2d6e6e",
-      "label": "SAPOS (Niedersachsen)",
-      "registration": "https://www.sapos.de",
-      "access": "registration",
-      "status": "ok",
-      "fetched_at": "2026-04-25T03:47:58+00:00",
-      "last_ok": "2026-04-25T03:47:58+00:00",
-      "stations": []
-    },
     "centipede": {
       "url": "http://crtk.net:2101/",
       "color": "#e87500",
@@ -10231,8 +10242,8 @@
       "registration": null,
       "access": "open",
       "status": "ok",
-      "fetched_at": "2026-04-25T03:47:58+00:00",
-      "last_ok": "2026-04-25T03:47:58+00:00",
+      "fetched_at": "2026-04-25T07:59:51+00:00",
+      "last_ok": "2026-04-25T07:59:51+00:00",
       "stations": [
         {
           "name": "1234",
@@ -12591,11 +12602,11 @@
         {
           "name": "CHA2",
           "lat": 45.12,
-          "lon": 5.9,
-          "latStr": "45.12",
-          "lonStr": "5.90",
+          "lon": 5.899,
+          "latStr": "45.120",
+          "lonStr": "5.899",
           "carrier": 2,
-          "format": "RTCM 3.2 MSM7",
+          "format": "RTCM3",
           "legacyFormat": false,
           "country": "FRA"
         },
@@ -16901,6 +16912,17 @@
           "country": "FRA"
         },
         {
+          "name": "KHAY",
+          "lat": 25.718,
+          "lon": 39.296,
+          "latStr": "25.718",
+          "lonStr": "39.296",
+          "carrier": 2,
+          "format": "RTCM3",
+          "legacyFormat": false,
+          "country": "SAU"
+        },
+        {
           "name": "KIKI",
           "lat": 43.762,
           "lon": 6.759,
@@ -17005,6 +17027,17 @@
           "lon": 22.076,
           "latStr": "48.228",
           "lonStr": "22.076",
+          "carrier": 2,
+          "format": "RTCM3",
+          "legacyFormat": false,
+          "country": "HUN"
+        },
+        {
+          "name": "KOPE",
+          "lat": 47.915,
+          "lon": 22.504,
+          "latStr": "47.915",
+          "lonStr": "22.504",
           "carrier": 2,
           "format": "RTCM3",
           "legacyFormat": false,
@@ -18232,6 +18265,17 @@
           "country": "ALA"
         },
         {
+          "name": "MARK",
+          "lat": 47.899,
+          "lon": 22.677,
+          "latStr": "47.899",
+          "lonStr": "22.677",
+          "carrier": 2,
+          "format": "RTCM3",
+          "legacyFormat": false,
+          "country": "HUN"
+        },
+        {
           "name": "MARKK",
           "lat": 61.046,
           "lon": 21.976,
@@ -19146,12 +19190,12 @@
         },
         {
           "name": "NATT",
-          "lat": 45.71,
-          "lon": 5.75,
-          "latStr": "45.71",
-          "lonStr": "5.75",
+          "lat": 45.707,
+          "lon": 5.748,
+          "latStr": "45.707",
+          "lonStr": "5.748",
           "carrier": 2,
-          "format": "RTCM 3.2 MSM7",
+          "format": "RTCM3",
           "legacyFormat": false,
           "country": "FRA"
         },
@@ -19297,17 +19341,6 @@
           "format": "RTCM3",
           "legacyFormat": false,
           "country": "SEN"
-        },
-        {
-          "name": "NKONYI",
-          "lat": 46.598,
-          "lon": 18.21,
-          "latStr": "46.598",
-          "lonStr": "18.210",
-          "carrier": 3,
-          "format": "RTCM3",
-          "legacyFormat": false,
-          "country": "HUN"
         },
         {
           "name": "NKOROS",
@@ -19768,6 +19801,17 @@
           "lonStr": "0.291",
           "carrier": 2,
           "format": "RTCM3",
+          "legacyFormat": false,
+          "country": "FRA"
+        },
+        {
+          "name": "PALI",
+          "lat": 43.38,
+          "lon": 4.81,
+          "latStr": "43.38",
+          "lonStr": "4.81",
+          "carrier": 2,
+          "format": "RTCM 3.2 MSM7",
           "legacyFormat": false,
           "country": "FRA"
         },
@@ -21367,6 +21411,17 @@
           "country": "SVN"
         },
         {
+          "name": "SIRA",
+          "lat": 43.706,
+          "lon": 0.957,
+          "latStr": "43.706",
+          "lonStr": "0.957",
+          "carrier": 2,
+          "format": "RTCM3",
+          "legacyFormat": false,
+          "country": "FRA"
+        },
+        {
           "name": "SKAM",
           "lat": 55.676,
           "lon": 8.651,
@@ -22434,6 +22489,17 @@
           "country": "FRA"
         },
         {
+          "name": "TJMM",
+          "lat": 54.869,
+          "lon": -7.496,
+          "latStr": "54.869",
+          "lonStr": "-7.496",
+          "carrier": 2,
+          "format": "RTCM3",
+          "legacyFormat": false,
+          "country": "IRL"
+        },
+        {
           "name": "TLB2",
           "lat": 48.555,
           "lon": -2.885,
@@ -23193,17 +23259,6 @@
           "country": "HUN"
         },
         {
-          "name": "VIN26",
-          "lat": 44.727,
-          "lon": 4.949,
-          "latStr": "44.727",
-          "lonStr": "4.949",
-          "carrier": 2,
-          "format": "RTCM3",
-          "legacyFormat": false,
-          "country": "FRA"
-        },
-        {
           "name": "VIN65",
           "lat": 47.744,
           "lon": -1.345,
@@ -23601,17 +23656,6 @@
         }
       ]
     },
-    "sapos_SN": {
-      "url": "http://ntrip.sachsen.de:2101/",
-      "color": "#2d6e6e",
-      "label": "SAPOS (Sachsen)",
-      "registration": "https://www.sapos.de",
-      "access": "registration",
-      "status": "error: URLError(gaierror(-5, 'No address associated with hostname'))",
-      "fetched_at": null,
-      "last_ok": null,
-      "stations": []
-    },
     "sapos_BW": {
       "url": "http://www.sapos-bw-ntrip.de:2101/",
       "color": "#2d6e6e",
@@ -23619,41 +23663,8 @@
       "registration": "https://www.sapos.de",
       "access": "registration",
       "status": "ok",
-      "fetched_at": "2026-04-25T03:47:58+00:00",
-      "last_ok": "2026-04-25T03:47:58+00:00",
-      "stations": []
-    },
-    "sapos_TH": {
-      "url": "http://www.sapos-th-ntrip.de:2101/",
-      "color": "#2d6e6e",
-      "label": "SAPOS (Th\u00fcringen)",
-      "registration": "https://www.sapos.de",
-      "access": "registration",
-      "status": "ok",
-      "fetched_at": "2026-04-25T03:47:58+00:00",
-      "last_ok": "2026-04-25T03:47:58+00:00",
-      "stations": []
-    },
-    "sapos_BB": {
-      "url": "http://www.sapos-bb-ntrip.de:2101/",
-      "color": "#2d6e6e",
-      "label": "SAPOS (Brandenburg)",
-      "registration": "https://www.sapos.de",
-      "access": "registration",
-      "status": "ok",
-      "fetched_at": "2026-04-25T03:47:59+00:00",
-      "last_ok": "2026-04-25T03:47:59+00:00",
-      "stations": []
-    },
-    "sapos_BE": {
-      "url": "http://www.sapos-be-ntrip.de:2101/",
-      "color": "#2d6e6e",
-      "label": "SAPOS (Berlin)",
-      "registration": "https://www.sapos.de",
-      "access": "registration",
-      "status": "ok",
-      "fetched_at": "2026-04-25T03:47:59+00:00",
-      "last_ok": "2026-04-25T03:47:59+00:00",
+      "fetched_at": "2026-04-25T07:59:51+00:00",
+      "last_ok": "2026-04-25T07:59:51+00:00",
       "stations": []
     },
     "sapos_BY": {
@@ -23663,8 +23674,41 @@
       "registration": "https://www.sapos.de",
       "access": "conditions",
       "status": "ok",
-      "fetched_at": "2026-04-25T03:47:59+00:00",
-      "last_ok": "2026-04-25T03:47:59+00:00",
+      "fetched_at": "2026-04-25T07:59:51+00:00",
+      "last_ok": "2026-04-25T07:59:51+00:00",
+      "stations": []
+    },
+    "sapos_BB": {
+      "url": "http://www.sapos-bb-ntrip.de:2101/",
+      "color": "#2d6e6e",
+      "label": "SAPOS (Brandenburg)",
+      "registration": "https://www.sapos.de",
+      "access": "registration",
+      "status": "ok",
+      "fetched_at": "2026-04-25T07:59:51+00:00",
+      "last_ok": "2026-04-25T07:59:51+00:00",
+      "stations": []
+    },
+    "sapos_TH": {
+      "url": "http://www.sapos-th-ntrip.de:2101/",
+      "color": "#2d6e6e",
+      "label": "SAPOS (Th\u00fcringen)",
+      "registration": "https://www.sapos.de",
+      "access": "registration",
+      "status": "ok",
+      "fetched_at": "2026-04-25T07:59:51+00:00",
+      "last_ok": "2026-04-25T07:59:51+00:00",
+      "stations": []
+    },
+    "sapos_BE": {
+      "url": "http://www.sapos-be-ntrip.de:2101/",
+      "color": "#2d6e6e",
+      "label": "SAPOS (Berlin)",
+      "registration": "https://www.sapos.de",
+      "access": "registration",
+      "status": "ok",
+      "fetched_at": "2026-04-25T07:59:51+00:00",
+      "last_ok": "2026-04-25T07:59:51+00:00",
       "stations": []
     },
     "sapos_LSA": {
@@ -23674,8 +23718,8 @@
       "registration": "https://www.sapos.de",
       "access": "registration",
       "status": "ok",
-      "fetched_at": "2026-04-25T03:47:59+00:00",
-      "last_ok": "2026-04-25T03:47:59+00:00",
+      "fetched_at": "2026-04-25T07:59:52+00:00",
+      "last_ok": "2026-04-25T07:59:52+00:00",
       "stations": []
     },
     "ergnss": {
@@ -23685,8 +23729,8 @@
       "registration": "https://ergnss.ign.es/gnuserportal/",
       "access": "registration",
       "status": "ok",
-      "fetched_at": "2026-04-25T03:47:59+00:00",
-      "last_ok": "2026-04-25T03:47:59+00:00",
+      "fetched_at": "2026-04-25T07:59:52+00:00",
+      "last_ok": "2026-04-25T07:59:52+00:00",
       "stations": [
         {
           "name": "ACNS0",
@@ -25138,87 +25182,20 @@
       "registration": "https://www.sapos.de",
       "access": "registration",
       "status": "ok",
-      "fetched_at": "2026-04-25T03:47:59+00:00",
-      "last_ok": "2026-04-25T03:47:59+00:00",
+      "fetched_at": "2026-04-25T07:59:52+00:00",
+      "last_ok": "2026-04-25T07:59:52+00:00",
       "stations": []
     },
-    "sapos_RP": {
-      "url": "http://www.sapos-ntrip.rlp.de:2101/",
-      "color": "#2d6e6e",
-      "label": "SAPOS (Rheinland-Pfalz)",
-      "registration": "https://www.sapos.de",
-      "access": "registration",
+    "apos": {
+      "url": "http://aposrtk.bev.gv.at:2101/",
+      "color": "#9b0000",
+      "label": "APOS",
+      "registration": "https://www.bev.gv.at",
+      "access": "conditions",
       "status": "ok",
-      "fetched_at": "2026-04-25T03:47:59+00:00",
-      "last_ok": "2026-04-25T03:47:59+00:00",
-      "stations": [
-        {
-          "name": "0512",
-          "lat": 50.32,
-          "lon": 6.09,
-          "latStr": "50.32",
-          "lonStr": "6.09",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": ""
-        },
-        {
-          "name": "EPS",
-          "lat": 49.97,
-          "lon": 7.29,
-          "latStr": "49.97",
-          "lonStr": "7.29",
-          "carrier": 2,
-          "format": "RTCM 2",
-          "legacyFormat": true,
-          "country": "DEU"
-        },
-        {
-          "name": "EPS_RP",
-          "lat": 50.32,
-          "lon": 6.09,
-          "latStr": "50.32",
-          "lonStr": "6.09",
-          "carrier": 2,
-          "format": "RTCM 2",
-          "legacyFormat": true,
-          "country": "DEU"
-        },
-        {
-          "name": "HE0535",
-          "lat": 50.77,
-          "lon": 7.74,
-          "latStr": "50.77",
-          "lonStr": "7.74",
-          "carrier": 2,
-          "format": "RAW",
-          "legacyFormat": false,
-          "country": "DEU"
-        },
-        {
-          "name": "NRW0513",
-          "lat": 50.33,
-          "lon": 7.24,
-          "latStr": "50.33",
-          "lonStr": "7.24",
-          "carrier": 2,
-          "format": "RAW",
-          "legacyFormat": false,
-          "country": "DEU"
-        },
-        {
-          "name": "NRW0535",
-          "lat": 50.77,
-          "lon": 7.74,
-          "latStr": "50.77",
-          "lonStr": "7.74",
-          "carrier": 2,
-          "format": "RAW",
-          "legacyFormat": false,
-          "country": "DEU"
-        }
-      ]
+      "fetched_at": "2026-04-25T07:59:52+00:00",
+      "last_ok": "2026-04-25T07:59:52+00:00",
+      "stations": []
     },
     "positionz": {
       "url": "http://positionz-rt.linz.govt.nz:2101/",
@@ -25227,8 +25204,8 @@
       "registration": "https://www.linz.govt.nz/",
       "access": "registration",
       "status": "ok",
-      "fetched_at": "2026-04-25T03:47:59+00:00",
-      "last_ok": "2026-04-25T03:47:59+00:00",
+      "fetched_at": "2026-04-25T07:59:52+00:00",
+      "last_ok": "2026-04-25T07:59:52+00:00",
       "stations": [
         {
           "name": "240600NZL0",
@@ -25914,27 +25891,337 @@
         }
       ]
     },
-    "apos": {
-      "url": "http://aposrtk.bev.gv.at:2101/",
-      "color": "#9b0000",
-      "label": "APOS",
-      "registration": "https://www.bev.gv.at",
-      "access": "conditions",
-      "status": "ok",
-      "fetched_at": "2026-04-25T03:48:00+00:00",
-      "last_ok": "2026-04-25T03:48:00+00:00",
-      "stations": []
-    },
-    "inacors": {
-      "url": "http://nrtk.big.go.id:2001/",
-      "color": "#1a5fa0",
-      "label": "InaCORS",
-      "registration": "https://nrtk.big.go.id",
+    "sapos_RP": {
+      "url": "http://www.sapos-ntrip.rlp.de:2101/",
+      "color": "#2d6e6e",
+      "label": "SAPOS (Rheinland-Pfalz)",
+      "registration": "https://www.sapos.de",
       "access": "registration",
       "status": "ok",
-      "fetched_at": "2026-04-25T03:48:00+00:00",
-      "last_ok": "2026-04-25T03:48:00+00:00",
-      "stations": []
+      "fetched_at": "2026-04-25T07:59:52+00:00",
+      "last_ok": "2026-04-25T07:59:52+00:00",
+      "stations": [
+        {
+          "name": "0512",
+          "lat": 50.32,
+          "lon": 6.09,
+          "latStr": "50.32",
+          "lonStr": "6.09",
+          "carrier": 2,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": ""
+        },
+        {
+          "name": "EPS",
+          "lat": 49.97,
+          "lon": 7.29,
+          "latStr": "49.97",
+          "lonStr": "7.29",
+          "carrier": 2,
+          "format": "RTCM 2",
+          "legacyFormat": true,
+          "country": "DEU"
+        },
+        {
+          "name": "EPS_RP",
+          "lat": 50.32,
+          "lon": 6.09,
+          "latStr": "50.32",
+          "lonStr": "6.09",
+          "carrier": 2,
+          "format": "RTCM 2",
+          "legacyFormat": true,
+          "country": "DEU"
+        },
+        {
+          "name": "HE0535",
+          "lat": 50.77,
+          "lon": 7.74,
+          "latStr": "50.77",
+          "lonStr": "7.74",
+          "carrier": 2,
+          "format": "RAW",
+          "legacyFormat": false,
+          "country": "DEU"
+        },
+        {
+          "name": "NRW0513",
+          "lat": 50.33,
+          "lon": 7.24,
+          "latStr": "50.33",
+          "lonStr": "7.24",
+          "carrier": 2,
+          "format": "RAW",
+          "legacyFormat": false,
+          "country": "DEU"
+        },
+        {
+          "name": "NRW0535",
+          "lat": 50.77,
+          "lon": 7.74,
+          "latStr": "50.77",
+          "lonStr": "7.74",
+          "carrier": 2,
+          "format": "RAW",
+          "legacyFormat": false,
+          "country": "DEU"
+        }
+      ]
+    },
+    "satref": {
+      "url": "http://ntrip.geodetic.gov.hk:2101/",
+      "color": "#8b008b",
+      "label": "SatRef",
+      "registration": "https://www.geodetic.gov.hk/",
+      "access": "registration",
+      "status": "ok",
+      "fetched_at": "2026-04-25T07:59:53+00:00",
+      "last_ok": "2026-04-25T07:59:53+00:00",
+      "stations": [
+        {
+          "name": "HKCL_32",
+          "lat": 22.3,
+          "lon": 113.91,
+          "latStr": "22.30",
+          "lonStr": "113.91",
+          "carrier": 2,
+          "format": "RTCM3.2 MSM5",
+          "legacyFormat": false,
+          "country": "HKG"
+        },
+        {
+          "name": "HKFN_32",
+          "lat": 22.49,
+          "lon": 114.14,
+          "latStr": "22.49",
+          "lonStr": "114.14",
+          "carrier": 2,
+          "format": "RTCM3.2 MSM5",
+          "legacyFormat": false,
+          "country": "HKG"
+        },
+        {
+          "name": "HKFN_NMEA",
+          "lat": 22.49,
+          "lon": 114.14,
+          "latStr": "22.49",
+          "lonStr": "114.14",
+          "carrier": 2,
+          "format": "NMEA",
+          "legacyFormat": false,
+          "country": "HKG"
+        },
+        {
+          "name": "HKKS_32",
+          "lat": 22.37,
+          "lon": 114.31,
+          "latStr": "22.37",
+          "lonStr": "114.31",
+          "carrier": 2,
+          "format": "RTCM3.2 MSM5",
+          "legacyFormat": false,
+          "country": "HKG"
+        },
+        {
+          "name": "HKKT_32",
+          "lat": 22.45,
+          "lon": 114.07,
+          "latStr": "22.45",
+          "lonStr": "114.07",
+          "carrier": 2,
+          "format": "RTCM3.2 MSM5",
+          "legacyFormat": false,
+          "country": "HKG"
+        },
+        {
+          "name": "HKLM_32",
+          "lat": 22.22,
+          "lon": 114.12,
+          "latStr": "22.22",
+          "lonStr": "114.12",
+          "carrier": 2,
+          "format": "RTCM3.2 MSM5",
+          "legacyFormat": false,
+          "country": "HKG"
+        },
+        {
+          "name": "HKLT_32",
+          "lat": 22.42,
+          "lon": 114.0,
+          "latStr": "22.42",
+          "lonStr": "114.00",
+          "carrier": 2,
+          "format": "RTCM3.2 MSM5",
+          "legacyFormat": false,
+          "country": "HKG"
+        },
+        {
+          "name": "HKMW_32",
+          "lat": 22.26,
+          "lon": 114.0,
+          "latStr": "22.26",
+          "lonStr": "114.00",
+          "carrier": 2,
+          "format": "RTCM3.2 MSM5",
+          "legacyFormat": false,
+          "country": "HKG"
+        },
+        {
+          "name": "HKNP_32",
+          "lat": 22.25,
+          "lon": 113.89,
+          "latStr": "22.25",
+          "lonStr": "113.89",
+          "carrier": 2,
+          "format": "RTCM3.2 MSM5",
+          "legacyFormat": false,
+          "country": "HKG"
+        },
+        {
+          "name": "HKOH_32",
+          "lat": 22.25,
+          "lon": 114.23,
+          "latStr": "22.25",
+          "lonStr": "114.23",
+          "carrier": 2,
+          "format": "RTCM3.2 MSM5",
+          "legacyFormat": false,
+          "country": "HKG"
+        },
+        {
+          "name": "HKPC_32",
+          "lat": 22.29,
+          "lon": 114.04,
+          "latStr": "22.29",
+          "lonStr": "114.04",
+          "carrier": 2,
+          "format": "RTCM3.2 MSM5",
+          "legacyFormat": false,
+          "country": "HKG"
+        },
+        {
+          "name": "HKQT_32",
+          "lat": 22.29,
+          "lon": 114.21,
+          "latStr": "22.29",
+          "lonStr": "114.21",
+          "carrier": 2,
+          "format": "RTCM3.2 MSM5",
+          "legacyFormat": false,
+          "country": "HKG"
+        },
+        {
+          "name": "HKQT_NMEA",
+          "lat": 22.29,
+          "lon": 114.21,
+          "latStr": "22.29",
+          "lonStr": "114.21",
+          "carrier": 2,
+          "format": "NMEA",
+          "legacyFormat": false,
+          "country": "HKG"
+        },
+        {
+          "name": "HKSC_32",
+          "lat": 22.32,
+          "lon": 114.14,
+          "latStr": "22.32",
+          "lonStr": "114.14",
+          "carrier": 2,
+          "format": "RTCM3.2 MSM5",
+          "legacyFormat": false,
+          "country": "HKG"
+        },
+        {
+          "name": "HKSL_32",
+          "lat": 22.37,
+          "lon": 113.93,
+          "latStr": "22.37",
+          "lonStr": "113.93",
+          "carrier": 2,
+          "format": "RTCM3.2 MSM5",
+          "legacyFormat": false,
+          "country": "HKG"
+        },
+        {
+          "name": "HKSS_32",
+          "lat": 22.43,
+          "lon": 114.27,
+          "latStr": "22.43",
+          "lonStr": "114.27",
+          "carrier": 2,
+          "format": "RTCM3.2 MSM5",
+          "legacyFormat": false,
+          "country": "HKG"
+        },
+        {
+          "name": "HKST_32",
+          "lat": 22.39,
+          "lon": 114.18,
+          "latStr": "22.39",
+          "lonStr": "114.18",
+          "carrier": 2,
+          "format": "RTCM3.2 MSM5",
+          "legacyFormat": false,
+          "country": "HKG"
+        },
+        {
+          "name": "HKTK_32",
+          "lat": 22.55,
+          "lon": 114.22,
+          "latStr": "22.55",
+          "lonStr": "114.22",
+          "carrier": 2,
+          "format": "RTCM3.2 MSM5",
+          "legacyFormat": false,
+          "country": "HKG"
+        },
+        {
+          "name": "HKWS_32",
+          "lat": 22.43,
+          "lon": 114.33,
+          "latStr": "22.43",
+          "lonStr": "114.33",
+          "carrier": 2,
+          "format": "RTCM3.2 MSM5",
+          "legacyFormat": false,
+          "country": "HKG"
+        },
+        {
+          "name": "T430_32",
+          "lat": 22.5,
+          "lon": 114.14,
+          "latStr": "22.50",
+          "lonStr": "114.14",
+          "carrier": 2,
+          "format": "RTCM3.2 MSM5",
+          "legacyFormat": false,
+          "country": "HKG"
+        },
+        {
+          "name": "TCHK_32",
+          "lat": 22.36,
+          "lon": 114.22,
+          "latStr": "22.36",
+          "lonStr": "114.22",
+          "carrier": 2,
+          "format": "RTCM3.2 MSM5",
+          "legacyFormat": false,
+          "country": "HKG"
+        },
+        {
+          "name": "TCHK_NMEA",
+          "lat": 22.36,
+          "lon": 114.22,
+          "latStr": "22.36",
+          "lonStr": "114.22",
+          "carrier": 2,
+          "format": "NMEA",
+          "legacyFormat": false,
+          "country": "HKG"
+        }
+      ]
     },
     "rbmc_ip": {
       "url": "http://gps-ntrip.ibge.gov.br:2101/",
@@ -25943,8 +26230,8 @@
       "registration": "https://gps-ntrip.ibge.gov.br",
       "access": "registration",
       "status": "ok",
-      "fetched_at": "2026-04-25T03:48:00+00:00",
-      "last_ok": "2026-04-25T03:48:00+00:00",
+      "fetched_at": "2026-04-25T07:59:53+00:00",
+      "last_ok": "2026-04-25T07:59:53+00:00",
       "stations": [
         {
           "name": "ALAR0",
@@ -25974,6 +26261,17 @@
           "lon": -63.14,
           "latStr": "-4.09",
           "lonStr": "-63.14",
+          "carrier": 2,
+          "format": "RTCM 3.3",
+          "legacyFormat": false,
+          "country": "BRA"
+        },
+        {
+          "name": "AMHA0",
+          "lat": -7.52,
+          "lon": -63.03,
+          "latStr": "-7.52",
+          "lonStr": "-63.03",
           "carrier": 2,
           "format": "RTCM 3.3",
           "legacyFormat": false,
@@ -26838,6 +27136,28 @@
           "country": "BRA"
         },
         {
+          "name": "POVE0",
+          "lat": -8.71,
+          "lon": -63.9,
+          "latStr": "-8.71",
+          "lonStr": "-63.90",
+          "carrier": 2,
+          "format": "RTCM 3.2",
+          "legacyFormat": false,
+          "country": "BRA"
+        },
+        {
+          "name": "POVE1",
+          "lat": -8.71,
+          "lon": -63.9,
+          "latStr": "-8.71",
+          "lonStr": "-63.90",
+          "carrier": 2,
+          "format": "RTCM 3.0",
+          "legacyFormat": false,
+          "country": "BRA"
+        },
+        {
           "name": "PPTE0",
           "lat": -22.12,
           "lon": -51.41,
@@ -27477,260 +27797,6 @@
         }
       ]
     },
-    "satref": {
-      "url": "http://ntrip.geodetic.gov.hk:2101/",
-      "color": "#8b008b",
-      "label": "SatRef",
-      "registration": "https://www.geodetic.gov.hk/",
-      "access": "registration",
-      "status": "ok",
-      "fetched_at": "2026-04-25T03:48:00+00:00",
-      "last_ok": "2026-04-25T03:48:00+00:00",
-      "stations": [
-        {
-          "name": "HKCL_32",
-          "lat": 22.3,
-          "lon": 113.91,
-          "latStr": "22.30",
-          "lonStr": "113.91",
-          "carrier": 2,
-          "format": "RTCM3.2 MSM5",
-          "legacyFormat": false,
-          "country": "HKG"
-        },
-        {
-          "name": "HKFN_32",
-          "lat": 22.49,
-          "lon": 114.14,
-          "latStr": "22.49",
-          "lonStr": "114.14",
-          "carrier": 2,
-          "format": "RTCM3.2 MSM5",
-          "legacyFormat": false,
-          "country": "HKG"
-        },
-        {
-          "name": "HKFN_NMEA",
-          "lat": 22.49,
-          "lon": 114.14,
-          "latStr": "22.49",
-          "lonStr": "114.14",
-          "carrier": 2,
-          "format": "NMEA",
-          "legacyFormat": false,
-          "country": "HKG"
-        },
-        {
-          "name": "HKKS_32",
-          "lat": 22.37,
-          "lon": 114.31,
-          "latStr": "22.37",
-          "lonStr": "114.31",
-          "carrier": 2,
-          "format": "RTCM3.2 MSM5",
-          "legacyFormat": false,
-          "country": "HKG"
-        },
-        {
-          "name": "HKKT_32",
-          "lat": 22.45,
-          "lon": 114.07,
-          "latStr": "22.45",
-          "lonStr": "114.07",
-          "carrier": 2,
-          "format": "RTCM3.2 MSM5",
-          "legacyFormat": false,
-          "country": "HKG"
-        },
-        {
-          "name": "HKLM_32",
-          "lat": 22.22,
-          "lon": 114.12,
-          "latStr": "22.22",
-          "lonStr": "114.12",
-          "carrier": 2,
-          "format": "RTCM3.2 MSM5",
-          "legacyFormat": false,
-          "country": "HKG"
-        },
-        {
-          "name": "HKLT_32",
-          "lat": 22.42,
-          "lon": 114.0,
-          "latStr": "22.42",
-          "lonStr": "114.00",
-          "carrier": 2,
-          "format": "RTCM3.2 MSM5",
-          "legacyFormat": false,
-          "country": "HKG"
-        },
-        {
-          "name": "HKMW_32",
-          "lat": 22.26,
-          "lon": 114.0,
-          "latStr": "22.26",
-          "lonStr": "114.00",
-          "carrier": 2,
-          "format": "RTCM3.2 MSM5",
-          "legacyFormat": false,
-          "country": "HKG"
-        },
-        {
-          "name": "HKNP_32",
-          "lat": 22.25,
-          "lon": 113.89,
-          "latStr": "22.25",
-          "lonStr": "113.89",
-          "carrier": 2,
-          "format": "RTCM3.2 MSM5",
-          "legacyFormat": false,
-          "country": "HKG"
-        },
-        {
-          "name": "HKOH_32",
-          "lat": 22.25,
-          "lon": 114.23,
-          "latStr": "22.25",
-          "lonStr": "114.23",
-          "carrier": 2,
-          "format": "RTCM3.2 MSM5",
-          "legacyFormat": false,
-          "country": "HKG"
-        },
-        {
-          "name": "HKPC_32",
-          "lat": 22.29,
-          "lon": 114.04,
-          "latStr": "22.29",
-          "lonStr": "114.04",
-          "carrier": 2,
-          "format": "RTCM3.2 MSM5",
-          "legacyFormat": false,
-          "country": "HKG"
-        },
-        {
-          "name": "HKQT_32",
-          "lat": 22.29,
-          "lon": 114.21,
-          "latStr": "22.29",
-          "lonStr": "114.21",
-          "carrier": 2,
-          "format": "RTCM3.2 MSM5",
-          "legacyFormat": false,
-          "country": "HKG"
-        },
-        {
-          "name": "HKQT_NMEA",
-          "lat": 22.29,
-          "lon": 114.21,
-          "latStr": "22.29",
-          "lonStr": "114.21",
-          "carrier": 2,
-          "format": "NMEA",
-          "legacyFormat": false,
-          "country": "HKG"
-        },
-        {
-          "name": "HKSC_32",
-          "lat": 22.32,
-          "lon": 114.14,
-          "latStr": "22.32",
-          "lonStr": "114.14",
-          "carrier": 2,
-          "format": "RTCM3.2 MSM5",
-          "legacyFormat": false,
-          "country": "HKG"
-        },
-        {
-          "name": "HKSL_32",
-          "lat": 22.37,
-          "lon": 113.93,
-          "latStr": "22.37",
-          "lonStr": "113.93",
-          "carrier": 2,
-          "format": "RTCM3.2 MSM5",
-          "legacyFormat": false,
-          "country": "HKG"
-        },
-        {
-          "name": "HKSS_32",
-          "lat": 22.43,
-          "lon": 114.27,
-          "latStr": "22.43",
-          "lonStr": "114.27",
-          "carrier": 2,
-          "format": "RTCM3.2 MSM5",
-          "legacyFormat": false,
-          "country": "HKG"
-        },
-        {
-          "name": "HKST_32",
-          "lat": 22.39,
-          "lon": 114.18,
-          "latStr": "22.39",
-          "lonStr": "114.18",
-          "carrier": 2,
-          "format": "RTCM3.2 MSM5",
-          "legacyFormat": false,
-          "country": "HKG"
-        },
-        {
-          "name": "HKTK_32",
-          "lat": 22.55,
-          "lon": 114.22,
-          "latStr": "22.55",
-          "lonStr": "114.22",
-          "carrier": 2,
-          "format": "RTCM3.2 MSM5",
-          "legacyFormat": false,
-          "country": "HKG"
-        },
-        {
-          "name": "HKWS_32",
-          "lat": 22.43,
-          "lon": 114.33,
-          "latStr": "22.43",
-          "lonStr": "114.33",
-          "carrier": 2,
-          "format": "RTCM3.2 MSM5",
-          "legacyFormat": false,
-          "country": "HKG"
-        },
-        {
-          "name": "T430_32",
-          "lat": 22.5,
-          "lon": 114.14,
-          "latStr": "22.50",
-          "lonStr": "114.14",
-          "carrier": 2,
-          "format": "RTCM3.2 MSM5",
-          "legacyFormat": false,
-          "country": "HKG"
-        },
-        {
-          "name": "TCHK_32",
-          "lat": 22.36,
-          "lon": 114.22,
-          "latStr": "22.36",
-          "lonStr": "114.22",
-          "carrier": 2,
-          "format": "RTCM3.2 MSM5",
-          "legacyFormat": false,
-          "country": "HKG"
-        },
-        {
-          "name": "TCHK_NMEA",
-          "lat": 22.36,
-          "lon": 114.22,
-          "latStr": "22.36",
-          "lonStr": "114.22",
-          "carrier": 2,
-          "format": "NMEA",
-          "legacyFormat": false,
-          "country": "HKG"
-        }
-      ]
-    },
     "trignet": {
       "url": "http://trignet.co.za:2101/",
       "color": "#556b2f",
@@ -27738,8 +27804,8 @@
       "registration": "https://www.trignet.co.za",
       "access": "registration",
       "status": "ok",
-      "fetched_at": "2026-04-25T03:48:00+00:00",
-      "last_ok": "2026-04-25T03:48:00+00:00",
+      "fetched_at": "2026-04-25T07:59:53+00:00",
+      "last_ok": "2026-04-25T07:59:53+00:00",
       "stations": [
         {
           "name": "Anth-SB",
@@ -28524,6 +28590,876 @@
         }
       ]
     },
+    "regna_rou": {
+      "url": "http://rtk.igm.gub.uy:2101/",
+      "color": "#1a9e5c",
+      "label": "REGNA-ROU",
+      "registration": "https://rtk.igm.gub.uy/SBC/Account/Register",
+      "access": "registration",
+      "status": "ok",
+      "fetched_at": "2026-04-25T07:59:53+00:00",
+      "last_ok": "2026-04-25T07:59:53+00:00",
+      "stations": [
+        {
+          "name": "GUAY",
+          "lat": -31.87,
+          "lon": -59.03,
+          "latStr": "-31.87",
+          "lonStr": "-59.03",
+          "carrier": 2,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": ""
+        },
+        {
+          "name": "IGM1",
+          "lat": -34.57,
+          "lon": -58.44,
+          "latStr": "-34.57",
+          "lonStr": "-58.44",
+          "carrier": 2,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": ""
+        },
+        {
+          "name": "PACO",
+          "lat": -29.79,
+          "lon": -55.77,
+          "latStr": "-29.79",
+          "lonStr": "-55.77",
+          "carrier": 2,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": ""
+        },
+        {
+          "name": "RSAL-V3",
+          "lat": -32.37,
+          "lon": -54.21,
+          "latStr": "-32.37",
+          "lonStr": "-54.21",
+          "carrier": 2,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": ""
+        },
+        {
+          "name": "RSPE-V3",
+          "lat": -32.37,
+          "lon": -54.21,
+          "latStr": "-32.37",
+          "lonStr": "-54.21",
+          "carrier": 2,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": ""
+        },
+        {
+          "name": "UYAG",
+          "lat": -31.65,
+          "lon": -56.6,
+          "latStr": "-31.65",
+          "lonStr": "-56.60",
+          "carrier": 2,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": ""
+        },
+        {
+          "name": "UYAG-V2",
+          "lat": -31.65,
+          "lon": -56.6,
+          "latStr": "-31.65",
+          "lonStr": "-56.60",
+          "carrier": 2,
+          "format": "RTCM 2",
+          "legacyFormat": true,
+          "country": ""
+        },
+        {
+          "name": "UYAR",
+          "lat": -30.41,
+          "lon": -56.49,
+          "latStr": "-30.41",
+          "lonStr": "-56.49",
+          "carrier": 2,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": ""
+        },
+        {
+          "name": "UYAR-V2",
+          "lat": -30.41,
+          "lon": -56.49,
+          "latStr": "-30.41",
+          "lonStr": "-56.49",
+          "carrier": 2,
+          "format": "RTCM 2",
+          "legacyFormat": true,
+          "country": ""
+        },
+        {
+          "name": "UYBA",
+          "lat": -62.18,
+          "lon": -58.9,
+          "latStr": "-62.18",
+          "lonStr": "-58.90",
+          "carrier": 2,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": ""
+        },
+        {
+          "name": "UYBA-V2",
+          "lat": -62.18,
+          "lon": -58.9,
+          "latStr": "-62.18",
+          "lonStr": "-58.90",
+          "carrier": 2,
+          "format": "RTCM 2",
+          "legacyFormat": true,
+          "country": ""
+        },
+        {
+          "name": "UYBU",
+          "lat": -30.25,
+          "lon": -57.6,
+          "latStr": "-30.25",
+          "lonStr": "-57.60",
+          "carrier": 2,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": ""
+        },
+        {
+          "name": "UYBU-V2",
+          "lat": -30.25,
+          "lon": -57.6,
+          "latStr": "-30.25",
+          "lonStr": "-57.60",
+          "carrier": 2,
+          "format": "RTCM 2",
+          "legacyFormat": true,
+          "country": ""
+        },
+        {
+          "name": "UYBU_MSM4",
+          "lat": -30.25,
+          "lon": -57.6,
+          "latStr": "-30.25",
+          "lonStr": "-57.60",
+          "carrier": 2,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": ""
+        },
+        {
+          "name": "UYCL",
+          "lat": -32.37,
+          "lon": -54.21,
+          "latStr": "-32.37",
+          "lonStr": "-54.21",
+          "carrier": 2,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": ""
+        },
+        {
+          "name": "UYCL-V2",
+          "lat": -32.37,
+          "lon": -54.21,
+          "latStr": "-32.37",
+          "lonStr": "-54.21",
+          "carrier": 2,
+          "format": "RTCM 2",
+          "legacyFormat": true,
+          "country": ""
+        },
+        {
+          "name": "UYCO",
+          "lat": -34.46,
+          "lon": -57.84,
+          "latStr": "-34.46",
+          "lonStr": "-57.84",
+          "carrier": 2,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": ""
+        },
+        {
+          "name": "UYCO-V2",
+          "lat": -34.46,
+          "lon": -57.84,
+          "latStr": "-34.46",
+          "lonStr": "-57.84",
+          "carrier": 2,
+          "format": "RTCM 2",
+          "legacyFormat": true,
+          "country": ""
+        },
+        {
+          "name": "UYDU",
+          "lat": -33.32,
+          "lon": -55.6,
+          "latStr": "-33.32",
+          "lonStr": "-55.60",
+          "carrier": 2,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": ""
+        },
+        {
+          "name": "UYDU-V2",
+          "lat": -33.32,
+          "lon": -55.6,
+          "latStr": "-33.32",
+          "lonStr": "-55.60",
+          "carrier": 2,
+          "format": "RTCM 2",
+          "legacyFormat": true,
+          "country": ""
+        },
+        {
+          "name": "UYFD",
+          "lat": -34.1,
+          "lon": -56.19,
+          "latStr": "-34.10",
+          "lonStr": "-56.19",
+          "carrier": 2,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": ""
+        },
+        {
+          "name": "UYFD-V2",
+          "lat": -34.1,
+          "lon": -56.19,
+          "latStr": "-34.10",
+          "lonStr": "-56.19",
+          "carrier": 2,
+          "format": "RTCM 2",
+          "legacyFormat": true,
+          "country": ""
+        },
+        {
+          "name": "UYFD_GNSS_MSM3",
+          "lat": -34.1,
+          "lon": -56.19,
+          "latStr": "-34.10",
+          "lonStr": "-56.19",
+          "carrier": 2,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": ""
+        },
+        {
+          "name": "UYFS",
+          "lat": -33.52,
+          "lon": -56.89,
+          "latStr": "-33.52",
+          "lonStr": "-56.89",
+          "carrier": 2,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": ""
+        },
+        {
+          "name": "UYFS-V2",
+          "lat": -33.52,
+          "lon": -56.89,
+          "latStr": "-33.52",
+          "lonStr": "-56.89",
+          "carrier": 2,
+          "format": "RTCM 2",
+          "legacyFormat": true,
+          "country": ""
+        },
+        {
+          "name": "UYFS_MSM4",
+          "lat": -33.52,
+          "lon": -56.89,
+          "latStr": "-33.52",
+          "lonStr": "-56.89",
+          "carrier": 2,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": ""
+        },
+        {
+          "name": "UYGM",
+          "lat": -34.88,
+          "lon": -56.15,
+          "latStr": "-34.88",
+          "lonStr": "-56.15",
+          "carrier": 2,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": ""
+        },
+        {
+          "name": "UYGM-V2",
+          "lat": -34.88,
+          "lon": -56.15,
+          "latStr": "-34.88",
+          "lonStr": "-56.15",
+          "carrier": 2,
+          "format": "RTCM 2",
+          "legacyFormat": true,
+          "country": ""
+        },
+        {
+          "name": "UYGM_MSM4",
+          "lat": -34.88,
+          "lon": -56.15,
+          "latStr": "-34.88",
+          "lonStr": "-56.15",
+          "carrier": 2,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": ""
+        },
+        {
+          "name": "UYIF",
+          "lat": -34.95,
+          "lon": -55.93,
+          "latStr": "-34.95",
+          "lonStr": "-55.93",
+          "carrier": 2,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": ""
+        },
+        {
+          "name": "UYIF-V2",
+          "lat": -34.95,
+          "lon": -55.93,
+          "latStr": "-34.95",
+          "lonStr": "-55.93",
+          "carrier": 2,
+          "format": "RTCM 2",
+          "legacyFormat": true,
+          "country": ""
+        },
+        {
+          "name": "UYLA",
+          "lat": -34.36,
+          "lon": -55.25,
+          "latStr": "-34.36",
+          "lonStr": "-55.25",
+          "carrier": 2,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": ""
+        },
+        {
+          "name": "UYLA-V2",
+          "lat": -34.32,
+          "lon": -56.71,
+          "latStr": "-34.32",
+          "lonStr": "-56.71",
+          "carrier": 2,
+          "format": "RTCM 2",
+          "legacyFormat": true,
+          "country": ""
+        },
+        {
+          "name": "UYLA_MSM4",
+          "lat": -34.36,
+          "lon": -55.25,
+          "latStr": "-34.36",
+          "lonStr": "-55.25",
+          "carrier": 2,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": ""
+        },
+        {
+          "name": "UYLM",
+          "lat": -34.72,
+          "lon": -55.88,
+          "latStr": "-34.72",
+          "lonStr": "-55.88",
+          "carrier": 2,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": ""
+        },
+        {
+          "name": "UYLM-V2",
+          "lat": -34.72,
+          "lon": -55.88,
+          "latStr": "-34.72",
+          "lonStr": "-55.88",
+          "carrier": 2,
+          "format": "RTCM 2",
+          "legacyFormat": true,
+          "country": ""
+        },
+        {
+          "name": "UYLM_MSM4",
+          "lat": -34.72,
+          "lon": -55.88,
+          "latStr": "-34.72",
+          "lonStr": "-55.88",
+          "carrier": 2,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": ""
+        },
+        {
+          "name": "UYLP",
+          "lat": -34.66,
+          "lon": -54.14,
+          "latStr": "-34.66",
+          "lonStr": "-54.14",
+          "carrier": 2,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": ""
+        },
+        {
+          "name": "UYLP-V2",
+          "lat": -34.66,
+          "lon": -54.14,
+          "latStr": "-34.66",
+          "lonStr": "-54.14",
+          "carrier": 2,
+          "format": "RTCM 2",
+          "legacyFormat": true,
+          "country": ""
+        },
+        {
+          "name": "UYMA",
+          "lat": -34.86,
+          "lon": -55.09,
+          "latStr": "-34.86",
+          "lonStr": "-55.09",
+          "carrier": 2,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": ""
+        },
+        {
+          "name": "UYMA-V2",
+          "lat": -34.86,
+          "lon": -55.09,
+          "latStr": "-34.86",
+          "lonStr": "-55.09",
+          "carrier": 2,
+          "format": "RTCM 2",
+          "legacyFormat": true,
+          "country": ""
+        },
+        {
+          "name": "UYMA_MSM4",
+          "lat": -34.86,
+          "lon": -55.09,
+          "latStr": "-34.86",
+          "lonStr": "-55.09",
+          "carrier": 2,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": ""
+        },
+        {
+          "name": "UYMO",
+          "lat": -34.89,
+          "lon": -56.26,
+          "latStr": "-34.89",
+          "lonStr": "-56.26",
+          "carrier": 2,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": ""
+        },
+        {
+          "name": "UYMO-V2",
+          "lat": -34.89,
+          "lon": -56.26,
+          "latStr": "-34.89",
+          "lonStr": "-56.26",
+          "carrier": 2,
+          "format": "RTCM 2",
+          "legacyFormat": true,
+          "country": ""
+        },
+        {
+          "name": "UYPA",
+          "lat": -32.29,
+          "lon": -58.07,
+          "latStr": "-32.29",
+          "lonStr": "-58.07",
+          "carrier": 2,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": ""
+        },
+        {
+          "name": "UYPA-V2",
+          "lat": -32.29,
+          "lon": -58.07,
+          "latStr": "-32.29",
+          "lonStr": "-58.07",
+          "carrier": 2,
+          "format": "RTCM 2",
+          "legacyFormat": true,
+          "country": ""
+        },
+        {
+          "name": "UYPT",
+          "lat": -32.8,
+          "lon": -56.51,
+          "latStr": "-32.80",
+          "lonStr": "-56.51",
+          "carrier": 2,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": ""
+        },
+        {
+          "name": "UYPT-V2",
+          "lat": -32.8,
+          "lon": -56.51,
+          "latStr": "-32.80",
+          "lonStr": "-56.51",
+          "carrier": 2,
+          "format": "RTCM 2",
+          "legacyFormat": true,
+          "country": ""
+        },
+        {
+          "name": "UYPT_MSM4",
+          "lat": -32.8,
+          "lon": -56.51,
+          "latStr": "-32.80",
+          "lonStr": "-56.51",
+          "carrier": 2,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": ""
+        },
+        {
+          "name": "UYRB",
+          "lat": -32.61,
+          "lon": -53.4,
+          "latStr": "-32.61",
+          "lonStr": "-53.40",
+          "carrier": 2,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": ""
+        },
+        {
+          "name": "UYRB-V2",
+          "lat": -32.61,
+          "lon": -53.4,
+          "latStr": "-32.61",
+          "lonStr": "-53.40",
+          "carrier": 2,
+          "format": "RTCM 2",
+          "legacyFormat": true,
+          "country": ""
+        },
+        {
+          "name": "UYRB_MSM4",
+          "lat": -32.61,
+          "lon": -53.4,
+          "latStr": "-32.61",
+          "lonStr": "-53.40",
+          "carrier": 2,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": ""
+        },
+        {
+          "name": "UYRI",
+          "lat": -30.9,
+          "lon": -55.56,
+          "latStr": "-30.90",
+          "lonStr": "-55.56",
+          "carrier": 2,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": ""
+        },
+        {
+          "name": "UYRI-V2",
+          "lat": -30.9,
+          "lon": -55.56,
+          "latStr": "-30.90",
+          "lonStr": "-55.56",
+          "carrier": 2,
+          "format": "RTCM 2",
+          "legacyFormat": true,
+          "country": ""
+        },
+        {
+          "name": "UYRO",
+          "lat": -34.0,
+          "lon": -53.55,
+          "latStr": "-34.00",
+          "lonStr": "-53.55",
+          "carrier": 2,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": ""
+        },
+        {
+          "name": "UYRO-V2",
+          "lat": -34.0,
+          "lon": -53.55,
+          "latStr": "-34.00",
+          "lonStr": "-53.55",
+          "carrier": 2,
+          "format": "RTCM 2",
+          "legacyFormat": true,
+          "country": ""
+        },
+        {
+          "name": "UYRO_GNSS_MSM3",
+          "lat": -34.0,
+          "lon": -53.55,
+          "latStr": "-34.00",
+          "lonStr": "-53.55",
+          "carrier": 2,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": ""
+        },
+        {
+          "name": "UYSA",
+          "lat": -31.38,
+          "lon": -57.96,
+          "latStr": "-31.38",
+          "lonStr": "-57.96",
+          "carrier": 2,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": ""
+        },
+        {
+          "name": "UYSA-V2",
+          "lat": -31.38,
+          "lon": -57.96,
+          "latStr": "-31.38",
+          "lonStr": "-57.96",
+          "carrier": 2,
+          "format": "RTCM 2",
+          "legacyFormat": true,
+          "country": ""
+        },
+        {
+          "name": "UYSC",
+          "lat": -32.92,
+          "lon": -54.96,
+          "latStr": "-32.92",
+          "lonStr": "-54.96",
+          "carrier": 2,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": ""
+        },
+        {
+          "name": "UYSC-V2",
+          "lat": -32.92,
+          "lon": -54.96,
+          "latStr": "-32.92",
+          "lonStr": "-54.96",
+          "carrier": 2,
+          "format": "RTCM 2",
+          "legacyFormat": true,
+          "country": ""
+        },
+        {
+          "name": "UYSC_MSM4",
+          "lat": -32.92,
+          "lon": -54.96,
+          "latStr": "-32.92",
+          "lonStr": "-54.96",
+          "carrier": 2,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": ""
+        },
+        {
+          "name": "UYSG",
+          "lat": -32.62,
+          "lon": -55.84,
+          "latStr": "-32.62",
+          "lonStr": "-55.84",
+          "carrier": 2,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": ""
+        },
+        {
+          "name": "UYSG-V2",
+          "lat": -32.62,
+          "lon": -55.84,
+          "latStr": "-32.62",
+          "lonStr": "-55.84",
+          "carrier": 2,
+          "format": "RTCM 2",
+          "legacyFormat": true,
+          "country": ""
+        },
+        {
+          "name": "UYSJ",
+          "lat": -34.32,
+          "lon": -56.71,
+          "latStr": "-34.32",
+          "lonStr": "-56.71",
+          "carrier": 2,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": ""
+        },
+        {
+          "name": "UYSJ-V2",
+          "lat": -34.32,
+          "lon": -56.71,
+          "latStr": "-34.32",
+          "lonStr": "-56.71",
+          "carrier": 2,
+          "format": "RTCM 2",
+          "legacyFormat": true,
+          "country": ""
+        },
+        {
+          "name": "UYSJ_MSM4",
+          "lat": -34.32,
+          "lon": -56.71,
+          "latStr": "-34.32",
+          "lonStr": "-56.71",
+          "carrier": 2,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": ""
+        },
+        {
+          "name": "UYSO",
+          "lat": -33.26,
+          "lon": -58.01,
+          "latStr": "-33.26",
+          "lonStr": "-58.01",
+          "carrier": 2,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": ""
+        },
+        {
+          "name": "UYSO-V2",
+          "lat": -33.26,
+          "lon": -58.01,
+          "latStr": "-33.26",
+          "lonStr": "-58.01",
+          "carrier": 2,
+          "format": "RTCM 2",
+          "legacyFormat": true,
+          "country": ""
+        },
+        {
+          "name": "UYTA",
+          "lat": -31.68,
+          "lon": -55.94,
+          "latStr": "-31.68",
+          "lonStr": "-55.94",
+          "carrier": 2,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": ""
+        },
+        {
+          "name": "UYTA-V2",
+          "lat": -31.68,
+          "lon": -55.94,
+          "latStr": "-31.68",
+          "lonStr": "-55.94",
+          "carrier": 2,
+          "format": "RTCM 2",
+          "legacyFormat": true,
+          "country": ""
+        },
+        {
+          "name": "UYTD",
+          "lat": -30.95,
+          "lon": -57.52,
+          "latStr": "-30.95",
+          "lonStr": "-57.52",
+          "carrier": 2,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": ""
+        },
+        {
+          "name": "UYTD-V2",
+          "lat": -30.95,
+          "lon": -57.52,
+          "latStr": "-30.95",
+          "lonStr": "-57.52",
+          "carrier": 2,
+          "format": "RTCM 2",
+          "legacyFormat": true,
+          "country": ""
+        },
+        {
+          "name": "UYTT",
+          "lat": -33.24,
+          "lon": -54.38,
+          "latStr": "-33.24",
+          "lonStr": "-54.38",
+          "carrier": 2,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": ""
+        },
+        {
+          "name": "UYTT-V2",
+          "lat": -33.24,
+          "lon": -54.38,
+          "latStr": "-33.24",
+          "lonStr": "-54.38",
+          "carrier": 2,
+          "format": "RTCM 2",
+          "legacyFormat": true,
+          "country": ""
+        },
+        {
+          "name": "UYVI",
+          "lat": -31.77,
+          "lon": -54.69,
+          "latStr": "-31.77",
+          "lonStr": "-54.69",
+          "carrier": 2,
+          "format": "RTCM 3",
+          "legacyFormat": false,
+          "country": ""
+        },
+        {
+          "name": "UYVI-V2",
+          "lat": -31.77,
+          "lon": -54.69,
+          "latStr": "-31.77",
+          "lonStr": "-54.69",
+          "carrier": 2,
+          "format": "RTCM 2",
+          "legacyFormat": true,
+          "country": ""
+        }
+      ]
+    },
+    "flepos": {
+      "url": "http://flepos.vlaanderen.be:2101/",
+      "color": "#3a7ca5",
+      "label": "FLEPOS",
+      "registration": "https://flepos.vlaanderen.be",
+      "access": "registration",
+      "status": "ok",
+      "fetched_at": "2026-04-25T07:59:53+00:00",
+      "last_ok": "2026-04-25T07:59:53+00:00",
+      "stations": []
+    },
     "auscors": {
       "url": "http://ntrip.data.gnss.ga.gov.au:2101/",
       "color": "#b8860b",
@@ -28531,8 +29467,8 @@
       "registration": "https://gnss.ga.gov.au/registration",
       "access": "registration",
       "status": "ok",
-      "fetched_at": "2026-04-25T03:48:00+00:00",
-      "last_ok": "2026-04-25T03:48:00+00:00",
+      "fetched_at": "2026-04-25T07:59:53+00:00",
+      "last_ok": "2026-04-25T07:59:53+00:00",
       "stations": [
         {
           "name": "177000AUS0",
@@ -29646,17 +30582,6 @@
           "country": "AUS"
         },
         {
-          "name": "BEGS00AUS0",
-          "lat": -12.7956,
-          "lon": 130.9803,
-          "latStr": "-12.7956",
-          "lonStr": "130.9803",
-          "carrier": 2,
-          "format": "RTCM 3.3",
-          "legacyFormat": false,
-          "country": "AUS"
-        },
-        {
           "name": "BEMM00AUS0",
           "lat": -37.757,
           "lon": 148.9621,
@@ -30053,17 +30978,6 @@
           "country": "AUS"
         },
         {
-          "name": "BREW00USA0",
-          "lat": 48.13,
-          "lon": -119.68,
-          "latStr": "48.1300",
-          "lonStr": "-119.6800",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": "USA"
-        },
-        {
           "name": "BRO100AUS0",
           "lat": -18.004,
           "lon": 122.2091,
@@ -30128,17 +31042,6 @@
           "format": "RTCM 3.2",
           "legacyFormat": false,
           "country": "AUS"
-        },
-        {
-          "name": "BSHM00ISR0",
-          "lat": 32.78,
-          "lon": 35.02,
-          "latStr": "32.7800",
-          "lonStr": "35.0200",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": "ISR"
         },
         {
           "name": "BTHL00NZL0",
@@ -30412,17 +31315,6 @@
           "lonStr": "-45.0000",
           "carrier": 2,
           "format": "RTCM 3.3",
-          "legacyFormat": false,
-          "country": "BRA"
-        },
-        {
-          "name": "CHPI00BRA0",
-          "lat": -22.69,
-          "lon": -44.99,
-          "latStr": "-22.6900",
-          "lonStr": "-44.9900",
-          "carrier": 2,
-          "format": "RTCM 3",
           "legacyFormat": false,
           "country": "BRA"
         },
@@ -30955,17 +31847,6 @@
           "country": "AUS"
         },
         {
-          "name": "CZTG00ATF0",
-          "lat": -46.43,
-          "lon": 51.86,
-          "latStr": "-46.4300",
-          "lonStr": "51.8600",
-          "carrier": 2,
-          "format": "RTCM 3.3",
-          "legacyFormat": false,
-          "country": "ATF"
-        },
-        {
           "name": "DALB00AUS0",
           "lat": -27.1705,
           "lon": 151.2638,
@@ -31052,17 +31933,6 @@
           "format": "RTCM 3.2",
           "legacyFormat": false,
           "country": "AUS"
-        },
-        {
-          "name": "DGAR00GBR0",
-          "lat": -7.27,
-          "lon": 72.37,
-          "latStr": "-7.2700",
-          "lonStr": "72.3700",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": "GBR"
         },
         {
           "name": "DGEE00AUS0",
@@ -31505,28 +32375,6 @@
           "country": "AUS"
         },
         {
-          "name": "FAIR00USA0",
-          "lat": 64.98,
-          "lon": -147.5,
-          "latStr": "64.9800",
-          "lonStr": "-147.5000",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": "USA"
-        },
-        {
-          "name": "FALK00FLK0",
-          "lat": -51.69,
-          "lon": -57.87,
-          "latStr": "-51.6900",
-          "lonStr": "-57.8700",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": "FLK"
-        },
-        {
           "name": "FLGP00AUS0",
           "lat": -31.1047,
           "lon": 141.7281,
@@ -31890,17 +32738,6 @@
           "country": "AUS"
         },
         {
-          "name": "GLPS00ECU0",
-          "lat": -0.74,
-          "lon": -90.3,
-          "latStr": "-0.7400",
-          "lonStr": "-90.3000",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": "ECU"
-        },
-        {
           "name": "GMSD00JPN0",
           "lat": 30.5564,
           "lon": 131.0156,
@@ -31932,28 +32769,6 @@
           "format": "RTCM 3.2",
           "legacyFormat": false,
           "country": "AUS"
-        },
-        {
-          "name": "GODE00USA0",
-          "lat": 39.02,
-          "lon": -76.83,
-          "latStr": "39.0200",
-          "lonStr": "-76.8300",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": "USA"
-        },
-        {
-          "name": "GOLD00USA0",
-          "lat": 35.43,
-          "lon": -116.89,
-          "latStr": "35.4300",
-          "lonStr": "-116.8900",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": "USA"
         },
         {
           "name": "GONG00AUS0",
@@ -32163,17 +32978,6 @@
           "format": "RTCM 3",
           "legacyFormat": false,
           "country": "NZL"
-        },
-        {
-          "name": "HARB00ZAF0",
-          "lat": -25.89,
-          "lon": 27.71,
-          "latStr": "-25.8900",
-          "lonStr": "27.7100",
-          "carrier": 2,
-          "format": "RTCM 3.3",
-          "legacyFormat": false,
-          "country": "ZAF"
         },
         {
           "name": "HAST00NZL0",
@@ -32484,17 +33288,6 @@
           "country": "AUS"
         },
         {
-          "name": "IISC00IND0",
-          "lat": 13.02,
-          "lon": 77.57,
-          "latStr": "13.0200",
-          "lonStr": "77.5700",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": "IND"
-        },
-        {
           "name": "ILKA00AUS0",
           "lat": -28.3498,
           "lon": 127.5165,
@@ -32502,17 +33295,6 @@
           "lonStr": "127.5165",
           "carrier": 2,
           "format": "RTCM 3.3",
-          "legacyFormat": false,
-          "country": "AUS"
-        },
-        {
-          "name": "INJN00AUS0",
-          "lat": -25.84,
-          "lon": 148.57,
-          "latStr": "-25.8400",
-          "lonStr": "148.5700",
-          "carrier": 2,
-          "format": "RTCM 3",
           "legacyFormat": false,
           "country": "AUS"
         },
@@ -33243,17 +34025,6 @@
           "country": "MTQ"
         },
         {
-          "name": "LNGR00AUS0",
-          "lat": -23.4379,
-          "lon": 144.2742,
-          "latStr": "-23.4379",
-          "lonStr": "144.2742",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": "AUS"
-        },
-        {
           "name": "LONA00AUS0",
           "lat": -28.8784,
           "lon": 121.3191,
@@ -33397,17 +34168,6 @@
           "country": "NZL"
         },
         {
-          "name": "MAIN00AUS0",
-          "lat": -14.0462,
-          "lon": 134.0929,
-          "latStr": "-14.0462",
-          "lonStr": "134.0929",
-          "carrier": 2,
-          "format": "RTCM 3.3",
-          "legacyFormat": false,
-          "country": "AUS"
-        },
-        {
           "name": "MAJU00MHL0",
           "lat": 7.1191,
           "lon": 171.3645,
@@ -33529,17 +34289,6 @@
           "country": "ATA"
         },
         {
-          "name": "MBAR00UGA0",
-          "lat": -0.6,
-          "lon": 30.74,
-          "latStr": "-0.6000",
-          "lonStr": "30.7400",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": "UGA"
-        },
-        {
           "name": "MBLL00AUS0",
           "lat": -23.32,
           "lon": 147.65,
@@ -33573,17 +34322,6 @@
           "country": "AUS"
         },
         {
-          "name": "MCNT00AUS0",
-          "lat": -37.6023,
-          "lon": 140.3557,
-          "latStr": "-37.6023",
-          "lonStr": "140.3557",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": "AUS"
-        },
-        {
           "name": "MDAH00AUS0",
           "lat": -32.54,
           "lon": 115.73,
@@ -33593,17 +34331,6 @@
           "format": "RTCM 3.2",
           "legacyFormat": false,
           "country": "AUS"
-        },
-        {
-          "name": "MDO100USA0",
-          "lat": 30.68,
-          "lon": -104.01,
-          "latStr": "30.6800",
-          "lonStr": "-104.0100",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": "USA"
         },
         {
           "name": "MDRH00AUS0",
@@ -33747,17 +34474,6 @@
           "format": "RTCM 3.2",
           "legacyFormat": false,
           "country": "JPN"
-        },
-        {
-          "name": "MKEA00USA0",
-          "lat": 19.8,
-          "lon": -155.46,
-          "latStr": "19.8000",
-          "lonStr": "-155.4600",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": "USA"
         },
         {
           "name": "MLAK00AUS0",
@@ -34244,17 +34960,6 @@
           "country": "AUS"
         },
         {
-          "name": "NAMO00AUS0",
-          "lat": -23.74,
-          "lon": 149.34,
-          "latStr": "-23.7400",
-          "lonStr": "149.3400",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": "AUS"
-        },
-        {
           "name": "NARE00AUS0",
           "lat": -38.0579,
           "lon": 145.301,
@@ -34407,17 +35112,6 @@
           "format": "RTCM 3.3",
           "legacyFormat": false,
           "country": "GAB"
-        },
-        {
-          "name": "NLIB00USA0",
-          "lat": 41.77,
-          "lon": -91.57,
-          "latStr": "41.7700",
-          "lonStr": "-91.5700",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": "USA"
         },
         {
           "name": "NLND00AUS0",
@@ -34904,17 +35598,6 @@
           "country": "AUS"
         },
         {
-          "name": "PIE100USA0",
-          "lat": 34.3,
-          "lon": -108.12,
-          "latStr": "34.3000",
-          "lonStr": "-108.1200",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": "USA"
-        },
-        {
           "name": "PINY00AUS0",
           "lat": -32.49,
           "lon": 116.98,
@@ -35265,17 +35948,6 @@
           "format": "RTCM 3.3",
           "legacyFormat": false,
           "country": "AUS"
-        },
-        {
-          "name": "QUIN00USA0",
-          "lat": 39.97,
-          "lon": -120.94,
-          "latStr": "39.9700",
-          "lonStr": "-120.9400",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": "USA"
         },
         {
           "name": "RAND00AUS0",
@@ -35740,17 +36412,6 @@
           "country": "AUS"
         },
         {
-          "name": "SLAD00AUS0",
-          "lat": -21.07,
-          "lon": 149.23,
-          "latStr": "-21.0700",
-          "lonStr": "149.2300",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": "AUS"
-        },
-        {
           "name": "SNGO00AUS0",
           "lat": -32.5582,
           "lon": 151.1757,
@@ -35859,17 +36520,6 @@
           "format": "RTCM 3.3",
           "legacyFormat": false,
           "country": "AUS"
-        },
-        {
-          "name": "STHL00GBR0",
-          "lat": -15.94,
-          "lon": -5.67,
-          "latStr": "-15.9400",
-          "lonStr": "-5.6700",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": "GBR"
         },
         {
           "name": "STJO00CAN0",
@@ -36629,17 +37279,6 @@
           "format": "RTCM 3.3",
           "legacyFormat": false,
           "country": "USA"
-        },
-        {
-          "name": "VACS00MUS0",
-          "lat": -20.3,
-          "lon": 57.5,
-          "latStr": "-20.3000",
-          "lonStr": "57.5000",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": "MUS"
         },
         {
           "name": "VCTH00AUS0",
@@ -37589,876 +38228,6 @@
         }
       ]
     },
-    "regna_rou": {
-      "url": "http://rtk.igm.gub.uy:2101/",
-      "color": "#1a9e5c",
-      "label": "REGNA-ROU",
-      "registration": "https://rtk.igm.gub.uy/SBC/Account/Register",
-      "access": "registration",
-      "status": "ok",
-      "fetched_at": "2026-04-25T03:48:00+00:00",
-      "last_ok": "2026-04-25T03:48:00+00:00",
-      "stations": [
-        {
-          "name": "GUAY",
-          "lat": -31.87,
-          "lon": -59.03,
-          "latStr": "-31.87",
-          "lonStr": "-59.03",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": ""
-        },
-        {
-          "name": "IGM1",
-          "lat": -34.57,
-          "lon": -58.44,
-          "latStr": "-34.57",
-          "lonStr": "-58.44",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": ""
-        },
-        {
-          "name": "PACO",
-          "lat": -29.79,
-          "lon": -55.77,
-          "latStr": "-29.79",
-          "lonStr": "-55.77",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": ""
-        },
-        {
-          "name": "RSAL-V3",
-          "lat": -32.37,
-          "lon": -54.21,
-          "latStr": "-32.37",
-          "lonStr": "-54.21",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": ""
-        },
-        {
-          "name": "RSPE-V3",
-          "lat": -32.37,
-          "lon": -54.21,
-          "latStr": "-32.37",
-          "lonStr": "-54.21",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": ""
-        },
-        {
-          "name": "UYAG",
-          "lat": -31.65,
-          "lon": -56.6,
-          "latStr": "-31.65",
-          "lonStr": "-56.60",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": ""
-        },
-        {
-          "name": "UYAG-V2",
-          "lat": -31.65,
-          "lon": -56.6,
-          "latStr": "-31.65",
-          "lonStr": "-56.60",
-          "carrier": 2,
-          "format": "RTCM 2",
-          "legacyFormat": true,
-          "country": ""
-        },
-        {
-          "name": "UYAR",
-          "lat": -30.41,
-          "lon": -56.49,
-          "latStr": "-30.41",
-          "lonStr": "-56.49",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": ""
-        },
-        {
-          "name": "UYAR-V2",
-          "lat": -30.41,
-          "lon": -56.49,
-          "latStr": "-30.41",
-          "lonStr": "-56.49",
-          "carrier": 2,
-          "format": "RTCM 2",
-          "legacyFormat": true,
-          "country": ""
-        },
-        {
-          "name": "UYBA",
-          "lat": -62.18,
-          "lon": -58.9,
-          "latStr": "-62.18",
-          "lonStr": "-58.90",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": ""
-        },
-        {
-          "name": "UYBA-V2",
-          "lat": -62.18,
-          "lon": -58.9,
-          "latStr": "-62.18",
-          "lonStr": "-58.90",
-          "carrier": 2,
-          "format": "RTCM 2",
-          "legacyFormat": true,
-          "country": ""
-        },
-        {
-          "name": "UYBU",
-          "lat": -30.25,
-          "lon": -57.6,
-          "latStr": "-30.25",
-          "lonStr": "-57.60",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": ""
-        },
-        {
-          "name": "UYBU-V2",
-          "lat": -30.25,
-          "lon": -57.6,
-          "latStr": "-30.25",
-          "lonStr": "-57.60",
-          "carrier": 2,
-          "format": "RTCM 2",
-          "legacyFormat": true,
-          "country": ""
-        },
-        {
-          "name": "UYBU_MSM4",
-          "lat": -30.25,
-          "lon": -57.6,
-          "latStr": "-30.25",
-          "lonStr": "-57.60",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": ""
-        },
-        {
-          "name": "UYCL",
-          "lat": -32.37,
-          "lon": -54.21,
-          "latStr": "-32.37",
-          "lonStr": "-54.21",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": ""
-        },
-        {
-          "name": "UYCL-V2",
-          "lat": -32.37,
-          "lon": -54.21,
-          "latStr": "-32.37",
-          "lonStr": "-54.21",
-          "carrier": 2,
-          "format": "RTCM 2",
-          "legacyFormat": true,
-          "country": ""
-        },
-        {
-          "name": "UYCO",
-          "lat": -34.46,
-          "lon": -57.84,
-          "latStr": "-34.46",
-          "lonStr": "-57.84",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": ""
-        },
-        {
-          "name": "UYCO-V2",
-          "lat": -34.46,
-          "lon": -57.84,
-          "latStr": "-34.46",
-          "lonStr": "-57.84",
-          "carrier": 2,
-          "format": "RTCM 2",
-          "legacyFormat": true,
-          "country": ""
-        },
-        {
-          "name": "UYDU",
-          "lat": -33.32,
-          "lon": -55.6,
-          "latStr": "-33.32",
-          "lonStr": "-55.60",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": ""
-        },
-        {
-          "name": "UYDU-V2",
-          "lat": -33.32,
-          "lon": -55.6,
-          "latStr": "-33.32",
-          "lonStr": "-55.60",
-          "carrier": 2,
-          "format": "RTCM 2",
-          "legacyFormat": true,
-          "country": ""
-        },
-        {
-          "name": "UYFD",
-          "lat": -34.1,
-          "lon": -56.19,
-          "latStr": "-34.10",
-          "lonStr": "-56.19",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": ""
-        },
-        {
-          "name": "UYFD-V2",
-          "lat": -34.1,
-          "lon": -56.19,
-          "latStr": "-34.10",
-          "lonStr": "-56.19",
-          "carrier": 2,
-          "format": "RTCM 2",
-          "legacyFormat": true,
-          "country": ""
-        },
-        {
-          "name": "UYFD_GNSS_MSM3",
-          "lat": -34.1,
-          "lon": -56.19,
-          "latStr": "-34.10",
-          "lonStr": "-56.19",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": ""
-        },
-        {
-          "name": "UYFS",
-          "lat": -33.52,
-          "lon": -56.89,
-          "latStr": "-33.52",
-          "lonStr": "-56.89",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": ""
-        },
-        {
-          "name": "UYFS-V2",
-          "lat": -33.52,
-          "lon": -56.89,
-          "latStr": "-33.52",
-          "lonStr": "-56.89",
-          "carrier": 2,
-          "format": "RTCM 2",
-          "legacyFormat": true,
-          "country": ""
-        },
-        {
-          "name": "UYFS_MSM4",
-          "lat": -33.52,
-          "lon": -56.89,
-          "latStr": "-33.52",
-          "lonStr": "-56.89",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": ""
-        },
-        {
-          "name": "UYGM",
-          "lat": -34.88,
-          "lon": -56.15,
-          "latStr": "-34.88",
-          "lonStr": "-56.15",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": ""
-        },
-        {
-          "name": "UYGM-V2",
-          "lat": -34.88,
-          "lon": -56.15,
-          "latStr": "-34.88",
-          "lonStr": "-56.15",
-          "carrier": 2,
-          "format": "RTCM 2",
-          "legacyFormat": true,
-          "country": ""
-        },
-        {
-          "name": "UYGM_MSM4",
-          "lat": -34.88,
-          "lon": -56.15,
-          "latStr": "-34.88",
-          "lonStr": "-56.15",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": ""
-        },
-        {
-          "name": "UYIF",
-          "lat": -34.95,
-          "lon": -55.93,
-          "latStr": "-34.95",
-          "lonStr": "-55.93",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": ""
-        },
-        {
-          "name": "UYIF-V2",
-          "lat": -34.95,
-          "lon": -55.93,
-          "latStr": "-34.95",
-          "lonStr": "-55.93",
-          "carrier": 2,
-          "format": "RTCM 2",
-          "legacyFormat": true,
-          "country": ""
-        },
-        {
-          "name": "UYLA",
-          "lat": -34.36,
-          "lon": -55.25,
-          "latStr": "-34.36",
-          "lonStr": "-55.25",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": ""
-        },
-        {
-          "name": "UYLA-V2",
-          "lat": -34.32,
-          "lon": -56.71,
-          "latStr": "-34.32",
-          "lonStr": "-56.71",
-          "carrier": 2,
-          "format": "RTCM 2",
-          "legacyFormat": true,
-          "country": ""
-        },
-        {
-          "name": "UYLA_MSM4",
-          "lat": -34.36,
-          "lon": -55.25,
-          "latStr": "-34.36",
-          "lonStr": "-55.25",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": ""
-        },
-        {
-          "name": "UYLM",
-          "lat": -34.72,
-          "lon": -55.88,
-          "latStr": "-34.72",
-          "lonStr": "-55.88",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": ""
-        },
-        {
-          "name": "UYLM-V2",
-          "lat": -34.72,
-          "lon": -55.88,
-          "latStr": "-34.72",
-          "lonStr": "-55.88",
-          "carrier": 2,
-          "format": "RTCM 2",
-          "legacyFormat": true,
-          "country": ""
-        },
-        {
-          "name": "UYLM_MSM4",
-          "lat": -34.72,
-          "lon": -55.88,
-          "latStr": "-34.72",
-          "lonStr": "-55.88",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": ""
-        },
-        {
-          "name": "UYLP",
-          "lat": -34.66,
-          "lon": -54.14,
-          "latStr": "-34.66",
-          "lonStr": "-54.14",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": ""
-        },
-        {
-          "name": "UYLP-V2",
-          "lat": -34.66,
-          "lon": -54.14,
-          "latStr": "-34.66",
-          "lonStr": "-54.14",
-          "carrier": 2,
-          "format": "RTCM 2",
-          "legacyFormat": true,
-          "country": ""
-        },
-        {
-          "name": "UYMA",
-          "lat": -34.86,
-          "lon": -55.09,
-          "latStr": "-34.86",
-          "lonStr": "-55.09",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": ""
-        },
-        {
-          "name": "UYMA-V2",
-          "lat": -34.86,
-          "lon": -55.09,
-          "latStr": "-34.86",
-          "lonStr": "-55.09",
-          "carrier": 2,
-          "format": "RTCM 2",
-          "legacyFormat": true,
-          "country": ""
-        },
-        {
-          "name": "UYMA_MSM4",
-          "lat": -34.86,
-          "lon": -55.09,
-          "latStr": "-34.86",
-          "lonStr": "-55.09",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": ""
-        },
-        {
-          "name": "UYMO",
-          "lat": -34.89,
-          "lon": -56.26,
-          "latStr": "-34.89",
-          "lonStr": "-56.26",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": ""
-        },
-        {
-          "name": "UYMO-V2",
-          "lat": -34.89,
-          "lon": -56.26,
-          "latStr": "-34.89",
-          "lonStr": "-56.26",
-          "carrier": 2,
-          "format": "RTCM 2",
-          "legacyFormat": true,
-          "country": ""
-        },
-        {
-          "name": "UYPA",
-          "lat": -32.29,
-          "lon": -58.07,
-          "latStr": "-32.29",
-          "lonStr": "-58.07",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": ""
-        },
-        {
-          "name": "UYPA-V2",
-          "lat": -32.29,
-          "lon": -58.07,
-          "latStr": "-32.29",
-          "lonStr": "-58.07",
-          "carrier": 2,
-          "format": "RTCM 2",
-          "legacyFormat": true,
-          "country": ""
-        },
-        {
-          "name": "UYPT",
-          "lat": -32.8,
-          "lon": -56.51,
-          "latStr": "-32.80",
-          "lonStr": "-56.51",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": ""
-        },
-        {
-          "name": "UYPT-V2",
-          "lat": -32.8,
-          "lon": -56.51,
-          "latStr": "-32.80",
-          "lonStr": "-56.51",
-          "carrier": 2,
-          "format": "RTCM 2",
-          "legacyFormat": true,
-          "country": ""
-        },
-        {
-          "name": "UYPT_MSM4",
-          "lat": -32.8,
-          "lon": -56.51,
-          "latStr": "-32.80",
-          "lonStr": "-56.51",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": ""
-        },
-        {
-          "name": "UYRB",
-          "lat": -32.61,
-          "lon": -53.4,
-          "latStr": "-32.61",
-          "lonStr": "-53.40",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": ""
-        },
-        {
-          "name": "UYRB-V2",
-          "lat": -32.61,
-          "lon": -53.4,
-          "latStr": "-32.61",
-          "lonStr": "-53.40",
-          "carrier": 2,
-          "format": "RTCM 2",
-          "legacyFormat": true,
-          "country": ""
-        },
-        {
-          "name": "UYRB_MSM4",
-          "lat": -32.61,
-          "lon": -53.4,
-          "latStr": "-32.61",
-          "lonStr": "-53.40",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": ""
-        },
-        {
-          "name": "UYRI",
-          "lat": -30.9,
-          "lon": -55.56,
-          "latStr": "-30.90",
-          "lonStr": "-55.56",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": ""
-        },
-        {
-          "name": "UYRI-V2",
-          "lat": -30.9,
-          "lon": -55.56,
-          "latStr": "-30.90",
-          "lonStr": "-55.56",
-          "carrier": 2,
-          "format": "RTCM 2",
-          "legacyFormat": true,
-          "country": ""
-        },
-        {
-          "name": "UYRO",
-          "lat": -34.0,
-          "lon": -53.55,
-          "latStr": "-34.00",
-          "lonStr": "-53.55",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": ""
-        },
-        {
-          "name": "UYRO-V2",
-          "lat": -34.0,
-          "lon": -53.55,
-          "latStr": "-34.00",
-          "lonStr": "-53.55",
-          "carrier": 2,
-          "format": "RTCM 2",
-          "legacyFormat": true,
-          "country": ""
-        },
-        {
-          "name": "UYRO_GNSS_MSM3",
-          "lat": -34.0,
-          "lon": -53.55,
-          "latStr": "-34.00",
-          "lonStr": "-53.55",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": ""
-        },
-        {
-          "name": "UYSA",
-          "lat": -31.38,
-          "lon": -57.96,
-          "latStr": "-31.38",
-          "lonStr": "-57.96",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": ""
-        },
-        {
-          "name": "UYSA-V2",
-          "lat": -31.38,
-          "lon": -57.96,
-          "latStr": "-31.38",
-          "lonStr": "-57.96",
-          "carrier": 2,
-          "format": "RTCM 2",
-          "legacyFormat": true,
-          "country": ""
-        },
-        {
-          "name": "UYSC",
-          "lat": -32.92,
-          "lon": -54.96,
-          "latStr": "-32.92",
-          "lonStr": "-54.96",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": ""
-        },
-        {
-          "name": "UYSC-V2",
-          "lat": -32.92,
-          "lon": -54.96,
-          "latStr": "-32.92",
-          "lonStr": "-54.96",
-          "carrier": 2,
-          "format": "RTCM 2",
-          "legacyFormat": true,
-          "country": ""
-        },
-        {
-          "name": "UYSC_MSM4",
-          "lat": -32.92,
-          "lon": -54.96,
-          "latStr": "-32.92",
-          "lonStr": "-54.96",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": ""
-        },
-        {
-          "name": "UYSG",
-          "lat": -32.62,
-          "lon": -55.84,
-          "latStr": "-32.62",
-          "lonStr": "-55.84",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": ""
-        },
-        {
-          "name": "UYSG-V2",
-          "lat": -32.62,
-          "lon": -55.84,
-          "latStr": "-32.62",
-          "lonStr": "-55.84",
-          "carrier": 2,
-          "format": "RTCM 2",
-          "legacyFormat": true,
-          "country": ""
-        },
-        {
-          "name": "UYSJ",
-          "lat": -34.32,
-          "lon": -56.71,
-          "latStr": "-34.32",
-          "lonStr": "-56.71",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": ""
-        },
-        {
-          "name": "UYSJ-V2",
-          "lat": -34.32,
-          "lon": -56.71,
-          "latStr": "-34.32",
-          "lonStr": "-56.71",
-          "carrier": 2,
-          "format": "RTCM 2",
-          "legacyFormat": true,
-          "country": ""
-        },
-        {
-          "name": "UYSJ_MSM4",
-          "lat": -34.32,
-          "lon": -56.71,
-          "latStr": "-34.32",
-          "lonStr": "-56.71",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": ""
-        },
-        {
-          "name": "UYSO",
-          "lat": -33.26,
-          "lon": -58.01,
-          "latStr": "-33.26",
-          "lonStr": "-58.01",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": ""
-        },
-        {
-          "name": "UYSO-V2",
-          "lat": -33.26,
-          "lon": -58.01,
-          "latStr": "-33.26",
-          "lonStr": "-58.01",
-          "carrier": 2,
-          "format": "RTCM 2",
-          "legacyFormat": true,
-          "country": ""
-        },
-        {
-          "name": "UYTA",
-          "lat": -31.68,
-          "lon": -55.94,
-          "latStr": "-31.68",
-          "lonStr": "-55.94",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": ""
-        },
-        {
-          "name": "UYTA-V2",
-          "lat": -31.68,
-          "lon": -55.94,
-          "latStr": "-31.68",
-          "lonStr": "-55.94",
-          "carrier": 2,
-          "format": "RTCM 2",
-          "legacyFormat": true,
-          "country": ""
-        },
-        {
-          "name": "UYTD",
-          "lat": -30.95,
-          "lon": -57.52,
-          "latStr": "-30.95",
-          "lonStr": "-57.52",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": ""
-        },
-        {
-          "name": "UYTD-V2",
-          "lat": -30.95,
-          "lon": -57.52,
-          "latStr": "-30.95",
-          "lonStr": "-57.52",
-          "carrier": 2,
-          "format": "RTCM 2",
-          "legacyFormat": true,
-          "country": ""
-        },
-        {
-          "name": "UYTT",
-          "lat": -33.24,
-          "lon": -54.38,
-          "latStr": "-33.24",
-          "lonStr": "-54.38",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": ""
-        },
-        {
-          "name": "UYTT-V2",
-          "lat": -33.24,
-          "lon": -54.38,
-          "latStr": "-33.24",
-          "lonStr": "-54.38",
-          "carrier": 2,
-          "format": "RTCM 2",
-          "legacyFormat": true,
-          "country": ""
-        },
-        {
-          "name": "UYVI",
-          "lat": -31.77,
-          "lon": -54.69,
-          "latStr": "-31.77",
-          "lonStr": "-54.69",
-          "carrier": 2,
-          "format": "RTCM 3",
-          "legacyFormat": false,
-          "country": ""
-        },
-        {
-          "name": "UYVI-V2",
-          "lat": -31.77,
-          "lon": -54.69,
-          "latStr": "-31.77",
-          "lonStr": "-54.69",
-          "carrier": 2,
-          "format": "RTCM 2",
-          "legacyFormat": true,
-          "country": ""
-        }
-      ]
-    },
-    "spslux": {
-      "url": "http://stream.spslux.lu:5005/",
-      "color": "#5c6bc0",
-      "label": "SPSLux",
-      "registration": "https://www.spslux.lu/SBC/Account/Register",
-      "access": "registration",
-      "status": "ok",
-      "fetched_at": "2026-04-25T03:48:01+00:00",
-      "last_ok": "2026-04-25T03:48:01+00:00",
-      "stations": []
-    },
     "ramsac": {
       "url": "http://ntrip.ign.gob.ar:2101/",
       "color": "#7b3f9e",
@@ -38466,8 +38235,8 @@
       "registration": "https://www.ign.gob.ar",
       "access": "registration",
       "status": "ok",
-      "fetched_at": "2026-04-25T03:48:01+00:00",
-      "last_ok": "2026-04-25T03:48:01+00:00",
+      "fetched_at": "2026-04-25T07:59:53+00:00",
+      "last_ok": "2026-04-25T07:59:53+00:00",
       "stations": [
         {
           "name": "25MA-v3.0",
@@ -38543,17 +38312,6 @@
           "lonStr": "-58.14",
           "carrier": 2,
           "format": "RTCM 3.2",
-          "legacyFormat": false,
-          "country": "ARG"
-        },
-        {
-          "name": "ALTA-v3.0",
-          "lat": -43.88,
-          "lon": -68.41,
-          "latStr": "-43.88",
-          "lonStr": "-68.41",
-          "carrier": 2,
-          "format": "RTCM 3.0",
           "legacyFormat": false,
           "country": "ARG"
         },
@@ -39141,17 +38899,6 @@
           "country": "ARG"
         },
         {
-          "name": "ITAI-v3.0",
-          "lat": -25.42,
-          "lon": -54.59,
-          "latStr": "-25.42",
-          "lonStr": "-54.59",
-          "carrier": 2,
-          "format": "RTCM 3.0",
-          "legacyFormat": false,
-          "country": "ARG"
-        },
-        {
           "name": "ITAI-v3.2",
           "lat": -25.42,
           "lon": -54.59,
@@ -39203,17 +38950,6 @@
           "lonStr": "-68.73",
           "carrier": 2,
           "format": "RTCM 3.2",
-          "legacyFormat": false,
-          "country": "ARG"
-        },
-        {
-          "name": "JVCH-v3.0",
-          "lat": -27.0,
-          "lon": -64.68,
-          "latStr": "-27.00",
-          "lonStr": "-64.68",
-          "carrier": 2,
-          "format": "RTCM 3.0",
           "legacyFormat": false,
           "country": "ARG"
         },
@@ -39801,6 +39537,17 @@
           "country": "ARG"
         },
         {
+          "name": "PRCV-v3.0",
+          "lat": -30.25,
+          "lon": -57.6,
+          "latStr": "-30.25",
+          "lonStr": "-57.60",
+          "carrier": 2,
+          "format": "RTCM 3.0",
+          "legacyFormat": false,
+          "country": "ARG"
+        },
+        {
           "name": "PRNA-v3.0",
           "lat": -31.78,
           "lon": -60.47,
@@ -39977,6 +39724,17 @@
           "country": "ARG"
         },
         {
+          "name": "RSAL-v3.0",
+          "lat": -29.79,
+          "lon": -55.77,
+          "latStr": "-29.79",
+          "lonStr": "-55.77",
+          "carrier": 2,
+          "format": "RTCM 3.0",
+          "legacyFormat": false,
+          "country": "ARG"
+        },
+        {
           "name": "RSAU-v3.2",
           "lat": -37.38,
           "lon": -68.92,
@@ -39988,13 +39746,13 @@
           "country": "ARG"
         },
         {
-          "name": "RSCL-v3.2",
+          "name": "RSCL-v3.0",
           "lat": -28.14,
           "lon": -54.75,
           "latStr": "-28.14",
           "lonStr": "-54.75",
           "carrier": 2,
-          "format": "RTCM 3.2",
+          "format": "RTCM 3.0",
           "legacyFormat": false,
           "country": "ARG"
         },
@@ -40626,28 +40384,6 @@
           "country": "ARG"
         },
         {
-          "name": "VIMA-v3.0",
-          "lat": -32.42,
-          "lon": -63.24,
-          "latStr": "-32.42",
-          "lonStr": "-63.24",
-          "carrier": 2,
-          "format": "RTCM 3.0",
-          "legacyFormat": false,
-          "country": "ARG"
-        },
-        {
-          "name": "VIME-v3.0",
-          "lat": -33.64,
-          "lon": -65.44,
-          "latStr": "-33.64",
-          "lonStr": "-65.44",
-          "carrier": 2,
-          "format": "RTCM 3.0",
-          "legacyFormat": false,
-          "country": "ARG"
-        },
-        {
           "name": "VIME-v3.2",
           "lat": -33.64,
           "lon": -65.44,
@@ -40693,6 +40429,28 @@
         }
       ]
     },
+    "spslux": {
+      "url": "http://stream.spslux.lu:5005/",
+      "color": "#5c6bc0",
+      "label": "SPSLux",
+      "registration": "https://www.spslux.lu/SBC/Account/Register",
+      "access": "registration",
+      "status": "ok",
+      "fetched_at": "2026-04-25T07:59:53+00:00",
+      "last_ok": "2026-04-25T07:59:53+00:00",
+      "stations": []
+    },
+    "inacors": {
+      "url": "http://nrtk.big.go.id:2001/",
+      "color": "#1a5fa0",
+      "label": "InaCORS",
+      "registration": "https://nrtk.big.go.id",
+      "access": "registration",
+      "status": "ok",
+      "fetched_at": "2026-04-25T07:59:53+00:00",
+      "last_ok": "2026-04-25T07:59:53+00:00",
+      "stations": []
+    },
     "asg_eupos": {
       "url": "http://system.asgeupos.pl:2101/",
       "color": "#7b5ea7",
@@ -40700,8 +40458,8 @@
       "registration": "https://system.asgeupos.pl",
       "access": "registration",
       "status": "ok",
-      "fetched_at": "2026-04-25T03:48:01+00:00",
-      "last_ok": "2026-04-25T03:48:01+00:00",
+      "fetched_at": "2026-04-25T07:59:54+00:00",
+      "last_ok": "2026-04-25T07:59:54+00:00",
       "stations": []
     },
     "igac": {
@@ -40711,19 +40469,8 @@
       "registration": "https://redgeodesica-sbc.igac.gov.co/sbc",
       "access": "registration",
       "status": "ok",
-      "fetched_at": "2026-04-25T03:48:01+00:00",
-      "last_ok": "2026-04-25T03:48:01+00:00",
-      "stations": []
-    },
-    "flepos": {
-      "url": "http://flepos.vlaanderen.be:2101/",
-      "color": "#3a7ca5",
-      "label": "FLEPOS",
-      "registration": "https://flepos.vlaanderen.be",
-      "access": "registration",
-      "status": "ok",
-      "fetched_at": "2026-04-25T03:48:01+00:00",
-      "last_ok": "2026-04-25T03:48:01+00:00",
+      "fetched_at": "2026-04-25T07:59:54+00:00",
+      "last_ok": "2026-04-25T07:59:54+00:00",
       "stations": []
     },
     "cropos": {
@@ -40733,8 +40480,8 @@
       "registration": "https://www.cropos.hr",
       "access": "registration",
       "status": "ok",
-      "fetched_at": "2026-04-25T03:48:01+00:00",
-      "last_ok": "2026-04-25T03:48:01+00:00",
+      "fetched_at": "2026-04-25T07:59:54+00:00",
+      "last_ok": "2026-04-25T07:59:54+00:00",
       "stations": []
     },
     "earthscope": {
@@ -40744,8 +40491,8 @@
       "registration": "https://www.earthscope.org/data/gnss-realtime/",
       "access": "conditions",
       "status": "ok",
-      "fetched_at": "2026-04-25T03:48:01+00:00",
-      "last_ok": "2026-04-25T03:48:01+00:00",
+      "fetched_at": "2026-04-25T07:59:54+00:00",
+      "last_ok": "2026-04-25T07:59:54+00:00",
       "stations": [
         {
           "name": "AB02_RTCM3P3",
@@ -41017,17 +40764,6 @@
           "lon": -149.35,
           "latStr": "60.93",
           "lonStr": "-149.35",
-          "carrier": 2,
-          "format": "RTCM 3.3",
-          "legacyFormat": false,
-          "country": "USA"
-        },
-        {
-          "name": "AC21_RTCM3P3",
-          "lat": 55.92,
-          "lon": -159.13,
-          "latStr": "55.92",
-          "lonStr": "-159.13",
           "carrier": 2,
           "format": "RTCM 3.3",
           "legacyFormat": false,
@@ -41837,6 +41573,28 @@
           "country": "USA"
         },
         {
+          "name": "BVPP_RTCM3P3",
+          "lat": 35.16,
+          "lon": -119.35,
+          "latStr": "35.16",
+          "lonStr": "-119.35",
+          "carrier": 2,
+          "format": "RTCM 3.3",
+          "legacyFormat": false,
+          "country": "USA"
+        },
+        {
+          "name": "BYAH_RTCM3P3",
+          "lat": -1.66,
+          "lon": 29.26,
+          "latStr": "-1.66",
+          "lonStr": "29.26",
+          "carrier": 2,
+          "format": "RTCM 3.3",
+          "legacyFormat": false,
+          "country": "RWA"
+        },
+        {
           "name": "CABL_RTCM3P3",
           "lat": 42.84,
           "lon": -124.56,
@@ -41919,17 +41677,6 @@
           "lon": -112.86,
           "latStr": "40.68",
           "lonStr": "-112.86",
-          "carrier": 2,
-          "format": "RTCM 3.3",
-          "legacyFormat": false,
-          "country": "USA"
-        },
-        {
-          "name": "CGDM_RTCM3P3",
-          "lat": 34.24,
-          "lon": -117.96,
-          "latStr": "34.24",
-          "lonStr": "-117.96",
           "carrier": 2,
           "format": "RTCM 3.3",
           "legacyFormat": false,
@@ -42915,17 +42662,6 @@
           "country": "USA"
         },
         {
-          "name": "FMTP_RTCM3P3",
-          "lat": 34.41,
-          "lon": -118.89,
-          "latStr": "34.41",
-          "lonStr": "-118.89",
-          "carrier": 2,
-          "format": "RTCM 3.3",
-          "legacyFormat": false,
-          "country": "USA"
-        },
-        {
           "name": "FMVT_RTCM3P3",
           "lat": 34.36,
           "lon": -118.88,
@@ -43586,17 +43322,6 @@
           "country": "USA"
         },
         {
-          "name": "LEE2_RTCM3P3",
-          "lat": 34.13,
-          "lon": -118.32,
-          "latStr": "34.13",
-          "lonStr": "-118.32",
-          "carrier": 2,
-          "format": "RTCM 3.3",
-          "legacyFormat": false,
-          "country": "USA"
-        },
-        {
           "name": "LEWI_RTCM3P3",
           "lat": 40.4,
           "lon": -116.86,
@@ -43723,6 +43448,17 @@
           "lon": -117.45,
           "latStr": "33.82",
           "lonStr": "-117.45",
+          "carrier": 2,
+          "format": "RTCM 3.3",
+          "legacyFormat": false,
+          "country": "USA"
+        },
+        {
+          "name": "LMUT_RTCM3P3",
+          "lat": 40.26,
+          "lon": -111.93,
+          "latStr": "40.26",
+          "lonStr": "-111.93",
           "carrier": 2,
           "format": "RTCM 3.3",
           "legacyFormat": false,
@@ -45874,17 +45610,6 @@
           "country": "USA"
         },
         {
-          "name": "P170_RTCM3P3",
-          "lat": 40.88,
-          "lon": -123.86,
-          "latStr": "40.88",
-          "lonStr": "-123.86",
-          "carrier": 2,
-          "format": "RTCM 3.3",
-          "legacyFormat": false,
-          "country": "USA"
-        },
-        {
           "name": "P171_RTCM3P3",
           "lat": 36.49,
           "lon": -121.79,
@@ -46897,17 +46622,6 @@
           "country": "USA"
         },
         {
-          "name": "P281_RTCM3P3",
-          "lat": 35.84,
-          "lon": -120.39,
-          "latStr": "35.84",
-          "lonStr": "-120.39",
-          "carrier": 2,
-          "format": "RTCM 3.3",
-          "legacyFormat": false,
-          "country": "USA"
-        },
-        {
           "name": "P282_RTCM3P3",
           "lat": 35.84,
           "lon": -120.35,
@@ -46924,6 +46638,17 @@
           "lon": -120.29,
           "latStr": "35.81",
           "lonStr": "-120.29",
+          "carrier": 2,
+          "format": "RTCM 3.3",
+          "legacyFormat": false,
+          "country": "USA"
+        },
+        {
+          "name": "P284_RTCM3P3",
+          "lat": 35.93,
+          "lon": -120.91,
+          "latStr": "35.93",
+          "lonStr": "-120.91",
           "carrier": 2,
           "format": "RTCM 3.3",
           "legacyFormat": false,
@@ -47320,17 +47045,6 @@
           "lon": -122.98,
           "latStr": "39.62",
           "lonStr": "-122.98",
-          "carrier": 2,
-          "format": "RTCM 3.3",
-          "legacyFormat": false,
-          "country": "USA"
-        },
-        {
-          "name": "P335_RTCM3P3",
-          "lat": 39.73,
-          "lon": -122.87,
-          "latStr": "39.73",
-          "lonStr": "-122.87",
           "carrier": 2,
           "format": "RTCM 3.3",
           "legacyFormat": false,
@@ -48877,17 +48591,6 @@
           "country": "USA"
         },
         {
-          "name": "P504_RTCM3P3",
-          "lat": 33.52,
-          "lon": -115.77,
-          "latStr": "33.52",
-          "lonStr": "-115.77",
-          "carrier": 2,
-          "format": "RTCM 3.3",
-          "legacyFormat": false,
-          "country": "USA"
-        },
-        {
           "name": "P505_RTCM3P3",
           "lat": 33.42,
           "lon": -115.69,
@@ -49163,17 +48866,6 @@
           "country": "USA"
         },
         {
-          "name": "P534_RTCM3P3",
-          "lat": 37.06,
-          "lon": -122.24,
-          "latStr": "37.06",
-          "lonStr": "-122.24",
-          "carrier": 2,
-          "format": "RTCM 3.3",
-          "legacyFormat": false,
-          "country": "USA"
-        },
-        {
           "name": "P535_RTCM3P3",
           "lat": 35.24,
           "lon": -120.1,
@@ -49256,17 +48948,6 @@
           "lon": -120.29,
           "latStr": "35.69",
           "lonStr": "-120.29",
-          "carrier": 2,
-          "format": "RTCM 3.3",
-          "legacyFormat": false,
-          "country": "USA"
-        },
-        {
-          "name": "P543_RTCM3P3",
-          "lat": 35.32,
-          "lon": -119.71,
-          "latStr": "35.32",
-          "lonStr": "-119.71",
           "carrier": 2,
           "format": "RTCM 3.3",
           "legacyFormat": false,
@@ -49427,6 +49108,17 @@
           "country": "USA"
         },
         {
+          "name": "P567_RTCM3P3",
+          "lat": 35.42,
+          "lon": -118.75,
+          "latStr": "35.42",
+          "lonStr": "-118.75",
+          "carrier": 2,
+          "format": "RTCM 3.3",
+          "legacyFormat": false,
+          "country": "USA"
+        },
+        {
           "name": "P568_RTCM3P3",
           "lat": 35.25,
           "lon": -118.13,
@@ -49482,11 +49174,11 @@
           "country": "USA"
         },
         {
-          "name": "P573_RTCM3P3",
-          "lat": 36.09,
-          "lon": -118.26,
-          "latStr": "36.09",
-          "lonStr": "-118.26",
+          "name": "P574_RTCM3P3",
+          "lat": 34.29,
+          "lon": -117.63,
+          "latStr": "34.29",
+          "lonStr": "-117.63",
           "carrier": 2,
           "format": "RTCM 3.3",
           "legacyFormat": false,
@@ -49636,11 +49328,11 @@
           "country": "USA"
         },
         {
-          "name": "P594_RTCM3P3",
-          "lat": 35.9,
-          "lon": -117.39,
-          "latStr": "35.90",
-          "lonStr": "-117.39",
+          "name": "P593_RTCM3P3",
+          "lat": 35.39,
+          "lon": -117.21,
+          "latStr": "35.39",
+          "lonStr": "-117.21",
           "carrier": 2,
           "format": "RTCM 3.3",
           "legacyFormat": false,
@@ -49905,17 +49597,6 @@
           "lon": -115.54,
           "latStr": "35.47",
           "lonStr": "-115.54",
-          "carrier": 2,
-          "format": "RTCM 3.3",
-          "legacyFormat": false,
-          "country": "USA"
-        },
-        {
-          "name": "P622_RTCM3P3",
-          "lat": 35.16,
-          "lon": -115.37,
-          "latStr": "35.16",
-          "lonStr": "-115.37",
           "carrier": 2,
           "format": "RTCM 3.3",
           "legacyFormat": false,
@@ -50736,17 +50417,6 @@
           "country": "USA"
         },
         {
-          "name": "P740_RTCM3P3",
-          "lat": 33.6,
-          "lon": -116.6,
-          "latStr": "33.60",
-          "lonStr": "-116.60",
-          "carrier": 2,
-          "format": "RTCM 3.3",
-          "legacyFormat": false,
-          "country": "USA"
-        },
-        {
           "name": "P741_RTCM3P3",
           "lat": 33.56,
           "lon": -116.53,
@@ -50917,17 +50587,6 @@
           "lon": -114.76,
           "latStr": "32.50",
           "lonStr": "-114.76",
-          "carrier": 2,
-          "format": "RTCM 3.3",
-          "legacyFormat": false,
-          "country": "USA"
-        },
-        {
-          "name": "P797_RTCM3P3",
-          "lat": 33.54,
-          "lon": -116.59,
-          "latStr": "33.54",
-          "lonStr": "-116.59",
           "carrier": 2,
           "format": "RTCM 3.3",
           "legacyFormat": false,
@@ -51187,6 +50846,17 @@
           "country": "USA"
         },
         {
+          "name": "PB1Y_RTCM3P3",
+          "lat": 32.65,
+          "lon": -115.69,
+          "latStr": "32.65",
+          "lonStr": "-115.69",
+          "carrier": 2,
+          "format": "RTCM 3.3",
+          "legacyFormat": false,
+          "country": "MEX"
+        },
+        {
           "name": "PBLD_RTCM3P3",
           "lat": 19.67,
           "lon": -155.37,
@@ -51273,6 +50943,17 @@
           "format": "RTCM 3.3",
           "legacyFormat": false,
           "country": "USA"
+        },
+        {
+          "name": "PLTX_RTCM3P3",
+          "lat": 31.82,
+          "lon": -115.43,
+          "latStr": "31.82",
+          "lonStr": "-115.43",
+          "carrier": 2,
+          "format": "RTCM 3.3",
+          "legacyFormat": false,
+          "country": "MEX"
         },
         {
           "name": "POBG_RTCM3P3",
@@ -51737,17 +51418,6 @@
           "country": "USA"
         },
         {
-          "name": "RSVY_RTCM3P3",
-          "lat": 34.54,
-          "lon": -119.18,
-          "latStr": "34.54",
-          "lonStr": "-119.18",
-          "carrier": 2,
-          "format": "RTCM 3.3",
-          "legacyFormat": false,
-          "country": "USA"
-        },
-        {
           "name": "RTHS_RTCM3P3",
           "lat": 34.09,
           "lon": -117.35,
@@ -52177,17 +51847,6 @@
           "country": "USA"
         },
         {
-          "name": "TBLP_RTCM3P3",
-          "lat": 35.92,
-          "lon": -120.36,
-          "latStr": "35.92",
-          "lonStr": "-120.36",
-          "carrier": 2,
-          "format": "RTCM 3.3",
-          "legacyFormat": false,
-          "country": "USA"
-        },
-        {
           "name": "TEG2_RTCM3P3",
           "lat": 14.09,
           "lon": -87.21,
@@ -52529,6 +52188,17 @@
           "country": "USA"
         },
         {
+          "name": "VCST_RTCM3P3",
+          "lat": 34.85,
+          "lon": -119.48,
+          "latStr": "34.85",
+          "lonStr": "-119.48",
+          "carrier": 2,
+          "format": "RTCM 3.3",
+          "legacyFormat": false,
+          "country": "USA"
+        },
+        {
           "name": "VCVL_RTCM3P3",
           "lat": 38.39,
           "lon": -121.95,
@@ -52857,17 +52527,6 @@
           "format": "RTCM 3.3",
           "legacyFormat": false,
           "country": "USA"
-        },
-        {
-          "name": "YUMX_RTCM3P3",
-          "lat": 32.03,
-          "lon": -115.2,
-          "latStr": "32.03",
-          "lonStr": "-115.20",
-          "carrier": 2,
-          "format": "RTCM 3.3",
-          "legacyFormat": false,
-          "country": "MEX"
         }
       ]
     },
@@ -52878,8 +52537,8 @@
       "registration": "https://go.gnss.go.jp",
       "access": "registration",
       "status": "ok",
-      "fetched_at": "2026-04-25T03:48:01+00:00",
-      "last_ok": "2026-04-25T03:48:01+00:00",
+      "fetched_at": "2026-04-25T07:59:54+00:00",
+      "last_ok": "2026-04-25T07:59:54+00:00",
       "stations": [
         {
           "name": "240600NZL",
@@ -56465,19 +56124,8 @@
       "registration": "https://latpos.lgia.gov.lv/SBC",
       "access": "registration",
       "status": "ok",
-      "fetched_at": "2026-04-25T03:48:02+00:00",
-      "last_ok": "2026-04-25T03:48:02+00:00",
-      "stations": []
-    },
-    "icecors": {
-      "url": "http://178.19.53.126:2101/",
-      "color": "#1e6b8c",
-      "label": "IceCORS",
-      "registration": "https://www.natt.is/is/landmaelingar/jardstodvakerfi",
-      "access": "registration",
-      "status": "ok",
-      "fetched_at": "2026-04-25T03:48:02+00:00",
-      "last_ok": "2026-04-25T03:48:02+00:00",
+      "fetched_at": "2026-04-25T07:59:54+00:00",
+      "last_ok": "2026-04-25T07:59:54+00:00",
       "stations": []
     },
     "cors_korea": {
@@ -56487,8 +56135,8 @@
       "registration": "https://www.gnssdata.or.kr",
       "access": "conditions",
       "status": "ok",
-      "fetched_at": "2026-04-25T03:48:02+00:00",
-      "last_ok": "2026-04-25T03:48:02+00:00",
+      "fetched_at": "2026-04-25T07:59:55+00:00",
+      "last_ok": "2026-04-25T07:59:55+00:00",
       "stations": [
         {
           "name": "ANHN-RTCM23",
@@ -61915,59 +61563,15 @@
         }
       ]
     },
-    "ksa_cors": {
-      "url": "http://ksacors.geoportal.sa:2101/",
-      "color": "#a0522d",
-      "label": "KSA-CORS",
-      "registration": "https://ksacors.geoportal.sa",
-      "access": "conditions",
-      "status": "ok",
-      "fetched_at": "2026-04-25T03:48:03+00:00",
-      "last_ok": "2026-04-25T03:48:03+00:00",
-      "stations": []
-    },
-    "gpsumbria": {
-      "url": "http://gpsumbria.regione.umbria.it:2101/",
-      "color": "#2e7d32",
-      "label": "GPS-UMBRIA",
-      "registration": "https://gpsumbria.regione.umbria.it",
+    "icecors": {
+      "url": "http://178.19.53.126:2101/",
+      "color": "#1e6b8c",
+      "label": "IceCORS",
+      "registration": "https://www.natt.is/is/landmaelingar/jardstodvakerfi",
       "access": "registration",
       "status": "ok",
-      "fetched_at": "2026-04-25T03:48:03+00:00",
-      "last_ok": "2026-04-25T03:48:03+00:00",
-      "stations": []
-    },
-    "wiscors": {
-      "url": "http://wiscors.dot.wi.gov:2101/",
-      "color": "#bf360c",
-      "label": "WISCORS",
-      "registration": "https://wiscors.dot.wi.gov",
-      "access": "registration",
-      "status": "ok",
-      "fetched_at": "2026-04-25T03:48:03+00:00",
-      "last_ok": "2026-04-25T03:48:03+00:00",
-      "stations": []
-    },
-    "sit_puglia": {
-      "url": "http://gps.sit.puglia.it:2101/",
-      "color": "#0288d1",
-      "label": "SIT Puglia",
-      "registration": "https://sit.puglia.it",
-      "access": "registration",
-      "status": "ok",
-      "fetched_at": "2026-04-25T03:48:03+00:00",
-      "last_ok": "2026-04-25T03:48:03+00:00",
-      "stations": []
-    },
-    "ardot_rtn": {
-      "url": "http://gps.ardot.gov:2101/",
-      "color": "#827717",
-      "label": "ARDOT RTN",
-      "registration": "https://gps.ardot.gov",
-      "access": "registration",
-      "status": "ok",
-      "fetched_at": "2026-04-25T03:48:04+00:00",
-      "last_ok": "2026-04-25T03:48:04+00:00",
+      "fetched_at": "2026-04-25T07:59:55+00:00",
+      "last_ok": "2026-04-25T07:59:55+00:00",
       "stations": []
     },
     "sapos_SL": {
@@ -61977,8 +61581,8 @@
       "registration": "https://www.sapos.de",
       "access": "registration",
       "status": "ok",
-      "fetched_at": "2026-04-25T03:48:36+00:00",
-      "last_ok": "2026-04-25T03:48:36+00:00",
+      "fetched_at": "2026-04-25T07:59:55+00:00",
+      "last_ok": "2026-04-25T07:59:55+00:00",
       "stations": [
         {
           "name": "0928",
@@ -62070,6 +61674,61 @@
         }
       ]
     },
+    "ksa_cors": {
+      "url": "http://ksacors.geoportal.sa:2101/",
+      "color": "#a0522d",
+      "label": "KSA-CORS",
+      "registration": "https://ksacors.geoportal.sa",
+      "access": "conditions",
+      "status": "ok",
+      "fetched_at": "2026-04-25T07:59:55+00:00",
+      "last_ok": "2026-04-25T07:59:55+00:00",
+      "stations": []
+    },
+    "wiscors": {
+      "url": "http://wiscors.dot.wi.gov:2101/",
+      "color": "#bf360c",
+      "label": "WISCORS",
+      "registration": "https://wiscors.dot.wi.gov",
+      "access": "registration",
+      "status": "ok",
+      "fetched_at": "2026-04-25T07:59:55+00:00",
+      "last_ok": "2026-04-25T07:59:55+00:00",
+      "stations": []
+    },
+    "gpsumbria": {
+      "url": "http://gpsumbria.regione.umbria.it:2101/",
+      "color": "#2e7d32",
+      "label": "GPS-UMBRIA",
+      "registration": "https://gpsumbria.regione.umbria.it",
+      "access": "registration",
+      "status": "ok",
+      "fetched_at": "2026-04-25T07:59:55+00:00",
+      "last_ok": "2026-04-25T07:59:55+00:00",
+      "stations": []
+    },
+    "ardot_rtn": {
+      "url": "http://gps.ardot.gov:2101/",
+      "color": "#827717",
+      "label": "ARDOT RTN",
+      "registration": "https://gps.ardot.gov",
+      "access": "registration",
+      "status": "ok",
+      "fetched_at": "2026-04-25T07:59:56+00:00",
+      "last_ok": "2026-04-25T07:59:56+00:00",
+      "stations": []
+    },
+    "sit_puglia": {
+      "url": "http://gps.sit.puglia.it:2101/",
+      "color": "#0288d1",
+      "label": "SIT Puglia",
+      "registration": "https://sit.puglia.it",
+      "access": "registration",
+      "status": "ok",
+      "fetched_at": "2026-04-25T07:59:56+00:00",
+      "last_ok": "2026-04-25T07:59:56+00:00",
+      "stations": []
+    },
     "vector": {
       "url": "http://20.185.11.35:2101/",
       "color": "#1b5e20",
@@ -62077,8 +61736,8 @@
       "registration": "https://vcgi.vermont.gov",
       "access": "registration",
       "status": "ok",
-      "fetched_at": "2026-04-25T03:48:37+00:00",
-      "last_ok": "2026-04-25T03:48:37+00:00",
+      "fetched_at": "2026-04-25T07:59:56+00:00",
+      "last_ok": "2026-04-25T07:59:56+00:00",
       "stations": []
     },
     "walcors": {
@@ -62099,8 +61758,8 @@
       "registration": "https://rtn.usm.edu",
       "access": "registration",
       "status": "ok",
-      "fetched_at": "2026-04-25T03:49:00+00:00",
-      "last_ok": "2026-04-25T03:49:00+00:00",
+      "fetched_at": "2026-04-25T08:00:53+00:00",
+      "last_ok": "2026-04-25T08:00:53+00:00",
       "stations": []
     },
     "alcors": {
@@ -62169,6 +61828,17 @@
       "last_ok": null,
       "stations": []
     },
+    "kycors": {
+      "url": "http://kycors.ky.gov:2101/",
+      "color": "#546e7a",
+      "label": "KyCORS",
+      "registration": "https://kycors.ky.gov",
+      "access": "registration",
+      "status": "ok",
+      "fetched_at": "2026-04-25T08:00:56+00:00",
+      "last_ok": "2026-04-25T08:00:56+00:00",
+      "stations": []
+    },
     "macors": {
       "url": "http://macorsrtk.massdot.state.ma.us:2101/",
       "color": "#33691e",
@@ -62180,15 +61850,15 @@
       "last_ok": null,
       "stations": []
     },
-    "kycors": {
-      "url": "http://kycors.ky.gov:2101/",
-      "color": "#546e7a",
-      "label": "KyCORS",
-      "registration": "https://kycors.ky.gov",
+    "mncors": {
+      "url": "http://mncors.dot.state.mn.us:9000/",
+      "color": "#455a64",
+      "label": "MnCORS",
+      "registration": "https://www.mndot.gov",
       "access": "registration",
       "status": "ok",
-      "fetched_at": "2026-04-25T03:49:04+00:00",
-      "last_ok": "2026-04-25T03:49:04+00:00",
+      "fetched_at": "2026-04-25T08:00:56+00:00",
+      "last_ok": "2026-04-25T08:00:56+00:00",
       "stations": []
     },
     "odot_rtn": {
@@ -62198,19 +61868,8 @@
       "registration": "https://transportation.ohio.gov",
       "access": "registration",
       "status": "ok",
-      "fetched_at": "2026-04-25T03:49:04+00:00",
-      "last_ok": "2026-04-25T03:49:04+00:00",
-      "stations": []
-    },
-    "mncors": {
-      "url": "http://mncors.dot.state.mn.us:9000/",
-      "color": "#455a64",
-      "label": "MnCORS",
-      "registration": "https://www.mndot.gov",
-      "access": "registration",
-      "status": "ok",
-      "fetched_at": "2026-04-25T03:49:04+00:00",
-      "last_ok": "2026-04-25T03:49:04+00:00",
+      "fetched_at": "2026-04-25T08:00:56+00:00",
+      "last_ok": "2026-04-25T08:00:56+00:00",
       "stations": []
     },
     "wvrtn": {
@@ -62220,19 +61879,8 @@
       "registration": "https://transportation.wv.gov",
       "access": "registration",
       "status": "ok",
-      "fetched_at": "2026-04-25T03:49:04+00:00",
-      "last_ok": "2026-04-25T03:49:04+00:00",
-      "stations": []
-    },
-    "modot_rtn": {
-      "url": "http://rtk3.modot.mo.gov:2101/",
-      "color": "#78909c",
-      "label": "MoDOT RTN",
-      "registration": "https://modot.mo.gov",
-      "access": "conditions",
-      "status": "ok",
-      "fetched_at": "2026-04-25T03:49:04+00:00",
-      "last_ok": "2026-04-25T03:49:04+00:00",
+      "fetched_at": "2026-04-25T08:00:56+00:00",
+      "last_ok": "2026-04-25T08:00:56+00:00",
       "stations": []
     },
     "mainedot": {
@@ -62244,6 +61892,17 @@
       "status": "error: URLError(gaierror(-5, 'No address associated with hostname'))",
       "fetched_at": null,
       "last_ok": null,
+      "stations": []
+    },
+    "modot_rtn": {
+      "url": "http://rtk3.modot.mo.gov:2101/",
+      "color": "#78909c",
+      "label": "MoDOT RTN",
+      "registration": "https://modot.mo.gov",
+      "access": "conditions",
+      "status": "ok",
+      "fetched_at": "2026-04-25T08:00:56+00:00",
+      "last_ok": "2026-04-25T08:00:56+00:00",
       "stations": []
     },
     "orgn": {
