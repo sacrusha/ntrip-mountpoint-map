@@ -99,10 +99,12 @@ not yet tracked by the u-blox F9P or most hobbyist hardware. ✓
   - Faster TTFF and re-init after signal loss
   - Better performance under canopy and in urban canyons
   - More robust during elevated ionospheric activity
-- Examples: ZED-F9P-05B (L1/L5 variant, distinct hardware from the
-  standard L1/L2 F9P) ~, Septentrio mosaic-X5 ~, Emlid RS3,
+- Examples: ZED-F9P-**15B** (L1/L5 variant, distinct hardware from the
+  standard L1/L2 F9P) ✓, Septentrio mosaic-X5 ~, Emlid RS3,
   survey-grade Trimble/Leica. Note: the standard ZED-F9P (most common
   hobbyist variant) is L1/L2 only, not L5 ✓.
+  (source: Symmetry Electronics ZED-F9P-15B product page; alphamicro
+  ZED-F9P variant comparison)
 
 **Quad-constellation (GPS+GLONASS+Galileo+BeiDou):**
 - More satellites visible at any sky position → faster ambiguity
@@ -471,12 +473,12 @@ add E6 capability to hardware built for other bands.
 
 | Receiver | E6/HAS support | Notes |
 |---|---|---|
-| **Unicore UM980 / UM982** | Native; enable via signal-group config | Most accessible hobbyist option; ~$100–200 bare module (ArduSimple, SparkFun). SparkFun 78-trial test: avg 9.8 min convergence, 33–80 mm post-convergence accuracy ✓ (source: SparkFun UM980 HAS E6 convergence test repo) |
+| **Unicore UM980 / UM982** | Native; enable via signal-group config | Most accessible hobbyist option; ~$100–200 bare module (ArduSimple, SparkFun). SparkFun 78-trial test: avg ~77 mm post-convergence, best observed 33 mm, avg convergence 9.8 min (excl. outlier) ✓ (source: SparkFun UM980 HAS E6 convergence test repo) |
 | **Septentrio mosaic-X5** | Firmware v4.14.0+ (2024) | Used in peer-reviewed HAS papers; outputs raw E6-B pages for HASlib/RTKLIB pipeline ✓ (source: mosaic-X5 firmware v4.14.10 reference guide) |
 | **Trimble R10 / R580 / R750** | Firmware v6.28+ (Jan 2025), enabled via TIM | Requires active options unlock for Galileo tracking ✓ (source: Trimble "What's new in 6.28") |
 | **Eos Arrow Gold+** | Native | Described as first GIS-market device with HAS support ✓ (source: Eos press release) |
 | **Quectel LG290P** | Hardware present; HAS firmware Oct 2025 | Quad-band L1/L2/L5/E6 ✓ (source: Quectel HAS announcement Oct 2025) |
-| **u-blox ZED-F9P (all variants)** | **None — impossible** | Tracks L1+L2 (or L1+L5 for -05B). No E6 hardware exists in any F9 chip. No firmware update changes this ✓ (source: u-blox community forum; F9P product summary) |
+| **u-blox ZED-F9P (all variants)** | **None — impossible** | Tracks L1+L2 (or L1+L5 for **-15B**). No E6 hardware exists in any F9 chip. No firmware update changes this ✓ (source: u-blox community forum; F9P product summary) |
 | Smartphones (all) | None | No consumer GNSS chipset supports E6 as of 2026 ✓ |
 
 **IDD (Internet Data Distribution):** The identical HAS corrections are also
@@ -822,9 +824,9 @@ transition from FLOAT to FIX.
 **Status drawer** (tap the status bar to expand): coordinates, PDOP, satellite
 count in use, age of corrections in seconds.
 
-**Correction age thresholds** ✓ (source: Emlid community forum; Reach RX docs):
+**Correction age thresholds** ~ (firmware-version dependent; Emlid community forum; Reach RX docs):
 - **> 5 s**: app flags potentially unstable connection (early warning).
-- **> 10 s**: receiver drops from Fix back to standalone GNSS by design.
+- **> 10 s**: receiver typically drops from Fix back to standalone or float GNSS. ~
 
 **Reach hardware LED** (Reach RX, firmware v1.4) ✓ (source: Reach RX User
 Documentation v1.4):
@@ -1542,8 +1544,9 @@ persists indefinitely in rtk2go's database — no automatic inactivity expiry ha
 been documented; an operator can reconnect any time and be live instantly.
 
 **Scale:** Only ~800 of rtk2go's ~11,000 registered mountpoints are active at
-any given time (~7%). rtk2go's documentation notes "50,000–150,000 connections
-per day" include many attempts to reach disconnected streams. ✓
+any given time (~7% — inferred from rtk2go connection statistics). rtk2go's
+documentation notes "50,000–150,000 connections per day" include many attempts
+to reach disconnected streams. ✓
 
 **Recovery paths:**
 1. Use this project's map to find the nearest alternative physical-station pin.
@@ -1579,8 +1582,9 @@ This is the "fixed but wrong" scenario. Most likely causes:
 2. **Wrong coordinate frame** — if the base uses a local datum that
    doesn't match the rover's display datum, there will be a systematic
    offset. ITRF coordinates from PPP do not equal local datum
-   coordinates (difference is 0.2–1 m in many countries). For survey
-   work, apply a datum transformation.
+   coordinates (difference is typically 0.2–2.2 m depending on region
+   — see §13.1 for per-region numbers). For survey work, apply a datum
+   transformation.
 3. **Cycle slip that went undetected** — a cycle slip during a multipath
    event can shift the fix by an integer number of carrier wavelengths
    (~19 cm at L1). The receiver reports "Fix" but the solution jumped.
@@ -1661,8 +1665,8 @@ is sufficient. RTK fix = 1–3 cm; commercial PPP (Trimble RTX, Swift Skylark) =
 | GIS utility mapping (ASCE QL-B) | 100–300 mm | 150–500 mm | RTK float or SBAS | Yes (marginal) | Sky visibility; attribution |
 | GIS cadastral survey | ±10–50 mm | ±10–50 mm | RTK fix | No (HAS ~20 cm) | Regulatory acceptance; datum tie |
 | Construction stakeout | ±10–25 mm | ±10–25 mm | RTK fix | No | Datum tie to project control; tilt-pole correction |
-| Structural displacement monitoring | ±1–5 mm | ±2–5 mm | CGNSS post-processed | No | Monument stability; IGS precise products |
-| Scientific geodesy | ±0.1–1 mm | ±0.2–2 mm | PPP + IGS final orbits | No | Choke-ring antenna; ANTEX model; 24 h+ sessions |
+| Structural displacement monitoring *(beyond hobbyist scope)* | ±1–5 mm | ±2–5 mm | CGNSS post-processed | No | Monument stability; IGS precise products |
+| Scientific geodesy *(beyond hobbyist scope)* | ±0.1–1 mm | ±0.2–2 mm | PPP + IGS final orbits | No | Choke-ring antenna; ANTEX model; 24 h+ sessions |
 
 **Key notes:**
 
@@ -1722,7 +1726,7 @@ plate at epoch 2020.0; aligned with ITRF2014. Since the Australian plate moves
 
 **NAD83** (North American Datum 1983) — fixed to the North American plate. The
 original 1986 realization introduced a ~2 m systematic offset vs the geocentre;
-NAD83(2011) epoch 2010.0 differs from ITRF2014 by roughly **0.5–1.5 m**
+NAD83(2011) epoch 2010.0 differs from ITRF2014 by roughly **0.5–2 m** ~
 horizontally across North America (direction-dependent). ✓
 (source: Soler & Snay 2004 Journal of Surveying Engineering; NGS NADCON5)
 
@@ -1739,7 +1743,7 @@ location. ✓
 | ETRS89 | Western Europe | ~0.9 m northeast |
 | GDA2020 | Australia | ~0.35 m, growing ~70 mm/yr |
 | GDA94 | Australia (legacy) | ~2.2 m |
-| NAD83(2011) | North America | ~0.5–1.5 m |
+| NAD83(2011) | North America | ~0.5–2 m ~ |
 | OSGB36 | United Kingdom | ~70–120 m |
 
 ### 13.2 Plate Tectonics and Multi-Year Coordinate Drift
@@ -1885,7 +1889,8 @@ installed (QGIS prompts to download missing grids).
 - [ZED-F9P Product Summary — u-blox](https://content.u-blox.com/sites/default/files/ZED-F9P_ProductSummary_UBX-17005151.pdf)
 - [ZED-F9P for geodetic measurement — ResearchGate](https://www.researchgate.net/publication/360316310_UBLOX_F9P_FOR_GEODETIC_MEASUREMENT)
 - [ZED-F9P Integration Manual — u-blox](https://content.u-blox.com/sites/default/files/ZED-F9P_IntegrationManual_UBX-18010802.pdf) (signal bands: L1C/A+L2C, L1OF+L2OF, E1+E5b, B1I+B2I ✓)
-- [ZED-F9P-05B Datasheet — u-blox](https://content.u-blox.com/sites/default/files/documents/ZED-F9P-05B_DataSheet_UBXDOC-963802114-12824.pdf) (L1/L5 variant ✓)
+- [ZED-F9P-05B Datasheet — u-blox](https://content.u-blox.com/sites/default/files/documents/ZED-F9P-05B_DataSheet_UBXDOC-963802114-12824.pdf) (L1/L2 + OSNMA variant — **not** L1/L5; annotation previously incorrect)
+- [ZED-F9P-15B — Symmetry Electronics](https://www.symmetryelectronics.com/products/u-blox/zed-f9p-15b/) (L1/L5 variant ✓; the correct reference for triple-band hobbyist use)
 - [CSRS-PPP — NRCAN](https://webapp.csrs-scrs.nrcan-rncan.gc.ca/geod/tools-outils/ppp.php)
 - [VRS vs MAC principles — Janssen 2009](https://www.spatial.nsw.gov.au/__data/assets/pdf_file/0003/129414/2009_Janssen_IGNSS2009_VRS_vs_MAC.pdf)
 - [VRS connection examples — SNIP Support](https://www.use-snip.com/kb/knowledge-base/virtual-reference-station-vrs-connection-examples/)
