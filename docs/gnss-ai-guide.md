@@ -140,6 +140,93 @@ as "GPS+GLONASS+Galileo+BeiDou" typically delivers better sky coverage
 (more satellites visible), faster ambiguity resolution, and more
 resilience to partial sky blockage than GPS-only.
 
+### 1.6 Phone and Consumer Device Limitations
+
+Modern flagship smartphones carry dual-frequency GNSS chips (L1+L5) yet
+cannot perform centimetre-level RTK. There are three distinct barriers;
+they do not all bind equally on iOS vs Android.
+
+**iOS — OS API is the absolute blocker:**  
+Apple's CoreLocation exposes only a processed `CLLocation` object (lat/lon/
+altitude/accuracy) to third-party apps. No pseudoranges, no carrier-phase
+(accumulated delta range), no per-satellite C/N0, and no RTCM injection
+point exist in any public or private entitlement as of 2026. ✓
+(source: Apple developer forums, confirmed by Apple engineer)  
+Apps that appear to show GNSS signal quality on iOS are re-parsing the
+processed CLLocation and almanac data — not reading raw observables from
+the chip. An iOS NTRIP client app can fetch RTCM from a caster and relay
+it byte-for-byte via Bluetooth to an *external* RTK receiver, but the
+phone's own chip never receives those corrections. RTK on the internal
+iPhone chip is impossible regardless of chip capability.
+
+**Android — API works, duty cycling and antenna bind:**  
+`android.location.GnssMeasurement` (API 24, Android 7+) exposes accumulated
+delta range (ADR — the carrier-phase proxy), pseudorange, C/N0, and Doppler
+per satellite. Raw measurement support is mandatory on Android 10+ hardware. ✓
+ADR itself is not mandatory in the Android CDD — Qualcomm Snapdragon devices
+historically do not report it. Broadcom-based Pixels (5, 6, 7, 8, 9 series)
+do expose ADR. ✓ (source: Android developer docs, Broadcom BCM47765 data)
+
+*Duty cycling* is the critical hidden problem: Android powers the GNSS chip
+on ~200 ms then off ~800 ms each second to save battery, causing a carrier-
+phase cycle slip every epoch. This makes the ADR stream useless for RTK
+without mitigation. Android 9+ added "Force full GNSS measurements" (buried
+in developer options) to disable duty cycling. Even with it enabled, thermal
+throttling or low-battery states can re-enable duty cycling. ✓
+(source: Barbeau 2018, GNSS Interrupted)
+
+Observed RTK performance on Android phones with best-case conditions (Pixel 6
+Pro, open sky, Force full GNSS on, short baseline, RTKLIB post-processing):
+~0.2–0.5 m horizontal. Not centimetre-level. ✓
+(source: Odolinski 2024 ION; GPS Solutions 2025 smartwatch/phone RTK study)
+
+**Antenna — the residual binding constraint on Android:**  
+Phone GNSS antennas are small PCB patches sharing RF space with 5G/Wi-Fi/BT.
+Key differences from survey antennas:
+- No RHCP polarisation → ground-reflected multipath signals are not rejected
+  (RHCP antennas suppress reflected signals because reflection flips to LHCP)
+- Phase center variation (PCV): **up to 2 cm at L1, up to 4 cm at L5** across
+  the visible hemisphere, orientation-dependent ✓
+  (source: Sensors 2024 — "Determining the Antenna Phase Center for
+  High-Precision Positioning of Smartphones")
+- C/N0 typically 8–10 dB-Hz below geodetic receivers ✓
+  (source: Sensors 2023 GNSS Observation Generation paper)
+
+A 4 cm L5 PCV — which shifts with hand grip — defeats integer ambiguity
+resolution, which requires carrier-phase stability at the centimetre level.
+This is why "phone RTK" papers reach decimetre accuracy regardless of chip or
+API improvements. The University of Texas 2014 finding (still directionally
+valid): the commodity Broadcom chip outperforms survey receivers in some signal
+processing metrics; the antenna is what fails. ✓
+
+Android 11 added `GnssAntennaInfo` (API 30) to expose PCO/PCV tables from the
+OEM via the HAL. Most OEMs do not populate these tables; even where populated,
+values are static and do not track orientation changes.
+
+**Summary table:**
+
+| Barrier | iOS | Android (Pixel 6+) |
+|---|---|---|
+| OS API — no raw carrier phase | **Hard block** | Not a block (ADR exposed) |
+| Duty cycling — cycle slips per epoch | N/A | Soft block (dev option mitigates) |
+| Antenna PCV / multipath | Contributes to noise | **Primary residual block** |
+| Chip capability | Not the problem | Not the problem |
+
+**Practical path for any phone user wanting centimetre RTK:**  
+External u-blox F9P-based receiver (~$150–300, e.g. ArduSimple simpleRTK2B)
+connected via Bluetooth. Phone runs an NTRIP client app (Lefebure on Android,
+or any app with external GNSS support on iOS) that fetches RTCM from a free
+public caster and relays it to the external receiver. The receiver computes the
+RTK fix and outputs centimetre NMEA.
+
+On Android: the NMEA stream can be injected as a mock location (developer
+option "allow mock location"), making all mapping apps see centimetre accuracy.  
+On iOS: the GIS app must natively read NMEA from the Bluetooth device directly
+(QField, SW Maps, Eos Tools Pro, iCMTGIS do this) — iOS has no mock location
+injection. ✓
+
+The phone's internal chip is not involved in the RTK computation in either case.
+
 ---
 
 ## 2. Error Sources
