@@ -4,6 +4,7 @@
     "Before you start",
     "Connect",
     "Concepts",
+    "Migration",
     "Troubleshooting",
     "Advanced",
     "Meta"
@@ -57,8 +58,8 @@
       "q": "I don't have gear yet — what should I buy?",
       "sub": "Tiered recommendation",
       "lead": "For free network RTK, ready-to-use kits start around €449 / $490. DIY tinkerer kits from ~€275. You don't need the €2,900+ standalone category unless you work somewhere with no mobile signal.",
-      "body": "<p>Four paths:</p><ul><li><b>DIY</b> — ArduSimple simpleRTK2B kit (~€275). Requires more setup; standard choice for building your own base station too.</li><li><b>Ready-to-use hobbyist</b> — ArduSimple RTK Handheld 2 Kit (~€449 / $490). Compact, battery included, Bluetooth. Android-preferred (iOS: SW Maps only).</li><li><b>All-in-one rover</b> — SparkFun RTK Facet (~$739). NTRIP client built in; connects via Bluetooth. Android-preferred (iOS: SW Maps only). Available from Mouser, Digi-Key, and SparkFun directly.</li><li><b>Survey-grade</b> — Emlid Reach RS2+ (~$2,200) or RS3 (~$3,000). Rugged, waterproof, one-click NTRIP in Emlid Flow. Full iOS support.</li></ul>",
-      "deep": "Avoid anything sold as 'survey-grade' that doesn't explicitly list L1+L2 or NTRIP — it's usually SBAS/DGPS-grade and gets you sub-metre at best. Subscription-dependent hardware (from ~$850) like Trimble Catalyst DA2 needs paid correction fees on top and typically won't work with the free networks this map shows.\n\nIf you need centimetre accuracy with no mobile signal at all, look at standalone PPP receivers — Galileo HAS-capable units start around €2,700 / $2,900 with no ongoing fees. Search 'Galileo HAS receiver' or 'PPP receiver' to explore that category. This map is not about those.",
+      "body": "<p>Five paths, in roughly ascending price order:</p><ul><li><b>DIY</b> — ArduSimple simpleRTK2B kit (~€275). Requires more setup; standard choice for building your own base station too.</li><li><b>Ready-to-use hobbyist</b> — ArduSimple RTK Handheld 2 Kit (~€449 / $490). Compact, battery included, Bluetooth. Android-preferred (iOS: SW Maps only).</li><li><b>All-in-one rover</b> — SparkFun RTK Facet (~$739). NTRIP client built in; connects via Bluetooth. Android-preferred (iOS: SW Maps only). Available from Mouser, Digi-Key, and SparkFun directly.</li><li><b>iOS-system-wide</b> — Bad Elf Flex Mini Extreme (~$1,499). MFi-certified — works as the iPhone/iPad system GPS in any mapping app, no special driver needed. One-time unlock; no ongoing fees. Pocketable.</li><li><b>Survey-grade</b> — Emlid Reach RS2+ (~$2,200) or RS3 (~$3,000). Rugged, waterproof, one-click NTRIP in Emlid Flow. Full iOS support. The RS3 adds IMU tilt compensation (skip the levelling step on each shot — useful at high shot volumes; doesn't improve absolute accuracy).</li></ul>",
+      "deep": "Avoid anything sold as 'survey-grade' that doesn't explicitly list L1+L2 or NTRIP — it's usually SBAS/DGPS-grade and gets you sub-metre at best. Subscription-dependent hardware (from ~$850) like Trimble Catalyst DA2 needs paid correction fees on top and won't work with the free networks this map shows.\n\niOS users: only MFi-certified receivers (Bad Elf, Emlid Reach RX/RX2/RS3) work as the system GPS for any app. Non-certified receivers (ArduSimple, SparkFun) are limited to apps with a built-in driver — currently SW Maps. Android has no equivalent restriction; any of the options above work system-wide via mock-location.\n\nIf you need centimetre accuracy with no mobile signal at all, look at standalone PPP receivers — Galileo HAS-capable units start around €2,700 / $2,900 with no ongoing fees. Users in Japan / Asia-Pacific have QZSS CLAS as an analogous free service; users in China / Asia-Pacific have BeiDou PPP-B2b. Search 'Galileo HAS receiver', 'QZSS CLAS', or 'BeiDou PPP-B2b' to explore those categories. This map is not about those.",
       "related": ["is-my-gear-compatible"]
     },
     "how-to-connect-emlid": {
@@ -88,7 +89,7 @@
       "sub": "Virtual Reference Station",
       "lead": "A VRS network synthesises a virtual reference station at your location, using real stations around you. One connection point, uniform cm-accuracy anywhere inside the coverage.",
       "body": "<p>Purple rings on the map mark VRS networks. You connect once and never have to switch stations as you move.</p><p>Your app needs to send your current position to the network — look for a 'send GGA', 'send NMEA position', or 'Receive GGA' toggle and make sure it's on. Most apps enable this by default.</p>",
-      "deep": "Under the hood, the network runs a network-RTK solver (most commonly Trimble VRS or a Geo++ MAC equivalent) that models atmosphere from 3+ neighbouring bases. For users, the practical difference vs a single base is: (a) no baseline-distance penalty, (b) no station picking, (c) slightly longer time-to-first-fix on connection.",
+      "deep": "Under the hood, the network runs a network-RTK solver (most commonly Trimble VRS or a Geo++ MAC equivalent) that models atmosphere from 3+ neighbouring bases. For users, the practical difference vs a single base is: (a) no baseline-distance penalty, (b) no station picking, (c) slightly longer time-to-first-fix on connection.\n\nFailure modes worth knowing: (1) <b>Edge of network</b> — if your rover sits outside the polygon of physical stations, the caster silently switches from interpolation to extrapolation. There is no RTCM warning. Horizontal error stays small (~6 cm at 30 km outside the hull) but vertical can balloon to several metres. (2) <b>Geomagnetic storm</b> — Kp 7+ collapses ambiguity-resolution success rate even inside the network. (3) <b>Steep terrain</b> — vertical tropospheric correction extrapolates poorly in mountainous areas: roughly 27 cm of height error per 1000 m of altitude difference between you and the nearest physical station.\n\nVRS sends a continuous stream of NMEA-GGA position sentences from your rover to the caster — a privacy consideration if you're moving around with cellular data on.",
       "related": ["how-to-connect-emlid", "near-mountpoint"]
     },
     "carrier-l1l2": {
@@ -108,7 +109,7 @@
       "sub": "RTK float vs RTK fix",
       "lead": "Float means your receiver is using corrections but hasn't resolved the carrier-phase ambiguities. Accuracy is ~decimetre, not centimetre. Common causes: baseline too long, poor sky view, weak correction stream.",
       "body": "<ol><li>Check the baseline — is the station within 30 km? Further out, float is normal.</li><li>Clear sky view? Trees and buildings block low-elevation satellites you need for ambiguity resolution.</li><li>Check your NTRIP client shows incoming bytes / RTCM messages. No data means the caster connection is dead.</li><li>Give it 60 seconds of clear sky. Fix can take 30–90 s on cold start.</li></ol>",
-      "deep": "In L1-only RTK, fix may never be achievable beyond ~15 km. In L1+L2, expect fix out to 30–40 km under good conditions. Legacy RTCM 2.x streams carry less information — modern receivers increasingly don't accept them; the popup warns when a station is 2.x only.",
+      "deep": "In L1-only RTK, fix may never be achievable beyond ~15 km. In L1+L2, expect fix within ~30 km under good conditions. Legacy RTCM 2.x streams carry less information — modern receivers increasingly don't accept them; the popup warns when a station is 2.x only.",
       "related": ["carrier-l1l2", "how-to-connect-emlid"]
     },
     "mountpoint": {
@@ -150,6 +151,76 @@
       "body": "<ul><li><b>Open</b> — no signup. Paste credentials (often a generic user/pass) and connect.</li><li><b>Registration</b> — free account, usually approved instantly or in 1–2 days. An email and a form.</li><li><b>Conditions</b> — free only for specific users (e.g. non-commercial, agricultural) or within a defined trial period. Check the network's site for current terms.</li></ul>",
       "deep": "The 'Restricted' tier (circled ? pins) is a separate category — paid or identity-gated networks shown on the map for reference only. They're not usable via this site's data.",
       "related": []
+    },
+    "mountpoint-stopped-working": {
+      "cat": "Migration",
+      "icon": "✕",
+      "q": "My old mountpoint stopped working",
+      "sub": "Find a working alternative",
+      "lead": "Three things cause this, in order of frequency: the base went offline, the station is stale (3–7 days down) and excluded from coverage, or the network changed host/port. The map is the fastest way to triage.",
+      "body": "<ol><li><b>Check whether the pin still exists.</b> Volunteer bases on rtk2go and Centipede vanish from the sourcetable the moment they stop streaming — gone from the map = treat as unavailable. Around 7% of registered rtk2go bases are live at any one time.</li><li><b>If the pin is grey,</b> the network is alive but this station is unreachable (offline 3–7 days). Pick another pin in the same area; any station within ~30 km gives cm-RTK on a dual-frequency receiver.</li><li><b>Check for a network move.</b> Some networks change host: Centipede migrated from <code>caster.centipede.fr</code> to <code>crtk.net</code> in March 2025; AUSCORS retired its old hostname in 2022. The pin popup shows the current host:port.</li></ol><p>Recovery in order of effort: nearest physical pin in the green/yellow-green zone → register on the relevant national CORS network (SAPOS, ERGNSS, AUSCORS, IBGE…) for far better reliability → Centipede status page → ask rtk2go support if a specific mountpoint is permanently removed or just transient.</p>",
+      "deep": "Volunteer bases drop off most often because of dynamic-IP changes after an ISP reboot, power outages without UPS, hardware failure, operator moves/sells/loses interest, and OS updates breaking RTKBase auto-start. The registration on the caster persists; if the operator brings the base back, it appears live instantly.\n\nFor mission-critical work — legal survey, machine control, production agriculture — volunteer mountpoints are the wrong tool regardless of how reliable any individual operator runs theirs. Use a national CORS network or a commercial service with an SLA.",
+      "related": ["kp-storm-check", "regional-jamming", "firewall-blocking", "position-off-vs-google-maps", "false-fix-warning"]
+    },
+    "false-fix-warning": {
+      "cat": "Troubleshooting",
+      "icon": "⚠",
+      "q": "Could my receiver be lying about its 'Fix'?",
+      "sub": "False-fix risk and how to spot it",
+      "lead": "Yes, occasionally. The receiver can show 'RTK Fixed' with cm precision while the actual position is offset by ~19 cm or a small multiple of it — the carrier-phase ambiguity resolved on the wrong integer. There is no LED, alarm, or status flag for it.",
+      "body": "<p>Risk is highest with: long baselines (>30 km), L1-only receivers (~15% of epochs in difficult environments), heavy multipath, and weak satellite geometry (<8 sat pairs). Dual-frequency on a short baseline in clean sky is essentially immune.</p><p>Detection without ground truth is hard. Options:</p><ul><li>Compare a fix at a known point — a benchmark, a previously surveyed corner — and look for a consistent offset of ~19 cm or a small multiple.</li><li>Re-acquire the fix (force the receiver to lose lock, reconnect) and check whether the new position matches the previous one. False fixes don't repeat reliably.</li><li>For consequential work, take redundant shots at different times or from a different rover orientation.</li></ul>",
+      "deep": "Multi-band receivers see fewer false fixes than single-band ones, especially in difficult environments. If you're working with metal walls, large glass surfaces, or tall buildings nearby, the multipath risk goes up — take a second shot from a slightly different position or after forcing the receiver to re-acquire its fix. For consequential decisions like legal boundaries or cm-level construction stakeout, never rely on a single fix.",
+      "related": ["float-vs-fix", "carrier-l1l2"]
+    },
+    "position-off-vs-google-maps": {
+      "cat": "Troubleshooting",
+      "icon": "⊕",
+      "q": "Why is my fix off by 1–2 m vs Google Maps?",
+      "sub": "Datum, geoid, imagery offset",
+      "lead": "Almost always a datum mismatch, not a broken receiver. Your RTK fix is in the network's reference frame; Google Maps is in WGS84/ITRF. National datums drift relative to ITRF as tectonic plates move — the offset is real, consistent, and cm-accurate after correction.",
+      "body": "<p>Typical offsets in 2026 (epoch ~2025):</p><ul><li><b>ETRS89</b> (Western Europe) — ~0.9 m to the northeast of WGS84/ITRF.</li><li><b>GDA2020</b> (Australia) — ~0.35 m, growing ~70 mm/yr.</li><li><b>GDA94</b> (legacy Australia) — ~2.2 m.</li><li><b>NAD83(2011)</b> (North America) — ~0.5–2 m, direction-dependent.</li><li><b>OSGB36</b> (UK) — ~70–120 m. Yes, metres.</li></ul><p>If your offset is consistent in direction and magnitude across a site, it's the datum. Apply the national transformation (PROJ/QGIS does this on-the-fly with grid-shift files for major datums). If the offset varies, suspect Google's underlying imagery — typical georeferencing accuracy is 1–3 m in major cities, 5–20 m rural, up to 50 m in featureless terrain.</p>",
+      "deep": "Two other causes worth ruling out: (a) altitude can be off by tens of metres because the receiver outputs height above the reference ellipsoid, but maps use height above mean sea level — apply your country's geoid model in the mapping app to convert. (b) An rtk2go volunteer base with a sloppy autonomous survey-in coordinate produces an offset in the opposite direction to the datum offset above; pick a national survey-network station instead.",
+      "related": ["false-fix-warning", "what-success-looks-like"]
+    },
+    "what-success-looks-like": {
+      "cat": "Connect",
+      "icon": "✓",
+      "q": "How do I know it's actually working?",
+      "sub": "Healthy RTK Fix numbers",
+      "lead": "Once your client connects, an RTK fix should appear within 30 seconds to a couple of minutes. Once fixed, your numbers should look like the ones below — anything substantially worse is a sign something is wrong, not a sign your receiver is bad.",
+      "body": "<ul><li><b>Horizontal accuracy (HPA / HRMS)</b> — 10–20 mm at baselines under 10 km; 30–50 mm at 30–50 km.</li><li><b>Vertical accuracy</b> — typically 1.5–2× horizontal.</li><li><b>Correction age</b> — 0–2 s. Above 5 s = warning; above 10 s most receivers downgrade to float.</li><li><b>PDOP</b> — ≤2 for reliable fix; above 4 a fix is unlikely.</li><li><b>Satellites in use</b> — ≥10 multi-constellation (GPS+Galileo+GLONASS+BeiDou).</li><li><b>Time-to-first-fix</b> — 5–30 s on a multi-band receiver in open sky; minutes if sky is partially blocked or you're at the edge of a baseline.</li></ul><p>UI cues: SW Maps shows a position bubble that's blue (standalone), orange (float), or green (fix). Emlid Reach RX has a status LED — white (single), yellow (float), green (fix).</p>",
+      "deep": "Reported accuracy is computed from satellite geometry and ambiguity-resolution status, not from any independent ground truth. It captures receiver noise and DOP but cannot see multipath, base-coordinate errors, or atmospheric extrapolation in NRTK. The displayed number is typically optimistic in non-ideal environments — urban or near-canopy work commonly has actual error 2–5× larger than the screen suggests.",
+      "related": ["float-vs-fix", "false-fix-warning"]
+    },
+    "firewall-blocking": {
+      "cat": "Troubleshooting",
+      "icon": "⛔",
+      "q": "Connection times out or refuses",
+      "sub": "Firewall, port, or wrong URL",
+      "lead": "NTRIP runs on whatever TCP port the caster picks — usually 2101, but the value in the popup is what counts. Corporate WiFi, campus networks, and public hotspots commonly block non-web ports outright.",
+      "body": "<ul><li><b>Hangs 10–30 s, then 'Connection timed out':</b> outbound TCP is blocked by a firewall. Most common on corporate, campus, and hotel WiFi. Test from a 4G/5G hotspot — if it works there, it's the network.</li><li><b>'Connection refused' immediately (under 1 s):</b> the port is reachable but no service is listening. Wrong port, wrong host, or the caster is down. Re-check the popup.</li><li><b>'401 Unauthorized' / 'Bad password':</b> credentials are wrong. The network layer is fine.</li><li><b>Connects, no error, but no data flows:</b> for VRS/NEAR mountpoints, your client must send NMEA-GGA back to the caster. Enable 'Receive GGA' or 'Send NMEA position' in the client.</li></ul><p>Workarounds for blocked networks: AUSCORS offers port 443 with TLS as a firewall-friendly alternative; FReDNet runs on port 8080.</p>",
+      "deep": "Diagnostic commands if you have a terminal handy:<br><code>nc -zv rtk2go.com 2101</code> (Linux/macOS)<br><code>Test-NetConnection rtk2go.com -Port 2101</code> (Windows PowerShell)<br><code>curl -v http://rtk2go.com:2101/</code> — should print STR/CAS/NET lines if the port is open.<br><br>If pings reply but TCP hangs, the host is up but the port is filtered.",
+      "related": ["how-to-connect-emlid"]
+    },
+    "kp-storm-check": {
+      "cat": "Troubleshooting",
+      "icon": "☀",
+      "q": "Worked yesterday, broken today — am I in a storm?",
+      "sub": "Geomagnetic activity (Kp index)",
+      "lead": "Solar geomagnetic storms collapse RTK fix reliability without changing anything on the ground. If your setup worked yesterday and breaks today with no other change, check the Kp index at swpc.noaa.gov before suspecting hardware.",
+      "body": "<ul><li><b>Kp 0–2</b> (quiet) — normal RTK performance.</li><li><b>Kp 3–4</b> (unsettled) — high-latitude users start to see iono gradient growth; mid-latitude usually fine.</li><li><b>Kp 5</b> (G1, minor storm) — fixes become difficult at baselines over 20 km. Network RTK starts to degrade at high latitudes.</li><li><b>Kp 6</b> (G2, moderate) — IAR success rate falls noticeably even mid-latitude.</li><li><b>Kp 7</b> (G3, strong) — IAR success can drop from 94% to 31%; high-latitude error roughly triples.</li><li><b>Kp 8–9</b> (G4–G5) — fix is near-impossible at affected latitudes; even VRS networks degrade.</li></ul><p>Recovery: storms typically pass in hours. Use a closer station if possible. Effects can persist 12–24 h after the Kp peak as the ionosphere settles.</p>",
+      "deep": "We're past the peak of the current solar cycle, but above-average RTK disruption is expected into 2027–2028. If you work consistently at high latitudes (Iceland, northern Scandinavia, southern South Africa) you'll see Kp effects at lower thresholds than the table suggests; the global Kp index is a poor predictor near the auroral zones.",
+      "related": ["mountpoint-stopped-working", "float-vs-fix"]
+    },
+    "regional-jamming": {
+      "cat": "Troubleshooting",
+      "icon": "📡",
+      "q": "Fix loss in the Baltic, Black Sea, Korea? Could be jamming",
+      "sub": "Regional GPS interference",
+      "lead": "Several regions experience persistent civilian GPS jamming and spoofing as of 2026. If your fix loss clusters by time of day or follows airspace events, the cause is regional interference — not the base, not your hardware.",
+      "body": "<p>Affected regions:</p><ul><li><b>Eastern Baltic</b> — Estonia, Latvia, Lithuania, eastern Poland, Finland, Norway, Sweden. Documented in EASA SIB 2022-02R3 for civil aviation.</li><li><b>Black Sea, eastern Mediterranean, Cyprus, Turkey, Israel, Lebanon, Syria.</b> Position spoofing observed reporting locations hundreds of km away.</li><li><b>Persian Gulf</b> — UAE and Iran-adjacent airspace, chronic.</li><li><b>Korean peninsula coast</b> — North Korean jamming, intermittent since 2010.</li><li><b>Active conflict zones</b> — Ukraine, Gaza, Sudan.</li></ul><p>Cross-check with <a href=\"https://gpsjam.org\" target=\"_blank\" rel=\"noopener\">gpsjam.org</a>, which builds daily heatmaps from aircraft ADS-B integrity reports. If your area is red on the day in question, expect intermittent fix loss until conditions improve.</p>",
+      "deep": "Spoofing is harder to detect than jamming because the receiver still sees a clean signal — just a fake one. RTK doesn't help: the rover tracks the spoofed satellites and the differential cancellation breaks. Symptoms: a position that teleports to a far-away point (often a major airport), a receiver clock that disagrees with your phone clock by seconds, and signal strengths that are oddly uniform across all satellites instead of varying with elevation.",
+      "related": ["mountpoint-stopped-working"]
     },
     "can-i-share": {
       "cat": "Meta",
