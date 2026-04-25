@@ -109,7 +109,7 @@
       "sub": "RTK float vs RTK fix",
       "lead": "Float means your receiver is using corrections but hasn't resolved the carrier-phase ambiguities. Accuracy is ~decimetre, not centimetre. Common causes: baseline too long, poor sky view, weak correction stream.",
       "body": "<ol><li>Check the baseline — is the station within 30 km? Further out, float is normal.</li><li>Clear sky view? Trees and buildings block low-elevation satellites you need for ambiguity resolution.</li><li>Check your NTRIP client shows incoming bytes / RTCM messages. No data means the caster connection is dead.</li><li>Give it 60 seconds of clear sky. Fix can take 30–90 s on cold start.</li></ol>",
-      "deep": "In L1-only RTK, fix may never be achievable beyond ~15 km. In L1+L2, expect fix out to 30–40 km under good conditions. Legacy RTCM 2.x streams carry less information — modern receivers increasingly don't accept them; the popup warns when a station is 2.x only.",
+      "deep": "In L1-only RTK, fix may never be achievable beyond ~15 km. In L1+L2, expect fix within ~30 km under good conditions. Legacy RTCM 2.x streams carry less information — modern receivers increasingly don't accept them; the popup warns when a station is 2.x only.",
       "related": ["carrier-l1l2", "how-to-connect-emlid"]
     },
     "mountpoint": {
