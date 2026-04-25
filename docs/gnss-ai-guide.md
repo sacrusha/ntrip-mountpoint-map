@@ -74,7 +74,11 @@ not yet tracked by the u-blox F9P or most hobbyist hardware. ✓
 **Dual-frequency (L1+L2 or equivalent):**
 - Forms the ionosphere-free (iono-free) linear combination: cancels
   ~99% of first-order iono delay ~
-- Reliable fix out to ~30 km under normal conditions
+- Reliable fix out to ~30 km under typical ionospheric conditions;
+  manufacturer-rated to 60 km RTK under optimal conditions (Emlid RS2+:
+  60 km RTK, 7 mm + 1 ppm horizontal ✓). Practical limit is strongly
+  ionosphere-dependent — the same receiver can achieve fix at 50 km on
+  a quiet day and fail at 20 km during a geomagnetic storm.
 - The practical minimum for NTRIP RTK at useful baselines
 - Examples: ZED-F9P (GPS L1/L2C + GLONASS L1OF/L2OF + Galileo E1/E5b +
   BeiDou B1I/B2I) ✓; Emlid RS2+
@@ -1256,5 +1260,7 @@ This is the "fixed but wrong" scenario. Most likely causes:
 - [Galileo HAS PPP-RTK convergence — GPS Solutions 2024](https://link.springer.com/article/10.1007/s10291-024-01617-7)
 - [BDS-3 constellation completion — GPS World](https://www.gpsworld.com/two-new-beidou-satellites-complete-bds-3-constellation/) (45 total satellites, 30 BDS-3 ✓)
 - [Klobuchar model correction efficiency — Navipedia](https://gssc.esa.int/navipedia/index.php/Klobuchar_Ionospheric_Model) (~50–70% RMS removal globally ✓)
+- [Reach RS2+ Specifications — Emlid](https://docs.emlid.com/reachrs2/specifications/specs/) (RTK range 60 km; horizontal accuracy 7 mm + 1 ppm ✓)
+- [Single-band VS Multi-band — Emlid](https://docs.emlid.com/reach/tutorials/basics/single-multi/) (single-band RTK baseline limit 10 km; multi-band 60 km ✓)
 
-_Last updated: 2026-04-24. Third validation pass: 2026-04-24._
+_Last updated: 2026-04-25. Fourth validation pass: 2026-04-25._
