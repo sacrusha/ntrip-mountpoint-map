@@ -106,7 +106,7 @@ a:hover{color:#1b2b3a;}
     </tr>
     <tr>
       <td><strong>Emlid Reach RS2+</strong></td>
-      <td class="price">~$2,200<br><small>used: €800–1,200</small></td>
+      <td class="price">~$2,200</td>
       <td>Previous flagship, still sold. No tilt compensation. Good value as a budget rover or fixed base station. Full iOS support.</td>
     </tr>
   </tbody>
@@ -150,7 +150,7 @@ a:hover{color:#1b2b3a;}
 </ol>
 <p>Most clients will ask you to send your approximate position to the server (an NMEA GGA sentence). Most receivers and clients do this automatically — it lets the server pick the best corrections for your location.</p>
 <p><strong>Your antenna must be outdoors</strong> with a clear, unobstructed view of the sky — see <a href="#antenna">Antenna placement</a> below for what works and what doesn't.</p>
-<p><strong>What success looks like:</strong> your client will show the correction stream as connected. Within about 30–60 seconds your receiver should report a <em>fix</em> (some receivers show this as "RTK Fixed" or a green indicator). Once fixed, position updates will reflect centimetre-level accuracy. If your software shows coordinates jumping around at metre scale, the receiver is still in <em>float</em> — wait another minute or try a different mountpoint.</p>
+<p><strong>What success looks like:</strong> your client will show the correction stream as connected. Within 30–90 seconds your receiver should report a <em>fix</em> (some receivers show this as "RTK Fixed" or a green indicator). Once fixed, position updates will reflect centimetre-level accuracy. If your software shows coordinates jumping around at metre scale, the receiver is still in <em>float</em> — wait another minute or try a different mountpoint.</p>
 <div class="callout"><strong>Troubleshooting</strong><br>
 <strong>Connection refused or times out:</strong> check the host and port; some networks use a non-standard port listed in the map popup. Corporate, campus, and public WiFi commonly block port 2101 — try a 4G/5G hotspot to confirm whether your network is the problem.<br>
 <strong>You see a long text listing instead of corrections:</strong> your client requested <code>/</code> rather than <code>/MOUNTPOINT</code>, so the caster is sending you the sourcetable. Re-enter the connection with the mountpoint name set.<br>
@@ -216,7 +216,7 @@ a:hover{color:#1b2b3a;}
   <dt>L1 / L2 / L5</dt>
   <dd>Radio frequency bands broadcast by GNSS satellites. Dual-frequency (L1+L2) is the minimum for reliable RTK. Tri-band (L1+L2+L5) performs better in difficult environments such as tree cover or urban areas.</dd>
   <dt>Fix / float</dt>
-  <dd><em>Fix</em> means the receiver has locked the integer wavelength counts (called <em>phase ambiguities</em>) that carrier-phase RTK depends on, and is producing centimetre-accurate positions. <em>Float</em> means it is using corrections but has not pinned those integers yet — accuracy is decimetre range. A fix typically takes under a minute once connected to a good correction source within range.</dd>
+  <dd><em>Fix</em> means the receiver has locked the integer wavelength counts (called <em>phase ambiguities</em>) that carrier-phase RTK depends on, and is producing centimetre-accurate positions. <em>Float</em> means it is using corrections but has not pinned those integers yet — accuracy is decimetre range. A fix typically takes 30–90 seconds once connected to a good correction source within range.</dd>
   <dt>PPP (Precise Point Positioning)</dt>
   <dd>An alternative to network RTK that uses a single receiver plus precise satellite orbit and clock data — no nearby base station needed. Convergence to centimetre accuracy takes 10–30 minutes; final accuracy is typically 10–30 cm in real time, sub-centimetre in offline post-processing.</dd>
   <dt>Galileo HAS / QZSS CLAS / BeiDou PPP-B2b</dt>
