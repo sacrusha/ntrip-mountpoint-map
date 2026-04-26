@@ -20,6 +20,22 @@ hardware from ~$850 + fees.
   country (access model, open questions). Detail lives in networks.md.
 - [`docs/global-survey.md`](docs/global-survey.md) — same for multi-country
   and global networks.
+- [`docs/gnss-ai-guide.md`](docs/gnss-ai-guide.md) — technical GNSS primer
+  for AI sessions; consult when needed for background. Casually referred to
+  as "the AI guide".
+- [`data/help_topics.json`](data/help_topics.json) — searchable user-facing
+  help repository (22 interlinked topics + 4 popovers) surfaced via the
+  Help button on the map. Two topics are canonical references:
+  `is-this-for-me` catalogues representative hobbyist use cases (amateur
+  archaeology / palaeontology, rare-plant demography, nest logging, DIY
+  robot mowers, drone GCPs, RC bathymetry, OSM cm-mapping, cave entrance
+  tie-ins) — the record of who the project is for; `antenna-placement`
+  documents the rover-side multipath checklist that drives fix quality
+  once corrections arrive.
+- [`guide.html`](guide.html) — long-form standalone primer linked from
+  the map banner. Audience-anchored to hobbyists; UK spelling. Numeric
+  figures (TTFF, baselines, prices) must stay aligned with
+  `data/help_topics.json` — both files derive from the AI guide.
 
 ## Repository layout
 
@@ -32,6 +48,7 @@ scripts/fetch_stations.py     # Sourcetable fetch + parse + diff.
 data/
   stations.json               # Canonical JSON, consumed by index.html.
   country_markers.json        # Static; country-level markers (120 entries, 3 tiers).
+  help_topics.json            # Static; in-map help (22 topics + 4 popovers).
   <source>.sourcetable        # Raw archives per caster.
 ```
 
@@ -215,6 +232,16 @@ entries added (one per network, each at its own region): `eft_cors` (Moscow),
   adding a `vrs_` prefix would silently decouple them. Grey uses
   `state['grey:'+id]`, info uses `state['info:'+id]`. The `:` separator cannot
   appear in any id (`[a-zA-Z0-9_]`), so no collision is possible.
+
+- **User-facing copy lives in two files** — `guide.html` (long-form primer)
+  and `data/help_topics.json` (in-map help). Numeric figures must stay
+  aligned across both: TTFF 30-90 s, L1+L2 useful baseline ~30 km,
+  cost-on-top ~5 MB/h mobile data, etc. The AI guide is the source of
+  truth for the underlying numbers. Style rules: UK spelling
+  (centimetre / metre / behaviour); use "GPS" colloquially in narrative
+  prose but switch to "GNSS" wherever the wording is structurally about
+  multi-constellation hardware or signals — L1 and L2 are not "GPS
+  frequencies" because Galileo E1 and E5b sit on the same bands.
 
 ## Testing
 
