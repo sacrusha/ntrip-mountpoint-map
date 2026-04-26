@@ -33,11 +33,18 @@ hobbyists and small shops looking for cm-accurate GPS corrections within
   devices (fee-free units from ~$2,900; subscription hardware from ~$850 +
   fees) from free network RTK, and gives honest hardware price
   ranges. Links to a full hobbyist guide (`guide.html`).
-- `guide.html` — standalone primer covering: compatibility check for
-  existing survey gear (Trimble, Leica, Topcon), complete assembled unit
-  recommendations (Emlid), DIY path (ArduSimple), step-by-step NTRIP
-  connection with NTRIP client pointers, DIY base station setup, and
-  plain-English glossary. Prices in €/$; no US-only products.
+- `guide.html` — standalone primer covering: scope (NTRIP defined,
+  ongoing data cost), compatibility check for existing survey gear
+  (Trimble, Leica, Topcon), complete assembled unit recommendations
+  (Emlid), DIY path (ArduSimple), step-by-step NTRIP connection with
+  NTRIP client pointers, antenna placement (the largest accuracy lever
+  after baseline), DIY base station setup, real-world hobbyist examples,
+  and plain-English glossary. Prices in €/$; no US-only products.
+- `data/help_topics.json` — searchable in-map help (22 interlinked
+  topics, 4 popovers) surfaced via the Help button. Covers concepts
+  (NTRIP, VRS, datum offsets, ionospheric storms), connect-step
+  troubleshooting, antenna placement, false-fix and jamming awareness,
+  and a use-case catalogue (`is-this-for-me`).
 - Filters DGNSS-only mountpoints (sub-metre, out of scope), VRS/network-
   solution streams (no fixed coordinates), and flags legacy RTCM 2.x streams
   in popups.

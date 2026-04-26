@@ -251,6 +251,33 @@ Collapsible panel, top-right:
 - On change, re-filter stations, re-render dots + coverage raster +
   detail layer + country markers.
 
+### User-facing help content
+
+Two files carry user-facing copy:
+
+- **`guide.html`** — standalone long-form primer linked from the banner.
+  Audience: technical hobbyists with no GNSS background (citizen
+  science, amateur archaeology / paleontology, botanical and wildlife
+  monitoring, automation tinkering). UK spelling. Sections cover scope,
+  why standalone GPS drifts, hardware compatibility and buying guide,
+  using the map, dead-mountpoint replacement, step-by-step connecting,
+  antenna placement, DIY base station, real-world examples, glossary.
+- **`data/help_topics.json`** — searchable in-map help surfaced via the
+  Help button. ~22 interlinked topics across eight categories
+  (Getting started, Before you start, Connect, Concepts, Migration,
+  Troubleshooting, Advanced, Meta) plus four popovers shown on map
+  elements. Each topic exposes `lead` / `body` / `deep` / `related` so
+  readers progress from a one-sentence answer to detailed explanation.
+  Canonical entries: `is-this-for-me` (use-case catalogue, audience
+  anchoring, SEO) and `antenna-placement` (multipath checklist).
+
+Numeric figures (TTFF, baseline ranges, accuracy targets, prices) must
+match between the two files. The technical reference for those numbers
+is `docs/gnss-ai-guide.md`. Use "GPS" colloquially in narrative prose
+but "GNSS" where the wording is structurally about multi-constellation
+hardware or signals — L1 and L2 are not "GPS frequencies" because
+Galileo E1 and E5b sit on those same bands.
+
 ## Tech choices
 
 - **Leaflet 1.9** + **OpenStreetMap** tiles.
