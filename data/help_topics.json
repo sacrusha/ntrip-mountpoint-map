@@ -37,10 +37,10 @@
       "icon": "▦",
       "q": "What am I looking at?",
       "sub": "In 30 seconds",
-      "lead": "This map shows free public reference stations that broadcast GNSS corrections. Connect to one within ~30 km of where you're working and your GPS goes from metres-accurate to centimetres.",
+      "lead": "Whether you're recording where a fossil came from, marking individual rare plants for return visits, or building a garden robot — ±1 m GPS isn't enough but free network RTK gets you to centimetres. This map shows the reference stations that make that possible: connect to one within ~30 km of where you're working and your GPS goes from metres-accurate to centimetres.",
       "body": "<p>Each coloured dot is one station. The green halos show where its correction is reliable: <span style=\"color:#4caf77\">green &lt;10 km, ~2 cm</span> · <span style=\"color:#b8c832\">lime 10–30 km, centimetre-level</span> · <span style=\"color:#d4a030\">amber 30–50 km, accuracy grows with distance</span> · <span style=\"color:#d46064\">red 50–100 km, decimetre range</span>.</p><p>Click any dot to get connection details — server, port, mountpoint, and credentials — to enter into your receiver or phone app.</p>",
       "deep": "Purple rings are VRS (virtual networks — one connection point, the network picks a base for you). Grey rings are networks that exist but aren't yet ingested into this feed. Circled ? marks paid or restricted networks, shown for reference only.",
-      "related": ["is-my-gear-compatible", "how-to-connect-emlid", "access-tiers"]
+      "related": ["is-my-gear-compatible", "how-to-connect-emlid", "access-tiers", "is-this-for-me"]
     },
     "is-my-gear-compatible": {
       "cat": "Before you start",
@@ -50,7 +50,7 @@
       "lead": "You need a dedicated dual-frequency (L1+L2) GNSS receiver — almost all phones and consumer GPS devices can't do RTK in real-time, and purpose-built units start around €275.",
       "body": "<p>How to check:</p><ol><li>Look in the receiver's datasheet for <code>L1+L2</code>, <code>dual-band</code>, or <code>dual-frequency</code>.</li><li>Or look for an <b>NTRIP</b>, <b>Network&nbsp;RTK</b>, or <b>Internet&nbsp;RTK</b> option in the receiver's settings menu. If it's there, you're compatible.</li></ol><p>Most professional surveying equipment from Trimble, Leica, Topcon, Sokkia, South and Hi-Target made in the past ~15 years supports this.</p>",
       "deep": "L5 is a third frequency — nice but not required. Triple-band receivers perform better under tree cover and converge faster. The hobbyist sweet spot is dual-band u-blox ZED-F9P (ArduSimple, SparkFun RTK, Emlid Reach RS2+).",
-      "related": ["what-to-buy", "how-to-connect-emlid"]
+      "related": ["what-to-buy", "how-to-connect-emlid", "is-this-for-me"]
     },
     "what-to-buy": {
       "cat": "Before you start",
@@ -60,7 +60,17 @@
       "lead": "For free network RTK, ready-to-use kits start around €449 / $490. DIY tinkerer kits from ~€275. You don't need the €2,900+ standalone category unless you work somewhere with no mobile signal.",
       "body": "<p>Five paths, in roughly ascending price order:</p><ul><li><b>DIY</b> — ArduSimple simpleRTK2B kit (~€275). Requires more setup; standard choice for building your own base station too.</li><li><b>Ready-to-use hobbyist</b> — ArduSimple RTK Handheld 2 Kit (~€449 / $490). Compact, battery included, Bluetooth. Android-preferred (iOS: SW Maps only).</li><li><b>All-in-one rover</b> — SparkFun RTK Facet (~$739). NTRIP client built in; connects via Bluetooth. Android-preferred (iOS: SW Maps only). Available from Mouser, Digi-Key, and SparkFun directly.</li><li><b>iOS-system-wide</b> — Bad Elf Flex Mini Extreme (~$1,499). MFi-certified — works as the iPhone/iPad system GPS in any mapping app, no special driver needed. One-time unlock; no ongoing fees. Pocketable.</li><li><b>Survey-grade</b> — Emlid Reach RS2+ (~$2,200) or RS3 (~$3,000). Rugged, waterproof, one-click NTRIP in Emlid Flow. Full iOS support. The RS3 adds IMU tilt compensation (skip the levelling step on each shot — useful at high shot volumes; doesn't improve absolute accuracy).</li></ul>",
       "deep": "Avoid anything sold as 'survey-grade' that doesn't explicitly list L1+L2 or NTRIP — it's usually SBAS/DGPS-grade and gets you sub-metre at best. Subscription-dependent hardware (from ~$850) like Trimble Catalyst DA2 needs paid correction fees on top and won't work with the free networks this map shows.\n\niOS users: only MFi-certified receivers (Bad Elf, Emlid Reach RX/RX2/RS3) work as the system GPS for any app. Non-certified receivers (ArduSimple, SparkFun) are limited to apps with a built-in driver — currently SW Maps. Android has no equivalent restriction; any of the options above work system-wide via mock-location.\n\nIf you need centimetre accuracy with no mobile signal at all, look at standalone PPP receivers — Galileo HAS-capable units start around €2,700 / $2,900 with no ongoing fees. Users in Japan / Asia-Pacific have QZSS CLAS as an analogous free service; users in China / Asia-Pacific have BeiDou PPP-B2b. Search 'Galileo HAS receiver', 'QZSS CLAS', or 'BeiDou PPP-B2b' to explore those categories. This map is not about those.\n\nLast reviewed 2026-04-26 — prices and product lineups age fast; check the manufacturer's site for current numbers.",
-      "related": ["is-my-gear-compatible", "build-base"]
+      "related": ["is-my-gear-compatible", "build-base", "is-this-for-me"]
+    },
+    "is-this-for-me": {
+      "cat": "Before you start",
+      "icon": "?",
+      "q": "Who actually uses free network RTK?",
+      "sub": "Realistic hobbyist use cases",
+      "lead": "Hobbyists, citizen scientists, makers, and small volunteer groups whose work needs cm-level positioning but doesn't justify a paid surveyor or commercial correction subscription. If your project sits between 'metre-level GPS is fine' and 'we need legal survey acceptance', this map exists for you.",
+      "body": "<p>Real-world examples we know about:</p><ul><li><b>Amateur excavation find recording</b> — metal detectorists and community digs log in-situ 3D positions of finds before backfilling, so each find stays tied to its stratigraphic layer (~5 cm).</li><li><b>Fossil site spatial recording</b> — palaeontology hobbyists fix each bone or tooth in a surface scatter before collection so the accumulation pattern can be reconstructed (~5 cm).</li><li><b>Rare-plant demography</b> — conservation volunteers mark individual stems for return-visit monitoring across seasons; need to land on the same plant, not a neighbour (3–5 cm).</li><li><b>Nest, den, roost logging</b> — raptor platforms, otter holts, bat-roost trees recorded so a future volunteer can walk to the right tree limb (10–20 cm).</li><li><b>DIY robot lawnmower</b> — wireless boundary, follow-the-swath tracking within cut-width. OpenMower and Ardumower Sunray are common starting points (2–5 cm).</li><li><b>Drone photogrammetry on personal land</b> — 5–8 RTK-staked ground-control points georeference a consumer-drone orthophoto to ±3 cm rather than ±3–5 m, enabling year-on-year change detection (3–5 cm).</li><li><b>DIY autonomous survey boat</b> — RC boat plus single-beam echosounder for pond and lake depth charts (20–30 cm horizontal).</li><li><b>OSM footway and kerb mapping</b> — accessible-route geometry where path width and junction position matter for wheelchair routing (10–20 cm).</li><li><b>Cave entrance tie-ins</b> — caving clubs fix the surface entrance with RTK so compass-and-tape underground surveys align with the surface map (10–20 cm).</li></ul>",
+      "deep": "Out of audience scope: legal cadastral survey, commercial machine control on a working farm, construction stakeout, structural displacement monitoring. These need formal datum tie, uptime SLA, and certified equipment — not free volunteer mountpoints. The 'My old mountpoint stopped working' topic spells out the volunteer-vs-CORS reliability gap.",
+      "related": ["whats-this-map", "what-to-buy", "what-success-looks-like"]
     },
     "how-to-connect-emlid": {
       "cat": "Connect",

@@ -23,6 +23,12 @@ hardware from ~$850 + fees.
 - [`docs/gnss-ai-guide.md`](docs/gnss-ai-guide.md) — technical GNSS primer
   for AI sessions; consult when needed for background. Casually referred to
   as "the AI guide".
+- [`data/help_topics.json`](data/help_topics.json) — searchable user-facing
+  help repository (21 interlinked topics + 4 popovers). Topic
+  `is-this-for-me` catalogues representative hobbyist use cases (amateur
+  archaeology / palaeontology, rare-plant demography, nest logging, DIY
+  robot mowers, drone GCPs, RC bathymetry, OSM cm-mapping, cave entrance
+  tie-ins) — that's the canonical record of who the project is for.
 
 ## Repository layout
 

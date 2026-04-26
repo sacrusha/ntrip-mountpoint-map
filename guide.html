@@ -62,6 +62,7 @@ a:hover{color:#1b2b3a;}
 <p style="font-size:13px;color:#555;margin:-20px 0 24px;"><em>Mountpoint stopped working? Skip to <a href="#replace">Replacing a dead mountpoint</a>.</em></p>
 
 <h2 id="scope">What this guide covers</h2>
+<p>Whether you're recording where a fossil came from, marking individual rare plants for next year's survey, or building a garden robot that needs to follow a path — you don't necessarily need centimetre precision out of vanity, but ±1 m GPS isn't quite good enough either. The free correction networks on the <a href="./">map</a> close that gap.</p>
 <p>This guide is about <strong>Network RTK</strong>: a free, internet-delivered correction stream that turns a compatible GPS receiver from metres-accurate into centimetre-accurate. If you need accuracy without any internet connection, the free alternatives are <strong>Galileo HAS</strong> (global), <strong>QZSS CLAS</strong> (Japan / Asia-Pacific), and <strong>BeiDou PPP-B2b</strong> (China / Asia-Pacific) — satellite-delivered corrections, but the receiver hardware costs ~$2,900 and post-convergence accuracy is closer to 10–30 cm than 1–3 cm. This guide isn't about those.</p>
 <p>The protocol used to deliver these corrections is called <strong>NTRIP</strong> — that's what you'll configure in your receiver and the term you'll see throughout this guide and across the map. The corrections themselves are free; ongoing cost is just the mobile data your receiver uses to fetch them, typically under 5 MB per hour for a multi-constellation stream.</p>
 
@@ -168,6 +169,21 @@ a:hover{color:#1b2b3a;}
 </ul>
 <p>Two things determine whether the result is actually usable. <strong>Antenna placement</strong> matters more than the price of the receiver — a clear 360° view of the sky, well away from metal surfaces, beats expensive hardware on a flagpole. And the <strong>base's coordinates</strong> need to come from a free PPP service like <a href="https://webapp.csrs-scrs.nrcan-rncan.gc.ca/geod/tools-outils/ppp.php" rel="noopener noreferrer">CSRS-PPP</a> or <a href="https://gnss.ga.gov.au/auspos" rel="noopener noreferrer">AUSPOS</a>, not just from a quick autonomous measurement — otherwise every rover that connects gets a confidently wrong fix with no warning.</p>
 <div class="callout"><strong>Honest effort estimate:</strong> first setup takes a weekend if you are comfortable with Linux and basic networking, plus another day's wall-clock time to log 24 h of observations for the PPP coordinate. Total additional hardware cost is roughly €200–450 depending on what you already have.</div>
+
+<h2 id="examples">Real-world examples</h2>
+<p>Hobbyists, citizen scientists, and small volunteer groups already use free network RTK for things like:</p>
+<ul>
+  <li><strong>Amateur excavation find recording</strong> — metal detectorists and community digs log in-situ 3D positions of finds before backfilling, so each find stays tied to its stratigraphic layer (~5 cm).</li>
+  <li><strong>Fossil site recording</strong> — palaeontology hobbyists fix each bone or tooth in a surface scatter before collection so the accumulation pattern can be reconstructed (~5 cm).</li>
+  <li><strong>Rare-plant demography</strong> — conservation volunteers mark individual stems for return-visit monitoring across seasons (3–5 cm).</li>
+  <li><strong>Nest, den, roost logging</strong> — raptor platforms, otter holts, bat-roost trees recorded so a future volunteer can walk to the right tree limb (10–20 cm).</li>
+  <li><strong>DIY robot lawnmower</strong> — wireless boundary and follow-the-swath tracking. OpenMower and Ardumower Sunray are common starting points (2–5 cm).</li>
+  <li><strong>Drone photogrammetry on personal land</strong> — RTK-staked ground-control points georeference a consumer-drone orthophoto to ±3 cm, enabling year-on-year change detection (3–5 cm).</li>
+  <li><strong>DIY autonomous survey boat</strong> — RC boat plus single-beam echosounder for pond and lake depth charts (20–30 cm horizontal).</li>
+  <li><strong>OSM footway and kerb mapping</strong> — accessible-route geometry where path width and junction position matter for wheelchair routing (10–20 cm).</li>
+  <li><strong>Cave entrance tie-ins</strong> — surface entrances fixed with RTK so compass-and-tape underground surveys align with the surface map (10–20 cm).</li>
+</ul>
+<p><small>Out of audience scope: legal cadastral survey, commercial machine control, construction stakeout — these need certified equipment and uptime SLAs, not free volunteer mountpoints.</small></p>
 
 <h2 id="glossary">Glossary</h2>
 <dl class="glossary">
