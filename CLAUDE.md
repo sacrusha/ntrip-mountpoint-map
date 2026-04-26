@@ -20,6 +20,9 @@ hardware from ~$850 + fees.
   country (access model, open questions). Detail lives in networks.md.
 - [`docs/global-survey.md`](docs/global-survey.md) — same for multi-country
   and global networks.
+- [`docs/gnss-ai-guide.md`](docs/gnss-ai-guide.md) — technical GNSS primer
+  for AI sessions; consult when needed for background. Casually referred to
+  as "the AI guide".
 
 ## Repository layout
 
