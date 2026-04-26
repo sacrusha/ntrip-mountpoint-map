@@ -80,7 +80,7 @@
       "lead": "Open your NTRIP client's 'correction input' or 'NTRIP' settings, paste the values from the station popup, and press Connect.",
       "body": "<p>Fields every NTRIP client asks for, mapped to the popup:</p><ul><li><b>Host / Caster address</b> → <code>Server</code> (e.g. <code>crtk.net</code>)</li><li><b>Port</b> → <code>Port</code> (use the value shown in the popup)</li><li><b>Mountpoint</b> → <code>Mount</code> (e.g. <code>AMPH</code>)</li><li><b>Username / Password</b> → from the popup. For open sources, a generic user/pass is shown — paste it directly. Sources requiring registration use your account credentials.</li></ul><p>Once connected, your receiver needs a few seconds to reach \"RTK fix.\" If it sticks at \"float,\" your baseline is too long — pick a closer station.</p>",
       "deep": "App-specific tips:<br><br><b>Emlid Flow:</b> Settings → NTRIP → Add caster. Leave 'Receive GGA' on for VRS/NEAR mountpoints.<br><b>SW Maps:</b> Connection settings → External NTRIP Caster. SW Maps can forward corrections to bluetooth receivers.<br><b>u-center:</b> Receiver → NTRIP Client. Remember to enable UBX-RXM-RTCM output if you want to verify fix quality.",
-      "related": ["near-mountpoint", "float-vs-fix", "firewall-blocking"]
+      "related": ["near-mountpoint", "float-vs-fix", "firewall-blocking", "antenna-placement"]
     },
     "near-mountpoint": {
       "cat": "Connect",
@@ -91,6 +91,16 @@
       "body": "<p>Use NEAR when:</p><ul><li>You're mobile and crossing station boundaries.</li><li>You don't want to hardcode one station name and forget it's offline.</li></ul><p>Your NTRIP client must send a GGA sentence (its current position) back to the caster, otherwise NEAR has nothing to go on. Most clients do this by default.</p><p>NEAR doesn't appear as a pin on this map — type it directly into your NTRIP client's mountpoint field.</p>",
       "deep": "NEAR isn't part of the NTRIP spec — it's a caster-side convention. Centipede, rtk2go and a few others implement it. If you paste 'NEAR' on a network that doesn't support it, you'll get a 404 or silent no-corrections.",
       "related": ["how-to-connect-emlid", "vrs-explained"]
+    },
+    "antenna-placement": {
+      "cat": "Connect",
+      "icon": "↑",
+      "q": "Where should I put the antenna?",
+      "sub": "Multipath sets your accuracy floor",
+      "lead": "Once you're connected to a correction stream within range, multipath — signals bouncing off nearby surfaces before reaching the antenna — sets the limit on your fix quality. Placement matters more than receiver price: a $3,000 unit in a bad spot performs worse than a $300 unit in a good one.",
+      "body": "<p>Five rules, in order of impact:</p><ol><li><b>Clear sky above ~10° in all directions.</b> Low-elevation satellites are what resolve carrier-phase ambiguity. Trees, walls, parked vehicles, and your own body block them.</li><li><b>≥1 m clearance from metal.</b> HVAC units, parapets, lightning rods, vehicle bodies, neighbouring antennas all re-radiate signals.</li><li><b>≥1 m above any flat surface.</b> Below 1 m the ground itself dominates as a reflector. Up to ~3 m helps; beyond, diminishing returns.</li><li><b>Rigid mount.</b> Wooden masts flex and thin-wall steel vibrates — both feed cycle slips. Scaffold pole on a brick wall, heavy survey tripod, or sturdy bipod all work.</li><li><b>For separate-antenna kits</b> (ArduSimple simpleRTK2B etc.): add a 30 cm flat metal ground plane under the patch antenna. Self-contained survey poles (Reach RS2+/RS3, Bad Elf) have this built in.</li></ol><p>Bad placements: flat metal roof; next to HVAC; under canopy; wooden flagpole; windowsill. In the field, hold the pole vertical and don't lean on a metal vehicle or fence post — the antenna treats temporary multipath the same as permanent.</p>",
+      "deep": "Why multipath is special: GNSS satellites transmit right-hand circularly polarised (RHCP) signals. A single bounce off a flat conductive surface flips the polarisation to left-hand; well-designed GNSS antennas reject left-hand signals by ~15–25 dB. That's the main reason a survey antenna outperforms a generic patch — it's a hardware property of the antenna, not the receiver chip. The 30 cm ground-plane rule is set by the L1 wavelength (~19 cm); a smaller disc is too small to act as an effective reflector for first-bounce rejection.",
+      "related": ["float-vs-fix", "what-success-looks-like", "build-base", "what-to-buy"]
     },
     "vrs-explained": {
       "cat": "Concepts",
@@ -120,7 +130,7 @@
       "lead": "Float means your receiver is using corrections but hasn't yet locked the integer wavelength counts that carrier-phase RTK depends on (the 'ambiguities'). Accuracy is ~decimetre, not centimetre. Common causes: baseline too long, poor sky view, weak correction stream.",
       "body": "<ol><li>Check the baseline — is the station within 30 km? Further out, float is normal.</li><li>Clear sky view? Trees and buildings block low-elevation satellites you need for ambiguity resolution.</li><li>Check your NTRIP client shows incoming bytes / RTCM messages. No data means the caster connection is dead.</li><li>Give it 60 seconds of clear sky. Fix can take 30–90 s on cold start.</li></ol>",
       "deep": "In L1-only RTK, fix may never be achievable beyond ~15 km. In L1+L2, expect fix within ~30 km under good conditions. Legacy RTCM 2.x streams carry less information — modern receivers increasingly don't accept them; the popup warns when a station is 2.x only.",
-      "related": ["carrier-l1l2", "how-to-connect-emlid", "what-success-looks-like"]
+      "related": ["carrier-l1l2", "how-to-connect-emlid", "what-success-looks-like", "antenna-placement"]
     },
     "mountpoint": {
       "cat": "Concepts",
@@ -149,8 +159,8 @@
       "sub": "If the map shows no coverage near you",
       "lead": "Yes. A second RTK receiver at a fixed surveyed point broadcasts corrections through a free caster; your rover connects to it like any other station on this map.",
       "body": "<ul><li><b>Hardware:</b> any dual-frequency RTK receiver (the ArduSimple simpleRTK2B starter kit works well), power, internet</li><li><b>Software:</b> <a href=\"https://github.com/Stefal/rtkbase\" target=\"_blank\" rel=\"noopener\">RTKBase</a> — open-source, runs on a Raspberry Pi, web interface</li><li><b>Caster:</b> <a href=\"https://www.centipede-rtk.org/host-rtk-base\" target=\"_blank\" rel=\"noopener\">Centipede</a> and/or <a href=\"http://rtk2go.com\" target=\"_blank\" rel=\"noopener\">RTK2Go</a> — free public NTRIP casters; register your base and it becomes accessible from anywhere</li></ul>",
-      "deep": "Honest effort: first setup takes a weekend if you're comfortable with Linux and basic networking. Additional hardware cost roughly €200–450 depending on what you already have.\n\nFor a properly accurate base: stable antenna mount with ground plane, clear 360° sky view, position surveyed by PPP (24h minimum, a week is better). An improvised roof-mount is fine for experimenting but won't produce centimetre-accurate corrections.",
-      "related": ["what-to-buy", "is-my-gear-compatible"]
+      "deep": "Honest effort: first setup takes a weekend if you're comfortable with Linux and basic networking. Additional hardware cost roughly €200–450 depending on what you already have.\n\nFor a properly accurate base: stable antenna mount with ground plane, clear 360° sky view, position surveyed by PPP (24h minimum, a week is better). An improvised roof-mount is fine for experimenting but won't produce centimetre-accurate corrections. Full placement rules in the antenna-placement topic.",
+      "related": ["what-to-buy", "is-my-gear-compatible", "antenna-placement"]
     },
     "access-tiers": {
       "cat": "Concepts",
@@ -200,7 +210,7 @@
       "lead": "Once your client connects, an RTK fix should appear within 30 seconds to a couple of minutes. Once fixed, your numbers should look like the ones below — anything substantially worse is a sign something is wrong, not a sign your receiver is bad.",
       "body": "<ul><li><b>Horizontal accuracy (HPA / HRMS)</b> — 10–20 mm at baselines under 10 km; 30–50 mm at 30–50 km.</li><li><b>Vertical accuracy</b> — typically 1.5–2× horizontal.</li><li><b>Correction age</b> — 0–2 s. Above 5 s = warning; above 10 s most receivers downgrade to float.</li><li><b>PDOP</b> — ≤2 for reliable fix; above 4 a fix is unlikely.</li><li><b>Satellites in use</b> — ≥10 multi-constellation (GPS+Galileo+GLONASS+BeiDou).</li><li><b>Time-to-first-fix</b> — 5–30 s on a multi-band receiver in open sky; minutes if sky is partially blocked or you're at the edge of a baseline.</li></ul><p>UI cues: SW Maps shows a position bubble that's blue (standalone), orange (float), or green (fix). Emlid Reach RX has a status LED — white (single), yellow (float), green (fix).</p>",
       "deep": "Reported accuracy is computed from satellite geometry and ambiguity-resolution status, not from any independent ground truth. It captures receiver noise and DOP but cannot see multipath, base-coordinate errors, or atmospheric extrapolation in NRTK. The displayed number is typically optimistic in non-ideal environments — urban or near-canopy work commonly has actual error 2–5× larger than the screen suggests.",
-      "related": ["float-vs-fix", "false-fix-warning"]
+      "related": ["float-vs-fix", "false-fix-warning", "antenna-placement"]
     },
     "firewall-blocking": {
       "cat": "Troubleshooting",

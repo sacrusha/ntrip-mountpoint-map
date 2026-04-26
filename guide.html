@@ -149,7 +149,7 @@ a:hover{color:#1b2b3a;}
   <li><strong>Mountpoint</strong> — the correction stream name</li>
 </ol>
 <p>Most clients will ask you to send your approximate position to the server (an NMEA GGA sentence). Most receivers and clients do this automatically — it lets the server pick the best corrections for your location.</p>
-<p><strong>Your antenna must be outdoors</strong> with a clear, unobstructed view of the sky. Indoors, under tree cover, or near tall buildings, RTK will not work reliably regardless of how close the reference station is.</p>
+<p><strong>Your antenna must be outdoors</strong> with a clear, unobstructed view of the sky — see <a href="#antenna">Antenna placement</a> below for what works and what doesn't.</p>
 <p><strong>What success looks like:</strong> your client will show the correction stream as connected. Within about 30–60 seconds your receiver should report a <em>fix</em> (some receivers show this as "RTK Fixed" or a green indicator). Once fixed, position updates will reflect centimetre-level accuracy. If your software shows coordinates jumping around at metre scale, the receiver is still in <em>float</em> — wait another minute or try a different mountpoint.</p>
 <div class="callout"><strong>Troubleshooting</strong><br>
 <strong>Connection refused or times out:</strong> check the host and port; some networks use a non-standard port listed in the map popup. Corporate, campus, and public WiFi commonly block port 2101 — try a 4G/5G hotspot to confirm whether your network is the problem.<br>
@@ -159,6 +159,18 @@ a:hover{color:#1b2b3a;}
 <strong>Fix achieved but accuracy is worse than expected:</strong> the station is likely at the edge of its reliable range, or multipath from nearby buildings is affecting your antenna. Move the antenna to a clearer location.<br>
 <small>Less-common causes — geomagnetic storms, regional GNSS jamming, datum offsets, false fixes — live in the map's <strong>Help</strong> button → Troubleshooting.</small></div>
 
+<h2 id="antenna">Antenna placement — the cheapest accuracy upgrade</h2>
+<p>Once your receiver is connected to a correction stream within range, the residual error is dominated by <em>multipath</em>: signals bouncing off nearby surfaces before reaching the antenna. Multipath is hardware-independent — a $3,000 Reach RS3 in the wrong place produces a worse fix than a $300 ArduSimple in the right one. Five things matter, in order:</p>
+<ol>
+  <li><strong>Clear sky above ~10° in all directions.</strong> Low-elevation satellites are what nail down the integer ambiguities; trees, walls, parked vehicles, and your own body block them. Sky directly above is not enough.</li>
+  <li><strong>At least 1 m clearance from metal.</strong> HVAC units, parapets, lightning rods, roof flashing, vehicle bodies, neighbouring antennas — they re-radiate signals and feed your antenna delayed duplicates.</li>
+  <li><strong>At least 1 m above any flat surface.</strong> A roof, a table, a fence rail; below ~1 m the ground itself becomes the dominant reflector. Up to ~3 m helps; beyond that, diminishing returns.</li>
+  <li><strong>Rigid mount.</strong> Wooden masts flex and thin-wall steel poles vibrate — both feed micro-jitter into the carrier-phase measurement. A scaffold pole bolted to a brick wall, a heavy survey tripod, or a sturdy bipod all work.</li>
+  <li><strong>For separate-antenna kits</strong> (ArduSimple simpleRTK2B and similar): mount the patch antenna on a flat metal disc — a 30 cm aluminium pizza pan, a satellite dish back-plate, anything flat and conductive. Below ~20 cm or with perforations, paint, or curvature the ground plane stops working. Self-contained survey poles (Reach RS2+ / RS3, Bad Elf) have this built in.</li>
+</ol>
+<p><strong>Bad placements to recognise:</strong> on a flat metal roof; right next to an HVAC unit; under tree canopy; on a wooden flagpole; on a windowsill (the wall blocks half the sky and reflects the rest). If your fix numbers look bad despite a fresh correction stream and a baseline within range, the antenna is almost always why.</p>
+<p><strong>In the field with a survey pole:</strong> the same rules apply. Hold the pole vertical, well away from metal vehicles and metal fence posts. The antenna does not know you are holding it temporarily — half a second next to a steel post produces the same multipath as a permanent mount there.</p>
+
 <h2 id="base">Outside coverage: setting up your own base station</h2>
 <p>If the map shows no stations within useful range, you can run your own. A second RTK receiver sits at a fixed point you have surveyed; it broadcasts corrections via the internet through a free caster, which your rover connects to as normal.</p>
 <p>The most accessible route:</p>
@@ -167,7 +179,7 @@ a:hover{color:#1b2b3a;}
   <li><strong>Software:</strong> <a href="https://github.com/Stefal/rtkbase" rel="noopener noreferrer">RTKBase</a> — open-source, runs on a Raspberry Pi, has a web interface</li>
   <li><strong>Caster:</strong> <a href="https://www.centipede-rtk.org/host-rtk-base" rel="noopener noreferrer">Centipede</a> and/or <a href="http://rtk2go.com" rel="noopener noreferrer">RTK2Go</a> — free public NTRIP casters; register your base and it becomes accessible from anywhere.</li>
 </ul>
-<p>Two things determine whether the result is actually usable. <strong>Antenna placement</strong> matters more than the price of the receiver — a clear 360° view of the sky, well away from metal surfaces, beats expensive hardware on a flagpole. And the <strong>base's coordinates</strong> need to come from a free PPP service like <a href="https://webapp.csrs-scrs.nrcan-rncan.gc.ca/geod/tools-outils/ppp.php" rel="noopener noreferrer">CSRS-PPP</a> or <a href="https://gnss.ga.gov.au/auspos" rel="noopener noreferrer">AUSPOS</a>, not just from a quick autonomous measurement — otherwise every rover that connects gets a confidently wrong fix with no warning.</p>
+<p>Two things determine whether the result is actually usable. The first is <a href="#antenna">antenna placement</a> — same rules as for the rover, but it now matters for everyone connecting to your base, not just you. The second is the <strong>base's coordinates</strong>: they need to come from a free PPP service like <a href="https://webapp.csrs-scrs.nrcan-rncan.gc.ca/geod/tools-outils/ppp.php" rel="noopener noreferrer">CSRS-PPP</a> or <a href="https://gnss.ga.gov.au/auspos" rel="noopener noreferrer">AUSPOS</a> (upload 24 h of logged observations), not from a quick autonomous measurement — otherwise every rover that connects gets a confidently wrong fix with no warning.</p>
 <div class="callout"><strong>Honest effort estimate:</strong> first setup takes a weekend if you are comfortable with Linux and basic networking, plus another day's wall-clock time to log 24 h of observations for the PPP coordinate. Total additional hardware cost is roughly €200–450 depending on what you already have.</div>
 
 <h2 id="examples">Real-world examples</h2>
