@@ -233,6 +233,18 @@ entries added (one per network, each at its own region): `eft_cors` (Moscow),
   `state['grey:'+id]`, info uses `state['info:'+id]`. The `:` separator cannot
   appear in any id (`[a-zA-Z0-9_]`), so no collision is possible.
 
+- **Theme variables — never inline a hex for muted/foreground text:** the
+  `:root` block in `index.html` defines `--fg`, `--muted`, `--accent`, etc.
+  with light- and dark-mode values. Inline `style="color:#555/#666/#888"` in
+  popup HTML or toggle-panel rows bypasses this and renders unreadable on the
+  dark `--panel-bg` (`#1e3048`). Use `color:var(--muted)` for de-emphasised
+  text, `color:var(--fg)` for body, `color:var(--link)` for links. Same goes
+  for any new `bindTooltip` / `L.control` — Leaflet ships defaults with
+  hard-coded white; the `@media(prefers-color-scheme:dark)` block re-skins
+  `.leaflet-tooltip`, `.leaflet-bar a`, and `.leaflet-control-attribution`.
+  When adding a new Leaflet UI element, check whether it picks up those
+  overrides or needs another rule.
+
 - **User-facing copy lives in two files** — `guide.html` (long-form primer)
   and `data/help_topics.json` (in-map help). Numeric figures must stay
   aligned across both: TTFF 30-90 s, L1+L2 useful baseline ~30 km,
