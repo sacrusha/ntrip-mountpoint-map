@@ -23,217 +23,335 @@ from urllib.request import Request, urlopen
 ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT / "data"
 
+
+def _dec_places(s: str) -> int:
+    """Decimal places in a coordinate string, used for accuracy-rectangle sizing."""
+    dot = s.find('.')
+    return 0 if dot == -1 else len(s) - dot - 1
+
+
 SOURCES = [
     # access: "open"        = connect immediately, no account needed
     #         "registration" = free for everyone; sign up required
     #         "conditions"   = free but may not apply to you (national ID,
     #                          non-commercial only, fee for some uses, expiring)
-    # registration: URL shown in the map popup as a clickable "Sign up" link.
-    # None = no account needed (open access).
+    # type: "single-base"  = physical antennas, each with a distinct coordinate
+    #       "physical-vrs" = physical coords in sourcetable; rover uses VRS/NRTK mounts
+    #       "vrs-only"     = sourcetable exposes only virtual/single-coord mountpoints
+    # country: list of ISO 3166-1 alpha-2 codes; "global" for volunteer aggregators
+    # region: sub-national coverage string (optional)
+    # group: logical key for multi-source networks, e.g. "sapos" (optional)
+    # credentials: {user, pass} for open-access casters with default creds (optional)
+    # registration: URL shown in popup as "Sign up" link. None = no account needed.
     # color/label: consumed by the frontend; single source of truth here.
     # See docs/networks.md for per-source detail.
     {"id": "rtk2go",      "url": "http://rtk2go.com:2101/",
      "color": "#d00000", "label": "rtk2go",
-     "access": "open",         "registration": None,                             # username=any email, pass=none
+     "type": "single-base", "country": ["global"],
+     "credentials": {"user": "(any email address)", "pass": "none"},
+     "access": "open",         "registration": None,
      "nmea_filter": False},                                                       # caster tags all physical stations nmea=1
     {"id": "centipede",   "url": "http://crtk.net:2101/",                       # migrated from caster.centipede.fr 2025-03-18
      "color": "#e87500", "label": "Centipede",
-     "access": "open",         "registration": None},                            # user=centipede pass=centipede
+     "type": "single-base", "country": ["global"],
+     "credentials": {"user": "centipede", "pass": "centipede"},
+     "access": "open",         "registration": None},
     {"id": "frednet",     "url": "http://gnsscaster.regione.fvg.it:8080/",
      "color": "#2e6fb0", "label": "FReDNet",
-     "access": "registration", "registration": "https://frednet.crs.ogs.it/"},  # free email registration
+     "type": "physical-vrs", "country": ["IT"], "region": "Friuli-Venezia Giulia",
+     "access": "registration", "registration": "https://frednet.crs.ogs.it/"},
     {"id": "geortk",      "url": "http://geortk.jp:2101/",
      "color": "#1a7a4a", "label": "GeoRTK",
-     "access": "open",         "registration": None,                             # no auth
+     "type": "single-base", "country": ["JP"],
+     "access": "open",         "registration": None,
      "nmea_filter": False},                                                       # caster tags physical stations nmea=1
     # SAPOS — German federal-state RTK networks. Sourcetables publicly readable;
     # RTCM streams require per-Länder registration. Most Länder free; BY €20/yr
     # flat rate for non-agricultural use. Raw TCP (NTRIP 1.0) fallback required.
-    {"id": "sapos_SH_HH", "url": "http://www.sapos.geonord.de:2101/",          # Schleswig-Holstein + Hamburg
+    {"id": "sapos_SH_HH", "url": "http://www.sapos.geonord.de:2101/",
      "color": "#2d6e6e", "label": "SAPOS (Schleswig-Holstein + Hamburg)",
+     "type": "vrs-only", "country": ["DE"],
+     "region": "Schleswig-Holstein + Hamburg", "group": "sapos",
      "access": "registration", "registration": "https://www.sapos.de"},
-    {"id": "sapos_NI",    "url": "http://www.sapos-ni-ntrip.de:2101/",         # Niedersachsen (incl. Bremen)
+    {"id": "sapos_NI",    "url": "http://www.sapos-ni-ntrip.de:2101/",
      "color": "#2d6e6e", "label": "SAPOS (Niedersachsen)",
+     "type": "vrs-only", "country": ["DE"],
+     "region": "Niedersachsen + Bremen", "group": "sapos",
      "access": "registration", "registration": "https://www.sapos.de"},
-    {"id": "sapos_NW",    "url": "http://www.sapos-nw-ntrip.de:2101/",         # Nordrhein-Westfalen
+    {"id": "sapos_NW",    "url": "http://www.sapos-nw-ntrip.de:2101/",
      "color": "#2d6e6e", "label": "SAPOS (Nordrhein-Westfalen)",
+     "type": "vrs-only", "country": ["DE"],
+     "region": "Nordrhein-Westfalen", "group": "sapos",
      "access": "registration", "registration": "https://www.sapos.de"},
-    {"id": "sapos_HE",    "url": "http://www.sapos-he-ntrip.de:2101/",         # Hessen
+    {"id": "sapos_HE",    "url": "http://www.sapos-he-ntrip.de:2101/",
      "color": "#2d6e6e", "label": "SAPOS (Hessen)",
+     "type": "physical-vrs", "country": ["DE"],
+     "region": "Hessen", "group": "sapos",
      "access": "registration", "registration": "https://www.sapos.de"},
-    {"id": "sapos_RP",    "url": "http://www.sapos-ntrip.rlp.de:2101/",        # Rheinland-Pfalz; confirmed free (LVermGeo)
+    {"id": "sapos_RP",    "url": "http://www.sapos-ntrip.rlp.de:2101/",
      "color": "#2d6e6e", "label": "SAPOS (Rheinland-Pfalz)",
+     "type": "physical-vrs", "country": ["DE"],
+     "region": "Rheinland-Pfalz", "group": "sapos",
      "access": "registration", "registration": "https://www.sapos.de"},
-    {"id": "sapos_BW",    "url": "http://www.sapos-bw-ntrip.de:2101/",         # Baden-Württemberg
+    {"id": "sapos_BW",    "url": "http://www.sapos-bw-ntrip.de:2101/",
      "color": "#2d6e6e", "label": "SAPOS (Baden-Württemberg)",
+     "type": "vrs-only", "country": ["DE"],
+     "region": "Baden-Württemberg", "group": "sapos",
      "access": "registration", "registration": "https://www.sapos.de"},
-    {"id": "sapos_BY",    "url": "http://www.sapos-by-ntrip.de:2101/",         # Bayern: free agri, €20/yr otherwise
+    {"id": "sapos_BY",    "url": "http://www.sapos-by-ntrip.de:2101/",          # free agri; €20/yr otherwise
      "color": "#2d6e6e", "label": "SAPOS (Bayern)",
+     "type": "vrs-only", "country": ["DE"],
+     "region": "Bayern", "group": "sapos",
      "access": "conditions",   "registration": "https://www.sapos.de"},
-    {"id": "sapos_SN",    "url": "http://ntrip.sachsen.de:2101/",               # Sachsen (GeoSN)
+    {"id": "sapos_SN",    "url": "http://ntrip.sachsen.de:2101/",
      "color": "#2d6e6e", "label": "SAPOS (Sachsen)",
+     "type": "physical-vrs", "country": ["DE"],
+     "region": "Sachsen", "group": "sapos",
      "access": "registration", "registration": "https://www.sapos.de"},
-    {"id": "sapos_SL",    "url": "http://www.sapos-sl-ntrip.de:2101/",         # Saarland
+    {"id": "sapos_SL",    "url": "http://www.sapos-sl-ntrip.de:2101/",
      "color": "#2d6e6e", "label": "SAPOS (Saarland)",
+     "type": "physical-vrs", "country": ["DE"],
+     "region": "Saarland", "group": "sapos",
      "access": "registration", "registration": "https://www.sapos.de"},
-    {"id": "sapos_BE",    "url": "http://www.sapos-be-ntrip.de:2101/",         # Berlin
+    {"id": "sapos_BE",    "url": "http://www.sapos-be-ntrip.de:2101/",
      "color": "#2d6e6e", "label": "SAPOS (Berlin)",
+     "type": "vrs-only", "country": ["DE"],
+     "region": "Berlin", "group": "sapos",
      "access": "registration", "registration": "https://www.sapos.de"},
-    {"id": "sapos_BB",    "url": "http://www.sapos-bb-ntrip.de:2101/",         # Brandenburg
+    {"id": "sapos_BB",    "url": "http://www.sapos-bb-ntrip.de:2101/",
      "color": "#2d6e6e", "label": "SAPOS (Brandenburg)",
+     "type": "vrs-only", "country": ["DE"],
+     "region": "Brandenburg", "group": "sapos",
      "access": "registration", "registration": "https://www.sapos.de"},
-    {"id": "sapos_MV",    "url": "http://www.sapos-mv-ntrip.de:2101/",         # Mecklenburg-Vorpommern
+    {"id": "sapos_MV",    "url": "http://www.sapos-mv-ntrip.de:2101/",
      "color": "#2d6e6e", "label": "SAPOS (Mecklenburg-Vorpommern)",
+     "type": "vrs-only", "country": ["DE"],
+     "region": "Mecklenburg-Vorpommern", "group": "sapos",
      "access": "registration", "registration": "https://www.sapos.de"},
-    {"id": "sapos_LSA",   "url": "http://www.sapos-lsa-ntrip.de:2101/",        # Sachsen-Anhalt
+    {"id": "sapos_LSA",   "url": "http://www.sapos-lsa-ntrip.de:2101/",
      "color": "#2d6e6e", "label": "SAPOS (Sachsen-Anhalt)",
+     "type": "vrs-only", "country": ["DE"],
+     "region": "Sachsen-Anhalt", "group": "sapos",
      "access": "registration", "registration": "https://www.sapos.de"},
-    {"id": "sapos_TH",    "url": "http://www.sapos-th-ntrip.de:2101/",         # Thüringen
+    {"id": "sapos_TH",    "url": "http://www.sapos-th-ntrip.de:2101/",
      "color": "#2d6e6e", "label": "SAPOS (Thüringen)",
+     "type": "vrs-only", "country": ["DE"],
+     "region": "Thüringen", "group": "sapos",
      "access": "registration", "registration": "https://www.sapos.de"},
-    {"id": "apos",        "url": "http://aposrtk.bev.gv.at:2101/",             # Austria BEV; free for agri/forestry (eAMA); paid otherwise
+    {"id": "apos",        "url": "http://aposrtk.bev.gv.at:2101/",              # free agri/forestry (eAMA); paid otherwise
      "color": "#9b0000",  "label": "APOS",
+     "type": "physical-vrs", "country": ["AT"],
      "access": "conditions",   "registration": "https://www.bev.gv.at"},
     {"id": "ergnss",      "url": "http://ergnss-ip.ign.es:2101/",
      "color": "#b05000", "label": "ERGNSS",
-     "access": "registration", "registration": "https://ergnss.ign.es/gnuserportal/"},   # free, immediate; attribute IGN
+     "type": "physical-vrs", "country": ["ES"],
+     "access": "registration", "registration": "https://ergnss.ign.es/gnuserportal/"},
     {"id": "auscors",     "url": "http://ntrip.data.gnss.ga.gov.au:2101/",
      "color": "#b8860b", "label": "AUSCORS",
-     "access": "registration", "registration": "https://gnss.ga.gov.au/registration"},   # CC BY 4.0
+     "type": "single-base", "country": ["AU"],
+     "access": "registration", "registration": "https://gnss.ga.gov.au/registration"},
     {"id": "positionz",   "url": "http://positionz-rt.linz.govt.nz:2101/",
      "color": "#2e8b57", "label": "PositioNZ",
-     "access": "registration", "registration": "https://www.linz.govt.nz/"},             # LINZ account; CC BY 4.0 NZ
+     "type": "single-base", "country": ["NZ"],
+     "access": "registration", "registration": "https://www.linz.govt.nz/"},
     {"id": "satref",      "url": "http://ntrip.geodetic.gov.hk:2101/",
      "color": "#8b008b", "label": "SatRef",
-     "access": "registration", "registration": "https://www.geodetic.gov.hk/"},          # mountpoint VRS32G; open data
-    {"id": "inacors",     "url": "http://nrtk.big.go.id:2001/",                 # NOTE: port 2001, not 2101
+     "type": "physical-vrs", "country": ["HK"],
+     "access": "registration", "registration": "https://www.geodetic.gov.hk/"},
+    {"id": "inacors",     "url": "http://nrtk.big.go.id:2001/",                 # port 2001, not 2101
      "color": "#1a5fa0", "label": "InaCORS",
+     "type": "physical-vrs", "country": ["ID"],
      "access": "registration", "registration": "https://nrtk.big.go.id"},
     {"id": "trignet",     "url": "http://trignet.co.za:2101/",
      "color": "#556b2f", "label": "TrigNet",
+     "type": "single-base", "country": ["ZA"],
      "access": "registration", "registration": "https://www.trignet.co.za"},
     {"id": "rbmc_ip",     "url": "http://gps-ntrip.ibge.gov.br:2101/",
      "color": "#008b8b", "label": "RBMC-IP",
-     "access": "registration", "registration": "https://gps-ntrip.ibge.gov.br"},         # gov.br signup; 5-station limit
+     "type": "single-base", "country": ["BR"],
+     "access": "registration", "registration": "https://gps-ntrip.ibge.gov.br"},
     {"id": "ramsac",      "url": "http://ntrip.ign.gob.ar:2101/",
      "color": "#7b3f9e", "label": "RAMSAC",
-     "access": "registration", "registration": "https://www.ign.gob.ar"},                # 8-hr session cap
-    {"id": "regna_rou",  "url": "http://rtk.igm.gub.uy:2101/",                          # Uruguay IGM; ~26 stations + VRS
+     "type": "single-base", "country": ["AR"],
+     "access": "registration", "registration": "https://www.ign.gob.ar"},
+    {"id": "regna_rou",   "url": "http://rtk.igm.gub.uy:2101/",
      "color": "#1a9e5c", "label": "REGNA-ROU",
-     "access": "registration", "registration": "https://rtk.igm.gub.uy/SBC/Account/Register"},  # free; 1000+ users
+     "type": "physical-vrs", "country": ["UY"],
+     "access": "registration", "registration": "https://rtk.igm.gub.uy/SBC/Account/Register"},
     {"id": "flepos",      "url": "http://flepos.vlaanderen.be:2101/",           # ntrip.flepos.be NXDOMAIN as of 2026-04
      "color": "#3a7ca5", "label": "FLEPOS",
+     "type": "vrs-only", "country": ["BE"], "region": "Flanders",
      "access": "registration", "registration": "https://flepos.vlaanderen.be"},
     {"id": "walcors",     "url": "http://gnss.wallonie.be:2101/",
      "color": "#2c6e8a", "label": "WALCORS",
+     "type": "vrs-only", "country": ["BE"], "region": "Wallonia",
      "access": "registration", "registration": "https://gnss.wallonie.be"},
-    {"id": "spslux",      "url": "http://stream.spslux.lu:5005/",               # NOTE: port 5005, not 2101
+    {"id": "spslux",      "url": "http://stream.spslux.lu:5005/",               # port 5005, not 2101
      "color": "#5c6bc0", "label": "SPSLux",
+     "type": "physical-vrs", "country": ["LU"],
      "access": "registration", "registration": "https://www.spslux.lu/SBC/Account/Register"},
     {"id": "asg_eupos",   "url": "http://system.asgeupos.pl:2101/",
      "color": "#7b5ea7", "label": "ASG-EUPOS",
-     "access": "registration", "registration": "https://system.asgeupos.pl"},            # admin approval 1–2 working days
+     "type": "vrs-only", "country": ["PL"],
+     "access": "registration", "registration": "https://system.asgeupos.pl"},
     {"id": "cropos",      "url": "http://gnss.cropos.hr:2101/",
      "color": "#c0392b", "label": "CROPOS",
+     "type": "vrs-only", "country": ["HR"],
      "access": "registration", "registration": "https://www.cropos.hr"},
-    {"id": "estpos",      "url": "http://gnss-rtk.maaamet.ee:8083/",            # NOTE: port 8083; free until Aug 2026
+    {"id": "estpos",      "url": "http://gnss-rtk.maaamet.ee:8083/",            # port 8083; free until Aug 2026
      "color": "#16a085", "label": "ESTPOS",
+     "type": "vrs-only", "country": ["EE"],
      "access": "conditions",   "registration": "https://geoportaal.maaamet.ee"},
-    {"id": "latpos",      "url": "http://latpos.lgia.gov.lv:5001/",             # NOTE: port 5001, not 2101
+    {"id": "latpos",      "url": "http://latpos.lgia.gov.lv:5001/",             # port 5001, not 2101
      "color": "#1a6b3c", "label": "LatPos",
+     "type": "vrs-only", "country": ["LV"],
      "access": "registration", "registration": "https://latpos.lgia.gov.lv/SBC"},
     {"id": "igac",        "url": "http://sbc.igac.gov.co:2101/",
      "color": "#d4a017", "label": "IGAC",
+     "type": "physical-vrs", "country": ["CO"],
      "access": "registration", "registration": "https://redgeodesica-sbc.igac.gov.co/sbc"},
     {"id": "earthscope",  "url": "http://ntrip.earthscope.org:2101/",
      "color": "#8b4513", "label": "EarthScope",
-     "access": "conditions",   "registration": "https://www.earthscope.org/data/gnss-realtime/"},  # non-commercial NULA
+     "type": "single-base", "country": ["americas"],
+     "access": "conditions",   "registration": "https://www.earthscope.org/data/gnss-realtime/"},
     {"id": "mirai",       "url": "http://ntrip.go.gnss.go.jp:2101/",
      "color": "#2471a3", "label": "MIRAI",
-     "access": "registration", "registration": "https://go.gnss.go.jp"},                 # + separate NtripCaster auth form
+     "type": "single-base", "country": ["JP"],
+     "access": "registration", "registration": "https://go.gnss.go.jp"},
     {"id": "cors_korea",  "url": "http://www.gnssdata.or.kr:2101/",
      "color": "#a93226", "label": "CORS-KOREA",
-     "access": "conditions",   "registration": "https://www.gnssdata.or.kr"},            # national ID may be required
+     "type": "physical-vrs", "country": ["KR"],
+     "access": "conditions",   "registration": "https://www.gnssdata.or.kr"},
     {"id": "icecors",     "url": "http://178.19.53.126:2101/",
      "color": "#1e6b8c", "label": "IceCORS",
+     "type": "physical-vrs", "country": ["IS"],
      "access": "registration", "registration": "https://www.natt.is/is/landmaelingar/jardstodvakerfi"},
     {"id": "ksa_cors",    "url": "http://ksacors.geoportal.sa:2101/",
      "color": "#a0522d", "label": "KSA-CORS",
-     "access": "conditions",   "registration": "https://ksacors.geoportal.sa"},          # old gcs.gov.sa domain is NXDOMAIN
+     "type": "vrs-only", "country": ["SA"],
+     "access": "conditions",   "registration": "https://ksacors.geoportal.sa"},
     # Italy — regional networks
-    {"id": "spin3",       "url": "http://spingnss.it:2101/",                             # Piemonte + Lombardia + VdA (CSI Piemonte)
+    {"id": "spin3",       "url": "http://spingnss.it:2101/",
      "color": "#1565c0", "label": "SPIN3 GNSS",
+     "type": "physical-vrs", "country": ["IT"],
+     "region": "Piemonte, Lombardia, Valle d'Aosta", "group": "italy-regional",
      "access": "registration", "registration": "https://www.spingnss.it"},
     {"id": "gpsumbria",   "url": "http://gpsumbria.regione.umbria.it:2101/",
      "color": "#2e7d32", "label": "GPS-UMBRIA",
+     "type": "physical-vrs", "country": ["IT"],
+     "region": "Umbria", "group": "italy-regional",
      "access": "registration", "registration": "https://gpsumbria.regione.umbria.it"},
-    {"id": "gnss_abruzzo_lazio", "url": "http://gnss-rtk.regione.abruzzo.it:2101/",     # Abruzzo + Lazio (merged Dec 2022)
+    {"id": "gnss_abruzzo_lazio", "url": "http://gnss-rtk.regione.abruzzo.it:2101/",
      "color": "#558b2f", "label": "GNSS Abruzzo+Lazio",
+     "type": "physical-vrs", "country": ["IT"],
+     "region": "Abruzzo + Lazio", "group": "italy-regional",
      "access": "registration", "registration": "https://gnss-rtk.regione.abruzzo.it"},
     {"id": "sit_puglia",  "url": "http://gps.sit.puglia.it:2101/",
      "color": "#0288d1", "label": "SIT Puglia",
+     "type": "physical-vrs", "country": ["IT"],
+     "region": "Puglia", "group": "italy-regional",
      "access": "registration", "registration": "https://sit.puglia.it"},
-    {"id": "gnss_campania", "url": "http://gps-sit.regione.campania.it:2101/",           # SPID required for new users
+    {"id": "gnss_campania", "url": "http://gps-sit.regione.campania.it:2101/",  # SPID required for new users
      "color": "#6a1b9a", "label": "GNSS Campania",
+     "type": "physical-vrs", "country": ["IT"],
+     "region": "Campania", "group": "italy-regional",
      "access": "conditions",   "registration": "https://www.regione.campania.it"},
     # US state DOT / CORS networks — physical-coordinate stations
-    {"id": "wiscors",     "url": "http://wiscors.dot.wi.gov:2101/",                      # WI DOT
+    {"id": "wiscors",     "url": "http://wiscors.dot.wi.gov:2101/",
      "color": "#bf360c", "label": "WISCORS",
+     "type": "physical-vrs", "country": ["US"],
+     "region": "Wisconsin", "group": "us-state-dot",
      "access": "registration", "registration": "https://wiscors.dot.wi.gov"},
-    {"id": "fprn",        "url": "http://ntrip.myfloridagps.com:2101/",                  # FL DOT
+    {"id": "fprn",        "url": "http://ntrip.myfloridagps.com:2101/",
      "color": "#f57f17", "label": "FPRN",
+     "type": "physical-vrs", "country": ["US"],
+     "region": "Florida", "group": "us-state-dot",
      "access": "registration", "registration": "https://myfloridagps.com"},
-    {"id": "ardot_rtn",   "url": "http://gps.ardot.gov:2101/",                           # AR DOT
+    {"id": "ardot_rtn",   "url": "http://gps.ardot.gov:2101/",
      "color": "#827717", "label": "ARDOT RTN",
+     "type": "physical-vrs", "country": ["US"],
+     "region": "Arkansas", "group": "us-state-dot",
      "access": "registration", "registration": "https://gps.ardot.gov"},
-    {"id": "macors",      "url": "http://macorsrtk.massdot.state.ma.us:2101/",           # MA DOT
+    {"id": "macors",      "url": "http://macorsrtk.massdot.state.ma.us:2101/",
      "color": "#33691e", "label": "MaCORS",
+     "type": "physical-vrs", "country": ["US"],
+     "region": "Massachusetts", "group": "us-state-dot",
      "access": "registration", "registration": "https://macorsrtk.massdot.state.ma.us"},
-    {"id": "vector",      "url": "http://20.185.11.35:2101/",                            # VT VCGI; bare IP
+    {"id": "vector",      "url": "http://20.185.11.35:2101/",                   # VT VCGI; bare IP
      "color": "#1b5e20", "label": "VECTOR VT",
+     "type": "physical-vrs", "country": ["US"],
+     "region": "Vermont", "group": "us-state-dot",
      "access": "registration", "registration": "https://vcgi.vermont.gov"},
-    {"id": "azcors",      "url": "http://azcors.azwater.gov:2101/",                      # AZ ADWR; 51 stations
+    {"id": "azcors",      "url": "http://azcors.azwater.gov:2101/",
      "color": "#e65100", "label": "AzCORS",
+     "type": "physical-vrs", "country": ["US"],
+     "region": "Arizona", "group": "us-state-dot",
      "access": "registration", "registration": "https://azcors.azwater.gov"},
-    {"id": "gcgc_rtn",    "url": "http://rtn.usm.edu:2101/",                             # MS Gulf Coast Geodetic Consortium/USM
+    {"id": "gcgc_rtn",    "url": "http://rtn.usm.edu:2101/",
      "color": "#01579b", "label": "GCGC RTN",
+     "type": "physical-vrs", "country": ["US"],
+     "region": "Mississippi (Gulf Coast)", "group": "us-state-dot",
      "access": "registration", "registration": "https://rtn.usm.edu"},
-    {"id": "alcors",      "url": "http://aldotcors.dot.state.al.us:10011/",              # AL DOT; port 10011 (Leica)
+    {"id": "alcors",      "url": "http://aldotcors.dot.state.al.us:10011/",     # port 10011 (Leica)
      "color": "#880e4f", "label": "AlCORS",
+     "type": "physical-vrs", "country": ["US"],
+     "region": "Alabama", "group": "us-state-dot",
      "access": "registration", "registration": "https://dot.state.al.us"},
-    {"id": "orgn",        "url": "http://167.131.0.205:9879/",                           # OR DOT; bare IP; port 9879 (Leica)
+    {"id": "orgn",        "url": "http://167.131.0.205:9879/",                  # bare IP; port 9879 (Leica)
      "color": "#004d40", "label": "ORGN",
+     "type": "physical-vrs", "country": ["US"],
+     "region": "Oregon", "group": "us-state-dot",
      "access": "registration", "registration": "https://www.oregon.gov/odot"},
-    {"id": "msrn",        "url": "http://mdotcors.michigan.gov:10700/",                  # MI DOT; port 10700 (Leica)
+    {"id": "msrn",        "url": "http://mdotcors.michigan.gov:10700/",         # port 10700 (Leica)
      "color": "#006064", "label": "MSRN",
+     "type": "physical-vrs", "country": ["US"],
+     "region": "Michigan", "group": "us-state-dot",
      "access": "registration", "registration": "https://www.michigan.gov/mdot"},
-    {"id": "nysnet",      "url": "http://cors.dot.ny.gov:2101/",                         # NY DOT
+    {"id": "nysnet",      "url": "http://cors.dot.ny.gov:2101/",
      "color": "#311b92", "label": "NYSNet",
+     "type": "physical-vrs", "country": ["US"],
+     "region": "New York", "group": "us-state-dot",
      "access": "registration", "registration": "https://www.dot.ny.gov"},
-    {"id": "incors",      "url": "http://incors.in.gov:10000/",                          # IN DOA; port 10000
+    {"id": "incors",      "url": "http://incors.in.gov:10000/",                 # port 10000
      "color": "#4e342e", "label": "InCORS",
+     "type": "physical-vrs", "country": ["US"],
+     "region": "Indiana", "group": "us-state-dot",
      "access": "registration", "registration": "https://incors.in.gov"},
-    {"id": "iartn",       "url": "http://iartnsbc.iowadot.gov:2101/",                    # IA DOT; 83 stations
+    {"id": "iartn",       "url": "http://iartnsbc.iowadot.gov:2101/",
      "color": "#37474f", "label": "IARTN",
+     "type": "physical-vrs", "country": ["US"],
+     "region": "Iowa", "group": "us-state-dot",
      "access": "registration", "registration": "https://iowadot.gov"},
     # US state DOT — VRS-only (filter_vrs drops all pins; shown as stopgap circles)
-    {"id": "kycors",      "url": "http://kycors.ky.gov:2101/",                           # KY Transportation Cabinet
+    {"id": "kycors",      "url": "http://kycors.ky.gov:2101/",
      "color": "#546e7a", "label": "KyCORS",
+     "type": "vrs-only", "country": ["US"],
+     "region": "Kentucky", "group": "us-state-dot",
      "access": "registration", "registration": "https://kycors.ky.gov"},
-    {"id": "mncors",      "url": "http://mncors.dot.state.mn.us:9000/",                  # MN DOT; port 9000; VRS-only
+    {"id": "mncors",      "url": "http://mncors.dot.state.mn.us:9000/",         # port 9000; VRS-only
      "color": "#455a64", "label": "MnCORS",
+     "type": "vrs-only", "country": ["US"],
+     "region": "Minnesota", "group": "us-state-dot",
      "access": "registration", "registration": "https://www.mndot.gov"},
-    {"id": "odot_rtn",    "url": "http://156.63.133.115:2101/",                          # OH DOT; bare IP; VRS-only
+    {"id": "odot_rtn",    "url": "http://156.63.133.115:2101/",                 # bare IP; VRS-only
      "color": "#607d8b", "label": "ODOT RTN",
+     "type": "vrs-only", "country": ["US"],
+     "region": "Ohio", "group": "us-state-dot",
      "access": "registration", "registration": "https://transportation.ohio.gov"},
-    {"id": "modot_rtn",   "url": "http://rtk3.modot.mo.gov:2101/",                       # MO DOT; VRS-only; notarized agreement
+    {"id": "modot_rtn",   "url": "http://rtk3.modot.mo.gov:2101/",              # VRS-only; notarized agreement
      "color": "#78909c", "label": "MoDOT RTN",
+     "type": "vrs-only", "country": ["US"],
+     "region": "Missouri", "group": "us-state-dot",
      "access": "conditions",   "registration": "https://modot.mo.gov"},
-    {"id": "wvrtn",       "url": "http://wvrtn.cors.us:2101/",                           # WV DOH; VRS-only
+    {"id": "wvrtn",       "url": "http://wvrtn.cors.us:2101/",                  # VRS-only
      "color": "#90a4ae", "label": "WVRTN",
+     "type": "vrs-only", "country": ["US"],
+     "region": "West Virginia", "group": "us-state-dot",
      "access": "registration", "registration": "https://transportation.wv.gov"},
-    {"id": "mainedot",    "url": "http://mdotcors.maine.gov:2101/",                      # ME DOT; VRS-only (transitioning)
+    {"id": "mainedot",    "url": "http://mdotcors.maine.gov:2101/",             # VRS-only (transitioning)
      "color": "#b0bec5", "label": "MaineDOT",
+     "type": "vrs-only", "country": ["US"],
+     "region": "Maine", "group": "us-state-dot",
      "access": "registration", "registration": "https://www.maine.gov/mdot"},
 ]
 # RTKdata.online removed 2026-04-20: server unreachable since launch (RemoteDisconnected);
@@ -314,6 +432,7 @@ def parse_sourcetable(text: str, nmea_filter: bool = True) -> tuple[list[dict], 
         name = fields[1].strip()
         fmt = fields[3].strip() if len(fields) > 3 else ""
         carrier_raw = fields[5].strip() if len(fields) > 5 else ""
+        nav_sys = fields[6].strip() if len(fields) > 6 else ""
         country = fields[8].strip() if len(fields) > 8 else ""
         lat_str = fields[9].strip()
         lon_str = fields[10].strip()
@@ -362,11 +481,11 @@ def parse_sourcetable(text: str, nmea_filter: bool = True) -> tuple[list[dict], 
             "name": name,
             "lat": lat,
             "lon": lon,
-            "latStr": lat_str,
-            "lonStr": lon_str,
-            "carrier": carrier,
+            "latPrec": _dec_places(lat_str),
+            "lonPrec": _dec_places(lon_str),
+            "dualFreq": carrier >= 2,
             "format": fmt,
-            "legacyFormat": fmt.startswith("RTCM 2"),
+            "constellations": nav_sys,
             "country": country,
         })
     stations.sort(key=lambda s: (s["name"], s["latStr"], s["lonStr"]))
@@ -401,7 +520,8 @@ def load_existing(path: Path) -> dict | None:
 
 def station_fingerprint(source: dict) -> list[list]:
     return [
-        [s["name"], s["lat"], s["latStr"], s["lon"], s["lonStr"], s.get("carrier"), s.get("format", "")]
+        [s["name"], s["lat"], s.get("latPrec"), s["lon"], s.get("lonPrec"),
+         s.get("dualFreq"), s.get("format", ""), s.get("constellations", "")]
         for s in source.get("stations", [])
     ]
 
@@ -413,9 +533,20 @@ def fetch_source(src: dict) -> tuple[str, dict, bool]:
     access = src.get("access", "registration")
     color = src.get("color", "")
     label = src.get("label", "")
+    src_type = src.get("type", "")
+    src_country = src.get("country", [])
+    src_region = src.get("region")
+    src_group = src.get("group")
+    src_credentials = src.get("credentials")
     prev_last_ok = src.get("_prev_last_ok")
     nmea_filter = src.get("nmea_filter", True)
     raw_path = DATA_DIR / f"{sid}.sourcetable"
+    _meta = {
+        "url": url, "color": color, "label": label,
+        "type": src_type, "country": src_country, "region": src_region,
+        "group": src_group, "credentials": src_credentials,
+        "registration": registration, "access": access,
+    }
     try:
         text = fetch(url)
         stations, stats = parse_sourcetable(text, nmea_filter=nmea_filter)
@@ -425,12 +556,7 @@ def fetch_source(src: dict) -> tuple[str, dict, bool]:
         now_iso = datetime.now(timezone.utc).isoformat(timespec="seconds")
         print(f"[{sid}] fetched {len(stations)} stations "
               f"(dropped {stats['dropped_dgnss']} DGNSS, {stats['dropped_bad']} invalid{net_note}{vrs_note})")
-        return sid, {
-            "url": url,
-            "color": color,
-            "label": label,
-            "registration": registration,
-            "access": access,
+        return sid, {**_meta,
             "status": "ok",
             "fetched_at": now_iso,
             "last_ok": now_iso,
@@ -449,13 +575,8 @@ def fetch_source(src: dict) -> tuple[str, dict, bool]:
                 net_note = f", {stats['dropped_net']} net-sol" if stats["dropped_net"] else ""
                 vrs_note = f", {dropped_vrs} VRS" if dropped_vrs else ""
                 print(f"[{sid}] reusing cached sourcetable ({len(stations)} stations{net_note}{vrs_note})")
-                return sid, {
-                    "url": url,
-                    "color": color,
-                    "label": label,
-                    "registration": registration,
-                    "access": access,
-                    "status": f"stale (fetch failed: {e!r})",
+                return sid, {**_meta,
+                    "status": "stale",
                     "fetched_at": None,
                     "last_ok": prev_last_ok,
                     "raw_path": raw_path,
@@ -465,13 +586,8 @@ def fetch_source(src: dict) -> tuple[str, dict, bool]:
                 }, False
             except Exception as cache_err:
                 print(f"[{sid}] cached sourcetable unreadable: {cache_err!r}", file=sys.stderr)
-        return sid, {
-            "url": url,
-            "color": color,
-            "label": label,
-            "registration": registration,
-            "access": access,
-            "status": f"error: {e!r}",
+        return sid, {**_meta,
+            "status": "error",
             "fetched_at": None,
             "last_ok": prev_last_ok,
             "raw_path": raw_path,
@@ -514,6 +630,11 @@ def main() -> int:
             "url": data["url"],
             "color": data.get("color", ""),
             "label": data.get("label", ""),
+            "type": data.get("type", ""),
+            "country": data.get("country", []),
+            "region": data.get("region"),
+            "group": data.get("group"),
+            "credentials": data.get("credentials"),
             "registration": data.get("registration"),
             "access": data.get("access", "registration"),
             "status": data["status"],
