@@ -49,8 +49,6 @@ Quad-constellation (GPS+GLONASS+Galileo+BeiDou): more sats -> faster IAR, fewer 
 
 Answering user questions: dual-band + slow TTFF/frequent fix loss -> triple-band valid. Single-freq -> dual-band = most impactful change.
 
-> `guide.html`: "receiver must be dual-frequency (L1+L2 minimum)" = right shorthand. 5 km L1-only window too narrow for hobbyist discovery; elevated false-fix risk argues against softening. Do not claim "single-frequency can do RTK at short range" even though technically true.
-
 ### 1.4 Signal Structure (GPS L1 example)
 
 ~ Spread-spectrum carrier modulated with:
@@ -134,7 +132,7 @@ Reference station broadcasts pseudorange corrections; rover applies them. Remove
 
 Multipath/NLOS survive differential uncancelled: urban canyon -> 5-40 m bias while display reads "1 m." ✓ HDOP can appear *low* in canyons because reflected-signal sats are tracked, masking degradation rather than exposing it. Suburban canopy/buildings: 2-5 m actual. ✓
 
-SBAS (WAAS, EGNOS, MSAS, GAGAN, SDCM): DGNSS via geostationary; no internet; ceiling ~1 m; same multipath limitation. ~ DGNSS-only mountpoints filtered from project: Galileo HAS free, global, better.
+SBAS (WAAS, EGNOS, MSAS, GAGAN, SDCM): DGNSS via geostationary; no internet; ceiling ~1 m; same multipath limitation. ~ Galileo HAS is free, global, and better than DGNSS for hobbyist use.
 
 ### 3.3 RTK (Real-Time Kinematic)
 
@@ -250,8 +248,6 @@ Free vs commercial PPP-RTK (2026):
 
 NavIC SPS omitted: standalone positioning, not PPP-RTK. Galileo HAS / QZSS CLAS / BeiDou PPP-B2b = only free carrier-phase-driven corrections in active service. ~
 
-> `guide.html`: free real-time PPP-RTK = realistic only via HAS/CLAS/B2b and only on hardware tracking E6/L6/B2b. NTRIP RTK on ZED-F9P = cheapest cm real-time path outside those coverage zones or for hardware lacking those bands. Guide's HAS framing ("search elsewhere if standalone needed") = correct; preserve.
-
 ### 3.6 SSR vs OSR
 
 - OSR: station sends raw obs; rover differences them. Corrections implicitly spatial.
@@ -265,7 +261,7 @@ RTCM SC-104 = de-facto standard for differential corrections. Specs paywalled; d
 
 ### 4.1 RTCM 2.x (legacy)
 
-30-bit word frames; GPS corrections type 1/9, GLONASS 31, carrier 18/19. ~ F9P has no 2.x support. Project popup warns on 2.x-only mountpoints.
+30-bit word frames; GPS corrections type 1/9, GLONASS 31, carrier 18/19. ~ F9P has no 2.x support.
 
 ### 4.2 RTCM 3.x - Legacy messages
 
@@ -345,7 +341,7 @@ Operationally: base broadcasting only `1077` silently drops GLONASS -> halves ro
 
 ### 4.4 RTCM 3.x - SSR Messages
 
-SSR ranges ✓: GPS 1057-1062, GLONASS 1063-1068, Galileo 1240-1245, QZSS 1246-1251 ~, BeiDou 1258-1263 ~. Content: orbit/clock corrections, code/phase biases, VTEC iono maps. Used by PPP-RTK services; not standard single-base RTK. Uncommon on free public casters in this project.
+SSR ranges ✓: GPS 1057-1062, GLONASS 1063-1068, Galileo 1240-1245, QZSS 1246-1251 ~, BeiDou 1258-1263 ~. Content: orbit/clock corrections, code/phase biases, VTEC iono maps. Used by PPP-RTK services; not standard single-base RTK. Uncommon on free public NTRIP casters.
 
 ### 4.5 Proprietary Formats
 
@@ -380,20 +376,20 @@ STR;mountpoint;identifier;format;format-details;carrier;nav-system;
     authentication;fee;bitrate;misc
 ```
 
-Fields used by this project's pipeline (0-indexed):
+Key STR fields (0-indexed):
 
-| Index | Field | Project use |
-| 0 | "STR" | record type filter |
-| 1 | mountpoint | station name |
-| 9 | lat | pin location |
-| 10 | lon | pin location |
-| 11 | nmea | VRS filter (nmea=1 → caster requires GGA → drop) ✓ |
-| 3 | format | RTCM 2 legacy warning; carrier inference |
-| 5 | carrier | 0=DGNSS drop, 1=L1, 2=L1+L2, 3=tri-band |
+| Index | Field | Meaning |
+| 0 | "STR" | record type |
+| 1 | mountpoint | stream name |
+| 3 | format | RTCM version + message set |
+| 5 | carrier | 0=DGNSS, 1=L1, 2=L1+L2, 3=tri-band |
+| 9 | lat | reference latitude |
+| 10 | lon | reference longitude |
+| 11 | nmea | 1 = caster requires rover GGA (VRS/MAC/FKP/i-MAX) ✓ |
 | 14 | fee | "N" = no fee |
 
 NET record: network name, operator, registration URL. ~
-CAS record: caster metadata. ~ Not used by pipeline.
+CAS record: caster metadata. ~
 
 ### 5.3 NTRIP v1 vs v2
 
@@ -430,7 +426,7 @@ NTRIP: HTTP Basic Auth (base64 username:password). Sourcetable `authentication` 
 
 ### 5.7 Port Conventions
 
-Default port 2101 = convention only; NTRIP runs any TCP port. Non-standard ports in public networks: 5005 (SPSLux), 2001 (InaCORS), 9879 (ORGN).
+Default port 2101 = convention only; NTRIP runs any TCP port. Public networks routinely use non-standard high ports (e.g. 5005, 9879, 10011); some expose port 443 TLS for firewall traversal.
 
 ### 5.8 NEAR and Auto-Select Mountpoints
 
@@ -530,15 +526,7 @@ Comparison summary:
 | FKP | Very low (broadcast) | ~1-2 kbps | Geo++ (SAPOS heritage) | German SAPOS states (legacy); some Austrian networks |
 | i-MAX | High (server interpolation) | ~3-8 kbps | Trimble | Some Trimble-supplied national networks |
 
-guide.html: all four modes look the same once fixed; operator's choice. MAC firmware question: only when non-MAC rover gets float-only on MAC mountpoint.
-
-### 6.4 What this project shows
-
-NMEA=1 -> VRS/NRTK; shown as coloured circle (in-pipeline) or grey (deferred). NMEA=0 -> physical pin.
-
-Exceptions: rtk2go (caster-wide misconfiguration; all physical sats tagged NMEA=1); GeoRTK (2 physical F9P tagged NMEA=1).
-
-VRS-only nets (0 pins): CROPOS, ASG-EUPOS, FLEPOS, WALCORS, ESTPOS, LatPos, KSA-CORS, 10 SAPOS states, 6 US DOT.
+All four modes look the same to the user once fixed; choice is the operator's. The MAC firmware question only matters when a non-MAC rover gets float-only on a MAC mountpoint.
 
 ## 7. Ionospheric Effects
 
@@ -566,7 +554,7 @@ Real-time Kp: swpc.noaa.gov (3-day forecast available).
 
 ### 7.4 Ionospheric Scintillation
 
-~±15° lat + auroral zone: rapid TEC fluctuations -> cycle slips, fading, IAR failure. ~ Worst ~sunset + solar max. Project sources: InaCORS (ID), IGAC (CO), RBMC-IP (BR), TrigNet S.
+~±15° lat + auroral zone: rapid TEC fluctuations -> cycle slips, fading, IAR failure. ~ Worst ~sunset + solar max. Equatorial Asia (Indonesia), South America (Colombia, Brazil) and the auroral oval are the worst-affected RTK regions.
 
 ### 7.5 Polar / High-Latitude
 
@@ -769,9 +757,7 @@ Blocking contexts:
 - 4G/5G consumer: arbitrary TCP passes; port 2101 works. ✓
 - Enterprise IoT SIM: APN may whitelist specific ports.
 
-CI timeouts (FLEPOS/WALCORS/ESTPOS/LatPos/KSA-CORS): GitHub Actions egress blocks high-numbered ports. (See CLAUDE.md.)
-
-Firewall-friendly: AUSCORS port 443 TLS ✓; FReDNet port 8080 ✓.
+Firewall-friendly: networks that expose port 443 TLS or 8080 traverse most corporate egress filters. ✓
 
 Diagnostics:
 1. LTE but not WiFi -> WiFi firewall.
@@ -814,8 +800,6 @@ TCP up but byte stream not clean RTCM. Diagnostic:
 | GGA upstream produces "400 Bad Request" reply | NTRIP v1 caster expecting raw TCP; client sending HTTP/1.1 chunked GGA. Switch client to NTRIP v1 mode. |
 
 Dev tools: `str2str -in ntrip://user:pass@host:2101/MOUNT -out file://dump.rtcm` logs raw bytes; `convbin dump.rtcm` validates; BNC shows per-message counts.
-
-> `guide.html`: surface only beginner rows (SOURCETABLE 200 = wrong URL; keep-alive = dead base; time-limit = reconnect). str2str/convbin/BNC = developer path; don't surface.
 
 ### 11.9 Velocity wrong / stationary but non-zero velocity
 
@@ -997,8 +981,6 @@ Connectors: SMA female most common; TNC (Trimble/Leica); N-type (choke-rings). S
 
 Rover accuracy lever (after baseline): (1) dual-band; (2) ground plane; (3) antenna outside; (4) closer mountpoint. No choke-ring for hobbyists. Base: Tallysman/Harxon/ArduSimple survey patch tier correct.
 
-> `guide.html` edit: "Outside coverage / base station" section has no antenna placement. Add: "Antenna placement > hardware cost: mount on 30 cm flat metal disc with clear sky above 10° all directions; >=1 m above rooftop, >=1 m from HVAC/parapets/metal."
-
 ## 15. Jamming, Spoofing, Interference
 
 Post-2022 operational concern. Baltic farmer with hourly RTK failures or Black Sea boater shown 200 km inland = interference, not hardware.
@@ -1053,11 +1035,9 @@ Behavioural:
 ### 15.6 Implications
 
 - Baltic volunteer station outages = regional jamming, not station fault; operator contact won't help.
-- Map has no jamming signal; link gpsjam.org for unexplained outages.
-- OSNMA-capable hobbyist hardware (2026): F9P HPG 1.50+, Mosaic-X5, LG290P. ✓ Flag in `guide.html` for affected regions only.
+- For unexplained intermittent outages in affected regions, gpsjam.org is the diagnostic resource.
+- OSNMA-capable hobbyist hardware (2026): F9P HPG 1.50+, Mosaic-X5, LG290P. ✓
 - Fix + cm precision + 10 km error = spoofing or false-fix (§3.3).
-
-> `guide.html` troubleshooting 4th line: "Intermittent fix loss at certain times in EE/LV/FI/PL/Black Sea/Persian Gulf/Korean coast: regional GPS jamming - not station fault. Check gpsjam.org." OSNMA note = tooltip only.
 
 ## 16. PPK - Post-Processed Kinematic
 
@@ -1113,8 +1093,6 @@ Free RINEX base: EarthScope NOTA, IGS, AUSCORS, IBGE RBMC, ERGNSS publish archiv
 
 PPK has same false-fix + iono-storm vulnerabilities as RTK. Bidirectional pass mitigates random cycle slips; not systematic errors (multipath, antenna model mismatch, base coord error).
 
-> `guide.html`: don't surface PPK in main flow. If mentioned: 1 sentence under "Outside coverage" pointing at RTKBase RINEX logging.
-
 ## 17. Tilt Compensation and IMU-Aided RTK
 
 ### 17.1 Problem
@@ -1150,12 +1128,6 @@ ZED-F9R trap: "F9R has IMU, therefore tilt compensation." Wrong. F9R fuses IMU i
 
 F9P + IMU (BNO055/ICM-20948) + Kalman + pole-tip math = possible; no DIY matches commercial accuracy. ~ Hobbyist tilt + free-NTRIP: Reach RS3 = cheapest commercial entry.
 
-### 17.6 guide.html implications
-
-- Tilt = price-tier feature; RS3 ~$3000 entry; bare F9P = no tilt.
-- Tilt removes levelling; does not improve absolute accuracy.
-- Don't push as default: surveyors with many shots/hr benefit; mapping a boundary once -> bipod ~€30.
-
 ## 18. Data Licensing
 
 "Free" networks vary in permitted uses.
@@ -1169,48 +1141,22 @@ F9P + IMU (BNO055/ICM-20948) + Kalman + pole-tip math = possible; no DIY matches
 
 ### 18.2 Licence families seen in NTRIP networks
 
-| Family | What it requires | Examples in this project's pipeline |
-| CC BY 4.0 (attribution) | Cite the network operator when publishing data | AUSCORS ✓, PositioNZ (NZ variant) ✓ |
-| Open Database Licence (ODbL) / community-share-alike | Attribute + share-alike | Centipede (community ODbL ~) |
-| Custom non-commercial (NULA-style) | Annual acceptance; non-commercial only; no redistribution | EarthScope NOTA (NULA) ✓ |
-| National-survey free-use terms | Free for any purpose within the issuing country; foreign use sometimes restricted | SAPOS (most states; BY paid for non-ag) ✓; ERGNSS (Spain); ASG-EUPOS (Poland); IBGE RBMC-IP (Brazil); IGAC (Colombia) ~ |
-| Volunteer-pool implicit terms | "Use freely; do not abuse"; no formal licence text | rtk2go (SNIP terms of use) ~; community Centipede nodes |
-| Restricted / paid | Commercial or government-only use | APOS (AT) paid tier; Bavarian SAPOS for non-ag use; UAE / Qatar / KSA national networks |
+| Family | What it requires | Typical examples |
+| CC BY 4.0 (attribution) | Cite the network operator when publishing data | National survey agencies in AU, NZ |
+| Open Database Licence (ODbL) / community-share-alike | Attribute + share-alike | Community-pool networks |
+| Custom non-commercial (NULA-style) | Annual acceptance; non-commercial only; no redistribution | Research consortia (EarthScope-style) |
+| National-survey free-use terms | Free for any purpose within the issuing country; foreign use sometimes restricted | Most European national CORS, IBGE, IGAC |
+| Volunteer-pool implicit terms | "Use freely; do not abuse"; no formal licence text | rtk2go-style and community Centipede nodes |
+| Restricted / paid | Commercial or government-only use | Some Länder paid tiers, Gulf-state national networks |
 
-### 18.3 Per-network terms in this project's pipeline
-
-| Network | Cost | Licence model | Attribution required for derived data | Commercial use | Re-broadcast permitted |
-| rtk2go | Free | SNIP TOS; "personal/educational" intent ~ | Not specified | Discouraged ~ | Forbidden ✓ |
-| Centipede | Free | Community open; ODbL-aligned ~ | Yes (Centipede attribution) ~ | Allowed | Forbidden without permission ~ |
-| EarthScope NOTA | Free | NULA - annual click-through licence ✓ | Yes (EarthScope + NSF acknowledgement on publications) ✓ | No - non-commercial only ✓ | Forbidden ✓ |
-| AUSCORS | Free | CC BY 4.0 ✓ | Yes ✓ | Allowed (CC BY) ✓ | Forbidden by ToS even though CC BY allows; AUSCORS imposes additional contract terms ~ |
-| PositioNZ | Free | CC BY 4.0 NZ ✓ | Yes (LINZ acknowledgement) ✓ | Allowed | Forbidden by LINZ portal ToS ~ |
-| TrigNet | Free | NGI custom - free for South African users; international use accepted ~ | Yes (NGI acknowledgement) ~ | Permitted; NGI requests notification for commercial use ~ | Forbidden ~ |
-| SAPOS DE (most states) | Free for hobby/private; €0-500/yr commercial varying by state ~ | Per-state: data-use agreements; Bavaria charges €20/yr non-ag ✓ | Required in most states for survey deliverables ~ | Permitted (with paid tier in some states) ~ | Forbidden ~ |
-| ERGNSS (Spain) | Free | IGN open data; CC BY-style ~ | Yes (IGN acknowledgement) ~ | Permitted | Forbidden ~ |
-| ASG-EUPOS (Poland) | Free | GUGiK terms; free with registration | Yes ~ | Permitted ~ | Forbidden ~ |
-| IBGE RBMC-IP (Brazil) | Free | IBGE open-data; attribution-style ~ | Yes (IBGE acknowledgement) ~ | Permitted | Forbidden ~ |
-| RAMSAC (Argentina) | Free | IGN-AR terms; free with registration ~ | Yes ~ | Permitted ~ | Forbidden ~ |
-| Centipede individual base | Free | Per-node - most are open; some operators add note ~ | Recommended (operator credit) ~ | Generally allowed | At operator discretion ~ |
-| FReDNet (Italy/OGS) | Free | OGS public-research terms; free with registration ~ | Yes (OGS acknowledgement) ~ | Permitted ~ | Forbidden ~ |
-| Italian regional networks (SPIN3, GPS-UMBRIA, etc.) | Free in most cases | Per-region; varies | Varies | Varies | Varies |
-| US state DOT networks (WISCORS, AlCORS, etc.) | Free; each state portal | State-specific data terms; usually free for any use ~ | Often required for CORS use in published surveys ~ | Permitted ~ | Forbidden ~ |
-| MIRAI / Go!GNSS (JP) | Free | GSI Japan terms ~ | Yes (GSI acknowledgement) ~ | Permitted ~ | Forbidden ~ |
-
-✓ = confirmed; ~ = inferred from comparable practice; verify before relying.
-
-### 18.4 NULA
+### 18.3 NULA
 
 EarthScope NOTA: annual click-through; missed renewal -> access lost ✓; non-commercial only ✓; citation in publications ✓. "Non-commercial" = real: landscaper with paid work -> not free.
 
-### 18.5 Rebroadcast
+### 18.4 Rebroadcast
 
 - Same workflow (rover+drone, same user): permissible.
-- Re-serving via own NTRIP caster (pulling EarthScope/AUSCORS/SAPOS): forbidden under nearly all terms. str2str ease != legal permission.
-
-### 18.6 Implications
-
-`guide.html`: no re-broadcast advice. Commercial work: surface NULA + SAPOS commercial tier. CC BY 4.0 = real: AUSCORS/PositioNZ results need 1-line acknowledgement. `docs/networks.md`: tighten terms as networks added.
+- Re-serving via own NTRIP caster (pulling national-CORS or community feeds): forbidden under nearly all terms. str2str ease != legal permission.
 
 ## Sources consulted
 
@@ -1353,5 +1299,3 @@ EarthScope NOTA: annual click-through; missed renewal -> access lost ✓; non-co
 - [NMEA 0183 talker IDs - multi-constellation receivers emit GN prefix](https://gpsd.gitlab.io/gpsd/NMEA.html) (`GNGGA` for combined GPS+GLONASS+Galileo; `GPGGA` GPS-only ✓)
 - [rtklibexplorer - L1-only RTK feasibility](https://rtklibexplorer.wordpress.com/2017/04/26/rtklib-and-low-cost-l1-receivers/) (M8N + RTKLIB short-baseline single-frequency RTK ✓)
 - [Galileo NeQuick ionospheric model - ESA](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo_Ionospheric_Model.pdf) (NeQuick correction efficiency vs Klobuchar ~)
-
-_Last updated: 2026-04-25. Passes 8-11: §14-18 added; §1.3/§3.5/§4.3/§6/§11.6-9 expanded; GLONASS sat mask corrected (orbital slots); IGS Final clock 20 ps; AUSPOS reclassified DD; §14.3 PCO 50-90 mm; F9R->F9P+OSNMA in §15.4; antenna/price alignment; guide.html candidates added._
