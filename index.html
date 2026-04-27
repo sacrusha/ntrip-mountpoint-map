@@ -528,7 +528,8 @@
         dLon:s.lonPrec!=null?0.5*Math.pow(10,-s.lonPrec):precFromStr(s.lonStr),
         dualFreq:s.dualFreq!=null?s.dualFreq:(s.carrier||0)>=2,
         format:fmt,
-        legacyFormat:fmt.startsWith('RTCM 2')
+        legacyFormat:fmt.startsWith('RTCM 2'),
+        constellations:s.constellations||''
       });
     });
     return out;

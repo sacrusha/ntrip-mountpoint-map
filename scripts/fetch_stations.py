@@ -488,7 +488,7 @@ def parse_sourcetable(text: str, nmea_filter: bool = True) -> tuple[list[dict], 
             "constellations": nav_sys,
             "country": country,
         })
-    stations.sort(key=lambda s: (s["name"], s["latStr"], s["lonStr"]))
+    stations.sort(key=lambda s: (s["name"], s["lat"], s["lon"]))
     stats = {"kept": len(stations), "dropped_dgnss": dropped_dgnss,
              "dropped_net": dropped_net, "dropped_bad": dropped_bad}
     return stations, stats
