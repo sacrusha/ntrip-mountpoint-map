@@ -154,15 +154,15 @@ _Last updated: 2026-04-22._
   - **FReDNet** (OGS/FVG, `gnsscaster.regione.fvg.it:8080`, ~39 stations) — Friuli-Venezia
     Giulia + border SI/AT. Free email registration. In pipeline. → networks.md: `frednet`
   - **SPIN3 GNSS** (CSI Piemonte, `spingnss.it:2101`, ~39 stations) — Piemonte + Lombardia +
-    Valle d'Aosta. Free registration. Candidate. → networks.md: `spin3`
+    Valle d'Aosta. Free registration. In pipeline. → networks.md: `spin3`
   - **GPS-UMBRIA** (Regione Umbria, `gpsumbria.regione.umbria.it:2101`, 12 stations) — Free
-    registration. Candidate. → networks.md: `gpsumbria`
+    registration. In pipeline. → networks.md: `gpsumbria`
   - **Abruzzo + Lazio** (`gnss-rtk.regione.abruzzo.it:2101`, ~29 stations) — Single endpoint
-    since Dec 2022. Free registration. Candidate. → networks.md: `gnss_abruzzo_lazio`
-  - **SIT Puglia** (`gps.sit.puglia.it:2101`, 12 stations) — Free registration. Candidate.
+    since Dec 2022. Free registration. In pipeline. → networks.md: `gnss_abruzzo_lazio`
+  - **SIT Puglia** (`gps.sit.puglia.it:2101`, 12 stations) — Free registration. In pipeline.
     → networks.md: `sit_puglia`
   - **Campania** (`gps-sit.regione.campania.it:2101`, ~18 stations) — SPID identity required
-    for new users; legacy credentials may work on old endpoint. Conditions access. Candidate.
+    for new users; legacy credentials may work on old endpoint. Conditions access. In pipeline.
     → networks.md: `gnss_campania`
   - **TPOS** (Provincia Autonoma di Trento, 11 stations) — Free; endpoint withheld until
     post-registration. Deferred. → networks.md: `tpos`
@@ -184,7 +184,7 @@ _Last updated: 2026-04-22._
   → networks.md: `netgeo`, `pegasonow`
 - **Volunteer**: rtk2go ~12 IT bases, Centipede ~3 IT nodes.
 - **Gap**: central Italy (Toscana, Basilicata) has no confirmed free NTRIP. Northern Italy
-  well covered by SPIN3 + FReDNet once candidates are ingested. Southern Italy improving
+  well covered by SPIN3 + FReDNet. Southern Italy improving
   (Puglia, Campania, Sicily via Sicili@net deferred).
 
 ### PT — Portugal
@@ -276,10 +276,24 @@ _Last updated: 2026-04-22._
 
 ## Europe — Eastern / Balkans
 
-### AL — Albania / XK — Kosovo / MD — Moldova
+### AL — Albania
 
-- **Free government RTK**: no confirmed public NTRIP endpoint in any of these three.
+- **Free government RTK**: none confirmed with a public NTRIP endpoint. ASIG
+  (Autoriteti Shtetëror për Informacionin Gjeografik) has not published a public NTRIP caster.
 - **Volunteer**: negligible.
+- **Gap**: no free RTK for hobbyists.
+
+### XK — Kosovo
+
+- **Free government RTK**: none confirmed.
+- **Volunteer**: negligible.
+- **Gap**: no free RTK for hobbyists.
+
+### MD — Moldova
+
+- **Free government RTK**: none confirmed.
+- **Volunteer**: negligible.
+- **Gap**: no free RTK for hobbyists.
 
 ### BA — Bosnia and Herzegovina
 
@@ -289,8 +303,11 @@ _Last updated: 2026-04-22._
 
 ### BG — Bulgaria
 
-- **Free government RTK**: no government network; commercial only.
-- **Volunteer**: rtk2go ~6 BG bases, Centipede ~1 BG node.
+- **Free government RTK**: none. GCSES (Geodesy, Cartography and Cadastre Agency)
+  operates reference stations but no public NTRIP caster has been identified.
+- **Volunteer**: rtk2go ~6 bases, Centipede ~1 node. Modest coverage concentrated
+  near Sofia and the main urban corridor.
+- **Gap**: no free government RTK; volunteer networks are the only free option.
 
 ### BY — Belarus
 
@@ -299,8 +316,11 @@ _Last updated: 2026-04-22._
 
 ### CZ — Czech Republic
 
-- **Free government RTK**: CZEPOS — free for education/government; commercial use paid (ČÚZK Decree 31/1995). Not a general hobbyist path.
-- **Volunteer**: Centipede ~3 CZ nodes, rtk2go ~4 CZ bases.
+- **Free government RTK**: CZEPOS (ČÚZK) — free for education and government;
+  commercial use requires payment (ČÚZK Decree 31/1995). Not a general hobbyist path.
+  → networks.md: `czepos`
+- **Volunteer**: Centipede ~3 nodes, rtk2go ~4 bases.
+- **Gap**: no free path for hobbyists; volunteer coverage is limited.
 
 ### HU — Hungary
 
@@ -370,8 +390,11 @@ _Last updated: 2026-04-22._
 
 ### SK — Slovakia
 
-- **Free government RTK**: SKPOS — free for public sector/municipalities; commercial use paid. Not a general hobbyist path.
-- **Volunteer**: rtk2go ~2 SK bases.
+- **Free government RTK**: SKPOS (ÚGKK) — free for public sector and municipalities;
+  commercial and hobbyist use requires payment. Not a general hobbyist path.
+  → networks.md: `skpos`
+- **Volunteer**: rtk2go ~2 bases.
+- **Gap**: no free path for hobbyists; very sparse volunteer coverage.
 
 ### UA — Ukraine
 
@@ -431,33 +454,20 @@ Centipede volunteer nodes in several French overseas territories, served via `cr
   stations, single-base, non-commercial NULA) — Americas-wide, dense in western USA.
   → networks.md: `earthscope`
 
-  State DOT/CORS networks with confirmed endpoints (all free registration unless noted):
-
-  | Network    | State | Host:Port                             | Type           | Stations |
-  |------------|-------|---------------------------------------|----------------|----------|
-  | WISCORS    | WI    | `wiscors.dot.wi.gov:2101`             | physical + VRS | ~180     |
-  | FPRN       | FL    | `ntrip.myfloridagps.com:2101`         | physical + VRS | ~120     |
-  | ARDOT RTN  | AR    | `gps.ardot.gov:2101`                  | physical + VRS | ~50      |
-  | MaCORS     | MA    | `macorsrtk.massdot.state.ma.us:2101`  | physical + VRS | 22       |
-  | VECTOR     | VT    | `20.185.11.35:2101` (bare IP)         | physical + VRS | ~15      |
-  | AzCORS     | AZ    | `azcors.azwater.gov:2101`             | physical + VRS | 51       |
-  | GCGC RTN   | MS    | `rtn.usm.edu:2101`                    | physical + VRS | ~35      |
-  | AlCORS     | AL    | `aldotcors.dot.state.al.us:10011`     | physical + VRS | ~50      |
-  | KyCORS     | KY    | `kycors.ky.gov:2101`                  | VRS only       | —        |
-  | MnCORS     | MN    | `mncors.dot.state.mn.us:9000`         | VRS only       | —        |
-  | ORGN       | OR    | `167.131.0.205:9879` (bare IP)        | physical + VRS | ~100     |
-  | MSRN       | MI    | `mdotcors.michigan.gov:10700`         | physical + VRS | ~120     |
-  | NYSNet     | NY    | `cors.dot.ny.gov:2101`                | physical + VRS | ~150     |
-  | InCORS     | IN    | `incors.in.gov:10000`                 | physical + VRS | ~70      |
-  | IARTN      | IA    | `iartnsbc.iowadot.gov:2101`           | physical + VRS | 83       |
-  | ODOT RTN   | OH    | `156.63.133.115:2101` (bare IP)       | VRS only       | —        |
-  | MoDOT RTN  | MO    | `rtk3.modot.mo.gov:2101`              | VRS only       | —        |
-  | WVRTN      | WV    | `wvrtn.cors.us:2101`                  | VRS only       | —        |
-  | MaineDOT   | ME    | `mdotcors.maine.gov:2101`             | VRS only       | —        |
+  Physical-coordinate state DOT networks (free registration unless noted; all listed
+  in `docs/networks.md`): WISCORS (WI), FPRN (FL), ARDOT RTN (AR), MaCORS (MA),
+  VECTOR (VT), AzCORS (AZ), GCGC RTN (MS), AlCORS (AL), ORGN (OR), MSRN (MI),
+  NYSNet (NY), InCORS (IN), IARTN (IA) — physical stations.
+  VRS-only: KyCORS (KY), MnCORS (MN), ODOT RTN (OH), MoDOT RTN (MO, notarized
+  agreement required), WVRTN (WV), MaineDOT (ME).
+  → networks.md: `wiscors`, `fprn`, `ardot_rtn`, `macors`, `vector`, `azcors`,
+  `gcgc_rtn`, `alcors`, `orgn`, `msrn`, `nysnet`, `incors`, `iartn`, `kycors`,
+  `mncors`, `odot_rtn`, `modot_rtn`, `wvrtn`, `mainedot`
 
   Note: MnCORS, ORGN, MSRN, NYSNet, AzCORS have significant EarthScope NOTA overlap —
   expect duplicate physical pins until deduplication is added. VRS-only entries (KyCORS,
-  MnCORS, ODOT, MoDOT, WVRTN, MaineDOT) produce no physical pins; shown as VRS stopgap circles.
+  MnCORS, ODOT RTN, MoDOT RTN, WVRTN, MaineDOT) produce no physical pins; shown as VRS
+  stopgap circles.
 
   MoDOT requires notarized access agreement (conditions access). → networks.md: `modot_rtn`
   ACORN (AK) — endpoint unconfirmed, deferred. → networks.md: `acorn`
@@ -524,13 +534,12 @@ Centipede volunteer nodes in several French overseas territories, served via `cr
   `rtk.igm.gub.uy/SBC/Account/Register`. VRS capable (1–2 cm horizontal
   with dual-frequency equipment). Network expanded Dec 2025 with 8 additional
   multiconstellation CORS; 1,000+ registered users. Reference frame
-  SIRGAS-ROU (ITRF-compatible). → networks.md: `regna_rou` (candidate)
+  SIRGAS-ROU (ITRF-compatible). → networks.md: `regna_rou`
 - **Volunteer**: rtk2go ~2 bases near the Argentinian border (border-area
   RAMSAC stations); no dedicated UY volunteer streams confirmed. Centipede —
   negligible.
 - **Gap**: REGNA-ROU provides free national coverage; main friction is a
-  registration step and Spanish-language portal. Candidate for pipeline
-  ingestion once sourcetable accessibility is verified.
+  registration step and Spanish-language portal. In pipeline as `regna_rou`.
 
 ### VE — Venezuela
 
@@ -590,6 +599,7 @@ Centipede volunteer nodes in several French overseas territories, served via `cr
     深圳SZCORS (Shenzhen, 2003); every province now has its own network; registration
     requires organisational credentials + surveying licence; some provinces free for
     licensed organisations, others charge (e.g., Sichuan ¥8,000/yr). Not hobbyist-accessible.
+    → networks.md: `chinese_provincial_cors`
 - **Commercial RTK** (no professional licence required; open to individuals):
   - **千寻知寸 Qianxun** (Alibaba + Norinco JV, `rtk.ntrip.qxwz.com:8003`): 2,700+
     stations, 33 provinces; ¥3,600–3,800/yr (~$500–528/yr) — over $200/yr cutoff;
@@ -823,7 +833,9 @@ Centipede volunteer nodes in several French overseas territories, served via `cr
 
 ### CI — Côte d'Ivoire
 
-- **Volunteer**: Centipede ~2 CI nodes (country code `CIV`). No national NTRIP caster.
+- **Free government RTK**: none confirmed.
+- **Volunteer**: Centipede ~2 nodes (country code `CIV`). No national NTRIP caster.
+- **Gap**: no free coordinated RTK coverage; volunteer nodes only.
 
 ### CM — Cameroon
 
@@ -886,7 +898,9 @@ Centipede volunteer nodes in several French overseas territories, served via `cr
 
 ### KE — Kenya
 
-- **Volunteer**: rtk2go ~1 KE base. No known national RTK network with public access.
+- **Free government RTK**: none confirmed with a public NTRIP endpoint.
+- **Volunteer**: rtk2go ~1 base. No known national RTK network with public access.
+- **Gap**: no free coordinated RTK coverage beyond a single volunteer base.
 
 ### KW — Kuwait
 
@@ -902,7 +916,11 @@ Centipede volunteer nodes in several French overseas territories, served via `cr
 
 ### MA — Morocco
 
-- **Volunteer**: rtk2go ~1 MA base. No known national RTK network with public access.
+- **Free government RTK**: none confirmed with a public NTRIP endpoint. ANCFCC
+  (Agence Nationale de la Conservation Foncière, du Cadastre et de la
+  Cartographie) maintains reference stations; no public NTRIP delivery identified.
+- **Volunteer**: rtk2go ~1 base.
+- **Gap**: no free coordinated RTK coverage beyond a single volunteer base.
 
 ### MZ — Mozambique
 
@@ -976,7 +994,9 @@ Centipede volunteer nodes in several French overseas territories, served via `cr
 
 ### SN — Senegal
 
-- **Volunteer**: Centipede ~2 SN nodes. No national NTRIP caster.
+- **Free government RTK**: none confirmed.
+- **Volunteer**: Centipede ~2 nodes. No national NTRIP caster.
+- **Gap**: no free coordinated RTK coverage; volunteer nodes only.
 
 ### TR — Turkey
 
