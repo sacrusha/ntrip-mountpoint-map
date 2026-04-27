@@ -132,7 +132,7 @@ Reference station broadcasts pseudorange corrections; rover applies them. Remove
 
 Multipath/NLOS survive differential uncancelled: urban canyon -> 5-40 m bias while display reads "1 m." ✓ HDOP can appear *low* in canyons because reflected-signal sats are tracked, masking degradation rather than exposing it. Suburban canopy/buildings: 2-5 m actual. ✓
 
-SBAS (WAAS, EGNOS, MSAS, GAGAN, SDCM): DGNSS via geostationary; no internet; ceiling ~1 m; same multipath limitation. ~ Galileo HAS is free, global, and better than DGNSS for hobbyist use.
+SBAS (WAAS, EGNOS, MSAS, GAGAN, SDCM): DGNSS via geostationary; no internet; ceiling ~1 m; same multipath limitation. ~ Galileo HAS = free, global, better.
 
 ### 3.3 RTK (Real-Time Kinematic)
 
@@ -378,18 +378,18 @@ STR;mountpoint;identifier;format;format-details;carrier;nav-system;
 
 Key STR fields (0-indexed):
 
-| Index | Field | Meaning |
+| Idx | Field | Meaning |
 | 0 | "STR" | record type |
 | 1 | mountpoint | stream name |
-| 3 | format | RTCM version + message set |
+| 3 | format | RTCM version + msg set |
 | 5 | carrier | 0=DGNSS, 1=L1, 2=L1+L2, 3=tri-band |
-| 9 | lat | reference latitude |
-| 10 | lon | reference longitude |
-| 11 | nmea | 1 = caster requires rover GGA (VRS/MAC/FKP/i-MAX) ✓ |
-| 14 | fee | "N" = no fee |
+| 9 | lat | ref lat |
+| 10 | lon | ref lon |
+| 11 | nmea | 1 -> caster needs rover GGA (VRS/MAC/FKP/i-MAX) ✓ |
+| 14 | fee | "N" = free |
 
-NET record: network name, operator, registration URL. ~
-CAS record: caster metadata. ~
+NET: network name, operator, registration URL. ~
+CAS: caster metadata. ~
 
 ### 5.3 NTRIP v1 vs v2
 
@@ -426,7 +426,7 @@ NTRIP: HTTP Basic Auth (base64 username:password). Sourcetable `authentication` 
 
 ### 5.7 Port Conventions
 
-Default port 2101 = convention only; NTRIP runs any TCP port. Public networks routinely use non-standard high ports (e.g. 5005, 9879, 10011); some expose port 443 TLS for firewall traversal.
+Default port 2101 = convention only; NTRIP runs any TCP port. Public networks often use high ports (5005, 9879, 10011); some expose 443 TLS for firewall traversal.
 
 ### 5.8 NEAR and Auto-Select Mountpoints
 
@@ -526,7 +526,7 @@ Comparison summary:
 | FKP | Very low (broadcast) | ~1-2 kbps | Geo++ (SAPOS heritage) | German SAPOS states (legacy); some Austrian networks |
 | i-MAX | High (server interpolation) | ~3-8 kbps | Trimble | Some Trimble-supplied national networks |
 
-All four modes look the same to the user once fixed; choice is the operator's. The MAC firmware question only matters when a non-MAC rover gets float-only on a MAC mountpoint.
+All four modes look identical once fixed; operator's choice. MAC firmware question only matters when non-MAC rover gets float-only on MAC mountpoint.
 
 ## 7. Ionospheric Effects
 
@@ -554,7 +554,7 @@ Real-time Kp: swpc.noaa.gov (3-day forecast available).
 
 ### 7.4 Ionospheric Scintillation
 
-~±15° lat + auroral zone: rapid TEC fluctuations -> cycle slips, fading, IAR failure. ~ Worst ~sunset + solar max. Equatorial Asia (Indonesia), South America (Colombia, Brazil) and the auroral oval are the worst-affected RTK regions.
+~±15° lat + auroral zone: rapid TEC fluctuations -> cycle slips, fading, IAR failure. ~ Worst ~sunset + solar max. Equatorial Asia, South America, auroral oval = worst RTK regions.
 
 ### 7.5 Polar / High-Latitude
 
@@ -757,7 +757,7 @@ Blocking contexts:
 - 4G/5G consumer: arbitrary TCP passes; port 2101 works. ✓
 - Enterprise IoT SIM: APN may whitelist specific ports.
 
-Firewall-friendly: networks that expose port 443 TLS or 8080 traverse most corporate egress filters. ✓
+Firewall-friendly: port 443 TLS or 8080 traverses most corporate egress. ✓
 
 Diagnostics:
 1. LTE but not WiFi -> WiFi firewall.
@@ -1034,8 +1034,8 @@ Behavioural:
 
 ### 15.6 Implications
 
-- Baltic volunteer station outages = regional jamming, not station fault; operator contact won't help.
-- For unexplained intermittent outages in affected regions, gpsjam.org is the diagnostic resource.
+- Baltic volunteer outages = regional jamming, not station fault; operator contact won't help.
+- Unexplained intermittent outages in affected regions -> gpsjam.org.
 - OSNMA-capable hobbyist hardware (2026): F9P HPG 1.50+, Mosaic-X5, LG290P. ✓
 - Fix + cm precision + 10 km error = spoofing or false-fix (§3.3).
 
@@ -1141,13 +1141,13 @@ F9P + IMU (BNO055/ICM-20948) + Kalman + pole-tip math = possible; no DIY matches
 
 ### 18.2 Licence families seen in NTRIP networks
 
-| Family | What it requires | Typical examples |
-| CC BY 4.0 (attribution) | Cite the network operator when publishing data | National survey agencies in AU, NZ |
-| Open Database Licence (ODbL) / community-share-alike | Attribute + share-alike | Community-pool networks |
-| Custom non-commercial (NULA-style) | Annual acceptance; non-commercial only; no redistribution | Research consortia (EarthScope-style) |
-| National-survey free-use terms | Free for any purpose within the issuing country; foreign use sometimes restricted | Most European national CORS, IBGE, IGAC |
-| Volunteer-pool implicit terms | "Use freely; do not abuse"; no formal licence text | rtk2go-style and community Centipede nodes |
-| Restricted / paid | Commercial or government-only use | Some Länder paid tiers, Gulf-state national networks |
+| Family | Requires | Typical examples |
+| CC BY 4.0 | Cite operator when publishing | AU, NZ national agencies |
+| ODbL / community-share-alike | Attribute + share-alike | Community-pool networks |
+| Custom non-commercial (NULA-style) | Annual acceptance; non-commercial; no redistribution | Research consortia |
+| National-survey free-use | Free in issuing country; foreign use sometimes restricted | Most European national CORS, BR, CO |
+| Volunteer-pool implicit | "Use freely; don't abuse"; no formal text | rtk2go-style, community Centipede nodes |
+| Restricted / paid | Commercial or government-only | Some Länder paid tiers, Gulf-state networks |
 
 ### 18.3 NULA
 
@@ -1156,7 +1156,7 @@ EarthScope NOTA: annual click-through; missed renewal -> access lost ✓; non-co
 ### 18.4 Rebroadcast
 
 - Same workflow (rover+drone, same user): permissible.
-- Re-serving via own NTRIP caster (pulling national-CORS or community feeds): forbidden under nearly all terms. str2str ease != legal permission.
+- Re-serving via own caster (pulling national-CORS or community feeds): forbidden under nearly all terms. str2str ease != legal permission.
 
 ## Sources consulted
 
