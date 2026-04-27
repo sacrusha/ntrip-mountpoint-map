@@ -484,6 +484,7 @@ def parse_sourcetable(text: str, nmea_filter: bool = True) -> tuple[list[dict], 
             "latPrec": _dec_places(lat_str),
             "lonPrec": _dec_places(lon_str),
             "dualFreq": carrier >= 2,
+            "tripleFreq": carrier >= 3,
             "format": fmt,
             "constellations": nav_sys,
             "country": country,
@@ -521,7 +522,7 @@ def load_existing(path: Path) -> dict | None:
 def station_fingerprint(source: dict) -> list[list]:
     return [
         [s["name"], s["lat"], s.get("latPrec"), s["lon"], s.get("lonPrec"),
-         s.get("dualFreq"), s.get("format", ""), s.get("constellations", "")]
+         s.get("dualFreq"), s.get("tripleFreq"), s.get("format", ""), s.get("constellations", "")]
         for s in source.get("stations", [])
     ]
 

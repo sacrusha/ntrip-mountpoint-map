@@ -527,6 +527,7 @@
         dLat:s.latPrec!=null?0.5*Math.pow(10,-s.latPrec):precFromStr(s.latStr),
         dLon:s.lonPrec!=null?0.5*Math.pow(10,-s.lonPrec):precFromStr(s.lonStr),
         dualFreq:s.dualFreq!=null?s.dualFreq:(s.carrier||0)>=2,
+        tripleFreq:s.tripleFreq!=null?s.tripleFreq:(s.carrier||0)>=3,
         format:fmt,
         legacyFormat:fmt.startsWith('RTCM 2'),
         constellations:s.constellations||''
@@ -563,11 +564,12 @@
             e.lat=st.lat; e.lon=st.lon; e.dLat=st.dLat; e.dLon=st.dLon;
           }
           if(st.dualFreq) e.dualFreq=true;
+          if(st.tripleFreq) e.tripleFreq=true;
           if(st.legacyFormat) e.legacyFormat=true;
         } else {
           e={
             lat:st.lat,lon:st.lon,dLat:st.dLat,dLon:st.dLon,
-            dualFreq:!!st.dualFreq,format:st.format||'',
+            dualFreq:!!st.dualFreq,tripleFreq:!!st.tripleFreq,format:st.format||'',
             legacyFormat:!!st.legacyFormat,
             sources:{}
           };
@@ -652,7 +654,8 @@
     });
   }
 
-  function accuracySummary(dualFreq){
+  function accuracySummary(dualFreq,tripleFreq){
+    if(tripleFreq) return '~1–2 cm (triple-frequency L1+L2+L5 — faster fix, better multipath)';
     if(dualFreq) return '~1–2 cm (dual-frequency L1+L2)';
     return 'up to ~1 cm within 10 km (L1-only; more sensitive to ionosphere) · good to 20 km';
   }
@@ -690,9 +693,9 @@
     return h+'</div>';
   }
 
-  function carrierChip(dualFreq){
+  function carrierChip(dualFreq,tripleFreq){
     var key=dualFreq?'carrier':'carrier-l1';
-    var label=dualFreq?'What does L1+L2 mean?':'What does L1-only mean?';
+    var label=tripleFreq?'What does triple-frequency mean?':dualFreq?'What does L1+L2 mean?':'What does L1-only mean?';
     return `<button class="help-chip" onclick="event.stopPropagation();__ntripShowPopover(this,'${key}','top-left')" aria-label="${label}"><span class="q">?</span></button>`;
   }
   function buildCopyAllPayload(s){
@@ -724,7 +727,7 @@
       +`<button class="b-primary" onclick="__ntripCopyAll(this,'${payload}')">Copy all</button>`
       +`<button class="b-secondary" onclick="__ntripOpenHelp('how-to-connect-emlid')">How to connect ↗</button>`
       +`</div>`;
-    return `<div class="popup-plain"><h3>${esc(names.join(' / '))}</h3><div class="acc">${accuracySummary(s.dualFreq)}${carrierChip(s.dualFreq)}</div>${warn}${blocks}${footer}</div>`;
+    return `<div class="popup-plain"><h3>${esc(names.join(' / '))}</h3><div class="acc">${accuracySummary(s.dualFreq,s.tripleFreq)}${carrierChip(s.dualFreq,s.tripleFreq)}</div>${warn}${blocks}${footer}</div>`;
   }
 
   function precLabel(dLat,dLon,lat){
