@@ -1,10 +1,17 @@
 # ntrip-mountpoint-map
 
-Interactive map of free public NTRIP RTK correction mountpoints. Aimed at
-hobbyists and small shops looking for cm-accurate GPS corrections within
-~100 km of a reference station.
+Interactive map of free public **NTRIP mountpoints** and **RTK correction
+networks** worldwide. Find a free **RTCM correction stream** near you for
+centimetre-accurate GPS — built for hobbyists and small shops who need
+better than 5–10 m GPS without a paid subscription. About 5,400 stations
+across 66 networks (rtk2go, Centipede, EarthScope NOTA, SAPOS, AUSCORS,
+IBGE RBMC-IP, ERGNSS, …), refreshed four times daily by a GitHub Actions
+workflow.
 
 **Live demo:** https://sacrusha.github.io/ntrip-mountpoint-map/
+
+**Companion guide:** [`guide.html`](guide.html) — plain-English primer on
+NTRIP, RTK hardware, antenna placement, and DIY base stations.
 
 ## Features
 
@@ -171,6 +178,72 @@ python3 -m http.server 8000
 
 Or enable GitHub Pages (Settings → Pages → main branch → `/ (root)`) for a
 hosted version.
+
+## FAQ
+
+### How do I find a free NTRIP mountpoint near me?
+
+Open the [map](https://sacrusha.github.io/ntrip-mountpoint-map/) — it
+auto-centres on your approximate location via IP geolocation. Pins within
+~10 km of you give cm-accurate RTK on a dual-frequency receiver; up to
+~30 km is still good; up to ~50 km is workable. Click any pin to copy the
+server, port, and mountpoint into your NTRIP client.
+
+### What is an NTRIP caster list?
+
+An NTRIP caster is an internet endpoint that streams RTK correction data
+from one or more reference stations. Its **sourcetable** lists every
+mountpoint it exposes — name, format, supported constellations, fee
+status. This map aggregates the public sourcetables from 66 casters and
+plots each physical reference station; the popup gives you the three
+strings your NTRIP client needs (server, port, mountpoint).
+
+### Do these mountpoints actually work without paying?
+
+Yes. Every source on the map is free, in one of three access tiers:
+**open** (no account — rtk2go, Centipede, GeoRTK), **free with
+registration** (most national networks: SAPOS, AUSCORS, ERGNSS, RBMC-IP,
+…), and **free with conditions** (EarthScope's non-commercial NULA,
+APOS Austria's agriculture-only tier, …). Commercial / paid networks
+are deliberately excluded — see [`docs/networks.md`](docs/networks.md)
+for what was investigated and rejected.
+
+### What hardware do I need to use these corrections?
+
+A dual-frequency (L1+L2 minimum) GNSS receiver with NTRIP-client
+support. Single-frequency receivers and smartphone GPS chips cannot do
+RTK regardless of configuration. The cheapest path is an ArduSimple
+simpleRTK2B kit (~€275 + a phone running an NTRIP client). The
+[guide](https://sacrusha.github.io/ntrip-mountpoint-map/guide.html) has
+hardware recommendations across the price range.
+
+### Why are there no pins in [my country]?
+
+Three possibilities, distinguished by the country-level circle on the
+map. A **coloured circle** means a VRS-only network covers the country —
+sign up; corrections exist but virtual mountpoints have no fixed
+coordinates to plot. A **grey circle** means a free network is known but
+not yet ingested. A **circled ?** means the only options are paid or
+restricted; click for details. A blank country has no confirmed free
+option as of the most recent survey.
+
+### How is "centimetre-accurate GPS" different from regular GPS?
+
+Standalone GPS drifts 5–10 m due to atmospheric and satellite-clock
+errors. A nearby reference station measures those errors in real time
+and streams the correction over the internet via NTRIP. Your receiver
+applies it and the error largely cancels out, getting you to 1–3 cm
+within ~10 km of the station and typically better than 5 cm out to ~30
+km on a multi-band receiver.
+
+### Where does the data come from?
+
+A GitHub Actions workflow fetches sourcetables from every configured
+caster four times a day (01/07/13/19 UTC), parses STR lines, drops
+DGNSS-only and VRS streams, and commits the result to
+[`data/stations.json`](data/stations.json) on `main`. See
+[`docs/networks.md`](docs/networks.md) for every endpoint, credentials,
+and audit trail of what was investigated.
 
 ## License
 
