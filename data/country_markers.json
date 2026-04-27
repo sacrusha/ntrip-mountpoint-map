@@ -27,6 +27,7 @@
     {"id":"modot_rtn",   "name":"MoDOT RTN",  "region":"Missouri",                     "country":"US", "lat":38.40, "lon":-92.50, "tier":"vrs", "source_id":"modot_rtn",   "stations_declared":null},
     {"id":"wvrtn",       "name":"WVRTN",      "region":"West Virginia",                "country":"US", "lat":38.60, "lon":-80.50, "tier":"vrs", "source_id":"wvrtn",       "stations_declared":null},
     {"id":"mainedot",    "name":"MaineDOT",   "region":"Maine",                        "country":"US", "lat":44.90, "lon":-69.00, "tier":"vrs", "source_id":"mainedot",    "stations_declared":null},
+    {"id":"mesa_rtvrn",  "name":"Mesa County RTVRN", "region":"Colorado (western)",   "country":"US", "lat":39.05, "lon":-108.55,"tier":"vrs", "source_id":"mesa_rtvrn",  "stations_declared":33},
 
     {"id":"renep",       "name":"ReNEP",           "region":"Portugal",               "country":"PT", "lat":39.50, "lon":-8.00,
      "tier":"deferred", "access":"registration", "registration":"https://renep.dgterritorio.gov.pt",
@@ -213,7 +214,12 @@
 
     {"id":"wsrn",        "name":"WSRN",             "region":"Washington",            "country":"US", "lat":47.40, "lon":-120.50,
      "tier":"info", "access":"paid", "yearly_cost":"~$1,900/yr",
-     "note":"~$1,900/yr via wsdot.wa.gov."},
+     "note":"~$1,900/yr via wsdot.wa.gov. PANGA/CWU contributes Puget Sound antennae and data archiving."},
+
+    {"id":"crtn",        "name":"CRTN (SOPAC)",     "region":"California",            "country":"US", "lat":36.80, "lon":-119.40,
+     "tier":"info", "access":"paid-affordable", "yearly_cost":"$100 one-time (universities/schools exempt)",
+     "registration":"https://sopac-csrc.ucsd.edu/index.php/crtn-connecting/",
+     "note":"California Real Time Network at Scripps (UCSD). One-time $100 processing fee — under the $200/yr cutoff. RTCM 3.0 from ~250 stations across California: clearinghouse for SOPAC SCIGN, UC Berkeley/USGS BARD, USGS Pasadena SCIGN, Caltrans CVSRN, Orange County OCRTN, and EarthScope NOTA. Significant overlap with the in-pipeline EarthScope source — same physical antennae, two access paths. Credentials issued in 7+ days."},
 
     {"id":"txrtn",       "name":"TxDOT CORS",       "region":"Texas",                 "country":"US", "lat":31.00, "lon":-100.00,
      "tier":"info", "access":"restricted",

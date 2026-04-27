@@ -459,23 +459,34 @@ Centipede volunteer nodes in several French overseas territories, served via `cr
   VECTOR (VT), AzCORS (AZ), GCGC RTN (MS), AlCORS (AL), ORGN (OR), MSRN (MI),
   NYSNet (NY), InCORS (IN), IARTN (IA) — physical stations.
   VRS-only: KyCORS (KY), MnCORS (MN), ODOT RTN (OH), MoDOT RTN (MO, notarized
-  agreement required), WVRTN (WV), MaineDOT (ME).
+  agreement required), WVRTN (WV), MaineDOT (ME), Mesa County RTVRN (CO, county-level,
+  ~33 underlying stations across western Colorado).
   → networks.md: `wiscors`, `fprn`, `ardot_rtn`, `macors`, `vector`, `azcors`,
   `gcgc_rtn`, `alcors`, `orgn`, `msrn`, `nysnet`, `incors`, `iartn`, `kycors`,
-  `mncors`, `odot_rtn`, `modot_rtn`, `wvrtn`, `mainedot`
+  `mncors`, `odot_rtn`, `modot_rtn`, `wvrtn`, `mainedot`, `mesa_rtvrn`
 
   Note: MnCORS, ORGN, MSRN, NYSNet, AzCORS have significant EarthScope NOTA overlap —
   expect duplicate physical pins until deduplication is added. VRS-only entries (KyCORS,
-  MnCORS, ODOT RTN, MoDOT RTN, WVRTN, MaineDOT) produce no physical pins; shown as VRS
-  stopgap circles.
+  MnCORS, ODOT RTN, MoDOT RTN, WVRTN, MaineDOT, Mesa County RTVRN) produce no physical
+  pins; shown as VRS stopgap circles.
 
   MoDOT requires notarized access agreement (conditions access). → networks.md: `modot_rtn`
   ACORN (AK) — endpoint unconfirmed, deferred. → networks.md: `acorn`
 
-  Paid/restricted states: SCRTN (SC, price not listed), NCRTN (NC ~$500/yr), TDOT (TN ~$450/yr),
-  TURN GPS (UT ~$600/yr), MTSRN (MT ~$1,500/yr), WSRN (WA ~$1,900/yr), TxDOT (employees-only),
-  Caltrans (vetted agency partners only). → networks.md: `scrtn`, `ncrtn`, `tdot_rtn`,
-  `turn_gps`, `mtsrn`, `wsrn`, `txrtn`, `calrtns`
+  Research / dual-access arrays (no independent free hobbyist caster — listed for
+  documentation, with the same physical antennae reachable through other in-pipeline
+  sources): BARD (~40 stations, SF Bay / Northern California, UC Berkeley + USGS)
+  reaches NTRIP via SOPAC CRTN or EarthScope NOTA; PANGA (~220 CWU sites + ~700 NOTA
+  stations processed at CWU, Pacific Northwest / Cascadia) reaches NTRIP via EarthScope
+  NOTA or — for Washington only — paid WSRN. → networks.md: `bard`, `panga`
+
+  Paid/restricted states: CRTN (CA, $100 one-time fee, paid-affordable; clearinghouse for
+  SOPAC SCIGN, BARD, USGS Pasadena SCIGN, Caltrans CVSRN, Orange County OCRTN, and
+  EarthScope NOTA in California; universities/schools exempt from fee), SCRTN (SC, price
+  not listed), NCRTN (NC ~$500/yr), TDOT (TN ~$450/yr), TURN GPS (UT ~$600/yr), MTSRN
+  (MT ~$1,500/yr), WSRN (WA ~$1,900/yr; PANGA/CWU contributes Puget Sound antennae),
+  TxDOT (employees-only), Caltrans (vetted agency partners only). → networks.md: `crtn`,
+  `scrtn`, `ncrtn`, `tdot_rtn`, `turn_gps`, `mtsrn`, `wsrn`, `txrtn`, `calrtns`
 
   No federal free NTRIP: NOAA/NGS real-time service shut Apr 2013 (budget sequestration).
 - **Volunteer**: rtk2go ~142 US bases (largest single-country cluster on rtk2go);

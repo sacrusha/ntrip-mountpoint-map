@@ -353,6 +353,11 @@ SOURCES = [
      "type": "vrs-only", "country": ["US"],
      "region": "Maine", "group": "us-state-dot",
      "access": "registration", "registration": "https://www.maine.gov/mdot"},
+    {"id": "mesa_rtvrn",  "url": "http://rtvrn.mesacounty.us:2101/",            # VRS-only; western Colorado
+     "color": "#8d6e63", "label": "Mesa County RTVRN",
+     "type": "vrs-only", "country": ["US"],
+     "region": "Colorado (western)",
+     "access": "registration", "registration": "https://rtvrn.mesacounty.us/RegisterAccount.aspx"},
 ]
 # RTKdata.online removed 2026-04-20: server unreachable since launch (RemoteDisconnected);
 # 0 stations ever collected. Operated by Kansi Solutions GmbH (same parent as paid
