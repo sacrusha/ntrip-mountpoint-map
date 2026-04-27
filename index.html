@@ -518,14 +518,19 @@
   function normalizeStations(list){
     var out=[];
     (list||[]).forEach(function(s){
-      var lat=(typeof s.lat==='number')?s.lat:parseFloat(s.latStr);
-      var lon=(typeof s.lon==='number')?s.lon:parseFloat(s.lonStr);
+      var lat=(typeof s.lat==='number')?s.lat:parseFloat(s.latStr||'');
+      var lon=(typeof s.lon==='number')?s.lon:parseFloat(s.lonStr||'');
       if(!isFinite(lat)||!isFinite(lon)||(lat===0&&lon===0)) return;
+      var fmt=s.format||'';
       out.push({
-        name:s.name,lat:lat,lon:lon,latStr:s.latStr,lonStr:s.lonStr,
-        dLat:precFromStr(s.latStr),dLon:precFromStr(s.lonStr),
-        carrier:s.carrier, format:s.format||'',
-        legacyFormat:!!s.legacyFormat
+        name:s.name,lat:lat,lon:lon,
+        dLat:s.latPrec!=null?0.5*Math.pow(10,-s.latPrec):precFromStr(s.latStr),
+        dLon:s.lonPrec!=null?0.5*Math.pow(10,-s.lonPrec):precFromStr(s.lonStr),
+        dualFreq:s.dualFreq!=null?s.dualFreq:(s.carrier||0)>=2,
+        tripleFreq:s.tripleFreq!=null?s.tripleFreq:(s.carrier||0)>=3,
+        format:fmt,
+        legacyFormat:fmt.startsWith('RTCM 2'),
+        constellations:s.constellations||''
       });
     });
     return out;
@@ -558,12 +563,13 @@
           if(st.dLat<e.dLat){
             e.lat=st.lat; e.lon=st.lon; e.dLat=st.dLat; e.dLon=st.dLon;
           }
-          if((st.carrier||0)>(e.carrier||0)) e.carrier=st.carrier;
+          if(st.dualFreq) e.dualFreq=true;
+          if(st.tripleFreq) e.tripleFreq=true;
           if(st.legacyFormat) e.legacyFormat=true;
         } else {
           e={
             lat:st.lat,lon:st.lon,dLat:st.dLat,dLon:st.dLon,
-            carrier:st.carrier,format:st.format||'',
+            dualFreq:!!st.dualFreq,tripleFreq:!!st.tripleFreq,format:st.format||'',
             legacyFormat:!!st.legacyFormat,
             sources:{}
           };
@@ -648,10 +654,10 @@
     });
   }
 
-  function accuracySummary(carrier){
-    if(carrier===2) return '~1–2 cm (dual-frequency L1+L2)';
-    if(carrier===1) return 'up to ~1 cm within 10 km (L1-only; more sensitive to ionosphere) · good to 20 km';
-    return 'Accuracy unverified';
+  function accuracySummary(dualFreq,tripleFreq){
+    if(tripleFreq) return '~1–2 cm (triple-frequency L1+L2+L5 — faster fix, better multipath)';
+    if(dualFreq) return '~1–2 cm (dual-frequency L1+L2)';
+    return 'up to ~1 cm within 10 km (L1-only; more sensitive to ionosphere) · good to 20 km';
   }
 
   function visUrl(u){ return u.replace(/^https?:\/\//,''); }
@@ -687,9 +693,9 @@
     return h+'</div>';
   }
 
-  function carrierChip(carrier){
-    var key=carrier===2?'carrier':carrier===1?'carrier-l1':'carrier-unknown';
-    var label=carrier===2?'What does L1+L2 mean?':carrier===1?'What does L1-only mean?':'What does this mean?';
+  function carrierChip(dualFreq,tripleFreq){
+    var key=dualFreq?'carrier':'carrier-l1';
+    var label=tripleFreq?'What does triple-frequency mean?':dualFreq?'What does L1+L2 mean?':'What does L1-only mean?';
     return `<button class="help-chip" onclick="event.stopPropagation();__ntripShowPopover(this,'${key}','top-left')" aria-label="${label}"><span class="q">?</span></button>`;
   }
   function buildCopyAllPayload(s){
@@ -721,7 +727,7 @@
       +`<button class="b-primary" onclick="__ntripCopyAll(this,'${payload}')">Copy all</button>`
       +`<button class="b-secondary" onclick="__ntripOpenHelp('how-to-connect-emlid')">How to connect ↗</button>`
       +`</div>`;
-    return `<div class="popup-plain"><h3>${esc(names.join(' / '))}</h3><div class="acc">${accuracySummary(s.carrier)}${carrierChip(s.carrier)}</div>${warn}${blocks}${footer}</div>`;
+    return `<div class="popup-plain"><h3>${esc(names.join(' / '))}</h3><div class="acc">${accuracySummary(s.dualFreq,s.tripleFreq)}${carrierChip(s.dualFreq,s.tripleFreq)}</div>${warn}${blocks}${footer}</div>`;
   }
 
   function precLabel(dLat,dLon,lat){

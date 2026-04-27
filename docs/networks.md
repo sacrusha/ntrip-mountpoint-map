@@ -59,8 +59,10 @@ Physical stations with distinct coordinates shown on map.
 **host:port**: `rtk2go.com:2101`
 **type**:      single-base
 **access**:    free, no registration (username = any email, password = `none`)
+**pipeline-access**: open
 **stations**:  ~863
 **source**:    rtk2go.com; use-snip.com
+**operator**:  SNIP / use-snip.com
 
 Community volunteer aggregator operated by SNIP / use-snip.com. `NEAR` mountpoint
 requires rover NMEA GGA. Regional filtered views on `:2103` (PL) and `:2104` (JP)
@@ -76,8 +78,10 @@ when carrier field is blank and format starts with `RTCM 3` (required to retain
 **host:port**: `crtk.net:2101`
 **type**:      single-base
 **access**:    free, no registration (username = `centipede`, password = `centipede`)
+**pipeline-access**: open
 **stations**:  ~1203
 **source**:    centipede-rtk.org
+**operator**:  Centipede-RTK association (non-profit)
 
 Volunteer network initiated by INRAE (2019); now operated by non-profit
 Centipede-RTK association (formed Aug 2024). Open-source Millipede caster stack
@@ -93,8 +97,10 @@ through one federation endpoint; no separate country-specific instances found.
 **host:port**: `gnsscaster.regione.fvg.it:8080`
 **type**:      physical-coord-vrs
 **access**:    sourcetable open; stream requires free email registration
+**pipeline-access**: registration
 **stations**:  ~39
 **source**:    frednet.crs.ogs.it; gnsscaster.regione.fvg.it
+**operator**:  OGS — Istituto Nazionale di Oceanografia e Geofisica Sperimentale
 
 Operated by OGS (Istituto Nazionale di Oceanografia e Geofisica Sperimentale).
 Crustal-deformation network for Friuli-Venezia Giulia; coverage extends into
@@ -108,8 +114,10 @@ Slovenia and W Austria. Register via frednet.crs.ogs.it.
 **host:port**: `geortk.jp:2101`
 **type**:      single-base
 **access**:    free, no registration; free indefinitely (1-yr advance notice if changed)
+**pipeline-access**: open
 **stations**:  ~41
 **source**:    geortk.jp (Geosense Co., Ltd.)
+**operator**:  Geosense Co., Ltd.
 
 Japan volunteer caster. ~66 STR lines total; ~25 report 0/0 (offline bases) and
 are dropped by coordinate filter. Sourcetable has shrunk over time.
@@ -122,8 +130,11 @@ are dropped by coordinate filter. Sourcetable has shrunk over time.
 **host:port**: `ntrip.data.gnss.ga.gov.au:2101`
 **type**:      single-base
 **access**:    free; register at gnss.ga.gov.au/registration; CC BY 4.0
+**pipeline-access**: registration
 **stations**:  ~813
 **source**:    gnss.ga.gov.au; auscors.ga.gov.au (dead since Jul 2022)
+**operator**:  Geoscience Australia
+**licence**:   CC BY 4.0
 
 Operated by Geoscience Australia. Old host `auscors.ga.gov.au` dead since Jul 2022.
 TLS also available on port 443. Attribute "© Commonwealth of Australia (Geoscience Australia)".
@@ -136,8 +147,11 @@ TLS also available on port 443. Attribute "© Commonwealth of Australia (Geoscie
 **host:port**: `positionz-rt.linz.govt.nz:2101`
 **type**:      single-base
 **access**:    free; LINZ account required; register via linz.govt.nz; CC BY 4.0 NZ
+**pipeline-access**: registration
 **stations**:  ~62
 **source**:    linz.govt.nz; toitutewhenua.govt.nz
+**operator**:  LINZ — Land Information New Zealand
+**licence**:   CC BY 4.0 NZ
 
 NZ mainland + Chatham Islands + Antarctica. Streaming latency reduced ~90% in
 Dec 2023 upgrade. Attribute "Source: Land Information New Zealand".
@@ -150,8 +164,11 @@ Dec 2023 upgrade. Attribute "Source: Land Information New Zealand".
 **host:port**: `trignet.co.za:2101`
 **type**:      single-base
 **access**:    free; register at trignet.co.za
+**pipeline-access**: registration
 **stations**:  ~72
 **source**:    trignet.co.za (NGI / National Geospatial Information, DALRRD)
+**operator**:  NGI — National Geospatial Information (DALRRD)
+**licence**:   Public mandate — all NGI products free of charge
 
 All NGI products and services free of charge. No explicit CC licence; public mandate.
 Single-base RTK (~5 cm) within 30–40 km; Network RTK (~3 cm) in Gauteng,
@@ -165,8 +182,10 @@ Western Cape, KwaZulu-Natal clusters only.
 **host:port**: `gps-ntrip.ibge.gov.br:2101`
 **type**:      single-base
 **access**:    free; gov.br signup; 5-station limit per user; 1,000 concurrent max
+**pipeline-access**: registration
 **stations**:  ~140
 **source**:    ibge.gov.br; gps-ntrip.ibge.gov.br
+**operator**:  IBGE — Instituto Brasileiro de Geografia e Estatística
 
 Alt IP: `170.84.40.52:2101`. 150 stations as of Dec 2024 (IBGE added 5 in Dec 2024).
 
@@ -178,8 +197,10 @@ Alt IP: `170.84.40.52:2101`. 150 stations as of Dec 2024 (IBGE added 5 in Dec 20
 **host:port**: `ntrip.ign.gob.ar:2101`
 **type**:      single-base
 **access**:    free; register via ign.gob.ar portal; 8-hr session cap
+**pipeline-access**: registration
 **stations**:  ~203
 **source**:    ign.gob.ar
+**operator**:  IGN — Instituto Geográfico Nacional (Argentina)
 
 POSGAR 07 reference frame.
 
@@ -191,8 +212,10 @@ POSGAR 07 reference frame.
 **host:port**: `rtk.igm.gub.uy:2101`
 **type**:      single-base + VRS
 **access**:    free; web registration at rtk.igm.gub.uy/SBC/Account/Register
+**pipeline-access**: registration
 **stations**:  ~26
 **source**:    igm.gub.uy
+**operator**:  IGM — Instituto Geográfico Militar (Uruguay)
 
 Uruguay IGM (Instituto Geográfico Militar). "El Servicio no tiene costo."
 SIRGAS-ROU reference frame (ITRF-compatible). 1,000+ registered users as of 2025.
@@ -207,8 +230,11 @@ Expanded Dec 2025 with 8 new SinoGNSS M300 Pro CORS stations.
 **host:port**: `ntrip.earthscope.org:2101`
 **type**:      single-base
 **access**:    free non-commercial (annual NULA renewal); commercial use per-seat licensed
+**pipeline-access**: conditions
 **stations**:  ~1096
 **source**:    earthscope.org/data/gnss-realtime/
+**operator**:  EarthScope Consortium
+**licence**:   NULA (non-commercial; annual renewal)
 
 Americas-wide. Also `:2105` (BINEX), `:2108` (PPP solutions). RTCM 3.3 MSM.
 Legacy UNAVCO platform retired 2025-07-29; all users must use ntrip.earthscope.org.
@@ -223,8 +249,10 @@ permitted per NULA.
 **host:port**: `ntrip.go.gnss.go.jp:2101`
 **type**:      single-base
 **access**:    free incl. commercial + automated ("peaceful purposes"); separate NtripCaster auth form
+**pipeline-access**: registration
 **stations**:  ~325
 **source**:    go.gnss.go.jp (Cabinet Office SPAC)
+**operator**:  Cabinet Office SPAC (go.gnss.go.jp)
 
 Register at go.gnss.go.jp plus a separate NtripCaster authorization application.
 Accounts expire after 365 days inactivity. Raw observations only (rover computes
@@ -238,8 +266,10 @@ RTK baseline). L1C/B support for QZSS QZS-6 added Jun 2025.
 **host:port**: `www.gnssdata.or.kr:2101`
 **type**:      physical-coord-vrs
 **access**:    free; sourcetable public without auth; stream registration may require Korean national ID
+**pipeline-access**: conditions
 **stations**:  ~498
 **source**:    gnssdata.or.kr (NGII)
+**operator**:  NGII — National Geographic Information Institute
 
 VRS + FKP. ~90–100 physical stations at ~40 km spacing. Korean-language portal;
 international access may be impractical if national ID is required.
@@ -259,8 +289,11 @@ Map shows physical station pins.
 **host:port**: `ergnss-ip.ign.es:2101`
 **type**:      physical-coord-vrs
 **access**:    free; register at ergnss.ign.es/gnuserportal/ (immediate); CC-compatible
+**pipeline-access**: registration
 **stations**:  ~128
 **source**:    ergnss.ign.es (IGN — Instituto Geográfico Nacional)
+**operator**:  IGN — Instituto Geográfico Nacional
+**licence**:   Attribution required per Orden FOM/2807/2015
 
 ~120 physical stations. GPS+GLO+GAL+BDS. Attribution to IGN required per
 Orden FOM/2807/2015. RAP (Andalucía) supplements in the south; separate signup.
@@ -273,8 +306,11 @@ Orden FOM/2807/2015. RAP (Andalucía) supplements in the south; separate signup.
 **host:port**: `ntrip.geodetic.gov.hk:2101`
 **type**:      physical-coord-vrs
 **access**:    free; register via geodetic.gov.hk or DATA.GOV.HK open-data path
+**pipeline-access**: registration
 **stations**:  ~22
 **source**:    geodetic.gov.hk (Lands Department, Survey & Mapping Office)
+**operator**:  Lands Department, Survey and Mapping Office (SMO)
+**licence**:   Open data (commercial and non-commercial reuse permitted)
 
 19 physical stations (16 reference + 3 integrity monitoring). Mountpoint `VRS32G`
 (GPS+GLO+GAL+BDS). Open data policy (commercial and non-commercial reuse permitted).
@@ -291,8 +327,11 @@ not HTTP.
 **host:port**: `nrtk.big.go.id:2001`
 **type**:      physical-coord-vrs
 **access**:    free; register at nrtk.big.go.id; Law No. 4/2011 mandates free public service
+**pipeline-access**: registration
 **stations**:  ~4
 **source**:    big.go.id (BIG — Badan Informasi Geospasial)
+**operator**:  BIG — Badan Informasi Geospasial
+**licence**:   Law No. 4/2011 (public access mandated)
 
 Port 2001, not 2101. 200+ stations declared; only ~4 unique coords appear in
 sourcetable — likely partial data exposure. 16,800+ registered users as of last report.
@@ -305,8 +344,11 @@ sourcetable — likely partial data exposure. 16,800+ registered users as of las
 **host:port**: `sbc.igac.gov.co:2101`
 **type**:      physical-coord-vrs
 **access**:    free; register at redgeodesica-sbc.igac.gov.co/sbc; Law 1955/2019 mandates public access
+**pipeline-access**: registration
 **stations**:  ~17
 **source**:    igac.gov.co; redgeodesica-sbc.igac.gov.co
+**operator**:  IGAC — Instituto Geográfico Agustín Codazzi
+**licence**:   Law 1955/2019 (public access mandated)
 
 233 stations declared; 17 unique coords in sourcetable. VRS also on `:2102`.
 National Geodetic Control Centre launched Apr 2024 (Resolution 1771/2024).
@@ -320,8 +362,10 @@ First confirmed free VRS/NRTK in Latin America.
 **host:port**: `stream.spslux.lu:5005`
 **type**:      physical-coord-vrs
 **access**:    free; register at spslux.lu/SBC/Account/Register (subscribe "SPSLUX (N)RTK")
+**pipeline-access**: registration
 **stations**:  ~17
 **source**:    spslux.lu (ACT — Administration du Cadastre et de la Topographie)
+**operator**:  ACT — Administration du Cadastre et de la Topographie
 
 Port 5005, not 2101. IP 185.106.24.68. Luxembourg open-data policy — all services
 free of charge.
@@ -334,8 +378,10 @@ free of charge.
 **host:port**: `178.19.53.126:2101`
 **type**:      physical-coord-vrs
 **access**:    free ("data is free of charge" — natt.is); register at natt.is/is/landmaelingar/jardstodvakerfi
+**pipeline-access**: registration
 **stations**:  ~20 (populates on fetch; recently added to pipeline)
 **source**:    natt.is (LMÍ — Landmælingar Íslands)
+**operator**:  LMÍ — Landmælingar Íslands
 
 GNCASTER software (same as SAPOS). Offers VRS (VRS30, FKP30) and single-base
 (RTCM30). Stream credentials provided after registration at natt.is.
@@ -387,12 +433,14 @@ SSR-capable receiver or Geo++ SSR2OBS converter. Out of scope for this pipeline.
 **host:port**: `aposrtk.bev.gv.at:2101`
 **type**:      physical-coord-vrs
 **access**:    conditions — free for agriculture/forestry via eAMA credentials
+**pipeline-access**: conditions
                (farm client number + PIN from Agrarmarkt Austria);
                professional/hobbyist use paid via bev.gv.at portal
 **yearly_cost**: pricing via bev.gv.at for professional/hobbyist use;
                eAMA free for agriculture/forestry
 **stations**:  37
 **source**:    bev.gv.at (BEV — Bundesamt für Eich- und Vermessungswesen)
+**operator**:  BEV — Bundesamt für Eich- und Vermessungswesen
 
 Austria's national VRS network (Free* in UI). Sourcetable is publicly readable;
 RTCM stream authentication requires valid credentials. Hobbyists without farm
@@ -403,12 +451,305 @@ across the AT border.
 
 ---
 
-## In-pipeline — single-coord VRS / connectivity failures
+### Italy — regional networks
 
-Networks in pipeline that yield 0 map stations: either all sourcetable entries
-share one coordinate (VRS filter drops them), or the caster is unreachable and
-no cached sourcetable exists. Stations remain in JSON from last successful fetch
-once a cache exists.
+---
+
+## spin3 — SPIN3 GNSS (IT — Piemonte, Lombardia, Valle d'Aosta)
+
+**status**:    in-pipeline
+**host:port**: `spingnss.it:2101`
+**type**:      physical-coord-vrs
+**access**:    registration; free via spingnss.it (CSI Piemonte public portal)
+**pipeline-access**: registration
+**stations**:  ~39
+**source**:    spingnss.it (CSI Piemonte on behalf of Regione Piemonte, Lombardia, VdA)
+**operator**:  CSI Piemonte
+
+Inter-regional public network covering Piemonte, Lombardia, and Valle d'Aosta.
+Operated by CSI Piemonte. Provides single-base RTCM 3.x streams and VRS.
+Free public access with simple registration; no annual fee documented.
+
+---
+
+## gpsumbria — GPS-UMBRIA (IT — Umbria)
+
+**status**:    in-pipeline
+**host:port**: `gpsumbria.regione.umbria.it:2101`
+**type**:      physical-coord-vrs
+**access**:    registration; free via gpsumbria.regione.umbria.it
+**pipeline-access**: registration
+**stations**:  12
+**source**:    gpsumbria.regione.umbria.it (Regione Umbria)
+**operator**:  Regione Umbria
+
+Regional GNSS network for Umbria. Free public service with 12 physical reference stations.
+
+---
+
+## gnss_abruzzo_lazio — Rete GNSS Abruzzo + Lazio (IT — Abruzzo + Lazio)
+
+**status**:    in-pipeline
+**host:port**: `gnss-rtk.regione.abruzzo.it:2101`
+**type**:      physical-coord-vrs
+**access**:    registration; free via Abruzzo regional geoportal
+**pipeline-access**: registration
+**stations**:  ~29
+**source**:    gnss-rtk.regione.abruzzo.it (Regione Abruzzo / Regione Lazio)
+**operator**:  Regione Abruzzo / Regione Lazio
+
+Since December 2022, Regione Lazio's stations were integrated into the Abruzzo
+caster. A single endpoint serves both regions' physical reference stations.
+
+---
+
+## sit_puglia — SIT Puglia GNSS (IT — Puglia)
+
+**status**:    in-pipeline
+**host:port**: `gps.sit.puglia.it:2101`
+**type**:      physical-coord-vrs
+**access**:    registration; free via sit.puglia.it (Sistema Informativo Territoriale)
+**pipeline-access**: registration
+**stations**:  12
+**source**:    gps.sit.puglia.it (Regione Puglia)
+**operator**:  Regione Puglia (SIT)
+
+Puglia regional GNSS network. 12 physical reference stations. Free registration.
+
+---
+
+## gnss_campania — Rete GNSS Campania (IT — Campania)
+
+**status**:    in-pipeline
+**host:port**: `gps-sit.regione.campania.it:2101`
+**type**:      physical-coord-vrs
+**access**:    conditions; new users require SPID (Italian national digital identity)
+**pipeline-access**: conditions
+               via the campania.it GNSS portal; legacy credentials publicly documented
+               in Italian surveying forums may still work on the old endpoint
+**stations**:  ~18
+**source**:    regione.campania.it GNSS section (Regione Campania)
+**operator**:  Regione Campania
+
+Campania regional GNSS network. Access upgraded to SPID-authenticated portal;
+legacy endpoint may accept old credentials. Free for SPID holders.
+
+---
+
+### US state DOT — physical-coord
+
+---
+
+## wiscors — WISCORS (US-WI)
+
+**status**:    in-pipeline
+**host:port**: `wiscors.dot.wi.gov:2101`
+**type**:      physical-coord-vrs (single-base + VRS)
+**access**:    registration; free via wiscors.dot.wi.gov (Wisconsin DOT)
+**pipeline-access**: registration
+**stations**:  ~180
+**source**:    wiscors.dot.wi.gov (Wisconsin Department of Transportation)
+**operator**:  Wisconsin DOT
+
+Wisconsin CORS Network operated by WisDOT. Offers both single-base streams
+and VRS corrections. Many WI stations also appear in EarthScope NOTA —
+verify overlap before ingesting to avoid duplicate pins.
+
+---
+
+## fprn — FPRN (US-FL)
+
+**status**:    in-pipeline
+**host:port**: `ntrip.myfloridagps.com:2101`
+**type**:      physical-coord-vrs
+**access**:    registration; free via myfloridagps.com (Florida DOT)
+**pipeline-access**: registration
+**stations**:  ~120
+**source**:    myfloridagps.com (Florida Department of Transportation)
+**operator**:  Florida DOT (FDOT)
+
+Florida Permanent Reference Network operated by FDOT. Single-base and VRS
+corrections. Some overlap with EarthScope NOTA expected.
+
+---
+
+## ardot_rtn — ARDOT RTN (US-AR)
+
+**status**:    in-pipeline
+**host:port**: `gps.ardot.gov:2101`
+**type**:      physical-coord-vrs
+**access**:    registration; free via ardot.gov (Arkansas DOT)
+**pipeline-access**: registration
+**stations**:  ~50
+**source**:    ardot.gov (Arkansas Department of Transportation)
+**operator**:  Arkansas DOT
+
+Arkansas real-time network. Free after registration.
+
+---
+
+## macors — MaCORS (US-MA)
+
+**status**:    in-pipeline
+**host:port**: `macorsrtk.massdot.state.ma.us:2101`
+**type**:      physical-coord-vrs
+**access**:    registration; free via massdot.state.ma.us (MassDOT)
+**pipeline-access**: registration
+**stations**:  22
+**source**:    massdot.state.ma.us (Massachusetts Department of Transportation)
+**operator**:  Massachusetts DOT (MassDOT)
+
+Massachusetts CORS network. 22 stations; free registration.
+
+---
+
+## vector — VECTOR VT (US-VT)
+
+**status**:    in-pipeline
+**host:port**: `20.185.11.35:2101`
+**type**:      physical-coord-vrs
+**access**:    registration; free via vcgi.vermont.gov (Vermont Center for Geographic Information)
+**pipeline-access**: registration
+**stations**:  ~15
+**source**:    vcgi.vermont.gov (Vermont Center for Geographic Information)
+**operator**:  Vermont Center for Geographic Information (VCGI)
+
+Vermont CORS network operated by VCGI. Bare IP address; no hostname. Free registration.
+
+---
+
+## azcors — AzCORS (US-AZ)
+
+**status**:    in-pipeline
+**host:port**: `azcors.azwater.gov:2101`
+**type**:      physical-coord-vrs
+**access**:    registration; free via azwater.gov (Arizona Dept. of Water Resources)
+**pipeline-access**: registration
+**stations**:  51
+**source**:    azwater.gov (Arizona Department of Water Resources)
+**operator**:  Arizona Dept. of Water Resources (ADWR)
+
+Arizona CORS Network operated by ADWR. 51 stations; free registration. Moderate
+overlap with EarthScope NOTA expected.
+
+---
+
+## gcgc_rtn — GCGC RTN (US-MS)
+
+**status**:    in-pipeline
+**host:port**: `rtn.usm.edu:2101`
+**type**:      physical-coord-vrs
+**access**:    registration; free via usm.edu GCGC portal
+**pipeline-access**: registration
+**stations**:  ~35
+**source**:    rtn.usm.edu (Gulf Coast Geodetic Consortium / University of Southern Mississippi)
+**operator**:  Gulf Coast Geodetic Consortium / University of Southern Mississippi
+
+Gulf Coast Geodetic Consortium real-time network via University of Southern Mississippi.
+Covers Mississippi and adjacent Gulf Coast states. Free registration.
+
+---
+
+## alcors — AlCORS (US-AL)
+
+**status**:    in-pipeline
+**host:port**: `aldotcors.dot.state.al.us:10011`
+**type**:      physical-coord-vrs
+**access**:    registration; free via dot.state.al.us (Alabama DOT)
+**pipeline-access**: registration
+**stations**:  ~50
+**source**:    dot.state.al.us (Alabama Department of Transportation)
+**operator**:  Alabama DOT (ALDOT)
+
+Alabama CORS network operated by ALDOT. Non-standard port 10011 (Leica GNSS Spider
+default). Free registration.
+
+---
+
+## orgn — ORGN (US-OR)
+
+**status**:    in-pipeline
+**host:port**: `167.131.0.205:9879`
+**type**:      physical-coord-vrs
+**access**:    registration; free via oregon.gov (Oregon DOT)
+**pipeline-access**: registration
+**stations**:  ~100
+**source**:    oregon.gov (Oregon Department of Transportation)
+**operator**:  Oregon DOT (ODOT)
+
+Oregon GPS Network operated by ODOT. Bare IP address; non-standard port 9879
+(Leica). Significant overlap with EarthScope NOTA expected.
+
+---
+
+## msrn — MSRN (US-MI)
+
+**status**:    in-pipeline
+**host:port**: `mdotcors.michigan.gov:10700`
+**type**:      physical-coord-vrs
+**access**:    registration; free via michigan.gov (Michigan DOT)
+**pipeline-access**: registration
+**stations**:  ~120
+**source**:    michigan.gov (Michigan Department of Transportation)
+**operator**:  Michigan DOT (MDOT)
+
+Michigan Spatial Reference Network operated by MDOT. Non-standard port 10700
+(Leica GNSS Spider). Significant overlap with EarthScope NOTA expected.
+
+---
+
+## nysnet — NYSNet (US-NY)
+
+**status**:    in-pipeline
+**host:port**: `cors.dot.ny.gov:2101`
+**type**:      physical-coord-vrs
+**access**:    registration; free via dot.ny.gov (New York State DOT)
+**pipeline-access**: registration
+**stations**:  ~150
+**source**:    dot.ny.gov (New York State Department of Transportation)
+**operator**:  New York State DOT (NYSDOT)
+
+New York State GPS Network operated by NYSDOT. Significant overlap with
+EarthScope NOTA expected.
+
+---
+
+## incors — InCORS (US-IN)
+
+**status**:    in-pipeline
+**host:port**: `incors.in.gov:10000`
+**type**:      physical-coord-vrs
+**access**:    registration; free via incors.in.gov (Indiana Dept. of Administration)
+**pipeline-access**: registration
+**stations**:  ~70
+**source**:    incors.in.gov (Indiana Department of Administration)
+**operator**:  Indiana Dept. of Administration
+
+Indiana CORS Network. Non-standard port 10000. Free registration.
+
+---
+
+## iartn — IARTN (US-IA)
+
+**status**:    in-pipeline
+**host:port**: `iartnsbc.iowadot.gov:2101`
+**type**:      physical-coord-vrs
+**access**:    registration; free via iowadot.gov (Iowa DOT)
+**pipeline-access**: registration
+**stations**:  83
+**source**:    iowadot.gov (Iowa Department of Transportation)
+**operator**:  Iowa DOT
+
+Iowa Real-Time Network operated by Iowa DOT. 83 physical stations. Free registration.
+
+---
+
+## In-pipeline — VRS-only
+
+Networks in pipeline that yield 0 map stations: sourcetable exposes only virtual
+or single-coordinate mountpoints (VRS filter drops them), or the caster is
+unreachable and no cached sourcetable exists. Stations remain in JSON from last
+successful fetch once a cache exists.
 
 ---
 
@@ -418,8 +759,10 @@ once a cache exists.
 **host:port**: `system.asgeupos.pl:2101`
 **type**:      single-coord-vrs
 **access**:    free since Oct 2022; web signup; admin approval 1–2 working days
+**pipeline-access**: registration
 **stations**:  0 (130+ declared; single coord 52.0, 21.0 Warsaw)
 **source**:    system.asgeupos.pl (GUGiK)
+**operator**:  GUGiK — Główny Urząd Geodezji i Kartografii
 
 Also ports :8080/:8082/:8083/:8086 for VRS variants. GPS+GLO+GAL+BDS.
 VRS (NAWGIS/KODGIS/FKP/MAC). Coverage requires NRTK polygon (deferred).
@@ -432,8 +775,10 @@ VRS (NAWGIS/KODGIS/FKP/MAC). Coverage requires NRTK polygon (deferred).
 **host:port**: `flepos.vlaanderen.be:2101`
 **type**:      single-coord-vrs
 **access**:    free for all uses; web self-signup at flepos.vlaanderen.be
+**pipeline-access**: registration
 **stations**:  0 (45 declared; single-coord Flanders centroid)
 **source**:    flepos.vlaanderen.be
+**operator**:  Agentschap Digitaal Vlaanderen
 
 Old endpoint `ntrip.flepos.be` is NXDOMAIN as of 2026-04. Currently timing out
 in CI. Coverage requires NRTK polygon (deferred).
@@ -449,8 +794,10 @@ than egress block; also verify `flepos.vlaanderen.be:2101` still resolves correc
 **host:port**: `gnss.wallonie.be:2101`
 **type**:      single-coord-vrs
 **access**:    free for positioning; paid for machine-control/auto-guidance (commercial resellers)
+**pipeline-access**: registration
 **stations**:  0 (23 declared; single-coord VRS; intermittently unreachable)
 **source**:    gnss.wallonie.be (SPW)
+**operator**:  SPW — Service Public de Wallonie
 
 Intermittent outages documented. Currently timing out in CI.
 
@@ -465,8 +812,10 @@ distinguish persistent outage from intermittent — if dead >4 weeks, drop from 
 **host:port**: `latpos.lgia.gov.lv:5001`
 **type**:      single-coord-vrs
 **access**:    free since 2018; SBC portal signup at latpos.lgia.gov.lv/SBC
+**pipeline-access**: registration
 **stations**:  0 (27 LV + 5 EE + 4 LT border stations declared; single-coord)
 **source**:    latpos.lgia.gov.lv (LGIA)
+**operator**:  LGIA — Latvijas Ģeotelpiskās informācijas aģentūra
 
 Port 5001, not 2101 (confirmed per Alberding caster directory). Currently timing
 out in CI.
@@ -482,8 +831,10 @@ from a Baltic-region IP); also check LGIA website for endpoint changes.
 **host:port**: `gnss-rtk.maaamet.ee:8083`
 **type**:      single-coord-vrs
 **access**:    free until 31 Aug 2026 (director-general directive); portal account + service agreement
+**pipeline-access**: conditions
 **stations**:  0 (40 declared; VRS, iMAX, nearest-base; MSM5 available)
 **source**:    geoportaal.maaamet.ee (Maa-amet / Land and Spatial Development Board)
+**operator**:  Maa-amet (Land and Spatial Development Board)
 
 Port 8083. Currently timing out in CI. Service expiry Aug 2026 — review before then.
 
@@ -499,8 +850,10 @@ before sourcetable is served). Re-confirm free status before Aug 2026 or drop.
 **host:port**: `ksacors.geoportal.sa:2101`
 **type**:      single-coord-vrs
 **access**:    free; register via ksacors.geoportal.sa
+**pipeline-access**: conditions
 **stations**:  0 (209 declared; single-coord; GPS+GLO+GAL+BDS)
 **source**:    ksacors.geoportal.sa (GASGI/GEOSA)
+**operator**:  GASGI / GEOSA
 
 Old endpoint `KSACORS.gcs.gov.sa` is NXDOMAIN as of 2026-04. Currently timing
 out in CI. Coverage requires NRTK polygon (deferred).
@@ -517,8 +870,10 @@ registration requirement changes.
 **host:port**: `gnss.cropos.hr:2101`
 **type**:      single-coord-vrs
 **access**:    free since Apr 2022 (Narodne novine 39/2022); email/web registration at cropos.hr
+**pipeline-access**: registration
 **stations**:  0 (35 declared; sourcetable reports 0/0 for all mountpoints)
 **source**:    cropos.hr (DGU)
+**operator**:  DGU — Državna geodetska uprava
 
 Caster IP changed Nov 2023 (old: 195.29.118.122 → new: 195.29.198.194); DNS
 hostname should resolve correctly. DPS (~0.3–0.5 m) and VPPS (~2 cm) free;
@@ -526,59 +881,109 @@ GPPS post-processing paid. Coverage requires NRTK polygon (deferred).
 
 ---
 
-## In-pipeline — new / under test
+### US state DOT — VRS-only
 
 ---
 
-## geodnet_usa — GEODNET USA
+## kycors — KyCORS (US-KY)
 
-**status**:    in-pipeline (testing sourcetable accessibility)
-**host:port**: `rtk.geodnet.com:2101`
-**type**:      single-base
-**access**:    paid ($40/month after 30-day trial)
-**stations**:  TBD
-**source**:    geodnet.com (HYFIX.AI)
+**status**:    in-pipeline
+**host:port**: `kycors.ky.gov:2101`
+**type**:      single-coord-vrs
+**access**:    registration; free via kycors.ky.gov (Kentucky Transportation Cabinet)
+**pipeline-access**: registration
+**stations**:  VRS only
+**source**:    kycors.ky.gov (Kentucky Transportation Cabinet)
+**operator**:  Kentucky Transportation Cabinet
 
-Testing whether sourcetable is publicly readable without auth per NTRIP spec.
-If stations returned, display as paid-service layer. $40/mo × 4 months = $160
-< $200/yr cutoff for seasonal use.
-
----
-
-## geodnet_eu — GEODNET Europe
-
-**status**:    in-pipeline (testing sourcetable accessibility)
-**host:port**: `eu.geodnet.com:2101`
-**type**:      single-base
-**access**:    paid ($40/month)
-**stations**:  TBD
-**source**:    geodnet.com (HYFIX.AI)
+Kentucky CORS Network. VRS-only service; no physical-coordinate mountpoints.
+Register at kycors.ky.gov.
 
 ---
 
-## geodnet_aus — GEODNET Australia
+## mncors — MnCORS (US-MN)
 
-**status**:    in-pipeline (testing sourcetable accessibility)
-**host:port**: `aus.geodnet.com:2101`
-**type**:      single-base
-**access**:    paid ($40/month)
-**stations**:  TBD
-**source**:    geodnet.com (HYFIX.AI)
+**status**:    in-pipeline
+**host:port**: `mncors.dot.state.mn.us:9000`
+**type**:      single-coord-vrs
+**access**:    registration; free via mndot.gov (Minnesota DOT)
+**pipeline-access**: registration
+**stations**:  VRS only (underlying ~125 physical stations)
+**source**:    mndot.gov (Minnesota Department of Transportation)
+**operator**:  Minnesota DOT (MnDOT)
 
----
-
-## geodnet_sa — GEODNET South America
-
-**status**:    in-pipeline (testing sourcetable accessibility)
-**host:port**: `sa.geodnet.com:2101`
-**type**:      single-base
-**access**:    paid ($40/month)
-**stations**:  TBD
-**source**:    geodnet.com (HYFIX.AI)
+Minnesota CORS Network operated by MnDOT. Non-standard port 9000. VRS-only
+sourcetable; physical stations not individually listed. Significant overlap
+with EarthScope NOTA expected.
 
 ---
 
-## Candidates — confirmed free, not yet ingested
+## odot_rtn — ODOT RTN (US-OH)
+
+**status**:    in-pipeline
+**host:port**: `156.63.133.115:2101`
+**type**:      single-coord-vrs
+**access**:    registration; free via transportation.ohio.gov (Ohio DOT)
+**pipeline-access**: registration
+**stations**:  VRS only
+**source**:    transportation.ohio.gov (Ohio Department of Transportation)
+**operator**:  Ohio DOT
+
+Ohio DOT real-time network. Bare IP address; VRS-only sourcetable. Free registration.
+
+---
+
+## modot_rtn — MoDOT RTN (US-MO)
+
+**status**:    in-pipeline
+**host:port**: `rtk3.modot.mo.gov:2101`
+**type**:      single-coord-vrs
+**access**:    conditions; requires signed and notarized MoDOT CORS access agreement;
+**pipeline-access**: conditions
+               free once approved — contact via modot.mo.gov
+**stations**:  VRS only
+**source**:    modot.mo.gov (Missouri Department of Transportation)
+**operator**:  Missouri DOT
+
+Missouri DOT CORS network. VRS-only. Requires notarized access agreement
+submitted to MoDOT before credentials are issued.
+
+---
+
+## wvrtn — WVRTN (US-WV)
+
+**status**:    in-pipeline
+**host:port**: `wvrtn.cors.us:2101`
+**type**:      single-coord-vrs
+**access**:    registration; free via wvrtn.cors.us (WV Division of Highways)
+**pipeline-access**: registration
+**stations**:  VRS only
+**source**:    transportation.wv.gov (West Virginia Division of Highways)
+**operator**:  WV Division of Highways
+
+West Virginia Real-Time Network. VRS-only sourcetable. Free registration.
+
+---
+
+## mainedot — MaineDOT CORS (US-ME)
+
+**status**:    in-pipeline
+**host:port**: `mdotcors.maine.gov:2101`
+**type**:      single-coord-vrs
+**access**:    registration; free via maine.gov/mdot (Maine DOT)
+**pipeline-access**: registration
+**stations**:  VRS only (transitioning from single-base)
+**source**:    maine.gov/mdot (Maine Department of Transportation)
+**operator**:  Maine DOT
+
+Maine DOT CORS network. Currently transitioning; sourcetable may show only VRS
+streams until physical-coordinate mountpoints are published.
+
+---
+
+## Candidate — confirmed free, not yet ingested
+
+Only one network (GPSBru) remains unconfirmed; all ingested networks have been moved to the appropriate in-pipeline sections.
 
 ---
 
@@ -594,339 +999,6 @@ If stations returned, display as paid-service layer. $40/mo × 4 months = $160
 Single station; useful only within ~30 km of Brussels. Low priority.
 
 **missing**: confirm NTRIP port (standard 2101? try ncat/telnet agn.ngi.be 2101).
-
----
-
-## wiscors — WISCORS (US-WI)
-
-**status**:    candidate
-**host:port**: `wiscors.dot.wi.gov:2101`
-**type**:      physical-coord-vrs (single-base + VRS)
-**access**:    registration; free via wiscors.dot.wi.gov (Wisconsin DOT)
-**stations**:  ~180
-**source**:    wiscors.dot.wi.gov (Wisconsin Department of Transportation)
-
-Wisconsin CORS Network operated by WisDOT. Offers both single-base streams
-and VRS corrections. Many WI stations also appear in EarthScope NOTA —
-verify overlap before ingesting to avoid duplicate pins.
-
----
-
-## spin3 — SPIN3 GNSS (IT — Piemonte, Lombardia, Valle d'Aosta)
-
-**status**:    candidate
-**host:port**: `spingnss.it:2101`
-**type**:      physical-coord-vrs
-**access**:    registration; free via spingnss.it (CSI Piemonte public portal)
-**stations**:  ~39
-**source**:    spingnss.it (CSI Piemonte on behalf of Regione Piemonte, Lombardia, VdA)
-
-Inter-regional public network covering Piemonte, Lombardia, and Valle d'Aosta.
-Operated by CSI Piemonte. Provides single-base RTCM 3.x streams and VRS.
-Free public access with simple registration; no annual fee documented.
-
----
-
-## gpsumbria — GPS-UMBRIA (IT — Umbria)
-
-**status**:    candidate
-**host:port**: `gpsumbria.regione.umbria.it:2101`
-**type**:      physical-coord-vrs
-**access**:    registration; free via gpsumbria.regione.umbria.it
-**stations**:  12
-**source**:    gpsumbria.regione.umbria.it (Regione Umbria)
-
-Regional GNSS network for Umbria. Free public service with 12 physical reference stations.
-
----
-
-## gnss_abruzzo_lazio — Rete GNSS Abruzzo + Lazio (IT — Abruzzo + Lazio)
-
-**status**:    candidate
-**host:port**: `gnss-rtk.regione.abruzzo.it:2101`
-**type**:      physical-coord-vrs
-**access**:    registration; free via Abruzzo regional geoportal
-**stations**:  ~29
-**source**:    gnss-rtk.regione.abruzzo.it (Regione Abruzzo / Regione Lazio)
-
-Since December 2022, Regione Lazio's stations were integrated into the Abruzzo
-caster. A single endpoint serves both regions' physical reference stations.
-
----
-
-## sit_puglia — SIT Puglia GNSS (IT — Puglia)
-
-**status**:    candidate
-**host:port**: `gps.sit.puglia.it:2101`
-**type**:      physical-coord-vrs
-**access**:    registration; free via sit.puglia.it (Sistema Informativo Territoriale)
-**stations**:  12
-**source**:    gps.sit.puglia.it (Regione Puglia)
-
-Puglia regional GNSS network. 12 physical reference stations. Free registration.
-
----
-
-## gnss_campania — Rete GNSS Campania (IT — Campania)
-
-**status**:    candidate
-**host:port**: `gps-sit.regione.campania.it:2101`
-**type**:      physical-coord-vrs
-**access**:    conditions; new users require SPID (Italian national digital identity)
-               via the campania.it GNSS portal; legacy credentials publicly documented
-               in Italian surveying forums may still work on the old endpoint
-**stations**:  ~18
-**source**:    regione.campania.it GNSS section (Regione Campania)
-
-Campania regional GNSS network. Access upgraded to SPID-authenticated portal;
-legacy endpoint may accept old credentials. Free for SPID holders.
-
----
-
-## fprn — FPRN (US-FL)
-
-**status**:    candidate
-**host:port**: `ntrip.myfloridagps.com:2101`
-**type**:      physical-coord-vrs
-**access**:    registration; free via myfloridagps.com (Florida DOT)
-**stations**:  ~120
-**source**:    myfloridagps.com (Florida Department of Transportation)
-
-Florida Permanent Reference Network operated by FDOT. Single-base and VRS
-corrections. Some overlap with EarthScope NOTA expected.
-
----
-
-## ardot_rtn — ARDOT RTN (US-AR)
-
-**status**:    candidate
-**host:port**: `gps.ardot.gov:2101`
-**type**:      physical-coord-vrs
-**access**:    registration; free via ardot.gov (Arkansas DOT)
-**stations**:  ~50
-**source**:    ardot.gov (Arkansas Department of Transportation)
-
-Arkansas real-time network. Free after registration.
-
----
-
-## macors — MaCORS (US-MA)
-
-**status**:    candidate
-**host:port**: `macorsrtk.massdot.state.ma.us:2101`
-**type**:      physical-coord-vrs
-**access**:    registration; free via massdot.state.ma.us (MassDOT)
-**stations**:  22
-**source**:    massdot.state.ma.us (Massachusetts Department of Transportation)
-
-Massachusetts CORS network. 22 stations; free registration.
-
----
-
-## vector — VECTOR VT (US-VT)
-
-**status**:    candidate
-**host:port**: `20.185.11.35:2101`
-**type**:      physical-coord-vrs
-**access**:    registration; free via vcgi.vermont.gov (Vermont Center for Geographic Information)
-**stations**:  ~15
-**source**:    vcgi.vermont.gov (Vermont Center for Geographic Information)
-
-Vermont CORS network operated by VCGI. Bare IP address; no hostname. Free registration.
-
----
-
-## azcors — AzCORS (US-AZ)
-
-**status**:    candidate
-**host:port**: `azcors.azwater.gov:2101`
-**type**:      physical-coord-vrs
-**access**:    registration; free via azwater.gov (Arizona Dept. of Water Resources)
-**stations**:  51
-**source**:    azwater.gov (Arizona Department of Water Resources)
-
-Arizona CORS Network operated by ADWR. 51 stations; free registration. Moderate
-overlap with EarthScope NOTA expected.
-
----
-
-## gcgc_rtn — GCGC RTN (US-MS)
-
-**status**:    candidate
-**host:port**: `rtn.usm.edu:2101`
-**type**:      physical-coord-vrs
-**access**:    registration; free via usm.edu GCGC portal
-**stations**:  ~35
-**source**:    rtn.usm.edu (Gulf Coast Geodetic Consortium / University of Southern Mississippi)
-
-Gulf Coast Geodetic Consortium real-time network via University of Southern Mississippi.
-Covers Mississippi and adjacent Gulf Coast states. Free registration.
-
----
-
-## alcors — AlCORS (US-AL)
-
-**status**:    candidate
-**host:port**: `aldotcors.dot.state.al.us:10011`
-**type**:      physical-coord-vrs
-**access**:    registration; free via dot.state.al.us (Alabama DOT)
-**stations**:  ~50
-**source**:    dot.state.al.us (Alabama Department of Transportation)
-
-Alabama CORS network operated by ALDOT. Non-standard port 10011 (Leica GNSS Spider
-default). Free registration.
-
----
-
-## kycors — KyCORS (US-KY)
-
-**status**:    candidate
-**host:port**: `kycors.ky.gov:2101`
-**type**:      single-coord-vrs
-**access**:    registration; free via kycors.ky.gov (Kentucky Transportation Cabinet)
-**stations**:  VRS only
-**source**:    kycors.ky.gov (Kentucky Transportation Cabinet)
-
-Kentucky CORS Network. VRS-only service; no physical-coordinate mountpoints.
-Register at kycors.ky.gov.
-
----
-
-## mncors — MnCORS (US-MN)
-
-**status**:    candidate
-**host:port**: `mncors.dot.state.mn.us:9000`
-**type**:      single-coord-vrs
-**access**:    registration; free via mndot.gov (Minnesota DOT)
-**stations**:  VRS only (underlying ~125 physical stations)
-**source**:    mndot.gov (Minnesota Department of Transportation)
-
-Minnesota CORS Network operated by MnDOT. Non-standard port 9000. VRS-only
-sourcetable; physical stations not individually listed. Significant overlap
-with EarthScope NOTA expected.
-
----
-
-## orgn — ORGN (US-OR)
-
-**status**:    candidate
-**host:port**: `167.131.0.205:9879`
-**type**:      physical-coord-vrs
-**access**:    registration; free via oregon.gov (Oregon DOT)
-**stations**:  ~100
-**source**:    oregon.gov (Oregon Department of Transportation)
-
-Oregon GPS Network operated by ODOT. Bare IP address; non-standard port 9879
-(Leica). Significant overlap with EarthScope NOTA expected.
-
----
-
-## msrn — MSRN (US-MI)
-
-**status**:    candidate
-**host:port**: `mdotcors.michigan.gov:10700`
-**type**:      physical-coord-vrs
-**access**:    registration; free via michigan.gov (Michigan DOT)
-**stations**:  ~120
-**source**:    michigan.gov (Michigan Department of Transportation)
-
-Michigan Spatial Reference Network operated by MDOT. Non-standard port 10700
-(Leica GNSS Spider). Significant overlap with EarthScope NOTA expected.
-
----
-
-## nysnet — NYSNet (US-NY)
-
-**status**:    candidate
-**host:port**: `cors.dot.ny.gov:2101`
-**type**:      physical-coord-vrs
-**access**:    registration; free via dot.ny.gov (New York State DOT)
-**stations**:  ~150
-**source**:    dot.ny.gov (New York State Department of Transportation)
-
-New York State GPS Network operated by NYSDOT. Significant overlap with
-EarthScope NOTA expected.
-
----
-
-## incors — InCORS (US-IN)
-
-**status**:    candidate
-**host:port**: `incors.in.gov:10000`
-**type**:      physical-coord-vrs
-**access**:    registration; free via incors.in.gov (Indiana Dept. of Administration)
-**stations**:  ~70
-**source**:    incors.in.gov (Indiana Department of Administration)
-
-Indiana CORS Network. Non-standard port 10000. Free registration.
-
----
-
-## iartn — IARTN (US-IA)
-
-**status**:    candidate
-**host:port**: `iartnsbc.iowadot.gov:2101`
-**type**:      physical-coord-vrs
-**access**:    registration; free via iowadot.gov (Iowa DOT)
-**stations**:  83
-**source**:    iowadot.gov (Iowa Department of Transportation)
-
-Iowa Real-Time Network operated by Iowa DOT. 83 physical stations. Free registration.
-
----
-
-## odot_rtn — ODOT RTN (US-OH)
-
-**status**:    candidate
-**host:port**: `156.63.133.115:2101`
-**type**:      single-coord-vrs
-**access**:    registration; free via transportation.ohio.gov (Ohio DOT)
-**stations**:  VRS only
-**source**:    transportation.ohio.gov (Ohio Department of Transportation)
-
-Ohio DOT real-time network. Bare IP address; VRS-only sourcetable. Free registration.
-
----
-
-## modot_rtn — MoDOT RTN (US-MO)
-
-**status**:    candidate
-**host:port**: `rtk3.modot.mo.gov:2101`
-**type**:      single-coord-vrs
-**access**:    conditions; requires signed and notarized MoDOT CORS access agreement;
-               free once approved — contact via modot.mo.gov
-**stations**:  VRS only
-**source**:    modot.mo.gov (Missouri Department of Transportation)
-
-Missouri DOT CORS network. VRS-only. Requires notarized access agreement
-submitted to MoDOT before credentials are issued.
-
----
-
-## wvrtn — WVRTN (US-WV)
-
-**status**:    candidate
-**host:port**: `wvrtn.cors.us:2101`
-**type**:      single-coord-vrs
-**access**:    registration; free via wvrtn.cors.us (WV Division of Highways)
-**stations**:  VRS only
-**source**:    transportation.wv.gov (West Virginia Division of Highways)
-
-West Virginia Real-Time Network. VRS-only sourcetable. Free registration.
-
----
-
-## mainedot — MaineDOT CORS (US-ME)
-
-**status**:    candidate
-**host:port**: `mdotcors.maine.gov:2101`
-**type**:      single-coord-vrs
-**access**:    registration; free via maine.gov/mdot (Maine DOT)
-**stations**:  VRS only (transitioning from single-base)
-**source**:    maine.gov/mdot (Maine Department of Transportation)
-
-Maine DOT CORS network. Currently transitioning; sourcetable may show only VRS
-streams until physical-coordinate mountpoints are published.
 
 ---
 
@@ -1143,15 +1215,66 @@ Surface in UI as paid alternatives for users in areas with no free coverage.
 
 ---
 
+## geodnet_usa — GEODNET USA
+
+**status**:    paid
+**host:port**: `rtk.geodnet.com:2101`
+**type**:      single-base
+**access**:    paid
+**yearly_cost**: $40/month (~$480/yr; $160 for a 4-month seasonal block)
+**operator**:  HYFIX.AI (geodnet.com)
+**source**:    geodnet.com (HYFIX.AI)
+
+Sourcetable publicly readable. Removed from free-source pipeline 2026-04-20.
+
+---
+
+## geodnet_eu — GEODNET Europe
+
+**status**:    paid
+**host:port**: `eu.geodnet.com:2101`
+**type**:      single-base
+**access**:    paid
+**yearly_cost**: $40/month
+**operator**:  HYFIX.AI (geodnet.com)
+**source**:    geodnet.com (HYFIX.AI)
+
+---
+
+## geodnet_aus — GEODNET Australia
+
+**status**:    paid
+**host:port**: `aus.geodnet.com:2101`
+**type**:      single-base
+**access**:    paid
+**yearly_cost**: $40/month
+**operator**:  HYFIX.AI (geodnet.com)
+**source**:    geodnet.com (HYFIX.AI)
+
+---
+
+## geodnet_sa — GEODNET South America
+
+**status**:    paid
+**host:port**: `sa.geodnet.com:2101`
+**type**:      single-base
+**access**:    paid
+**yearly_cost**: $40/month
+**operator**:  HYFIX.AI (geodnet.com)
+**source**:    geodnet.com (HYFIX.AI)
+
+---
+
 ## hepos — HEPOS (GR)
 
 **status**:    paid-affordable
 **host:port**: `uranus.gr:2101`
-**access**:    paid; ~€160/3 months or ~€480/yr unlimited; also per-minute pricing
+**access**:    paid
 **yearly_cost**: €160 per 3-month block (~$170); ~€480/yr unlimited (~$520) — 3-month
                option is under the $200 cutoff for seasonal hobbyist use
 **stations**:  unknown
 **source**:    ktimatologio.gr (HEPOS S.A.)
+**operator**:  HEPOS S.A. / Ktimatologio
 
 ---
 
@@ -1159,10 +1282,11 @@ Surface in UI as paid alternatives for users in areas with no free coverage.
 
 **status**:    paid-affordable
 **host:port**: unknown
-**access**:    paid credit-based system; ~€169/yr
+**access**:    paid
 **yearly_cost**: ~€169/yr (~$183) — under $200 cutoff
 **stations**:  unknown
 **source**:    rompos.ro
+**operator**:  rompos.ro
 
 ---
 
@@ -1175,6 +1299,7 @@ Surface in UI as paid alternatives for users in areas with no free coverage.
 **yearly_cost**: ~¥998/yr (~$138/yr) at 2022 launch pricing; current 2025/2026 pricing unconfirmed
 **stations**:  2,800+ virtual network stations; 33 provinces; 100% major urban road coverage
 **source**:    lbs.qq.com/rtk (Tencent Location Service)
+**operator**:  Tencent Location Service (lbs.qq.com)
 
 Launched 2022 as free public beta; moved to paid at ~¥998/yr. No surveying licence required —
 open to individuals. Requires a Tencent account (Chinese phone number typical for WeChat/QQ).
@@ -1204,7 +1329,7 @@ Brief entries only.
 ## swepos — SWEPOS Network RTK (SE)
 
 **status**:    paid
-**access**:    ~9,000 SEK/yr ≈ $850; free DGNSS tier sub-metre only (out of scope)
+**access**:    paid; free DGNSS tier sub-metre only (out of scope)
 **yearly_cost**: ~9,000 SEK/yr (~$850)
 **source**:    lantmateriet.se
 
@@ -1213,7 +1338,7 @@ Brief entries only.
 ## cpos — CPOS/ETPOS (NO)
 
 **status**:    paid
-**access**:    NOK 8,000+/yr ≈ $740
+**access**:    paid
 **yearly_cost**: NOK 8,000+/yr (~$740)
 **source**:    kartverket.no
 
@@ -1222,7 +1347,7 @@ Brief entries only.
 ## swipos — swipos (CH)
 
 **status**:    paid
-**access**:    CHF 1,500/yr ≈ $1,650; *Geoinformationsgesetz* SR 510.62 classifies RTK as value-added service
+**access**:    paid; *Geoinformationsgesetz* SR 510.62 classifies RTK as value-added service
 **yearly_cost**: CHF 1,500/yr (~$1,650)
 **source**:    swisstopo.admin.ch
 
@@ -1231,7 +1356,7 @@ Brief entries only.
 ## sirent — SiReNT (SG)
 
 **status**:    paid
-**access**:    SGD $107/month ≈ $950/yr; 3-day trial requires SingPass (residents only)
+**access**:    paid; 3-day trial requires SingPass (residents only)
 **yearly_cost**: SGD $107/month (~SGD $1,284/yr, ~$960/yr)
 **source**:    sla.gov.sg
 
@@ -1240,8 +1365,7 @@ Brief entries only.
 ## soi_cors — SoI-CORS (IN)
 
 **status**:    paid
-**access**:    free only for Central/State Government and academic institutions;
-               private users ₹5,032/month ≈ $240/yr × ongoing
+**access**:    paid; free only for Central/State Government and academic institutions
 **yearly_cost**: ₹5,032/month (~$720/yr) for private users
 **source**:    surveyofindia.gov.in
 
@@ -1379,7 +1503,7 @@ Republika Srpska geodetic authorities. Operational status uncertain.
 ## ncrtn — NCRTN (US-NC)
 
 **status**:    paid
-**access**:    ~$500/yr; subscription via ncems.org
+**access**:    paid; subscription via ncems.org
 **yearly_cost**: ~$500/yr
 **source**:    ncems.org (North Carolina Emergency Management / NCDOT)
 
@@ -1388,7 +1512,7 @@ Republika Srpska geodetic authorities. Operational status uncertain.
 ## tdot_rtn — TDOT RTN (US-TN)
 
 **status**:    paid
-**access**:    ~$450/yr; subscription via tn.gov/tdot
+**access**:    paid; subscription via tn.gov/tdot
 **yearly_cost**: ~$450/yr
 **source**:    tn.gov/tdot (Tennessee Department of Transportation)
 
@@ -1397,7 +1521,7 @@ Republika Srpska geodetic authorities. Operational status uncertain.
 ## turn_gps — TURN GPS (US-UT)
 
 **status**:    paid
-**access**:    ~$600/yr; subscription via turngps.org
+**access**:    paid; subscription via turngps.org
 **yearly_cost**: ~$600/yr
 **source**:    turngps.org (State of Utah)
 
@@ -1406,7 +1530,7 @@ Republika Srpska geodetic authorities. Operational status uncertain.
 ## mtsrn — MTSRN (US-MT)
 
 **status**:    paid
-**access**:    ~$1,500/yr; subscription via mdt.mt.gov
+**access**:    paid; subscription via mdt.mt.gov
 **yearly_cost**: ~$1,500/yr
 **source**:    mdt.mt.gov (Montana Department of Transportation)
 
@@ -1415,7 +1539,7 @@ Republika Srpska geodetic authorities. Operational status uncertain.
 ## wsrn — WSRN (US-WA)
 
 **status**:    paid
-**access**:    ~$1,900/yr; subscription via wsdot.wa.gov
+**access**:    paid; subscription via wsdot.wa.gov
 **yearly_cost**: ~$1,900/yr
 **source**:    wsdot.wa.gov (Washington State Department of Transportation)
 
@@ -1437,6 +1561,7 @@ public NTRIP — confirmed across all ten provinces and three territories.
 
 **status**:    paid
 **access**:    RINEX post-processing free via NRCan; real-time NRTK via paid commercial
+**yearly_cost**: not publicly listed (varies by commercial reseller: Can-Net, HxGN SmartNet, Brandtnet)
                providers only: Can-Net/Cansel (`gps.can-net.ca:2300`), HxGN SmartNet
                NA, Brandtnet (`rtk.brandt.ca`)
 **stations**:  40
@@ -1454,6 +1579,7 @@ NTRIP caster.
 
 **status**:    paid
 **access**:    restricted; professional application via dm.gov.ae (Dubai Municipality)
+**yearly_cost**: not publicly listed (professional application required)
 **stations**:  18+
 **source**:    dm.gov.ae (Dubai Municipality)
 
@@ -1469,6 +1595,7 @@ firms) — no individual or hobbyist registration path.
 **host:port**: `190.12.71.75:2101`
 **type**:      physical-coord-vrs
 **access**:    restricted; MoD-issued licence required (professional/commercial only)
+**yearly_cost**: not publicly listed (MoD-issued licence required)
 **stations**:  unknown
 **source**:    ign.gob.pe (IGN — Instituto Geográfico Nacional, under Ministry of Defence)
 
@@ -1482,6 +1609,7 @@ but stream access requires an official licence — no general hobbyist path.
 
 **status**:    paid
 **access**:    restricted; no public NTRIP caster identified
+**yearly_cost**: N/A (no public NTRIP caster)
 **stations**:  7
 **source**:    Not publicly listed (Iraq Geodetic Reference System)
 
@@ -1495,6 +1623,7 @@ not a usable RTK resource for hobbyists.
 
 **status**:    paid
 **access**:    restricted; authorized users only — contact suparco.gov.pk (SUPARCO)
+**yearly_cost**: not publicly listed (authorized users only)
 **stations**:  unknown
 **source**:    suparco.gov.pk (SUPARCO — Space and Upper Atmosphere Research Commission)
 
@@ -1509,6 +1638,7 @@ L-band) is a separate out-of-scope service also under SUPARCO.
 
 **status**:    paid
 **access**:    restricted; institutional licence or commercial reseller contract required
+**yearly_cost**: not publicly listed
 **stations**:  120+
 **source**:    Not publicly listed (Committee on Land Management, Republic of Kazakhstan)
 
@@ -1522,7 +1652,7 @@ outside urban centres even with a subscription.
 ## netgeo — NetGEO (IT — national)
 
 **status**:    paid
-**access**:    ~€360/yr commercial subscription
+**access**:    paid
 **yearly_cost**: ~€360/yr (~$390)
 **source**:    netgeo.it (TopNET Live)
 
@@ -1638,6 +1768,21 @@ Enterprise-focused commercial NRTK network covering Italy. Not free.
 
 ---
 
+## chinese_provincial_cors — Chinese Provincial CORS (CN)
+
+**status**:    rejected
+**reason**:    access restricted by law to licensed surveying organisations under
+               测量法 (Surveying and Mapping Law of the PRC, 2017); hobbyist /
+               individual use is not legally permitted — not a cost or
+               registration barrier
+
+All 31 provincial/municipal CORS networks are operated by natural-resources
+or land-resources bureaux and feed into the national BGAS. Individual
+registration is not available; credentials require institutional affiliation
+with a licensed surveying body. Same legal barrier as `bgas_china`.
+
+---
+
 ## gps_emiliaromagna — Rete GPS Emilia-Romagna (IT)
 
 **status**:    rejected
@@ -1663,6 +1808,7 @@ Enterprise-focused commercial NRTK network covering Italy. Not free.
 **yearly_cost**: not publicly listed (annual price); updated tariffs from Sep 2025
 **stations**:  hundreds, growing; GPS+GLONASS+BDS+GAL
 **source**:    eft-cors.ru (EFT GROUP, Moscow)
+**operator**:  EFT GROUP
 
 Russia's largest CORS aggregator. Operated by EFT GROUP (геодезическое оборудование). Stations
 added by partners across all federal districts. No free public tier for RTK; RINEX archives
@@ -1676,11 +1822,11 @@ are free for post-processing (RINEX 2.11 and 3.02). Credentials provided after s
 **host:port**: `ntrip.rtknet.ru`; ports by federal district: 6030 Central, 6031 North-West,
                6033 Volga, 6034 Ural, 6038 North Caucasus, 6040 South, 6041 Siberia/Far East;
                port 2101 for own mobile base
-**access**:    paid; 30,000 ₽/yr (~$333/yr); 20,000 ₽/6mo; 10,000 ₽/3mo; 4,000 ₽/mo;
-               3-day free trial; register at rtknet.ru
+**access**:    paid; 3-day free trial; register at rtknet.ru
 **yearly_cost**: 30,000 ₽/yr (~$333/yr at ~90 ₽/USD)
 **stations**:  300+ across Russia; RTCM 3.0 and RTCM 3.2-MSM4; 1 Hz
 **source**:    rtknet.ru
+**operator**:  rtknet.ru
 
 Growing since 2013; covers all federal districts. Some equipment resellers include 1-year
 RTKNet access with GNSS receiver purchases.
@@ -1695,6 +1841,7 @@ RTKNet access with GNSS receiver purchases.
                get free NTRIP caster software + storage; owners receive 50% revenue share
 **yearly_cost**: variable (pay-per-use)
 **source**:    hive.geosystems.aero (Geosystems Aero, Russia)
+**operator**:  Geosystems Aero
 
 Aggregation model: independent reference station owners connect their stations to HIVE;
 users pay per-day RTK access. Pricing and station geography viewable on the map.
@@ -1709,6 +1856,7 @@ users pay per-day RTK access. Pricing and station geography viewable on the map.
 **yearly_cost**: not publicly listed
 **stations**:  49 (North-West Russia, centred on St. Petersburg)
 **source**:    geospider.ru (НПП «ГЕОМАТИК», St. Petersburg)
+**operator**:  НПП «ГЕОМАТИК»
 
 Regional network for the North-West federal district. RTCM 3.1 in local coordinate systems.
 Operated by НПП «ГЕОМАТИК». Coverage extends over Leningrad Oblast and adjacent regions.
@@ -1719,11 +1867,11 @@ Operated by НПП «ГЕОМАТИК». Coverage extends over Leningrad Oblast 
 
 **status**:    paid
 **host:port**: `rtk.ntrip.qxwz.com:8003` (CGCS2000); alt IP `60.205.8.49:8003`
-**access**:    paid; individuals register directly at qxwz.com; no surveying licence required;
-               monthly (~¥400/mo) or annual (~¥3,600–3,800/yr) subscription
+**access**:    paid; individuals register directly at qxwz.com; no surveying licence required
 **yearly_cost**: ~¥3,600–3,800/yr (~$500–528/yr) — over $200/yr cutoff
 **stations**:  2,700+ base stations; 33 provinces; GPS+GLONASS+BDS+GAL
 **source**:    qxwz.com (千寻位置 Qianxun SI — Alibaba Group + Norinco JV)
+**operator**:  Qianxun SI — Alibaba Group + Norinco JV
 
 China's dominant commercial CORS network. Launched 2016; RTCM 3.x via NTRIP standard protocol.
 Open to individuals without professional licence. Most RTK survey equipment in China
@@ -1735,11 +1883,11 @@ population coverage.
 ## cmcc_cors — 中国移动CORS China Mobile CORS (CN)
 
 **status**:    paid
-**access**:    paid; individual registration via China Mobile data account; no surveying
-               licence required; ~¥3,600/yr (~$500/yr); also available daily/monthly
+**access**:    paid; individual registration via China Mobile data account; no surveying licence required; also available daily/monthly
 **yearly_cost**: ~¥3,600/yr (~$500/yr) — over $200/yr cutoff
 **stations**:  4,400+ nationwide
 **source**:    China Mobile (中国移动); NTRIP via CMCC network
+**operator**:  China Mobile (CMCC)
 
 China Mobile's high-precision positioning service built on 4,400+ CORS base stations. NTRIP
 connection uses the CMCC interactive mode. Pricing comparable to Qianxun. Coverage and
