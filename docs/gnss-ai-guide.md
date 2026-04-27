@@ -554,7 +554,7 @@ Real-time Kp: swpc.noaa.gov (3-day forecast available).
 
 ### 7.4 Ionospheric Scintillation
 
-~±15° lat + auroral zone: rapid TEC fluctuations -> cycle slips, fading, IAR failure. ~ Worst ~sunset + solar max. Equatorial Asia, South America, auroral oval = worst RTK regions.
+~±15° lat + auroral zone: rapid TEC fluctuations -> cycle slips, fading, IAR failure. ~ Worst ~sunset + solar max. Operationally observed in equatorial Indonesia, Colombia, Brazil, southern Africa, and the auroral oval.
 
 ### 7.5 Polar / High-Latitude
 
@@ -1097,7 +1097,7 @@ PPK has same false-fix + iono-storm vulnerabilities as RTK. Bidirectional pass m
 
 ### 17.1 Problem
 
-Traditional pole must be vertical. 2° tilt at 2 m -> ~70 mm H error; 5° -> ~175 mm. ✓ Tilt compensation lets operator hold pole at any angle -> faster fieldwork, constrained-location access.
+Traditional pole must be vertical. 2° tilt at 2 m -> ~70 mm H error; 5° -> ~175 mm. ✓ Tilt compensation lets operator hold pole at any angle -> faster fieldwork, constrained-location access. Removes levelling overhead; does not improve absolute accuracy beyond a properly levelled pole.
 
 ### 17.2 How it works
 
