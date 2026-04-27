@@ -63,8 +63,8 @@ a:hover{color:#1b2b3a;}
 
 <h2 id="scope">What this guide covers</h2>
 <p>Whether you're recording where a fossil came from, marking individual rare plants for next year's survey, or building a garden robot that needs to follow a path — you don't necessarily need centimetre precision out of vanity, but ±1 m GPS isn't quite good enough either. The free correction networks on the <a href="./">map</a> close that gap.</p>
-<p>This guide is about <strong>Network RTK</strong>: a free, internet-delivered correction stream that turns a compatible GPS receiver from metres-accurate into centimetre-accurate. If you need accuracy without any internet connection, the free alternatives are <strong>Galileo HAS</strong> (global), <strong>QZSS CLAS</strong> (Japan / Asia-Pacific), and <strong>BeiDou PPP-B2b</strong> (China / Asia-Pacific) — satellite-delivered corrections, but the receiver hardware costs ~$2,900 and post-convergence accuracy is closer to 10–30 cm than 1–3 cm. This guide isn't about those.</p>
-<p>The protocol used to deliver these corrections is called <strong>NTRIP</strong> — that's what you'll configure in your receiver and the term you'll see throughout this guide and across the map. The corrections themselves are free; ongoing cost is just the mobile data your receiver uses to fetch them, typically under 5 MB per hour for a multi-constellation stream.</p>
+<p>This guide is about <strong>Network RTK</strong>: a free, internet-delivered correction stream that turns a compatible GPS receiver from metres-accurate into centimetre-accurate. The protocol used to deliver these corrections is called <strong>NTRIP</strong> — that's what you'll configure in your receiver and the term you'll see throughout this guide and across the map. The corrections themselves are free; ongoing cost is just the mobile data your receiver uses to fetch them, typically under 5 MB per hour for a multi-constellation stream.</p>
+<div class="callout"><strong>Need accuracy without any internet connection?</strong> The free alternatives are <strong>Galileo HAS</strong> (global), <strong>QZSS CLAS</strong> (Japan / Asia-Pacific), and <strong>BeiDou PPP-B2b</strong> (China / Asia-Pacific) — satellite-delivered corrections, but the receiver hardware costs ~$2,900 and post-convergence accuracy is closer to 10–30 cm than 1–3 cm. This guide isn't about those.</div>
 
 <h2 id="why">Why standard GPS is only accurate to metres</h2>
 <p>GPS satellites broadcast precise timing signals. By the time those signals reach your receiver, they have been slowed by the atmosphere, distorted by satellite clock drift, and bounced off nearby surfaces. These errors compound to 5–10 metres under typical conditions. Nothing is wrong with your receiver — that is simply the limit of standalone GPS.</p>
@@ -80,10 +80,14 @@ a:hover{color:#1b2b3a;}
 
 <h2 id="hardware">Hardware if you don't have a compatible receiver</h2>
 <p>Prices below are approximate and vary by region and retailer; last reviewed 2026-04-26. Check manufacturer websites for current local pricing.</p>
-<h3>Complete assembled units</h3>
 <table>
   <thead><tr><th>Unit</th><th>Approx. price</th><th>Notes</th></tr></thead>
   <tbody>
+    <tr>
+      <td><strong>ArduSimple simpleRTK2B Basic Starter Kit</strong></td>
+      <td class="price">~€275</td>
+      <td><strong>DIY / cheapest path.</strong> Receiver board + antenna; needs a separate phone or computer running NTRIP-client software. A few hours' first-time setup. Standard choice if you also plan to build your own base station.</td>
+    </tr>
     <tr>
       <td><strong>ArduSimple RTK Handheld 2 Kit</strong></td>
       <td class="price">~€449 / $490</td>
@@ -112,9 +116,7 @@ a:hover{color:#1b2b3a;}
   </tbody>
 </table>
 <p>Emlid (<a href="https://emlid.com" rel="noopener noreferrer">emlid.com</a>) is Estonian; ArduSimple (<a href="https://www.ardusimple.com" rel="noopener noreferrer">ardusimple.com</a>) is Spanish; SparkFun (<a href="https://www.sparkfun.com" rel="noopener noreferrer">sparkfun.com</a>) is US-based. All three ship globally with extensive documentation and active community forums.</p>
-<div class="callout"><strong>iOS / iPad users:</strong> MFi-certified receivers (Bad Elf, Emlid) provide system-wide GPS and work with any mapping app. Non-certified receivers like the ArduSimple Handheld 2 and SparkFun RTK Facet are Android-preferred — on iOS they work only within apps that include built-in driver support (currently SW Maps).</div>
-<h3>Hobbyist / tinkerer path</h3>
-<p>If you are comfortable with some hands-on setup, the <strong>ArduSimple simpleRTK2B Basic Starter Kit</strong> (€275, includes receiver board and antenna) is the most widely-used hobbyist option. It requires a computer or phone running separate NTRIP client software. Expect a few hours for first setup.</p>
+<div class="callout"><strong>iOS / iPad users:</strong> MFi-certified receivers (Bad Elf, Emlid) provide system-wide GPS and work with any mapping app. Non-certified receivers like the simpleRTK2B, ArduSimple Handheld 2, and SparkFun RTK Facet are Android-preferred — on iOS they work only within apps that include built-in driver support (currently SW Maps).</div>
 
 <h2 id="guide-map">Using the map to find free corrections</h2>
 <p>Open the <a href="./">map</a> and zoom to your work area. The colour zones around each pin show how far corrections reliably reach:</p>
@@ -150,7 +152,7 @@ a:hover{color:#1b2b3a;}
 </ol>
 <p>Most clients will ask you to send your approximate position to the server (an NMEA GGA sentence). Most receivers and clients do this automatically — it lets the server pick the best corrections for your location.</p>
 <p><strong>Your antenna must be outdoors</strong> with a clear, unobstructed view of the sky — see <a href="#antenna">Antenna placement</a> below for what works and what doesn't.</p>
-<p><strong>What success looks like:</strong> your client will show the correction stream as connected. Within 30–90 seconds your receiver should report a <em>fix</em> (some receivers show this as "RTK Fixed" or a green indicator). Once fixed, position updates will reflect centimetre-level accuracy. If your software shows coordinates jumping around at metre scale, the receiver is still in <em>float</em> — wait another minute or try a different mountpoint.</p>
+<p><strong>What success looks like:</strong> your client will show the correction stream as connected. On a cold start, your receiver should report a <em>fix</em> within 30–90 seconds (some receivers show this as "RTK Fixed" or a green indicator); a warm restart usually takes 5–15 seconds. Once fixed, position updates will reflect centimetre-level accuracy. If your software shows coordinates jumping around at metre scale, the receiver is still in <em>float</em> — wait another minute or try a different mountpoint.</p>
 <div class="callout"><strong>Troubleshooting</strong><br>
 <strong>Connection refused or times out:</strong> check the host and port; some networks use a non-standard port listed in the map popup. Corporate, campus, and public WiFi commonly block port 2101 — try a 4G/5G hotspot to confirm whether your network is the problem.<br>
 <strong>You see a long text listing instead of corrections:</strong> your client requested <code>/</code> rather than <code>/MOUNTPOINT</code>, so the caster is sending you the sourcetable. Re-enter the connection with the mountpoint name set.<br>
@@ -180,7 +182,7 @@ a:hover{color:#1b2b3a;}
   <li><strong>Caster:</strong> <a href="https://www.centipede-rtk.org/host-rtk-base" rel="noopener noreferrer">Centipede</a> and/or <a href="http://rtk2go.com" rel="noopener noreferrer">RTK2Go</a> — free public NTRIP casters; register your base and it becomes accessible from anywhere.</li>
 </ul>
 <p>Two things determine whether the result is actually usable. The first is <a href="#antenna">antenna placement</a> — same rules as for the rover, but it now matters for everyone connecting to your base, not just you. The second is the <strong>base's coordinates</strong>: they need to come from a free PPP service like <a href="https://webapp.csrs-scrs.nrcan-rncan.gc.ca/geod/tools-outils/ppp.php" rel="noopener noreferrer">CSRS-PPP</a> or <a href="https://gnss.ga.gov.au/auspos" rel="noopener noreferrer">AUSPOS</a> (upload 24 h of logged observations), not from a quick autonomous measurement — otherwise every rover that connects gets a confidently wrong fix with no warning.</p>
-<div class="callout"><strong>Honest effort estimate:</strong> first setup takes a weekend if you are comfortable with Linux and basic networking, plus another day's wall-clock time to log 24 h of observations for the PPP coordinate. Total additional hardware cost is roughly €200–450 depending on what you already have.</div>
+<div class="callout"><strong>Honest effort estimate:</strong> first setup takes a weekend if you are comfortable with Linux and basic networking. The PPP coordinate then needs 24 hours of autonomous logging — leave the receiver running outdoors and collect the file the next morning; no attention required during the run. Total additional hardware cost is roughly €200–450 depending on what you already have.</div>
 
 <h2 id="examples">Real-world examples</h2>
 <p>Hobbyists, citizen scientists, and small volunteer groups already use free network RTK for things like:</p>
