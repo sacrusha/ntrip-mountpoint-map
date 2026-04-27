@@ -89,7 +89,15 @@ a:hover{color:#1b2b3a;}
 </head>
 <body>
 <header>
-  <a href="./">← back to map</a>
+  <a href="./" id="back-link">← back to map</a>
+  <script>
+    if(window.opener&&!window.opener.closed){
+      var bl=document.getElementById('back-link');
+      bl.removeAttribute('href');
+      bl.style.cursor='pointer';
+      bl.addEventListener('click',function(e){e.preventDefault();window.opener.focus();window.close();});
+    }
+  </script>
   <span class="title">RTK GPS: a plain-English guide</span>
 </header>
 <main>
