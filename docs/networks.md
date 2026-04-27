@@ -981,6 +981,26 @@ streams until physical-coordinate mountpoints are published.
 
 ---
 
+## mesa_rtvrn — Mesa County RTVRN (US-CO)
+
+**status**:    in-pipeline
+**host:port**: `rtvrn.mesacounty.us:2101`
+**type**:      single-coord-vrs
+**access**:    registration; free via rtvrn.mesacounty.us
+**pipeline-access**: registration
+**stations**:  33 (17 NGS CORS + 16 county/partner stations) underlying VRS
+**source**:    mesacounty.us/departments-and-services/public-works/gps-survey
+**operator**:  Mesa County Public Works (Western Colorado)
+
+VRS-only network covering western Colorado. Mountpoints are all VRS_* (CMR,
+CMRx, RTCMv3, RTX variants) — no single-base mountpoints exposed. Free
+sign-up at rtvrn.mesacounty.us; same credentials used for NTRIP. Trimble
+PIVOT backend. Underlying 17 NGS CORS likely overlap with EarthScope NOTA
+in northern Mesa County, but VRS streams have no fixed coordinate so no
+duplicate pins on the map.
+
+---
+
 ## Candidate — confirmed free, not yet ingested
 
 Only one network (GPSBru) remains unconfirmed; all ingested networks have been moved to the appropriate in-pipeline sections.
@@ -1542,6 +1562,83 @@ Republika Srpska geodetic authorities. Operational status uncertain.
 **access**:    paid; subscription via wsdot.wa.gov
 **yearly_cost**: ~$1,900/yr
 **source**:    wsdot.wa.gov (Washington State Department of Transportation)
+
+WSRN is operated by WSDOT with PANGA/CWU contributing antennae, communications,
+and data archiving for Puget Sound stations. Multiple correction formats per
+station (RTCM 3.1, RTCM 3.2 MSM, CMR+). Free tier not publicly documented.
+
+---
+
+## crtn — CRTN / California Real Time Network (US-CA)
+
+**status**:    paid-affordable
+**host:port**: `132.239.152.4:2102` (NorCal zones 1–2), `:2103` (NorCal zones 3–4),
+               `:2104` (SoCal zone 5), `:2105` (SoCal zone 6)
+**type**:      single-base
+**access**:    paid; one-time $100 processing fee; universities and schools exempt
+**yearly_cost**: $100 one-time (under the $200 cutoff) — not annual
+**stations**:  ~250 across California (clearinghouse, see below)
+**source**:    sopac-csrc.ucsd.edu/index.php/crtn (Scripps Orbit and Permanent Array
+               Center, UC San Diego)
+**operator**:  CSRC EC / SOPAC at UCSD
+
+Clearinghouse for real-time GNSS data from multiple California networks: SOPAC
+(SCIGN), UC Berkeley/USGS Menlo Park (BARD), USGS Pasadena (SCIGN),
+Caltrans (CVSRN), Orange County Public Works (OCRTN), and EarthScope NOTA
+stations. RTCM 3.0, 1 Hz, latency <1 s. Registration via the CRTN Registration
+form (linked from the SOPAC page); credentials issued in 7+ days. The $100
+processing fee is one-time and falls below the project's $200/yr affordability
+cutoff — surfaced in UI as a paid-affordable info marker rather than an
+in-pipeline entry. Significant station overlap with `earthscope` (already in
+pipeline, free with annual NULA non-commercial agreement) — same physical
+antennae are reachable through either caster.
+
+---
+
+## bard — BARD / Bay Area Regional Deformation network (US-CA)
+
+**status**:    deferred
+**host:port**: no independent caster — streams disseminated via `crtn`
+**type**:      single-base (physical stations)
+**access**:    via SOPAC CRTN (paid-affordable, one-time $100) or EarthScope NOTA
+               (free, in-pipeline, annual NULA)
+**stations**:  ~40 continuously operating GNSS receivers in Northern California
+**source**:    seismo.berkeley.edu/bard (UC Berkeley Seismological Laboratory) /
+               ncedc.org (NCEDC archive)
+**operator**:  UC Berkeley BSL + USGS Menlo Park, supported by USGS and Cal OES
+
+BARD is a 40-station crustal-deformation network around the San Francisco Bay
+and Northern California. It is a research/monitoring array, not a standalone
+public NTRIP service: real-time RTCM streams are exposed via SOPAC CRTN
+(see `crtn`), and 24-hour RINEX archives via NCEDC. Many BARD stations are
+also archived in EarthScope NOTA, so the same physical antennae can be reached
+through the in-pipeline `earthscope` source. Listed for documentation; no
+separate pipeline entry. Country-marker route is `crtn` (info) plus the
+existing `earthscope` pins — duplicate pins at shared coordinates are
+expected and tolerated by the renderer.
+
+---
+
+## panga — PANGA / Pacific Northwest Geodetic Array (US-WA, OR, ID)
+
+**status**:    deferred
+**host:port**: no independent public caster
+**type**:      single-base (physical stations)
+**access**:    via EarthScope NOTA (free, in-pipeline, annual NULA) or WSRN
+               (paid, ~$1,900/yr) for the Washington subset
+**stations**:  ~220 PANGA-operated CWU sites + ~700 NOTA stations processed
+               at the CWU Geodesy Laboratory
+**source**:    panga.org / geodesy.cwu.edu (Central Washington University
+               Geodesy Laboratory)
+**operator**:  CWU Geodesy Lab; UNAVCO/EarthScope for NOTA-operated sites
+
+PANGA is a research array spanning the Pacific Northwest and the wider Cascadia
+subduction zone. Real-time data are telemetered to CWU and processed in-house
+(JPL RTG, Trimble RTKNet) for hazard monitoring; CWU does not operate a public
+hobbyist NTRIP caster. Hobbyists in WA / OR / ID reach the same physical
+stations through `earthscope` (in-pipeline, free) or — for Washington — through
+`wsrn` (paid). Listed for documentation; no separate pipeline entry. Same
+duplicate-pin caveat as BARD.
 
 ---
 

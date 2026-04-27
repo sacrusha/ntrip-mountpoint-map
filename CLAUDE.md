@@ -72,9 +72,9 @@ entry to `SOURCE_AUTH` in `index.html` for connection hints in popups.
 Develop on feature branches, PR into `main`. The workflow only runs against
 `main`, so ingestion changes need to land there to be exercised.
 
-## Current state (2026-04-22, branch claude/add-russia-china-coverage-WMPJr)
+## Current state (2026-04-27, branch claude/find-missing-networks-10Hmz)
 
-**65 sources, ~5,472 stations** in `data/stations.json`. Sources:
+**66 sources, ~5,472+ stations** in `data/stations.json`. Sources:
 rtk2go, Centipede, FReDNet, GeoRTK, 14× SAPOS Länder, ERGNSS, APOS (AT),
 AUSCORS, PositioNZ, SatRef HK, InaCORS, TrigNet, RBMC-IP, RAMSAC, REGNA-ROU (UY),
 FLEPOS, WALCORS, SPSLux, ASG-EUPOS, CROPOS, ESTPOS, LatPos, IGAC, EarthScope NOTA,
@@ -82,7 +82,27 @@ MIRAI, CORS-KOREA, IceCORS, KSA-CORS,
 **Italian regional**: SPIN3, GPS-UMBRIA, GNSS Abruzzo+Lazio, SIT Puglia, GNSS Campania,
 **US state DOT (physical+VRS)**: WISCORS, FPRN, ARDOT RTN, MaCORS, VECTOR VT,
 AzCORS, GCGC RTN, AlCORS, ORGN, MSRN, NYSNet, InCORS, IARTN,
-**US state DOT (VRS-only)**: KyCORS, MnCORS, ODOT RTN, MoDOT RTN, WVRTN, MaineDOT.
+**US state DOT (VRS-only)**: KyCORS, MnCORS, ODOT RTN, MoDOT RTN, WVRTN, MaineDOT,
+**US county-level (VRS-only)**: Mesa County RTVRN (CO).
+
+**2026-04-27 additions (this branch)**: surveyed user-supplied US-state list against
+`docs/networks.md`. 13 of 17 already covered (`incors`, `kycors`, `macors`, `msrn`,
+`mncors`, `gcgc_rtn`, `modot_rtn`, `nysnet`, `orgn`, `vector`, `wsrn`, `wvrtn`,
+`wiscors`). Four were missing — added as documentation entries:
+- `mesa_rtvrn` (US-CO): VRS-only, free with registration, 33 underlying CORS,
+  `rtvrn.mesacounty.us:2101` — added to pipeline SOURCES + country_markers vrs tier;
+  cache will populate on next CI run.
+- `crtn` (US-CA): SOPAC California Real Time Network, paid-affordable, $100 one-time
+  fee (universities/schools exempt), `132.239.152.4:2102-2105` zone-based ports,
+  ~250 stations clearinghouse for SCIGN/BARD/SCIGN-Pasadena/CVSRN/OCRTN/NOTA.
+  Documented; not added to pipeline (paid). info marker added to country_markers.
+- `bard` (US-CA): UC Berkeley + USGS Bay Area Regional Deformation network, ~40
+  stations. No independent caster — streams disseminated via `crtn` (paid) and many
+  stations also archived in `earthscope` (free, in-pipeline). Documented as deferred
+  with dual-access note.
+- `panga` (US-WA, OR, ID): CWU Pacific Northwest Geodetic Array, ~220 PANGA + ~700
+  NOTA stations. No independent public caster. Reachable via `earthscope` (free) or,
+  for WA only, `wsrn` (paid). Documented as deferred.
 
 **Source config in one place:** `color` and `label` live in `SOURCES` in
 `fetch_stations.py` and are emitted to `stations.json`. `SOURCE_COLORS` /
