@@ -5,11 +5,12 @@ STR;RTKNetGauteng;RTKNetGauteng;RTCM 3.1;1004/1012(1),1005/1007/1033(5);2;GPS+GL
 STR;Beni-SB;Beni-SB;RTCM 3.1;1004/1012(1),1005/1007/1033(5);2;GPS+GLONASS;TrigNet;ZAF;-26.19;28.34;0;0;Trimble Pivot Platform;None;B;N;0;;
 STR;Beth-SB;Beth-SB;RTCM 3.1;1004/1012(1),1005/1007/1033(5);2;GPS+GLONASS;TrigNet;ZAF;-28.24;28.33;0;0;Trimble Pivot Platform;None;B;N;0;;
 STR;Emlo-SB;Emlo-SB;RTCM 3.1;1004/1012(1),1005/1007/1033(5);2;GPS+GLONASS;TrigNet;ZAF;-26.47;29.98;0;0;Trimble Pivot Platform;None;B;N;0;;
-STR;Mfkg-SB;Mfkg-SB;RTCM 3.1;1004/1012(1),1005/1007/1033(5);2;GPS+GLO;TrigNet;ZAF;-25.81;25.53;0;0;Trimble Pivot Platform;None;B;N;0;;
+STR;Mfkg-SB;Mfkg-SB;RTCM 3.4;1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs);2;GPS+GLO+GAL+BDS+QZS;TrigNet;ZAF;-25.81;25.53;0;0;Trimble Pivot Platform;None;B;N;0;;
 STR;Nspt-SB;Nspt-SB;RTCM 3.1;1004/1012(1),1005/1007/1033(5);2;GPS+GLO;TrigNet;ZAF;-25.47;30.97;0;0;Trimble Pivot Platform;None;B;N;0;;
 STR;Pmbg-SB;Pmbg-SB;RTCM 3.1;1004/1012(1),1005/1007/1033(5);2;GPS+GLONASS;TrigNet;ZAF;-29.61;30.38;0;0;Trimble Pivot Platform;None;B;N;0;;
 STR;Sprt-SB;Sprt-SB;RTCM 3.1;1004/1012(1),1005/1007/1033(5);2;GPS+GLO;TrigNet;ZAF;-24.67;30.18;0;0;Trimble Pivot Platform;None;B;N;0;;
 STR;Tdou-SB;Tdou-SB;RTCM 3.4;1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs);2;GPS+GLO+GAL+BDS+QZS;TrigNet;ZAF;-23.08;30.38;0;0;Trimble Pivot Platform;None;B;N;0;;
+STR;Verg-SB;Verg-SB;RTCM 3.1;1004/1012(1),1005/1007/1033(5);2;GPS+GLONASS;TrigNet;ZAF;-26.66;27.91;0;0;Trimble Pivot Platform;None;B;N;0;;
 STR;Bfta-SB;Bfta-SB;RTCM 3.1;1004/1012(1),1005/1007/1033(5);2;GPS+GLONASS;TrigNet;ZAF;-29.11;26.2;0;0;Trimble Pivot Platform;None;B;N;0;;
 STR;Ctwn-SB;Ctwn-SB;RTCM 3.4;1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs);2;GPS+GLO+GAL+BDS+QZS;TrigNet;ZAF;-33.95;18.46;0;0;Trimble Pivot Platform;None;B;N;0;;
 STR;Drba-SB;Drba-SB;RTCM 3.4;1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs);2;GPS+GLO+GAL+BDS+QZS;TrigNet;ZAF;-29.85;31.02;0;0;Trimble Pivot Platform;None;B;N;0;;
