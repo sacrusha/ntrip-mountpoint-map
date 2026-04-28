@@ -1,0 +1,7 @@
+STR;VRS_CMR;VRS_CMR;CMR+;Obs(1),Info(10),PrsInfo(11);2;GPS+GLONASS;Mesa County;USA;0;0;1;1;Trimble VRS?Net;None;B;N;0;;
+STR;VRS_RTCMv3;VRS_RTCMv3;RTCM 3.1;1004(1),1005/1007(5),PBS(10);2;GPS+GLONASS;Mesa County;USA;0;0;1;1;Trimble VRS3Net;None;B;N;0;;
+STR;VRS_CMRx;VRS_CMRx;CMRx;Obs(1),Info(10),PrsInfo(11);2;GPS+GLONASS;Mesa County;USA;0;0;1;1;Trimble Pivot Platform;none;B;N;0;;
+STR;VRS_CMR_RTX;VRS_CMR_RTX;CMR+;Obs(1),Info(10),PrsInfo(11);2;GPS+GLO+GAL;Mesa County;USA;0;0;1;1;Trimble Pivot Platform;none;B;N;0;;
+STR;VRS_CMRx_RTX;VRS_CMRx_RTX;CMRx;Obs(1),Info(10),PrsInfo(11);2;GPS+GLO+GAL+BDS+QZS;Mesa County;USA;0;0;1;1;Trimble Pivot Platform;none;B;N;0;;
+STR;VRS_RTCMv3_RTX;VRS_RTCMv3_RTX;RTCM 3.1;Obs(1),Info(10),PrsInfo(11);2;GPS+GLO+GAL+BDS+QZS;Mesa County;USA;0;0;1;1;Trimble Pivot Platform;none;B;N;0;;
+ENDSOURCETABLE
