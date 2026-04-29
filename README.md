@@ -10,7 +10,7 @@ workflow.
 
 **Live demo:** https://sacrusha.github.io/ntrip-mountpoint-map/
 
-**Companion guide:** [`https://sacrusha.github.io/ntrip-mountpoint-map/guide.html`](guide.html) — plain-English primer on
+**Companion guide:** [`guide.html`](https://sacrusha.github.io/ntrip-mountpoint-map/guide.html) — plain-English primer on
 NTRIP, RTK hardware, antenna placement, and DIY base stations.
 
 ## Features
