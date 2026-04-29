@@ -264,6 +264,21 @@ entries added (one per network, each at its own region): `eft_cors` (Moscow),
 5. Uganda UGRF CORS (ugrf.mlhud.go.ug, 78 stations, free as of 2024) — public
    NTRIP endpoint not discoverable without completing registration. Revisit if
    host:port is confirmed publicly.
+6. **`country_markers.json` "deferred" tier is a misnomer — refactor pending.**
+   The current name suggests "we're deferring this" but the actual semantic is
+   "free service confirmed; only the host:port is the gap." The 2026-04-29
+   audit revealed how easily the name misleads: ~75 markers got added under
+   "deferred" for entries that were not free at all (post-processing-only,
+   government-internal, defence-controlled). The audit's marker additions
+   were reverted (markers back to 122; see `docs/requirements.md` § Country-
+   level markers and the strict tier-rule in
+   `.claude/skills/update-country-survey/SKILL.md` for the intended semantic),
+   but the underlying tag should be renamed to something self-documenting
+   (`endpoint-pending`, `free-pending`, or similar) and any reclassification
+   of the 99 audit-introduced `networks.md` blocks should happen in the same
+   pass. The audit's `networks.md` `status` field was already normalised to
+   the controlled vocabulary (`in-pipeline | deferred | paid | paid-affordable
+   | restricted | rejected | candidate`); re-tiering should follow that.
 
 ## Design notes
 

@@ -1236,7 +1236,7 @@ or contact IGVSB; do not add to pipeline without a confirmed reachable endpoint.
 
 ## geocuba_gnss — GEOCUBA National GNSS Service (CU)
 
-**status**:    deferred (no public NTRIP caster confirmed)
+**status**:    restricted
 **country**:   CU — Cuba
 **type**:      single-base
 **host:port**: not publicly listed
@@ -1446,7 +1446,7 @@ the Turkish Republic of Northern Cyprus is not covered.
 
 ## os_net — OS Net (GB)
 
-**status**:    paid (commercial resellers only)
+**status**:    paid
 **date_added**: 2026-04-29
 **country**:   GB
 **type**:      physical single-base / network RTK (VRS via resellers)
@@ -1469,7 +1469,7 @@ are the only free option for GB users.
 
 ## osi_gnss — OSi Active GNSS Network (IE)
 
-**status**:    deferred (RINEX-only free access; real-time routed to commercial)
+**status**:    restricted
 **date_added**: 2026-04-29
 **country**:   IE
 **type**:      physical single-base (RINEX archive free; real-time via commercial VRS)
@@ -1755,7 +1755,7 @@ No free public NTRIP endpoint confirmed.
 
 ## sstp_by — ССТП РБ / Belgeodesiya CORS (BY)
 
-**status**:    paid (restricted)
+**status**:    restricted
 **date_added**: 2026-04-29
 **country**:   BY — Belarus
 **type**:      network RTK (VRS-capable; 98 CORS)
@@ -2210,7 +2210,7 @@ Not added to pipeline — paid service; pricing not confirmed under $200/yr cuto
 
 ## corsnet_lk — CORSnet (LK)
 
-**status**:    rejected — paid commercial
+**status**:    rejected
 **country**:   LK — Sri Lanka
 **type**:      physical-coord-vrs (VRS)
 **host:port**: not publicly listed (credentials supplied on registration)
@@ -2485,7 +2485,7 @@ Enterprise-focused commercial NRTK network covering Italy. Not free.
 
 ## 06gps — 06-GPS (NL)
 
-**status**:    rejected (paid, over $200/yr cutoff)
+**status**:    rejected
 **date_added**: 2026-04-29
 **country**:   NL — Netherlands
 **type**:      VRS
@@ -2538,7 +2538,7 @@ $200/yr cutoff — not surfaced on the map. Free 1-month trial available.
 
 ## pa_cors — Palestinian Authority CORS (PS)
 
-**status**:    deferred (no public NTRIP caster found; no operational CORS infrastructure confirmed)
+**status**:    rejected
 **date_added**: 2026-04-29
 **country**:   PS — Palestinian Territories (West Bank + Gaza)
 **type**:      n/a
@@ -3226,7 +3226,7 @@ Surveyor General's Office.
 
 ## survey3g_sv — Survey3G NTRIP (SV)
 
-**status**:    rejected — paid commercial
+**status**:    rejected
 **country**:   SV — El Salvador
 **type**:      single-base
 **host:port**: not publicly listed (credentials supplied with subscription)
@@ -3280,7 +3280,7 @@ the 2025 modernisation completes.
 
 ## topored_pa — Topored CORS Network (PA)
 
-**status**:    rejected — paid commercial, pricing not confirmed under cutoff
+**status**:    rejected
 **country**:   PA — Panama
 **type**:      single-base
 **host:port**: not publicly listed (credentials supplied with subscription)
@@ -3712,8 +3712,7 @@ CORS network software, 2023) for signs of an operational caster rollout.
 
 ## sob_bd — SOB VRS (BD)
 
-**status**:    deferred (paid/registration-required; host:port publicly documented
-               but credentials required; not added to pipeline)
+**status**:    paid
 **country**:   BD — Bangladesh
 **type**:      VRS (6 physical CORS backing a VRS network)
 **host:port**: `202.53.170.98:8011`
@@ -3748,7 +3747,7 @@ a newer host:port or pricing schedule is now publicly available.
 
 ## miranet_bt — MiraNet / DrukNet CORS (BT)
 
-**status**:    deferred (paid; not added to pipeline)
+**status**:    paid-affordable
 **country**:   BT — Bhutan
 **type**:      single-base (13 physical CORS stations)
 **host:port**: `ntrip.druknet.net:2101` (NTRIP; portal: `miranet.nlcs.gov.bt`)
@@ -3775,7 +3774,7 @@ Vertical datum: DrukGeoid 2015.
 
 ## almgg_mn — CORS Network (MN)
 
-**status**:    deferred (no public NTRIP endpoint confirmed)
+**status**:    restricted
 **country**:   MN — Mongolia
 **type**:      single-base (government cadastral use; no public NTRIP)
 **host:port**: not publicly listed
@@ -3808,7 +3807,7 @@ and the NSDI portal (`nsdi.gov.mn`) for credentials or procurement notices.
 
 ## survey_bn — Survey Department Brunei (BN)
 
-**status**:    deferred (no public NTRIP endpoint confirmed)
+**status**:    restricted
 **country**:   BN — Brunei Darussalam
 **type**:      unknown (no sourcetable discovered)
 **host:port**: not publicly listed
@@ -3838,7 +3837,7 @@ check `survey.gov.bn` directly or contact the department for geodetic services.
 
 ## bfcors — BF-CORS GNSS Network (BF)
 
-**status**:    candidate (free with registration; host:port not publicly listed)
+**status**:    candidate
 **country**:   BF — Burkina Faso
 **type**:      single-base (physical CORS stations)
 **host:port**: not publicly listed (disclosed post-registration via `bfcors.net`)
@@ -3868,7 +3867,7 @@ verify operational status given post-coup bilateral changes.
 
 ## ign_bj — IGN Bénin Permanent GNSS Station Network (BJ)
 
-**status**:    candidate (free with registration; host:port not publicly listed)
+**status**:    candidate
 **country**:   BJ — Benin
 **type**:      single-base (physical CORS stations)
 **host:port**: not publicly listed (disclosed after registration via IGN Bénin / CatIS)
@@ -3954,7 +3953,7 @@ portals for any announced CORS programme.
 
 ## dgigc_tg — Togo National CORS Network (TG)
 
-**status**:    candidate (network exists; NTRIP host:port not publicly listed)
+**status**:    candidate
 **country**:   TG — Togo
 **type**:      single-base (physical CORS stations, exact count unconfirmed)
 **host:port**: not publicly listed (contact DGIGC)
@@ -3987,7 +3986,7 @@ have been shared to rtk2go or Centipede.
 
 ## igntc_cf — CAR National Geodesy / Mapping Authority (CF)
 
-**status**:    deferred (no confirmed public NTRIP endpoint)
+**status**:    rejected
 **country**:   CF — Central African Republic
 **type**:      unknown
 **host:port**: not publicly listed
@@ -4016,7 +4015,7 @@ portals for any announced geodesy programme.
 
 ## dgcf_gw — DGCF Guinea-Bissau (GW)
 
-**status**:    deferred (no confirmed public NTRIP endpoint)
+**status**:    rejected
 **country**:   GW — Guinea-Bissau
 **type**:      unknown
 **host:port**: not publicly listed
@@ -4043,7 +4042,7 @@ portals for any announced GNSS modernisation programme.
 
 ## igebu_bi — IGEBU (BI)
 
-**status**:    deferred (no confirmed public NTRIP endpoint)
+**status**:    rejected
 **country**:   BI — Burundi
 **type**:      unknown
 **host:port**: not publicly listed
@@ -4073,8 +4072,7 @@ government portals for any announced RTK programme.
 
 ## rgn_rw — Rwanda Geodetic Network / RGN (RW)
 
-**status**:    deferred (post-processed distribution confirmed; NTRIP endpoint not
-               publicly confirmed)
+**status**:    restricted
 **country**:   RW — Rwanda
 **type**:      single-base (physical CORS)
 **host:port**: not publicly listed
@@ -4105,7 +4103,7 @@ grown since the 2010s AFREF affiliation efforts.
 
 ## gnet_gl — GNet Greenland Geodetic Network (GL)
 
-**status**:    deferred (no public NTRIP streaming endpoint; RINEX archive only)
+**status**:    restricted
 **country**:   GL — Greenland (Danish autonomous territory)
 **type**:      n/a (geodetic reference network; no streaming NTRIP caster)
 **host:port**: not publicly listed
@@ -4136,7 +4134,7 @@ NOTA streaming sourcetables.
 
 ## umhvorvisstovan_fo
 
-**status**:    deferred (no public NTRIP endpoint found)
+**status**:    rejected
 **country**:   FO — Faroe Islands (Danish autonomous territory)
 **type**:      n/a (no CORS network / NTRIP service identified)
 **host:port**: not publicly listed
@@ -4167,7 +4165,7 @@ post-2021 and whether any real-time stream is accessible.
 
 ## gibr_gi — BIGF/IGS Reference Station Gibraltar (GI)
 
-**status**:    rejected (post-processing archive only; no public NTRIP stream)
+**status**:    rejected
 **country**:   GI — Gibraltar (British Overseas Territory)
 **type**:      single-base (scientific tide-gauge monitoring station)
 **host:port**: not publicly listed (RINEX data via BIGF archive at bigf.ac.uk)
@@ -4190,7 +4188,7 @@ both within the useful L1+L2 RTK baseline.
 
 ## ky_cors — Cayman Islands CORS / PAIP (KY)
 
-**status**:    deferred (paid real-time stream; RINEX free; no public NTRIP caster found)
+**status**:    paid
 **country**:   KY — Cayman Islands (British Overseas Territory)
 **type**:      single-base (4 CORS: GCFS, GCEA on Grand Cayman; CBMD on Cayman Brac; LCSB on Little Cayman)
 **host:port**: not publicly listed
@@ -4214,7 +4212,7 @@ determine subscription pricing.
 
 ## cw_cors — Curaçao Geodetic / Kadaster CORS (CW)
 
-**status**:    deferred (no public NTRIP caster found)
+**status**:    rejected
 **country**:   CW — Curaçao
 **type**:      unknown (no public caster endpoint identified)
 **host:port**: not publicly listed
@@ -4242,7 +4240,7 @@ or RTK correction service exists for Curaçao.
 
 ## aw_cors — Aruba Geodetic / DLV CORS (AW)
 
-**status**:    deferred (no public NTRIP caster found)
+**status**:    rejected
 **country**:   AW — Aruba
 **type**:      unknown (no public caster endpoint identified)
 **host:port**: not publicly listed
@@ -4267,7 +4265,7 @@ service exists for Aruba.
 
 ## bq_cors — BES Islands Geodetic / Kadaster NL (BQ)
 
-**status**:    deferred (no public NTRIP caster found)
+**status**:    rejected
 **country**:   BQ — Bonaire, Sint Eustatius, Saba (Dutch special municipalities)
 **type**:      unknown (no public caster endpoint identified)
 **host:port**: not publicly listed
@@ -4296,7 +4294,7 @@ Sint Eustatius, or Saba streams real-time corrections via NTRIP.
 
 ## sx_cors — Sint Maarten Geodetic / Kadaster SXM (SX)
 
-**status**:    deferred (no public NTRIP caster found)
+**status**:    rejected
 **country**:   SX — Sint Maarten (Dutch part)
 **type**:      unknown (no public caster endpoint identified)
 **host:port**: not publicly listed
@@ -4324,7 +4322,7 @@ or RTK correction service exists on Sint Maarten.
 
 ## regat_dz — REGAT Permanent GPS Network (DZ)
 
-**status**:    deferred (no public NTRIP caster found; data for seismic research only)
+**status**:    restricted
 **country**:   DZ — Algeria
 **type**:      physical single-base (53–56 continuously operating GPS stations)
 **host:port**: not publicly listed
@@ -4358,7 +4356,7 @@ or a national data portal.
 
 ## esa_cors_eg — Egyptian Survey Authority CORS (EG)
 
-**status**:    deferred (no public NTRIP caster endpoint found; internal-use only)
+**status**:    restricted
 **country**:   EG — Egypt
 **type**:      physical single-base (~40 stations, CORS + NACN combined)
 **host:port**: not publicly listed
@@ -4391,7 +4389,7 @@ institutional basis, and whether any commercial RTK service operates in Egypt.
 
 ## ipgn — Iranian Permanent GNSS Network (IR)
 
-**status**:    deferred
+**status**:    restricted
 **date_added**: 2026-04-29
 **country**:   IR
 **type**:      physical single-base (~127 stations)
@@ -4422,7 +4420,7 @@ from outside Iran, and what mountpoint credentials are issued to registered user
 
 ## shamim_ir — SHAMIM (IR)
 
-**status**:    deferred
+**status**:    restricted
 **date_added**: 2026-04-29
 **country**:   IR
 **type**:      physical single-base (VRS / NRTK capable, 144 stations)
@@ -4479,7 +4477,7 @@ to the public, and what credentials or registration pathway grants streaming acc
 
 ## red_cors_mx — Red CORS México (MX)
 
-**status**:    deferred — paid
+**status**:    paid
 **date_added**: 2026-04-29
 **country**:   MX
 **type**:      physical single-base (85+ coverage cities nationwide)
@@ -4498,7 +4496,7 @@ Monthly and annual subscription tiers available. Not added to pipeline: paid ser
 
 ## geocors_mx — GeoCORS / Survey+ (MX)
 
-**status**:    deferred — paid
+**status**:    paid
 **date_added**: 2026-04-29
 **country**:   MX
 **type**:      physical single-base (55+ stations)
@@ -4517,7 +4515,7 @@ devices. Not added to pipeline: paid service.
 
 ## hitarget_cors_mx — Hi-Target Red CORS Mexico (MX)
 
-**status**:    deferred — paid
+**status**:    paid
 **date_added**: 2026-04-29
 **country**:   MX
 **type**:      physical single-base / VRS
@@ -4564,7 +4562,7 @@ sirgaschile.cl, and what registration pathway (if any) grants free hobbyist acce
 
 ## geocom_gnss_cl — Geocom GNSS Network (CL)
 
-**status**:    deferred — paid
+**status**:    paid
 **date_added**: 2026-04-29
 **country**:   CL
 **type**:      physical single-base / VRS
@@ -4584,7 +4582,7 @@ to pipeline: paid service.
 
 ## kollnet_cl — KollNET (CL)
 
-**status**:    deferred — paid
+**status**:    paid
 **date_added**: 2026-04-29
 **country**:   CL
 **type**:      physical single-base / VRS
@@ -4603,7 +4601,7 @@ equipment company. Not added to pipeline: paid service.
 
 ## ign_cr_cors — IGN-CR CORS / SNIT NTRIP Caster (CR)
 
-**status**:    deferred — candidate
+**status**:    candidate
 **date_added**: 2026-04-29
 **country**:   CR
 **type**:      physical single-base (14 stations)
@@ -4631,7 +4629,7 @@ SNIT account creation (free, web-based).
 
 ## nignet — NIGNET (NG)
 
-**status**:    deferred — no confirmed public endpoint
+**status**:    restricted
 **date_added**: 2026-04-29
 **country**:   NG
 **type**:      physical single-base (geodetic reference network)
@@ -4665,7 +4663,7 @@ accessible service. No free hobbyist NTRIP path identified.
 
 ## sok_ke — Survey of Kenya CORS / Geodetic Control (KE)
 
-**status**:    deferred — no confirmed public NTRIP endpoint
+**status**:    restricted
 **date_added**: 2026-04-29
 **country**:   KE
 **type**:      physical single-base (national geodetic control network)
@@ -4696,7 +4694,7 @@ NTRIP endpoint.
 
 ## muya_cors_ke — Muya CORS (KE)
 
-**status**:    documented — paid; no free hobbyist path
+**status**:    paid
 **date_added**: 2026-04-29
 **country**:   KE
 **type**:      physical single-base + network RTK
@@ -4721,7 +4719,7 @@ pipeline. Only commercial RTK NTRIP option confirmed for Kenya.
 
 ## tngc_tz — Tanzania National Geo-innovation Centre / Survey Division (TZ)
 
-**status**:    deferred — no confirmed public NTRIP endpoint
+**status**:    restricted
 **date_added**: 2026-04-29
 **country**:   TZ
 **type**:      physical single-base (national geodetic control)
@@ -4750,7 +4748,7 @@ Network by ArduSimple's Africa survey (2025).
 
 ## cenacarta_mz — CENACARTA CORS (MZ)
 
-**status**:    deferred — no confirmed public NTRIP endpoint
+**status**:    restricted
 **date_added**: 2026-04-29
 **country**:   MZ
 **type**:      physical single-base (geodetic reference / AFREF)
