@@ -51,7 +51,7 @@ scripts/fetch_stations.py     # Sourcetable fetch + parse + diff.
   update-stations.yml         # Cron + workflow_dispatch, runs the Python.
 data/
   stations.json               # Canonical JSON, consumed by index.html.
-  country_markers.json        # Static; country-level markers (120 entries, 3 tiers).
+  country_markers.json        # Static; country-level markers (221 entries, 3 tiers).
   help_topics.json            # Static; in-map help (22 topics + 4 popovers).
   <source>.sourcetable        # Raw archives per caster.
 ```
@@ -76,7 +76,7 @@ entry to `SOURCE_AUTH` in `index.html` for connection hints in popups.
 Develop on feature branches, PR into `main`. The workflow only runs against
 `main`, so ingestion changes need to land there to be exercised.
 
-## Current state (2026-04-27, branch claude/find-missing-networks-10Hmz)
+## Current state (2026-04-29, branch claude/review-documentation-yELxu)
 
 **66 sources, ~5,472+ stations** in `data/stations.json`. Sources:
 rtk2go, Centipede, FReDNet, GeoRTK, 14× SAPOS Länder, ERGNSS, APOS (AT),
@@ -89,7 +89,17 @@ AzCORS, GCGC RTN, AlCORS, ORGN, MSRN, NYSNet, InCORS, IARTN,
 **US state DOT (VRS-only)**: KyCORS, MnCORS, ODOT RTN, MoDOT RTN, WVRTN, MaineDOT,
 **US county-level (VRS-only)**: Mesa County RTVRN (CO).
 
-**2026-04-27 additions (this branch)**: surveyed user-supplied US-state list against
+**2026-04-29 additions (this branch)**: bulk audit of `docs/country-survey.md` against
+top-120 GDP ∪ top-120 population + 42 administered territories (~232 entities). Survey
+went from ~110 to **188 country/territory entries**; `docs/networks.md` from 182 to **238
+network blocks**; `data/country_markers.json` from 122 to **221 markers** (+68 deferred,
++31 info). Documented `**date_added**:` field convention (per-country heading required;
+per-network optional) and a Tier A/B/C entry scheme. Process codified as the
+[`update-country-survey`](.claude/skills/update-country-survey/SKILL.md) skill — future
+country-survey edits should use it. Commit `4942fa6` is the audit; `7b175c3` is the
+skill+review pass.
+
+**2026-04-27 additions (prior branch)**: surveyed user-supplied US-state list against
 `docs/networks.md`. 13 of 17 already covered (`incors`, `kycors`, `macors`, `msrn`,
 `mncors`, `gcgc_rtn`, `modot_rtn`, `nysnet`, `orgn`, `vector`, `wsrn`, `wvrtn`,
 `wiscors`). Four were missing — added as documentation entries:
@@ -141,10 +151,15 @@ physical-coord-vrs — show as regular pins with `pins:true` VRS badges. Full
 NRTK polygons are deferred.
 
 **`data/country_markers.json`:** static file (not pipeline-generated) with
-120 entries across three tiers — `vrs` (23 VRS-only circles + 39 pinned-network
-fallbacks with `"pins":true`), `deferred` (15 grey circles: ReNEP, LitPOS,
-UGRF, ETCORS, DOL Thailand, Italian deferred regionals, ACORN, ZAKPOS, GPSBru,
-REMOS Venezuela), `info` (43 circled-? markers: paid and restricted networks). All three tiers
+**221 entries** across three tiers as of 2026-04-29 — `vrs` (63 VRS-only circles +
+pinned-network fallbacks with `"pins":true`), `deferred` (~83 grey circles: free
+networks not yet in the pipeline including Portugal ReNEP, Lithuania LitPOS, Thailand
+DOL, the country-survey-audit additions across Africa / Caribbean / Central Asia, and
+the Italian deferred regionals), `info` (~75 circled-? markers: paid and restricted
+networks including swipos, CPOS, HEPOS, ROMPOS, AGROS, MONTEPOS, BiHPOS, TUSAGA-Aktif,
+CZEPOS, SKPOS, MIRANET, e-GNSS, the EFT-CORS / RTKNET / HIVE / GEOSPIDER Russia cluster,
+Qianxun / China Mobile / Tencent CN cluster, Dubai DVRS, Peru REGPMOC, Quebec MERN,
+Israel APN, etc.). All three tiers
 are live in `index.html` via `buildCountryMarkers()`. Toggle panel shows
 "VRS networks (N)", "Pending (N)", "Restricted (N)" sections.
 Design spec in `docs/requirements.md` § Country-level markers.
@@ -165,8 +180,18 @@ idempotent — re-running with no data change produces no diff. Not wired
 into the cron workflow (the cron only commits `data/`); it's a manual regen
 step like updating `country_markers.json`.
 
-**`yearly_cost` field in `docs/networks.md`:** all paid and paid-affordable
-entries carry a `**yearly_cost**:` field for reference (not yet in JSON).
+**`yearly_cost` field in `docs/networks.md`:** required on every paid and
+paid-affordable entry. Format: local currency literal in the value, with the
+USD/EUR equivalent in the country-survey prose (`(~$X/yr)` parenthetical).
+Greppable for currency audits. Not yet mirrored in `data/stations.json`.
+
+**`date_added` field in `docs/country-survey.md`:** required on every country
+heading. Format: `**date_added**: 2026-04-29` on the line immediately under
+`### CC — Country Name`. Bulk-only backfill passes use yesterday's date so they
+are greppable separately from substantive research-driven edits — see the
+[`update-country-survey`](.claude/skills/update-country-survey/SKILL.md) skill
+for the convention. Optional secondary `**date_added**:` per `## id` block in
+`docs/networks.md` when a network is revised independently of its country entry.
 
 **Longitude normalisation:** `parse_sourcetable` now normalises 0-360°
 longitudes to ±180 (ERGNSS: 114/128 affected; AUSCORS: 2/808). `lon` is
