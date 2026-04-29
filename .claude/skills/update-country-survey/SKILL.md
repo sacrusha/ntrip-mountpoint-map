@@ -7,6 +7,26 @@ description: Update or add country/territory entries in docs/country-survey.md a
 
 Codifies the methodology used in commit `4942fa6` (which expanded the country survey from ~110 to 188 entries). Future sessions invoking this skill should produce edits of equivalent quality without re-deriving the workflow.
 
+## Three files, three roles
+
+The survey, networks doc, and marker JSON are **not mirrors of each other**.
+Each has a distinct purpose, audience, and editorial register. Edits should
+respect those roles rather than copy text between them.
+
+| File | Role | Audience |
+|---|---|---|
+| `docs/country-survey.md` | **Completeness picture.** Per-country prose recording what was investigated, what was found, where the gaps are. Missing heading = uncovered country. The flow's input — broad, includes negatives. | Maintainers + hobbyists who follow GitHub links. UK spelling; expand acronyms on first use. |
+| `docs/networks.md` | **Refined operator catalogue, for us.** Curates the surveys' findings into per-network blocks (status, host:port, access, yearly_cost, …). Internal working bench between the survey and the markers. | Maintainers (developer register). Acronyms fine; audit phrasing fine. |
+| `data/country_markers.json` | **User-facing translation.** Renders directly in map popups for hobbyists. Subset of networks that warrants a country-level marker, written for end users. | End users on the live map. Plain English; no jargon; no "contact X" instructions. |
+
+The flow narrows at each step: a country may have a paragraph in the survey
+with no `networks.md` block (nothing operator-shaped to catalogue) and a
+`networks.md` block may have no marker (regional-only, not substantial,
+single-base with pins, etc.). Don't expand a survey paragraph just to
+populate a `networks.md` block, and don't create a marker just to mirror a
+`networks.md` block — at every step the question is whether the next file's
+role is served.
+
 ## Repo-relative paths
 
 This skill assumes the working directory is the repo root (typically `/home/user/ntrip-mountpoint-map` but treat all paths as repo-relative).
@@ -134,11 +154,19 @@ Procedure:
                 exists but no public service" — these get NO marker. The
                 country-survey.md prose is sufficient documentation.
 3. The note field is USER-FACING (renders in map popup tooltips for
-   hobbyists). Plain English; expand or avoid acronyms ("permanent GPS
-   reference network" not "CORS"); never mention internal classifications
-   like "$200/yr cutoff"; never include audit-document phrasing like
-   "no English pricing page" or "±2 cm horizontal accuracy." A good note
-   tells the user what they need to know to act.
+   hobbyists). Read the `_note_field_convention` and
+   `_yearly_cost_convention` keys at the top of data/country_markers.json,
+   and the matching sections in this SKILL.md, before writing any marker.
+   In short: do NOT restate the price, access label, or region (the popup
+   already renders those); do NOT inline the registration URL (use the
+   `registration` field); do NOT write "Contact X" — link to the website
+   instead. Plain English; expand acronyms; no internal classifications
+   ("$200/yr cutoff") or audit phrasing ("no English pricing page",
+   "±2 cm at 95 % confidence"). Skip the note entirely if there is
+   nothing useful to add beyond the auto-rendered chrome. Use the
+   canonical `yearly_cost` format ($X/yr / €X/yr / X CCY/yr with USD
+   parenthetical for non-USD); OMIT yearly_cost when pricing is not
+   published rather than writing "not publicly listed" there.
 4. Skip in-pipeline single-base entries (they get physical pins).
 5. Skip rejected entries unless the rejection means "exists but unobtainable
    for the target user" AND it's substantial.
@@ -176,6 +204,43 @@ In commit `4942fa6` substantive edits were dated `2026-04-29` and the bulk backf
 - `docs/country-survey.md` — read by humans following GitHub links from the README/map. Hobbyist register. The same audience as `guide.html` and `data/help_topics.json`. Acronyms must be expanded on first use; "CORS" is jargon — prefer "permanent GPS reference station" or "fixed GPS reference network" in prose.
 - `docs/networks.md` — internal/developer reference. Acronyms OK. Audit phrasing OK.
 - `data/country_markers.json` `note` field — **renders in map popup tooltips for end users.** Plain English. Tells the reader what they need to do next. No acronyms without expansion. No internal classifications (don't say "$200/yr cutoff" — say "expensive" or quote the price). No audit phrasing ("no English pricing page", "±2 cm horizontal accuracy at 95 % confidence" — wrong audience).
+
+### `country_markers.json` `note` field — what to write
+
+The popup chrome (see `index.html:1017-1052`) auto-renders five things from
+the marker object: the access label (mapped from `access`), `yearly_cost`,
+"Covers `region`.", `note`, and the `registration` URL as a separate link.
+The `note` should **add information beyond those**, not restate them.
+
+**Don't:**
+- Repeat the price (it's in `yearly_cost`).
+- Repeat the access label ("Paid subscription required" / "Access restricted" — already shown).
+- Restate the region.
+- Include the registration URL inline ("Subscribe at X.gov", "via X.gov", "register at X" — the `registration` field renders separately).
+- Instruct the user to "Contact X" or "contact X via …" — link to the website via `registration` instead. The user is on a map looking for an option, not for chores.
+- Include internal/audit phrasing ("documented for completeness", "no English pricing page", "±2 cm horizontal accuracy", "$200/yr cutoff", "subordinate body of …").
+
+**Do, when applicable:**
+- Station count once, e.g. "78 stations".
+- Free hobbyist alternatives where they exist, e.g. "Volunteer rtk2go/Centipede bases provide partial free coverage."
+- Terminal access blockers in plain words, e.g. "TxDOT employees and contractors only. No hobbyist registration path."
+- Real safety/operational warnings (active spoofing, war disruption, infrastructure collapse).
+- Non-obvious access mechanics ("Endpoint disclosed only after account approval", "NOT standard NTRIP — raw TCP streams").
+
+Tone: matter-of-fact, hobbyist-addressed, ≤2 short sentences typical, ~250 chars max. **Skip the field entirely if there's nothing useful to add** — the popup is not weaker without a `note`.
+
+### `country_markers.json` `yearly_cost` field — canonical format
+
+One short line. Choose by currency:
+
+- USD: `$X/yr` (no `~` prefix; no parenthetical needed).
+- Symbol currencies: `€X/yr`, `£X/yr`, `¥X/yr`, `₹X/yr`, `₽X/yr`, `S$X/yr`, `₱X/yr`. Append USD parenthetical: `€169/yr (~$183/yr)`.
+- ISO-only codes (no symbol): `X CCY/yr`, e.g. `1,500 CHF/yr (~$1,650/yr)`, `9,000 SEK/yr (~$850/yr)`, `8,688 RSD/yr (~€74/yr, ~$80/yr)`.
+- Drop the `~` prefix on the local-currency figure unless it's genuinely uncertain — annual fees are estimates by definition.
+- Local-currency qualifiers ("private users", "commercial only") belong in `note`, not `yearly_cost`.
+- One-time fees: state the form clearly, e.g. `$100 one-time`, `₱1,000 one-time (~$17) plus ongoing subscription`.
+
+**If pricing is not published, OMIT the `yearly_cost` field entirely** so the line disappears from the popup. Do not write `"yearly_cost":"not publicly listed"` or `"contact …"` there. If it's worth surfacing that the operator doesn't publish prices, say so once in `note` (e.g. "Pricing not published online.").
 
 ### `status: deferred` in `networks.md` — narrow semantic
 

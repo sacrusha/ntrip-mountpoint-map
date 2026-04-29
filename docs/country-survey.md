@@ -3,6 +3,22 @@
 _How is RTK positioning solved (or not) in each country? Who runs it, is it
 free, what are the gaps, and what does a hobbyist or small shop actually get?_
 
+## Role of this file
+
+This survey is the **completeness picture**: the place to see which
+countries have been investigated, what was found, and where the gaps still
+are. Its purpose is to make under-coverage visible — a missing heading is
+itself a signal — and to capture the per-country reasoning that drives
+everything downstream.
+
+It is **not** a refined catalogue of operators (that is `docs/networks.md`,
+which curates the surveyed findings into per-network blocks for our use), and
+it is **not** end-user copy (that is `data/country_markers.json`, which
+translates the conclusions into short user-facing notes for the map). The
+three files don't have to mirror each other; each has a distinct role and
+audience. Think of the flow as: survey → networks → markers, with each step
+narrowing and re-styling for its audience.
+
 _Technical detail (endpoints, credentials, pipeline status) lives in
 `docs/networks.md`. Network references use the pattern `→ networks.md: \`id\``
 at the end of the relevant bullet — preserving this exact form lets you audit
