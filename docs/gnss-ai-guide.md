@@ -283,6 +283,8 @@ Key legacy (non-MSM) messages:
 | 1042 | BeiDou ephemeris ~ | |
 | 1045/1046 | Galileo ephemeris ~ | |
 
+1005/1006 frame metadata: 6-bit DF021 "ITRF Realisation Year" field exists but RTCM SC-104 never specified semantics ✓ (SNIP KB). F9P firmware leaves it 0; rtklib + most decoders ignore it. Broadcast XYZ carries no frame or epoch -> rover trusts the coordinate blindly. RTCM 3.1 added 1021-1027 datum-transformation messages (Helmert/Molodensky/grid/projection) ~; some Trimble/Leica casters + a few SAPOS Länder emit them for national-projection clients; F9P does not generate them; rtk2go and Centipede do not transmit them. Frame/epoch context lives in network docs only. See §13.7.
+
 ### 4.3 RTCM 3.x - MSM
 
 Modern format (RTCM 3.2 ~); all constellations; consistent structure. MSM type = base + density:
@@ -633,7 +635,7 @@ Bad: flat metal roof; HVAC-adjacent; under trees; tilted surface.
 ### 10.3 Base Position Determination
 
 #### A: Average Over Time
-1-24 h autonomous average; ~1-3 m absolute. Adequate relative; not national coord tie.
+1-24 h autonomous average; ~1-3 m absolute. Adequate relative; not national coord tie. Frame = broadcast-ephemeris realisation @ survey-in epoch (currently WGS84 G2139 ≈ ITRF2014); frozen at install instant -> drifts vs true ITRF at full plate rate after install. F9P TMODE3 SVIN does not refresh ✓ (F9P Integration Manual: "the reference datum cannot be changed and is always set to WGS84"). See §13.7.
 
 #### B: PPP (recommended)
 Upload 24h+ RINEX:
@@ -840,27 +842,32 @@ Sources: ASPRS 2015; ICSM SP1; NOAA NGS; ASCE 38-22; Emlid RS2+ spec. ~
 ### 13.1 Reference Frame Hierarchy
 
 - ITRF: global standard; tracks plate motion. Realizations ITRF2000/2008/2014/2020.
-- WGS84 G2139+: aligned with ITRF2008 at ~1 cm; GNSS output = WGS84/ITRF at observation epoch. ✓
-- ETRS89: fixed to Eurasian plate at 1989.0; plate ~25 mm/yr -> 2025 offset ~0.9 m NE. ✓
-- GDA2020: fixed Australian plate at 2020.0; ~70 mm/yr -> 2025 offset ~0.35 m, growing. GDA94 (1994.0): ~2.2 m in 2025. ✓
-- NAD83(2011): fixed N. American plate; 0.5-2 m from ITRF2014 (direction-dependent). ✓
-- Classical non-geocentric (OSGB36, NTF, Tokyo): local ellipsoid; 50-200+ m from WGS84. OSGB36 ~70-120 m. ✓
+- WGS84 G2139+: aligned with ITRF2014 at ~1 cm; GNSS broadcast-ephemeris output = WGS84/ITRF at observation epoch ✓. NGA aligned WGS84 to ITRF2020 (G2296) Jan 2024 ✓.
+- ETRS89: realised as ETRF2000; fixed to Eurasian plate at 1989.0; plate ~25 mm/yr -> 2026 offset ~0.93 m NE ✓.
+- GDA2020: fixed Australian plate at 2020.0; 70 mm/yr -> 2026 offset ~0.42 m ✓. GDA94 (ep 1994.0): ~2.24 m @ 2026 ✓.
+- NAD83(2011) ep 2010.0: fixed N. American plate; 0.5-2 m from ITRF2014, direction-dependent; Pacific margin worst (transform-fault smearing on top of plate-fixed offset) ✓.
+- RGF93 v2b (France): = ETRF2000 ep 2019.0 ✓. Note: realisation epoch (2019.0) ≠ frame name's "2000". Easy mistake.
+- SIRGAS2000 (BR + S. America): ep 2000.4; ~12-15 mm/yr drift vs current ITRF ~.
+- JGD2011 (JP): ~10 cm vs current ITRF + post-Tōhoku co-seismic offsets up to several m in NE Honshu ~.
+- Classical non-geocentric (OSGB36, NTF, Tokyo): local ellipsoid; 50-200+ m from WGS84. OSGB36 ~70-120 m ✓.
 
-**Summary - approximate horizontal offsets from ITRF at epoch ~2025:**
+Approximate horizontal offsets from current ITRF @ 2026:
 
-| Datum | Region | Approx offset from ITRF |
-| WGS84 (G2139) | Global | < 2 cm (equal) |
-| ETRS89 | Western Europe | ~0.9 m northeast |
-| GDA2020 | Australia | ~0.35 m, growing ~70 mm/yr |
-| GDA94 | Australia (legacy) | ~2.2 m |
-| NAD83(2011) | North America | ~0.5-2 m ~ |
-| OSGB36 | United Kingdom | ~70-120 m |
+| Datum | Region | Offset @ 2026 | Drift rate |
+| WGS84 (G2139/G2296) | Global | <2 cm (= ITRF2014/2020) | tracks ITRF ✓ |
+| ETRS89 (ETRF2000) | Western Europe | ~0.93 m NE ✓ | 25 mm/yr ✓ |
+| GDA2020 | Australia | ~0.42 m ✓ | 70 mm/yr ✓ |
+| GDA94 (legacy) | Australia | ~2.24 m ✓ | 70 mm/yr |
+| NAD83(2011) ep 2010.0 | North America | 0.5-2 m, dir-dependent ✓ | <2 cm/yr interior, up to 5 cm/yr Pacific margin |
+| RGF93 v2b | France | ~0.93 m NE (= ETRF2000 ep 2019.0) ✓ | 25 mm/yr ✓ |
+| SIRGAS2000 | Brazil + S. America | ~30-40 cm ~ | 12-15 mm/yr ~ |
+| OSGB36 | United Kingdom | 70-120 m (datum, not epoch) | n/a |
 
 ### 13.2 Plate Tectonics / Multi-Year Drift
 
-ITRF coords of a stable mark advance at plate velocity. Two RTK fixes 2 yr apart: AU ~140 mm diff; W. Europe ~50 mm.
+ITRF coords of a stable mark advance at plate velocity. Two RTK fixes 2 yr apart: AU ~140 mm; W. Europe ~50 mm.
 
-GDA2020 plan (epoch 2020.0) + RTK ITRF (2025.5) -> ~385 mm offset. Fix: ICSM epoch-conversion (PROJ or ICSM QGIS plugin). ✓
+GDA2020 plan (ep 2020.0) + RTK ITRF (2026.3) -> ~440 mm offset. Fix: ICSM epoch-conversion (PROJ time-dependent transform, ICSM QGIS plugin AU, NGS HTDP US) ✓. xyHt worked example: 2 cm/yr × 14 yr = 28 cm if epoch ignored ✓. Inside Unmanned Systems: 2005-surveyed reference station + 2019-frame project -> ~50 cm discrepancy ✓.
 
 ### 13.3 Geoid vs Ellipsoid
 
@@ -899,16 +906,64 @@ Key RTK codes:
 ### 13.5 Position off 1-2 m vs Google Maps
 
 Causes (descending frequency):
-1. Datum offset: Google Maps = WGS84/ITRF (EPSG:4326); national casters in national datum. ETRS89 ~0.9 m NE ✓; GDA94 ~2.2 m ✓; GDA2020 ~0.35 m ✓; NAD83 ~0.5-1.5 m ✓. Systematic offset same direction/magnitude across site -> datum shift. Apply national transform.
+1. Datum offset: Google Maps = WGS84/ITRF (EPSG:4326); national casters in national datum. ETRS89 ~0.93 m NE ✓; GDA94 ~2.24 m ✓; GDA2020 ~0.42 m ✓; NAD83 0.5-2 m ✓ (all @ 2026). Systematic offset same direction/magnitude across site -> datum shift. Apply national transform.
 2. Imagery georeferencing: major cities 1-3 m; rural 5-20+ m; forest/desert up to 50+ m. ~ Inconsistent offset -> imagery, not GNSS.
-3. rtk2go volunteer base in WGS84; data in national datum -> opposite datum offset to cause 1.
-4. Wrong geoid model: altitude wrong, horizontal correct.
+3. Volunteer base (rtk2go, Centipede outside FR) = no declared frame, no declared epoch (§13.7). Per-base offset; direction/magnitude unpredictable across the network. RTCM stream does not signal which.
+4. Same-base re-occupation across years = relative vector preserved (plate motion common-mode); absolute coord drifted ~25-70 mm/yr depending on plate. Different base between visits = apparent drift looks random.
+5. Wrong geoid model: altitude wrong, horizontal correct.
 
 ### 13.6 Transformation Tools
 
 PROJ (proj.org, inside QGIS/GDAL/PostGIS): v6+ time-dependent plate-motion. Grid shift files free from PROJ CDN: US NADCON5; AU ICSM GDA94/GDA2020; UK OSTN15/OSGM15. QGIS 3.x applies on-the-fly.
 
 Online: CSRS-PPP (ITRF+NAD83 from RINEX) ✓; NGS NCAT (epoch-aware NAD83<->ITRF US); ICSM QGIS plugin (GDA2020+epoch). ~
+
+### 13.7 Frame/epoch in free public NTRIP
+
+RTCM 1005/1006 carries XYZ + dead DF021 (§4.2). No in-stream frame, no in-stream epoch -> rover blind to either. Frame info lives in network docs only. Network-tier reality differs by orders of magnitude:
+
+[gov-CORS] Frame + epoch declared in writing; cross-station consistency enforced:
+- AUSCORS: GDA2020 ep 2020.0 (plate-fixed AU); mountpoint name encodes frame ✓.
+- EarthScope NOTA: ITRF2014 current ep, refreshed regularly; non-NOTA mountpoints "best estimate, no precise epoch" ✓.
+- SAPOS: ETRS89/ETRF2000 per Land; some Länder broadcast 1021/1023 datum-transform messages for national-projection clients ~.
+- ERGNSS, FReDNet, RBMC-IP, RAMSAC, TrigNet, etc.: ETRS89 / SIRGAS2000 / Hartebeesthoek94 / etc., per network website; never in stream.
+
+[centipede-FR] Strict workflow: 24 h+ RINEX -> IGN online service -> RGF93 v2b report (= ETRF2000 ep 2019.0) -> RTKBase fixed mode ✓. The "2000" in ETRF2000 = realisation year, not epoch — easy mistake. Frame consistent across French Centipede bases. Not declared in RTCM. 1-2 wk registration review = real for FR (IGN report = auditable); weaker outside FR.
+
+[centipede-intl] Recipe-only: docs tell EU operators ETRF2000 via EUREF ECTT; rest-of-world ITRF20 current ep direct. No central post-processing service, no enforcement, no per-base audit.
+
+[rtk2go] No enforced frame, no enforced epoch. SNIP "PFAT" (Position File Adjustment Tool) frame harmonisation = paid SNIP feature + opt-in ✓ (SNIP KB: "PFAT translation ... only available on paid models of SNIP"); rare in practice. Most volunteer bases: F9P TMODE3 SVIN -> autonomous fix (~1-3 m absolute) -> broadcast 1005 internally labelled "WGS84" but frozen at survey-in instant. F9P Integration Manual: "the reference datum cannot be changed and is always set to WGS84" ✓ — but that "WGS84" = whatever broadcast ephemeris said the day of survey-in. After 2-5 yr antenna has moved at full plate speed in true ITRF; broadcast 1005 has not.
+
+Hobbyist consequences:
+
+1. Same rtk2go base, same point, two visits 2 yr apart: relative vector preserved (plate motion common-mode); fix repeats to cm.
+2. Different rtk2go bases at same point: 5-30 cm apparent drift, looks random, no in-stream signal.
+3. Centipede-FR fix vs Google Earth/OSM @ 2026: ~93 cm NE systematic (RGF93 v2b = ETRF2000 ep 2019.0 vs ITRF current); apply PROJ EUREF transform.
+4. AU rtk2go base autonomous-SVIN'd 2020 + project in GDA2020: lucky cancellation ~0 cm. Same base + project in WGS84/Google Earth: ~42 cm @ 2026, growing.
+5. Re-flying drone GCPs 2025 -> 2027 against different base: 5-30 cm step change between flights, same physical points.
+6. SW Maps / Emlid Flow / RTKLIB rover apps surface no frame info to user ✓. The frame question never appears in the UI.
+
+Mitigations (rover-side):
+- Use same base for all re-occupations -> plate motion common-mode -> relative vector preserved.
+- Tie rover to known mark once -> store per-base residual -> apply to subsequent fixes.
+- Prefer government CORS over rtk2go where coverage allows -> declared frame + monitored consistency.
+- Cross-check rover at one spot via 2 government bases of known frame: agreement <3 cm = consistent; >30 cm = mixed frames.
+- Drone re-flights: log base ECEF + observation epoch alongside photo metadata -> PROJ time-dependent transform between epochs (proj 6+; ICSM QGIS plugin AU; NGS HTDP US).
+
+What well-run free networks tell users about epoch:
+- AUSCORS: GDA2020 plate-fixed @ ep 2020.0; no per-flight epoch math needed within AU; HTDP-equivalent only when tying to ITRF.
+- EarthScope NOTA: refreshed epoch published per stream; for stable frame use derived NAM14 product, not real-time stream.
+- SAPOS: stays ETRS89 (plate-fixed Eurasia); convert only when comparing ITRF data.
+
+Documented real-world:
+- StephaneP (OSM diary): measured ~70-80 cm offset between RTK fix and French BDOrtho, traced to RGF93 vs WGS84; OSM database de-facto mixed-datum because contributors merge ETRS89/NAD83/WGS84 sources without transformation ✓.
+- AgOpenGPS Discourse: multiple "10 m off after RTK2GO coordinates" + "RTK status but drifting" threads root-caused to base coord quality ✓.
+- Emlid community: NRCan CSRS-PPP outputs NAD83(CSRS) or ITRF, never literal "WGS84"; entering NAD83 coord into Reach as if WGS84 -> silent ~1 m offset ✓.
+- Inside Unmanned Systems autonomous-vehicles piece: 2005-surveyed reference + 2019-frame project = ~50 cm discrepancy ✓.
+
+Evidence thin on:
+- Fraction of rtk2go bases SVIN vs PPP — inferred from forum tone, not measured.
+- Cross-base agreement among rtk2go bases — no formal study.
 
 ## 14. Antennas
 
