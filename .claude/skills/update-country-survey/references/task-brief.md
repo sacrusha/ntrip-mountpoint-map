@@ -59,15 +59,31 @@ For each network you find that is **operational and accessible to a hobbyist** (
 - Post-processing / RINEX-archive-only services (these are not RTK).
 - A small private surveying company with stations in a few cities (regional, not national-scale).
 
-**`status` field discipline** — these values mean specific things and drive the marker sweep downstream:
+**`status` field discipline** — these values mean specific things and drive
+the marker sweep downstream. Status describes the **network's nature**, not
+whether it's wired into the pipeline; ingestion is derivable from
+`data/stations.json`.
 
-- `status: in-pipeline` — wired into `scripts/fetch_stations.py`.
-- `status: deferred` — **a free network confirmed to exist; the only gap is that the host:port isn't yet in the pipeline**. Use ONLY when this is true. Do not use `deferred` as a generic "I documented something" marker.
-- `status: paid` / `paid-affordable` — accessible to civilians for a fee. Requires `**yearly_cost**:` field.
-- `status: restricted` — exists but unobtainable for the target user (licensed-surveyors only, government-only, defence-only).
-- `status: rejected` — investigated and ruled out (one-line rationale required).
+- `status: free` — a free network. Use both for networks already wired into
+  `scripts/fetch_stations.py` and for free networks where the only gap is
+  that the host:port isn't yet known or is registration-gated. The entry
+  text says which.
+- `status: paid` / `paid-affordable` — accessible to civilians for a fee.
+  Requires `**yearly_cost**:` field.
+- `status: restricted` — exists but unobtainable for the target user
+  (licensed-surveyors only, government-only, defence-only).
+- `status: weird` — something unusual overrides the access question:
+  non-standard NTRIP, active jamming/spoofing, infrastructure too sparse to
+  work, war-disrupted with unknown status. The entry's notes carry the
+  warning.
+- `status: candidate` — meta-status: free, endpoint known, ready to ingest
+  but not yet wired in.
+- `status: rejected` — meta-status: investigated and ruled out (one-line
+  rationale required).
 
-If you're not sure between `deferred` and `rejected`, default to `rejected` with a rationale. Misclassifying as `deferred` produces a misleading "free option here" marker on the map.
+If you're not sure between `free` and `rejected`, default to `rejected` with
+a rationale. Misclassifying as `free` produces a misleading "free option
+here" marker on the map.
 
 ### Do NOT touch
 - `data/country_markers.json` — handled in a final sweep.

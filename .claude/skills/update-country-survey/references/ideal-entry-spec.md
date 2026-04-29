@@ -10,7 +10,7 @@ context a reader actually needs to act, not editorial ambition.
 ### Tier A — Full context entry
 
 **Criteria (two or more of the following must hold):**
-- One or more named networks exist (free, deferred, or paid-affordable) whose
+- One or more named networks exist (free with or without a known endpoint, or paid-affordable) whose
   access model has a non-obvious constraint: a legal barrier, sanctions,
   national-ID gating, credentials that limit qualifying users, or a time-limited
   free window.
@@ -81,7 +81,7 @@ Legend: **R** = required, *N* = nice-to-have, — = not applicable / skip.
 | "Why" contextual paragraph | **R** | — | — |
 | `**Gap**:` summary sentence | **R** | **R** | *N* |
 | Paid fallback mention when under $200/yr cutoff | **R** | *N* | — |
-| Pipeline status note (deferred / timing-out / candidate) | **R** | **R** | — |
+| Pipeline status note (free-no-endpoint / timing-out / candidate) | **R** | **R** | — |
 | EarthScope/overlap warning (US entries only) | **R** | **R** | — |
 
 **Notes:** Pricing = local currency first, then USD/EUR in parentheses (most
@@ -154,7 +154,8 @@ the country-level date is sufficient.
 
 Both `**yearly_cost**:` and `**date_added**:` are query-time reference fields
 in the same bold-key style. A country `date_added` > 18 months old with
-`status: deferred` or `candidate` networks is a natural re-verification trigger.
+`status: free` (no host:port yet) or `candidate` networks is a natural
+re-verification trigger.
 
 ## 5. Templates — one per tier
 
@@ -255,7 +256,7 @@ Fix: add local currency price + USD/EUR equivalent, or write "not publicly
 listed (contact [agency])" — but do not silently omit. The `**yearly_cost**:`
 field in networks.md is the authoritative source; copy it into the survey entry.
 
-**2. `host:port` missing for in-pipeline or known-endpoint networks.**
+**2. `host:port` missing for ingested or known-endpoint networks.**
 Even when `→ networks.md: \`id\`` is present, the host:port in the survey entry
 lets a reader understand the network without switching files. Required for Tier A
 and Tier B.
@@ -269,7 +270,7 @@ on rtk2go or Centipede."
 GR (HEPOS €160/3 months) should state the annualised cost and USD equivalent.
 Exchange rates drift; note the implicit rate in a comment when precision matters.
 
-**5. networks.md back-reference missing for deferred entries.**
+**5. networks.md back-reference missing for free-no-endpoint entries.**
 LitPOS (LT), ZAKPOS (UA), Thailand DOL (TH) have no `→ networks.md: \`id\``
 reference, breaking the audit grep `grep "networks.md:" docs/country-survey.md`.
 
@@ -278,7 +279,7 @@ REGNA-ROU (UY) correctly includes `rtk.igm.gub.uy/SBC/Account/Register`.
 ASG-EUPOS (PL) and AUSCORS (AU) omit a direct signup URL. Tier A requires it;
 Tier B should include it when the URL is the hobbyist's immediate next step.
 
-**7. Pipeline status not surfaced for deferred/timing-out entries.**
+**7. Pipeline status not surfaced for free-no-endpoint / timing-out entries.**
 FLEPOS, WALCORS, ESTPOS, LatPos, KSA-CORS time out in CI — survey entries
 should note this so the grey VRS circle is not mistaken for a data gap.
 
