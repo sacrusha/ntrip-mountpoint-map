@@ -18,6 +18,10 @@ hardware from ~$850 + fees.
   `**investigate**:` need verification; `**missing**:` need research first.
 - [`docs/country-survey.md`](docs/country-survey.md) — RTK landscape by
   country (access model, open questions). Detail lives in networks.md.
+  When updating or adding entries, use the
+  [`update-country-survey`](.claude/skills/update-country-survey/SKILL.md)
+  skill — it bundles the tier scheme, per-country task brief, and
+  agent-orchestration pattern used in the bulk audit (commit `4942fa6`).
 - [`docs/global-survey.md`](docs/global-survey.md) — same for multi-country
   and global networks.
 - [`docs/gnss-ai-guide.md`](docs/gnss-ai-guide.md) — technical GNSS primer
