@@ -109,7 +109,7 @@ skill+review pass.
 - `crtn` (US-CA): SOPAC California Real Time Network, paid-affordable, $100 one-time
   fee (universities/schools exempt), `132.239.152.4:2102-2105` zone-based ports,
   ~250 stations clearinghouse for SCIGN/BARD/SCIGN-Pasadena/CVSRN/OCRTN/NOTA.
-  Documented; not added to pipeline (paid). info marker added to country_markers.
+  Documented; not added to pipeline (paid). `paid-affordable` marker added to country_markers.
 - `bard` (US-CA): UC Berkeley + USGS Bay Area Regional Deformation network, ~40
   stations. No independent caster — streams disseminated via `crtn` (paid) and many
   stations also archived in `earthscope` (free, in-pipeline). Documented as deferred
@@ -145,7 +145,7 @@ MoDOT RTN, WVRTN, MaineDOT) expose only virtual mountpoints — correctly
 dropped to 0 stations by the nmea filter or `filter_vrs()`. Rendered as
 coloured VRS circles when live data is present; stale or never-fetched sources
 fall through to grey circles. The old hardcoded `VRS_NETWORKS` array has been
-replaced by `buildCountryMarkers()`, which reads all three tiers directly from
+replaced by `buildCountryMarkers()`, which reads all five tiers directly from
 `data/country_markers.json`. APOS (AT) and all Italian regional networks are
 physical-coord-vrs — show as regular pins with `pins:true` VRS badges. Full
 NRTK polygons are deferred.

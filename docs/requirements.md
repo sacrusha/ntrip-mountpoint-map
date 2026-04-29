@@ -227,7 +227,7 @@ with rtk2go and Centipede volunteer pins, a lock at country-centroid scale reads
 as "the nearby stations are locked" rather than "this country has no free
 network." The **?** is unambiguous and self-documents as "click for info."
 
-The grey circle is the same shape as the coloured in-pipeline circles; the
+The grey circle is the same shape as the coloured free-network circles; the
 grey variant extends the same idiom to the not-yet-ingested case so that
 free networks without published endpoints (Portugal, Lithuania, Thailand,
 Uganda…) read as "same kind of thing, not done yet."
@@ -289,10 +289,10 @@ Collapsible panel, top-right:
 - **Access** checkboxes: Free / Registration / Category / Restricted
   (currently placeholder — only `free` has backing data).
 - **VRS networks (N)** — master toggle + per-network rows for VRS circles.
-- **Pending (N)** — master toggle + per-network rows for grey circles
-  (free networks not yet in the live feed).
-- **Restricted (N)** — master toggle + per-network rows for circled-?
-  markers (paid or restricted networks).
+- **Free, no data yet (N)** — master toggle + per-network rows for grey
+  circles (free networks not yet in the live feed).
+- **Paid / restricted (N)** — master toggle + per-network rows for circled-?
+  markers (paid, paid-affordable, restricted, or weird tiers).
 - On change, re-filter stations, re-render dots + coverage raster +
   detail layer + country markers.
 
