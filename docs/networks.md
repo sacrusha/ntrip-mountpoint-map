@@ -35,7 +35,7 @@ candidates whose endpoint is withheld).
 ```
 ## <id> — <Name> (<COUNTRY>)
 
-**status**:    in-pipeline | candidate | deferred | paid-affordable | paid | rejected
+**status**:    free | paid-affordable | paid | restricted | weird | candidate | rejected
 **host:port**: `host:port`
 **type**:      single-base | physical-coord-vrs | single-coord-vrs
 **access**:    free / registration / paid [brief terms]
@@ -55,13 +55,26 @@ Conditions that must be preserved verbatim: paid tiers for certain use cases
 (walcors), national identity requirements (gnss_campania: SPID), non-commercial
 licence (earthscope), access deadlines (estpos), per-user limits (rbmc_ip).
 
-Status glossary:
-- **in-pipeline** — present in `SOURCES` in `scripts/fetch_stations.py`
-- **candidate** — confirmed free, endpoint known, not yet ingested
-- **deferred** — free but endpoint missing or requires live registration to obtain
-- **paid-affordable** — paid, under the project's $200/yr cutoff; surfaced in UI as fallback
-- **paid** — paid, over cutoff, or structurally restricted
-- **rejected** — investigated and explicitly excluded; reason documented
+Status glossary (describes the network's nature, not whether it's ingested —
+ingestion is derivable from `SOURCES` in `scripts/fetch_stations.py` and from
+`data/stations.json`):
+- **free** — no fee to use. Includes both networks already wired into the
+  pipeline and free networks whose host:port is still missing or only
+  disclosable after registration. The entry text says which.
+- **paid-affordable** — paid, under the project's ~$200/yr cutoff; surfaced
+  in the UI as a hobbyist-reachable fallback.
+- **paid** — paid, over the cutoff.
+- **restricted** — exists but unobtainable for the target user (vetted
+  partners only, sector-limited, no published rate).
+- **weird** — something unusual that overrides the access question:
+  non-standard NTRIP, active jamming/spoofing, infrastructure too sparse
+  for RTK to work, war-disrupted with unknown status. The entry's notes
+  carry the warning.
+- **candidate** — free, endpoint known, ready to ingest but not yet wired
+  into `fetch_stations.py`. Workflow state, not a network property.
+- **rejected** — investigated and explicitly excluded from the catalogue;
+  reason documented. Not a network property either; a meta-status that
+  records what we ruled out.
 
 ---
 
@@ -73,7 +86,7 @@ Physical stations with distinct coordinates shown on map.
 
 ## rtk2go — RTK2GO (global)
 
-**status**:    in-pipeline
+**status**:    free
 **host:port**: `rtk2go.com:2101`
 **type**:      single-base
 **access**:    free, no registration (username = any email, password = `none`)
@@ -92,7 +105,7 @@ when carrier field is blank and format starts with `RTCM 3` (required to retain
 
 ## centipede — CentipedeRTK (global, France-centric)
 
-**status**:    in-pipeline
+**status**:    free
 **host:port**: `crtk.net:2101`
 **type**:      single-base
 **access**:    free, no registration (username = `centipede`, password = `centipede`)
@@ -111,7 +124,7 @@ through one federation endpoint; no separate country-specific instances found.
 
 ## frednet — FReDNet (IT + border AT/SI)
 
-**status**:    in-pipeline
+**status**:    free
 **host:port**: `gnsscaster.regione.fvg.it:8080`
 **type**:      physical-coord-vrs
 **access**:    sourcetable open; stream requires free email registration
@@ -128,7 +141,7 @@ Slovenia and W Austria. Register via frednet.crs.ogs.it.
 
 ## geortk — GeoRTK (JP)
 
-**status**:    in-pipeline
+**status**:    free
 **host:port**: `geortk.jp:2101`
 **type**:      single-base
 **access**:    free, no registration; free indefinitely (1-yr advance notice if changed)
@@ -144,7 +157,7 @@ are dropped by coordinate filter. Sourcetable has shrunk over time.
 
 ## auscors — AUSCORS (AU)
 
-**status**:    in-pipeline
+**status**:    free
 **host:port**: `ntrip.data.gnss.ga.gov.au:2101`
 **type**:      single-base
 **access**:    free; register at gnss.ga.gov.au/registration; CC BY 4.0
@@ -161,7 +174,7 @@ TLS also available on port 443. Attribute "© Commonwealth of Australia (Geoscie
 
 ## positionz — PositioNZ-RT (NZ)
 
-**status**:    in-pipeline
+**status**:    free
 **host:port**: `positionz-rt.linz.govt.nz:2101`
 **type**:      single-base
 **access**:    free; LINZ account required; register via linz.govt.nz; CC BY 4.0 NZ
@@ -178,7 +191,7 @@ Dec 2023 upgrade. Attribute "Source: Land Information New Zealand".
 
 ## trignet — TrigNet (ZA)
 
-**status**:    in-pipeline
+**status**:    free
 **host:port**: `trignet.co.za:2101`
 **type**:      single-base
 **access**:    free; register at trignet.co.za
@@ -196,7 +209,7 @@ Western Cape, KwaZulu-Natal clusters only.
 
 ## rbmc_ip — RBMC-IP (BR)
 
-**status**:    in-pipeline
+**status**:    free
 **host:port**: `gps-ntrip.ibge.gov.br:2101`
 **type**:      single-base
 **access**:    free; gov.br signup; 5-station limit per user; 1,000 concurrent max
@@ -211,7 +224,7 @@ Alt IP: `170.84.40.52:2101`. 150 stations as of Dec 2024 (IBGE added 5 in Dec 20
 
 ## ramsac — RAMSAC-NTRIP (AR)
 
-**status**:    in-pipeline
+**status**:    free
 **host:port**: `ntrip.ign.gob.ar:2101`
 **type**:      single-base
 **access**:    free; register via ign.gob.ar portal; 8-hr session cap
@@ -226,7 +239,7 @@ POSGAR 07 reference frame.
 
 ## regna_rou — REGNA-ROU (UY)
 
-**status**:    in-pipeline
+**status**:    free
 **host:port**: `rtk.igm.gub.uy:2101`
 **type**:      single-base + VRS
 **access**:    free; web registration at rtk.igm.gub.uy/SBC/Account/Register
@@ -244,7 +257,7 @@ Expanded Dec 2025 with 8 new SinoGNSS M300 Pro CORS stations.
 
 ## earthscope — EarthScope NOTA (Americas)
 
-**status**:    in-pipeline
+**status**:    free
 **host:port**: `ntrip.earthscope.org:2101`
 **type**:      single-base
 **access**:    free non-commercial (annual NULA renewal); commercial use per-seat licensed
@@ -263,7 +276,7 @@ permitted per NULA.
 
 ## mirai — MIRAI / Go!GNSS (JP + overseas partners)
 
-**status**:    in-pipeline
+**status**:    free
 **host:port**: `ntrip.go.gnss.go.jp:2101`
 **type**:      single-base
 **access**:    free incl. commercial + automated ("peaceful purposes"); separate NtripCaster auth form
@@ -280,7 +293,7 @@ RTK baseline). L1C/B support for QZSS QZS-6 added Jun 2025.
 
 ## cors_korea — CORS-KOREA (KR)
 
-**status**:    in-pipeline
+**status**:    free
 **host:port**: `www.gnssdata.or.kr:2101`
 **type**:      physical-coord-vrs
 **access**:    free; sourcetable public without auth; stream registration may require Korean national ID
@@ -303,7 +316,7 @@ Map shows physical station pins.
 
 ## ergnss — ERGNSS (ES)
 
-**status**:    in-pipeline
+**status**:    free
 **host:port**: `ergnss-ip.ign.es:2101`
 **type**:      physical-coord-vrs
 **access**:    free; register at ergnss.ign.es/gnuserportal/ (immediate); CC-compatible
@@ -320,7 +333,7 @@ Orden FOM/2807/2015. RAP (Andalucía) supplements in the south; separate signup.
 
 ## satref — SatRef (HK)
 
-**status**:    in-pipeline
+**status**:    free
 **host:port**: `ntrip.geodetic.gov.hk:2101`
 **type**:      physical-coord-vrs
 **access**:    free; register via geodetic.gov.hk or DATA.GOV.HK open-data path
@@ -341,7 +354,7 @@ not HTTP.
 
 ## inacors — InaCORS (ID)
 
-**status**:    in-pipeline
+**status**:    free
 **host:port**: `nrtk.big.go.id:2001`
 **type**:      physical-coord-vrs
 **access**:    free; register at nrtk.big.go.id; Law No. 4/2011 mandates free public service
@@ -358,7 +371,7 @@ sourcetable — likely partial data exposure. 16,800+ registered users as of las
 
 ## igac — IGAC MAGNA-ECO (CO)
 
-**status**:    in-pipeline
+**status**:    free
 **host:port**: `sbc.igac.gov.co:2101`
 **type**:      physical-coord-vrs
 **access**:    free; register at redgeodesica-sbc.igac.gov.co/sbc; Law 1955/2019 mandates public access
@@ -376,7 +389,7 @@ First confirmed free VRS/NRTK in Latin America.
 
 ## spslux — SPSLux (LU)
 
-**status**:    in-pipeline
+**status**:    free
 **host:port**: `stream.spslux.lu:5005`
 **type**:      physical-coord-vrs
 **access**:    free; register at spslux.lu/SBC/Account/Register (subscribe "SPSLUX (N)RTK")
@@ -392,7 +405,7 @@ free of charge.
 
 ## icecors — IceCORS (IS)
 
-**status**:    in-pipeline
+**status**:    free
 **host:port**: `178.19.53.126:2101`
 **type**:      physical-coord-vrs
 **access**:    free ("data is free of charge" — natt.is); register at natt.is/is/landmaelingar/jardstodvakerfi
@@ -408,7 +421,7 @@ GNCASTER software (same as SAPOS). Offers VRS (VRS30, FKP30) and single-base
 
 ## SAPOS — Germany (DE, 16 Bundesländer)
 
-**status**:    in-pipeline (all 16 states)
+**status**:    free (all 16 states)
 **type**:      physical-coord-vrs (some states); single-coord-vrs (others — 0 map stations)
 **access**:    sourcetable public; streams require per-Länder web registration
 **registration**: https://www.sapos.de  (central portal links to each state's signup)
@@ -447,7 +460,7 @@ SSR-capable receiver or Geo++ SSR2OBS converter. Out of scope for this pipeline.
 
 ## apos — APOS (AT)
 
-**status**:    in-pipeline
+**status**:    free
 **host:port**: `aposrtk.bev.gv.at:2101`
 **type**:      physical-coord-vrs
 **access**:    conditions — free for agriculture/forestry via eAMA credentials
@@ -475,7 +488,7 @@ across the AT border.
 
 ## spin3 — SPIN3 GNSS (IT — Piemonte, Lombardia, Valle d'Aosta)
 
-**status**:    in-pipeline
+**status**:    free
 **host:port**: `spingnss.it:2101`
 **type**:      physical-coord-vrs
 **access**:    registration; free via spingnss.it (CSI Piemonte public portal)
@@ -492,7 +505,7 @@ Free public access with simple registration; no annual fee documented.
 
 ## gpsumbria — GPS-UMBRIA (IT — Umbria)
 
-**status**:    in-pipeline
+**status**:    free
 **host:port**: `gpsumbria.regione.umbria.it:2101`
 **type**:      physical-coord-vrs
 **access**:    registration; free via gpsumbria.regione.umbria.it
@@ -507,7 +520,7 @@ Regional GNSS network for Umbria. Free public service with 12 physical reference
 
 ## gnss_abruzzo_lazio — Rete GNSS Abruzzo + Lazio (IT — Abruzzo + Lazio)
 
-**status**:    in-pipeline
+**status**:    free
 **host:port**: `gnss-rtk.regione.abruzzo.it:2101`
 **type**:      physical-coord-vrs
 **access**:    registration; free via Abruzzo regional geoportal
@@ -523,7 +536,7 @@ caster. A single endpoint serves both regions' physical reference stations.
 
 ## sit_puglia — SIT Puglia GNSS (IT — Puglia)
 
-**status**:    in-pipeline
+**status**:    free
 **host:port**: `gps.sit.puglia.it:2101`
 **type**:      physical-coord-vrs
 **access**:    registration; free via sit.puglia.it (Sistema Informativo Territoriale)
@@ -538,7 +551,7 @@ Puglia regional GNSS network. 12 physical reference stations. Free registration.
 
 ## gnss_campania — Rete GNSS Campania (IT — Campania)
 
-**status**:    in-pipeline
+**status**:    free
 **host:port**: `gps-sit.regione.campania.it:2101`
 **type**:      physical-coord-vrs
 **access**:    conditions; new users require SPID (Italian national digital identity)
@@ -560,7 +573,7 @@ legacy endpoint may accept old credentials. Free for SPID holders.
 
 ## wiscors — WISCORS (US-WI)
 
-**status**:    in-pipeline
+**status**:    free
 **host:port**: `wiscors.dot.wi.gov:2101`
 **type**:      physical-coord-vrs (single-base + VRS)
 **access**:    registration; free via wiscors.dot.wi.gov (Wisconsin DOT)
@@ -577,7 +590,7 @@ verify overlap before ingesting to avoid duplicate pins.
 
 ## fprn — FPRN (US-FL)
 
-**status**:    in-pipeline
+**status**:    free
 **host:port**: `ntrip.myfloridagps.com:2101`
 **type**:      physical-coord-vrs
 **access**:    registration; free via myfloridagps.com (Florida DOT)
@@ -593,7 +606,7 @@ corrections. Some overlap with EarthScope NOTA expected.
 
 ## ardot_rtn — ARDOT RTN (US-AR)
 
-**status**:    in-pipeline
+**status**:    free
 **host:port**: `gps.ardot.gov:2101`
 **type**:      physical-coord-vrs
 **access**:    registration; free via ardot.gov (Arkansas DOT)
@@ -608,7 +621,7 @@ Arkansas real-time network. Free after registration.
 
 ## macors — MaCORS (US-MA)
 
-**status**:    in-pipeline
+**status**:    free
 **host:port**: `macorsrtk.massdot.state.ma.us:2101`
 **type**:      physical-coord-vrs
 **access**:    registration; free via massdot.state.ma.us (MassDOT)
@@ -623,7 +636,7 @@ Massachusetts CORS network. 22 stations; free registration.
 
 ## vector — VECTOR VT (US-VT)
 
-**status**:    in-pipeline
+**status**:    free
 **host:port**: `20.185.11.35:2101`
 **type**:      physical-coord-vrs
 **access**:    registration; free via vcgi.vermont.gov (Vermont Center for Geographic Information)
@@ -638,7 +651,7 @@ Vermont CORS network operated by VCGI. Bare IP address; no hostname. Free regist
 
 ## azcors — AzCORS (US-AZ)
 
-**status**:    in-pipeline
+**status**:    free
 **host:port**: `azcors.azwater.gov:2101`
 **type**:      physical-coord-vrs
 **access**:    registration; free via azwater.gov (Arizona Dept. of Water Resources)
@@ -654,7 +667,7 @@ overlap with EarthScope NOTA expected.
 
 ## gcgc_rtn — GCGC RTN (US-MS)
 
-**status**:    in-pipeline
+**status**:    free
 **host:port**: `rtn.usm.edu:2101`
 **type**:      physical-coord-vrs
 **access**:    registration; free via usm.edu GCGC portal
@@ -670,7 +683,7 @@ Covers Mississippi and adjacent Gulf Coast states. Free registration.
 
 ## alcors — AlCORS (US-AL)
 
-**status**:    in-pipeline
+**status**:    free
 **host:port**: `aldotcors.dot.state.al.us:10011`
 **type**:      physical-coord-vrs
 **access**:    registration; free via dot.state.al.us (Alabama DOT)
@@ -686,7 +699,7 @@ default). Free registration.
 
 ## orgn — ORGN (US-OR)
 
-**status**:    in-pipeline
+**status**:    free
 **host:port**: `167.131.0.205:9879`
 **type**:      physical-coord-vrs
 **access**:    registration; free via oregon.gov (Oregon DOT)
@@ -702,7 +715,7 @@ Oregon GPS Network operated by ODOT. Bare IP address; non-standard port 9879
 
 ## msrn — MSRN (US-MI)
 
-**status**:    in-pipeline
+**status**:    free
 **host:port**: `mdotcors.michigan.gov:10700`
 **type**:      physical-coord-vrs
 **access**:    registration; free via michigan.gov (Michigan DOT)
@@ -718,7 +731,7 @@ Michigan Spatial Reference Network operated by MDOT. Non-standard port 10700
 
 ## nysnet — NYSNet (US-NY)
 
-**status**:    in-pipeline
+**status**:    free
 **host:port**: `cors.dot.ny.gov:2101`
 **type**:      physical-coord-vrs
 **access**:    registration; free via dot.ny.gov (New York State DOT)
@@ -734,7 +747,7 @@ EarthScope NOTA expected.
 
 ## incors — InCORS (US-IN)
 
-**status**:    in-pipeline
+**status**:    free
 **host:port**: `incors.in.gov:10000`
 **type**:      physical-coord-vrs
 **access**:    registration; free via incors.in.gov (Indiana Dept. of Administration)
@@ -749,7 +762,7 @@ Indiana CORS Network. Non-standard port 10000. Free registration.
 
 ## iartn — IARTN (US-IA)
 
-**status**:    in-pipeline
+**status**:    free
 **host:port**: `iartnsbc.iowadot.gov:2101`
 **type**:      physical-coord-vrs
 **access**:    registration; free via iowadot.gov (Iowa DOT)
@@ -773,7 +786,7 @@ successful fetch once a cache exists.
 
 ## asg_eupos — ASG-EUPOS (PL)
 
-**status**:    in-pipeline
+**status**:    free
 **host:port**: `system.asgeupos.pl:2101`
 **type**:      single-coord-vrs
 **access**:    free since Oct 2022; web signup; admin approval 1–2 working days
@@ -789,7 +802,7 @@ VRS (NAWGIS/KODGIS/FKP/MAC). Coverage requires NRTK polygon (deferred).
 
 ## flepos — FLEPOS (BE — Flanders)
 
-**status**:    in-pipeline
+**status**:    free
 **host:port**: `flepos.vlaanderen.be:2101`
 **type**:      single-coord-vrs
 **access**:    free for all uses; web self-signup at flepos.vlaanderen.be
@@ -808,7 +821,7 @@ than egress block; also verify `flepos.vlaanderen.be:2101` still resolves correc
 
 ## walcors — WALCORS (BE — Wallonia)
 
-**status**:    in-pipeline
+**status**:    free
 **host:port**: `gnss.wallonie.be:2101`
 **type**:      single-coord-vrs
 **access**:    free for positioning; paid for machine-control/auto-guidance (commercial resellers)
@@ -826,7 +839,7 @@ distinguish persistent outage from intermittent — if dead >4 weeks, drop from 
 
 ## latpos — LatPos (LV)
 
-**status**:    in-pipeline
+**status**:    free
 **host:port**: `latpos.lgia.gov.lv:5001`
 **type**:      single-coord-vrs
 **access**:    free since 2018; SBC portal signup at latpos.lgia.gov.lv/SBC
@@ -845,7 +858,7 @@ from a Baltic-region IP); also check LGIA website for endpoint changes.
 
 ## estpos — ESTPOS (EE)
 
-**status**:    in-pipeline
+**status**:    free
 **host:port**: `gnss-rtk.maaamet.ee:8083`
 **type**:      single-coord-vrs
 **access**:    free until 31 Aug 2026 (director-general directive); portal account + service agreement
@@ -864,7 +877,7 @@ before sourcetable is served). Re-confirm free status before Aug 2026 or drop.
 
 ## ksa_cors — KSA-CORS (SA)
 
-**status**:    in-pipeline
+**status**:    free
 **host:port**: `ksacors.geoportal.sa:2101`
 **type**:      single-coord-vrs
 **access**:    free; register via ksacors.geoportal.sa
@@ -884,7 +897,7 @@ registration requirement changes.
 
 ## cropos — CROPOS (HR)
 
-**status**:    in-pipeline
+**status**:    free
 **host:port**: `gnss.cropos.hr:2101`
 **type**:      single-coord-vrs
 **access**:    free since Apr 2022 (Narodne novine 39/2022); email/web registration at cropos.hr
@@ -905,7 +918,7 @@ GPPS post-processing paid. Coverage requires NRTK polygon (deferred).
 
 ## kycors — KyCORS (US-KY)
 
-**status**:    in-pipeline
+**status**:    free
 **host:port**: `kycors.ky.gov:2101`
 **type**:      single-coord-vrs
 **access**:    registration; free via kycors.ky.gov (Kentucky Transportation Cabinet)
@@ -921,7 +934,7 @@ Register at kycors.ky.gov.
 
 ## mncors — MnCORS (US-MN)
 
-**status**:    in-pipeline
+**status**:    free
 **host:port**: `mncors.dot.state.mn.us:9000`
 **type**:      single-coord-vrs
 **access**:    registration; free via mndot.gov (Minnesota DOT)
@@ -938,7 +951,7 @@ with EarthScope NOTA expected.
 
 ## odot_rtn — ODOT RTN (US-OH)
 
-**status**:    in-pipeline
+**status**:    free
 **host:port**: `156.63.133.115:2101`
 **type**:      single-coord-vrs
 **access**:    registration; free via transportation.ohio.gov (Ohio DOT)
@@ -953,7 +966,7 @@ Ohio DOT real-time network. Bare IP address; VRS-only sourcetable. Free registra
 
 ## modot_rtn — MoDOT RTN (US-MO)
 
-**status**:    in-pipeline
+**status**:    free
 **host:port**: `rtk3.modot.mo.gov:2101`
 **type**:      single-coord-vrs
 **access**:    conditions; requires signed and notarized MoDOT CORS access agreement;
@@ -970,7 +983,7 @@ submitted to MoDOT before credentials are issued.
 
 ## wvrtn — WVRTN (US-WV)
 
-**status**:    in-pipeline
+**status**:    free
 **host:port**: `wvrtn.cors.us:2101`
 **type**:      single-coord-vrs
 **access**:    registration; free via wvrtn.cors.us (WV Division of Highways)
@@ -985,7 +998,7 @@ West Virginia Real-Time Network. VRS-only sourcetable. Free registration.
 
 ## mainedot — MaineDOT CORS (US-ME)
 
-**status**:    in-pipeline
+**status**:    free
 **host:port**: `mdotcors.maine.gov:2101`
 **type**:      single-coord-vrs
 **access**:    registration; free via maine.gov/mdot (Maine DOT)
@@ -1001,7 +1014,7 @@ streams until physical-coordinate mountpoints are published.
 
 ## mesa_rtvrn — Mesa County RTVRN (US-CO)
 
-**status**:    in-pipeline
+**status**:    free
 **host:port**: `rtvrn.mesacounty.us:2101`
 **type**:      single-coord-vrs
 **access**:    registration; free via rtvrn.mesacounty.us
@@ -1046,7 +1059,7 @@ Single station; useful only within ~30 km of Brussels. Low priority.
 
 ## renep — ReNEP (PT)
 
-**status**:    deferred
+**status**:    free
 **host:port**: withheld until post-registration
 **type**:      physical-coord-vrs
 **access**:    free; register at renep.dgterritorio.gov.pt
@@ -1063,7 +1076,7 @@ or check Alberding directory / EUREF caster list for a public mirror.
 
 ## litpos — LitPOS (LT)
 
-**status**:    deferred
+**status**:    free
 **host:port**: not publicly listed
 **type**:      physical-coord-vrs
 **access**:    free (publicly-funded EUPOS member); register at geoportal.lt/web/litpos-en
@@ -1080,7 +1093,7 @@ ArduSimple country list, or contact via geoportal.lt/web/litpos-en.
 
 ## thailand_dol — Thailand DOL LandGNSS (TH)
 
-**status**:    deferred
+**status**:    free
 **host:port**: `110.78.0.54` with zone-based variable ports (port table at
                dol-rtknetwork.com/index.php/npage/view/9; PDF at
                dol-rtknetwork.com/uploads/files/manual/1(Port%20Number).pdf)
@@ -1103,7 +1116,7 @@ zone-port mapping from the Thai-language PDF at the URL above.
 
 ## zakpos — ZAKPOS (UA)
 
-**status**:    deferred
+**status**:    weird
 **host:port**: not currently accessible
 **type**:      physical-coord-vrs
 **access**:    was free; registration at zakhid.net.ua
@@ -1120,7 +1133,7 @@ Do not add to pipeline until the service is confirmed operational.
 
 ## tpos — TPOS (IT — Trentino)
 
-**status**:    deferred
+**status**:    free
 **host:port**: withheld until post-registration
 **type**:      physical-coord-vrs
 **access**:    registration; free via tpos.provincia.tn.it (Provincia Autonoma di Trento)
@@ -1137,7 +1150,7 @@ https://www.provincia.tn.it/en/Services/TPOS-Trentino-POsitioning-Service
 
 ## stpos — STPOS (IT — South Tyrol / Alto Adige)
 
-**status**:    deferred
+**status**:    free
 **host:port**: withheld until post-registration
 **type**:      physical-coord-vrs
 **access**:    registration; free via stpos.it (Provincia Autonoma di Bolzano)
@@ -1154,7 +1167,7 @@ https://www.provincia.bz.it/costruire-abitare/catasto-librofondiario/catasto/stp
 
 ## gnss_veneto — Rete GNSS Veneto (IT — Veneto)
 
-**status**:    deferred
+**status**:    free
 **host:port**: not publicly listed
 **type**:      physical-coord-vrs
 **access**:    registration; apply via retegnssveneto.cisas.unipd.it
@@ -1170,7 +1183,7 @@ Attività Spaziali), University of Padua. Credentials provided on request.
 
 ## gnss_liguria — Rete GNSS Liguria (IT — Liguria)
 
-**status**:    deferred
+**status**:    free
 **host:port**: not publicly listed
 **type**:      physical-coord-vrs
 **access**:    registration; register via Liguria geoportal
@@ -1186,7 +1199,7 @@ https://geoportal.regione.liguria.it/servizi/rete-gnss-liguria.html
 
 ## sicilianet — Sicili@net (IT — Sicily + S. Calabria)
 
-**status**:    deferred
+**status**:    free
 **host:port**: not publicly listed
 **type**:      physical-coord-vrs
 **access**:    registration; apply via INGV Catania portal
@@ -1203,7 +1216,7 @@ to external applicants.
 
 ## molise_gnss — Rete GNSS Molise (IT — Molise)
 
-**status**:    deferred
+**status**:    free
 **host:port**: not confirmed
 **type**:      unknown
 **access**:    unknown; likely registration-based
@@ -1219,7 +1232,7 @@ documented. Lowest-priority Italian regional network.
 
 ## acorn — ACORN (US-AK)
 
-**status**:    deferred
+**status**:    free
 **host:port**: not confirmed
 **type**:      physical-coord-vrs
 **access**:    intended to be free; operated by Alaska DOT/PF
@@ -1235,7 +1248,7 @@ public sources.
 
 ## remos_ven — REMOS (VE)
 
-**status**:    deferred
+**status**:    free
 **host:port**: not publicly confirmed
 **type**:      unknown
 **access**:    intended free (IGVSB government service)
@@ -1895,7 +1908,7 @@ antennae are reachable through either caster.
 
 ## bard — BARD / Bay Area Regional Deformation network (US-CA)
 
-**status**:    deferred
+**status**:    free
 **host:port**: no independent caster — streams disseminated via `crtn`
 **type**:      single-base (physical stations)
 **access**:    via SOPAC CRTN (paid-affordable, one-time $100) or EarthScope NOTA
@@ -1919,7 +1932,7 @@ expected and tolerated by the renderer.
 
 ## panga — PANGA / Pacific Northwest Geodetic Array (US-WA, OR, ID)
 
-**status**:    deferred
+**status**:    free
 **host:port**: no independent public caster
 **type**:      single-base (physical stations)
 **access**:    via EarthScope NOTA (free, in-pipeline, annual NULA) or WSRN
@@ -1942,7 +1955,7 @@ duplicate-pin caveat as BARD.
 
 ## prsn_cors — Puerto Rico Seismic Network CORS (PR)
 
-**status**:    deferred
+**status**:    free
 **country**:   PR — Puerto Rico (US territory)
 **type**:      single-base (physical CORS)
 **host:port**: not publicly listed
@@ -2058,7 +2071,7 @@ but stream access requires an official licence — no general hobbyist path.
 
 ## igrs — IGRS (IQ)
 
-**status**:    paid
+**status**:    weird
 **access**:    restricted; no public NTRIP caster identified
 **yearly_cost**: N/A (no public NTRIP caster)
 **stations**:  7
@@ -2072,7 +2085,7 @@ not a usable RTK resource for hobbyists.
 
 ## dag_lb — Directorate of Geographic Affairs (LB)
 
-**status**:    deferred
+**status**:    free
 **date_added**: 2026-04-29
 **country**:   LB
 **type**:      unknown
@@ -2105,7 +2118,7 @@ in an NTRIP directory or official Lebanese government announcement.
 
 ## ges_syria — General Establishment for Survey (SY)
 
-**status**:    deferred
+**status**:    free
 **date_added**: 2026-04-29
 **country**:   SY
 **type**:      unknown
@@ -2157,7 +2170,7 @@ openly. No free tier. No hobbyist self-service registration path found.
 
 ## rjgc_cors — RJGC CORS (JO)
 
-**status**:    deferred
+**status**:    free
 **date_added**: 2026-04-29
 **country**:   JO
 **type**:      unknown
@@ -2266,7 +2279,7 @@ outside urban centres even with a subscription.
 
 ## almgc_tj — State Committee for Land Management and Geodesy (TJ)
 
-**status**:    deferred
+**status**:    free
 **country**:   TJ
 **access**:    restricted; no public NTRIP endpoint found
 **yearly_cost**: not publicly listed
@@ -2291,7 +2304,7 @@ Rejected — no public endpoint. Deferred pending discovery of open endpoint.
 
 ## kyrpos — KyrPos GNSS Network (KG)
 
-**status**:    deferred
+**status**:    free
 **country**:   KG
 **type**:      single-base / VRS (unclear from public documentation)
 **access**:    paid; contract-based sign-up, no self-service portal
@@ -2328,7 +2341,7 @@ NTRIP endpoint in Kyrgyzstan.
 
 ## tm_cors — Turkmenistan National CORS Network (TM)
 
-**status**:    deferred
+**status**:    free
 **country**:   TM
 **type**:      single-base (physical CORS)
 **access**:    restricted; government-internal use only, no public endpoint found
@@ -2355,7 +2368,7 @@ change in government data-access policy.
 
 ## azpos — AzPOS (AZ)
 
-**status**:    deferred
+**status**:    free
 **country**:   AZ
 **type**:      single-base (physical CORS)
 **access**:    paid; contract required — no self-service registration
@@ -2392,7 +2405,7 @@ Rejected — paid/contract-only. No public NTRIP endpoint.
 
 ## armpos — ARMPOS (AM)
 
-**status**:    deferred
+**status**:    free
 **country**:   AM
 **type**:      single-base (physical CORS)
 **access**:    restricted; no public self-service registration found
@@ -2425,7 +2438,7 @@ Committee via cadastre.am.
 
 ## geocors_ge — GeoCors (GE)
 
-**status**:    deferred
+**status**:    free
 **country**:   GE
 **type**:      single-base (physical CORS)
 **access**:    paid; registration required (Leica Spider Business Center)
@@ -2547,7 +2560,7 @@ $200/yr cutoff — not surfaced on the map. Free 1-month trial available.
 
 ## apn — APN (IL)
 
-**status**:    rejected
+**status**:    weird
 **reason**:    pervasive military GNSS spoofing active continuously since Oct 2023
                across Israel/Lebanon/Jordan/Sinai/Cyprus (~50,000 flights affected in 2024);
                RTK unreliable regardless of NTRIP access
@@ -2653,7 +2666,7 @@ with a licensed surveying body. Same legal barrier as `bgas_china`.
 
 ## ergand — ERGAND Geodetic Network (AD)
 
-**status**:    deferred
+**status**:    free
 **country**:   AD — Andorra
 **type**:      single-base (EPN reference stations)
 **host:port**: not publicly listed
@@ -2670,7 +2683,7 @@ with a licensed surveying body. Same legal barrier as `bgas_china`.
 
 ## li_cors — Liechtenstein Geodata / ATG (LI)
 
-**status**:    deferred
+**status**:    free
 **country**:   LI — Liechtenstein
 **type**:      no independent CORS programme
 **host:port**: not applicable
@@ -2685,7 +2698,7 @@ with a licensed surveying body. Same legal barrier as `bgas_china`.
 
 ## sm_cors — San Marino Geodetic Reference (SM)
 
-**status**:    deferred
+**status**:    free
 **country**:   SM — San Marino
 **type**:      single-base (permanent reference station)
 **host:port**: not publicly listed
@@ -2702,7 +2715,7 @@ with a licensed surveying body. Same legal barrier as `bgas_china`.
 
 ## qc_mern — Réseau GNSS du Québec / MERN (CA-QC)
 
-**status**:    rejected
+**status**:    weird
 **reason**:    per-station direct TCP streams (not NTRIP aggregated); incompatible with
                standard NTRIP pipeline; no NTRIP caster endpoint published
 
@@ -2806,7 +2819,7 @@ uptime depend on China Mobile cellular infrastructure.
 
 ## igm_mali — Institut Géographique du Mali CORS (ML)
 
-**status**:    deferred
+**status**:    free
 **host:port**: not publicly listed
 **access**:    unknown — no public caster or registration portal discovered
 **stations**:  unknown
@@ -2826,7 +2839,7 @@ AFREF data centre for ML station IDs.
 
 ## chad_cors — Chad National Geodetic Network (TD)
 
-**status**:    deferred
+**status**:    free
 **host:port**: not publicly listed
 **access**:    unknown — no public caster or registration portal discovered
 **stations**:  unknown
@@ -2848,7 +2861,7 @@ an NTRIP caster endpoint; check AFREF data centre for TD station IDs.
 
 ## ftm_mg — FTM Réseau GNSS Permanent (MG)
 
-**status**:    deferred
+**status**:    free
 **country**:   MG — Madagascar
 **type**:      single-base (unknown — no streaming NTRIP found)
 **host:port**: not publicly listed
@@ -2875,7 +2888,7 @@ ODC and igs.org for any additional MG station IDs beyond ABPO00MDG.
 
 ## cnigs_ht — CNIGS CORS (HT)
 
-**status**:    deferred
+**status**:    free
 **country**:   HT — Haiti
 **type**:      single-base (one confirmed station in Port-au-Prince; expansion unconfirmed)
 **host:port**: not publicly listed
@@ -2905,7 +2918,7 @@ IDs and their current uptime.
 
 ## regna_rd — REGNA-RD (DO)
 
-**status**:    deferred
+**status**:    free
 **country**:   DO — Dominican Republic
 **type**:      single-base (physical CORS; no VRS confirmed)
 **host:port**: ntrip.ign.gob.do (port not publicly listed; disclosed after registration)
@@ -3000,7 +3013,7 @@ without professional membership. Pricing not on public website.
 
 ## ttagn — TTAGN (TT)
 
-**status**:    deferred
+**status**:    free
 **country**:   TT — Trinidad and Tobago
 **type**:      single-base (~5 physical CORS; no VRS confirmed)
 **host:port**: not publicly listed (site `gpscors.gov.tt` exists; access model undocumented)
@@ -3088,7 +3101,7 @@ confirm whether any access tier is free for individual hobbyists.
 
 ## ign_gt_cors — IGN Guatemala Red CORS (GT)
 
-**status**:    deferred
+**status**:    free
 **country**:   GT — Guatemala
 **type**:      single-base
 **host:port**: not publicly listed
@@ -3115,7 +3128,7 @@ obtain host:port from IGN directly; check whether RIC operates an independent ca
 
 ## ip_cors_hn — IP CORS Honduras (HN)
 
-**status**:    deferred
+**status**:    free
 **country**:   HN — Honduras
 **type**:      single-base
 **host:port**: not publicly listed
@@ -3138,7 +3151,7 @@ and access terms from Instituto de la Propiedad directly.
 
 ## ign_hn_cors — IGN Honduras CORS (HN)
 
-**status**:    deferred
+**status**:    free
 **country**:   HN — Honduras
 **type**:      single-base
 **host:port**: not publicly listed
@@ -3162,7 +3175,7 @@ host:port and registration process.
 
 ## ineter_cors — INETER CORS (NI)
 
-**status**:    deferred
+**status**:    free
 **country**:   NI — Nicaragua
 **type**:      single-base
 **host:port**: not publicly listed
@@ -3189,7 +3202,7 @@ and access terms if available.
 
 ## cnr_sv_cors — CNR/IGCN CORS (SV)
 
-**status**:    deferred
+**status**:    free
 **country**:   SV — El Salvador
 **type**:      single-base
 **host:port**: not publicly listed
@@ -3267,7 +3280,7 @@ Rejected for pipeline — paid and pricing not confirmed as under $200/yr cutoff
 
 ## igntg_cors_pa — IGNTG CORS Network (PA)
 
-**status**:    deferred
+**status**:    free
 **country**:   PA — Panama
 **type**:      single-base
 **host:port**: not publicly listed
@@ -3354,7 +3367,7 @@ khmergeonet.xyz or MLMUPC (mlmupc.gov.kh) to confirm access terms.
 
 ## ngd_laos_cors — NGD / CORS Network (LA)
 
-**status**:    deferred
+**status**:    free
 **country**:   LA — Laos (Lao PDR)
 **type**:      single-base (physical CORS)
 **host:port**: not publicly listed
@@ -3392,7 +3405,7 @@ mlre.gov.la or UniqTeK via uniqteklao.com.
 
 ## png_dlpp_cors — DLPP / WAIG CORS + Unitech LAE1 (PG)
 
-**status**:    deferred
+**status**:    free
 **country**:   PG — Papua New Guinea
 **type**:      single-base (scientific reference stations; no RTK density)
 **host:port**: not publicly listed
@@ -3423,7 +3436,7 @@ Australia GNSS operations via data.gnss.ga.gov.au for APREF stream availability.
 
 ## fiji_dlss_cors — Fiji CORS (FJ)
 
-**status**:    deferred
+**status**:    free
 **country**:   FJ — Fiji
 **type**:      single-base (no public NTRIP confirmed; CORS physically established)
 **host:port**: not publicly listed
@@ -3458,7 +3471,7 @@ programme.
 
 ## libpos_ly — Libyan Survey Authority CORS (LY)
 
-**status**:    deferred
+**status**:    free
 **country**:   LY — Libya
 **type**:      unknown (no confirmed network)
 **host:port**: not publicly listed
@@ -3494,7 +3507,7 @@ securitycouncilreport.org.
 
 ## sgdn_na — Surveyor General's Department GNSS (NA)
 
-**status**:    deferred
+**status**:    free
 **country**:   NA — Namibia
 **type**:      unknown (no confirmed public NTRIP caster)
 **host:port**: not publicly listed
@@ -3521,7 +3534,7 @@ Namibia-hosted streaming endpoint.
 
 ## dsm_bw — Department of Surveys and Mapping CORS (BW)
 
-**status**:    deferred
+**status**:    free
 **country**:   BW — Botswana
 **type**:      unknown (physical CORS; no confirmed public NTRIP caster)
 **host:port**: not publicly listed
@@ -3548,7 +3561,7 @@ host:port and access terms.
 
 ## survey_mu — Survey Division CORS Feasibility (MU)
 
-**status**:    deferred
+**status**:    free
 **country**:   MU — Mauritius
 **type**:      unknown (feasibility stage; no confirmed operational caster)
 **host:port**: not publicly listed
@@ -3579,7 +3592,7 @@ streaming endpoint.
 
 ## ingt_cv — INGT Geodetic Network (CV)
 
-**status**:    deferred
+**status**:    free
 **country**:   CV — Cape Verde
 **type**:      unknown (no confirmed public NTRIP caster)
 **host:port**: not publicly listed
@@ -3606,7 +3619,7 @@ geodesy section for any host:port or pilot NTRIP endpoint.
 
 ## ag_cors — Antigua and Barbuda GNSS / COCONet (AG)
 
-**status**:    deferred
+**status**:    free
 **country**:   AG — Antigua and Barbuda
 **type**:      unknown (no confirmed public NTRIP caster)
 **host:port**: not publicly listed
@@ -3630,7 +3643,7 @@ Zero AG mountpoints on rtk2go or Centipede.
 
 ## kn_cors — Saint Kitts and Nevis GNSS / COCONet (KN)
 
-**status**:    deferred
+**status**:    free
 **country**:   KN — Saint Kitts and Nevis
 **type**:      unknown (no confirmed public NTRIP caster)
 **host:port**: not publicly listed
@@ -3650,7 +3663,7 @@ endpoint is publicly advertised. Zero KN mountpoints on rtk2go or Centipede.
 
 ## lc_cors — Saint Lucia GNSS / COCONet (LC)
 
-**status**:    deferred
+**status**:    free
 **country**:   LC — Saint Lucia
 **type**:      unknown (no confirmed public NTRIP caster)
 **host:port**: not publicly listed
@@ -3673,7 +3686,7 @@ Zero LC mountpoints on rtk2go or Centipede.
 
 ## vc_cors — Saint Vincent and the Grenadines GNSS (VC)
 
-**status**:    deferred
+**status**:    free
 **country**:   VC — Saint Vincent and the Grenadines
 **type**:      unknown (no confirmed public NTRIP caster)
 **host:port**: not publicly listed
@@ -3699,7 +3712,7 @@ public CORS NTRIP endpoint; contact Lands and Surveys Department via
 
 ## glsc_cors — Guyana CORS (GY)
 
-**status**:    deferred
+**status**:    free
 **country**:   GY — Guyana
 **type**:      single-base (professional/government access; no public NTRIP confirmed)
 **host:port**: not publicly listed
@@ -3915,7 +3928,7 @@ MCA-Bénin period.
 
 ## inc_gn — INC Guinea CORS (GN)
 
-**status**:    deferred
+**status**:    free
 **country**:   GN — Guinea (Conakry)
 **type**:      unknown (no confirmed public NTRIP caster)
 **host:port**: not publicly listed
@@ -3943,7 +3956,7 @@ cooperation resumes.
 
 ## datu_mr — DATU Mauritania Geodetic Network (MR)
 
-**status**:    deferred
+**status**:    free
 **country**:   MR — Mauritania
 **type**:      unknown (no confirmed public NTRIP caster)
 **host:port**: not publicly listed
@@ -4468,7 +4481,7 @@ free NTRIP endpoint.
 
 ## rgna_mx — Red Geodésica Nacional Activa (MX)
 
-**status**:    deferred
+**status**:    free
 **date_added**: 2026-04-29
 **country**:   MX
 **type**:      physical single-base (~36 stations)
@@ -4552,7 +4565,7 @@ $200/yr paid-affordable cutoff. Not added to pipeline: paid service.
 
 ## sirgas_chile — RGN/SIRGAS-CHILE (CL)
 
-**status**:    deferred
+**status**:    free
 **date_added**: 2026-04-29
 **country**:   CL
 **type**:      physical single-base (180+ CORS stations)
@@ -4802,7 +4815,7 @@ mountpoints (NMEA=0) are present; add to SOURCES once verified.
 
 ## ancfcc — Réseau GNSS Permanent ANCFCC (MA)
 
-**status**:    deferred
+**status**:    free
 **date_added**: 2026-04-29
 **country**:   MA
 **type**:      single-base
@@ -4824,7 +4837,7 @@ been identified in any sourcetable, directory, or academic reference.
 
 ## sen_cors — SEN-CORS (SN)
 
-**status**:    deferred
+**status**:    free
 **date_added**: 2026-04-29
 **country**:   SN
 **type**:      single-base (planned)

@@ -950,10 +950,11 @@
     return group;
   }
   // Country-level markers driven by data/country_markers.json.
-  // tier:'vrs' + live source   -> coloured VRS ring  -> bySid[source_id]
-  // tier:'vrs' + stale/absent  -> grey ring           -> greyById[m.id]
-  // tier:'deferred'            -> grey ring           -> greyById[m.id]
-  // tier:'info'                -> circled-? marker    -> infoById[m.id]
+  // tier describes the network's nature; m.vrs is an orthogonal flag.
+  //   tier:'free' + vrs:true + source_id in pipeline + live  -> coloured VRS ring  -> bySid[source_id]
+  //   tier:'free' + vrs:true + source_id in pipeline + stale -> grey ring           -> greyById[m.id]
+  //   tier:'free' + (no source_id, or non-pipeline)          -> grey ring           -> greyById[m.id]
+  //   tier:'paid'|'paid-affordable'|'restricted'|'weird'     -> circled-? marker    -> infoById[m.id]
   function buildCountryMarkers(markers,renderer,staleDays,sourceCounts){
     var group=L.layerGroup();
     var bySid={}, greyById={}, infoById={};
@@ -963,50 +964,54 @@
       var region=m.region||'';
       var regUrl=safeUrl(m.registration||'');
 
-      if(m.tier==='vrs'){
+      if(m.tier==='free'){
         var sid=m.source_id;
-        var auth=SOURCE_AUTH[sid]
-          ||(sid&&sid.indexOf('sapos_')===0?SOURCE_AUTH['sapos_']:null)||{};
-        if(!m.pins&&sourceCounts&&(sourceCounts[sid]||0)>0) return;
-        var isLive=staleDays&&(sid in staleDays)&&staleDays[sid]<7;
-        if(isLive){
-          var col=VRS_COLOR;
-          var hasPinsPinned=sourceCounts&&(sourceCounts[sid]||0)>0;
-          var declared=m.stations_declared;
-          var body=m.pins
-            ? 'Covers <b>'+esc(region)+'</b>.'
-              +(hasPinsPinned?' Reference stations are shown on the map.':'')
-              +' Connect via a VRS mountpoint for uniform cm-accuracy across the network'
-              +' without manual base selection.'
-            : 'Covers <b>'+esc(region)+'</b>.'
-              +(declared?' Uses ~'+declared+' physical reference stations.':'')
-              +' Your NTRIP client connects to a virtual base synthesised near your location.';
-          var accText=m.pins
-            ? (hasPinsPinned?'VRS/NRTK network — fixed stations on map'
-                             :'VRS/NRTK network — virtual mountpoints')
-            : 'VRS network — virtual mountpoints only';
-          var popReg=safeUrl(SOURCE_REG[sid]||'');
-          var popup='<div class="popup-plain"><h3>'+esc(label)+'</h3>'
-            +'<div class="acc" style="color:'+VRS_COLOR+'">'+accText+'</div>'
-            +'<div style="margin:4px 0 6px;font-size:12px">'+body+'</div>'
-            +(auth.openNote?'<div class="anote">'+esc(auth.openNote)+'</div>':'')
-            +(popReg?'<div class="anote"><a href="'+esc(popReg)
-              +'" target="_blank" rel="noopener noreferrer">'+esc(visUrl(popReg))+' ↗</a></div>':'')
-            +'</div>';
-          bySid[sid]=addRingMarker(group,lat,lon,renderer,col,0.25,label+' (VRS)',popup);
+        var auth=sid?(SOURCE_AUTH[sid]
+          ||(sid.indexOf('sapos_')===0?SOURCE_AUTH['sapos_']:null)):null;
+        auth=auth||{};
+        var inPipeline=sid&&staleDays&&(sid in staleDays);
+        if(m.vrs&&inPipeline){
+          if(!m.pins&&sourceCounts&&(sourceCounts[sid]||0)>0) return;
+          var isLive=staleDays[sid]<7;
+          if(isLive){
+            var col=VRS_COLOR;
+            var hasPinsPinned=sourceCounts&&(sourceCounts[sid]||0)>0;
+            var declared=m.stations_declared;
+            var body=m.pins
+              ? 'Covers <b>'+esc(region)+'</b>.'
+                +(hasPinsPinned?' Reference stations are shown on the map.':'')
+                +' Connect via a VRS mountpoint for uniform cm-accuracy across the network'
+                +' without manual base selection.'
+              : 'Covers <b>'+esc(region)+'</b>.'
+                +(declared?' Uses ~'+declared+' physical reference stations.':'')
+                +' Your NTRIP client connects to a virtual base synthesised near your location.';
+            var accText=m.pins
+              ? (hasPinsPinned?'VRS/NRTK network — fixed stations on map'
+                               :'VRS/NRTK network — virtual mountpoints')
+              : 'VRS network — virtual mountpoints only';
+            var popReg=safeUrl(SOURCE_REG[sid]||'');
+            var popup='<div class="popup-plain"><h3>'+esc(label)+'</h3>'
+              +'<div class="acc" style="color:'+VRS_COLOR+'">'+accText+'</div>'
+              +'<div style="margin:4px 0 6px;font-size:12px">'+body+'</div>'
+              +(auth.openNote?'<div class="anote">'+esc(auth.openNote)+'</div>':'')
+              +(popReg?'<div class="anote"><a href="'+esc(popReg)
+                +'" target="_blank" rel="noopener noreferrer">'+esc(visUrl(popReg))+' ↗</a></div>':'')
+              +'</div>';
+            bySid[sid]=addRingMarker(group,lat,lon,renderer,col,0.25,label+' (VRS)',popup);
+          } else {
+            var note=m.note||auth.openNote||'';
+            var gr=safeUrl(SOURCE_REG[sid]||'')||regUrl;
+            var ge=addRingMarker(group,lat,lon,renderer,GREY_MARKER_COLOR,0.18,label,buildGreyPopup(label,region,note,gr));
+            ge.label=label; greyById[m.id]=ge;
+          }
         } else {
-          var note=m.note||auth.openNote||'';
-          var gr=safeUrl(SOURCE_REG[sid]||'')||regUrl;
-          var ge=addRingMarker(group,lat,lon,renderer,GREY_MARKER_COLOR,0.18,label,buildGreyPopup(label,region,note,gr));
+          var ge=addRingMarker(group,lat,lon,renderer,GREY_MARKER_COLOR,0.18,label,
+            buildGreyPopup(label,region,m.note||'',regUrl));
           ge.label=label; greyById[m.id]=ge;
         }
 
-      } else if(m.tier==='deferred'){
-        var ge=addRingMarker(group,lat,lon,renderer,GREY_MARKER_COLOR,0.18,label,
-          buildGreyPopup(label,region,m.note||'',regUrl));
-        ge.label=label; greyById[m.id]=ge;
-
-      } else if(m.tier==='info'){
+      } else {
+        // paid | paid-affordable | restricted | weird — all render as circled-? marker.
         var mk=addInfoMarker(group,lat,lon,buildInfoPopup(m),label);
         infoById[m.id]={marker:mk,label:label};
       }
@@ -1393,13 +1398,13 @@
           ? '<label style="display:flex;align-items:center;gap:4px">'
               +'<input type="checkbox" data-k="grey_global" checked>'
               +sw('border:2px solid '+GREY_MARKER_COLOR+';background:rgba(102,102,102,0.18);border-radius:50%')
-              +'Pending ('+greyCount+')'
+              +'Free, no data yet ('+greyCount+')'
             +'</label>'
           : '')
         +(infoCount
           ? '<label style="display:flex;align-items:center;gap:4px">'
               +'<input type="checkbox" data-k="info_global" checked>'
-              +infoQ+' Restricted ('+infoCount+')'
+              +infoQ+' Paid / restricted ('+infoCount+')'
             +'</label>'
           : '')
       +'</details>'

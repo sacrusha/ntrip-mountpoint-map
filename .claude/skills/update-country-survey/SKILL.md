@@ -30,7 +30,7 @@ All paths repo-relative (`/home/user/ntrip-mountpoint-map`).
 
 - `docs/country-survey.md` — ~3000 lines, ~40k tokens. **Never read in full.** Grep first.
 - `docs/networks.md` — ~3000 lines. Grep + targeted Read.
-- `data/country_markers.json` — three tiers (`vrs`, `deferred`, `info`); self-documenting top-level keys describe note + yearly_cost format.
+- `data/country_markers.json` — five tiers (`free`, `paid`, `paid-affordable`, `restricted`, `weird`) plus an orthogonal `vrs: true` flag; self-documenting top-level keys describe tier semantics, the vrs flag, note, and yearly_cost format.
 - `data/stations.json` — parsed mountpoints; ISO 3166-1 alpha-3.
 - `data/*.sourcetable` — raw STR records.
 - `docs/requirements.md` — country-marker JSON schema.
@@ -84,14 +84,20 @@ One-line guidance names the likely tier and what to look for, e.g. `P0 missing; 
 ### 6. country_markers.json sweep
 Required after any `networks.md` change. **A misplaced marker is worse than no marker** — it tells a hobbyist "look here" when there's nothing.
 
+The marker schema is **two orthogonal axes**: a `tier` describing the network's nature for a hobbyist, and an optional `vrs: true` flag indicating the network delivers VRS / network-RTK streams. Whether station data exists in the pipeline is a third, runtime-derived axis (presence in `data/stations.json`); it is not encoded in the marker.
+
 | Tier | Add when | Don't add when |
 |---|---|---|
-| `vrs` | In-pipeline VRS-only with live data. | Network has physical pins (auto-rendered). |
-| `deferred` | **Free** national-scale service confirmed; only the endpoint is the gap. Note must truthfully open with "N stations, free." | Anything not free; post-processing-only; government-internal; defence-controlled; "infrastructure exists but no service confirmed". |
-| `info` | **Substantial national-scale** paid or restricted operator (HEPOS, ROMPOS, swipos, KSA-CORS scale). | Small private surveyor with a few cities → country prose only, no marker. |
+| `free` | Network costs nothing to use. Includes both pipeline-ingested networks (e.g. SAPOS, ASG-EUPOS) and free networks whose endpoint is still missing or registration-gated (e.g. ReNEP, LitPOS). When the host:port is unknown the `note` must truthfully open with "N stations, free." | Anything not free; post-processing-only; government-internal; defence-controlled; "infrastructure exists but no service confirmed". |
+| `paid` | Substantial national-scale paid commercial operator over the ~$200/yr cutoff (swipos, CPOS, the US-state DOTs, the Russia/China commercial cluster). | Small private surveyor with a few cities → country prose only, no marker. |
+| `paid-affordable` | Substantial national-scale paid operator at or below the cutoff (HEPOS, ROMPOS, AGROS, CRTN). | (as above) |
+| `restricted` | Substantial national-scale operator with no hobbyist path at any price — vetted partners only (TxDOT CORS, CalRTNS), sector-only, or no published rate (SKPOS, KazGeoDesy, DVRS). | A network that has a published private-user tariff — that's `paid`. |
+| `weird` | Something unusual overrides the access question for a hobbyist: non-standard NTRIP (qc_mern), active jamming / spoofing (apn), infrastructure too sparse for RTK (igrs), war-disrupted with unknown status (zakpos). The user's takeaway is the warning, not the access tier. | A free network with a regional caveat — that's still `free`; put the caveat in the note. |
 | _none_ | Investigated, nothing meets the bar above. | (default) |
 
-When unsure between `deferred` and `rejected` upstream in `networks.md`, default to `rejected`. Misclassifying as `deferred` produces a misleading "free option here" marker. When unsure whether to write a `networks.md` block at all, **omit it** and describe inline in the country prose. Empty space in `networks.md` is a feature.
+The `vrs: true` flag is **set on the marker if and only if the network delivers VRS / network-RTK streams**. It is independent of tier — `free` SAPOS, `paid` swipos, and `restricted` DVRS all use VRS. Single-base networks and networks without a known stream type omit the flag. Absence of the flag means nothing about access; it just means the network is not VRS or VRS-status is unknown.
+
+When unsure between `free` and `rejected` upstream in `networks.md`, default to `rejected`. Misclassifying as `free` produces a misleading "free option here" marker. When unsure whether to write a `networks.md` block at all, **omit it** and describe inline in the country prose. Empty space in `networks.md` is a feature.
 
 **Sweep agent prompt:**
 
@@ -99,22 +105,28 @@ When unsure between `deferred` and `rejected` upstream in `networks.md`, default
 Update data/country_markers.json.
 
 Before writing anything, read the self-documenting `_note_field_convention`,
-`_yearly_cost_convention`, and `_tiers` keys at the top of that file —
-those are the source of truth for marker copy and format. Also read the
-"Country-level markers" section of docs/requirements.md for the JSON schema.
+`_yearly_cost_convention`, `_tiers`, and `_vrs_flag` keys at the top of that
+file — those are the source of truth for marker copy, tier semantics, the
+VRS flag, and format. Also read the "Country-level markers" section of
+docs/requirements.md for the JSON schema.
 
 Procedure:
 1. List existing IDs: jq '.markers[].id' data/country_markers.json.
-2. For each networks.md entry not yet represented, classify per the tier
-   table in SKILL.md §6. When in doubt: no marker.
-3. Skip in-pipeline single-base entries (they get physical pins).
-4. Skip rejected entries unless the rejection is "exists but unobtainable
-   for the target user" AND the operator is substantial.
-5. Skeleton-first JSON edits, ~10 entries per Edit call.
+2. For each networks.md entry not yet represented, pick a tier per the table
+   in SKILL.md §6 (free / paid / paid-affordable / restricted / weird). When
+   in doubt: no marker.
+3. Set `"vrs": true` if the network delivers VRS / network-RTK streams; omit
+   the flag for single-base networks or unknown stream types.
+4. Skip pipeline-ingested single-base free entries that already render as
+   physical pins (no marker needed unless `pins:true` to surface coverage).
+5. Skip rejected entries unless the rejection is "exists but unobtainable
+   for the target user" AND the operator is substantial — and even then,
+   classify as `restricted` (or `weird` for the genuinely unusual cases).
+6. Skeleton-first JSON edits, ~10 entries per Edit call.
 
-Report: count added per tier, plus a list of networks.md IDs deliberately
-NOT given a marker with a one-word reason (no-public-service / regional-only
-/ paid-too-small / archive-only / …).
+Report: count added per tier and how many got the vrs flag, plus a list of
+networks.md IDs deliberately NOT given a marker with a one-word reason
+(no-public-service / regional-only / paid-too-small / archive-only / …).
 ```
 
 ### 7. Commit and push
@@ -128,13 +140,23 @@ Single commit covering all modified files. Message includes: countries added/mod
 - Optional per `## id` block in `networks.md` when a network is revised independently.
 
 ### `status:` discipline in `networks.md`
-Drives the marker sweep — be strict.
+Drives the marker sweep — be strict. The status describes the network's nature
+for a hobbyist; it does **not** encode whether the network is wired into
+`fetch_stations.py`. Ingestion is derivable from `data/stations.json`.
 
-- `in-pipeline` — wired into `fetch_stations.py`.
-- `deferred` — **free** service confirmed; only the endpoint is the gap. Nothing else.
-- `paid` / `paid-affordable` — accessible to civilians for a fee. Requires `**yearly_cost**:` (local currency first, USD or EUR parenthetical, greppable for audits).
+- `free` — no fee to use. Includes both pipeline-ingested networks and free
+  networks whose endpoint is missing or registration-gated. The entry text
+  says which.
+- `paid` / `paid-affordable` — accessible to civilians for a fee. Requires
+  `**yearly_cost**:` (local currency first, USD or EUR parenthetical,
+  greppable for audits).
 - `restricted` — exists but unobtainable for the target user.
-- `rejected` — investigated and ruled out (one-line rationale).
+- `weird` — something unusual overrides access for a hobbyist: non-standard
+  NTRIP, active jamming/spoofing, infrastructure too sparse to work,
+  war-disrupted with unknown status. The entry's notes carry the warning.
+- `candidate` — meta-status: free, endpoint known, ready to ingest but not
+  yet wired in.
+- `rejected` — meta-status: investigated and ruled out (one-line rationale).
 
 ### Tier A "why" paragraph
 Required only when a systemic constraint (sanctions, civil war, legal barrier, collapse) materially changes what a hobbyist should do. For Tier B/C it's clutter — omit.
