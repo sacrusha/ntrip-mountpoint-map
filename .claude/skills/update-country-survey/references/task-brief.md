@@ -4,7 +4,7 @@
 Apply the ideal-entry spec to a specific country (or small batch of related countries) in the ntrip-mountpoint-map repo.
 
 ## Files to read (in order)
-1. `.claude/skills/update-country-survey/ideal-entry-spec.md` — tier definitions, templates, `date_added` field rule. Read in full (small).
+1. `.claude/skills/update-country-survey/references/ideal-entry-spec.md` — tier definitions, templates, `date_added` field rule. Read in full (small).
 2. `docs/country-survey.md` — **DO NOT read in full** (>40k tokens).
    Instead: `grep -n "^### " docs/country-survey.md` to find headings; for each assigned country, `grep -n "^### CC — " docs/country-survey.md` to find its line if it exists, then `Read` only that section (~30 lines around the match) and a few neighbouring entries to establish placement context. If your assigned country is missing, use `grep -n "^### " | grep -B1 -A1 <neighbouring CC>` to find the right insertion point alphabetically/regionally.
 3. `docs/networks.md` — **DO NOT read in full**. Grep for related network IDs (`grep -n "^## <id>" docs/networks.md`) and read targeted blocks only. To find the end of the file for appends, use `wc -l docs/networks.md` and Read the last 30 lines.
@@ -37,7 +37,7 @@ For each network you discover (free OR paid):
 
 ### `docs/country-survey.md`
 - Find the right alphabetical/regional position. The file is grouped by region (Western Europe, Mediterranean, Nordics, etc.). If a regional section is unclear, place near similar-region entries.
-- Use the appropriate Tier A / B / C template from `.claude/skills/update-country-survey/ideal-entry-spec.md`.
+- Use the appropriate Tier A / B / C template from `.claude/skills/update-country-survey/references/ideal-entry-spec.md`.
 - Add `**date_added**: <today's date in YYYY-MM-DD>` on the line immediately under the `### CC — Country Name` heading. The orchestrator will pass today's date to you in the assignment prompt — use that exact value.
 - If updating an existing entry, bump `date_added` to today's date only if you made substantive changes (more than typo/link fixes).
 
