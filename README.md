@@ -10,7 +10,7 @@ workflow.
 
 **Live demo:** https://sacrusha.github.io/ntrip-mountpoint-map/
 
-**Companion guide:** [`guide.html`](https://sacrusha.github.io/ntrip-mountpoint-map/guide.html) — plain-English primer on
+**Companion guide:** [`guide.html`](https://sacrusha.github.io/ntrip-mountpoint-map/guide.html) — practical primer on
 NTRIP, RTK hardware, antenna placement, and DIY base stations.
 
 ## Features
@@ -46,7 +46,7 @@ NTRIP, RTK hardware, antenna placement, and DIY base stations.
   (Emlid), DIY path (ArduSimple), step-by-step NTRIP connection with
   NTRIP client pointers, antenna placement (the largest accuracy lever
   after baseline), DIY base station setup, real-world hobbyist examples,
-  and plain-English glossary. Prices in €/$; no US-only products.
+  and a glossary. Prices in €/$; no US-only products.
 - `data/help_topics.json` — searchable in-map help (22 interlinked
   topics, 4 popovers) surfaced via the Help button. Covers concepts
   (NTRIP, VRS, datum offsets, ionospheric storms), connect-step

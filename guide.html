@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>RTK GPS: a plain-English guide — NTRIP Mountpoint Map</title>
+<title>RTK GPS: a hobbyist's guide — NTRIP Mountpoint Map</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Free centimetre-accurate GPS for hobbyists: a plain-English guide to NTRIP, RTK corrections, compatible hardware, antenna placement, and DIY base stations.">
+<meta name="description" content="Free centimetre-accurate GPS for hobbyists: a practical guide to NTRIP, RTK corrections, compatible hardware, antenna placement, and DIY base stations.">
 <link rel="canonical" href="https://sacrusha.github.io/ntrip-mountpoint-map/guide.html">
 <meta property="og:type" content="article">
-<meta property="og:title" content="RTK GPS: a plain-English guide">
+<meta property="og:title" content="RTK GPS: a hobbyist's guide">
 <meta property="og:description" content="Free centimetre-accurate GPS for hobbyists: NTRIP, RTK corrections, hardware, antenna placement, DIY base stations.">
 <meta property="og:url" content="https://sacrusha.github.io/ntrip-mountpoint-map/guide.html">
 <meta property="og:site_name" content="NTRIP Mountpoint Map">
@@ -16,7 +16,7 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Screenshot of the NTRIP Mountpoint Map showing free RTK correction stations and coverage halos across western Europe.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="RTK GPS: a plain-English guide">
+<meta name="twitter:title" content="RTK GPS: a hobbyist's guide">
 <meta name="twitter:description" content="Free centimetre-accurate GPS for hobbyists: NTRIP, RTK corrections, hardware, antenna placement, DIY base stations.">
 <meta name="twitter:image" content="https://sacrusha.github.io/ntrip-mountpoint-map/og-preview.png">
 <script type="application/ld+json">
@@ -24,7 +24,7 @@
   "@context": "https://schema.org",
   "@type": "TechArticle",
   "headline": "Getting centimetre-accurate GPS for free",
-  "description": "A plain-English guide to NTRIP and RTK corrections for hobbyists — hardware compatibility, connecting your receiver, antenna placement, and DIY base station setup.",
+  "description": "A practical guide to NTRIP and RTK corrections for hobbyists — hardware compatibility, connecting your receiver, antenna placement, and DIY base station setup.",
   "url": "https://sacrusha.github.io/ntrip-mountpoint-map/guide.html",
   "inLanguage": "en-GB",
   "isPartOf": {
@@ -98,7 +98,7 @@ a:hover{color:#1b2b3a;}
       bl.addEventListener('click',function(e){e.preventDefault();window.opener.focus();window.close();});
     }
   </script>
-  <span class="title">RTK GPS: a plain-English guide</span>
+  <span class="title">RTK GPS: a hobbyist's guide</span>
 </header>
 <main>
 <h1>Getting centimetre-accurate GPS for free</h1>
@@ -227,6 +227,53 @@ a:hover{color:#1b2b3a;}
 </ul>
 <p>Two things determine whether the result is actually usable. The first is <a href="#antenna">antenna placement</a> — same rules as for the rover, but it now matters for everyone connecting to your base, not just you. The second is the <strong>base's coordinates</strong>: they need to come from a free PPP service like <a href="https://webapp.csrs-scrs.nrcan-rncan.gc.ca/geod/tools-outils/ppp.php" rel="noopener noreferrer">CSRS-PPP</a> or <a href="https://gnss.ga.gov.au/auspos" rel="noopener noreferrer">AUSPOS</a> (upload 24 h of logged observations), not from a quick autonomous measurement — otherwise every rover that connects gets a confidently wrong fix with no warning.</p>
 <div class="callout"><strong>Honest effort estimate:</strong> first setup takes a weekend if you are comfortable with Linux and basic networking. The PPP coordinate then needs 24 hours of autonomous logging — leave the receiver running outdoors and collect the file the next morning; no attention required during the run. Total additional hardware cost is roughly €200–450 depending on what you already have.</div>
+
+<h2 id="archival">Recording finds that survive your base</h2>
+<p>If your project is a one-off — survey a site this weekend, hand the file over Monday — your fix value plus the date and station name is enough. Skip this section. The rest of it matters when the same point will be revisited months or years later, by you or by someone else.</p>
+<p>The problem is that volunteer bases on rtk2go and Centipede vanish. Around 7% of registered rtk2go bases are live at any one time; an operator's ISP changes a dynamic IP, a power supply fails, the operator loses interest. National survey networks (SAPOS, AUSCORS, EarthScope NOTA, ERGNSS, RBMC, RAMSAC and the rest shown on the <a href="./">map</a>) are professionally monitored and persist; volunteer bases generally don't. Your fix value carries no record of which base produced it. If the base disappears before the next visit, you can record the old fossil's coordinate this year and never reconcile it with the same point next year — same physical site, different baseline, sometimes tens of cm apart in unpredictable directions, with no warning.</p>
+<p>Three tiers of recording, ordered by extra effort:</p>
+
+<h3>Tier 1 — record reproducibility metadata</h3>
+<p>Cost: zero extra seconds per fix. Buys: the chance to reconstruct the frame later, <em>if</em> the network is still around.</p>
+<p>For every recorded point, store the fix value alongside: caster host:port, mountpoint name, network name, date, your receiver model, the software that recorded it. If the network exists in five years, anyone can look up which frame your network published at the time. If the volunteer base is gone, this metadata alone won't save you — read on.</p>
+
+<h3>Tier 2 — tie to a persistent local feature each visit</h3>
+<p>Cost: one extra fix per visit. Buys: cross-visit consistency that survives the base disappearing entirely.</p>
+<p>Pick a permanent feature within sight of your finds — a road junction centreline, a boundary stone, the corner of a fence post embedded in concrete, a marked rock face, a bridge abutment. On every visit, take a fix on that feature in addition to fixing your finds. Store the find positions as an offset from the feature, not as raw coordinates.</p>
+<p>When you return next year, occupy the same feature with whatever rover and whatever base you have, get the new-frame fix on the feature, then add the stored offset to compute where the find now sits in the new frame. If the new base is in a different frame from the old, both your feature reading and your find reading shift together by the same amount; the offset between them is preserved. The base can change and the network can vanish; the local feature carries the record.</p>
+<p>This is the workhorse protocol for year-on-year work — botanical patch tracking, monitoring quadrats, palaeontology re-visits, beach erosion transects.</p>
+
+<h3>Tier 3 — bypass volunteer-base churn entirely</h3>
+<p>Cost: significant gear, money, or both. Buys: a coordinate that's intrinsically reconstructible without per-visit anchoring.</p>
+<ul>
+  <li><strong>Use a national survey network where coverage reaches you.</strong> SAPOS in Germany, AUSCORS in Australia, EarthScope NOTA in North America, ERGNSS in Spain, RBMC in Brazil, RAMSAC in Argentina, FReDNet in NE Italy and many others — all listed on the <a href="./">map</a>. Each publishes its reference frame and epoch on the network's website, runs professional uptime monitoring, and persists across decades. For users in their coverage, this collapses Tiers 1 and 2: a fix from these networks plus the date is intrinsically reproducible.</li>
+  <li><strong>Pay for a commercial network with declared epoch.</strong> Switzerland's swipos (run by swisstopo), HxGN SmartNet, Trimble VRS Now, Leica SmartNet — paid subscriptions, frame and epoch declared and tracked. Out of free scope, but worth naming for users without national-network coverage and with budget. Switzerland in particular has no free public NTRIP, so this is often the only path other than DIY.</li>
+  <li><strong>Set up your own base with a documented coordinate.</strong> The <a href="#base">DIY base section</a> already covers this. The time-extended angle: you control the frame because you set the coordinate via PPP, you control persistence because the box is in your shed, and you keep the records of what frame and epoch the base operates in. If you publish to rtk2go or Centipede, document the realisation in your own records — the caster won't.</li>
+  <li><strong>Galileo HAS — different gear path.</strong> Free, global, no base needed, ~20 cm horizontal accuracy, time-stable across years because it derives from satellite ephemeris and live precise-orbit products rather than a fixed antenna in someone's garden. Convergence takes 7–15 minutes per session. Requires hardware that physically tracks the E6 frequency: Unicore UM980/UM982, Septentrio Mosaic-X5, Quectel LG290P, Eos Arrow Gold+. The common ZED-F9P does <em>not</em> have E6 tracking and no firmware update can add it. If you're buying a receiver specifically for time-extended work and 20 cm horizontal is enough, choosing E6-capable hardware is the cleanest answer.</li>
+</ul>
+
+<h2 id="precision-limits">Where cm precision falls apart</h2>
+<p>Two ways to compute "where am I in the world" can both be cm-accurate and disagree by tens of centimetres. This is not a bug — it's the consequence of the ground physically moving over time.</p>
+
+<h3>Tectonic plates and ground motion</h3>
+<p>The Earth's crust drifts. Western Europe moves about 25 mm per year to the northeast. Australia moves about 70 mm per year north-northeast. North America moves about 25 mm per year, with faster motion near the Pacific margin. Within a single plate the motion is slow, smooth, and predictable; near plate boundaries (California, Japan, the eastern Mediterranean, New Zealand) it's faster and adds local deformation.</p>
+<p>This means a permanent marker driven into the ground in 2010 is not where it was in 2010 anymore. Where it sits in the global ITRF reference frame in 2026 is several centimetres different from where it sat sixteen years earlier — without anyone touching it.</p>
+
+<h3>Epochs and why the year matters</h3>
+<p>Most national datums solve the moving-ground problem by freezing the ground at a chosen moment — the <em>epoch</em>. Once frozen, the datum's coordinate of a stable marker doesn't change with time, even though the marker is physically moving in ITRF. The trade-off: the longer ago the epoch was set, the further the datum's coordinates have drifted from current ITRF.</p>
+<ul>
+  <li>ETRS89 (Western Europe) — frozen to the Eurasian plate at 1989. By 2026 a stable point in Western Europe sits ~93 cm to the northeast of where ETRS89 puts it. Live ITRF would say the point moved; ETRS89 says it didn't.</li>
+  <li>GDA2020 (Australia) — frozen at 2020. By 2026 the offset is ~42 cm, growing 70 mm per year.</li>
+  <li>GDA94 (legacy Australia, still in some old datasets) — frozen at 1994. By 2026 the offset is ~2.24 m. The legacy datasets carry that 2 m baked in.</li>
+  <li>NAD83(2011) (North America) — frozen at 2010. Offset 0.5–2 m, direction-dependent.</li>
+  <li>RGF93 v2b (France, used by Centipede in France) — frozen at 2019. Offset ~93 cm to the northeast.</li>
+  <li>WGS84 / current ITRF — global, tracks the live ground; no fixed-epoch offset.</li>
+</ul>
+<p>So a complete cm-grade record needs three things: the coordinate, the frame name, and the date. Without the frame, the coordinate is incomplete. Without the date, the frame is incomplete (because some frames track ITRF and drift over time, and the date pins which moment of ITRF you mean).</p>
+
+<h3>Why this hits volunteer-base users hardest</h3>
+<p>The NTRIP correction stream itself doesn't say which frame the base is in. National networks publish that on their website — AUSCORS labels mountpoints by frame, EarthScope publishes the epoch refresh date, SAPOS commits to ETRS89/ETRF2000. Volunteer bases on rtk2go don't publish anything in the stream. Centipede in France standardises on RGF93 v2b via the IGN's processing service, and some Centipede operators elsewhere (parts of Hungary, Polish bases that mirror the state VRS) inherit a published frame from the national infrastructure they connect to. But many rtk2go and international Centipede operators set their base coordinate from a quick autonomous reading at install — the broadcast position is then in "whatever the satellite ephemeris said the day of the install," frozen to that moment, drifting ever since.</p>
+<p>For users who only need decimetre absolute precision and do their work within a single session, this is invisible — the within-session geometry is solid. For users tracking the same point over years, against possibly different bases, this is exactly where the cm-precision claim fails. The fix above is Tier 2 (tie to a local feature) or Tier 3 (national network or HAS).</p>
 
 <h2 id="examples">Real-world examples</h2>
 <p>Hobbyists, citizen scientists, and small volunteer groups already use free network RTK for things like:</p>

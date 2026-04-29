@@ -920,50 +920,80 @@ Online: CSRS-PPP (ITRF+NAD83 from RINEX) ✓; NGS NCAT (epoch-aware NAD83<->ITRF
 
 ### 13.7 Frame/epoch in free public NTRIP
 
-RTCM 1005/1006 carries XYZ + dead DF021 (§4.2). No in-stream frame, no in-stream epoch -> rover blind to either. Frame info lives in network docs only. Network-tier reality differs by orders of magnitude:
+Audience: hobbyist NTRIP user, decimetre target. Sub-decimetre + survey-grade users figure it out or pay; not the audience.
 
-[gov-CORS] Frame + epoch declared in writing; cross-station consistency enforced:
-- AUSCORS: GDA2020 ep 2020.0 (plate-fixed AU); mountpoint name encodes frame ✓.
-- EarthScope NOTA: ITRF2014 current ep, refreshed regularly; non-NOTA mountpoints "best estimate, no precise epoch" ✓.
-- SAPOS: ETRS89/ETRF2000 per Land; some Länder broadcast 1021/1023 datum-transform messages for national-projection clients ~.
+Core fact: RTCM 1005/1006 carries XYZ + dead DF021 (§4.2). No in-stream frame, no in-stream epoch -> rover blind to either. SW Maps / Emlid Flow / RTKLIB surface nothing ✓. Frame info lives in network docs only.
+
+Hobbyist sanity check on connect:
+- Stand on identifiable feature (road centreline, fence corner, marked path) -> get fix -> open Google Maps / OSM.
+- Within ~1 m, same direction across site = frame offset, normal, carry on. Within-session relative geometry unaffected.
+- Several m, varying = imagery georef (1-3 m city, 5-20 m rural, up to 50 m forest/featureless).
+- 10s of m = something else broken (false fix, wrong MP, base misconfigured).
+
+For decimetre work the check is the whole answer.
+
+Time-extended hobbyist work (palaeontology re-visits, plant demography year-over-year, monitoring quadrats, drone re-flights) = different problem: base may not exist next year, and fix value alone carries no record of which frame produced it. Three tiers ordered by extra effort:
+
+[tier 1] record metadata alongside coordinate: caster host:port, mountpoint, network, date, gear. Zero extra time. Lets future user reconstruct frame *if* network still exists. Doesn't help if volunteer base gone.
+
+[tier 2] tie to persistent local feature each visit: road junction, boundary stone, fence-post corner in concrete, rock face. Take fix on local feature + fix on each find/patch every visit. Store finds as offset from feature. Future visits re-occupy feature with whatever gear/base, apply stored offset. Robust to base churn. Workhorse protocol for botany year-over-year + palaeontology re-visits.
+
+[tier 3] bypass volunteer-base churn:
+- Use national survey network where coverage reaches (SAPOS, AUSCORS, EarthScope NOTA, ERGNSS, RBMC, RAMSAC, FReDNet, etc.) -> declared frame, monitored uptime, persists. Collapses tier 1+2 for users in coverage.
+- Pay for commercial network with declared epoch (swipos CH, HxGN SmartNet, Trimble VRS Now, Leica SmartNet). Out of free scope; only path in CH (no free public NTRIP).
+- Set up own base with documented coordinate + epoch (§10.3). User controls frame, persistence, records.
+- Galileo HAS = different gear path: free, global, ~20 cm horizontal, time-stable across years (derived from satellite ephemeris + live precise-orbit products), no base. Convergence 7-15 min. Requires E6-tracking hardware (UM980/UM982, Mosaic-X5, LG290P, Eos Arrow Gold+); F9P cannot do E6 ✓. Right answer for users buying gear specifically for time-extended work.
+
+PPP post-processing of raw observations (CSRS-PPP, AUSPOS) = professional path, not hobbyist tier; F9P-class users rarely do this. Mention in passing only.
+
+Network-tier reality:
+
+[gov-network] Frame + epoch declared in writing; cross-station consistency enforced:
+- AUSCORS: GDA2020 ep 2020.0 (plate-fixed AU); MP name encodes frame ✓.
+- EarthScope NOTA: ITRF2014 current ep, refreshed regularly; non-NOTA MPs "best estimate, no precise epoch" ✓.
+- SAPOS: ETRS89/ETRF2000 per Land; some Länder broadcast 1021/1023 for national-projection clients ~.
 - ERGNSS, FReDNet, RBMC-IP, RAMSAC, TrigNet, etc.: ETRS89 / SIRGAS2000 / Hartebeesthoek94 / etc., per network website; never in stream.
+- RAMSAC + FReDNet + MnCORS = exceptions: declare frame in sourcetable misc field or MP name ✓ (own grep, data/*.sourcetable, 4200+ STR records).
 
-[centipede-FR] Strict workflow: 24 h+ RINEX -> IGN online service -> RGF93 v2b report (= ETRF2000 ep 2019.0) -> RTKBase fixed mode ✓. The "2000" in ETRF2000 = realisation year, not epoch — easy mistake. Frame consistent across French Centipede bases. Not declared in RTCM. 1-2 wk registration review = real for FR (IGN report = auditable); weaker outside FR.
+[centipede-FR] Strict workflow: 24 h+ RINEX -> IGN online service -> RGF93 v2b report (= ETRF2000 ep 2019.0) -> RTKBase fixed mode ✓. "2000" in ETRF2000 = realisation year, not epoch. Frame consistent across French Centipede bases. Not declared in RTCM. 1-2 wk registration review = real for FR (IGN report auditable); weaker outside FR.
 
-[centipede-intl] Recipe-only: docs tell EU operators ETRF2000 via EUREF ECTT; rest-of-world ITRF20 current ep direct. No central post-processing service, no enforcement, no per-base audit.
+[centipede-intl] Recipe-only: docs tell EU operators ETRF2000 via EUREF ECTT; rest-of-world ITRF20 current ep direct. No central post-processing, no enforcement. Some operators inherit published frame from local infrastructure (parts of HU, PL bases mirroring state VRS).
 
-[rtk2go] No enforced frame, no enforced epoch. SNIP "PFAT" (Position File Adjustment Tool) frame harmonisation = paid SNIP feature + opt-in ✓ (SNIP KB: "PFAT translation ... only available on paid models of SNIP"); rare in practice. Most volunteer bases: F9P TMODE3 SVIN -> autonomous fix (~1-3 m absolute) -> broadcast 1005 internally labelled "WGS84" but frozen at survey-in instant. F9P Integration Manual: "the reference datum cannot be changed and is always set to WGS84" ✓ — but that "WGS84" = whatever broadcast ephemeris said the day of survey-in. After 2-5 yr antenna has moved at full plate speed in true ITRF; broadcast 1005 has not.
+[rtk2go] No enforced frame, no enforced epoch. SNIP "PFAT" (Position File Adjustment Tool) = paid SNIP feature + opt-in ✓ (SNIP KB: "PFAT translation ... only available on paid models of SNIP"); rare in practice. Many volunteer bases: F9P TMODE3 SVIN -> autonomous fix (~1-3 m absolute) -> broadcast 1005 internally labelled "WGS84" but frozen at survey-in instant ✓ (F9P Integration Manual). After 2-5 yr antenna has moved at full plate speed in true ITRF; broadcast 1005 has not. Some operators do PPP install + maintain coords; sourcetable does not distinguish.
 
-Hobbyist consequences:
+Hobbyist consequences (calibrated, not worst-case):
 
-1. Same rtk2go base, same point, two visits 2 yr apart: relative vector preserved (plate motion common-mode); fix repeats to cm.
-2. Different rtk2go bases at same point: 5-30 cm apparent drift, looks random, no in-stream signal.
-3. Centipede-FR fix vs Google Earth/OSM @ 2026: ~93 cm NE systematic (RGF93 v2b = ETRF2000 ep 2019.0 vs ITRF current); apply PROJ EUREF transform.
-4. AU rtk2go base autonomous-SVIN'd 2020 + project in GDA2020: lucky cancellation ~0 cm. Same base + project in WGS84/Google Earth: ~42 cm @ 2026, growing.
-5. Re-flying drone GCPs 2025 -> 2027 against different base: 5-30 cm step change between flights, same physical points.
-6. SW Maps / Emlid Flow / RTKLIB rover apps surface no frame info to user ✓. The frame question never appears in the UI.
-
-Mitigations (rover-side):
-- Use same base for all re-occupations -> plate motion common-mode -> relative vector preserved.
-- Tie rover to known mark once -> store per-base residual -> apply to subsequent fixes.
-- Prefer government CORS over rtk2go where coverage allows -> declared frame + monitored consistency.
-- Cross-check rover at one spot via 2 government bases of known frame: agreement <3 cm = consistent; >30 cm = mixed frames.
-- Drone re-flights: log base ECEF + observation epoch alongside photo metadata -> PROJ time-dependent transform between epochs (proj 6+; ICSM QGIS plugin AU; NGS HTDP US).
+1. Same volunteer base, same point, weeks-month later: cm if base still streaming. Often the case.
+2. Same volunteer base, same point, year+ later: few cm if base still there + coord unchanged.
+3. Different volunteer base, same point, year+ later: usually within few cm; sometimes 10-30 cm if bases set up in different frames or different epochs; occasionally worse if one was autonomous SVIN. No in-stream signal which case applies.
+4. Centipede-FR vs Google Earth/OSM @ 2026: ~93 cm NE systematic (RGF93 v2b = ETRF2000 ep 2019.0 vs ITRF current); PROJ EUREF transform fixes it.
+5. AU rtk2go autonomous-SVIN'd 2020 + project in GDA2020: lucky cancellation ~0 cm. Same base + WGS84/Google Earth: ~42 cm @ 2026, growing.
 
 What well-run free networks tell users about epoch:
-- AUSCORS: GDA2020 plate-fixed @ ep 2020.0; no per-flight epoch math needed within AU; HTDP-equivalent only when tying to ITRF.
+- AUSCORS: GDA2020 plate-fixed @ ep 2020.0; no per-flight epoch math within AU; HTDP-equivalent only for ITRF tie.
 - EarthScope NOTA: refreshed epoch published per stream; for stable frame use derived NAM14 product, not real-time stream.
-- SAPOS: stays ETRS89 (plate-fixed Eurasia); convert only when comparing ITRF data.
+- SAPOS: stays ETRS89 (plate-fixed Eurasia); convert only for ITRF comparison.
 
 Documented real-world:
-- StephaneP (OSM diary): measured ~70-80 cm offset between RTK fix and French BDOrtho, traced to RGF93 vs WGS84; OSM database de-facto mixed-datum because contributors merge ETRS89/NAD83/WGS84 sources without transformation ✓.
+- StephaneP (OSM diary): measured ~70-80 cm offset between RTK fix + French BDOrtho, traced to RGF93 vs WGS84; OSM database de-facto mixed-datum because contributors merge ETRS89/NAD83/WGS84 without transformation ✓.
 - AgOpenGPS Discourse: multiple "10 m off after RTK2GO coordinates" + "RTK status but drifting" threads root-caused to base coord quality ✓.
-- Emlid community: NRCan CSRS-PPP outputs NAD83(CSRS) or ITRF, never literal "WGS84"; entering NAD83 coord into Reach as if WGS84 -> silent ~1 m offset ✓.
-- Inside Unmanned Systems autonomous-vehicles piece: 2005-surveyed reference + 2019-frame project = ~50 cm discrepancy ✓.
+- Emlid community: NRCan CSRS-PPP outputs NAD83(CSRS) or ITRF, never literal "WGS84"; entering NAD83 into Reach as if WGS84 -> silent ~1 m offset ✓.
+- Inside Unmanned Systems: 2005-surveyed reference + 2019-frame project = ~50 cm discrepancy ✓.
+
+Project-internal sourcetable evidence (2026-04, data/*.sourcetable):
+- rtk2go (883 STR): zero frame/epoch identifiers in any field.
+- centipede (1223 STR): zero frame/epoch identifiers in any field.
+- ramsac: declares "Marco POSGAR07-ITRF2005(2006.632)" in misc field — frame + decimal-year epoch.
+- frednet: declares "Reference System ETRS89" in misc field on legacy single-base streams.
+- mncors: encodes datum in MP name (CMR_Plus_NAD83(1996), CMR_Plus_NAD83(2011)).
+- AUSCORS, EarthScope, RBMC-IP, TrigNet, gcgc_rtn: zero in sourcetable; declared on website only.
+3 of 66 networks declare frame anywhere a rover-side parser can see.
 
 Evidence thin on:
-- Fraction of rtk2go bases SVIN vs PPP — inferred from forum tone, not measured.
+- Fraction of rtk2go bases SVIN vs PPP — inferred from forum tone.
 - Cross-base agreement among rtk2go bases — no formal study.
+
+User-facing surfacing: guide.html `#archival` (recording protocol) + `#precision-limits` (tectonic / epoch explainer). Help topic `position-off-vs-google-maps` rewritten to branch by network type + cross-link guide. is-this-for-me preamble flags time-extended use cases. AI-guide depth lives here.
 
 ## 14. Antennas
 
