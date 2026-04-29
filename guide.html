@@ -217,28 +217,27 @@ a:hover{color:#1b2b3a;}
 <p><strong>In the field with a survey pole:</strong> the same rules apply. Hold the pole vertical, well away from metal vehicles and metal fence posts. The antenna does not know you are holding it temporarily — half a second next to a steel post produces the same multipath as a permanent mount there.</p>
 
 <h2 id="archival">Why a coordinate cannot be centimetre accurate</h2>
-<p>You might think a coordinate is telling you where something is, but you'd be wrong. You probabyly already know that continental plates move centimetres every year, and you probably know that there's a coordinate system relative to Greenwich England. Which is neat if you want centimetre precision near Greenwich.</p>
-<p>You might think there has to be a standard that accounts for inter- and intraplate movement, so this is solved by civing a coordinate and a time. Almost.</p>
+<p>You might think a coordinate is telling you where something is, but it isn't quite that simple. You probably already know that continental plates move centimetres every year, and you probably know that there is a coordinate system anchored relative to Greenwich, England — which is neat if you want centimetre precision near Greenwich.</p>
+<p>You might also think there has to be a standard that accounts for inter- and intra-plate movement, and that this is solved by giving a coordinate together with a time. Almost.</p>
 
-<p>There isn't <b>a</b> standard, there are <b>dozens</b>. To describe a timeless centimetre precision coordinate you need the coordinate, a timestamp, and the standard you're using, which is given as a Datum & Epoch.</p>
+<p>There isn't <b>a</b> standard, there are <b>dozens</b>. To describe a centimetre-precision coordinate that holds up over time you need the coordinate, a timestamp, and the standard you are using — which is given as a <strong>datum and epoch</strong>.</p>
 
-<p>But this is where the NTRIP map falls short. Some NTRIP casters (e.g. rtk2go, centipede outside of France) might have different mountpoints using different Datums and different Epochs, and sometimes not even telling you which ones. Country level casters often have a published spec that lists the Datum(s) and Epoch(s) they use.</p> 
+<p>This is where the NTRIP map falls short. Some NTRIP casters (e.g. rtk2go, Centipede outside France) carry mountpoints using different datums and different epochs, and sometimes do not say which. Country-level casters typically publish a spec that lists the datum(s) and epoch(s) they use.</p>
 
-<p>If they don't publish Datum and Epoch, you have workarounds:<p>
+<p>If they don't publish datum and epoch, you have workarounds:</p>
 <ol>
-  <li>Record the coordinates of a local reference point, either an official reference point or an improvised one (ex: manhole cover). This is best practice even if you do know Datum and Epoch.</li>
-<li>Verify whether your caster really doesn't list Datum and Epoch of their mountpoints - most do list them.</li>
-<li>Pay money for a local caster that does specify Datum and Epoch</li>
-<li>Set up your own base station, which has a known Datum and Epoch, because you choose it.</li>
-<li>Don't use basestations, instead go for a diferrent technology like HAS - lower accuracy, but known Datum and Epoch.</li>
+  <li>Record the coordinates of a local reference point — either an official one or an improvised one (e.g. a manhole cover). This is good practice even when you do know the datum and epoch.</li>
+  <li>Check again that your caster really doesn't list datum and epoch for its mountpoints — most do.</li>
+  <li>Pay for a local caster that does specify datum and epoch.</li>
+  <li>Set up your own base station, which has a known datum and epoch because you choose them.</li>
+  <li>Skip base stations and use a different technology such as Galileo HAS — lower accuracy, but with a known datum and epoch.</li>
 </ol>
 
 
-
 <h2 id="base">Setting up your own base station</h2>
-<p>A base station is just a GPS antenna ($100-200) with a bit of hardware ($200-700), power, and internet access. You can set up your own: Just place the antenna in a good spot and you find it's exact position by logging a couple hours (cm) to a couple days (mm) of data, then running it through a free PPP service</p>
+<p>A base station is just a GNSS antenna ($100–200) with a bit of hardware ($200–700), power, and an internet connection. Place the antenna in a good spot and find its exact position by logging a couple of hours (cm) to a couple of days (mm) of data, then running the log through a free PPP service.</p>
 
-<p>Any cheap dual band RTK reveiver will work with a Raspberry Pi running <a href="https://github.com/Stefal/rtkbase" rel="noopener noreferrer">RTKBase</a>, but devices like the <a href="https://www.ardusimple.com/how-to-configure-simplertk3b-as-static-base-station">simplertk3b Pro</a> that come with a complete tutorial and can connect directly to a caster, without the need to set up a server in between, are more beginner friendly.
+<p>Any cheap dual-band RTK receiver will work with a Raspberry Pi running <a href="https://github.com/Stefal/rtkbase" rel="noopener noreferrer">RTKBase</a>, but devices like the <a href="https://www.ardusimple.com/how-to-configure-simplertk3b-as-static-base-station" rel="noopener noreferrer">simpleRTK3B Pro</a> that come with a complete tutorial and connect directly to a caster, without the need to set up a server in between, are more beginner friendly.</p>
 
 <h2 id="examples">Real-world examples of RTK projects</h2>
 <p>Hobbyists, citizen scientists, and small volunteer groups already use free network RTK for things like:</p>

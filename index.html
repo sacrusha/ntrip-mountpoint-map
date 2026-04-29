@@ -327,7 +327,7 @@
 <h4>Could my receiver be lying about its &#x27;Fix&#x27;?</h4>
 <p>Yes, occasionally. The receiver can show &#x27;RTK Fixed&#x27; with cm precision while the actual position is offset by ~19 cm or a small multiple of it — the carrier-phase ambiguity resolved on the wrong integer. There is no LED, alarm, or status flag for it.</p>
 <h4>Why is my fix off by 1–2 m vs Google Maps?</h4>
-<p>Cm-precise but ~1 m off vs your map is normal — your fix is in the network&#x27;s reference frame and your map is in another. The receiver isn&#x27;t broken. The fix depends on which network you&#x27;re using.</p>
+<p>Cm-precise but ~1 m off vs your map is normal — your fix is in the network&#x27;s datum and epoch and your map is in another. The receiver isn&#x27;t broken.</p>
 <h4>Connection times out or refuses</h4>
 <p>NTRIP runs on whatever TCP port the caster picks — usually 2101, but the value in the popup is what counts. Corporate WiFi, campus networks, and public hotspots commonly block non-web ports outright.</p>
 <h4>Worked yesterday, broken today — am I in a storm?</h4>
