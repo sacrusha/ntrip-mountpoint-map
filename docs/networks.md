@@ -2,8 +2,26 @@
 
 _Authoritative reference for every network investigated, whether in pipeline or not._
 _Read before touching `scripts/fetch_stations.py` or `index.html`._
-_Networks are identified via `docs/country-survey.md` and `docs/global-survey.md`;_
-_detail, endpoints, and pipeline status live here._
+
+## Role of this file
+
+This is the **refined operator catalogue for our use**: networks discovered
+via `docs/country-survey.md` and `docs/global-survey.md` are pulled in here,
+verified, and curated into per-network blocks with endpoints, access terms,
+pricing, and pipeline status. Think of it as the working bench between two
+ends:
+
+- The country/global surveys feed candidates in (broad, completeness-focused).
+- This file refines them into structured records we can act on.
+- `data/country_markers.json` then translates the subset that warrants a
+  map marker into user-facing copy.
+
+It is internal/developer-facing — acronyms and audit phrasing are fine here
+because the audience is us, not hobbyists. The files are not mirrors of one
+another: a country can have a paragraph in the survey without a block here
+(if there is no operator worth cataloguing), and a block here can exist
+without a marker (if it is regional-only or not substantial enough). The
+content narrows at each step.
 
 _Last updated: 2026-04-22._
 
