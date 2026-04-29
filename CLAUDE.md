@@ -45,7 +45,7 @@ hardware from ~$850 + fees.
 
 ```
 index.html                    # Single-page Leaflet app — all UI.
-guide.html                    # Plain-English hobbyist primer (static page).
+guide.html                    # Hobbyist primer (static page).
 scripts/fetch_stations.py     # Sourcetable fetch + parse + diff.
 .github/workflows/
   update-stations.yml         # Cron + workflow_dispatch, runs the Python.
