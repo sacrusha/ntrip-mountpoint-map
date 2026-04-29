@@ -172,18 +172,29 @@ communicates what is known. Four tiers:
 | Marker | When shown | Hobbyist message |
 |---|---|---|
 | Coloured VRS circle | In-pipeline VRS-only network, working | Sign up — corrections exist, no fixed antennas |
-| Grey VRS circle | Free network confirmed; endpoint not yet in pipeline | Something free exists here; we haven't connected it yet |
-| Circled **?** | Paid, restricted, or existence unverified | Dead end or legwork required — popup explains |
-| Nothing | Not investigated, or genuinely nothing confirmed | — |
+| Grey VRS circle | A **free** national-scale service is confirmed to exist; only the endpoint is not yet wired into the pipeline | Something free exists here; we haven't connected it yet |
+| Circled **?** | A **substantial national-scale** paid or restricted service exists | Dead end or legwork required — popup explains |
+| Nothing | None of the above (investigation found nothing operational, post-processing-only, defence-internal, regional surveying company too small to flag, etc.) | — |
 
-Tier assignment is stored in the `tier` field of `data/country_markers.json`
-(derived from `status` in `docs/networks.md`):
+Tier assignment is stored in the `tier` field of `data/country_markers.json`:
 
 - `vrs` + live pipeline data → coloured circle (same colour as source in toggle panel)
 - `vrs` + stale or never-fetched → grey circle (falls through automatically)
-- `deferred` (free; endpoint withheld or not found) → grey circle
-- `info` (`paid-affordable`, `paid`, `restricted`) → **?** marker
-- No entry, or no public NTRIP ever confirmed → no marker
+- `deferred` → grey circle. **Strict semantic**: a free service is known to
+  exist; only the endpoint is the gap. The `note` field for a `deferred`
+  marker should be able to truthfully begin with "N stations, free." If it
+  can't, the entry doesn't belong in this tier.
+- `info` → **?** marker. **Strict semantic**: substantial national-scale
+  paid or restricted operator (think HEPOS, ROMPOS, swipos — country-wide
+  cadastral or commercial bodies). A small private surveying company with a
+  handful of stations does NOT qualify; describe it inline in country prose
+  and add no marker.
+- No entry → no marker. This covers the common case where a country was
+  investigated and found to have nothing accessible to a hobbyist —
+  closed government infrastructure, post-processing-only RINEX, defence
+  networks, etc. Absence of a marker is itself a signal: "we looked, found
+  nothing useful." Don't add a marker just to mark the investigation; the
+  country-survey prose is the canonical record.
 
 The grey circle reuses the existing stale/grey visual language and is the most
 colorblind-safe encoding (achromatic vs. coloured, no hue dependency).
@@ -204,6 +215,13 @@ Fields: `id`, `name`, `region`, `country` (ISO 3166-1 α-2), `lat`, `lon`,
 `tier`, `source_id` (vrs tier only — links to `stations.json` for colour and
 registration URL), `pins` (boolean; true = physical station pins already on
 map), `access`, `registration`, `yearly_cost`, `stations_declared`, `note`.
+
+The **`note` field is user-facing** — it renders in the marker's popup tooltip
+on the map and is read by hobbyists. Plain language; expand or avoid acronyms
+("permanent GPS reference network" not "CORS"); never mention internal
+classifications like the `$200/yr cutoff`; never include audit-document
+phrasing like "no English pricing page" or "±2 cm horizontal accuracy at 95 %
+confidence." A good note tells the user what they need to know to act.
 Frontend suppresses a `vrs`-tier circle when `pins` is false and the source
 currently has stations in the live feed (network regained physical pins).
 `pins:true` entries always show a VRS circle regardless of station count.

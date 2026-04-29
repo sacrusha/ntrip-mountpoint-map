@@ -53,7 +53,7 @@ _Last updated: 2026-04-22._
 - **Volunteer**: rtk2go ~20 CH bases, Centipede ~27 CH nodes (country code `CHZ`).
   Concentrated on the Swiss plateau and Jura; partial free coverage for hobbyists
   willing to accept volunteer uptime.
-- **Paid only**: swipos ~CHF 1,500/yr ≈ $1,650 — over cutoff.
+- **Paid only**: swipos ~CHF 1,500/yr ≈ $1,650 — expensive for a hobbyist.
 - **Gap**: no free coordinated RTK; volunteer bases on the Swiss plateau give
   partial hobbyist coverage but with no uptime guarantee.
 
@@ -63,13 +63,13 @@ _Last updated: 2026-04-22._
 
 - **Free government RTK**: none confirmed. The Amt für Tiefbau und Geoinformation
   (ATG, llv.li) manages national geodata infrastructure but operates no public NTRIP
-  caster. Liechtenstein has no independent CORS programme; private surveyors use swipos
+  caster. Liechtenstein has no independent GPS reference station programme (CORS); private surveyors use swipos
   (swisstopo, CHF 1,500/yr), which geometrically covers the entire principality via
   Swiss AGNES stations 5–10 km away. → networks.md: `li_cors`
 - **Volunteer**: none. Zero LI stations on rtk2go or Centipede (bounding-box check
   confirmed). Swiss volunteer bases near St. Gallen/Rhine valley may provide incidental
   coverage.
-- **Paid only**: swipos ~CHF 1,500/yr ≈ $1,650 — over cutoff; only practical RTK
+- **Paid only**: swipos ~CHF 1,500/yr ≈ $1,650 — expensive for a hobbyist; only practical RTK
   service for the territory.
 
 ### DE — Germany
@@ -137,7 +137,7 @@ _Last updated: 2026-04-22._
 
 - **Free government RTK**: none. Kadaster NETPOS is internal use only (not public
   NTRIP). Market fully privatised since ~2000. → networks.md: `netpos`
-- **Commercial** (paid, over $200/yr cutoff): 06-GPS (Trimble NL, VRS, ~250
+- **Commercial** (paid, expensive for a hobbyist): 06-GPS (Trimble NL, VRS, ~250
   stations) — €1,500/yr excl. VAT (~€1,815 incl., ~$2,000/yr); not surfaced.
   → networks.md: `06gps`
 - **Volunteer**: rtk2go ~24 NL bases, Centipede ~25 NL nodes. Together provide real
@@ -190,11 +190,11 @@ _Last updated: 2026-04-22._
 
 - **Free government RTK**: none. HEPOS (HEPOS S.A. / Ktimatologio, `uranus.gr:2101`,
   VRS) — €160/3 months (~$170) or ~€480/yr (~$525) unlimited; 3-month block is
-  under the $200/yr cutoff for seasonal hobbyist use; unlimited tier over cutoff.
+  affordable for a hobbyist doing seasonal work; unlimited tier expensive at ~$525/yr.
   → networks.md: `hepos`
 - **Volunteer**: rtk2go ~2 GR bases, Centipede ~2 GR nodes.
-- **Paid affordable**: HEPOS €160/3 months (~$170) — under $200/yr cutoff for
-  seasonal use; €480/yr (~$525) unlimited, over cutoff.
+- **Paid affordable**: HEPOS €160/3 months (~$170) — affordable for seasonal hobbyist use;
+  €480/yr (~$525) unlimited, expensive for a hobbyist.
 - **Gap**: no free government RTK; €160/3-month HEPOS block is the lowest-cost
   entry; volunteer coverage very thin.
 
@@ -213,7 +213,7 @@ _Last updated: 2026-04-22._
 
 - **Free government RTK**: none confirmed. The Malta Environment and Planning
   Authority (MEPA, now MCESD/PA) and the Land Registry do not operate a public
-  NTRIP caster. No national CORS network with public NTRIP has been identified
+  NTRIP caster. No national fixed reference station network (CORS) with public NTRIP has been identified
   through Alberding directory or EUREF listings.
 - **Volunteer**: rtk2go 1 base — `EneGIS` at Naxxar (35.92°N, 14.44°E), RTCM
   3.2 MSM, carrier L1+L2, country code `MLT`. Single station covering the
@@ -281,7 +281,7 @@ _Last updated: 2026-04-22._
 - **Volunteer**: none. Zero SM stations on rtk2go or Centipede (bounding-box check
   confirmed).
 - **Paid only**: NetGEO/TopNET (~€360/yr ≈ $390, national Italy) covers San Marino
-  as part of its Italian footprint; over $200/yr cutoff. → networks.md: `netgeo`
+  as part of its Italian footprint; expensive for a hobbyist (~$390/yr). → networks.md: `netgeo`
 
 ### PT — Portugal
 
@@ -394,7 +394,7 @@ _Last updated: 2026-04-22._
 **date_added**: 2026-04-29
 
 - **Free government RTK**: none. CPOS/ETPOS (Kartverket, `cpos.kartverket.no:2101`,
-  ~130 stations, VRS) — NOK 8,000+/yr (~$740/yr); over $200/yr cutoff.
+  ~130 stations, VRS) — NOK 8,000+/yr (~$740/yr); expensive for a hobbyist.
   → networks.md: `cpos`
 - **Volunteer**: rtk2go ~25 NO bases, Centipede ~21 NO nodes. Together ~46 bases;
   reasonable in populated areas (Oslofjord, Vestlandet); sparse north of ~63°N.
@@ -420,7 +420,7 @@ _Last updated: 2026-04-22._
 - **Free government RTK**: none for RTK. SWEPOS (Lantmäteriet, `dgnss-swepos.lm.se:2101`
   for DGNSS tier, VRS) — DGNSS tier free with account (free registration); RTCM 2.3;
   ~0.2 m horizontal — sub-metre, out of scope. Network RTK subscription ~9,000 SEK/yr
-  (~$850/yr); over $200/yr cutoff. → networks.md: `swepos`
+  (~$850/yr); expensive for a hobbyist. → networks.md: `swepos`
 - **Volunteer**: rtk2go ~29 SE bases, Centipede ~1 SE node. Thin relative to
   Sweden's large area; mostly in the south.
 - **Paid only**: SWEPOS Network RTK ~9,000 SEK/yr (~$850/yr).
@@ -444,7 +444,7 @@ _Last updated: 2026-04-22._
 
 **date_added**: 2026-04-29
 
-- **Free government RTK**: none. KOPOS (Kosovo Cadastral Agency / AKK, 8 CORS stations,
+- **Free government RTK**: none. KOPOS (Kosovo Cadastral Agency / AKK, 8 fixed reference stations (CORS),
   VRS, `host:port not publicly listed`) — paid; pricing not published on public website
   (contact akk.rks-gov.net). → networks.md: `kopos`
 - **Volunteer**: negligible.
@@ -462,7 +462,7 @@ _Last updated: 2026-04-22._
 
 **date_added**: 2026-04-29
 
-- **Free government RTK**: BiHPOS — dual-entity CORS network; paid; split between two
+- **Free government RTK**: BiHPOS — dual-entity fixed reference station network (CORS); paid; split between two
   geodetic authorities: FBiHPOS (Federation of BiH, `fgu.com.ba`) and SRPOS (Republika
   Srpska, `srpos.rgurs.org`). Together 34 stations, ~17 per entity; VRS-capable. Host:port
   not publicly listed (contact fgu.com.ba or rgurs.org/srpos for credentials).
@@ -521,11 +521,11 @@ _Last updated: 2026-04-22._
   ~30 stations + 27 foreign-network stations, VRS) — free for public authorities,
   schools, and students; commercial/hobbyist use charged under Decree 31/1995 Sb.
   (as amended by 156/2023 Sb.): 10,000 CZK/yr (~€400) per receiver, or 1,000 CZK/month.
-  Registration at `czepos.cuzk.gov.cz`. Over the €200/yr hobbyist cutoff.
+  Registration at `czepos.cuzk.gov.cz`. Expensive for a hobbyist.
   → networks.md: `czepos`
 - **Volunteer**: rtk2go ~4 CZE bases, Centipede ~3 CZE nodes.
 - **Gap**: no free hobbyist path; volunteer density is too thin for national coverage;
-  only practical option below the cutoff is a self-operated base or a Centipede node.
+  the only affordable option is a self-operated base or a Centipede node.
 
 ### HU — Hungary
 
@@ -535,12 +535,12 @@ _Last updated: 2026-04-22._
   `ntrip.gnssnet.hu:2101`, VRS network solution) — paid; 150,000 HUF/yr net
   (~€375/yr at ~400 HUF/EUR) after the Feb 2023 price reduction; 15,000 HUF/30 days
   (~€38) also available. One-time connection fee 12,000 HUF + VAT (~€30). Registration
-  at `gnssnet.hu`. Over the €200/yr hobbyist cutoff.
+  at `gnssnet.hu`. Expensive for a hobbyist.
   → networks.md: `gnssnet_hu`
 - **Volunteer**: Centipede ~223 HUN nodes (single largest non-France country in the
   Centipede sourcetable), rtk2go ~6 HUN bases. Near-national free RTK coverage
   through volunteers; densest in the Great Hungarian Plain and northern Hungary.
-- **Gap**: GNSSnet.hu is over the hobbyist cutoff; the Centipede volunteer network
+- **Gap**: GNSSnet.hu is expensive for a hobbyist; the Centipede volunteer network
   provides practical free coverage for most of the country without registration.
 
 ### ME — Montenegro
@@ -548,7 +548,7 @@ _Last updated: 2026-04-22._
 **date_added**: 2026-04-29
 
 - **Free government RTK**: MONTEPOS (Uprava za nekretnine / Real Estate Administration,
-  `gov.me/clanak/montepos`) — paid; ~9 CORS stations across Montenegro; VRS-capable (9
+  `gov.me/clanak/montepos`) — paid; ~9 fixed reference stations (CORS) across Montenegro; VRS-capable (9
   locations listed). Subscription tiers: 24 h, 48 h, 1 month, 3 months, 6 months,
   1 year, 2 years. Pricing not published on official page (contact Uprava za nekretnine,
   Podgorica). Host:port not publicly listed; Montenegro uses EUR, so expect EUR pricing.
@@ -568,8 +568,8 @@ _Last updated: 2026-04-22._
 **date_added**: 2026-04-29
 
 - **Free government RTK**: ROMPOS (ANCPI — Agenția Națională de Cadastru și Publicitate
-  Imobiliară, `rtk.rompos.ro:2101`, VRS, ~80+ permanent CORS stations) — paid
-  credit-based; ~€169/yr (~$183) — under the $200/yr hobbyist cutoff. Registration via
+  Imobiliară, `rtk.rompos.ro:2101`, VRS, ~80+ permanent fixed reference stations (CORS)) — paid
+  credit-based; ~€169/yr (~$183) — modest annual fee, affordable for a hobbyist. Registration via
   `app.rompos.ro` (ANCPI account required; self-service at `epay.ancpi.ro`).
   → networks.md: `rompos`
 - **Volunteer**: Centipede ~10 ROM/ROU nodes, rtk2go ~7 ROU bases. Modest coverage
@@ -582,14 +582,14 @@ _Last updated: 2026-04-22._
 **date_added**: 2026-04-29
 
 - **Free government RTK**: AGROS (Republički geodetski zavod — RGZ, `agros.rgz.gov.rs`)
-  — paid; ~30 permanent CORS stations; VRS (Trimble VRS Now backbone). RTK flat-rate
+  — paid; ~30 permanent fixed reference stations (CORS); VRS (Trimble VRS Now backbone). RTK flat-rate
   subscription: 1,125 RSD/month (~€10/month) or 8,688 RSD/year (~€74/yr at ~117 RSD/EUR);
   DGPS flat-rate: 703 RSD/month or 5,379 RSD/year (~€46/yr). Per-minute and hourly
   packages also available. Registration via rgz.gov.rs (Serbian portal).
   → networks.md: `agros`
 - **Volunteer**: Centipede ~20 SER + ~3 SRB nodes, rtk2go ~35 SRB/SER bases — one of
   the denser volunteer clusters in the Western Balkans, concentrated in Vojvodina.
-- **Gap**: AGROS RTK is paid-affordable (~€74/yr, well under the $200/yr cutoff);
+- **Gap**: AGROS RTK is paid-affordable (~€74/yr, well within hobbyist reach);
   volunteer coverage is good in Vojvodina but sparse in southern Serbia.
 
 ### RU — Russia
@@ -604,7 +604,7 @@ _Last updated: 2026-04-22._
     сеть — Fundamental and High-Accuracy Geodetic Networks): government reference frame
     maintained by Росреестр; research/government use only, no public NTRIP delivery.
 - **Free government RTK**: none. No federal authority provides a free public NTRIP stream.
-- **Commercial RTK** (all paid; all over the $200/yr cutoff at current ₽/USD rates):
+- **Commercial RTK** (all paid; all expensive for a hobbyist at current ₽/USD rates):
   - **EFT-CORS** (EFT GROUP, `ntrip.eft-cors.ru:2102`): Russia's largest CORS aggregator;
     hundreds of stations growing nationally; GPS+GLONASS+BDS+GAL; ports 2102 (all stations),
     2103 (nearest), 2104 (sCMRx); day/month/annual plans; RINEX post-processing free;
@@ -626,8 +626,8 @@ _Last updated: 2026-04-22._
   miscoded); Centipede negligible. Russian hobbyists typically deploy a local base station
   using SNIP Lite or open-source NTRIP casters.
 - **Gap**: no free RTK for hobbyists. Cheapest commercial option for occasional use is an
-  EFT-CORS day pass; annual plans (~30,000 ₽/yr, ~$333/yr at current rates) exceed the
-  project's $200/yr threshold. Hobbyists needing centimetre accuracy typically set up a
+  EFT-CORS day pass; annual plans (~30,000 ₽/yr, ~$333/yr at current rates) are expensive
+  for a hobbyist. Hobbyists needing centimetre accuracy typically set up a
   local base.
 
 ### SK — Slovakia
@@ -638,13 +638,13 @@ _Last updated: 2026-04-22._
   `skpos.gku.sk:2101`, ~26 stations, VRS) — free for public-sector bodies and
   municipalities; commercial/hobbyist use is paid via the SKPOS online shop
   (`skposonlineobchod.gku.sk`). Pricing not listed publicly without login; GKÚ
-  raised rates in December 2022. Slovakia uses EUR. Over the €200/yr hobbyist
-  cutoff (inferred from professional-services positioning). Registration at
+  raised rates in December 2022. Slovakia uses EUR. Likely expensive for a hobbyist
+  (inferred from professional-services pricing). Registration at
   `skpos.gku.sk/register/`. → networks.md: `skpos`
 - **Volunteer**: rtk2go ~2 SVK bases, Centipede ~2 SVK nodes.
 - **Gap**: no free hobbyist path; volunteer coverage is negligible across the
   country; self-operated base or a cross-border Austrian/Czech node are the
-  only sub-cutoff alternatives near borders.
+  the only affordable alternatives are near borders.
 
 ### UA — Ukraine
 
@@ -676,8 +676,7 @@ _Last updated: 2026-04-22._
 
 Centipede volunteer nodes in several French overseas territories, served via `crtk.net`.
 TERIA (Ordre des Géomètres-Experts / Hexagon) covers the Antilles-Guyane zone at the
-same subscription price as mainland France (from €895 HT/yr, ~$970/yr; over the $200/yr
-hobbyist cutoff). IGN RGP maintains permanent GNSS reference stations in Guyane,
+same subscription price as mainland France (from €895 HT/yr, ~$970/yr — expensive for a hobbyist). IGN RGP maintains permanent GNSS reference stations in Guyane,
 Guadeloupe, and Mayotte; real-time streaming is restricted and requires a formal request
 to CNES — not a walk-up public NTRIP service.
 
@@ -743,7 +742,7 @@ similarly have no published coverage for these jurisdictions.
   - Quebec MERN: per-station direct TCP streams; not NTRIP-aggregated — pipeline-incompatible.
     → networks.md: `qc_mern` (rejected)
   - BC RTN: paid regional service via GeoBC. → networks.md: `bc_rtn`
-  - Nova Scotia NSACS: 40-station government CORS; real-time NRTK only via paid
+  - Nova Scotia NSACS: 40-station government fixed reference station network (CORS); real-time NRTK only via paid
     commercial providers (Can-Net, SmartNet, Brandtnet). → networks.md: `nsacs`
   - Ontario, Alberta, Saskatchewan, Manitoba: no provincial CORS; no confirmed public NTRIP.
 - **Volunteer**: rtk2go ~56 CA bases, Centipede ~13 CA nodes. Concentrated heavily
@@ -872,7 +871,7 @@ similarly have no published coverage for these jurisdictions.
 
 **date_added**: 2026-04-29
 
-- **Free government RTK**: none confirmed. The Surveys and Mapping Section (Ministry of Natural Resources, `naturalresources.gov.bz`) is responsible for horizontal and vertical control networks and supervises cadastral surveys; no CORS network or public NTRIP caster endpoint found. Belize's national spatial data infrastructure (BNSDI, `portal.bnsdi.gov.bz`) provides map data access but does not include a real-time GNSS correction service.
+- **Free government RTK**: none confirmed. The Surveys and Mapping Section (Ministry of Natural Resources, `naturalresources.gov.bz`) is responsible for horizontal and vertical control networks and supervises cadastral surveys; no fixed reference station network (CORS) or public NTRIP caster endpoint found. Belize's national spatial data infrastructure (BNSDI, `portal.bnsdi.gov.bz`) provides map data access but does not include a real-time GNSS correction service.
 - **Volunteer**: none. Zero BZ stations on rtk2go or Centipede.
 
 ### CL — Chile
@@ -880,7 +879,7 @@ similarly have no published coverage for these jurisdictions.
 **date_added**: 2026-04-29
 
 - **Free government RTK**: RGN/SIRGAS-CHILE (IGM — Instituto Geográfico Militar, `igm.cl`,
-  `sirgaschile.cl`, ~180+ CORS stations, single-base) — RINEX files and coordinate certificates
+  `sirgaschile.cl`, ~180+ fixed reference stations (CORS), single-base) — RINEX files and coordinate certificates
   downloadable free via `sirgaschile.cl`. IGM announced in 2025 the addition of 28 new
   first-level stations and launched a real-time NTRIP service (procedure: `youtube.com/watch?v=4yuH1W05eII`);
   no public self-service registration portal or host:port found — access appears to require
@@ -911,7 +910,7 @@ similarly have no published coverage for these jurisdictions.
 
 **date_added**: 2026-04-29
 
-- **Free government RTK**: IGN Guatemala (Instituto Geográfico Nacional, `ign.gob.gt`) operates a Red CORS of ~17 stations distributed nationally, established with technical and financial support from RIC (Registro de Información Catastral). RINEX 2.11 data is available for download. Real-time NTRIP corrections require a username, password, and IP/port supplied by IGN — no public caster endpoint or self-service registration portal found; access appears to require direct contact with IGN. → networks.md: `ign_gt_cors`
+- **Free government RTK**: IGN Guatemala (Instituto Geográfico Nacional, `ign.gob.gt`) operates a fixed reference station network (CORS) of ~17 stations distributed nationally, established with technical and financial support from RIC (Registro de Información Catastral). RINEX 2.11 data is available for download. Real-time NTRIP corrections require a username, password, and IP/port supplied by IGN — no public caster endpoint or self-service registration portal found; access appears to require direct contact with IGN. → networks.md: `ign_gt_cors`
 - **Volunteer**: rtk2go — 0 confirmed GT bases. Centipede — negligible.
 - **Gap**: no confirmed free public NTRIP for hobbyists; IGN's 17-station CORS exists but the caster endpoint and credentials are not publicly listed.
 
@@ -919,7 +918,7 @@ similarly have no published coverage for these jurisdictions.
 
 **date_added**: 2026-04-29
 
-- **Free government RTK**: Two agencies operate CORS infrastructure; neither provides a confirmed free public NTRIP endpoint.
+- **Free government RTK**: Two agencies operate fixed reference station (CORS) infrastructure; neither provides a confirmed free public NTRIP endpoint.
   - **IP CORS** (Instituto de la Propiedad, `cors.ip.gob.hn`): cadastral CORS network; RINEX data downloadable from the portal; real-time NTRIP access terms not publicly documented — no self-service registration page or host:port found. → networks.md: `ip_cors_hn`
   - **IGN Honduras CORS** (Instituto Geográfico Nacional, `ign.hn/estacionescors`): active reference stations for geodetic framework; data download offered; NTRIP caster endpoint not publicly listed. → networks.md: `ign_hn_cors`
 - **Volunteer**: none. Zero HN stations on rtk2go or Centipede.
@@ -937,7 +936,7 @@ similarly have no published coverage for these jurisdictions.
 
 **date_added**: 2026-04-29
 
-- **Free government RTK**: IGNTG CORS (Instituto Geográfico Nacional "Tommy Guardia", `ignpanama.anati.gob.pa`, ~19 stations, single-base) — CORS network under ANATI (Autoridad Nacional de Administración de Tierras). Seven stations are part of SIRGAS-CON and have internet connectivity with remote monitoring; the remaining stations are national densification points. A 2025 modernisation project is restoring eight previously inoperative stations. Real-time NTRIP access terms are not publicly documented — no self-service registration portal or public host:port found; access appears to require direct contact with IGNTG. → networks.md: `igntg_cors_pa`
+- **Free government RTK**: IGNTG CORS (Instituto Geográfico Nacional "Tommy Guardia", `ignpanama.anati.gob.pa`, ~19 stations, single-base) — fixed reference station network (CORS) under ANATI (Autoridad Nacional de Administración de Tierras). Seven stations are part of SIRGAS-CON and have internet connectivity with remote monitoring; the remaining stations are national densification points. A 2025 modernisation project is restoring eight previously inoperative stations. Real-time NTRIP access terms are not publicly documented — no self-service registration portal or public host:port found; access appears to require direct contact with IGNTG. → networks.md: `igntg_cors_pa`
 - **Commercial**: Topored (`panama.casadeltopografo.com/topored`) — 28 stations across Panama and Colombia, operated by Casa del Topógrafo (control centre in Bogotá). Emits differential corrections via NTRIP; RINEX download also offered. Pricing not publicly listed (contact via website). → networks.md: `topored_pa`
 - **Volunteer**: none. Zero PA stations on rtk2go or Centipede.
 - **Gap**: no confirmed free public NTRIP for hobbyists; IGNTG's 19-station CORS is the government framework but the caster endpoint and credentials are not publicly listed. Commercial Topored is the only known real-time NTRIP option but at undisclosed subscription cost.
@@ -946,7 +945,7 @@ similarly have no published coverage for these jurisdictions.
 
 **date_added**: 2026-04-29
 
-- **Free government RTK**: CNR/IGCN (Centro Nacional de Registros — Instituto Geográfico y del Catastro Nacional, `cnr.gob.sv`) operates active CORS stations including SNJE, SSIA, and VMIG; RINEX data available via eCNR online services. No free public NTRIP caster endpoint found; real-time access not documented on the CNR portal. → networks.md: `cnr_sv_cors`
+- **Free government RTK**: CNR/IGCN (Centro Nacional de Registros — Instituto Geográfico y del Catastro Nacional, `cnr.gob.sv`) operates active fixed reference stations (CORS) including SNJE, SSIA, and VMIG; RINEX data available via eCNR online services. No free public NTRIP caster endpoint found; real-time access not documented on the CNR portal. → networks.md: `cnr_sv_cors`
 - **Commercial**: Survey3G (`survey3g.com`) — pioneer commercial NTRIP service in El Salvador; 4 stations (Oriente, San Salvador, Occidente, UES); GPS+GLONASS+BDS+GAL, L1/L2/L5; monthly/quarterly/annual subscription. Pricing not listed on public pages (updated every 6 months; contact via website). → networks.md: `survey3g_sv`
 - **Volunteer**: none. Zero SV stations on rtk2go or Centipede.
 - **Gap**: no free public RTK for hobbyists; government CORS is post-processing only; the only real-time NTRIP option is commercial (Survey3G, pricing not disclosed publicly).
@@ -976,7 +975,7 @@ similarly have no published coverage for these jurisdictions.
 
 **date_added**: 2026-04-29
 
-- **Context**: Cuba's RTK landscape is shaped by two overlapping constraints: the US embargo restricts import and payment pathways for US-origin GNSS hardware (Trimble, Leica, Javad all fall under OFAC licensing requirements), and Cuba's national internet infrastructure — operated exclusively by ETECSA, the state telecoms monopoly — is expensive, intermittent, and gated behind dual-currency pricing that makes sustained data connections difficult for individuals. GEOCUBA (Grupo Empresarial GEOCUBA), the state geodetics and cartography enterprise under the Ministry of the Revolutionary Armed Forces (MINFAR), has deployed a national GNSS CORS network using non-US hardware (primarily Chinese and Eastern European receivers) acquired outside embargo restrictions. A 2024 conference paper ("Servicio NTRIP GNSS en Cuba: perspectivas y retos", Informática Habana 2024) confirmed that a national NTRIP service has been established internally — but its public accessibility is uncertain.
+- **Context**: Cuba's RTK landscape is shaped by two overlapping constraints: the US embargo restricts import and payment pathways for US-origin GNSS hardware (Trimble, Leica, Javad all fall under OFAC licensing requirements), and Cuba's national internet infrastructure — operated exclusively by ETECSA, the state telecoms monopoly — is expensive, intermittent, and gated behind dual-currency pricing that makes sustained data connections difficult for individuals. GEOCUBA (Grupo Empresarial GEOCUBA), the state geodetics and cartography enterprise under the Ministry of the Revolutionary Armed Forces (MINFAR), has deployed a national GNSS fixed reference station network (CORS) using non-US hardware (primarily Chinese and Eastern European receivers) acquired outside embargo restrictions. A 2024 conference paper ("Servicio NTRIP GNSS en Cuba: perspectivas y retos", Informática Habana 2024) confirmed that a national NTRIP service has been established internally — but its public accessibility is uncertain.
 
 - **Free government RTK**: GEOCUBA national GNSS service (GEOCUBA, `geocuba.cu`, 13 permanent stations installed 2014–2019, single-base) — no publicly listed host:port or self-service registration portal; the caster is described as published within GEOCUBA's Geospatial Information Centre and targeted at "prioritised sectors of the national economy." No evidence of hobbyist or general-public access. Connectivity from outside Cuba to any internal server would face both internet infrastructure constraints and potential embargo-licensing friction for payment or software. → networks.md: `geocuba_gnss`
 
@@ -990,7 +989,7 @@ similarly have no published coverage for these jurisdictions.
 
 - **Context**: Criminal gangs (the "Viv Ansanm" coalition) control approximately 90 % of Port-au-Prince and its metropolitan area as of early 2026. Haiti has had no elected president or legislature since the assassination of President Moïse in July 2021. Infrastructure disruption, hardware-import collapse, and the loss of effective government authority make any near-term expansion of geodetic services structurally impossible.
 
-- **Free government RTK**: CNIGS (Centre National de l'Information Géo-Spatiale, `cnigs.ht`) — as of 2018 one NTRIP CORS station in Port-au-Prince was operational, installed with post-earthquake reconstruction aid. CNIGS had plans for a broader national CORS system; status of expansion and current operability of that single station is unconfirmed given the 2024–2026 security collapse. No public host:port found; CNIGS's website and office in Tabarre (northern Port-au-Prince) have an uncertain operational status. → networks.md: `cnigs_ht`
+- **Free government RTK**: CNIGS (Centre National de l'Information Géo-Spatiale, `cnigs.ht`) — as of 2018 one NTRIP fixed reference station (CORS) in Port-au-Prince was operational, installed with post-earthquake reconstruction aid. CNIGS had plans for a broader national CORS system; status of expansion and current operability of that single station is unconfirmed given the 2024–2026 security collapse. No public host:port found; CNIGS's website and office in Tabarre (northern Port-au-Prince) have an uncertain operational status. → networks.md: `cnigs_ht`
 
 - **Volunteer**: none. Zero HT stations confirmed on rtk2go or Centipede.
 
@@ -1001,7 +1000,7 @@ similarly have no published coverage for these jurisdictions.
 **date_added**: 2026-04-29
 
 - **Free government RTK**: REGNA-RD (IGN-JJHM — Instituto Geográfico Nacional "José Joaquín
-  Hungría Morell", `ntrip.ign.gob.do`, port not publicly listed, ~11+ single-base CORS,
+  Hungría Morell", `ntrip.ign.gob.do`, port not publicly listed, ~11+ single-base fixed reference stations (CORS),
   growing) — free with web registration at `ntrip.ign.gob.do`. Credentials and connection
   instructions issued after form submission. Network is actively expanding: two stations added
   in Moca and Puerto Plata in late 2024; 11 northern-region stations certified mid-2024;
@@ -1118,7 +1117,7 @@ similarly have no published coverage for these jurisdictions.
 **date_added**: 2026-04-29
 
 - **Free government RTK**: none free. The Lands and Survey Department (`caymanlandinfo.ky`)
-  operates four CORS — GCFS and GCEA (Grand Cayman), CBMD (Cayman Brac), LCSB (Little
+  operates four fixed GPS reference stations (CORS) — GCFS and GCEA (Grand Cayman), CBMD (Cayman Brac), LCSB (Little
   Cayman) — under the PAIP (Positional Accuracy Improvement Programme). RINEX data are
   available free for post-processing. Real-time RTK corrections are available as a paid
   subscription; pricing is not listed publicly (contact the Chief Surveyor via
@@ -1269,7 +1268,7 @@ similarly have no published coverage for these jurisdictions.
   ("El Servicio no tiene costo"); web registration at
   `rtk.igm.gub.uy/SBC/Account/Register`. VRS capable (1–2 cm horizontal
   with dual-frequency equipment). Network expanded Dec 2025 with 8 additional
-  multiconstellation CORS; 1,000+ registered users. Reference frame
+  multiconstellation fixed reference stations (CORS); 1,000+ registered users. Reference frame
   SIRGAS-ROU (ITRF-compatible). → networks.md: `regna_rou`
 - **Volunteer**: rtk2go ~2 bases near the Argentinian border (border-area
   RAMSAC stations); no dedicated UY volunteer streams confirmed. Centipede —
@@ -1282,7 +1281,7 @@ similarly have no published coverage for these jurisdictions.
 **date_added**: 2026-04-29
 
 - **Free government RTK**: none confirmed. GL&SC (Guyana Lands and Surveys
-  Commission, `glsc.gov.gy`) operates an 8-station CORS network (Eclipse Falls,
+  Commission, `glsc.gov.gy`) operates an 8-station fixed reference station network (CORS) (Eclipse Falls,
   Supenaam, Georgetown, New Amsterdam, Olive Creek, Lethem, Linden, and one
   additional site) established 2018–2019 under a G$93 million contract with
   Ordnance Survey International; network is connected to SIRGAS. No public
@@ -1329,7 +1328,7 @@ similarly have no published coverage for these jurisdictions.
   ~813 stations, single-base, CC BY 4.0) — free, web signup at gnss.ga.gov.au/registration.
   → networks.md: `auscors`
 - **Commercial**: State VRS networks (CORSnet-NSW, GPSnet VIC, SARNRIP SA, CORS-Q QLD, etc.)
-  are cost-recovery and paid — pricing varies by state but generally over $200/yr cutoff; contact
+  are cost-recovery and paid — pricing varies by state but generally expensive for a hobbyist; contact
   each state land agency directly.
 - **Volunteer**: rtk2go ~27 AU bases, Centipede ~3 AU nodes. Thin relative to Australia's size;
   supplements AUSCORS in densely populated south-eastern areas.
@@ -1341,7 +1340,7 @@ similarly have no published coverage for these jurisdictions.
 **date_added**: 2026-04-29
 
 - **Free government RTK**: PositioNZ-RT (LINZ, `positionz-rt.linz.govt.nz:2101`,
-  ~62 CORS stations, single-base, CC BY 4.0 NZ) — free, LINZ account required;
+  ~62 fixed reference stations (CORS), single-base, CC BY 4.0 NZ) — free, LINZ account required;
   register at linz.govt.nz. → networks.md: `positionz`
 - **Volunteer**: rtk2go ~11 NZ bases, concentrated in the North Island and upper South Island.
 - **Gap**: PositioNZ-RT covers the mainland and Chatham Islands with good single-base density;
@@ -1353,7 +1352,7 @@ similarly have no published coverage for these jurisdictions.
 
 - **Free government RTK**: none confirmed. The Department of Lands and Survey
   (Ministry of Lands and Mineral Resources, `lands.gov.fj`) established a
-  CORS network of ~10 stations: two long-running stations in Suva and Lautoka
+  fixed reference station network (CORS) of ~10 stations: two long-running stations in Suva and Lautoka
   plus eight new sites (Labasa, Nabouwalu, Taveuni, Kadavu, Koro Island,
   Lakeba, Ono-i-Lau, Rotuma) commissioned via the Fiji Geodetic Datum Project
   (2019–2022, SPC-supported) to achieve <50 km inter-station spacing. No
@@ -1392,7 +1391,7 @@ similarly have no published coverage for these jurisdictions.
 
 - **Legal framework**: 测量法 (Surveying and Mapping Law of the PRC, 2002, revised 2017),
   Articles 27–29 require institutional surveying credentials (测绘资质) to operate or access
-  CORS networks. All government and provincial CORS are closed to unlicensed individuals.
+  fixed reference station networks (CORS). All government and provincial CORS are closed to unlicensed individuals.
 - **Government networks (licensed professionals only)**:
   - 全国卫星导航定位基准站 (National CORS, Ministry of Natural Resources / NASG): 2,700+
     stations; feeds the 北斗地基增强系统 (BeiDou Ground-Based Augmentation System / BGAS);
@@ -1404,7 +1403,7 @@ similarly have no published coverage for these jurisdictions.
     → networks.md: `chinese_provincial_cors`
 - **Commercial RTK** (no professional licence required; open to individuals):
   - **千寻知寸 Qianxun** (Alibaba + Norinco JV, `rtk.ntrip.qxwz.com:8003`): 2,700+
-    stations, 33 provinces; ¥3,600–3,800/yr (~$500–528/yr) — over $200/yr cutoff;
+    stations, 33 provinces; ¥3,600–3,800/yr (~$500–528/yr) — expensive for a hobbyist;
     individuals register directly. Most widely used commercial CORS in China.
     → networks.md: `qianxun`
   - **中国移动CORS China Mobile CORS** (CMCC, 4,400+ stations, nationwide): ~¥3,600/yr
@@ -1412,8 +1411,8 @@ similarly have no published coverage for these jurisdictions.
     Qianxun. → networks.md: `cmcc_cors`
   - **腾讯位置服务RTK Tencent RTK** (`cors.tencent.com`): launched 2022 as free beta; moved
     to paid at ~¥998/yr (~$138/yr); 2,800+ virtual network stations; 33 provinces; requires
-    Tencent account (WeChat/QQ). If still offered at that price it is the only sub-$200/yr
-    option in China, but current status (2025/2026) is unconfirmed. → networks.md: `tencent_rtk`
+    Tencent account (WeChat/QQ). If still offered at that price it is the only affordable-for-a-hobbyist
+    option in China (~¥998/yr, ~$138/yr), but current status (2025/2026) is unconfirmed. → networks.md: `tencent_rtk`
 - **Volunteer**: negligible. rtk2go ~1 CHN-tagged volunteer station; Centipede negligible.
   Chinese hobbyists (drone pilots, precision-agriculture DIY, autonomous-vehicle developers)
   typically pay Qianxun at full price or deploy a local base using SinoGNSS / ComNav /
@@ -1483,10 +1482,10 @@ similarly have no published coverage for these jurisdictions.
   free, requires email registration, and the VRS virtual reference is
   compute-generated at the rover's reported position, so it may extend to
   Macao coordinates if the server polygon covers it. Mainland China's Qianxun
-  and provincial CORS networks are restricted to licensed surveyors under
+  and provincial fixed reference station networks (CORS) are restricted to licensed surveyors under
   Surveying and Mapping Law 2017 — not a hobbyist path. GEODNET has nodes in
-  the Pearl River Delta; the $40/month tier (~$160 for 4-month season) is
-  under the $200/yr cutoff.
+  the Pearl River Delta; the $40/month tier (~$160 for a 4-month season) is
+  affordable for a hobbyist.
 
 ### MN — Mongolia
 
@@ -1494,7 +1493,7 @@ similarly have no published coverage for these jurisdictions.
 
 - **Free government RTK**: none confirmed for public access. The General Office
   of Land Relations, Geodesy and Cartography (Газар зохион байгуулалт, геодези,
-  зураг зүйн ерөнхий газар, `gazar.gov.mn`) operates a national CORS network of
+  зураг зүйн ерөнхий газар, `gazar.gov.mn`) operates a national fixed reference station network (CORS) of
   40+ stations (Trimble NetR8/NetR9 receivers with choke-ring antennas, built
   since 2011 with Millennium Challenge Corporation funding). Initial 6 stations
   in Ulaanbaatar, Darkhan, and Erdenet; expanded countrywide for cadastral
@@ -1556,7 +1555,7 @@ similarly have no published coverage for these jurisdictions.
   pricing not publicly listed (payment via Rocket/bKash/SureCash mobile banking).
   Stations at Dhaka, Chittagong, Rajshahi, Khulna, Maulavibazar, Rangpur, operating
   since December 2011; baselines 100–200 km across 147,570 km², inadequate for
-  reliable L1+L2 RTK except near station locations. SOB lists a "GNSS CORS network
+  reliable L1+L2 RTK except near station locations. SOB lists a "GNSS fixed reference station network (CORS)
   expansion" project but expanded station count not yet confirmed.
   → networks.md: `sob_bd`
 - **Volunteer**: none. Zero BD stations on rtk2go or Centipede.
@@ -1579,7 +1578,7 @@ similarly have no published coverage for these jurisdictions.
   → networks.md: `miranet_bt`
 - **Volunteer**: none. Zero BT stations on rtk2go or Centipede.
 - **Gap**: no free public RTK for hobbyists; nominal-fee subscription
-  (~$110/yr, under $200 cutoff) is the practical path. Educational and
+  (~$110/yr — modest annual fee) is the practical path. Educational and
   research users qualify for free access.
 
 ### ID — Indonesia
@@ -1600,8 +1599,8 @@ similarly have no published coverage for these jurisdictions.
 
 - **Free government RTK**: SoI-CORS (Survey of India, `cors.surveyofindia.gov.in`,
   1,105+ stations, single-base + VRS) — free only for Central/State Government and
-  academic institutions; private users ₹5,032/month (₹60,384/yr, ~$720/yr), over
-  $200/yr cutoff. Promotional free 3-month window (Nov 2025–Jan 2026) expired.
+  academic institutions; private users ₹5,032/month (₹60,384/yr, ~$720/yr) — expensive
+  for a hobbyist. Promotional free 3-month window (Nov 2025–Jan 2026) expired.
   Worth revisiting if policy changes. → networks.md: `soi_cors`
 - **Commercial**: Indo-CORS (Trimble, commercial RTK network — partner/licensed
   reseller model; pricing not publicly listed, contact Trimble India
@@ -1609,8 +1608,8 @@ similarly have no published coverage for these jurisdictions.
   mapping but does not provide an NTRIP RTK correction stream.
 - **Volunteer**: rtk2go ~2 IND bases (Tamil Nadu). No Centipede IND nodes.
 - **Gap**: no free public RTK for hobbyists; SoI-CORS is restricted to government
-  and academia, and the only private-user path is a paid subscription well over
-  the $200/yr affordability cutoff.
+  and academia, and the only private-user path is a paid subscription (~$720/yr) that is
+  expensive for a hobbyist.
 
 ### LK — Sri Lanka
 
@@ -1636,7 +1635,7 @@ similarly have no published coverage for these jurisdictions.
 **date_added**: 2026-04-28
 
 - **Free government RTK**: none confirmed for public access. Survey Department
-  (`surveydepartment.gov.mm`) has established a CORS network concept with a
+  (`surveydepartment.gov.mm`) has established a fixed reference station network concept (CORS) with a
   Yangon CORS Data Center, but no public NTRIP host:port, open sourcetable,
   or registration portal has been found. The February 2021 military coup and
   subsequent civil conflict have severely degraded civilian infrastructure and
@@ -1672,7 +1671,7 @@ similarly have no published coverage for these jurisdictions.
 - **Free government RTK**: none. MyRTKnet (JUPEM, `pxy.myrtknet.gov.my:2101` for VRS/MAC/iMAX/DGPS;
   `:2102` SB Sabah & Sarawak; `:2103` SB Peninsular, ~78 stations, VRS network solution) —
   paid; RM 1,000 one-time registration + RM 3,000/yr real-time subscription (~$855/yr at current
-  rates). Over $200/yr hobbyist cutoff. Mandated under the Survey Act as cost-recovery. Registration
+  rates) — expensive for a hobbyist. Mandated under the Survey Act as cost-recovery. Registration
   at `myrtknet.jupem.gov.my`. → networks.md: `myrtk`
 - **Volunteer**: one MYS base on rtk2go (Malacca). Zero Centipede nodes.
 - **Gap**: no free RTK in Malaysia. Hobbyists face cost-recovery pricing; the sole practical
@@ -1683,8 +1682,8 @@ similarly have no published coverage for these jurisdictions.
 **date_added**: 2026-04-28
 
 - **Free government RTK**: none confirmed for public/hobbyist access. Survey
-  Department (Geodetic Survey Division, `dos.gov.np`) is building a CORS
-  network (~4 stations established, mandate to expand to 27–50 at ~70–80 km
+  Department (Geodetic Survey Division, `dos.gov.np`) is building a fixed reference station network (CORS)
+  (~4 stations established, mandate to expand to 27–50 at ~70–80 km
   inter-station spacing). No public NTRIP caster or open registration portal
   found; network serves geodetic reference frame maintenance, not real-time
   public streaming. EarthScope NOTA hosts ~11+ research CORS in Nepal (operated
@@ -1724,7 +1723,7 @@ similarly have no published coverage for these jurisdictions.
 **date_added**: 2026-04-29
 
 - **Free government RTK**: Khmer GEONET (GDCG / General Department of Cadastre and
-  Geography, MLMUPC) — 5 CORS stations (Phnom Penh, Kandal, Kampong Speu, Siem Reap,
+  Geography, MLMUPC) — 5 fixed reference stations (CORS) (Phnom Penh, Kandal, Kampong Speu, Siem Reap,
   Stung Treng), built with JICA technical cooperation 2021–2024; service was free-trial
   through June 2025; post-trial pricing not publicly listed (contact via khmergeonet.xyz).
   NTRIP host:port not publicly documented; Trimble Pivot software visible at
@@ -1741,7 +1740,7 @@ similarly have no published coverage for these jurisdictions.
 
 - **Free government RTK**: none confirmed. National Geographic Department (NGD) operates
   a geodetic reference network (Lao National Datum 1997); IGN FI (France) supplied and
-  installed a CORS system for real-time positioning; ComNav delivered the first CORS
+  installed a fixed reference station system (CORS) for real-time positioning; ComNav delivered the first CORS
   station in 2013 (Vientiane). No public NTRIP host:port, open sourcetable, or
   registration portal found. UniqTeK (private Lao company, uniqteklao.com) operates a
   commercial CORS/RTK service — access model and pricing not publicly listed.
@@ -1754,7 +1753,7 @@ similarly have no published coverage for these jurisdictions.
 **date_added**: 2026-04-29
 
 - **Free government RTK**: LandGNSS (Dept of Lands / กรมที่ดิน, `110.78.0.54`
-  zone-based ports, ~114–222 CORS stations, VRS network, free with registration) —
+  zone-based ports, ~114–222 fixed reference stations (CORS), VRS network, free with registration) —
   free; register at dol-rtknetwork.com/index.php/register_gnss_beta; Thai-language
   portal; zone-port table at dol-rtknetwork.com/index.php/npage/view/9.
   → networks.md: `thailand_dol` (deferred — public caster IP found, full port list
@@ -1798,7 +1797,7 @@ similarly have no published coverage for these jurisdictions.
   AFREF reference sites exist but are internal/research-only — no
   public NTRIP delivery.
 - **Volunteer**: none. Zero AO stations on rtk2go or Centipede.
-- **Gap**: no free RTK for hobbyists. No confirmed public CORS network
+- **Gap**: no free RTK for hobbyists. No confirmed public fixed reference station network (CORS)
   or NTRIP caster anywhere in Angola.
 
 ### BF — Burkina Faso
@@ -1840,7 +1839,7 @@ similarly have no published coverage for these jurisdictions.
 **date_added**: 2026-04-29
 
 - **Free government RTK**: IGN Bénin permanent GNSS station network (`ign.bj`) —
-  seven physical single-base CORS stations (Cotonou, Abomey, Savalou, Parakou,
+  seven physical single-base fixed reference stations (CORS) (Cotonou, Abomey, Savalou, Parakou,
   Natitingou, Nikki, Kandi) built with MCA-Bénin funding, each with a ~100 km
   coverage radius. Accessible via the Benin Cadastral Information System (CatIS).
   A government service registration path exists (`service-public.bj` lists
@@ -1862,7 +1861,7 @@ similarly have no published coverage for these jurisdictions.
 - **Free government RTK**: none confirmed with a public NTRIP endpoint.
   The Survey and Land Registration Bureau (SLRB) manages geodetic
   infrastructure (Bahrain Geodetic Datum 2000 / BGD2000) and a small
-  number of CORS; access restricted to licensed surveyors.
+  number of fixed reference stations (CORS); access restricted to licensed surveyors.
   Bahrain's entire territory is ~765 km² — a single station would
   theoretically cover it, but no public caster has been identified.
 - **Volunteer**: none. Zero BH stations on rtk2go or Centipede.
@@ -1876,7 +1875,7 @@ similarly have no published coverage for these jurisdictions.
 
 - **Free government RTK**: none confirmed with a public NTRIP endpoint.
   The Department of Surveys and Mapping (DSM, Ministry of Lands and Water
-  Affairs, `gov.bw`) has built a national CORS network of ~55 stations
+  Affairs, `gov.bw`) has built a national fixed reference station network (CORS) of ~55 stations
   (project commenced 2011, ~10 stations added per year). The network supports
   cadastral surveying and geodetic control; DSM documents describe GNSS RTK
   use from CORS as accepted practice. No public NTRIP caster host:port has been
@@ -1893,7 +1892,7 @@ similarly have no published coverage for these jurisdictions.
 
 - **Free government RTK**: none. Institut Géographique du Congo (IGC)
   formally responsible for geodesy; limited AFREF contributions. No
-  public CORS caster found; connectivity and power constraints make
+  public fixed reference station (CORS) caster found; connectivity and power constraints make
   continuous RTK streaming very unlikely near-term.
 - **Volunteer**: none. Zero CD stations on rtk2go or Centipede.
 - **Gap**: no free RTK for hobbyists. No confirmed public CORS network
@@ -1912,7 +1911,7 @@ similarly have no published coverage for these jurisdictions.
 **date_added**: 2026-04-28
 
 - **Free government RTK**: none. Institut National de Cartographie (INC)
-  manages geodetic infrastructure; no public CORS caster found. AFREF
+  manages geodetic infrastructure; no public fixed reference station (CORS) caster found. AFREF
   contributions are raw archives, not streaming RTK.
 - **Volunteer**: none. Zero CM stations on rtk2go or Centipede.
 - **Gap**: no free RTK for hobbyists. No confirmed public CORS network
@@ -1945,7 +1944,7 @@ similarly have no published coverage for these jurisdictions.
 - **Free government RTK**: none confirmed. ICASEES (Institut Centrafricain des
   Statistiques et des Études Économiques et Sociales, `icasees.org`) handles
   statistics; mapping and geodesy fall nominally under the Ministry of Town
-  Planning and Housing (IGN-equivalent functions), but no national CORS network
+  Planning and Housing (IGN-equivalent functions), but no national fixed reference station network (CORS)
   or public NTRIP caster has been identified. No CAR station appears in the IGS
   Network or AFREF Operational Data Centre. → networks.md: `igntc_cf`
 
@@ -1964,7 +1963,7 @@ similarly have no published coverage for these jurisdictions.
   Géographique et de Production Cartographique), operating under the Ministry
   of Scientific Research, is the national mapping and geodesy authority; IGN FI
   (France) has provided geomatics partnership support. A 2023 cooperation protocol
-  aimed at modernising geodetic infrastructure was announced, but no public CORS
+  aimed at modernising geodetic infrastructure was announced, but no public fixed reference station (CORS)
   caster or NTRIP endpoint has been identified.
 - **Volunteer**: none. Zero CG stations on rtk2go or Centipede.
 - **Gap**: no free RTK for hobbyists. No confirmed public CORS network or NTRIP
@@ -1974,7 +1973,7 @@ similarly have no published coverage for these jurisdictions.
 
 **date_added**: 2026-04-29
 
-- **Free government RTK**: none confirmed. No national CORS programme or public
+- **Free government RTK**: none confirmed. No national fixed reference station programme (CORS) or public
   NTRIP caster found. Djibouti's small territory (~23,000 km²) and limited
   surveying-authority capacity have not yielded any discoverable streaming RTK
   infrastructure.
@@ -1994,7 +1993,7 @@ similarly have no published coverage for these jurisdictions.
   → networks.md: `regat_dz`
 - **Volunteer**: none. Zero DZ stations on rtk2go or Centipede.
 - **Gap**: no free RTK for hobbyists anywhere in Algeria. No public NTRIP endpoint exists;
-  the government CORS infrastructure is restricted to internal scientific and defence use.
+  the government fixed reference station (CORS) infrastructure is restricted to internal scientific and defence use.
 
 ### GA — Gabon
 
@@ -2003,7 +2002,7 @@ similarly have no published coverage for these jurisdictions.
 - **Free government RTK**: none confirmed. The Agence Nationale de l'Urbanisme,
   des Travaux Topographiques et du Cadastre (ANUTTC) and the Direction Générale
   des Travaux Topographiques et du Cadastre manage geodetic and cadastral
-  infrastructure; no public CORS caster or NTRIP endpoint has been found. IGN FI
+  infrastructure; no public fixed reference station (CORS) caster or NTRIP endpoint has been found. IGN FI
   (France) has historically assisted with Gabonese geodetic projects.
 - **Volunteer**: none. Zero GA stations on rtk2go or Centipede.
 - **Gap**: no free RTK for hobbyists. No confirmed public CORS network or NTRIP
@@ -2021,7 +2020,7 @@ similarly have no published coverage for these jurisdictions.
   and import-logistics constraints. No public GNSS policy change has been announced under the junta.
 
 - **Free government RTK**: none confirmed. Institut Géographique du Mali (IGM, `igm-mali.ml`)
-  is the national mapping and geodesy authority; no public NTRIP caster or CORS endpoint
+  is the national mapping and geodesy authority; no public NTRIP caster or fixed reference station (CORS) endpoint
   discovered. IGM contributions to AFREF are raw-archive RINEX, not streaming RTK.
   → networks.md: `igm_mali`
 
@@ -2046,7 +2045,7 @@ similarly have no published coverage for these jurisdictions.
   computed a geoid model for N'Djamena and surroundings under the RGT20 project (completed circa
   2020), operated in partnership with Chadian authorities; no ongoing public NTRIP caster has been
   identified from that work. The responsible national geodetic authority has not published a public
-  CORS endpoint. → networks.md: `chad_cors`
+  fixed reference station (CORS) endpoint. → networks.md: `chad_cors`
 
 - **Volunteer**: none. Zero TD stations on rtk2go or Centipede.
 
@@ -2093,7 +2092,7 @@ similarly have no published coverage for these jurisdictions.
   Commission) and GSSTI operate a handful of IGS/AFREF reference sites
   (Accra); raw-observation archives only — no NTRIP streaming.
 - **Volunteer**: none. Zero GH stations on rtk2go or Centipede.
-- **Gap**: no free RTK for hobbyists. No confirmed public CORS network
+- **Gap**: no free RTK for hobbyists. No confirmed public fixed reference station network (CORS)
   or NTRIP caster anywhere in Ghana.
 
 ### GM — Gambia
@@ -2102,7 +2101,7 @@ similarly have no published coverage for these jurisdictions.
 
 - **Free government RTK**: none confirmed. The Department of Lands and Surveys
   (Ministry of Lands and Regional Government) is the national geodetic authority;
-  no public CORS caster or NTRIP endpoint has been found.
+  no public fixed reference station (CORS) caster or NTRIP endpoint has been found.
 - **Volunteer**: none. Zero GM stations on rtk2go or Centipede.
 
 ### GN — Guinea (Conakry)
@@ -2120,7 +2119,7 @@ similarly have no published coverage for these jurisdictions.
 - **Free government RTK**: none confirmed. The INC (Institut National
   Cartographique, under the Ministry of Town Planning) is the national geodesy
   and mapping authority. No public NTRIP caster or RTK streaming endpoint has
-  been found; INC has not published a CORS network or caster host:port. AFREF
+  been found; INC has not published a fixed reference station network (CORS) or caster host:port. AFREF
   contributions from Guinea are raw-archive RINEX at most. → networks.md: `inc_gn`
 
 - **Volunteer**: none. Zero GN stations on rtk2go or Centipede.
@@ -2135,7 +2134,7 @@ similarly have no published coverage for these jurisdictions.
 
 - **Free government RTK**: none confirmed. The DGCF (Direcção-Geral de
   Cartografia e Fotogrametria) under the Ministry of Urban Planning and
-  Construction is the principal mapping authority; no public CORS network,
+  Construction is the principal mapping authority; no public fixed reference station network (CORS),
   NTRIP caster, or RTK streaming endpoint has been identified. LNEG (Portugal)
   produced the national geological map (1:400 000, 2014) in partnership with
   Guinea-Bissau's Directorate of Geology and Mines, suggesting geodetic
@@ -2175,7 +2174,7 @@ similarly have no published coverage for these jurisdictions.
   in Gaza — mean that centimetre-level RTK is practically unavailable to Palestinian
   hobbyists and small shops for the foreseeable future.
 
-- **Free government RTK**: none. No Palestinian CORS network or public NTRIP caster
+- **Free government RTK**: none. No Palestinian fixed reference station network (CORS) or public NTRIP caster
   has been established. The Palestinian Authority continues to rely on the
   Palestine 1923 triangulation network for cadastral work; academic papers from Birzeit
   and An-Najah universities confirm that 3D GNSS reference frame modernisation is
@@ -2200,7 +2199,7 @@ similarly have no published coverage for these jurisdictions.
 **date_added**: 2026-04-29
 
 - **Free government RTK**: none confirmed. The Royal Jordanian Geographic Centre
-  (RJGC, `rjgc.gov.jo`) maintains geodetic reference stations and operates CORS
+  (RJGC, `rjgc.gov.jo`) maintains geodetic reference stations and operates fixed reference station (CORS)
   infrastructure for cadastral and defence use; no public NTRIP caster or
   self-service registration portal has been found. → networks.md: `rjgc_cors`
 - **Research single-base**: ACOR (American Center of Research, Amman) operates
@@ -2223,7 +2222,7 @@ similarly have no published coverage for these jurisdictions.
   imports and any ongoing fee a prohibitive barrier. The 2023–2024 Israel-Hezbollah
   war caused ~US$11 billion in infrastructure damage; reconstruction needs dwarf the
   resources available for geospatial modernisation. Government dysfunction has stalled
-  any CORS programme: the Directorate of Geographic Affairs (مديرية الشؤون الجغرافية,
+  any fixed reference station programme (CORS): the Directorate of Geographic Affairs (مديرية الشؤون الجغرافية,
   `lebarmy.gov.lb`) is a military directorate established 1962 for triangulation and
   aerial survey — no public NTRIP caster or self-service CORS programme has been
   announced. Pervasive military GNSS spoofing active since October 2023 across
@@ -2249,7 +2248,7 @@ similarly have no published coverage for these jurisdictions.
   post-2003 and handed to the State Commission on Survey under the Ministry of Water
   Resources. The Kurdistan Region (KRG) maintains a degree of administrative
   separation, including its own GIS office under the Kurdistan Region Statistics
-  Office (KRSO), but no independent CORS caster has been identified for the KRG.
+  Office (KRSO), but no independent fixed reference station (CORS) caster has been identified for the KRG.
   US sanctions targeting Iran-aligned militias and dual-use hardware exports complicate
   procurement of survey-grade GNSS receivers for some actors, though oil-sector
   operators (the dominant precision-surveying clientele) typically obtain equipment
@@ -2277,7 +2276,7 @@ similarly have no published coverage for these jurisdictions.
   programme, EU Council Regulation 359/2011 and successors) that make procurement of
   Western survey-grade GNSS hardware — Trimble, Topcon, Leica, and most OEM chipsets
   — effectively impossible through normal import channels. Domestic software
-  development (University of Tehran CORS processing platform, tested on the National
+  development (University of Tehran fixed reference station (CORS) processing platform, tested on the National
   Iranian South Oil Company network) is a direct response to this dependency. Iran
   operates its own GPS jamming and spoofing infrastructure, used continuously near
   sensitive military and government sites in Tehran and other cities; the June 2025
@@ -2335,7 +2334,7 @@ similarly have no published coverage for these jurisdictions.
 
 - **Gap**: no free RTK for hobbyists. Reconstruction of geodetic infrastructure is a
   long-term post-conflict priority; a public NTRIP caster is unlikely before the national
-  reference frame and basic CORS deployment are re-established. Revisit once international
+  reference frame and basic fixed reference station (CORS) deployment are re-established. Revisit once international
   geodetic cooperation with the transitional government is confirmed (e.g. EUREF or IGS
   station affiliation).
 
@@ -2347,7 +2346,7 @@ similarly have no published coverage for these jurisdictions.
   of Kenya (SoK, `survey.go.ke`) operates national geodetic control; no public
   NTRIP caster or RTK streaming host:port has been found. RCMRD (Regional
   Centre for Mapping of Resources for Development, `rcmrd.org`) hosts geodetic
-  research infrastructure but no public CORS stream. → networks.md: `sok_ke`
+  research infrastructure but no public fixed reference station (CORS) stream. → networks.md: `sok_ke`
 - **Commercial**: Muya CORS (`muya-cors.com`), operated by Measurement Systems
   Ltd (~25 stations, single-base + network RTK) — registration required;
   credentials (IP, port, username, password) issued post-signup; pricing not
@@ -2361,7 +2360,7 @@ similarly have no published coverage for these jurisdictions.
 **date_added**: 2026-04-29
 
 - **Free government RTK**: none confirmed. The Liberia Land Authority (LLA,
-  `lla.gov.lr`) is the national land administration body; no public CORS caster
+  `lla.gov.lr`) is the national land administration body; no public fixed reference station (CORS) caster
   or NTRIP endpoint has been found.
 - **Volunteer**: none. Zero LR stations on rtk2go or Centipede.
 
@@ -2371,7 +2370,7 @@ similarly have no published coverage for these jurisdictions.
 
 - **Free government RTK**: none confirmed. The Department of Lands, Surveys and
   Physical Planning (Ministry of Local Government, Chieftainship, Home Affairs
-  and Police) is the national geodetic authority; no public CORS caster or NTRIP
+  and Police) is the national geodetic authority; no public fixed reference station (CORS) caster or NTRIP
   endpoint has been found.
 - **Volunteer**: none. Zero LS stations on rtk2go or Centipede.
 - **Gap**: no free RTK within Lesotho, but the country is entirely enclaved
@@ -2393,7 +2392,7 @@ similarly have no published coverage for these jurisdictions.
   no public caster host:port identified.
 - **Volunteer**: none. Zero KW stations on rtk2go or Centipede.
 - **Gap**: no free NTRIP path. Kuwait is small (~17,800 km²) and flat;
-  a modest CORS network would suffice for national RTK if opened, but
+  a modest fixed reference station network (CORS) would suffice for national RTK if opened, but
   no open-access mandate exists.
 
 ### LY — Libya
@@ -2407,7 +2406,7 @@ similarly have no published coverage for these jurisdictions.
   asset-freeze frameworks remain active (UNSCR 1970 and successor resolutions).
   Hardware imports (surveying equipment, GNSS receivers) require navigating
   dual-administration customs and sanctions compliance, making sustained
-  national CORS infrastructure deployment effectively impossible under current
+  national fixed reference station (CORS) infrastructure deployment effectively impossible under current
   conditions.
 
 - **Free government RTK**: none. The Libyan Survey Authority (الهيئة العامة
@@ -2457,7 +2456,7 @@ similarly have no published coverage for these jurisdictions.
   is the nominal authority for geodesy and cadastre in Mauritania; no public
   NTRIP caster or RTK streaming endpoint has been found. Mauritania's territory
   is ~1,031,000 km², mostly Saharan desert — extremely sparse infrastructure
-  makes a nationwide CORS network a very long-term prospect. AFREF contributions
+  makes a nationwide fixed reference station network (CORS) a very long-term prospect. AFREF contributions
   from Mauritania, if any, are raw-archive RINEX only. → networks.md: `datu_mr`
 
 - **Volunteer**: none. Zero MR stations on rtk2go or Centipede.
@@ -2491,7 +2490,7 @@ similarly have no published coverage for these jurisdictions.
 - **Free government RTK**: none confirmed with a public NTRIP endpoint. The
   Survey Division of the Ministry of Housing and Land Use Planning is the
   national mapping and geodesy authority. A 2016 RCMRD-facilitated feasibility
-  workshop examined establishing a CORS network; no operational public caster
+  workshop examined establishing a fixed reference station network (CORS); no operational public caster
   has been confirmed since. → networks.md: `survey_mu`
 - **Volunteer**: none. Zero MU stations on rtk2go or Centipede.
 
@@ -2501,8 +2500,8 @@ similarly have no published coverage for these jurisdictions.
 
 - **Free government RTK**: none confirmed with a public NTRIP endpoint.
   The Department of Surveys (Ministry of Lands, `lands.gov.mw`) operates a
-  Geodetic and Topographic Survey Section and established at least one AFREF/CORS
-  station at Lilongwe (Capitol Hill) contributing RINEX archives to UNAVCO; no
+  Geodetic and Topographic Survey Section and established at least one AFREF fixed reference station (CORS)
+  at Lilongwe (Capitol Hill) contributing RINEX archives to UNAVCO; no
   public NTRIP caster or RTK streaming host:port has been found.
 - **Volunteer**: none. Zero MW stations on rtk2go or Centipede.
 
@@ -2512,7 +2511,7 @@ similarly have no published coverage for these jurisdictions.
 
 - **Free government RTK**: none. CENACARTA (Centro Nacional de Cartografia e
   Teledetecção, `cenacarta.gov.mz`, under Ministry of Agriculture) operates
-  ~8 CORS stations (CHMO, MPTB, QLMN, NACL, LCNG, XXAI, MTND, SOFL) listed
+  ~8 fixed reference stations (CORS) (CHMO, MPTB, QLMN, NACL, LCNG, XXAI, MTND, SOFL) listed
   in the Corsmap/AFREF continental dataset; no public NTRIP caster or RTK
   streaming host:port has been found. DINAGECA (Direcção Nacional de
   Geografia e Cadastro, under Ministry of Land and Environment) handles
@@ -2541,7 +2540,7 @@ similarly have no published coverage for these jurisdictions.
   → networks.md: `sgdn_na`
 - **Volunteer**: none. Zero NA stations on rtk2go or Centipede.
 - **Gap**: no free public NTRIP for hobbyists. Namibia's ~824,000 km²
-  and sparse population make full national CORS coverage a long-term
+  and sparse population make full national fixed reference station (CORS) coverage a long-term
   infrastructure project; hobbyists must deploy a local base.
 
 ### NE — Niger
@@ -2554,7 +2553,7 @@ similarly have no published coverage for these jurisdictions.
   and infrastructure constraints make a sustained physical RTK network
   very difficult.
 - **Volunteer**: none. Zero NE stations on rtk2go or Centipede.
-- **Gap**: no free RTK for hobbyists. No confirmed public CORS network
+- **Gap**: no free RTK for hobbyists. No confirmed public fixed reference station network (CORS)
   or NTRIP caster anywhere in Niger.
 
 ### NG — Nigeria
@@ -2568,7 +2567,7 @@ similarly have no published coverage for these jurisdictions.
   the network (with PayPal payment integration) but no stable public endpoint has been confirmed
   as of 2026. → networks.md: `nignet`
 - **Volunteer**: negligible. Zero NG stations on rtk2go or Centipede.
-- **Gap**: no free public RTK in Nigeria. CORS infrastructure exists but serves geodetic
+- **Gap**: no free public RTK in Nigeria. Fixed reference station (CORS) infrastructure exists but serves geodetic
   purposes at unsuitable spacing; hobbyists must deploy a local base station.
 
 ### OM — Oman
@@ -2592,7 +2591,7 @@ similarly have no published coverage for these jurisdictions.
 **date_added**: 2026-04-28
 
 - **Free government RTK**: none confirmed with a public NTRIP endpoint.
-  Ministry of Municipality manages CORS tied to the Qatar National Spatial
+  Ministry of Municipality manages fixed reference stations (CORS) tied to the Qatar National Spatial
   Reference System (QNSRS / QND95); internal use by licensed surveyors and
   government contractors only — no public caster URL identified.
 - **Volunteer**: none. Zero QA stations on rtk2go or Centipede.
@@ -2613,8 +2612,8 @@ similarly have no published coverage for these jurisdictions.
 
 **date_added**: 2026-04-28
 
-- **Free government RTK**: none. Sudan Survey Authority (SSA) planned a GNSS CORS
-  network as part of AFREF participation (55 station sites identified) but no
+- **Free government RTK**: none. Sudan Survey Authority (SSA) planned a GNSS fixed reference station network (CORS)
+  as part of AFREF participation (55 station sites identified) but no
   operational public caster has been found. Ongoing armed conflict (April 2023–)
   severely disrupts civil infrastructure; status unknown.
 - **Volunteer**: none. Zero SD stations on rtk2go or Centipede.
@@ -2628,7 +2627,7 @@ similarly have no published coverage for these jurisdictions.
 - **Free government RTK**: none confirmed. The Directorate of Surveys and Lands
   (Ministry of Lands, Housing and Country Planning, `molhcp.gov.sl`) aims to
   implement a standardised national coordinate system and improve geodetic
-  infrastructure; no public CORS caster or NTRIP endpoint has been found.
+  infrastructure; no public fixed reference station (CORS) caster or NTRIP endpoint has been found.
 - **Volunteer**: none. Zero SL stations on rtk2go or Centipede.
 
 ### SN — Senegal
@@ -2652,7 +2651,7 @@ similarly have no published coverage for these jurisdictions.
 
 - **Free government RTK**: none confirmed. The Surveyor General's Department
   (Ministry of Natural Resources, `gov.sz`) maintains the national survey control
-  and trigonometric network; no public CORS caster or NTRIP endpoint has been
+  and trigonometric network; no public fixed reference station (CORS) caster or NTRIP endpoint has been
   found.
 - **Volunteer**: none. Zero SZ stations on rtk2go or Centipede.
 
@@ -2663,7 +2662,7 @@ similarly have no published coverage for these jurisdictions.
 - **Free government RTK**: Togo CORS (DGIGC — Direction Générale de
   l'Information Géographique et de la Cartographie, under the Ministry of
   Town Planning and Urban Development, `urbanisme.gouv.tg`) — 614 geodetic
-  benchmarks and a CORS network of continuously operating stations deployed
+  benchmarks and a fixed reference station network (CORS) of continuously operating stations deployed
   since 2017. A March 2026 interministerial decree mandates that all
   topographic, cadastral, urbanism, and infrastructure work be attached to
   the National Geodetic Network (réseau géodésique national); a three-month
@@ -2685,8 +2684,8 @@ similarly have no published coverage for these jurisdictions.
   `212.156.70.42:2101`, ~158 physical GNSS stations, single-base) — paid; one-off
   registration fee + annual RTK subscription. Fee set each year by the
   Inter-Ministerial Commission for Mapping Affairs (BHİKPK); exact TRY amount not
-  on the public website (contact `tusaga-aktif.gov.tr`, tel. 444 46 77). Over $200/yr
-  cutoff inferred (professional surveying service). Universities and vocational
+  on the public website (contact `tusaga-aktif.gov.tr`, tel. 444 46 77). Likely expensive
+  for a hobbyist (inferred from professional-surveying pricing). Universities and vocational
   schools may apply for free educational-area RTK access via TKGM. → networks.md: `tusaga`
 - **Volunteer**: rtk2go ~3 TR bases; Centipede — none. Zero TUR nodes confirmed.
 - **Gap**: no free public NTRIP for hobbyists in Turkey; deploy a local base station
@@ -2700,14 +2699,14 @@ similarly have no published coverage for these jurisdictions.
 
 - **Free government RTK**: none. AzPOS — Azerbaijan Positioning Observation System
   (State Committee on Property Issues / Əmlak Məsələləri Dövlət Xidməti,
-  `emlak.gov.az`) — 37 physical CORS stations at 30–40 km spacing (GPS + GLONASS +
+  `emlak.gov.az`) — 37 physical fixed reference stations (CORS) at 30–40 km spacing (GPS + GLONASS +
   Galileo); 8 additional stations restored in Karabakh region in 2024 (Fuzuli,
   Jebrail, Zangilan, Kəlbəcər ×2, Ağdam, Şuşa, Laçın), bringing the total to ~45.
   Access requires a signed service agreement with the operator (Kadastr və Yer
   Quruluşu Layihə Tədqiqat Mərkəz / Design Research Centre for Cadastre & Land
   Management); no self-service web registration. Pricing not on public website.
-  Host:port not publicly listed (disclosed after contract). Paid — over $200/yr
-  cutoff inferred (contract-based commercial service). → networks.md: `azpos`
+  Host:port not publicly listed (disclosed after contract). Paid — likely expensive
+  for a hobbyist (contract-based commercial service). → networks.md: `azpos`
 - **Volunteer**: none. Zero AZ stations confirmed on rtk2go or Centipede.
 - **Gap**: no free or affordable public NTRIP for hobbyists. Deploy a local base
   station for centimetre-level work.
@@ -2735,8 +2734,8 @@ similarly have no published coverage for these jurisdictions.
 **date_added**: 2026-04-29
 
 - **Free government RTK**: GeoCors (National Agency of Public Registry / NAPR,
-  Ministry of Justice, `geocors.napr.gov.ge:2101`) — 23 physical single-base CORS
-  stations established since 2010 (7 Class A forming the national geodetic frame +
+  Ministry of Justice, `geocors.napr.gov.ge:2101`) — 23 physical single-base fixed reference stations (CORS)
+  established since 2010 (7 Class A forming the national geodetic frame +
   16 Class B providing denser coverage); Leica Spider Business Center platform.
   Self-service web registration available at `geocors.napr.gov.ge/SBC/Account/Register`.
   Access is paid — pricing not listed on the public website (contact NAPR; service
@@ -2798,7 +2797,7 @@ similarly have no published coverage for these jurisdictions.
   (Institut Géographique du Burundi, `igebu.bi`) is the national mapping agency
   responsible for geodesy, cartography, and hydro-meteorology. IGEBU received
   GNSS equipment and coordinate-transformation training under a JICA-supported
-  project (technology transfer completed 2010). No public CORS network or NTRIP
+  project (technology transfer completed 2010). No public fixed reference station network (CORS) or NTRIP
   caster endpoint has been found; no BI station appears in the AFREF Operational
   Data Centre. → networks.md: `igebu_bi`
 - **Volunteer**: none. Zero BI stations on rtk2go or Centipede.
@@ -2811,7 +2810,7 @@ similarly have no published coverage for these jurisdictions.
 **date_added**: 2026-04-29
 
 - **Free government RTK**: none confirmed with a public NTRIP endpoint. The
-  Rwanda Geodetic Network (RGN) is a network of ~10 CORS managed by RLMUA
+  Rwanda Geodetic Network (RGN) is a network of ~10 fixed reference stations (CORS) managed by RLMUA
   (Rwanda Land Management and Use Authority, `lands.rw`). RLMUA states that RGN
   "analyses and distributes data free of charge", but the available public
   documentation describes post-processed RINEX distribution only; no NTRIP
@@ -2828,7 +2827,7 @@ similarly have no published coverage for these jurisdictions.
 **date_added**: 2026-04-28
 
 - **Free government RTK**: none. General Survey Authority (GAS) operated a small
-  CORS network pre-conflict; civil war since 2015 has severely disrupted all
+  fixed reference station network (CORS) pre-conflict; civil war since 2015 has severely disrupted all
   public infrastructure. No functioning public NTRIP caster is known.
 - **Volunteer**: rtk2go 1 base — `s9123A22404` at Sanaa (15.29°N, 44.24°E),
   RTCM 3.2, GPS + BDS dual-frequency. Single independent hobbyist installation;
@@ -2856,7 +2855,7 @@ similarly have no published coverage for these jurisdictions.
 
 - **Free government RTK**: none confirmed. The Zambia Survey Department (Ministry of
   Lands and Natural Resources) participates in AFREF/SAFREF continental reference
-  framework; CORS stations contribute raw-observation RINEX archives to the IGS
+  framework; fixed reference stations (CORS) contribute raw-observation RINEX archives to the IGS
   regional data centre at HartRAO — no public NTRIP streaming endpoint found.
 - **Volunteer**: none. Zero ZM stations on rtk2go or Centipede.
 
@@ -2865,7 +2864,7 @@ similarly have no published coverage for these jurisdictions.
 **date_added**: 2026-04-29
 
 - **Free government RTK**: none free confirmed. ZINGSA (Zimbabwe National Geospatial
-  and Space Agency, `zingsa.ac.zw`) operates a national CORS network covering the
+  and Space Agency, `zingsa.ac.zw`) operates a national fixed reference station network (CORS) covering the
   country, used for surveying, precision agriculture, and ionospheric monitoring.
   The Surveyor General's Office also administers CORS services under the Land Survey
   Act; S.I. 47 of 2023 prescribes fees for CORS access, indicating a paid model.
@@ -2885,7 +2884,7 @@ similarly have no published coverage for these jurisdictions.
 **date_added**: 2026-04-28
 
 - **Free government RTK**: none confirmed publicly accessible.
-  KazGeoDesy (Committee on Land Management) operates a CORS network of 120+
+  KazGeoDesy (Committee on Land Management) operates a fixed reference station network (CORS) of 120+
   stations; access requires an institutional licence or commercial reseller
   contract — no open self-service path found. → networks.md: `kazgeodesy`
 - **Volunteer**: negligible. Zero KZ stations on rtk2go or Centipede.
@@ -2898,7 +2897,7 @@ similarly have no published coverage for these jurisdictions.
 **date_added**: 2026-04-28
 
 - **Free government RTK**: none confirmed publicly accessible.
-  UzGeodezKadastr operates national CORS stations (referenced in GNSS/seismic
+  UzGeodezKadastr operates national fixed reference stations (CORS) (referenced in GNSS/seismic
   literature); no public NTRIP endpoint found. Access restricted to licensed
   surveyors and state agencies.
 - **Volunteer**: negligible. Zero UZ stations on rtk2go or Centipede.
@@ -2912,7 +2911,7 @@ similarly have no published coverage for these jurisdictions.
 - **Free government RTK**: none confirmed. The State Committee for Land
   Management and Geodesy (zamin.tj) and the "Fazo" Institute operate GNSS
   equipment for cadastral and land-reform work, but no public NTRIP caster
-  or open CORS endpoint has been found. CAIAG's Central Asia seismic network
+  or open fixed reference station (CORS) endpoint has been found. CAIAG's Central Asia seismic network
   includes one TJ station (Pamir region) but this is research-only, not an
   RTK service. → networks.md: `almgc_tj`
 - **Volunteer**: none. Zero TJ stations on rtk2go or Centipede.
@@ -2941,7 +2940,7 @@ similarly have no published coverage for these jurisdictions.
 **date_added**: 2026-04-29
 
 - **Free government RTK**: none confirmed. FAO supported the Ministry of
-  Agriculture and Land Resources Service in building a 65-station CORS network
+  Agriculture and Land Resources Service in building a 65-station fixed reference station network (CORS)
   (2022–2025 project, finalised April 2025) as infrastructure for the national
   land cadastre. No public NTRIP endpoint or self-service registration has been
   found; access is restricted to government cadastral users. Host:port not
