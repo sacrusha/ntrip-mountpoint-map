@@ -33,6 +33,15 @@ For each network you discover (free OR paid):
 - **Stations**: approximate count and physical-vs-VRS mix.
 - **Why** context: only when the country meets Tier A criteria per the spec (legal barrier, sanctions, civil war, complex regional patchwork). Do NOT add a "why" paragraph to Tier B/C entries.
 
+## Audience and writing register
+
+`docs/country-survey.md` is read by hobbyists following GitHub links from the README/map — same audience as `guide.html` and `data/help_topics.json`. Write in their register:
+
+- **Expand acronyms on first use** in each entry. "CORS" is jargon; prefer "permanent GPS reference station" or "fixed reference network". Acronyms are fine in `docs/networks.md` (developer-facing) but not in country-survey prose.
+- **Don't leak internal classifications.** `$200/yr cutoff` is the orchestrator's term for choosing tier. In user-visible Gap sentences, write the reality: "modest annual fee", "expensive — over USD 200/yr", or quote the price directly.
+- **Don't write audit-document phrasing** in user-visible places. "No English pricing page", "±2 cm horizontal accuracy", "subordinate body of Defence Ministry" are wrong audience. Tell the user what to do or what to expect.
+- **Negative findings**: when there is no service, say so plainly and stop. Don't pad with pseudo-detail ("a 6-station national backbone was planned but…") — that reads as if something exists.
+
 ## What to write
 
 ### `docs/country-survey.md`
@@ -42,7 +51,23 @@ For each network you discover (free OR paid):
 - If updating an existing entry, bump `date_added` to today's date only if you made substantive changes (more than typo/link fixes).
 
 ### `docs/networks.md`
-For each newly-documented network, add a `## id` block following the existing style (status, country, type, host:port, access, registration, yearly_cost, stations, notes). Optional: add `**date_added**:` per network if precision is useful.
+For each network you find that is **operational and accessible to a hobbyist** (free, free-with-registration, paid-affordable, or substantial paid), add a `## id` block following the existing style (status, country, type, host:port, access, registration, yearly_cost, stations, notes). Optional: add `**date_added**:` per network if precision is useful.
+
+**Do NOT create a `networks.md` block for**:
+- "Investigated, infrastructure exists but no operational public service" — record the finding inline in the country-survey prose only.
+- Government-internal / defence-controlled / closed-cadastral-only networks the public can't reach.
+- Post-processing / RINEX-archive-only services (these are not RTK).
+- A small private surveying company with stations in a few cities (regional, not national-scale).
+
+**`status` field discipline** — these values mean specific things and drive the marker sweep downstream:
+
+- `status: in-pipeline` — wired into `scripts/fetch_stations.py`.
+- `status: deferred` — **a free network confirmed to exist; the only gap is that the host:port isn't yet in the pipeline**. Use ONLY when this is true. Do not use `deferred` as a generic "I documented something" marker.
+- `status: paid` / `paid-affordable` — accessible to civilians for a fee. Requires `**yearly_cost**:` field.
+- `status: restricted` — exists but unobtainable for the target user (licensed-surveyors only, government-only, defence-only).
+- `status: rejected` — investigated and ruled out (one-line rationale required).
+
+If you're not sure between `deferred` and `rejected`, default to `rejected` with a rationale. Misclassifying as `deferred` produces a misleading "free option here" marker on the map.
 
 ### Do NOT touch
 - `data/country_markers.json` — handled in a final sweep.

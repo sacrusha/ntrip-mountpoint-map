@@ -100,28 +100,53 @@ If a sub-agent times out, returns "nothing found" without writing anything, or p
 
 Required after every session that modifies `docs/networks.md`. Per `CLAUDE.md`'s manual-maintenance rule.
 
-Spawn one sweep agent at the end:
+**Critical: tier semantics drive whether to add a marker at all.** Markers render on the world map for hobbyist users. A misplaced marker is worse than no marker because it tells a user "look here for an option" when there isn't one.
+
+| Tier | When to add | When NOT to add |
+|---|---|---|
+| `vrs` | In-pipeline VRS-only network with live data. | If the network has physical pins (single-base) — those render automatically. |
+| `deferred` | A **free** national-scale service is confirmed to exist; the only gap is that the endpoint/host:port isn't yet wired into the pipeline. The note must be able to truthfully start with "**N stations, free.**" | The network is paid, restricted, government-internal, defence-controlled, raw-RINEX-only / post-processing-only, or "infrastructure exists but no public service has been confirmed." None of those is "free, just not connected yet." |
+| `info` | A **substantial national-scale** paid or restricted service exists that a hobbyist might investigate. "Substantial" = nationwide or near-nationwide coverage by a recognised operator. | A small private surveying company with a handful of stations in a few cities is NOT national-scale and gets no marker. A 6-station commercial network covering 5 cities does not earn a country-level circle. |
+| _no marker_ | The country was investigated and nothing meets the bar above. | (default) |
+
+**Spawn one sweep agent at the end:**
 
 ```
-Update data/country_markers.json so it covers networks.md entries added or
-modified in this session. Read the "Country-level markers" section of
-docs/requirements.md for tier definitions and JSON schema.
+Update data/country_markers.json. Read the "Country-level markers" section
+of docs/requirements.md for the JSON schema and tier semantics.
 
 Procedure:
-1. List existing marker IDs (grep '"id":' data/country_markers.json | sort -u).
-2. List networks.md IDs that need markers:
-   - status=paid, paid-affordable, restricted → info tier (circled-?)
-   - status=deferred (free, not in pipeline) → deferred tier (grey circle)
-   - status=in-pipeline AND VRS-only → vrs tier (coloured circle)
-3. Skip in-pipeline single-base entries — they get physical pins automatically.
-4. Skip rejected entries unless the rejection means "exists but unobtainable
-   for the target user" (e.g. licensed-surveyors-only).
-5. Use country centroid or capital lat/lon for new entries.
-6. Use skeleton-first JSON edits (batches of ~10 entries per Edit call) to
-   avoid the idle timeout — the bulk audit added 99 markers across 12+ Edit
-   calls.
+1. List existing marker IDs (jq '.markers[].id' data/country_markers.json).
+2. For each networks.md entry not already represented by a marker, classify
+   strictly per the tier table in the skill's SKILL.md:
+   - vrs:      ONLY in-pipeline VRS-only with live data.
+   - deferred: ONLY when the underlying network is FREE and the gap is
+               purely "endpoint not yet in pipeline." The note MUST be able
+               to truthfully open with "N stations, free." If you cannot
+               write that, do NOT add a deferred marker.
+   - info:     ONLY substantial national-scale paid/restricted operators
+               (think HEPOS, ROMPOS, swipos, KSA-CORS — country-spanning
+               services from a recognised cadastral or commercial body).
+               A regional surveying company with handful of stations does
+               NOT earn a marker.
+   - no marker: Investigated, nothing operational, post-processing-only,
+                government-internal, defence-controlled, "infrastructure
+                exists but no public service" — these get NO marker. The
+                country-survey.md prose is sufficient documentation.
+3. The note field is USER-FACING (renders in map popup tooltips for
+   hobbyists). Plain English; expand or avoid acronyms ("permanent GPS
+   reference network" not "CORS"); never mention internal classifications
+   like "$200/yr cutoff"; never include audit-document phrasing like
+   "no English pricing page" or "±2 cm horizontal accuracy." A good note
+   tells the user what they need to know to act.
+4. Skip in-pipeline single-base entries (they get physical pins).
+5. Skip rejected entries unless the rejection means "exists but unobtainable
+   for the target user" AND it's substantial.
+6. Use skeleton-first JSON edits (batches of ~10 entries per Edit call).
 
-Report: count of new entries added per tier.
+Report: count of new entries added per tier, plus a list of networks.md IDs
+deliberately NOT given a marker and the one-word reason
+(no-public-service / regional-only / paid-too-small / archive-only / etc.).
 ```
 
 ### Step 7 — Commit and push
@@ -146,12 +171,37 @@ In commit `4942fa6` substantive edits were dated `2026-04-29` and the bulk backf
 
 ## Hard rules
 
+### Audience: who reads what
+
+- `docs/country-survey.md` — read by humans following GitHub links from the README/map. Hobbyist register. The same audience as `guide.html` and `data/help_topics.json`. Acronyms must be expanded on first use; "CORS" is jargon — prefer "permanent GPS reference station" or "fixed GPS reference network" in prose.
+- `docs/networks.md` — internal/developer reference. Acronyms OK. Audit phrasing OK.
+- `data/country_markers.json` `note` field — **renders in map popup tooltips for end users.** Plain English. Tells the reader what they need to do next. No acronyms without expansion. No internal classifications (don't say "$200/yr cutoff" — say "expensive" or quote the price). No audit phrasing ("no English pricing page", "±2 cm horizontal accuracy at 95 % confidence" — wrong audience).
+
+### `status: deferred` in `networks.md` — narrow semantic
+
+`status: deferred` means **a free service exists; only the endpoint isn't yet wired into the pipeline**. This is the only correct use. It directly drives whether `data/country_markers.json` adds a `deferred` (grey-circle, "look here, free option") marker.
+
+Do **not** use `status: deferred` for:
+- "Investigated, found infrastructure but no operational public service" — use `status: rejected` with a one-line rationale instead, or document inline in `country-survey.md` prose with no `networks.md` block at all.
+- Government-internal / defence-controlled networks not accessible to civilians — `status: rejected`.
+- Post-processing / RINEX-archive-only services (no real-time NTRIP) — `status: rejected` (it's not an RTK service).
+- "Pricing not publicly listed, may be free or paid" — if access model is unknown, do not pretend it's free; either omit the block or use `status: paid` with a `pricing-unverified` note.
+
+When in doubt, **omit the `networks.md` block** and just describe the finding inline in the `country-survey.md` prose. Empty space in `networks.md` is a feature; cluttering it with "investigations that found nothing" pollutes the marker sweep downstream.
+
+### Curation threshold for paid networks
+
+A `networks.md` block (and any associated marker) for a paid commercial network is appropriate only when the operator is **substantial**: nationwide or near-nationwide coverage, or a recognised regional/cadastral body. A small private surveying company with stations in a few cities does not earn a country-level entry — describe it inline in the country prose if useful, but don't promote it to its own block.
+
+### Other rules
+
 - **No bare email addresses** in `docs/networks.md` or `docs/country-survey.md` — link to a website that describes the email-based signup process. (Emails rot; web pages get archived.)
 - **`**yearly_cost**:` field is required** in every networks.md block where access is `paid` or `paid-affordable`. Pricing in local currency first, then `(~$USD/yr)` or `(~€EUR/yr)` parenthetical in the prose. Greppable for currency audits.
 - **UK spelling** in prose (centimetre, behaviour, organisation). The repo's user-facing copy is UK-spelled; survey prose follows suit.
 - **"GPS" colloquially / "GNSS" structurally** — see `CLAUDE.md`. L1 and L2 are not "GPS frequencies" because Galileo E1 and E5b sit on the same bands.
 - **Volunteer line canonical phrasing**: `**Volunteer**: none. Zero XX stations on rtk2go or Centipede.` Some past entries deviated; new edits should follow the canonical form for grep-ability.
 - **Tier A "why" paragraph** is required only when the access situation is materially different due to a systemic constraint (sanctions, civil war, legal barrier, government collapse). For Tier B/C entries it's clutter — omit.
+- **`$200/yr` is the orchestrator's classification term, not user-visible prose.** Use it to decide tier (paid-affordable vs paid) but write Gap sentences in plain words: "expensive", "modest annual fee", or quote the price directly.
 
 ## Out of scope
 
