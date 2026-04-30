@@ -1453,6 +1453,14 @@ FKP, and MAC network RTK products. Available only in the government-controlled
 areas (south / free areas); the northern third under the administration of
 the Turkish Republic of Northern Cyprus is not covered.
 
+**Free alternative for Nicosia area**: the IGS NICO station (Nicosia, Higher
+Technical Institute) is broadcast by Geoscience Australia's AUSCORS caster
+(`ntrip.data.gnss.ga.gov.au:2101`) as `NICO00CYP0`, RTCM 3.2 GPS+GLO
+dual-freq, ITRF2020 current epoch. Free, no registration — see `auscors`.
+Single base, useful L1+L2 baseline ~30 km, so practical coverage is greater
+Nicosia and central Cyprus only. CYPOS remains the only path to island-wide
+network RTK.
+
 ---
 
 ## swepos — SWEPOS Network RTK (SE)

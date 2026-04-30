@@ -181,15 +181,24 @@ _Last updated: 2026-04-22._
 
 **date_added**: 2026-04-29
 
-- **Free government RTK**: CYPOS (Department of Lands and Surveys / DLS, Ministry
+- **Government RTK (paid)**: CYPOS (Department of Lands and Surveys / DLS, Ministry
   of Interior, 7 stations, VRS + iMAX + FKP + MAC) — paid subscription; register
-  via the DLS Portal (`portal.dls.moi.gov.cy`); host:port not publicly listed
-  (provided post-registration). → networks.md: `cypos`
+  via the DLS Portal (`portal.dls.moi.gov.cy`); host:port and tariff disclosed
+  only post-registration (rechecked 2026-04-30, no public figures). → networks.md: `cypos`
+- **Free single-base via AUSCORS**: Geoscience Australia's AUSCORS broadcaster
+  (`ntrip.data.gnss.ga.gov.au:2101`) carries the IGS NICO station (Nicosia,
+  35.14°N 33.40°E, RTCM 3.2, GPS+GLO dual-freq) — free, no registration. Single
+  base, ITRF2020 current epoch, ~30 km useful L1+L2 baseline, so practical
+  coverage is greater Nicosia and central Cyprus. ITRF→WGS84 is essentially
+  identity for cm-level work; a Cyprus LTM grid transformation is only needed
+  for ties into legacy cadastral data. Already visible on this map under
+  `auscors`. → networks.md: `auscors`
 - **Note**: GNSS spoofing originating from the IL/Lebanon/Sinai region intermittently
   affects southern Cyprus — rovers may lose fix near the coast facing east.
 - **Volunteer**: rtk2go ~1 CY base, Centipede ~0 CY nodes. Minimal coverage.
-- **Gap**: no free government NTRIP; CYPOS requires a paid subscription; hobbyists
-  rely on a single rtk2go volunteer base or a local base station.
+- **Gap**: no Cyprus-government free NTRIP; AUSCORS NICO is the only free
+  national-frame option but covers only the Nicosia area. CYPOS is the only
+  paid option for island-wide network RTK.
 
 ### AD — Andorra
 
