@@ -460,25 +460,28 @@ SSR-capable receiver or Geo++ SSR2OBS converter. Out of scope for this pipeline.
 
 ## apos — APOS (AT)
 
-**status**:    free
+**status**:    paid
 **host:port**: `aposrtk.bev.gv.at:2101`
 **type**:      physical-coord-vrs
-**access**:    conditions — free for agriculture/forestry via eAMA credentials
-**pipeline-access**: conditions
-               (farm client number + PIN from Agrarmarkt Austria);
-               professional/hobbyist use paid via bev.gv.at portal
-**yearly_cost**: pricing via bev.gv.at for professional/hobbyist use;
-               eAMA free for agriculture/forestry
+**access**:    paid via bev.gv.at portal; free for agriculture/forestry users
+               via eAMA credentials (farm client number + PIN, Agrarmarkt Austria)
+**yearly_cost**: €200/mo RTK (~$220/mo); no annual plan
+**registration**: https://www.bev.gv.at
 **stations**:  37
 **source**:    bev.gv.at (BEV — Bundesamt für Eich- und Vermessungswesen)
 **operator**:  BEV — Bundesamt für Eich- und Vermessungswesen
 
-Austria's national VRS network (Free* in UI). Sourcetable is publicly readable;
-RTCM stream authentication requires valid credentials. Hobbyists without farm
-credentials register and pay via the BEV portal. 37 physical reference stations
-with distinct coordinates are exposed in the sourcetable; these show on the map
-as regular pins. SAPOS Bavaria (DE) and FReDNet (IT) provide partial coverage
-across the AT border.
+**date_added**: 2026-04-30
+
+Austria's national VRS network operated by BEV. Sourcetable is publicly readable;
+RTCM stream authentication requires valid credentials. Hobbyists register and pay
+via the BEV portal. No annual plan is offered; pricing is per-second, per-day, or
+per-month: RTK (centimetre accuracy) €0.0015/sec, €20/day, €200/month; DGPS
+(decimetre accuracy) €0.00015/sec, €2/day, €20/month. One-time setup fee €50.
+Agriculture/forestry users get free access via eAMA credentials. 37 physical
+reference stations with distinct coordinates are exposed in the sourcetable; these
+show on the map as regular pins. SAPOS Bavaria (DE) and FReDNet (IT) provide
+partial coverage across the AT border.
 
 ---
 

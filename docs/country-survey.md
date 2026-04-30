@@ -35,15 +35,17 @@ _Last updated: 2026-04-22._
 
 ### AT — Austria
 
-**date_added**: 2026-04-28
+**date_added**: 2026-04-30
 
-- **Free* government RTK**: APOS (BEV, `aposrtk.bev.gv.at:2101`, 37 stations, VRS) —
-  free for agriculture/forestry via eAMA credentials (farm client number + PIN from
-  Agrarmarkt Austria); professional/hobbyist use paid via bev.gv.at portal. In pipeline
-  as `conditions` access (Free* in UI). → networks.md: `apos`
+- **Paid government RTK**: APOS (BEV, `aposrtk.bev.gv.at:2101`, 37 stations, VRS) —
+  paid for hobbyists via bev.gv.at portal. No annual plan; billing is per-second,
+  per-day, or per-month. RTK (centimetre accuracy): €200/month or €20/day (~$220/mo
+  or ~$22/day). DGPS (decimetre accuracy): €20/month or €2/day. One-time setup fee
+  €50. Free only for agriculture/forestry users with Austrian farm credentials (eAMA).
+  → networks.md: `apos`
 - **Volunteer**: rtk2go ~14 AT bases, Centipede ~1 AT node.
-- **Gap**: hobbyists without agricultural credentials must pay via BEV portal;
-  volunteers (rtk2go) are the only unconditionally free option.
+- **Gap**: no free hobbyist RTK; the only unconditionally free option is volunteer
+  stations on rtk2go. Agricultural users get APOS free via eAMA.
 
 ### BE — Belgium
 
