@@ -1654,8 +1654,7 @@ similarly have no published coverage for these jurisdictions.
   `MGL_network` at `rtk.gazar.gov.mn:2101` (alt IP `66.181.168.80:2101`) with shared
   open credentials (username `rover`, password `262461`); port 2101 is inferred, not
   stated explicitly. Individual registration available via `geodesy.gov.mn` (citizen
-  or legal entity). No fee found. Not yet in pipeline — curl-confirm `rtk.gazar.gov.mn:2101`
-  before adding. → networks.md: `almgg_mn`
+  or legal entity). No fee found. In pipeline as `almgg_mn` (2026-04-30). → networks.md: `almgg_mn`
 - **Volunteer**: none. Zero MN stations on rtk2go or Centipede.
 - **Gap**: coverage is very sparse — ~200 km average baselines nationally; RTK
   practical only in the Ulaanbaatar–Darkhan–Erdenet corridor. Hobbyists outside

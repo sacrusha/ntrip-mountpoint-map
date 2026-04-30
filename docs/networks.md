@@ -4323,12 +4323,12 @@ Vertical datum: DrukGeoid 2015.
 
 ## almgg_mn — CORS Network / MonPOS (MN)
 
-**status**:    candidate
+**status**:    free
 **country**:   MN — Mongolia
-**type**:      physical-coord-vrs (Trimble NetR8/NetR9 hardware; MGL_network is VRS)
-**host:port**: `rtk.gazar.gov.mn:2101` (primary); alternate IP `66.181.168.80:2101`;
-               port 2101 is NTRIP standard — inferred, not stated explicitly in
-               the public announcement; not curl-confirmed
+**type**:      physical-coord-vrs (Trimble NetR8/NetR9 hardware; MGL_network is VRS;
+               caster: SubCarrier Systems SNIP R3.14.00, curl-confirmed 2026-04-30)
+**host:port**: `rtk.gazar.gov.mn:2101` (primary; curl-confirmed 2026-04-30);
+               alternate IP `66.181.168.80:2101`
 **access**:    free; shared public credentials posted on the government announcement
                page (`monpos.gazar.gov.mn/monpos/3/`): username `rover`,
                password `262461`; individual accounts also available via
@@ -4357,9 +4357,8 @@ mountpoint `MGL_network` at `rtk.gazar.gov.mn` with shared public credentials. A
 ≤35 km baseline, ±(2 cm + 1 ppm), RTCM 3.x. Station map on monpos.gazar.gov.mn shows
 mixed online/offline status. Mongolia is ~1.56 million km²; average inter-station
 distance ~200 km — RTK practical only in the Ulaanbaatar–Darkhan–Erdenet corridor.
-Port 2101 is the NTRIP standard and is not stated in the public announcement; add to
-pipeline only after curl-confirming `rtk.gazar.gov.mn:2101`. Zero MN mountpoints on
-rtk2go or Centipede.
+Added to pipeline 2026-04-30 (`almgg_mn` in SOURCES, credentials `rover`/`262461`).
+Zero MN mountpoints on rtk2go or Centipede.
 
 ## survey_bn — Survey Department Brunei (BN)
 

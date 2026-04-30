@@ -333,9 +333,8 @@
     {"id":"cors_korea",  "name":"CORS-KOREA",       "region":"South Korea",          "country":"KR", "lat":36.50, "lon":127.80, "tier":"free", "vrs":true, "pins":true, "source_id":"cors_korea","stations_declared":100},
 
     {"id":"almgg_mn",    "name":"MonPOS / GAZAR CORS","region":"Mongolia",            "country":"MN", "lat":47.92, "lon":106.92,
-     "tier":"free", "vrs":true, "access":"registration", "registration":"https://monpos.gazar.gov.mn",
-     "stations_declared":40,
-     "note":"~40 stations, free. Shared credentials posted on the registration site: username rover, password 262461. RTK practical in Ulaanbaatar–Darkhan–Erdenet corridor only."},
+     "tier":"free", "vrs":true, "pins":true, "source_id":"almgg_mn",
+     "stations_declared":40},
 
     {"id":"apos",        "name":"APOS",             "region":"Austria",              "country":"AT", "lat":47.50, "lon":14.10,  "tier":"paid", "vrs":true,             "stations_declared":37, "yearly_cost":"€200/mo RTK (~$220/mo)", "note":"Short-term use: €20/day (RTK, centimetre accuracy) or €2/day (DGPS, decimetre accuracy). Monthly subscription also available. €50 one-time setup fee. Free for Austrian agricultural users with farm registration."},
     {"id":"auscors",     "name":"AUSCORS",          "region":"Australia",            "country":"AU", "lat":-25.30,"lon":133.80, "tier":"free", "pins":true, "source_id":"auscors",   "stations_declared":813},

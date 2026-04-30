@@ -227,6 +227,11 @@ SOURCES = [
      "color": "#a93226", "label": "CORS-KOREA",
      "type": "physical-vrs", "country": ["KR"],
      "access": "conditions",   "registration": "https://www.gnssdata.or.kr"},
+    {"id": "almgg_mn",    "url": "http://rtk.gazar.gov.mn:2101/",            # MonPOS; SNIP R3.14; alt IP 66.181.168.80:2101; curl-confirmed 2026-04-30
+     "color": "#9e6b00", "label": "MonPOS",
+     "type": "physical-vrs", "country": ["MN"],
+     "credentials": {"user": "rover", "pass": "262461"},
+     "access": "open",         "registration": None},
     {"id": "icecors",     "url": "http://178.19.53.126:2101/",
      "color": "#1e6b8c", "label": "IceCORS",
      "type": "physical-vrs", "country": ["IS"],
