@@ -1738,22 +1738,30 @@ similarly have no published coverage for these jurisdictions.
 
 ### LK — Sri Lanka
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
-- **Free government RTK**: SLCORSnet (Survey Department of Sri Lanka,
+- **Government RTK**: SLCORSnet (Survey Department of Sri Lanka,
   `222.165.190.67:2101`, VRS / FKP / MAC) — paid subscription; users must
-  register at slcorsnet.survey.gov.lk and purchase a licence (1-day, 7-day,
-  30-day, or annual tiers). Pricing not publicly listed (requires portal
-  login). Network established 2016; Phase 1 covers Western Province and
-  surroundings; island-wide rollout ongoing. → networks.md: `slcorsnet`
-- **Commercial**: CORSnet (CORSnet Pvt Ltd, `corsnet.lk`, island-wide,
-  ~15+ stations, VRS) — paid commercial service; pricing not publicly
-  listed (contact via corsnet.lk/user/register/). Established 2014; first
-  private islandwide RTK network in Sri Lanka. → networks.md: `corsnet_lk`
-- **Volunteer**: none confirmed. Zero LK stations on rtk2go or Centipede.
+  register at slcorsnet.survey.gov.lk and purchase a licence. Pricing
+  confirmed publicly (no login required): 360,000 LKR/yr (~$1,127/yr);
+  shorter tiers available (30,000 LKR/month, 10,000 LKR/week, 2,000 LKR/day).
+  Prices stated as "including all taxes". Registration open to individuals;
+  no surveying-company licence requirement stated publicly. Payment by bank
+  transfer to Peoples Bank (Narahenpita); bank-transfer-only may complicate
+  non-resident registration in practice. Network established 2016; Phase 1
+  covers Western Province and surroundings; island-wide rollout ongoing.
+  Endpoint confirmed live 2026-04-30. → networks.md: `slcorsnet`
+- **Commercial**: CORSnet (CORSnet Pvt Ltd, corsnet.lk, island-wide, ~15+
+  stations, VRS) — paid commercial service; pricing confirmed publicly at
+  corsnet.lk/services: 345,000 LKR/yr (~$1,080/yr); shorter plans from
+  2,500 LKR/day. Self-service registration open to individuals (register →
+  confirm email → request connection → pay → activate). Host:port provided
+  post-registration only. Established 2014; first private island-wide RTK
+  network in Sri Lanka. → networks.md: `corsnet_lk`
+- **Volunteer**: none. Zero LK stations on rtk2go or Centipede.
 - **Gap**: no free public RTK for hobbyists; both available networks are
-  paid. SLCORSnet pricing requires portal registration to view; CORSnet
-  pricing requires direct contact.
+  paid and expensive (~$1,100/yr). SLCORSnet endpoint confirmed live;
+  CORSnet host:port disclosed post-registration only.
 
 ### MM — Myanmar
 
@@ -3027,16 +3035,25 @@ similarly have no published coverage for these jurisdictions.
 
 ### KZ — Kazakhstan
 
-**date_added**: 2026-04-28
+**date_added**: 2026-04-30
 
-- **Free government RTK**: none confirmed publicly accessible.
-  KazGeoDesy (Committee on Land Management) operates a fixed reference station network (CORS) of 120+
-  stations; access requires an institutional licence or commercial reseller
-  contract — no open self-service path found. → networks.md: `kazgeodesy`
+- **Free government RTK**: none. The national RTK service is operated by
+  НЦГПИ (National Centre of Geodesy and Spatial Information, qazgeodesy.kz),
+  formerly branded KazGeoDesy / Казгеодезия, under the Committee of Geodesy
+  and Cartography. A self-service portal at rtk.qgeo.kz offers paid
+  subscriptions to individuals and organisations: 65,000 ₸/yr (~$141/yr)
+  annual, or 7,000 ₸/month. Each subscription covers up to 5 reference
+  stations and 5 simultaneous rover connections. Registration requires a
+  Kazakh individual or business identifier (ИИН or БИН), which is a
+  de-facto residency requirement — foreign users cannot complete self-service
+  registration. Host:port not publicly disclosed; likely rtk.qgeo.kz:2101
+  (unconfirmed). Portal confirmed live 2026-04-30.
+  → networks.md: `kazgeodesy`
 - **Volunteer**: negligible. Zero KZ stations on rtk2go or Centipede.
-- **Gap**: no free RTK for hobbyists. Country is ~2.7 million km² with
-  most stations concentrated around Almaty, Astana, and the northern corridor;
-  even a public caster would yield long baselines outside urban centres.
+- **Gap**: no free RTK for hobbyists. НЦГПИ is paid-affordable for Kazakh
+  residents (~$141/yr) but de-facto unavailable to foreign users without a
+  Kazakh ИИН. Country is ~2.7 million km²; even with a subscription,
+  baselines will be long outside Almaty, Astana, and the northern corridor.
 
 ### UZ — Uzbekistan
 
@@ -3052,14 +3069,16 @@ similarly have no published coverage for these jurisdictions.
 
 ### TJ — Tajikistan
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
 - **Free government RTK**: none confirmed. The State Committee for Land
   Management and Geodesy (zamin.tj) and the "Fazo" Institute operate GNSS
   equipment for cadastral and land-reform work, but no public NTRIP caster
-  or open fixed reference station (CORS) endpoint has been found. CAIAG's Central Asia seismic network
-  includes one TJ station (Pamir region) but this is research-only, not an
-  RTK service. → networks.md: `almgc_tj`
+  or open fixed reference station (CORS) endpoint has been found. The
+  agency's almgc.tj domain was unreachable on 2026-04-30; no archived or
+  cached version returned any GNSS or NTRIP content. CAIAG's Central Asia
+  seismic network includes one TJ station (Pamir region) but this is
+  research-only, not an RTK service. → networks.md: `almgc_tj`
 - **Volunteer**: none. Zero TJ stations on rtk2go or Centipede.
 - **Gap**: no free RTK for hobbyists; no paid commercial alternative
   identified. Landlocked mountainous country with sparse geodetic

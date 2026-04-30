@@ -2665,73 +2665,97 @@ out of scope.
 **country**:   LK — Sri Lanka
 **type**:      physical-coord-vrs (VRS / FKP / MAC)
 **host:port**: `222.165.190.67:2101`
-**access**:    paid subscription — 1-day, 7-day, 30-day, and annual licence tiers;
-               registration at slcorsnet.survey.gov.lk
-**yearly_cost**: not publicly listed (requires portal login to view pricing)
-**registration**: slcorsnet.survey.gov.lk
+**access**:    paid subscription — 1-day (2,000 LKR), 7-day (10,000 LKR), 30-day
+               (30,000 LKR), and annual (360,000 LKR) tiers; prices stated as
+               "including all taxes". Registration open to individuals; no
+               surveying-company licence requirement stated publicly. Payment by
+               bank transfer to Peoples Bank (Narahenpita).
+**yearly_cost**: 360,000 LKR/yr (~$1,127/yr)
+**registration**: https://slcorsnet.survey.gov.lk
 **stations**:  unknown (Phase 1: Western Province and surroundings; island-wide rollout ongoing)
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
 Sri Lanka Continuously Operating Reference Station Network, operated by the Survey
 Department of Sri Lanka (Surveyor General's Office, Colombo). Established end of 2016.
 Physical GNSS reference stations transmit raw data to a Control Centre for network
 processing; real-time RTCM corrections delivered via VRS, FKP, or MAC. Post-processing
-RINEX and autonomous GNSS post-processing (SSRPOST / GNWEB) also available. Payments
-via local or international debit/credit card to the Department of Survey's bank account.
-Host:port `222.165.190.67:2101` identified from public "How to Use" documentation.
-Not added to pipeline — paid service; pricing not confirmed under $200/yr cutoff.
+RINEX and autonomous GNSS post-processing (SSRPOST / GNWEB) also available. Payment
+by bank transfer to Peoples Bank (Narahenpita); bank-transfer-only payment may
+complicate non-resident registration in practice. Host:port `222.165.190.67:2101`
+confirmed live 2026-04-30 from public "How to Use" page. Pricing confirmed publicly
+at slcorsnet.survey.gov.lk/how-to-use/pricing/ (no login required) on 2026-04-30 audit.
+Not added to pipeline — paid service at ~$1,127/yr.
 
 ---
 
 ## corsnet_lk — CORSnet (LK)
 
-**status**:    rejected
+**status**:    paid
 **country**:   LK — Sri Lanka
 **type**:      physical-coord-vrs (VRS)
-**host:port**: not publicly listed (credentials supplied on registration)
-**access**:    paid commercial subscription; pricing not publicly listed (contact via
-               corsnet.lk/user/register/)
-**yearly_cost**: not publicly listed
-**registration**: corsnet.lk/user/register/
+**host:port**: not publicly listed (provided to subscribers post-registration)
+**access**:    paid commercial subscription; self-service registration open to
+               individuals (register → confirm email → request connection → pay →
+               activate); pricing confirmed publicly at corsnet.lk/services
+**yearly_cost**: 345,000 LKR/yr (~$1,080/yr)
+**registration**: https://corsnet.lk/user/register/
 **stations**:  ~15+ (island-wide coverage claimed)
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
 Sri Lanka's first and largest private RTK network, established 2014. Originally
 implemented by Suleco (Pvt) Ltd; now operated by CORSnet (Pvt) Ltd. Provides
 centimetre-level RTK corrections island-wide via NTRIP/TCP. Sectors served include
 surveying, construction, GIS, drone operations, and agricultural machinery. Accuracy
-quoted as 2.5 mm + 0.5 ppm (static) and 15 mm + 1 ppm (RTK). Pricing not published.
-Rejected — paid commercial with no confirmed pricing under $200/yr cutoff.
+quoted as 2.5 mm + 0.5 ppm (static) and 15 mm + 1 ppm (RTK). Plans range from
+2,500 LKR/day to 1,000,000 LKR for 5 years; VAT inclusion not explicitly stated on
+the public pricing page. Hobbyist eligibility confirmed: registration open to any
+individual with a network-ready GNSS receiver. Host:port provided post-registration;
+pricing confirmed publicly 2026-04-30 at corsnet.lk/services.
+Not added to pipeline — paid service at ~$1,080/yr, and caster address not public.
 
 ---
 
-## kazgeodesy — KazGeoDesy (KZ)
+## kazgeodesy — НЦГПИ / KazGeoDesy (KZ)
 
-**status**:    paid
-**access**:    restricted; institutional licence or commercial reseller contract required
-**yearly_cost**: not publicly listed
-**stations**:  120+
-**source**:    Not publicly listed (Committee on Land Management, Republic of Kazakhstan)
+**status**:    paid-affordable
+**country**:   KZ — Kazakhstan
+**type**:      physical-coord-vrs (network RTK)
+**host:port**: **investigate**: likely `rtk.qgeo.kz:2101` (unconfirmed; not publicly disclosed)
+**access**:    paid subscription; self-service portal at rtk.qgeo.kz; registration
+               requires Kazakh ИИН (individual) or БИН (business) — de-facto
+               residency requirement; foreign users cannot complete self-service
+**yearly_cost**: 65,000 ₸/yr (~$141/yr)
+**registration**: https://rtk.qgeo.kz
+**stations**:  120+ (concentrated around Almaty, Astana, and northern corridor)
 
-120+ CORS stations concentrated around Almaty, Astana, and the northern corridor.
-No open self-service registration — access through official institutional channels
-or a commercial reseller. Country is ~2.7 million km²; baselines will be long
-outside urban centres even with a subscription.
+**date_added**: 2026-04-30
+
+РГП «Национальный центр геодезии и пространственной информации» (НЦГПИ); colloquially
+still "Казгеодезия / KazGeoDesy". Current legal entity is НЦГПИ under the Committee
+of Geodesy and Cartography, Ministry of Digital Development, Innovations and Aerospace
+Industry (qazgeodesy.kz). RTK service delivered via rtk.qgeo.kz; tariffs confirmed
+publicly at rtk.qgeo.kz/tarifs (no login required 2026-04-30): 65,000 ₸/yr annual,
+or 7,000 ₸/month. Each subscription covers up to 5 reference stations and 5
+simultaneous rover connections. Additional periods (7-day trial, 2-year, 3-year,
+5-year, Unlimited) present in portal but prices not shown publicly on this visit.
+VAT inclusion unclear — 12% Kazakh VAT may apply. The legacy kazgeodeziya.kz domain
+returns a hosting-expired error; active domain is qazgeodesy.kz / rtk.qgeo.kz.
+Country is ~2.7 million km²; baselines will be long outside urban centres.
+Not added to pipeline — paid service; caster address unconfirmed.
 
 ---
 
 ## almgc_tj — State Committee for Land Management and Geodesy (TJ)
 
-**status**:    free
+**status**:    rejected
 **country**:   TJ
-**access**:    restricted; no public NTRIP endpoint found
-**yearly_cost**: not publicly listed
+**access**:    no public NTRIP endpoint found; agency website unreachable
 **source**:    zamin.tj (State Committee for Land Management and Geodesy)
-**host:port**: not publicly listed
+**host:port**: not found
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
 The State Committee for Land Management and Geodesy (Государственный комитет
 по земельному управлению и геодезии) operates GNSS equipment for cadastral
@@ -2739,11 +2763,14 @@ and land-reform work across Tajikistan, supported by the "Fazo" Institute.
 A national geodetic GNSS network was established partly through the World
 Bank Land Registration and Cadastre System project (~2005–2012). No public
 NTRIP caster or open self-service CORS endpoint has been identified.
+The almgc.tj domain returned browser error pages on 2026-04-30; no cached
+or archived version returned any GNSS or NTRIP content. No evidence that
+a real-time NTRIP/RTK service has ever been publicly operated by this agency.
 CAIAG (Central Asian Institute for Applied Geosciences) maintains one
 permanent GNSS station in the Pamir region as part of its 30-station
 Central Asia seismic monitoring network; this is a research facility and
 does not provide an RTK correction service.
-Rejected — no public endpoint. Deferred pending discovery of open endpoint.
+Rejected — no public endpoint found; agency website unreachable.
 
 ---
 
