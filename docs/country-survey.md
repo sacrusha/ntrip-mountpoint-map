@@ -130,12 +130,11 @@ _Last updated: 2026-04-22._
 - **Paid (shortest blocks)**: Topcon TopNet Live publishes short paid blocks —
   £100 for 7 days unlimited (~$133), £300 for 30 days unlimited (~$399), and
   hour-bucket annual passes from £100/5 hrs to £250/11 hrs. These cover one-off
-  project sessions; their annualised equivalents (£100/wk = ~£5,200/yr;
-  £100/5 hrs = £20/hr) are well above the project's ~$200/yr affordability
-  cutoff.
-- **Gap**: no free coordinated coverage and no paid OS Net tier under the
-  ~$200/yr affordability cutoff; volunteer bases are the only free option and
-  coverage thins sharply outside English population centres.
+  project sessions but they are not cheap on a recurring basis (£100/wk = ~£5,200
+  if used every week of the year; £100/5 hrs = £20/hr).
+- **Gap**: no free coordinated coverage and no inexpensive recurring OS Net
+  subscription; volunteer bases are the only free option and coverage thins
+  sharply outside English population centres.
 
 ### IE — Ireland
 
@@ -508,10 +507,10 @@ _Last updated: 2026-04-22._
   nearest-station). 2026 tariff confirmed 2026-04-30 (BAM, pegged 1.95583 to
   1 EUR): RTK 0.20 KM/min · 10 h **30 KM (~€15, ~$17)** · 20 h 50 KM (~$29) ·
   1 mo 250 KM (~€128, ~$145) · 1 yr 1,000 KM (~€511, ~$578); DGPS 1 mo 200 KM
-  (~$116). Short pre-paid blocks (10/20 hours) are the cheapest entry, but
-  per-minute and longer tiers rise quickly past the project's ~$200/yr
-  affordability cutoff. Open to natural persons (no licence requirement); RS
-  giro-account payment route. → networks.md: `srpos_ba`
+  (~$116). Short pre-paid blocks (10/20 hours, ~$17 / ~$29) are the cheapest
+  entry; per-minute (~$7/hr) and longer tiers rise quickly. Open to natural
+  persons (no licence requirement); RS giro-account payment route.
+  → networks.md: `srpos_ba`
 - **Government RTK (paid, FBiH half — FBiHPOS)**: FBiHPOS (FGU — Federalna
   uprava za geodetske i imovinsko-pravne poslove, Federacija BiH,
   `fbihpos.katastar.ba:8080` — note port 8080, not 2101, ~17 stations,
@@ -521,16 +520,16 @@ _Last updated: 2026-04-22._
   750 KM (~$435), 12 mo 1,000 KM (~$580); a "all services" 12-mo at 1,400 KM
   and post-processing-only 12-mo at 700 KM also exist. Multi-rover discounts
   -10% / -20% / cap -50%. Open to natural persons (the registration form has
-  a dedicated "FIZIČKA LICA" section with no licence requirement). All RTK
-  tiers sit above the ~$200/yr cutoff for sustained use; the 7-day and
-  1-month passes are short-period options. Contact `fbihpos@fgu.com.ba`,
-  +387 33 586 065. → networks.md: `fbihpos_ba`
+  a dedicated "FIZIČKA LICA" section with no licence requirement). The 7-day
+  and 1-month passes are the cheap short-period options; longer commitments
+  scale up to 1,000 KM (~$580) for an annual subscription. Contact
+  `fbihpos@fgu.com.ba`, +387 33 586 065. → networks.md: `fbihpos_ba`
 - **Volunteer**: negligible. ~1 BIH base on rtk2go, zero on Centipede.
 - **Gap**: no free RTK on either entity-level network. SRPOS short pre-paid
-  hourly blocks are the cheapest entry in Republika Srpska but rise above the
-  ~$200/yr cutoff for any sustained use; FBiHPOS has no comparable hourly
-  tier and its shortest block is a 7-day pass at 150 KM (~$87). Volunteer
-  bases are the only free option.
+  hourly blocks (~$17 for 10 hours, ~$29 for 20 hours) are the cheap entry in
+  Republika Srpska; FBiHPOS has no comparable hourly tier and its shortest
+  block is a 7-day pass at 150 KM (~$87). Volunteer bases are the only free
+  option.
 
 ### BG — Bulgaria
 
@@ -606,10 +605,10 @@ _Last updated: 2026-04-22._
   or Network RTK (54,000 HUF for DGNSS); shorter flat blocks at 30/90/150 days
   (36,000 / 72,000 / 108,000 HUF); a 30-day local-radius option within 50 km of one
   fixed coordinate at 15,000 HUF (~€38); per-minute fallback at 8 HUF/min RTK,
-  12 HUF/min Network RTK, 3 HUF/min DGNSS. Expensive at the annual rate. The
-  per-minute RTK rate (~€1.20/hr) fits inside the ~$200/yr cutoff for
-  occasional use up to roughly 150 hours/year; the 30-day local-radius pass
-  (~€38) is a single-project block. Registration at `gnssnet.hu`.
+  12 HUF/min Network RTK, 3 HUF/min DGNSS. Expensive at the annual rate; the
+  per-minute RTK rate (~€1.20/hr) is cheap for occasional use; the 30-day
+  local-radius pass (~€38) covers a single project within 50 km of one
+  point. Registration at `gnssnet.hu`.
   → networks.md: `gnssnet_hu`
 - **Volunteer**: Centipede ~223 HUN nodes (single largest non-France country in the
   Centipede sourcetable), rtk2go ~6 HUN bases. Near-national free RTK coverage
@@ -1787,11 +1786,11 @@ similarly have no published coverage for these jurisdictions.
   regulatory charges under EO 471): PHP 1,000 (~$18) one-time registration; RTK
   per-hour PHP 100/hr (~$1.77/hr); RTK Unlimited 1 day PHP 1,000 (~$18), 5 days
   PHP 3,500, 15 days PHP 7,500, 1 month PHP 12,000 (~$212); 30/60-sec RINEX free
-  with subscription. The per-hour rate (~$1.77/hr) fits inside the ~$200/yr
-  cutoff for occasional use up to ~90 hours/year; the 1-day pass (~$18) covers
-  a single session; the 1-month tier (~$212) is just above the cutoff and
-  there is no annual flat rate. Open to individuals; non-Metro Manila clients
-  pay by LandBank deposit slip, which is a practical barrier for foreign
+  with subscription. The per-hour rate (~$1.77/hr) is cheap for occasional
+  use; the 1-day pass (~$18) covers a single session; the 1-month tier
+  (~$212) is the longest published block — there is no annual flat rate.
+  Open to individuals; non-Metro Manila clients pay by LandBank deposit slip,
+  which is a practical barrier for foreign
   hobbyists. → networks.md: `pagenet`
 - **Volunteer**: negligible.
 
@@ -2787,10 +2786,10 @@ similarly have no published coverage for these jurisdictions.
   Universities and vocational schools may apply for free educational-area RTK
   access via TKGM. → networks.md: `tusaga`
 - **Volunteer**: rtk2go ~3 TR bases; Centipede — none. Zero TUR nodes confirmed.
-- **Gap**: no free public NTRIP. The annual RTK tier (~$247) sits just above
-  the project's ~$200/yr cutoff; the 6-month block (~$182) is the cheapest
-  qualifying period for sustained use. Foreign visitors without a Turkish
-  national ID must contact the agency directly or deploy a local base.
+- **Gap**: no free public NTRIP. The annual RTK tier costs ~$247 and the
+  6-month block ~$182, so picking one or the other depends on whether half a
+  year of fieldwork is enough. Foreign visitors without a Turkish national ID
+  must contact the agency directly or deploy a local base.
 
 ## Caucasus
 
