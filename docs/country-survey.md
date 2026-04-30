@@ -228,13 +228,15 @@ _Last updated: 2026-04-22._
 **date_added**: 2026-04-29
 
 - **Free government RTK**: none. HEPOS (HEPOS S.A. / Ktimatologio, `uranus.gr:2101`,
-  VRS) — €160/3 months (~$170) or ~€480/yr (~$525) unlimited; 3-month block is
-  affordable for a hobbyist doing seasonal work; unlimited tier expensive at ~$525/yr.
+  VRS) — flat-rate plans €160/quarter (~$170) or €480/yr (~$525), unlimited; per-minute
+  plan also available (€90 one-time registration + undisclosed per-minute charge); all
+  prices ex-VAT. Quarterly flat rate affordable for seasonal hobbyist use.
   → networks.md: `hepos`
 - **Volunteer**: rtk2go ~2 GR bases, Centipede ~2 GR nodes.
-- **Paid affordable**: HEPOS €160/3 months (~$170) — affordable for seasonal hobbyist use;
-  €480/yr (~$525) unlimited, expensive for a hobbyist.
-- **Gap**: no free government RTK; €160/3-month HEPOS block is the lowest-cost
+- **Paid affordable**: HEPOS — €160/quarter (~$170) or €480/yr (~$525) unlimited flat
+  rate; pay-per-minute option also available (€90 registration, per-minute rate not
+  published); quarterly flat rate affordable for seasonal hobbyist use.
+- **Gap**: no free government RTK; HEPOS quarterly block is the lowest-cost
   entry; volunteer coverage very thin.
 
 ### HR — Croatia
