@@ -117,8 +117,12 @@
 
     {"id":"remos_ven",   "name":"REMOS",            "region":"Venezuela",             "country":"VE", "lat":10.49, "lon":-66.88,
      "tier":"free", "vrs":true, "access":"registration",
-     "stations_declared":27,
-     "note":"27 NTRIP-capable stations under IGVSB, intended free. No public endpoint confirmed; operational status uncertain given infrastructure constraints."},
+     "stations_declared":8,
+     "note":"~8 stations active per current IGVSB website (27 installed with NTRIP capability as of 2012), intended free. No public endpoint; not in the BKG/RTCM-NTRIP broadcaster registry."},
+
+    {"id":"redgeo_bo",   "name":"RED-GEO CORS NTRIP","region":"Bolivia",               "country":"BO", "lat":-16.50, "lon":-68.15,
+     "tier":"paid", "access":"paid", "registration":"https://geoboliviasrl.info",
+     "note":"~7 base stations nationwide (La Paz, Cochabamba, Oruro, Sacaba, Tarija, Santa Cruz, Yacuiba). Access requires phone registration — no self-service portal or published pricing."},
 
     {"id":"hepos",       "name":"HEPOS",            "region":"Greece",                "country":"GR", "lat":38.50, "lon":23.80,
      "tier":"paid-affordable", "vrs":true, "access":"paid-affordable", "yearly_cost":"€160/quarter (~$170)", "registration":"https://www.ktimatologio.gr"},

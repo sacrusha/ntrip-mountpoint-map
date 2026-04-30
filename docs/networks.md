@@ -1386,16 +1386,24 @@ public sources.
 **host:port**: not publicly confirmed
 **type**:      unknown
 **access**:    intended free (IGVSB government service)
-**stations**:  27 (NTRIP-capable, out of 29 permanent)
-**source**:    igvsb.gob.ve (IGVSB — Instituto Geográfico de Venezuela Simón Bolívar)
+**stations**:  ~8 listed on current IGVSB website (`igvsb.gob.ve/servicio/15`,
+               2026-04-30); 27 NTRIP-capable out of 29 permanent as of 2012
+               SIRGAS bulletins
+**source**:    igvsb.gob.ve (IGVSB — Instituto Geográfico de Venezuela Simón Bolívar);
+               SIRGAS Bol15/16/17 (~2010–2012, NTRIP setup documentation)
 
 Maracaibo (MARA) was the first REMOS station to stream NTRIP corrections experimentally
 (Oct 2008); plans to bring remaining stations online were unclear post-2018. No public
-host:port or registration portal confirmed. Operational continuity uncertain given
-Venezuela's infrastructure constraints.
-
-**missing**: confirm whether a public NTRIP caster is operational — check igvsb.gob.ve
-or contact IGVSB; do not add to pipeline without a confirmed reachable endpoint.
+host:port or registration portal confirmed. SIRGAS bulletins (Bol15–Bol17) documented
+installation of NTRIP server capability at 27 of 29 stations by ~2012 and referenced a
+primary caster in a Venezuelan government datacenter plus a planned mirror, but neither
+hostname was ever published. The BKG/RTCM-NTRIP global broadcaster registry (last updated
+2024-01-30) contains no Venezuela/IGVSB entry. The igvsb.gob.ve website was reachable on
+2026-04-30 and the REMOS service page (`/servicio/15`) confirmed 8 current stations at
+Puerto Ayacucho, Barinas, Caracas, Coro, Barquisimeto, Maturín, and Maracaibo; no
+NTRIP caster link or registration portal appeared anywhere on the site. Working hypothesis:
+the caster was set up for internal/institutional use and was never made publicly accessible,
+and continuity may have been affected by Venezuela's infrastructure situation post-2018.
 
 ---
 
@@ -3568,8 +3576,17 @@ stations, but no free public endpoint or self-service registration portal has be
 Access requires direct contact with CEPAG. ArduSimple (2026) lists Bolivia as having no
 established national RTK network for hobbyists.
 
-**missing**: confirm whether IGM Bolivia has published a public NTRIP caster host:port;
-confirm current pricing (Bs/yr); check SIRGAS-CON station list for BO station IDs.
+SIRGAS Bol21 (2016) states "El IGM se está incorporando a esta iniciativa" (IGM Bolivia
+is joining this initiative) — referring to the commercial GeoBolivia SRL RED-GEO network,
+not IGM operating its own public caster. Academic fieldwork (UMSA university thesis) cites
+using "CORS GEO1 perteneciente a la empresa Geo Bolivia S.R.L." as the reference station,
+confirming practitioners use the commercial network rather than an IGM service directly.
+`igm.gob.bo` was unreachable on 2026-04-30 (the entry's `igmbolivia.gob.bo` may be a
+different active domain — verify). No confirmed public NTRIP endpoint for IGM Bolivia;
+pricing, if any service exists, has not been found.
+
+**missing**: confirm whether igmbolivia.gob.bo has a public NTRIP caster host:port or
+             whether MARGEN-ROC NTRIP is exclusively RINEX/post-processing.
 
 ---
 
@@ -3578,12 +3595,16 @@ confirm current pricing (Bs/yr); check SIRGAS-CON station list for BO station ID
 **status**:    paid
 **country**:   BO — Bolivia
 **type**:      single-base
-**host:port**: caster port 6060; full host not publicly confirmed
-**access**:    paid; username and password required; pricing not listed publicly
-**yearly_cost**: not publicly listed (contact geoboliviasrl.info)
-**registration**: geoboliviasrl.info (GeoBolivia SRL website)
-**stations**:  ~6 stations: La Paz (GEO 1), Cochabamba (GEO 2), Oruro (GEO 3),
-               Sacaba (GEO 4), Tarija (GEO 5), Santa Cruz (GEO 6)
+**host:port**: caster port 6060; full hostname not publicly confirmed — credentials
+               (host, port, username, password) issued by phone only
+**access**:    paid; phone registration required; no online self-service portal
+**yearly_cost**: not publicly listed (contact GeoBolivia SRL via Facebook or phone)
+**registration**: geoboliviasrl.info (GeoBolivia SRL website — unreachable 2026-04-30;
+                  Facebook page "GeoBolivia SRL - Geomática" active)
+**stations**:  ~7 stations: La Paz (GEO 1), Cochabamba (GEO 2), Oruro (GEO 3),
+               Sacaba (GEO 4), Tarija (GEO 5), Santa Cruz (GEO 6), Yacuiba (Tarija dept.)
+**source**:    geoboliviasrl.info (when reachable); SIRGAS Bol21 (2016); UMSA thesis;
+               facebook.com/GeoBoliviaSRL (active, posts within days of 2026-04-30)
 
 **date_added**: 2026-04-29
 
@@ -3591,12 +3612,14 @@ RED-GEO is a private commercial CORS NTRIP network operated by GeoBolivia SRL. T
 is described as regulated under Bolivia's Ley 2997 del Topógrafo and administered in
 coordination with COTOBOL (Colegio de Topógrafos de Bolivia). The caster supports
 GPS + GLONASS + Galileo + BeiDou on port 6060. Station coordinates are tied to Class A
-and B points of the government MARGEN framework. Access is described as free for
-institutions with which GeoBolivia SRL has a data usage agreement; general subscription
-pricing is not published on the website.
+and B points of the government MARGEN framework. Access requires phoning GeoBolivia SRL
+to receive credentials; no hostname or pricing is published on the website or in any indexed
+source. A Facebook post (within weeks of 2026-04-30) offered one year of RED-GEO access
+free as a hardware bundle bonus, confirming the service is active. General subscription
+pricing in BOB is not publicly available. geoboliviasrl.info was unreachable on 2026-04-30.
 
-**missing**: confirm full caster hostname; confirm subscription pricing in Bs/yr;
-confirm whether any access tier is free for individual hobbyists.
+**missing**: confirm full caster hostname and subscription pricing in Bs/yr once
+             geoboliviasrl.info is accessible or via Facebook contact.
 
 ---
 

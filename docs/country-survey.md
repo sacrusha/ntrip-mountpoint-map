@@ -959,12 +959,26 @@ similarly have no published coverage for these jurisdictions.
 
 ### BO — Bolivia
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
-- **Free government RTK**: none confirmed. IGM Bolivia (Instituto Geográfico Militar, `igmbolivia.gob.bo`) operates MARGEN-ROC (Red de Operaciones Continuas) and the associated CEPAG processing centre for SIRGAS contributions. IGM offers raw RINEX data on request and advertises an NTRIP correction service, but access requires prior arrangement and payment — no free public endpoint or registration portal found. → networks.md: `margen_bolivia`
-- **Commercial**: RED-GEO CORS NTRIP (GeoBolivia SRL, administered under Ley 2997 del Topógrafo / COTOBOL) — ~6 stations covering La Paz, Cochabamba, Oruro, Sacaba, Tarija, Santa Cruz; caster port 6060; pricing not publicly listed on website (contact geoboliviasrl.info). → networks.md: `redgeo_bo`
+- **Free government RTK**: none confirmed. IGM Bolivia (Instituto Geográfico Militar,
+  `igmbolivia.gob.bo`) operates MARGEN-ROC (Red de Operaciones Continuas) and the CEPAG
+  processing centre for SIRGAS contributions. IGM advertises raw RINEX and an NTRIP
+  correction service, but no public endpoint or registration portal has been found.
+  `igm.gob.bo` was unreachable on 2026-04-30 (`igmbolivia.gob.bo` may differ — unverified).
+  Crucially, SIRGAS Bol21 (2016) states IGM was "joining" the commercial GeoBolivia SRL
+  initiative rather than operating its own public caster; fieldwork literature confirms
+  practitioners use the commercial GeoBolivia GEO1 station rather than an IGM service.
+  → networks.md: `margen_bolivia`
+- **Commercial**: RED-GEO CORS NTRIP (GeoBolivia SRL, Ley 2997 del Topógrafo / COTOBOL)
+  — ~7 stations covering La Paz, Cochabamba, Oruro, Sacaba, Tarija, Santa Cruz, and
+  Yacuiba; caster port 6060. Credentials issued by phone only — no self-service portal
+  or published hostname. Pricing not listed publicly; Facebook page active as of
+  2026-04-30 (website geoboliviasrl.info unreachable same date). → networks.md: `redgeo_bo`
 - **Volunteer**: rtk2go — 0 confirmed BO bases. Centipede — negligible.
-- **Gap**: no free public NTRIP for hobbyists; both the government MARGEN-ROC service and the commercial RED-GEO network require direct engagement and/or payment.
+- **Gap**: no free public NTRIP for hobbyists. The government MARGEN-ROC service appears
+  to delegate RTK corrections to GeoBolivia SRL commercially. RED-GEO is phone-subscription
+  only with unpublished pricing.
 
 ### AR — Argentina
 
@@ -1425,27 +1439,28 @@ similarly have no published coverage for these jurisdictions.
 
 ### VE — Venezuela
 
-**date_added**: 2026-04-28
+**date_added**: 2026-04-30
 
 - **Free government RTK**: REMOS (IGVSB — Instituto Geográfico de Venezuela
   Simón Bolívar). 29 permanent stations installed nationally, 27 with NTRIP
-  capability; Maracaibo (MARA) became the first to transmit corrections via
-  NTRIP experimentally from Oct 2008. NTRIP caster endpoint **not publicly
-  confirmed**: igvsb.gob.ve lists geodetic services but no public-facing
-  host:port or registration portal has been found. The REMOS NTRIP service
-  appears to have been limited in practice (only MARA streaming, with plans
-  for the remainder — status of those plans is unclear post-2018). IGVSB is
-  under the Ministry of Environment; economic and infrastructure constraints
-  have historically slowed deployment.
+  capability per 2012 SIRGAS bulletins; the current REMOS service page
+  (`igvsb.gob.ve/servicio/15`, reachable 2026-04-30) lists 8 active stations
+  at Puerto Ayacucho, Barinas, Caracas, Coro, Barquisimeto, Maturín, and
+  Maracaibo. Maracaibo (MARA) was the first to stream NTRIP experimentally
+  from Oct 2008. No public caster host:port or registration portal has been
+  found anywhere on the igvsb.gob.ve site; the BKG/RTCM-NTRIP global
+  broadcaster registry (last updated 2024-01-30) contains no Venezuela/IGVSB
+  entry. SIRGAS Bol15–17 documented internal caster setup by ~2012 but never
+  published the hostname. Working hypothesis: the caster operates for
+  institutional use only and was never made publicly accessible.
 - **Volunteer**: rtk2go — 0 confirmed mainland VE bases (3 rtk2go bases
-  visible at coordinates 12°N, 68–69°W are on Curaçao/Aruba — Netherlands
-  Antilles, not Venezuelan territory). Negligible Centipede presence.
+  visible at ~12°N, 68–69°W are on Curaçao/Aruba, not Venezuelan territory).
+  Negligible Centipede presence.
 - **Gap**: no confirmed free public NTRIP caster for mainland Venezuela.
-  IGVSB/REMOS infrastructure exists on paper (29 stations, NTRIP-capable)
-  but the caster endpoint is not publicly discoverable, and operational
-  continuity is uncertain given Venezuela's infrastructure situation.
-  GEODNET's South America server (`sa.geodnet.com:2101`, paid $40/month)
-  is the nearest practical paid fallback. → networks.md: `remos_ven` (deferred)
+  IGVSB/REMOS infrastructure exists but the caster endpoint is not publicly
+  discoverable; operational continuity post-2018 uncertain. GEODNET's South
+  America server (`sa.geodnet.com:2101`, paid ~$40/month) is the nearest
+  practical paid fallback. → networks.md: `remos_ven` (deferred)
 
 ---
 
