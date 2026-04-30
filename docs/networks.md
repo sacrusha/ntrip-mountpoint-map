@@ -1388,6 +1388,47 @@ Sourcetable publicly readable. Removed from free-source pipeline 2026-04-20.
 
 ---
 
+## skpos — SKPOS (SK)
+
+**status**:    paid-affordable
+**date_added**: 2026-04-29
+**country**:   SK
+**type**:      VRS (network solution)
+**host:port**: `skpos.gku.sk:2101` (legacy IP active until 2026-06-30 per
+               2026-04-23 news on skpos.gku.sk)
+**access**:    Free for public-sector bodies and municipalities under Act 145/1995;
+               all other users (commercial, hobbyist) paid via the SKPOS online
+               shop. Registration form (`skpos.gku.sk/register/`) explicitly
+               offers **"Fyzická osoba bez živnostenského listu"** (natural person
+               without trade/business licence) as an account type — open to
+               private individuals with no professional registration. Country
+               list covers virtually every UN member state; no Slovak residency
+               restriction stated.
+**registration**: `skpos.gku.sk/register/`
+**yearly_cost**: 2026 schedule (EUR; VAT status not labelled on the public pages
+               — GKÚ Bratislava is a state institution, so charges are
+               historically treated as fees net of VAT for B2B invoicing, but
+               the page does not state this explicitly), confirmed 2026-04-30
+               on `skpos.gku.sk/en/o-skpos.php`:
+                 SKPOS_cm/RTK (1 device, 1 yr): **€70 (~$79)**, includes 50 h RINEX
+                 SKPOS_cm/RTK (1 device, 1 mo): €25 (~$28)
+                 SKPOS_cm/RTK dual receiver (2× SIM, 1 yr): €140 (~$158)
+                 SKPOS_dm/DGNSS (1 device, 1 yr): €25 (~$28), incl. 50 h RINEX
+                 SKPOS_mm post-processing per hour: €3.00 base + €0.07/hr
+                 SKPOS_mm post-processing 1000 h/yr bulk: €70 (~$79)
+               Prices reflect a Dec 2022 revision (operating-cost adjustment);
+               the obsolete pre-2022 cenník PDF (č.j. 2-124/2014) no longer
+               applies. **At €70/yr SKPOS is one of the cheapest national-scale
+               network-RTK services in the EU and the cheapest hobbyist on-ramp
+               in the Visegrád region.**
+**stations**:  ~26 SK permanent reference stations; VRS only (SKPOS_cm service)
+**notes**:     Three service tiers: SKPOS_dm (decimetre, code), SKPOS_cm
+               (centimetre, RTK/VRS), SKPOS_mm (post-processing). rtk2go ~2 SVK
+               bases, Centipede ~2 SVK nodes as volunteer alternative.
+**source**:    skpos.gku.sk/en/o-skpos.php; skpos.gku.sk/register/
+
+---
+
 ## tencent_rtk — Tencent RTK (CN)
 
 **status**:    paid-affordable
@@ -1792,26 +1833,6 @@ solution, port 2103 single-base.
 
 ---
 
-## skpos — SKPOS (SK)
-
-**status**:    paid
-**date_added**: 2026-04-29
-**country**:   SK
-**type**:      VRS (network solution)
-**host:port**: skpos.gku.sk:2101 (IP fallback: 193.93.74.56)
-**access**:    free for public-sector bodies and municipalities; all other users
-               (commercial, hobbyist) paid via SKPOS online shop at
-               skposonlineobchod.gku.sk. Pricing not publicly listed without login;
-               GKÚ raised rates in December 2022. Slovakia uses EUR.
-               Registration at skpos.gku.sk/register/.
-**yearly_cost**: not publicly listed (requires login to online shop); over €200/yr cutoff inferred
-**stations**:  ~26 SK permanent reference stations; VRS only (SKPOS_cm service)
-**notes**:     Three service tiers: SKPOS_dm (decimetre, code), SKPOS_cm (centimetre, RTK/VRS),
-               SKPOS_mm (post-processing). Not a general hobbyist path. rtk2go ~2 SVK bases,
-               Centipede ~2 SVK nodes as volunteer alternative.
-
----
-
 ## agros — AGROS (RS)
 
 **status**:    paid
@@ -1835,16 +1856,33 @@ Pricing confirmed from official Uredba (regulation) published by RGZ; Serbian po
 **date_added**: 2026-04-29
 **country**:   BG
 **type**:      VRS (network RTK)
-**host:port**: not publicly listed (contact via geonet.bg)
-**access**:    paid; pricing not published on website
-**yearly_cost**: not publicly listed (contact geonet.bg)
-**source**:    geonet.bg
-**operator**:  GeoNet Bulgaria (private company)
+**host:port**: `gnss.geonet.bg:2101` (IP `95.43.249.1:2101`); confirmed on
+               geonet.bg/help.html 2026-04-30
+**access**:    paid contract with operator. Service description targets geodesy,
+               construction, agriculture, GIS; no explicit hobbyist tier
+               advertised, no explicit exclusion of private individuals.
+**yearly_cost**: tariff PDF at `solitech.bg/wp-content/uploads/2026/04/planove-geonet-04.2026.pdf`
+               (April 2026 edition); BGN/EUR figures not yet retrieved.
+               Subscriptions page describes two plan families: unlimited-access
+               plans (heavy users) and included-monthly-consumption plans
+               (occasional users). Contact: `info@geonet.bg`,
+               tel `0700 1 4677`.
+**stations**:  certified per Instruction РД-02-20-25/2011 by АГКК (Agency for
+               Geodesy, Cartography and Cadastre); Certificate of Conformity
+               No. 013/2020 renewed to 2026 (per 2024-07-01 news)
+**source**:    geonet.bg; geonet.bg/help.html; geonet.bg/abonamenti.html
+**operator**:  Зенит-Гео ЕООД (Zenit-Geo Ltd) — commercial private operator;
+               distribution via Солитех АД (Solitech AD), official Trimble
+               reseller for Bulgaria
 
-GEO-RTK is GeoNet Bulgaria's commercial network RTK / VRS service. Provides absolute
-position accuracy within ~2 cm. No free hobbyist tier; pricing requires direct contact
-with the operator. GCSES (the state Geodesy, Cartography and Cadastre Agency) operates
-government reference stations but provides no public NTRIP caster.
+GEO-RTK is GeoNet Bulgaria's commercial network RTK / VRS service. Provides
+absolute position accuracy within ~2 cm. No free hobbyist tier. GCSES (the
+state Geodesy, Cartography and Cadastre Agency) operates government reference
+stations but provides no public NTRIP caster.
+
+**investigate**: pull the April 2026 tariff PDF and record BGN/EUR per tier;
+clarify whether private individuals (no business registration) can sign a
+contract with Solitech.
 
 ---
 
@@ -1854,33 +1892,104 @@ government reference stations but provides no public NTRIP caster.
 **date_added**: 2026-04-29
 **country**:   ME
 **type**:      VRS-capable (9 CORS locations)
-**host:port**: not publicly listed (contact Uprava za nekretnine, Podgorica)
-**access**:    paid subscription tiers: 24 h, 48 h, 1 month, 3 months, 6 months, 1 year, 2 years
-**yearly_cost**: not published on official page (contact gov.me/clanak/montepos); Montenegro uses EUR
-**stations**:  ~9 permanent CORS stations
-**source**:    gov.me (Uprava za nekretnine — Real Estate Administration)
+**host:port**: not on the public-facing page; disclosed post-registration.
+               Application form (`Zahtjev za MontePos`, 2024-04-11 PDF) and
+               tariff PDF (`MontePos- tehnički detalji`, 2024-04-11) downloadable
+               from `wapi.gov.me`; contact Goran Popović, dipl. inž. geod.,
+               Načelnik odsjeka za geodetske radove i državnu granicu,
+               tel +382 67 641 119.
+**access**:    Paid subscription. Periods confirmed on gov.me/clanak/montepos:
+               **24 h, 48 h, 1 month, 3 months, 6 months, 1 year, 2 years**.
+               Application form submitted to Uprava za nekretnine; payment to
+               giro account 832-1081-58 with "Montepos - RTK" in the
+               purpose-of-payment field.
+**yearly_cost**: EUR figures not on the public page; tariff PDF
+               `MontePos- tehnički detalji` (382 KB, 2024-04-11) on `wapi.gov.me`;
+               no professional licence requirement mentioned. Montenegro uses
+               EUR as de facto currency.
+**stations**:  9 permanent CORS stations
+**source**:    gov.me/clanak/montepos (Uprava za nekretnine — Real Estate
+               Administration)
 
-Montenegro's national CORS/VRS network. Subscription required for all tiers; no free access.
-Registration and pricing via gov.me/clanak/montepos or direct contact with the agency.
+Montenegro's national CORS/VRS network. Subscription required for all tiers;
+no free access. Application materials are publicly downloadable on `wapi.gov.me`
+but actual EUR figures need to be pulled from the tariff PDF.
+
+**investigate**: retrieve the EUR tariff per period from the 2024-04-11 PDF on
+wapi.gov.me; obtain the post-registration NTRIP host:port via
+`uznmontepos@gmail.com` or +382 67 641 119.
 
 ---
 
-## bihos — BiHPOS (BA)
+## srpos_ba — SRPOS (BA — Republika Srpska)
 
 **status**:    paid
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 **country**:   BA
-**type**:      VRS-capable; dual-entity administration
-**host:port**: not publicly listed; FBiHPOS: contact fgu.com.ba; SRPOS: contact rgurs.org/srpos
-**access**:    paid; two independent geodetic authorities: FGU (FBiH) and RGURS (Republika Srpska)
-**yearly_cost**: not published on public website; flexible periods (yearly, monthly, other) per RGURS documentation
-**stations**:  34 (17 FBiHPOS + 17 SRPOS); EU-funded; operational since 2011
-**source**:    fgu.com.ba (Federal Geodetic Administration) + rgurs.org (Republic Authority for Geodetic and Property Affairs, Republika Srpska)
+**type**:      VRS + iMAX + MAX + FKP + nearest-station single base
+**host:port**: `srpos.rgurs.org:2101` (web portal `http://srpos.rgurs.org/sbc`);
+               legacy `81.93.74.247:8080` also documented in user-access guide
+**access**:    Paid. Tariff schedule established by Decision in Sl. glasnik RS
+               85/2011; current rates apply post-2013 (a 20% reduction was in
+               force only until 1 Jan 2013). No professional surveying licence
+               required — registration form imposes no licensing condition.
+               Foreign nationals not explicitly excluded but the RS giro account
+               payment route practically favours in-entity users.
+**yearly_cost**: Confirmed 2026-04-30 from
+               `rgurs.org/uploads/pages/SRPOS_Visine_naknada_za_koristenje_servisa_SRPOS.pdf`
+               (BAM, pegged 1.95583 to 1 EUR; ~$0.578/BAM. VAT treatment not
+               explicitly stated on the document — government tariff schedule):
+                 RTK: 0.20 KM/min · 10 h 30 KM (~€15, ~$17) · 20 h 50 KM (~$29) ·
+                   50 h 150 KM (~$87) · 1 mo 250 KM (~€128, ~$145) ·
+                   6 mo 750 KM (~$433) · 1 yr 1,000 KM (~€511, ~$578)
+                 DGPS: 0.15 KM/min · 10 h 20 KM (~$12) · 1 mo 200 KM (~$116) ·
+                   1 yr 1,000 KM (~$578)
+                 Post-processing RTK <30 s/hr: 22 KM/hr; DGPS ≥30 s/hr: 13 KM/hr
+                 RINEX RTK 28 KM/hr; DGPS 17 KM/hr; combined 33 KM/hr
+                 Coordinate transformation (web, per point) 13 KM
+               The 10-hour and 20-hour blocks (~$17, ~$29) are realistic
+               hobbyist on-ramps; the annual tier is well over the $200 cutoff.
+**mountpoints**: MAX-AUTO (RTCM 3.1, GPS+GLO), iMAX-AUTO (3.1), VRS-AUTO (3.1),
+               FKP-AUTO (RTCM 2.3 msg 18/19, GPS only), NEAREST (3.1, single
+               base), iMAX-AUTO-2.3 (RTCM 2.3)
+**stations**:  ~17 (RS portion of the 34-station BiHPOS network)
+**source**:    rgurs.org/stranica/srpos; rgurs.org/en/stranica/srpos;
+               rgurs.org/uploads/pages/SRPOS_Korisnicki_pristup.pdf;
+               rgurs.org/uploads/pages/SRPOS_Visine_naknada_za_koristenje_servisa_SRPOS.pdf
+**operator**:  RGURS / RUGIPP — Republička uprava za geodetske i imovinsko-pravne
+               poslove, Republika Srpska. Admin Spomenko Mitrović,
+               tel +387 55 220-890 / +387 55 202-643. Launched 27 Sep 2011.
 
-Bosnia and Herzegovina's GNSS reference station network, implemented as part of the EU BiHPOS project.
-Split between two entities with separate control centres and subscription processes.
-FBiHPOS covers the Federation of BiH; SRPOS covers Republika Srpska; the two control centres
-exchange data across entity boundaries.
+The Republika Srpska sub-network of the EU-funded BiHPOS project. Streams MAX,
+iMAX, VRS, FKP, and a nearest-station single-base mountpoint. Sister network
+FBiHPOS (Federation of BiH) is documented separately.
+
+---
+
+## fbihpos_ba — FBiHPOS (BA — Federation of BiH)
+
+**status**:    paid
+**date_added**: 2026-04-30
+**country**:   BA
+**type**:      VRS-capable (network RTK)
+**host:port**: not publicly listed; operator website unreachable 2026-04-30
+**access**:    Paid; details unknown — operator web presence offline at the time
+               of last check.
+**yearly_cost**: unknown
+**stations**:  ~17 (FBiH portion of the 34-station BiHPOS network)
+**source**:    `fgu.gov.ba` — all URL variants returned connection errors on
+               2026-04-30
+**operator**:  FGU — Federalna uprava za geodetske i imovinsko-pravne poslove,
+               Federacija BiH
+
+The FBiH sub-network of the BiHPOS project, sister to SRPOS. The FGU website
+was completely unreachable during the 2026-04-30 audit (DNS / connection
+failures on `fgu.gov.ba` and `www.fgu.gov.ba`). Operational status of the
+caster cannot be confirmed; tariff and host:port are unknown.
+
+**investigate**: retry `fgu.gov.ba` periodically; if still offline, contact FGU
+through Federation cantonal cadastre offices or the BiHPOS project's
+cross-entity control centre.
 
 ---
 

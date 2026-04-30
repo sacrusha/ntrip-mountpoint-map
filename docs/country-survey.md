@@ -500,14 +500,23 @@ _Last updated: 2026-04-22._
 
 **date_added**: 2026-04-29
 
-- **Free government RTK**: BiHPOS — dual-entity fixed reference station network (CORS); paid; split between two
-  geodetic authorities: FBiHPOS (Federation of BiH, `fgu.com.ba`) and SRPOS (Republika
-  Srpska, `srpos.rgurs.org`). Together 34 stations, ~17 per entity; VRS-capable. Host:port
-  not publicly listed (contact fgu.com.ba or rgurs.org/srpos for credentials).
-  Pricing not on public website (contact respective authority).
-  → networks.md: `bihos`
+- **Government RTK (paid, RS half — SRPOS)**: SRPOS (RGURS — Republička uprava
+  za geodetske i imovinsko-pravne poslove, Republika Srpska, `srpos.rgurs.org:2101`
+  or legacy `81.93.74.247:8080`, ~17 stations, MAX + iMAX + VRS + FKP +
+  nearest-station). 2026 tariff confirmed 2026-04-30 (BAM, pegged 1.95583 to
+  1 EUR): RTK 0.20 KM/min · 10 h **30 KM (~€15, ~$17)** · 20 h 50 KM (~$29) ·
+  1 mo 250 KM (~€128, ~$145) · 1 yr 1,000 KM (~€511, ~$578); DGPS 1 mo 200 KM
+  (~$116). The 10-hour and 20-hour blocks are realistic hobbyist on-ramps; the
+  annual tier is well over budget. Open to natural persons (no licence
+  requirement); RS giro-account payment route. → networks.md: `srpos_ba`
+- **Government RTK (paid, FBiH half — FBiHPOS)**: FBiHPOS (FGU — Federalna
+  uprava za geodetske i imovinsko-pravne poslove, Federacija BiH, ~17 stations).
+  Operator website `fgu.gov.ba` was unreachable on 2026-04-30 — host:port and
+  tariff cannot be confirmed. → networks.md: `fbihpos_ba`
 - **Volunteer**: negligible. ~1 BIH base on rtk2go, zero on Centipede.
-- **Gap**: no free RTK for hobbyists; both entity endpoints require paid subscription.
+- **Gap**: no free RTK; SRPOS hourly blocks are the only affordable on-ramp in
+  Republika Srpska, and FBiH-side access is currently unverifiable due to FGU
+  site downtime.
 
 ### BG — Bulgaria
 
@@ -516,9 +525,16 @@ _Last updated: 2026-04-22._
 - **Free government RTK**: none. АГКК / GCSES (Агенция по геодезия, картография и
   кадастър — Geodesy, Cartography and Cadastre Agency) operates reference stations but
   no public NTRIP caster has been identified.
-- **Commercial**: GeoNet Bulgaria (`geonet.bg`, GEO-RTK service, VRS network) —
-  paid; pricing not publicly listed on website (contact via geonet.bg).
-  → networks.md: `geonet_bg`
+- **Commercial**: GeoNet Bulgaria GEO-RTK (Зенит-Гео ЕООД / Zenit-Geo Ltd,
+  distributed by Солитех АД / Solitech AD — Trimble's official Bulgarian
+  reseller, `gnss.geonet.bg:2101` (IP `95.43.249.1:2101`), VRS network).
+  Certified by АГКК under Instruction РД-02-20-25/2011 (Cert. No. 013/2020,
+  renewed to 2026). Tariff PDF at
+  `solitech.bg/wp-content/uploads/2026/04/planove-geonet-04.2026.pdf` — two plan
+  families (unlimited access for heavy users; included-monthly-consumption for
+  occasional users); BGN/EUR figures not yet retrieved. Contract-based access;
+  no individual hobbyist tier advertised. Contact `info@geonet.bg`,
+  tel `0700 1 4677`. → networks.md: `geonet_bg`
 - **Volunteer**: rtk2go ~7 BGR bases, Centipede ~1 BGR node. Thin coverage concentrated
   near Sofia and the main urban corridor.
 - **Gap**: no free government RTK and no public hobbyist path; volunteer bases near Sofia
@@ -592,14 +608,19 @@ _Last updated: 2026-04-22._
 
 **date_added**: 2026-04-29
 
-- **Free government RTK**: MONTEPOS (Uprava za nekretnine / Real Estate Administration,
-  `gov.me/clanak/montepos`) — paid; ~9 fixed reference stations (CORS) across Montenegro; VRS-capable (9
-  locations listed). Subscription tiers: 24 h, 48 h, 1 month, 3 months, 6 months,
-  1 year, 2 years. Pricing not published on official page (contact Uprava za nekretnine,
-  Podgorica). Host:port not publicly listed; Montenegro uses EUR, so expect EUR pricing.
+- **Government RTK (paid)**: MONTEPOS (Uprava za nekretnine / Real Estate
+  Administration, `gov.me/clanak/montepos`) — 9 CORS stations, VRS-capable.
+  Subscription periods confirmed 2026-04-30: 24 h, 48 h, 1 month, 3 months,
+  6 months, 1 year, 2 years. Application form (`Zahtjev za MontePos`) and
+  tariff PDF (`MontePos- tehnički detalji`, both 2024-04-11 PDFs on
+  `wapi.gov.me`); EUR figures not yet retrieved. Host:port not on the public
+  page — disclosed post-registration. Payment to giro account 832-1081-58
+  with "Montepos - RTK" purpose. Admin contact Goran Popović, tel
+  +382 67 641 119. No professional licence required. Montenegro uses EUR.
   → networks.md: `montepos`
 - **Volunteer**: none. Zero MNE stations on rtk2go or Centipede.
-- **Gap**: no free RTK; paid MONTEPOS is the only option.
+- **Gap**: no free RTK; paid MONTEPOS is the only option, and pricing is only
+  visible after pulling the tariff PDF or contacting the admin directly.
 
 ### MK — North Macedonia
 
@@ -679,17 +700,19 @@ _Last updated: 2026-04-22._
 
 **date_added**: 2026-04-29
 
-- **Free government RTK**: SKPOS (GKÚ / Geodetický a kartografický ústav,
-  `skpos.gku.sk:2101`, ~26 stations, VRS) — free for public-sector bodies and
-  municipalities; commercial/hobbyist use is paid via the SKPOS online shop
-  (`skposonlineobchod.gku.sk`). Pricing not listed publicly without login; GKÚ
-  raised rates in December 2022. Slovakia uses EUR. Likely expensive for a hobbyist
-  (inferred from professional-services pricing). Registration at
-  `skpos.gku.sk/register/`. → networks.md: `skpos`
+- **Government RTK (paid-affordable, hobbyist-eligible)**: SKPOS (GKÚ
+  Bratislava / Geodetický a kartografický ústav, `skpos.gku.sk:2101`, ~26
+  stations, VRS). 2026 schedule confirmed 2026-04-30: SKPOS_cm/RTK
+  **€70/yr (~$79)** or €25/mo (~$28) per device; dual-receiver €140/yr;
+  SKPOS_dm/DGNSS €25/yr; SKPOS_mm post-processing €0.07/hr or €70 for
+  1000 h/yr. Free for Slovak public-sector bodies and municipalities under
+  Act 145/1995. Registration form (`skpos.gku.sk/register/`) explicitly accepts
+  "Fyzická osoba bez živnostenského listu" (private individual without trade
+  licence) and lists almost all UN member states — open internationally.
+  **One of the cheapest national-scale network-RTK services in the EU and
+  the cheapest hobbyist on-ramp in the Visegrád region.** → networks.md: `skpos`
 - **Volunteer**: rtk2go ~2 SVK bases, Centipede ~2 SVK nodes.
-- **Gap**: no free hobbyist path; volunteer coverage is negligible across the
-  country; self-operated base or a cross-border Austrian/Czech node are the
-  the only affordable alternatives are near borders.
+- **Gap**: none for hobbyists at €70/yr; SKPOS is the recommended path.
 
 ### UA — Ukraine
 
