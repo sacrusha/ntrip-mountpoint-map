@@ -1048,7 +1048,7 @@ Only one network (GPSBru) remains unconfirmed; all ingested networks have been m
 
 ## gpsbru — GPSBru / AGN (BE — Brussels)
 
-**status**:    candidate
+**status**:    free
 **host:port**: `agn.ngi.be` (port unconfirmed)
 **type**:      single-base
 **access**:    free; register at agn.ngi.be
@@ -1147,7 +1147,7 @@ Do not add to pipeline until the service is confirmed operational.
 
 ## tpos — TPOS (IT — Trentino)
 
-**status**:    candidate
+**status**:    free
 **date_added**: 2026-04-30
 **host:port**: `tpos.provincia.tn.it:2101` (SBC portal domain; mountpoints provided after login)
 **type**:      physical-coord-vrs (VRS, MAX, NRT mountpoints)
@@ -1165,7 +1165,7 @@ archive (up to 1 year). Host:port confirmed via provincial institutional pages 2
 
 ## stpos — STPOS (IT — South Tyrol / Alto Adige)
 
-**status**:    candidate
+**status**:    free
 **date_added**: 2026-04-30
 **host:port**: `www.stpos.it:2101` (SBC portal domain; mountpoints provided after documentation review)
 **type**:      physical-coord-vrs
@@ -1186,7 +1186,7 @@ Bolzano cadastral pages 2026-04-30.
 
 ## gnss_veneto — Rete GNSS Veneto (IT — Veneto)
 
-**status**:    candidate
+**status**:    free
 **date_added**: 2026-04-30
 **host:port**: `147.162.229.53:2101` (confirmed in site FAQ, question 4)
 **type**:      physical-coord-vrs (MAX3, IMAX, NRT mountpoints)
@@ -1207,7 +1207,7 @@ Host:port confirmed from site FAQ 2026-04-30.
 
 ## gnss_liguria — Rete GNSS Liguria (IT — Liguria)
 
-**status**:    candidate
+**status**:    free
 **date_added**: 2026-04-30
 **host:port**: `81.23.86.70:2101` (confirmed on Geoportal "Correzioni in Tempo Reale" page)
 **type**:      physical-coord-vrs
@@ -1226,7 +1226,7 @@ contributed from SPIN3 GNSS (Piemonte/Lombardia border). Host:port confirmed on 
 
 ## sicilianet — Sicili@net (IT — Sicily + S. Calabria)
 
-**status**:    candidate
+**status**:    free
 **date_added**: 2026-04-30
 **host:port**: `193.206.223.39:2101`
 **type**:      physical-coord-vrs (MAX/IMAX, VRS, FKP, RTCM 3.0; single-base and network solutions)
@@ -3700,7 +3700,7 @@ for pipeline — paid service and no confirmed hobbyist-accessible free tier.
 
 ## khmer_geonet — Khmer GEONET (KH)
 
-**status**:    candidate
+**status**:    free
 **country**:   KH — Cambodia
 **type**:      single-base (5 physical CORS)
 **host:port**: not publicly listed; Trimble Pivot web interface visible at
@@ -4234,7 +4234,7 @@ check `survey.gov.bn` directly or contact the department for geodetic services.
 
 ## bfcors — BF-CORS GNSS Network (BF)
 
-**status**:    candidate
+**status**:    free
 **country**:   BF — Burkina Faso
 **type**:      single-base (physical CORS stations)
 **host:port**: not publicly listed (disclosed post-registration via `bfcors.net`)
@@ -4264,7 +4264,7 @@ verify operational status given post-coup bilateral changes.
 
 ## ign_bj — IGN Bénin Permanent GNSS Station Network (BJ)
 
-**status**:    candidate
+**status**:    free
 **country**:   BJ — Benin
 **type**:      single-base (physical CORS stations)
 **host:port**: not publicly listed (disclosed after registration via IGN Bénin / CatIS)
@@ -4350,7 +4350,7 @@ portals for any announced CORS programme.
 
 ## dgigc_tg — Togo National CORS Network (TG)
 
-**status**:    candidate
+**status**:    free
 **country**:   TG — Togo
 **type**:      single-base (physical CORS stations, exact count unconfirmed)
 **host:port**: not publicly listed (contact DGIGC)
@@ -4998,7 +4998,7 @@ equipment company. Not added to pipeline: paid service.
 
 ## ign_cr_cors — IGN-CR CORS / SNIT NTRIP Caster (CR)
 
-**status**:    candidate
+**status**:    free
 **date_added**: 2026-04-29
 **country**:   CR
 **type**:      physical single-base (14 stations)

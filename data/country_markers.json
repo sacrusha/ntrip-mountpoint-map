@@ -69,27 +69,27 @@
      "note":"Free government service. Host:port not in public aggregators; the operator manual is in Thai."},
 
     {"id":"tpos",        "name":"TPOS",             "region":"Trentino",              "country":"IT", "lat":46.10, "lon":11.10,
-     "tier":"free", "vrs":true, "access":"registration", "registration":"https://www.tpos.provincia.tn.it",
+     "tier":"free", "vrs":true, "pins":true, "source_id":"tpos", "access":"registration", "registration":"https://www.tpos.provincia.tn.it",
      "stations_declared":11,
      "note":"11 stations, free. Self-service portal; no professional licence required. RTK, VRS/MAX/NRT mountpoints, and 1-year RINEX archive."},
 
     {"id":"stpos",       "name":"STPOS",            "region":"South Tyrol / Alto Adige", "country":"IT", "lat":46.50, "lon":11.40,
-     "tier":"free", "vrs":true, "access":"registration", "registration":"https://www.stpos.it",
+     "tier":"free", "vrs":true, "pins":true, "source_id":"stpos", "access":"registration", "registration":"https://www.stpos.it",
      "stations_declared":10,
      "note":"10 stations, free. SBC portal registration; ID + intended-use declaration required to activate RTK (RINEX available immediately). No professional restriction."},
 
     {"id":"gnss_veneto", "name":"Rete GNSS Veneto", "region":"Veneto",               "country":"IT", "lat":45.70, "lon":12.00,
-     "tier":"free", "vrs":true, "access":"registration", "registration":"https://retegnssveneto.cisas.unipd.it",
+     "tier":"free", "vrs":true, "pins":true, "source_id":"gnss_veneto", "access":"registration", "registration":"https://retegnssveneto.cisas.unipd.it",
      "stations_declared":20,
      "note":"~20 stations, free. Email to request credentials; open to any user. MAX3/IMAX/NRT mountpoints."},
 
     {"id":"gnss_liguria","name":"Rete GNSS Liguria", "region":"Liguria",             "country":"IT", "lat":44.40, "lon":8.60,
-     "tier":"free", "vrs":true, "access":"registration", "registration":"https://geoportal.regione.liguria.it/servizi/rete-gnss-liguria",
+     "tier":"free", "vrs":true, "pins":true, "source_id":"gnss_liguria", "access":"registration", "registration":"https://geoportal.regione.liguria.it/servizi/rete-gnss-liguria",
      "stations_declared":10,
      "note":"10 stations, free. Online registration via regional geoportal. 7 Liguria stations + 3 shared with SPIN3 GNSS (northern border)."},
 
     {"id":"sicilianet",  "name":"Sicili@net",       "region":"Sicily + S. Calabria", "country":"IT", "lat":37.60, "lon":14.00,
-     "tier":"free", "vrs":true, "access":"registration", "registration":"https://www.ct.ingv.it/index.php/risorse-e-servizi/sicil-net",
+     "tier":"free", "vrs":true, "pins":true, "source_id":"sicilianet", "access":"registration", "registration":"https://www.ct.ingv.it/index.php/risorse-e-servizi/sicil-net",
      "stations_declared":80,
      "note":"~80 stations (INGV Catania seismic network), free. Email to request credentials. MAX/IMAX (Leica), VRS (Trimble), FKP (Geo++) and RTCM 3.0 mountpoints."},
 
