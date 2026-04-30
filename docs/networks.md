@@ -2814,65 +2814,66 @@ NTRIP endpoint in Kyrgyzstan.
 
 ## tm_cors — Turkmenistan National CORS Network (TM)
 
-**status**:    free
+**status**:    rejected
 **country**:   TM
 **type**:      single-base (physical CORS)
-**access**:    restricted; government-internal use only, no public endpoint found
-**yearly_cost**: not publicly listed
-**operator**:  Ministry of Agriculture and Land Resources Service of
-               Turkmenistan, supported by FAO
-**host:port**: not publicly listed
-**stations**:  65 (acquired 2022–2025 per FAO project documentation)
+**access**:    government-internal; no public endpoint found
+**operator**:  Land Resources Service of Turkmenistan (Turkmengeodezija,
+               Ashgabat), supported by FAO
+**host:port**: not found
+**stations**:  65 (built 2022–2025 per FAO project documentation)
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
 A 65-station CORS network was built under a 2022–2025 FAO-supported project
 (Technical Assistance to Support the Establishment of Digital Land Cadastre
 in Turkmenistan). The network underpins national cadastral surveying and
-land administration. No public NTRIP endpoint, registration portal, or
-pricing has been found. Turkmenistan has one of the most restricted
-information environments in Central Asia; all geodetic infrastructure is
-treated as government-internal. No IGS stations in Turkmenistan.
-
-Rejected — no public endpoint, no hobbyist path. Deferred pending any
-change in government data-access policy.
+land administration. Checked on 2026-04-30: no entry in BKG/IGS, mvarga1989,
+ArduSimple, SNIP, or rtk2go monitors; no .gov.tm or .com.tm domain references
+CORS, NTRIP, or port 2101. A 2024 article on turkmenistan.gov.tm reports
+ongoing GNSS equipment training, confirming the infrastructure exists but is
+not yet publishing a public service. No operator website, email, or phone for
+Turkmengeodezija was discoverable.
+Rejected — no public endpoint; government-internal infrastructure only.
 
 ---
 
 ## azpos — AzPOS (AZ)
 
-**status**:    free
+**status**:    restricted
 **country**:   AZ
-**type**:      single-base (physical CORS)
-**access**:    paid; contract required — no self-service registration
-**host:port**: not publicly listed (disclosed after service agreement)
-**operator**:  State Committee on Property Issues (Əmlak Məsələləri Dövlət
-               Xidməti) / Design Research Centre for Cadastre & Land Management
-               (Kadastr və Yer Quruluşu Layihə Tədqiqat Mərkəz)
-**registration**: emlak.gov.az (apply via the operator; agreement-based)
-**yearly_cost**: not publicly listed (contract-based commercial pricing)
-**stations**:  ~45 physical CORS (37 original across AZ + 8 restored in
-               Karabakh region 2024: Fuzuli, Jebrail, Zangilan, Kəlbəcər ×2,
-               Ağdam, Şuşa, Laçın)
-**signals**:   GPS, GLONASS, Galileo
+**type**:      physical-coord-vrs (Leica GNSS Spider)
+**access**:    bilateral service agreement required; no self-service registration;
+               "legal entities and individuals" may apply per operator contact
+               page, but process is conducted entirely in Azerbaijani; no
+               published tariff
+**host:port**: `azpos.az:2101` (authentication-gated; no public sourcetable to
+               unauthenticated queries; confirmed provisionally 2026-04-30 via
+               SNIP checker — blank response, consistent with IP-whitelisting or
+               authenticated NTRIP)
+**operator**:  State Service on Property Issues under the Ministry of Economy
+               (Əmlak Məsələləri Dövlət Xidməti); SBC portal:
+               http://www.azpos.az/sbc/ (Leica Spider Business Center)
+**registration**: https://emlak.gov.az/az/news/view/4856-Əlaqə (contact page)
+**stations**:  45 (37 original + 8 restored in Karabakh 2024: Fuzuli, Jebrail,
+               Zangilan, Kəlbəcər ×2, Ağdam, Şuşa, Laçın)
+**signals**:   GPS, GLONASS, Galileo, BeiDou
 **nmea_filter**: n/a (not in pipeline)
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
 AzPOS (Azerbaijan Positioning Observation System) is the national CORS network
-operated by the State Committee on Property Issues under the Ministry of Economy
-of Azerbaijan. Originally established with 37 stations at ~30–40 km spacing
-covering mainland Azerbaijan, 8 stations were restored in the formerly occupied
-Karabakh region in 2024 following the September 2023 Azerbaijani military
-operation that restored full territorial control. Station placement was
-validated with Leica GS18 receivers. The network provides RTK and DGNSS
-post-processing services for cadastral, mapping, and engineering applications.
-Access requires a signed service agreement; pricing and host:port details are
-disclosed only after contracting with the operator. No free or hobbyist tier
-identified.
-
-Rejected — paid/contract-only. No public NTRIP endpoint.
-**missing**: pricing and host:port — contact operator via emlak.gov.az.
+operated by the State Service on Property Issues under the Ministry of Economy
+of Azerbaijan. Originally 37 stations at ~30–40 km spacing across mainland
+Azerbaijan; 8 stations were restored in the Karabakh region in 2024 following
+the September 2023 restoration of full territorial control. Receivers validated
+with Leica GS18; backend is Leica GNSS Spider (VRS capable). The SBC login
+portal at azpos.az/sbc/ shows an RTK product with Subscription Period,
+Consumption Limit, and Working Area fields — all values hidden pre-login.
+No published tariff found on any public page (ArduSimple lists AzPOS as "paid
+national service" with no price). Access requires bilateral agreement; pricing
+and final host:port confirmed only after contracting.
+Restricted — no published tariff; contract-only access.
 
 ---
 

@@ -271,6 +271,10 @@
      "registration":"https://rtk.qgeo.kz", "stations_declared":120,
      "note":"120+ reference stations. Requires a Kazakh resident ID number — foreign users cannot self-register. Baselines will be long outside Almaty and Astana."},
 
+    {"id":"azpos",       "name":"AzPOS",             "region":"Azerbaijan",            "country":"AZ", "lat":40.41, "lon":49.87,
+     "tier":"restricted", "vrs":true, "access":"restricted", "stations_declared":45,
+     "note":"45 stations (GPS + GLONASS + Galileo + BeiDou), Leica Spider VRS backend. Requires a bilateral service agreement with a government office in Baku; no self-service registration and no published tariff."},
+
     {"id":"dvrs",        "name":"DVRS",             "region":"Dubai (UAE)",          "country":"AE", "lat":25.20, "lon":55.27,
      "tier":"restricted", "vrs":true, "access":"restricted", "registration":"https://www.dm.gov.ae", "stations_declared":18,
      "note":"18+ four-constellation stations under Dubai Municipality. Professional application required; no hobbyist registration path. Online registration portal currently unavailable."},

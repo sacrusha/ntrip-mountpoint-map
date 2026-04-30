@@ -2852,20 +2852,24 @@ similarly have no published coverage for these jurisdictions.
 
 ### AZ — Azerbaijan
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
 - **Free government RTK**: none. AzPOS — Azerbaijan Positioning Observation System
-  (State Committee on Property Issues / Əmlak Məsələləri Dövlət Xidməti,
-  `emlak.gov.az`) — 37 physical fixed reference stations (CORS) at 30–40 km spacing (GPS + GLONASS +
-  Galileo); 8 additional stations restored in Karabakh region in 2024 (Fuzuli,
-  Jebrail, Zangilan, Kəlbəcər ×2, Ağdam, Şuşa, Laçın), bringing the total to ~45.
-  Access requires a signed service agreement with the operator (Kadastr və Yer
-  Quruluşu Layihə Tədqiqat Mərkəz / Design Research Centre for Cadastre & Land
-  Management); no self-service web registration. Pricing not on public website.
-  Host:port not publicly listed (disclosed after contract). Paid — likely expensive
-  for a hobbyist (contract-based commercial service). → networks.md: `azpos`
-- **Volunteer**: none. Zero AZ stations confirmed on rtk2go or Centipede.
-- **Gap**: no free or affordable public NTRIP for hobbyists. Deploy a local base
+  (State Service on Property Issues / Əmlak Məsələləri Dövlət Xidməti,
+  `emlak.gov.az`) — 45 physical fixed reference stations (CORS) at 30–40 km
+  spacing (GPS + GLONASS + Galileo + BeiDou); original 37 stations plus 8
+  restored in Karabakh region in 2024 (Fuzuli, Jebrail, Zangilan, Kəlbəcər ×2,
+  Ağdam, Şuşa, Laçın). Backend is Leica GNSS Spider (VRS capable). Caster
+  provisionally at `azpos.az:2101` (authentication-gated; no public sourcetable
+  to unauthenticated queries). Access requires a signed bilateral service
+  agreement; "legal entities and individuals" may apply per the operator's
+  contact page, but there is no self-service web registration and the process is
+  conducted entirely in Azerbaijani. No published tariff.
+  → networks.md: `azpos`
+- **Volunteer**: none. Zero AZ stations on rtk2go or Centipede.
+- **Gap**: no free or self-service RTK for hobbyists. AzPOS is accessible in
+  principle to individuals but requires a bilateral contract with a government
+  office in Baku — effectively restricted for most visitors. Deploy a local base
   station for centimetre-level work.
 
 ### AM — Armenia
@@ -3106,14 +3110,18 @@ similarly have no published coverage for these jurisdictions.
 
 ### TM — Turkmenistan
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
-- **Free government RTK**: none confirmed. FAO supported the Ministry of
-  Agriculture and Land Resources Service in building a 65-station fixed reference station network (CORS)
-  (2022–2025 project, finalised April 2025) as infrastructure for the national
-  land cadastre. No public NTRIP endpoint or self-service registration has been
-  found; access is restricted to government cadastral users. Host:port not
-  publicly listed.
+- **Free government RTK**: none. No national NTRIP/RTK-CORS network has been
+  found in any public registry (BKG/IGS, mvarga1989 CORS list, ArduSimple,
+  SNIP, rtk2go monitor) or on any .gov.tm / .com.tm domain. The national
+  mapping agency is Turkmengeodezija (Turkmen Map Production Enterprise,
+  Ashgabat). FAO supported the Land Resources Service in building a 65-station
+  fixed reference station (CORS) infrastructure (2022–2025), and a 2024 article
+  on turkmenistan.gov.tm confirms GNSS training is ongoing — indicating the
+  network exists for internal use but is not publishing a public NTRIP service.
+  No operator website, email, or phone for Turkmengeodezija was discoverable as
+  of 2026-04-30. → networks.md: `tm_cors`
 - **Volunteer**: none. Zero TM stations on rtk2go or Centipede.
 - **Gap**: no free or commercial RTK accessible to hobbyists. Turkmenistan has
   one of the most restricted information environments in Central Asia; the CORS
