@@ -173,8 +173,8 @@
      "note":"Republika Srpska half of the BiHPOS network. ~17 stations, MAX + iMAX + VRS + FKP + nearest-station mountpoints. Short pre-paid blocks are available (10 hours ~$17, 20 hours ~$29); per-minute and longer-period rates rise quickly, and the annual tier (~$578) is well above the $200 cutoff."},
 
     {"id":"fbihpos_ba",  "name":"FBiHPOS",          "region":"Federation of BiH",     "country":"BA", "lat":43.87, "lon":17.95,
-     "tier":"paid", "vrs":true, "access":"paid",
-     "note":"Federation of BiH half of the BiHPOS network, ~17 stations. Operator website fgu.gov.ba was unreachable on the last check (2026-04-30); host:port and tariff cannot currently be confirmed."},
+     "tier":"paid", "vrs":true, "access":"paid", "yearly_cost":"BAM/KM (pegged 1.95583 to 1 EUR). 100 KM (~$58) one-time registration; then 150 KM (~$87) for 7 days, 250 KM (~$145) for 1 month, 750 KM (~$435) for 6 months, 1,000 KM (~$580) for 12 months. All services (RTK + post-processing) 12 months 1,400 KM. Multi-rover discounts -10% / -20% (max -50%).", "registration":"https://www.fgu.com.ba/bs/servisi.html",
+     "note":"Federation of BiH half of the BiHPOS network. ~17 stations, MAX + iMAX + VRS + NEAREST + a combined H+V stream. Caster runs at fbihpos.katastar.ba on port 8080 (not the conventional 2101). Open to natural persons; all RTK tiers sit above the $200/yr cutoff for sustained use, and the 7-day pass (~$87) is the cheapest short block."},
 
     {"id":"egnss_tw",    "name":"e-GNSS",           "region":"Taiwan",                "country":"TW", "lat":23.70, "lon":121.00,
      "tier":"paid", "vrs":true, "access":"paid", "yearly_cost":"TWD 300/receiver/day (~$9/day) plus TWD 2,000 / 5-yr permit (~$60)", "registration":"https://www.nlsc.gov.tw",

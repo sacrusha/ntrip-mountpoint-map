@@ -513,13 +513,24 @@ _Last updated: 2026-04-22._
   affordability cutoff. Open to natural persons (no licence requirement); RS
   giro-account payment route. → networks.md: `srpos_ba`
 - **Government RTK (paid, FBiH half — FBiHPOS)**: FBiHPOS (FGU — Federalna
-  uprava za geodetske i imovinsko-pravne poslove, Federacija BiH, ~17 stations).
-  Operator website `fgu.gov.ba` was unreachable on 2026-04-30 — host:port and
-  tariff cannot be confirmed. → networks.md: `fbihpos_ba`
+  uprava za geodetske i imovinsko-pravne poslove, Federacija BiH,
+  `fbihpos.katastar.ba:8080` — note port 8080, not 2101, ~17 stations,
+  MAX + iMAX + VRS + NEAREST + combined H+V mountpoints). Tariff per FBiH
+  Government Decision V. broj 605/2022 (BAM, gross): 100 KM (~$58) one-time
+  registration; RTK-VPSP 7 days 150 KM (~$87), 1 mo 250 KM (~$145), 6 mo
+  750 KM (~$435), 12 mo 1,000 KM (~$580); a "all services" 12-mo at 1,400 KM
+  and post-processing-only 12-mo at 700 KM also exist. Multi-rover discounts
+  -10% / -20% / cap -50%. Open to natural persons (the registration form has
+  a dedicated "FIZIČKA LICA" section with no licence requirement). All RTK
+  tiers sit above the ~$200/yr cutoff for sustained use; the 7-day and
+  1-month passes are short-period options. Contact `fbihpos@fgu.com.ba`,
+  +387 33 586 065. → networks.md: `fbihpos_ba`
 - **Volunteer**: negligible. ~1 BIH base on rtk2go, zero on Centipede.
-- **Gap**: no free RTK; SRPOS short pre-paid blocks are the cheapest entry in
-  Republika Srpska but rise above the ~$200/yr cutoff for any sustained use,
-  and FBiH-side access is currently unverifiable due to FGU site downtime.
+- **Gap**: no free RTK on either entity-level network. SRPOS short pre-paid
+  hourly blocks are the cheapest entry in Republika Srpska but rise above the
+  ~$200/yr cutoff for any sustained use; FBiHPOS has no comparable hourly
+  tier and its shortest block is a 7-day pass at 150 KM (~$87). Volunteer
+  bases are the only free option.
 
 ### BG — Bulgaria
 

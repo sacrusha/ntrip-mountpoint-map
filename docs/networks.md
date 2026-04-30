@@ -1981,25 +1981,55 @@ FBiHPOS (Federation of BiH) is documented separately.
 **status**:    paid
 **date_added**: 2026-04-30
 **country**:   BA
-**type**:      VRS-capable (network RTK)
-**host:port**: not publicly listed; operator website unreachable 2026-04-30
-**access**:    Paid; details unknown — operator web presence offline at the time
-               of last check.
-**yearly_cost**: unknown
+**type**:      VRS + iMAX + MAX + nearest-station single base; combined H+V
+               correction stream
+**host:port**: `fbihpos.katastar.ba:8080` — note port 8080, not the
+               conventional NTRIP 2101. The third-party-cited `fbihpos.fgu.com.ba`
+               appears to be an older or alternative hostname; the current
+               authoritative access guide (FGU 2024) specifies the
+               `katastar.ba` host.
+**access**:    Paid. Registration form (FGU 2022) explicitly has a "FIZIČKA
+               LICA" (natural persons) section with no surveying-company,
+               professional-licence, or trade-registration requirement; fields
+               are name, surname, address, city, email, phone, username.
+               Foreign-applicant eligibility not explicitly stated — contact
+               FBiHPOS directly to confirm.
+**yearly_cost**: Tariff per FBiH Government Decision V. broj 605/2022
+               (14.04.2022), confirmed 2026-04-30 (BAM, pegged 1.95583 to 1 EUR;
+               ~$0.578/BAM; gross — these are statutory fees, no separate VAT
+               line, paid to Jedinstveni račun trezora FBiH 1020500000106698,
+               vrsta prihoda 722516):
+                 4.1.1 One-time user registration: 100 KM (~$58)
+                 4.2.1 RTK-VPSP 7 days:  150 KM (~$87)
+                 4.2.2 RTK-VPSP 1 mo:    250 KM (~$145)
+                 4.2.3 RTK-VPSP 2 mo:    350 KM (~$203)
+                 4.2.4 RTK-VPSP 3 mo:    450 KM (~$261)
+                 4.2.5 RTK-VPSP 4 mo:    550 KM (~$319)
+                 4.2.6 RTK-VPSP 5 mo:    650 KM (~$377)
+                 4.2.7 RTK-VPSP 6 mo:    750 KM (~$435)
+                 4.2.8 RTK-VPSP 12 mo:  1,000 KM (~$580)
+                 4.4.6 All FBiHPOS services 12 mo: 1,400 KM (~$812)
+                 4.4.7 Post-processing only 12 mo: 700 KM (~$406)
+               Multi-rover discounts: -10% on the 2nd rover, -20% on the 3rd,
+               capped at -50%. The 1-month and 7-day blocks are short-period
+               passes; all RTK tiers (including the 1-month at $145, 2-month at
+               $203 and the annual at $580) annualise above the project's
+               ~$200/yr cutoff for sustained use.
+**mountpoints**: MAX-AUTO, iMAX-3G, VRS-AUTO, VRS-3G, NEAREST, FBiH_H+V
 **stations**:  ~17 (FBiH portion of the 34-station BiHPOS network)
-**source**:    `fgu.gov.ba` — all URL variants returned connection errors on
-               2026-04-30
+**source**:    fgu.com.ba/bs/servisi.html;
+               fgu.com.ba/files/Novosti/2024/PDF/FBiHPOS - novo/Pristup FBiHPOS servisima.pdf;
+               fgu.com.ba/files/Novosti/2022/PDF/tarife/b/TARIFA NAKNADA ZA VRSENJE USLUGA IZ OBLASTI PREMJERA I KATASTRA.pdf
 **operator**:  FGU — Federalna uprava za geodetske i imovinsko-pravne poslove,
-               Federacija BiH
+               Federacija BiH (`fgu.com.ba` — note `.com.ba`, not `.gov.ba`).
+               Caster runs on a separate cadastre subdomain (`fbihpos.katastar.ba`).
+               Contact `fbihpos@fgu.com.ba`, tel +387 33 586 065.
 
-The FBiH sub-network of the BiHPOS project, sister to SRPOS. The FGU website
-was completely unreachable during the 2026-04-30 audit (DNS / connection
-failures on `fgu.gov.ba` and `www.fgu.gov.ba`). Operational status of the
-caster cannot be confirmed; tariff and host:port are unknown.
-
-**investigate**: retry `fgu.gov.ba` periodically; if still offline, contact FGU
-through Federation cantonal cadastre offices or the BiHPOS project's
-cross-entity control centre.
+The FBiH sub-network of the BiHPOS project, sister to SRPOS. Six published RTK
+mountpoints span MAX, iMAX, VRS network solutions plus a NEAREST single-base
+and a combined-component FBiH_H+V stream. Tariff parallels the SRPOS schedule
+in scale (1-month ~$145 vs SRPOS ~$145; annual ~$580 vs SRPOS ~$578) but with
+a higher one-time registration (100 KM vs 0).
 
 ---
 
