@@ -78,8 +78,8 @@ Develop on feature branches, PR into `main`. The workflow only runs against
 
 ## Current state (2026-04-29, branch claude/review-documentation-yELxu)
 
-**66 sources, ~5,472+ stations** in `data/stations.json`. Sources:
-rtk2go, Centipede, FReDNet, GeoRTK, 14× SAPOS Länder, ERGNSS, APOS (AT),
+**65 sources, ~5,435+ stations** in `data/stations.json`. Sources:
+rtk2go, Centipede, FReDNet, GeoRTK, 14× SAPOS Länder, ERGNSS,
 AUSCORS, PositioNZ, SatRef HK, InaCORS, TrigNet, RBMC-IP, RAMSAC, REGNA-ROU (UY),
 FLEPOS, WALCORS, SPSLux, ASG-EUPOS, CROPOS, ESTPOS, LatPos, IGAC, EarthScope NOTA,
 MIRAI, CORS-KOREA, IceCORS, KSA-CORS,
@@ -146,9 +146,11 @@ dropped to 0 stations by the nmea filter or `filter_vrs()`. Rendered as
 coloured VRS circles when live data is present; stale or never-fetched sources
 fall through to grey circles. The old hardcoded `VRS_NETWORKS` array has been
 replaced by `buildCountryMarkers()`, which reads all five tiers directly from
-`data/country_markers.json`. APOS (AT) and all Italian regional networks are
-physical-coord-vrs — show as regular pins with `pins:true` VRS badges. Full
-NRTK polygons are deferred.
+`data/country_markers.json`. Italian regional networks are physical-coord-vrs —
+show as regular pins with `pins:true` VRS badges. Full NRTK polygons are deferred.
+APOS (AT) was removed from the pipeline (2026-04-30) — it is paid for hobbyists
+and now represented only by a `paid`-tier country marker; its sourcetable is
+archived in `data/apos.sourcetable`.
 
 **`data/country_markers.json`:** static file (not pipeline-generated) with
 **122 entries** as of 2026-04-29. Two orthogonal axes plus runtime data
