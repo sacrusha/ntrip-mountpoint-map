@@ -1128,20 +1128,39 @@ zone-port mapping from the Thai-language PDF at the URL above.
 
 ---
 
-## zakpos — ZAKPOS (UA)
+## zakpos — ZAKPOS (UA — Zakarpattia)
 
-**status**:    weird
-**host:port**: not currently accessible
-**type**:      physical-coord-vrs
-**access**:    was free; registration at zakhid.net.ua
-**stations**:  ~50 (pre-conflict)
-**source**:    zakhid.net.ua (Western Ukraine positioning service)
+**status**:    paid
+**date_added**: 2026-04-30
+**host:port**: `195.16.76.194:2102` (primary RTK, RTCM 3.1/3.2; per-second billing);
+               also `:2131` (multi-constellation GPS+GLO+GAL+BDS), `:2100` (agri/drone),
+               `:2999` (RTCM 3.1, Baltic 1977 vertical), `:3000` (RTCM 3.4, GPS+GLO+GAL+BDS+QZSS),
+               `:3130` (individual bases, Baltic 1977), `:3131` (RTCM 3.4, EVRS);
+               site: zakpos.zakgeo.com.ua; account: www.ua-pos.net or 195.16.76.195
+**type**:      physical-coord-vrs (VRS zone mountpoints: VRSx_WEST/CENTR/EAST/SOUTH;
+               SK63 zones 1–6; MSK_05; USK2000_4; UTM_35; MUKA_32 city base)
+**access**:    paid subscription; account registration at www.ua-pos.net
+**registration**: https://www.ua-pos.net
+**yearly_cost**: 15,000 UAH/yr (~$366/yr) (wartime reduced tariff, April 2025);
+               also: 2.43 UAH/min RTK, 1.08 UAH/min post-processing, 225 UAH/day,
+               675 UAH/week, 1,600 UAH/month, 4,300 UAH/3 months, 8,000 UAH/6 months;
+               pre-April 2025 rate was ~€400/yr / 0.06 €/min
+**stations**:  unknown (mountpoints are VRS zone / coordinate-based; physical station count not confirmed)
+**operator**:  ДП "Закарпатгеодезцентр" (State Enterprise "Zakarpathia Geodesy Centre")
+**source**:    zakpos.zakgeo.com.ua (confirmed live, copyright © 2026)
 
-Ukrainian regional positioning service, disrupted since the Russian full-scale
-invasion (Feb 2022). Operational status and endpoint availability unknown.
-Do not add to pipeline until the service is confirmed operational.
+Zakarpattia regional GNSS positioning service (western Ukraine, Mukachevo hub), launched 2009
+by ДП "Закарпатгеодезцентр". Part of UA-EUPOS. Caster accessed by bare IP; no DNS hostname.
 
-**missing**: confirm service is operational and endpoint is reachable post-conflict.
+Operational status (April 2025): active with wartime caveats. Service suspended 25 Feb 2022
+under martial law; tariffs reduced and service resumed April 2025. Network pauses
+automatically during active air-raid alerts. Zakarpattia Oblast (bordering Hungary, Slovakia,
+Romania) has been far less affected by direct attacks than eastern regions.
+
+Two EUREF-IP stations tied to Mukachevo stream via euref-ip.net:2101: MUK200UKR0 (Mukachevo,
+NULP) and SULP00UKR0 (Lviv, IGS) — free reference, not NTRIP corrections.
+
+**missing**: physical station count; confirm whether coverage extends beyond Zakarpattia Oblast.
 
 ---
 

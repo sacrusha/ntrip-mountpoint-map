@@ -742,15 +742,16 @@ _Last updated: 2026-04-22._
 
 **date_added**: 2026-04-29
 
-- **Free government RTK**: ZAKPOS (zakgeo.com.ua, Transcarpathia regional service,
-  `zakpos.zakgeo.com.ua`, ~50 stations pre-conflict, physical-coord-vrs) — was free with
-  registration; disrupted since the Russian full-scale invasion (Feb 2022). Operational
-  status unknown; endpoint not currently reachable. Deferred until confirmed operational
-  post-conflict. → networks.md: `zakpos`
+- **Free government RTK**: none confirmed.
+- **Paid**: ZAKPOS (ДП "Закарпатгеодезцентр", `195.16.76.194:2102`, Zakarpattia regional,
+  VRS zone-based) — 15,000 UAH/yr (~$366/yr) wartime reduced tariff (April 2025); service
+  resumed after martial-law suspension; pauses automatically during air-raid alerts. Account
+  via www.ua-pos.net. → networks.md: `zakpos`
 - **Volunteer**: rtk2go ~3 UA bases; status uncertain given the conflict.
-- **Gap**: no accessible free RTK in Ukraine as of 2026; active front-line GNSS jamming
-  and spoofing further degrade signal quality across the country. Self-operated base on
-  safe ground is the only reliable hobbyist option in accessible areas.
+- **Gap**: no free RTK in Ukraine; ZAKPOS (paid, ~$366/yr) is the only confirmed option and
+  is subject to air-raid shutdowns. Active front-line GNSS jamming and spoofing further
+  degrade signal quality. Self-operated base on safe ground is the only reliable option in
+  accessible areas.
 
 ---
 

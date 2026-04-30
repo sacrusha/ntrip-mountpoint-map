@@ -43,10 +43,10 @@
      "stations_declared":35,
      "note":"35 stations, free (publicly-funded EUPOS member). Host:port disclosed only after registration."},
 
-    {"id":"zakpos",      "name":"ZAKPOS",           "region":"Ukraine (west)",        "country":"UA", "lat":49.50, "lon":26.00,
-     "tier":"weird", "vrs":true, "access":"registration",
-     "stations_declared":50,
-     "note":"~50 stations; was free. Service disrupted since Feb 2022 invasion. Status unknown — do not rely on."},
+    {"id":"zakpos",      "name":"ZAKPOS",           "region":"Zakarpattia Oblast",    "country":"UA", "lat":48.44, "lon":22.72,
+     "tier":"paid", "vrs":true, "access":"paid", "registration":"https://www.ua-pos.net",
+     "yearly_cost":"15,000 UAH/yr (~$366/yr)",
+     "note":"Zakarpattia regional network (western Ukraine, Mukachevo hub). Paid; 15,000 UAH/yr (~$366/yr) wartime-reduced rate (April 2025). Pauses automatically during air-raid alerts."},
 
     {"id":"gpsbru",      "name":"GPSBru / AGN",     "region":"Belgium (Brussels)",    "country":"BE", "lat":50.85, "lon":4.35,
      "tier":"free", "access":"registration", "registration":"https://agn.ngi.be",
