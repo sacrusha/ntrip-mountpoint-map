@@ -1615,17 +1615,18 @@ Promotional free 3-month window (Nov 2025–Jan 2026) expired. Worth revisiting 
 **date_added**: 2026-04-29
 **host:port**: `212.156.70.42:2101` (also reachable as `tusaga-aktif.gov.tr:2101`;
                legacy port 55600)
-**access**:    paid; one-off device-registration fee then RTK subscription. Tariff
-               set annually by BHİKPK (Inter-Ministerial Commission for Mapping
-               Affairs). Online registration requires a TC Kimlik No (Turkish
-               national ID), so foreign nationals without Turkish residency cannot
-               self-register — must contact the agency directly. Universities and
-               vocational schools may apply for free educational-area access via
-               official letter to TKGM Harita Dairesi Başkanlığı; public bodies and
+**access**:    paid; one-time per-device registration fee, then RTK subscription
+               purchased per period. Tariff set annually by BHİKPK
+               (Inter-Ministerial Commission for Mapping Affairs). Online
+               registration requires a TC Kimlik No (Turkish national ID), so
+               foreign nationals without Turkish residency cannot self-register —
+               must contact the agency directly. Universities and vocational
+               schools may apply for free educational-area access via official
+               letter to TKGM Harita Dairesi Başkanlığı; public bodies and
                universities also receive a 75% discount on 1-sec RINEX.
 **yearly_cost**: 2026 schedule (gross, KDV/VAT included), confirmed 2026-04-30 on
                tusaga-aktif.gov.tr homepage:
-                 Cihaz Abonelik (one-off device subscription): ₺550 (~$17)
+                 Cihaz Abonelik (per-device registration, one-time): ₺550 (~$17)
                  RTK 1 mo: ₺1,000 (~$30) · 2 mo ₺2,000 · 3 mo ₺3,000 · 4 mo ₺4,000
                  RTK 5 mo: ₺5,000 · 6 mo ₺6,000 (~$182) · 1 yr ₺8,135 (~$247)
                  DGPS 1 mo: ₺405 (~$12) · 1 yr ₺2,985 (~$91)
