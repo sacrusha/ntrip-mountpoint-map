@@ -109,8 +109,8 @@
      "note":"27 NTRIP-capable stations under IGVSB, intended free. No public endpoint confirmed; operational status uncertain given infrastructure constraints."},
 
     {"id":"hepos",       "name":"HEPOS",            "region":"Greece",                "country":"GR", "lat":38.50, "lon":23.80,
-     "tier":"paid-affordable", "vrs":true, "access":"paid-affordable", "yearly_cost":"€160/quarter (~$170) or ~€480/yr (~$520); per-minute billing also available", "registration":"https://www.ktimatologio.gr",
-     "note":"Affordable for seasonal use; quarterly (~€160), annual (~€480), and pay-per-minute billing options available."},
+     "tier":"paid-affordable", "vrs":true, "access":"paid-affordable", "yearly_cost":"€160/quarter or €480/yr (unlimited flat rate); per-minute plan: €90 registration + undisclosed per-minute charge (all ex-VAT)", "registration":"https://www.ktimatologio.gr",
+     "note":"Flat-rate plans: €160/quarter or €480/yr (unlimited, ex-VAT). Pay-per-minute also available with a €90 one-time registration fee; per-minute rate not published."},
 
     {"id":"rompos",      "name":"ROMPOS",           "region":"Romania",               "country":"RO", "lat":45.90, "lon":25.00,
      "tier":"paid-affordable", "vrs":true, "access":"paid-affordable", "yearly_cost":"€169/yr (~$183/yr)", "registration":"https://www.rompos.ro",

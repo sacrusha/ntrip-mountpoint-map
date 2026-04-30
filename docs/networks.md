@@ -1370,9 +1370,9 @@ Sourcetable publicly readable. Removed from free-source pipeline 2026-04-20.
 **status**:    paid-affordable
 **host:port**: `uranus.gr:2101`
 **access**:    paid
-**yearly_cost**: €160/quarter (~$170); ~€480/yr unlimited (~$520); per-minute billing
-               also available — quarterly option is under the $200 cutoff for seasonal
-               hobbyist use
+**yearly_cost**: €160/quarter (~$170) or €480/yr (~$520), unlimited flat rate; per-minute
+               plan also available (€90 one-time registration + undisclosed per-minute
+               charge) — all prices ex-VAT; quarterly flat rate is under the $200 cutoff
 **stations**:  unknown
 **source**:    ktimatologio.gr (HEPOS S.A.)
 **operator**:  HEPOS S.A. / Ktimatologio
