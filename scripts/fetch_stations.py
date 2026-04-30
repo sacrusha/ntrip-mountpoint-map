@@ -138,10 +138,7 @@ SOURCES = [
      "type": "vrs-only", "country": ["DE"],
      "region": "Thüringen", "group": "sapos",
      "access": "registration", "registration": "https://www.sapos.de"},
-    {"id": "apos",        "url": "http://aposrtk.bev.gv.at:2101/",              # free agri/forestry (eAMA); paid otherwise
-     "color": "#9b0000",  "label": "APOS",
-     "type": "physical-vrs", "country": ["AT"],
-     "access": "conditions",   "registration": "https://www.bev.gv.at"},
+    # APOS (AT) removed from pipeline — paid for hobbyists; represented by a country_markers.json paid-tier marker.
     {"id": "ergnss",      "url": "http://ergnss-ip.ign.es:2101/",
      "color": "#b05000", "label": "ERGNSS",
      "type": "physical-vrs", "country": ["ES"],

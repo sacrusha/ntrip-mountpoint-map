@@ -35,15 +35,17 @@ _Last updated: 2026-04-22._
 
 ### AT — Austria
 
-**date_added**: 2026-04-28
+**date_added**: 2026-04-30
 
-- **Free* government RTK**: APOS (BEV, `aposrtk.bev.gv.at:2101`, 37 stations, VRS) —
-  free for agriculture/forestry via eAMA credentials (farm client number + PIN from
-  Agrarmarkt Austria); professional/hobbyist use paid via bev.gv.at portal. In pipeline
-  as `conditions` access (Free* in UI). → networks.md: `apos`
+- **Paid government RTK**: APOS (BEV, `aposrtk.bev.gv.at:2101`, 37 stations, VRS) —
+  paid for hobbyists via bev.gv.at portal. No annual plan; billing is per-second,
+  per-day, or per-month. RTK (centimetre accuracy): €200/month or €20/day (~$220/mo
+  or ~$22/day). DGPS (decimetre accuracy): €20/month or €2/day. One-time setup fee
+  €50. Free only for agriculture/forestry users with Austrian farm credentials (eAMA).
+  → networks.md: `apos`
 - **Volunteer**: rtk2go ~14 AT bases, Centipede ~1 AT node.
-- **Gap**: hobbyists without agricultural credentials must pay via BEV portal;
-  volunteers (rtk2go) are the only unconditionally free option.
+- **Gap**: no free hobbyist RTK; the only unconditionally free option is volunteer
+  stations on rtk2go. Agricultural users get APOS free via eAMA.
 
 ### BE — Belgium
 
@@ -545,15 +547,13 @@ _Last updated: 2026-04-22._
   кадастър — Geodesy, Cartography and Cadastre Agency) operates reference stations but
   no public NTRIP caster has been identified.
 - **Commercial**: GeoNet Bulgaria GEO-RTK (Зенит-Гео ЕООД / Zenit-Geo Ltd,
-  distributed by Солитех АД / Solitech AD — Trimble's official Bulgarian
-  reseller, `gnss.geonet.bg:2101` (IP `95.43.249.1:2101`), VRS network).
+  distributed by Солитех АД / Solitech AD, `gnss.geonet.bg:2101`, VRS).
   Certified by АГКК under Instruction РД-02-20-25/2011 (Cert. No. 013/2020,
-  renewed to 2026). Tariff PDF at
-  `solitech.bg/wp-content/uploads/2026/04/planove-geonet-04.2026.pdf` — two plan
-  families (unlimited access for heavy users; included-monthly-consumption for
-  occasional users); BGN/EUR figures not yet retrieved. Contract-based access;
-  no individual hobbyist tier advertised. Contact `info@geonet.bg`,
-  tel `0700 1 4677`. → networks.md: `geonet_bg`
+  renewed to 2026). Pricing confirmed from Solitech AD tariff sheet dated
+  01.04.2026: RTK12 annual unlimited €600/yr (~$660/yr) excl. VAT; shorter
+  plans from €105/mo. GeoNet 150 occasional-use plan: €15/mo base + €0.10/min
+  beyond 150 included minutes (24-month minimum). No explicit exclusion of
+  private individuals. → networks.md: `geonet_bg`
 - **Volunteer**: rtk2go ~7 BGR bases, Centipede ~1 BGR node. Thin coverage concentrated
   near Sofia and the main urban corridor.
 - **Gap**: no free government RTK and no public hobbyist path; volunteer bases near Sofia
@@ -1025,29 +1025,35 @@ similarly have no published coverage for these jurisdictions.
 
 ### GT — Guatemala
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
-- **Free government RTK**: IGN Guatemala (Instituto Geográfico Nacional, `ign.gob.gt`) operates a fixed reference station network (CORS) of ~17 stations distributed nationally, established with technical and financial support from RIC (Registro de Información Catastral). RINEX 2.11 data is available for download. Real-time NTRIP corrections require a username, password, and IP/port supplied by IGN — no public caster endpoint or self-service registration portal found; access appears to require direct contact with IGN. → networks.md: `ign_gt_cors`
+- **Free government RTK**: IGN Guatemala (Instituto Geográfico Nacional, `ign.gob.gt`) operates a fixed reference station network (CORS) of ~17 stations distributed nationally, established with technical and financial support from RIC (Registro de Información Catastral). RINEX 2.11 data is available for download. The IGN and RIC public portals list only a post-processing RINEX product; no live NTRIP/RTK streaming service is publicly documented. → networks.md: `ign_gt_cors`
 - **Volunteer**: rtk2go — 0 confirmed GT bases. Centipede — negligible.
-- **Gap**: no confirmed free public NTRIP for hobbyists; IGN's 17-station CORS exists but the caster endpoint and credentials are not publicly listed.
+- **Gap**: no real-time RTK for hobbyists; government CORS is post-processing only. No commercial NTRIP provider lists Guatemala coverage.
 
 ### HN — Honduras
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
-- **Free government RTK**: Two agencies operate fixed reference station (CORS) infrastructure; neither provides a confirmed free public NTRIP endpoint.
-  - **IP CORS** (Instituto de la Propiedad, `cors.ip.gob.hn`): cadastral CORS network; RINEX data downloadable from the portal; real-time NTRIP access terms not publicly documented — no self-service registration page or host:port found. → networks.md: `ip_cors_hn`
-  - **IGN Honduras CORS** (Instituto Geográfico Nacional, `ign.hn/estacionescors`): active reference stations for geodetic framework; data download offered; NTRIP caster endpoint not publicly listed. → networks.md: `ign_hn_cors`
+- **Free government RTK**: none. The IP/DGCG (Dirección General de Cartografía y
+  Geografía, sub-directorate of the Instituto de la Propiedad) operates a 5-station
+  CORS network (Tegucigalpa, San Pedro Sula, Juticalpa, Siguatepeque, La Ceiba)
+  accessible at cors.ip.gob.hn — the portal is a post-processing RINEX download
+  service only; no NTRIP caster host:port or real-time RTK subscription exists.
+  The "IGN Honduras" brand at ign.hn is the same institution (DGCG), not a separate
+  agency. → networks.md: `ip_cors_hn`
 - **Volunteer**: none. Zero HN stations on rtk2go or Centipede.
-- **Gap**: no confirmed free public NTRIP for hobbyists; both government CORS networks exist but real-time access terms are not publicly discoverable without direct contact with IP or IGN.
+- **Gap**: no real-time RTK for hobbyists, free or paid. The 5-station CORS network
+  provides post-processing RINEX downloads only. No commercial NTRIP provider lists
+  Honduras coverage.
 
 ### NI — Nicaragua
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
-- **Free government RTK**: INETER CORS (Instituto Nicaragüense de Estudios Territoriales, Dirección General de Geodesia y Cartografía, `consultacf.ineter.gob.ni`): CORS infrastructure exists with RINEX data downloadable via the Catastro Físico portal; no public NTRIP caster endpoint or real-time streaming access found. INETER's geodetic directorate maintains satellite observation stations as part of SIRGAS contributions. → networks.md: `ineter_cors`
+- **Free government RTK**: INETER CORS (Instituto Nicaragüense de Estudios Territoriales, Dirección General de Geodesia y Cartografía, `consultacf.ineter.gob.ni`): CORS infrastructure exists with RINEX data downloadable via the Catastro Físico portal; the INETER and SINAPRED portals list only a post-processing RINEX product; no real-time NTRIP streaming service is publicly documented. → networks.md: `ineter_cors`
 - **Volunteer**: none. Zero NI stations on rtk2go or Centipede.
-- **Gap**: no confirmed free public NTRIP for hobbyists; INETER CORS data is available for post-processing only.
+- **Gap**: no real-time RTK for hobbyists; government CORS is post-processing only. No commercial NTRIP provider lists Nicaragua coverage.
 
 ### PA — Panama
 
@@ -1060,9 +1066,9 @@ similarly have no published coverage for these jurisdictions.
 
 ### SV — El Salvador
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
-- **Free government RTK**: CNR/IGCN (Centro Nacional de Registros — Instituto Geográfico y del Catastro Nacional, `cnr.gob.sv`) operates active fixed reference stations (CORS) including SNJE, SSIA, and VMIG; RINEX data available via eCNR online services. No free public NTRIP caster endpoint found; real-time access not documented on the CNR portal. → networks.md: `cnr_sv_cors`
+- **Free government RTK**: CNR/IGCN (Centro Nacional de Registros — Instituto Geográfico y del Catastro Nacional, `cnr.gob.sv`) operates active fixed reference stations (CORS) including SNJE, SSIA, and VMIG; RINEX data available via eCNR online services. The CNR portal lists only a post-processing RINEX product; no live NTRIP/RTK streaming service is publicly documented. → networks.md: `cnr_sv_cors`
 - **Commercial**: Survey3G (`survey3g.com`) — pioneer commercial NTRIP service in El Salvador; 4 stations (Oriente, San Salvador, Occidente, UES); GPS+GLONASS+BDS+GAL, L1/L2/L5; monthly/quarterly/annual subscription. Pricing not listed on public pages (updated every 6 months; contact via website). → networks.md: `survey3g_sv`
 - **Volunteer**: none. Zero SV stations on rtk2go or Centipede.
 - **Gap**: no free public RTK for hobbyists; government CORS is post-processing only; the only real-time NTRIP option is commercial (Survey3G, pricing not disclosed publicly).
@@ -1738,22 +1744,30 @@ similarly have no published coverage for these jurisdictions.
 
 ### LK — Sri Lanka
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
-- **Free government RTK**: SLCORSnet (Survey Department of Sri Lanka,
+- **Government RTK**: SLCORSnet (Survey Department of Sri Lanka,
   `222.165.190.67:2101`, VRS / FKP / MAC) — paid subscription; users must
-  register at slcorsnet.survey.gov.lk and purchase a licence (1-day, 7-day,
-  30-day, or annual tiers). Pricing not publicly listed (requires portal
-  login). Network established 2016; Phase 1 covers Western Province and
-  surroundings; island-wide rollout ongoing. → networks.md: `slcorsnet`
-- **Commercial**: CORSnet (CORSnet Pvt Ltd, `corsnet.lk`, island-wide,
-  ~15+ stations, VRS) — paid commercial service; pricing not publicly
-  listed (contact via corsnet.lk/user/register/). Established 2014; first
-  private islandwide RTK network in Sri Lanka. → networks.md: `corsnet_lk`
-- **Volunteer**: none confirmed. Zero LK stations on rtk2go or Centipede.
+  register at slcorsnet.survey.gov.lk and purchase a licence. Pricing
+  confirmed publicly (no login required): 360,000 LKR/yr (~$1,127/yr);
+  shorter tiers available (30,000 LKR/month, 10,000 LKR/week, 2,000 LKR/day).
+  Prices stated as "including all taxes". Registration open to individuals;
+  no surveying-company licence requirement stated publicly. Payment by bank
+  transfer to Peoples Bank (Narahenpita); bank-transfer-only may complicate
+  non-resident registration in practice. Network established 2016; Phase 1
+  covers Western Province and surroundings; island-wide rollout ongoing.
+  Endpoint confirmed live 2026-04-30. → networks.md: `slcorsnet`
+- **Commercial**: CORSnet (CORSnet Pvt Ltd, corsnet.lk, island-wide, ~15+
+  stations, VRS) — paid commercial service; pricing confirmed publicly at
+  corsnet.lk/services: 345,000 LKR/yr (~$1,080/yr); shorter plans from
+  2,500 LKR/day. Self-service registration open to individuals (register →
+  confirm email → request connection → pay → activate). Host:port provided
+  post-registration only. Established 2014; first private island-wide RTK
+  network in Sri Lanka. → networks.md: `corsnet_lk`
+- **Volunteer**: none. Zero LK stations on rtk2go or Centipede.
 - **Gap**: no free public RTK for hobbyists; both available networks are
-  paid. SLCORSnet pricing requires portal registration to view; CORSnet
-  pricing requires direct contact.
+  paid and expensive (~$1,100/yr). SLCORSnet endpoint confirmed live;
+  CORSnet host:port disclosed post-registration only.
 
 ### MM — Myanmar
 
@@ -2840,20 +2854,24 @@ similarly have no published coverage for these jurisdictions.
 
 ### AZ — Azerbaijan
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
 - **Free government RTK**: none. AzPOS — Azerbaijan Positioning Observation System
-  (State Committee on Property Issues / Əmlak Məsələləri Dövlət Xidməti,
-  `emlak.gov.az`) — 37 physical fixed reference stations (CORS) at 30–40 km spacing (GPS + GLONASS +
-  Galileo); 8 additional stations restored in Karabakh region in 2024 (Fuzuli,
-  Jebrail, Zangilan, Kəlbəcər ×2, Ağdam, Şuşa, Laçın), bringing the total to ~45.
-  Access requires a signed service agreement with the operator (Kadastr və Yer
-  Quruluşu Layihə Tədqiqat Mərkəz / Design Research Centre for Cadastre & Land
-  Management); no self-service web registration. Pricing not on public website.
-  Host:port not publicly listed (disclosed after contract). Paid — likely expensive
-  for a hobbyist (contract-based commercial service). → networks.md: `azpos`
-- **Volunteer**: none. Zero AZ stations confirmed on rtk2go or Centipede.
-- **Gap**: no free or affordable public NTRIP for hobbyists. Deploy a local base
+  (State Service on Property Issues / Əmlak Məsələləri Dövlət Xidməti,
+  `emlak.gov.az`) — 45 physical fixed reference stations (CORS) at 30–40 km
+  spacing (GPS + GLONASS + Galileo + BeiDou); original 37 stations plus 8
+  restored in Karabakh region in 2024 (Fuzuli, Jebrail, Zangilan, Kəlbəcər ×2,
+  Ağdam, Şuşa, Laçın). Backend is Leica GNSS Spider (VRS capable). Caster
+  provisionally at `azpos.az:2101` (authentication-gated; no public sourcetable
+  to unauthenticated queries). Access requires a signed bilateral service
+  agreement; "legal entities and individuals" may apply per the operator's
+  contact page, but there is no self-service web registration and the process is
+  conducted entirely in Azerbaijani. No published tariff.
+  → networks.md: `azpos`
+- **Volunteer**: none. Zero AZ stations on rtk2go or Centipede.
+- **Gap**: no free or self-service RTK for hobbyists. AzPOS is accessible in
+  principle to individuals but requires a bilateral contract with a government
+  office in Baku — effectively restricted for most visitors. Deploy a local base
   station for centimetre-level work.
 
 ### AM — Armenia
@@ -3027,16 +3045,25 @@ similarly have no published coverage for these jurisdictions.
 
 ### KZ — Kazakhstan
 
-**date_added**: 2026-04-28
+**date_added**: 2026-04-30
 
-- **Free government RTK**: none confirmed publicly accessible.
-  KazGeoDesy (Committee on Land Management) operates a fixed reference station network (CORS) of 120+
-  stations; access requires an institutional licence or commercial reseller
-  contract — no open self-service path found. → networks.md: `kazgeodesy`
+- **Free government RTK**: none. The national RTK service is operated by
+  НЦГПИ (National Centre of Geodesy and Spatial Information, qazgeodesy.kz),
+  formerly branded KazGeoDesy / Казгеодезия, under the Committee of Geodesy
+  and Cartography. A self-service portal at rtk.qgeo.kz offers paid
+  subscriptions to individuals and organisations: 65,000 ₸/yr (~$141/yr)
+  annual, or 7,000 ₸/month. Each subscription covers up to 5 reference
+  stations and 5 simultaneous rover connections. Registration requires a
+  Kazakh individual or business identifier (ИИН or БИН), which is a
+  de-facto residency requirement — foreign users cannot complete self-service
+  registration. Host:port not publicly disclosed; likely rtk.qgeo.kz:2101
+  (unconfirmed). Portal confirmed live 2026-04-30.
+  → networks.md: `kazgeodesy`
 - **Volunteer**: negligible. Zero KZ stations on rtk2go or Centipede.
-- **Gap**: no free RTK for hobbyists. Country is ~2.7 million km² with
-  most stations concentrated around Almaty, Astana, and the northern corridor;
-  even a public caster would yield long baselines outside urban centres.
+- **Gap**: no free RTK for hobbyists. НЦГПИ is paid-affordable for Kazakh
+  residents (~$141/yr) but de-facto unavailable to foreign users without a
+  Kazakh ИИН. Country is ~2.7 million km²; even with a subscription,
+  baselines will be long outside Almaty, Astana, and the northern corridor.
 
 ### UZ — Uzbekistan
 
@@ -3052,14 +3079,16 @@ similarly have no published coverage for these jurisdictions.
 
 ### TJ — Tajikistan
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
 - **Free government RTK**: none confirmed. The State Committee for Land
   Management and Geodesy (zamin.tj) and the "Fazo" Institute operate GNSS
   equipment for cadastral and land-reform work, but no public NTRIP caster
-  or open fixed reference station (CORS) endpoint has been found. CAIAG's Central Asia seismic network
-  includes one TJ station (Pamir region) but this is research-only, not an
-  RTK service. → networks.md: `almgc_tj`
+  or open fixed reference station (CORS) endpoint has been found. The
+  agency's almgc.tj domain was unreachable on 2026-04-30; no archived or
+  cached version returned any GNSS or NTRIP content. CAIAG's Central Asia
+  seismic network includes one TJ station (Pamir region) but this is
+  research-only, not an RTK service. → networks.md: `almgc_tj`
 - **Volunteer**: none. Zero TJ stations on rtk2go or Centipede.
 - **Gap**: no free RTK for hobbyists; no paid commercial alternative
   identified. Landlocked mountainous country with sparse geodetic
@@ -3083,14 +3112,18 @@ similarly have no published coverage for these jurisdictions.
 
 ### TM — Turkmenistan
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
-- **Free government RTK**: none confirmed. FAO supported the Ministry of
-  Agriculture and Land Resources Service in building a 65-station fixed reference station network (CORS)
-  (2022–2025 project, finalised April 2025) as infrastructure for the national
-  land cadastre. No public NTRIP endpoint or self-service registration has been
-  found; access is restricted to government cadastral users. Host:port not
-  publicly listed.
+- **Free government RTK**: none. No national NTRIP/RTK-CORS network has been
+  found in any public registry (BKG/IGS, mvarga1989 CORS list, ArduSimple,
+  SNIP, rtk2go monitor) or on any .gov.tm / .com.tm domain. The national
+  mapping agency is Turkmengeodezija (Turkmen Map Production Enterprise,
+  Ashgabat). FAO supported the Land Resources Service in building a 65-station
+  fixed reference station (CORS) infrastructure (2022–2025), and a 2024 article
+  on turkmenistan.gov.tm confirms GNSS training is ongoing — indicating the
+  network exists for internal use but is not publishing a public NTRIP service.
+  No operator website, email, or phone for Turkmengeodezija was discoverable as
+  of 2026-04-30. → networks.md: `tm_cors`
 - **Volunteer**: none. Zero TM stations on rtk2go or Centipede.
 - **Gap**: no free or commercial RTK accessible to hobbyists. Turkmenistan has
   one of the most restricted information environments in Central Asia; the CORS

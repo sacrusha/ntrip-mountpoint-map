@@ -460,25 +460,28 @@ SSR-capable receiver or Geo++ SSR2OBS converter. Out of scope for this pipeline.
 
 ## apos — APOS (AT)
 
-**status**:    free
+**status**:    paid
 **host:port**: `aposrtk.bev.gv.at:2101`
 **type**:      physical-coord-vrs
-**access**:    conditions — free for agriculture/forestry via eAMA credentials
-**pipeline-access**: conditions
-               (farm client number + PIN from Agrarmarkt Austria);
-               professional/hobbyist use paid via bev.gv.at portal
-**yearly_cost**: pricing via bev.gv.at for professional/hobbyist use;
-               eAMA free for agriculture/forestry
+**access**:    paid via bev.gv.at portal; free for agriculture/forestry users
+               via eAMA credentials (farm client number + PIN, Agrarmarkt Austria)
+**yearly_cost**: €200/mo RTK (~$220/mo); no annual plan
+**registration**: https://www.bev.gv.at
 **stations**:  37
 **source**:    bev.gv.at (BEV — Bundesamt für Eich- und Vermessungswesen)
 **operator**:  BEV — Bundesamt für Eich- und Vermessungswesen
 
-Austria's national VRS network (Free* in UI). Sourcetable is publicly readable;
-RTCM stream authentication requires valid credentials. Hobbyists without farm
-credentials register and pay via the BEV portal. 37 physical reference stations
-with distinct coordinates are exposed in the sourcetable; these show on the map
-as regular pins. SAPOS Bavaria (DE) and FReDNet (IT) provide partial coverage
-across the AT border.
+**date_added**: 2026-04-30
+
+Austria's national VRS network operated by BEV. Sourcetable is publicly readable;
+RTCM stream authentication requires valid credentials. Hobbyists register and pay
+via the BEV portal. No annual plan is offered; pricing is per-second, per-day, or
+per-month: RTK (centimetre accuracy) €0.0015/sec, €20/day, €200/month; DGPS
+(decimetre accuracy) €0.00015/sec, €2/day, €20/month. One-time setup fee €50.
+Agriculture/forestry users get free access via eAMA credentials. 37 physical
+reference stations with distinct coordinates are exposed in the sourcetable; these
+show on the map as regular pins. SAPOS Bavaria (DE) and FReDNet (IT) provide
+partial coverage across the AT border.
 
 ---
 
@@ -1992,20 +1995,21 @@ Pricing confirmed from official Uredba (regulation) published by RGZ; Serbian po
 ## geonet_bg — GeoNet Bulgaria GEO-RTK (BG)
 
 **status**:    paid
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 **country**:   BG
 **type**:      VRS (network RTK)
 **host:port**: `gnss.geonet.bg:2101` (IP `95.43.249.1:2101`); confirmed on
                geonet.bg/help.html 2026-04-30
-**access**:    paid contract with operator. Service description targets geodesy,
-               construction, agriculture, GIS; no explicit hobbyist tier
-               advertised, no explicit exclusion of private individuals.
-**yearly_cost**: tariff PDF at `solitech.bg/wp-content/uploads/2026/04/planove-geonet-04.2026.pdf`
-               (April 2026 edition); BGN/EUR figures not yet retrieved.
-               Subscriptions page describes two plan families: unlimited-access
-               plans (heavy users) and included-monthly-consumption plans
-               (occasional users). Contact: `info@geonet.bg`,
-               tel `0700 1 4677`.
+**access**:    paid contract with operator. No explicit hobbyist exclusion;
+               no explicit hobbyist tier either. Open to private individuals.
+**yearly_cost**: €600/yr (~$660/yr) for RTK12 annual unlimited plan (excl. VAT).
+               Other unlimited plans: RTK1 €105/mo, RTK3 €250/3 mo, RTK6 €395/6 mo.
+               GeoNet 150 (occasional-use): €15/mo base + €0.10/min GEO-RTK and
+               €0.10/min PPData beyond 150 included minutes; 24-month minimum
+               contract. Per-minute PPData standalone: €0.10/min. Multi-account
+               discounts 5% (2 accounts), 7% (3 accounts); 4+ negotiated.
+               All prices exclude Bulgarian VAT (ДДС).
+               Source: Solitech AD tariff sheet dated 01.04.2026.
 **stations**:  certified per Instruction РД-02-20-25/2011 by АГКК (Agency for
                Geodesy, Cartography and Cadastre); Certificate of Conformity
                No. 013/2020 renewed to 2026 (per 2024-07-01 news)
@@ -2516,7 +2520,7 @@ not a usable RTK resource for hobbyists.
 
 ## dag_lb — Directorate of Geographic Affairs (LB)
 
-**status**:    free
+**status**:    rejected
 **date_added**: 2026-04-29
 **country**:   LB
 **type**:      unknown
@@ -2545,11 +2549,13 @@ Zero LB stations on rtk2go or Centipede as of 2026-04-29.
 Deferred indefinitely. Do not pursue until a confirmed public NTRIP endpoint appears
 in an NTRIP directory or official Lebanese government announcement.
 
+Rejected — military-operated geodetic directorate; no public NTRIP service.
+
 ---
 
 ## ges_syria — General Establishment for Survey (SY)
 
-**status**:    free
+**status**:    rejected
 **date_added**: 2026-04-29
 **country**:   SY
 **type**:      unknown
@@ -2573,6 +2579,8 @@ Deferred until geodetic reconstruction produces a confirmed public NTRIP endpoin
 long-term outcome requiring re-establishment of the national reference frame and CORS
 deployment. Do not pursue until EUREF, IGS, or direct government sources confirm an
 operational caster.
+
+Rejected — military-operated; no public NTRIP service; conflict-disrupted infrastructure.
 
 ---
 
@@ -2606,7 +2614,7 @@ No free tier. No explicit eligibility restriction on subscription page.
 
 ## rjgc_cors — RJGC CORS (JO)
 
-**status**:    free
+**status**:    restricted
 **date_added**: 2026-04-29
 **country**:   JO
 **type**:      unknown
@@ -2632,6 +2640,8 @@ useful only within ~30–40 km of central Amman.
 Note on spoofing: pervasive military GNSS spoofing active continuously since
 Oct 2023 across Israel/Lebanon/Jordan/Sinai/Cyprus makes RTK corrections
 unreliable across much of Jordan regardless of NTRIP source availability.
+
+Restricted — no public self-service registration; real-time RTK access limited to licensed users.
 
 ---
 
@@ -2665,73 +2675,97 @@ out of scope.
 **country**:   LK — Sri Lanka
 **type**:      physical-coord-vrs (VRS / FKP / MAC)
 **host:port**: `222.165.190.67:2101`
-**access**:    paid subscription — 1-day, 7-day, 30-day, and annual licence tiers;
-               registration at slcorsnet.survey.gov.lk
-**yearly_cost**: not publicly listed (requires portal login to view pricing)
-**registration**: slcorsnet.survey.gov.lk
+**access**:    paid subscription — 1-day (2,000 LKR), 7-day (10,000 LKR), 30-day
+               (30,000 LKR), and annual (360,000 LKR) tiers; prices stated as
+               "including all taxes". Registration open to individuals; no
+               surveying-company licence requirement stated publicly. Payment by
+               bank transfer to Peoples Bank (Narahenpita).
+**yearly_cost**: 360,000 LKR/yr (~$1,127/yr)
+**registration**: https://slcorsnet.survey.gov.lk
 **stations**:  unknown (Phase 1: Western Province and surroundings; island-wide rollout ongoing)
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
 Sri Lanka Continuously Operating Reference Station Network, operated by the Survey
 Department of Sri Lanka (Surveyor General's Office, Colombo). Established end of 2016.
 Physical GNSS reference stations transmit raw data to a Control Centre for network
 processing; real-time RTCM corrections delivered via VRS, FKP, or MAC. Post-processing
-RINEX and autonomous GNSS post-processing (SSRPOST / GNWEB) also available. Payments
-via local or international debit/credit card to the Department of Survey's bank account.
-Host:port `222.165.190.67:2101` identified from public "How to Use" documentation.
-Not added to pipeline — paid service; pricing not confirmed under $200/yr cutoff.
+RINEX and autonomous GNSS post-processing (SSRPOST / GNWEB) also available. Payment
+by bank transfer to Peoples Bank (Narahenpita); bank-transfer-only payment may
+complicate non-resident registration in practice. Host:port `222.165.190.67:2101`
+confirmed live 2026-04-30 from public "How to Use" page. Pricing confirmed publicly
+at slcorsnet.survey.gov.lk/how-to-use/pricing/ (no login required) on 2026-04-30 audit.
+Not added to pipeline — paid service at ~$1,127/yr.
 
 ---
 
 ## corsnet_lk — CORSnet (LK)
 
-**status**:    rejected
+**status**:    paid
 **country**:   LK — Sri Lanka
 **type**:      physical-coord-vrs (VRS)
-**host:port**: not publicly listed (credentials supplied on registration)
-**access**:    paid commercial subscription; pricing not publicly listed (contact via
-               corsnet.lk/user/register/)
-**yearly_cost**: not publicly listed
-**registration**: corsnet.lk/user/register/
+**host:port**: not publicly listed (provided to subscribers post-registration)
+**access**:    paid commercial subscription; self-service registration open to
+               individuals (register → confirm email → request connection → pay →
+               activate); pricing confirmed publicly at corsnet.lk/services
+**yearly_cost**: 345,000 LKR/yr (~$1,080/yr)
+**registration**: https://corsnet.lk/user/register/
 **stations**:  ~15+ (island-wide coverage claimed)
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
 Sri Lanka's first and largest private RTK network, established 2014. Originally
 implemented by Suleco (Pvt) Ltd; now operated by CORSnet (Pvt) Ltd. Provides
 centimetre-level RTK corrections island-wide via NTRIP/TCP. Sectors served include
 surveying, construction, GIS, drone operations, and agricultural machinery. Accuracy
-quoted as 2.5 mm + 0.5 ppm (static) and 15 mm + 1 ppm (RTK). Pricing not published.
-Rejected — paid commercial with no confirmed pricing under $200/yr cutoff.
+quoted as 2.5 mm + 0.5 ppm (static) and 15 mm + 1 ppm (RTK). Plans range from
+2,500 LKR/day to 1,000,000 LKR for 5 years; VAT inclusion not explicitly stated on
+the public pricing page. Hobbyist eligibility confirmed: registration open to any
+individual with a network-ready GNSS receiver. Host:port provided post-registration;
+pricing confirmed publicly 2026-04-30 at corsnet.lk/services.
+Not added to pipeline — paid service at ~$1,080/yr, and caster address not public.
 
 ---
 
-## kazgeodesy — KazGeoDesy (KZ)
+## kazgeodesy — НЦГПИ / KazGeoDesy (KZ)
 
-**status**:    paid
-**access**:    restricted; institutional licence or commercial reseller contract required
-**yearly_cost**: not publicly listed
-**stations**:  120+
-**source**:    Not publicly listed (Committee on Land Management, Republic of Kazakhstan)
+**status**:    paid-affordable
+**country**:   KZ — Kazakhstan
+**type**:      physical-coord-vrs (network RTK)
+**host:port**: **investigate**: likely `rtk.qgeo.kz:2101` (unconfirmed; not publicly disclosed)
+**access**:    paid subscription; self-service portal at rtk.qgeo.kz; registration
+               requires Kazakh ИИН (individual) or БИН (business) — de-facto
+               residency requirement; foreign users cannot complete self-service
+**yearly_cost**: 65,000 ₸/yr (~$141/yr)
+**registration**: https://rtk.qgeo.kz
+**stations**:  120+ (concentrated around Almaty, Astana, and northern corridor)
 
-120+ CORS stations concentrated around Almaty, Astana, and the northern corridor.
-No open self-service registration — access through official institutional channels
-or a commercial reseller. Country is ~2.7 million km²; baselines will be long
-outside urban centres even with a subscription.
+**date_added**: 2026-04-30
+
+РГП «Национальный центр геодезии и пространственной информации» (НЦГПИ); colloquially
+still "Казгеодезия / KazGeoDesy". Current legal entity is НЦГПИ under the Committee
+of Geodesy and Cartography, Ministry of Digital Development, Innovations and Aerospace
+Industry (qazgeodesy.kz). RTK service delivered via rtk.qgeo.kz; tariffs confirmed
+publicly at rtk.qgeo.kz/tarifs (no login required 2026-04-30): 65,000 ₸/yr annual,
+or 7,000 ₸/month. Each subscription covers up to 5 reference stations and 5
+simultaneous rover connections. Additional periods (7-day trial, 2-year, 3-year,
+5-year, Unlimited) present in portal but prices not shown publicly on this visit.
+VAT inclusion unclear — 12% Kazakh VAT may apply. The legacy kazgeodeziya.kz domain
+returns a hosting-expired error; active domain is qazgeodesy.kz / rtk.qgeo.kz.
+Country is ~2.7 million km²; baselines will be long outside urban centres.
+Not added to pipeline — paid service; caster address unconfirmed.
 
 ---
 
 ## almgc_tj — State Committee for Land Management and Geodesy (TJ)
 
-**status**:    free
+**status**:    rejected
 **country**:   TJ
-**access**:    restricted; no public NTRIP endpoint found
-**yearly_cost**: not publicly listed
+**access**:    no public NTRIP endpoint found; agency website unreachable
 **source**:    zamin.tj (State Committee for Land Management and Geodesy)
-**host:port**: not publicly listed
+**host:port**: not found
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
 The State Committee for Land Management and Geodesy (Государственный комитет
 по земельному управлению и геодезии) operates GNSS equipment for cadastral
@@ -2739,17 +2773,20 @@ and land-reform work across Tajikistan, supported by the "Fazo" Institute.
 A national geodetic GNSS network was established partly through the World
 Bank Land Registration and Cadastre System project (~2005–2012). No public
 NTRIP caster or open self-service CORS endpoint has been identified.
+The almgc.tj domain returned browser error pages on 2026-04-30; no cached
+or archived version returned any GNSS or NTRIP content. No evidence that
+a real-time NTRIP/RTK service has ever been publicly operated by this agency.
 CAIAG (Central Asian Institute for Applied Geosciences) maintains one
 permanent GNSS station in the Pamir region as part of its 30-station
 Central Asia seismic monitoring network; this is a research facility and
 does not provide an RTK correction service.
-Rejected — no public endpoint. Deferred pending discovery of open endpoint.
+Rejected — no public endpoint found; agency website unreachable.
 
 ---
 
 ## kyrpos — KyrPos GNSS Network (KG)
 
-**status**:    free
+**status**:    paid
 **country**:   KG
 **type**:      single-base / VRS (unclear from public documentation)
 **access**:    paid; contract-based sign-up, no self-service portal
@@ -2779,78 +2816,79 @@ Bishkek IGS site (BIK0 / BIS2, joint with ESA/ESOC since 2016) and an
 IGS tracking station at the Pamir High Mountain Observatory. These are
 research facilities and do not provide an RTK correction service.
 
-Rejected (paid, over cutoff). Deferred — no free or affordable public
+Paid — over $200/yr threshold; not viable for most hobbyists. No free public
 NTRIP endpoint in Kyrgyzstan.
 
 ---
 
 ## tm_cors — Turkmenistan National CORS Network (TM)
 
-**status**:    free
+**status**:    rejected
 **country**:   TM
 **type**:      single-base (physical CORS)
-**access**:    restricted; government-internal use only, no public endpoint found
-**yearly_cost**: not publicly listed
-**operator**:  Ministry of Agriculture and Land Resources Service of
-               Turkmenistan, supported by FAO
-**host:port**: not publicly listed
-**stations**:  65 (acquired 2022–2025 per FAO project documentation)
+**access**:    government-internal; no public endpoint found
+**operator**:  Land Resources Service of Turkmenistan (Turkmengeodezija,
+               Ashgabat), supported by FAO
+**host:port**: not found
+**stations**:  65 (built 2022–2025 per FAO project documentation)
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
 A 65-station CORS network was built under a 2022–2025 FAO-supported project
 (Technical Assistance to Support the Establishment of Digital Land Cadastre
 in Turkmenistan). The network underpins national cadastral surveying and
-land administration. No public NTRIP endpoint, registration portal, or
-pricing has been found. Turkmenistan has one of the most restricted
-information environments in Central Asia; all geodetic infrastructure is
-treated as government-internal. No IGS stations in Turkmenistan.
-
-Rejected — no public endpoint, no hobbyist path. Deferred pending any
-change in government data-access policy.
+land administration. Checked on 2026-04-30: no entry in BKG/IGS, mvarga1989,
+ArduSimple, SNIP, or rtk2go monitors; no .gov.tm or .com.tm domain references
+CORS, NTRIP, or port 2101. A 2024 article on turkmenistan.gov.tm reports
+ongoing GNSS equipment training, confirming the infrastructure exists but is
+not yet publishing a public service. No operator website, email, or phone for
+Turkmengeodezija was discoverable.
+Rejected — no public endpoint; government-internal infrastructure only.
 
 ---
 
 ## azpos — AzPOS (AZ)
 
-**status**:    free
+**status**:    restricted
 **country**:   AZ
-**type**:      single-base (physical CORS)
-**access**:    paid; contract required — no self-service registration
-**host:port**: not publicly listed (disclosed after service agreement)
-**operator**:  State Committee on Property Issues (Əmlak Məsələləri Dövlət
-               Xidməti) / Design Research Centre for Cadastre & Land Management
-               (Kadastr və Yer Quruluşu Layihə Tədqiqat Mərkəz)
-**registration**: emlak.gov.az (apply via the operator; agreement-based)
-**yearly_cost**: not publicly listed (contract-based commercial pricing)
-**stations**:  ~45 physical CORS (37 original across AZ + 8 restored in
-               Karabakh region 2024: Fuzuli, Jebrail, Zangilan, Kəlbəcər ×2,
-               Ağdam, Şuşa, Laçın)
-**signals**:   GPS, GLONASS, Galileo
+**type**:      physical-coord-vrs (Leica GNSS Spider)
+**access**:    bilateral service agreement required; no self-service registration;
+               "legal entities and individuals" may apply per operator contact
+               page, but process is conducted entirely in Azerbaijani; no
+               published tariff
+**host:port**: `azpos.az:2101` (authentication-gated; no public sourcetable to
+               unauthenticated queries; confirmed provisionally 2026-04-30 via
+               SNIP checker — blank response, consistent with IP-whitelisting or
+               authenticated NTRIP)
+**operator**:  State Service on Property Issues under the Ministry of Economy
+               (Əmlak Məsələləri Dövlət Xidməti); SBC portal:
+               http://www.azpos.az/sbc/ (Leica Spider Business Center)
+**registration**: https://emlak.gov.az/az/news/view/4856-Əlaqə (contact page)
+**stations**:  45 (37 original + 8 restored in Karabakh 2024: Fuzuli, Jebrail,
+               Zangilan, Kəlbəcər ×2, Ağdam, Şuşa, Laçın)
+**signals**:   GPS, GLONASS, Galileo, BeiDou
 **nmea_filter**: n/a (not in pipeline)
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
 AzPOS (Azerbaijan Positioning Observation System) is the national CORS network
-operated by the State Committee on Property Issues under the Ministry of Economy
-of Azerbaijan. Originally established with 37 stations at ~30–40 km spacing
-covering mainland Azerbaijan, 8 stations were restored in the formerly occupied
-Karabakh region in 2024 following the September 2023 Azerbaijani military
-operation that restored full territorial control. Station placement was
-validated with Leica GS18 receivers. The network provides RTK and DGNSS
-post-processing services for cadastral, mapping, and engineering applications.
-Access requires a signed service agreement; pricing and host:port details are
-disclosed only after contracting with the operator. No free or hobbyist tier
-identified.
-
-Rejected — paid/contract-only. No public NTRIP endpoint.
-**missing**: pricing and host:port — contact operator via emlak.gov.az.
+operated by the State Service on Property Issues under the Ministry of Economy
+of Azerbaijan. Originally 37 stations at ~30–40 km spacing across mainland
+Azerbaijan; 8 stations were restored in the Karabakh region in 2024 following
+the September 2023 restoration of full territorial control. Receivers validated
+with Leica GS18; backend is Leica GNSS Spider (VRS capable). The SBC login
+portal at azpos.az/sbc/ shows an RTK product with Subscription Period,
+Consumption Limit, and Working Area fields — all values hidden pre-login.
+No published tariff found on any public page (ArduSimple lists AzPOS as "paid
+national service" with no price). Access requires bilateral agreement; pricing
+and final host:port confirmed only after contracting.
+Restricted — no published tariff; contract-only access.
 
 ---
 
 ## armpos — ARMPOS (AM)
 
-**status**:    free
+**status**:    restricted
 **country**:   AM
 **type**:      single-base (physical CORS)
 **access**:    restricted; no public self-service registration found
@@ -2875,7 +2913,7 @@ for real-time NTRIP RTK (metre, sub-metre, centimetre) and post-processing
 government cadastre users; no open hobbyist registration or publicly listed
 host:port found. The State Committee is the sole owner of the network.
 
-Rejected — restricted access, no public NTRIP endpoint.
+Restricted — access limited to licensed surveyors and government cadastre users; no public NTRIP endpoint.
 **missing**: public NTRIP host:port and access conditions — contact Cadastre
 Committee via cadastre.am.
 
@@ -2883,7 +2921,7 @@ Committee via cadastre.am.
 
 ## geocors_ge — GeoCors (GE)
 
-**status**:    free
+**status**:    restricted
 **country**:   GE
 **type**:      single-base (physical CORS)
 **access**:    paid; registration required (Leica Spider Business Center)
@@ -2910,7 +2948,7 @@ listed on the public website; the intended NTRIP port is 2101 (standard SBC
 default). The 2024–2025 Georgian political crisis (disputed parliamentary
 election) has not been reported to affect the technical operation of GeoCors.
 
-Rejected — paid/subscription, pricing and access terms not publicly documented.
+Restricted — paid subscription; pricing and access terms not publicly documented; no hobbyist registration path.
 **missing**: pricing, mountpoint list, and confirmed access conditions for
 non-professional users.
 
@@ -3054,14 +3092,14 @@ public caster.
 
 ## txrtn — TXDOT CORS (US-TX)
 
-**status**:    rejected
+**status**:    restricted
 **reason**:    restricted to TXDOT employees and contractors only; no public or hobbyist registration
 
 ---
 
 ## calrtns — CalRTNS / Caltrans CORS (US-CA)
 
-**status**:    rejected
+**status**:    restricted
 **reason**:    access restricted to vetted state/county agency partners; no general public
                or hobbyist registration available
 
@@ -3111,7 +3149,7 @@ with a licensed surveying body. Same legal barrier as `bgas_china`.
 
 ## ergand — ERGAND Geodetic Network (AD)
 
-**status**:    free
+**status**:    rejected
 **country**:   AD — Andorra
 **type**:      single-base (EPN reference stations)
 **host:port**: not publicly listed
@@ -3124,11 +3162,13 @@ with a licensed surveying body. Same legal barrier as `bgas_china`.
                No independent public NTRIP caster found. Hobbyists near the Spanish or
                French border can use ERGNSS (ES) or Centipede (FR) corrections.
 
+Rejected — post-processing only; no public NTRIP service found.
+
 ---
 
 ## li_cors — Liechtenstein Geodata / ATG (LI)
 
-**status**:    free
+**status**:    rejected
 **country**:   LI — Liechtenstein
 **type**:      no independent CORS programme
 **host:port**: not applicable
@@ -3139,11 +3179,13 @@ with a licensed surveying body. Same legal barrier as `bgas_china`.
                which covers the entire principality via AGNES stations 5–10 km across the
                Swiss border. No free public RTK endpoint exists for the territory.
 
+Rejected — no CORS programme or public NTRIP service found.
+
 ---
 
 ## sm_cors — San Marino Geodetic Reference (SM)
 
-**status**:    free
+**status**:    rejected
 **country**:   SM — San Marino
 **type**:      single-base (permanent reference station)
 **host:port**: not publicly listed
@@ -3155,6 +3197,8 @@ with a licensed surveying body. Same legal barrier as `bgas_china`.
                is fully enclosed by Italy; Emilia-Romagna's public network was discontinued
                and the Marche region has no confirmed public caster. Commercial coverage via
                NetGEO/TopNET (~€360/yr, IT national). → networks.md: `netgeo`
+
+Rejected — post-processing only; no public NTRIP service found.
 
 ---
 
@@ -3546,128 +3590,109 @@ confirm whether any access tier is free for individual hobbyists.
 
 ## ign_gt_cors — IGN Guatemala Red CORS (GT)
 
-**status**:    free
+**status**:    rejected
 **country**:   GT — Guatemala
 **type**:      single-base
-**host:port**: not publicly listed
-**access**:    restricted — credentials (username, password, host:port) supplied by IGN on
-               request; no self-service portal found
-**yearly_cost**: unknown — no pricing information found publicly
+**host:port**: none — post-processing RINEX download service only; no NTRIP caster
+**access**:    free RINEX data downloadable from ign.gob.gt; no real-time corrections
 **registration**: ign.gob.gt (Instituto Geográfico Nacional — Guatemala)
 **stations**:  ~17 stations distributed nationally
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
 Guatemala's Instituto Geográfico Nacional (IGN) operates a Red CORS (Continuously Operating
 Reference Stations) of approximately 17 stations distributed across the national territory.
 The network was established with technical and financial support from RIC (Registro de
 Información Catastral) to enable rapid cadastral surveys tied to the national reference
-system. RINEX 2.11 data is available for download from the IGN website. Real-time NTRIP
-corrections are technically available (a caster exists with IP, port, username, and password)
-but credentials must be obtained directly from IGN — no public self-service registration
-or free-access announcement found. ArduSimple (2026) does not list Guatemala as having a
-national RTK network accessible to hobbyists.
+system. RINEX 2.11 data is available for download from the IGN website. The IGN and RIC
+public portals list only a post-processing RINEX data product ("datos CORS"); no separately
+priced or free live NTRIP/RTK streaming subscription is publicly documented. ArduSimple
+(2026) does not list Guatemala as having a national RTK network accessible to hobbyists.
+Rejected — post-processing only; no real-time NTRIP service publicly available.
 
-**missing**: confirm whether IGN Guatemala offers free or paid NTRIP access and on what terms;
-obtain host:port from IGN directly; check whether RIC operates an independent caster.
+## ip_cors_hn — IP CORS Honduras / IGN Honduras (HN)
 
-## ip_cors_hn — IP CORS Honduras (HN)
-
-**status**:    free
+**status**:    rejected
 **country**:   HN — Honduras
 **type**:      single-base
-**host:port**: not publicly listed
-**access**:    unknown — RINEX download confirmed at cors.ip.gob.hn; real-time NTRIP terms
-               not documented; no self-service registration portal found
-**yearly_cost**: unknown
-**registration**: cors.ip.gob.hn (Instituto de la Propiedad)
-**stations**:  unknown
+**host:port**: none — post-processing RINEX download service only; no NTRIP caster
+**access**:    free RINEX data downloadable at cors.ip.gob.hn; no real-time corrections
+**registration**: https://cors.ip.gob.hn
+**stations**:  5 (Tegucigalpa/TEG, San Pedro Sula/ICF1, Juticalpa/JUT1,
+               Siguatepeque/UNCF, La Ceiba/CEIB)
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
-The Instituto de la Propiedad (IP) operates a cadastral CORS network whose portal
-(cors.ip.gob.hn) offers RINEX data downloads for post-processing. The portal describes
-continuous measurement stations providing a geodetic reference framework. No public NTRIP
-caster endpoint, host:port, or user registration flow has been found; real-time access
-likely requires direct contact with IP.
-
-**missing**: confirm whether IP CORS provides real-time NTRIP access; obtain host:port
-and access terms from Instituto de la Propiedad directly.
+The Dirección General de Cartografía y Geografía (DGCG), sub-directorate of the
+Instituto de la Propiedad (IP), operates Honduras's national CORS network. Its portal
+(cors.ip.gob.hn) provides free RINEX file downloads for 5 stations covering major
+urban centres. No NTRIP caster endpoint, no real-time RTK service, and no subscription
+tariff exist or have been announced publicly. The "IGN Honduras" brand (ign.hn) is the
+same institution — the former IGN was reorganised into the DGCG/IP; ign.hn is an
+auxiliary web presence for the same network. Honduras is absent from ArduSimple and
+rtcm-ntrip.org caster directories. A 2024 public comment on the IP's Facebook page
+explicitly called for activation of a live CORS/NTRIP service, confirming it had not
+yet occurred at that date.
+Rejected — post-processing only; no real-time NTRIP service exists.
 
 ## ign_hn_cors — IGN Honduras CORS (HN)
 
-**status**:    free
+**status**:    rejected
 **country**:   HN — Honduras
-**type**:      single-base
-**host:port**: not publicly listed
-**access**:    unknown — CORS stations listed at ign.hn/estacionescors; NTRIP caster
-               endpoint not published
-**yearly_cost**: unknown
-**registration**: ign.hn (Instituto Geográfico Nacional de Honduras)
-**stations**:  unknown
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
-The Instituto Geográfico Nacional (IGN) of Honduras maintains active GNSS reference
-stations as part of the national geodetic reference framework (datum WGS-84 / ITRF14).
-The CORS section of the IGN website (ign.hn/estacionescors) offers data downloads and
-describes the stations as operating continuously 24/7. No public NTRIP caster host:port
-or user registration page was found; real-time RTK correction delivery appears to require
-direct contact with IGN.
-
-**missing**: confirm whether IGN Honduras provides public real-time NTRIP access; obtain
-host:port and registration process.
+IGN Honduras is not a separate entity from the IP/DGCG — see `ip_cors_hn`. The IGN
+brand is maintained at ign.hn as an auxiliary web presence; the CORS network described
+there is the same 5-station network documented under `ip_cors_hn`. No separate NTRIP
+service or caster endpoint exists under the IGN brand.
+Rejected — same institution as `ip_cors_hn`; post-processing only.
 
 ## ineter_cors — INETER CORS (NI)
 
-**status**:    free
+**status**:    rejected
 **country**:   NI — Nicaragua
 **type**:      single-base
-**host:port**: not publicly listed
-**access**:    post-processing only confirmed; RINEX data available via
-               consultacf.ineter.gob.ni; real-time NTRIP access not found
-**yearly_cost**: unknown
+**host:port**: none — post-processing RINEX download service only; no NTRIP caster
+**access**:    free RINEX data accessible via consultacf.ineter.gob.ni; no real-time corrections
 **registration**: consultacf.ineter.gob.ni (INETER — Catastro Físico)
 **stations**:  unknown
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
 INETER (Instituto Nicaragüense de Estudios Territoriales), through its Dirección General
 de Geodesia y Cartografía, maintains a network of satellite observation CORS stations as
 part of its SIRGAS contributions and the national spatial data infrastructure (IDE). The
 Catastro Físico portal (consultacf.ineter.gob.ni/Servicio/ConsultaDatosCORS) provides
-RINEX data access for post-processing. No public NTRIP caster endpoint or real-time
-streaming access has been found. Nicaragua's Ortega-Murillo government is subject to
-targeted OFAC sanctions (individuals/entities), but the sanctions do not specifically
-restrict civil GNSS infrastructure access; the absence of a public NTRIP endpoint appears
-to be a capacity/policy issue rather than a sanctions barrier.
-
-**missing**: confirm whether INETER operates a real-time NTRIP caster; obtain host:port
-and access terms if available.
+RINEX data access for post-processing. No public NTRIP caster endpoint or live streaming
+subscription has been found. The INETER and SINAPRED public portals list only a
+post-processing RINEX product ("datos CORS"); no real-time RTK service is publicly
+documented. Nicaragua's Ortega-Murillo government is subject to targeted OFAC sanctions
+(individuals/entities), but the sanctions do not specifically restrict civil GNSS
+infrastructure access; the absence of a public NTRIP endpoint is a capacity/policy issue.
+Rejected — post-processing only; no real-time NTRIP service publicly available.
 
 ## cnr_sv_cors — CNR/IGCN CORS (SV)
 
-**status**:    free
+**status**:    rejected
 **country**:   SV — El Salvador
 **type**:      single-base
-**host:port**: not publicly listed
-**access**:    post-processing RINEX only confirmed via eCNR (e.cnr.gob.sv); no free
-               public real-time NTRIP endpoint found
-**yearly_cost**: unknown
+**host:port**: none — post-processing RINEX download service only; no NTRIP caster
+**access**:    free RINEX data accessible via e.cnr.gob.sv; no real-time corrections
 **registration**: e.cnr.gob.sv (Centro Nacional de Registros — IGCN online services)
 **stations**:  ≥3 confirmed active CORS: SNJE, SSIA, VMIG; SSIA also in IGS global network
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
 The Instituto Geográfico y del Catastro Nacional (IGCN) within El Salvador's Centro
 Nacional de Registros (CNR) has operated active CORS stations since at least 2007.
 Known stations include SNJE, SSIA (San Salvador, also part of the IGS global network),
 and VMIG, with the network densified across multiple departments. RINEX data is available
-via the eCNR online services portal. No public real-time NTRIP caster has been found;
-all documented access is for post-processing.
-
-**missing**: confirm whether CNR/IGCN provides real-time NTRIP access; obtain host:port
-from CNR's Geodesia department if available.
+via the eCNR online services portal. The CNR and IGCN public portals list only a
+post-processing RINEX product ("datos CORS"); no separately priced or free live NTRIP/RTK
+streaming subscription is publicly documented. The commercial operator Survey3G provides
+the only known real-time NTRIP service in El Salvador.
+Rejected — post-processing only; no real-time NTRIP service publicly available.
 
 ## zingsa_cors — ZINGSA CORS Network (ZW)
 
