@@ -828,10 +828,12 @@ in CI — likely location-based firewall (BKG/RTCM caster list independently con
 **source**:    gnss.wallonie.be (SPW)
 **operator**:  SPW — Service Public de Wallonie
 
-Intermittent outages documented. Currently timing out in CI. Endpoint
-`gnss.wallonie.be:2101` cross-checked against SPW portal — hostname is correct;
-credentials sent to registered users only. Timeouts consistent with intermittent
-outages rather than wrong endpoint.
+Intermittent outages documented. Currently timing out in CI. The SPW portal
+uses `gnss.wallonie.be`; NTRIP host:port not published — given to registered
+users only.
+
+**investigate**: endpoint `gnss.wallonie.be:2101` unconfirmed; obtain
+credentials via registration to verify.
 
 ---
 
@@ -893,13 +895,11 @@ sourcetable is served.
 **operator**:  GASGI / GEOSA
 
 Old endpoint `KSACORS.gcs.gov.sa` is NXDOMAIN as of 2026-04. Currently timing
-out in CI. Coverage requires NRTK polygon (deferred). `geoportal.sa` appears
-geo-blocked to non-Saudi IPs; endpoint may be correct but only reachable from
-within Saudi Arabia or via GCC-region IP.
+out in CI. Coverage requires NRTK polygon (deferred). `geoportal.sa` was
+unreachable from an external session (browser-level failure, not HTTP error).
 
-**investigate**: verify `ksacors.geoportal.sa:2101` from a Saudi/GCC IP; the
-portal is inaccessible from outside the region, so international CI timeouts
-may be expected behaviour rather than a broken endpoint.
+**investigate**: verify `ksacors.geoportal.sa:2101` from a Saudi/GCC IP;
+cannot be confirmed or ruled out from outside the region.
 
 ---
 
