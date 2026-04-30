@@ -124,6 +124,24 @@ Procedure:
    classify as `restricted` (or `weird` for the genuinely unusual cases).
 6. Skeleton-first JSON edits, ~10 entries per Edit call.
 
+After adding new entries, scan ALL modified notes for these violations and
+fix in the same edit:
+- `yearly_cost`: one short line, primary annual tier only; if no annual plan,
+  lead with the shortest sustained plan. Multi-tier details → `note` prose.
+  Field is only valid for `paid`/`paid-affordable` — omit otherwise.
+- Note opens with "Paid;" or "Free;" → remove (tier field already encodes this).
+- Note repeats the yearly_cost figure verbatim → remove.
+- Note contains email, phone, named individual, bank/giro details, or
+  "contact X" instruction → remove; link to a website instead.
+- Note contains audit language ("No explicit restriction found", PDF edition
+  dates, "as per Circular Y") → remove.
+- Note contains hardcoded dates ("as of 2026-04-30") → replace with "currently".
+- Note contains local-script abbreviations opaque in English → spell out.
+- Note contains unexplained jargon acronyms (e.g. "SBC portal") → plain English.
+- `registration` field is a bare domain → prefix with `https://`.
+- `status: free` but prose ends "Rejected —" or describes RINEX-only access
+  → status must be `rejected`.
+
 Report: count added per tier and how many got the vrs flag, plus a list of
 networks.md IDs deliberately NOT given a marker with a one-word reason
 (no-public-service / regional-only / paid-too-small / archive-only / …).
@@ -144,13 +162,16 @@ Drives the marker sweep — be strict. The status describes the network's nature
 for a hobbyist; it does **not** encode whether the network is wired into
 `fetch_stations.py`. Ingestion is derivable from `data/stations.json`.
 
-- `free` — no fee to use. Includes both pipeline-ingested networks and free
-  networks whose endpoint is missing or registration-gated. The entry text
-  says which.
+- `free` — a free NTRIP/RTK service. Includes both pipeline-ingested networks
+  and free networks whose endpoint is missing or registration-gated. The entry
+  text says which. **RINEX-download-only with no NTRIP/RTK service → `rejected`,
+  not `free`.**
 - `paid` / `paid-affordable` — accessible to civilians for a fee. Requires
   `**yearly_cost**:` (local currency first, USD or EUR parenthetical,
-  greppable for audits).
-- `restricted` — exists but unobtainable for the target user.
+  greppable for audits). A network with a published hobbyist tariff is always
+  `paid` or `paid-affordable` (never `rejected`).
+- `restricted` — exists but unobtainable for the target user at any price. If
+  a private-user tariff is published, it's `paid` instead.
 - `weird` — something unusual overrides access for a hobbyist: non-standard
   NTRIP, active jamming/spoofing, infrastructure too sparse to work,
   war-disrupted with unknown status. The entry's notes carry the warning.
@@ -164,12 +185,23 @@ Required only when a systemic constraint (sanctions, civil war, legal barrier, c
 ### Curation threshold for paid operators
 A `networks.md` block (and any marker) for a paid commercial operator only when the operator is **substantial**: nationwide / near-nationwide / recognised regional or cadastral body. Small surveying companies → describe inline in country prose at most.
 
+### `yearly_cost` format
+Single short line, primary annual tier only — `€120/yr (~$130/yr)`. If no annual plan exists, lead with the most practical sustained-use plan (`€20/mo`). Multi-tier tariff tables go in the entry prose, not in `yearly_cost`. Field is only valid for `paid` and `paid-affordable` — omit on `free`, `restricted`, `weird`, and `rejected`.
+
+### `type` field — backend implies stream type
+- Leica GNSS Spider / SpiderWeb / SBC → `physical-coord-vrs`
+- Trimble VRS Now → `physical-coord-vrs`
+- Geo++ GNSMART → `physical-coord-vrs`
+- Bare Ntrip Caster with no VRS mention → `single-base` unless confirmed otherwise
+
 ### Other
 - **No bare email addresses** in either docs file. Link to a website describing the signup.
 - **UK spelling** in prose.
 - **"GPS" colloquially, "GNSS" structurally** (see `CLAUDE.md`).
 - **`**Volunteer**:` canonical form**: `**Volunteer**: none. Zero XX stations on rtk2go or Centipede.` Greppability.
 - **`$200/yr` is internal classification only.** In user-visible prose write "expensive" / "modest annual fee" / quote the price.
+- **`registration` field** must be a full `https://` URL, never a bare domain.
+- **Closing open tags:** when research definitively resolves a `**missing**:` or `**investigate**:` item, remove the tag and replace it with a one-sentence closing statement. Remove any "Deferred pending …" language in the same pass.
 
 ## Out of scope
 `index.html`, `guide.html`, `data/help_topics.json`, `scripts/inject_seo_help.py`, the GitHub Actions workflow, and `scripts/fetch_stations.py`. This skill only touches the survey docs and the marker file.

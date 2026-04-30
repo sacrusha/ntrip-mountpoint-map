@@ -53,6 +53,14 @@ For each network you discover (free OR paid):
 ### `docs/networks.md`
 For each network you find that is **operational and accessible to a hobbyist** (free, free-with-registration, paid-affordable, or substantial paid), add a `## id` block following the existing style (status, country, type, host:port, access, registration, yearly_cost, stations, notes). Optional: add `**date_added**:` per network if precision is useful.
 
+**`yearly_cost` format:** one short line, primary annual tier only — `€120/yr (~$130/yr)`. If no annual plan exists, lead with the most practical sustained-use plan (`€20/mo`). Multi-tier tariff tables and per-day/per-hour variants go in the entry prose, not in `yearly_cost`. `yearly_cost` is only valid for `paid` and `paid-affordable` entries — omit it for `free`, `restricted`, `weird`, and `rejected`.
+
+**`type` field — backend software implies stream type:** Leica GNSS Spider / SpiderWeb / SBC deployments → `physical-coord-vrs`; Trimble VRS Now → `physical-coord-vrs`; Geo++ GNSMART → `physical-coord-vrs`; bare Ntrip Caster with no VRS mention → `single-base` unless confirmed otherwise.
+
+**Before writing a new block**, grep for any `**missing**:` or `**investigate**:` tags on this country in the existing entry (`grep -n "missing\|investigate" docs/networks.md | grep -A2 "^## .*<CC>"`) and resolve them as part of this edit — either with a definitive finding or a closing sentence explaining the gap. Replace any "Deferred pending …" language with a concrete statement.
+
+**Same-institution check:** before creating a new block, verify the operator isn't a reorganised form of an existing entry. Common pattern: a national IGN absorbed into a cadastre or land-registry ministry; the old IGN brand persists on a secondary website but maps to the same CORS network.
+
 **Do NOT create a `networks.md` block for**:
 - "Investigated, infrastructure exists but no operational public service" — record the finding inline in the country-survey prose only.
 - Government-internal / defence-controlled / closed-cadastral-only networks the public can't reach.
@@ -64,12 +72,15 @@ the marker sweep downstream. Status describes the **network's nature**, not
 whether it's wired into the pipeline; ingestion is derivable from
 `data/stations.json`.
 
-- `status: free` — a free network. Use both for networks already wired into
-  `scripts/fetch_stations.py` and for free networks where the only gap is
-  that the host:port isn't yet known or is registration-gated. The entry
-  text says which.
+- `status: free` — a free NTRIP/RTK service. Use both for networks already
+  wired into `scripts/fetch_stations.py` and for free networks where the
+  only gap is that the host:port isn't yet known or is registration-gated.
+  **RINEX-download-only with no NTRIP/RTK service → `rejected`, not `free`.**
+  RINEX archive ≠ real-time corrections; the two are not interchangeable.
 - `status: paid` / `paid-affordable` — accessible to civilians for a fee.
-  Requires `**yearly_cost**:` field.
+  Requires `**yearly_cost**:` field. A network with a published hobbyist
+  tariff is always `paid` or `paid-affordable` (based on amount), never
+  `rejected`. `restricted` means no hobbyist path at any price.
 - `status: restricted` — exists but unobtainable for the target user
   (licensed-surveyors only, government-only, defence-only).
 - `status: weird` — something unusual overrides the access question:
@@ -108,3 +119,12 @@ After the edits, report under 100 words:
 - Do not add bare email addresses (per CLAUDE.md rule). Link to a website that describes the email-based signup process.
 - UK spelling in prose (centimetre, behaviour). "GPS" colloquially / "GNSS" structurally.
 - If the country has no plausible RTK presence (e.g. a tiny island with population <50k and no government CORS programme), write a 2-line Tier C stub confirming nothing was found, rather than skip the entry.
+- `registration` field must be a full `https://` URL, never a bare domain.
+- **Note field rules** (the `note` renders directly in map popups for hobbyists):
+  - No email addresses, phone numbers, named individuals, or bank account/giro details.
+  - No "contact X" or "email X to subscribe" instructions — link to a website.
+  - No internal classifications: never open with "Paid;" or "Free;" (the tier already shows this); never repeat the `yearly_cost` figure verbatim.
+  - No audit-document phrasing: "No explicit eligibility restriction stated", "as per Circular Y", PDF edition dates, source provenance.
+  - No hardcoded dates ("as of 2026-04-30") — use "currently" if recency matters.
+  - No local-script abbreviations opaque to English speakers (e.g. Cyrillic ID-type codes) — spell them out in English.
+  - Do not expand or unexplained acronyms: "SBC portal" → "online portal".
