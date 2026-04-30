@@ -271,7 +271,7 @@ _Last updated: 2026-04-22._
 
 ### IT — Italy
 
-**date_added**: 2026-04-28
+**date_added**: 2026-04-30
 
 - **Free government RTK**: no national free public caster. Strongly regional.
   - **FReDNet** (OGS/FVG, `gnsscaster.regione.fvg.it:8080`, ~39 stations) — Friuli-Venezia
@@ -287,28 +287,30 @@ _Last updated: 2026-04-22._
   - **Campania** (`gps-sit.regione.campania.it:2101`, ~18 stations) — SPID identity required
     for new users; legacy credentials may work on old endpoint. Conditions access. In pipeline.
     → networks.md: `gnss_campania`
-  - **TPOS** (Provincia Autonoma di Trento, 11 stations) — Free; endpoint withheld until
-    post-registration. Deferred. → networks.md: `tpos`
-  - **STPOS** (Provincia Autonoma di Bolzano, 10 stations) — Free; endpoint withheld. Deferred.
-    → networks.md: `stpos`
-  - **Rete GNSS Veneto** (CISAS-Unipd, ~20 stations) — Free on request; endpoint not public.
-    Deferred. → networks.md: `gnss_veneto`
-  - **Rete GNSS Liguria** (Regione Liguria, 10 stations) — Free; endpoint not public. Deferred.
-    → networks.md: `gnss_liguria`
-  - **Sicili@net** (INGV Catania, ~80 stations) — Sicily + S. Calabria; free registration;
-    endpoint not public. Deferred. → networks.md: `sicilianet`
-  - **Molise** (Regione Molise, ~4 stations) — NTRIP delivery unconfirmed. Deferred.
-    → networks.md: `molise_gnss`
+  - **TPOS** (Provincia Autonoma di Trento, `tpos.provincia.tn.it:2101`, 11 stations) — Free;
+    self-service SBC portal; no professional licence required; VRS/MAX/NRT mountpoints + RINEX
+    archive. In pipeline. → networks.md: `tpos`
+  - **STPOS** (Provincia Autonoma di Bolzano, `www.stpos.it:2101`, 10 stations) — Free; SBC
+    portal; ID scan + intended-use declaration required to activate RTK (RINEX immediate); no
+    professional restriction. In pipeline. → networks.md: `stpos`
+  - **Rete GNSS Veneto** (CISAS-Unipd, `147.162.229.53:2101`, ~20 stations) — Free; email
+    registration; MAX3/IMAX/NRT mountpoints; open to any user. In pipeline. → networks.md: `gnss_veneto`
+  - **Rete GNSS Liguria** (Regione Liguria, `81.23.86.70:2101`, 10 stations) — Free; online
+    registration; open to all; 7 regional + 3 SPIN3 stations. In pipeline. → networks.md: `gnss_liguria`
+  - **Sicili@net** (INGV Catania, `193.206.223.39:2101`, ~80 stations) — Sicily + S. Calabria;
+    free to all; email registration; MAX/IMAX/VRS/FKP mountpoints. In pipeline. → networks.md: `sicilianet`
   - **Emilia-Romagna** — public service discontinued; now commercial via NetGEO/TopNET.
     Rejected. → networks.md: `gps_emiliaromagna`
-  - Regions **not yet confirmed**: Sardinia, Toscana, Basilicata. Calabria partially via
-    Sicili@net (INGV Catania).
+  - **Molise** — Regione Molise does not operate a GNSS network. Rejected. → networks.md: `molise_gnss`
+  - Regions **not yet confirmed**: Toscana, Basilicata. Calabria partially via Sicili@net.
 - **Commercial paid**: NetGEO/TopNET (~€360/yr, national), PegasoNow/Hexagon.
-  → networks.md: `netgeo`, `pegasonow`
+  SARNET (Sardinia, ~14 stations, ~€250/yr ex-IVA (~$293/yr); only correction source on
+  the island; no rtk2go or Centipede stations in Sardinia).
+  → networks.md: `netgeo`, `pegasonow`, `sarnet`
 - **Volunteer**: rtk2go ~12 IT bases, Centipede ~3 IT nodes.
-- **Gap**: central Italy (Toscana, Basilicata) has no confirmed free NTRIP. Northern Italy
-  well covered by SPIN3 + FReDNet. Southern Italy improving
-  (Puglia, Campania, Sicily via Sicili@net deferred).
+- **Gap**: central Italy (Toscana, Basilicata) has no confirmed free NTRIP. Five previously
+  deferred networks (TPOS, STPOS, Veneto, Liguria, Sicili@net) now have confirmed caster
+  addresses and are candidates for pipeline ingestion.
 
 ### SM — San Marino
 
@@ -483,13 +485,15 @@ _Last updated: 2026-04-22._
 
 ### XK — Kosovo
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
-- **Free government RTK**: none. KOPOS (Kosovo Cadastral Agency / AKK, 8 fixed reference stations (CORS),
-  VRS, `host:port not publicly listed`) — paid; pricing not published on public website
-  (contact akk.rks-gov.net). → networks.md: `kopos`
-- **Volunteer**: negligible.
-- **Gap**: no free RTK for hobbyists; KOPOS requires a paid subscription.
+- **Free government RTK**: none. KOPOS / Kosovo Positioning System (Agjencia Kadastrale e Kosovës /
+  Kosovo Cadastral Agency, `kopos.rks-gov.net:2101`, 8 permanent CORS, VRS, Leica GNSS Spider platform)
+  — paid; €400/yr (~$468) annual subscription plus €20 one-time registration fee; no surveying-licence
+  requirement found on the SBC registration form. NTRIP mountpoints and credentials provided inside the
+  Spider Business Center portal after account creation. → networks.md: `kopos`
+- **Volunteer**: none. Zero XK stations on rtk2go or Centipede.
+- **Gap**: no free government RTK; KOPOS is the sole national network at ~$468/yr — expensive for a hobbyist.
 
 ### MD — Moldova
 
@@ -557,7 +561,7 @@ _Last updated: 2026-04-22._
 
 ### BY — Belarus
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
 - **Context**: EU Regulation 765/2006 (Belarus sanctions, extended and deepened via
   successive packages through 2024) mirrors the Russia-track on dual-use and advanced
@@ -571,16 +575,20 @@ _Last updated: 2026-04-22._
 - **Free government RTK**: none. ССТП РБ (Satellite System of Precise Positioning of
   the Republic of Belarus), operated by РУП «Белгеодезия» (state enterprise Belgeodesiya,
   under the State Committee for Property — Госкомимущество), covers ~98 continuously
-  operating reference stations across Belarus with 1–2 cm RTK accuracy. Access requires
-  a signed contract with Belgeodesiya; paid by uniform tariff (exact BYN/yr figure not
-  publicly listed on the website — see `geo.by/services/sstp`). Not free; no self-service
-  registration path. NTRIP caster host:port not publicly listed. → networks.md: `sstp_by`
+  operating reference stations across Belarus with 1–2 cm RTK accuracy. Caster at
+  `sstp.geo.by:8080` (IP fallback `93.125.21.51:8080`). Access requires signing a public
+  contract (Публичный договор) with Belgeodesiya; available to individuals (физическое
+  лицо) and organisations, but restricted to residents of the Republic of Belarus (tariff
+  titled "для резидентов Республики Беларусь"). Billing is metered (0.24 BYN/min RTK,
+  ~$0.085/min, "Общий" plan) or a fixed monthly plan ("Точная навигация", 150.78 BYN/month,
+  ~$53/month, ~$641/yr if renewed monthly); no annual RTK flat rate published. No
+  self-service portal. → networks.md: `sstp_by`
 
-- **Volunteer**: none. Zero BLR stations on rtk2go or Centipede.
+- **Volunteer**: none. Zero BY stations on rtk2go or Centipede.
 
-- **Gap**: no free hobbyist access to ССТП РБ; contract access is paid and restricted
-  to organisations. Sanctions-constrained hardware supply compounds the barrier.
-  A hobbyist in Belarus has no viable free RTK correction path under current conditions.
+- **Gap**: no free hobbyist access to ССТП РБ; the residency requirement and
+  contract-only sign-up make it inaccessible to non-Belarusian users. Sanctions-
+  constrained hardware supply compounds the barrier for those who could qualify.
 
 ### CZ — Czech Republic
 
@@ -732,17 +740,42 @@ _Last updated: 2026-04-22._
 
 ### UA — Ukraine
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
-- **Free government RTK**: ZAKPOS (zakgeo.com.ua, Transcarpathia regional service,
-  `zakpos.zakgeo.com.ua`, ~50 stations pre-conflict, physical-coord-vrs) — was free with
-  registration; disrupted since the Russian full-scale invasion (Feb 2022). Operational
-  status unknown; endpoint not currently reachable. Deferred until confirmed operational
-  post-conflict. → networks.md: `zakpos`
-- **Volunteer**: rtk2go ~3 UA bases; status uncertain given the conflict.
-- **Gap**: no accessible free RTK in Ukraine as of 2026; active front-line GNSS jamming
-  and spoofing further degrade signal quality across the country. Self-operated base on
-  safe ground is the only reliable hobbyist option in accessible areas.
+- **Context**: No government-run national RTK caster exists. UA-EUPOS was conceived as
+  Ukraine's contribution to the pan-European EUPOS standard (same framework as Poland's
+  ASG-EUPOS, Slovakia's SKPOS) but never became a unified public service — in practice the
+  ecosystem is dominated by competing commercial operators. ZAKPOS is the original
+  UA-EUPOS-branded member; UA-System.NET is the largest. All networks pause or reduce
+  capacity during air-raid alerts; coverage in Kharkiv, Zaporizhzhia, Donetsk, Kherson, and
+  Luhansk oblasts is severely degraded or absent due to infrastructure damage and occupation.
+
+- **Free government RTK**: none. The State Permanent GNSS Network (СКНЗУ, Держгеокадастр)
+  operates reference stations for geodetic control and post-processing but provides no public
+  NTRIP caster. GeoTerrace (Lviv Polytechnic, geoterrace.lpnu.ua) is RINEX / post-processing
+  only — no real-time RTK service.
+
+- **Commercial** (all paid; all over $200/yr):
+  - **UA-System.NET** (Системи Солюшнс, `gnss.org.ua:2101`, 200+ stations, nationwide, VRS)
+    — 21,120–23,670 UAH/yr (~$515–577/yr) full national; regional packs (West/Karpaty/
+    South/East) ~13,000–13,500 UAH/yr (~$317–329/yr); wartime discount packages for eastern
+    and southern oblasts; Leica Spider VRS platform. → networks.md: `ua_system_net`
+  - **ZAKPOS** (ДП "Закарпатгеодезцентр", `195.16.76.194:2102`, nationwide, VRS zone-based)
+    — 15,000 UAH/yr (~$366/yr) wartime reduced tariff (April 2025); hub at Mukachevo
+    (Zakarpattia, far west); pauses during air-raid alerts; service resumed after martial-law
+    suspension (Feb 2022–April 2025). → networks.md: `zakpos`
+  - **RTK HUB** (TNT-TPI, `rtkhub.com`, nationwide; host:port not published) — 10,500
+    UAH/yr (~$256/yr) from Jan 2025; endpoint disclosed post-registration.
+    → networks.md: `rtkhub`
+  - **NGCNET** (NGC Ltd) — DNS not resolving April 2026; likely defunct. → networks.md: `ngcnet`
+
+- **Volunteer**: rtk2go ~3 UA bases; status uncertain. Zero Centipede nodes in Ukraine.
+
+- **Gap**: No free RTK anywhere in Ukraine. UA-System.NET is the largest and most modern
+  (200+ stations, Leica VRS, warzone discount plans); RTK HUB is the most affordable
+  (~$256/yr) but does not publish its endpoint. Active front-line jamming and spoofing
+  further degrade signal quality in conflict zones. A self-operated base station is the
+  only reliable option in areas of active conflict.
 
 ---
 
@@ -819,15 +852,16 @@ similarly have no published coverage for these jurisdictions.
 
 ### CA — Canada
 
-**date_added**: 2026-04-28
+**date_added**: 2026-04-30
 
 - **Free government RTK**: none confirmed in any province.
   - NRCan: post-processing only (CACS/CSRS RINEX archive; NRCAN-PPP web tool). No streaming NTRIP.
   - Quebec MERN: per-station direct TCP streams; not NTRIP-aggregated — pipeline-incompatible.
     → networks.md: `qc_mern` (rejected)
-  - BC RTN: paid regional service via GeoBC. → networks.md: `bc_rtn`
+  - BC RTN: paid regional service via GeoBC, CAD 1,650/yr (~$1,212). → networks.md: `bc_rtn`
   - Nova Scotia NSACS: 40-station government fixed reference station network (CORS); real-time NRTK only via paid
-    commercial providers (Can-Net, SmartNet, Brandtnet). → networks.md: `nsacs`
+    commercial providers (HxGN SmartNet, Can-Net, Brandtnet); SmartNet Atlantic plan (NB, NL, NS, PE) at CAD
+    $3,328/yr (~$2,429/yr); Can-Net and Brandtnet pricing not publicly listed. → networks.md: `nsacs`
   - Ontario, Alberta, Saskatchewan, Manitoba: no provincial CORS; no confirmed public NTRIP.
 - **Volunteer**: rtk2go ~56 CA bases, Centipede ~13 CA nodes. Concentrated heavily
   in BC, Ontario, and southern Quebec; very thin elsewhere.
@@ -836,7 +870,7 @@ similarly have no published coverage for these jurisdictions.
 
 ### US — United States
 
-**date_added**: 2026-04-28
+**date_added**: 2026-04-30
 
 - **Free government RTK**: EarthScope NOTA (`ntrip.earthscope.org:2101`, ~1,000+
   stations, single-base, non-commercial NULA) — Americas-wide, dense in western USA.
@@ -870,8 +904,7 @@ similarly have no published coverage for these jurisdictions.
 
   Paid/restricted states: CRTN (CA, $100 one-time fee, paid-affordable; clearinghouse for
   SOPAC SCIGN, BARD, USGS Pasadena SCIGN, Caltrans CVSRN, Orange County OCRTN, and
-  EarthScope NOTA in California; universities/schools exempt from fee), SCRTN (SC, price
-  not listed), NCRTN (NC ~$500/yr), TDOT (TN ~$450/yr), TURN GPS (UT ~$600/yr), MTSRN
+  EarthScope NOTA in California; universities/schools exempt from fee), SCRTN (SC, $600/yr per login), NCRTN (NC ~$500/yr), TDOT (TN ~$450/yr), TURN GPS (UT ~$600/yr), MTSRN
   (MT ~$1,500/yr), WSRN (WA ~$1,900/yr; PANGA/CWU contributes Puget Sound antennae),
   TxDOT (employees-only), Caltrans (vetted agency partners only). → networks.md: `crtn`,
   `scrtn`, `ncrtn`, `tdot_rtn`, `turn_gps`, `mtsrn`, `wsrn`, `txrtn`, `calrtns`
@@ -1335,13 +1368,21 @@ similarly have no published coverage for these jurisdictions.
 
 ### PE — Peru
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
-- **Free government RTK**: REGPMOC — Red Geodésica Permanente de Monitoreo Continuo (IGN — Instituto Geográfico Nacional, under Ministry of Defence, `190.12.71.75:2101`, ~65 single-base stations, growing) — restricted; an official MoD-issued licence is required; access is limited to professional and commercial surveying organisations. No self-service hobbyist registration path. RTCM 3.1 and CMR+ formats; caster is operational Monday–Friday 08:00–16:00 (Lima time) as a guaranteed window but runs 365 days; RTK baseline guidance: 50 km for L1+L2, 20 km for L1-only. → networks.md: `regpmoc`
+- **Free government RTK**: REGPMOC — Red Geodésica Permanente de Monitoreo Continuo (IGN — Instituto
+  Geográfico Nacional del Perú, under Ministry of Defence, `190.12.71.75:2101`, ~65 single-base stations)
+  — paid; application + payment to IGN required; credentials issued by email; no self-service portal. IGN's
+  own "Políticas de Uso del Servicio NTRIP" policy document does not explicitly restrict to licensed surveyors
+  or commercial organisations. No official PEN tariff publicly available (TUPA pages returning 404); reseller
+  indication: ~$85/month (~$1,020/yr) at one Peruvian integrator (unverified, not an official IGN rate). RTCM
+  3.2 and CMR+; NTRIP v2.0. → networks.md: `regpmoc`
 
 - **Volunteer**: rtk2go ~1 PE base (LIMA1\_RTCM3, Lima, RTCM 3.2, active). Zero PE nodes on Centipede.
 
-- **Gap**: REGPMOC's physical coverage (65 stations nationally) is excellent, but the MoD licence gate closes it to individual hobbyists. The single Lima rtk2go volunteer base is the only confirmed free option and covers only the Lima metropolitan area. A hobbyist outside Lima has no confirmed free correction source.
+- **Gap**: REGPMOC gives excellent national single-base coverage but requires direct engagement with IGN
+  and payment (no online self-service). The single Lima rtk2go base is the only confirmed free option;
+  hobbyists outside Lima have no free correction source.
 
 ### UY — Uruguay
 
@@ -1798,20 +1839,20 @@ similarly have no published coverage for these jurisdictions.
 
 ### PK — Pakistan
 
-**date_added**: 2026-04-28
+**date_added**: 2026-04-30
 
-- **Free government RTK**: none confirmed for hobbyists. SUPARCO (Space and
-  Upper Atmosphere Research Commission) operates Pak-Rehber, an NRTK service
-  delivering cm-level corrections to "authorized users"; no public-facing
-  NTRIP host:port, open registration portal, or sourcetable has been found.
-  Access appears to require direct contact with SUPARCO. SUPARCO is also
-  deploying Pak-SBAS (L-band SBAS) for sub-metre accuracy — satellite-delivered,
-  out of scope. → networks.md: `pak_rehber`
+- **Free government RTK**: none confirmed for hobbyists. Pak-Rehber, operated by
+  SUPARCO Business Solutions (Pvt.) Ltd. (commercial arm of SUPARCO), is an NRTK
+  service covering the Karachi metropolitan area only (not nationwide). The official
+  brochure explicitly states "Only authorized users can use the Pak-Rehber precise
+  positioning service" — authorisation process not publicly documented; no host:port,
+  open registration portal, or sourcetable found publicly. SUPARCO is also deploying
+  Pak-SBAS (L-band SBAS, sub-metre accuracy, satellite-delivered) — out of scope.
+  → networks.md: `pak_rehber`
 - **Volunteer**: none. Zero PK stations on rtk2go or Centipede.
-- **Gap**: no free public RTK for hobbyists. Pak-Rehber is restricted to
-  authorized users; endpoint and registration path are not publicly documented.
-  Pakistan's large area (881,000 km²) and varied terrain mean hobbyists must
-  deploy a local base station or contact SUPARCO directly.
+- **Gap**: no free public RTK for hobbyists. Pak-Rehber is restricted to authorised
+  users and covers Karachi only; hobbyists elsewhere in Pakistan (881,000 km²) have
+  no confirmed correction source and would need to deploy a local base station.
 
 ### KH — Cambodia
 
@@ -1880,11 +1921,13 @@ similarly have no published coverage for these jurisdictions.
 
 ### AE — UAE
 
-**date_added**: 2026-04-28
+**date_added**: 2026-04-30
 
 - **Free government RTK**: DVRS (Dubai Municipality, 18+ stations, 4-constellation, VRS)
-  — professional application only (dm.gov.ae); no public hobbyist path. → networks.md: `dvrs`
-- **Volunteer**: negligible.
+  — professional application only; no public hobbyist path. Portal geodubai.dm.gov.ae and
+  dm.gov.ae/survey-department sub-pages returning errors / 404 as of 2026-04-30; service
+  may have been restructured or migrated to DM e-services. → networks.md: `dvrs`
+- **Volunteer**: negligible. Zero AE stations on rtk2go or Centipede.
 
 ### AO — Angola
 
@@ -2850,17 +2893,18 @@ similarly have no published coverage for these jurisdictions.
 
 ### TN — Tunisia
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
-- **Free government RTK**: none. OTC (Office de la Topographie et de la
-  Cartographie, `otc.nat.tn`) operates 23 permanent GNSS stations nationwide
-  (3 installed 2005; 20 added 2010; fully operational since 2011; Saharan region
-  excluded). Network linked to WGS84–ITRF 2000. RTK corrections delivered via
-  paid NTRIP subscription; host:port not publicly listed (disclosed on
-  subscription). → networks.md: `otc_gnss`
+- **Free government RTK**: none. OTC (Office de la Topographie et de la Cartographie,
+  `otc.nat.tn`) operates 23 permanent GNSS stations nationwide (3 installed 2005; 20
+  added 2010; fully operational since 2011; Saharan region excluded). Network linked
+  to WGS84–ITRF 2000. RTK corrections via paid NTRIP subscription; host:port not
+  publicly listed (disclosed on subscription). → networks.md: `otc_gnss`
 - **Volunteer**: none. Zero TN stations confirmed on rtk2go or Centipede.
-- **Paid only**: OTC GNSS subscription — pricing not on public website (contact
-  commercial department via `otc.nat.tn`); only paid option identified.
+- **Paid only**: OTC GNSS — 6,000 TND/yr (~$2,070/yr) annual subscription; shorter
+  durations available from 60 TND/day (~$21) to 3,600 TND/6 months (~$1,242); all
+  prices H.T. (excl. VAT); subscribe at otc.nat.tn/geodesy/gnss/subscription. No
+  explicit eligibility restriction stated on subscription page.
 
 ### TZ — Tanzania
 

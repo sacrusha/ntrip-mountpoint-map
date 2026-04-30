@@ -43,10 +43,18 @@
      "stations_declared":35,
      "note":"35 stations, free (publicly-funded EUPOS member). Host:port disclosed only after registration."},
 
-    {"id":"zakpos",      "name":"ZAKPOS",           "region":"Ukraine (west)",        "country":"UA", "lat":49.50, "lon":26.00,
-     "tier":"weird", "vrs":true, "access":"registration",
-     "stations_declared":50,
-     "note":"~50 stations; was free. Service disrupted since Feb 2022 invasion. Status unknown — do not rely on."},
+    {"id":"zakpos",      "name":"ZAKPOS",           "region":"Ukraine (nationwide)",  "country":"UA", "lat":48.44, "lon":22.72,
+     "tier":"paid", "vrs":true, "access":"paid", "registration":"https://www.ua-pos.net",
+     "yearly_cost":"15,000 UAH/yr (~$366/yr)",
+     "note":"Nationwide network, hub at Mukachevo (western Ukraine). Paid; 15,000 UAH/yr (~$366/yr) wartime-reduced rate (April 2025). Pauses automatically during air-raid alerts."},
+    {"id":"ua_system_net","name":"UA-System.NET",   "region":"Ukraine (nationwide)",  "country":"UA", "lat":50.45, "lon":30.52,
+     "tier":"paid", "vrs":true, "access":"paid", "registration":"https://gnss.org.ua",
+     "yearly_cost":"21,120–23,670 UAH/yr (~$515–577/yr)",
+     "note":"Largest commercial network in Ukraine; 200+ stations, Leica VRS platform. Paid; regional packs (West/Karpaty/South/East) from ~13,000 UAH/yr (~$317/yr). Wartime discount plans for eastern and southern oblasts."},
+    {"id":"rtkhub",      "name":"RTK HUB",          "region":"Ukraine (nationwide)",  "country":"UA", "lat":48.47, "lon":35.05,
+     "tier":"paid", "vrs":true, "access":"paid", "registration":"https://rtkhub.com",
+     "yearly_cost":"10,500 UAH/yr (~$256/yr)",
+     "note":"Nationwide commercial RTK network (formerly TNT-TPI). Paid; 10,500 UAH/yr (~$256/yr). Host and port not published — disclosed after registration at rtkhub.com."},
 
     {"id":"gpsbru",      "name":"GPSBru / AGN",     "region":"Belgium (Brussels)",    "country":"BE", "lat":50.85, "lon":4.35,
      "tier":"free", "access":"registration", "registration":"https://agn.ngi.be",
@@ -69,34 +77,34 @@
      "note":"Free government service. Host:port not in public aggregators; the operator manual is in Thai."},
 
     {"id":"tpos",        "name":"TPOS",             "region":"Trentino",              "country":"IT", "lat":46.10, "lon":11.10,
-     "tier":"free", "vrs":true, "access":"registration", "registration":"https://tpos.provincia.tn.it",
+     "tier":"free", "vrs":true, "pins":true, "source_id":"tpos", "access":"registration", "registration":"https://www.tpos.provincia.tn.it",
      "stations_declared":11,
-     "note":"11 stations, free. Endpoint disclosed only after account approval."},
+     "note":"11 stations, free. Self-service portal; no professional licence required. RTK, VRS/MAX/NRT mountpoints, and 1-year RINEX archive."},
 
     {"id":"stpos",       "name":"STPOS",            "region":"South Tyrol / Alto Adige", "country":"IT", "lat":46.50, "lon":11.40,
-     "tier":"free", "vrs":true, "access":"registration", "registration":"https://stpos.it",
+     "tier":"free", "vrs":true, "pins":true, "source_id":"stpos", "access":"registration", "registration":"https://www.stpos.it",
      "stations_declared":10,
-     "note":"10 stations, free. Endpoint disclosed only after account approval."},
+     "note":"10 stations, free. SBC portal registration; ID + intended-use declaration required to activate RTK (RINEX available immediately). No professional restriction."},
 
     {"id":"gnss_veneto", "name":"Rete GNSS Veneto", "region":"Veneto",               "country":"IT", "lat":45.70, "lon":12.00,
-     "tier":"free", "vrs":true, "access":"registration", "registration":"https://retegnssveneto.cisas.unipd.it",
+     "tier":"free", "vrs":true, "pins":true, "source_id":"gnss_veneto", "access":"registration", "registration":"https://retegnssveneto.cisas.unipd.it",
      "stations_declared":20,
-     "note":"~20 stations, free on request. Endpoint not publicly listed; access requested through the operator portal."},
+     "note":"~20 stations, free. Email to request credentials; open to any user. MAX3/IMAX/NRT mountpoints."},
 
     {"id":"gnss_liguria","name":"Rete GNSS Liguria", "region":"Liguria",             "country":"IT", "lat":44.40, "lon":8.60,
-     "tier":"free", "vrs":true, "access":"registration", "registration":"https://geoportal.regione.liguria.it",
+     "tier":"free", "vrs":true, "pins":true, "source_id":"gnss_liguria", "access":"registration", "registration":"https://geoportal.regione.liguria.it/servizi/rete-gnss-liguria",
      "stations_declared":10,
-     "note":"10 stations, free. Endpoint not publicly listed; access requested through the regional geoportal."},
+     "note":"10 stations, free. Online registration via regional geoportal. 7 Liguria stations + 3 shared with SPIN3 GNSS (northern border)."},
 
     {"id":"sicilianet",  "name":"Sicili@net",       "region":"Sicily + S. Calabria", "country":"IT", "lat":37.60, "lon":14.00,
-     "tier":"free", "vrs":true, "access":"registration", "registration":"https://www.ct.ingv.it",
+     "tier":"free", "vrs":true, "pins":true, "source_id":"sicilianet", "access":"registration", "registration":"https://www.ct.ingv.it/index.php/risorse-e-servizi/sicil-net",
      "stations_declared":80,
-     "note":"~80 stations (INGV Catania seismic network), free with registration. Endpoint not publicly listed."},
+     "note":"~80 stations (INGV Catania seismic network), free. Email to request credentials. MAX/IMAX (Leica), VRS (Trimble), FKP (Geo++) and RTCM 3.0 mountpoints."},
 
-    {"id":"molise_gnss", "name":"Rete GNSS Molise", "region":"Molise",               "country":"IT", "lat":41.60, "lon":14.70,
-     "tier":"free", "vrs":true, "access":"registration", "registration":"https://www.regione.molise.it",
-     "stations_declared":4,
-     "note":"~4 stations. Real-time NTRIP delivery unconfirmed."},
+    {"id":"sarnet",      "name":"SARNET",           "region":"Sardinia",              "country":"IT", "lat":40.00, "lon":9.10,
+     "tier":"paid", "vrs":true, "access":"paid", "yearly_cost":"€250/yr (~$293/yr)", "registration":"https://www.geodesia.biz/iscrizione-sarnet",
+     "stations_declared":14,
+     "note":"14 stations, commercial network (SARNET s.r.l.). RTK, VRS, DGPS, and RINEX archive. Only documented correction source in Sardinia."},
 
     {"id":"acorn",       "name":"ACORN",            "region":"Alaska",                "country":"US", "lat":64.20, "lon":-153.40,
      "tier":"free", "vrs":true, "access":"registration",
@@ -196,16 +204,16 @@
      "note":"18 free government reference stations, but NOT standard NTRIP — each station delivers a raw TCP stream (per-station IP:port, CMR+/RTCM 3.2). Standard NTRIP clients will not connect; you need a TCP-capable receiver (e.g. Emlid RS2) or an RTKLIB str2str bridge."},
 
     {"id":"bc_rtn",      "name":"BC RTN",           "region":"British Columbia",      "country":"CA", "lat":53.70, "lon":-127.60,
-     "tier":"paid", "vrs":true, "access":"paid", "registration":"https://www2.gov.bc.ca/gov/content/data/geographic-data-services/geobc",
-     "note":"Operated by GeoBC. No Canadian province offers free public NTRIP."},
+     "tier":"paid", "vrs":true, "access":"paid", "yearly_cost":"CAD 1,650/yr (~$1,212/yr)", "registration":"https://www2.gov.bc.ca/gov/content/data/geographic-data-services/geobc",
+     "note":"No Canadian province offers free public NTRIP. Subscription portal currently unreachable (government website reorganisation); contact GeoBC to subscribe."},
 
     {"id":"nsacs",       "name":"Nova Scotia NSACS","region":"Nova Scotia",           "country":"CA", "lat":44.65, "lon":-63.58,
-     "tier":"paid", "vrs":true, "access":"paid", "stations_declared":40,
-     "note":"40 government reference stations (Nova Scotia Spatial Services). Real-time corrections only via paid commercial resellers (Can-Net/Cansel, HxGN SmartNet, Brandtnet); free post-processing archives via NRCan."},
+     "tier":"paid", "vrs":true, "access":"paid", "yearly_cost":"CAD 3,328/yr (~$2,429/yr)", "stations_declared":40,
+     "note":"40 government reference stations; real-time corrections only via paid commercial resellers (HxGN SmartNet, Can-Net, Brandtnet); no direct provincial caster. Price shown is HxGN SmartNet Atlantic plan — Can-Net and Brandtnet pricing not public."},
 
     {"id":"scrtn",       "name":"SCRTN",            "region":"South Carolina",        "country":"US", "lat":33.80, "lon":-81.20,
-     "tier":"paid", "vrs":true, "access":"paid", "registration":"https://www.scdot.org",
-     "note":"Pricing not published online."},
+     "tier":"paid", "vrs":true, "access":"paid", "yearly_cost":"$600/yr", "registration":"https://scrtn.sc.gov",
+     "note":"No professional-licence requirement; any subscriber may obtain a login."},
 
     {"id":"ncrtn",       "name":"NCRTN",            "region":"North Carolina",        "country":"US", "lat":35.80, "lon":-79.00,
      "tier":"paid", "vrs":true, "access":"paid", "yearly_cost":"$500/yr", "registration":"https://www.ncems.org"},
@@ -244,9 +252,9 @@
      "tier":"weird", "access":"restricted",
      "note":"Iraq Geodetic Reference System has only 7 reference stations at 500–800 km spacing — far too sparse for RTK. No public NTRIP caster."},
 
-    {"id":"pak_rehber",  "name":"Pak-Rehber",       "region":"Pakistan",             "country":"PK", "lat":30.38, "lon":69.35,
-     "tier":"restricted", "vrs":true, "access":"restricted", "registration":"https://www.suparco.gov.pk",
-     "note":"Government service (SUPARCO), authorised users only. Host:port not published; no public registration path."},
+    {"id":"pak_rehber",  "name":"Pak-Rehber",       "region":"Karachi (Pakistan)",   "country":"PK", "lat":24.87, "lon":67.01,
+     "tier":"restricted", "vrs":true, "access":"restricted", "registration":"https://suparco.biz",
+     "note":"Karachi metropolitan area only — not nationwide. Operated by SUPARCO Business Solutions. Explicitly restricted to authorised users; no public registration path."},
 
     {"id":"kazgeodesy",  "name":"KazGeoDesy",       "region":"Kazakhstan",           "country":"KZ", "lat":51.18, "lon":71.45,
      "tier":"restricted", "vrs":true, "access":"restricted", "stations_declared":120,
@@ -254,11 +262,11 @@
 
     {"id":"dvrs",        "name":"DVRS",             "region":"Dubai (UAE)",          "country":"AE", "lat":25.20, "lon":55.27,
      "tier":"restricted", "vrs":true, "access":"restricted", "registration":"https://www.dm.gov.ae", "stations_declared":18,
-     "note":"18+ four-constellation stations under Dubai Municipality. Professional application required; no hobbyist registration path."},
+     "note":"18+ four-constellation stations under Dubai Municipality. Professional application required; no hobbyist registration path. Public portal unavailable as of 2026-04-30."},
 
     {"id":"regpmoc",     "name":"REGPMOC",          "region":"Peru",                 "country":"PE", "lat":-12.05, "lon":-77.04,
-     "tier":"restricted", "vrs":true, "access":"restricted",
-     "note":"Government service under IGN/Ministry of Defence. Host is known (190.12.71.75:2101) but access requires MoD authorisation — no hobbyist path."},
+     "tier":"restricted", "access":"restricted", "stations_declared":65,
+     "note":"~65 single-base stations under IGN/Ministry of Defence. Access requires application + payment to IGN; no online self-service portal. IGN's policy does not explicitly exclude individuals, but there is no hobbyist-accessible sign-up path."},
 
     {"id":"eft_cors",    "name":"EFT-CORS",         "region":"Russia (nationwide)",  "country":"RU", "lat":55.75, "lon":37.62,
      "tier":"paid", "vrs":true, "access":"paid", "registration":"https://eft-cors.ru",
@@ -328,7 +336,16 @@
     {"id":"msrn",      "name":"MSRN",      "region":"Michigan",            "country":"US","lat":43.90,"lon":-84.70, "tier":"free", "vrs":true,"pins":true,"source_id":"msrn",      "stations_declared":120},
     {"id":"nysnet",    "name":"NYSNet",    "region":"New York",            "country":"US","lat":42.90,"lon":-75.60, "tier":"free", "vrs":true,"pins":true,"source_id":"nysnet",    "stations_declared":150},
     {"id":"incors",    "name":"InCORS",    "region":"Indiana",             "country":"US","lat":39.80,"lon":-86.20, "tier":"free", "vrs":true,"pins":true,"source_id":"incors",    "stations_declared":70},
-    {"id":"iartn",     "name":"IARTN",     "region":"Iowa",                "country":"US","lat":42.00,"lon":-93.50, "tier":"free", "vrs":true,"pins":true,"source_id":"iartn",     "stations_declared":83}
+    {"id":"iartn",     "name":"IARTN",     "region":"Iowa",                "country":"US","lat":42.00,"lon":-93.50, "tier":"free", "vrs":true,"pins":true,"source_id":"iartn",     "stations_declared":83},
+
+    {"id":"kopos",       "name":"KOPOS",            "region":"Kosovo",                "country":"XK", "lat":42.60, "lon":21.10,
+     "tier":"paid", "vrs":true, "access":"paid", "yearly_cost":"€400/yr (~$468/yr)", "registration":"https://akk.rks-gov.net",
+     "note":"8 CORS stations, VRS network. One-time €20 registration fee also applies. NTRIP credentials issued inside the online portal after account creation."},
+
+    {"id":"otc_gnss",    "name":"OTC GNSS",         "region":"Tunisia",               "country":"TN", "lat":36.80, "lon":10.20,
+     "tier":"paid", "access":"paid", "yearly_cost":"6,000 TND/yr (~$2,070/yr)", "registration":"https://www.otc.nat.tn/geodesy/gnss/subscription",
+     "stations_declared":23,
+     "note":"23 physical stations, non-Saharan Tunisia. Shorter durations available from 60 TND/day (~$21). Prices exclude VAT. No explicit eligibility restriction stated."}
 
   ]
 }

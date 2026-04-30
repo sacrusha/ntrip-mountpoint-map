@@ -1048,7 +1048,7 @@ Only one network (GPSBru) remains unconfirmed; all ingested networks have been m
 
 ## gpsbru — GPSBru / AGN (BE — Brussels)
 
-**status**:    candidate
+**status**:    free
 **host:port**: `agn.ngi.be` (port unconfirmed)
 **type**:      single-base
 **access**:    free; register at agn.ngi.be
@@ -1130,117 +1130,234 @@ zone-port mapping from the Thai-language PDF at the URL above.
 
 ## zakpos — ZAKPOS (UA)
 
-**status**:    weird
-**host:port**: not currently accessible
-**type**:      physical-coord-vrs
-**access**:    was free; registration at zakhid.net.ua
-**stations**:  ~50 (pre-conflict)
-**source**:    zakhid.net.ua (Western Ukraine positioning service)
+**status**:    paid
+**date_added**: 2026-04-30
+**host:port**: `195.16.76.194:2102` (primary RTK, RTCM 3.1/3.2; per-second billing);
+               also `:2131` (multi-constellation GPS+GLO+GAL+BDS), `:2100` (agri/drone),
+               `:2999` (RTCM 3.1, Baltic 1977 vertical), `:3000` (RTCM 3.4, GPS+GLO+GAL+BDS+QZSS),
+               `:3130` (individual bases, Baltic 1977), `:3131` (RTCM 3.4, EVRS);
+               site: zakpos.zakgeo.com.ua; account: www.ua-pos.net or 195.16.76.195
+**type**:      physical-coord-vrs (VRS zone mountpoints: VRSx_WEST/CENTR/EAST/SOUTH;
+               SK63 zones 1–6; MSK_05; USK2000_4; UTM_35; MUKA_32 city base)
+**access**:    paid subscription; account registration at www.ua-pos.net
+**registration**: https://www.ua-pos.net
+**yearly_cost**: 15,000 UAH/yr (~$366/yr) (wartime reduced tariff, April 2025);
+               also: 2.43 UAH/min RTK, 1.08 UAH/min post-processing, 225 UAH/day,
+               675 UAH/week, 1,600 UAH/month, 4,300 UAH/3 months, 8,000 UAH/6 months;
+               pre-April 2025 rate was ~€400/yr / 0.06 €/min
+**stations**:  unknown (mountpoints are VRS zone / coordinate-based; physical station count not confirmed)
+**operator**:  ДП "Закарпатгеодезцентр" (State Enterprise "Zakarpathia Geodesy Centre")
+**source**:    zakpos.zakgeo.com.ua (confirmed live, copyright © 2026)
 
-Ukrainian regional positioning service, disrupted since the Russian full-scale
-invasion (Feb 2022). Operational status and endpoint availability unknown.
-Do not add to pipeline until the service is confirmed operational.
+Nationwide commercial GNSS positioning service, launched 2009 by ДП "Закарпатгеодезцентр".
+Hub caster at Mukachevo (Zakarpattia Oblast). Part of UA-EUPOS. Accessed by bare IP only;
+no DNS hostname.
 
-**missing**: confirm service is operational and endpoint is reachable post-conflict.
+Operational status (April 2025): active with wartime caveats. Service suspended 25 Feb 2022
+under martial law; tariffs reduced and service resumed April 2025. Network pauses
+automatically during active air-raid alerts. Mukachevo hub (far west) has been far less
+affected by direct attacks than eastern regions.
+
+Two EUREF-IP stations tied to Mukachevo stream via euref-ip.net:2101: MUK200UKR0 (Mukachevo,
+NULP) and SULP00UKR0 (Lviv, IGS) — free reference, not NTRIP corrections.
+
+**missing**: physical station count.
+
+---
+
+## ua_system_net — UA-System.NET (UA)
+
+**status**:    paid
+**date_added**: 2026-04-30
+**host:port**: `gnss.org.ua:2101` (general, no coordinate system); also `:2100` (individual bases),
+               `:2111–:2115` (SK63 zones 1–5 auto), `:2102/:2113` (SK63 zone 3),
+               `:2222` (drone/UAV); MSK local-system zone ports (20001–20005+) via rtk.gnss.org.ua
+**type**:      physical-coord-vrs (VRS; mountpoints: nearest, automax, vrs, i-max)
+**access**:    paid subscription; Leica Spider Business Center login at gnss.org.ua
+**registration**: https://gnss.org.ua
+**yearly_cost**: 21,120–23,670 UAH/yr (~$515–577/yr) full national;
+               regional packs (West/Karpaty/South/East): 13,000–13,500 UAH/yr (~$317–329/yr);
+               also: 6.6 UAH/min (TIMER pack), 1,470 UAH/week, 3,630 UAH/month,
+               8,190 UAH/3 months, 12,600 UAH/6 months; drone RTK: 15,510 UAH/yr (~$378/yr)
+**stations**:  200+
+**operator**:  Системи Солюшнс (Swiss-Ukrainian joint venture); brand: UA-System.NET
+**source**:    systemnet.com.ua, gnss.org.ua (confirmed active, April 2025)
+
+Largest commercial CORS network in Ukraine. Nationwide coverage with 200+ stations on Leica
+Spider VRS platform. Wartime discount packages available for eastern and southern oblasts.
+Drone/UAV mode via port 2222; MSK local coordinate system ports via rtk.gnss.org.ua.
+Website and portal confirmed active as of April 2025.
+
+---
+
+## rtkhub — RTK HUB (UA)
+
+**status**:    paid
+**date_added**: 2026-04-30
+**host:port**: not publicly listed; disclosed to registered users only
+**type**:      physical-coord-vrs (services: Network RTK, nearest, single-base, DGPS, RINEX download)
+**access**:    paid subscription; registration at rtkhub.com
+**registration**: https://rtkhub.com
+**yearly_cost**: 10,500 UAH/yr (~$256/yr) (from 01 Jan 2025; reduced from 15,000 UAH/yr);
+               also: 2.50 UAH/min, 210 UAH/day, 600 UAH/week, 1,800 UAH/month,
+               4,650 UAH/3 months, 6,300 UAH/6 months
+**stations**:  unknown
+**operator**:  TNT-TPI (formerly TNT-TPI GNSS Network); offices in Kyiv and Dnipro
+**source**:    rtkhub.com, net.tnt-tpi.com (monitoring portal)
+
+Nationwide commercial RTK network, rebranded from TNT-TPI GNSS Network to RTK HUB. Monitoring
+portal at net.tnt-tpi.com. Host:port withheld — disclosed after registration. Most affordable
+of the three major Ukrainian commercial networks.
+
+**missing**: confirm host:port for documentation.
+
+---
+
+## ngcnet — NGCNET (UA)
+
+**status**:    rejected
+**date_added**: 2026-04-30
+
+Listed in FIG pub74 global CORS directory as a Ukrainian network (ngcnet.com.ua). Domain has
+no DNS record as of April 2026; likely defunct or absorbed into another network. No viable
+endpoint.
 
 ---
 
 ## tpos — TPOS (IT — Trentino)
 
 **status**:    free
-**host:port**: withheld until post-registration
-**type**:      physical-coord-vrs
-**access**:    registration; free via tpos.provincia.tn.it (Provincia Autonoma di Trento)
+**date_added**: 2026-04-30
+**host:port**: `tpos.provincia.tn.it:2101` (SBC portal domain; mountpoints provided after login)
+**type**:      physical-coord-vrs (VRS, MAX, NRT mountpoints)
+**access**:    registration; free; self-service Leica Spider Business Center portal; no professional licence required
+**registration**: https://www.tpos.provincia.tn.it
 **stations**:  11
+**operator**:  Servizio Catasto, Provincia Autonoma di Trento
 **source**:    tpos.provincia.tn.it (PAT — Provincia Autonoma di Trento)
 
-Trentino Positioning Service operated by the Autonomous Province of Trento. 11 physical
-reference stations. Credentials disclosed only after account approval.
-
-**missing**: caster host:port — register at tpos.provincia.tn.it; contact info at
-https://www.provincia.tn.it/en/Services/TPOS-Trentino-POsitioning-Service
+Trentino Positioning Service. 11 physical reference stations. Self-service SBC registration;
+no professional licence required. RTK corrections, VRS/MAX/NRT mountpoints, and RINEX
+archive (up to 1 year). Host:port confirmed via provincial institutional pages 2026-04-30.
 
 ---
 
 ## stpos — STPOS (IT — South Tyrol / Alto Adige)
 
 **status**:    free
-**host:port**: withheld until post-registration
+**date_added**: 2026-04-30
+**host:port**: `www.stpos.it:2101` (SBC portal domain; mountpoints provided after documentation review)
 **type**:      physical-coord-vrs
-**access**:    registration; free via stpos.it (Provincia Autonoma di Bolzano)
+**access**:    registration; free; Leica Spider Business Center portal; requires ID scan + declaration
+               of intended use to activate RTK access; RINEX available immediately after registration;
+               no professional licence restriction
+**registration**: https://www.stpos.it
 **stations**:  10
-**source**:    stpos.it (Autonome Provinz Bozen / Provincia Autonoma di Bolzano)
+**operator**:  Ufficio Catasto / Amt für Kataster, Provincia Autonoma di Bolzano / Autonome Provinz Bozen
+**source**:    stpos.it (PAB — Provincia Autonoma di Bolzano)
 
-South Tyrol Positioning Service operated by the Autonomous Province of Bolzano.
-Bilingual (German/Italian). 10 physical reference stations.
-
-**missing**: caster host:port — register at stpos.it; contact info at
-https://www.provincia.bz.it/costruire-abitare/catasto-librofondiario/catasto/stpos-reti-appoggio-geodetico.asp
+South Tyrol Positioning Service. 10 physical reference stations. Bilingual (German/Italian).
+Additional documentation step (ID + intended-use declaration) is light — no professional
+credential required; RINEX archive available without it. Host:port confirmed via official
+Bolzano cadastral pages 2026-04-30.
 
 ---
 
 ## gnss_veneto — Rete GNSS Veneto (IT — Veneto)
 
 **status**:    free
-**host:port**: not publicly listed
-**type**:      physical-coord-vrs
-**access**:    registration; apply via retegnssveneto.cisas.unipd.it
+**date_added**: 2026-04-30
+**host:port**: `147.162.229.53:2101` (confirmed in site FAQ, question 4)
+**type**:      physical-coord-vrs (MAX3, IMAX, NRT mountpoints)
+**access**:    registration; free; email retegpsveneto@gmail.com with name, address, intended use;
+               credentials assigned manually; open to any user ("liberamente accessibile previa registrazione")
+**registration**: https://retegnssveneto.cisas.unipd.it
 **stations**:  ~20
+**operator**:  CISAS (Centro Interdipartimentale di Studi e Attività Spaziali), Università di Padova,
+               on behalf of Regione del Veneto
 **source**:    retegnssveneto.cisas.unipd.it (CISAS — Università degli Studi di Padova)
 
-Veneto regional GNSS network operated by CISAS (Centro Interdipartimentale di Studi e
-Attività Spaziali), University of Padua. Credentials provided on request.
-
-**missing**: caster host:port — contact via http://retegnssveneto.cisas.unipd.it/
+Veneto regional GNSS network. Site FAQ explicitly states observations are freely accessible
+after registration. Mountpoints: MAX3 (RTCM 3.0 network solution), IMAX (RTCM 2.3 network
+solution), NRT (nearest single-base). Credentials assigned by email; no automated portal.
+Host:port confirmed from site FAQ 2026-04-30.
 
 ---
 
 ## gnss_liguria — Rete GNSS Liguria (IT — Liguria)
 
 **status**:    free
-**host:port**: not publicly listed
+**date_added**: 2026-04-30
+**host:port**: `81.23.86.70:2101` (confirmed on Geoportal "Correzioni in Tempo Reale" page)
 **type**:      physical-coord-vrs
-**access**:    registration; register via Liguria geoportal
-**stations**:  10
+**access**:    registration; free; online form via Liguria Geoportal; open to all users
+               ("tutti gli utenti interessati al rilievo"); no professional credential required
+**registration**: https://geoportal.regione.liguria.it/servizi/rete-gnss-liguria
+**stations**:  10 (7 regional + 3 shared with SPIN3 GNSS)
+**operator**:  Regione Liguria, Settore Informatica
 **source**:    geoportal.regione.liguria.it (Regione Liguria)
 
-Liguria regional GNSS network. 10 reference stations. Credentials via regional geoportal.
-
-**missing**: caster host:port — contact via
-https://geoportal.regione.liguria.it/servizi/rete-gnss-liguria.html
+Liguria regional GNSS network. Software upgraded 2021. 7 Liguria-owned stations plus 3
+contributed from SPIN3 GNSS (Piemonte/Lombardia border). Host:port confirmed on Geoportal
+"Correzioni in Tempo Reale" page 2026-04-30.
 
 ---
 
 ## sicilianet — Sicili@net (IT — Sicily + S. Calabria)
 
 **status**:    free
-**host:port**: not publicly listed
-**type**:      physical-coord-vrs
-**access**:    registration; apply via INGV Catania portal
+**date_added**: 2026-04-30
+**host:port**: `193.206.223.39:2101`
+**type**:      physical-coord-vrs (MAX/IMAX, VRS, FKP, RTCM 3.0; single-base and network solutions)
+**access**:    registration; free; email to request credentials via ct.ingv.it; explicitly open
+               to all interested users ("in modo totalmente gratuito e a tutti gli utenti interessati")
+**registration**: https://www.ct.ingv.it/index.php/risorse-e-servizi/sicil-net
 **stations**:  ~80
+**operator**:  INGV Osservatorio Etneo, Sezione di Catania (ct.ingv.it)
 **source**:    ct.ingv.it (INGV — Istituto Nazionale di Geofisica e Vulcanologia, Catania)
 
-INGV Catania seismic monitoring network covering Sicily and southern Calabria. ~80 stations.
-RTK service available to registered users; primarily a geophysical research network but open
-to external applicants.
-
-**missing**: caster host:port — contact via https://www.ct.ingv.it/index.php/risorse-e-servizi/sicil-net
+Seismic monitoring network covering Sicily and southern Calabria. INGV Catania page
+explicitly states corrections provided "in modo totalmente gratuito e a tutti gli utenti
+interessati." Mountpoints: MAX/IMAX (Leica), VRS (Trimble), FKP (Geo++), RTCM 3.0.
+Host:port confirmed on INGV Catania service page 2026-04-30.
 
 ---
 
 ## molise_gnss — Rete GNSS Molise (IT — Molise)
 
-**status**:    free
-**host:port**: not confirmed
-**type**:      unknown
-**access**:    unknown; likely registration-based
-**stations**:  ~4
-**source**:    regione.molise.it (Regione Molise)
+**status**:    rejected
+**date_added**: 2026-04-30
 
-Small regional GNSS network. NTRIP delivery unconfirmed; only ~4 reference stations
-documented. Lowest-priority Italian regional network.
+Regione Molise does not operate a regional GNSS/NTRIP network. No NTRIP caster, no RTK
+service, no permanent GNSS correction infrastructure found. Confirmed 2026-04-30
+(site:regione.molise.it returns no results for GNSS/RTK/NTRIP; independent sources
+explicitly state "Il Molise non ha una rete GNSS pubblica"). Users in Molise rely on
+the adjacent Abruzzo+Lazio network (`gnss-rtk.regione.abruzzo.it:2101`) or national
+commercial services.
 
-**missing**: confirm NTRIP delivery and endpoint — contact via regione.molise.it
+---
+
+## sarnet — SARNET (IT — Sardinia)
+
+**status**:    paid
+**date_added**: 2026-04-30
+**country**:   IT — Sardinia
+**host:port**: not confirmed (previously cited www.sarnet.it:2101 / 94.32.107.44:2101 are likely wrong)
+**type**:      physical-coord-vrs (VRS, single-base, DGPS, RINEX archive)
+**access**:    paid subscription; register via geodesia.biz/iscrizione-sarnet; no professional licence restriction stated
+**registration**: https://www.geodesia.biz/iscrizione-sarnet
+**yearly_cost**: €250/yr ex-IVA (~$293/yr); IVA 22% applies (→ ~€305/yr gross, ~$357/yr);
+               confirmed via multiple current public procurement documents referencing SARNET subscriptions
+**stations**:  ~14
+**operator**:  SARNET s.r.l. (private consortium, geodesia.biz)
+**source**:    geodesia.biz (SARNET s.r.l.)
+
+Sardinia regional GNSS network. ~14 permanent stations covering Sardinia. Services: RTK
+single-base, SARNET VRS (RTCM 3.0), DGPS, RINEX archive. No professional licence restriction
+stated; hobbyists not explicitly excluded. Zero rtk2go or Centipede stations on the island —
+SARNET is the only documented correction source for Sardinia.
+
+**missing**: confirmed NTRIP caster host:port — contact via geodesia.biz/iscrizione-sarnet.
 
 ---
 
@@ -2051,66 +2168,73 @@ a higher one-time registration (100 KM vs 0).
 ## kopos — KOPOS / Kosovo Positioning System (XK)
 
 **status**:    paid
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 **country**:   XK
-**type**:      VRS (8 CORS stations + computation centre in Pristina)
-**host:port**: not publicly listed (contact AKK via akk.rks-gov.net)
-**access**:    paid; registration via akk.rks-gov.net
-**yearly_cost**: not publicly listed on website (contact Kosovo Cadastral Agency)
+**type**:      VRS (8 CORS stations + computation centre in Pristina; Leica GNSS Spider)
+**host:port**: `kopos.rks-gov.net:2101` (Spider Business Center login portal; NTRIP mountpoints and credentials provided inside portal post-login)
+**access**:    paid; annual subscription + one-time registration fee; register at akk.rks-gov.net; no surveying-licence requirement found
+**yearly_cost**: €400/yr (~$468); plus €20 one-time registration fee
 **stations**:  8 permanent CORS; RTK horizontal ±2 cm, vertical ±4 cm
-**source**:    akk.rks-gov.net (Agjencia Kadastrale e Kosovës — Kosovo Cadastral Agency)
+**operator**:  Agjencia Kadastrale e Kosovës (Kosovo Cadastral Agency / AKK)
+**source**:    akk.rks-gov.net
 
-Kosovo's national GNSS reference network. Established by the Kosovo Cadastral Agency
-(AKK) as an EUPOS-aligned CORS network. Paid subscription required; no free hobbyist
-tier confirmed. Pricing not published on public web pages — contact AKK directly.
-No free public NTRIP endpoint confirmed.
+Kosovo's national GNSS reference network, operated by the Kosovo Cadastral Agency (AKK)
+as an EUPOS-aligned CORS network. AKK 04/24 tariff schedule confirmed via the 2025 Annual
+Report (issued 2026-03-25); pricing unchanged since early 2024. Portal alive 2026-04-30.
+The SBC registration form requests rover brand, serial number, and address; no surveying
+licence number required. No free hobbyist tier.
 
 ---
 
 ## sstp_by — ССТП РБ / Belgeodesiya CORS (BY)
 
 **status**:    restricted
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 **country**:   BY — Belarus
-**type**:      network RTK (VRS-capable; 98 CORS)
-**host:port**: not publicly listed (contact geo.by)
-**access**:    paid; signed contract required with РУП «Белгеодезия»;
-               no self-service registration portal; organisations only
-**yearly_cost**: not published on public website; tariffs coordinated with
-               Госкомимущество (State Committee for Property); periodic options
-               include 1, 3, 6, and 12-month subscriptions (geo.by/services/sstp)
+**type**:      network RTK (VRS; mountpoints: BelarusVRS, NEAR, BelarusVRS(MSM5), NEAR(MSM5) on port 8080; Precision Agriculture port 8081)
+**host:port**: `sstp.geo.by:8080` (IP fallback: `93.125.21.51:8080`)
+**access**:    paid; signed public contract (Публичный договор) with РУП «Белгеодезия»;
+               available to individuals (физическое лицо) and organisations (юридическое лицо);
+               restricted to residents of the Republic of Belarus (tariff "для резидентов РБ");
+               no self-service portal
+**yearly_cost**: 150.78 BYN/month (~$53/month; ~$641/yr annualised) — "Точная навигация" fixed plan;
+               metered: 0.24 BYN/min RTK (~$0.085/min) under "Общий" plan; no annual RTK flat rate.
+               Agriculture flat-rate (Точное земледелие): 6,000 BYN/yr (~$2,124/yr) per board device.
+               Tariff effective 01.05.2023 (geo.by/images/tariffs.pdf); stated "без НДС" (excl. 20% VAT).
 **stations**:  ~98 continuously operating reference stations (national coverage)
 **operator**:  РУП «Белгеодезия» (Belgeodesiya state enterprise),
                under Государственный комитет по имуществу Республики Беларусь
                (State Committee for Property — Госкомимущество)
-**registration**: https://geo.by/services/sstp/predostavlenie-informatsii-sstp
+**registration**: https://geo.by/services/sstp
 
 Belarus national CORS network (Спутниковая система точного позиционирования — ССТП РБ).
-Provides RTK and DGPS differential corrections plus RINEX post-processing files.
-Since March 2020 Belgeodesiya feeds data to two EPN analytical centres, making
-selected stations nominally IGS-adjacent, but the RTK correction service is
-entirely separate and not publicly accessible.
+Provides RTK and DGPS differential corrections plus RINEX post-processing files
+(RINEX 1-hr file: 3.63 BYN, ~$1.29). Since March 2020 Belgeodesiya feeds data to two
+EPN analytical centres, but the RTK correction service is entirely separate and not
+accessible outside Belarus.
 
-Access is restricted to organisations holding a current contract. No hobbyist or
-individual self-signup path exists. Host:port is not disclosed on the public website;
-connection credentials are issued per-contract.
+Access is restricted to residents of the Republic of Belarus who sign a public contract;
+both individuals and organisations may sign. No self-service portal; host:port and
+credentials issued per-contract. Confirmed alive 2026-04-30 (tariff PDF and RTK manual
+both served from geo.by).
 
 Hardware supply: EU, UK, and US sanctions applied to Belarus since 2020–2022 suspend
 exports of surveying and precision-GNSS equipment (Topcon, Trimble, Leica all announced
 suspension). Replacement rover hardware is materially harder to source than in
 unsanctioned neighbouring states, compounding the barriers to hobbyist RTK use.
 
-**missing**: confirm current host:port and annual tariff level (BYN) from geo.by
-tariff documentation or industry contact.
-
 ---
 
 ## scrtn — SCRTN (US-SC)
 
 **status**:    paid
-**access**:    paid subscription; pricing via scdot.org
-**yearly_cost**: not publicly listed (contact SCDOT)
-**source**:    scdot.org (South Carolina Department of Transportation)
+**date_added**: 2026-04-30
+**type**:      VRS (Trimble Pivot NW platform)
+**host:port**: `scrtn.sc.gov:2101`
+**access**:    paid; subscribe at scrtn.sc.gov; no professional-licence requirement; any subscriber may obtain a login
+**yearly_cost**: $600/yr per login (annual renewal same rate)
+**operator**:  SC Revenue and Fiscal Affairs Office / SC Department of Transportation
+**source**:    scrtn.sc.gov
 
 ---
 
@@ -2275,7 +2399,7 @@ on rtk2go or in EarthScope sourcetable.
 **type**:      VRS (virtual reference station)
 **host:port**: not publicly listed
 **access**:    paid subscription (commercial service); contact HLCM Group
-**registration**: `hlcmgroup.com/vrs.php`
+**registration**: https://hlcmgroup.com/contact/ (hlcmgroup.com/vrs-faqs/ returned 404 as of 2026-04-30)
 **stations**:  8 physical GNSS receivers providing island-wide VRS coverage
 **operator**:  HLCM Group, Inc. (Bayamón, Puerto Rico)
 **yearly_cost**: not publicly listed (contact HLCM Group, tel. 787-398-8852)
@@ -2295,22 +2419,33 @@ website; out of scope for the map (paid, no free tier) but documented for comple
 ## bc_rtn — BC RTN (CA-BC)
 
 **status**:    paid
-**access**:    paid regional subscription; contact GeoBC via gov.bc.ca/geobc
-**yearly_cost**: not publicly listed
+**date_added**: 2026-04-30
+**type**:      VRS (Trimble-based)
+**host:port**: not publicly listed (GeoBC website reorganisation; portal URLs returning 404 as of 2026-04-30)
+**access**:    paid; contact GeoBC (gov.bc.ca/geobc or 1-800-663-7867); no self-service portal currently accessible
+**yearly_cost**: CAD 1,650/yr (~$1,212); statutory fee per Land Act, B.C. Reg. 55/98, confirmed to 2026-04-21
+**operator**:  GeoBC / Province of British Columbia
 **source**:    gov.bc.ca/geobc (Province of British Columbia)
 
 British Columbia real-time network. No free tier. No Canadian province offers free
-public NTRIP — confirmed across all ten provinces and three territories.
+public NTRIP — confirmed across all ten provinces and three territories. The statutory
+fee of CAD 1,650/yr is confirmed in the Land Act Subscription Fee Regulation (B.C. Reg.
+55/98); BC PST (7%) may apply. NTRIP portal URL not currently accessible from public
+sources following a gov.bc.ca website reorganisation.
 
 ---
 
 ## nsacs — Nova Scotia NSACS (CA-NS)
 
 **status**:    paid
+**date_added**: 2026-04-30
 **access**:    RINEX post-processing free via NRCan; real-time NRTK via paid commercial
-**yearly_cost**: not publicly listed (varies by commercial reseller: Can-Net, HxGN SmartNet, Brandtnet)
-               providers only: Can-Net/Cansel (`gps.can-net.ca:2300`), HxGN SmartNet
-               NA, Brandtnet (`rtk.brandt.ca`)
+               resellers only: HxGN SmartNet NA (`smartnetna.com`, CAD $3,327.96/yr Atlantic;
+               CAD $6,084/yr national), Can-Net (`gps.can-net.ca`, pricing not public),
+               Brandtnet (`rtk.brandt.ca`, pricing behind account login)
+**yearly_cost**: CAD 3,328/yr (~$2,429/yr) — HxGN SmartNet Atlantic (NB, NL, NS, PE) plan;
+               Can-Net and Brandtnet pricing not publicly listed; national SmartNet: CAD 6,084/yr (~$4,441/yr).
+               GST/HST status not stated on SmartNet product page — treat as unknown; confirm at checkout.
 **stations**:  40
 **source**:    novascotia.ca (Nova Scotia Spatial Services)
 
@@ -2318,37 +2453,50 @@ Nova Scotia Active Control System — 40 permanently installed government GNSS r
 forming the NSCRS (Nova Scotia Coordinate Referencing System). Province owns the
 stations; three commercial providers access the ACS data under data-licensing agreements
 and sell real-time NRTK subscriptions. No free real-time tier; no direct provincial
-NTRIP caster.
+NTRIP caster. SmartNet pricing confirmed 2026-04-30 at smartnetna.com/store_product_selector.cfm.
 
 ---
 
 ## dvrs — DVRS (AE)
 
-**status**:    paid
-**access**:    restricted; professional application via dm.gov.ae (Dubai Municipality)
+**status**:    restricted
+**date_added**: 2026-04-30
+**access**:    restricted; professional application only (licensed engineering/surveying firms);
+               no individual or hobbyist registration path at any price
 **yearly_cost**: not publicly listed (professional application required)
 **stations**:  18+
 **source**:    dm.gov.ae (Dubai Municipality)
 
 Dubai Virtual Reference System. 18+ 4-constellation reference stations covering Dubai
-Emirate. Access is by formal professional application only (licensed engineering/surveying
-firms) — no individual or hobbyist registration path.
+Emirate. Access by formal professional application only — no hobbyist path.
+
+Portal status (2026-04-30): geodubai.dm.gov.ae returning errors; dm.gov.ae/survey-department
+DVRS sub-pages returning 404. Service may have been restructured or migrated to a DM
+e-services login. Main dm.gov.ae site is live.
 
 ---
 
 ## regpmoc — REGPMOC (PE)
 
 **status**:    paid
+**date_added**: 2026-04-30
 **host:port**: `190.12.71.75:2101`
-**type**:      physical-coord-vrs
-**access**:    restricted; MoD-issued licence required (professional/commercial only)
-**yearly_cost**: not publicly listed (MoD-issued licence required)
-**stations**:  unknown
-**source**:    ign.gob.pe (IGN — Instituto Geográfico Nacional, under Ministry of Defence)
+**type**:      single-base
+**access**:    paid; application + payment to IGN required; credentials issued by email;
+               no self-service portal; not explicitly restricted to licensed surveyors per
+               IGN's "Políticas de Uso del Servicio NTRIP" policy document
+**yearly_cost**: no official PEN tariff found (TUPA pages at gob.pe returning 404);
+               reseller indication: ~$85/month (~$1,020/yr) at one Peruvian integrator —
+               not an official IGN rate
+**stations**:  ~65 single-base
+**operator**:  IGN — Instituto Geográfico Nacional del Perú (under Ministry of Defence)
+**source**:    ign.gob.pe (IGN — Instituto Geográfico Nacional)
 
-Red Geodésica Permanente de Monitoreo Continuo. Government CORS network operated by
-Peru's IGN under the Ministry of Defence. Host:port is publicly known (190.12.71.75:2101)
-but stream access requires an official licence — no general hobbyist path.
+Red Geodésica Permanente de Monitoreo Continuo. ~65 single-base stations nationally.
+RTCM 3.2 and CMR+ formats; NTRIP v2.0; max 100 simultaneous users/station. Access is
+by application to IGN + payment; credentials issued by email. IGN policy document does
+not explicitly restrict to licensed surveying organisations. Official fee schedule (TUPA)
+currently returning 404 on gob.pe.
 
 ---
 
@@ -2431,23 +2579,28 @@ operational caster.
 ## otc_gnss — OTC GNSS (TN)
 
 **status**:    paid
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 **country**:   TN
 **type**:      single-base (physical coordinates)
 **host:port**: not publicly listed (disclosed after subscription)
-**access**:    paid subscription; register at otc.nat.tn/geodesy/gnss/subscription
-**yearly_cost**: not publicly listed (contact commercial department)
+**access**:    paid subscription; register at otc.nat.tn/geodesy/gnss/subscription; no explicit eligibility restriction found
+**yearly_cost**: 6,000 TND/yr (~$2,070/yr); prices H.T. (excl. VAT); confirmed 2026-04-30
 **stations**:  23 (physical; Saharan region not covered)
 **source**:    otc.nat.tn (OTC — Office de la Topographie et de la Cartographie)
 **operator**:  OTC (Ministère de l'Équipement et de l'Habitat, Tunisia)
+
+Full published tier table — all H.T., excl. VAT (source: otc.nat.tn/geodesy/gnss/subscription;
+at 1 TND ≈ $0.345, observed 2026-04-30):
+60 TND/day (~$21), 480 TND/15 days (~$166), 840 TND/month (~$290), 2,400 TND/3 months
+(~$828), 3,600 TND/6 months (~$1,242), 4,800 TND/9 months (~$1,656), 6,000 TND/yr (~$2,070).
 
 Office de la Topographie et de la Cartographie national GNSS network. 3 stations
 installed 2005 (Tunis, Monastir, Sfax); expanded to 23 with 20 additional stations
 distributed across non-Saharan Tunisia in 2010; fully operational since 2011. Each
 station is equipped with a weather sensor (temperature, pressure, humidity). Network
 referenced to WGS84–ITRF 2000 (NTT — Nouveau Système Tunisien de Triangulation).
-RTK corrections delivered via NTRIP subscription; NTRIP host:port not published
-openly. No free tier. No hobbyist self-service registration path found.
+RTK corrections delivered via NTRIP subscription; NTRIP host:port disclosed post-subscription.
+No free tier. No explicit eligibility restriction on subscription page.
 
 ---
 
@@ -2484,16 +2637,25 @@ unreliable across much of Jordan regardless of NTRIP source availability.
 
 ## pak_rehber — Pak-Rehber (PK)
 
-**status**:    paid
-**access**:    restricted; authorized users only — contact suparco.gov.pk (SUPARCO)
-**yearly_cost**: not publicly listed (authorized users only)
-**stations**:  unknown
-**source**:    suparco.gov.pk (SUPARCO — Space and Upper Atmosphere Research Commission)
+**status**:    restricted
+**date_added**: 2026-04-30
+**type**:      VRS (network RTK; RTCM 3.x MSM4/MSM7; ~4–5 ms latency)
+**coverage**:  Karachi metropolitan area only (city + ~20 km outskirts); not nationwide Pakistan
+**access**:    restricted; "only authorised users can use" (per official brochure);
+               authorisation process not publicly documented
+**yearly_cost**: not publicly listed
+**stations**:  unknown (Karachi metro only)
+**operator**:  SUPARCO Business Solutions (Pvt.) Ltd. (commercial arm of SUPARCO — Space
+               and Upper Atmosphere Research Commission)
+**source**:    suparco.biz (SUPARCO Business Solutions)
 
-Government NRTK service delivering cm-level corrections to "authorized users." No
-public-facing NTRIP host:port, open registration portal, or sourcetable found.
-Access requires direct contact with SUPARCO. Pak-SBAS (sub-metre satellite corrections,
-L-band) is a separate out-of-scope service also under SUPARCO.
+NRTK service operated by SUPARCO Business Solutions using Topcon GNSS software. Covers
+Karachi metropolitan area and ~20 km outskirts only. The official brochure
+(suparco.biz/wp-content/uploads/2025/03/pak-rehber.pdf, confirmed live 2026-04-30)
+explicitly states "Only authorized users can use the Pak-Rehber precise positioning
+service." No public host:port, sourcetable, or hobbyist registration path found.
+Pak-SBAS (sub-metre L-band satellite corrections) is a separate SUPARCO service,
+out of scope.
 
 ---
 
@@ -3617,7 +3779,7 @@ for pipeline — paid service and no confirmed hobbyist-accessible free tier.
 
 ## khmer_geonet — Khmer GEONET (KH)
 
-**status**:    candidate
+**status**:    free
 **country**:   KH — Cambodia
 **type**:      single-base (5 physical CORS)
 **host:port**: not publicly listed; Trimble Pivot web interface visible at
@@ -4151,7 +4313,7 @@ check `survey.gov.bn` directly or contact the department for geodetic services.
 
 ## bfcors — BF-CORS GNSS Network (BF)
 
-**status**:    candidate
+**status**:    free
 **country**:   BF — Burkina Faso
 **type**:      single-base (physical CORS stations)
 **host:port**: not publicly listed (disclosed post-registration via `bfcors.net`)
@@ -4181,7 +4343,7 @@ verify operational status given post-coup bilateral changes.
 
 ## ign_bj — IGN Bénin Permanent GNSS Station Network (BJ)
 
-**status**:    candidate
+**status**:    free
 **country**:   BJ — Benin
 **type**:      single-base (physical CORS stations)
 **host:port**: not publicly listed (disclosed after registration via IGN Bénin / CatIS)
@@ -4267,7 +4429,7 @@ portals for any announced CORS programme.
 
 ## dgigc_tg — Togo National CORS Network (TG)
 
-**status**:    candidate
+**status**:    free
 **country**:   TG — Togo
 **type**:      single-base (physical CORS stations, exact count unconfirmed)
 **host:port**: not publicly listed (contact DGIGC)
@@ -4915,7 +5077,7 @@ equipment company. Not added to pipeline: paid service.
 
 ## ign_cr_cors — IGN-CR CORS / SNIT NTRIP Caster (CR)
 
-**status**:    candidate
+**status**:    free
 **date_added**: 2026-04-29
 **country**:   CR
 **type**:      physical single-base (14 stations)
