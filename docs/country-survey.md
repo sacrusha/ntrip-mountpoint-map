@@ -117,27 +117,41 @@ _Last updated: 2026-04-22._
 
 - **Free government RTK**: none. OS Net (Ordnance Survey, ~110 stations) is
   licensed exclusively to commercial resellers (HxGN SmartNet/Hexagon,
-  TopNET/Trimble, and five other authorised partners) under the OS licence
-  model since 2005; no public NTRIP endpoint. Pricing not on public websites —
-  contact resellers. → networks.md: `os_net`
+  TopNET/Trimble, AXIO-NET, SoilEssentials, Premium Positioning, Point One,
+  Topcon) under the OS licence model since 2005; no public NTRIP endpoint.
+  → networks.md: `os_net`
 - **Volunteer**: rtk2go ~61 GB bases, Centipede ~43 GB nodes (country code `ENG`).
   Largest volunteer cluster in the British Isles; uneven coverage — densest in
   England, sparse in Wales/Scotland/Northern Ireland.
-- **Paid only**: HxGN SmartNet, TopNET Live, and other OS-licensed resellers —
-  pricing not publicly listed; contact each reseller.
-- **Gap**: no free coordinated coverage; volunteer bases are the only free
-  option and coverage thins sharply outside major English population centres.
+- **Paid (annual)**: confirmed published tariffs (2026-04-30, ex 20% UK VAT):
+  Leica HxGN SmartNet via SCCS Survey £2,160/yr unlimited NRTK (£1,300/yr
+  for 480 hrs limited); Topcon TopNet Live via Drone Pilot Academy £1,700/yr
+  unlimited; Trimble VRS Now via Korec is "Price On Application".
+- **Paid (shortest blocks)**: Topcon TopNet Live publishes short paid blocks —
+  £100 for 7 days unlimited (~$133), £300 for 30 days unlimited (~$399), and
+  hour-bucket annual passes from £100/5 hrs to £250/11 hrs. These cover one-off
+  project sessions but they are not cheap on a recurring basis (£100/wk = ~£5,200
+  if used every week of the year; £100/5 hrs = £20/hr).
+- **Gap**: no free coordinated coverage and no inexpensive recurring OS Net
+  subscription; volunteer bases are the only free option and coverage thins
+  sharply outside English population centres.
 
 ### IE — Ireland
 
 **date_added**: 2026-04-29
 
-- **Free government RTK**: none. OSi (Ordnance Survey Ireland) operates a
-  ~24-station active GNSS network but routes real-time users to Trimble VRS Now
-  / HxGN SmartNet (commercial); RINEX files downloadable free at gnss.osi.ie.
-  → networks.md: `osi_gnss`
+- **Free government RTK**: none. OSi (now Tailte Éireann) operates a ~24-station
+  active GNSS network but provides only free RINEX post-processing — no
+  real-time NTRIP caster. Portal migrating from `gnss.osi.ie` to
+  `gnss.tailte.ie` in May 2026. → networks.md: `osi_gnss`
+- **Paid real-time**: closest published Irish tariff (2026-04-30) is Trimble
+  VRS Now via Hitechniques (`hitechniques.ie`) at €590/yr (~$640) for 600
+  hours of usage covering Ireland; HxGN SmartNet has IE coverage via UK
+  partners (see GB entry).
 - **Volunteer**: rtk2go ~12 IE bases, Centipede ~9 IE nodes. Sparse; growing.
-- **Gap**: no free coordinated coverage; volunteer quality varies widely.
+- **Gap**: no free coordinated coverage and no short-term commercial pass at
+  Topcon TopNet Live's price point — IE real-time RTK requires either a €590
+  annual commitment or volunteer base coverage of variable quality.
 
 ### LU — Luxembourg
 
@@ -168,15 +182,24 @@ _Last updated: 2026-04-22._
 
 **date_added**: 2026-04-29
 
-- **Free government RTK**: CYPOS (Department of Lands and Surveys / DLS, Ministry
+- **Government RTK (paid)**: CYPOS (Department of Lands and Surveys / DLS, Ministry
   of Interior, 7 stations, VRS + iMAX + FKP + MAC) — paid subscription; register
-  via the DLS Portal (`portal.dls.moi.gov.cy`); host:port not publicly listed
-  (provided post-registration). → networks.md: `cypos`
+  via the DLS Portal (`portal.dls.moi.gov.cy`); host:port and tariff disclosed
+  only post-registration (rechecked 2026-04-30, no public figures). → networks.md: `cypos`
+- **Free single-base via AUSCORS**: Geoscience Australia's AUSCORS broadcaster
+  (`ntrip.data.gnss.ga.gov.au:2101`) carries the IGS NICO station (Nicosia,
+  35.14°N 33.40°E, RTCM 3.2, GPS+GLO dual-freq) — free, no registration. Single
+  base, ITRF2020 current epoch, ~30 km useful L1+L2 baseline, so practical
+  coverage is greater Nicosia and central Cyprus. ITRF→WGS84 is essentially
+  identity for cm-level work; a Cyprus LTM grid transformation is only needed
+  for ties into legacy cadastral data. Already visible on this map under
+  `auscors`. → networks.md: `auscors`
 - **Note**: GNSS spoofing originating from the IL/Lebanon/Sinai region intermittently
   affects southern Cyprus — rovers may lose fix near the coast facing east.
 - **Volunteer**: rtk2go ~1 CY base, Centipede ~0 CY nodes. Minimal coverage.
-- **Gap**: no free government NTRIP; CYPOS requires a paid subscription; hobbyists
-  rely on a single rtk2go volunteer base or a local base station.
+- **Gap**: no Cyprus-government free NTRIP; AUSCORS NICO is the only free
+  national-frame option but covers only the Nicosia area. CYPOS is the only
+  paid option for island-wide network RTK.
 
 ### AD — Andorra
 
@@ -478,14 +501,35 @@ _Last updated: 2026-04-22._
 
 **date_added**: 2026-04-29
 
-- **Free government RTK**: BiHPOS — dual-entity fixed reference station network (CORS); paid; split between two
-  geodetic authorities: FBiHPOS (Federation of BiH, `fgu.com.ba`) and SRPOS (Republika
-  Srpska, `srpos.rgurs.org`). Together 34 stations, ~17 per entity; VRS-capable. Host:port
-  not publicly listed (contact fgu.com.ba or rgurs.org/srpos for credentials).
-  Pricing not on public website (contact respective authority).
-  → networks.md: `bihos`
+- **Government RTK (paid, RS half — SRPOS)**: SRPOS (RGURS — Republička uprava
+  za geodetske i imovinsko-pravne poslove, Republika Srpska, `srpos.rgurs.org:2101`
+  or legacy `81.93.74.247:8080`, ~17 stations, MAX + iMAX + VRS + FKP +
+  nearest-station). 2026 tariff confirmed 2026-04-30 (BAM, pegged 1.95583 to
+  1 EUR): RTK 0.20 KM/min · 10 h **30 KM (~€15, ~$17)** · 20 h 50 KM (~$29) ·
+  1 mo 250 KM (~€128, ~$145) · 1 yr 1,000 KM (~€511, ~$578); DGPS 1 mo 200 KM
+  (~$116). Short pre-paid blocks (10/20 hours, ~$17 / ~$29) are the cheapest
+  entry; per-minute (~$7/hr) and longer tiers rise quickly. Open to natural
+  persons (no licence requirement); RS giro-account payment route.
+  → networks.md: `srpos_ba`
+- **Government RTK (paid, FBiH half — FBiHPOS)**: FBiHPOS (FGU — Federalna
+  uprava za geodetske i imovinsko-pravne poslove, Federacija BiH,
+  `fbihpos.katastar.ba:8080` — note port 8080, not 2101, ~17 stations,
+  MAX + iMAX + VRS + NEAREST + combined H+V mountpoints). Tariff per FBiH
+  Government Decision V. broj 605/2022 (BAM, gross): 100 KM (~$58) one-time
+  registration; RTK-VPSP 7 days 150 KM (~$87), 1 mo 250 KM (~$145), 6 mo
+  750 KM (~$435), 12 mo 1,000 KM (~$580); a "all services" 12-mo at 1,400 KM
+  and post-processing-only 12-mo at 700 KM also exist. Multi-rover discounts
+  -10% / -20% / cap -50%. Open to natural persons (the registration form has
+  a dedicated "FIZIČKA LICA" section with no licence requirement). The 7-day
+  and 1-month passes are the cheap short-period options; longer commitments
+  scale up to 1,000 KM (~$580) for an annual subscription. Contact
+  `fbihpos@fgu.com.ba`, +387 33 586 065. → networks.md: `fbihpos_ba`
 - **Volunteer**: negligible. ~1 BIH base on rtk2go, zero on Centipede.
-- **Gap**: no free RTK for hobbyists; both entity endpoints require paid subscription.
+- **Gap**: no free RTK on either entity-level network. SRPOS short pre-paid
+  hourly blocks (~$17 for 10 hours, ~$29 for 20 hours) are the cheap entry in
+  Republika Srpska; FBiHPOS has no comparable hourly tier and its shortest
+  block is a 7-day pass at 150 KM (~$87). Volunteer bases are the only free
+  option.
 
 ### BG — Bulgaria
 
@@ -494,9 +538,16 @@ _Last updated: 2026-04-22._
 - **Free government RTK**: none. АГКК / GCSES (Агенция по геодезия, картография и
   кадастър — Geodesy, Cartography and Cadastre Agency) operates reference stations but
   no public NTRIP caster has been identified.
-- **Commercial**: GeoNet Bulgaria (`geonet.bg`, GEO-RTK service, VRS network) —
-  paid; pricing not publicly listed on website (contact via geonet.bg).
-  → networks.md: `geonet_bg`
+- **Commercial**: GeoNet Bulgaria GEO-RTK (Зенит-Гео ЕООД / Zenit-Geo Ltd,
+  distributed by Солитех АД / Solitech AD — Trimble's official Bulgarian
+  reseller, `gnss.geonet.bg:2101` (IP `95.43.249.1:2101`), VRS network).
+  Certified by АГКК under Instruction РД-02-20-25/2011 (Cert. No. 013/2020,
+  renewed to 2026). Tariff PDF at
+  `solitech.bg/wp-content/uploads/2026/04/planove-geonet-04.2026.pdf` — two plan
+  families (unlimited access for heavy users; included-monthly-consumption for
+  occasional users); BGN/EUR figures not yet retrieved. Contract-based access;
+  no individual hobbyist tier advertised. Contact `info@geonet.bg`,
+  tel `0700 1 4677`. → networks.md: `geonet_bg`
 - **Volunteer**: rtk2go ~7 BGR bases, Centipede ~1 BGR node. Thin coverage concentrated
   near Sofia and the main urban corridor.
 - **Gap**: no free government RTK and no public hobbyist path; volunteer bases near Sofia
@@ -547,30 +598,43 @@ _Last updated: 2026-04-22._
 
 **date_added**: 2026-04-29
 
-- **Free government RTK**: GNSSnet.hu (Lechner Nonprofit Kft. / Lechner Tudásközpont,
-  `ntrip.gnssnet.hu:2101`, VRS network solution) — paid; 150,000 HUF/yr net
-  (~€375/yr at ~400 HUF/EUR) after the Feb 2023 price reduction; 15,000 HUF/30 days
-  (~€38) also available. One-time connection fee 12,000 HUF + VAT (~€30). Registration
-  at `gnssnet.hu`. Expensive for a hobbyist.
+- **Government RTK (paid)**: GNSSnet.hu (Lechner Nonprofit Kft. / Lechner Tudásközpont,
+  `ntrip.gnssnet.hu:2101`, VRS network solution + single-base RTK + DGNSS). Tariff
+  (net of 27% ÁFA, Feb 2023 schedule, reconfirmed 2026-04-30): 12,000 HUF (~€30)
+  one-time registration per company; 365-day flat rate 150,000 HUF (~€375) for RTK
+  or Network RTK (54,000 HUF for DGNSS); shorter flat blocks at 30/90/150 days
+  (36,000 / 72,000 / 108,000 HUF); a 30-day local-radius option within 50 km of one
+  fixed coordinate at 15,000 HUF (~€38); per-minute fallback at 8 HUF/min RTK,
+  12 HUF/min Network RTK, 3 HUF/min DGNSS. Expensive at the annual rate; the
+  per-minute RTK rate (~€1.20/hr) is cheap for occasional use; the 30-day
+  local-radius pass (~€38) covers a single project within 50 km of one
+  point. Registration at `gnssnet.hu`.
   → networks.md: `gnssnet_hu`
 - **Volunteer**: Centipede ~223 HUN nodes (single largest non-France country in the
   Centipede sourcetable), rtk2go ~6 HUN bases. Near-national free RTK coverage
   through volunteers; densest in the Great Hungarian Plain and northern Hungary.
-- **Gap**: GNSSnet.hu is expensive for a hobbyist; the Centipede volunteer network
-  provides practical free coverage for most of the country without registration.
+- **Gap**: no free government RTK. The Centipede volunteer network provides practical
+  free coverage for most of the country without registration; GNSSnet.hu is the
+  paid alternative, with a 30-day 50 km flat (~€38) or per-minute (~€1.20/hr RTK)
+  tariff that makes a single-project sign-up feasible for hobbyists.
 
 ### ME — Montenegro
 
 **date_added**: 2026-04-29
 
-- **Free government RTK**: MONTEPOS (Uprava za nekretnine / Real Estate Administration,
-  `gov.me/clanak/montepos`) — paid; ~9 fixed reference stations (CORS) across Montenegro; VRS-capable (9
-  locations listed). Subscription tiers: 24 h, 48 h, 1 month, 3 months, 6 months,
-  1 year, 2 years. Pricing not published on official page (contact Uprava za nekretnine,
-  Podgorica). Host:port not publicly listed; Montenegro uses EUR, so expect EUR pricing.
+- **Government RTK (paid)**: MONTEPOS (Uprava za nekretnine / Real Estate
+  Administration, `gov.me/clanak/montepos`) — 9 CORS stations, VRS-capable.
+  Subscription periods confirmed 2026-04-30: 24 h, 48 h, 1 month, 3 months,
+  6 months, 1 year, 2 years. Application form (`Zahtjev za MontePos`) and
+  tariff PDF (`MontePos- tehnički detalji`, both 2024-04-11 PDFs on
+  `wapi.gov.me`); EUR figures not yet retrieved. Host:port not on the public
+  page — disclosed post-registration. Payment to giro account 832-1081-58
+  with "Montepos - RTK" purpose. Admin contact Goran Popović, tel
+  +382 67 641 119. No professional licence required. Montenegro uses EUR.
   → networks.md: `montepos`
 - **Volunteer**: none. Zero MNE stations on rtk2go or Centipede.
-- **Gap**: no free RTK; paid MONTEPOS is the only option.
+- **Gap**: no free RTK; paid MONTEPOS is the only option, and pricing is only
+  visible after pulling the tariff PDF or contacting the admin directly.
 
 ### MK — North Macedonia
 
@@ -650,17 +714,19 @@ _Last updated: 2026-04-22._
 
 **date_added**: 2026-04-29
 
-- **Free government RTK**: SKPOS (GKÚ / Geodetický a kartografický ústav,
-  `skpos.gku.sk:2101`, ~26 stations, VRS) — free for public-sector bodies and
-  municipalities; commercial/hobbyist use is paid via the SKPOS online shop
-  (`skposonlineobchod.gku.sk`). Pricing not listed publicly without login; GKÚ
-  raised rates in December 2022. Slovakia uses EUR. Likely expensive for a hobbyist
-  (inferred from professional-services pricing). Registration at
-  `skpos.gku.sk/register/`. → networks.md: `skpos`
+- **Government RTK (paid-affordable, hobbyist-eligible)**: SKPOS (GKÚ
+  Bratislava / Geodetický a kartografický ústav, `skpos.gku.sk:2101`, ~26
+  stations, VRS). 2026 schedule confirmed 2026-04-30: SKPOS_cm/RTK
+  **€70/yr (~$79)** or €25/mo (~$28) per device; dual-receiver €140/yr;
+  SKPOS_dm/DGNSS €25/yr; SKPOS_mm post-processing €0.07/hr or €70 for
+  1000 h/yr. Free for Slovak public-sector bodies and municipalities under
+  Act 145/1995. Registration form (`skpos.gku.sk/register/`) explicitly accepts
+  "Fyzická osoba bez živnostenského listu" (private individual without trade
+  licence) and lists almost all UN member states — open internationally.
+  **One of the cheapest national-scale network-RTK services in the EU and
+  the cheapest hobbyist on-ramp in the Visegrád region.** → networks.md: `skpos`
 - **Volunteer**: rtk2go ~2 SVK bases, Centipede ~2 SVK nodes.
-- **Gap**: no free hobbyist path; volunteer coverage is negligible across the
-  country; self-operated base or a cross-border Austrian/Czech node are the
-  the only affordable alternatives are near borders.
+- **Gap**: none for hobbyists at €70/yr; SKPOS is the recommended path.
 
 ### UA — Ukraine
 
@@ -1714,7 +1780,18 @@ similarly have no published coverage for these jurisdictions.
 
 **date_added**: 2026-04-28
 
-- **Free government RTK**: PAGeNet (NAMRIA, 52 stations) — PHP 1,000 one-time + ongoing (EO 471). Paid.
+- **Government RTK (paid)**: PAGeNet (NAMRIA, 52 stations, `pagenet.namria.gov.ph`,
+  port issued post-subscription — standard 2101 inferred). Tariff confirmed
+  2026-04-30 at `pagenet.namria.gov.ph/AGN/ServicesAndFees.aspx` (PHP, no VAT —
+  regulatory charges under EO 471): PHP 1,000 (~$18) one-time registration; RTK
+  per-hour PHP 100/hr (~$1.77/hr); RTK Unlimited 1 day PHP 1,000 (~$18), 5 days
+  PHP 3,500, 15 days PHP 7,500, 1 month PHP 12,000 (~$212); 30/60-sec RINEX free
+  with subscription. The per-hour rate (~$1.77/hr) is cheap for occasional
+  use; the 1-day pass (~$18) covers a single session; the 1-month tier
+  (~$212) is the longest published block — there is no annual flat rate.
+  Open to individuals; non-Metro Manila clients pay by LandBank deposit slip,
+  which is a practical barrier for foreign
+  hobbyists. → networks.md: `pagenet`
 - **Volunteer**: negligible.
 
 ### PK — Pakistan
@@ -1783,14 +1860,17 @@ similarly have no published coverage for these jurisdictions.
 
 **date_added**: 2026-04-29
 
-- **Free government RTK**: VNGEONET (National Centre for Satellite Positioning
-  Station Management, `vngeonet.vn:2101` / `:2102` / `:2103`, 65 stations, VRS +
-  iMAX + single-base mountpoints) — was free until Aug 2024; fees apply since Sep
-  2024 per Circular 47/2024/TT-BTC; pricing not publicly listed. Paid; out of scope.
-  → networks.md: `vngeonet`
+- **Government RTK (paid, foreigner-eligible)**: VNGEONET (National Centre for
+  Satellite Positioning Station Management, `vngeonet.vn:2101` / `:2102` / `:2103`,
+  IP `14.238.1.125`, 65 stations, VRS + iMAX + single-base). Paid since Sep 2024
+  per Circular 47/2024/TT-BTC. 2026 schedule confirmed 2026-04-30: 750,000 VNĐ/mo
+  (~$29.5), 4,280,000 VNĐ/6 mo (~$168), 6,750,000 VNĐ/yr (~$266); registration
+  accepts passport scans alongside Citizen ID, so foreign nationals can register.
+  **Free 12-month tier in zones with >80 km station spacing** — useful for
+  hobbyists outside the densely covered river deltas. → networks.md: `vngeonet`
 - **Volunteer**: negligible. Zero VN stations on rtk2go or Centipede.
-- **Gap**: no free public NTRIP in Vietnam since Sep 2024; hobbyists must deploy a
-  local base or pay VNGEONET fees (amount not publicly disclosed).
+- **Gap**: dense-coverage zones cost ~$30/month minimum; the free zone-spacing
+  tier covers only the sparsest parts of the network.
 
 ---
 
@@ -2695,17 +2775,21 @@ similarly have no published coverage for these jurisdictions.
 
 **date_added**: 2026-04-29
 
-- **Free government RTK**: none. TUSAGA-Aktif / CORS-TR (TKGM — General Directorate of Land
-  Registry and Cadastre, jointly with HGM — General Directorate of Mapping,
-  `212.156.70.42:2101`, ~158 physical GNSS stations, single-base) — paid; one-off
-  registration fee + annual RTK subscription. Fee set each year by the
-  Inter-Ministerial Commission for Mapping Affairs (BHİKPK); exact TRY amount not
-  on the public website (contact `tusaga-aktif.gov.tr`, tel. 444 46 77). Likely expensive
-  for a hobbyist (inferred from professional-surveying pricing). Universities and vocational
-  schools may apply for free educational-area RTK access via TKGM. → networks.md: `tusaga`
+- **Government RTK (paid, residency-gated)**: TUSAGA-Aktif / CORS-TR (TKGM —
+  General Directorate of Land Registry and Cadastre, jointly with HGM — General
+  Directorate of Mapping, `212.156.70.42:2101`, ~158 physical GNSS stations,
+  single-base). 2026 schedule (KDV included, confirmed 2026-04-30): one-off
+  device registration ₺550 (~$17); RTK 1 mo ₺1,000 (~$30), 6 mo ₺6,000 (~$182),
+  1 yr ₺8,135 (~$247); DGPS 1 yr ₺2,985 (~$91); 30-sec RINEX free, 1-sec
+  ₺4/session. Online registration requires a TC Kimlik No (Turkish national
+  ID) — foreign nationals without Turkish residency cannot self-register.
+  Universities and vocational schools may apply for free educational-area RTK
+  access via TKGM. → networks.md: `tusaga`
 - **Volunteer**: rtk2go ~3 TR bases; Centipede — none. Zero TUR nodes confirmed.
-- **Gap**: no free public NTRIP for hobbyists in Turkey; deploy a local base station
-  or apply for the university exemption if eligible.
+- **Gap**: no free public NTRIP. The annual RTK tier costs ~$247 and the
+  6-month block ~$182, so picking one or the other depends on whether half a
+  year of fieldwork is enough. Foreign visitors without a Turkish national ID
+  must contact the agency directly or deploy a local base.
 
 ## Caucasus
 

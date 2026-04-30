@@ -141,32 +141,40 @@
      "note":"78 stations under JUPEM (Survey Act cost-recovery). Pricing not published online."},
 
     {"id":"tusaga",      "name":"TUSAGA-Aktif",     "region":"Turkey",                "country":"TR", "lat":39.00, "lon":35.00,
-     "tier":"paid", "vrs":true, "access":"paid", "registration":"https://www.harita.gov.tr",
-     "note":"Membership plus annual fee. Pricing not published online."},
+     "tier":"paid", "vrs":true, "access":"paid", "yearly_cost":"₺550 (~$17) one-time device registration; ₺1,000/mo (~$30), ₺6,000/6 mo (~$182), or ₺8,135/yr (~$247) for RTK; ₺2,985/yr (~$91) for DGPS. KDV (VAT) included.", "registration":"https://www.harita.gov.tr",
+     "note":"Online registration requires a Turkish national ID (TC Kimlik No), so foreign visitors cannot self-register. Shorter blocks (₺1,000/mo, ₺6,000/6 mo, ~$30 / ~$182) are cheaper than committing to the annual ₺8,135 (~$247)."},
 
     {"id":"vngeonet",    "name":"VNGEONET",         "region":"Vietnam",               "country":"VN", "lat":16.50, "lon":107.50,
-     "tier":"paid", "vrs":true, "access":"paid",
-     "note":"65 stations. Was free until Aug 2024; fees now apply per Circular 47/2024/TT-BTC."},
+     "tier":"paid", "vrs":true, "access":"paid", "yearly_cost":"750,000 VNĐ/mo (~$29.5), 4,280,000 VNĐ/6 mo (~$168), or 6,750,000 VNĐ/yr (~$266). Free 12-month RTK in zones with >80 km station spacing.", "registration":"https://gddt.vngeonet.vn",
+     "note":"65 stations on a VRS + iMAX + single-base caster. Foreigners can register with a passport. A free annual tier exists in sparse-coverage zones (>80 km station spacing) — useful outside the densely covered river deltas."},
 
     {"id":"pagenet",     "name":"PAGeNet",          "region":"Philippines",           "country":"PH", "lat":12.90, "lon":122.70,
-     "tier":"paid", "vrs":true, "access":"paid", "yearly_cost":"₱1,000 one-time (~$17) plus ongoing subscription", "registration":"https://www.namria.gov.ph",
-     "note":"52 stations. One-time registration plus an ongoing subscription per Executive Order 471; subscription rate not published online."},
+     "tier":"paid", "vrs":true, "access":"paid", "yearly_cost":"PHP 1,000 (~$18) one-time registration; then PHP 100/hr (~$1.77/hr), or PHP 1,000/day (~$18), PHP 3,500/5 days, PHP 7,500/15 days, PHP 12,000/month (~$212) for unlimited RTK. No VAT — regulatory charges under Executive Order 471.", "registration":"https://pagenet.namria.gov.ph",
+     "note":"52 stations. The per-hour rate (~$1.77/hr) is cheap for occasional use; the 1-day pass (~$18) covers a single session, and the 1-month tier (~$212) is the longest published block. Non-Metro Manila clients pay by LandBank deposit slip, a practical barrier for foreigners."},
 
     {"id":"gnssnet_hu",  "name":"GNSSnet.hu",       "region":"Hungary",               "country":"HU", "lat":47.20, "lon":19.30,
-     "tier":"paid", "vrs":true, "access":"paid",
-     "note":"Pricing not published online. Centipede has ~223 volunteer nodes in Hungary — a dense free alternative already on this map."},
+     "tier":"paid", "vrs":true, "access":"paid", "yearly_cost":"150,000 HUF/yr (~€375, ~$415) for unlimited RTK or network RTK; 15,000 HUF (~€38) for 30 days within 50 km of one fixed point; or pay-per-minute at 8 HUF/min RTK and 12 HUF/min network RTK (~€1.20–1.80/hr). 12,000 HUF (~€30) one-time registration. Net of 27% Hungarian VAT.", "registration":"https://gnssnet.hu",
+     "note":"Annual subscription is over budget for a hobbyist, but a 30-day local-radius pass (~€38) or per-minute billing (~€1.20/hr) makes a single project affordable. Centipede has ~223 volunteer nodes in Hungary — a dense free alternative already on this map."},
 
     {"id":"agros",       "name":"AGROS",            "region":"Serbia",                "country":"RS", "lat":44.00, "lon":21.00,
      "tier":"paid", "vrs":true, "access":"paid", "yearly_cost":"8,688 RSD/yr (~€74/yr, ~$80/yr)", "registration":"https://www.rgz.gov.rs",
      "note":"Affordable RTK flat-rate. ~30 stations on a Trimble VRS Now backbone. Hourly and monthly packages also available."},
 
-    {"id":"montepos",    "name":"MONTEPOS",         "region":"Montenegro",            "country":"ME", "lat":42.70, "lon":19.40,
-     "tier":"paid", "vrs":true, "access":"paid", "registration":"https://www.upco.gov.me",
-     "note":"Multiple subscription tiers (yearly, monthly). Pricing not published online."},
+    {"id":"geonet_bg",   "name":"GeoNet GEO-RTK",   "region":"Bulgaria",              "country":"BG", "lat":42.70, "lon":25.30,
+     "tier":"paid", "vrs":true, "access":"paid", "registration":"https://geonet.bg",
+     "note":"Bulgaria's national commercial network RTK / VRS service, certified by АГКК. Reach the caster at gnss.geonet.bg:2101. Tariff lives in a PDF on solitech.bg (April 2026 edition); contact info@geonet.bg or 0700 1 4677. No free hobbyist tier; access is contract-based."},
 
-    {"id":"bihos",       "name":"BiHPOS",           "region":"Bosnia and Herzegovina","country":"BA", "lat":44.20, "lon":17.50,
-     "tier":"paid", "vrs":true, "access":"paid",
-     "note":"Pricing not published online. Dual-entity administration (FBiH and RS) — coverage and tariffs vary by entity."},
+    {"id":"montepos",    "name":"MONTEPOS",         "region":"Montenegro",            "country":"ME", "lat":42.70, "lon":19.40,
+     "tier":"paid", "vrs":true, "access":"paid", "registration":"https://www.gov.me/clanak/montepos",
+     "note":"9 CORS stations. Seven subscription periods from 24 h to 2 years; EUR pricing on a 2024-04-11 PDF on wapi.gov.me. Host:port issued after registration. Admin contact Goran Popović, +382 67 641 119; payment to giro 832-1081-58."},
+
+    {"id":"srpos_ba",    "name":"SRPOS",            "region":"Republika Srpska, BiH", "country":"BA", "lat":44.78, "lon":17.18,
+     "tier":"paid", "vrs":true, "access":"paid", "yearly_cost":"BAM/KM (pegged 1.95583 to 1 EUR). RTK: 0.20 KM/min, or 30 KM (~$17) for 10 hours, 50 KM (~$29) for 20 hours, 250 KM (~$145) for 1 month, 1,000 KM (~$578) for 1 year. DGPS 1 month 200 KM (~$116), 1 year 1,000 KM.", "registration":"https://www.rgurs.org/stranica/srpos",
+     "note":"Republika Srpska half of the BiHPOS network. ~17 stations, MAX + iMAX + VRS + FKP + nearest-station mountpoints. Short pre-paid blocks (10 hours ~$17, 20 hours ~$29) are the cheap end; per-minute (~$7/hr), 1-month (~$145), and the annual (~$578) climb steeply for any sustained use."},
+
+    {"id":"fbihpos_ba",  "name":"FBiHPOS",          "region":"Federation of BiH",     "country":"BA", "lat":43.87, "lon":17.95,
+     "tier":"paid", "vrs":true, "access":"paid", "yearly_cost":"BAM/KM (pegged 1.95583 to 1 EUR). 100 KM (~$58) one-time registration; then 150 KM (~$87) for 7 days, 250 KM (~$145) for 1 month, 750 KM (~$435) for 6 months, 1,000 KM (~$580) for 12 months. All services (RTK + post-processing) 12 months 1,400 KM. Multi-rover discounts -10% / -20% (max -50%).", "registration":"https://www.fgu.com.ba/bs/servisi.html",
+     "note":"Federation of BiH half of the BiHPOS network. ~17 stations, MAX + iMAX + VRS + NEAREST + a combined H+V stream. Caster runs at fbihpos.katastar.ba on port 8080 (not the conventional 2101). Open to natural persons; the 7-day pass (~$87) is the cheapest short block, with longer tiers up to 1,000 KM (~$580) for 12 months."},
 
     {"id":"egnss_tw",    "name":"e-GNSS",           "region":"Taiwan",                "country":"TW", "lat":23.70, "lon":121.00,
      "tier":"paid", "vrs":true, "access":"paid", "yearly_cost":"TWD 300/receiver/day (~$9/day) plus TWD 2,000 / 5-yr permit (~$60)", "registration":"https://www.nlsc.gov.tw",
@@ -177,8 +185,8 @@
      "note":"Free only for education and government. No general hobbyist path."},
 
     {"id":"skpos",       "name":"SKPOS",            "region":"Slovakia",              "country":"SK", "lat":48.70, "lon":19.70,
-     "tier":"restricted", "vrs":true, "access":"restricted",
-     "note":"Free only for the public sector and municipalities; commercial use paid. No general hobbyist path."},
+     "tier":"paid-affordable", "vrs":true, "access":"paid", "yearly_cost":"€70/yr (~$79) for unlimited RTK, or €25/mo (~$28); €140/yr for two simultaneous receivers; €25/yr for DGNSS. Includes 50 hours of RINEX. Free for Slovak public-sector bodies and municipalities.", "registration":"https://skpos.gku.sk/register/",
+     "note":"~26 stations. One of the cheapest national network-RTK services in the EU. Registration explicitly accepts private individuals without a trade licence and is open to almost every country, so this is a practical paid path for Slovak and visiting hobbyists alike."},
 
     {"id":"soi_cors",    "name":"SoI-CORS",         "region":"India",                 "country":"IN", "lat":20.60, "lon":78.90,
      "tier":"paid", "vrs":true, "access":"restricted", "yearly_cost":"₹5,032/month (~$720/yr)",
