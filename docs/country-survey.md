@@ -417,13 +417,14 @@ _Last updated: 2026-04-22._
 
 ### LT — Lithuania
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
-- **Free government RTK**: LitPOS (GIS-Centras, 35 stations, VRS + DGPS) — free
-  status confirmed (publicly-funded EUPOS member); NTRIP host:port not publicly listed.
-  → networks.md: `litpos` (deferred; not in pipeline — endpoint not yet confirmed)
+- **Free government RTK**: LitPOS (NZT / GIS-Centras, 35 stations, VRS) — free;
+  endpoint confirmed 2026-04-30 (`193.219.10.2:2101` primary, `195.182.72.152:2101`
+  secondary; both tested live). Register at geoportal.lt/web/litpos-paslauga/registracija.
+  Added to pipeline. → networks.md: `litpos`
 - **Volunteer**: negligible.
-- **Gap**: endpoint not discoverable without registration; register via geoportal.lt/web/litpos-en.
+- **Gap**: none — LitPOS provides national VRS coverage, free with registration.
 
 ### LV — Latvia
 

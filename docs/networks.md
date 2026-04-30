@@ -1093,18 +1093,29 @@ a bare IP.
 
 ## litpos — LitPOS (LT)
 
-**status**:    free
-**host:port**: not publicly listed
-**type**:      physical-coord-vrs
-**access**:    free (publicly-funded EUPOS member); register at geoportal.lt/web/litpos-en
+**status**:    candidate
+**host:port**: Primary: `193.219.10.2:2101` (VilniusTech Geodesy Institute, Vilnius;
+               alt port 2111 noted by some users); Secondary: `195.182.72.152:2101`
+               (GIS-Centras / VšĮ Statybos sektoriaus vystymo agentūra); both servers
+               provide identical streams — no DNS hostnames published for either IP
+**type**:      vrs-only
+**access**:    free; register at geoportal.lt/web/litpos-paslauga/registracija
 **stations**:  35
-**source**:    geoportal.lt (GIS-Centras)
+**operator**:  Nacionalinė žemės tarnyba (NZT — National Land Service under the Ministry
+               of Agriculture); operated by GIS-Centras / VšĮ Statybos sektoriaus
+               vystymo agentūra
+**source**:    geoportal.lt (LitPOS service page and usage rules §3 — "visi LitPOS duomenys
+               yra vieši ir teikiami nemokamai"); zinynas.geonovus.lt (IP/port, confirmed
+               2026-04-30); curl 193.219.10.2:2101 → SOURCETABLE 200 OK, Trimble Ntrip
+               Caster 5.2, Content-Length: 1677 (confirmed 2026-04-30)
 
-RTCM 2.1/2.3/3.1/3.2, CMR, CMR+, CMRx. NTRIP host:port not publicly listed —
-find via ArduSimple or Alberding caster directory before ingesting.
-
-**missing**: caster host:port — search Alberding EUPOS directory (eupos.org),
-ArduSimple country list, or contact via geoportal.lt/web/litpos-en.
+EUPOS member network. Supports RTCM 2.3, RTCM 3.0, CMR, CMR+, CMRx, DGPS.
+Example mountpoint: VRS_CMRx. Users can monitor live sessions at
+geoportal.lt/app/litpos. Cross-border data sharing with LatPos (Latvia) and
+ASG-EUPOS (Poland) is documented in the usage rules. Natural and legal persons
+are eligible (§6 of usage rules); no professional surveying licence required.
+No residency restriction found in the usage rules; non-Lithuanian registration
+not confirmed but also not excluded.
 
 ---
 

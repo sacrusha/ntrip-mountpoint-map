@@ -39,9 +39,8 @@
      "note":"47 stations, free. Register at renep.dgterritorio.gov.pt; caster at 193.137.94.71 (ports 2101–2108)."},
 
     {"id":"litpos",      "name":"LitPOS",           "region":"Lithuania",             "country":"LT", "lat":55.90, "lon":23.90,
-     "tier":"free", "vrs":true, "access":"registration", "registration":"https://geoportal.lt/web/litpos-en",
-     "stations_declared":35,
-     "note":"35 stations, free (publicly-funded EUPOS member). Host:port disclosed only after registration."},
+     "tier":"free", "vrs":true, "source_id":"litpos",
+     "stations_declared":35},
 
     {"id":"zakpos",      "name":"ZAKPOS",           "region":"Ukraine (nationwide)",  "country":"UA", "lat":48.44, "lon":22.72,
      "tier":"paid", "vrs":true, "access":"paid", "registration":"https://www.ua-pos.net",

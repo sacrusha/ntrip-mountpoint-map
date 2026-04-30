@@ -207,6 +207,10 @@ SOURCES = [
      "color": "#1a6b3c", "label": "LatPos",
      "type": "vrs-only", "country": ["LV"],
      "access": "registration", "registration": "https://latpos.lgia.gov.lv/SBC"},
+    {"id": "litpos",      "url": "http://193.219.10.2:2101/",                    # bare IP — no DNS hostname published; VilniusTech/GIS-Centras primary
+     "color": "#0d47a1", "label": "LitPOS",
+     "type": "vrs-only", "country": ["LT"],
+     "access": "registration", "registration": "https://geoportal.lt/web/litpos-paslauga/registracija"},
     {"id": "igac",        "url": "http://sbc.igac.gov.co:2101/",
      "color": "#d4a017", "label": "IGAC",
      "type": "physical-vrs", "country": ["CO"],
