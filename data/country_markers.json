@@ -168,8 +168,8 @@
      "note":"Affordable RTK flat-rate. ~30 stations on a Trimble VRS Now backbone. Hourly and monthly packages also available."},
 
     {"id":"geonet_bg",   "name":"GeoNet GEO-RTK",   "region":"Bulgaria",              "country":"BG", "lat":42.70, "lon":25.30,
-     "tier":"paid", "vrs":true, "access":"paid", "registration":"https://geonet.bg",
-     "note":"Bulgaria's national commercial VRS network, certified by АГКК. Caster at gnss.geonet.bg:2101. Pricing available via the registration link; no free tier."},
+     "tier":"paid", "vrs":true, "access":"paid", "yearly_cost":"€600/yr (~$660/yr)", "registration":"https://geonet.bg",
+     "note":"Caster at gnss.geonet.bg:2101. Monthly (€105/mo) and pay-by-minute plans (€15/mo base + €0.10/min) also available. Prices exclude VAT. Certified by АГКК."},
 
     {"id":"montepos",    "name":"MONTEPOS",         "region":"Montenegro",            "country":"ME", "lat":42.70, "lon":19.40,
      "tier":"paid", "vrs":true, "access":"paid", "registration":"https://www.gov.me/clanak/montepos",

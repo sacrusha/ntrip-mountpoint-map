@@ -1992,20 +1992,21 @@ Pricing confirmed from official Uredba (regulation) published by RGZ; Serbian po
 ## geonet_bg — GeoNet Bulgaria GEO-RTK (BG)
 
 **status**:    paid
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 **country**:   BG
 **type**:      VRS (network RTK)
 **host:port**: `gnss.geonet.bg:2101` (IP `95.43.249.1:2101`); confirmed on
                geonet.bg/help.html 2026-04-30
-**access**:    paid contract with operator. Service description targets geodesy,
-               construction, agriculture, GIS; no explicit hobbyist tier
-               advertised, no explicit exclusion of private individuals.
-**yearly_cost**: tariff PDF at `solitech.bg/wp-content/uploads/2026/04/planove-geonet-04.2026.pdf`
-               (April 2026 edition); BGN/EUR figures not yet retrieved.
-               Subscriptions page describes two plan families: unlimited-access
-               plans (heavy users) and included-monthly-consumption plans
-               (occasional users). Contact: `info@geonet.bg`,
-               tel `0700 1 4677`.
+**access**:    paid contract with operator. No explicit hobbyist exclusion;
+               no explicit hobbyist tier either. Open to private individuals.
+**yearly_cost**: €600/yr (~$660/yr) for RTK12 annual unlimited plan (excl. VAT).
+               Other unlimited plans: RTK1 €105/mo, RTK3 €250/3 mo, RTK6 €395/6 mo.
+               GeoNet 150 (occasional-use): €15/mo base + €0.10/min GEO-RTK and
+               €0.10/min PPData beyond 150 included minutes; 24-month minimum
+               contract. Per-minute PPData standalone: €0.10/min. Multi-account
+               discounts 5% (2 accounts), 7% (3 accounts); 4+ negotiated.
+               All prices exclude Bulgarian VAT (ДДС).
+               Source: Solitech AD tariff sheet dated 01.04.2026.
 **stations**:  certified per Instruction РД-02-20-25/2011 by АГКК (Agency for
                Geodesy, Cartography and Cadastre); Certificate of Conformity
                No. 013/2020 renewed to 2026 (per 2024-07-01 news)

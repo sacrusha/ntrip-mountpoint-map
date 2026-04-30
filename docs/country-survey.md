@@ -545,15 +545,13 @@ _Last updated: 2026-04-22._
   кадастър — Geodesy, Cartography and Cadastre Agency) operates reference stations but
   no public NTRIP caster has been identified.
 - **Commercial**: GeoNet Bulgaria GEO-RTK (Зенит-Гео ЕООД / Zenit-Geo Ltd,
-  distributed by Солитех АД / Solitech AD — Trimble's official Bulgarian
-  reseller, `gnss.geonet.bg:2101` (IP `95.43.249.1:2101`), VRS network).
+  distributed by Солитех АД / Solitech AD, `gnss.geonet.bg:2101`, VRS).
   Certified by АГКК under Instruction РД-02-20-25/2011 (Cert. No. 013/2020,
-  renewed to 2026). Tariff PDF at
-  `solitech.bg/wp-content/uploads/2026/04/planove-geonet-04.2026.pdf` — two plan
-  families (unlimited access for heavy users; included-monthly-consumption for
-  occasional users); BGN/EUR figures not yet retrieved. Contract-based access;
-  no individual hobbyist tier advertised. Contact `info@geonet.bg`,
-  tel `0700 1 4677`. → networks.md: `geonet_bg`
+  renewed to 2026). Pricing confirmed from Solitech AD tariff sheet dated
+  01.04.2026: RTK12 annual unlimited €600/yr (~$660/yr) excl. VAT; shorter
+  plans from €105/mo. GeoNet 150 occasional-use plan: €15/mo base + €0.10/min
+  beyond 150 included minutes (24-month minimum). No explicit exclusion of
+  private individuals. → networks.md: `geonet_bg`
 - **Volunteer**: rtk2go ~7 BGR bases, Centipede ~1 BGR node. Thin coverage concentrated
   near Sofia and the main urban corridor.
 - **Gap**: no free government RTK and no public hobbyist path; volunteer bases near Sofia
