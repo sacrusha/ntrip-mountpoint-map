@@ -1068,17 +1068,23 @@ Single station; useful only within ~30 km of Brussels. Low priority.
 ## renep — ReNEP (PT)
 
 **status**:    free
-**host:port**: withheld until post-registration
+**host:port**: 193.137.94.71:2101 (physical single-base, RTCM3 GPS+GLONASS)
 **type**:      physical-coord-vrs
 **access**:    free; register at renep.dgterritorio.gov.pt
 **stations**:  47
 **source**:    dgterritorio.gov.pt (DGT — Direção-Geral do Território)
 
-Host:port disclosed only after account approval. ETRS89 datum (mainland),
-ITRF93 (autonomous regions). Stations and RINEX publicly visible.
+IP confirmed live 2026-04-30. ETRS89 datum (mainland), ITRF93 (autonomous
+regions). Stations and RINEX publicly visible. Port structure:
 
-**missing**: caster host:port — register at renep.dgterritorio.gov.pt to obtain;
-or check Alberding directory / EUREF caster list for a public mirror.
+- **:2101** — 47 physical single-base stations, RTCM3 (GPS+GLONASS) → in pipeline
+- **:2102** — same 47 stations, RTCM3 MSM5 (GPS+GLONASS+Galileo+BeiDou) → not ingested (duplicate)
+- **:2106** — 3 VRS nearest-station mounts (NSRT23, NSRT, NSR5) → filtered by nmea
+- **:2108** — 2 network-correction mounts (ACRT, ACR5) → filtered by nmea
+
+**investigate**: confirm whether a hostname resolves to 193.137.94.71 (e.g.
+ntrip.renep.dgterritorio.gov.pt) so the pipeline URL can use DNS rather than
+a bare IP.
 
 ---
 
