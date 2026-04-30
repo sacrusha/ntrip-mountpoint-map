@@ -2520,7 +2520,7 @@ not a usable RTK resource for hobbyists.
 
 ## dag_lb — Directorate of Geographic Affairs (LB)
 
-**status**:    free
+**status**:    rejected
 **date_added**: 2026-04-29
 **country**:   LB
 **type**:      unknown
@@ -2549,11 +2549,13 @@ Zero LB stations on rtk2go or Centipede as of 2026-04-29.
 Deferred indefinitely. Do not pursue until a confirmed public NTRIP endpoint appears
 in an NTRIP directory or official Lebanese government announcement.
 
+Rejected — military-operated geodetic directorate; no public NTRIP service.
+
 ---
 
 ## ges_syria — General Establishment for Survey (SY)
 
-**status**:    free
+**status**:    rejected
 **date_added**: 2026-04-29
 **country**:   SY
 **type**:      unknown
@@ -2577,6 +2579,8 @@ Deferred until geodetic reconstruction produces a confirmed public NTRIP endpoin
 long-term outcome requiring re-establishment of the national reference frame and CORS
 deployment. Do not pursue until EUREF, IGS, or direct government sources confirm an
 operational caster.
+
+Rejected — military-operated; no public NTRIP service; conflict-disrupted infrastructure.
 
 ---
 
@@ -2610,7 +2614,7 @@ No free tier. No explicit eligibility restriction on subscription page.
 
 ## rjgc_cors — RJGC CORS (JO)
 
-**status**:    free
+**status**:    restricted
 **date_added**: 2026-04-29
 **country**:   JO
 **type**:      unknown
@@ -2636,6 +2640,8 @@ useful only within ~30–40 km of central Amman.
 Note on spoofing: pervasive military GNSS spoofing active continuously since
 Oct 2023 across Israel/Lebanon/Jordan/Sinai/Cyprus makes RTK corrections
 unreliable across much of Jordan regardless of NTRIP source availability.
+
+Restricted — no public self-service registration; real-time RTK access limited to licensed users.
 
 ---
 
@@ -2780,7 +2786,7 @@ Rejected — no public endpoint found; agency website unreachable.
 
 ## kyrpos — KyrPos GNSS Network (KG)
 
-**status**:    free
+**status**:    paid
 **country**:   KG
 **type**:      single-base / VRS (unclear from public documentation)
 **access**:    paid; contract-based sign-up, no self-service portal
@@ -2810,7 +2816,7 @@ Bishkek IGS site (BIK0 / BIS2, joint with ESA/ESOC since 2016) and an
 IGS tracking station at the Pamir High Mountain Observatory. These are
 research facilities and do not provide an RTK correction service.
 
-Rejected (paid, over cutoff). Deferred — no free or affordable public
+Paid — over $200/yr threshold; not viable for most hobbyists. No free public
 NTRIP endpoint in Kyrgyzstan.
 
 ---
@@ -2882,7 +2888,7 @@ Restricted — no published tariff; contract-only access.
 
 ## armpos — ARMPOS (AM)
 
-**status**:    free
+**status**:    restricted
 **country**:   AM
 **type**:      single-base (physical CORS)
 **access**:    restricted; no public self-service registration found
@@ -2907,7 +2913,7 @@ for real-time NTRIP RTK (metre, sub-metre, centimetre) and post-processing
 government cadastre users; no open hobbyist registration or publicly listed
 host:port found. The State Committee is the sole owner of the network.
 
-Rejected — restricted access, no public NTRIP endpoint.
+Restricted — access limited to licensed surveyors and government cadastre users; no public NTRIP endpoint.
 **missing**: public NTRIP host:port and access conditions — contact Cadastre
 Committee via cadastre.am.
 
@@ -2915,7 +2921,7 @@ Committee via cadastre.am.
 
 ## geocors_ge — GeoCors (GE)
 
-**status**:    free
+**status**:    restricted
 **country**:   GE
 **type**:      single-base (physical CORS)
 **access**:    paid; registration required (Leica Spider Business Center)
@@ -2942,7 +2948,7 @@ listed on the public website; the intended NTRIP port is 2101 (standard SBC
 default). The 2024–2025 Georgian political crisis (disputed parliamentary
 election) has not been reported to affect the technical operation of GeoCors.
 
-Rejected — paid/subscription, pricing and access terms not publicly documented.
+Restricted — paid subscription; pricing and access terms not publicly documented; no hobbyist registration path.
 **missing**: pricing, mountpoint list, and confirmed access conditions for
 non-professional users.
 
@@ -3086,14 +3092,14 @@ public caster.
 
 ## txrtn — TXDOT CORS (US-TX)
 
-**status**:    rejected
+**status**:    restricted
 **reason**:    restricted to TXDOT employees and contractors only; no public or hobbyist registration
 
 ---
 
 ## calrtns — CalRTNS / Caltrans CORS (US-CA)
 
-**status**:    rejected
+**status**:    restricted
 **reason**:    access restricted to vetted state/county agency partners; no general public
                or hobbyist registration available
 
@@ -3143,7 +3149,7 @@ with a licensed surveying body. Same legal barrier as `bgas_china`.
 
 ## ergand — ERGAND Geodetic Network (AD)
 
-**status**:    free
+**status**:    rejected
 **country**:   AD — Andorra
 **type**:      single-base (EPN reference stations)
 **host:port**: not publicly listed
@@ -3156,11 +3162,13 @@ with a licensed surveying body. Same legal barrier as `bgas_china`.
                No independent public NTRIP caster found. Hobbyists near the Spanish or
                French border can use ERGNSS (ES) or Centipede (FR) corrections.
 
+Rejected — post-processing only; no public NTRIP service found.
+
 ---
 
 ## li_cors — Liechtenstein Geodata / ATG (LI)
 
-**status**:    free
+**status**:    rejected
 **country**:   LI — Liechtenstein
 **type**:      no independent CORS programme
 **host:port**: not applicable
@@ -3171,11 +3179,13 @@ with a licensed surveying body. Same legal barrier as `bgas_china`.
                which covers the entire principality via AGNES stations 5–10 km across the
                Swiss border. No free public RTK endpoint exists for the territory.
 
+Rejected — no CORS programme or public NTRIP service found.
+
 ---
 
 ## sm_cors — San Marino Geodetic Reference (SM)
 
-**status**:    free
+**status**:    rejected
 **country**:   SM — San Marino
 **type**:      single-base (permanent reference station)
 **host:port**: not publicly listed
@@ -3187,6 +3197,8 @@ with a licensed surveying body. Same legal barrier as `bgas_china`.
                is fully enclosed by Italy; Emilia-Romagna's public network was discontinued
                and the Marche region has no confirmed public caster. Commercial coverage via
                NetGEO/TopNET (~€360/yr, IT national). → networks.md: `netgeo`
+
+Rejected — post-processing only; no public NTRIP service found.
 
 ---
 

@@ -188,8 +188,8 @@
      "note":"Pay-per-use only; registration is via paper form (mail or fax). Annual contracts available for regular users."},
 
     {"id":"czepos",      "name":"CZEPOS",           "region":"Czech Republic",        "country":"CZ", "lat":49.80, "lon":15.50,
-     "tier":"paid", "vrs":true, "access":"restricted", "yearly_cost":"10,000 CZK/yr (~€400/yr, ~$430/yr) for commercial users",
-     "note":"Free only for education and government. No general hobbyist path."},
+     "tier":"paid", "vrs":true, "access":"restricted", "yearly_cost":"10,000 CZK/yr (~€400/yr, ~$430/yr)",
+     "note":"Free only for education and government. No general hobbyist path. Commercial user rate; pricing structure varies by user category."},
 
     {"id":"skpos",       "name":"SKPOS",            "region":"Slovakia",              "country":"SK", "lat":48.70, "lon":19.70,
      "tier":"paid-affordable", "vrs":true, "access":"paid", "yearly_cost":"€70/yr (~$79)", "registration":"https://skpos.gku.sk/register/",
