@@ -117,27 +117,40 @@ _Last updated: 2026-04-22._
 
 - **Free government RTK**: none. OS Net (Ordnance Survey, ~110 stations) is
   licensed exclusively to commercial resellers (HxGN SmartNet/Hexagon,
-  TopNET/Trimble, and five other authorised partners) under the OS licence
-  model since 2005; no public NTRIP endpoint. Pricing not on public websites —
-  contact resellers. → networks.md: `os_net`
+  TopNET/Trimble, AXIO-NET, SoilEssentials, Premium Positioning, Point One,
+  Topcon) under the OS licence model since 2005; no public NTRIP endpoint.
+  → networks.md: `os_net`
 - **Volunteer**: rtk2go ~61 GB bases, Centipede ~43 GB nodes (country code `ENG`).
   Largest volunteer cluster in the British Isles; uneven coverage — densest in
   England, sparse in Wales/Scotland/Northern Ireland.
-- **Paid only**: HxGN SmartNet, TopNET Live, and other OS-licensed resellers —
-  pricing not publicly listed; contact each reseller.
-- **Gap**: no free coordinated coverage; volunteer bases are the only free
-  option and coverage thins sharply outside major English population centres.
+- **Paid (annual)**: confirmed published tariffs (2026-04-30, ex 20% UK VAT):
+  Leica HxGN SmartNet via SCCS Survey £2,160/yr unlimited NRTK (£1,300/yr
+  for 480 hrs limited); Topcon TopNet Live via Drone Pilot Academy £1,700/yr
+  unlimited; Trimble VRS Now via Korec is "Price On Application".
+- **Paid (hobbyist on-ramp)**: Topcon TopNet Live sells short blocks — £100
+  for 7 days unlimited (~$133), £300 for 30 days unlimited (~$399), or
+  hour-bucket annual passes from £100/5 hrs to £250/11 hrs. Realistic for a
+  single weekend project without committing to an annual subscription.
+- **Gap**: no free coordinated coverage; the Topcon 7-day pass is the only
+  affordable short-term commercial option, otherwise volunteer bases are the
+  only free option and coverage thins sharply outside English population centres.
 
 ### IE — Ireland
 
 **date_added**: 2026-04-29
 
-- **Free government RTK**: none. OSi (Ordnance Survey Ireland) operates a
-  ~24-station active GNSS network but routes real-time users to Trimble VRS Now
-  / HxGN SmartNet (commercial); RINEX files downloadable free at gnss.osi.ie.
-  → networks.md: `osi_gnss`
+- **Free government RTK**: none. OSi (now Tailte Éireann) operates a ~24-station
+  active GNSS network but provides only free RINEX post-processing — no
+  real-time NTRIP caster. Portal migrating from `gnss.osi.ie` to
+  `gnss.tailte.ie` in May 2026. → networks.md: `osi_gnss`
+- **Paid real-time**: closest published Irish tariff (2026-04-30) is Trimble
+  VRS Now via Hitechniques (`hitechniques.ie`) at €590/yr (~$640) for 600
+  hours of usage covering Ireland; HxGN SmartNet has IE coverage via UK
+  partners (see GB entry).
 - **Volunteer**: rtk2go ~12 IE bases, Centipede ~9 IE nodes. Sparse; growing.
-- **Gap**: no free coordinated coverage; volunteer quality varies widely.
+- **Gap**: no free coordinated coverage and no short-term commercial pass at
+  Topcon TopNet Live's price point — IE real-time RTK requires either a €590
+  annual commitment or volunteer base coverage of variable quality.
 
 ### LU — Luxembourg
 

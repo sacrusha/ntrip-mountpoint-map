@@ -1436,9 +1436,16 @@ Brief entries only.
 **host:port**: host:port not publicly listed (provided post-registration)
 **access**:    paid subscription; register at portal.dls.moi.gov.cy
 **registration**: `portal.dls.moi.gov.cy/en/application_forms/engrafi-cypos/`
-**yearly_cost**: pricing not publicly listed on website (contact DLS)
+**yearly_cost**: not publicly listed (rechecked 2026-04-30: no rate schedule on
+               dls.moi.gov.cy or portal.dls.moi.gov.cy; ArduSimple's Cyprus NTRIP
+               guide describes CYPOS only as "paid national service" with no
+               figures). Tariff disclosed only after registration. DLS Portal
+               itself confirmed alive 2026-04-30 (a 28-Apr-2026 maintenance
+               notice was posted). No public phone/email for CYPOS specifically;
+               general DLS contact via dls.moi.gov.cy.
 **stations**:  7 permanent GNSS stations (free areas of the Republic)
-**source**:    portal.dls.moi.gov.cy; helpfiles.dls.moi.gov.cy/en-us/CYPOSNetwork.pdf
+**source**:    portal.dls.moi.gov.cy; helpfiles.dls.moi.gov.cy/en-us/CYPOSNetwork.pdf;
+               ardusimple.com/rtk-correction-services-and-ntrip-casters-in-cyprus/
 **operator**:  DLS — Department of Lands and Surveys, Ministry of Interior
 
 CYPOS (Cyprus Positioning System) operational since 2010. Provides VRS, iMAX,
@@ -1488,13 +1495,39 @@ the Turkish Republic of Northern Cyprus is not covered.
 **access**:    paid; OS Net raw streams licensed to seven commercial partners
                since 2005 under the OS licence model; Ordnance Survey does not
                offer a direct public NTRIP endpoint
-**yearly_cost**: not publicly listed (reseller-dependent; contact each partner)
+**yearly_cost**: Reseller-dependent. Confirmed published tariffs (2026-04-30):
+               • Leica HxGN SmartNet via SCCS Survey (`sccssurvey.co.uk/leica-smartnet.html`):
+                 NRTK Unlimited £2,160/yr ex VAT (~$2,873), 2 yr £3,190 (~$4,243),
+                 3 yr £4,480 (~$5,958); NRTK Limited 480 hrs/yr £1,300 (~$1,729);
+                 DGNSS Unlimited £815/yr (~$1,084), DGNSS Limited 40 hrs/mo £490
+                 (~$652). Free SmartRINEX post-processing included. UK VAT 20%.
+               • Topcon TopNet Live via Drone Pilot Academy
+                 (`dronepilotacademy.co.uk/product/topnet-live-vrs-license/`),
+                 ex VAT: Unlimited 12 mo £1,700 (~$2,261), Limited 600 hrs/12 mo
+                 £1,000 (~$1,330), Unlimited 6 mo £1,000, Unlimited 30 days £300
+                 (~$399), **Unlimited 7 days £100 (~$133)**, plus tiny annual
+                 hour-bucket packs from £100/5 hrs to £250/11 hrs. Optional
+                 EE/roaming SIM add-ons £150–200/yr. Marketed to drone pilots
+                 and hobbyists; no professional licence required.
+               • Trimble VRS Now via Korec (`korecgroup.com/product/trimble-vrs-now/`)
+                 listed as £POA; market estimates put it in the £600–£2,600/yr
+                 band. Hitechniques (IE reseller, `hitechniques.ie`) lists a
+                 1-yr / 600-hr Trimble VRS Now subscription at €590 (~$640) for
+                 Ireland coverage — likely the closest published proxy.
+               • AXIO-NET (FarmRTK), SoilEssentials (EssentialsNet), Premium
+                 Positioning (RTK Premium), Point One (Polaris): no published
+                 retail tariff confirmed in this pass.
 **stations**:  ~110 physical CORS stations across Great Britain
 **operator**:  Ordnance Survey (`ordnancesurvey.co.uk`)
-**source**:    ordnancesurvey.co.uk/geodesy-positioning/os-net
+**source**:    ordnancesurvey.co.uk/geodesy-positioning/os-net;
+               sccssurvey.co.uk/leica-smartnet.html;
+               dronepilotacademy.co.uk/product/topnet-live-vrs-license/;
+               korecgroup.com/product/trimble-vrs-now/
 
-No free hobbyist path exists via OS Net. Volunteer bases on rtk2go/Centipede
-are the only free option for GB users.
+No free hobbyist path exists via OS Net. The cheapest hobbyist on-ramp is
+Topcon TopNet Live's 7-day Unlimited at £100 ex VAT — viable for a single
+weekend project. Annual subscriptions are over the $200/yr cutoff regardless
+of reseller. Volunteer bases on rtk2go/Centipede remain the only free option.
 
 ---
 
@@ -1509,17 +1542,27 @@ are the only free option for GB users.
 **access**:    RINEX post-processing files: free, no registration required.
                Real-time NTRIP corrections: commercial only (Trimble VRS Now /
                HxGN SmartNet); OSi does not operate a public real-time caster.
-**yearly_cost**: real-time subscription pricing not publicly listed
+**yearly_cost**: OSi's own service is free RINEX post-processing only — no
+               real-time tariff exists to price. The closest published Irish
+               real-time tariff (2026-04-30) is Trimble VRS Now via Hitechniques
+               (`hitechniques.ie`) at €590/yr (~$640) for a 1-year, 600-hour
+               subscription covering Ireland. HxGN SmartNet (Leica) also has IE
+               coverage via UK partners (see `os_net` entry for SCCS tariffs).
+               Reconfirmed via tailte.ie/services/geodetic/ — portal is
+               migrating from gnss.osi.ie to gnss.tailte.ie in May 2026.
 **stations**:  ~24 active GNSS reference stations (Republic of Ireland + OSNI
                collaboration for Northern Ireland)
-**operator**:  OSi — Ordnance Survey Ireland (`osi.ie`) and OSNI — Ordnance
-               Survey of Northern Ireland (`nidirect.gov.uk/osni`)
-**source**:    osi.ie/services/geodetic-services/active-gnss-data; gnss.osi.ie
+**operator**:  OSi — Ordnance Survey Ireland, now Tailte Éireann
+               (`tailte.ie/services/geodetic/`); migrating from `osi.ie`. OSNI —
+               Ordnance Survey of Northern Ireland (`nidirect.gov.uk/osni`).
+**source**:    tailte.ie/services/geodetic/; gnss.osi.ie (→ gnss.tailte.ie May 2026);
+               hitechniques.ie
 
 OSi's active GNSS network supports geodetic infrastructure and free RINEX
 download but does not expose a public NTRIP stream for real-time RTK.
-Hobbyists needing real-time corrections must use a commercial VRS service or
-rely on volunteer bases (rtk2go ~12 IE, Centipede ~9 IE).
+Hobbyists needing real-time corrections must use Trimble VRS Now (Hitechniques,
+€590/yr / 600 h), HxGN SmartNet, or rely on volunteer bases (rtk2go ~12 IE,
+Centipede ~9 IE).
 
 ---
 
