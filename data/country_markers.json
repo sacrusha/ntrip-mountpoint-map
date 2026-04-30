@@ -153,8 +153,8 @@
      "note":"52 stations. One-time registration plus an ongoing subscription per Executive Order 471; subscription rate not published online."},
 
     {"id":"gnssnet_hu",  "name":"GNSSnet.hu",       "region":"Hungary",               "country":"HU", "lat":47.20, "lon":19.30,
-     "tier":"paid", "vrs":true, "access":"paid",
-     "note":"Pricing not published online. Centipede has ~223 volunteer nodes in Hungary — a dense free alternative already on this map."},
+     "tier":"paid", "vrs":true, "access":"paid", "yearly_cost":"150,000 HUF/yr (~€375, ~$415) for unlimited RTK or network RTK; 15,000 HUF (~€38) for 30 days within 50 km of one fixed point; or pay-per-minute at 8 HUF/min RTK and 12 HUF/min network RTK (~€1.20–1.80/hr). 12,000 HUF (~€30) one-time registration. Net of 27% Hungarian VAT.", "registration":"https://gnssnet.hu",
+     "note":"Annual subscription is over budget for a hobbyist, but a 30-day local-radius pass (~€38) or per-minute billing (~€1.20/hr) makes a single project affordable. Centipede has ~223 volunteer nodes in Hungary — a dense free alternative already on this map."},
 
     {"id":"agros",       "name":"AGROS",            "region":"Serbia",                "country":"RS", "lat":44.00, "lon":21.00,
      "tier":"paid", "vrs":true, "access":"paid", "yearly_cost":"8,688 RSD/yr (~€74/yr, ~$80/yr)", "registration":"https://www.rgz.gov.rs",

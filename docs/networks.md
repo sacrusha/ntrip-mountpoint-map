@@ -1599,14 +1599,32 @@ create via gddt.vngeonet.vn.
 **status**:    paid
 **date_added**: 2026-04-29
 **country**:   HU
-**type**:      VRS (network RTK)
+**type**:      VRS (network RTK), single-base RTK, and DGNSS
 **host:port**: `ntrip.gnssnet.hu:2101`
-**access**:    paid; web registration at gnssnet.hu; one-time connection fee
+**access**:    paid; web registration at gnssnet.hu; one-time per-company connection fee
 **registration**: `gnssnet.hu`
-**yearly_cost**: 150,000 HUF/yr net (~€375/yr at ~400 HUF/EUR) — over $200/yr cutoff;
-               30-day period: 15,000 HUF (~€38); connection fee: 12,000 HUF + VAT (~€30).
-               Prices reflect Feb 2023 reduction.
-**source**:    gnssnet.hu; lechnerkozpont.hu/oldal/gnss
+**yearly_cost**: All figures net of ÁFA (Hungarian VAT, 27%).
+               One-time registration: 12,000 HUF (~€30) per company, regardless of service mix.
+               Per-minute (default if no flat-rate subscription is active):
+                 RTK 8 HUF/min, Network RTK 12 HUF/min, DGNSS 3 HUF/min
+                 (RTK ≈ 480 HUF/hr ≈ €1.20/hr; Network RTK ≈ 720 HUF/hr ≈ €1.80/hr).
+               Flat rates apply to RTK and Network RTK at the same price (DGNSS in parentheses):
+                 30 days, within 50 km of a fixed coordinate: 15,000 HUF (DGNSS 6,000)
+                 30 days, usable within a 365-day window:     36,000 HUF (DGNSS 12,000)
+                 90 days, usable within a 365-day window:     72,000 HUF (DGNSS 24,000)
+                 150 days, usable within a 365-day window:   108,000 HUF (DGNSS 36,000)
+                 365-day continuous access:                  150,000 HUF (DGNSS 54,000)
+               Annual flat rate ~€375 / ~$415 at ~400 HUF/EUR — over the $200/yr cutoff,
+               but the 30-day local-radius (~€38) and per-minute tariffs are realistic
+               hobbyist on-ramps for project work. Outside the 50 km radius the local
+               flat rate falls back to per-minute billing without separate notice.
+               Multi-subscription discount: −10% on the 2nd simultaneous flat-rate
+               subscription of the same type/duration, −20% on the 3rd onwards (applied
+               only to the second-and-further line items, not the first).
+               Prices reflect Feb 2023 reduction; current schedule confirmed against
+               `gnssnet.hu/pdf/gnss_valosideju_szolg_arak.pdf` (2026-04-30).
+**source**:    gnssnet.hu; lechnerkozpont.hu/oldal/gnss;
+               gnssnet.hu/pdf/gnss_valosideju_szolg_arak.pdf
 **operator**:  Lechner Nonprofit Kft. (Lechner Tudásközpont / Lechner Knowledge Centre)
 
 ---

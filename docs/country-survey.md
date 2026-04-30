@@ -547,17 +547,24 @@ _Last updated: 2026-04-22._
 
 **date_added**: 2026-04-29
 
-- **Free government RTK**: GNSSnet.hu (Lechner Nonprofit Kft. / Lechner Tudásközpont,
-  `ntrip.gnssnet.hu:2101`, VRS network solution) — paid; 150,000 HUF/yr net
-  (~€375/yr at ~400 HUF/EUR) after the Feb 2023 price reduction; 15,000 HUF/30 days
-  (~€38) also available. One-time connection fee 12,000 HUF + VAT (~€30). Registration
-  at `gnssnet.hu`. Expensive for a hobbyist.
+- **Government RTK (paid)**: GNSSnet.hu (Lechner Nonprofit Kft. / Lechner Tudásközpont,
+  `ntrip.gnssnet.hu:2101`, VRS network solution + single-base RTK + DGNSS). Tariff
+  (net of 27% ÁFA, Feb 2023 schedule, reconfirmed 2026-04-30): 12,000 HUF (~€30)
+  one-time registration per company; 365-day flat rate 150,000 HUF (~€375) for RTK
+  or Network RTK (54,000 HUF for DGNSS); shorter flat blocks at 30/90/150 days
+  (36,000 / 72,000 / 108,000 HUF); a 30-day local-radius option within 50 km of one
+  fixed coordinate at 15,000 HUF (~€38); per-minute fallback at 8 HUF/min RTK,
+  12 HUF/min Network RTK, 3 HUF/min DGNSS. Expensive at the annual rate, but the
+  30-day local-radius and per-minute tariffs are realistic hobbyist on-ramps for
+  short campaigns. Registration at `gnssnet.hu`.
   → networks.md: `gnssnet_hu`
 - **Volunteer**: Centipede ~223 HUN nodes (single largest non-France country in the
   Centipede sourcetable), rtk2go ~6 HUN bases. Near-national free RTK coverage
   through volunteers; densest in the Great Hungarian Plain and northern Hungary.
-- **Gap**: GNSSnet.hu is expensive for a hobbyist; the Centipede volunteer network
-  provides practical free coverage for most of the country without registration.
+- **Gap**: no free government RTK. The Centipede volunteer network provides practical
+  free coverage for most of the country without registration; GNSSnet.hu is the
+  paid alternative, with a 30-day 50 km flat (~€38) or per-minute (~€1.20/hr RTK)
+  tariff that makes a single-project sign-up feasible for hobbyists.
 
 ### ME — Montenegro
 
