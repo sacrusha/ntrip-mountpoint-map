@@ -483,13 +483,15 @@ _Last updated: 2026-04-22._
 
 ### XK — Kosovo
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
-- **Free government RTK**: none. KOPOS (Kosovo Cadastral Agency / AKK, 8 fixed reference stations (CORS),
-  VRS, `host:port not publicly listed`) — paid; pricing not published on public website
-  (contact akk.rks-gov.net). → networks.md: `kopos`
-- **Volunteer**: negligible.
-- **Gap**: no free RTK for hobbyists; KOPOS requires a paid subscription.
+- **Free government RTK**: none. KOPOS / Kosovo Positioning System (Agjencia Kadastrale e Kosovës /
+  Kosovo Cadastral Agency, `kopos.rks-gov.net:2101`, 8 permanent CORS, VRS, Leica GNSS Spider platform)
+  — paid; €400/yr (~$468) annual subscription plus €20 one-time registration fee; no surveying-licence
+  requirement found on the SBC registration form. NTRIP mountpoints and credentials provided inside the
+  Spider Business Center portal after account creation. → networks.md: `kopos`
+- **Volunteer**: none. Zero XK stations on rtk2go or Centipede.
+- **Gap**: no free government RTK; KOPOS is the sole national network at ~$468/yr — expensive for a hobbyist.
 
 ### MD — Moldova
 
@@ -557,7 +559,7 @@ _Last updated: 2026-04-22._
 
 ### BY — Belarus
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
 - **Context**: EU Regulation 765/2006 (Belarus sanctions, extended and deepened via
   successive packages through 2024) mirrors the Russia-track on dual-use and advanced
@@ -571,16 +573,20 @@ _Last updated: 2026-04-22._
 - **Free government RTK**: none. ССТП РБ (Satellite System of Precise Positioning of
   the Republic of Belarus), operated by РУП «Белгеодезия» (state enterprise Belgeodesiya,
   under the State Committee for Property — Госкомимущество), covers ~98 continuously
-  operating reference stations across Belarus with 1–2 cm RTK accuracy. Access requires
-  a signed contract with Belgeodesiya; paid by uniform tariff (exact BYN/yr figure not
-  publicly listed on the website — see `geo.by/services/sstp`). Not free; no self-service
-  registration path. NTRIP caster host:port not publicly listed. → networks.md: `sstp_by`
+  operating reference stations across Belarus with 1–2 cm RTK accuracy. Caster at
+  `sstp.geo.by:8080` (IP fallback `93.125.21.51:8080`). Access requires signing a public
+  contract (Публичный договор) with Belgeodesiya; available to individuals (физическое
+  лицо) and organisations, but restricted to residents of the Republic of Belarus (tariff
+  titled "для резидентов Республики Беларусь"). Billing is metered (0.24 BYN/min RTK,
+  ~$0.085/min, "Общий" plan) or a fixed monthly plan ("Точная навигация", 150.78 BYN/month,
+  ~$53/month, ~$641/yr if renewed monthly); no annual RTK flat rate published. No
+  self-service portal. → networks.md: `sstp_by`
 
-- **Volunteer**: none. Zero BLR stations on rtk2go or Centipede.
+- **Volunteer**: none. Zero BY stations on rtk2go or Centipede.
 
-- **Gap**: no free hobbyist access to ССТП РБ; contract access is paid and restricted
-  to organisations. Sanctions-constrained hardware supply compounds the barrier.
-  A hobbyist in Belarus has no viable free RTK correction path under current conditions.
+- **Gap**: no free hobbyist access to ССТП РБ; the residency requirement and
+  contract-only sign-up make it inaccessible to non-Belarusian users. Sanctions-
+  constrained hardware supply compounds the barrier for those who could qualify.
 
 ### CZ — Czech Republic
 
@@ -819,13 +825,13 @@ similarly have no published coverage for these jurisdictions.
 
 ### CA — Canada
 
-**date_added**: 2026-04-28
+**date_added**: 2026-04-30
 
 - **Free government RTK**: none confirmed in any province.
   - NRCan: post-processing only (CACS/CSRS RINEX archive; NRCAN-PPP web tool). No streaming NTRIP.
   - Quebec MERN: per-station direct TCP streams; not NTRIP-aggregated — pipeline-incompatible.
     → networks.md: `qc_mern` (rejected)
-  - BC RTN: paid regional service via GeoBC. → networks.md: `bc_rtn`
+  - BC RTN: paid regional service via GeoBC, CAD 1,650/yr (~$1,212). → networks.md: `bc_rtn`
   - Nova Scotia NSACS: 40-station government fixed reference station network (CORS); real-time NRTK only via paid
     commercial providers (Can-Net, SmartNet, Brandtnet). → networks.md: `nsacs`
   - Ontario, Alberta, Saskatchewan, Manitoba: no provincial CORS; no confirmed public NTRIP.
@@ -836,7 +842,7 @@ similarly have no published coverage for these jurisdictions.
 
 ### US — United States
 
-**date_added**: 2026-04-28
+**date_added**: 2026-04-30
 
 - **Free government RTK**: EarthScope NOTA (`ntrip.earthscope.org:2101`, ~1,000+
   stations, single-base, non-commercial NULA) — Americas-wide, dense in western USA.
@@ -870,8 +876,7 @@ similarly have no published coverage for these jurisdictions.
 
   Paid/restricted states: CRTN (CA, $100 one-time fee, paid-affordable; clearinghouse for
   SOPAC SCIGN, BARD, USGS Pasadena SCIGN, Caltrans CVSRN, Orange County OCRTN, and
-  EarthScope NOTA in California; universities/schools exempt from fee), SCRTN (SC, price
-  not listed), NCRTN (NC ~$500/yr), TDOT (TN ~$450/yr), TURN GPS (UT ~$600/yr), MTSRN
+  EarthScope NOTA in California; universities/schools exempt from fee), SCRTN (SC, $600/yr per login), NCRTN (NC ~$500/yr), TDOT (TN ~$450/yr), TURN GPS (UT ~$600/yr), MTSRN
   (MT ~$1,500/yr), WSRN (WA ~$1,900/yr; PANGA/CWU contributes Puget Sound antennae),
   TxDOT (employees-only), Caltrans (vetted agency partners only). → networks.md: `crtn`,
   `scrtn`, `ncrtn`, `tdot_rtn`, `turn_gps`, `mtsrn`, `wsrn`, `txrtn`, `calrtns`

@@ -2051,66 +2051,73 @@ a higher one-time registration (100 KM vs 0).
 ## kopos — KOPOS / Kosovo Positioning System (XK)
 
 **status**:    paid
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 **country**:   XK
-**type**:      VRS (8 CORS stations + computation centre in Pristina)
-**host:port**: not publicly listed (contact AKK via akk.rks-gov.net)
-**access**:    paid; registration via akk.rks-gov.net
-**yearly_cost**: not publicly listed on website (contact Kosovo Cadastral Agency)
+**type**:      VRS (8 CORS stations + computation centre in Pristina; Leica GNSS Spider)
+**host:port**: `kopos.rks-gov.net:2101` (Spider Business Center login portal; NTRIP mountpoints and credentials provided inside portal post-login)
+**access**:    paid; annual subscription + one-time registration fee; register at akk.rks-gov.net; no surveying-licence requirement found
+**yearly_cost**: €400/yr (~$468); plus €20 one-time registration fee
 **stations**:  8 permanent CORS; RTK horizontal ±2 cm, vertical ±4 cm
-**source**:    akk.rks-gov.net (Agjencia Kadastrale e Kosovës — Kosovo Cadastral Agency)
+**operator**:  Agjencia Kadastrale e Kosovës (Kosovo Cadastral Agency / AKK)
+**source**:    akk.rks-gov.net
 
-Kosovo's national GNSS reference network. Established by the Kosovo Cadastral Agency
-(AKK) as an EUPOS-aligned CORS network. Paid subscription required; no free hobbyist
-tier confirmed. Pricing not published on public web pages — contact AKK directly.
-No free public NTRIP endpoint confirmed.
+Kosovo's national GNSS reference network, operated by the Kosovo Cadastral Agency (AKK)
+as an EUPOS-aligned CORS network. AKK 04/24 tariff schedule confirmed via the 2025 Annual
+Report (issued 2026-03-25); pricing unchanged since early 2024. Portal alive 2026-04-30.
+The SBC registration form requests rover brand, serial number, and address; no surveying
+licence number required. No free hobbyist tier.
 
 ---
 
 ## sstp_by — ССТП РБ / Belgeodesiya CORS (BY)
 
 **status**:    restricted
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 **country**:   BY — Belarus
-**type**:      network RTK (VRS-capable; 98 CORS)
-**host:port**: not publicly listed (contact geo.by)
-**access**:    paid; signed contract required with РУП «Белгеодезия»;
-               no self-service registration portal; organisations only
-**yearly_cost**: not published on public website; tariffs coordinated with
-               Госкомимущество (State Committee for Property); periodic options
-               include 1, 3, 6, and 12-month subscriptions (geo.by/services/sstp)
+**type**:      network RTK (VRS; mountpoints: BelarusVRS, NEAR, BelarusVRS(MSM5), NEAR(MSM5) on port 8080; Precision Agriculture port 8081)
+**host:port**: `sstp.geo.by:8080` (IP fallback: `93.125.21.51:8080`)
+**access**:    paid; signed public contract (Публичный договор) with РУП «Белгеодезия»;
+               available to individuals (физическое лицо) and organisations (юридическое лицо);
+               restricted to residents of the Republic of Belarus (tariff "для резидентов РБ");
+               no self-service portal
+**yearly_cost**: 150.78 BYN/month (~$53/month; ~$641/yr annualised) — "Точная навигация" fixed plan;
+               metered: 0.24 BYN/min RTK (~$0.085/min) under "Общий" plan; no annual RTK flat rate.
+               Agriculture flat-rate (Точное земледелие): 6,000 BYN/yr (~$2,124/yr) per board device.
+               Tariff effective 01.05.2023 (geo.by/images/tariffs.pdf); stated "без НДС" (excl. 20% VAT).
 **stations**:  ~98 continuously operating reference stations (national coverage)
 **operator**:  РУП «Белгеодезия» (Belgeodesiya state enterprise),
                under Государственный комитет по имуществу Республики Беларусь
                (State Committee for Property — Госкомимущество)
-**registration**: https://geo.by/services/sstp/predostavlenie-informatsii-sstp
+**registration**: https://geo.by/services/sstp
 
 Belarus national CORS network (Спутниковая система точного позиционирования — ССТП РБ).
-Provides RTK and DGPS differential corrections plus RINEX post-processing files.
-Since March 2020 Belgeodesiya feeds data to two EPN analytical centres, making
-selected stations nominally IGS-adjacent, but the RTK correction service is
-entirely separate and not publicly accessible.
+Provides RTK and DGPS differential corrections plus RINEX post-processing files
+(RINEX 1-hr file: 3.63 BYN, ~$1.29). Since March 2020 Belgeodesiya feeds data to two
+EPN analytical centres, but the RTK correction service is entirely separate and not
+accessible outside Belarus.
 
-Access is restricted to organisations holding a current contract. No hobbyist or
-individual self-signup path exists. Host:port is not disclosed on the public website;
-connection credentials are issued per-contract.
+Access is restricted to residents of the Republic of Belarus who sign a public contract;
+both individuals and organisations may sign. No self-service portal; host:port and
+credentials issued per-contract. Confirmed alive 2026-04-30 (tariff PDF and RTK manual
+both served from geo.by).
 
 Hardware supply: EU, UK, and US sanctions applied to Belarus since 2020–2022 suspend
 exports of surveying and precision-GNSS equipment (Topcon, Trimble, Leica all announced
 suspension). Replacement rover hardware is materially harder to source than in
 unsanctioned neighbouring states, compounding the barriers to hobbyist RTK use.
 
-**missing**: confirm current host:port and annual tariff level (BYN) from geo.by
-tariff documentation or industry contact.
-
 ---
 
 ## scrtn — SCRTN (US-SC)
 
 **status**:    paid
-**access**:    paid subscription; pricing via scdot.org
-**yearly_cost**: not publicly listed (contact SCDOT)
-**source**:    scdot.org (South Carolina Department of Transportation)
+**date_added**: 2026-04-30
+**type**:      VRS (Trimble Pivot NW platform)
+**host:port**: `scrtn.sc.gov:2101`
+**access**:    paid; subscribe at scrtn.sc.gov; no professional-licence requirement; any subscriber may obtain a login
+**yearly_cost**: $600/yr per login (annual renewal same rate)
+**operator**:  SC Revenue and Fiscal Affairs Office / SC Department of Transportation
+**source**:    scrtn.sc.gov
 
 ---
 
@@ -2275,7 +2282,7 @@ on rtk2go or in EarthScope sourcetable.
 **type**:      VRS (virtual reference station)
 **host:port**: not publicly listed
 **access**:    paid subscription (commercial service); contact HLCM Group
-**registration**: `hlcmgroup.com/vrs.php`
+**registration**: https://hlcmgroup.com/contact/ (hlcmgroup.com/vrs-faqs/ returned 404 as of 2026-04-30)
 **stations**:  8 physical GNSS receivers providing island-wide VRS coverage
 **operator**:  HLCM Group, Inc. (Bayamón, Puerto Rico)
 **yearly_cost**: not publicly listed (contact HLCM Group, tel. 787-398-8852)
@@ -2295,12 +2302,19 @@ website; out of scope for the map (paid, no free tier) but documented for comple
 ## bc_rtn — BC RTN (CA-BC)
 
 **status**:    paid
-**access**:    paid regional subscription; contact GeoBC via gov.bc.ca/geobc
-**yearly_cost**: not publicly listed
+**date_added**: 2026-04-30
+**type**:      VRS (Trimble-based)
+**host:port**: not publicly listed (GeoBC website reorganisation; portal URLs returning 404 as of 2026-04-30)
+**access**:    paid; contact GeoBC (gov.bc.ca/geobc or 1-800-663-7867); no self-service portal currently accessible
+**yearly_cost**: CAD 1,650/yr (~$1,212); statutory fee per Land Act, B.C. Reg. 55/98, confirmed to 2026-04-21
+**operator**:  GeoBC / Province of British Columbia
 **source**:    gov.bc.ca/geobc (Province of British Columbia)
 
 British Columbia real-time network. No free tier. No Canadian province offers free
-public NTRIP — confirmed across all ten provinces and three territories.
+public NTRIP — confirmed across all ten provinces and three territories. The statutory
+fee of CAD 1,650/yr is confirmed in the Land Act Subscription Fee Regulation (B.C. Reg.
+55/98); BC PST (7%) may apply. NTRIP portal URL not currently accessible from public
+sources following a gov.bc.ca website reorganisation.
 
 ---
 

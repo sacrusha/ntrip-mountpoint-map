@@ -196,16 +196,16 @@
      "note":"18 free government reference stations, but NOT standard NTRIP — each station delivers a raw TCP stream (per-station IP:port, CMR+/RTCM 3.2). Standard NTRIP clients will not connect; you need a TCP-capable receiver (e.g. Emlid RS2) or an RTKLIB str2str bridge."},
 
     {"id":"bc_rtn",      "name":"BC RTN",           "region":"British Columbia",      "country":"CA", "lat":53.70, "lon":-127.60,
-     "tier":"paid", "vrs":true, "access":"paid", "registration":"https://www2.gov.bc.ca/gov/content/data/geographic-data-services/geobc",
-     "note":"Operated by GeoBC. No Canadian province offers free public NTRIP."},
+     "tier":"paid", "vrs":true, "access":"paid", "yearly_cost":"CAD 1,650/yr (~$1,212/yr)", "registration":"https://www2.gov.bc.ca/gov/content/data/geographic-data-services/geobc",
+     "note":"No Canadian province offers free public NTRIP. Subscription portal currently unreachable (government website reorganisation); contact GeoBC to subscribe."},
 
     {"id":"nsacs",       "name":"Nova Scotia NSACS","region":"Nova Scotia",           "country":"CA", "lat":44.65, "lon":-63.58,
      "tier":"paid", "vrs":true, "access":"paid", "stations_declared":40,
      "note":"40 government reference stations (Nova Scotia Spatial Services). Real-time corrections only via paid commercial resellers (Can-Net/Cansel, HxGN SmartNet, Brandtnet); free post-processing archives via NRCan."},
 
     {"id":"scrtn",       "name":"SCRTN",            "region":"South Carolina",        "country":"US", "lat":33.80, "lon":-81.20,
-     "tier":"paid", "vrs":true, "access":"paid", "registration":"https://www.scdot.org",
-     "note":"Pricing not published online."},
+     "tier":"paid", "vrs":true, "access":"paid", "yearly_cost":"$600/yr", "registration":"https://scrtn.sc.gov",
+     "note":"No professional-licence requirement; any subscriber may obtain a login."},
 
     {"id":"ncrtn",       "name":"NCRTN",            "region":"North Carolina",        "country":"US", "lat":35.80, "lon":-79.00,
      "tier":"paid", "vrs":true, "access":"paid", "yearly_cost":"$500/yr", "registration":"https://www.ncems.org"},
@@ -328,7 +328,11 @@
     {"id":"msrn",      "name":"MSRN",      "region":"Michigan",            "country":"US","lat":43.90,"lon":-84.70, "tier":"free", "vrs":true,"pins":true,"source_id":"msrn",      "stations_declared":120},
     {"id":"nysnet",    "name":"NYSNet",    "region":"New York",            "country":"US","lat":42.90,"lon":-75.60, "tier":"free", "vrs":true,"pins":true,"source_id":"nysnet",    "stations_declared":150},
     {"id":"incors",    "name":"InCORS",    "region":"Indiana",             "country":"US","lat":39.80,"lon":-86.20, "tier":"free", "vrs":true,"pins":true,"source_id":"incors",    "stations_declared":70},
-    {"id":"iartn",     "name":"IARTN",     "region":"Iowa",                "country":"US","lat":42.00,"lon":-93.50, "tier":"free", "vrs":true,"pins":true,"source_id":"iartn",     "stations_declared":83}
+    {"id":"iartn",     "name":"IARTN",     "region":"Iowa",                "country":"US","lat":42.00,"lon":-93.50, "tier":"free", "vrs":true,"pins":true,"source_id":"iartn",     "stations_declared":83},
+
+    {"id":"kopos",       "name":"KOPOS",            "region":"Kosovo",                "country":"XK", "lat":42.60, "lon":21.10,
+     "tier":"paid", "vrs":true, "access":"paid", "yearly_cost":"€400/yr (~$468/yr)", "registration":"https://akk.rks-gov.net",
+     "note":"8 CORS stations, VRS network. One-time €20 registration fee also applies. NTRIP credentials issued inside the online portal after account creation."}
 
   ]
 }
