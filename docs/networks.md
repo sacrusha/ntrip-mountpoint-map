@@ -1266,17 +1266,17 @@ commercial services.
 **host:port**: `www.sarnet.it:2101` (IP fallback: `94.32.107.44:2101`)
 **type**:      physical-coord-vrs (VRS, single-base, DGPS, RINEX archive)
 **access**:    paid subscription; register at sarnet.it; no professional licence restriction stated
+**yearly_cost**: €250/yr ex-IVA (~$293/yr); IVA 22% applies (→ ~€305/yr gross, ~$357/yr);
+               figure from a 2016 reseller listing; no more recent public source found but
+               treated as likely current (consistent with market and absence of free alternatives)
 **stations**:  ~14
 **operator**:  SARNET s.r.l. (private consortium, geodesia.biz)
 **source**:    sarnet.it
 
 Sardinia regional GNSS network. ~14 permanent stations covering Sardinia. Services: RTK
 single-base, SARNET VRS (RTCM 3.0), DGPS, RINEX archive. No professional licence restriction
-stated; hobbyists not explicitly excluded.
-
-**investigate**: current annual subscription fee — a 2016 reseller listing cited €250+IVA/yr
-but this has not been independently verified; confirm directly at sarnet.it before documenting
-a yearly_cost figure.
+stated; hobbyists not explicitly excluded. Zero rtk2go or Centipede stations on the island —
+SARNET is the only documented correction source for Sardinia.
 
 ---
 

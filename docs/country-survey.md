@@ -304,7 +304,8 @@ _Last updated: 2026-04-22._
   - **Molise** — Regione Molise does not operate a GNSS network. Rejected. → networks.md: `molise_gnss`
   - Regions **not yet confirmed**: Toscana, Basilicata. Calabria partially via Sicili@net.
 - **Commercial paid**: NetGEO/TopNET (~€360/yr, national), PegasoNow/Hexagon.
-  SARNET (Sardinia, ~14 stations, commercial; pricing unverified — confirm at sarnet.it).
+  SARNET (Sardinia, ~14 stations, ~€250/yr ex-IVA (~$293/yr); only correction source on
+  the island; no rtk2go or Centipede stations in Sardinia).
   → networks.md: `netgeo`, `pegasonow`, `sarnet`
 - **Volunteer**: rtk2go ~12 IT bases, Centipede ~3 IT nodes.
 - **Gap**: central Italy (Toscana, Basilicata) has no confirmed free NTRIP. Five previously

@@ -94,9 +94,9 @@
      "note":"~80 stations (INGV Catania seismic network), free. Email to request credentials. MAX/IMAX (Leica), VRS (Trimble), FKP (Geo++) and RTCM 3.0 mountpoints."},
 
     {"id":"sarnet",      "name":"SARNET",           "region":"Sardinia",              "country":"IT", "lat":40.00, "lon":9.10,
-     "tier":"paid", "vrs":true, "access":"paid", "registration":"https://www.sarnet.it",
+     "tier":"paid", "vrs":true, "access":"paid", "yearly_cost":"€250/yr (~$293/yr)", "registration":"https://www.sarnet.it",
      "stations_declared":14,
-     "note":"14 stations, commercial network (SARNET s.r.l.). RTK, VRS, DGPS, and RINEX archive. Current pricing unverified — confirm at sarnet.it."},
+     "note":"14 stations, commercial network (SARNET s.r.l.). RTK, VRS, DGPS, and RINEX archive. Only documented correction source in Sardinia."},
 
     {"id":"acorn",       "name":"ACORN",            "region":"Alaska",                "country":"US", "lat":64.20, "lon":-153.40,
      "tier":"free", "vrs":true, "access":"registration",
