@@ -289,16 +289,16 @@ _Last updated: 2026-04-22._
     → networks.md: `gnss_campania`
   - **TPOS** (Provincia Autonoma di Trento, `tpos.provincia.tn.it:2101`, 11 stations) — Free;
     self-service SBC portal; no professional licence required; VRS/MAX/NRT mountpoints + RINEX
-    archive. Candidate for pipeline. → networks.md: `tpos`
+    archive. In pipeline. → networks.md: `tpos`
   - **STPOS** (Provincia Autonoma di Bolzano, `www.stpos.it:2101`, 10 stations) — Free; SBC
     portal; ID scan + intended-use declaration required to activate RTK (RINEX immediate); no
-    professional restriction. Candidate. → networks.md: `stpos`
+    professional restriction. In pipeline. → networks.md: `stpos`
   - **Rete GNSS Veneto** (CISAS-Unipd, `147.162.229.53:2101`, ~20 stations) — Free; email
-    registration; MAX3/IMAX/NRT mountpoints; open to any user. Candidate. → networks.md: `gnss_veneto`
+    registration; MAX3/IMAX/NRT mountpoints; open to any user. In pipeline. → networks.md: `gnss_veneto`
   - **Rete GNSS Liguria** (Regione Liguria, `81.23.86.70:2101`, 10 stations) — Free; online
-    registration; open to all; 7 regional + 3 SPIN3 stations. Candidate. → networks.md: `gnss_liguria`
+    registration; open to all; 7 regional + 3 SPIN3 stations. In pipeline. → networks.md: `gnss_liguria`
   - **Sicili@net** (INGV Catania, `193.206.223.39:2101`, ~80 stations) — Sicily + S. Calabria;
-    free to all; email registration; MAX/IMAX/VRS/FKP mountpoints. Candidate. → networks.md: `sicilianet`
+    free to all; email registration; MAX/IMAX/VRS/FKP mountpoints. In pipeline. → networks.md: `sicilianet`
   - **Emilia-Romagna** — public service discontinued; now commercial via NetGEO/TopNET.
     Rejected. → networks.md: `gps_emiliaromagna`
   - **Molise** — Regione Molise does not operate a GNSS network. Rejected. → networks.md: `molise_gnss`
