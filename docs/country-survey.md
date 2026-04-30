@@ -1514,19 +1514,22 @@ similarly have no published coverage for these jurisdictions.
 
 ### PG — Papua New Guinea
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
-- **Free government RTK**: none confirmed. DLPP (Department of Lands and Physical Planning)
-  operates the WAIG CORS in Port Moresby and supports the PNG2020 geodetic datum, and PNG
-  University of Technology (Unitech) hosts IGS/APREF station LAE1 in Lae. Both are
-  scientific reference stations contributing to Geoscience Australia's APREF network; no
-  independent public NTRIP caster for PNG has been found. AUSCORS streams APREF stations
-  (`ntrip.data.gnss.ga.gov.au:2101`) but coverage over PNG is reference-grade, not RTK
-  density. → networks.md: `png_dlpp_cors`
+- **Free government RTK**: none confirmed. DLPP (Department of Lands and Physical
+  Planning) operates WAIG/PNGM CORS in Port Moresby and supports the PNG2020 geodetic
+  datum; PNG University of Technology (Unitech) hosts IGS station LAE1 in Lae. Both
+  are scientific reference stations contributing to Geoscience Australia's APREF
+  network; `dlpp.gov.pg` returned HTTP 403 on 2026-04-30. A FIG 2025 paper (Stanaway,
+  Nidkombu et al.) confirms ~6-station PNG2020 programme network and intent to offer
+  RTCM3/NTRIP under a UN-GGIM FAIR open-access principle, but the portal was not yet
+  public as of April 2025. The MRA PNG ran a demonstration NTRIP test at a Unitech
+  workshop but published no public endpoint. → networks.md: `png_dlpp_cors`
 - **Volunteer**: none. Zero PG stations on rtk2go or Centipede.
-- **Gap**: no hobbyist-accessible RTK correction service exists in PNG; the only
-  correction path is deploying a local base or using Geoscience Australia's AUSCORS
-  APREF stream as a distant reference (baselines far exceed practical RTK range).
+- **Gap**: no hobbyist-accessible RTK correction service exists in PNG. AUSCORS
+  streams APREF stations (`ntrip.data.gnss.ga.gov.au:2101`) but coverage over PNG is
+  reference-grade with baselines far exceeding practical RTK range. Hobbyists must
+  deploy a local base. Contact ASPNG (`aspng.org`) for updates on PNG2020 NTRIP portal.
 
 ---
 
@@ -1642,22 +1645,21 @@ similarly have no published coverage for these jurisdictions.
 
 ### MN — Mongolia
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
-- **Free government RTK**: none confirmed for public access. The General Office
-  of Land Relations, Geodesy and Cartography (Газар зохион байгуулалт, геодези,
-  зураг зүйн ерөнхий газар, `gazar.gov.mn`) operates a national fixed reference station network (CORS) of
-  40+ stations (Trimble NetR8/NetR9 receivers with choke-ring antennas, built
-  since 2011 with Millennium Challenge Corporation funding). Initial 6 stations
-  in Ulaanbaatar, Darkhan, and Erdenet; expanded countrywide for cadastral
-  surveying and GIS mapping. No public NTRIP host:port, open sourcetable, or
-  self-service registration portal has been found; access appears restricted to
-  licensed surveyors and government agencies.
+- **Free government RTK**: confirmed — MonPOS / GAZAR CORS (General Office of Land
+  Relations, Geodesy and Cartography, `gazar.gov.mn`), 40+ stations (Trimble
+  NetR8/NetR9, built since 2011 with MCC funding). A public government announcement
+  at `monpos.gazar.gov.mn/monpos/3/` (2026-04-30) confirms VRS mountpoint
+  `MGL_network` at `rtk.gazar.gov.mn:2101` (alt IP `66.181.168.80:2101`) with shared
+  open credentials (username `rover`, password `262461`); port 2101 is inferred, not
+  stated explicitly. Individual registration available via `geodesy.gov.mn` (citizen
+  or legal entity). No fee found. Not yet in pipeline — curl-confirm `rtk.gazar.gov.mn:2101`
+  before adding. → networks.md: `almgg_mn`
 - **Volunteer**: none. Zero MN stations on rtk2go or Centipede.
-- **Gap**: no free public RTK for hobbyists. Mongolia is ~1.56 million km²; even
-  40 stations gives average baselines of ~200 km, making RTK impractical outside
-  the Ulaanbaatar / Darkhan / Erdenet corridor. Hobbyists should deploy a local
-  base station. → networks.md: `almgg_mn`
+- **Gap**: coverage is very sparse — ~200 km average baselines nationally; RTK
+  practical only in the Ulaanbaatar–Darkhan–Erdenet corridor. Hobbyists outside
+  that corridor must deploy a local base station.
 
 ### SG — Singapore
 
@@ -1979,7 +1981,7 @@ similarly have no published coverage for these jurisdictions.
 
 ### BF — Burkina Faso
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
 - **Context**: Two coups in 2022 (January and September) brought Captain Ibrahim
   Traoré to power; Burkina Faso left ECOWAS in January 2025 as a founding member
@@ -1999,9 +2001,11 @@ similarly have no published coverage for these jurisdictions.
   Nine stations established 2011 with MCA-BF (Millennium Challenge Account)
   funding (Gampela, Manga, Fada, Diapaga, Dori, Ouahigouya, Dédougou, Bobo,
   Gaoua); four capital-region stations added 2018 (Ouagadougou-IGB, Koubri,
-  Dapélogo, Tanguen-Dassouri). Registration at `www.bfcors.net` — administrator
-  sends credentials on approval. Host:port not publicly listed on the website;
-  disclosed post-registration. → networks.md: `bfcors`
+  Dapélogo, Tanguen-Dassouri). Registration at `www.bfcors.net/RegisterAccount.aspx`;
+  administrator emails credentials on approval. `bfcors.net` confirmed live
+  2026-04-30 (Trimble Pivot Web portal, 13 stations on Sensor Map). Caster
+  inferred at `www.bfcors.net:2101` (Trimble Pivot Web standard port; not
+  curl-confirmed). → networks.md: `bfcors`
 
 - **Volunteer**: none confirmed. Zero BF stations on rtk2go; no BF nodes on
   Centipede.

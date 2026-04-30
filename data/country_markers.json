@@ -74,6 +74,11 @@
      "tier":"paid", "vrs":true, "access":"paid", "yearly_cost":"KES 35,000/yr (~$271/yr)", "registration":"https://muya-cors.com",
      "note":"~27 base stations nationwide. Mpesa payment accepted. Price is from a promotional post — confirm current rate at sign-up."},
 
+    {"id":"bfcors",      "name":"BF-CORS",          "region":"Burkina Faso",           "country":"BF", "lat":12.37, "lon":-1.54,
+     "tier":"free", "access":"registration", "registration":"https://www.bfcors.net/RegisterAccount.aspx",
+     "stations_declared":13,
+     "note":"13 stations, free. Administrator-issued credentials after registration. Active armed conflict covers ~40–60% of the country; operational conditions in affected areas are uncertain."},
+
     {"id":"thailand_dol","name":"DOL LandGNSS",     "region":"Thailand",              "country":"TH", "lat":15.00, "lon":101.00,
      "tier":"free", "vrs":true, "access":"registration", "registration":"https://dol-rtknetwork.com",
      "stations_declared":null,
@@ -326,6 +331,12 @@
     {"id":"spslux",      "name":"SPSLux",           "region":"Luxembourg",           "country":"LU", "lat":49.80, "lon":6.10,   "tier":"free", "vrs":true, "pins":true, "source_id":"spslux",    "stations_declared":17},
     {"id":"icecors",     "name":"IceCORS",          "region":"Iceland",              "country":"IS", "lat":64.90, "lon":-18.50, "tier":"free", "vrs":true, "pins":true, "source_id":"icecors",   "stations_declared":20},
     {"id":"cors_korea",  "name":"CORS-KOREA",       "region":"South Korea",          "country":"KR", "lat":36.50, "lon":127.80, "tier":"free", "vrs":true, "pins":true, "source_id":"cors_korea","stations_declared":100},
+
+    {"id":"almgg_mn",    "name":"MonPOS / GAZAR CORS","region":"Mongolia",            "country":"MN", "lat":47.92, "lon":106.92,
+     "tier":"free", "vrs":true, "access":"registration", "registration":"https://monpos.gazar.gov.mn",
+     "stations_declared":40,
+     "note":"~40 stations, free. Shared credentials posted on the registration site: username rover, password 262461. RTK practical in Ulaanbaatar–Darkhan–Erdenet corridor only."},
+
     {"id":"apos",        "name":"APOS",             "region":"Austria",              "country":"AT", "lat":47.50, "lon":14.10,  "tier":"paid", "vrs":true,             "stations_declared":37, "yearly_cost":"€200/mo RTK (~$220/mo)", "note":"Short-term use: €20/day (RTK, centimetre accuracy) or €2/day (DGPS, decimetre accuracy). Monthly subscription also available. €50 one-time setup fee. Free for Austrian agricultural users with farm registration."},
     {"id":"auscors",     "name":"AUSCORS",          "region":"Australia",            "country":"AU", "lat":-25.30,"lon":133.80, "tier":"free", "pins":true, "source_id":"auscors",   "stations_declared":813},
     {"id":"positionz",   "name":"PositioNZ",        "region":"New Zealand",          "country":"NZ", "lat":-41.30,"lon":174.80, "tier":"free", "pins":true, "source_id":"positionz", "stations_declared":62},
