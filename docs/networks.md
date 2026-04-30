@@ -3575,30 +3575,25 @@ confirm whether any access tier is free for individual hobbyists.
 
 ## ign_gt_cors — IGN Guatemala Red CORS (GT)
 
-**status**:    free
+**status**:    rejected
 **country**:   GT — Guatemala
 **type**:      single-base
-**host:port**: not publicly listed
-**access**:    restricted — credentials (username, password, host:port) supplied by IGN on
-               request; no self-service portal found
-**yearly_cost**: unknown — no pricing information found publicly
+**host:port**: none — post-processing RINEX download service only; no NTRIP caster
+**access**:    free RINEX data downloadable from ign.gob.gt; no real-time corrections
 **registration**: ign.gob.gt (Instituto Geográfico Nacional — Guatemala)
 **stations**:  ~17 stations distributed nationally
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
 Guatemala's Instituto Geográfico Nacional (IGN) operates a Red CORS (Continuously Operating
 Reference Stations) of approximately 17 stations distributed across the national territory.
 The network was established with technical and financial support from RIC (Registro de
 Información Catastral) to enable rapid cadastral surveys tied to the national reference
-system. RINEX 2.11 data is available for download from the IGN website. Real-time NTRIP
-corrections are technically available (a caster exists with IP, port, username, and password)
-but credentials must be obtained directly from IGN — no public self-service registration
-or free-access announcement found. ArduSimple (2026) does not list Guatemala as having a
-national RTK network accessible to hobbyists.
-
-**missing**: confirm whether IGN Guatemala offers free or paid NTRIP access and on what terms;
-obtain host:port from IGN directly; check whether RIC operates an independent caster.
+system. RINEX 2.11 data is available for download from the IGN website. The IGN and RIC
+public portals list only a post-processing RINEX data product ("datos CORS"); no separately
+priced or free live NTRIP/RTK streaming subscription is publicly documented. ArduSimple
+(2026) does not list Guatemala as having a national RTK network accessible to hobbyists.
+Rejected — post-processing only; no real-time NTRIP service publicly available.
 
 ## ip_cors_hn — IP CORS Honduras / IGN Honduras (HN)
 
@@ -3640,54 +3635,49 @@ Rejected — same institution as `ip_cors_hn`; post-processing only.
 
 ## ineter_cors — INETER CORS (NI)
 
-**status**:    free
+**status**:    rejected
 **country**:   NI — Nicaragua
 **type**:      single-base
-**host:port**: not publicly listed
-**access**:    post-processing only confirmed; RINEX data available via
-               consultacf.ineter.gob.ni; real-time NTRIP access not found
-**yearly_cost**: unknown
+**host:port**: none — post-processing RINEX download service only; no NTRIP caster
+**access**:    free RINEX data accessible via consultacf.ineter.gob.ni; no real-time corrections
 **registration**: consultacf.ineter.gob.ni (INETER — Catastro Físico)
 **stations**:  unknown
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
 INETER (Instituto Nicaragüense de Estudios Territoriales), through its Dirección General
 de Geodesia y Cartografía, maintains a network of satellite observation CORS stations as
 part of its SIRGAS contributions and the national spatial data infrastructure (IDE). The
 Catastro Físico portal (consultacf.ineter.gob.ni/Servicio/ConsultaDatosCORS) provides
-RINEX data access for post-processing. No public NTRIP caster endpoint or real-time
-streaming access has been found. Nicaragua's Ortega-Murillo government is subject to
-targeted OFAC sanctions (individuals/entities), but the sanctions do not specifically
-restrict civil GNSS infrastructure access; the absence of a public NTRIP endpoint appears
-to be a capacity/policy issue rather than a sanctions barrier.
-
-**missing**: confirm whether INETER operates a real-time NTRIP caster; obtain host:port
-and access terms if available.
+RINEX data access for post-processing. No public NTRIP caster endpoint or live streaming
+subscription has been found. The INETER and SINAPRED public portals list only a
+post-processing RINEX product ("datos CORS"); no real-time RTK service is publicly
+documented. Nicaragua's Ortega-Murillo government is subject to targeted OFAC sanctions
+(individuals/entities), but the sanctions do not specifically restrict civil GNSS
+infrastructure access; the absence of a public NTRIP endpoint is a capacity/policy issue.
+Rejected — post-processing only; no real-time NTRIP service publicly available.
 
 ## cnr_sv_cors — CNR/IGCN CORS (SV)
 
-**status**:    free
+**status**:    rejected
 **country**:   SV — El Salvador
 **type**:      single-base
-**host:port**: not publicly listed
-**access**:    post-processing RINEX only confirmed via eCNR (e.cnr.gob.sv); no free
-               public real-time NTRIP endpoint found
-**yearly_cost**: unknown
+**host:port**: none — post-processing RINEX download service only; no NTRIP caster
+**access**:    free RINEX data accessible via e.cnr.gob.sv; no real-time corrections
 **registration**: e.cnr.gob.sv (Centro Nacional de Registros — IGCN online services)
 **stations**:  ≥3 confirmed active CORS: SNJE, SSIA, VMIG; SSIA also in IGS global network
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
 The Instituto Geográfico y del Catastro Nacional (IGCN) within El Salvador's Centro
 Nacional de Registros (CNR) has operated active CORS stations since at least 2007.
 Known stations include SNJE, SSIA (San Salvador, also part of the IGS global network),
 and VMIG, with the network densified across multiple departments. RINEX data is available
-via the eCNR online services portal. No public real-time NTRIP caster has been found;
-all documented access is for post-processing.
-
-**missing**: confirm whether CNR/IGCN provides real-time NTRIP access; obtain host:port
-from CNR's Geodesia department if available.
+via the eCNR online services portal. The CNR and IGCN public portals list only a
+post-processing RINEX product ("datos CORS"); no separately priced or free live NTRIP/RTK
+streaming subscription is publicly documented. The commercial operator Survey3G provides
+the only known real-time NTRIP service in El Salvador.
+Rejected — post-processing only; no real-time NTRIP service publicly available.
 
 ## zingsa_cors — ZINGSA CORS Network (ZW)
 

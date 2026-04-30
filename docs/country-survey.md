@@ -1023,11 +1023,11 @@ similarly have no published coverage for these jurisdictions.
 
 ### GT — Guatemala
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
-- **Free government RTK**: IGN Guatemala (Instituto Geográfico Nacional, `ign.gob.gt`) operates a fixed reference station network (CORS) of ~17 stations distributed nationally, established with technical and financial support from RIC (Registro de Información Catastral). RINEX 2.11 data is available for download. Real-time NTRIP corrections require a username, password, and IP/port supplied by IGN — no public caster endpoint or self-service registration portal found; access appears to require direct contact with IGN. → networks.md: `ign_gt_cors`
+- **Free government RTK**: IGN Guatemala (Instituto Geográfico Nacional, `ign.gob.gt`) operates a fixed reference station network (CORS) of ~17 stations distributed nationally, established with technical and financial support from RIC (Registro de Información Catastral). RINEX 2.11 data is available for download. The IGN and RIC public portals list only a post-processing RINEX product; no live NTRIP/RTK streaming service is publicly documented. → networks.md: `ign_gt_cors`
 - **Volunteer**: rtk2go — 0 confirmed GT bases. Centipede — negligible.
-- **Gap**: no confirmed free public NTRIP for hobbyists; IGN's 17-station CORS exists but the caster endpoint and credentials are not publicly listed.
+- **Gap**: no real-time RTK for hobbyists; government CORS is post-processing only. No commercial NTRIP provider lists Guatemala coverage.
 
 ### HN — Honduras
 
@@ -1047,11 +1047,11 @@ similarly have no published coverage for these jurisdictions.
 
 ### NI — Nicaragua
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
-- **Free government RTK**: INETER CORS (Instituto Nicaragüense de Estudios Territoriales, Dirección General de Geodesia y Cartografía, `consultacf.ineter.gob.ni`): CORS infrastructure exists with RINEX data downloadable via the Catastro Físico portal; no public NTRIP caster endpoint or real-time streaming access found. INETER's geodetic directorate maintains satellite observation stations as part of SIRGAS contributions. → networks.md: `ineter_cors`
+- **Free government RTK**: INETER CORS (Instituto Nicaragüense de Estudios Territoriales, Dirección General de Geodesia y Cartografía, `consultacf.ineter.gob.ni`): CORS infrastructure exists with RINEX data downloadable via the Catastro Físico portal; the INETER and SINAPRED portals list only a post-processing RINEX product; no real-time NTRIP streaming service is publicly documented. → networks.md: `ineter_cors`
 - **Volunteer**: none. Zero NI stations on rtk2go or Centipede.
-- **Gap**: no confirmed free public NTRIP for hobbyists; INETER CORS data is available for post-processing only.
+- **Gap**: no real-time RTK for hobbyists; government CORS is post-processing only. No commercial NTRIP provider lists Nicaragua coverage.
 
 ### PA — Panama
 
@@ -1064,9 +1064,9 @@ similarly have no published coverage for these jurisdictions.
 
 ### SV — El Salvador
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
-- **Free government RTK**: CNR/IGCN (Centro Nacional de Registros — Instituto Geográfico y del Catastro Nacional, `cnr.gob.sv`) operates active fixed reference stations (CORS) including SNJE, SSIA, and VMIG; RINEX data available via eCNR online services. No free public NTRIP caster endpoint found; real-time access not documented on the CNR portal. → networks.md: `cnr_sv_cors`
+- **Free government RTK**: CNR/IGCN (Centro Nacional de Registros — Instituto Geográfico y del Catastro Nacional, `cnr.gob.sv`) operates active fixed reference stations (CORS) including SNJE, SSIA, and VMIG; RINEX data available via eCNR online services. The CNR portal lists only a post-processing RINEX product; no live NTRIP/RTK streaming service is publicly documented. → networks.md: `cnr_sv_cors`
 - **Commercial**: Survey3G (`survey3g.com`) — pioneer commercial NTRIP service in El Salvador; 4 stations (Oriente, San Salvador, Occidente, UES); GPS+GLONASS+BDS+GAL, L1/L2/L5; monthly/quarterly/annual subscription. Pricing not listed on public pages (updated every 6 months; contact via website). → networks.md: `survey3g_sv`
 - **Volunteer**: none. Zero SV stations on rtk2go or Centipede.
 - **Gap**: no free public RTK for hobbyists; government CORS is post-processing only; the only real-time NTRIP option is commercial (Survey3G, pricing not disclosed publicly).
