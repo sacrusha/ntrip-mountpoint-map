@@ -1147,100 +1147,136 @@ Do not add to pipeline until the service is confirmed operational.
 
 ## tpos — TPOS (IT — Trentino)
 
-**status**:    free
-**host:port**: withheld until post-registration
-**type**:      physical-coord-vrs
-**access**:    registration; free via tpos.provincia.tn.it (Provincia Autonoma di Trento)
+**status**:    candidate
+**date_added**: 2026-04-30
+**host:port**: `tpos.provincia.tn.it:2101` (SBC portal domain; mountpoints provided after login)
+**type**:      physical-coord-vrs (VRS, MAX, NRT mountpoints)
+**access**:    registration; free; self-service Leica Spider Business Center portal; no professional licence required
+**registration**: https://www.tpos.provincia.tn.it
 **stations**:  11
+**operator**:  Servizio Catasto, Provincia Autonoma di Trento
 **source**:    tpos.provincia.tn.it (PAT — Provincia Autonoma di Trento)
 
-Trentino Positioning Service operated by the Autonomous Province of Trento. 11 physical
-reference stations. Credentials disclosed only after account approval.
-
-**missing**: caster host:port — register at tpos.provincia.tn.it; contact info at
-https://www.provincia.tn.it/en/Services/TPOS-Trentino-POsitioning-Service
+Trentino Positioning Service. 11 physical reference stations. Self-service SBC registration;
+no professional licence required. RTK corrections, VRS/MAX/NRT mountpoints, and RINEX
+archive (up to 1 year). Host:port confirmed via provincial institutional pages 2026-04-30.
 
 ---
 
 ## stpos — STPOS (IT — South Tyrol / Alto Adige)
 
-**status**:    free
-**host:port**: withheld until post-registration
+**status**:    candidate
+**date_added**: 2026-04-30
+**host:port**: `www.stpos.it:2101` (SBC portal domain; mountpoints provided after documentation review)
 **type**:      physical-coord-vrs
-**access**:    registration; free via stpos.it (Provincia Autonoma di Bolzano)
+**access**:    registration; free; Leica Spider Business Center portal; requires ID scan + declaration
+               of intended use to activate RTK access; RINEX available immediately after registration;
+               no professional licence restriction
+**registration**: https://www.stpos.it
 **stations**:  10
-**source**:    stpos.it (Autonome Provinz Bozen / Provincia Autonoma di Bolzano)
+**operator**:  Ufficio Catasto / Amt für Kataster, Provincia Autonoma di Bolzano / Autonome Provinz Bozen
+**source**:    stpos.it (PAB — Provincia Autonoma di Bolzano)
 
-South Tyrol Positioning Service operated by the Autonomous Province of Bolzano.
-Bilingual (German/Italian). 10 physical reference stations.
-
-**missing**: caster host:port — register at stpos.it; contact info at
-https://www.provincia.bz.it/costruire-abitare/catasto-librofondiario/catasto/stpos-reti-appoggio-geodetico.asp
+South Tyrol Positioning Service. 10 physical reference stations. Bilingual (German/Italian).
+Additional documentation step (ID + intended-use declaration) is light — no professional
+credential required; RINEX archive available without it. Host:port confirmed via official
+Bolzano cadastral pages 2026-04-30.
 
 ---
 
 ## gnss_veneto — Rete GNSS Veneto (IT — Veneto)
 
-**status**:    free
-**host:port**: not publicly listed
-**type**:      physical-coord-vrs
-**access**:    registration; apply via retegnssveneto.cisas.unipd.it
+**status**:    candidate
+**date_added**: 2026-04-30
+**host:port**: `147.162.229.53:2101` (confirmed in site FAQ, question 4)
+**type**:      physical-coord-vrs (MAX3, IMAX, NRT mountpoints)
+**access**:    registration; free; email retegpsveneto@gmail.com with name, address, intended use;
+               credentials assigned manually; open to any user ("liberamente accessibile previa registrazione")
+**registration**: https://retegnssveneto.cisas.unipd.it
 **stations**:  ~20
+**operator**:  CISAS (Centro Interdipartimentale di Studi e Attività Spaziali), Università di Padova,
+               on behalf of Regione del Veneto
 **source**:    retegnssveneto.cisas.unipd.it (CISAS — Università degli Studi di Padova)
 
-Veneto regional GNSS network operated by CISAS (Centro Interdipartimentale di Studi e
-Attività Spaziali), University of Padua. Credentials provided on request.
-
-**missing**: caster host:port — contact via http://retegnssveneto.cisas.unipd.it/
+Veneto regional GNSS network. Site FAQ explicitly states observations are freely accessible
+after registration. Mountpoints: MAX3 (RTCM 3.0 network solution), IMAX (RTCM 2.3 network
+solution), NRT (nearest single-base). Credentials assigned by email; no automated portal.
+Host:port confirmed from site FAQ 2026-04-30.
 
 ---
 
 ## gnss_liguria — Rete GNSS Liguria (IT — Liguria)
 
-**status**:    free
-**host:port**: not publicly listed
+**status**:    candidate
+**date_added**: 2026-04-30
+**host:port**: `81.23.86.70:2101` (confirmed on Geoportal "Correzioni in Tempo Reale" page)
 **type**:      physical-coord-vrs
-**access**:    registration; register via Liguria geoportal
-**stations**:  10
+**access**:    registration; free; online form via Liguria Geoportal; open to all users
+               ("tutti gli utenti interessati al rilievo"); no professional credential required
+**registration**: https://geoportal.regione.liguria.it/servizi/rete-gnss-liguria
+**stations**:  10 (7 regional + 3 shared with SPIN3 GNSS)
+**operator**:  Regione Liguria, Settore Informatica
 **source**:    geoportal.regione.liguria.it (Regione Liguria)
 
-Liguria regional GNSS network. 10 reference stations. Credentials via regional geoportal.
-
-**missing**: caster host:port — contact via
-https://geoportal.regione.liguria.it/servizi/rete-gnss-liguria.html
+Liguria regional GNSS network. Software upgraded 2021. 7 Liguria-owned stations plus 3
+contributed from SPIN3 GNSS (Piemonte/Lombardia border). Host:port confirmed on Geoportal
+"Correzioni in Tempo Reale" page 2026-04-30.
 
 ---
 
 ## sicilianet — Sicili@net (IT — Sicily + S. Calabria)
 
-**status**:    free
-**host:port**: not publicly listed
-**type**:      physical-coord-vrs
-**access**:    registration; apply via INGV Catania portal
+**status**:    candidate
+**date_added**: 2026-04-30
+**host:port**: `193.206.223.39:2101`
+**type**:      physical-coord-vrs (MAX/IMAX, VRS, FKP, RTCM 3.0; single-base and network solutions)
+**access**:    registration; free; email to request credentials via ct.ingv.it; explicitly open
+               to all interested users ("in modo totalmente gratuito e a tutti gli utenti interessati")
+**registration**: https://www.ct.ingv.it/index.php/risorse-e-servizi/sicil-net
 **stations**:  ~80
+**operator**:  INGV Osservatorio Etneo, Sezione di Catania (ct.ingv.it)
 **source**:    ct.ingv.it (INGV — Istituto Nazionale di Geofisica e Vulcanologia, Catania)
 
-INGV Catania seismic monitoring network covering Sicily and southern Calabria. ~80 stations.
-RTK service available to registered users; primarily a geophysical research network but open
-to external applicants.
-
-**missing**: caster host:port — contact via https://www.ct.ingv.it/index.php/risorse-e-servizi/sicil-net
+Seismic monitoring network covering Sicily and southern Calabria. INGV Catania page
+explicitly states corrections provided "in modo totalmente gratuito e a tutti gli utenti
+interessati." Mountpoints: MAX/IMAX (Leica), VRS (Trimble), FKP (Geo++), RTCM 3.0.
+Host:port confirmed on INGV Catania service page 2026-04-30.
 
 ---
 
 ## molise_gnss — Rete GNSS Molise (IT — Molise)
 
-**status**:    free
-**host:port**: not confirmed
-**type**:      unknown
-**access**:    unknown; likely registration-based
-**stations**:  ~4
-**source**:    regione.molise.it (Regione Molise)
+**status**:    rejected
+**date_added**: 2026-04-30
 
-Small regional GNSS network. NTRIP delivery unconfirmed; only ~4 reference stations
-documented. Lowest-priority Italian regional network.
+Regione Molise does not operate a regional GNSS/NTRIP network. No NTRIP caster, no RTK
+service, no permanent GNSS correction infrastructure found. Confirmed 2026-04-30
+(site:regione.molise.it returns no results for GNSS/RTK/NTRIP; independent sources
+explicitly state "Il Molise non ha una rete GNSS pubblica"). Users in Molise rely on
+the adjacent Abruzzo+Lazio network (`gnss-rtk.regione.abruzzo.it:2101`) or national
+commercial services.
 
-**missing**: confirm NTRIP delivery and endpoint — contact via regione.molise.it
+---
+
+## sarnet — SARNET (IT — Sardinia)
+
+**status**:    paid
+**date_added**: 2026-04-30
+**country**:   IT — Sardinia
+**host:port**: `www.sarnet.it:2101` (IP fallback: `94.32.107.44:2101`)
+**type**:      physical-coord-vrs (VRS, single-base, DGPS, RINEX archive)
+**access**:    paid subscription; register at sarnet.it; no professional licence restriction stated
+**stations**:  ~14
+**operator**:  SARNET s.r.l. (private consortium, geodesia.biz)
+**source**:    sarnet.it
+
+Sardinia regional GNSS network. ~14 permanent stations covering Sardinia. Services: RTK
+single-base, SARNET VRS (RTCM 3.0), DGPS, RINEX archive. No professional licence restriction
+stated; hobbyists not explicitly excluded.
+
+**investigate**: current annual subscription fee — a 2016 reseller listing cited €250+IVA/yr
+but this has not been independently verified; confirm directly at sarnet.it before documenting
+a yearly_cost figure.
 
 ---
 

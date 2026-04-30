@@ -271,7 +271,7 @@ _Last updated: 2026-04-22._
 
 ### IT — Italy
 
-**date_added**: 2026-04-28
+**date_added**: 2026-04-30
 
 - **Free government RTK**: no national free public caster. Strongly regional.
   - **FReDNet** (OGS/FVG, `gnsscaster.regione.fvg.it:8080`, ~39 stations) — Friuli-Venezia
@@ -287,28 +287,29 @@ _Last updated: 2026-04-22._
   - **Campania** (`gps-sit.regione.campania.it:2101`, ~18 stations) — SPID identity required
     for new users; legacy credentials may work on old endpoint. Conditions access. In pipeline.
     → networks.md: `gnss_campania`
-  - **TPOS** (Provincia Autonoma di Trento, 11 stations) — Free; endpoint withheld until
-    post-registration. Deferred. → networks.md: `tpos`
-  - **STPOS** (Provincia Autonoma di Bolzano, 10 stations) — Free; endpoint withheld. Deferred.
-    → networks.md: `stpos`
-  - **Rete GNSS Veneto** (CISAS-Unipd, ~20 stations) — Free on request; endpoint not public.
-    Deferred. → networks.md: `gnss_veneto`
-  - **Rete GNSS Liguria** (Regione Liguria, 10 stations) — Free; endpoint not public. Deferred.
-    → networks.md: `gnss_liguria`
-  - **Sicili@net** (INGV Catania, ~80 stations) — Sicily + S. Calabria; free registration;
-    endpoint not public. Deferred. → networks.md: `sicilianet`
-  - **Molise** (Regione Molise, ~4 stations) — NTRIP delivery unconfirmed. Deferred.
-    → networks.md: `molise_gnss`
+  - **TPOS** (Provincia Autonoma di Trento, `tpos.provincia.tn.it:2101`, 11 stations) — Free;
+    self-service SBC portal; no professional licence required; VRS/MAX/NRT mountpoints + RINEX
+    archive. Candidate for pipeline. → networks.md: `tpos`
+  - **STPOS** (Provincia Autonoma di Bolzano, `www.stpos.it:2101`, 10 stations) — Free; SBC
+    portal; ID scan + intended-use declaration required to activate RTK (RINEX immediate); no
+    professional restriction. Candidate. → networks.md: `stpos`
+  - **Rete GNSS Veneto** (CISAS-Unipd, `147.162.229.53:2101`, ~20 stations) — Free; email
+    registration; MAX3/IMAX/NRT mountpoints; open to any user. Candidate. → networks.md: `gnss_veneto`
+  - **Rete GNSS Liguria** (Regione Liguria, `81.23.86.70:2101`, 10 stations) — Free; online
+    registration; open to all; 7 regional + 3 SPIN3 stations. Candidate. → networks.md: `gnss_liguria`
+  - **Sicili@net** (INGV Catania, `193.206.223.39:2101`, ~80 stations) — Sicily + S. Calabria;
+    free to all; email registration; MAX/IMAX/VRS/FKP mountpoints. Candidate. → networks.md: `sicilianet`
   - **Emilia-Romagna** — public service discontinued; now commercial via NetGEO/TopNET.
     Rejected. → networks.md: `gps_emiliaromagna`
-  - Regions **not yet confirmed**: Sardinia, Toscana, Basilicata. Calabria partially via
-    Sicili@net (INGV Catania).
+  - **Molise** — Regione Molise does not operate a GNSS network. Rejected. → networks.md: `molise_gnss`
+  - Regions **not yet confirmed**: Toscana, Basilicata. Calabria partially via Sicili@net.
 - **Commercial paid**: NetGEO/TopNET (~€360/yr, national), PegasoNow/Hexagon.
-  → networks.md: `netgeo`, `pegasonow`
+  SARNET (Sardinia, ~14 stations, commercial; pricing unverified — confirm at sarnet.it).
+  → networks.md: `netgeo`, `pegasonow`, `sarnet`
 - **Volunteer**: rtk2go ~12 IT bases, Centipede ~3 IT nodes.
-- **Gap**: central Italy (Toscana, Basilicata) has no confirmed free NTRIP. Northern Italy
-  well covered by SPIN3 + FReDNet. Southern Italy improving
-  (Puglia, Campania, Sicily via Sicili@net deferred).
+- **Gap**: central Italy (Toscana, Basilicata) has no confirmed free NTRIP. Five previously
+  deferred networks (TPOS, STPOS, Veneto, Liguria, Sicili@net) now have confirmed caster
+  addresses and are candidates for pipeline ingestion.
 
 ### SM — San Marino
 
