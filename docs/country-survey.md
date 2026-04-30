@@ -740,18 +740,42 @@ _Last updated: 2026-04-22._
 
 ### UA — Ukraine
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
-- **Free government RTK**: none confirmed.
-- **Paid**: ZAKPOS (ДП "Закарпатгеодезцентр", `195.16.76.194:2102`, Zakarpattia regional,
-  VRS zone-based) — 15,000 UAH/yr (~$366/yr) wartime reduced tariff (April 2025); service
-  resumed after martial-law suspension; pauses automatically during air-raid alerts. Account
-  via www.ua-pos.net. → networks.md: `zakpos`
-- **Volunteer**: rtk2go ~3 UA bases; status uncertain given the conflict.
-- **Gap**: no free RTK in Ukraine; ZAKPOS (paid, ~$366/yr) is the only confirmed option and
-  is subject to air-raid shutdowns. Active front-line GNSS jamming and spoofing further
-  degrade signal quality. Self-operated base on safe ground is the only reliable option in
-  accessible areas.
+- **Context**: No government-run national RTK caster exists. UA-EUPOS was conceived as
+  Ukraine's contribution to the pan-European EUPOS standard (same framework as Poland's
+  ASG-EUPOS, Slovakia's SKPOS) but never became a unified public service — in practice the
+  ecosystem is dominated by competing commercial operators. ZAKPOS is the original
+  UA-EUPOS-branded member; UA-System.NET is the largest. All networks pause or reduce
+  capacity during air-raid alerts; coverage in Kharkiv, Zaporizhzhia, Donetsk, Kherson, and
+  Luhansk oblasts is severely degraded or absent due to infrastructure damage and occupation.
+
+- **Free government RTK**: none. The State Permanent GNSS Network (СКНЗУ, Держгеокадастр)
+  operates reference stations for geodetic control and post-processing but provides no public
+  NTRIP caster. GeoTerrace (Lviv Polytechnic, geoterrace.lpnu.ua) is RINEX / post-processing
+  only — no real-time RTK service.
+
+- **Commercial** (all paid; all over $200/yr):
+  - **UA-System.NET** (Системи Солюшнс, `gnss.org.ua:2101`, 200+ stations, nationwide, VRS)
+    — 21,120–23,670 UAH/yr (~$515–577/yr) full national; regional packs (West/Karpaty/
+    South/East) ~13,000–13,500 UAH/yr (~$317–329/yr); wartime discount packages for eastern
+    and southern oblasts; Leica Spider VRS platform. → networks.md: `ua_system_net`
+  - **ZAKPOS** (ДП "Закарпатгеодезцентр", `195.16.76.194:2102`, nationwide, VRS zone-based)
+    — 15,000 UAH/yr (~$366/yr) wartime reduced tariff (April 2025); hub at Mukachevo
+    (Zakarpattia, far west); pauses during air-raid alerts; service resumed after martial-law
+    suspension (Feb 2022–April 2025). → networks.md: `zakpos`
+  - **RTK HUB** (TNT-TPI, `rtkhub.com`, nationwide; host:port not published) — 10,500
+    UAH/yr (~$256/yr) from Jan 2025; endpoint disclosed post-registration.
+    → networks.md: `rtkhub`
+  - **NGCNET** (NGC Ltd) — DNS not resolving April 2026; likely defunct. → networks.md: `ngcnet`
+
+- **Volunteer**: rtk2go ~3 UA bases; status uncertain. Zero Centipede nodes in Ukraine.
+
+- **Gap**: No free RTK anywhere in Ukraine. UA-System.NET is the largest and most modern
+  (200+ stations, Leica VRS, warzone discount plans); RTK HUB is the most affordable
+  (~$256/yr) but does not publish its endpoint. Active front-line jamming and spoofing
+  further degrade signal quality in conflict zones. A self-operated base station is the
+  only reliable option in areas of active conflict.
 
 ---
 

@@ -1128,7 +1128,7 @@ zone-port mapping from the Thai-language PDF at the URL above.
 
 ---
 
-## zakpos — ZAKPOS (UA — Zakarpattia)
+## zakpos — ZAKPOS (UA)
 
 **status**:    paid
 **date_added**: 2026-04-30
@@ -1149,18 +1149,78 @@ zone-port mapping from the Thai-language PDF at the URL above.
 **operator**:  ДП "Закарпатгеодезцентр" (State Enterprise "Zakarpathia Geodesy Centre")
 **source**:    zakpos.zakgeo.com.ua (confirmed live, copyright © 2026)
 
-Zakarpattia regional GNSS positioning service (western Ukraine, Mukachevo hub), launched 2009
-by ДП "Закарпатгеодезцентр". Part of UA-EUPOS. Caster accessed by bare IP; no DNS hostname.
+Nationwide commercial GNSS positioning service, launched 2009 by ДП "Закарпатгеодезцентр".
+Hub caster at Mukachevo (Zakarpattia Oblast). Part of UA-EUPOS. Accessed by bare IP only;
+no DNS hostname.
 
 Operational status (April 2025): active with wartime caveats. Service suspended 25 Feb 2022
 under martial law; tariffs reduced and service resumed April 2025. Network pauses
-automatically during active air-raid alerts. Zakarpattia Oblast (bordering Hungary, Slovakia,
-Romania) has been far less affected by direct attacks than eastern regions.
+automatically during active air-raid alerts. Mukachevo hub (far west) has been far less
+affected by direct attacks than eastern regions.
 
 Two EUREF-IP stations tied to Mukachevo stream via euref-ip.net:2101: MUK200UKR0 (Mukachevo,
 NULP) and SULP00UKR0 (Lviv, IGS) — free reference, not NTRIP corrections.
 
-**missing**: physical station count; confirm whether coverage extends beyond Zakarpattia Oblast.
+**missing**: physical station count.
+
+---
+
+## ua_system_net — UA-System.NET (UA)
+
+**status**:    paid
+**date_added**: 2026-04-30
+**host:port**: `gnss.org.ua:2101` (general, no coordinate system); also `:2100` (individual bases),
+               `:2111–:2115` (SK63 zones 1–5 auto), `:2102/:2113` (SK63 zone 3),
+               `:2222` (drone/UAV); MSK local-system zone ports (20001–20005+) via rtk.gnss.org.ua
+**type**:      physical-coord-vrs (VRS; mountpoints: nearest, automax, vrs, i-max)
+**access**:    paid subscription; Leica Spider Business Center login at gnss.org.ua
+**registration**: https://gnss.org.ua
+**yearly_cost**: 21,120–23,670 UAH/yr (~$515–577/yr) full national;
+               regional packs (West/Karpaty/South/East): 13,000–13,500 UAH/yr (~$317–329/yr);
+               also: 6.6 UAH/min (TIMER pack), 1,470 UAH/week, 3,630 UAH/month,
+               8,190 UAH/3 months, 12,600 UAH/6 months; drone RTK: 15,510 UAH/yr (~$378/yr)
+**stations**:  200+
+**operator**:  Системи Солюшнс (Swiss-Ukrainian joint venture); brand: UA-System.NET
+**source**:    systemnet.com.ua, gnss.org.ua (confirmed active, April 2025)
+
+Largest commercial CORS network in Ukraine. Nationwide coverage with 200+ stations on Leica
+Spider VRS platform. Wartime discount packages available for eastern and southern oblasts.
+Drone/UAV mode via port 2222; MSK local coordinate system ports via rtk.gnss.org.ua.
+Website and portal confirmed active as of April 2025.
+
+---
+
+## rtkhub — RTK HUB (UA)
+
+**status**:    paid
+**date_added**: 2026-04-30
+**host:port**: not publicly listed; disclosed to registered users only
+**type**:      physical-coord-vrs (services: Network RTK, nearest, single-base, DGPS, RINEX download)
+**access**:    paid subscription; registration at rtkhub.com
+**registration**: https://rtkhub.com
+**yearly_cost**: 10,500 UAH/yr (~$256/yr) (from 01 Jan 2025; reduced from 15,000 UAH/yr);
+               also: 2.50 UAH/min, 210 UAH/day, 600 UAH/week, 1,800 UAH/month,
+               4,650 UAH/3 months, 6,300 UAH/6 months
+**stations**:  unknown
+**operator**:  TNT-TPI (formerly TNT-TPI GNSS Network); offices in Kyiv and Dnipro
+**source**:    rtkhub.com, net.tnt-tpi.com (monitoring portal)
+
+Nationwide commercial RTK network, rebranded from TNT-TPI GNSS Network to RTK HUB. Monitoring
+portal at net.tnt-tpi.com. Host:port withheld — disclosed after registration. Most affordable
+of the three major Ukrainian commercial networks.
+
+**missing**: confirm host:port for documentation.
+
+---
+
+## ngcnet — NGCNET (UA)
+
+**status**:    rejected
+**date_added**: 2026-04-30
+
+Listed in FIG pub74 global CORS directory as a Ukrainian network (ngcnet.com.ua). Domain has
+no DNS record as of April 2026; likely defunct or absorbed into another network. No viable
+endpoint.
 
 ---
 
