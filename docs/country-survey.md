@@ -1518,7 +1518,7 @@ similarly have no published coverage for these jurisdictions.
 
 ### CN — China
 
-**date_added**: 2026-04-28
+**date_added**: 2026-04-30
 
 - **Legal framework**: 测量法 (Surveying and Mapping Law of the PRC, 2002, revised 2017),
   Articles 27–29 require institutional surveying credentials (测绘资质) to operate or access
@@ -1540,18 +1540,24 @@ similarly have no published coverage for these jurisdictions.
   - **中国移动CORS China Mobile CORS** (CMCC, 4,400+ stations, nationwide): ~¥3,600/yr
     (~$500/yr); NTRIP access via data plan; open to individuals. Same price bracket as
     Qianxun. → networks.md: `cmcc_cors`
-  - **腾讯位置服务RTK Tencent RTK** (`cors.tencent.com`): launched 2022 as free beta; moved
-    to paid at ~¥998/yr (~$138/yr); 2,800+ virtual network stations; 33 provinces; requires
-    Tencent account (WeChat/QQ). If still offered at that price it is the only affordable-for-a-hobbyist
-    option in China (~¥998/yr, ~$138/yr), but current status (2025/2026) is unconfirmed. → networks.md: `tencent_rtk`
+  - **腾讯位置服务RTK Tencent RTK** (`cors.tencent.com`, unconfirmed from current public
+    sources): launched August 2022 as free public beta; 2,800+ virtual network stations;
+    33 provinces; 2 cm horizontal accuracy. As of 2026-04-30 the product page
+    (lbs.qq.com/rtk) shows enterprise business-inquiry contact only — no self-service
+    pricing or purchase flow. A ¥998/yr figure circulated in community discussion at the
+    2022 beta launch but has not been confirmed from a primary source price page; current
+    pricing is unknown. Access via an SDK integration model suggests enterprise
+    developer / B2B positioning, not individual subscription. Chinese phone number and
+    likely business licence required for commercial use. → networks.md: `tencent_rtk`
 - **Volunteer**: negligible. rtk2go ~1 CHN-tagged volunteer station; Centipede negligible.
   Chinese hobbyists (drone pilots, precision-agriculture DIY, autonomous-vehicle developers)
   typically pay Qianxun at full price or deploy a local base using SinoGNSS / ComNav /
   Unicore Communications receivers.
-- **Gap**: 测量法 closes all government CORS to unlicensed users. The lowest confirmed
-  commercial price is Tencent RTK at ~¥998/yr (~$138/yr), but its 2025/2026 operational
-  status is unconfirmed and requires a Chinese platform account. Qianxun/CMCC at ~$500/yr
-  are the reliable options.
+- **Gap**: 测量法 closes all government CORS to unlicensed users. Qianxun and CMCC at
+  ~¥3,600/yr (~$500/yr) are the only commercial options with confirmed individual
+  registration. Tencent RTK is live but has moved to an enterprise inquiry model with
+  no published hobbyist pricing; it cannot currently be recommended as an accessible
+  option. Non-Chinese hobbyists have no confirmed path.
 
 ### HK — Hong Kong
 
@@ -2495,20 +2501,20 @@ similarly have no published coverage for these jurisdictions.
 
 ### KE — Kenya
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
 - **Free government RTK**: none confirmed with a public NTRIP endpoint. Survey
   of Kenya (SoK, `survey.go.ke`) operates national geodetic control; no public
-  NTRIP caster or RTK streaming host:port has been found. RCMRD (Regional
-  Centre for Mapping of Resources for Development, `rcmrd.org`) hosts geodetic
-  research infrastructure but no public fixed reference station (CORS) stream. → networks.md: `sok_ke`
+  NTRIP caster or RTK streaming host:port has been found. survey.go.ke was
+  unreachable on 2026-04-30. RCMRD (`rcmrd.org`) hosts geodetic research
+  infrastructure but no public permanent GPS reference station stream. → networks.md: `sok_ke`
 - **Commercial**: Muya CORS (`muya-cors.com`), operated by Measurement Systems
-  Ltd (~25 stations, single-base + network RTK) — registration required;
-  credentials (IP, port, username, password) issued post-signup; pricing not
-  publicly listed on website (contact vendor). → networks.md: `muya_cors_ke`
+  Ltd (~27 stations, single-base + network RTK) — self-serve signup; Mpesa
+  payment supported; credentials issued post-registration. KES 35,000/yr
+  (~$271/yr) from a promotional post (unverified primary source). → networks.md: `muya_cors_ke`
 - **Volunteer**: rtk2go ~1 base (NerokasRTK, Thika). No Centipede nodes.
 - **Gap**: no free government or volunteer RTK coverage at national scale.
-  Hobbyists must use Muya CORS (paid, unknown price) or deploy a local base.
+  Hobbyists must use Muya CORS (~KES 35,000/yr, ~$271) or deploy a local base.
 
 ### LR — Liberia
 

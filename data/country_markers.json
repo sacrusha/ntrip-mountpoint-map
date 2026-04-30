@@ -71,6 +71,10 @@
      "stations_declared":10,
      "note":"~10 stations, intended free. Launched Dec 2025 by SSGI; NTRIP endpoint not yet publicly discoverable."},
 
+    {"id":"muya_cors_ke", "name":"Muya CORS",        "region":"Kenya",                  "country":"KE", "lat":-1.29, "lon":36.82,
+     "tier":"paid", "vrs":true, "access":"paid", "yearly_cost":"KES 35,000/yr (~$271/yr)", "registration":"https://muya-cors.com",
+     "note":"~27 base stations nationwide. Mpesa payment accepted. Price is from a promotional post — confirm current rate at sign-up."},
+
     {"id":"thailand_dol","name":"DOL LandGNSS",     "region":"Thailand",              "country":"TH", "lat":15.00, "lon":101.00,
      "tier":"free", "vrs":true, "access":"registration", "registration":"https://dol-rtknetwork.com",
      "stations_declared":null,
@@ -308,8 +312,8 @@
      "note":"4,400+ stations nationwide via China Mobile — the largest of the three commercial options. Individual registration available."},
 
     {"id":"tencent_rtk","name":"Tencent RTK",       "region":"China (nationwide)",   "country":"CN", "lat":22.55, "lon":114.10,
-     "tier":"paid-affordable", "vrs":true, "access":"paid", "yearly_cost":"¥998/yr (~$138/yr)", "registration":"https://lbs.qq.com/rtk",
-     "note":"~2,800+ virtual stations across 33 provinces. WeChat or QQ account required; no surveying licence. Pricing and service status unconfirmed; check lbs.qq.com/rtk for current availability."},
+     "tier":"paid", "vrs":true, "access":"paid", "registration":"https://lbs.qq.com/rtk",
+     "note":"~2,800+ virtual stations across 33 provinces. Access via enterprise business inquiry only — no self-service pricing. Chinese phone number and likely a Chinese business licence required for commercial use."},
 
     {"id":"frednet",     "name":"FReDNet",          "region":"Friuli-Venezia Giulia + border AT/SI", "country":"IT", "lat":46.00, "lon":13.50,  "tier":"free", "vrs":true, "pins":true, "source_id":"frednet"},
     {"id":"ergnss",      "name":"ERGNSS",           "region":"Spain",                "country":"ES", "lat":40.40, "lon":-3.70,  "tier":"free", "vrs":true, "pins":true, "source_id":"ergnss",    "stations_declared":128},

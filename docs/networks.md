@@ -1566,22 +1566,34 @@ Sourcetable publicly readable. Removed from free-source pipeline 2026-04-20.
 
 ## tencent_rtk — Tencent RTK (CN)
 
-**status**:    paid-affordable
-**host:port**: `cors.tencent.com` (ports 8001–8005, CGCS2000 on 8003)
+**status**:    paid
+**host:port**: `cors.tencent.com` (ports 8001–8005, CGCS2000 on 8003; unconfirmed from
+               current public sources — endpoint provisioned post-account, not in a
+               public sourcetable)
 **type**:      single-coord-vrs
-**access**:    paid; Tencent account (WeChat/QQ) required; no professional surveying licence needed
-**yearly_cost**: ~¥998/yr (~$138/yr) at 2022 launch pricing; current 2025/2026 pricing unconfirmed
+**access**:    paid; enterprise B2B inquiry model as of 2026-04-30 — lbs.qq.com/rtk directs
+               to "商务" (business inquiry) with no self-service purchase flow; Tencent
+               account (WeChat/QQ, Chinese phone number typical) required; commercial use
+               effectively requires a Chinese business licence
+**yearly_cost**: ¥998/yr at 2022 free-beta launch (~$138/yr); current pricing not publicly
+                 listed — enterprise inquiry only; ¥998 figure is community-reported, not
+                 confirmed from a primary source price page
 **stations**:  2,800+ virtual network stations; 33 provinces; 100% major urban road coverage
-**source**:    lbs.qq.com/rtk (Tencent Location Service)
+**source**:    lbs.qq.com/rtk (Tencent Location Service); dfcfw.com industry report,
+               Sep 2022 (free-beta launch); xueqiu.com investor thread, 2025
 **operator**:  Tencent Location Service (lbs.qq.com)
 
-Launched 2022 as free public beta; moved to paid at ~¥998/yr. No surveying licence required —
-open to individuals. Requires a Tencent account (Chinese phone number typical for WeChat/QQ).
-If current pricing matches 2022 launch, this is the sole sub-$200/yr commercial option in China.
-Service status as of 2025/2026 not confirmed; verify at lbs.qq.com/rtk before recommending.
-
-**investigate**: confirm current pricing and service availability at lbs.qq.com/rtk; verify
-whether a non-Chinese Tencent account can be used to register.
+Launched 22 August 2022 as free public beta (免费公测) covering all 33 mainland provinces;
+2 cm horizontal / 5 cm vertical accuracy; 5-constellation/16-frequency NTRIP. Access model
+as of 2026-04-30 is enterprise B2B: the lbs.qq.com/rtk product page shows only a business
+inquiry contact ("商务"), with no self-service pricing or purchase flow. A dedicated
+RTK authentication SDK (RTK鉴权SDK) at lbs.qq.com/mobile/rtkLog suggests access is
+provisioned per-account via app-developer integration rather than direct NTRIP subscription.
+Individual developer accounts exist within the Tencent ecosystem but have not been confirmed
+to grant RTK access specifically. The ¥998/yr figure (originally ~$138/yr) circulated in
+community discussion at the 2022 beta launch; no primary source price page has been confirmed.
+Service confirmed live as of 2026-04-30 via Google SERP index. Non-Chinese hobbyists have
+no confirmed path; Chinese business licence likely required for commercial use.
 
 ---
 
@@ -5187,11 +5199,11 @@ sourcetable, or academic source. Academic literature uses SoK geodetic
 control points as a reference benchmark for private CORS accuracy tests —
 confirming the network exists but is not publicly accessible for RTK
 streaming. RCMRD geodetic infrastructure similarly has no confirmed public
-NTRIP endpoint.
-
-**missing**: confirm whether SoK or RCMRD have published an NTRIP caster
-             endpoint for public or registered access; check survey.go.ke
-             for any service portal.
+NTRIP endpoint. survey.go.ke was unreachable (error page) on 2026-04-30;
+no subdomain (cors.survey.go.ke, gnss.go.ke) appears in any indexed source.
+KeRRA tender documents (2025–2026) reference SoK datum but cite no NTRIP
+endpoint. Government CORS access, if any, appears to be via institutional
+accounts only.
 
 ## muya_cors_ke — Muya CORS (KE)
 
@@ -5201,22 +5213,25 @@ NTRIP endpoint.
 **type**:      physical single-base + network RTK
 **host:port**: host:port disclosed post-registration (IP, port, username,
                password issued after signup at `muya-cors.com`)
-**access**:    paid with registration; pricing not publicly listed on website
-**yearly_cost**: not publicly listed (contact Measurement Systems Ltd)
-**stations**:  ~25 base stations across Kenya (single-base and networked RTK)
+**access**:    paid with registration; self-serve signup via muya-cors.com;
+               Mpesa payment supported
+**yearly_cost**: KES 35,000/yr (~$271/yr)
+**stations**:  ~27 base stations across Kenya (single-base and networked RTK)
 **operator**:  Measurement Systems Ltd (`measurementsystems.org`),
                operating as Muya CORS (`muya-cors.com`)
 **source**:    muya-cors.com; measurementsystems.org; ardusimple.com;
-               georole.co.ke; orbital.co.ke (field use report, Sep 2024)
+               georole.co.ke; orbital.co.ke (field use report, Sep 2024);
+               instagram.com/measurementsystemsltd (price, 2026-04-30)
 
 Muya CORS provides RTK corrections and post-processing services via a
 network of GNSS CORS tracking GPS, GLONASS, BeiDou, and Galileo. Credentials
-are issued post-registration. Pricing is not on the public website; described
-as subscription-based in KSh. Used operationally in Nairobi (Kitisuru
-topographic survey, Sep 2024). Over the $200/yr threshold — excluded from
-pipeline. Only commercial RTK NTRIP option confirmed for Kenya.
-
-**missing**: obtain current annual pricing in KSh and USD equivalent.
+are issued post-registration. KES 35,000/yr (~$271 at 2026-04-30 rate) is
+from a Measurement Systems Ltd promotional post (Instagram, 2026-04-30);
+no primary price sheet confirmed. Mpesa payment and individual registration
+confirmed — no surveying licence requirement found. Operationally active as
+of January 2026 (social media) and Google Play app updated October 2025.
+Over the $200/yr threshold — excluded from pipeline. Only commercial RTK
+NTRIP option confirmed for Kenya.
 
 ## tngc_tz — Tanzania National Geo-innovation Centre / Survey Division (TZ)
 
