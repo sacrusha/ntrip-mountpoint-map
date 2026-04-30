@@ -64,7 +64,7 @@
     {"id":"ugrf",        "name":"UGRF CORS",        "region":"Uganda",                "country":"UG", "lat":1.30,  "lon":32.30,
      "tier":"free", "vrs":true, "access":"registration", "registration":"https://ugrf.go.ug/SBC",
      "stations_declared":78,
-     "note":"78 stations, free as of 2024. Endpoint disclosed only after registration."},
+     "note":"78 stations, free. Endpoint disclosed only after registration."},
 
     {"id":"etcors",      "name":"ETCORS",           "region":"Ethiopia",              "country":"ET", "lat":9.00,  "lon":38.70,
      "tier":"free", "vrs":true, "access":"registration",
@@ -79,7 +79,7 @@
     {"id":"tpos",        "name":"TPOS",             "region":"Trentino",              "country":"IT", "lat":46.10, "lon":11.10,
      "tier":"free", "vrs":true, "pins":true, "source_id":"tpos", "access":"registration", "registration":"https://www.tpos.provincia.tn.it",
      "stations_declared":11,
-     "note":"11 stations, free. Self-service portal; no professional licence required. RTK, VRS/MAX/NRT mountpoints, and 1-year RINEX archive."},
+     "note":"11 stations, free. Self-service portal; no professional licence required. RTK, VRS/MAX/NRT mountpoints, and 1-year historical data archive."},
 
     {"id":"stpos",       "name":"STPOS",            "region":"South Tyrol / Alto Adige", "country":"IT", "lat":46.50, "lon":11.40,
      "tier":"free", "vrs":true, "pins":true, "source_id":"stpos", "access":"registration", "registration":"https://www.stpos.it",
@@ -89,7 +89,7 @@
     {"id":"gnss_veneto", "name":"Rete GNSS Veneto", "region":"Veneto",               "country":"IT", "lat":45.70, "lon":12.00,
      "tier":"free", "vrs":true, "pins":true, "source_id":"gnss_veneto", "access":"registration", "registration":"https://retegnssveneto.cisas.unipd.it",
      "stations_declared":20,
-     "note":"~20 stations, free. Email to request credentials; open to any user. MAX3/IMAX/NRT mountpoints."},
+     "note":"~20 stations, free. Register via the regional website to request access; open to any user. Multiple stream formats available."},
 
     {"id":"gnss_liguria","name":"Rete GNSS Liguria", "region":"Liguria",             "country":"IT", "lat":44.40, "lon":8.60,
      "tier":"free", "vrs":true, "pins":true, "source_id":"gnss_liguria", "access":"registration", "registration":"https://geoportal.regione.liguria.it/servizi/rete-gnss-liguria",
@@ -99,7 +99,7 @@
     {"id":"sicilianet",  "name":"Sicili@net",       "region":"Sicily + S. Calabria", "country":"IT", "lat":37.60, "lon":14.00,
      "tier":"free", "vrs":true, "pins":true, "source_id":"sicilianet", "access":"registration", "registration":"https://www.ct.ingv.it/index.php/risorse-e-servizi/sicil-net",
      "stations_declared":80,
-     "note":"~80 stations (INGV Catania seismic network), free. Email to request credentials. RTK, VRS, FKP and DGPS mountpoints available."},
+     "note":"~80 stations (INGV Catania seismic network), free. Register via the regional website to request access. Multiple stream formats available including VRS (virtual reference station)."},
 
     {"id":"sarnet",      "name":"SARNET",           "region":"Sardinia",              "country":"IT", "lat":40.00, "lon":9.10,
      "tier":"paid", "vrs":true, "access":"paid", "yearly_cost":"€250/yr (~$293/yr)", "registration":"https://www.geodesia.biz/iscrizione-sarnet",
@@ -197,7 +197,7 @@
 
     {"id":"soi_cors",    "name":"SoI-CORS",         "region":"India",                 "country":"IN", "lat":20.60, "lon":78.90,
      "tier":"paid", "vrs":true, "access":"restricted", "yearly_cost":"₹5,032/month (~$720/yr)",
-     "note":"Free only for central/state government and academic institutions. The above rate is the private-user tariff."},
+     "note":"Free only for central/state government and academic institutions."},
 
     {"id":"qc_mern",     "name":"Réseau GNSS du Québec (MERN)", "region":"Quebec", "country":"CA", "lat":48.00, "lon":-72.00,
      "tier":"weird", "access":"restricted", "registration":"https://mern.gouv.qc.ca", "stations_declared":18,
@@ -232,7 +232,7 @@
      "note":"PANGA/CWU contributes Puget Sound antennae and data archiving to this network."},
 
     {"id":"crtn",        "name":"CRTN (SOPAC)",     "region":"California",            "country":"US", "lat":36.80, "lon":-119.40,
-     "tier":"paid-affordable", "vrs":true, "access":"paid-affordable", "yearly_cost":"$100 one-time",
+     "tier":"paid-affordable", "access":"paid-affordable", "yearly_cost":"$100 one-time",
      "registration":"https://sopac-csrc.ucsd.edu/index.php/crtn-connecting/",
      "note":"~250 reference stations via Scripps (UCSD); aggregates SCIGN, BARD, USGS Pasadena, Caltrans CVSRN, OCRTN, and EarthScope. Universities and schools are exempt from the fee. Significant station overlap with EarthScope (already on this map). Credentials take a week or more to issue."},
 
@@ -280,7 +280,7 @@
      "note":"18+ four-constellation stations under Dubai Municipality. Professional application required; no hobbyist registration path. Online registration portal currently unavailable."},
 
     {"id":"regpmoc",     "name":"REGPMOC",          "region":"Peru",                 "country":"PE", "lat":-12.05, "lon":-77.04,
-     "tier":"restricted", "access":"restricted", "stations_declared":65,
+     "tier":"paid", "access":"restricted", "stations_declared":65,
      "note":"~65 single-base stations under IGN/Ministry of Defence. Access requires application + payment to IGN; no online self-service portal. IGN's policy does not explicitly exclude individuals, but there is no hobbyist-accessible sign-up path."},
 
     {"id":"eft_cors",    "name":"EFT-CORS",         "region":"Russia (nationwide)",  "country":"RU", "lat":55.75, "lon":37.62,
@@ -308,8 +308,8 @@
      "note":"4,400+ stations nationwide via China Mobile — the largest of the three commercial options. Individual registration available."},
 
     {"id":"tencent_rtk","name":"Tencent RTK",       "region":"China (nationwide)",   "country":"CN", "lat":22.55, "lon":114.10,
-     "tier":"paid", "vrs":true, "access":"paid", "yearly_cost":"¥998/yr (~$138/yr) at 2022 launch", "registration":"https://lbs.qq.com/rtk",
-     "note":"~2,800+ virtual stations across 33 provinces. WeChat or QQ account required; no surveying licence. Current pricing unconfirmed beyond the 2022 launch figure."},
+     "tier":"paid-affordable", "vrs":true, "access":"paid", "yearly_cost":"¥998/yr (~$138/yr)", "registration":"https://lbs.qq.com/rtk",
+     "note":"~2,800+ virtual stations across 33 provinces. WeChat or QQ account required; no surveying licence. Pricing and service status unconfirmed; check lbs.qq.com/rtk for current availability."},
 
     {"id":"frednet",     "name":"FReDNet",          "region":"Friuli-Venezia Giulia + border AT/SI", "country":"IT", "lat":46.00, "lon":13.50,  "tier":"free", "vrs":true, "pins":true, "source_id":"frednet"},
     {"id":"ergnss",      "name":"ERGNSS",           "region":"Spain",                "country":"ES", "lat":40.40, "lon":-3.70,  "tier":"free", "vrs":true, "pins":true, "source_id":"ergnss",    "stations_declared":128},
@@ -319,15 +319,15 @@
     {"id":"spslux",      "name":"SPSLux",           "region":"Luxembourg",           "country":"LU", "lat":49.80, "lon":6.10,   "tier":"free", "vrs":true, "pins":true, "source_id":"spslux",    "stations_declared":17},
     {"id":"icecors",     "name":"IceCORS",          "region":"Iceland",              "country":"IS", "lat":64.90, "lon":-18.50, "tier":"free", "vrs":true, "pins":true, "source_id":"icecors",   "stations_declared":20},
     {"id":"cors_korea",  "name":"CORS-KOREA",       "region":"South Korea",          "country":"KR", "lat":36.50, "lon":127.80, "tier":"free", "vrs":true, "pins":true, "source_id":"cors_korea","stations_declared":100},
-    {"id":"apos",        "name":"APOS",             "region":"Austria",              "country":"AT", "lat":47.50, "lon":14.10,  "tier":"paid", "vrs":true,             "stations_declared":37, "yearly_cost":"€200/mo RTK (~$220/mo)", "note":"37 stations, VRS. RTK (centimetre accuracy): €200/month or €20/day; DGPS (decimetre accuracy): €20/month or €2/day. €50 one-time setup fee. Free only for Austrian agricultural users with farm credentials."},
-    {"id":"auscors",     "name":"AUSCORS",          "region":"Australia",            "country":"AU", "lat":-25.30,"lon":133.80, "tier":"free", "vrs":true, "pins":true, "source_id":"auscors",   "stations_declared":813},
-    {"id":"positionz",   "name":"PositioNZ",        "region":"New Zealand",          "country":"NZ", "lat":-41.30,"lon":174.80, "tier":"free", "vrs":true, "pins":true, "source_id":"positionz", "stations_declared":62},
-    {"id":"trignet",     "name":"TrigNet",          "region":"South Africa",         "country":"ZA", "lat":-29.00,"lon":25.00,  "tier":"free", "vrs":true, "pins":true, "source_id":"trignet",   "stations_declared":72},
-    {"id":"rbmc_ip",     "name":"RBMC-IP",          "region":"Brazil",               "country":"BR", "lat":-14.20,"lon":-53.20, "tier":"free", "vrs":true, "pins":true, "source_id":"rbmc_ip",   "stations_declared":150},
-    {"id":"ramsac",      "name":"RAMSAC",           "region":"Argentina",            "country":"AR", "lat":-34.00,"lon":-64.00, "tier":"free", "vrs":true, "pins":true, "source_id":"ramsac",    "stations_declared":203},
+    {"id":"apos",        "name":"APOS",             "region":"Austria",              "country":"AT", "lat":47.50, "lon":14.10,  "tier":"paid", "vrs":true,             "stations_declared":37, "yearly_cost":"€200/mo RTK (~$220/mo)", "note":"Short-term use: €20/day (RTK, centimetre accuracy) or €2/day (DGPS, decimetre accuracy). Monthly subscription also available. €50 one-time setup fee. Free for Austrian agricultural users with farm registration."},
+    {"id":"auscors",     "name":"AUSCORS",          "region":"Australia",            "country":"AU", "lat":-25.30,"lon":133.80, "tier":"free", "pins":true, "source_id":"auscors",   "stations_declared":813},
+    {"id":"positionz",   "name":"PositioNZ",        "region":"New Zealand",          "country":"NZ", "lat":-41.30,"lon":174.80, "tier":"free", "pins":true, "source_id":"positionz", "stations_declared":62},
+    {"id":"trignet",     "name":"TrigNet",          "region":"South Africa",         "country":"ZA", "lat":-29.00,"lon":25.00,  "tier":"free", "pins":true, "source_id":"trignet",   "stations_declared":72},
+    {"id":"rbmc_ip",     "name":"RBMC-IP",          "region":"Brazil",               "country":"BR", "lat":-14.20,"lon":-53.20, "tier":"free", "pins":true, "source_id":"rbmc_ip",   "stations_declared":150},
+    {"id":"ramsac",      "name":"RAMSAC",           "region":"Argentina",            "country":"AR", "lat":-34.00,"lon":-64.00, "tier":"free", "pins":true, "source_id":"ramsac",    "stations_declared":203},
     {"id":"regna_rou",   "name":"REGNA-ROU",        "region":"Uruguay",              "country":"UY", "lat":-33.00,"lon":-56.00, "tier":"free", "vrs":true, "pins":true, "source_id":"regna_rou", "stations_declared":26},
-    {"id":"mirai",       "name":"MIRAI / Go!GNSS",  "region":"Japan",               "country":"JP", "lat":36.20, "lon":138.30, "tier":"free", "vrs":true, "pins":true, "source_id":"mirai",     "stations_declared":325},
-    {"id":"geortk",      "name":"GeoRTK",           "region":"Japan",                "country":"JP", "lat":36.20, "lon":138.30, "tier":"free", "vrs":true, "pins":true, "source_id":"geortk",    "stations_declared":41},
+    {"id":"mirai",       "name":"MIRAI / Go!GNSS",  "region":"Japan",               "country":"JP", "lat":36.20, "lon":138.30, "tier":"free", "pins":true, "source_id":"mirai",     "stations_declared":325},
+    {"id":"geortk",      "name":"GeoRTK",           "region":"Japan",                "country":"JP", "lat":36.20, "lon":138.30, "tier":"free", "pins":true, "source_id":"geortk",    "stations_declared":41},
     {"id":"sapos_HE",    "name":"SAPOS",            "region":"Hessen",               "country":"DE", "lat":50.60, "lon":9.10,   "tier":"free", "vrs":true, "pins":true, "source_id":"sapos_HE",  "stations_declared":4},
     {"id":"sapos_RP",    "name":"SAPOS",            "region":"Rheinland-Pfalz",      "country":"DE", "lat":50.00, "lon":7.30,   "tier":"free", "vrs":true, "pins":true, "source_id":"sapos_RP",  "stations_declared":17},
     {"id":"sapos_SL",    "name":"SAPOS",            "region":"Saarland",             "country":"DE", "lat":49.40, "lon":7.00,   "tier":"free", "vrs":true, "pins":true, "source_id":"sapos_SL",  "stations_declared":14},
