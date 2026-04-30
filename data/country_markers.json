@@ -39,9 +39,8 @@
      "note":"47 stations, free. Register at renep.dgterritorio.gov.pt; caster at 193.137.94.71 (ports 2101–2108)."},
 
     {"id":"litpos",      "name":"LitPOS",           "region":"Lithuania",             "country":"LT", "lat":55.90, "lon":23.90,
-     "tier":"free", "vrs":true, "access":"registration", "registration":"https://geoportal.lt/web/litpos-en",
-     "stations_declared":35,
-     "note":"35 stations, free (publicly-funded EUPOS member). Host:port disclosed only after registration."},
+     "tier":"free", "vrs":true, "source_id":"litpos",
+     "stations_declared":35},
 
     {"id":"zakpos",      "name":"ZAKPOS",           "region":"Ukraine (nationwide)",  "country":"UA", "lat":48.44, "lon":22.72,
      "tier":"paid", "vrs":true, "access":"paid", "registration":"https://www.ua-pos.net",
@@ -70,6 +69,15 @@
      "tier":"free", "vrs":true, "access":"registration",
      "stations_declared":10,
      "note":"~10 stations, intended free. Launched Dec 2025 by SSGI; NTRIP endpoint not yet publicly discoverable."},
+
+    {"id":"muya_cors_ke", "name":"Muya CORS",        "region":"Kenya",                  "country":"KE", "lat":-1.29, "lon":36.82,
+     "tier":"paid", "vrs":true, "access":"paid", "yearly_cost":"KES 35,000/yr (~$271/yr)", "registration":"https://muya-cors.com",
+     "note":"~27 base stations nationwide. Mpesa payment accepted. Price is from a promotional post — confirm current rate at sign-up."},
+
+    {"id":"bfcors",      "name":"BF-CORS",          "region":"Burkina Faso",           "country":"BF", "lat":12.37, "lon":-1.54,
+     "tier":"free", "access":"registration", "registration":"https://www.bfcors.net/RegisterAccount.aspx",
+     "stations_declared":13,
+     "note":"13 stations, free. Administrator-issued credentials after registration. Active armed conflict covers ~40–60% of the country; operational conditions in affected areas are uncertain."},
 
     {"id":"thailand_dol","name":"DOL LandGNSS",     "region":"Thailand",              "country":"TH", "lat":15.00, "lon":101.00,
      "tier":"free", "vrs":true, "access":"registration", "registration":"https://dol-rtknetwork.com",
@@ -113,8 +121,12 @@
 
     {"id":"remos_ven",   "name":"REMOS",            "region":"Venezuela",             "country":"VE", "lat":10.49, "lon":-66.88,
      "tier":"free", "vrs":true, "access":"registration",
-     "stations_declared":27,
-     "note":"27 NTRIP-capable stations under IGVSB, intended free. No public endpoint confirmed; operational status uncertain given infrastructure constraints."},
+     "stations_declared":8,
+     "note":"~8 stations active per current IGVSB website (27 installed with NTRIP capability as of 2012), intended free. No public endpoint; not in the BKG/RTCM-NTRIP broadcaster registry."},
+
+    {"id":"redgeo_bo",   "name":"RED-GEO CORS NTRIP","region":"Bolivia",               "country":"BO", "lat":-16.50, "lon":-68.15,
+     "tier":"paid", "access":"paid", "registration":"https://geoboliviasrl.info",
+     "note":"~7 base stations nationwide (La Paz, Cochabamba, Oruro, Sacaba, Tarija, Santa Cruz, Yacuiba). Access requires phone registration — no self-service portal or published pricing."},
 
     {"id":"hepos",       "name":"HEPOS",            "region":"Greece",                "country":"GR", "lat":38.50, "lon":23.80,
      "tier":"paid-affordable", "vrs":true, "access":"paid-affordable", "yearly_cost":"€160/quarter (~$170)", "registration":"https://www.ktimatologio.gr"},
@@ -308,8 +320,8 @@
      "note":"4,400+ stations nationwide via China Mobile — the largest of the three commercial options. Individual registration available."},
 
     {"id":"tencent_rtk","name":"Tencent RTK",       "region":"China (nationwide)",   "country":"CN", "lat":22.55, "lon":114.10,
-     "tier":"paid-affordable", "vrs":true, "access":"paid", "yearly_cost":"¥998/yr (~$138/yr)", "registration":"https://lbs.qq.com/rtk",
-     "note":"~2,800+ virtual stations across 33 provinces. WeChat or QQ account required; no surveying licence. Pricing and service status unconfirmed; check lbs.qq.com/rtk for current availability."},
+     "tier":"paid", "vrs":true, "access":"paid", "registration":"https://lbs.qq.com/rtk",
+     "note":"~2,800+ virtual stations across 33 provinces. Access via enterprise business inquiry only — no self-service pricing. Chinese phone number and likely a Chinese business licence required for commercial use."},
 
     {"id":"frednet",     "name":"FReDNet",          "region":"Friuli-Venezia Giulia + border AT/SI", "country":"IT", "lat":46.00, "lon":13.50,  "tier":"free", "vrs":true, "pins":true, "source_id":"frednet"},
     {"id":"ergnss",      "name":"ERGNSS",           "region":"Spain",                "country":"ES", "lat":40.40, "lon":-3.70,  "tier":"free", "vrs":true, "pins":true, "source_id":"ergnss",    "stations_declared":128},
@@ -319,6 +331,11 @@
     {"id":"spslux",      "name":"SPSLux",           "region":"Luxembourg",           "country":"LU", "lat":49.80, "lon":6.10,   "tier":"free", "vrs":true, "pins":true, "source_id":"spslux",    "stations_declared":17},
     {"id":"icecors",     "name":"IceCORS",          "region":"Iceland",              "country":"IS", "lat":64.90, "lon":-18.50, "tier":"free", "vrs":true, "pins":true, "source_id":"icecors",   "stations_declared":20},
     {"id":"cors_korea",  "name":"CORS-KOREA",       "region":"South Korea",          "country":"KR", "lat":36.50, "lon":127.80, "tier":"free", "vrs":true, "pins":true, "source_id":"cors_korea","stations_declared":100},
+
+    {"id":"almgg_mn",    "name":"MonPOS / GAZAR CORS","region":"Mongolia",            "country":"MN", "lat":47.92, "lon":106.92,
+     "tier":"free", "vrs":true, "pins":true, "source_id":"almgg_mn",
+     "stations_declared":40},
+
     {"id":"apos",        "name":"APOS",             "region":"Austria",              "country":"AT", "lat":47.50, "lon":14.10,  "tier":"paid", "vrs":true,             "stations_declared":37, "yearly_cost":"€200/mo RTK (~$220/mo)", "note":"Short-term use: €20/day (RTK, centimetre accuracy) or €2/day (DGPS, decimetre accuracy). Monthly subscription also available. €50 one-time setup fee. Free for Austrian agricultural users with farm registration."},
     {"id":"auscors",     "name":"AUSCORS",          "region":"Australia",            "country":"AU", "lat":-25.30,"lon":133.80, "tier":"free", "pins":true, "source_id":"auscors",   "stations_declared":813},
     {"id":"positionz",   "name":"PositioNZ",        "region":"New Zealand",          "country":"NZ", "lat":-41.30,"lon":174.80, "tier":"free", "pins":true, "source_id":"positionz", "stations_declared":62},

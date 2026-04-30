@@ -417,13 +417,14 @@ _Last updated: 2026-04-22._
 
 ### LT — Lithuania
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
-- **Free government RTK**: LitPOS (GIS-Centras, 35 stations, VRS + DGPS) — free
-  status confirmed (publicly-funded EUPOS member); NTRIP host:port not publicly listed.
-  → networks.md: `litpos` (deferred; not in pipeline — endpoint not yet confirmed)
+- **Free government RTK**: LitPOS (NZT / GIS-Centras, 35 stations, VRS) — free;
+  endpoint confirmed 2026-04-30 (`193.219.10.2:2101` primary, `195.182.72.152:2101`
+  secondary; both tested live). Register at geoportal.lt/web/litpos-paslauga/registracija.
+  Added to pipeline. → networks.md: `litpos`
 - **Volunteer**: negligible.
-- **Gap**: endpoint not discoverable without registration; register via geoportal.lt/web/litpos-en.
+- **Gap**: none — LitPOS provides national VRS coverage, free with registration.
 
 ### LV — Latvia
 
@@ -959,12 +960,26 @@ similarly have no published coverage for these jurisdictions.
 
 ### BO — Bolivia
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
-- **Free government RTK**: none confirmed. IGM Bolivia (Instituto Geográfico Militar, `igmbolivia.gob.bo`) operates MARGEN-ROC (Red de Operaciones Continuas) and the associated CEPAG processing centre for SIRGAS contributions. IGM offers raw RINEX data on request and advertises an NTRIP correction service, but access requires prior arrangement and payment — no free public endpoint or registration portal found. → networks.md: `margen_bolivia`
-- **Commercial**: RED-GEO CORS NTRIP (GeoBolivia SRL, administered under Ley 2997 del Topógrafo / COTOBOL) — ~6 stations covering La Paz, Cochabamba, Oruro, Sacaba, Tarija, Santa Cruz; caster port 6060; pricing not publicly listed on website (contact geoboliviasrl.info). → networks.md: `redgeo_bo`
+- **Free government RTK**: none confirmed. IGM Bolivia (Instituto Geográfico Militar,
+  `igmbolivia.gob.bo`) operates MARGEN-ROC (Red de Operaciones Continuas) and the CEPAG
+  processing centre for SIRGAS contributions. IGM advertises raw RINEX and an NTRIP
+  correction service, but no public endpoint or registration portal has been found.
+  `igm.gob.bo` was unreachable on 2026-04-30 (`igmbolivia.gob.bo` may differ — unverified).
+  Crucially, SIRGAS Bol21 (2016) states IGM was "joining" the commercial GeoBolivia SRL
+  initiative rather than operating its own public caster; fieldwork literature confirms
+  practitioners use the commercial GeoBolivia GEO1 station rather than an IGM service.
+  → networks.md: `margen_bolivia`
+- **Commercial**: RED-GEO CORS NTRIP (GeoBolivia SRL, Ley 2997 del Topógrafo / COTOBOL)
+  — ~7 stations covering La Paz, Cochabamba, Oruro, Sacaba, Tarija, Santa Cruz, and
+  Yacuiba; caster port 6060. Credentials issued by phone only — no self-service portal
+  or published hostname. Pricing not listed publicly; Facebook page active as of
+  2026-04-30 (website geoboliviasrl.info unreachable same date). → networks.md: `redgeo_bo`
 - **Volunteer**: rtk2go — 0 confirmed BO bases. Centipede — negligible.
-- **Gap**: no free public NTRIP for hobbyists; both the government MARGEN-ROC service and the commercial RED-GEO network require direct engagement and/or payment.
+- **Gap**: no free public NTRIP for hobbyists. The government MARGEN-ROC service appears
+  to delegate RTK corrections to GeoBolivia SRL commercially. RED-GEO is phone-subscription
+  only with unpublished pricing.
 
 ### AR — Argentina
 
@@ -1425,27 +1440,28 @@ similarly have no published coverage for these jurisdictions.
 
 ### VE — Venezuela
 
-**date_added**: 2026-04-28
+**date_added**: 2026-04-30
 
 - **Free government RTK**: REMOS (IGVSB — Instituto Geográfico de Venezuela
   Simón Bolívar). 29 permanent stations installed nationally, 27 with NTRIP
-  capability; Maracaibo (MARA) became the first to transmit corrections via
-  NTRIP experimentally from Oct 2008. NTRIP caster endpoint **not publicly
-  confirmed**: igvsb.gob.ve lists geodetic services but no public-facing
-  host:port or registration portal has been found. The REMOS NTRIP service
-  appears to have been limited in practice (only MARA streaming, with plans
-  for the remainder — status of those plans is unclear post-2018). IGVSB is
-  under the Ministry of Environment; economic and infrastructure constraints
-  have historically slowed deployment.
+  capability per 2012 SIRGAS bulletins; the current REMOS service page
+  (`igvsb.gob.ve/servicio/15`, reachable 2026-04-30) lists 8 active stations
+  at Puerto Ayacucho, Barinas, Caracas, Coro, Barquisimeto, Maturín, and
+  Maracaibo. Maracaibo (MARA) was the first to stream NTRIP experimentally
+  from Oct 2008. No public caster host:port or registration portal has been
+  found anywhere on the igvsb.gob.ve site; the BKG/RTCM-NTRIP global
+  broadcaster registry (last updated 2024-01-30) contains no Venezuela/IGVSB
+  entry. SIRGAS Bol15–17 documented internal caster setup by ~2012 but never
+  published the hostname. Working hypothesis: the caster operates for
+  institutional use only and was never made publicly accessible.
 - **Volunteer**: rtk2go — 0 confirmed mainland VE bases (3 rtk2go bases
-  visible at coordinates 12°N, 68–69°W are on Curaçao/Aruba — Netherlands
-  Antilles, not Venezuelan territory). Negligible Centipede presence.
+  visible at ~12°N, 68–69°W are on Curaçao/Aruba, not Venezuelan territory).
+  Negligible Centipede presence.
 - **Gap**: no confirmed free public NTRIP caster for mainland Venezuela.
-  IGVSB/REMOS infrastructure exists on paper (29 stations, NTRIP-capable)
-  but the caster endpoint is not publicly discoverable, and operational
-  continuity is uncertain given Venezuela's infrastructure situation.
-  GEODNET's South America server (`sa.geodnet.com:2101`, paid $40/month)
-  is the nearest practical paid fallback. → networks.md: `remos_ven` (deferred)
+  IGVSB/REMOS infrastructure exists but the caster endpoint is not publicly
+  discoverable; operational continuity post-2018 uncertain. GEODNET's South
+  America server (`sa.geodnet.com:2101`, paid ~$40/month) is the nearest
+  practical paid fallback. → networks.md: `remos_ven` (deferred)
 
 ---
 
@@ -1498,19 +1514,22 @@ similarly have no published coverage for these jurisdictions.
 
 ### PG — Papua New Guinea
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
-- **Free government RTK**: none confirmed. DLPP (Department of Lands and Physical Planning)
-  operates the WAIG CORS in Port Moresby and supports the PNG2020 geodetic datum, and PNG
-  University of Technology (Unitech) hosts IGS/APREF station LAE1 in Lae. Both are
-  scientific reference stations contributing to Geoscience Australia's APREF network; no
-  independent public NTRIP caster for PNG has been found. AUSCORS streams APREF stations
-  (`ntrip.data.gnss.ga.gov.au:2101`) but coverage over PNG is reference-grade, not RTK
-  density. → networks.md: `png_dlpp_cors`
+- **Free government RTK**: none confirmed. DLPP (Department of Lands and Physical
+  Planning) operates WAIG/PNGM CORS in Port Moresby and supports the PNG2020 geodetic
+  datum; PNG University of Technology (Unitech) hosts IGS station LAE1 in Lae. Both
+  are scientific reference stations contributing to Geoscience Australia's APREF
+  network; `dlpp.gov.pg` returned HTTP 403 on 2026-04-30. A FIG 2025 paper (Stanaway,
+  Nidkombu et al.) confirms ~6-station PNG2020 programme network and intent to offer
+  RTCM3/NTRIP under a UN-GGIM FAIR open-access principle, but the portal was not yet
+  public as of April 2025. The MRA PNG ran a demonstration NTRIP test at a Unitech
+  workshop but published no public endpoint. → networks.md: `png_dlpp_cors`
 - **Volunteer**: none. Zero PG stations on rtk2go or Centipede.
-- **Gap**: no hobbyist-accessible RTK correction service exists in PNG; the only
-  correction path is deploying a local base or using Geoscience Australia's AUSCORS
-  APREF stream as a distant reference (baselines far exceed practical RTK range).
+- **Gap**: no hobbyist-accessible RTK correction service exists in PNG. AUSCORS
+  streams APREF stations (`ntrip.data.gnss.ga.gov.au:2101`) but coverage over PNG is
+  reference-grade with baselines far exceeding practical RTK range. Hobbyists must
+  deploy a local base. Contact ASPNG (`aspng.org`) for updates on PNG2020 NTRIP portal.
 
 ---
 
@@ -1518,7 +1537,7 @@ similarly have no published coverage for these jurisdictions.
 
 ### CN — China
 
-**date_added**: 2026-04-28
+**date_added**: 2026-04-30
 
 - **Legal framework**: 测量法 (Surveying and Mapping Law of the PRC, 2002, revised 2017),
   Articles 27–29 require institutional surveying credentials (测绘资质) to operate or access
@@ -1540,18 +1559,24 @@ similarly have no published coverage for these jurisdictions.
   - **中国移动CORS China Mobile CORS** (CMCC, 4,400+ stations, nationwide): ~¥3,600/yr
     (~$500/yr); NTRIP access via data plan; open to individuals. Same price bracket as
     Qianxun. → networks.md: `cmcc_cors`
-  - **腾讯位置服务RTK Tencent RTK** (`cors.tencent.com`): launched 2022 as free beta; moved
-    to paid at ~¥998/yr (~$138/yr); 2,800+ virtual network stations; 33 provinces; requires
-    Tencent account (WeChat/QQ). If still offered at that price it is the only affordable-for-a-hobbyist
-    option in China (~¥998/yr, ~$138/yr), but current status (2025/2026) is unconfirmed. → networks.md: `tencent_rtk`
+  - **腾讯位置服务RTK Tencent RTK** (`cors.tencent.com`, unconfirmed from current public
+    sources): launched August 2022 as free public beta; 2,800+ virtual network stations;
+    33 provinces; 2 cm horizontal accuracy. As of 2026-04-30 the product page
+    (lbs.qq.com/rtk) shows enterprise business-inquiry contact only — no self-service
+    pricing or purchase flow. A ¥998/yr figure circulated in community discussion at the
+    2022 beta launch but has not been confirmed from a primary source price page; current
+    pricing is unknown. Access via an SDK integration model suggests enterprise
+    developer / B2B positioning, not individual subscription. Chinese phone number and
+    likely business licence required for commercial use. → networks.md: `tencent_rtk`
 - **Volunteer**: negligible. rtk2go ~1 CHN-tagged volunteer station; Centipede negligible.
   Chinese hobbyists (drone pilots, precision-agriculture DIY, autonomous-vehicle developers)
   typically pay Qianxun at full price or deploy a local base using SinoGNSS / ComNav /
   Unicore Communications receivers.
-- **Gap**: 测量法 closes all government CORS to unlicensed users. The lowest confirmed
-  commercial price is Tencent RTK at ~¥998/yr (~$138/yr), but its 2025/2026 operational
-  status is unconfirmed and requires a Chinese platform account. Qianxun/CMCC at ~$500/yr
-  are the reliable options.
+- **Gap**: 测量法 closes all government CORS to unlicensed users. Qianxun and CMCC at
+  ~¥3,600/yr (~$500/yr) are the only commercial options with confirmed individual
+  registration. Tencent RTK is live but has moved to an enterprise inquiry model with
+  no published hobbyist pricing; it cannot currently be recommended as an accessible
+  option. Non-Chinese hobbyists have no confirmed path.
 
 ### HK — Hong Kong
 
@@ -1620,22 +1645,20 @@ similarly have no published coverage for these jurisdictions.
 
 ### MN — Mongolia
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
-- **Free government RTK**: none confirmed for public access. The General Office
-  of Land Relations, Geodesy and Cartography (Газар зохион байгуулалт, геодези,
-  зураг зүйн ерөнхий газар, `gazar.gov.mn`) operates a national fixed reference station network (CORS) of
-  40+ stations (Trimble NetR8/NetR9 receivers with choke-ring antennas, built
-  since 2011 with Millennium Challenge Corporation funding). Initial 6 stations
-  in Ulaanbaatar, Darkhan, and Erdenet; expanded countrywide for cadastral
-  surveying and GIS mapping. No public NTRIP host:port, open sourcetable, or
-  self-service registration portal has been found; access appears restricted to
-  licensed surveyors and government agencies.
+- **Free government RTK**: confirmed — MonPOS / GAZAR CORS (General Office of Land
+  Relations, Geodesy and Cartography, `gazar.gov.mn`), 40+ stations (Trimble
+  NetR8/NetR9, built since 2011 with MCC funding). A public government announcement
+  at `monpos.gazar.gov.mn/monpos/3/` (2026-04-30) confirms VRS mountpoint
+  `MGL_network` at `rtk.gazar.gov.mn:2101` (alt IP `66.181.168.80:2101`) with shared
+  open credentials (username `rover`, password `262461`); port 2101 is inferred, not
+  stated explicitly. Individual registration available via `geodesy.gov.mn` (citizen
+  or legal entity). No fee found. In pipeline as `almgg_mn` (2026-04-30). → networks.md: `almgg_mn`
 - **Volunteer**: none. Zero MN stations on rtk2go or Centipede.
-- **Gap**: no free public RTK for hobbyists. Mongolia is ~1.56 million km²; even
-  40 stations gives average baselines of ~200 km, making RTK impractical outside
-  the Ulaanbaatar / Darkhan / Erdenet corridor. Hobbyists should deploy a local
-  base station. → networks.md: `almgg_mn`
+- **Gap**: coverage is very sparse — ~200 km average baselines nationally; RTK
+  practical only in the Ulaanbaatar–Darkhan–Erdenet corridor. Hobbyists outside
+  that corridor must deploy a local base station.
 
 ### SG — Singapore
 
@@ -1957,7 +1980,7 @@ similarly have no published coverage for these jurisdictions.
 
 ### BF — Burkina Faso
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
 - **Context**: Two coups in 2022 (January and September) brought Captain Ibrahim
   Traoré to power; Burkina Faso left ECOWAS in January 2025 as a founding member
@@ -1977,9 +2000,11 @@ similarly have no published coverage for these jurisdictions.
   Nine stations established 2011 with MCA-BF (Millennium Challenge Account)
   funding (Gampela, Manga, Fada, Diapaga, Dori, Ouahigouya, Dédougou, Bobo,
   Gaoua); four capital-region stations added 2018 (Ouagadougou-IGB, Koubri,
-  Dapélogo, Tanguen-Dassouri). Registration at `www.bfcors.net` — administrator
-  sends credentials on approval. Host:port not publicly listed on the website;
-  disclosed post-registration. → networks.md: `bfcors`
+  Dapélogo, Tanguen-Dassouri). Registration at `www.bfcors.net/RegisterAccount.aspx`;
+  administrator emails credentials on approval. `bfcors.net` confirmed live
+  2026-04-30 (Trimble Pivot Web portal, 13 stations on Sensor Map). Caster
+  inferred at `www.bfcors.net:2101` (Trimble Pivot Web standard port; not
+  curl-confirmed). → networks.md: `bfcors`
 
 - **Volunteer**: none confirmed. Zero BF stations on rtk2go; no BF nodes on
   Centipede.
@@ -2495,20 +2520,20 @@ similarly have no published coverage for these jurisdictions.
 
 ### KE — Kenya
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
 - **Free government RTK**: none confirmed with a public NTRIP endpoint. Survey
   of Kenya (SoK, `survey.go.ke`) operates national geodetic control; no public
-  NTRIP caster or RTK streaming host:port has been found. RCMRD (Regional
-  Centre for Mapping of Resources for Development, `rcmrd.org`) hosts geodetic
-  research infrastructure but no public fixed reference station (CORS) stream. → networks.md: `sok_ke`
+  NTRIP caster or RTK streaming host:port has been found. survey.go.ke was
+  unreachable on 2026-04-30. RCMRD (`rcmrd.org`) hosts geodetic research
+  infrastructure but no public permanent GPS reference station stream. → networks.md: `sok_ke`
 - **Commercial**: Muya CORS (`muya-cors.com`), operated by Measurement Systems
-  Ltd (~25 stations, single-base + network RTK) — registration required;
-  credentials (IP, port, username, password) issued post-signup; pricing not
-  publicly listed on website (contact vendor). → networks.md: `muya_cors_ke`
+  Ltd (~27 stations, single-base + network RTK) — self-serve signup; Mpesa
+  payment supported; credentials issued post-registration. KES 35,000/yr
+  (~$271/yr) from a promotional post (unverified primary source). → networks.md: `muya_cors_ke`
 - **Volunteer**: rtk2go ~1 base (NerokasRTK, Thika). No Centipede nodes.
 - **Gap**: no free government or volunteer RTK coverage at national scale.
-  Hobbyists must use Muya CORS (paid, unknown price) or deploy a local base.
+  Hobbyists must use Muya CORS (~KES 35,000/yr, ~$271) or deploy a local base.
 
 ### LR — Liberia
 

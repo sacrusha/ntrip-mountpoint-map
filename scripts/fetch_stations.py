@@ -207,6 +207,10 @@ SOURCES = [
      "color": "#1a6b3c", "label": "LatPos",
      "type": "vrs-only", "country": ["LV"],
      "access": "registration", "registration": "https://latpos.lgia.gov.lv/SBC"},
+    {"id": "litpos",      "url": "http://193.219.10.2:2101/",                    # bare IP — no DNS hostname published; VilniusTech/GIS-Centras primary
+     "color": "#0d47a1", "label": "LitPOS",
+     "type": "vrs-only", "country": ["LT"],
+     "access": "registration", "registration": "https://geoportal.lt/web/litpos-paslauga/registracija"},
     {"id": "igac",        "url": "http://sbc.igac.gov.co:2101/",
      "color": "#d4a017", "label": "IGAC",
      "type": "physical-vrs", "country": ["CO"],
@@ -223,6 +227,11 @@ SOURCES = [
      "color": "#a93226", "label": "CORS-KOREA",
      "type": "physical-vrs", "country": ["KR"],
      "access": "conditions",   "registration": "https://www.gnssdata.or.kr"},
+    {"id": "almgg_mn",    "url": "http://rtk.gazar.gov.mn:2101/",            # MonPOS; SNIP R3.14; alt IP 66.181.168.80:2101; curl-confirmed 2026-04-30
+     "color": "#9e6b00", "label": "MonPOS",
+     "type": "physical-vrs", "country": ["MN"],
+     "credentials": {"user": "rover", "pass": "262461"},
+     "access": "open",         "registration": None},
     {"id": "icecors",     "url": "http://178.19.53.126:2101/",
      "color": "#1e6b8c", "label": "IceCORS",
      "type": "physical-vrs", "country": ["IS"],
