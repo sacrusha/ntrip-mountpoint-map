@@ -146,6 +146,10 @@ SOURCES = [
      "color": "#b05000", "label": "ERGNSS",
      "type": "physical-vrs", "country": ["ES"],
      "access": "registration", "registration": "https://ergnss.ign.es/gnuserportal/"},
+    {"id": "renep",       "url": "http://193.137.94.71:2101/",                     # port 2101 = physical single-base RTCM3; 2102 = same + MSM5; 2106/2108 = VRS
+     "color": "#006b3c", "label": "ReNEP",
+     "type": "single-base", "country": ["PT"],
+     "access": "registration", "registration": "https://renep.dgterritorio.gov.pt"},
     {"id": "auscors",     "url": "http://ntrip.data.gnss.ga.gov.au:2101/",
      "color": "#b8860b", "label": "AUSCORS",
      "type": "single-base", "country": ["AU"],

@@ -329,10 +329,10 @@ _Last updated: 2026-04-22._
 **date_added**: 2026-04-29
 
 - **Free government RTK**: ReNEP (DGT, 47 stations, VRS + single-base) — free,
-  portal signup at renep.dgterritorio.gov.pt; host:port withheld until post-registration.
-  → networks.md: `renep` (deferred)
+  portal signup at renep.dgterritorio.gov.pt; caster at 193.137.94.71, port 2101
+  (physical RTCM3), port 2102 (MSM5), port 2106 (nearest-station VRS), port 2108
+  (network corrections). → networks.md: `renep` (in pipeline as of 2026-04-30)
 - **Volunteer**: rtk2go ~2 PT bases, Centipede negligible.
-- **Gap**: ReNEP requires registration to discover endpoint; blocked for now.
 
 ### SI — Slovenia
 
