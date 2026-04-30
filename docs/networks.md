@@ -1573,10 +1573,11 @@ network RTK.
                dronepilotacademy.co.uk/product/topnet-live-vrs-license/;
                korecgroup.com/product/trimble-vrs-now/
 
-No free hobbyist path exists via OS Net. The cheapest hobbyist on-ramp is
-Topcon TopNet Live's 7-day Unlimited at £100 ex VAT — viable for a single
-weekend project. Annual subscriptions are over the $200/yr cutoff regardless
-of reseller. Volunteer bases on rtk2go/Centipede remain the only free option.
+No free hobbyist path exists via OS Net, and no published OS Net tier sits
+under the project's ~$200/yr affordability cutoff. Topcon TopNet Live's 7-day
+Unlimited at £100 ex VAT is the shortest available paid block but annualises
+to ~£5,200/yr if used weekly — a one-off pass, not an affordable subscription.
+Volunteer bases on rtk2go/Centipede remain the only free option.
 
 ---
 
@@ -1672,9 +1673,11 @@ Promotional free 3-month window (Nov 2025–Jan 2026) expired. Worth revisiting 
                  RTK 5 mo: ₺5,000 · 6 mo ₺6,000 (~$182) · 1 yr ₺8,135 (~$247)
                  DGPS 1 mo: ₺405 (~$12) · 1 yr ₺2,985 (~$91)
                  RINEX 30-sec: free · RINEX 1-sec: ₺4/session (~$0.12)
-               Approx ~32.9 TRY/USD. The annual RTK tier is just over the $200/yr
-               hobbyist cutoff but a single-month RTK pass at ~$30 is a realistic
-               on-ramp for a Turkish-resident hobbyist.
+               Approx ~32.9 TRY/USD. The annual RTK tier (~$247) is just above
+               the $200/yr hobbyist cutoff; the 6-month block at ~$182 is the
+               cheapest period that fits inside the cutoff. Shorter monthly
+               blocks exist (₺1,000/mo, ~$30) but annualise to ~$360, so they
+               are one-off passes, not sustained subscriptions.
 **stations**:  ~158 physical single-base GNSS stations (Turkey + Northern Cyprus);
                146 was earlier count, 12 border/Marmara stations added 2018
 **source**:    tusaga-aktif.gov.tr; tkgm.gov.tr; harita.gov.tr
@@ -1733,10 +1736,12 @@ solution, port 2103 single-base.
                  90 days, usable within a 365-day window:     72,000 HUF (DGNSS 24,000)
                  150 days, usable within a 365-day window:   108,000 HUF (DGNSS 36,000)
                  365-day continuous access:                  150,000 HUF (DGNSS 54,000)
-               Annual flat rate ~€375 / ~$415 at ~400 HUF/EUR — over the $200/yr cutoff,
-               but the 30-day local-radius (~€38) and per-minute tariffs are realistic
-               hobbyist on-ramps for project work. Outside the 50 km radius the local
-               flat rate falls back to per-minute billing without separate notice.
+               Annual flat rate ~€375 / ~$415 at ~400 HUF/EUR — over the $200/yr cutoff.
+               The per-minute RTK rate (~€1.20/hr) is the only tier that fits inside
+               the cutoff, and only for occasional use up to roughly 150 hours/year;
+               the 30-day local-radius pass (~€38) is a single-project block, not a
+               sustained subscription. Outside the 50 km radius the local flat rate
+               falls back to per-minute billing without separate notice.
                Multi-subscription discount: −10% on the 2nd simultaneous flat-rate
                subscription of the same type/duration, −20% on the 3rd onwards (applied
                only to the second-and-further line items, not the first).
@@ -1805,9 +1810,11 @@ solution, port 2103 single-base.
                  RTK Unlimited 1 month: PHP 12,000 (~$212)
                  RINEX 1–20 sec: PHP 50/MB · RINEX 30–60 sec: free with subscription
                  Coordinate Computation: free
-               The per-hour and 1-day tiers are realistic hobbyist on-ramps; the
-               1-month tier sits at the $200/yr cutoff. Annual pricing not
-               published — month-by-month is the ongoing path.
+               The per-hour rate (~$1.77/hr) is the only tier that fits inside
+               the ~$200/yr cutoff, and only for occasional use up to ~90
+               hours/year. The 1-day pass (~$18) covers a single session;
+               longer blocks rise quickly (1 month ~$212 is just over the
+               cutoff). No annual flat rate is published.
 **stations**:  52
 **operator**:  NAMRIA — National Mapping and Resource Information Authority
 **source**:    namria.gov.ph; pagenet.namria.gov.ph/AGN/ServicesAndFees.aspx
@@ -1947,8 +1954,11 @@ wapi.gov.me; obtain the post-registration NTRIP host:port via
                  Post-processing RTK <30 s/hr: 22 KM/hr; DGPS ≥30 s/hr: 13 KM/hr
                  RINEX RTK 28 KM/hr; DGPS 17 KM/hr; combined 33 KM/hr
                  Coordinate transformation (web, per point) 13 KM
-               The 10-hour and 20-hour blocks (~$17, ~$29) are realistic
-               hobbyist on-ramps; the annual tier is well over the $200 cutoff.
+               Short pre-paid blocks (10 h ~$17, 20 h ~$29) translate to roughly
+               $1.45–1.70/hr — the only rate in the schedule that fits inside
+               the ~$200/yr cutoff, and only for occasional use; per-minute
+               (0.20 KM/min ≈ $7/hr), the 1-month tier (~$145), and the annual
+               (~$578) are all above the cutoff.
 **mountpoints**: MAX-AUTO (RTCM 3.1, GPS+GLO), iMAX-AUTO (3.1), VRS-AUTO (3.1),
                FKP-AUTO (RTCM 2.3 msg 18/19, GPS only), NEAREST (3.1, single
                base), iMAX-AUTO-2.3 (RTCM 2.3)

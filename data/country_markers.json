@@ -142,7 +142,7 @@
 
     {"id":"tusaga",      "name":"TUSAGA-Aktif",     "region":"Turkey",                "country":"TR", "lat":39.00, "lon":35.00,
      "tier":"paid", "vrs":true, "access":"paid", "yearly_cost":"₺550 (~$17) one-time device registration; ₺1,000/mo (~$30), ₺6,000/6 mo (~$182), or ₺8,135/yr (~$247) for RTK; ₺2,985/yr (~$91) for DGPS. KDV (VAT) included.", "registration":"https://www.harita.gov.tr",
-     "note":"Online registration requires a Turkish national ID (TC Kimlik No), so foreign visitors cannot self-register. The one-month RTK pass (~$30) is a realistic on-ramp for Turkish-resident hobbyists; the annual tier is just over budget."},
+     "note":"Online registration requires a Turkish national ID (TC Kimlik No), so foreign visitors cannot self-register. Shorter blocks are available (₺1,000/mo, ₺6,000/6 mo) but the annual tier (~$247) is just above the $200/yr affordability cutoff."},
 
     {"id":"vngeonet",    "name":"VNGEONET",         "region":"Vietnam",               "country":"VN", "lat":16.50, "lon":107.50,
      "tier":"paid", "vrs":true, "access":"paid", "yearly_cost":"750,000 VNĐ/mo (~$29.5), 4,280,000 VNĐ/6 mo (~$168), or 6,750,000 VNĐ/yr (~$266). Free 12-month RTK in zones with >80 km station spacing.", "registration":"https://gddt.vngeonet.vn",
@@ -150,7 +150,7 @@
 
     {"id":"pagenet",     "name":"PAGeNet",          "region":"Philippines",           "country":"PH", "lat":12.90, "lon":122.70,
      "tier":"paid", "vrs":true, "access":"paid", "yearly_cost":"PHP 1,000 (~$18) one-time registration; then PHP 100/hr (~$1.77/hr), or PHP 1,000/day (~$18), PHP 3,500/5 days, PHP 7,500/15 days, PHP 12,000/month (~$212) for unlimited RTK. No VAT — regulatory charges under Executive Order 471.", "registration":"https://pagenet.namria.gov.ph",
-     "note":"52 stations. The per-hour rate (~$1.77/hr) and 1-day unlimited (~$18) are realistic hobbyist on-ramps without committing to a monthly subscription. Non-Metro Manila clients pay by LandBank deposit slip, a practical barrier for foreigners."},
+     "note":"52 stations. The per-hour rate (~$1.77/hr) is the only tier under the $200 cutoff for occasional use — about 90 hours/year fit the budget. The 1-day pass (~$18) and the 1-month tier (~$212) sit just above for sustained use. Non-Metro Manila clients pay by LandBank deposit slip, a practical barrier for foreigners."},
 
     {"id":"gnssnet_hu",  "name":"GNSSnet.hu",       "region":"Hungary",               "country":"HU", "lat":47.20, "lon":19.30,
      "tier":"paid", "vrs":true, "access":"paid", "yearly_cost":"150,000 HUF/yr (~€375, ~$415) for unlimited RTK or network RTK; 15,000 HUF (~€38) for 30 days within 50 km of one fixed point; or pay-per-minute at 8 HUF/min RTK and 12 HUF/min network RTK (~€1.20–1.80/hr). 12,000 HUF (~€30) one-time registration. Net of 27% Hungarian VAT.", "registration":"https://gnssnet.hu",
@@ -170,7 +170,7 @@
 
     {"id":"srpos_ba",    "name":"SRPOS",            "region":"Republika Srpska, BiH", "country":"BA", "lat":44.78, "lon":17.18,
      "tier":"paid", "vrs":true, "access":"paid", "yearly_cost":"BAM/KM (pegged 1.95583 to 1 EUR). RTK: 0.20 KM/min, or 30 KM (~$17) for 10 hours, 50 KM (~$29) for 20 hours, 250 KM (~$145) for 1 month, 1,000 KM (~$578) for 1 year. DGPS 1 month 200 KM (~$116), 1 year 1,000 KM.", "registration":"https://www.rgurs.org/stranica/srpos",
-     "note":"Republika Srpska half of the BiHPOS network. ~17 stations, MAX + iMAX + VRS + FKP + nearest-station mountpoints. The 10-hour and 20-hour blocks (~$17 / ~$29) are realistic on-ramps for a hobbyist working on a single project; the annual tier is well over budget."},
+     "note":"Republika Srpska half of the BiHPOS network. ~17 stations, MAX + iMAX + VRS + FKP + nearest-station mountpoints. Short pre-paid blocks are available (10 hours ~$17, 20 hours ~$29); per-minute and longer-period rates rise quickly, and the annual tier (~$578) is well above the $200 cutoff."},
 
     {"id":"fbihpos_ba",  "name":"FBiHPOS",          "region":"Federation of BiH",     "country":"BA", "lat":43.87, "lon":17.95,
      "tier":"paid", "vrs":true, "access":"paid",
