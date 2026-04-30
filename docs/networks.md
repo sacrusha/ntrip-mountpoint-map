@@ -3598,52 +3598,43 @@ national RTK network accessible to hobbyists.
 **missing**: confirm whether IGN Guatemala offers free or paid NTRIP access and on what terms;
 obtain host:port from IGN directly; check whether RIC operates an independent caster.
 
-## ip_cors_hn — IP CORS Honduras (HN)
+## ip_cors_hn — IP CORS Honduras / IGN Honduras (HN)
 
-**status**:    free
+**status**:    rejected
 **country**:   HN — Honduras
 **type**:      single-base
-**host:port**: not publicly listed
-**access**:    unknown — RINEX download confirmed at cors.ip.gob.hn; real-time NTRIP terms
-               not documented; no self-service registration portal found
-**yearly_cost**: unknown
-**registration**: cors.ip.gob.hn (Instituto de la Propiedad)
-**stations**:  unknown
+**host:port**: none — post-processing RINEX download service only; no NTRIP caster
+**access**:    free RINEX data downloadable at cors.ip.gob.hn; no real-time corrections
+**registration**: https://cors.ip.gob.hn
+**stations**:  5 (Tegucigalpa/TEG, San Pedro Sula/ICF1, Juticalpa/JUT1,
+               Siguatepeque/UNCF, La Ceiba/CEIB)
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
-The Instituto de la Propiedad (IP) operates a cadastral CORS network whose portal
-(cors.ip.gob.hn) offers RINEX data downloads for post-processing. The portal describes
-continuous measurement stations providing a geodetic reference framework. No public NTRIP
-caster endpoint, host:port, or user registration flow has been found; real-time access
-likely requires direct contact with IP.
-
-**missing**: confirm whether IP CORS provides real-time NTRIP access; obtain host:port
-and access terms from Instituto de la Propiedad directly.
+The Dirección General de Cartografía y Geografía (DGCG), sub-directorate of the
+Instituto de la Propiedad (IP), operates Honduras's national CORS network. Its portal
+(cors.ip.gob.hn) provides free RINEX file downloads for 5 stations covering major
+urban centres. No NTRIP caster endpoint, no real-time RTK service, and no subscription
+tariff exist or have been announced publicly. The "IGN Honduras" brand (ign.hn) is the
+same institution — the former IGN was reorganised into the DGCG/IP; ign.hn is an
+auxiliary web presence for the same network. Honduras is absent from ArduSimple and
+rtcm-ntrip.org caster directories. A 2024 public comment on the IP's Facebook page
+explicitly called for activation of a live CORS/NTRIP service, confirming it had not
+yet occurred at that date.
+Rejected — post-processing only; no real-time NTRIP service exists.
 
 ## ign_hn_cors — IGN Honduras CORS (HN)
 
-**status**:    free
+**status**:    rejected
 **country**:   HN — Honduras
-**type**:      single-base
-**host:port**: not publicly listed
-**access**:    unknown — CORS stations listed at ign.hn/estacionescors; NTRIP caster
-               endpoint not published
-**yearly_cost**: unknown
-**registration**: ign.hn (Instituto Geográfico Nacional de Honduras)
-**stations**:  unknown
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
-The Instituto Geográfico Nacional (IGN) of Honduras maintains active GNSS reference
-stations as part of the national geodetic reference framework (datum WGS-84 / ITRF14).
-The CORS section of the IGN website (ign.hn/estacionescors) offers data downloads and
-describes the stations as operating continuously 24/7. No public NTRIP caster host:port
-or user registration page was found; real-time RTK correction delivery appears to require
-direct contact with IGN.
-
-**missing**: confirm whether IGN Honduras provides public real-time NTRIP access; obtain
-host:port and registration process.
+IGN Honduras is not a separate entity from the IP/DGCG — see `ip_cors_hn`. The IGN
+brand is maintained at ign.hn as an auxiliary web presence; the CORS network described
+there is the same 5-station network documented under `ip_cors_hn`. No separate NTRIP
+service or caster endpoint exists under the IGN brand.
+Rejected — same institution as `ip_cors_hn`; post-processing only.
 
 ## ineter_cors — INETER CORS (NI)
 

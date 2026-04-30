@@ -1033,13 +1033,19 @@ similarly have no published coverage for these jurisdictions.
 
 ### HN — Honduras
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
-- **Free government RTK**: Two agencies operate fixed reference station (CORS) infrastructure; neither provides a confirmed free public NTRIP endpoint.
-  - **IP CORS** (Instituto de la Propiedad, `cors.ip.gob.hn`): cadastral CORS network; RINEX data downloadable from the portal; real-time NTRIP access terms not publicly documented — no self-service registration page or host:port found. → networks.md: `ip_cors_hn`
-  - **IGN Honduras CORS** (Instituto Geográfico Nacional, `ign.hn/estacionescors`): active reference stations for geodetic framework; data download offered; NTRIP caster endpoint not publicly listed. → networks.md: `ign_hn_cors`
+- **Free government RTK**: none. The IP/DGCG (Dirección General de Cartografía y
+  Geografía, sub-directorate of the Instituto de la Propiedad) operates a 5-station
+  CORS network (Tegucigalpa, San Pedro Sula, Juticalpa, Siguatepeque, La Ceiba)
+  accessible at cors.ip.gob.hn — the portal is a post-processing RINEX download
+  service only; no NTRIP caster host:port or real-time RTK subscription exists.
+  The "IGN Honduras" brand at ign.hn is the same institution (DGCG), not a separate
+  agency. → networks.md: `ip_cors_hn`
 - **Volunteer**: none. Zero HN stations on rtk2go or Centipede.
-- **Gap**: no confirmed free public NTRIP for hobbyists; both government CORS networks exist but real-time access terms are not publicly discoverable without direct contact with IP or IGN.
+- **Gap**: no real-time RTK for hobbyists, free or paid. The 5-station CORS network
+  provides post-processing RINEX downloads only. No commercial NTRIP provider lists
+  Honduras coverage.
 
 ### NI — Nicaragua
 
