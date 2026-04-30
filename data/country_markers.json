@@ -141,16 +141,16 @@
      "note":"78 stations under JUPEM (Survey Act cost-recovery). Pricing not published online."},
 
     {"id":"tusaga",      "name":"TUSAGA-Aktif",     "region":"Turkey",                "country":"TR", "lat":39.00, "lon":35.00,
-     "tier":"paid", "vrs":true, "access":"paid", "registration":"https://www.harita.gov.tr",
-     "note":"Membership plus annual fee. Pricing not published online."},
+     "tier":"paid", "vrs":true, "access":"paid", "yearly_cost":"₺550 (~$17) one-time device registration; ₺1,000/mo (~$30), ₺6,000/6 mo (~$182), or ₺8,135/yr (~$247) for RTK; ₺2,985/yr (~$91) for DGPS. KDV (VAT) included.", "registration":"https://www.harita.gov.tr",
+     "note":"Online registration requires a Turkish national ID (TC Kimlik No), so foreign visitors cannot self-register. The one-month RTK pass (~$30) is a realistic on-ramp for Turkish-resident hobbyists; the annual tier is just over budget."},
 
     {"id":"vngeonet",    "name":"VNGEONET",         "region":"Vietnam",               "country":"VN", "lat":16.50, "lon":107.50,
-     "tier":"paid", "vrs":true, "access":"paid",
-     "note":"65 stations. Was free until Aug 2024; fees now apply per Circular 47/2024/TT-BTC."},
+     "tier":"paid", "vrs":true, "access":"paid", "yearly_cost":"750,000 VNĐ/mo (~$29.5), 4,280,000 VNĐ/6 mo (~$168), or 6,750,000 VNĐ/yr (~$266). Free 12-month RTK in zones with >80 km station spacing.", "registration":"https://gddt.vngeonet.vn",
+     "note":"65 stations on a VRS + iMAX + single-base caster. Foreigners can register with a passport. A free annual tier exists in sparse-coverage zones (>80 km station spacing) — useful outside the densely covered river deltas."},
 
     {"id":"pagenet",     "name":"PAGeNet",          "region":"Philippines",           "country":"PH", "lat":12.90, "lon":122.70,
-     "tier":"paid", "vrs":true, "access":"paid", "yearly_cost":"₱1,000 one-time (~$17) plus ongoing subscription", "registration":"https://www.namria.gov.ph",
-     "note":"52 stations. One-time registration plus an ongoing subscription per Executive Order 471; subscription rate not published online."},
+     "tier":"paid", "vrs":true, "access":"paid", "yearly_cost":"PHP 1,000 (~$18) one-time registration; then PHP 100/hr (~$1.77/hr), or PHP 1,000/day (~$18), PHP 3,500/5 days, PHP 7,500/15 days, PHP 12,000/month (~$212) for unlimited RTK. No VAT — regulatory charges under Executive Order 471.", "registration":"https://pagenet.namria.gov.ph",
+     "note":"52 stations. The per-hour rate (~$1.77/hr) and 1-day unlimited (~$18) are realistic hobbyist on-ramps without committing to a monthly subscription. Non-Metro Manila clients pay by LandBank deposit slip, a practical barrier for foreigners."},
 
     {"id":"gnssnet_hu",  "name":"GNSSnet.hu",       "region":"Hungary",               "country":"HU", "lat":47.20, "lon":19.30,
      "tier":"paid", "vrs":true, "access":"paid", "yearly_cost":"150,000 HUF/yr (~€375, ~$415) for unlimited RTK or network RTK; 15,000 HUF (~€38) for 30 days within 50 km of one fixed point; or pay-per-minute at 8 HUF/min RTK and 12 HUF/min network RTK (~€1.20–1.80/hr). 12,000 HUF (~€30) one-time registration. Net of 27% Hungarian VAT.", "registration":"https://gnssnet.hu",

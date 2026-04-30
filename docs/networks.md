@@ -1613,14 +1613,26 @@ Promotional free 3-month window (Nov 2025–Jan 2026) expired. Worth revisiting 
 
 **status**:    paid
 **date_added**: 2026-04-29
-**host:port**: `212.156.70.42:2101` (also port 55600)
-**access**:    paid; one-off registration fee + annual RTK subscription. Fee set
-               annually by BHİKPK (Inter-Ministerial Commission for Mapping Affairs);
-               exact TRY amount not on public website. Universities and vocational
-               schools may apply for free educational-area access via official letter
-               to TKGM Harita Dairesi Başkanlığı.
-**yearly_cost**: not publicly listed (contact tusaga-aktif.gov.tr, tel. 444 46 77);
-               over $200/yr cutoff inferred
+**host:port**: `212.156.70.42:2101` (also reachable as `tusaga-aktif.gov.tr:2101`;
+               legacy port 55600)
+**access**:    paid; one-off device-registration fee then RTK subscription. Tariff
+               set annually by BHİKPK (Inter-Ministerial Commission for Mapping
+               Affairs). Online registration requires a TC Kimlik No (Turkish
+               national ID), so foreign nationals without Turkish residency cannot
+               self-register — must contact the agency directly. Universities and
+               vocational schools may apply for free educational-area access via
+               official letter to TKGM Harita Dairesi Başkanlığı; public bodies and
+               universities also receive a 75% discount on 1-sec RINEX.
+**yearly_cost**: 2026 schedule (gross, KDV/VAT included), confirmed 2026-04-30 on
+               tusaga-aktif.gov.tr homepage:
+                 Cihaz Abonelik (one-off device subscription): ₺550 (~$17)
+                 RTK 1 mo: ₺1,000 (~$30) · 2 mo ₺2,000 · 3 mo ₺3,000 · 4 mo ₺4,000
+                 RTK 5 mo: ₺5,000 · 6 mo ₺6,000 (~$182) · 1 yr ₺8,135 (~$247)
+                 DGPS 1 mo: ₺405 (~$12) · 1 yr ₺2,985 (~$91)
+                 RINEX 30-sec: free · RINEX 1-sec: ₺4/session (~$0.12)
+               Approx ~32.9 TRY/USD. The annual RTK tier is just over the $200/yr
+               hobbyist cutoff but a single-month RTK pass at ~$30 is a realistic
+               on-ramp for a Turkish-resident hobbyist.
 **stations**:  ~158 physical single-base GNSS stations (Turkey + Northern Cyprus);
                146 was earlier count, 12 border/Marmara stations added 2018
 **source**:    tusaga-aktif.gov.tr; tkgm.gov.tr; harita.gov.tr
@@ -1630,18 +1642,32 @@ Promotional free 3-month window (Nov 2025–Jan 2026) expired. Worth revisiting 
 ## vngeonet — VNGEONET (VN)
 
 **status**:    paid
-**host:port**: `vngeonet.vn:2101` (VRS); `:2102` (iMAX); `:2103` (single-base)
+**host:port**: `vngeonet.vn:2101` (VRS) — IP `14.238.1.125`; `:2102` (iMAX); `:2103`
+               (single-base)
 **type**:      physical-coord-vrs (VRS + iMAX + single-base mountpoints)
-**access**:    fees since Sep 2024 per Circular 47/2024/TT-BTC; pricing not public;
-               register at gddt.vngeonet.vn
-**yearly_cost**: not publicly listed (fees per Circular 47/2024/TT-BTC since Sep 2024)
+**access**:    Paid since Sep 2024 per Circular 47/2024/TT-BTC; register at
+               gddt.vngeonet.vn. "Organizations and individuals" (tổ chức và cá
+               nhân) explicitly eligible per the instructions page; passport
+               accepted alongside Vietnamese Citizen ID for individual registration,
+               so **foreign nationals can register**. RTK account is case-sensitive.
+**yearly_cost**: Confirmed 2026-04-30 on gddt.vngeonet.vn homepage service cards
+               (VAT status not explicitly stated on the public page; Circular
+               47/2024/TT-BTC of the Ministry of Finance is the authoritative
+               legal source, building on Circular 03/2020/TT-BTNMT):
+                 RTK 1 mo, nationwide, per rover: 750,000 VNĐ (~$29.5)
+                 RTK 6 mo: 4,280,000 VNĐ (~$168)
+                 RTK 12 mo: 6,750,000 VNĐ (~$266)
+                 RTK 12 mo in zones with >80 km station spacing: **0 VNĐ (free)**
+               Approx ~25,420 VND/USD. The free zone-based tier covers parts of
+               the network where station density is sparse — useful free option
+               for hobbyists outside the densely covered river deltas.
 **stations**:  65
-**source**:    vngeonet.vn (National Centre for Satellite Positioning Station Management /
-               Trung tâm Quản lý trạm định vị vệ tinh quốc gia, Bộ TN&MT)
+**source**:    vngeonet.vn; gddt.vngeonet.vn (National Centre for Satellite
+               Positioning Station Management / Trung tâm Quản lý trạm định vị
+               vệ tinh quốc gia, Bộ TN&MT)
 
-Was free until Aug 2024. Three-port caster: port 2101 VRS network solution, port 2102
-iMAX network solution, port 2103 single-base. RTK account (case-sensitive) required;
-create via gddt.vngeonet.vn.
+Three-port caster: port 2101 VRS network solution, port 2102 iMAX network
+solution, port 2103 single-base.
 
 ---
 
@@ -1717,9 +1743,32 @@ create via gddt.vngeonet.vn.
 ## pagenet — PAGeNet (PH)
 
 **status**:    paid
-**access**:    PHP 1,000 one-time + ongoing subscription (EO 471); 52 stations
-**yearly_cost**: PHP 1,000 one-time (~$17) + subscription (ongoing amount not publicly listed)
-**source**:    namria.gov.ph
+**host:port**: `pagenet.namria.gov.ph` — port not on public-facing pages (issued
+               post-subscription per the RTK Connection Guide); standard NTRIP
+               port 2101 inferred. Contact: `pagenet@namria.gov.ph`,
+               tel +63 2 8884-2849.
+**access**:    Paid under Executive Order 471 (regulatory charges, no VAT applies).
+               Open to individuals via online form; payment by LandBank deposit
+               slip available outside Metro Manila. No surveying-licence
+               requirement per FAQ. Nationality/residency not explicitly
+               restricted, but the bank-deposit payment route is a practical
+               barrier for foreign hobbyists — confirm with NAMRIA.
+**yearly_cost**: Full schedule at pagenet.namria.gov.ph/AGN/ServicesAndFees.aspx,
+               confirmed 2026-04-30 (PHP, no VAT; ~56.5 PHP/USD):
+                 One-time registration (per client, all services): PHP 1,000 (~$18)
+                 Real-time RTK per hour, per rover: **PHP 100/hr (~$1.77/hr)**
+                 RTK Unlimited 1 day (+PHP 500 per extra rover): PHP 1,000 (~$18)
+                 RTK Unlimited 5 days: PHP 3,500 (~$62)
+                 RTK Unlimited 15 days: PHP 7,500 (~$133)
+                 RTK Unlimited 1 month: PHP 12,000 (~$212)
+                 RINEX 1–20 sec: PHP 50/MB · RINEX 30–60 sec: free with subscription
+                 Coordinate Computation: free
+               The per-hour and 1-day tiers are realistic hobbyist on-ramps; the
+               1-month tier sits at the $200/yr cutoff. Annual pricing not
+               published — month-by-month is the ongoing path.
+**stations**:  52
+**operator**:  NAMRIA — National Mapping and Resource Information Authority
+**source**:    namria.gov.ph; pagenet.namria.gov.ph/AGN/ServicesAndFees.aspx
 
 ---
 

@@ -1743,7 +1743,15 @@ similarly have no published coverage for these jurisdictions.
 
 **date_added**: 2026-04-28
 
-- **Free government RTK**: PAGeNet (NAMRIA, 52 stations) — PHP 1,000 one-time + ongoing (EO 471). Paid.
+- **Government RTK (paid)**: PAGeNet (NAMRIA, 52 stations, `pagenet.namria.gov.ph`,
+  port issued post-subscription — standard 2101 inferred). Tariff confirmed
+  2026-04-30 at `pagenet.namria.gov.ph/AGN/ServicesAndFees.aspx` (PHP, no VAT —
+  regulatory charges under EO 471): PHP 1,000 (~$18) one-time registration; RTK
+  per-hour PHP 100/hr (~$1.77/hr); RTK Unlimited 1 day PHP 1,000 (~$18), 5 days
+  PHP 3,500, 15 days PHP 7,500, 1 month PHP 12,000 (~$212); 30/60-sec RINEX free
+  with subscription. The per-hour and 1-day tiers are realistic hobbyist on-ramps.
+  Open to individuals; non-Metro Manila clients pay by LandBank deposit slip,
+  which is a practical barrier for foreign hobbyists. → networks.md: `pagenet`
 - **Volunteer**: negligible.
 
 ### PK — Pakistan
@@ -1812,14 +1820,17 @@ similarly have no published coverage for these jurisdictions.
 
 **date_added**: 2026-04-29
 
-- **Free government RTK**: VNGEONET (National Centre for Satellite Positioning
-  Station Management, `vngeonet.vn:2101` / `:2102` / `:2103`, 65 stations, VRS +
-  iMAX + single-base mountpoints) — was free until Aug 2024; fees apply since Sep
-  2024 per Circular 47/2024/TT-BTC; pricing not publicly listed. Paid; out of scope.
-  → networks.md: `vngeonet`
+- **Government RTK (paid, foreigner-eligible)**: VNGEONET (National Centre for
+  Satellite Positioning Station Management, `vngeonet.vn:2101` / `:2102` / `:2103`,
+  IP `14.238.1.125`, 65 stations, VRS + iMAX + single-base). Paid since Sep 2024
+  per Circular 47/2024/TT-BTC. 2026 schedule confirmed 2026-04-30: 750,000 VNĐ/mo
+  (~$29.5), 4,280,000 VNĐ/6 mo (~$168), 6,750,000 VNĐ/yr (~$266); registration
+  accepts passport scans alongside Citizen ID, so foreign nationals can register.
+  **Free 12-month tier in zones with >80 km station spacing** — useful for
+  hobbyists outside the densely covered river deltas. → networks.md: `vngeonet`
 - **Volunteer**: negligible. Zero VN stations on rtk2go or Centipede.
-- **Gap**: no free public NTRIP in Vietnam since Sep 2024; hobbyists must deploy a
-  local base or pay VNGEONET fees (amount not publicly disclosed).
+- **Gap**: dense-coverage zones cost ~$30/month minimum; the free zone-spacing
+  tier covers only the sparsest parts of the network.
 
 ---
 
@@ -2724,17 +2735,20 @@ similarly have no published coverage for these jurisdictions.
 
 **date_added**: 2026-04-29
 
-- **Free government RTK**: none. TUSAGA-Aktif / CORS-TR (TKGM — General Directorate of Land
-  Registry and Cadastre, jointly with HGM — General Directorate of Mapping,
-  `212.156.70.42:2101`, ~158 physical GNSS stations, single-base) — paid; one-off
-  registration fee + annual RTK subscription. Fee set each year by the
-  Inter-Ministerial Commission for Mapping Affairs (BHİKPK); exact TRY amount not
-  on the public website (contact `tusaga-aktif.gov.tr`, tel. 444 46 77). Likely expensive
-  for a hobbyist (inferred from professional-surveying pricing). Universities and vocational
-  schools may apply for free educational-area RTK access via TKGM. → networks.md: `tusaga`
+- **Government RTK (paid, residency-gated)**: TUSAGA-Aktif / CORS-TR (TKGM —
+  General Directorate of Land Registry and Cadastre, jointly with HGM — General
+  Directorate of Mapping, `212.156.70.42:2101`, ~158 physical GNSS stations,
+  single-base). 2026 schedule (KDV included, confirmed 2026-04-30): one-off
+  device registration ₺550 (~$17); RTK 1 mo ₺1,000 (~$30), 6 mo ₺6,000 (~$182),
+  1 yr ₺8,135 (~$247); DGPS 1 yr ₺2,985 (~$91); 30-sec RINEX free, 1-sec
+  ₺4/session. Online registration requires a TC Kimlik No (Turkish national
+  ID) — foreign nationals without Turkish residency cannot self-register.
+  Universities and vocational schools may apply for free educational-area RTK
+  access via TKGM. → networks.md: `tusaga`
 - **Volunteer**: rtk2go ~3 TR bases; Centipede — none. Zero TUR nodes confirmed.
-- **Gap**: no free public NTRIP for hobbyists in Turkey; deploy a local base station
-  or apply for the university exemption if eligible.
+- **Gap**: no free public NTRIP. For Turkish-resident hobbyists, the ₺1,000/month
+  RTK pass (~$30) is a viable on-ramp; for foreign visitors, deploy a local base
+  station or apply via the agency directly.
 
 ## Caucasus
 
