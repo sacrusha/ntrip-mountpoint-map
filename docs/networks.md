@@ -2321,10 +2321,14 @@ sources following a gov.bc.ca website reorganisation.
 ## nsacs — Nova Scotia NSACS (CA-NS)
 
 **status**:    paid
+**date_added**: 2026-04-30
 **access**:    RINEX post-processing free via NRCan; real-time NRTK via paid commercial
-**yearly_cost**: not publicly listed (varies by commercial reseller: Can-Net, HxGN SmartNet, Brandtnet)
-               providers only: Can-Net/Cansel (`gps.can-net.ca:2300`), HxGN SmartNet
-               NA, Brandtnet (`rtk.brandt.ca`)
+               resellers only: HxGN SmartNet NA (`smartnetna.com`, CAD $3,327.96/yr Atlantic;
+               CAD $6,084/yr national), Can-Net (`gps.can-net.ca`, pricing not public),
+               Brandtnet (`rtk.brandt.ca`, pricing behind account login)
+**yearly_cost**: CAD 3,328/yr (~$2,429/yr) — HxGN SmartNet Atlantic (NB, NL, NS, PE) plan;
+               Can-Net and Brandtnet pricing not publicly listed; national SmartNet: CAD 6,084/yr (~$4,441/yr).
+               GST/HST status not stated on SmartNet product page — treat as unknown; confirm at checkout.
 **stations**:  40
 **source**:    novascotia.ca (Nova Scotia Spatial Services)
 
@@ -2332,37 +2336,50 @@ Nova Scotia Active Control System — 40 permanently installed government GNSS r
 forming the NSCRS (Nova Scotia Coordinate Referencing System). Province owns the
 stations; three commercial providers access the ACS data under data-licensing agreements
 and sell real-time NRTK subscriptions. No free real-time tier; no direct provincial
-NTRIP caster.
+NTRIP caster. SmartNet pricing confirmed 2026-04-30 at smartnetna.com/store_product_selector.cfm.
 
 ---
 
 ## dvrs — DVRS (AE)
 
-**status**:    paid
-**access**:    restricted; professional application via dm.gov.ae (Dubai Municipality)
+**status**:    restricted
+**date_added**: 2026-04-30
+**access**:    restricted; professional application only (licensed engineering/surveying firms);
+               no individual or hobbyist registration path at any price
 **yearly_cost**: not publicly listed (professional application required)
 **stations**:  18+
 **source**:    dm.gov.ae (Dubai Municipality)
 
 Dubai Virtual Reference System. 18+ 4-constellation reference stations covering Dubai
-Emirate. Access is by formal professional application only (licensed engineering/surveying
-firms) — no individual or hobbyist registration path.
+Emirate. Access by formal professional application only — no hobbyist path.
+
+Portal status (2026-04-30): geodubai.dm.gov.ae returning errors; dm.gov.ae/survey-department
+DVRS sub-pages returning 404. Service may have been restructured or migrated to a DM
+e-services login. Main dm.gov.ae site is live.
 
 ---
 
 ## regpmoc — REGPMOC (PE)
 
 **status**:    paid
+**date_added**: 2026-04-30
 **host:port**: `190.12.71.75:2101`
-**type**:      physical-coord-vrs
-**access**:    restricted; MoD-issued licence required (professional/commercial only)
-**yearly_cost**: not publicly listed (MoD-issued licence required)
-**stations**:  unknown
-**source**:    ign.gob.pe (IGN — Instituto Geográfico Nacional, under Ministry of Defence)
+**type**:      single-base
+**access**:    paid; application + payment to IGN required; credentials issued by email;
+               no self-service portal; not explicitly restricted to licensed surveyors per
+               IGN's "Políticas de Uso del Servicio NTRIP" policy document
+**yearly_cost**: no official PEN tariff found (TUPA pages at gob.pe returning 404);
+               reseller indication: ~$85/month (~$1,020/yr) at one Peruvian integrator —
+               not an official IGN rate
+**stations**:  ~65 single-base
+**operator**:  IGN — Instituto Geográfico Nacional del Perú (under Ministry of Defence)
+**source**:    ign.gob.pe (IGN — Instituto Geográfico Nacional)
 
-Red Geodésica Permanente de Monitoreo Continuo. Government CORS network operated by
-Peru's IGN under the Ministry of Defence. Host:port is publicly known (190.12.71.75:2101)
-but stream access requires an official licence — no general hobbyist path.
+Red Geodésica Permanente de Monitoreo Continuo. ~65 single-base stations nationally.
+RTCM 3.2 and CMR+ formats; NTRIP v2.0; max 100 simultaneous users/station. Access is
+by application to IGN + payment; credentials issued by email. IGN policy document does
+not explicitly restrict to licensed surveying organisations. Official fee schedule (TUPA)
+currently returning 404 on gob.pe.
 
 ---
 
@@ -2445,23 +2462,28 @@ operational caster.
 ## otc_gnss — OTC GNSS (TN)
 
 **status**:    paid
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 **country**:   TN
 **type**:      single-base (physical coordinates)
 **host:port**: not publicly listed (disclosed after subscription)
-**access**:    paid subscription; register at otc.nat.tn/geodesy/gnss/subscription
-**yearly_cost**: not publicly listed (contact commercial department)
+**access**:    paid subscription; register at otc.nat.tn/geodesy/gnss/subscription; no explicit eligibility restriction found
+**yearly_cost**: 6,000 TND/yr (~$2,070/yr); prices H.T. (excl. VAT); confirmed 2026-04-30
 **stations**:  23 (physical; Saharan region not covered)
 **source**:    otc.nat.tn (OTC — Office de la Topographie et de la Cartographie)
 **operator**:  OTC (Ministère de l'Équipement et de l'Habitat, Tunisia)
+
+Full published tier table — all H.T., excl. VAT (source: otc.nat.tn/geodesy/gnss/subscription;
+at 1 TND ≈ $0.345, observed 2026-04-30):
+60 TND/day (~$21), 480 TND/15 days (~$166), 840 TND/month (~$290), 2,400 TND/3 months
+(~$828), 3,600 TND/6 months (~$1,242), 4,800 TND/9 months (~$1,656), 6,000 TND/yr (~$2,070).
 
 Office de la Topographie et de la Cartographie national GNSS network. 3 stations
 installed 2005 (Tunis, Monastir, Sfax); expanded to 23 with 20 additional stations
 distributed across non-Saharan Tunisia in 2010; fully operational since 2011. Each
 station is equipped with a weather sensor (temperature, pressure, humidity). Network
 referenced to WGS84–ITRF 2000 (NTT — Nouveau Système Tunisien de Triangulation).
-RTK corrections delivered via NTRIP subscription; NTRIP host:port not published
-openly. No free tier. No hobbyist self-service registration path found.
+RTK corrections delivered via NTRIP subscription; NTRIP host:port disclosed post-subscription.
+No free tier. No explicit eligibility restriction on subscription page.
 
 ---
 
@@ -2498,16 +2520,25 @@ unreliable across much of Jordan regardless of NTRIP source availability.
 
 ## pak_rehber — Pak-Rehber (PK)
 
-**status**:    paid
-**access**:    restricted; authorized users only — contact suparco.gov.pk (SUPARCO)
-**yearly_cost**: not publicly listed (authorized users only)
-**stations**:  unknown
-**source**:    suparco.gov.pk (SUPARCO — Space and Upper Atmosphere Research Commission)
+**status**:    restricted
+**date_added**: 2026-04-30
+**type**:      VRS (network RTK; RTCM 3.x MSM4/MSM7; ~4–5 ms latency)
+**coverage**:  Karachi metropolitan area only (city + ~20 km outskirts); not nationwide Pakistan
+**access**:    restricted; "only authorised users can use" (per official brochure);
+               authorisation process not publicly documented
+**yearly_cost**: not publicly listed
+**stations**:  unknown (Karachi metro only)
+**operator**:  SUPARCO Business Solutions (Pvt.) Ltd. (commercial arm of SUPARCO — Space
+               and Upper Atmosphere Research Commission)
+**source**:    suparco.biz (SUPARCO Business Solutions)
 
-Government NRTK service delivering cm-level corrections to "authorized users." No
-public-facing NTRIP host:port, open registration portal, or sourcetable found.
-Access requires direct contact with SUPARCO. Pak-SBAS (sub-metre satellite corrections,
-L-band) is a separate out-of-scope service also under SUPARCO.
+NRTK service operated by SUPARCO Business Solutions using Topcon GNSS software. Covers
+Karachi metropolitan area and ~20 km outskirts only. The official brochure
+(suparco.biz/wp-content/uploads/2025/03/pak-rehber.pdf, confirmed live 2026-04-30)
+explicitly states "Only authorized users can use the Pak-Rehber precise positioning
+service." No public host:port, sourcetable, or hobbyist registration path found.
+Pak-SBAS (sub-metre L-band satellite corrections) is a separate SUPARCO service,
+out of scope.
 
 ---
 

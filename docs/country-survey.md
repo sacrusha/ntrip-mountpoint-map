@@ -833,7 +833,8 @@ similarly have no published coverage for these jurisdictions.
     → networks.md: `qc_mern` (rejected)
   - BC RTN: paid regional service via GeoBC, CAD 1,650/yr (~$1,212). → networks.md: `bc_rtn`
   - Nova Scotia NSACS: 40-station government fixed reference station network (CORS); real-time NRTK only via paid
-    commercial providers (Can-Net, SmartNet, Brandtnet). → networks.md: `nsacs`
+    commercial providers (HxGN SmartNet, Can-Net, Brandtnet); SmartNet Atlantic plan (NB, NL, NS, PE) at CAD
+    $3,328/yr (~$2,429/yr); Can-Net and Brandtnet pricing not publicly listed. → networks.md: `nsacs`
   - Ontario, Alberta, Saskatchewan, Manitoba: no provincial CORS; no confirmed public NTRIP.
 - **Volunteer**: rtk2go ~56 CA bases, Centipede ~13 CA nodes. Concentrated heavily
   in BC, Ontario, and southern Quebec; very thin elsewhere.
@@ -1340,13 +1341,21 @@ similarly have no published coverage for these jurisdictions.
 
 ### PE — Peru
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
-- **Free government RTK**: REGPMOC — Red Geodésica Permanente de Monitoreo Continuo (IGN — Instituto Geográfico Nacional, under Ministry of Defence, `190.12.71.75:2101`, ~65 single-base stations, growing) — restricted; an official MoD-issued licence is required; access is limited to professional and commercial surveying organisations. No self-service hobbyist registration path. RTCM 3.1 and CMR+ formats; caster is operational Monday–Friday 08:00–16:00 (Lima time) as a guaranteed window but runs 365 days; RTK baseline guidance: 50 km for L1+L2, 20 km for L1-only. → networks.md: `regpmoc`
+- **Free government RTK**: REGPMOC — Red Geodésica Permanente de Monitoreo Continuo (IGN — Instituto
+  Geográfico Nacional del Perú, under Ministry of Defence, `190.12.71.75:2101`, ~65 single-base stations)
+  — paid; application + payment to IGN required; credentials issued by email; no self-service portal. IGN's
+  own "Políticas de Uso del Servicio NTRIP" policy document does not explicitly restrict to licensed surveyors
+  or commercial organisations. No official PEN tariff publicly available (TUPA pages returning 404); reseller
+  indication: ~$85/month (~$1,020/yr) at one Peruvian integrator (unverified, not an official IGN rate). RTCM
+  3.2 and CMR+; NTRIP v2.0. → networks.md: `regpmoc`
 
 - **Volunteer**: rtk2go ~1 PE base (LIMA1\_RTCM3, Lima, RTCM 3.2, active). Zero PE nodes on Centipede.
 
-- **Gap**: REGPMOC's physical coverage (65 stations nationally) is excellent, but the MoD licence gate closes it to individual hobbyists. The single Lima rtk2go volunteer base is the only confirmed free option and covers only the Lima metropolitan area. A hobbyist outside Lima has no confirmed free correction source.
+- **Gap**: REGPMOC gives excellent national single-base coverage but requires direct engagement with IGN
+  and payment (no online self-service). The single Lima rtk2go base is the only confirmed free option;
+  hobbyists outside Lima have no free correction source.
 
 ### UY — Uruguay
 
@@ -1803,20 +1812,20 @@ similarly have no published coverage for these jurisdictions.
 
 ### PK — Pakistan
 
-**date_added**: 2026-04-28
+**date_added**: 2026-04-30
 
-- **Free government RTK**: none confirmed for hobbyists. SUPARCO (Space and
-  Upper Atmosphere Research Commission) operates Pak-Rehber, an NRTK service
-  delivering cm-level corrections to "authorized users"; no public-facing
-  NTRIP host:port, open registration portal, or sourcetable has been found.
-  Access appears to require direct contact with SUPARCO. SUPARCO is also
-  deploying Pak-SBAS (L-band SBAS) for sub-metre accuracy — satellite-delivered,
-  out of scope. → networks.md: `pak_rehber`
+- **Free government RTK**: none confirmed for hobbyists. Pak-Rehber, operated by
+  SUPARCO Business Solutions (Pvt.) Ltd. (commercial arm of SUPARCO), is an NRTK
+  service covering the Karachi metropolitan area only (not nationwide). The official
+  brochure explicitly states "Only authorized users can use the Pak-Rehber precise
+  positioning service" — authorisation process not publicly documented; no host:port,
+  open registration portal, or sourcetable found publicly. SUPARCO is also deploying
+  Pak-SBAS (L-band SBAS, sub-metre accuracy, satellite-delivered) — out of scope.
+  → networks.md: `pak_rehber`
 - **Volunteer**: none. Zero PK stations on rtk2go or Centipede.
-- **Gap**: no free public RTK for hobbyists. Pak-Rehber is restricted to
-  authorized users; endpoint and registration path are not publicly documented.
-  Pakistan's large area (881,000 km²) and varied terrain mean hobbyists must
-  deploy a local base station or contact SUPARCO directly.
+- **Gap**: no free public RTK for hobbyists. Pak-Rehber is restricted to authorised
+  users and covers Karachi only; hobbyists elsewhere in Pakistan (881,000 km²) have
+  no confirmed correction source and would need to deploy a local base station.
 
 ### KH — Cambodia
 
@@ -1885,11 +1894,13 @@ similarly have no published coverage for these jurisdictions.
 
 ### AE — UAE
 
-**date_added**: 2026-04-28
+**date_added**: 2026-04-30
 
 - **Free government RTK**: DVRS (Dubai Municipality, 18+ stations, 4-constellation, VRS)
-  — professional application only (dm.gov.ae); no public hobbyist path. → networks.md: `dvrs`
-- **Volunteer**: negligible.
+  — professional application only; no public hobbyist path. Portal geodubai.dm.gov.ae and
+  dm.gov.ae/survey-department sub-pages returning errors / 404 as of 2026-04-30; service
+  may have been restructured or migrated to DM e-services. → networks.md: `dvrs`
+- **Volunteer**: negligible. Zero AE stations on rtk2go or Centipede.
 
 ### AO — Angola
 
@@ -2855,17 +2866,18 @@ similarly have no published coverage for these jurisdictions.
 
 ### TN — Tunisia
 
-**date_added**: 2026-04-29
+**date_added**: 2026-04-30
 
-- **Free government RTK**: none. OTC (Office de la Topographie et de la
-  Cartographie, `otc.nat.tn`) operates 23 permanent GNSS stations nationwide
-  (3 installed 2005; 20 added 2010; fully operational since 2011; Saharan region
-  excluded). Network linked to WGS84–ITRF 2000. RTK corrections delivered via
-  paid NTRIP subscription; host:port not publicly listed (disclosed on
-  subscription). → networks.md: `otc_gnss`
+- **Free government RTK**: none. OTC (Office de la Topographie et de la Cartographie,
+  `otc.nat.tn`) operates 23 permanent GNSS stations nationwide (3 installed 2005; 20
+  added 2010; fully operational since 2011; Saharan region excluded). Network linked
+  to WGS84–ITRF 2000. RTK corrections via paid NTRIP subscription; host:port not
+  publicly listed (disclosed on subscription). → networks.md: `otc_gnss`
 - **Volunteer**: none. Zero TN stations confirmed on rtk2go or Centipede.
-- **Paid only**: OTC GNSS subscription — pricing not on public website (contact
-  commercial department via `otc.nat.tn`); only paid option identified.
+- **Paid only**: OTC GNSS — 6,000 TND/yr (~$2,070/yr) annual subscription; shorter
+  durations available from 60 TND/day (~$21) to 3,600 TND/6 months (~$1,242); all
+  prices H.T. (excl. VAT); subscribe at otc.nat.tn/geodesy/gnss/subscription. No
+  explicit eligibility restriction stated on subscription page.
 
 ### TZ — Tanzania
 

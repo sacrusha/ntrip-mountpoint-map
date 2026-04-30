@@ -200,8 +200,8 @@
      "note":"No Canadian province offers free public NTRIP. Subscription portal currently unreachable (government website reorganisation); contact GeoBC to subscribe."},
 
     {"id":"nsacs",       "name":"Nova Scotia NSACS","region":"Nova Scotia",           "country":"CA", "lat":44.65, "lon":-63.58,
-     "tier":"paid", "vrs":true, "access":"paid", "stations_declared":40,
-     "note":"40 government reference stations (Nova Scotia Spatial Services). Real-time corrections only via paid commercial resellers (Can-Net/Cansel, HxGN SmartNet, Brandtnet); free post-processing archives via NRCan."},
+     "tier":"paid", "vrs":true, "access":"paid", "yearly_cost":"CAD 3,328/yr (~$2,429/yr)", "stations_declared":40,
+     "note":"40 government reference stations; real-time corrections only via paid commercial resellers (HxGN SmartNet, Can-Net, Brandtnet); no direct provincial caster. Price shown is HxGN SmartNet Atlantic plan — Can-Net and Brandtnet pricing not public."},
 
     {"id":"scrtn",       "name":"SCRTN",            "region":"South Carolina",        "country":"US", "lat":33.80, "lon":-81.20,
      "tier":"paid", "vrs":true, "access":"paid", "yearly_cost":"$600/yr", "registration":"https://scrtn.sc.gov",
@@ -244,9 +244,9 @@
      "tier":"weird", "access":"restricted",
      "note":"Iraq Geodetic Reference System has only 7 reference stations at 500–800 km spacing — far too sparse for RTK. No public NTRIP caster."},
 
-    {"id":"pak_rehber",  "name":"Pak-Rehber",       "region":"Pakistan",             "country":"PK", "lat":30.38, "lon":69.35,
-     "tier":"restricted", "vrs":true, "access":"restricted", "registration":"https://www.suparco.gov.pk",
-     "note":"Government service (SUPARCO), authorised users only. Host:port not published; no public registration path."},
+    {"id":"pak_rehber",  "name":"Pak-Rehber",       "region":"Karachi (Pakistan)",   "country":"PK", "lat":24.87, "lon":67.01,
+     "tier":"restricted", "vrs":true, "access":"restricted", "registration":"https://suparco.biz",
+     "note":"Karachi metropolitan area only — not nationwide. Operated by SUPARCO Business Solutions. Explicitly restricted to authorised users; no public registration path."},
 
     {"id":"kazgeodesy",  "name":"KazGeoDesy",       "region":"Kazakhstan",           "country":"KZ", "lat":51.18, "lon":71.45,
      "tier":"restricted", "vrs":true, "access":"restricted", "stations_declared":120,
@@ -254,11 +254,11 @@
 
     {"id":"dvrs",        "name":"DVRS",             "region":"Dubai (UAE)",          "country":"AE", "lat":25.20, "lon":55.27,
      "tier":"restricted", "vrs":true, "access":"restricted", "registration":"https://www.dm.gov.ae", "stations_declared":18,
-     "note":"18+ four-constellation stations under Dubai Municipality. Professional application required; no hobbyist registration path."},
+     "note":"18+ four-constellation stations under Dubai Municipality. Professional application required; no hobbyist registration path. Public portal unavailable as of 2026-04-30."},
 
     {"id":"regpmoc",     "name":"REGPMOC",          "region":"Peru",                 "country":"PE", "lat":-12.05, "lon":-77.04,
-     "tier":"restricted", "vrs":true, "access":"restricted",
-     "note":"Government service under IGN/Ministry of Defence. Host is known (190.12.71.75:2101) but access requires MoD authorisation — no hobbyist path."},
+     "tier":"restricted", "access":"restricted", "stations_declared":65,
+     "note":"~65 single-base stations under IGN/Ministry of Defence. Access requires application + payment to IGN; no online self-service portal. IGN's policy does not explicitly exclude individuals, but there is no hobbyist-accessible sign-up path."},
 
     {"id":"eft_cors",    "name":"EFT-CORS",         "region":"Russia (nationwide)",  "country":"RU", "lat":55.75, "lon":37.62,
      "tier":"paid", "vrs":true, "access":"paid", "registration":"https://eft-cors.ru",
@@ -332,7 +332,12 @@
 
     {"id":"kopos",       "name":"KOPOS",            "region":"Kosovo",                "country":"XK", "lat":42.60, "lon":21.10,
      "tier":"paid", "vrs":true, "access":"paid", "yearly_cost":"€400/yr (~$468/yr)", "registration":"https://akk.rks-gov.net",
-     "note":"8 CORS stations, VRS network. One-time €20 registration fee also applies. NTRIP credentials issued inside the online portal after account creation."}
+     "note":"8 CORS stations, VRS network. One-time €20 registration fee also applies. NTRIP credentials issued inside the online portal after account creation."},
+
+    {"id":"otc_gnss",    "name":"OTC GNSS",         "region":"Tunisia",               "country":"TN", "lat":36.80, "lon":10.20,
+     "tier":"paid", "access":"paid", "yearly_cost":"6,000 TND/yr (~$2,070/yr)", "registration":"https://www.otc.nat.tn/geodesy/gnss/subscription",
+     "stations_declared":23,
+     "note":"23 physical stations, non-Saharan Tunisia. Shorter durations available from 60 TND/day (~$21). Prices exclude VAT. No explicit eligibility restriction stated."}
 
   ]
 }
