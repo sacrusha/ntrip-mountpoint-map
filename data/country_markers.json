@@ -259,7 +259,7 @@
     {"id":"slcorsnet",   "name":"SLCORSnet",        "region":"Sri Lanka",            "country":"LK", "lat":6.93,  "lon":79.86,
      "tier":"paid", "vrs":true, "access":"paid", "yearly_cost":"360,000 LKR/yr (~$1,127/yr)",
      "registration":"https://slcorsnet.survey.gov.lk",
-     "note":"Government network by the Survey Department; coverage mainly Western Province with island-wide rollout ongoing. Payment by bank transfer to Peoples Bank (Narahenpita) — may complicate non-resident registration."},
+     "note":"Government network by the Survey Department; coverage mainly Western Province with island-wide rollout ongoing. Bank transfer payment only — may be a barrier for non-residents."},
 
     {"id":"corsnet_lk",  "name":"CORSnet",          "region":"Sri Lanka",            "country":"LK", "lat":7.50,  "lon":80.70,
      "tier":"paid", "vrs":true, "access":"paid", "yearly_cost":"345,000 LKR/yr (~$1,080/yr)",
@@ -269,7 +269,7 @@
     {"id":"kazgeodesy",  "name":"НЦГПИ / KazGeoDesy","region":"Kazakhstan",          "country":"KZ", "lat":51.18, "lon":71.45,
      "tier":"paid-affordable", "vrs":true, "access":"paid", "yearly_cost":"65,000 ₸/yr (~$141/yr)",
      "registration":"https://rtk.qgeo.kz", "stations_declared":120,
-     "note":"120+ reference stations. Requires a Kazakh resident ID (ИИН or БИН) — foreign users cannot self-register. Baselines will be long outside Almaty and Astana."},
+     "note":"120+ reference stations. Requires a Kazakh resident ID number — foreign users cannot self-register. Baselines will be long outside Almaty and Astana."},
 
     {"id":"dvrs",        "name":"DVRS",             "region":"Dubai (UAE)",          "country":"AE", "lat":25.20, "lon":55.27,
      "tier":"restricted", "vrs":true, "access":"restricted", "registration":"https://www.dm.gov.ae", "stations_declared":18,
