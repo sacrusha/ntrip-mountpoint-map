@@ -231,9 +231,15 @@ included in `station_fingerprint` so the next pipeline run rewrites JSON.
 
 **5 sources timing out in CI:** FLEPOS, WALCORS, ESTPOS, LatPos, KSA-CORS.
 Handled gracefully by fallback-to-cached-sourcetable. See `**investigate**:`
-in `docs/networks.md`.
+in `docs/networks.md`. Notes on root causes (2026-04-30):
+- FLEPOS/WALCORS: endpoint confirmed correct; likely location-based firewall.
+- ESTPOS: `maaamet.ee` → `maaruum.ee` rebrand; pipeline updated to
+  `gnss-rtk.maaruum.ee:2101` (unconfirmed — needs Estonian IP to verify).
+- LatPos: port changed 5001 → 2101 (standard); needs Baltic-region IP to verify.
+- KSA-CORS: `geoportal.sa` appears geo-blocked to non-Saudi IPs; endpoint
+  `ksacors.geoportal.sa:2101` may be correct but only reachable from KSA/GCC.
 
-**Non-standard ports in pipeline:** spslux:5005, inacors:2001, latpos:5001,
+**Non-standard ports in pipeline:** spslux:5005, inacors:2001,
 alcors:10011, mncors:9000, orgn:9879, msrn:10700, incors:10000. All handled
 by standard urllib/socket — no special-casing needed.
 

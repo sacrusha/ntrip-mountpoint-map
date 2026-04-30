@@ -812,10 +812,8 @@ VRS (NAWGIS/KODGIS/FKP/MAC). Coverage requires NRTK polygon (deferred).
 **operator**:  Agentschap Digitaal Vlaanderen
 
 Old endpoint `ntrip.flepos.be` is NXDOMAIN as of 2026-04. Currently timing out
-in CI. Coverage requires NRTK polygon (deferred).
-
-**investigate**: connect from a European IP — could be location-based firewall rather
-than egress block; also verify `flepos.vlaanderen.be:2101` still resolves correctly.
+in CI — likely location-based firewall (BKG/RTCM caster list independently confirms
+`flepos.vlaanderen.be:2101` is correct). Coverage requires NRTK polygon (deferred).
 
 ---
 
@@ -830,17 +828,17 @@ than egress block; also verify `flepos.vlaanderen.be:2101` still resolves correc
 **source**:    gnss.wallonie.be (SPW)
 **operator**:  SPW — Service Public de Wallonie
 
-Intermittent outages documented. Currently timing out in CI.
-
-**investigate**: check gnss.wallonie.be status page;
-distinguish persistent outage from intermittent — if dead >4 weeks, drop from pipeline.
+Intermittent outages documented. Currently timing out in CI. Endpoint
+`gnss.wallonie.be:2101` cross-checked against SPW portal — hostname is correct;
+credentials sent to registered users only. Timeouts consistent with intermittent
+outages rather than wrong endpoint.
 
 ---
 
 ## latpos — LatPos (LV)
 
 **status**:    free
-**host:port**: `latpos.lgia.gov.lv:5001`
+**host:port**: `latpos.lgia.gov.lv:2101`
 **type**:      single-coord-vrs
 **access**:    free since 2018; SBC portal signup at latpos.lgia.gov.lv/SBC
 **pipeline-access**: registration
@@ -848,30 +846,38 @@ distinguish persistent outage from intermittent — if dead >4 weeks, drop from 
 **source**:    latpos.lgia.gov.lv (LGIA)
 **operator**:  LGIA — Latvijas Ģeotelpiskās informācijas aģentūra
 
-Port 5001, not 2101 (confirmed per Alberding caster directory). Currently timing
-out in CI.
+Domain `lgia.gov.lv` is live; SBC portal at `latpos.lgia.gov.lv` active but
+registration-gated. Port changed from 5001 (Alberding directory, now timing out)
+to 2101 (standard; NTRIP host:port given only post-registration).
 
-**investigate**: re-verify port 5001 at latpos.lgia.gov.lv directly (try telnet/ncat
-from a Baltic-region IP); also check LGIA website for endpoint changes.
+**investigate**: confirm port 2101 resolves at `latpos.lgia.gov.lv` from a
+Baltic-region IP; if still timing out, try 5001 again or contact LGIA.
 
 ---
 
 ## estpos — ESTPOS (EE)
 
 **status**:    free
-**host:port**: `gnss-rtk.maaamet.ee:8083`
+**host:port**: `gnss-rtk.maaruum.ee:2101`
 **type**:      single-coord-vrs
 **access**:    free until 31 Aug 2026 (director-general directive); portal account + service agreement
 **pipeline-access**: conditions
 **stations**:  0 (40 declared; VRS, iMAX, nearest-base; MSM5 available)
-**source**:    geoportaal.maaamet.ee (Maa-amet / Land and Spatial Development Board)
-**operator**:  Maa-amet (Land and Spatial Development Board)
+**source**:    www.maaruum.ee (Maa- ja Ruumiamet / Land and Spatial Authority)
+**operator**:  Maa- ja Ruumiamet (Land and Spatial Authority)
 
-Port 8083. Currently timing out in CI. Service expiry Aug 2026 — review before then.
+Maa-amet rebranded as Maa- ja Ruumiamet and migrated to `maaruum.ee` (2025/26);
+all `maaamet.ee` URLs redirect to the new domain. Old endpoint
+`gnss-rtk.maaamet.ee:8083` no longer resolves. New NTRIP caster hostname and
+port are unconfirmed — `gnss-rtk.maaruum.ee:2101` is the best current guess
+(domain pattern preserved; port normalised to 2101). Pipeline updated to try
+this address; verify from an Estonian IP. Service expiry Aug 2026 — review
+before then.
 
-**investigate**: verify `gnss-rtk.maaamet.ee:8083` from an Estonian IP; check
-geoportaal.maaamet.ee for credential requirement (may now need service agreement
-before sourcetable is served). Re-confirm free status before Aug 2026 or drop.
+**investigate**: confirm `gnss-rtk.maaruum.ee:2101` (or `estpos.maaruum.ee:2101`)
+from an Estonian IP; check www.maaruum.ee/en/geodesy/gnss/estpos for current
+endpoint docs and whether a service agreement is now required before the
+sourcetable is served.
 
 ---
 
@@ -887,11 +893,13 @@ before sourcetable is served). Re-confirm free status before Aug 2026 or drop.
 **operator**:  GASGI / GEOSA
 
 Old endpoint `KSACORS.gcs.gov.sa` is NXDOMAIN as of 2026-04. Currently timing
-out in CI. Coverage requires NRTK polygon (deferred).
+out in CI. Coverage requires NRTK polygon (deferred). `geoportal.sa` appears
+geo-blocked to non-Saudi IPs; endpoint may be correct but only reachable from
+within Saudi Arabia or via GCC-region IP.
 
-**investigate**: verify `ksacors.geoportal.sa:2101` resolves and is reachable; try
-connecting from a GCC-region IP; check geoportal.sa for updated endpoint or
-registration requirement changes.
+**investigate**: verify `ksacors.geoportal.sa:2101` from a Saudi/GCC IP; the
+portal is inaccessible from outside the region, so international CI timeouts
+may be expected behaviour rather than a broken endpoint.
 
 ---
 

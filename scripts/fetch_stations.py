@@ -198,11 +198,11 @@ SOURCES = [
      "color": "#c0392b", "label": "CROPOS",
      "type": "vrs-only", "country": ["HR"],
      "access": "registration", "registration": "https://www.cropos.hr"},
-    {"id": "estpos",      "url": "http://gnss-rtk.maaamet.ee:8083/",            # port 8083; free until Aug 2026
+    {"id": "estpos",      "url": "http://gnss-rtk.maaruum.ee:2101/",            # maaamet.ee → maaruum.ee rebrand 2026; free until Aug 2026
      "color": "#16a085", "label": "ESTPOS",
      "type": "vrs-only", "country": ["EE"],
-     "access": "conditions",   "registration": "https://geoportaal.maaamet.ee"},
-    {"id": "latpos",      "url": "http://latpos.lgia.gov.lv:5001/",             # port 5001, not 2101
+     "access": "conditions",   "registration": "https://www.maaruum.ee"},
+    {"id": "latpos",      "url": "http://latpos.lgia.gov.lv:2101/",             # port 5001 → 2101 (standard; 5001 was timing out)
      "color": "#1a6b3c", "label": "LatPos",
      "type": "vrs-only", "country": ["LV"],
      "access": "registration", "registration": "https://latpos.lgia.gov.lv/SBC"},
