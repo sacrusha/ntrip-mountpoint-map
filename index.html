@@ -393,6 +393,8 @@
     return src.color;
   }
 
+  var CLICK_RADIUS_PX=8;
+
   // Zoom bands — switch between raster-only, raster+dots, detailed view.
   var ZOOM_DETAIL=11;   // z >= ZOOM_DETAIL: labels + accuracy rectangles + tooltips
   var ZOOM_LABELS=9;    // z >= ZOOM_LABELS: labels only (no accuracy rectangles)
@@ -433,16 +435,14 @@
   var COVERAGE_LUT32=(function(){
     var buf=new ArrayBuffer(256*4);
     var u32=new Uint32Array(buf);
-    var u8=new Uint8ClampedArray(buf);
+    var bytes=new Uint8ClampedArray(buf);
     for(var i=0;i<256;i++){
-      u8[i*4]=COVERAGE_LUT[i*4]; u8[i*4+1]=COVERAGE_LUT[i*4+1];
-      u8[i*4+2]=COVERAGE_LUT[i*4+2]; u8[i*4+3]=COVERAGE_LUT[i*4+3];
+      bytes[i*4]=COVERAGE_LUT[i*4]; bytes[i*4+1]=COVERAGE_LUT[i*4+1];
+      bytes[i*4+2]=COVERAGE_LUT[i*4+2]; bytes[i*4+3]=COVERAGE_LUT[i*4+3];
     }
     return u32;
   })();
 
-  // Build a KDBush static spatial index over station lat/lon (x=lon, y=lat).
-  // Returns null if KDBush failed to load or the set is empty.
   function buildStationIndex(stations){
     if(typeof KDBush==='undefined'||!stations||!stations.length) return null;
     return new KDBush(stations,
@@ -623,16 +623,8 @@
   }
   function safeUrl(u){return /^https?:\/\//i.test(u)?u:'';}
 
-  // Copy-to-clipboard helper, reachable from inline onclick in popups.
-  window.__ntripCopy=function(btn,text){
-    var done=function(){
-      btn.classList.add('ok');
-      var prev=btn.textContent; btn.textContent='\u2713';
-      setTimeout(function(){ btn.classList.remove('ok'); btn.textContent=prev; },1200);
-    };
-    if(navigator.clipboard&&navigator.clipboard.writeText){
-      navigator.clipboard.writeText(text).then(done,function(){ fallback(); });
-    } else { fallback(); }
+  // Copy-to-clipboard helpers — reachable from inline onclick in popups.
+  function _clipboardWrite(text,done){
     function fallback(){
       var ta=document.createElement('textarea');
       ta.value=text; ta.style.position='fixed'; ta.style.opacity='0';
@@ -640,16 +632,23 @@
       try{ document.execCommand('copy'); done(); }catch(e){}
       document.body.removeChild(ta);
     }
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(done,fallback);
+    } else { fallback(); }
+  }
+  window.__ntripCopy=function(btn,text){
+    var prev=btn.textContent;
+    _clipboardWrite(text,function(){
+      btn.classList.add('ok'); btn.textContent='\u2713';
+      setTimeout(function(){ btn.classList.remove('ok'); btn.textContent=prev; },1200);
+    });
   };
   window.__ntripCopyAll=function(btn,text){
-    function done(){ var p=btn.textContent; btn.textContent='✓ Copied'; setTimeout(function(){ btn.textContent=p; },1400); }
-    if(navigator.clipboard&&navigator.clipboard.writeText){
-      navigator.clipboard.writeText(text).then(done,function(){ fallback(); });
-    } else { fallback(); }
-    function fallback(){
-      var ta=document.createElement('textarea'); ta.value=text; ta.style.position='fixed'; ta.style.opacity='0';
-      document.body.appendChild(ta); ta.select(); try{ document.execCommand('copy'); done(); }catch(e){} document.body.removeChild(ta);
-    }
+    var prev=btn.textContent;
+    _clipboardWrite(text,function(){
+      btn.textContent='✓ Copied';
+      setTimeout(function(){ btn.textContent=prev; },1400);
+    });
   };
   window.__ntripOpenHelp=function(topicId){ openHelp(topicId); };
   window.__ntripShowPopover=function(chip,key,arrow){ showHelpPopover(chip,key,arrow); };
@@ -829,8 +828,6 @@
     }
   });
 
-  // NRTK networks: polygon + centroid marker. No-op when data has no
-  // networks (the current case; schema anticipates future ingestion).
   function buildNetworkLayers(networks){
     var group=L.layerGroup();
     (networks||[]).forEach(function(n){
@@ -1222,7 +1219,6 @@
       return false;
     }
 
-    // Build entry list (individuals + VRS-only rows).
     var entries=[];
     Object.keys(sourceCounts).forEach(function(sid){
       if(sourceCounts[sid]){
@@ -1237,7 +1233,6 @@
       return ta!==tb ? ta-tb : b.count-a.count;
     });
 
-    // Grey and info rows (sorted by label).
     var greyIds=Object.keys(greyLayerById).sort(function(a,b){
       var la=(greyLayerById[a].label||a).toLowerCase();
       var lb=(greyLayerById[b].label||b).toLowerCase();
@@ -1451,10 +1446,10 @@
     var allStations=mergeStations(bySource);
     var sourceCounts={};
     allStations.forEach(function(s){
-      var seen=[];
+      var seen={};
       s.mountpoints.forEach(function(mp){
-        if(seen.indexOf(mp.source)<0){
-          seen.push(mp.source);
+        if(!seen[mp.source.id]){
+          seen[mp.source.id]=true;
           sourceCounts[mp.source.id]=(sourceCounts[mp.source.id]||0)+1;
         }
       });
@@ -1470,7 +1465,6 @@
       return (dlaA*dlaA+dloA*dloA)-(dlaB*dlaB+dloB*dloB);
     });
 
-    // Network (NRTK) layer — empty for current data; ready for future.
     var netLayer=buildNetworkLayers(networks);
     netLayer.addTo(map);
 
@@ -1630,7 +1624,7 @@
       if(!stationIndex||!visible.length) return;
       var z=map.getZoom();
       var mpp=40075016.686*Math.cos(e.latlng.lat*Math.PI/180)/Math.pow(2,z+8);
-      var padLat=8*mpp/111320;
+      var padLat=CLICK_RADIUS_PX*mpp/111320;
       var padLon=padLat/Math.max(0.01,Math.cos(e.latlng.lat*Math.PI/180));
       var ids=stationIndex.range(
         e.latlng.lng-padLon,e.latlng.lat-padLat,
