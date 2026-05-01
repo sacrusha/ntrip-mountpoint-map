@@ -1008,14 +1008,15 @@ similarly have no published coverage for these jurisdictions.
 
 ### CL — Chile
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-01
 
 - **Free government RTK**: RGN/SIRGAS-CHILE (IGM — Instituto Geográfico Militar, `igm.cl`,
-  `sirgaschile.cl`, ~180+ fixed reference stations (CORS), single-base) — RINEX files and coordinate certificates
-  downloadable free via `sirgaschile.cl`. IGM announced in 2025 the addition of 28 new
-  first-level stations and launched a real-time NTRIP service (procedure: `youtube.com/watch?v=4yuH1W05eII`);
-  no public self-service registration portal or host:port found — access appears to require
-  contact with IGM's sales or geodesy department (`ventas@igm.cl`). → networks.md: `sirgas_chile`
+  `sirgaschile.cl`, ~180+ fixed reference stations (CORS), single-base) — RINEX files and
+  coordinate certificates downloadable free via `sirgaschile.cl`. IGM announced a real-time
+  NTRIP service in 2025 (procedure: `youtube.com/watch?v=4yuH1W05eII`); however,
+  `ntrip.igm.cl:2101` returns connection refused and IGM's NTRIP sub-pages return HTTP 500
+  as of 2026-05-01. ArduSimple (2025) describes the network as CORS/PPK only — whether the
+  announced real-time service is operational is unconfirmed. → networks.md: `sirgas_chile`
 - **Commercial** (paid; pricing not publicly listed):
   - **Geocom GNSS Network** (`geocom.cl/pages/red-gnss`): commercial CORS covering major
     population centres; NTRIP subscription; pricing not on public pages (6-month demo reportedly
@@ -1023,10 +1024,11 @@ similarly have no published coverage for these jurisdictions.
   - **KollNET** (`kollnerlabrana.cl/kollnet.html`): prepaid packages (7-day / 15-day / 30-day /
     annual); pricing not publicly listed. → networks.md: `kollnet_cl`
 - **Volunteer**: rtk2go ~1 CL base (Iquique, Tarapacá region). No EarthScope CHL-coded stations.
-- **Gap**: no confirmed free public NTRIP caster endpoint; SIRGAS-CHILE offers the only
-  government coverage but real-time streaming appears to require direct contact with IGM. Chile's
-  long north–south geography means a single-caster national service would anyway need dense
-  station distribution — 180+ CORS are present, but hobbyist access is not yet self-service.
+- **Gap**: no confirmed free public NTRIP caster endpoint as of 2026-05-01. SIRGAS-CHILE has
+  180+ CORS and RINEX is freely downloadable; real-time RTK streaming may exist but no working
+  public endpoint has been verified. Chile's long north–south geography means a hobbyist
+  caster would need dense station coverage — the infrastructure exists but hobbyist access
+  is not yet self-service confirmed.
 
 ### CO — Colombia
 
@@ -1103,11 +1105,28 @@ similarly have no published coverage for these jurisdictions.
 - **Gap**: the 14-station IGN-CR CORS covers the central valley and main regions well; the
   twice-daily validation delay is a minor operational friction. Free to register; no fees.
 
-### EC — Ecuador / PY — Paraguay
+### EC — Ecuador
+
+**date_added**: 2026-05-01
+
+- **Free government RTK**: REGME-IP — Red GNSS Militar Ecuatoriana de Posicionamiento
+  en Tiempo Real (IGM — Instituto Geográfico Militar del Ecuador,
+  `ntrip.igm.gob.ec:2101`, single-base) — free with registration at
+  `https://www.geoportaligm.gob.ec/ntrip/`; stated as "totalmente libre y gratuito".
+  Confirmed active 2026-05-01; SIRGAS bulletin (2022) names the endpoint explicitly.
+  → networks.md: `regme_ec`
+- **Volunteer**: rtk2go ~3 ECU bases.
+- **Gap**: REGME-IP is the confirmed free national caster; online registration with no
+  stated residency restriction.
+
+### PY — Paraguay
 
 **date_added**: 2026-04-28
 
-- **Volunteer**: rtk2go ~3 bases each (ECU, PRY). No known national free NTRIP caster.
+- **Free government RTK**: none confirmed. No national NTRIP caster identified.
+- **Volunteer**: rtk2go ~3 PRY bases.
+- **Gap**: no confirmed free public NTRIP for Paraguay; hobbyists must deploy a local
+  base station.
 
 ### CU — Cuba
 
@@ -1209,12 +1228,14 @@ similarly have no published coverage for these jurisdictions.
 
 ### AG — Antigua and Barbuda
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-01
 
 - **Free government RTK**: none confirmed. The Lands and Survey Division (Ministry of Lands,
   Housing and Agriculture) is the geodetic authority; no public NTRIP caster or registration
-  portal found. COCONet / EarthScope NOTA includes at least one station in Antigua; RINEX
-  archive only, not confirmed for real-time NTRIP streaming via `ntrip.earthscope.org:2101`.
+  portal found. COCONet / EarthScope NOTA includes at least one station in Antigua for
+  geophysics monitoring; the legacy UNAVCO NTRIP platform was retired 2025-07-29 and
+  migrated to `ntrip.earthscope.org:2101` — Caribbean station availability on the new
+  caster is unconfirmed.
 - **Volunteer**: none. Zero AG stations on rtk2go or Centipede.
 
 ### KN — Saint Kitts and Nevis
@@ -1364,14 +1385,14 @@ similarly have no published coverage for these jurisdictions.
 
 ### MX — Mexico
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-01
 
 - **Free government RTK**: RGNA — Red Geodésica Nacional Activa (INEGI — Instituto Nacional de
-  Estadística y Geografía, `inegi.org.mx/temas/geodesia_activa/`, ~36 stations, single-base) —
-  RINEX files downloadable free at `inegi.org.mx/app/geo2/rgna/`. A real-time NTRIP streaming
-  service is referenced in INEGI technical documentation (portal `geodesia.inegi.org.mx`) but no
-  self-service public registration path or host:port has been discovered; access to streaming
-  corrections appears to require direct contact with INEGI's geodesy department. → networks.md: `rgna_mx`
+  Estadística y Geografía, ~36 stations, single-base) — RINEX files at 15-second intervals,
+  freely downloadable via SFTP at `geodesia.inegi.org.mx`. INEGI's current documentation
+  (confirmed 2026-05-01) states no real-time NTRIP/RTK streaming is offered — post-processing
+  only. A 2013 SIRGAS bulletin discussed NTRIP aspirations; these were not implemented.
+  → networks.md: `rgna_mx`
 - **Commercial** (paid; pricing not on public websites — contact required):
   - **Red CORS México** (DTM Topografía, `dtmtopografia.com/cors-mexico/`): largest commercial
     network by national coverage, 85+ cities; monthly and annual memberships; pricing not listed
@@ -1383,9 +1404,9 @@ similarly have no published coverage for these jurisdictions.
 - **Volunteer**: rtk2go ~3 MX bases (Tamaulipas, Querétaro, Baja California).
   EarthScope NOTA provides ~18 MEX-coded single-base stations (free, in-pipeline) concentrated
   in Baja California and southern Mexico.
-- **Gap**: no confirmed free hobbyist-accessible NTRIP streaming endpoint; the RGNA exists and
-  is operational but real-time access details are not self-service discoverable. EarthScope NOTA
-  is the only confirmed free in-pipeline option, covering mainly the northern border zone.
+- **Gap**: no free RTK/NTRIP endpoint in Mexico. RGNA is confirmed RINEX/PPK-only.
+  EarthScope NOTA is the only confirmed free in-pipeline option, covering mainly the
+  northern border zone (~18 MEX-coded stations).
 
 ### PE — Peru
 
@@ -2450,7 +2471,7 @@ similarly have no published coverage for these jurisdictions.
 
 ### IR — Iran
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-01
 
 - **Context**: Iran sits under comprehensive US and EU sanctions (OFAC Iran sanctions
   programme, EU Council Regulation 359/2011 and successors) that make procurement of
@@ -2471,9 +2492,10 @@ similarly have no published coverage for these jurisdictions.
     National Cartographic Center, `ipgn.ncc.gov.ir`), ~127 physical CORS stations;
     designed for tectonic monitoring and geodetic reference; sign-up at
     `ipgn.ncc.gov.ir/en/accounts/signup/` — publicly accessible on the web, though
-    reachable NTRIP streaming is not confirmed from outside Iran's filtered internet.
-    Data archived to IGS; primarily a post-processing / geodynamics resource rather
-    than a real-time RTK service for hobbyists. → networks.md: `ipgn`
+    `ipgn.ncc.gov.ir:2101` returns connection refused from outside Iran (confirmed
+    2026-05-01), consistent with national intranet filtering. NCC is developing
+    domestic GNSS correction software (GPS World, January 2026). Data archived to IGS;
+    primarily a post-processing / geodynamics resource. → networks.md: `ipgn`
   - SHAMIM — Integrated Unified Property Management Network (سامانه شمیم, شبکه
     موقعیت‌یابی یکپارچه مالکیت‌ها; Organisation for Registration of Deeds and
     Properties, `shamim.ssaa.ir`), 144 physical stations nationwide; VRS / NRTK

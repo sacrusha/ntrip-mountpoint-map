@@ -4178,16 +4178,18 @@ geodesy section for any host:port or pilot NTRIP endpoint.
                COCONet station operated by UNAVCO / EarthScope Consortium
 **yearly_cost**: n/a (no public service)
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-01
 
 No government RTK correction service found. The Lands and Survey Division holds geodetic
 responsibility but no NTRIP caster host:port or registration portal has been identified.
-COCONet / EarthScope NOTA includes at least one station in Antigua for geophysics monitoring;
-real-time streaming via `ntrip.earthscope.org:2101` is not confirmed for this station.
+COCONet / EarthScope NOTA includes at least one station in Antigua for geophysics monitoring.
+The legacy UNAVCO NTRIP platform was retired 2025-07-29; EarthScope NOTA continues at
+`ntrip.earthscope.org:2101`, but whether any Caribbean / AG station is present in the
+new caster's sourcetable has not been confirmed.
 Zero AG mountpoints on rtk2go or Centipede.
 
-**missing**: verify whether any COCONet/NOTA station in Antigua streams via
-`ntrip.earthscope.org:2101`; check EarthScope station inventory for AG stations.
+**missing**: check `ntrip.earthscope.org:2101` sourcetable for AG-coded stations;
+confirm whether Antigua COCONet station was migrated to the EarthScope caster.
 
 ## kn_cors — Saint Kitts and Nevis GNSS / COCONet (KN)
 
@@ -4989,14 +4991,14 @@ institutional basis, and whether any commercial RTK service operates in Egypt.
 ## ipgn — Iranian Permanent GNSS Network (IR)
 
 **status**:    restricted
-**date_added**: 2026-04-29
+**date_added**: 2026-05-01
 **country**:   IR
 **type**:      physical single-base (~127 stations)
-**host:port**: not confirmed for real-time NTRIP streaming; portal `ipgn.ncc.gov.ir`
+**host:port**: port 2101 returns connection refused from outside Iran (confirmed
+               2026-05-01); portal `ipgn.ncc.gov.ir` responsive for registration
 **access**:    registration at `ipgn.ncc.gov.ir/en/accounts/signup/` — web portal
-               accessible internationally but real-time NTRIP streaming reachability
-               from outside Iran not confirmed; internet filtering (national intranet)
-               may block external connections
+               accessible internationally; real-time NTRIP streaming blocked from
+               outside Iran's national intranet (connection refused confirmed)
 **registration**: `ipgn.ncc.gov.ir/en/accounts/signup/`
 **yearly_cost**: not publicly listed
 **stations**:  ~127 physical CORS (phase 1: 2004–2006, 106 stations; phase 2: completed
@@ -5007,13 +5009,15 @@ institutional basis, and whether any commercial RTK service operates in Egypt.
 Iranian Permanent GNSS Network for Geodynamics: established post-2003 Bam earthquake
 for tectonic monitoring, velocity and strain-field estimation. Base network covers
 Zagros Mountains, Central Iran, Alborz, East Iran, Makran, Loot, and Kopeh-Dagh; three
-local sub-networks. Data archived to IGS for scientific post-processing. Primarily a
-geodynamics and reference-frame resource — real-time RTK correction delivery for
-hobbyists is not the stated purpose. Reachable NTRIP streaming from outside Iran is
-unconfirmed due to Iran's filtered internet infrastructure.
+local sub-networks. Data archived to IGS for scientific post-processing. Primarily a geodynamics and reference-frame resource — real-time RTK correction delivery
+for hobbyists is not the stated purpose. Port 2101 confirmed connection refused from
+outside Iran (2026-05-01); access within Iran's intranet is unverified from outside.
+NCC is developing domestic GNSS correction software (GPS World, January 2026),
+suggesting active interest in extending real-time correction services using
+non-Western tooling.
 
-**missing**: confirm whether ipgn.ncc.gov.ir exposes a live NTRIP sourcetable accessible
-from outside Iran, and what mountpoint credentials are issued to registered users.
+**missing**: confirm whether NTRIP streaming is accessible from within Iran's intranet
+after registration; confirm what mountpoint credentials are issued to registered users.
 
 ---
 
@@ -5049,28 +5053,23 @@ free NTRIP endpoint.
 
 ## rgna_mx — Red Geodésica Nacional Activa (MX)
 
-**status**:    free
-**date_added**: 2026-04-29
+**status**:    rejected
+**date_added**: 2026-05-01
 **country**:   MX
 **type**:      physical single-base (~36 stations)
-**host:port**: not publicly listed (geodesia.inegi.org.mx portal references an NTRIP service;
-               no host:port discovered from public sources)
-**access**:    free-with-registration — access to real-time streaming appears to require direct
-               contact with INEGI's geodesy department; RINEX downloads are fully self-service
-**registration**: `inegi.org.mx/temas/geodesia_activa/` (contact for streaming access)
-**yearly_cost**: free (RINEX); streaming terms not publicly documented
-**stations**:  ~36 permanent GNSS stations distributed nationally (as of CALE2025 coordinate catalogue)
+**host:port**: n/a — RINEX/post-processing only; no NTRIP caster
+**access**:    RINEX files freely downloadable via SFTP at `geodesia.inegi.org.mx`
+               (migration from FTP effective Oct 2024); no RTK/NTRIP streaming offered
+**registration**: https://inegi.org.mx/temas/geodesia_activa/ (RINEX download)
+**yearly_cost**: n/a
+**stations**:  ~36 permanent GNSS stations distributed nationally (CALE2025 coordinate catalogue)
 **operator**:  INEGI — Instituto Nacional de Estadística y Geografía (`inegi.org.mx`)
 
-The RGNA is Mexico's national active geodetic reference network under INEGI. Stations record
-GNSS data continuously, contributing to SIRGAS and IGS. RINEX files are freely downloadable
-at `inegi.org.mx/app/geo2/rgna/`. INEGI technical documentation references a real-time NTRIP
-service hosted at `geodesia.inegi.org.mx`, but no public self-service registration portal or
-host:port has been found through open-source research. Not added to pipeline pending endpoint
-confirmation.
-
-**missing**: confirm whether geodesia.inegi.org.mx exposes a live NTRIP sourcetable accessible
-to the public, and what credentials or registration pathway grants streaming access.
+The RGNA is Mexico's national active geodetic reference network under INEGI, contributing
+to SIRGAS and IGS. INEGI's current English-language documentation (confirmed 2026-05-01)
+explicitly states no real-time RTK/NTRIP streaming is offered — data are RINEX files at
+15-second intervals, available free without registration. A 2013 SIRGAS bulletin discussed
+NTRIP aspirations; these were not implemented. Rejected: RINEX/PPK only.
 
 ---
 
@@ -5134,13 +5133,14 @@ $200/yr paid-affordable cutoff. Not added to pipeline: paid service.
 ## sirgas_chile — RGN/SIRGAS-CHILE (CL)
 
 **status**:    free
-**date_added**: 2026-04-29
+**date_added**: 2026-05-01
 **country**:   CL
 **type**:      physical single-base (180+ CORS stations)
-**host:port**: not publicly listed (real-time NTRIP service announced 2025; no public
-               host:port discoverable — procedure video at youtube.com/watch?v=4yuH1W05eII)
-**access**:    RINEX free; real-time NTRIP access appears to require contact with IGM
-               (`ventas@igm.cl` or geodesy department)
+**host:port**: `ntrip.igm.cl:2101` — connection refused (2026-05-01); IGM NTRIP
+               sub-pages returning HTTP 500; no working public endpoint confirmed
+**access**:    RINEX free via `sirgaschile.cl`; real-time NTRIP unconfirmed —
+               ArduSimple (2025) describes the network as CORS/PPK only; IGM
+               announced NTRIP in 2025 (procedure: youtube.com/watch?v=4yuH1W05eII)
 **registration**: `sirgaschile.cl` (coordinate certificates and RINEX); NTRIP streaming
                   registration not self-service
 **yearly_cost**: RINEX free; streaming terms not publicly documented
@@ -5151,11 +5151,13 @@ SIRGAS-CHILE is Chile's national geodetic reference network under the army's IGM
 entirely of CORS stations covering the national territory from Arica to Punta Arenas. In 2025
 IGM launched a renovated sirgaschile.cl platform and announced real-time NTRIP streaming
 services alongside the existing RINEX download and online post-processing (PPP) tools.
-No public self-service registration portal or host:port for the NTRIP caster has been found
-through open-source research. Not added to pipeline pending endpoint confirmation.
+No public self-service registration portal or working host:port for the NTRIP caster has
+been found. `ntrip.igm.cl:2101` returns connection refused and IGM's NTRIP sub-pages
+return HTTP 500 (confirmed 2026-05-01). ArduSimple (2025) describes the network as
+CORS/PPK only. Not added to pipeline pending endpoint confirmation.
 
-**missing**: confirm whether a public-facing NTRIP sourcetable is live at igm.cl or
-sirgaschile.cl, and what registration pathway (if any) grants free hobbyist access.
+**missing**: confirm whether the 2025-announced NTRIP service is operational; check
+sirgaschile.cl and igm.cl for a working caster address and registration pathway.
 
 ---
 
@@ -5429,3 +5431,28 @@ projected for late 2025/2026. No public NTRIP host:port has been published.
 
 **missing**: confirm whether SEN-CORS has launched a public NTRIP caster;
              check anat.sn and procasef.com for service announcements.
+
+---
+
+## regme_ec — REGME-IP (EC)
+
+**status**:    free
+**date_added**: 2026-05-01
+**country**:   EC — Ecuador
+**type**:      single-base
+**host:port**: `ntrip.igm.gob.ec:2101`
+**access**:    free with registration; no stated residency restriction; open to all
+**registration**: https://www.geoportaligm.gob.ec/ntrip/
+**stations**:  not published (military geodetic network)
+**operator**:  IGM — Instituto Geográfico Militar del Ecuador (`igm.gob.ec`)
+
+REGME-IP (Red GNSS Militar Ecuatoriana de Posicionamiento en Tiempo Real) is Ecuador's
+national free NTRIP RTK correction service, operated by the army's mapping institute.
+Stated as "totalmente libre y gratuito" (entirely free). Registration required via the
+geoportal; no residency restriction stated on the registration page. SIRGAS bulletin
+(2022) explicitly names `ntrip.igm` listening on port 2101. Geoportal and visor
+(`geoportaligm.gob.ec/ntrip/public/visor`) confirmed reachable 2026-05-01.
+Zero ECU mountpoints currently on rtk2go; in-pipeline candidate.
+
+**missing**: verify sourcetable contents and mountpoint names at `ntrip.igm.gob.ec:2101`;
+confirm station count and geographic distribution.
