@@ -3051,10 +3051,49 @@ Enterprise-focused commercial NRTK network covering Italy. Not free.
 
 ---
 
+## agrs_nl — AGRS.NL / Kadaster (NL)
+
+**status**:    candidate
+**date_added**: 2026-05-01
+**country**:   NL — Netherlands
+**type**:      single-base (~30 mainland stations; BES islands catalogued separately under `bq_cors`)
+**host:port**: `ntrip.kadaster.nl:2101` (plain TCP) / `ntrip.kadaster.nl:443` (TLS)
+**access**:    free, anonymous; email as username suggested for outage notifications but optional
+**registration**: https://nsgi.nl/referentiepunten-en-gnss-data/gnss-data/real-time-streams
+**operator**:  NSGI / Kadaster Nederland (`nsgi.nl`)
+
+NSGI's Active Geodetic Reference System for the Netherlands (AGRS.NL). Free tier
+confirmed on the NSGI pricing page (2026-05-01): "GNSS-stations op het vaste land van
+Nederland" listed at €0 with no authentication gate. Legal basis: Kadasterwet
+BWBR0037196 art. 19 lid 4. ~30 mainland stations, RTCM 3.2 MSM. The same caster
+also hosts BES island stations (7 streams), catalogued under `bq_cors`.
+TU Delft mirror: `gnss1.tudelft.nl:2101` — subset of stations, no TLS.
+**Volunteer**: none. Zero NL-mainland candidate stations separate from AGRS.NL.
+
+---
+
 ## netpos — NETPOS / Kadaster (NL)
 
-**status**:    rejected
-**reason**:    restricted to Kadaster/Rijkswaterstaat internal use only; not public NTRIP
+**status**:    paid
+**date_added**: 2026-05-01
+**country**:   NL — Netherlands
+**type**:      single-base raw reference streams (not VRS)
+**host:port**: `ntrip.cloud.kadaster.nl:443` (TLS only; NTRIP auth B;Y required)
+**access**:    paid; username + password issued on activation; eHerkenning portal for
+               NL legal entities; foreign users apply via contact form at nsgi.nl
+**registration**: https://nsgi.nl/referentiepunten-en-gnss-data/gnss-data/real-time-streams
+**yearly_cost**: €475/station/yr excl. BTW (~$520/yr) for 1–2 stations; volume to €95/station/yr for 10+ (2026 tariff)
+**operator**:  NSGI / Kadaster Nederland (`nsgi.nl`)
+
+NETPOS delivers raw reference station streams from the same ~30 AGRS.NL
+physically-positioned base stations, but as an authenticated paid service with a
+service-level agreement. Priced per station per year (2026, excl. 21 % BTW):
+1–2 stations €475/station, 3–4 €380, 5–6 €285, 7–9 €190, 10+ €95. VAT-exempt
+for entities in the professional surveying and construction sectors (0 % BTW);
+standard 21 % BTW applies otherwise. Not a VRS / network-RTK service — streams
+are single-base raw observations for users who compute their own corrections.
+BES island stations included in the feed (same casters; free-tier BES access
+remains via `ntrip.kadaster.nl:2101` without authentication).
 
 ---
 
@@ -4867,7 +4906,7 @@ or RTK correction service exists or is planned.
 **date_added**: 2026-05-01
 **country**:   BQ — Bonaire, Sint Eustatius, Saba (Dutch special municipalities)
 **type**:      single-base (7 streams: 2 on Bonaire, 3 on Saba, 2 on Sint Eustatius)
-**host:port**: `ntrip.kadaster.nl:2101` (unencrypted) / `ntrip.cloud.kadaster.nl:443` (TLS)
+**host:port**: `ntrip.kadaster.nl:2101` (unencrypted) / `ntrip.kadaster.nl:443` (TLS)
 **access**:    free, anonymous; no username/password required
 **registration**: https://nsgi.nl/referentiepunten-en-gnss-data/gnss-data/real-time-streams
 **stations**:  Bonaire: BON200BES0 (Stonex SC2200, GPS+GLO+GAL+BDS),
@@ -4883,7 +4922,7 @@ confirmed 2026-05-01) explicitly lists "GNSS-stations op de BES-eilanden" as par
 the free tier (€0, no VAT). Access is fully anonymous — no username or password
 required; using an email as username is suggested by NSGI for outage notifications
 but optional. Both casters confirmed live via sourcetable fetch (2026-05-01). Streams
-use RTCM 3.3 MSM; legacy RTCM 3.1 mountpoints also present (SABY0, SEUS0).
+use RTCM 3.2 MSM; legacy RTCM 3.1 mountpoints also present (SABY0, SEUS0).
 Single-station raw reference streams — not a VRS/network-RTK service. Kadaster's
 NETPOS network-RTK service (Netherlands mainland only) does not extend to BES.
 Zero BES-coded rtk2go or Centipede stations.

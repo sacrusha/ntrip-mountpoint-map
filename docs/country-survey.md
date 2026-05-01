@@ -165,16 +165,28 @@ _Last updated: 2026-04-22._
 
 ### NL — Netherlands
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-01
 
-- **Free government RTK**: none. Kadaster NETPOS is internal use only (not public
-  NTRIP). Market fully privatised since ~2000. → networks.md: `netpos`
+- **Free government RTK**: AGRS.NL — NSGI / Kadaster Nederland (`ntrip.kadaster.nl:2101`
+  plain TCP, `ntrip.kadaster.nl:443` TLS) — free, anonymous, confirmed active 2026-05-01.
+  ~30 mainland stations, RTCM 3.2 MSM. Same caster hosts BES island stations (catalogued
+  under BQ). Legal basis: Kadasterwet BWBR0037196 art. 19 lid 4. NSGI explicitly lists
+  mainland stations at €0 on their pricing page. TU Delft mirror: `gnss1.tudelft.nl:2101`
+  (station subset, no TLS). Not yet wired into the pipeline. → networks.md: `agrs_nl`
+- **Paid per-station raw streams**: NETPOS — same ~30 physical stations as AGRS.NL but
+  authenticated paid feed at `ntrip.cloud.kadaster.nl:443` (TLS, B;Y auth). Priced per
+  station per year (2026, excl. BTW): €475/station (1–2 stations) down to €95/station
+  (10+). Not VRS — delivers single-base raw observations for users computing their own
+  corrections. NL legal entities via eHerkenning portal; foreign users via contact form.
+  → networks.md: `netpos`
 - **Commercial** (paid, expensive for a hobbyist): 06-GPS (Trimble NL, VRS, ~250
   stations) — €1,500/yr excl. VAT (~€1,815 incl., ~$2,000/yr); not surfaced.
   → networks.md: `06gps`
 - **Volunteer**: rtk2go ~24 NL bases, Centipede ~25 NL nodes. Together provide real
   but uneven coverage — functional for many hobbyist use cases.
-- **Gap**: no free government NTRIP; hobbyists rely entirely on volunteer infrastructure.
+- **Gap**: AGRS.NL free tier not yet in the pipeline — hobbyists currently rely on
+  volunteer infrastructure; ingesting AGRS.NL would substantially improve official-frame
+  coverage.
 
 ---
 
@@ -1356,8 +1368,8 @@ similarly have no published coverage for these jurisdictions.
 **date_added**: 2026-05-01
 
 - **Free government RTK**: AGRS.BES — Kadaster Nederland / NSGI (`ntrip.kadaster.nl:2101`
-  unencrypted, `ntrip.cloud.kadaster.nl:443` TLS) — free, anonymous, confirmed active
-  2026-05-01. Seven BES-coded RTCM 3.3 MSM streams across three islands: Bonaire
+  unencrypted, `ntrip.kadaster.nl:443` TLS) — free, anonymous, confirmed active
+  2026-05-01. Seven BES-coded RTCM 3.2 MSM streams across three islands: Bonaire
   (BON200BES0, BONK00BES0), Saba (SABY00BES0, SABY00BES1, SABY0), Sint Eustatius
   (SEUS00BES0, SEUS0). Single-base streams; not VRS. NSGI pricing page explicitly lists
   BES stations as free (€0); no username or password required. → networks.md: `bq_cors`
