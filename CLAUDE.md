@@ -9,6 +9,7 @@ PPP/SSR/HAS mentioned as alternative in guide, not what this projedct is about.
 index.html                    # Single-page Leaflet app — all UI.
 guide.html                    # long-form standalone visitor primer linked from the map. content must stay aligned /w /help_topics.json
 scripts/fetch_stations.py     # updates .sourcetable files, source_health.json, stations.json.
+scripts/inject_seo_help.py    # splices a hidden SEO mirror of help_topics.json into index.html. Run after editing help_topics.json; commit the index.html diff in the same commit.
 .github/workflows/
   update-stations.yml         # Runs fetch_stations.py 4 times a day, commits to main.
 data/
@@ -33,3 +34,4 @@ docs/
 - Generating large text blocks (2kB) in this env will timeout and fail. Workaround with iteratarive output;, skeleton-first then edit; bash py etc for repetitive work.
 - All color and design edits must always consider Light and Dark mode.
 - Sandbox has very limited internet access. WebSearch tool works, pretty much nothing else does, test environment before relying on it.
+- Pipeline filter flags (nmea_filter / solution_filter in SOURCES): both default True. Set nmea_filter=False only if the caster mislabels physical stations as NMEA=1; solution_filter=False only if it mislabels them as solution=1. Never set solution_filter=False for rtk2go — it is the only guard against the NEAR-xxx VRS streams. See parse_sourcetable docstring for full rules.
