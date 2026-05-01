@@ -383,9 +383,6 @@
   var GREY_MARKER_COLOR='#666';   // matches stale-pin colour
   var INFO_MARKER_COLOR='#888';   // circled-? paid/restricted markers
 
-  function sourceLabel(sid){ return (SOURCES[sid]&&SOURCES[sid].label)||sid; }
-  function sourceColor(sid){ return (SOURCES[sid]&&SOURCES[sid].color)||UNKNOWN_SOURCE_COLOR; }
-
   var CLICK_RADIUS_PX=8;
 
   // Zoom bands — switch between raster-only, raster+dots, detailed view.
@@ -826,63 +823,49 @@
     });
     return group;
   }
-  // Country-level markers driven by data/country_markers.json.
-  // tier describes the network's nature; m.vrs is an orthogonal flag.
-  //   tier:'free' + inPipeline + live  + vrs:true  -> coloured VRS ring  -> bySid[m.id]
-  //   tier:'free' + inPipeline + live  + vrs:false -> no ring (physical pins represent the network)
-  //   tier:'free' + inPipeline + stale             -> grey ring           -> greyById[m.id]
-  //   tier:'free' + !inPipeline                    -> no marker
-  //   tier:'paid'|'paid-affordable'|'restricted'|'weird' -> circled-? marker -> infoById[m.id]
-  function buildCountryMarkers(markers,renderer,sourceCounts){
+  // freeNetworks: staleness !== 'dead' + lat set + vrs:true  -> VRS ring     -> bySid[net.id]
+  //               staleness !== 'dead' + lat set + vrs:false -> no ring (physical pins)
+  //               staleness === 'dead' + lat set             -> grey ring     -> greyById[net.id]
+  //               lat null                                   -> no marker
+  // paidNetworks: paid | paid-affordable | restricted        -> ? marker      -> infoById[net.id]
+  // info: stub — collected but not rendered.
+  function buildNetworkOverlays(freeNetworks,paidNetworks,info,renderer){
     var group=L.layerGroup();
     var bySid={}, greyById={}, infoById={};
-    (markers||[]).forEach(function(m){
-      var lat=m.lat, lon=m.lon;
-      var label=m.name||m.id;
-      var region=m.region||'';
-
-      if(m.tier==='free'){
-        var sid=m.id;
-        var auth=SOURCES[sid]||{};
-        if(!SOURCES[sid]) return;
-        var isLive=SOURCES[sid].staleness!=='dead';
-        if(!isLive){
-          var note=m.note||auth.openNote||'';
-          var gr=SOURCES[sid].registration||m.registration;
-          var ge=addRingMarker(group,lat,lon,renderer,GREY_MARKER_COLOR,0.18,label,buildGreyPopup(label,region,note,gr));
-          ge.label=label; greyById[m.id]=ge;
-        } else if(m.vrs){
-          var col=VRS_COLOR;
-          var hasPinsPinned=sourceCounts&&(sourceCounts[sid]||0)>0;
-          var declared=m.stations_declared;
-          var body=hasPinsPinned
-            ? 'Covers <b>'+esc(region)+'</b>.'
-              +' Reference stations are shown on the map.'
-              +' Connect via a VRS mountpoint for uniform cm-accuracy across the network'
-              +' without manual base selection.'
-            : 'Covers <b>'+esc(region)+'</b>.'
-              +(declared?' Uses ~'+declared+' physical reference stations.':'')
-              +' Your NTRIP client connects to a virtual base synthesised near your location.';
-          var accText=hasPinsPinned
-            ?'VRS/NRTK network — fixed stations on map'
-            :'VRS network — virtual mountpoints only';
-          var popReg=SOURCES[sid].registration;
-          var popup='<div class="popup-plain"><h3>'+esc(label)+'</h3>'
-            +'<div class="acc" style="color:'+VRS_COLOR+'">'+accText+'</div>'
-            +'<div style="margin:4px 0 6px;font-size:12px">'+body+'</div>'
-            +(auth.openNote?'<div class="anote">'+esc(auth.openNote)+'</div>':'')
-            +(popReg?'<div class="anote"><a href="'+esc(popReg)
-              +'" target="_blank" rel="noopener noreferrer">'+esc(visUrl(popReg))+' ↗</a></div>':'')
-            +'</div>';
-          bySid[sid]=addRingMarker(group,lat,lon,renderer,col,0.25,label+' (VRS)',popup);
-        }
-
-      } else {
-        // paid | paid-affordable | restricted | weird — all render as circled-? marker.
-        var mk=addInfoMarker(group,lat,lon,buildInfoPopup(m),label);
-        infoById[m.id]={marker:mk,label:label};
+    freeNetworks.forEach(function(net){
+      if(!net.lat) return;
+      if(net.staleness==='dead'){
+        var note=net.note||net.openNote||'';
+        var ge=addRingMarker(group,net.lat,net.lon,renderer,GREY_MARKER_COLOR,0.18,
+          net.label,buildGreyPopup(net.label,net.region||'',note,net.registration));
+        ge.label=net.label; greyById[net.id]=ge;
+      } else if(net.vrs){
+        var body=net.stationCount>0
+          ? 'Covers <b>'+esc(net.region||'')+'</b>.'
+            +' Reference stations are shown on the map.'
+            +' Connect via a VRS mountpoint for uniform cm-accuracy across the network'
+            +' without manual base selection.'
+          : 'Covers <b>'+esc(net.region||'')+'</b>.'
+            +(net.stationsDeclared?' Uses ~'+net.stationsDeclared+' physical reference stations.':'')
+            +' Your NTRIP client connects to a virtual base synthesised near your location.';
+        var accText=net.stationCount>0
+          ?'VRS/NRTK network — fixed stations on map'
+          :'VRS network — virtual mountpoints only';
+        var popup='<div class="popup-plain"><h3>'+esc(net.label)+'</h3>'
+          +'<div class="acc" style="color:'+VRS_COLOR+'">'+accText+'</div>'
+          +'<div style="margin:4px 0 6px;font-size:12px">'+body+'</div>'
+          +(net.openNote?'<div class="anote">'+esc(net.openNote)+'</div>':'')
+          +(net.registration?'<div class="anote"><a href="'+esc(net.registration)
+            +'" target="_blank" rel="noopener noreferrer">'+esc(visUrl(net.registration))+' ↗</a></div>':'')
+          +'</div>';
+        bySid[net.id]=addRingMarker(group,net.lat,net.lon,renderer,VRS_COLOR,0.25,net.label+' (VRS)',popup);
       }
     });
+    paidNetworks.forEach(function(net){
+      var mk=addInfoMarker(group,net.lat,net.lon,buildPaidNetworkPopup(net),net.name);
+      infoById[net.id]={marker:mk,label:net.name};
+    });
+    // info: stub — not rendered.
     return {group:group,bySid:bySid,greyById:greyById,infoById:infoById};
   }
 
@@ -908,17 +891,17 @@
     return {visual:visual,hit:hit};
   }
 
-  function buildInfoPopup(m){
+  function buildPaidNetworkPopup(net){
     var accessLabel=({
       'paid':'Paid subscription required',
       'paid-affordable':'Paid subscription (affordable)',
       'restricted':'Access restricted'
-    })[m.access]||'Not freely accessible';
-    return `<div class="popup-plain"><h3>${esc(m.name||m.id)}</h3><div class="warn">${esc(accessLabel)}</div>`
-      +(m.yearly_cost?`<div style="font-size:11px;color:var(--muted);margin:2px 0 4px">${esc(m.yearly_cost)}</div>`:'')
-      +`<div style="font-size:12px;margin:4px 0 6px">Covers <b>${esc(m.region||'')}</b>.</div>`
-      +(m.note?`<div class="anote">${esc(m.note)}</div>`:'')
-      +(m.registration?`<div class="anote"><a href="${esc(m.registration)}" target="_blank" rel="noopener noreferrer">${esc(visUrl(m.registration))} ↗</a></div>`:'')
+    })[net.access]||'Not freely accessible';
+    return `<div class="popup-plain"><h3>${esc(net.name)}</h3><div class="warn">${esc(accessLabel)}</div>`
+      +(net.yearlyCost?`<div style="font-size:11px;color:var(--muted);margin:2px 0 4px">${esc(net.yearlyCost)}</div>`:'')
+      +`<div style="font-size:12px;margin:4px 0 6px">Covers <b>${esc(net.region)}</b>.</div>`
+      +(net.note?`<div class="anote">${esc(net.note)}</div>`:'')
+      +(net.registration?`<div class="anote"><a href="${esc(net.registration)}" target="_blank" rel="noopener noreferrer">${esc(visUrl(net.registration))} ↗</a></div>`:'')
       +'</div>';
   }
 
@@ -1151,11 +1134,10 @@
 
   function sw(s){ return '<span style="display:inline-block;width:12px;height:12px;vertical-align:middle;'+s+'"></span>'; }
 
-  function buildTogglePanel(sourceCounts,vrsLayerBySid,greyLayerById,infoLayerById,onChange){
+  function buildTogglePanel(freeNetworks,vrsLayerBySid,greyLayerById,infoLayerById,onChange){
     var state={tier_open:true,tier_registration:true,tier_conditions:true,vrs_global:true,
                grey_global:true,info_global:true};
-    Object.keys(sourceCounts).forEach(function(sid){ state[sid]=true; });
-    Object.keys(vrsLayerBySid).forEach(function(sid){ if(!(sid in state)) state[sid]=true; }); // VRS uses bare sid so pins:true networks share the same key as their physical-station checkbox — don't add a vrs_ prefix
+    freeNetworks.forEach(function(net){ state[net.id]=true; });
     Object.keys(greyLayerById).forEach(function(id){ state['grey:'+id]=true; });
     Object.keys(infoLayerById).forEach(function(id){ state['info:'+id]=true; });
 
@@ -1192,11 +1174,9 @@
     }
 
     var entries=[];
-    Object.keys(sourceCounts).forEach(function(sid){
-      if(sourceCounts[sid]){
-        entries.push({members:[sid],label:sourceLabel(sid),
-          color:sourceColor(sid),count:sourceCounts[sid]});
-      }
+    freeNetworks.forEach(function(net){
+      if(net.stationCount)
+        entries.push({members:[net.id],label:net.label,color:net.color,count:net.stationCount});
     });
     var tierOrder={open:0,registration:1,conditions:2};
     entries.sort(function(a,b){
@@ -1350,20 +1330,23 @@
         host:         host||null,
         port:         port||null,
         staleness:    days>=STALE_HIDE_DAYS?'dead':days>=STALE_GREY_DAYS?'stale':'live',
+        // editorial fields — augmented below from country_markers (free tier)
+        stationCount: 0,
+        lat: null, lon: null, region: null, vrs: false,
+        stationsDeclared: null, note: null,
       };
     });
     var bySource={};
     Object.keys(rawSources).forEach(function(sid){
       bySource[sid]=normalizeStations(rawSources[sid].stations);
     });
-    var allStations=mergeStations(bySource);
-    var sourceCounts={};
-    allStations.forEach(function(s){
+    var stations=mergeStations(bySource);
+    stations.forEach(function(s){
       var seen={};
       s.mountpoints.forEach(function(mp){
         if(!seen[mp.source.id]){
           seen[mp.source.id]=true;
-          sourceCounts[mp.source.id]=(sourceCounts[mp.source.id]||0)+1;
+          mp.source.stationCount++;
         }
       });
       var staleness='dead';
@@ -1383,16 +1366,35 @@
       }
       s.precLabel=precLabel(s.dLat,s.dLon,s.lat);
     });
+    var paidNetworks=[], info=[];
+    (countryMarkersJson&&countryMarkersJson.markers||[]).forEach(function(m){
+      if(m.tier==='free'){
+        var net=SOURCES[m.id]; if(!net) return;
+        net.lat=m.lat; net.lon=m.lon;
+        net.region=m.region||null;
+        net.vrs=!!m.vrs;
+        net.stationsDeclared=m.stations_declared||null;
+        net.note=m.note||null;
+        net.registration=net.registration||validUrl(m.registration||'');
+      } else if(m.tier==='weird'){
+        info.push({id:m.id, name:m.name||m.id, lat:m.lat, lon:m.lon,
+          region:m.region||'', note:m.note||null});
+      } else {
+        paidNetworks.push({id:m.id, name:m.name||m.id, lat:m.lat, lon:m.lon,
+          region:m.region||'', tier:m.tier, access:m.access||m.tier,
+          registration:validUrl(m.registration||''),
+          note:m.note||null, yearlyCost:m.yearly_cost||null});
+      }
+    });
     return {
-      updated:        stationsJson&&stationsJson.updated||null,
-      networks:       (stationsJson&&stationsJson.networks||[]).map(function(n){
+      updated:      stationsJson&&stationsJson.updated||null,
+      networks:     (stationsJson&&stationsJson.networks||[]).map(function(n){
         return Object.assign({},n,{registrationUrl:validUrl(n.registrationUrl||'')});
       }),
-      allStations:    allStations,
-      sourceCounts:   sourceCounts,
-      countryMarkers: (countryMarkersJson&&countryMarkersJson.markers||[]).map(function(m){
-        return Object.assign({},m,{registration:validUrl(m.registration||'')});
-      }),
+      stations:     stations,
+      freeNetworks: Object.values(SOURCES),
+      paidNetworks: paidNetworks,
+      info:         info,
     };
   }
 
@@ -1453,14 +1455,13 @@
     }catch(e){}
     var model=buildDataModel(data,health,cmRaw);
     var updated=model.updated, networks=model.networks;
-    var allStations=model.allStations, sourceCounts=model.sourceCounts;
-    var countryMarkers=model.countryMarkers;
+    var stations=model.stations;
 
     var vp=await viewerPosProm;
     if(vp) map.setView([vp.lat,vp.lon],map.getZoom());
     var refC=vp||{lat:map.getCenter().lat,lon:map.getCenter().lng};
     var _cosRef=Math.cos(refC.lat*Math.PI/180);
-    allStations.sort(function(a,b){
+    stations.sort(function(a,b){
       var dlaA=a.lat-refC.lat, dloA=(a.lon-refC.lon)*_cosRef;
       var dlaB=b.lat-refC.lat, dloB=(b.lon-refC.lon)*_cosRef;
       return (dlaA*dlaA+dloA*dloA)-(dlaB*dlaB+dloB*dloB);
@@ -1473,7 +1474,7 @@
     map.createPane('vrsPane');
     map.getPane('vrsPane').style.zIndex=403; // above dotsPane (402); SVG paths receive events, container passes them through
     var vrsRenderer=L.svg({pane:'vrsPane',padding:0.5});
-    var cmResult=buildCountryMarkers(countryMarkers,vrsRenderer,sourceCounts);
+    var cmResult=buildNetworkOverlays(model.freeNetworks,model.paidNetworks,model.info,vrsRenderer);
     cmResult.group.addTo(map);
     var vrsLayerBySid=cmResult.bySid;
     var greyLayerById=cmResult.greyById;
@@ -1492,8 +1493,8 @@
     // Grey-dot stations (3–7 days) are shown on map but excluded from coverage
     // so the raster reflects currently-live infrastructure only.
     // Stations stale >= 7 days are hidden entirely.
-    var coverageStations=allStations.filter(function(s){ return s.staleness==='live'; });
-    var displayStations=allStations.filter(function(s){ return s.staleness!=='dead'; });
+    var coverageStations=stations.filter(function(s){ return s.staleness==='live'; });
+    var displayStations=stations.filter(function(s){ return s.staleness!=='dead'; });
     var displayStationsIndex=buildStationIndex(displayStations);
 
     // Coverage raster layer (fresh stations only).
@@ -1505,7 +1506,7 @@
     var dotsLayer=new DotsLayer().addTo(map);
 
     var filter=function(){ return true; };
-    var visible=allStations;
+    var visible=stations;
     var stationIndex=null;
     var detailGroup=L.layerGroup();
     var _detailMap=new Map(); // posKey → {rect, marker}
@@ -1615,7 +1616,7 @@
     }
 
     var _clickPopup=L.popup({maxWidth:320});
-    var togglePanel=buildTogglePanel(sourceCounts,vrsLayerBySid,greyLayerById,infoLayerById,
+    var togglePanel=buildTogglePanel(model.freeNetworks,vrsLayerBySid,greyLayerById,infoLayerById,
       function(pred){ filter=pred; rebuildStationLayers(); });
     map.on('click',function(e){
       if(!stationIndex||!visible.length) return;
