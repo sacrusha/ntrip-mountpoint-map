@@ -1340,6 +1340,62 @@
     return {control:ctrl, dom:d, applyDeclutter:applyDeclutter};
   }
 
+  function buildDataModel(stationsJson, healthJson, countryMarkersJson){
+    var rawSources=(stationsJson&&stationsJson.sources)||{};
+    var healthSources=(healthJson&&healthJson.sources)||{};
+    var now=Date.now();
+    Object.keys(rawSources).forEach(function(sid){
+      var rs=rawSources[sid];
+      var host='', port='';
+      try{
+        var p=new URL(rs.url||'');
+        host=p.hostname;
+        port=p.port||(p.protocol==='https:'?'443':'80');
+      }catch(e){}
+      // Prefer source_health.json last_ok (always current) over stations.json
+      // (only updated when station data changes).
+      var lo=(healthSources[sid]&&healthSources[sid].last_ok)||rs.last_ok;
+      var days=lo?(now-new Date(lo).getTime())/86400000:0;
+      SOURCES[sid]={
+        id:           sid,
+        color:        rs.color||UNKNOWN_SOURCE_COLOR,
+        label:        rs.label||sid,
+        registration: rs.registration||null,
+        access:       rs.access||'registration',
+        openNote:     rs.openNote||null,
+        near:         rs.near||false,
+        user:         rs.user||(rs.credentials&&rs.credentials.user&&!rs.userNote?rs.credentials.user:null),
+        pass:         rs.pass||(rs.credentials&&rs.credentials.pass)||null,
+        userNote:     rs.userNote||null,
+        host:         host,
+        port:         port,
+        staleness:    days>=STALE_HIDE_DAYS?'dead':days>=STALE_GREY_DAYS?'stale':'live',
+      };
+    });
+    var bySource={};
+    Object.keys(rawSources).forEach(function(sid){
+      bySource[sid]=normalizeStations(rawSources[sid].stations);
+    });
+    var allStations=mergeStations(bySource);
+    var sourceCounts={};
+    allStations.forEach(function(s){
+      var seen={};
+      s.mountpoints.forEach(function(mp){
+        if(!seen[mp.source.id]){
+          seen[mp.source.id]=true;
+          sourceCounts[mp.source.id]=(sourceCounts[mp.source.id]||0)+1;
+        }
+      });
+    });
+    return {
+      updated:        stationsJson&&stationsJson.updated||null,
+      networks:       stationsJson&&stationsJson.networks||[],
+      allStations:    allStations,
+      sourceCounts:   sourceCounts,
+      countryMarkers: countryMarkersJson&&countryMarkersJson.markers||[],
+    };
+  }
+
   // IP-based geolocation — ~city-level accuracy, no permission prompt.
   // Used only to centre the initial map view; fail-open to the default.
   function getViewerPos(){
@@ -1395,54 +1451,10 @@
         if(_hd&&_hd.classList.contains('on')) renderHelp('');
       }
     }catch(e){}
-    var rawSources=(data&&data.sources)||{};
-    var healthSources=(health&&health.sources)||{};
-    var now=Date.now();
-    Object.keys(rawSources).forEach(function(sid){
-      var rs=rawSources[sid];
-      var host='', port='';
-      try{
-        var p=new URL(rs.url||'');
-        host=p.hostname;
-        port=p.port||(p.protocol==='https:'?'443':'80');
-      }catch(e){}
-      // Prefer source_health.json last_ok (always current) over stations.json
-      // (only updated when station data changes).
-      var lo=(healthSources[sid]&&healthSources[sid].last_ok)||rs.last_ok;
-      var days=lo?(now-new Date(lo).getTime())/86400000:0;
-      SOURCES[sid]={
-        id:           sid,
-        color:        rs.color||UNKNOWN_SOURCE_COLOR,
-        label:        rs.label||sid,
-        registration: rs.registration||null,
-        access:       rs.access||'registration',
-        openNote:     rs.openNote||null,
-        near:         rs.near||false,
-        user:         rs.user||(rs.credentials&&rs.credentials.user&&!rs.userNote?rs.credentials.user:null),
-        pass:         rs.pass||(rs.credentials&&rs.credentials.pass)||null,
-        userNote:     rs.userNote||null,
-        host:         host,
-        port:         port,
-        staleness:    days>=STALE_HIDE_DAYS?'dead':days>=STALE_GREY_DAYS?'stale':'live',
-      };
-    });
-    var bySource={};
-    Object.keys(rawSources).forEach(function(sid){
-      bySource[sid]=normalizeStations(rawSources[sid].stations);
-    });
-    var updated=(data&&data.updated)||null;
-    var networks=(data&&data.networks)||[];
-    var allStations=mergeStations(bySource);
-    var sourceCounts={};
-    allStations.forEach(function(s){
-      var seen={};
-      s.mountpoints.forEach(function(mp){
-        if(!seen[mp.source.id]){
-          seen[mp.source.id]=true;
-          sourceCounts[mp.source.id]=(sourceCounts[mp.source.id]||0)+1;
-        }
-      });
-    });
+    var model=buildDataModel(data,health,cmRaw);
+    var updated=model.updated, networks=model.networks;
+    var allStations=model.allStations, sourceCounts=model.sourceCounts;
+    var countryMarkers=model.countryMarkers;
 
     var vp=await viewerPosProm;
     if(vp) map.setView([vp.lat,vp.lon],map.getZoom());
@@ -1461,7 +1473,6 @@
     map.createPane('vrsPane');
     map.getPane('vrsPane').style.zIndex=403; // above dotsPane (402); SVG paths receive events, container passes them through
     var vrsRenderer=L.svg({pane:'vrsPane',padding:0.5});
-    var countryMarkers=(cmRaw&&cmRaw.markers)||[];
     var cmResult=buildCountryMarkers(countryMarkers,vrsRenderer,sourceCounts);
     cmResult.group.addTo(map);
     var vrsLayerBySid=cmResult.bySid;
