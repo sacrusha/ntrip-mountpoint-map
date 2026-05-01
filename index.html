@@ -386,22 +386,6 @@
   function sourceLabel(sid){ return (SOURCES[sid]&&SOURCES[sid].label)||sid; }
   function sourceColor(sid){ return (SOURCES[sid]&&SOURCES[sid].color)||UNKNOWN_SOURCE_COLOR; }
 
-  function stationColor(s){
-    var src=s.mountpoints[0].source;
-    for(var i=1;i<s.mountpoints.length;i++)
-      if(s.mountpoints[i].source!==src) return MULTI_COLOR;
-    return src.color;
-  }
-  function stationStaleness(s){
-    var best='dead';
-    s.mountpoints.forEach(function(mp){
-      var st=mp.source.staleness;
-      if(st==='live') best='live';
-      else if(st==='stale'&&best==='dead') best='stale';
-    });
-    return best;
-  }
-
   var CLICK_RADIUS_PX=8;
 
   // Zoom bands — switch between raster-only, raster+dots, detailed view.
@@ -630,7 +614,7 @@
       .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
       .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
   }
-  function safeUrl(u){return /^https?:\/\//i.test(u)?u:'';}
+  function validUrl(u){return /^https?:\/\//i.test(u)?u:null;}
 
   // Copy-to-clipboard helpers — reachable from inline onclick in popups.
   function _clipboardWrite(text,done){
@@ -697,9 +681,8 @@
       h+=cpRow('Password',source.pass);
     if(source.openNote)
       h+=`<div class="anote">${esc(source.openNote)}</div>`;
-    var regUrl=safeUrl(source.registration||'');
-    if(regUrl)
-      h+=`<div class="anote"><a href="${esc(regUrl)}" target="_blank" rel="noopener noreferrer">${esc(visUrl(regUrl))} ↗</a></div>`;
+    if(source.registration)
+      h+=`<div class="anote"><a href="${esc(source.registration)}" target="_blank" rel="noopener noreferrer">${esc(visUrl(source.registration))} ↗</a></div>`;
     return h+'</div>';
   }
 
@@ -801,7 +784,7 @@
       for(var i=0;i<n;i++){
         var s=stations[ids?ids[i]:i], pt=map.latLngToLayerPoint([s.lat,s.lon]);
         pts[i*2]=pt.x; pts[i*2+1]=pt.y;
-        (byColor[s._color]||(byColor[s._color]=[])).push(i);
+        (byColor[s.color]||(byColor[s.color]=[])).push(i);
       }
       var colors=Object.keys(byColor);
       for(var c=0;c<colors.length;c++){
@@ -833,9 +816,8 @@
                    registration:'Free with registration',
                    category:'Free for some user categories',
                    restricted:'Restricted access'})[n.access]||n.access||'';
-      var regUrl=safeUrl(n.registrationUrl||'');
       var popup=`<div class="popup-plain"><h3>${esc(n.name||n.id)}</h3><div class="acc">NRTK coverage area — cm-level inside the hull</div><div>${esc(access)}</div>`
-        +(regUrl?`<div><a href="${esc(regUrl)}" target="_blank" rel="noopener">${esc(visUrl(regUrl))} ↗</a></div>`:'')
+        +(n.registrationUrl?`<div><a href="${esc(n.registrationUrl)}" target="_blank" rel="noopener">${esc(visUrl(n.registrationUrl))} ↗</a></div>`:'')
         +`<div style="color:var(--muted);font-size:11px;margin-top:4px">${(n.stationIds||[]).length} reference stations</div></div>`;
       L.marker(c,{
         icon:L.divIcon({className:'',iconSize:[18,18],iconAnchor:[9,9],
@@ -858,7 +840,6 @@
       var lat=m.lat, lon=m.lon;
       var label=m.name||m.id;
       var region=m.region||'';
-      var regUrl=safeUrl(m.registration||'');
 
       if(m.tier==='free'){
         var sid=m.id;
@@ -867,7 +848,7 @@
         var isLive=SOURCES[sid].staleness!=='dead';
         if(!isLive){
           var note=m.note||auth.openNote||'';
-          var gr=safeUrl((SOURCES[sid]&&SOURCES[sid].registration)||'')||regUrl;
+          var gr=SOURCES[sid].registration||m.registration;
           var ge=addRingMarker(group,lat,lon,renderer,GREY_MARKER_COLOR,0.18,label,buildGreyPopup(label,region,note,gr));
           ge.label=label; greyById[m.id]=ge;
         } else if(m.vrs){
@@ -885,7 +866,7 @@
           var accText=hasPinsPinned
             ?'VRS/NRTK network — fixed stations on map'
             :'VRS network — virtual mountpoints only';
-          var popReg=safeUrl((SOURCES[sid]&&SOURCES[sid].registration)||'');
+          var popReg=SOURCES[sid].registration;
           var popup='<div class="popup-plain"><h3>'+esc(label)+'</h3>'
             +'<div class="acc" style="color:'+VRS_COLOR+'">'+accText+'</div>'
             +'<div style="margin:4px 0 6px;font-size:12px">'+body+'</div>'
@@ -933,12 +914,11 @@
       'paid-affordable':'Paid subscription (affordable)',
       'restricted':'Access restricted'
     })[m.access]||'Not freely accessible';
-    var regUrl=safeUrl(m.registration||'');
     return `<div class="popup-plain"><h3>${esc(m.name||m.id)}</h3><div class="warn">${esc(accessLabel)}</div>`
       +(m.yearly_cost?`<div style="font-size:11px;color:var(--muted);margin:2px 0 4px">${esc(m.yearly_cost)}</div>`:'')
       +`<div style="font-size:12px;margin:4px 0 6px">Covers <b>${esc(m.region||'')}</b>.</div>`
       +(m.note?`<div class="anote">${esc(m.note)}</div>`:'')
-      +(regUrl?`<div class="anote"><a href="${esc(regUrl)}" target="_blank" rel="noopener noreferrer">${esc(visUrl(regUrl))} ↗</a></div>`:'')
+      +(m.registration?`<div class="anote"><a href="${esc(m.registration)}" target="_blank" rel="noopener noreferrer">${esc(visUrl(m.registration))} ↗</a></div>`:'')
       +'</div>';
   }
 
@@ -1360,15 +1340,15 @@
         id:           sid,
         color:        rs.color||UNKNOWN_SOURCE_COLOR,
         label:        rs.label||sid,
-        registration: rs.registration||null,
+        registration: validUrl(rs.registration||''),
         access:       rs.access||'registration',
         openNote:     rs.openNote||null,
         near:         rs.near||false,
         user:         rs.user||(rs.credentials&&rs.credentials.user&&!rs.userNote?rs.credentials.user:null),
         pass:         rs.pass||(rs.credentials&&rs.credentials.pass)||null,
         userNote:     rs.userNote||null,
-        host:         host,
-        port:         port,
+        host:         host||null,
+        port:         port||null,
         staleness:    days>=STALE_HIDE_DAYS?'dead':days>=STALE_GREY_DAYS?'stale':'live',
       };
     });
@@ -1386,13 +1366,33 @@
           sourceCounts[mp.source.id]=(sourceCounts[mp.source.id]||0)+1;
         }
       });
+      var staleness='dead';
+      s.mountpoints.forEach(function(mp){
+        var st=mp.source.staleness;
+        if(st==='live') staleness='live';
+        else if(st==='stale'&&staleness==='dead') staleness='stale';
+      });
+      s.staleness=staleness;
+      if(staleness!=='live'){
+        s.color='#aaa';
+      } else {
+        var src=s.mountpoints[0].source, mono=true;
+        for(var i=1;i<s.mountpoints.length;i++)
+          if(s.mountpoints[i].source!==src){ mono=false; break; }
+        s.color=mono?src.color:MULTI_COLOR;
+      }
+      s.precLabel=precLabel(s.dLat,s.dLon,s.lat);
     });
     return {
       updated:        stationsJson&&stationsJson.updated||null,
-      networks:       stationsJson&&stationsJson.networks||[],
+      networks:       (stationsJson&&stationsJson.networks||[]).map(function(n){
+        return Object.assign({},n,{registrationUrl:validUrl(n.registrationUrl||'')});
+      }),
       allStations:    allStations,
       sourceCounts:   sourceCounts,
-      countryMarkers: countryMarkersJson&&countryMarkersJson.markers||[],
+      countryMarkers: (countryMarkersJson&&countryMarkersJson.markers||[]).map(function(m){
+        return Object.assign({},m,{registration:validUrl(m.registration||'')});
+      }),
     };
   }
 
@@ -1492,8 +1492,8 @@
     // Grey-dot stations (3–7 days) are shown on map but excluded from coverage
     // so the raster reflects currently-live infrastructure only.
     // Stations stale >= 7 days are hidden entirely.
-    var coverageStations=allStations.filter(function(s){ return stationStaleness(s)==='live'; });
-    var displayStations=allStations.filter(function(s){ return stationStaleness(s)!=='dead'; });
+    var coverageStations=allStations.filter(function(s){ return s.staleness==='live'; });
+    var displayStations=allStations.filter(function(s){ return s.staleness!=='dead'; });
     var displayStationsIndex=buildStationIndex(displayStations);
 
     // Coverage raster layer (fresh stations only).
@@ -1551,14 +1551,14 @@
         if(_detailMap.has(pk)) continue;
         if(capInsertions&&_detailMap.size>=MAX_DETAIL_MARKERS) continue;
         var entry={};
-        var fill=s._color;
+        var fill=s.color;
         try{
           if(showRect){
             entry.rect=L.rectangle([[s.lat-s.dLat,s.lon-s.dLon],
                        [s.lat+s.dLat,s.lon+s.dLon]],
               {color:fill,weight:1,fillColor:fill,fillOpacity:0.12,
                dashArray:'4 3'})
-              .bindTooltip('Station within '+precLabel(s.dLat,s.dLon,s.lat),
+              .bindTooltip('Station within '+s.precLabel,
                 {sticky:true,className:'prec-tip'})
               .addTo(detailGroup);
           }
@@ -1605,13 +1605,10 @@
     function rebuildStationLayers(){
       if(map.hasLayer(detailGroup)) map.removeLayer(detailGroup);
       visible=displayStations.filter(filter);
-      visible.forEach(function(s){
-        s._color=stationStaleness(s)!=='live'?'#aaa':stationColor(s);
-      });
       stationIndex=buildStationIndex(visible);
       resetDetailMap();
       dotsLayer.setStations(visible,stationIndex);
-      var coverageVisible=visible.filter(function(s){ return stationStaleness(s)==='live'; });
+      var coverageVisible=visible.filter(function(s){ return s.staleness==='live'; });
       coverage.setStations(coverageVisible,null);
       applyZoom();
       finishLoad();
