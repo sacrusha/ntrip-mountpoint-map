@@ -95,11 +95,19 @@ Physical stations with distinct coordinates shown on map.
 **source**:    rtk2go.com; use-snip.com
 **operator**:  SNIP / use-snip.com
 
-Community volunteer aggregator operated by SNIP / use-snip.com. `NEAR` mountpoint
-requires rover NMEA GGA. Regional filtered views on `:2103` (PL) and `:2104` (JP)
-are the same server — not separate SOURCES entries. Parser infers `carrier = 2`
-when carrier field is blank and format starts with `RTCM 3` (required to retain
-~98% of rtk2go entries).
+Community volunteer aggregator operated by SNIP / use-snip.com. Regional filtered
+views on `:2103` (PL) and `:2104` (JP) are the same server — not separate SOURCES
+entries. Parser infers `carrier = 2` when carrier field is blank and format starts
+with `RTCM 3` (required to retain ~98% of rtk2go entries).
+
+**Caster misconfigurations** (two independent issues):
+- All physical stations are tagged `NMEA=1` (caster-wide bug) → pipeline uses
+  `nmea_filter: False`. Without it, rtk2go drops to 0 stations.
+- 16 NEAR-xxx/NEAR_xxx mountpoints (e.g. `NEAR-AUT`, `NEAR_DEU`) are regional
+  nearest-station VRS streams, not physical receivers. The caster correctly tags
+  them `solution=1` (NTRIP field 12 = "networksolution"). The pipeline's
+  `solution_filter: True` (default) catches these even with `nmea_filter` off,
+  so they are excluded from the map.
 
 ---
 
@@ -153,6 +161,10 @@ Slovenia and W Austria. Register via frednet.crs.ogs.it.
 Japan volunteer caster. ~66 STR lines total; ~25 report 0/0 (offline bases) and
 are dropped by coordinate filter. Sourcetable has shrunk over time.
 
+**Caster misconfiguration**: caster incorrectly tags physical stations with both
+`NMEA=1` and `solution=1`. Pipeline uses `nmea_filter: False` and
+`solution_filter: False` to retain them.
+
 ---
 
 ## auscors — AUSCORS (AU)
@@ -169,6 +181,10 @@ are dropped by coordinate filter. Sourcetable has shrunk over time.
 
 Operated by Geoscience Australia. Old host `auscors.ga.gov.au` dead since Jul 2022.
 TLS also available on port 443. Attribute "© Commonwealth of Australia (Geoscience Australia)".
+
+**Caster misconfiguration**: ~42 IGS/international partner stations in the sourcetable are
+tagged `solution=1` despite being physical receivers with fixed coordinates (e.g. KIRU00SWE0
+in Sweden, ENAO00PRT0 in the Azores). Pipeline uses `solution_filter: False` to retain them.
 
 ---
 
@@ -4354,6 +4370,9 @@ Vertical datum: DrukGeoid 2015.
                confirmed 2026-04-30)
 
 **date_added**: 2026-04-29
+
+**Caster misconfiguration**: 6 physical stations are tagged `solution=1` despite having
+fixed unique coordinates. Pipeline uses `solution_filter: False` to retain them.
 
 Initial 6-station CORS infrastructure delivered in December 2010 by ILS (International
 Land Systems) under the Millennium Challenge Corporation Property Rights Project, with

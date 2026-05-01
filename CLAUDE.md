@@ -139,6 +139,14 @@ Two casters incorrectly tag their physical stations with NMEA=1 and get
 — all 764 physical stations tagged nmea=1) and **GeoRTK** (2 physical u-blox
 F9P stations). Any future source with the same issue gets the same exception.
 
+`parse_sourcetable` also has a `solution_filter` (default True) that drops
+`solution=1` mountpoints (NTRIP field 12 = "networksolution"). This is a second
+guard — it catches rtk2go's 16 NEAR-xxx/NEAR_xxx regional nearest-station streams
+which are correctly tagged `solution=1` even though `nmea_filter` is off for that
+source. Three casters misapply `solution=1` to real physical stations and get
+`"solution_filter": False`: **GeoRTK** (2 stations), **AUSCORS** (~42 IGS partner
+stations), **MonPOS/almgg_mn** (6 stations).
+
 **VRS-only networks** (CROPOS, ASG-EUPOS, FLEPOS, WALCORS, ESTPOS, LatPos,
 KSA-CORS, 10 SAPOS states, + 6 US state DOT: KyCORS, MnCORS, ODOT RTN,
 MoDOT RTN, WVRTN, MaineDOT) expose only virtual mountpoints — correctly
@@ -332,6 +340,11 @@ entries added (one per network, each at its own region): `eft_cors` (Moscow),
   have `nmea=1`. This is a caster misconfiguration. `"nmea_filter": False` in
   SOURCES prevents the nmea filter from dropping the entire network. If you
   remove that flag, rtk2go drops to 0 stations.
+- **rtk2go NEAR-xxx streams:** 16 regional nearest-station VRS streams (e.g.
+  `NEAR-AUT`, `NEAR_DEU`) are not physical receivers. They are correctly tagged
+  `solution=1` by the caster. The `solution_filter` (default True) drops them
+  even though `nmea_filter` is off. Do not add `"solution_filter": False` to
+  rtk2go — it would re-admit them as phantom stations.
 - **Workflow push race:** cron runs can race human PR merges. The push step
   has a 3-attempt rebase-retry loop; don't simplify it.
 - **Leaflet `L.DomUtil.create` signature:** third arg is a DOM parent, not a
