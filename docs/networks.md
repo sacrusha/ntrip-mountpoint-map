@@ -4463,7 +4463,7 @@ stations visible on the Sensor Map. No BF mountpoints on rtk2go or Centipede.
 **type**:      single-base (physical CORS stations)
 **host:port**: not publicly listed (disclosed after registration via IGN Bénin / CatIS)
 **access**:    free with registration; accessible via Benin Cadastral Information System
-**registration**: `service-public.bj` (service PS01085 — "Fichier des stations permanentes GNSS")
+**registration**: https://service-public.bj (service PS01085 — "Fichier des stations permanentes GNSS")
                   or direct contact with IGN Bénin (`ign.bj`)
 **stations**:  7 physical: Cotonou, Abomey, Savalou, Parakou, Natitingou, Nikki, Kandi
 **operator**:  IGN Bénin — Institut Géographique National du Bénin (`ign.bj`),
@@ -4479,10 +4479,14 @@ government service registration path is listed at `service-public.bj` under
 "Fichier des stations permanentes GNSS" (PS01085). Seven stations across ~115,000 km²
 gives average spacing ~130 km — adequate for L1+L2 RTK in the south where stations
 are denser; northern coverage may have gaps. Zero BJ mountpoints on rtk2go or Centipede.
+A 2021 procurement notice on `ign.bj` referenced "modernisation du réseau CORS-GNSS
+vers la solution RTK (NTRIP)", confirming RTK/NTRIP delivery was in scope at that time.
+CatIS (`catistest.xroad.bj`) lists "Stations CORS GNSS Permanentes / Institut Géographique
+National" as a registered system and `ign.bj` homepage is responsive (confirmed 2026-05-01);
+no public caster hostname found in any directory or sourcetable.
 
-**missing**: confirm current NTRIP host:port by completing CatIS / IGN Bénin
-registration; confirm station count and whether any stations have been added since
-MCA-Bénin period.
+**missing**: confirm NTRIP host:port by completing CatIS / IGN Bénin registration;
+confirm station count and whether any stations have been added since MCA-Bénin period.
 
 ---
 
@@ -4542,36 +4546,40 @@ portals for any announced CORS programme.
 
 ---
 
-## dgigc_tg — Togo National CORS Network (TG)
+## dgigc_tg — IGNTOGO / Togo National CORS Network (TG)
 
 **status**:    free
 **country**:   TG — Togo
 **type**:      single-base (physical CORS stations, exact count unconfirmed)
-**host:port**: not publicly listed (contact DGIGC)
-**access**:    professional use; registration via DGIGC; access terms not
+**host:port**: not publicly listed; `igntogo.tg` unreachable as of 2026-05-01 —
+               contact IGNTOGO via `urbanisme.gouv.tg`
+**access**:    professional use; registration via IGNTOGO; access terms not
                published on public website
-**registration**: `urbanisme.gouv.tg` (Ministry of Town Planning and Urban
+**registration**: https://urbanisme.gouv.tg (Ministry of Town Planning and Urban
                   Development website)
 **stations**:  unconfirmed count; deployment began 2017; 614 geodetic benchmarks
                nationwide as of 2025; CORS stations at key reference points
-**operator**:  DGIGC — Direction Générale de l'Information Géographique et de la
-               Cartographie, Ministry of Town Planning and Urban Development
-               (`urbanisme.gouv.tg`)
+**operator**:  IGNTOGO (formerly DGIGC — Direction Générale de l'Information
+               Géographique et de la Cartographie, renamed February 2026);
+               Ministry of Town Planning and Urban Development (`urbanisme.gouv.tg`)
 **yearly_cost**: unknown (no public tariff)
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-01
 
-A national CORS network was deployed from 2017 under DGIGC. A March 2026
-interministerial communiqué mandated systematic attachment of all topographic,
-cadastral, urbanism, and infrastructure work to the National Geodetic Network,
-with a three-month compliance window. As of April 2026, Togo has 614 geodetic
-benchmarks (1st, 2nd, and 3rd order) including 11 first-order benchmarks. No
-public NTRIP caster host:port has been found in any directory, sourcetable, or
-published registration portal. Zero TG mountpoints on rtk2go or Centipede.
+A national CORS network was deployed from 2017 under DGIGC, renamed IGNTOGO in
+February 2026. A March 2026 interministerial communiqué mandated systematic
+attachment of all topographic, cadastral, urbanism, and infrastructure work to the
+National Geodetic Network, with a three-month compliance window. As of 2026, Togo
+has 614 geodetic benchmarks (1st, 2nd, and 3rd order) including 11 first-order
+benchmarks. `igntogo.tg` is unreachable (connection refused, confirmed 2026-05-01);
+`urbanisme.gouv.tg` remains reachable but contains no CORS/NTRIP portal. No public
+NTRIP caster host:port found in any directory, sourcetable, or registration portal.
+Zero TG mountpoints on rtk2go or Centipede.
 
-**missing**: confirm NTRIP host:port by contacting DGIGC via `urbanisme.gouv.tg`;
+**missing**: confirm NTRIP host:port by contacting IGNTOGO via `urbanisme.gouv.tg`;
 confirm exact CORS station count and access model; check whether any stations
-have been shared to rtk2go or Centipede.
+have been shared to rtk2go or Centipede; confirm whether a new IGNTOGO web portal
+replaces `igntogo.tg`.
 
 ---
 
@@ -5221,7 +5229,7 @@ SNIT account creation (free, web-based).
 ## nignet — NIGNET (NG)
 
 **status**:    restricted
-**date_added**: 2026-04-29
+**date_added**: 2026-05-01
 **country**:   NG
 **type**:      physical single-base (geodetic reference network)
 **host:port**: host:port not publicly listed; a research NTRIP prototype with BKG
@@ -5244,13 +5252,16 @@ contribute to AFREF. Inter-station distances of 500–1,000 km across Nigeria's
 923,768 km² make reliable L1+L2 network RTK impractical — corrections would be
 extrapolated well beyond the 50–70 km baseline limit. A research paper documented
 implementation of an NTRIP caster on the network with a management system and
-PayPal payment integration; this has not been confirmed as a stable, publicly
-accessible service. No free hobbyist NTRIP path identified.
+PayPal payment integration; `gnssnigeria.com`, the apparent subscriber portal, is
+unreachable as of 2026-05-01 (connection errors on all paths). `osgof.gov.ng` lists
+"Requests for RTK CORS correction" as a service line but no endpoint or rate is
+published (homepage and services page load; most recent news Oct 2025). No free
+hobbyist NTRIP path identified.
 
-**missing**: confirm whether any endpoint at osgof.gov.ng or gnssnigeria.com
-             has been made publicly available; check if commercial providers
-             (e.g. CHCNAV RTK network cited as operating in Nigeria) have
-             established a hobbyist-accessible caster.
+**missing**: confirm whether a stable endpoint has been established at osgof.gov.ng
+             or a replacement portal; `gnssnigeria.com` unreachable as of 2026-05-01;
+             check if commercial providers (e.g. CHCNAV RTK network cited as
+             operating in Nigeria) have established a hobbyist-accessible caster.
 
 ## sok_ke — Survey of Kenya CORS / Geodetic Control (KE)
 

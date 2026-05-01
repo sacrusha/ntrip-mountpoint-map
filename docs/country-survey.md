@@ -2738,14 +2738,15 @@ similarly have no published coverage for these jurisdictions.
 
 ### NG — Nigeria
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-01
 
 - **Free government RTK**: none with a working public caster. NIGNET (Office of the Surveyor
   General of the Federation — OSGoF, 15 stations at 500–1,000 km spacing) was designed for
   geodetic reference frame maintenance (AFREF), not RTK corrections; inter-station spacing is
   far too wide for reliable network RTK. A research prototype NTRIP caster was implemented on
-  the network (with PayPal payment integration) but no stable public endpoint has been confirmed
-  as of 2026. → networks.md: `nignet`
+  the network (with PayPal payment integration); `gnssnigeria.com`, the apparent subscriber
+  portal, is unreachable as of 2026-05-01 — no stable public endpoint confirmed.
+  → networks.md: `nignet`
 - **Volunteer**: negligible. Zero NG stations on rtk2go or Centipede.
 - **Gap**: no free public RTK in Nigeria. Fixed reference station (CORS) infrastructure exists but serves geodetic
   purposes at unsuitable spacing; hobbyists must deploy a local base station.
@@ -2837,23 +2838,26 @@ similarly have no published coverage for these jurisdictions.
 
 ### TG — Togo
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-01
 
-- **Free government RTK**: Togo CORS (DGIGC — Direction Générale de
-  l'Information Géographique et de la Cartographie, under the Ministry of
-  Town Planning and Urban Development, `urbanisme.gouv.tg`) — 614 geodetic
-  benchmarks and a fixed reference station network (CORS) of continuously operating stations deployed
-  since 2017. A March 2026 interministerial decree mandates that all
+- **Free government RTK**: Togo CORS (IGNTOGO — formerly DGIGC, Direction
+  Générale de l'Information Géographique et de la Cartographie, renamed
+  February 2026; Ministry of Town Planning and Urban Development,
+  `urbanisme.gouv.tg`) — 614 geodetic benchmarks and a fixed reference
+  station network (CORS) of continuously operating stations deployed since
+  2017. A March 2026 interministerial communiqué mandates that all
   topographic, cadastral, urbanism, and infrastructure work be attached to
   the National Geodetic Network (réseau géodésique national); a three-month
   compliance period was granted. NTRIP host:port not publicly listed;
-  access through DGIGC. → networks.md: `dgigc_tg`
+  `igntogo.tg` unreachable as of 2026-05-01 — access via IGNTOGO /
+  `urbanisme.gouv.tg`. → networks.md: `dgigc_tg`
 
 - **Volunteer**: none. Zero TG stations on rtk2go or Centipede.
 
-- **Gap**: CORS network exists and is the official reference for professional
-  use as of 2026; NTRIP endpoint not publicly discoverable — contact DGIGC
-  via `urbanisme.gouv.tg` for credentials.
+- **Gap**: CORS network confirmed operational (March 2026 communiqué) and
+  official reference for all professional work as of 2026; NTRIP endpoint
+  not publicly discoverable — contact IGNTOGO via `urbanisme.gouv.tg` for
+  credentials.
 
 ### TR — Turkey
 
