@@ -418,15 +418,30 @@ free of charge.
 
 **status**:    free
 **host:port**: `178.19.53.126:2101`
-**type**:      physical-coord-vrs
-**access**:    free ("data is free of charge" — natt.is); register at natt.is/is/landmaelingar/jardstodvakerfi
+**type**:      physical-vrs
+**access**:    free; register by emailing icecors@natt.is with company name, contact
+               name and email address; credentials returned by email
 **pipeline-access**: registration
-**stations**:  ~20 (populates on fetch; recently added to pipeline)
+**stations**:  33 (70–100 km spacing nationwide)
 **source**:    natt.is (LMÍ — Landmælingar Íslands)
-**operator**:  LMÍ — Landmælingar Íslands
+**operator**:  LMÍ — Landmælingar Íslands (National Land Survey of Iceland)
 
-GNCASTER software (same as SAPOS). Offers VRS (VRS30, FKP30) and single-base
-(RTCM30). Stream credentials provided after registration at natt.is.
+33 physical GNSS stations covering Iceland at 70–100 km intervals. Caster at
+`178.19.53.126:2101` (GNSMART software). Offers both single-base (RTCM30,
+not recommended beyond 20 km from nearest station) and network correction
+(VRS30, FKP30). All corrections reference ISN2016.
+
+The sourcetable exposes only 4 individually-addressable physical mounts
+(AUSV, GEVK, SENG, VOGC — all near Reykjavik), plus RTCM30/RTCM30_MSM
+nearest-station selectors at (0,0) and VRS3/VRS3_MSM network mounts at (0,0).
+The remaining 29 stations are reached exclusively via the RTCM30 selector or
+VRS mountpoints, not as individual entries. Displaying the 4 visible stations
+would misrepresent the 33-station network as a Reykjavik-only fragment, so the
+pipeline holds at 0 until the full sourcetable is available.
+
+**Caster misconfiguration**: GNSMART tags all mountpoints `NMEA=1` including the
+4 physical single-base entries (which have unique coordinates and `solution=0`).
+`nmea_filter=False` would be needed once display of partial data is acceptable.
 
 ---
 
