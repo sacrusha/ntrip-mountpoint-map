@@ -377,7 +377,12 @@
     {"id":"otc_gnss",    "name":"OTC GNSS",         "region":"Tunisia",               "country":"TN", "lat":36.80, "lon":10.20,
      "tier":"paid", "access":"paid", "yearly_cost":"6,000 TND/yr (~$2,070/yr)", "registration":"https://www.otc.nat.tn/geodesy/gnss/subscription",
      "stations_declared":23,
-     "note":"23 physical stations, non-Saharan Tunisia. Shorter durations from 60 TND/day (~$21) also available. Prices exclude VAT."}
+     "note":"23 physical stations, non-Saharan Tunisia. Shorter durations from 60 TND/day (~$21) also available. Prices exclude VAT."},
+
+    {"id":"bq_cors",    "name":"AGRS.BES",         "region":"BES Islands (Bonaire, Saba, Sint Eustatius)", "country":"BQ", "lat":12.20, "lon":-68.26,
+     "tier":"free",
+     "stations_declared":4,
+     "note":"4 stations across 3 islands (Bonaire × 2, Saba, Sint Eustatius), free. Anonymous — ntrip.kadaster.nl:2101 or ntrip.cloud.kadaster.nl:443 (TLS). Single-base, not VRS."}
 
   ]
 }

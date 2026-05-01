@@ -4821,20 +4821,19 @@ determine subscription pricing.
 **operator**:  Stichting Kadaster en Openbare Registers Curaçao (`kadaster.cw`);
                geodetic support available from NSGI (`nsgi.nl`) on request
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-01
 
-No public RTK correction service or NTRIP caster found. Kadaster Curaçao maintains
-the land registry and cadastre; NSGI (the Netherlands' national geodetic authority)
-can provide geodetic infrastructure including GNSS reference station establishment
-and inclusion in AGRS.NL on request from the Curaçao government. Whether a public
-NTRIP caster has been established through that channel is not confirmed. EarthScope
-COCONet station CN40_RTCM3P3 (12.18°N, −68.96°W) streams via
-`ntrip.earthscope.org:2101` under NULA (free non-commercial) — the practical free
-option for the island. Three rtk2go volunteer bases near Willemstad (CWM_JAJO,
-MPA_JAJO, UTE_JAJO) supplement EarthScope coverage.
+No public RTK correction service or NTRIP caster found for Curaçao. Kadaster Curaçao
+(`kadaster.cw`, confirmed alive 2026-05-01) has no GNSS or NTRIP section. Neither
+`ntrip.kadaster.nl:2101` nor `ntrip.cloud.kadaster.nl:443` carries any CUW-coded
+mountpoint (sourcetable verified 2026-05-01); NSGI FAQ states geodetic enquiries for
+Curaçao must go to local authorities. EarthScope COCONet station CN40_RTCM3P3
+(12.18°N, −68.96°W) streams via `ntrip.earthscope.org:2101` under NULA (free
+non-commercial) — the practical free option for the island. Three rtk2go volunteer
+bases near Willemstad (CWM_JAJO, MPA_JAJO, UTE_JAJO) supplement EarthScope coverage.
 
-**missing**: verify with Kadaster Curaçao or NSGI whether any public NTRIP caster
-or RTK correction service exists for Curaçao.
+**missing**: confirm with Kadaster Curaçao whether any public NTRIP caster or RTK
+correction service exists or is planned.
 
 ## aw_cors — Aruba Geodetic / DLV CORS (AW)
 
@@ -4849,46 +4848,45 @@ or RTK correction service exists for Curaçao.
 **operator**:  Dienst Landmeetkunde en Vastgoedregistratie (DLV), Government of Aruba
                (`gobierno.aw`)
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-01
 
-No public RTK correction service or NTRIP caster found. DLV is the geodetic and
-survey authority for Aruba, responsible for coordinate systems and land registration.
-NSGI can provide geodetic infrastructure on request. EarthScope COCONet station
+No public RTK correction service or NTRIP caster found for Aruba. DLV (`dlv.aw`,
+no live result as of 2026-05-01) is the geodetic and survey authority; `gov.aw`
+contains only civil aviation GNSS references and no RTK correction content. NSGI
+FAQ confirms DLV falls outside NSGI's mandate. EarthScope COCONet station
 CN19_RTCM3P3 (12.61°N, −70.05°W, installed 2013) streams via
 `ntrip.earthscope.org:2101` under NULA (free non-commercial) — the practical free
 option for the island. One rtk2go volunteer base (PINOST1, Santa Cruz) is also present.
 
-**missing**: verify with DLV whether any public NTRIP caster or RTK correction
-service exists for Aruba.
+**missing**: confirm with DLV (Government of Aruba) whether any public NTRIP caster
+or RTK correction service exists or is planned.
 
 ## bq_cors — BES Islands Geodetic / Kadaster NL (BQ)
 
-**status**:    rejected
+**status**:    free
+**date_added**: 2026-05-01
 **country**:   BQ — Bonaire, Sint Eustatius, Saba (Dutch special municipalities)
-**type**:      unknown (no public caster endpoint identified)
-**host:port**: not publicly listed
-**access**:    unknown — no public self-service registration portal found
-**registration**: https://bes.kadaster.nl/
-**yearly_cost**: n/a (no public service)
-**stations**:  unknown; NSGI may include at least one GNSS reference station per
-               island in AGRS.NL
-**operator**:  Kadaster Nederland — BES (`bes.kadaster.nl`); geodetic support from
-               NSGI (`nsgi.nl`), which publishes the BESTRANS transformation for
-               BES coordinate systems
+**type**:      single-base (7 streams: 2 on Bonaire, 3 on Saba, 2 on Sint Eustatius)
+**host:port**: `ntrip.kadaster.nl:2101` (unencrypted) / `ntrip.cloud.kadaster.nl:443` (TLS)
+**access**:    free, anonymous; no username/password required
+**registration**: https://nsgi.nl/referentiepunten-en-gnss-data/gnss-data/real-time-streams
+**stations**:  Bonaire: BON200BES0 (Stonex SC2200, GPS+GLO+GAL+BDS),
+               BONK00BES0 (Leica GR30, GPS+GLO+GAL+BDS);
+               Saba: SABY00BES0 (Septentrio PolRX5E, GPS+GLO+GAL+BDS),
+               SABY00BES1 (raw SBF), SABY0 (legacy RTCM 3.1, GPS+GLO);
+               Sint Eustatius: SEUS00BES0 (Septentrio PolRX5, GPS+GLO+GAL+BDS),
+               SEUS0 (legacy RTCM 3.1, GPS+GLO)
+**operator**:  NSGI / Kadaster Nederland BES (`nsgi.nl`, `bes.kadaster.nl`)
 
-**date_added**: 2026-04-29
-
-Bonaire, Sint Eustatius, and Saba are special municipalities of the Netherlands.
-Kadaster Nederland took over cadastral and surveying functions for the BES islands
-on 1 January 2021. NSGI maintains BESTRANS (the transformation between BES local
-coordinate systems and ITRS) and can include permanent GNSS reference stations in
-AGRS.NL. No public NTRIP caster or host:port has been found. The nearest EarthScope
-COCONet station is CN40_RTCM3P3 on Curaçao (~80 km from Bonaire), reachable via
-`ntrip.earthscope.org:2101` under NULA — marginal for L1-only hardware, usable with
-dual-frequency. Zero BES-coded rtk2go or Centipede stations found.
-
-**missing**: confirm with Kadaster BES or NSGI whether any AGRS.NL station on Bonaire,
-Sint Eustatius, or Saba streams real-time corrections via NTRIP.
+NSGI pricing page (nsgi.nl/referentiepunten-en-gnss-data/gnss-data/real-time-streams,
+confirmed 2026-05-01) explicitly lists "GNSS-stations op de BES-eilanden" as part of
+the free tier (€0, no VAT). Access is fully anonymous — no username or password
+required; using an email as username is suggested by NSGI for outage notifications
+but optional. Both casters confirmed live via sourcetable fetch (2026-05-01). Streams
+use RTCM 3.3 MSM; legacy RTCM 3.1 mountpoints also present (SABY0, SEUS0).
+Single-station raw reference streams — not a VRS/network-RTK service. Kadaster's
+NETPOS network-RTK service (Netherlands mainland only) does not extend to BES.
+Zero BES-coded rtk2go or Centipede stations.
 
 ## sx_cors — Sint Maarten Geodetic / Kadaster SXM (SX)
 
@@ -4904,19 +4902,21 @@ Sint Eustatius, or Saba streams real-time corrections via NTRIP.
                spatial open data via Ministry of VROMI
                (`gis-vromi-sxm.opendata.arcgis.com`)
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-01
 
-No public RTK correction service or NTRIP caster found. Kadaster Sint Maarten is a
-private foundation established in 1999 that manages land registration and surveying;
-it achieved GIS capability in 2025 (ArcGIS platform deployment). The Ministry of VROMI
-operates an open spatial data portal. No NTRIP host:port or real-time correction
-service has been announced. The nearest EarthScope COCONet station is CN59_RTCM3P3
-(18.21°N, −63.05°W, country code AIA — physically on Anguilla, ~20 km north of Sint
-Maarten), which streams via `ntrip.earthscope.org:2101` under NULA (free
-non-commercial) and is usable from SXM territory at that baseline.
+No public RTK correction service or NTRIP caster found for Sint Maarten. NSGI's
+sourcetable carries no SXM-coded mountpoints (verified 2026-05-01). Kadaster Sint
+Maarten is a private foundation established in 1999 that manages land registration
+and surveying; it achieved GIS capability in 2025 (ArcGIS platform deployment). An
+early-2026 MOU between VROMI / Kadaster Sint Maarten and Kadaster Netherlands confirms
+institutional cooperation — not an operational NTRIP service. The nearest EarthScope
+COCONet station is CN59_RTCM3P3 (18.21°N, −63.05°W, country code AIA — physically on
+Anguilla, ~20 km north of Sint Maarten), which streams via `ntrip.earthscope.org:2101`
+under NULA (free non-commercial) and is usable from SXM territory at that baseline.
 
-**missing**: verify with Kadaster Sint Maarten or VROMI whether any NTRIP caster
-or RTK correction service exists on Sint Maarten.
+**missing**: confirm with Kadaster Sint Maarten or VROMI whether any NTRIP caster
+or RTK correction service is planned; revisit as the Kadaster Netherlands cooperation
+develops.
 
 ## regat_dz — REGAT Permanent GPS Network (DZ)
 
