@@ -146,7 +146,8 @@ SOURCES = [
     {"id": "renep",       "url": "http://193.137.94.71:2101/",                     # port 2101 = physical single-base RTCM3; 2102 = same + MSM5; 2106/2108 = VRS
      "color": "#006b3c", "label": "ReNEP",
      "type": "single-base", "country": ["PT"],
-     "access": "registration", "registration": "https://renep.dgterritorio.gov.pt"},
+     "access": "registration", "registration": "https://renep.dgterritorio.gov.pt",
+     "nmea_filter": False},                                                       # caster tags 39 of 47 physical stations nmea=1; VRS mounts are on separate ports (2106/2108)
     {"id": "auscors",     "url": "http://ntrip.data.gnss.ga.gov.au:2101/",
      "color": "#b8860b", "label": "AUSCORS",
      "type": "single-base", "country": ["AU"],

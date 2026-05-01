@@ -1082,8 +1082,15 @@ regions). Stations and RINEX publicly visible. Port structure:
 
 - **:2101** — 47 physical single-base stations, RTCM3 (GPS+GLONASS) → in pipeline
 - **:2102** — same 47 stations, RTCM3 MSM5 (GPS+GLONASS+Galileo+BeiDou) → not ingested (duplicate)
-- **:2106** — 3 VRS nearest-station mounts (NSRT23, NSRT, NSR5) → filtered by nmea
-- **:2108** — 2 network-correction mounts (ACRT, ACR5) → filtered by nmea
+- **:2106** — 3 VRS nearest-station mounts (NSRT23, NSRT, NSR5) → not ingested
+- **:2108** — 2 network-correction mounts (ACRT, ACR5) → not ingested
+
+**Caster misconfiguration**: 39 of the 47 physical stations on port 2101 are incorrectly
+tagged `NMEA=1` in the sourcetable (same class of bug as rtk2go and GeoRTK). All 47
+entries on port 2101 have unique fixed coordinates and Leica GNSS Spider software,
+confirming they are physical. Pipeline uses `nmea_filter: False` to pass all 47 through.
+VRS/network mounts are on separate ports (2106, 2108) and do not appear in the port 2101
+sourcetable, so the filter override is safe.
 
 **investigate**: confirm whether a hostname resolves to 193.137.94.71 (e.g.
 ntrip.renep.dgterritorio.gov.pt) so the pipeline URL can use DNS rather than
