@@ -3,26 +3,18 @@ shops who need better than ~5–10 m GPS accuracy. Enterprise / B2B is out of sc
 DGNSS out of scope due to low real world accuracy.
 PPP/SSR/HAS mentioned as alternative in guide, not what this projedct is about.
 
-## Pointers
-
-  [`update-country-survey`](.claude/skills/update-country-survey/SKILL.md)
-  Rules on how to update country-survey, networks, 
-- [`data/help_topics.json`](data/help_topics.json) — searchable visitor-facing
-  help repository surfaced via the Help button on the map, content must stay aligned /w guide.html
-- [`guide.html`](guide.html) — long-form standalone visitor primer linked from the map. content must stay aligned /w /help_topics.json
-
 ## Repository layout
 
 ```
 index.html                    # Single-page Leaflet app — all UI.
-guide.html                    # Hobbyist primer (static page).
+guide.html                    # long-form standalone visitor primer linked from the map. content must stay aligned /w /help_topics.json
 scripts/fetch_stations.py     # updates .sourcetable files, source_health.json, stations.json.
 .github/workflows/
   update-stations.yml         # Runs fetch_stations.py 4 times a day, commits to main.
 data/
   stations.json               # fetched data, consumed by index
   country_markers.json        # Static; country-level markers, content visitor facing
-  help_topics.json            # Static; in-map help (22 topics + 4 popovers).
+  help_topics.json            # searchable visitor-facing help repository surfaced via the Help button on the map, content must stay aligned /w guide.html
   <source>.sourcetable        # Raw archives per fetched caster.
 docs/ 
   gnss-ai-guide.md # deep technical GNSS primer for ai, consume before making changes to guide or help
