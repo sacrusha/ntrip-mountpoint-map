@@ -830,7 +830,7 @@
     return group;
   }
   // freeNetworks routing: vrs+live -> VRS ring (bySid), dead -> grey ring (greyById), !lat -> no marker.
-  // paidTiers {affordable,paid,restricted} -> ? markers (same symbol for now); info -> stub, not rendered.
+  // paidTiers {affordable,paid,restricted,info} -> ? / $ / ✕ markers per tier.
   function buildNetworkOverlays(freeNetworks,paidTiers,renderer){
     var group=L.layerGroup();
     var bySid={}, greyById={};
@@ -864,7 +864,7 @@
         bySid[net.id]=addRingMarker(group,net.lat,net.lon,renderer,VRS_COLOR,0.25,net.label+' (VRS)',popup);
       }
     });
-    ['affordable','paid','restricted'].forEach(function(tier){
+    ['affordable','paid','restricted','info'].forEach(function(tier){
       var ic=PAID_TIER_ICONS[tier];
       (paidTiers[tier]||[]).forEach(function(net){
         var mk=addInfoMarker(group,net.lat,net.lon,buildPaidNetworkPopup(net),net.name,ic.glyph,ic.color);
