@@ -88,7 +88,7 @@ The marker schema is **two orthogonal axes**: a `tier` describing the network's 
 
 | Tier | Add when | Don't add when |
 |---|---|---|
-| `free` | Network costs nothing to use. Includes both pipeline-ingested networks (e.g. SAPOS, ASG-EUPOS) and free networks whose endpoint is still missing or registration-gated (e.g. ReNEP, LitPOS). When the host:port is unknown the `note` must truthfully open with "N stations, free." | Anything not free; post-processing-only; government-internal; defence-controlled; "infrastructure exists but no service confirmed". |
+| `free` | Network costs nothing to use. Includes both pipeline-ingested networks (e.g. SAPOS, ASG-EUPOS) and free networks whose endpoint is still missing or registration-gated (e.g. ReNEP, LitPOS). When the host:port is unknown the `note` must truthfully open with "N stations, free." | Anything not free; post-processing-only (no marker, but still document in survey and `networks.md` as `rejected` — see below); government-internal; defence-controlled; "infrastructure exists but no service confirmed". |
 | `paid` | Substantial national-scale paid commercial operator over the ~$200/yr cutoff (swipos, CPOS, the US-state DOTs, the Russia/China commercial cluster). | Small private surveyor with a few cities → country prose only, no marker. |
 | `paid-affordable` | Substantial national-scale paid operator at or below the cutoff (HEPOS, ROMPOS, AGROS, CRTN). | (as above) |
 | `restricted` | Substantial national-scale operator with no hobbyist path at any price — vetted partners only (TxDOT CORS, CalRTNS), sector-only, or no published rate (SKPOS, KazGeoDesy, DVRS). | A network that has a published private-user tariff — that's `paid`. |
@@ -165,7 +165,9 @@ for a hobbyist; it does **not** encode whether the network is wired into
 - `free` — a free NTRIP/RTK service. Includes both pipeline-ingested networks
   and free networks whose endpoint is missing or registration-gated. The entry
   text says which. **RINEX-download-only with no NTRIP/RTK service → `rejected`,
-  not `free`.**
+  not `free`.** Retain the `networks.md` block and country-survey mention for
+  substantial free government RINEX networks — they are real PPK alternatives
+  a hobbyist may use, and may gain a `weird` marker in a future update.
 - `paid` / `paid-affordable` — accessible to civilians for a fee. Requires
   `**yearly_cost**:` (local currency first, USD or EUR parenthetical,
   greppable for audits). A network with a published hobbyist tariff is always
@@ -178,6 +180,10 @@ for a hobbyist; it does **not** encode whether the network is wired into
 - `candidate` — meta-status: free, endpoint known, ready to ingest but not
   yet wired in.
 - `rejected` — meta-status: investigated and ruled out (one-line rationale).
+  RINEX-only government networks use this status but **retain their `networks.md`
+  block and country-survey entry** — document them as PPK alternatives, not as
+  dead-ends. Omit the block only for trivially-empty investigations (no geodetic
+  infrastructure found at all).
 
 ### Tier A "why" paragraph
 Required only when a systemic constraint (sanctions, civil war, legal barrier, collapse) materially changes what a hobbyist should do. For Tier B/C it's clutter — omit.

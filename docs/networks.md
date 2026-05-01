@@ -3051,10 +3051,45 @@ Enterprise-focused commercial NRTK network covering Italy. Not free.
 
 ---
 
+## agrs_nl — AGRS.NL / Kadaster (NL)
+
+**status**:    free
+**date_added**: 2026-05-01
+**country**:   NL — Netherlands
+**type**:      single-base (~30 mainland stations; BES islands catalogued separately under `bq_cors`)
+**host:port**: `ntrip.kadaster.nl:2101` (plain TCP) / `ntrip.kadaster.nl:443` (TLS)
+**access**:    free, anonymous; email as username suggested for outage notifications but optional
+**registration**: https://nsgi.nl/referentiepunten-en-gnss-data/gnss-data/real-time-streams
+**operator**:  NSGI / Kadaster Nederland (`nsgi.nl`)
+
+NSGI's Active Geodetic Reference System for the Netherlands (AGRS.NL). Free,
+anonymous access. Legal basis: Kadasterwet BWBR0037196 art. 19 lid 4. ~30 mainland
+stations, RTCM 3.2 MSM. The same caster also hosts BES island stations (7 streams),
+catalogued under `bq_cors`.
+TU Delft mirror: `gnss1.tudelft.nl:2101` — subset of stations, no TLS.
+**Volunteer**: none. Zero NL-mainland candidate stations separate from AGRS.NL.
+
+---
+
 ## netpos — NETPOS / Kadaster (NL)
 
-**status**:    rejected
-**reason**:    restricted to Kadaster/Rijkswaterstaat internal use only; not public NTRIP
+**status**:    paid
+**date_added**: 2026-05-01
+**country**:   NL — Netherlands
+**type**:      single-base raw reference streams (not VRS)
+**host:port**: `ntrip.cloud.kadaster.nl:443` (TLS only; NTRIP auth B;Y required)
+**access**:    paid; username + password issued on activation; eHerkenning portal for
+               NL legal entities; foreign users apply via contact form at nsgi.nl
+**registration**: https://nsgi.nl/referentiepunten-en-gnss-data/gnss-data/real-time-streams
+**yearly_cost**: €475/station/yr excl. BTW (~$520/yr) for 1–2 stations; volume to €95/station/yr for 10+ (2026 tariff)
+**operator**:  NSGI / Kadaster Nederland (`nsgi.nl`)
+
+NETPOS delivers raw reference station streams from the same ~30 AGRS.NL
+physically-positioned base stations, as an authenticated paid service.
+Priced per station per year (2026, excl. BTW): 1–2 stations €475/station,
+3–4 €380, 5–6 €285, 7–9 €190, 10+ €95. VAT-exempt. Not a VRS / network-RTK
+service — streams are single-base raw observations for users who compute their
+own corrections.
 
 ---
 
@@ -4178,16 +4213,18 @@ geodesy section for any host:port or pilot NTRIP endpoint.
                COCONet station operated by UNAVCO / EarthScope Consortium
 **yearly_cost**: n/a (no public service)
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-01
 
 No government RTK correction service found. The Lands and Survey Division holds geodetic
 responsibility but no NTRIP caster host:port or registration portal has been identified.
-COCONet / EarthScope NOTA includes at least one station in Antigua for geophysics monitoring;
-real-time streaming via `ntrip.earthscope.org:2101` is not confirmed for this station.
+COCONet / EarthScope NOTA includes at least one station in Antigua for geophysics monitoring.
+The legacy UNAVCO NTRIP platform was retired 2025-07-29; EarthScope NOTA continues at
+`ntrip.earthscope.org:2101`, but whether any Caribbean / AG station is present in the
+new caster's sourcetable has not been confirmed.
 Zero AG mountpoints on rtk2go or Centipede.
 
-**missing**: verify whether any COCONet/NOTA station in Antigua streams via
-`ntrip.earthscope.org:2101`; check EarthScope station inventory for AG stations.
+**missing**: check `ntrip.earthscope.org:2101` sourcetable for AG-coded stations;
+confirm whether Antigua COCONet station was migrated to the EarthScope caster.
 
 ## kn_cors — Saint Kitts and Nevis GNSS / COCONet (KN)
 
@@ -4463,7 +4500,7 @@ stations visible on the Sensor Map. No BF mountpoints on rtk2go or Centipede.
 **type**:      single-base (physical CORS stations)
 **host:port**: not publicly listed (disclosed after registration via IGN Bénin / CatIS)
 **access**:    free with registration; accessible via Benin Cadastral Information System
-**registration**: `service-public.bj` (service PS01085 — "Fichier des stations permanentes GNSS")
+**registration**: https://service-public.bj (service PS01085 — "Fichier des stations permanentes GNSS")
                   or direct contact with IGN Bénin (`ign.bj`)
 **stations**:  7 physical: Cotonou, Abomey, Savalou, Parakou, Natitingou, Nikki, Kandi
 **operator**:  IGN Bénin — Institut Géographique National du Bénin (`ign.bj`),
@@ -4479,10 +4516,14 @@ government service registration path is listed at `service-public.bj` under
 "Fichier des stations permanentes GNSS" (PS01085). Seven stations across ~115,000 km²
 gives average spacing ~130 km — adequate for L1+L2 RTK in the south where stations
 are denser; northern coverage may have gaps. Zero BJ mountpoints on rtk2go or Centipede.
+A 2021 procurement notice on `ign.bj` referenced "modernisation du réseau CORS-GNSS
+vers la solution RTK (NTRIP)", confirming RTK/NTRIP delivery was in scope at that time.
+CatIS (`catistest.xroad.bj`) lists "Stations CORS GNSS Permanentes / Institut Géographique
+National" as a registered system and `ign.bj` homepage is responsive (confirmed 2026-05-01);
+no public caster hostname found in any directory or sourcetable.
 
-**missing**: confirm current NTRIP host:port by completing CatIS / IGN Bénin
-registration; confirm station count and whether any stations have been added since
-MCA-Bénin period.
+**missing**: confirm NTRIP host:port by completing CatIS / IGN Bénin registration;
+confirm station count and whether any stations have been added since MCA-Bénin period.
 
 ---
 
@@ -4542,36 +4583,40 @@ portals for any announced CORS programme.
 
 ---
 
-## dgigc_tg — Togo National CORS Network (TG)
+## dgigc_tg — IGNTOGO / Togo National CORS Network (TG)
 
 **status**:    free
 **country**:   TG — Togo
 **type**:      single-base (physical CORS stations, exact count unconfirmed)
-**host:port**: not publicly listed (contact DGIGC)
-**access**:    professional use; registration via DGIGC; access terms not
+**host:port**: not publicly listed; `igntogo.tg` unreachable as of 2026-05-01 —
+               contact IGNTOGO via `urbanisme.gouv.tg`
+**access**:    professional use; registration via IGNTOGO; access terms not
                published on public website
-**registration**: `urbanisme.gouv.tg` (Ministry of Town Planning and Urban
+**registration**: https://urbanisme.gouv.tg (Ministry of Town Planning and Urban
                   Development website)
 **stations**:  unconfirmed count; deployment began 2017; 614 geodetic benchmarks
                nationwide as of 2025; CORS stations at key reference points
-**operator**:  DGIGC — Direction Générale de l'Information Géographique et de la
-               Cartographie, Ministry of Town Planning and Urban Development
-               (`urbanisme.gouv.tg`)
+**operator**:  IGNTOGO (formerly DGIGC — Direction Générale de l'Information
+               Géographique et de la Cartographie, renamed February 2026);
+               Ministry of Town Planning and Urban Development (`urbanisme.gouv.tg`)
 **yearly_cost**: unknown (no public tariff)
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-01
 
-A national CORS network was deployed from 2017 under DGIGC. A March 2026
-interministerial communiqué mandated systematic attachment of all topographic,
-cadastral, urbanism, and infrastructure work to the National Geodetic Network,
-with a three-month compliance window. As of April 2026, Togo has 614 geodetic
-benchmarks (1st, 2nd, and 3rd order) including 11 first-order benchmarks. No
-public NTRIP caster host:port has been found in any directory, sourcetable, or
-published registration portal. Zero TG mountpoints on rtk2go or Centipede.
+A national CORS network was deployed from 2017 under DGIGC, renamed IGNTOGO in
+February 2026. A March 2026 interministerial communiqué mandated systematic
+attachment of all topographic, cadastral, urbanism, and infrastructure work to the
+National Geodetic Network, with a three-month compliance window. As of 2026, Togo
+has 614 geodetic benchmarks (1st, 2nd, and 3rd order) including 11 first-order
+benchmarks. `igntogo.tg` is unreachable (connection refused, confirmed 2026-05-01);
+`urbanisme.gouv.tg` remains reachable but contains no CORS/NTRIP portal. No public
+NTRIP caster host:port found in any directory, sourcetable, or registration portal.
+Zero TG mountpoints on rtk2go or Centipede.
 
-**missing**: confirm NTRIP host:port by contacting DGIGC via `urbanisme.gouv.tg`;
+**missing**: confirm NTRIP host:port by contacting IGNTOGO via `urbanisme.gouv.tg`;
 confirm exact CORS station count and access model; check whether any stations
-have been shared to rtk2go or Centipede.
+have been shared to rtk2go or Centipede; confirm whether a new IGNTOGO web portal
+replaces `igntogo.tg`.
 
 ---
 
@@ -4694,65 +4739,62 @@ grown since the 2010s AFREF affiliation efforts.
 
 ## gnet_gl — GNet Greenland Geodetic Network (GL)
 
-**status**:    restricted
-**country**:   GL — Greenland (Danish autonomous territory)
-**type**:      n/a (geodetic reference network; no streaming NTRIP caster)
-**host:port**: not publicly listed
-**access**:    restricted (RINEX data via EarthScope/UNAVCO archive; real-time stream
-               not publicly advertised)
-**registration**: https://www.unavco.org/data/gps-gnss/data-access-methods/
-**stations**:  ~60 continuous GNSS stations across Greenland
-**operator**:  DTU Space (Technical University of Denmark) + Asiaq (Greenland Survey)
-               in collaboration with DMI, NGA, and UNAVCO
-**yearly_cost**: n/a (archive data free; no NTRIP subscription model identified)
-
-**date_added**: 2026-04-29
-
-GNet is a geodetic monitoring network spanning Greenland, maintained primarily for
-ice-sheet dynamics research, sea-level and glacial isostatic rebound studies, and
-geodetic reference-frame maintenance. DTU Space leads science operations; Asiaq
-(Greenland Survey, based in Nuuk) contributes Greenlandic territorial operations.
-RINEX data are archived at UNAVCO / EarthScope GAGE Facility and are freely accessible
-for post-processing. No public NTRIP streaming caster has been identified. SDFi
-(Styrelsen for Dataforsyning og Infrastruktur), Denmark's national mapping authority,
-holds geodetic responsibility for Greenland but does not operate a public Greenlandic
-NTRIP service. Zero GRL stations confirmed in rtk2go, Centipede, or EarthScope
-NOTA streaming sourcetables.
-
-**missing**: confirm whether DTU Space, Asiaq, or SDFi has established or is
-             planning a public NTRIP streaming service for Greenland; check whether
-             any EarthScope NOTA stations in Greenland carry streaming access.
-
-## umhvorvisstovan_fo
-
 **status**:    rejected
+**country**:   GL — Greenland (Danish autonomous territory)
+**type**:      single-base (geodetic reference network; RINEX/PPK only)
+**host:port**: n/a — no NTRIP caster; RINEX files via Dataforsyningen
+**access**:    RINEX 2/3 freely available via `dataforsyningen.dk`; no RTK/NTRIP
+               stream identified in any aggregator as of 2026-05-01
+**registration**: https://dataforsyningen.dk (Dataforsyningen — Danish national
+                  geodata portal); UNAVCO/EarthScope archive also accessible
+**stations**:  ~60 continuous GNSS stations across Greenland
+**operator**:  KDS/Klimadatastyrelsen (Danish Agency for Climate Data, formerly SDFi)
+               + DTU Space; Asiaq (Greenland Survey) contributes territorial operations
+
+**date_added**: 2026-05-01
+
+GNET (go-gnet.org) is a geodetic monitoring network spanning Greenland, maintained
+primarily for ice-sheet dynamics research, sea-level and glacial isostatic rebound
+studies, and geodetic reference-frame maintenance. RINEX 2/3 observation files are
+distributed via Dataforsyningen (`dataforsyningen.dk`); go-gnet.org and asiaq.gl
+confirmed alive 2026-05-01. Asiaq (`asiaq.gl`) lists Survey and Construction services
+but publishes no GNSS correction product. No public NTRIP streaming caster found in
+any aggregator (ntrip-list.com/europe, rtk2go, EarthScope NOTA sourcetable) as of
+2026-05-01. Zero GRL stations in rtk2go, Centipede, or EarthScope NOTA streaming
+sourcetables. Rejected: RINEX/PPK only.
+
+**missing**: confirm whether KDS, DTU Space, or Asiaq is planning a public NTRIP
+             streaming service for Greenland.
+
+## umhvorvisstovan_fo — Umhvørvisstovan GNSS Network (FO)
+
+**status**:    restricted
 **country**:   FO — Faroe Islands (Danish autonomous territory)
-**type**:      n/a (no CORS network / NTRIP service identified)
-**host:port**: not publicly listed
-**access**:    n/a
-**registration**: n/a
-**stations**:  0 confirmed NTRIP mountpoints; one EPN permanent station (ARGI00FRO,
-               Argir/Tórshavn) used for reference-frame maintenance only
-**operator**:  Umhvørvisstovan — The Faroese Environment Agency (`umhvorvisstovan.fo`)
-**yearly_cost**: n/a
+**type**:      single-base (4 confirmed physical GNSS reference stations)
+**host:port**: not publicly listed; access requires direct contact with Umhvørvisstovan
+**access**:    professional/commercial clients (surveying firms, construction companies);
+               no self-service portal or published endpoint; hobbyist eligibility unclear
+**registration**: https://us.fo/kort/geodesi (agency contact; no self-service signup)
+**stations**:  4 physical: Klaksvík, Vestmanna, Trongisvágur, Argir (confirmed 2026-05-01)
+**operator**:  Umhvørvisstovan — The Faroese Environment Agency (`us.fo`,
+               formerly `umhvorvisstovan.fo`)
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-01
 
-Umhvørvisstovan holds responsibility for surveying, mapping, and geodesy of the
-Faroe Islands (land and sea). The agency operates UAV-based mapping programmes and
-publishes topographic data. One EPN station, ARGI00FRO (Argir, Tórshavn), is part
-of the EUREF Permanent GNSS Network; RINEX 2 data submission ceased February 2021.
-No public NTRIP caster, RTK correction service, or CORS network with streaming
-endpoint has been found in any sourcetable, national directory, or agency web page.
-Danish GPSnet explicitly excludes the Faroe Islands. Zero FRO mountpoints on
-rtk2go or Centipede. A Geospatial Centre at Fróðskaparsetur Føroya (Setur, the
-University of the Faroe Islands) was launched in partnership with Landsverk and
-Umhvørvisstovan to develop geodesy and surveying capacity — this may lead to a
-public CORS service in future.
+Umhvørvisstovan holds responsibility for surveying, mapping, and geodesy of the Faroe
+Islands (land and sea). The agency's geodesy page (`us.fo/kort/geodesi`, confirmed
+2026-05-01) explicitly advertises centimetre-level RTK access via 4 permanent GNSS
+reference stations for surveying firms and construction companies. No caster hostname,
+port, sourcetable URL, or tariff is published; access is entirely via direct contact.
+One EPN station (ARGI00FRO, Argir, Tórshavn) was part of the EUREF Permanent GNSS
+Network; RINEX 2 data submission ceased February 2021. Danish GPSnet explicitly
+excludes the Faroe Islands. Zero FRO mountpoints on rtk2go or Centipede. A Geospatial
+Centre at Fróðskaparsetur Føroya (Setur, the University of the Faroe Islands) was
+launched in partnership with Landsverk and Umhvørvisstovan to develop geodesy and
+surveying capacity.
 
-**missing**: confirm whether Umhvørvisstovan or Landsverk has established or is
-planning a public NTRIP service; check whether ARGI00FRO RINEX data resumed
-post-2021 and whether any real-time stream is accessible.
+**missing**: confirm caster host:port and whether a tariff is published; clarify
+whether non-commercial / hobbyist access is available via us.fo/kort/geodesi.
 
 ## gibr_gi — BIGF/IGS Reference Station Gibraltar (GI)
 
@@ -4814,20 +4856,19 @@ determine subscription pricing.
 **operator**:  Stichting Kadaster en Openbare Registers Curaçao (`kadaster.cw`);
                geodetic support available from NSGI (`nsgi.nl`) on request
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-01
 
-No public RTK correction service or NTRIP caster found. Kadaster Curaçao maintains
-the land registry and cadastre; NSGI (the Netherlands' national geodetic authority)
-can provide geodetic infrastructure including GNSS reference station establishment
-and inclusion in AGRS.NL on request from the Curaçao government. Whether a public
-NTRIP caster has been established through that channel is not confirmed. EarthScope
-COCONet station CN40_RTCM3P3 (12.18°N, −68.96°W) streams via
-`ntrip.earthscope.org:2101` under NULA (free non-commercial) — the practical free
-option for the island. Three rtk2go volunteer bases near Willemstad (CWM_JAJO,
-MPA_JAJO, UTE_JAJO) supplement EarthScope coverage.
+No public RTK correction service or NTRIP caster found for Curaçao. Kadaster Curaçao
+(`kadaster.cw`, confirmed alive 2026-05-01) has no GNSS or NTRIP section. Neither
+`ntrip.kadaster.nl:2101` nor `ntrip.cloud.kadaster.nl:443` carries any CUW-coded
+mountpoint (sourcetable verified 2026-05-01); NSGI FAQ states geodetic enquiries for
+Curaçao must go to local authorities. EarthScope COCONet station CN40_RTCM3P3
+(12.18°N, −68.96°W) streams via `ntrip.earthscope.org:2101` under NULA (free
+non-commercial) — the practical free option for the island. Three rtk2go volunteer
+bases near Willemstad (CWM_JAJO, MPA_JAJO, UTE_JAJO) supplement EarthScope coverage.
 
-**missing**: verify with Kadaster Curaçao or NSGI whether any public NTRIP caster
-or RTK correction service exists for Curaçao.
+**missing**: confirm with Kadaster Curaçao whether any public NTRIP caster or RTK
+correction service exists or is planned.
 
 ## aw_cors — Aruba Geodetic / DLV CORS (AW)
 
@@ -4842,46 +4883,45 @@ or RTK correction service exists for Curaçao.
 **operator**:  Dienst Landmeetkunde en Vastgoedregistratie (DLV), Government of Aruba
                (`gobierno.aw`)
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-01
 
-No public RTK correction service or NTRIP caster found. DLV is the geodetic and
-survey authority for Aruba, responsible for coordinate systems and land registration.
-NSGI can provide geodetic infrastructure on request. EarthScope COCONet station
+No public RTK correction service or NTRIP caster found for Aruba. DLV (`dlv.aw`,
+no live result as of 2026-05-01) is the geodetic and survey authority; `gov.aw`
+contains only civil aviation GNSS references and no RTK correction content. NSGI
+FAQ confirms DLV falls outside NSGI's mandate. EarthScope COCONet station
 CN19_RTCM3P3 (12.61°N, −70.05°W, installed 2013) streams via
 `ntrip.earthscope.org:2101` under NULA (free non-commercial) — the practical free
 option for the island. One rtk2go volunteer base (PINOST1, Santa Cruz) is also present.
 
-**missing**: verify with DLV whether any public NTRIP caster or RTK correction
-service exists for Aruba.
+**missing**: confirm with DLV (Government of Aruba) whether any public NTRIP caster
+or RTK correction service exists or is planned.
 
 ## bq_cors — BES Islands Geodetic / Kadaster NL (BQ)
 
-**status**:    rejected
+**status**:    free
+**date_added**: 2026-05-01
 **country**:   BQ — Bonaire, Sint Eustatius, Saba (Dutch special municipalities)
-**type**:      unknown (no public caster endpoint identified)
-**host:port**: not publicly listed
-**access**:    unknown — no public self-service registration portal found
-**registration**: https://bes.kadaster.nl/
-**yearly_cost**: n/a (no public service)
-**stations**:  unknown; NSGI may include at least one GNSS reference station per
-               island in AGRS.NL
-**operator**:  Kadaster Nederland — BES (`bes.kadaster.nl`); geodetic support from
-               NSGI (`nsgi.nl`), which publishes the BESTRANS transformation for
-               BES coordinate systems
+**type**:      single-base (7 streams: 2 on Bonaire, 3 on Saba, 2 on Sint Eustatius)
+**host:port**: `ntrip.kadaster.nl:2101` (unencrypted) / `ntrip.kadaster.nl:443` (TLS)
+**access**:    free, anonymous; no username/password required
+**registration**: https://nsgi.nl/referentiepunten-en-gnss-data/gnss-data/real-time-streams
+**stations**:  Bonaire: BON200BES0 (Stonex SC2200, GPS+GLO+GAL+BDS),
+               BONK00BES0 (Leica GR30, GPS+GLO+GAL+BDS);
+               Saba: SABY00BES0 (Septentrio PolRX5E, GPS+GLO+GAL+BDS),
+               SABY00BES1 (raw SBF), SABY0 (legacy RTCM 3.1, GPS+GLO);
+               Sint Eustatius: SEUS00BES0 (Septentrio PolRX5, GPS+GLO+GAL+BDS),
+               SEUS0 (legacy RTCM 3.1, GPS+GLO)
+**operator**:  NSGI / Kadaster Nederland BES (`nsgi.nl`, `bes.kadaster.nl`)
 
-**date_added**: 2026-04-29
-
-Bonaire, Sint Eustatius, and Saba are special municipalities of the Netherlands.
-Kadaster Nederland took over cadastral and surveying functions for the BES islands
-on 1 January 2021. NSGI maintains BESTRANS (the transformation between BES local
-coordinate systems and ITRS) and can include permanent GNSS reference stations in
-AGRS.NL. No public NTRIP caster or host:port has been found. The nearest EarthScope
-COCONet station is CN40_RTCM3P3 on Curaçao (~80 km from Bonaire), reachable via
-`ntrip.earthscope.org:2101` under NULA — marginal for L1-only hardware, usable with
-dual-frequency. Zero BES-coded rtk2go or Centipede stations found.
-
-**missing**: confirm with Kadaster BES or NSGI whether any AGRS.NL station on Bonaire,
-Sint Eustatius, or Saba streams real-time corrections via NTRIP.
+NSGI pricing page (nsgi.nl/referentiepunten-en-gnss-data/gnss-data/real-time-streams,
+confirmed 2026-05-01) explicitly lists "GNSS-stations op de BES-eilanden" as part of
+the free tier (€0, no VAT). Access is fully anonymous — no username or password
+required; using an email as username is suggested by NSGI for outage notifications
+but optional. Both casters confirmed live via sourcetable fetch (2026-05-01). Streams
+use RTCM 3.2 MSM; legacy RTCM 3.1 mountpoints also present (SABY0, SEUS0).
+Single-station raw reference streams — not a VRS/network-RTK service. Kadaster's
+NETPOS network-RTK service (Netherlands mainland only) does not extend to BES.
+Zero BES-coded rtk2go or Centipede stations.
 
 ## sx_cors — Sint Maarten Geodetic / Kadaster SXM (SX)
 
@@ -4897,19 +4937,21 @@ Sint Eustatius, or Saba streams real-time corrections via NTRIP.
                spatial open data via Ministry of VROMI
                (`gis-vromi-sxm.opendata.arcgis.com`)
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-01
 
-No public RTK correction service or NTRIP caster found. Kadaster Sint Maarten is a
-private foundation established in 1999 that manages land registration and surveying;
-it achieved GIS capability in 2025 (ArcGIS platform deployment). The Ministry of VROMI
-operates an open spatial data portal. No NTRIP host:port or real-time correction
-service has been announced. The nearest EarthScope COCONet station is CN59_RTCM3P3
-(18.21°N, −63.05°W, country code AIA — physically on Anguilla, ~20 km north of Sint
-Maarten), which streams via `ntrip.earthscope.org:2101` under NULA (free
-non-commercial) and is usable from SXM territory at that baseline.
+No public RTK correction service or NTRIP caster found for Sint Maarten. NSGI's
+sourcetable carries no SXM-coded mountpoints (verified 2026-05-01). Kadaster Sint
+Maarten is a private foundation established in 1999 that manages land registration
+and surveying; it achieved GIS capability in 2025 (ArcGIS platform deployment). An
+early-2026 MOU between VROMI / Kadaster Sint Maarten and Kadaster Netherlands confirms
+institutional cooperation — not an operational NTRIP service. The nearest EarthScope
+COCONet station is CN59_RTCM3P3 (18.21°N, −63.05°W, country code AIA — physically on
+Anguilla, ~20 km north of Sint Maarten), which streams via `ntrip.earthscope.org:2101`
+under NULA (free non-commercial) and is usable from SXM territory at that baseline.
 
-**missing**: verify with Kadaster Sint Maarten or VROMI whether any NTRIP caster
-or RTK correction service exists on Sint Maarten.
+**missing**: confirm with Kadaster Sint Maarten or VROMI whether any NTRIP caster
+or RTK correction service is planned; revisit as the Kadaster Netherlands cooperation
+develops.
 
 ## regat_dz — REGAT Permanent GPS Network (DZ)
 
@@ -4981,14 +5023,14 @@ institutional basis, and whether any commercial RTK service operates in Egypt.
 ## ipgn — Iranian Permanent GNSS Network (IR)
 
 **status**:    restricted
-**date_added**: 2026-04-29
+**date_added**: 2026-05-01
 **country**:   IR
 **type**:      physical single-base (~127 stations)
-**host:port**: not confirmed for real-time NTRIP streaming; portal `ipgn.ncc.gov.ir`
+**host:port**: port 2101 returns connection refused from outside Iran (confirmed
+               2026-05-01); portal `ipgn.ncc.gov.ir` responsive for registration
 **access**:    registration at `ipgn.ncc.gov.ir/en/accounts/signup/` — web portal
-               accessible internationally but real-time NTRIP streaming reachability
-               from outside Iran not confirmed; internet filtering (national intranet)
-               may block external connections
+               accessible internationally; real-time NTRIP streaming blocked from
+               outside Iran's national intranet (connection refused confirmed)
 **registration**: `ipgn.ncc.gov.ir/en/accounts/signup/`
 **yearly_cost**: not publicly listed
 **stations**:  ~127 physical CORS (phase 1: 2004–2006, 106 stations; phase 2: completed
@@ -4999,13 +5041,15 @@ institutional basis, and whether any commercial RTK service operates in Egypt.
 Iranian Permanent GNSS Network for Geodynamics: established post-2003 Bam earthquake
 for tectonic monitoring, velocity and strain-field estimation. Base network covers
 Zagros Mountains, Central Iran, Alborz, East Iran, Makran, Loot, and Kopeh-Dagh; three
-local sub-networks. Data archived to IGS for scientific post-processing. Primarily a
-geodynamics and reference-frame resource — real-time RTK correction delivery for
-hobbyists is not the stated purpose. Reachable NTRIP streaming from outside Iran is
-unconfirmed due to Iran's filtered internet infrastructure.
+local sub-networks. Data archived to IGS for scientific post-processing. Primarily a geodynamics and reference-frame resource — real-time RTK correction delivery
+for hobbyists is not the stated purpose. Port 2101 confirmed connection refused from
+outside Iran (2026-05-01); access within Iran's intranet is unverified from outside.
+NCC is developing domestic GNSS correction software (GPS World, January 2026),
+suggesting active interest in extending real-time correction services using
+non-Western tooling.
 
-**missing**: confirm whether ipgn.ncc.gov.ir exposes a live NTRIP sourcetable accessible
-from outside Iran, and what mountpoint credentials are issued to registered users.
+**missing**: confirm whether NTRIP streaming is accessible from within Iran's intranet
+after registration; confirm what mountpoint credentials are issued to registered users.
 
 ---
 
@@ -5041,28 +5085,23 @@ free NTRIP endpoint.
 
 ## rgna_mx — Red Geodésica Nacional Activa (MX)
 
-**status**:    free
-**date_added**: 2026-04-29
+**status**:    rejected
+**date_added**: 2026-05-01
 **country**:   MX
 **type**:      physical single-base (~36 stations)
-**host:port**: not publicly listed (geodesia.inegi.org.mx portal references an NTRIP service;
-               no host:port discovered from public sources)
-**access**:    free-with-registration — access to real-time streaming appears to require direct
-               contact with INEGI's geodesy department; RINEX downloads are fully self-service
-**registration**: `inegi.org.mx/temas/geodesia_activa/` (contact for streaming access)
-**yearly_cost**: free (RINEX); streaming terms not publicly documented
-**stations**:  ~36 permanent GNSS stations distributed nationally (as of CALE2025 coordinate catalogue)
+**host:port**: n/a — RINEX/post-processing only; no NTRIP caster
+**access**:    RINEX files freely downloadable via SFTP at `geodesia.inegi.org.mx`
+               (migration from FTP effective Oct 2024); no RTK/NTRIP streaming offered
+**registration**: https://inegi.org.mx/temas/geodesia_activa/ (RINEX download)
+**yearly_cost**: n/a
+**stations**:  ~36 permanent GNSS stations distributed nationally (CALE2025 coordinate catalogue)
 **operator**:  INEGI — Instituto Nacional de Estadística y Geografía (`inegi.org.mx`)
 
-The RGNA is Mexico's national active geodetic reference network under INEGI. Stations record
-GNSS data continuously, contributing to SIRGAS and IGS. RINEX files are freely downloadable
-at `inegi.org.mx/app/geo2/rgna/`. INEGI technical documentation references a real-time NTRIP
-service hosted at `geodesia.inegi.org.mx`, but no public self-service registration portal or
-host:port has been found through open-source research. Not added to pipeline pending endpoint
-confirmation.
-
-**missing**: confirm whether geodesia.inegi.org.mx exposes a live NTRIP sourcetable accessible
-to the public, and what credentials or registration pathway grants streaming access.
+The RGNA is Mexico's national active geodetic reference network under INEGI, contributing
+to SIRGAS and IGS. INEGI's current English-language documentation (confirmed 2026-05-01)
+explicitly states no real-time RTK/NTRIP streaming is offered — data are RINEX files at
+15-second intervals, available free without registration. A 2013 SIRGAS bulletin discussed
+NTRIP aspirations; these were not implemented. Rejected: RINEX/PPK only.
 
 ---
 
@@ -5126,13 +5165,14 @@ $200/yr paid-affordable cutoff. Not added to pipeline: paid service.
 ## sirgas_chile — RGN/SIRGAS-CHILE (CL)
 
 **status**:    free
-**date_added**: 2026-04-29
+**date_added**: 2026-05-01
 **country**:   CL
 **type**:      physical single-base (180+ CORS stations)
-**host:port**: not publicly listed (real-time NTRIP service announced 2025; no public
-               host:port discoverable — procedure video at youtube.com/watch?v=4yuH1W05eII)
-**access**:    RINEX free; real-time NTRIP access appears to require contact with IGM
-               (`ventas@igm.cl` or geodesy department)
+**host:port**: `ntrip.igm.cl:2101` — connection refused (2026-05-01); IGM NTRIP
+               sub-pages returning HTTP 500; no working public endpoint confirmed
+**access**:    RINEX free via `sirgaschile.cl`; real-time NTRIP unconfirmed —
+               ArduSimple (2025) describes the network as CORS/PPK only; IGM
+               announced NTRIP in 2025 (procedure: youtube.com/watch?v=4yuH1W05eII)
 **registration**: `sirgaschile.cl` (coordinate certificates and RINEX); NTRIP streaming
                   registration not self-service
 **yearly_cost**: RINEX free; streaming terms not publicly documented
@@ -5143,11 +5183,13 @@ SIRGAS-CHILE is Chile's national geodetic reference network under the army's IGM
 entirely of CORS stations covering the national territory from Arica to Punta Arenas. In 2025
 IGM launched a renovated sirgaschile.cl platform and announced real-time NTRIP streaming
 services alongside the existing RINEX download and online post-processing (PPP) tools.
-No public self-service registration portal or host:port for the NTRIP caster has been found
-through open-source research. Not added to pipeline pending endpoint confirmation.
+No public self-service registration portal or working host:port for the NTRIP caster has
+been found. `ntrip.igm.cl:2101` returns connection refused and IGM's NTRIP sub-pages
+return HTTP 500 (confirmed 2026-05-01). ArduSimple (2025) describes the network as
+CORS/PPK only. Not added to pipeline pending endpoint confirmation.
 
-**missing**: confirm whether a public-facing NTRIP sourcetable is live at igm.cl or
-sirgaschile.cl, and what registration pathway (if any) grants free hobbyist access.
+**missing**: confirm whether the 2025-announced NTRIP service is operational; check
+sirgaschile.cl and igm.cl for a working caster address and registration pathway.
 
 ---
 
@@ -5221,7 +5263,7 @@ SNIT account creation (free, web-based).
 ## nignet — NIGNET (NG)
 
 **status**:    restricted
-**date_added**: 2026-04-29
+**date_added**: 2026-05-01
 **country**:   NG
 **type**:      physical single-base (geodetic reference network)
 **host:port**: host:port not publicly listed; a research NTRIP prototype with BKG
@@ -5244,13 +5286,16 @@ contribute to AFREF. Inter-station distances of 500–1,000 km across Nigeria's
 923,768 km² make reliable L1+L2 network RTK impractical — corrections would be
 extrapolated well beyond the 50–70 km baseline limit. A research paper documented
 implementation of an NTRIP caster on the network with a management system and
-PayPal payment integration; this has not been confirmed as a stable, publicly
-accessible service. No free hobbyist NTRIP path identified.
+PayPal payment integration; `gnssnigeria.com`, the apparent subscriber portal, is
+unreachable as of 2026-05-01 (connection errors on all paths). `osgof.gov.ng` lists
+"Requests for RTK CORS correction" as a service line but no endpoint or rate is
+published (homepage and services page load; most recent news Oct 2025). No free
+hobbyist NTRIP path identified.
 
-**missing**: confirm whether any endpoint at osgof.gov.ng or gnssnigeria.com
-             has been made publicly available; check if commercial providers
-             (e.g. CHCNAV RTK network cited as operating in Nigeria) have
-             established a hobbyist-accessible caster.
+**missing**: confirm whether a stable endpoint has been established at osgof.gov.ng
+             or a replacement portal; `gnssnigeria.com` unreachable as of 2026-05-01;
+             check if commercial providers (e.g. CHCNAV RTK network cited as
+             operating in Nigeria) have established a hobbyist-accessible caster.
 
 ## sok_ke — Survey of Kenya CORS / Geodetic Control (KE)
 
@@ -5418,3 +5463,28 @@ projected for late 2025/2026. No public NTRIP host:port has been published.
 
 **missing**: confirm whether SEN-CORS has launched a public NTRIP caster;
              check anat.sn and procasef.com for service announcements.
+
+---
+
+## regme_ec — REGME-IP (EC)
+
+**status**:    free
+**date_added**: 2026-05-01
+**country**:   EC — Ecuador
+**type**:      single-base
+**host:port**: `ntrip.igm.gob.ec:2101`
+**access**:    free with registration; no stated residency restriction; open to all
+**registration**: https://www.geoportaligm.gob.ec/ntrip/
+**stations**:  not published (military geodetic network)
+**operator**:  IGM — Instituto Geográfico Militar del Ecuador (`igm.gob.ec`)
+
+REGME-IP (Red GNSS Militar Ecuatoriana de Posicionamiento en Tiempo Real) is Ecuador's
+national free NTRIP RTK correction service, operated by the army's mapping institute.
+Stated as "totalmente libre y gratuito" (entirely free). Registration required via the
+geoportal; no residency restriction stated on the registration page. SIRGAS bulletin
+(2022) explicitly names `ntrip.igm` listening on port 2101. Geoportal and visor
+(`geoportaligm.gob.ec/ntrip/public/visor`) confirmed reachable 2026-05-01.
+Zero ECU mountpoints currently on rtk2go; in-pipeline candidate.
+
+**missing**: verify sourcetable contents and mountpoint names at `ntrip.igm.gob.ec:2101`;
+confirm station count and geographic distribution.

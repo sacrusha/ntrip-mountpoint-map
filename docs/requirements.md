@@ -25,7 +25,10 @@ site is for users who need better than HAS.
 - Commercial / paid caster networks.
 - Sub-metre DGNSS-only mountpoints (dominated by free Galileo HAS).
 - Raw-observation networks without real-time RTK (EPN / EUREF-IP;
-  those are for post-processing).
+  those are for post-processing) — excluded from the map and pipeline.
+  Substantial free national RINEX networks (e.g. INEGI RGNA) are still
+  documented in `country-survey.md` and `networks.md` as PPK alternatives
+  (`status: rejected`); they produce no map marker.
 - Per-user authentication, account creation, saved configurations.
 - Mobile-app or native clients; this is a single static page served
   from GitHub Pages.
@@ -174,7 +177,7 @@ communicates what is known. Four visual treatments:
 | Coloured VRS circle | Free VRS network ingested into the pipeline with live data | Sign up — corrections exist, no fixed antennas |
 | Grey circle | Free network whose endpoint is unknown / registration-gated, or a known free VRS network whose pipeline data has gone stale | Something free exists here; we haven't connected it yet |
 | Circled **?** | A substantial national-scale network where access isn't free or where something unusual gets in the way (paid, restricted, jamming, non-NTRIP, etc.) | Dead end or legwork required — popup explains |
-| Nothing | None of the above (investigation found nothing operational, post-processing-only, defence-internal, regional surveying company too small to flag, etc.) | — |
+| Nothing | None of the above (investigation found nothing operational, post-processing-only, defence-internal, regional surveying company too small to flag, etc.). Post-processing-only government networks still get survey + `networks.md` entries even though they produce no marker. | — |
 
 The data model is **two orthogonal axes** plus runtime data presence.
 
