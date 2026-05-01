@@ -404,7 +404,7 @@ SOURCES = [
 # GEODNET (HYFIX.AI) removed 2026-04-20: paid service ($40/month); sourcetable is
 # publicly readable but returns 0 free stations after filter. Not in scope.
 
-FETCH_TIMEOUT = 60
+FETCH_TIMEOUT = 5
 STALE_GREY_DAYS = 3   # sources offline this long shown as grey dots, excluded from coverage raster
 STALE_HIDE_DAYS = 7   # sources offline this long hidden entirely
 
@@ -671,7 +671,7 @@ def main() -> int:
         for src in SOURCES
     ]
 
-    with ThreadPoolExecutor(max_workers=8) as executor:
+    with ThreadPoolExecutor(max_workers=len(sources_with_meta)) as executor:
         futures = {executor.submit(fetch_source, src): src for src in sources_with_meta}
         for future in as_completed(futures):
             sid, result, was_fresh = future.result()
