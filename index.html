@@ -390,21 +390,17 @@
   // Populated from data/stations.json at load time.
   var SOURCE_META={};
   // Groups collapse multiple source IDs into one toggle row.
-  // match(sid) → true means the source belongs to this group.
+  // Matching uses SOURCE_GROUPS_MAP (sid → group name), populated from stations.json.
   var SOURCE_GROUPS=[
-    {label:'SAPOS', color:'#2d6e6e',
-     match:function(sid){ return sid.indexOf('sapos_')===0; }},
+    {label:'SAPOS', color:'#2d6e6e', group:'sapos'},
   ];
+  var SOURCE_GROUPS_MAP={};
   var MULTI_COLOR='#222', UNKNOWN_SOURCE_COLOR='#888', VRS_COLOR='#c0196a';
   var GREY_MARKER_COLOR='#666';   // matches stale-pin colour
   var INFO_MARKER_COLOR='#888';   // circled-? paid/restricted markers
 
-  function sourceLabel(sid){
-    return SOURCE_LABELS[sid]||(sid.indexOf('sapos_')===0?'SAPOS '+sid.slice(6):sid);
-  }
-  function sourceColor(sid){
-    return SOURCE_COLORS[sid]||(sid.indexOf('sapos_')===0?'#2d6e6e':UNKNOWN_SOURCE_COLOR);
-  }
+  function sourceLabel(sid){ return SOURCE_LABELS[sid]||sid; }
+  function sourceColor(sid){ return SOURCE_COLORS[sid]||UNKNOWN_SOURCE_COLOR; }
 
   function stationSourceIds(s){
     if(s._sourceIds) return s._sourceIds;
@@ -1278,7 +1274,7 @@
     var claimed={};
     var entries=[];
     SOURCE_GROUPS.forEach(function(g){
-      var members=Object.keys(sourceCounts).filter(g.match);
+      var members=Object.keys(sourceCounts).filter(function(sid){ return SOURCE_GROUPS_MAP[sid]===g.group; });
       if(!members.length) return;
       members.forEach(function(s){ claimed[s]=true; });
       var n=members.reduce(function(a,s){ return a+(sourceCounts[s]||0); },0);
@@ -1490,6 +1486,7 @@
         pass: rs.pass||(rs.credentials&&rs.credentials.pass)||null,
         userNote: rs.userNote||null,
       };
+      if(rs.group) SOURCE_GROUPS_MAP[sid]=rs.group;
       // Prefer source_health.json last_ok (always current) over stations.json
       // (only updated when station data changes).
       var lo=(healthSources[sid]&&healthSources[sid].last_ok)||rs.last_ok;
