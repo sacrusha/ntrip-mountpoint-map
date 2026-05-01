@@ -278,7 +278,6 @@
       "lon": -8.0,
       "tier": "free",
       "vrs": true,
-      "pins": true,
       "access": "registration",
       "registration": "https://renep.dgterritorio.gov.pt",
       "stations_declared": 47,
@@ -427,7 +426,6 @@
       "lon": 11.1,
       "tier": "free",
       "vrs": true,
-      "pins": true,
       "access": "registration",
       "registration": "https://www.tpos.provincia.tn.it",
       "stations_declared": 11,
@@ -442,7 +440,6 @@
       "lon": 11.4,
       "tier": "free",
       "vrs": true,
-      "pins": true,
       "access": "registration",
       "registration": "https://www.stpos.it",
       "stations_declared": 10,
@@ -457,7 +454,6 @@
       "lon": 12.0,
       "tier": "free",
       "vrs": true,
-      "pins": true,
       "access": "registration",
       "registration": "https://retegnssveneto.cisas.unipd.it",
       "stations_declared": 20,
@@ -472,7 +468,6 @@
       "lon": 8.6,
       "tier": "free",
       "vrs": true,
-      "pins": true,
       "access": "registration",
       "registration": "https://geoportal.regione.liguria.it/servizi/rete-gnss-liguria",
       "stations_declared": 10,
@@ -487,7 +482,6 @@
       "lon": 14.0,
       "tier": "free",
       "vrs": true,
-      "pins": true,
       "access": "registration",
       "registration": "https://www.ct.ingv.it/index.php/risorse-e-servizi/sicil-net",
       "stations_declared": 80,
@@ -1213,8 +1207,7 @@
       "lat": 46.0,
       "lon": 13.5,
       "tier": "free",
-      "vrs": true,
-      "pins": true
+      "vrs": true
     },
     {
       "id": "ergnss",
@@ -1225,7 +1218,6 @@
       "lon": -3.7,
       "tier": "free",
       "vrs": true,
-      "pins": true,
       "stations_declared": 128
     },
     {
@@ -1237,7 +1229,6 @@
       "lon": 114.2,
       "tier": "free",
       "vrs": true,
-      "pins": true,
       "stations_declared": 19
     },
     {
@@ -1249,7 +1240,6 @@
       "lon": 118.0,
       "tier": "free",
       "vrs": true,
-      "pins": true,
       "stations_declared": 200
     },
     {
@@ -1261,7 +1251,6 @@
       "lon": -74.1,
       "tier": "free",
       "vrs": true,
-      "pins": true,
       "stations_declared": 233
     },
     {
@@ -1273,7 +1262,6 @@
       "lon": 6.1,
       "tier": "free",
       "vrs": true,
-      "pins": true,
       "stations_declared": 17
     },
     {
@@ -1299,7 +1287,6 @@
       "lon": 127.8,
       "tier": "free",
       "vrs": true,
-      "pins": true,
       "stations_declared": 100
     },
     {
@@ -1311,7 +1298,6 @@
       "lon": 106.92,
       "tier": "free",
       "vrs": true,
-      "pins": true,
       "stations_declared": 40
     },
     {
@@ -1335,7 +1321,6 @@
       "lat": -25.3,
       "lon": 133.8,
       "tier": "free",
-      "pins": true,
       "stations_declared": 813
     },
     {
@@ -1346,7 +1331,6 @@
       "lat": -41.3,
       "lon": 174.8,
       "tier": "free",
-      "pins": true,
       "stations_declared": 62
     },
     {
@@ -1357,7 +1341,6 @@
       "lat": -29.0,
       "lon": 25.0,
       "tier": "free",
-      "pins": true,
       "stations_declared": 72
     },
     {
@@ -1368,7 +1351,6 @@
       "lat": -14.2,
       "lon": -53.2,
       "tier": "free",
-      "pins": true,
       "stations_declared": 150
     },
     {
@@ -1379,7 +1361,6 @@
       "lat": -34.0,
       "lon": -64.0,
       "tier": "free",
-      "pins": true,
       "stations_declared": 203
     },
     {
@@ -1391,7 +1372,6 @@
       "lon": -56.0,
       "tier": "free",
       "vrs": true,
-      "pins": true,
       "stations_declared": 26
     },
     {
@@ -1402,7 +1382,6 @@
       "lat": 36.2,
       "lon": 138.3,
       "tier": "free",
-      "pins": true,
       "stations_declared": 325
     },
     {
@@ -1413,7 +1392,6 @@
       "lat": 36.2,
       "lon": 138.3,
       "tier": "free",
-      "pins": true,
       "stations_declared": 41
     },
     {
@@ -1425,7 +1403,6 @@
       "lon": 9.1,
       "tier": "free",
       "vrs": true,
-      "pins": true,
       "stations_declared": 4
     },
     {
@@ -1437,7 +1414,6 @@
       "lon": 7.3,
       "tier": "free",
       "vrs": true,
-      "pins": true,
       "stations_declared": 17
     },
     {
@@ -1449,7 +1425,6 @@
       "lon": 7.0,
       "tier": "free",
       "vrs": true,
-      "pins": true,
       "stations_declared": 14
     },
     {
@@ -1461,7 +1436,6 @@
       "lon": 13.2,
       "tier": "free",
       "vrs": true,
-      "pins": true,
       "stations_declared": null
     },
     {
@@ -1473,7 +1447,6 @@
       "lon": 8.0,
       "tier": "free",
       "vrs": true,
-      "pins": true,
       "stations_declared": 39
     },
     {
@@ -1485,7 +1458,6 @@
       "lon": 12.5,
       "tier": "free",
       "vrs": true,
-      "pins": true,
       "stations_declared": 12
     },
     {
@@ -1497,7 +1469,6 @@
       "lon": 13.5,
       "tier": "free",
       "vrs": true,
-      "pins": true,
       "stations_declared": 29
     },
     {
@@ -1509,7 +1480,6 @@
       "lon": 17.0,
       "tier": "free",
       "vrs": true,
-      "pins": true,
       "stations_declared": 12
     },
     {
@@ -1521,7 +1491,6 @@
       "lon": 14.5,
       "tier": "free",
       "vrs": true,
-      "pins": true,
       "stations_declared": 18
     },
     {
@@ -1533,7 +1502,6 @@
       "lon": -90.0,
       "tier": "free",
       "vrs": true,
-      "pins": true,
       "stations_declared": 180
     },
     {
@@ -1545,7 +1513,6 @@
       "lon": -82.5,
       "tier": "free",
       "vrs": true,
-      "pins": true,
       "stations_declared": 120
     },
     {
@@ -1557,7 +1524,6 @@
       "lon": -92.3,
       "tier": "free",
       "vrs": true,
-      "pins": true,
       "stations_declared": 50
     },
     {
@@ -1569,7 +1535,6 @@
       "lon": -71.5,
       "tier": "free",
       "vrs": true,
-      "pins": true,
       "stations_declared": 22
     },
     {
@@ -1581,7 +1546,6 @@
       "lon": -72.7,
       "tier": "free",
       "vrs": true,
-      "pins": true,
       "stations_declared": 15
     },
     {
@@ -1593,7 +1557,6 @@
       "lon": -111.9,
       "tier": "free",
       "vrs": true,
-      "pins": true,
       "stations_declared": 51
     },
     {
@@ -1605,7 +1568,6 @@
       "lon": -89.5,
       "tier": "free",
       "vrs": true,
-      "pins": true,
       "stations_declared": 35
     },
     {
@@ -1617,7 +1579,6 @@
       "lon": -86.7,
       "tier": "free",
       "vrs": true,
-      "pins": true,
       "stations_declared": 50
     },
     {
@@ -1629,7 +1590,6 @@
       "lon": -120.5,
       "tier": "free",
       "vrs": true,
-      "pins": true,
       "stations_declared": 100
     },
     {
@@ -1641,7 +1601,6 @@
       "lon": -84.7,
       "tier": "free",
       "vrs": true,
-      "pins": true,
       "stations_declared": 120
     },
     {
@@ -1653,7 +1612,6 @@
       "lon": -75.6,
       "tier": "free",
       "vrs": true,
-      "pins": true,
       "stations_declared": 150
     },
     {
@@ -1665,7 +1623,6 @@
       "lon": -86.2,
       "tier": "free",
       "vrs": true,
-      "pins": true,
       "stations_declared": 70
     },
     {
@@ -1677,7 +1634,6 @@
       "lon": -93.5,
       "tier": "free",
       "vrs": true,
-      "pins": true,
       "stations_declared": 83
     },
     {

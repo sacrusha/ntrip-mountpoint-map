@@ -981,22 +981,20 @@
           var ge=addRingMarker(group,lat,lon,renderer,GREY_MARKER_COLOR,0.18,label,buildGreyPopup(label,region,note,gr));
           ge.label=label; greyById[m.id]=ge;
         } else if(m.vrs){
-          if(!m.pins&&sourceCounts&&(sourceCounts[sid]||0)>0) return;
           var col=VRS_COLOR;
           var hasPinsPinned=sourceCounts&&(sourceCounts[sid]||0)>0;
           var declared=m.stations_declared;
-          var body=m.pins
+          var body=hasPinsPinned
             ? 'Covers <b>'+esc(region)+'</b>.'
-              +(hasPinsPinned?' Reference stations are shown on the map.':'')
+              +' Reference stations are shown on the map.'
               +' Connect via a VRS mountpoint for uniform cm-accuracy across the network'
               +' without manual base selection.'
             : 'Covers <b>'+esc(region)+'</b>.'
               +(declared?' Uses ~'+declared+' physical reference stations.':'')
               +' Your NTRIP client connects to a virtual base synthesised near your location.';
-          var accText=m.pins
-            ? (hasPinsPinned?'VRS/NRTK network — fixed stations on map'
-                             :'VRS/NRTK network — virtual mountpoints')
-            : 'VRS network — virtual mountpoints only';
+          var accText=hasPinsPinned
+            ?'VRS/NRTK network — fixed stations on map'
+            :'VRS network — virtual mountpoints only';
           var popReg=safeUrl(SOURCE_REG[sid]||'');
           var popup='<div class="popup-plain"><h3>'+esc(label)+'</h3>'
             +'<div class="acc" style="color:'+VRS_COLOR+'">'+accText+'</div>'
