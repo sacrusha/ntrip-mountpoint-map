@@ -368,17 +368,20 @@ _Last updated: 2026-04-22._
 
 ### FO — Faroe Islands (DK)
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-01
 
-- **Free government RTK**: none confirmed. Umhvørvisstovan (the Faroese Environment
-  Agency) holds responsibility for surveying, mapping, and geodesy for both land and
-  sea, and operates UAV-based mapping programmes. One EPN permanent station exists
-  (ARGI00FRO, Argir/Tórshavn), used for reference-frame maintenance; it is not a
-  public NTRIP service. Danish GPSnet does not extend to the Faroe Islands.
-  → networks.md: `umhvorvisstovan_fo`
+- **Government RTK (restricted, no public endpoint)**: Umhvørvisstovan — the Faroese
+  Environment Agency (`us.fo`, formerly `umhvorvisstovan.fo`) operates 4 permanent GNSS
+  reference stations (Klaksvík, Vestmanna, Trongisvágur, Argir) and explicitly advertises
+  centimetre-level RTK access for surveying firms and construction companies
+  (`us.fo/kort/geodesi`, confirmed 2026-05-01). No caster hostname, port, sourcetable URL,
+  or tariff is published; access requires contacting the agency directly. Hobbyist
+  eligibility unclear — page language implies professional/commercial clients. Danish
+  GPSnet does not extend to the Faroe Islands. → networks.md: `umhvorvisstovan_fo`
 - **Volunteer**: none. Zero FRO stations on rtk2go or Centipede.
-- **Gap**: no public RTK correction service of any kind. Hobbyists must deploy a local
-  base or use PPP.
+- **Gap**: RTK service confirmed but entirely gated behind direct contact with
+  Umhvørvisstovan; no published endpoint or pricing. Hobbyists must deploy a local base
+  or use PPP unless they can arrange direct institutional access.
 
 ### EE — Estonia
 
@@ -825,21 +828,19 @@ similarly have no published coverage for these jurisdictions.
 
 ### GL — Greenland (DK)
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-01
 
-- **Free government RTK**: none confirmed for public NTRIP. DTU Space (Technical University
-  of Denmark) and Asiaq (Greenland Survey) operate GNet — a geodetic network of ~60 GNSS
-  continuous stations maintained jointly with DMI, NGA, and UNAVCO, primarily for ice-sheet
-  monitoring, sea-level research, and geodetic reference. Data are archived at UNAVCO / EarthScope
-  but delivered as RINEX files, not streaming NTRIP. SDFi (Styrelsen for Dataforsyning og
-  Infrastruktur, formerly KMS/GST) holds geodetic authority for Denmark including Greenland;
-  no public Greenlandic NTRIP caster is documented. → networks.md: `gnet_gl` (deferred)
-- **Volunteer**: none confirmed. The rtk2go station near Kangerlussuaq (~67°N) referenced
-  in earlier notes is no longer present in the live sourcetable; 0 GRL stations verified in
-  current data. Centipede has no Greenlandic nodes.
-- **Gap**: no public RTK correction service of any kind for Greenland. Hobbyists must deploy
-  a local base or rely on PPP; GNet RINEX archives are available for post-processing via
-  EarthScope/UNAVCO but not in real time.
+- **Free government RINEX (PPK only)**: GNET — Greenland GNSS Network (`go-gnet.org`),
+  ~60 continuous GNSS stations, operated jointly by KDS/Klimadatastyrelsen (Danish Agency
+  for Climate Data, formerly SDFi) and DTU Space. RINEX 2/3 observation files distributed
+  via Dataforsyningen (`dataforsyningen.dk`) for post-processing; no real-time NTRIP
+  stream advertised in any aggregator as of 2026-05-01. Asiaq (Greenland Survey,
+  `asiaq.gl`) lists Survey and Construction services but publishes no GNSS correction
+  product. → networks.md: `gnet_gl`
+- **Volunteer**: none. Zero GRL stations on rtk2go, Centipede, or EarthScope NOTA.
+- **Gap**: no public RTK correction service of any kind for Greenland. GNet RINEX archives
+  are freely available for PPK via Dataforsyningen; hobbyists needing real-time corrections
+  must deploy a local base or use PPP.
 
 ### SJ — Svalbard (NO)
 

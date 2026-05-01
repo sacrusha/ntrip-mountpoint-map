@@ -4704,65 +4704,62 @@ grown since the 2010s AFREF affiliation efforts.
 
 ## gnet_gl — GNet Greenland Geodetic Network (GL)
 
-**status**:    restricted
-**country**:   GL — Greenland (Danish autonomous territory)
-**type**:      n/a (geodetic reference network; no streaming NTRIP caster)
-**host:port**: not publicly listed
-**access**:    restricted (RINEX data via EarthScope/UNAVCO archive; real-time stream
-               not publicly advertised)
-**registration**: https://www.unavco.org/data/gps-gnss/data-access-methods/
-**stations**:  ~60 continuous GNSS stations across Greenland
-**operator**:  DTU Space (Technical University of Denmark) + Asiaq (Greenland Survey)
-               in collaboration with DMI, NGA, and UNAVCO
-**yearly_cost**: n/a (archive data free; no NTRIP subscription model identified)
-
-**date_added**: 2026-04-29
-
-GNet is a geodetic monitoring network spanning Greenland, maintained primarily for
-ice-sheet dynamics research, sea-level and glacial isostatic rebound studies, and
-geodetic reference-frame maintenance. DTU Space leads science operations; Asiaq
-(Greenland Survey, based in Nuuk) contributes Greenlandic territorial operations.
-RINEX data are archived at UNAVCO / EarthScope GAGE Facility and are freely accessible
-for post-processing. No public NTRIP streaming caster has been identified. SDFi
-(Styrelsen for Dataforsyning og Infrastruktur), Denmark's national mapping authority,
-holds geodetic responsibility for Greenland but does not operate a public Greenlandic
-NTRIP service. Zero GRL stations confirmed in rtk2go, Centipede, or EarthScope
-NOTA streaming sourcetables.
-
-**missing**: confirm whether DTU Space, Asiaq, or SDFi has established or is
-             planning a public NTRIP streaming service for Greenland; check whether
-             any EarthScope NOTA stations in Greenland carry streaming access.
-
-## umhvorvisstovan_fo
-
 **status**:    rejected
+**country**:   GL — Greenland (Danish autonomous territory)
+**type**:      single-base (geodetic reference network; RINEX/PPK only)
+**host:port**: n/a — no NTRIP caster; RINEX files via Dataforsyningen
+**access**:    RINEX 2/3 freely available via `dataforsyningen.dk`; no RTK/NTRIP
+               stream identified in any aggregator as of 2026-05-01
+**registration**: https://dataforsyningen.dk (Dataforsyningen — Danish national
+                  geodata portal); UNAVCO/EarthScope archive also accessible
+**stations**:  ~60 continuous GNSS stations across Greenland
+**operator**:  KDS/Klimadatastyrelsen (Danish Agency for Climate Data, formerly SDFi)
+               + DTU Space; Asiaq (Greenland Survey) contributes territorial operations
+
+**date_added**: 2026-05-01
+
+GNET (go-gnet.org) is a geodetic monitoring network spanning Greenland, maintained
+primarily for ice-sheet dynamics research, sea-level and glacial isostatic rebound
+studies, and geodetic reference-frame maintenance. RINEX 2/3 observation files are
+distributed via Dataforsyningen (`dataforsyningen.dk`); go-gnet.org and asiaq.gl
+confirmed alive 2026-05-01. Asiaq (`asiaq.gl`) lists Survey and Construction services
+but publishes no GNSS correction product. No public NTRIP streaming caster found in
+any aggregator (ntrip-list.com/europe, rtk2go, EarthScope NOTA sourcetable) as of
+2026-05-01. Zero GRL stations in rtk2go, Centipede, or EarthScope NOTA streaming
+sourcetables. Rejected: RINEX/PPK only.
+
+**missing**: confirm whether KDS, DTU Space, or Asiaq is planning a public NTRIP
+             streaming service for Greenland.
+
+## umhvorvisstovan_fo — Umhvørvisstovan GNSS Network (FO)
+
+**status**:    restricted
 **country**:   FO — Faroe Islands (Danish autonomous territory)
-**type**:      n/a (no CORS network / NTRIP service identified)
-**host:port**: not publicly listed
-**access**:    n/a
-**registration**: n/a
-**stations**:  0 confirmed NTRIP mountpoints; one EPN permanent station (ARGI00FRO,
-               Argir/Tórshavn) used for reference-frame maintenance only
-**operator**:  Umhvørvisstovan — The Faroese Environment Agency (`umhvorvisstovan.fo`)
-**yearly_cost**: n/a
+**type**:      single-base (4 confirmed physical GNSS reference stations)
+**host:port**: not publicly listed; access requires direct contact with Umhvørvisstovan
+**access**:    professional/commercial clients (surveying firms, construction companies);
+               no self-service portal or published endpoint; hobbyist eligibility unclear
+**registration**: https://us.fo/kort/geodesi (agency contact; no self-service signup)
+**stations**:  4 physical: Klaksvík, Vestmanna, Trongisvágur, Argir (confirmed 2026-05-01)
+**operator**:  Umhvørvisstovan — The Faroese Environment Agency (`us.fo`,
+               formerly `umhvorvisstovan.fo`)
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-01
 
-Umhvørvisstovan holds responsibility for surveying, mapping, and geodesy of the
-Faroe Islands (land and sea). The agency operates UAV-based mapping programmes and
-publishes topographic data. One EPN station, ARGI00FRO (Argir, Tórshavn), is part
-of the EUREF Permanent GNSS Network; RINEX 2 data submission ceased February 2021.
-No public NTRIP caster, RTK correction service, or CORS network with streaming
-endpoint has been found in any sourcetable, national directory, or agency web page.
-Danish GPSnet explicitly excludes the Faroe Islands. Zero FRO mountpoints on
-rtk2go or Centipede. A Geospatial Centre at Fróðskaparsetur Føroya (Setur, the
-University of the Faroe Islands) was launched in partnership with Landsverk and
-Umhvørvisstovan to develop geodesy and surveying capacity — this may lead to a
-public CORS service in future.
+Umhvørvisstovan holds responsibility for surveying, mapping, and geodesy of the Faroe
+Islands (land and sea). The agency's geodesy page (`us.fo/kort/geodesi`, confirmed
+2026-05-01) explicitly advertises centimetre-level RTK access via 4 permanent GNSS
+reference stations for surveying firms and construction companies. No caster hostname,
+port, sourcetable URL, or tariff is published; access is entirely via direct contact.
+One EPN station (ARGI00FRO, Argir, Tórshavn) was part of the EUREF Permanent GNSS
+Network; RINEX 2 data submission ceased February 2021. Danish GPSnet explicitly
+excludes the Faroe Islands. Zero FRO mountpoints on rtk2go or Centipede. A Geospatial
+Centre at Fróðskaparsetur Føroya (Setur, the University of the Faroe Islands) was
+launched in partnership with Landsverk and Umhvørvisstovan to develop geodesy and
+surveying capacity.
 
-**missing**: confirm whether Umhvørvisstovan or Landsverk has established or is
-planning a public NTRIP service; check whether ARGI00FRO RINEX data resumed
-post-2021 and whether any real-time stream is accessible.
+**missing**: confirm caster host:port and whether a tariff is published; clarify
+whether non-commercial / hobbyist access is available via us.fo/kort/geodesi.
 
 ## gibr_gi — BIGF/IGS Reference Station Gibraltar (GI)
 
