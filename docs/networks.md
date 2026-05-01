@@ -3062,11 +3062,10 @@ Enterprise-focused commercial NRTK network covering Italy. Not free.
 **registration**: https://nsgi.nl/referentiepunten-en-gnss-data/gnss-data/real-time-streams
 **operator**:  NSGI / Kadaster Nederland (`nsgi.nl`)
 
-NSGI's Active Geodetic Reference System for the Netherlands (AGRS.NL). Free tier
-confirmed on the NSGI pricing page (2026-05-01): "GNSS-stations op het vaste land van
-Nederland" listed at €0 with no authentication gate. Legal basis: Kadasterwet
-BWBR0037196 art. 19 lid 4. ~30 mainland stations, RTCM 3.2 MSM. The same caster
-also hosts BES island stations (7 streams), catalogued under `bq_cors`.
+NSGI's Active Geodetic Reference System for the Netherlands (AGRS.NL). Free,
+anonymous access. Legal basis: Kadasterwet BWBR0037196 art. 19 lid 4. ~30 mainland
+stations, RTCM 3.2 MSM. The same caster also hosts BES island stations (7 streams),
+catalogued under `bq_cors`.
 TU Delft mirror: `gnss1.tudelft.nl:2101` — subset of stations, no TLS.
 **Volunteer**: none. Zero NL-mainland candidate stations separate from AGRS.NL.
 
@@ -3086,14 +3085,11 @@ TU Delft mirror: `gnss1.tudelft.nl:2101` — subset of stations, no TLS.
 **operator**:  NSGI / Kadaster Nederland (`nsgi.nl`)
 
 NETPOS delivers raw reference station streams from the same ~30 AGRS.NL
-physically-positioned base stations, but as an authenticated paid service with a
-service-level agreement. Priced per station per year (2026, excl. 21 % BTW):
-1–2 stations €475/station, 3–4 €380, 5–6 €285, 7–9 €190, 10+ €95. VAT-exempt
-for entities in the professional surveying and construction sectors (0 % BTW);
-standard 21 % BTW applies otherwise. Not a VRS / network-RTK service — streams
-are single-base raw observations for users who compute their own corrections.
-BES island stations included in the feed (same casters; free-tier BES access
-remains via `ntrip.kadaster.nl:2101` without authentication).
+physically-positioned base stations, as an authenticated paid service.
+Priced per station per year (2026, excl. BTW): 1–2 stations €475/station,
+3–4 €380, 5–6 €285, 7–9 €190, 10+ €95. VAT-exempt. Not a VRS / network-RTK
+service — streams are single-base raw observations for users who compute their
+own corrections.
 
 ---
 
