@@ -823,15 +823,16 @@
     });
     return group;
   }
-  // freeNetworks: staleness !== 'dead' + lat set + vrs:true  -> VRS ring     -> bySid[net.id]
-  //               staleness !== 'dead' + lat set + vrs:false -> no ring (physical pins)
-  //               staleness === 'dead' + lat set             -> grey ring     -> greyById[net.id]
+  // freeNetworks: staleness !== 'dead' + lat set + vrs:true  -> VRS ring        -> bySid[net.id]
+  //               staleness !== 'dead' + lat set + vrs:false -> no ring (pins)
+  //               staleness === 'dead' + lat set             -> grey ring        -> greyById[net.id]
   //               lat null                                   -> no marker
-  // paidNetworks: paid | paid-affordable | restricted        -> ? marker      -> infoById[net.id]
+  // affordableNetworks / paidNetworks / restrictedNetworks   -> ? marker (same symbol for now)
+  //   -> affordableById / paidById / restrictedById
   // info: stub — collected but not rendered.
-  function buildNetworkOverlays(freeNetworks,paidNetworks,info,renderer){
+  function buildNetworkOverlays(freeNetworks,affordableNetworks,paidNetworks,restrictedNetworks,info,renderer){
     var group=L.layerGroup();
-    var bySid={}, greyById={}, infoById={};
+    var bySid={}, greyById={}, affordableById={}, paidById={}, restrictedById={}, infoById={};
     freeNetworks.forEach(function(net){
       if(!net.lat) return;
       if(net.staleness==='dead'){
@@ -861,12 +862,19 @@
         bySid[net.id]=addRingMarker(group,net.lat,net.lon,renderer,VRS_COLOR,0.25,net.label+' (VRS)',popup);
       }
     });
-    paidNetworks.forEach(function(net){
-      var mk=addInfoMarker(group,net.lat,net.lon,buildPaidNetworkPopup(net),net.name);
-      infoById[net.id]={marker:mk,label:net.name};
-    });
+    function addPaidMarkers(nets,registry){
+      nets.forEach(function(net){
+        var mk=addInfoMarker(group,net.lat,net.lon,buildPaidNetworkPopup(net),net.name);
+        registry[net.id]={marker:mk,label:net.name};
+      });
+    }
+    addPaidMarkers(affordableNetworks,affordableById);
+    addPaidMarkers(paidNetworks,paidById);
+    addPaidMarkers(restrictedNetworks,restrictedById);
     // info: stub — not rendered.
-    return {group:group,bySid:bySid,greyById:greyById,infoById:infoById};
+    return {group:group,bySid:bySid,greyById:greyById,
+            affordableById:affordableById,paidById:paidById,
+            restrictedById:restrictedById,infoById:infoById};
   }
 
   function buildGreyPopup(label,region,note,regUrl){
@@ -1134,13 +1142,24 @@
 
   function sw(s){ return '<span style="display:inline-block;width:12px;height:12px;vertical-align:middle;'+s+'"></span>'; }
 
-  function buildTogglePanel(freeNetworks,vrsLayerBySid,greyLayerById,infoLayerById,onChange){
+  function buildTogglePanel(freeNetworks,vrsLayerBySid,greyLayerById,affordableLayerById,paidLayerById,restrictedLayerById,infoLayerById,onChange){
     var state={tier_open:true,tier_registration:true,tier_conditions:true,vrs_global:true,
-               grey_global:true,info_global:true};
+               grey_global:true,affordable_global:true,paid_global:true,restricted_global:true,info_global:true};
     freeNetworks.forEach(function(net){ state[net.id]=true; });
     Object.keys(greyLayerById).forEach(function(id){ state['grey:'+id]=true; });
+    Object.keys(affordableLayerById).forEach(function(id){ state['affordable:'+id]=true; });
+    Object.keys(paidLayerById).forEach(function(id){ state['paid:'+id]=true; });
+    Object.keys(restrictedLayerById).forEach(function(id){ state['restricted:'+id]=true; });
     Object.keys(infoLayerById).forEach(function(id){ state['info:'+id]=true; });
 
+    function applyPaidRegistry(registry,prefix,globalKey){
+      Object.keys(registry).forEach(function(id){
+        var show=!!(state[prefix+':'+id]&&state[globalKey]);
+        var mk=registry[id].marker;
+        var el=mk&&mk.getElement&&mk.getElement();
+        if(el) el.style.display=show?'':'none';
+      });
+    }
     function applyMarkers(){
       Object.keys(vrsLayerBySid).forEach(function(sid){
         var tier='tier_'+((SOURCES[sid]&&SOURCES[sid].access)||'registration');
@@ -1157,12 +1176,10 @@
         var el=entry.hit.getElement();
         if(el) el.style.pointerEvents=show?'all':'none';
       });
-      Object.keys(infoLayerById).forEach(function(id){
-        var show=!!(state['info:'+id]&&state.info_global);
-        var mk=infoLayerById[id].marker;
-        var el=mk&&mk.getElement&&mk.getElement();
-        if(el) el.style.display=show?'':'none';
-      });
+      applyPaidRegistry(affordableLayerById,'affordable','affordable_global');
+      applyPaidRegistry(paidLayerById,'paid','paid_global');
+      applyPaidRegistry(restrictedLayerById,'restricted','restricted_global');
+      applyPaidRegistry(infoLayerById,'info','info_global');
     }
     function filterPred(s){
       for(var i=0;i<s.mountpoints.length;i++){
@@ -1185,17 +1202,11 @@
       return ta!==tb ? ta-tb : b.count-a.count;
     });
 
-    var greyIds=Object.keys(greyLayerById).sort(function(a,b){
-      var la=(greyLayerById[a].label||a).toLowerCase();
-      var lb=(greyLayerById[b].label||b).toLowerCase();
-      return la<lb?-1:la>lb?1:0;
-    });
-    var infoIds=Object.keys(infoLayerById).sort(function(a,b){
-      var la=(infoLayerById[a].label||a).toLowerCase();
-      var lb=(infoLayerById[b].label||b).toLowerCase();
-      return la<lb?-1:la>lb?1:0;
-    });
-    var greyCount=greyIds.length, infoCount=infoIds.length;
+    var greyCount=Object.keys(greyLayerById).length;
+    var affordableCount=Object.keys(affordableLayerById).length;
+    var paidCount=Object.keys(paidLayerById).length;
+    var restrictedCount=Object.keys(restrictedLayerById).length;
+    var infoCount=Object.keys(infoLayerById).length;
 
     function renderRow(e){
       var mj=esc(JSON.stringify(e.members));
@@ -1234,10 +1245,28 @@
               +'Free, no data yet ('+greyCount+')'
             +'</label>'
           : '')
+        +(affordableCount
+          ? '<label style="display:flex;align-items:center;gap:4px">'
+              +'<input type="checkbox" data-k="affordable_global" checked>'
+              +infoQ+' Affordable ('+affordableCount+')'
+            +'</label>'
+          : '')
+        +(paidCount
+          ? '<label style="display:flex;align-items:center;gap:4px">'
+              +'<input type="checkbox" data-k="paid_global" checked>'
+              +infoQ+' Paid ('+paidCount+')'
+            +'</label>'
+          : '')
+        +(restrictedCount
+          ? '<label style="display:flex;align-items:center;gap:4px">'
+              +'<input type="checkbox" data-k="restricted_global" checked>'
+              +infoQ+' Restricted ('+restrictedCount+')'
+            +'</label>'
+          : '')
         +(infoCount
           ? '<label style="display:flex;align-items:center;gap:4px">'
               +'<input type="checkbox" data-k="info_global" checked>'
-              +infoQ+' Paid / restricted ('+infoCount+')'
+              +infoQ+' Info ('+infoCount+')'
             +'</label>'
           : '')
       +'</details>'
@@ -1366,7 +1395,7 @@
       }
       s.precLabel=precLabel(s.dLat,s.dLon,s.lat);
     });
-    var paidNetworks=[], info=[];
+    var affordableNetworks=[], paidNetworks=[], restrictedNetworks=[], info=[];
     (countryMarkersJson&&countryMarkersJson.markers||[]).forEach(function(m){
       if(m.tier==='free'){
         var net=SOURCES[m.id]; if(!net) return;
@@ -1376,14 +1405,15 @@
         net.stationsDeclared=m.stations_declared||null;
         net.note=m.note||null;
         net.registration=net.registration||validUrl(m.registration||'');
-      } else if(m.tier==='weird'){
-        info.push({id:m.id, name:m.name||m.id, lat:m.lat, lon:m.lon,
-          region:m.region||'', note:m.note||null});
       } else {
-        paidNetworks.push({id:m.id, name:m.name||m.id, lat:m.lat, lon:m.lon,
+        var rec={id:m.id, name:m.name||m.id, lat:m.lat, lon:m.lon,
           region:m.region||'', tier:m.tier, access:m.access||m.tier,
           registration:validUrl(m.registration||''),
-          note:m.note||null, yearlyCost:m.yearly_cost||null});
+          note:m.note||null, yearlyCost:m.yearly_cost||null};
+        if(m.tier==='paid-affordable') affordableNetworks.push(rec);
+        else if(m.tier==='paid')       paidNetworks.push(rec);
+        else if(m.tier==='restricted') restrictedNetworks.push(rec);
+        else                           info.push(rec);
       }
     });
     return {
@@ -1392,9 +1422,11 @@
         return Object.assign({},n,{registrationUrl:validUrl(n.registrationUrl||'')});
       }),
       stations:     stations,
-      freeNetworks: Object.values(SOURCES),
-      paidNetworks: paidNetworks,
-      info:         info,
+      freeNetworks:       Object.values(SOURCES),
+      affordableNetworks: affordableNetworks,
+      paidNetworks:       paidNetworks,
+      restrictedNetworks: restrictedNetworks,
+      info:               info,
     };
   }
 
@@ -1474,10 +1506,13 @@
     map.createPane('vrsPane');
     map.getPane('vrsPane').style.zIndex=403; // above dotsPane (402); SVG paths receive events, container passes them through
     var vrsRenderer=L.svg({pane:'vrsPane',padding:0.5});
-    var cmResult=buildNetworkOverlays(model.freeNetworks,model.paidNetworks,model.info,vrsRenderer);
+    var cmResult=buildNetworkOverlays(model.freeNetworks,model.affordableNetworks,model.paidNetworks,model.restrictedNetworks,model.info,vrsRenderer);
     cmResult.group.addTo(map);
     var vrsLayerBySid=cmResult.bySid;
     var greyLayerById=cmResult.greyById;
+    var affordableLayerById=cmResult.affordableById;
+    var paidLayerById=cmResult.paidById;
+    var restrictedLayerById=cmResult.restrictedById;
     var infoLayerById=cmResult.infoById;
     // pointer-events:all is geometric — fires on the stroke band regardless of opacity.
     // fill:false on the hit circle means no fill geometry, so the fill area is
@@ -1616,7 +1651,7 @@
     }
 
     var _clickPopup=L.popup({maxWidth:320});
-    var togglePanel=buildTogglePanel(model.freeNetworks,vrsLayerBySid,greyLayerById,infoLayerById,
+    var togglePanel=buildTogglePanel(model.freeNetworks,vrsLayerBySid,greyLayerById,affordableLayerById,paidLayerById,restrictedLayerById,infoLayerById,
       function(pred){ filter=pred; rebuildStationLayers(); });
     map.on('click',function(e){
       if(!stationIndex||!visible.length) return;
