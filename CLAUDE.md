@@ -134,10 +134,14 @@ InaCORS (−4), REGNA-ROU (−19), SAPOS HE (−4) / RP (−11) / SL (−6), SPS
 (−17), IceCORS (−12), Centipede (−2 NEAR/NEAR4), CORS-KOREA (−5 format
 variants).
 
-Two casters incorrectly tag their physical stations with NMEA=1 and get
-`"nmea_filter": False` in `SOURCES`: **rtk2go** (caster-wide misconfiguration
-— all 764 physical stations tagged nmea=1) and **GeoRTK** (2 physical u-blox
-F9P stations). Any future source with the same issue gets the same exception.
+Two per-source filter flags handle caster misconfigurations — see each network's
+`**pipeline-flags**:` field in `docs/networks.md` for the rationale:
+- `"nmea_filter": False` — for casters that incorrectly tag physical stations
+  `NMEA=1` (default True drops NMEA=1 as VRS/network-solution).
+- `"solution_filter": False` — for casters that incorrectly tag physical stations
+  `solution=1` (default True drops solution=1 per the NTRIP "networksolution"
+  field; this is the second guard that catches rtk2go's NEAR-xxx VRS streams even
+  with nmea_filter off).
 
 **VRS-only networks** (CROPOS, ASG-EUPOS, FLEPOS, WALCORS, ESTPOS, LatPos,
 KSA-CORS, 10 SAPOS states, + 6 US state DOT: KyCORS, MnCORS, ODOT RTN,
@@ -231,17 +235,6 @@ for the convention. Optional secondary `**date_added**:` per `## id` block in
 longitudes to ±180 (ERGNSS: 114/128 affected; AUSCORS: 2/808). `lon` is
 included in `station_fingerprint` so the next pipeline run rewrites JSON.
 
-**5 sources timing out in CI:** FLEPOS, WALCORS, ESTPOS, LatPos, KSA-CORS.
-Handled gracefully by fallback-to-cached-sourcetable. See `**investigate**:`
-in `docs/networks.md`. Notes on root causes (2026-04-30):
-- FLEPOS: endpoint `flepos.vlaanderen.be:2101` confirmed via BKG/RTCM caster list.
-- WALCORS: `gnss.wallonie.be:2101` unconfirmed — NTRIP host:port only given
-  post-registration; endpoint and port still need verification.
-- ESTPOS: `maaamet.ee` → `maaruum.ee` rebrand; pipeline updated to
-  `gnss-rtk.maaruum.ee:2101` (unconfirmed — needs Estonian IP to verify).
-- LatPos: port 5001 → 2101 (standard); unconfirmed — needs Baltic IP to verify.
-- KSA-CORS: `geoportal.sa` unreachable from external session; endpoint
-  `ksacors.geoportal.sa:2101` unconfirmed.
 
 **Non-standard ports in pipeline:** spslux:5005, inacors:2001,
 alcors:10011, mncors:9000, orgn:9879, msrn:10700, incors:10000. All handled
@@ -328,10 +321,11 @@ entries added (one per network, each at its own region): `eft_cors` (Moscow),
 - **rtk2go carrier field:** blank for most entries even on RTCM 3.x MSM
   streams. Parser infers `carrier = 2` when format starts with `RTCM 3`;
   without this, only ~2 of 800+ rtk2go mountpoints survive. Preserve this.
-- **rtk2go nmea field:** all entries (including physical single-base stations)
-  have `nmea=1`. This is a caster misconfiguration. `"nmea_filter": False` in
-  SOURCES prevents the nmea filter from dropping the entire network. If you
-  remove that flag, rtk2go drops to 0 stations.
+- **rtk2go filter flags:** `nmea_filter=False` (all physical stations wrongly
+  tagged NMEA=1 — removing it drops rtk2go to 0 stations) and `solution_filter`
+  left at the default True (catches the 16 NEAR-xxx VRS streams which the caster
+  correctly marks solution=1). Do not add `solution_filter=False` to rtk2go — it
+  would re-admit those streams as phantom stations. See `docs/networks.md §rtk2go`.
 - **Workflow push race:** cron runs can race human PR merges. The push step
   has a 3-attempt rebase-retry loop; don't simplify it.
 - **Leaflet `L.DomUtil.create` signature:** third arg is a DOM parent, not a

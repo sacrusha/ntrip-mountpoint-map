@@ -94,12 +94,17 @@ Physical stations with distinct coordinates shown on map.
 **stations**:  ~863
 **source**:    rtk2go.com; use-snip.com
 **operator**:  SNIP / use-snip.com
+**pipeline-flags**: `nmea_filter=False` (all physical stations wrongly tagged NMEA=1);
+                    `solution_filter=True` (default — catches 16 NEAR-xxx/NEAR_xxx VRS
+                    streams which are correctly tagged solution=1 by the caster)
 
-Community volunteer aggregator operated by SNIP / use-snip.com. `NEAR` mountpoint
-requires rover NMEA GGA. Regional filtered views on `:2103` (PL) and `:2104` (JP)
-are the same server — not separate SOURCES entries. Parser infers `carrier = 2`
-when carrier field is blank and format starts with `RTCM 3` (required to retain
-~98% of rtk2go entries).
+Community volunteer aggregator operated by SNIP / use-snip.com. Regional filtered
+views on `:2103` (PL) and `:2104` (JP) are the same server — not separate SOURCES
+entries. Parser infers `carrier = 2` when carrier field is blank and format starts
+with `RTCM 3` (required to retain ~98% of rtk2go entries). The 16 NEAR-xxx/NEAR_xxx
+mountpoints (e.g. `NEAR-AUT`, `NEAR_DEU`) are regional nearest-station VRS streams;
+the caster correctly marks them `solution=1` so the default solution filter excludes
+them even with `nmea_filter` off.
 
 ---
 
@@ -149,6 +154,8 @@ Slovenia and W Austria. Register via frednet.crs.ogs.it.
 **stations**:  ~41
 **source**:    geortk.jp (Geosense Co., Ltd.)
 **operator**:  Geosense Co., Ltd.
+**pipeline-flags**: `nmea_filter=False`; `solution_filter=False` (caster incorrectly
+                    tags physical stations with both NMEA=1 and solution=1)
 
 Japan volunteer caster. ~66 STR lines total; ~25 report 0/0 (offline bases) and
 are dropped by coordinate filter. Sourcetable has shrunk over time.
@@ -166,6 +173,10 @@ are dropped by coordinate filter. Sourcetable has shrunk over time.
 **source**:    gnss.ga.gov.au; auscors.ga.gov.au (dead since Jul 2022)
 **operator**:  Geoscience Australia
 **licence**:   CC BY 4.0
+**pipeline-flags**: `solution_filter=False` (~42 IGS/international partner stations
+                    re-streamed by AUSCORS are tagged solution=1 in the sourcetable
+                    despite being physical receivers with fixed coordinates, e.g.
+                    KIRU00SWE0 in Sweden, ENAO00PRT0 in the Azores)
 
 Operated by Geoscience Australia. Old host `auscors.ga.gov.au` dead since Jul 2022.
 TLS also available on port 443. Attribute "© Commonwealth of Australia (Geoscience Australia)".
@@ -407,15 +418,30 @@ free of charge.
 
 **status**:    free
 **host:port**: `178.19.53.126:2101`
-**type**:      physical-coord-vrs
-**access**:    free ("data is free of charge" — natt.is); register at natt.is/is/landmaelingar/jardstodvakerfi
+**type**:      physical-vrs
+**access**:    free; register by emailing icecors@natt.is with company name, contact
+               name and email address; credentials returned by email
 **pipeline-access**: registration
-**stations**:  ~20 (populates on fetch; recently added to pipeline)
+**stations**:  33 (70–100 km spacing nationwide)
 **source**:    natt.is (LMÍ — Landmælingar Íslands)
-**operator**:  LMÍ — Landmælingar Íslands
+**operator**:  LMÍ — Landmælingar Íslands (National Land Survey of Iceland)
 
-GNCASTER software (same as SAPOS). Offers VRS (VRS30, FKP30) and single-base
-(RTCM30). Stream credentials provided after registration at natt.is.
+33 physical GNSS stations covering Iceland at 70–100 km intervals. Caster at
+`178.19.53.126:2101` (GNSMART software). Offers both single-base (RTCM30,
+not recommended beyond 20 km from nearest station) and network correction
+(VRS30, FKP30). All corrections reference ISN2016.
+
+The sourcetable exposes only 4 individually-addressable physical mounts
+(AUSV, GEVK, SENG, VOGC — all near Reykjavik), plus RTCM30/RTCM30_MSM
+nearest-station selectors at (0,0) and VRS3/VRS3_MSM network mounts at (0,0).
+The remaining 29 stations are reached exclusively via the RTCM30 selector or
+VRS mountpoints, not as individual entries. Displaying the 4 visible stations
+would misrepresent the 33-station network as a Reykjavik-only fragment, so the
+pipeline holds at 0 until the full sourcetable is available.
+
+**Caster misconfiguration**: GNSMART tags all mountpoints `NMEA=1` including the
+4 physical single-base entries (which have unique coordinates and `solution=0`).
+`nmea_filter=False` would be needed once display of partial data is acceptable.
 
 ---
 
@@ -1076,14 +1102,18 @@ Single station; useful only within ~30 km of Brussels. Low priority.
 **access**:    free; register at renep.dgterritorio.gov.pt
 **stations**:  47
 **source**:    dgterritorio.gov.pt (DGT — Direção-Geral do Território)
+**pipeline-flags**: `nmea_filter=False` (39 of 47 physical stations on port 2101
+                    wrongly tagged NMEA=1; VRS/network mounts live on separate ports
+                    2106/2108 and do not appear in the port 2101 sourcetable, so the
+                    override is safe)
 
 IP confirmed live 2026-04-30. ETRS89 datum (mainland), ITRF93 (autonomous
 regions). Stations and RINEX publicly visible. Port structure:
 
 - **:2101** — 47 physical single-base stations, RTCM3 (GPS+GLONASS) → in pipeline
 - **:2102** — same 47 stations, RTCM3 MSM5 (GPS+GLONASS+Galileo+BeiDou) → not ingested (duplicate)
-- **:2106** — 3 VRS nearest-station mounts (NSRT23, NSRT, NSR5) → filtered by nmea
-- **:2108** — 2 network-correction mounts (ACRT, ACR5) → filtered by nmea
+- **:2106** — 3 VRS nearest-station mounts (NSRT23, NSRT, NSR5) → not ingested
+- **:2108** — 2 network-correction mounts (ACRT, ACR5) → not ingested
 
 **investigate**: confirm whether a hostname resolves to 193.137.94.71 (e.g.
 ntrip.renep.dgterritorio.gov.pt) so the pipeline URL can use DNS rather than
@@ -4345,6 +4375,8 @@ Vertical datum: DrukGeoid 2015.
                `gazar.gov.mn`); formerly ALACGaC / ALMGG
 **source**:    monpos.gazar.gov.mn/monpos/3/ (public announcement with credentials,
                confirmed 2026-04-30)
+**pipeline-flags**: `solution_filter=False` (6 physical stations wrongly tagged
+                    solution=1 by the caster)
 
 **date_added**: 2026-04-29
 

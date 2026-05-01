@@ -50,7 +50,7 @@ SOURCES = [
      "type": "single-base", "country": ["global"],
      "credentials": {"user": "(any email address)", "pass": "none"},
      "access": "open",         "registration": None,
-     "nmea_filter": False},                                                       # caster tags all physical stations nmea=1
+     "nmea_filter": False},                                                       # caster tags all physical stations nmea=1; NEAR-xxx caught by solution_filter
     {"id": "centipede",   "url": "http://crtk.net:2101/",                       # migrated from caster.centipede.fr 2025-03-18
      "color": "#e87500", "label": "Centipede",
      "type": "single-base", "country": ["global"],
@@ -64,7 +64,8 @@ SOURCES = [
      "color": "#1a7a4a", "label": "GeoRTK",
      "type": "single-base", "country": ["JP"],
      "access": "open",         "registration": None,
-     "nmea_filter": False},                                                       # caster tags physical stations nmea=1
+     "nmea_filter": False,                                                        # caster tags physical stations nmea=1
+     "solution_filter": False},                                                   # caster tags physical stations solution=1
     # SAPOS — German federal-state RTK networks. Sourcetables publicly readable;
     # RTCM streams require per-Länder registration. Most Länder free; BY €20/yr
     # flat rate for non-agricultural use. Raw TCP (NTRIP 1.0) fallback required.
@@ -146,11 +147,13 @@ SOURCES = [
     {"id": "renep",       "url": "http://193.137.94.71:2101/",                     # port 2101 = physical single-base RTCM3; 2102 = same + MSM5; 2106/2108 = VRS
      "color": "#006b3c", "label": "ReNEP",
      "type": "single-base", "country": ["PT"],
-     "access": "registration", "registration": "https://renep.dgterritorio.gov.pt"},
+     "access": "registration", "registration": "https://renep.dgterritorio.gov.pt",
+     "nmea_filter": False},                                                       # caster tags 39 of 47 physical stations nmea=1; VRS mounts are on separate ports (2106/2108)
     {"id": "auscors",     "url": "http://ntrip.data.gnss.ga.gov.au:2101/",
      "color": "#b8860b", "label": "AUSCORS",
      "type": "single-base", "country": ["AU"],
-     "access": "registration", "registration": "https://gnss.ga.gov.au/registration"},
+     "access": "registration", "registration": "https://gnss.ga.gov.au/registration",
+     "solution_filter": False},                                                   # caster tags 42 IGS partner stations solution=1; all are physical with fixed coords
     {"id": "positionz",   "url": "http://positionz-rt.linz.govt.nz:2101/",
      "color": "#2e8b57", "label": "PositioNZ",
      "type": "single-base", "country": ["NZ"],
@@ -231,7 +234,8 @@ SOURCES = [
      "color": "#9e6b00", "label": "MonPOS",
      "type": "physical-vrs", "country": ["MN"],
      "credentials": {"user": "rover", "pass": "262461"},
-     "access": "open",         "registration": None},
+     "access": "open",         "registration": None,
+     "solution_filter": False},                                                   # caster tags 6 physical stations solution=1
     {"id": "icecors",     "url": "http://178.19.53.126:2101/",
      "color": "#1e6b8c", "label": "IceCORS",
      "type": "physical-vrs", "country": ["IS"],
@@ -400,7 +404,7 @@ SOURCES = [
 # GEODNET (HYFIX.AI) removed 2026-04-20: paid service ($40/month); sourcetable is
 # publicly readable but returns 0 free stations after filter. Not in scope.
 
-FETCH_TIMEOUT = 60
+FETCH_TIMEOUT = 5
 STALE_GREY_DAYS = 3   # sources offline this long shown as grey dots, excluded from coverage raster
 STALE_HIDE_DAYS = 7   # sources offline this long hidden entirely
 
@@ -439,7 +443,8 @@ def fetch(url: str) -> str:
         return _fetch_ntrip1(parsed.hostname, parsed.port or 2101)
 
 
-def parse_sourcetable(text: str, nmea_filter: bool = True) -> tuple[list[dict], dict]:
+def parse_sourcetable(text: str, nmea_filter: bool = True,
+                      solution_filter: bool = True) -> tuple[list[dict], dict]:
     """Parse an NTRIP sourcetable.
 
     NTRIP STR line fields (0-based after splitting on ';'):
@@ -457,6 +462,14 @@ def parse_sourcetable(text: str, nmea_filter: bool = True) -> tuple[list[dict], 
     report a fake reference coordinate.  Physical single-base stations always
     have NMEA=0.  Set nmea_filter=False in SOURCES for any caster that
     incorrectly tags real physical stations with NMEA=1.
+
+    When solution_filter is True (default), also drops mountpoints where the
+    solution field is "1".  Solution=1 means "network solution" per the NTRIP
+    spec — a computed VRS/iMAX/NEAREST position, not a real receiver.
+    Physical single-base stations have solution=0.  This is a second guard for
+    casters like rtk2go that disable nmea_filter but still correctly tag their
+    NEAR-xxx network streams as solution=1.  Set solution_filter=False for
+    casters that misapply solution=1 to real physical stations.
     """
     stations: list[dict] = []
     dropped_dgnss = 0
@@ -477,6 +490,7 @@ def parse_sourcetable(text: str, nmea_filter: bool = True) -> tuple[list[dict], 
         lat_str = fields[9].strip()
         lon_str = fields[10].strip()
         nmea = fields[11].strip() if len(fields) > 11 else ""
+        solution = fields[12].strip() if len(fields) > 12 else ""
         # rtk2go leaves the carrier field blank for most entries even though
         # they broadcast RTCM 3.x carrier-phase observations. Trust the
         # format string as a fallback: RTCM 3.x MSM streams are cm-capable.
@@ -497,6 +511,9 @@ def parse_sourcetable(text: str, nmea_filter: bool = True) -> tuple[list[dict], 
             dropped_bad += 1
             continue
         if nmea_filter and nmea == "1":
+            dropped_net += 1
+            continue
+        if solution_filter and solution == "1":
             dropped_net += 1
             continue
         try:
@@ -581,6 +598,7 @@ def fetch_source(src: dict) -> tuple[str, dict, bool]:
     src_credentials = src.get("credentials")
     prev_last_ok = src.get("_prev_last_ok")
     nmea_filter = src.get("nmea_filter", True)
+    solution_filter = src.get("solution_filter", True)
     raw_path = DATA_DIR / f"{sid}.sourcetable"
     _meta = {
         "url": url, "color": color, "label": label,
@@ -590,7 +608,7 @@ def fetch_source(src: dict) -> tuple[str, dict, bool]:
     }
     try:
         text = fetch(url)
-        stations, stats = parse_sourcetable(text, nmea_filter=nmea_filter)
+        stations, stats = parse_sourcetable(text, nmea_filter=nmea_filter, solution_filter=solution_filter)
         stations, dropped_vrs = filter_vrs(stations)
         net_note = f", {stats['dropped_net']} net-sol" if stats["dropped_net"] else ""
         vrs_note = f", {dropped_vrs} VRS" if dropped_vrs else ""
@@ -611,7 +629,7 @@ def fetch_source(src: dict) -> tuple[str, dict, bool]:
         if raw_path.exists():
             try:
                 text = raw_path.read_text()
-                stations, stats = parse_sourcetable(text, nmea_filter=nmea_filter)
+                stations, stats = parse_sourcetable(text, nmea_filter=nmea_filter, solution_filter=solution_filter)
                 stations, dropped_vrs = filter_vrs(stations)
                 net_note = f", {stats['dropped_net']} net-sol" if stats["dropped_net"] else ""
                 vrs_note = f", {dropped_vrs} VRS" if dropped_vrs else ""
@@ -653,7 +671,7 @@ def main() -> int:
         for src in SOURCES
     ]
 
-    with ThreadPoolExecutor(max_workers=8) as executor:
+    with ThreadPoolExecutor(max_workers=len(sources_with_meta)) as executor:
         futures = {executor.submit(fetch_source, src): src for src in sources_with_meta}
         for future in as_completed(futures):
             sid, result, was_fresh = future.result()
