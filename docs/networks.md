@@ -94,20 +94,17 @@ Physical stations with distinct coordinates shown on map.
 **stations**:  ~863
 **source**:    rtk2go.com; use-snip.com
 **operator**:  SNIP / use-snip.com
+**pipeline-flags**: `nmea_filter=False` (all physical stations wrongly tagged NMEA=1);
+                    `solution_filter=True` (default — catches 16 NEAR-xxx/NEAR_xxx VRS
+                    streams which are correctly tagged solution=1 by the caster)
 
 Community volunteer aggregator operated by SNIP / use-snip.com. Regional filtered
 views on `:2103` (PL) and `:2104` (JP) are the same server — not separate SOURCES
 entries. Parser infers `carrier = 2` when carrier field is blank and format starts
-with `RTCM 3` (required to retain ~98% of rtk2go entries).
-
-**Caster misconfigurations** (two independent issues):
-- All physical stations are tagged `NMEA=1` (caster-wide bug) → pipeline uses
-  `nmea_filter: False`. Without it, rtk2go drops to 0 stations.
-- 16 NEAR-xxx/NEAR_xxx mountpoints (e.g. `NEAR-AUT`, `NEAR_DEU`) are regional
-  nearest-station VRS streams, not physical receivers. The caster correctly tags
-  them `solution=1` (NTRIP field 12 = "networksolution"). The pipeline's
-  `solution_filter: True` (default) catches these even with `nmea_filter` off,
-  so they are excluded from the map.
+with `RTCM 3` (required to retain ~98% of rtk2go entries). The 16 NEAR-xxx/NEAR_xxx
+mountpoints (e.g. `NEAR-AUT`, `NEAR_DEU`) are regional nearest-station VRS streams;
+the caster correctly marks them `solution=1` so the default solution filter excludes
+them even with `nmea_filter` off.
 
 ---
 
@@ -157,13 +154,11 @@ Slovenia and W Austria. Register via frednet.crs.ogs.it.
 **stations**:  ~41
 **source**:    geortk.jp (Geosense Co., Ltd.)
 **operator**:  Geosense Co., Ltd.
+**pipeline-flags**: `nmea_filter=False`; `solution_filter=False` (caster incorrectly
+                    tags physical stations with both NMEA=1 and solution=1)
 
 Japan volunteer caster. ~66 STR lines total; ~25 report 0/0 (offline bases) and
 are dropped by coordinate filter. Sourcetable has shrunk over time.
-
-**Caster misconfiguration**: caster incorrectly tags physical stations with both
-`NMEA=1` and `solution=1`. Pipeline uses `nmea_filter: False` and
-`solution_filter: False` to retain them.
 
 ---
 
@@ -178,13 +173,13 @@ are dropped by coordinate filter. Sourcetable has shrunk over time.
 **source**:    gnss.ga.gov.au; auscors.ga.gov.au (dead since Jul 2022)
 **operator**:  Geoscience Australia
 **licence**:   CC BY 4.0
+**pipeline-flags**: `solution_filter=False` (~42 IGS/international partner stations
+                    re-streamed by AUSCORS are tagged solution=1 in the sourcetable
+                    despite being physical receivers with fixed coordinates, e.g.
+                    KIRU00SWE0 in Sweden, ENAO00PRT0 in the Azores)
 
 Operated by Geoscience Australia. Old host `auscors.ga.gov.au` dead since Jul 2022.
 TLS also available on port 443. Attribute "© Commonwealth of Australia (Geoscience Australia)".
-
-**Caster misconfiguration**: ~42 IGS/international partner stations in the sourcetable are
-tagged `solution=1` despite being physical receivers with fixed coordinates (e.g. KIRU00SWE0
-in Sweden, ENAO00PRT0 in the Azores). Pipeline uses `solution_filter: False` to retain them.
 
 ---
 
@@ -1092,6 +1087,10 @@ Single station; useful only within ~30 km of Brussels. Low priority.
 **access**:    free; register at renep.dgterritorio.gov.pt
 **stations**:  47
 **source**:    dgterritorio.gov.pt (DGT — Direção-Geral do Território)
+**pipeline-flags**: `nmea_filter=False` (39 of 47 physical stations on port 2101
+                    wrongly tagged NMEA=1; VRS/network mounts live on separate ports
+                    2106/2108 and do not appear in the port 2101 sourcetable, so the
+                    override is safe)
 
 IP confirmed live 2026-04-30. ETRS89 datum (mainland), ITRF93 (autonomous
 regions). Stations and RINEX publicly visible. Port structure:
@@ -1100,13 +1099,6 @@ regions). Stations and RINEX publicly visible. Port structure:
 - **:2102** — same 47 stations, RTCM3 MSM5 (GPS+GLONASS+Galileo+BeiDou) → not ingested (duplicate)
 - **:2106** — 3 VRS nearest-station mounts (NSRT23, NSRT, NSR5) → not ingested
 - **:2108** — 2 network-correction mounts (ACRT, ACR5) → not ingested
-
-**Caster misconfiguration**: 39 of the 47 physical stations on port 2101 are incorrectly
-tagged `NMEA=1` in the sourcetable (same class of bug as rtk2go and GeoRTK). All 47
-entries on port 2101 have unique fixed coordinates and Leica GNSS Spider software,
-confirming they are physical. Pipeline uses `nmea_filter: False` to pass all 47 through.
-VRS/network mounts are on separate ports (2106, 2108) and do not appear in the port 2101
-sourcetable, so the filter override is safe.
 
 **investigate**: confirm whether a hostname resolves to 193.137.94.71 (e.g.
 ntrip.renep.dgterritorio.gov.pt) so the pipeline URL can use DNS rather than
@@ -4368,11 +4360,10 @@ Vertical datum: DrukGeoid 2015.
                `gazar.gov.mn`); formerly ALACGaC / ALMGG
 **source**:    monpos.gazar.gov.mn/monpos/3/ (public announcement with credentials,
                confirmed 2026-04-30)
+**pipeline-flags**: `solution_filter=False` (6 physical stations wrongly tagged
+                    solution=1 by the caster)
 
 **date_added**: 2026-04-29
-
-**Caster misconfiguration**: 6 physical stations are tagged `solution=1` despite having
-fixed unique coordinates. Pipeline uses `solution_filter: False` to retain them.
 
 Initial 6-station CORS infrastructure delivered in December 2010 by ILS (International
 Land Systems) under the Millennium Challenge Corporation Property Rights Project, with

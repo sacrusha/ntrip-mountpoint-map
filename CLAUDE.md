@@ -134,18 +134,14 @@ InaCORS (−4), REGNA-ROU (−19), SAPOS HE (−4) / RP (−11) / SL (−6), SPS
 (−17), IceCORS (−12), Centipede (−2 NEAR/NEAR4), CORS-KOREA (−5 format
 variants).
 
-Two casters incorrectly tag their physical stations with NMEA=1 and get
-`"nmea_filter": False` in `SOURCES`: **rtk2go** (caster-wide misconfiguration
-— all 764 physical stations tagged nmea=1) and **GeoRTK** (2 physical u-blox
-F9P stations). Any future source with the same issue gets the same exception.
-
-`parse_sourcetable` also has a `solution_filter` (default True) that drops
-`solution=1` mountpoints (NTRIP field 12 = "networksolution"). This is a second
-guard — it catches rtk2go's 16 NEAR-xxx/NEAR_xxx regional nearest-station streams
-which are correctly tagged `solution=1` even though `nmea_filter` is off for that
-source. Three casters misapply `solution=1` to real physical stations and get
-`"solution_filter": False`: **GeoRTK** (2 stations), **AUSCORS** (~42 IGS partner
-stations), **MonPOS/almgg_mn** (6 stations).
+Two per-source filter flags handle caster misconfigurations — see each network's
+`**pipeline-flags**:` field in `docs/networks.md` for the rationale:
+- `"nmea_filter": False` — for casters that incorrectly tag physical stations
+  `NMEA=1` (default True drops NMEA=1 as VRS/network-solution).
+- `"solution_filter": False` — for casters that incorrectly tag physical stations
+  `solution=1` (default True drops solution=1 per the NTRIP "networksolution"
+  field; this is the second guard that catches rtk2go's NEAR-xxx VRS streams even
+  with nmea_filter off).
 
 **VRS-only networks** (CROPOS, ASG-EUPOS, FLEPOS, WALCORS, ESTPOS, LatPos,
 KSA-CORS, 10 SAPOS states, + 6 US state DOT: KyCORS, MnCORS, ODOT RTN,
@@ -336,15 +332,11 @@ entries added (one per network, each at its own region): `eft_cors` (Moscow),
 - **rtk2go carrier field:** blank for most entries even on RTCM 3.x MSM
   streams. Parser infers `carrier = 2` when format starts with `RTCM 3`;
   without this, only ~2 of 800+ rtk2go mountpoints survive. Preserve this.
-- **rtk2go nmea field:** all entries (including physical single-base stations)
-  have `nmea=1`. This is a caster misconfiguration. `"nmea_filter": False` in
-  SOURCES prevents the nmea filter from dropping the entire network. If you
-  remove that flag, rtk2go drops to 0 stations.
-- **rtk2go NEAR-xxx streams:** 16 regional nearest-station VRS streams (e.g.
-  `NEAR-AUT`, `NEAR_DEU`) are not physical receivers. They are correctly tagged
-  `solution=1` by the caster. The `solution_filter` (default True) drops them
-  even though `nmea_filter` is off. Do not add `"solution_filter": False` to
-  rtk2go — it would re-admit them as phantom stations.
+- **rtk2go filter flags:** `nmea_filter=False` (all physical stations wrongly
+  tagged NMEA=1 — removing it drops rtk2go to 0 stations) and `solution_filter`
+  left at the default True (catches the 16 NEAR-xxx VRS streams which the caster
+  correctly marks solution=1). Do not add `solution_filter=False` to rtk2go — it
+  would re-admit those streams as phantom stations. See `docs/networks.md §rtk2go`.
 - **Workflow push race:** cron runs can race human PR merges. The push step
   has a 3-attempt rebase-retry loop; don't simplify it.
 - **Leaflet `L.DomUtil.create` signature:** third arg is a DOM parent, not a
