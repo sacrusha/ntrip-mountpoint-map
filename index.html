@@ -386,16 +386,11 @@
   function sourceLabel(sid){ return (SOURCES[sid]&&SOURCES[sid].label)||sid; }
   function sourceColor(sid){ return (SOURCES[sid]&&SOURCES[sid].color)||UNKNOWN_SOURCE_COLOR; }
 
-  function stationSourceIds(s){
-    if(s._sourceIds) return s._sourceIds;
-    var out=[]; var m=s.sources||{};
-    for(var k in m) if(m[k]&&m[k].length) out.push(k);
-    return (s._sourceIds=out);
-  }
   function stationColor(s){
-    var ids=stationSourceIds(s);
-    if(ids.length===1) return sourceColor(ids[0]);
-    return MULTI_COLOR;
+    var src=s.mountpoints[0].source;
+    for(var i=1;i<s.mountpoints.length;i++)
+      if(s.mountpoints[i].source!==src) return MULTI_COLOR;
+    return src.color;
   }
 
   // Zoom bands — switch between raster-only, raster+dots, detailed view.
@@ -584,27 +579,22 @@
   function roundPos(v){ return Math.round(v*100)/100; }
   function posKey(s){ return roundPos(s.lat)+','+roundPos(s.lon); }
 
-  var CARRIER_RANK={L1:1,L1L2:2,L1L2L5:3};
   // Merge per-source station lists into one entry per physical location.
   // Co-located stations (same rounded lat/lon) share a merged entry regardless
-  // of source — each source's mountpoint names are tracked separately.
-  // Coordinate precision: keep the highest-precision value seen.
-  // Carrier: legacy propagates unconditionally; otherwise take the best rank.
+  // of source. Coordinate precision: keep the highest-precision value seen.
   function mergeStations(bySource){
     var byKey={};
     Object.keys(bySource).forEach(function(sid){
+      var src=SOURCES[sid];
       bySource[sid].forEach(function(st){
         var k=posKey(st);
         var e=byKey[k];
         if(e){
-          (e.sources[sid]=e.sources[sid]||[]).push(st.name);
+          e.mountpoints.push({name:st.name,carrier:st.carrier,source:src});
           if(st.dLat<e.dLat){ e.lat=st.lat; e.lon=st.lon; e.dLat=st.dLat; e.dLon=st.dLon; }
-          if(st.carrier==='legacy') e.carrier='legacy';
-          else if(e.carrier!=='legacy'&&CARRIER_RANK[st.carrier]>CARRIER_RANK[e.carrier]) e.carrier=st.carrier;
         } else {
-          e={lat:st.lat,lon:st.lon,dLat:st.dLat,dLon:st.dLon,carrier:st.carrier,sources:{}};
-          e.sources[sid]=[st.name];
-          byKey[k]=e;
+          byKey[k]={lat:st.lat,lon:st.lon,dLat:st.dLat,dLon:st.dLon,
+            mountpoints:[{name:st.name,carrier:st.carrier,source:src}]};
         }
       });
     });
@@ -698,25 +688,24 @@
   function mountChip(){
     return `<button class="help-chip" onclick="event.stopPropagation();__ntripShowPopover(this,'mountpoint','left')" aria-label="What is a mountpoint?"><span class="q">?</span></button>`;
   }
-  function serverBlock(serverKey,mountpoint,dotCol){
-    var srv=SERVERS[serverKey];
+  function serverBlock(source,mountpoint,dotCol){
+    var srv=SERVERS[source.id];
     if(!srv||!mountpoint) return '';
     var dot=`<span style="display:inline-block;width:8px;height:8px;background:${dotCol};border-radius:50%;margin-right:4px"></span>`;
-    var auth=SOURCES[serverKey]||{};
-    var h=`<div class="srv"><div style="font-weight:600;font-size:11px;margin-bottom:2px">${dot}${esc(sourceLabel(serverKey))}</div>`
+    var h=`<div class="srv"><div style="font-weight:600;font-size:11px;margin-bottom:2px">${dot}${esc(source.label)}</div>`
       +cpRow('Server',srv.host)+cpRow('Port',srv.port)
       +`<div class="row"><span class="lbl lbl-with-chip">Mount${mountChip()}</span><code>${esc(mountpoint)}</code><button class="cp" onclick="__ntripCopy(this,'${esc(mountpoint)}')">copy</button></div>`;
-    if(auth.near)
+    if(source.near)
       h+='<div class="anote">or use <code>NEAR</code> to auto-select nearest</div>';
-    if(auth.user)
-      h+=cpRow('Username',auth.user);
-    else if(auth.userNote)
-      h+=`<div class="row"><span class="lbl">Username</span><span style="font-size:11px;color:var(--muted);font-style:italic">${esc(auth.userNote)}</span></div>`;
-    if(auth.pass)
-      h+=cpRow('Password',auth.pass);
-    if(auth.openNote)
-      h+=`<div class="anote">${esc(auth.openNote)}</div>`;
-    var regUrl=safeUrl((SOURCES[serverKey]&&SOURCES[serverKey].registration)||'');
+    if(source.user)
+      h+=cpRow('Username',source.user);
+    else if(source.userNote)
+      h+=`<div class="row"><span class="lbl">Username</span><span style="font-size:11px;color:var(--muted);font-style:italic">${esc(source.userNote)}</span></div>`;
+    if(source.pass)
+      h+=cpRow('Password',source.pass);
+    if(source.openNote)
+      h+=`<div class="anote">${esc(source.openNote)}</div>`;
+    var regUrl=safeUrl(source.registration||'');
     if(regUrl)
       h+=`<div class="anote"><a href="${esc(regUrl)}" target="_blank" rel="noopener noreferrer">${esc(visUrl(regUrl))} ↗</a></div>`;
     return h+'</div>';
@@ -730,34 +719,31 @@
   }
   function buildCopyAllPayload(s){
     var blocks=[];
-    stationSourceIds(s).forEach(function(sid){
-      var srv=SERVERS[sid]; if(!srv) return;
-      var auth=SOURCES[sid]||{};
-      s.sources[sid].forEach(function(n){
-        var lines=['Server: '+srv.host,'Port: '+srv.port,'Mountpoint: '+n];
-        if(auth.user) lines.push('Username: '+auth.user);
-        else if(auth.userNote) lines.push('Username: '+auth.userNote);
-        if(auth.pass) lines.push('Password: '+auth.pass);
-        blocks.push(lines.join('\n'));
-      });
+    s.mountpoints.forEach(function(mp){
+      var srv=SERVERS[mp.source.id]; if(!srv) return;
+      var lines=['Server: '+srv.host,'Port: '+srv.port,'Mountpoint: '+mp.name];
+      if(mp.source.user) lines.push('Username: '+mp.source.user);
+      else if(mp.source.userNote) lines.push('Username: '+mp.source.userNote);
+      if(mp.source.pass) lines.push('Password: '+mp.source.pass);
+      blocks.push(lines.join('\n'));
     });
     return blocks.join('\n\n');
   }
   function buildPopup(s){
     var names=[], blocks='';
-    stationSourceIds(s).forEach(function(sid){
-      var col=sourceColor(sid);
-      s.sources[sid].forEach(function(n){ names.push(n); blocks+=serverBlock(sid,n,col); });
+    s.mountpoints.forEach(function(mp){
+      names.push(mp.name);
+      var acc=mp.carrier==='legacy'
+        ? '<div class="warn">Legacy RTCM 2.x — many modern receivers can\'t use this.</div>'
+        : `<div class="acc">${accuracySummary(mp.carrier)}${carrierChip(mp.carrier)}</div>`;
+      blocks+=acc+serverBlock(mp.source,mp.name,mp.source.color);
     });
-    var acc=s.carrier==='legacy'
-      ? '<div class="warn">Legacy RTCM 2.x — many modern receivers can\'t use this.</div>'
-      : `<div class="acc">${accuracySummary(s.carrier)}${carrierChip(s.carrier)}</div>`;
     var payload=esc(buildCopyAllPayload(s).replace(/\n/g,'\\n'));
     var footer=`<div class="popup-actions">`
       +`<button class="b-primary" onclick="__ntripCopyAll(this,'${payload}')">Copy all</button>`
       +`<button class="b-secondary" onclick="__ntripOpenHelp('how-to-connect-emlid')">How to connect ↗</button>`
       +`</div>`;
-    return `<div class="popup-plain"><h3>${esc(names.join(' / '))}</h3>${acc}${blocks}${footer}</div>`;
+    return `<div class="popup-plain"><h3>${esc(names.join(' / '))}</h3>${blocks}${footer}</div>`;
   }
 
   function precLabel(dLat,dLon,lat){
@@ -1228,11 +1214,10 @@
       });
     }
     function filterPred(s){
-      var ids=stationSourceIds(s);
-      for(var i=0;i<ids.length;i++){
-        var sid=ids[i];
-        if(!state[sid]) continue;
-        if(state['tier_'+((SOURCES[sid]&&SOURCES[sid].access)||'registration')]) return true;
+      for(var i=0;i<s.mountpoints.length;i++){
+        var src=s.mountpoints[i].source;
+        if(!state[src.id]) continue;
+        if(state['tier_'+(src.access||'registration')]) return true;
       }
       return false;
     }
@@ -1433,6 +1418,7 @@
     Object.keys(rawSources).forEach(function(sid){
       var rs=rawSources[sid];
       SOURCES[sid]={
+        id:           sid,
         color:        rs.color||UNKNOWN_SOURCE_COLOR,
         label:        rs.label||sid,
         registration: rs.registration||null,
@@ -1450,21 +1436,29 @@
     });
     stationStaleDays=function(s){
       var min=Infinity;
-      stationSourceIds(s).forEach(function(sid){
-        var d=SOURCE_STALE_DAYS[sid]||0;
+      s.mountpoints.forEach(function(mp){
+        var d=SOURCE_STALE_DAYS[mp.source.id]||0;
         if(d<min) min=d;
       });
       return min;
     };
-    var sourceIds=Object.keys(rawSources);
-    var bySource={}, sourceCounts={};
-    sourceIds.forEach(function(sid){
+    var bySource={};
+    Object.keys(rawSources).forEach(function(sid){
       bySource[sid]=normalizeStations(rawSources[sid].stations);
-      sourceCounts[sid]=bySource[sid].length;
     });
     var updated=(data&&data.updated)||null;
     var networks=(data&&data.networks)||[];
     var allStations=mergeStations(bySource);
+    var sourceCounts={};
+    allStations.forEach(function(s){
+      var seen=[];
+      s.mountpoints.forEach(function(mp){
+        if(seen.indexOf(mp.source)<0){
+          seen.push(mp.source);
+          sourceCounts[mp.source.id]=(sourceCounts[mp.source.id]||0)+1;
+        }
+      });
+    });
 
     var vp=await viewerPosProm;
     if(vp) map.setView([vp.lat,vp.lon],map.getZoom());
@@ -1573,10 +1567,7 @@
                 {sticky:true,className:'prec-tip'})
               .addTo(detailGroup);
           }
-          var names=[];
-          stationSourceIds(s).forEach(function(sid){
-            s.sources[sid].forEach(function(n){ names.push(n); });
-          });
+          var names=s.mountpoints.map(function(mp){ return mp.name; });
           entry.marker=L.marker([s.lat,s.lon],{icon:cachedIcon(fill)})
             .bindTooltip(names.join(' / '),
               {permanent:true,direction:'right',offset:[9,0],className:'slabel'})
@@ -1662,7 +1653,7 @@
       if(stationIndex){
         var ids=stationIndex.range(b.getWest(),b.getSouth(),b.getEast(),b.getNorth());
         for(var i=0;i<ids.length;i++)
-          stationSourceIds(visible[ids[i]]).forEach(function(sid){ counts[sid]=(counts[sid]||0)+1; });
+          visible[ids[i]].mountpoints.forEach(function(mp){ counts[mp.source.id]=(counts[mp.source.id]||0)+1; });
       }
       togglePanel.applyDeclutter(counts);
     }
