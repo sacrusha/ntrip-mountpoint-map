@@ -278,6 +278,7 @@
       "lon": -8.0,
       "tier": "free",
       "vrs": true,
+      "pins": true,
       "access": "registration",
       "registration": "https://renep.dgterritorio.gov.pt",
       "stations_declared": 47,
