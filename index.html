@@ -556,29 +556,18 @@
     }
   });
 
-  function precFromStr(s){
-    if(!s) return 0.005;
-    var dot=s.lastIndexOf('.');
-    if(dot===-1) return 0.5;
-    return 5*Math.pow(10,-(s.length-dot));
-  }
-
   function normalizeStations(list){
     var out=[];
     (list||[]).forEach(function(s){
-      var lat=(typeof s.lat==='number')?s.lat:parseFloat(s.latStr||'');
-      var lon=(typeof s.lon==='number')?s.lon:parseFloat(s.lonStr||'');
-      if(!isFinite(lat)||!isFinite(lon)||(lat===0&&lon===0)) return;
-      var fmt=s.format||'';
+      if(!isFinite(s.lat)||!isFinite(s.lon)||(s.lat===0&&s.lon===0)) return;
       out.push({
-        name:s.name,lat:lat,lon:lon,
-        dLat:s.latPrec!=null?0.5*Math.pow(10,-s.latPrec):precFromStr(s.latStr),
-        dLon:s.lonPrec!=null?0.5*Math.pow(10,-s.lonPrec):precFromStr(s.lonStr),
-        dualFreq:s.dualFreq!=null?s.dualFreq:(s.carrier||0)>=2,
-        tripleFreq:s.tripleFreq!=null?s.tripleFreq:(s.carrier||0)>=3,
-        format:fmt,
-        legacyFormat:fmt.startsWith('RTCM 2'),
-        constellations:s.constellations||''
+        name:s.name, lat:s.lat, lon:s.lon,
+        dLat:0.5*Math.pow(10,-s.latPrec),
+        dLon:0.5*Math.pow(10,-s.lonPrec),
+        carrier:(s.format||'').startsWith('RTCM 2')?'legacy'
+          :s.tripleFreq?'L1L2L5'
+          :s.dualFreq?'L1L2'
+          :'L1',
       });
     });
     return out;
@@ -595,11 +584,12 @@
   function roundPos(v){ return Math.round(v*100)/100; }
   function posKey(s){ return roundPos(s.lat)+','+roundPos(s.lon); }
 
-  // Merge an {sourceId: normalizedStations[]} map into a flat list of
-  // entries. Two raw stations merge iff they share a (name, rounded
-  // position) key — regardless of which sources they came from. The
-  // merged entry tracks each mountpoint by source id, keeps the highest-
-  // precision coordinate it saw, and OR-s the legacy-format flag.
+  var CARRIER_RANK={L1:1,L1L2:2,L1L2L5:3};
+  // Merge per-source station lists into one entry per physical location.
+  // Co-located stations (same rounded lat/lon) share a merged entry regardless
+  // of source — each source's mountpoint names are tracked separately.
+  // Coordinate precision: keep the highest-precision value seen.
+  // Carrier: legacy propagates unconditionally; otherwise take the best rank.
   function mergeStations(bySource){
     var byKey={};
     Object.keys(bySource).forEach(function(sid){
@@ -608,19 +598,11 @@
         var e=byKey[k];
         if(e){
           (e.sources[sid]=e.sources[sid]||[]).push(st.name);
-          if(st.dLat<e.dLat){
-            e.lat=st.lat; e.lon=st.lon; e.dLat=st.dLat; e.dLon=st.dLon;
-          }
-          if(st.dualFreq) e.dualFreq=true;
-          if(st.tripleFreq) e.tripleFreq=true;
-          if(st.legacyFormat) e.legacyFormat=true;
+          if(st.dLat<e.dLat){ e.lat=st.lat; e.lon=st.lon; e.dLat=st.dLat; e.dLon=st.dLon; }
+          if(st.carrier==='legacy') e.carrier='legacy';
+          else if(e.carrier!=='legacy'&&CARRIER_RANK[st.carrier]>CARRIER_RANK[e.carrier]) e.carrier=st.carrier;
         } else {
-          e={
-            lat:st.lat,lon:st.lon,dLat:st.dLat,dLon:st.dLon,
-            dualFreq:!!st.dualFreq,tripleFreq:!!st.tripleFreq,format:st.format||'',
-            legacyFormat:!!st.legacyFormat,
-            sources:{}
-          };
+          e={lat:st.lat,lon:st.lon,dLat:st.dLat,dLon:st.dLon,carrier:st.carrier,sources:{}};
           e.sources[sid]=[st.name];
           byKey[k]=e;
         }
@@ -702,9 +684,9 @@
     });
   }
 
-  function accuracySummary(dualFreq,tripleFreq){
-    if(tripleFreq) return '~1–2 cm (triple-frequency L1+L2+L5 — faster fix, better multipath)';
-    if(dualFreq) return '~1–2 cm (dual-frequency L1+L2)';
+  function accuracySummary(carrier){
+    if(carrier==='L1L2L5') return '~1–2 cm (triple-frequency L1+L2+L5 — faster fix, better multipath)';
+    if(carrier==='L1L2')   return '~1–2 cm (dual-frequency L1+L2)';
     return 'up to ~1 cm within 10 km (L1-only; more sensitive to ionosphere) · good to 20 km';
   }
 
@@ -740,9 +722,10 @@
     return h+'</div>';
   }
 
-  function carrierChip(dualFreq,tripleFreq){
-    var key=dualFreq?'carrier':'carrier-l1';
-    var label=tripleFreq?'What does triple-frequency mean?':dualFreq?'What does L1+L2 mean?':'What does L1-only mean?';
+  function carrierChip(carrier){
+    var key=carrier==='L1'?'carrier-l1':'carrier';
+    var label=carrier==='L1L2L5'?'What does triple-frequency mean?'
+      :carrier==='L1L2'?'What does L1+L2 mean?':'What does L1-only mean?';
     return `<button class="help-chip" onclick="event.stopPropagation();__ntripShowPopover(this,'${key}','top-left')" aria-label="${label}"><span class="q">?</span></button>`;
   }
   function buildCopyAllPayload(s){
@@ -766,15 +749,15 @@
       var col=sourceColor(sid);
       s.sources[sid].forEach(function(n){ names.push(n); blocks+=serverBlock(sid,n,col); });
     });
-    var warn=s.legacyFormat
+    var acc=s.carrier==='legacy'
       ? '<div class="warn">Legacy RTCM 2.x — many modern receivers can\'t use this.</div>'
-      : '';
+      : `<div class="acc">${accuracySummary(s.carrier)}${carrierChip(s.carrier)}</div>`;
     var payload=esc(buildCopyAllPayload(s).replace(/\n/g,'\\n'));
     var footer=`<div class="popup-actions">`
       +`<button class="b-primary" onclick="__ntripCopyAll(this,'${payload}')">Copy all</button>`
       +`<button class="b-secondary" onclick="__ntripOpenHelp('how-to-connect-emlid')">How to connect ↗</button>`
       +`</div>`;
-    return `<div class="popup-plain"><h3>${esc(names.join(' / '))}</h3><div class="acc">${accuracySummary(s.dualFreq,s.tripleFreq)}${carrierChip(s.dualFreq,s.tripleFreq)}</div>${warn}${blocks}${footer}</div>`;
+    return `<div class="popup-plain"><h3>${esc(names.join(' / '))}</h3>${acc}${blocks}${footer}</div>`;
   }
 
   function precLabel(dLat,dLon,lat){
