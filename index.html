@@ -376,25 +376,15 @@
 <div id="help-popover-layer"></div>
 <script>
 (function(){
-  // Per-source presentation. Populated at load time from data/stations.json
-  // (color/label fields). The fallbacks in sourceColor/sourceLabel apply to
-  // any source whose JSON entry lacks these fields.
+  // Per-source data. Built once at load time from data/stations.json.
+  var SOURCES={};
   var _helpTopics=null;
-  var SOURCE_COLORS={};
-  var SOURCE_LABELS={};
-  // Registration URLs per source, populated from data/stations.json at load time.
-  var SOURCE_REG={};
-  // Access tier per source: "open" | "registration" | "conditions".
-  var SOURCE_ACCESS={};
-  // Auth display metadata per source (openNote, near, user, pass, userNote).
-  // Populated from data/stations.json at load time.
-  var SOURCE_META={};
   var MULTI_COLOR='#222', UNKNOWN_SOURCE_COLOR='#888', VRS_COLOR='#c0196a';
   var GREY_MARKER_COLOR='#666';   // matches stale-pin colour
   var INFO_MARKER_COLOR='#888';   // circled-? paid/restricted markers
 
-  function sourceLabel(sid){ return SOURCE_LABELS[sid]||sid; }
-  function sourceColor(sid){ return SOURCE_COLORS[sid]||UNKNOWN_SOURCE_COLOR; }
+  function sourceLabel(sid){ return (SOURCES[sid]&&SOURCES[sid].label)||sid; }
+  function sourceColor(sid){ return (SOURCES[sid]&&SOURCES[sid].color)||UNKNOWN_SOURCE_COLOR; }
 
   function stationSourceIds(s){
     if(s._sourceIds) return s._sourceIds;
@@ -730,7 +720,7 @@
     var srv=SERVERS[serverKey];
     if(!srv||!mountpoint) return '';
     var dot=`<span style="display:inline-block;width:8px;height:8px;background:${dotCol};border-radius:50%;margin-right:4px"></span>`;
-    var auth=SOURCE_META[serverKey]||{};
+    var auth=SOURCES[serverKey]||{};
     var h=`<div class="srv"><div style="font-weight:600;font-size:11px;margin-bottom:2px">${dot}${esc(sourceLabel(serverKey))}</div>`
       +cpRow('Server',srv.host)+cpRow('Port',srv.port)
       +`<div class="row"><span class="lbl lbl-with-chip">Mount${mountChip()}</span><code>${esc(mountpoint)}</code><button class="cp" onclick="__ntripCopy(this,'${esc(mountpoint)}')">copy</button></div>`;
@@ -744,7 +734,7 @@
       h+=cpRow('Password',auth.pass);
     if(auth.openNote)
       h+=`<div class="anote">${esc(auth.openNote)}</div>`;
-    var regUrl=safeUrl(SOURCE_REG[serverKey]||'');
+    var regUrl=safeUrl((SOURCES[serverKey]&&SOURCES[serverKey].registration)||'');
     if(regUrl)
       h+=`<div class="anote"><a href="${esc(regUrl)}" target="_blank" rel="noopener noreferrer">${esc(visUrl(regUrl))} ↗</a></div>`;
     return h+'</div>';
@@ -759,7 +749,7 @@
     var blocks=[];
     stationSourceIds(s).forEach(function(sid){
       var srv=SERVERS[sid]; if(!srv) return;
-      var auth=SOURCE_META[sid]||{};
+      var auth=SOURCES[sid]||{};
       s.sources[sid].forEach(function(n){
         var lines=['Server: '+srv.host,'Port: '+srv.port,'Mountpoint: '+n];
         if(auth.user) lines.push('Username: '+auth.user);
@@ -913,13 +903,13 @@
 
       if(m.tier==='free'){
         var sid=m.id;
-        var auth=SOURCE_META[sid]||{};
+        var auth=SOURCES[sid]||{};
         var inPipeline=staleDays&&(sid in staleDays);
         if(!inPipeline) return;
         var isLive=staleDays[sid]<7;
         if(!isLive){
           var note=m.note||auth.openNote||'';
-          var gr=safeUrl(SOURCE_REG[sid]||'')||regUrl;
+          var gr=safeUrl((SOURCES[sid]&&SOURCES[sid].registration)||'')||regUrl;
           var ge=addRingMarker(group,lat,lon,renderer,GREY_MARKER_COLOR,0.18,label,buildGreyPopup(label,region,note,gr));
           ge.label=label; greyById[m.id]=ge;
         } else if(m.vrs){
@@ -937,7 +927,7 @@
           var accText=hasPinsPinned
             ?'VRS/NRTK network — fixed stations on map'
             :'VRS network — virtual mountpoints only';
-          var popReg=safeUrl(SOURCE_REG[sid]||'');
+          var popReg=safeUrl((SOURCES[sid]&&SOURCES[sid].registration)||'');
           var popup='<div class="popup-plain"><h3>'+esc(label)+'</h3>'
             +'<div class="acc" style="color:'+VRS_COLOR+'">'+accText+'</div>'
             +'<div style="margin:4px 0 6px;font-size:12px">'+body+'</div>'
@@ -1233,7 +1223,7 @@
 
     function applyMarkers(){
       Object.keys(vrsLayerBySid).forEach(function(sid){
-        var tier='tier_'+(SOURCE_ACCESS[sid]||'registration');
+        var tier='tier_'+((SOURCES[sid]&&SOURCES[sid].access)||'registration');
         var show=!!(state[sid]&&state[tier]&&state.vrs_global);
         var entry=vrsLayerBySid[sid];
         entry.visual.setStyle({opacity:show?1:0,fillOpacity:show?0.25:0});
@@ -1259,7 +1249,7 @@
       for(var i=0;i<ids.length;i++){
         var sid=ids[i];
         if(!state[sid]) continue;
-        if(state['tier_'+(SOURCE_ACCESS[sid]||'registration')]) return true;
+        if(state['tier_'+((SOURCES[sid]&&SOURCES[sid].access)||'registration')]) return true;
       }
       return false;
     }
@@ -1274,8 +1264,8 @@
     });
     var tierOrder={open:0,registration:1,conditions:2};
     entries.sort(function(a,b){
-      var ta=tierOrder[SOURCE_ACCESS[a.members[0]]]||1;
-      var tb=tierOrder[SOURCE_ACCESS[b.members[0]]]||1;
+      var ta=tierOrder[(SOURCES[a.members[0]]&&SOURCES[a.members[0]].access)]||1;
+      var tb=tierOrder[(SOURCES[b.members[0]]&&SOURCES[b.members[0]].access)]||1;
       return ta!==tb ? ta-tb : b.count-a.count;
     });
 
@@ -1459,16 +1449,16 @@
     var SOURCE_STALE_DAYS={};
     Object.keys(rawSources).forEach(function(sid){
       var rs=rawSources[sid];
-      if(rs.color) SOURCE_COLORS[sid]=rs.color;
-      if(rs.label) SOURCE_LABELS[sid]=rs.label;
-      if(rs.registration) SOURCE_REG[sid]=rs.registration;
-      SOURCE_ACCESS[sid]=rs.access||'registration';
-      SOURCE_META[sid]={
-        openNote: rs.openNote||null,
-        near: rs.near||false,
-        user: rs.user||(rs.credentials&&rs.credentials.user&&!rs.userNote?rs.credentials.user:null),
-        pass: rs.pass||(rs.credentials&&rs.credentials.pass)||null,
-        userNote: rs.userNote||null,
+      SOURCES[sid]={
+        color:        rs.color||UNKNOWN_SOURCE_COLOR,
+        label:        rs.label||sid,
+        registration: rs.registration||null,
+        access:       rs.access||'registration',
+        openNote:     rs.openNote||null,
+        near:         rs.near||false,
+        user:         rs.user||(rs.credentials&&rs.credentials.user&&!rs.userNote?rs.credentials.user:null),
+        pass:         rs.pass||(rs.credentials&&rs.credentials.pass)||null,
+        userNote:     rs.userNote||null,
       };
       // Prefer source_health.json last_ok (always current) over stations.json
       // (only updated when station data changes).
