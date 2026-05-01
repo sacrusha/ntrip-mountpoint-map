@@ -376,92 +376,24 @@
 <div id="help-popover-layer"></div>
 <script>
 (function(){
-  // Per-source presentation. Populated at load time from data/stations.json
-  // (color/label fields). The fallbacks in sourceColor/sourceLabel apply to
-  // any source whose JSON entry lacks these fields.
+  // Per-source data. Built once at load time from data/stations.json.
+  var SOURCES={};
   var _helpTopics=null;
-  var SOURCE_COLORS={};
-  var SOURCE_LABELS={};
-  // Per-source auth/access hints shown in popups.
-  // user/pass → copyable rows. userNote → plain-text hint (e.g. "any email").
-  // near → show NEAR-mountpoint tip. openNote → italic access note.
-  // _r(suffix) builds the standard "Free registration required [suffix]" note.
-  function _r(s){ return {openNote:'Free registration required'+(s?' '+s:'')}; }
-  var SOURCE_AUTH={
-    rtk2go:    {userNote:'your email address', pass:'none', near:true},
-    centipede: {user:'centipede', pass:'centipede', near:true},
-    frednet:   _r('(email only)'),
-    geortk:    {openNote:'No authentication required'},
-    'sapos_':  _r('— select your federal state'),
-    ergnss:    {openNote:'Free registration, approved immediately'},
-    auscors:   _r('— CC BY 4.0'),
-    positionz: {openNote:'LINZ account required — CC BY 4.0 NZ'},
-    satref:    _r('— Mountpoint: VRS32G'),
-    inacors:   _r(), trignet:   _r(), rbmc_ip:   _r('(5-station limit per user)'),
-    ramsac:    _r('(8-hr session cap)'),
-    regna_rou: _r(), flepos: _r(),
-    renep:     _r('(DGT — Direção-Geral do Território)'),
-    walcors:   _r('(paid for machine-control / auto-guidance)'),
-    spslux:    _r(), asg_eupos: _r('(approval 1–2 working days)'),
-    cropos:    _r(), estpos: _r('(free until Aug 2026)'),
-    latpos:    _r(), litpos: _r(), igac: _r(),
-    earthscope:{openNote:'Non-commercial annual license (NULA) required'},
-    mirai:     _r('(+ NtripCaster auth form)'),
-    cors_korea:_r('(Korean portal; national ID may be required)'),
-    almgg_mn:  {openNote:'Free; shared public credentials: username rover, password 262461'},
-    ksa_cors:  _r(), icecors: _r(),
-
-    // Italy — regional networks
-    spin3:     _r('(CSI Piemonte portal)'), gpsumbria: _r(),
-    gnss_abruzzo_lazio:_r('(Regione Abruzzo portal; covers Abruzzo + Lazio)'),
-    sit_puglia:_r('(SIT Puglia geoportal)'), gnss_campania:_r('— SPID identity (Italy)'),
-    // US state DOT networks
-    wiscors:   _r('(Wisconsin DOT)'),    fprn:      _r('(Florida DOT)'),
-    ardot_rtn: _r('(Arkansas DOT)'),     macors:    _r('(MassDOT)'),
-    vector:    _r('(Vermont VCGI)'),     azcors:    _r('(Arizona ADWR)'),
-    gcgc_rtn:  _r('(Gulf Coast Geodetic Consortium / USM)'),
-    alcors:    _r('(Alabama DOT)'),      orgn:      _r('(Oregon DOT)'),
-    msrn:      _r('(Michigan DOT)'),     nysnet:    _r('(New York State DOT)'),
-    incors:    _r('(Indiana DOA)'),      iartn:     _r('(Iowa DOT)'),
-    kycors:    _r('(Kentucky Transportation Cabinet)'),
-    mncors:    _r('(Minnesota DOT)'),    odot_rtn:  _r('(Ohio DOT)'),
-    modot_rtn: {openNote:'Notarized access agreement required (Missouri DOT); free once approved'},
-    wvrtn:     _r('(West Virginia DOH)'), mainedot: _r('(Maine DOT)'),
-  };
-  // Registration URLs per source, populated from data/stations.json at load time.
-  // SOURCE_AUTH.openNote gives the short description; SOURCE_REG gives the link.
-  var SOURCE_REG={};
-  // Access tier per source: "open" | "registration" | "conditions".
-  // Populated from data/stations.json at load time.
-  var SOURCE_ACCESS={};
-  // Groups collapse multiple source IDs into one toggle row.
-  // match(sid) → true means the source belongs to this group.
-  var SOURCE_GROUPS=[
-    {label:'SAPOS', color:'#2d6e6e',
-     match:function(sid){ return sid.indexOf('sapos_')===0; }},
-  ];
   var MULTI_COLOR='#222', UNKNOWN_SOURCE_COLOR='#888', VRS_COLOR='#c0196a';
   var GREY_MARKER_COLOR='#666';   // matches stale-pin colour
   var INFO_MARKER_COLOR='#888';   // circled-? paid/restricted markers
 
-  function sourceLabel(sid){
-    return SOURCE_LABELS[sid]||(sid.indexOf('sapos_')===0?'SAPOS '+sid.slice(6):sid);
-  }
-  function sourceColor(sid){
-    return SOURCE_COLORS[sid]||(sid.indexOf('sapos_')===0?'#2d6e6e':UNKNOWN_SOURCE_COLOR);
+  function sourceLabel(sid){ return (SOURCES[sid]&&SOURCES[sid].label)||sid; }
+  function sourceColor(sid){ return (SOURCES[sid]&&SOURCES[sid].color)||UNKNOWN_SOURCE_COLOR; }
+
+  function stationColor(s){
+    var src=s.mountpoints[0].source;
+    for(var i=1;i<s.mountpoints.length;i++)
+      if(s.mountpoints[i].source!==src) return MULTI_COLOR;
+    return src.color;
   }
 
-  function stationSourceIds(s){
-    if(s._sourceIds) return s._sourceIds;
-    var out=[]; var m=s.sources||{};
-    for(var k in m) if(m[k]&&m[k].length) out.push(k);
-    return (s._sourceIds=out);
-  }
-  function stationColor(s){
-    var ids=stationSourceIds(s);
-    if(ids.length===1) return sourceColor(ids[0]);
-    return MULTI_COLOR;
-  }
+  var CLICK_RADIUS_PX=8;
 
   // Zoom bands — switch between raster-only, raster+dots, detailed view.
   var ZOOM_DETAIL=11;   // z >= ZOOM_DETAIL: labels + accuracy rectangles + tooltips
@@ -503,16 +435,14 @@
   var COVERAGE_LUT32=(function(){
     var buf=new ArrayBuffer(256*4);
     var u32=new Uint32Array(buf);
-    var u8=new Uint8ClampedArray(buf);
+    var bytes=new Uint8ClampedArray(buf);
     for(var i=0;i<256;i++){
-      u8[i*4]=COVERAGE_LUT[i*4]; u8[i*4+1]=COVERAGE_LUT[i*4+1];
-      u8[i*4+2]=COVERAGE_LUT[i*4+2]; u8[i*4+3]=COVERAGE_LUT[i*4+3];
+      bytes[i*4]=COVERAGE_LUT[i*4]; bytes[i*4+1]=COVERAGE_LUT[i*4+1];
+      bytes[i*4+2]=COVERAGE_LUT[i*4+2]; bytes[i*4+3]=COVERAGE_LUT[i*4+3];
     }
     return u32;
   })();
 
-  // Build a KDBush static spatial index over station lat/lon (x=lon, y=lat).
-  // Returns null if KDBush failed to load or the set is empty.
   function buildStationIndex(stations){
     if(typeof KDBush==='undefined'||!stations||!stations.length) return null;
     return new KDBush(stations,
@@ -621,29 +551,18 @@
     }
   });
 
-  function precFromStr(s){
-    if(!s) return 0.005;
-    var dot=s.lastIndexOf('.');
-    if(dot===-1) return 0.5;
-    return 5*Math.pow(10,-(s.length-dot));
-  }
-
   function normalizeStations(list){
     var out=[];
     (list||[]).forEach(function(s){
-      var lat=(typeof s.lat==='number')?s.lat:parseFloat(s.latStr||'');
-      var lon=(typeof s.lon==='number')?s.lon:parseFloat(s.lonStr||'');
-      if(!isFinite(lat)||!isFinite(lon)||(lat===0&&lon===0)) return;
-      var fmt=s.format||'';
+      if(!isFinite(s.lat)||!isFinite(s.lon)||(s.lat===0&&s.lon===0)) return;
       out.push({
-        name:s.name,lat:lat,lon:lon,
-        dLat:s.latPrec!=null?0.5*Math.pow(10,-s.latPrec):precFromStr(s.latStr),
-        dLon:s.lonPrec!=null?0.5*Math.pow(10,-s.lonPrec):precFromStr(s.lonStr),
-        dualFreq:s.dualFreq!=null?s.dualFreq:(s.carrier||0)>=2,
-        tripleFreq:s.tripleFreq!=null?s.tripleFreq:(s.carrier||0)>=3,
-        format:fmt,
-        legacyFormat:fmt.startsWith('RTCM 2'),
-        constellations:s.constellations||''
+        name:s.name, lat:s.lat, lon:s.lon,
+        dLat:0.5*Math.pow(10,-s.latPrec),
+        dLon:0.5*Math.pow(10,-s.lonPrec),
+        carrier:(s.format||'').startsWith('RTCM 2')?'legacy'
+          :s.tripleFreq?'L1L2L5'
+          :s.dualFreq?'L1L2'
+          :'L1',
       });
     });
     return out;
@@ -660,34 +579,22 @@
   function roundPos(v){ return Math.round(v*100)/100; }
   function posKey(s){ return roundPos(s.lat)+','+roundPos(s.lon); }
 
-  // Merge an {sourceId: normalizedStations[]} map into a flat list of
-  // entries. Two raw stations merge iff they share a (name, rounded
-  // position) key — regardless of which sources they came from. The
-  // merged entry tracks each mountpoint by source id, keeps the highest-
-  // precision coordinate it saw, and OR-s the legacy-format flag.
+  // Merge per-source station lists into one entry per physical location.
+  // Co-located stations (same rounded lat/lon) share a merged entry regardless
+  // of source. Coordinate precision: keep the highest-precision value seen.
   function mergeStations(bySource){
     var byKey={};
     Object.keys(bySource).forEach(function(sid){
+      var src=SOURCES[sid];
       bySource[sid].forEach(function(st){
         var k=posKey(st);
         var e=byKey[k];
         if(e){
-          (e.sources[sid]=e.sources[sid]||[]).push(st.name);
-          if(st.dLat<e.dLat){
-            e.lat=st.lat; e.lon=st.lon; e.dLat=st.dLat; e.dLon=st.dLon;
-          }
-          if(st.dualFreq) e.dualFreq=true;
-          if(st.tripleFreq) e.tripleFreq=true;
-          if(st.legacyFormat) e.legacyFormat=true;
+          e.mountpoints.push({name:st.name,carrier:st.carrier,source:src});
+          if(st.dLat<e.dLat){ e.lat=st.lat; e.lon=st.lon; e.dLat=st.dLat; e.dLon=st.dLon; }
         } else {
-          e={
-            lat:st.lat,lon:st.lon,dLat:st.dLat,dLon:st.dLon,
-            dualFreq:!!st.dualFreq,tripleFreq:!!st.tripleFreq,format:st.format||'',
-            legacyFormat:!!st.legacyFormat,
-            sources:{}
-          };
-          e.sources[sid]=[st.name];
-          byKey[k]=e;
+          byKey[k]={lat:st.lat,lon:st.lon,dLat:st.dLat,dLon:st.dLon,
+            mountpoints:[{name:st.name,carrier:st.carrier,source:src}]};
         }
       });
     });
@@ -716,16 +623,8 @@
   }
   function safeUrl(u){return /^https?:\/\//i.test(u)?u:'';}
 
-  // Copy-to-clipboard helper, reachable from inline onclick in popups.
-  window.__ntripCopy=function(btn,text){
-    var done=function(){
-      btn.classList.add('ok');
-      var prev=btn.textContent; btn.textContent='\u2713';
-      setTimeout(function(){ btn.classList.remove('ok'); btn.textContent=prev; },1200);
-    };
-    if(navigator.clipboard&&navigator.clipboard.writeText){
-      navigator.clipboard.writeText(text).then(done,function(){ fallback(); });
-    } else { fallback(); }
+  // Copy-to-clipboard helpers — reachable from inline onclick in popups.
+  function _clipboardWrite(text,done){
     function fallback(){
       var ta=document.createElement('textarea');
       ta.value=text; ta.style.position='fixed'; ta.style.opacity='0';
@@ -733,16 +632,23 @@
       try{ document.execCommand('copy'); done(); }catch(e){}
       document.body.removeChild(ta);
     }
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(done,fallback);
+    } else { fallback(); }
+  }
+  window.__ntripCopy=function(btn,text){
+    var prev=btn.textContent;
+    _clipboardWrite(text,function(){
+      btn.classList.add('ok'); btn.textContent='\u2713';
+      setTimeout(function(){ btn.classList.remove('ok'); btn.textContent=prev; },1200);
+    });
   };
   window.__ntripCopyAll=function(btn,text){
-    function done(){ var p=btn.textContent; btn.textContent='✓ Copied'; setTimeout(function(){ btn.textContent=p; },1400); }
-    if(navigator.clipboard&&navigator.clipboard.writeText){
-      navigator.clipboard.writeText(text).then(done,function(){ fallback(); });
-    } else { fallback(); }
-    function fallback(){
-      var ta=document.createElement('textarea'); ta.value=text; ta.style.position='fixed'; ta.style.opacity='0';
-      document.body.appendChild(ta); ta.select(); try{ document.execCommand('copy'); done(); }catch(e){} document.body.removeChild(ta);
-    }
+    var prev=btn.textContent;
+    _clipboardWrite(text,function(){
+      btn.textContent='✓ Copied';
+      setTimeout(function(){ btn.textContent=prev; },1400);
+    });
   };
   window.__ntripOpenHelp=function(topicId){ openHelp(topicId); };
   window.__ntripShowPopover=function(chip,key,arrow){ showHelpPopover(chip,key,arrow); };
@@ -767,9 +673,9 @@
     });
   }
 
-  function accuracySummary(dualFreq,tripleFreq){
-    if(tripleFreq) return '~1–2 cm (triple-frequency L1+L2+L5 — faster fix, better multipath)';
-    if(dualFreq) return '~1–2 cm (dual-frequency L1+L2)';
+  function accuracySummary(carrier){
+    if(carrier==='L1L2L5') return '~1–2 cm (triple-frequency L1+L2+L5 — faster fix, better multipath)';
+    if(carrier==='L1L2')   return '~1–2 cm (dual-frequency L1+L2)';
     return 'up to ~1 cm within 10 km (L1-only; more sensitive to ionosphere) · good to 20 km';
   }
 
@@ -781,66 +687,62 @@
   function mountChip(){
     return `<button class="help-chip" onclick="event.stopPropagation();__ntripShowPopover(this,'mountpoint','left')" aria-label="What is a mountpoint?"><span class="q">?</span></button>`;
   }
-  function serverBlock(serverKey,mountpoint,dotCol){
-    var srv=SERVERS[serverKey];
+  function serverBlock(source,mountpoint,dotCol){
+    var srv=SERVERS[source.id];
     if(!srv||!mountpoint) return '';
     var dot=`<span style="display:inline-block;width:8px;height:8px;background:${dotCol};border-radius:50%;margin-right:4px"></span>`;
-    var auth=SOURCE_AUTH[serverKey]
-      ||(serverKey.indexOf('sapos_')===0?SOURCE_AUTH['sapos_']:null)||{};
-    var h=`<div class="srv"><div style="font-weight:600;font-size:11px;margin-bottom:2px">${dot}${esc(sourceLabel(serverKey))}</div>`
+    var h=`<div class="srv"><div style="font-weight:600;font-size:11px;margin-bottom:2px">${dot}${esc(source.label)}</div>`
       +cpRow('Server',srv.host)+cpRow('Port',srv.port)
       +`<div class="row"><span class="lbl lbl-with-chip">Mount${mountChip()}</span><code>${esc(mountpoint)}</code><button class="cp" onclick="__ntripCopy(this,'${esc(mountpoint)}')">copy</button></div>`;
-    if(auth.near)
+    if(source.near)
       h+='<div class="anote">or use <code>NEAR</code> to auto-select nearest</div>';
-    if(auth.user)
-      h+=cpRow('Username',auth.user);
-    else if(auth.userNote)
-      h+=`<div class="row"><span class="lbl">Username</span><span style="font-size:11px;color:var(--muted);font-style:italic">${esc(auth.userNote)}</span></div>`;
-    if(auth.pass)
-      h+=cpRow('Password',auth.pass);
-    if(auth.openNote)
-      h+=`<div class="anote">${esc(auth.openNote)}</div>`;
-    var regUrl=safeUrl(SOURCE_REG[serverKey]||'');
+    if(source.user)
+      h+=cpRow('Username',source.user);
+    else if(source.userNote)
+      h+=`<div class="row"><span class="lbl">Username</span><span style="font-size:11px;color:var(--muted);font-style:italic">${esc(source.userNote)}</span></div>`;
+    if(source.pass)
+      h+=cpRow('Password',source.pass);
+    if(source.openNote)
+      h+=`<div class="anote">${esc(source.openNote)}</div>`;
+    var regUrl=safeUrl(source.registration||'');
     if(regUrl)
       h+=`<div class="anote"><a href="${esc(regUrl)}" target="_blank" rel="noopener noreferrer">${esc(visUrl(regUrl))} ↗</a></div>`;
     return h+'</div>';
   }
 
-  function carrierChip(dualFreq,tripleFreq){
-    var key=dualFreq?'carrier':'carrier-l1';
-    var label=tripleFreq?'What does triple-frequency mean?':dualFreq?'What does L1+L2 mean?':'What does L1-only mean?';
+  function carrierChip(carrier){
+    var key=carrier==='L1'?'carrier-l1':'carrier';
+    var label=carrier==='L1L2L5'?'What does triple-frequency mean?'
+      :carrier==='L1L2'?'What does L1+L2 mean?':'What does L1-only mean?';
     return `<button class="help-chip" onclick="event.stopPropagation();__ntripShowPopover(this,'${key}','top-left')" aria-label="${label}"><span class="q">?</span></button>`;
   }
   function buildCopyAllPayload(s){
     var blocks=[];
-    stationSourceIds(s).forEach(function(sid){
-      var srv=SERVERS[sid]; if(!srv) return;
-      var auth=SOURCE_AUTH[sid]||(sid.indexOf('sapos_')===0?SOURCE_AUTH['sapos_']:null)||{};
-      s.sources[sid].forEach(function(n){
-        var lines=['Server: '+srv.host,'Port: '+srv.port,'Mountpoint: '+n];
-        if(auth.user) lines.push('Username: '+auth.user);
-        else if(auth.userNote) lines.push('Username: '+auth.userNote);
-        if(auth.pass) lines.push('Password: '+auth.pass);
-        blocks.push(lines.join('\n'));
-      });
+    s.mountpoints.forEach(function(mp){
+      var srv=SERVERS[mp.source.id]; if(!srv) return;
+      var lines=['Server: '+srv.host,'Port: '+srv.port,'Mountpoint: '+mp.name];
+      if(mp.source.user) lines.push('Username: '+mp.source.user);
+      else if(mp.source.userNote) lines.push('Username: '+mp.source.userNote);
+      if(mp.source.pass) lines.push('Password: '+mp.source.pass);
+      blocks.push(lines.join('\n'));
     });
     return blocks.join('\n\n');
   }
   function buildPopup(s){
     var names=[], blocks='';
-    stationSourceIds(s).forEach(function(sid){
-      var col=sourceColor(sid);
-      s.sources[sid].forEach(function(n){ names.push(n); blocks+=serverBlock(sid,n,col); });
+    s.mountpoints.forEach(function(mp){
+      names.push(mp.name);
+      var acc=mp.carrier==='legacy'
+        ? '<div class="warn">Legacy RTCM 2.x — many modern receivers can\'t use this.</div>'
+        : `<div class="acc">${accuracySummary(mp.carrier)}${carrierChip(mp.carrier)}</div>`;
+      blocks+=acc+serverBlock(mp.source,mp.name,mp.source.color);
     });
-    var warn=s.legacyFormat
-      ? '<div class="warn">Legacy RTCM 2.x — many modern receivers can\'t use this.</div>'
-      : '';
     var payload=esc(buildCopyAllPayload(s).replace(/\n/g,'\\n'));
     var footer=`<div class="popup-actions">`
       +`<button class="b-primary" onclick="__ntripCopyAll(this,'${payload}')">Copy all</button>`
       +`<button class="b-secondary" onclick="__ntripOpenHelp('how-to-connect-emlid')">How to connect ↗</button>`
       +`</div>`;
-    return `<div class="popup-plain"><h3>${esc(names.join(' / '))}</h3><div class="acc">${accuracySummary(s.dualFreq,s.tripleFreq)}${carrierChip(s.dualFreq,s.tripleFreq)}</div>${warn}${blocks}${footer}</div>`;
+    return `<div class="popup-plain"><h3>${esc(names.join(' / '))}</h3>${blocks}${footer}</div>`;
   }
 
   function precLabel(dLat,dLon,lat){
@@ -926,8 +828,6 @@
     }
   });
 
-  // NRTK networks: polygon + centroid marker. No-op when data has no
-  // networks (the current case; schema anticipates future ingestion).
   function buildNetworkLayers(networks){
     var group=L.layerGroup();
     (networks||[]).forEach(function(n){
@@ -969,35 +869,31 @@
 
       if(m.tier==='free'){
         var sid=m.id;
-        var auth=SOURCE_AUTH[sid]
-          ||(sid.indexOf('sapos_')===0?SOURCE_AUTH['sapos_']:null)
-          ||{};
+        var auth=SOURCES[sid]||{};
         var inPipeline=staleDays&&(sid in staleDays);
         if(!inPipeline) return;
         var isLive=staleDays[sid]<7;
         if(!isLive){
           var note=m.note||auth.openNote||'';
-          var gr=safeUrl(SOURCE_REG[sid]||'')||regUrl;
+          var gr=safeUrl((SOURCES[sid]&&SOURCES[sid].registration)||'')||regUrl;
           var ge=addRingMarker(group,lat,lon,renderer,GREY_MARKER_COLOR,0.18,label,buildGreyPopup(label,region,note,gr));
           ge.label=label; greyById[m.id]=ge;
         } else if(m.vrs){
-          if(!m.pins&&sourceCounts&&(sourceCounts[sid]||0)>0) return;
           var col=VRS_COLOR;
           var hasPinsPinned=sourceCounts&&(sourceCounts[sid]||0)>0;
           var declared=m.stations_declared;
-          var body=m.pins
+          var body=hasPinsPinned
             ? 'Covers <b>'+esc(region)+'</b>.'
-              +(hasPinsPinned?' Reference stations are shown on the map.':'')
+              +' Reference stations are shown on the map.'
               +' Connect via a VRS mountpoint for uniform cm-accuracy across the network'
               +' without manual base selection.'
             : 'Covers <b>'+esc(region)+'</b>.'
               +(declared?' Uses ~'+declared+' physical reference stations.':'')
               +' Your NTRIP client connects to a virtual base synthesised near your location.';
-          var accText=m.pins
-            ? (hasPinsPinned?'VRS/NRTK network — fixed stations on map'
-                             :'VRS/NRTK network — virtual mountpoints')
-            : 'VRS network — virtual mountpoints only';
-          var popReg=safeUrl(SOURCE_REG[sid]||'');
+          var accText=hasPinsPinned
+            ?'VRS/NRTK network — fixed stations on map'
+            :'VRS network — virtual mountpoints only';
+          var popReg=safeUrl((SOURCES[sid]&&SOURCES[sid].registration)||'');
           var popup='<div class="popup-plain"><h3>'+esc(label)+'</h3>'
             +'<div class="acc" style="color:'+VRS_COLOR+'">'+accText+'</div>'
             +'<div style="margin:4px 0 6px;font-size:12px">'+body+'</div>'
@@ -1293,7 +1189,7 @@
 
     function applyMarkers(){
       Object.keys(vrsLayerBySid).forEach(function(sid){
-        var tier='tier_'+(SOURCE_ACCESS[sid]||'registration');
+        var tier='tier_'+((SOURCES[sid]&&SOURCES[sid].access)||'registration');
         var show=!!(state[sid]&&state[tier]&&state.vrs_global);
         var entry=vrsLayerBySid[sid];
         entry.visual.setStyle({opacity:show?1:0,fillOpacity:show?0.25:0});
@@ -1315,28 +1211,16 @@
       });
     }
     function filterPred(s){
-      var ids=stationSourceIds(s);
-      for(var i=0;i<ids.length;i++){
-        var sid=ids[i];
-        if(!state[sid]) continue;
-        if(state['tier_'+(SOURCE_ACCESS[sid]||'registration')]) return true;
+      for(var i=0;i<s.mountpoints.length;i++){
+        var src=s.mountpoints[i].source;
+        if(!state[src.id]) continue;
+        if(state['tier_'+(src.access||'registration')]) return true;
       }
       return false;
     }
 
-    // Build entry list (groups + individuals + VRS-only rows).
-    var claimed={};
     var entries=[];
-    SOURCE_GROUPS.forEach(function(g){
-      var members=Object.keys(sourceCounts).filter(g.match);
-      if(!members.length) return;
-      members.forEach(function(s){ claimed[s]=true; });
-      var n=members.reduce(function(a,s){ return a+(sourceCounts[s]||0); },0);
-      if(!n) return;
-      entries.push({members:members,label:g.label,color:g.color,count:n});
-    });
     Object.keys(sourceCounts).forEach(function(sid){
-      if(claimed[sid]) return;
       if(sourceCounts[sid]){
         entries.push({members:[sid],label:sourceLabel(sid),
           color:sourceColor(sid),count:sourceCounts[sid]});
@@ -1344,12 +1228,11 @@
     });
     var tierOrder={open:0,registration:1,conditions:2};
     entries.sort(function(a,b){
-      var ta=tierOrder[SOURCE_ACCESS[a.members[0]]]||1;
-      var tb=tierOrder[SOURCE_ACCESS[b.members[0]]]||1;
+      var ta=tierOrder[(SOURCES[a.members[0]]&&SOURCES[a.members[0]].access)]||1;
+      var tb=tierOrder[(SOURCES[b.members[0]]&&SOURCES[b.members[0]].access)]||1;
       return ta!==tb ? ta-tb : b.count-a.count;
     });
 
-    // Grey and info rows (sorted by label).
     var greyIds=Object.keys(greyLayerById).sort(function(a,b){
       var la=(greyLayerById[a].label||a).toLowerCase();
       var lb=(greyLayerById[b].label||b).toLowerCase();
@@ -1528,32 +1411,49 @@
     var now=Date.now();
     var SOURCE_STALE_DAYS={};
     Object.keys(rawSources).forEach(function(sid){
-      if(rawSources[sid].color) SOURCE_COLORS[sid]=rawSources[sid].color;
-      if(rawSources[sid].label) SOURCE_LABELS[sid]=rawSources[sid].label;
-      if(rawSources[sid].registration) SOURCE_REG[sid]=rawSources[sid].registration;
-      SOURCE_ACCESS[sid]=rawSources[sid].access||'registration';
+      var rs=rawSources[sid];
+      SOURCES[sid]={
+        id:           sid,
+        color:        rs.color||UNKNOWN_SOURCE_COLOR,
+        label:        rs.label||sid,
+        registration: rs.registration||null,
+        access:       rs.access||'registration',
+        openNote:     rs.openNote||null,
+        near:         rs.near||false,
+        user:         rs.user||(rs.credentials&&rs.credentials.user&&!rs.userNote?rs.credentials.user:null),
+        pass:         rs.pass||(rs.credentials&&rs.credentials.pass)||null,
+        userNote:     rs.userNote||null,
+      };
       // Prefer source_health.json last_ok (always current) over stations.json
       // (only updated when station data changes).
-      var lo=(healthSources[sid]&&healthSources[sid].last_ok)||rawSources[sid].last_ok;
+      var lo=(healthSources[sid]&&healthSources[sid].last_ok)||rs.last_ok;
       SOURCE_STALE_DAYS[sid]=lo?(now-new Date(lo).getTime())/86400000:0;
     });
     stationStaleDays=function(s){
       var min=Infinity;
-      stationSourceIds(s).forEach(function(sid){
-        var d=SOURCE_STALE_DAYS[sid]||0;
+      s.mountpoints.forEach(function(mp){
+        var d=SOURCE_STALE_DAYS[mp.source.id]||0;
         if(d<min) min=d;
       });
       return min;
     };
-    var sourceIds=Object.keys(rawSources);
-    var bySource={}, sourceCounts={};
-    sourceIds.forEach(function(sid){
+    var bySource={};
+    Object.keys(rawSources).forEach(function(sid){
       bySource[sid]=normalizeStations(rawSources[sid].stations);
-      sourceCounts[sid]=bySource[sid].length;
     });
     var updated=(data&&data.updated)||null;
     var networks=(data&&data.networks)||[];
     var allStations=mergeStations(bySource);
+    var sourceCounts={};
+    allStations.forEach(function(s){
+      var seen={};
+      s.mountpoints.forEach(function(mp){
+        if(!seen[mp.source.id]){
+          seen[mp.source.id]=true;
+          sourceCounts[mp.source.id]=(sourceCounts[mp.source.id]||0)+1;
+        }
+      });
+    });
 
     var vp=await viewerPosProm;
     if(vp) map.setView([vp.lat,vp.lon],map.getZoom());
@@ -1565,7 +1465,6 @@
       return (dlaA*dlaA+dloA*dloA)-(dlaB*dlaB+dloB*dloB);
     });
 
-    // Network (NRTK) layer — empty for current data; ready for future.
     var netLayer=buildNetworkLayers(networks);
     netLayer.addTo(map);
 
@@ -1595,6 +1494,7 @@
     // Stations stale >= 7 days are hidden entirely.
     var coverageStations=allStations.filter(function(s){ return stationStaleDays(s)<STALE_GREY_DAYS; });
     var displayStations=allStations.filter(function(s){ return stationStaleDays(s)<STALE_HIDE_DAYS; });
+    var displayStationsIndex=buildStationIndex(displayStations);
 
     // Coverage raster layer (fresh stations only).
     var coverage=new CoverageLayer(coverageStations);
@@ -1662,10 +1562,7 @@
                 {sticky:true,className:'prec-tip'})
               .addTo(detailGroup);
           }
-          var names=[];
-          stationSourceIds(s).forEach(function(sid){
-            s.sources[sid].forEach(function(n){ names.push(n); });
-          });
+          var names=s.mountpoints.map(function(mp){ return mp.name; });
           entry.marker=L.marker([s.lat,s.lon],{icon:cachedIcon(fill)})
             .bindTooltip(names.join(' / '),
               {permanent:true,direction:'right',offset:[9,0],className:'slabel'})
@@ -1727,7 +1624,7 @@
       if(!stationIndex||!visible.length) return;
       var z=map.getZoom();
       var mpp=40075016.686*Math.cos(e.latlng.lat*Math.PI/180)/Math.pow(2,z+8);
-      var padLat=8*mpp/111320;
+      var padLat=CLICK_RADIUS_PX*mpp/111320;
       var padLon=padLat/Math.max(0.01,Math.cos(e.latlng.lat*Math.PI/180));
       var ids=stationIndex.range(
         e.latlng.lng-padLon,e.latlng.lat-padLat,
@@ -1748,10 +1645,10 @@
     function updateViewCounts(){
       var b=map.getBounds();
       var counts={};
-      if(stationIndex){
-        var ids=stationIndex.range(b.getWest(),b.getSouth(),b.getEast(),b.getNorth());
+      if(displayStationsIndex){
+        var ids=displayStationsIndex.range(b.getWest(),b.getSouth(),b.getEast(),b.getNorth());
         for(var i=0;i<ids.length;i++)
-          stationSourceIds(visible[ids[i]]).forEach(function(sid){ counts[sid]=(counts[sid]||0)+1; });
+          displayStations[ids[i]].mountpoints.forEach(function(mp){ counts[mp.source.id]=(counts[mp.source.id]||0)+1; });
       }
       togglePanel.applyDeclutter(counts);
     }
