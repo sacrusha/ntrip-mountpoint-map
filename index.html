@@ -1500,6 +1500,7 @@
     // Stations stale >= 7 days are hidden entirely.
     var coverageStations=allStations.filter(function(s){ return stationStaleDays(s)<STALE_GREY_DAYS; });
     var displayStations=allStations.filter(function(s){ return stationStaleDays(s)<STALE_HIDE_DAYS; });
+    var displayStationsIndex=buildStationIndex(displayStations);
 
     // Coverage raster layer (fresh stations only).
     var coverage=new CoverageLayer(coverageStations);
@@ -1650,10 +1651,10 @@
     function updateViewCounts(){
       var b=map.getBounds();
       var counts={};
-      if(stationIndex){
-        var ids=stationIndex.range(b.getWest(),b.getSouth(),b.getEast(),b.getNorth());
+      if(displayStationsIndex){
+        var ids=displayStationsIndex.range(b.getWest(),b.getSouth(),b.getEast(),b.getNorth());
         for(var i=0;i<ids.length;i++)
-          visible[ids[i]].mountpoints.forEach(function(mp){ counts[mp.source.id]=(counts[mp.source.id]||0)+1; });
+          displayStations[ids[i]].mountpoints.forEach(function(mp){ counts[mp.source.id]=(counts[mp.source.id]||0)+1; });
       }
       togglePanel.applyDeclutter(counts);
     }
