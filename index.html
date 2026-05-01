@@ -429,11 +429,12 @@
     wvrtn:     _r('(West Virginia DOH)'), mainedot: _r('(Maine DOT)'),
   };
   // Registration URLs per source, populated from data/stations.json at load time.
-  // SOURCE_AUTH.openNote gives the short description; SOURCE_REG gives the link.
   var SOURCE_REG={};
   // Access tier per source: "open" | "registration" | "conditions".
-  // Populated from data/stations.json at load time.
   var SOURCE_ACCESS={};
+  // Auth display metadata per source (openNote, near, user, pass, userNote).
+  // Populated from data/stations.json at load time.
+  var SOURCE_META={};
   // Groups collapse multiple source IDs into one toggle row.
   // match(sid) → true means the source belongs to this group.
   var SOURCE_GROUPS=[
@@ -785,8 +786,7 @@
     var srv=SERVERS[serverKey];
     if(!srv||!mountpoint) return '';
     var dot=`<span style="display:inline-block;width:8px;height:8px;background:${dotCol};border-radius:50%;margin-right:4px"></span>`;
-    var auth=SOURCE_AUTH[serverKey]
-      ||(serverKey.indexOf('sapos_')===0?SOURCE_AUTH['sapos_']:null)||{};
+    var auth=SOURCE_META[serverKey]||{};
     var h=`<div class="srv"><div style="font-weight:600;font-size:11px;margin-bottom:2px">${dot}${esc(sourceLabel(serverKey))}</div>`
       +cpRow('Server',srv.host)+cpRow('Port',srv.port)
       +`<div class="row"><span class="lbl lbl-with-chip">Mount${mountChip()}</span><code>${esc(mountpoint)}</code><button class="cp" onclick="__ntripCopy(this,'${esc(mountpoint)}')">copy</button></div>`;
@@ -815,7 +815,7 @@
     var blocks=[];
     stationSourceIds(s).forEach(function(sid){
       var srv=SERVERS[sid]; if(!srv) return;
-      var auth=SOURCE_AUTH[sid]||(sid.indexOf('sapos_')===0?SOURCE_AUTH['sapos_']:null)||{};
+      var auth=SOURCE_META[sid]||{};
       s.sources[sid].forEach(function(n){
         var lines=['Server: '+srv.host,'Port: '+srv.port,'Mountpoint: '+n];
         if(auth.user) lines.push('Username: '+auth.user);
@@ -969,9 +969,7 @@
 
       if(m.tier==='free'){
         var sid=m.id;
-        var auth=SOURCE_AUTH[sid]
-          ||(sid.indexOf('sapos_')===0?SOURCE_AUTH['sapos_']:null)
-          ||{};
+        var auth=SOURCE_META[sid]||{};
         var inPipeline=staleDays&&(sid in staleDays);
         if(!inPipeline) return;
         var isLive=staleDays[sid]<7;
@@ -1526,13 +1524,21 @@
     var now=Date.now();
     var SOURCE_STALE_DAYS={};
     Object.keys(rawSources).forEach(function(sid){
-      if(rawSources[sid].color) SOURCE_COLORS[sid]=rawSources[sid].color;
-      if(rawSources[sid].label) SOURCE_LABELS[sid]=rawSources[sid].label;
-      if(rawSources[sid].registration) SOURCE_REG[sid]=rawSources[sid].registration;
-      SOURCE_ACCESS[sid]=rawSources[sid].access||'registration';
+      var rs=rawSources[sid];
+      if(rs.color) SOURCE_COLORS[sid]=rs.color;
+      if(rs.label) SOURCE_LABELS[sid]=rs.label;
+      if(rs.registration) SOURCE_REG[sid]=rs.registration;
+      SOURCE_ACCESS[sid]=rs.access||'registration';
+      SOURCE_META[sid]={
+        openNote: rs.openNote||null,
+        near: rs.near||false,
+        user: rs.user||(rs.credentials&&rs.credentials.user&&!rs.userNote?rs.credentials.user:null),
+        pass: rs.pass||(rs.credentials&&rs.credentials.pass)||null,
+        userNote: rs.userNote||null,
+      };
       // Prefer source_health.json last_ok (always current) over stations.json
       // (only updated when station data changes).
-      var lo=(healthSources[sid]&&healthSources[sid].last_ok)||rawSources[sid].last_ok;
+      var lo=(healthSources[sid]&&healthSources[sid].last_ok)||rs.last_ok;
       SOURCE_STALE_DAYS[sid]=lo?(now-new Date(lo).getTime())/86400000:0;
     });
     stationStaleDays=function(s){
