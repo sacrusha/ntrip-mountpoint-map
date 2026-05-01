@@ -30,6 +30,6 @@ docs/
 
 ## Gotchas
 
-Generating large text blocks (2kB) requires long thinking phases that will exceed the ~300 s idle timeout and fail. Workaround with iteratarive output, skeleton-first then edit, and bash py etc for repetitive work.
-All color and design edits must always consider Light and Dark mode.
-Sandbox has very limited internet access. SearchTool works, pretty much nothing else does, test environment before relying on it.
+- Generating large text blocks (2kB) in this env will timeout and fail. Workaround with iteratarive output;, skeleton-first then edit; bash py etc for repetitive work.
+- All color and design edits must always consider Light and Dark mode.
+- Sandbox has very limited internet access. WebSearch tool works, pretty much nothing else does, test environment before relying on it.
