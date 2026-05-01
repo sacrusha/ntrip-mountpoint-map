@@ -1,225 +1,225 @@
 {
-  "checked_at": "2026-05-01T04:46:21+00:00",
+  "checked_at": "2026-05-01T08:56:43+00:00",
   "sources": {
-    "rtk2go": {
-      "last_ok": "2026-05-01T04:43:17+00:00",
-      "status": "ok"
-    },
-    "sapos_NW": {
-      "last_ok": "2026-05-01T04:43:18+00:00",
-      "status": "ok"
-    },
     "frednet": {
-      "last_ok": "2026-05-01T04:43:18+00:00",
-      "status": "ok"
-    },
-    "sapos_HE": {
-      "last_ok": "2026-05-01T04:43:18+00:00",
+      "last_ok": "2026-05-01T08:53:38+00:00",
       "status": "ok"
     },
     "geortk": {
-      "last_ok": "2026-05-01T04:43:18+00:00",
+      "last_ok": "2026-05-01T08:53:39+00:00",
       "status": "ok"
     },
-    "centipede": {
-      "last_ok": "2026-05-01T04:43:18+00:00",
+    "sapos_NW": {
+      "last_ok": "2026-05-01T08:53:39+00:00",
       "status": "ok"
     },
-    "sapos_SH_HH": {
-      "last_ok": "2026-05-01T04:43:18+00:00",
+    "sapos_HE": {
+      "last_ok": "2026-05-01T08:53:39+00:00",
       "status": "ok"
     },
     "sapos_NI": {
-      "last_ok": "2026-05-01T04:43:18+00:00",
+      "last_ok": "2026-05-01T08:53:39+00:00",
+      "status": "ok"
+    },
+    "centipede": {
+      "last_ok": "2026-05-01T08:53:39+00:00",
       "status": "ok"
     },
     "sapos_BW": {
-      "last_ok": "2026-05-01T04:43:18+00:00",
+      "last_ok": "2026-05-01T08:53:39+00:00",
+      "status": "ok"
+    },
+    "sapos_SH_HH": {
+      "last_ok": "2026-05-01T08:53:39+00:00",
       "status": "ok"
     },
     "sapos_SN": {
       "last_ok": null,
       "status": "error"
     },
-    "sapos_BB": {
-      "last_ok": "2026-05-01T04:43:18+00:00",
-      "status": "ok"
-    },
-    "sapos_TH": {
-      "last_ok": "2026-05-01T04:43:18+00:00",
-      "status": "ok"
-    },
     "sapos_BY": {
-      "last_ok": "2026-05-01T04:43:18+00:00",
-      "status": "ok"
-    },
-    "renep": {
-      "last_ok": "2026-05-01T04:43:19+00:00",
-      "status": "ok"
-    },
-    "sapos_MV": {
-      "last_ok": "2026-05-01T04:43:19+00:00",
-      "status": "ok"
-    },
-    "ergnss": {
-      "last_ok": "2026-05-01T04:43:19+00:00",
-      "status": "ok"
-    },
-    "sapos_LSA": {
-      "last_ok": "2026-05-01T04:43:19+00:00",
+      "last_ok": "2026-05-01T08:53:39+00:00",
       "status": "ok"
     },
     "sapos_RP": {
-      "last_ok": "2026-05-01T04:43:19+00:00",
+      "last_ok": "2026-05-01T08:53:39+00:00",
+      "status": "ok"
+    },
+    "sapos_BB": {
+      "last_ok": "2026-05-01T08:53:39+00:00",
+      "status": "ok"
+    },
+    "sapos_TH": {
+      "last_ok": "2026-05-01T08:53:40+00:00",
+      "status": "ok"
+    },
+    "renep": {
+      "last_ok": "2026-05-01T08:53:40+00:00",
+      "status": "ok"
+    },
+    "ergnss": {
+      "last_ok": "2026-05-01T08:53:40+00:00",
+      "status": "ok"
+    },
+    "sapos_LSA": {
+      "last_ok": "2026-05-01T08:53:40+00:00",
+      "status": "ok"
+    },
+    "sapos_MV": {
+      "last_ok": "2026-05-01T08:53:40+00:00",
       "status": "ok"
     },
     "sapos_BE": {
-      "last_ok": "2026-05-01T04:43:19+00:00",
+      "last_ok": "2026-05-01T08:53:40+00:00",
       "status": "ok"
     },
-    "positionz": {
-      "last_ok": "2026-05-01T04:43:19+00:00",
-      "status": "ok"
-    },
-    "rbmc_ip": {
-      "last_ok": "2026-05-01T04:43:19+00:00",
-      "status": "ok"
-    },
-    "inacors": {
-      "last_ok": "2026-05-01T04:43:20+00:00",
+    "rtk2go": {
+      "last_ok": "2026-05-01T08:53:40+00:00",
       "status": "ok"
     },
     "satref": {
-      "last_ok": "2026-05-01T04:43:20+00:00",
+      "last_ok": "2026-05-01T08:53:41+00:00",
       "status": "ok"
     },
-    "ramsac": {
-      "last_ok": "2026-05-01T04:43:20+00:00",
+    "rbmc_ip": {
+      "last_ok": "2026-05-01T08:53:41+00:00",
       "status": "ok"
     },
-    "flepos": {
-      "last_ok": "2026-05-01T04:43:20+00:00",
+    "inacors": {
+      "last_ok": "2026-05-01T08:53:41+00:00",
       "status": "ok"
     },
-    "regna_rou": {
-      "last_ok": "2026-05-01T04:43:20+00:00",
+    "positionz": {
+      "last_ok": "2026-05-01T08:53:41+00:00",
       "status": "ok"
     },
     "trignet": {
-      "last_ok": "2026-05-01T04:43:20+00:00",
+      "last_ok": "2026-05-01T08:53:41+00:00",
+      "status": "ok"
+    },
+    "ramsac": {
+      "last_ok": "2026-05-01T08:53:41+00:00",
       "status": "ok"
     },
     "spslux": {
-      "last_ok": "2026-05-01T04:43:20+00:00",
+      "last_ok": "2026-05-01T08:53:41+00:00",
+      "status": "ok"
+    },
+    "regna_rou": {
+      "last_ok": "2026-05-01T08:53:41+00:00",
+      "status": "ok"
+    },
+    "auscors": {
+      "last_ok": "2026-05-01T08:53:41+00:00",
+      "status": "ok"
+    },
+    "flepos": {
+      "last_ok": "2026-05-01T08:53:41+00:00",
+      "status": "ok"
+    },
+    "asg_eupos": {
+      "last_ok": "2026-05-01T08:53:41+00:00",
+      "status": "ok"
+    },
+    "igac": {
+      "last_ok": "2026-05-01T08:53:42+00:00",
+      "status": "ok"
+    },
+    "litpos": {
+      "last_ok": "2026-05-01T08:53:42+00:00",
       "status": "ok"
     },
     "estpos": {
       "last_ok": null,
       "status": "error"
     },
-    "igac": {
-      "last_ok": "2026-05-01T04:43:20+00:00",
-      "status": "ok"
-    },
-    "litpos": {
-      "last_ok": "2026-05-01T04:43:20+00:00",
-      "status": "ok"
-    },
     "cropos": {
-      "last_ok": "2026-05-01T04:43:20+00:00",
-      "status": "ok"
-    },
-    "asg_eupos": {
-      "last_ok": "2026-05-01T04:43:20+00:00",
-      "status": "ok"
-    },
-    "auscors": {
-      "last_ok": "2026-05-01T04:43:20+00:00",
+      "last_ok": "2026-05-01T08:53:42+00:00",
       "status": "ok"
     },
     "earthscope": {
-      "last_ok": "2026-05-01T04:43:21+00:00",
-      "status": "ok"
-    },
-    "sapos_SL": {
-      "last_ok": "2026-05-01T04:43:21+00:00",
+      "last_ok": "2026-05-01T08:53:42+00:00",
       "status": "ok"
     },
     "icecors": {
-      "last_ok": "2026-05-01T04:43:21+00:00",
+      "last_ok": "2026-05-01T08:53:42+00:00",
       "status": "ok"
     },
     "mirai": {
-      "last_ok": "2026-05-01T04:43:21+00:00",
+      "last_ok": "2026-05-01T08:53:42+00:00",
       "status": "ok"
     },
     "almgg_mn": {
-      "last_ok": "2026-05-01T04:43:21+00:00",
-      "status": "ok"
-    },
-    "ksa_cors": {
-      "last_ok": "2026-05-01T04:43:21+00:00",
+      "last_ok": "2026-05-01T08:53:43+00:00",
       "status": "ok"
     },
     "cors_korea": {
-      "last_ok": "2026-05-01T04:43:22+00:00",
+      "last_ok": "2026-05-01T08:53:43+00:00",
+      "status": "ok"
+    },
+    "ksa_cors": {
+      "last_ok": "2026-05-01T08:53:43+00:00",
       "status": "ok"
     },
     "gpsumbria": {
-      "last_ok": "2026-05-01T04:43:22+00:00",
+      "last_ok": "2026-05-01T08:53:43+00:00",
       "status": "ok"
-    },
-    "stpos": {
-      "last_ok": null,
-      "status": "error"
     },
     "tpos": {
       "last_ok": null,
       "status": "error"
     },
-    "gnss_veneto": {
-      "last_ok": "2026-04-30T20:05:04+00:00",
-      "status": "stale"
+    "stpos": {
+      "last_ok": null,
+      "status": "error"
     },
     "sit_puglia": {
-      "last_ok": "2026-05-01T04:43:22+00:00",
-      "status": "ok"
-    },
-    "sicilianet": {
-      "last_ok": "2026-05-01T04:43:22+00:00",
-      "status": "ok"
-    },
-    "wiscors": {
-      "last_ok": "2026-05-01T04:43:22+00:00",
+      "last_ok": "2026-05-01T08:53:44+00:00",
       "status": "ok"
     },
     "gnss_liguria": {
-      "last_ok": "2026-05-01T04:43:22+00:00",
+      "last_ok": "2026-05-01T08:53:44+00:00",
+      "status": "ok"
+    },
+    "sicilianet": {
+      "last_ok": "2026-05-01T08:53:45+00:00",
+      "status": "ok"
+    },
+    "wiscors": {
+      "last_ok": "2026-05-01T08:53:45+00:00",
+      "status": "ok"
+    },
+    "gnss_veneto": {
+      "last_ok": "2026-05-01T08:53:48+00:00",
       "status": "ok"
     },
     "ardot_rtn": {
-      "last_ok": "2026-05-01T04:43:23+00:00",
+      "last_ok": "2026-05-01T08:53:48+00:00",
+      "status": "ok"
+    },
+    "sapos_SL": {
+      "last_ok": "2026-05-01T08:54:17+00:00",
       "status": "ok"
     },
     "vector": {
-      "last_ok": "2026-05-01T04:43:23+00:00",
+      "last_ok": "2026-05-01T08:54:17+00:00",
       "status": "ok"
     },
     "walcors": {
       "last_ok": null,
       "status": "error"
     },
-    "latpos": {
-      "last_ok": "2026-04-30T09:07:37+00:00",
-      "status": "stale"
+    "gcgc_rtn": {
+      "last_ok": "2026-05-01T08:54:41+00:00",
+      "status": "ok"
     },
     "alcors": {
       "last_ok": null,
       "status": "error"
     },
-    "gcgc_rtn": {
-      "last_ok": "2026-05-01T04:44:21+00:00",
-      "status": "ok"
+    "latpos": {
+      "last_ok": "2026-04-30T09:07:37+00:00",
+      "status": "stale"
     },
     "gnss_abruzzo_lazio": {
       "last_ok": null,
@@ -238,27 +238,23 @@
       "status": "error"
     },
     "kycors": {
-      "last_ok": "2026-05-01T04:44:23+00:00",
-      "status": "ok"
-    },
-    "macors": {
-      "last_ok": null,
-      "status": "error"
-    },
-    "odot_rtn": {
-      "last_ok": "2026-05-01T04:44:23+00:00",
+      "last_ok": "2026-05-01T08:54:45+00:00",
       "status": "ok"
     },
     "mncors": {
-      "last_ok": "2026-05-01T04:44:23+00:00",
+      "last_ok": "2026-05-01T08:54:45+00:00",
       "status": "ok"
     },
-    "wvrtn": {
-      "last_ok": "2026-05-01T04:44:23+00:00",
+    "odot_rtn": {
+      "last_ok": "2026-05-01T08:54:45+00:00",
       "status": "ok"
     },
     "modot_rtn": {
-      "last_ok": "2026-05-01T04:44:23+00:00",
+      "last_ok": "2026-05-01T08:54:45+00:00",
+      "status": "ok"
+    },
+    "wvrtn": {
+      "last_ok": "2026-05-01T08:54:45+00:00",
       "status": "ok"
     },
     "mainedot": {
@@ -266,8 +262,12 @@
       "status": "error"
     },
     "mesa_rtvrn": {
-      "last_ok": "2026-05-01T04:44:23+00:00",
+      "last_ok": "2026-05-01T08:54:46+00:00",
       "status": "ok"
+    },
+    "macors": {
+      "last_ok": null,
+      "status": "error"
     },
     "orgn": {
       "last_ok": null,
