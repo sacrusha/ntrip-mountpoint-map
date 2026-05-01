@@ -382,52 +382,6 @@
   var _helpTopics=null;
   var SOURCE_COLORS={};
   var SOURCE_LABELS={};
-  // Per-source auth/access hints shown in popups.
-  // user/pass → copyable rows. userNote → plain-text hint (e.g. "any email").
-  // near → show NEAR-mountpoint tip. openNote → italic access note.
-  // _r(suffix) builds the standard "Free registration required [suffix]" note.
-  function _r(s){ return {openNote:'Free registration required'+(s?' '+s:'')}; }
-  var SOURCE_AUTH={
-    rtk2go:    {userNote:'your email address', pass:'none', near:true},
-    centipede: {user:'centipede', pass:'centipede', near:true},
-    frednet:   _r('(email only)'),
-    geortk:    {openNote:'No authentication required'},
-    'sapos_':  _r('— select your federal state'),
-    ergnss:    {openNote:'Free registration, approved immediately'},
-    auscors:   _r('— CC BY 4.0'),
-    positionz: {openNote:'LINZ account required — CC BY 4.0 NZ'},
-    satref:    _r('— Mountpoint: VRS32G'),
-    inacors:   _r(), trignet:   _r(), rbmc_ip:   _r('(5-station limit per user)'),
-    ramsac:    _r('(8-hr session cap)'),
-    regna_rou: _r(), flepos: _r(),
-    renep:     _r('(DGT — Direção-Geral do Território)'),
-    walcors:   _r('(paid for machine-control / auto-guidance)'),
-    spslux:    _r(), asg_eupos: _r('(approval 1–2 working days)'),
-    cropos:    _r(), estpos: _r('(free until Aug 2026)'),
-    latpos:    _r(), litpos: _r(), igac: _r(),
-    earthscope:{openNote:'Non-commercial annual license (NULA) required'},
-    mirai:     _r('(+ NtripCaster auth form)'),
-    cors_korea:_r('(Korean portal; national ID may be required)'),
-    almgg_mn:  {openNote:'Free; shared public credentials: username rover, password 262461'},
-    ksa_cors:  _r(), icecors: _r(),
-
-    // Italy — regional networks
-    spin3:     _r('(CSI Piemonte portal)'), gpsumbria: _r(),
-    gnss_abruzzo_lazio:_r('(Regione Abruzzo portal; covers Abruzzo + Lazio)'),
-    sit_puglia:_r('(SIT Puglia geoportal)'), gnss_campania:_r('— SPID identity (Italy)'),
-    // US state DOT networks
-    wiscors:   _r('(Wisconsin DOT)'),    fprn:      _r('(Florida DOT)'),
-    ardot_rtn: _r('(Arkansas DOT)'),     macors:    _r('(MassDOT)'),
-    vector:    _r('(Vermont VCGI)'),     azcors:    _r('(Arizona ADWR)'),
-    gcgc_rtn:  _r('(Gulf Coast Geodetic Consortium / USM)'),
-    alcors:    _r('(Alabama DOT)'),      orgn:      _r('(Oregon DOT)'),
-    msrn:      _r('(Michigan DOT)'),     nysnet:    _r('(New York State DOT)'),
-    incors:    _r('(Indiana DOA)'),      iartn:     _r('(Iowa DOT)'),
-    kycors:    _r('(Kentucky Transportation Cabinet)'),
-    mncors:    _r('(Minnesota DOT)'),    odot_rtn:  _r('(Ohio DOT)'),
-    modot_rtn: {openNote:'Notarized access agreement required (Missouri DOT); free once approved'},
-    wvrtn:     _r('(West Virginia DOH)'), mainedot: _r('(Maine DOT)'),
-  };
   // Registration URLs per source, populated from data/stations.json at load time.
   var SOURCE_REG={};
   // Access tier per source: "open" | "registration" | "conditions".
