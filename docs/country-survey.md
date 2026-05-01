@@ -171,7 +171,7 @@ _Last updated: 2026-04-22._
   plain TCP, `ntrip.kadaster.nl:443` TLS) — free, anonymous. ~30 mainland stations,
   RTCM 3.2 MSM. Same caster hosts BES island stations (catalogued under BQ). Legal
   basis: Kadasterwet BWBR0037196 art. 19 lid 4. TU Delft mirror: `gnss1.tudelft.nl:2101`
-  (station subset, no TLS). Not yet wired into the pipeline. → networks.md: `agrs_nl`
+  (station subset, no TLS). → networks.md: `agrs_nl`
 - **Paid per-station raw streams**: NETPOS — same ~30 physical stations as AGRS.NL but
   authenticated paid feed at `ntrip.cloud.kadaster.nl:443` (TLS, B;Y auth). Priced per
   station per year (2026, excl. BTW): €475/station (1–2 stations) down to €95/station

@@ -397,6 +397,14 @@ SOURCES = [
      "type": "vrs-only", "country": ["US"],
      "region": "Colorado (western)",
      "access": "registration", "registration": "https://rtvrn.mesacounty.us/RegisterAccount.aspx"},
+    {"id": "agrs_nl",    "url": "http://ntrip.kadaster.nl:2101/",
+     "color": "#0288d1", "label": "AGRS.NL / AGRS.BES",
+     "type": "single-base", "country": ["NL", "BQ"],
+     "access": "open",         "registration": None},                            # free, anonymous; covers NL mainland + BES islands
+    {"id": "regme_ec",   "url": "http://ntrip.igm.gob.ec:2101/",
+     "color": "#558b2f", "label": "REGME-IP",
+     "type": "single-base", "country": ["EC"],
+     "access": "registration", "registration": "https://www.geoportaligm.gob.ec/ntrip/"},
 ]
 # RTKdata.online removed 2026-04-20: server unreachable since launch (RemoteDisconnected);
 # 0 stations ever collected. Operated by Kansi Solutions GmbH (same parent as paid

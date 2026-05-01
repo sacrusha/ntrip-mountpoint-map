@@ -387,7 +387,7 @@
     {"id":"agrs_nl",   "name":"AGRS.NL",            "region":"Netherlands (mainland)", "country":"NL", "lat":52.30, "lon":5.30,
      "tier":"free",
      "stations_declared":30,
-     "note":"~30 stations across the Netherlands, free. Anonymous — ntrip.kadaster.nl:2101 or ntrip.kadaster.nl:443 (TLS). Single-base raw streams, not VRS. TU Delft mirror at gnss1.tudelft.nl:2101 carries a subset. Not yet in the live feed."}
+     "note":"~30 stations across the Netherlands, free. Anonymous — ntrip.kadaster.nl:2101 or ntrip.kadaster.nl:443 (TLS). Single-base raw streams, not VRS. TU Delft mirror at gnss1.tudelft.nl:2101 carries a subset."}
 
   ]
 }

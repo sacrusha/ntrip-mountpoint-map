@@ -3053,7 +3053,7 @@ Enterprise-focused commercial NRTK network covering Italy. Not free.
 
 ## agrs_nl — AGRS.NL / Kadaster (NL)
 
-**status**:    candidate
+**status**:    free
 **date_added**: 2026-05-01
 **country**:   NL — Netherlands
 **type**:      single-base (~30 mainland stations; BES islands catalogued separately under `bq_cors`)
