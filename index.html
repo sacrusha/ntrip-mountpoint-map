@@ -1383,7 +1383,20 @@
     var affordableNetworks=[], paidNetworks=[], restrictedNetworks=[], info=[];
     (countryMarkersJson&&countryMarkersJson.markers||[]).forEach(function(m){
       if(m.tier==='free'){
-        var net=SOURCES[m.id]; if(!net) return;
+        if(!SOURCES[m.id]){
+          // Not in pipeline — synthetic dead entry so buildNetworkOverlays renders a grey ring.
+          if(!m.lat) return;
+          SOURCES[m.id]={
+            id:m.id, color:UNKNOWN_SOURCE_COLOR, label:m.name||m.id,
+            registration:validUrl(m.registration||''), access:m.access||'registration',
+            openNote:null, near:false, user:null, pass:null, userNote:null,
+            host:null, port:null, staleness:'dead', stationCount:0,
+            lat:m.lat, lon:m.lon, region:m.region||null, vrs:!!m.vrs,
+            stationsDeclared:m.stations_declared||null, note:m.note||null,
+          };
+          return;
+        }
+        var net=SOURCES[m.id];
         net.lat=m.lat; net.lon=m.lon;
         net.region=m.region||null;
         net.vrs=!!m.vrs;

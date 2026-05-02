@@ -200,6 +200,24 @@ Dec 2023 upgrade. Attribute "Source: Land Information New Zealand".
 
 ---
 
+## ugrf — UGRF CORS (UG)
+
+**status**:    free
+**host:port**: `ugrf.mlhud.go.ug:2101`
+**type**:      physical-coord-vrs
+**access**:    free; register at ugrf.mlhud.go.ug/SBC (Leica Spider Business Centre)
+**pipeline-access**: registration
+**stations**:  78 (40 government + 38 private)
+**source**:    ugrf.mlhud.go.ug (Surveys and Mapping Department, MLHUD)
+**operator**:  MLHUD — Ministry of Lands, Housing and Urban Development
+
+Sourcetable publicly accessible without credentials; streaming requires individual
+registration. Single-base mountpoints: ENTB (Entebbe), GULU, SRTI, MBRA, Nearest
+(auto-select). Network-RTK mountpoints: I-Max, VRS. System: Leica GNSS Spider.
+Endpoint confirmed 2026-05-02.
+
+---
+
 ## trignet — TrigNet (ZA)
 
 **status**:    free
@@ -1408,16 +1426,37 @@ SARNET is the only documented correction source for Sardinia.
 ## acorn — ACORN (US-AK)
 
 **status**:    free
-**host:port**: not confirmed
-**type**:      physical-coord-vrs
-**access**:    intended to be free; operated by Alaska DOT/PF
-**stations**:  unknown
-**source**:    dot.alaska.gov (Alaska Department of Transportation and Public Facilities)
+**host:port**: `www.acorn-gnss.net:2101`
+**type**:      vrs
+**access**:    free; register at acorn-gnss.net
+**pipeline-access**: registration
+**stations**:  39 physical reference stations (served via separate NPS caster — see `nps_ak`)
+**source**:    acorn-gnss.net (Alaska DNR — Division of Mining, Land & Water, Survey Section)
+**operator**:  Alaska DNR, in partnership with DOTPF, NPS, and EarthScope
 
-Alaska CORS network. Free-intended service but NTRIP endpoint not confirmed from
-public sources.
+Trimble Pivot Platform. This caster provides network/VRS corrections only (I-Max, VRS
+mountpoints). Raw single-base streams from named physical stations are on the separate
+NPS caster at `rtk.nps.gov:2101`. VRS regions: SouthCentral, SouthEast, Interior,
+NorthWest, NortonSound (experimental). Endpoint confirmed 2026-05-02.
 
-**missing**: confirm NTRIP host:port — search DOT/PF CORS documentation or Alberding directory.
+---
+
+## nps_cors — NPS CORS (US + territories)
+
+**status**:    free
+**host:port**: `rtk.nps.gov:2101`
+**type**:      single-base
+**access**:    conditions — email-based signup at ntrip.nps.gov; restriction scope unclear
+**pipeline-access**: conditions
+**stations**:  142 across US and territories
+**source**:    rtk.nps.gov / ntrip.nps.gov (National Park Service)
+**operator**:  National Park Service (NPS)
+
+RTCM MSM4, 1-second streams. 142 stations spanning US and territories; includes ACORN
+physical stations in Alaska. Registration via email at ntrip.nps.gov; it is not currently
+clear whether access is open to all or limited to NPS staff, partners, or specific user
+categories. Treating as free* (conditions apply) pending clarification. In pipeline
+(sourcetable assumed public like other registration-gated casters; 2026-05-02).
 
 ---
 
