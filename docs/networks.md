@@ -3086,6 +3086,87 @@ Enterprise-focused commercial NRTK network covering Italy. Not free.
 
 ---
 
+## eft_cors — EFT-CORS / СДГС CORS (RU)
+
+**status**:    paid
+**type**:      physical-coord-vrs
+**host:port**: `ntrip.eftgroup.ru:2101` (primary); `:2102` all stations; `:2103` nearest;
+               `:2104` sCMRx format; port 70+region-code for regional subsets (e.g., 7040 = Kaluga Oblast).
+               Note: the legacy domain `eftcors.ru` has an SSL error; use `eftgroup.ru` infrastructure.
+**access**:    paid; day/month/6-month/annual plans; 3-day free RTK trial; RINEX 1 Hz/30 s free
+**yearly_cost**: ₽50,400/yr (~$593/yr); RTK+ enhanced: ₽60,480/yr (~$711/yr); EFT-hardware discount: ₽30,240/yr (~$356/yr). All prices 5% VAT included. Observed 2026-05-02.
+**registration**: `https://bp.eft-cors.ru/register`
+**stations**:  hundreds, growing; GPS+GLONASS+BDS+GAL
+**source**:    eft-cors.ru (EFT GROUP, Moscow)
+**operator**:  EFT GROUP
+
+Russia's largest CORS aggregator. Operated by EFT GROUP (геодезическое оборудование). Stations
+added by partners across all federal districts. No free public RTK tier; RINEX basic (1 Hz, 30 s
+intervals) is free for post-processing; extended RINEX (higher-rate) is paid. Registration
+requires only name + email; individual sign-up supported. Credentials provided after subscribing.
+
+---
+
+## rtknet — RTKNet (RU)
+
+**status**:    paid
+**type**:      single-base
+**host:port**: `94.250.250.43:2101` (primary IP); `cors.rtknet.ru:2101` (hostname alias);
+               regional ports: 6030 Central, 6031 North-West, 6033 Volga, 6034 Ural,
+               6038 North Caucasus, 6040 South, 6041 Siberia/Far East (RTCM32-MSM streams).
+               Port 2101 for own mobile base.
+**access**:    paid; 3-day free trial (new customers or via geodetika.ru support); register at rtknet.ru
+**yearly_cost**: ₽30,000/yr (~$353/yr at ~85 ₽/USD). VAT inclusion not stated on pricing page — confirm with operator. Observed 2026-05-02.
+**registration**: `https://rtknet.ru`
+**stations**:  300+ across Russia; RTCM 3.0 and RTCM 3.2-MSM4; 1 Hz
+**source**:    rtknet.ru (ООО «ГЕОДЕТИКА» / Geodetika)
+**operator**:  ООО «ГЕОДЕТИКА» (Geodetika)
+
+Growing since 2013; covers all federal districts. Individual registration via self-service
+cabinet (rtknet.ru/cabinet/auth/); public offer contract (договор-оферта), no B2B requirement.
+Some equipment resellers include 1-year RTKNet access with GNSS receiver purchases.
+
+---
+
+## hive_cors — HIVE (RU)
+
+**status**:    paid
+**type**:      single-base
+**host:port**: `hive.geosystems.aero:2101` (confirmed 2026-05-02 via forum.geosystems.aero/t/nastrojki-ntrip/1233)
+**access**:    pay-per-use — RTK charged daily (until 23:59 MSK); first ~5 min (~100 KB) free per station;
+               RINEX charged hourly; station owners get free NTRIP caster software + storage + 50% revenue share
+**yearly_cost**: variable (pay-per-use; per-station daily prices only visible on map after login — not publicly listed)
+**registration**: `https://hive.geosystems.aero`
+**stations**:  742 in 79 Russian regions (independently owned; aggregation platform, not a CORS network)
+**source**:    hive.geosystems.aero (Индустриальные геодезические системы / Geosystems.aero, Omsk)
+**operator**:  Индустриальные геодезические системы (Geosystems.aero)
+
+Aggregation model — not a traditional CORS network: independent reference station owners connect
+their stations to HIVE; users pay per-station per-day for RTK (single-baseline, no VRS computation
+layer). Per-station daily prices are set by the station owner and only visible after login on the
+map card. Accepts VISA/MC and Russian e-wallets. 742 stations across 79 regions as of 2026-05-02.
+
+---
+
+## geospider — ГЕОСПАЙДЕР (RU — North-West)
+
+**status**:    paid
+**type**:      physical-coord-vrs
+**host:port**: `geo-spider.net:2101` (confirmed via multiple third-party setup guides and official PDFs hosted at geospider.ru/instructions; confirm via geospider.ru if needed)
+**access**:    paid; day/week/fortnight/month/quarter/annual subscriptions; register via geospider.ru
+**yearly_cost**: ₽44,100/yr (~$519/yr, 30% annual discount applied). All prices 5% VAT included. Observed 2026-05-02.
+**registration**: `https://geospider.ru`
+**stations**:  200+ (St. Petersburg, Moscow, Leningrad, Novgorod, Pskov, Tver, Vologda oblasts and expanding)
+**source**:    geospider.ru (ООО «НПП «ГЕОМАТИК», St. Petersburg)
+**operator**:  ООО «НПП «ГЕОМАТИК»
+
+Regional-to-expanding network for North-West and Central Russia. RTK in local MSK coordinate
+system (network RTK / VRS to MSK). RINEX also available (separate subscription). Individual
+sign-up supported; no company registration required. Coverage expanding beyond original North-West
+footprint as of 2026.
+
+---
+
 ## Rejected — explicitly excluded
 
 ---
@@ -3351,83 +3432,6 @@ Rejected — post-processing only; no public NTRIP service found.
 **status**:    weird
 **reason**:    per-station direct TCP streams (not NTRIP aggregated); incompatible with
                standard NTRIP pipeline; no NTRIP caster endpoint published
-
----
-
-## eft_cors — EFT-CORS / СДГС CORS (RU)
-
-**status**:    paid
-**host:port**: `ntrip.eftgroup.ru:2101` (primary); `:2102` all stations; `:2103` nearest;
-               `:2104` sCMRx format; port 70+region-code for regional subsets (e.g., 7040 = Kaluga Oblast).
-               Note: the legacy domain `eftcors.ru` has an SSL error; use `eftgroup.ru` infrastructure.
-**access**:    paid; day/month/6-month/annual plans; 3-day free RTK trial; RINEX 1 Hz/30 s free
-**yearly_cost**: ₽50,400/yr (~$593/yr); RTK+ enhanced: ₽60,480/yr (~$711/yr); EFT-hardware discount: ₽30,240/yr (~$356/yr). All prices 5% VAT included. Observed 2026-05-02.
-**registration**: `https://bp.eft-cors.ru/register`
-**stations**:  hundreds, growing; GPS+GLONASS+BDS+GAL
-**source**:    eft-cors.ru (EFT GROUP, Moscow)
-**operator**:  EFT GROUP
-
-Russia's largest CORS aggregator. Operated by EFT GROUP (геодезическое оборудование). Stations
-added by partners across all federal districts. No free public RTK tier; RINEX basic (1 Hz, 30 s
-intervals) is free for post-processing; extended RINEX (higher-rate) is paid. Registration
-requires only name + email; individual sign-up supported. Credentials provided after subscribing.
-
----
-
-## rtknet — RTKNet (RU)
-
-**status**:    paid
-**host:port**: `94.250.250.43:2101` (primary IP); `cors.rtknet.ru:2101` (hostname alias);
-               regional ports: 6030 Central, 6031 North-West, 6033 Volga, 6034 Ural,
-               6038 North Caucasus, 6040 South, 6041 Siberia/Far East (RTCM32-MSM streams).
-               Port 2101 for own mobile base.
-**access**:    paid; 3-day free trial (new customers or via geodetika.ru support); register at rtknet.ru
-**yearly_cost**: ₽30,000/yr (~$353/yr at ~85 ₽/USD). VAT inclusion not stated on pricing page — confirm with operator. Observed 2026-05-02.
-**registration**: `https://rtknet.ru`
-**stations**:  300+ across Russia; RTCM 3.0 and RTCM 3.2-MSM4; 1 Hz
-**source**:    rtknet.ru (ООО «ГЕОДЕТИКА» / Geodetika)
-**operator**:  ООО «ГЕОДЕТИКА» (Geodetika)
-
-Growing since 2013; covers all federal districts. Individual registration via self-service
-cabinet (rtknet.ru/cabinet/auth/); public offer contract (договор-оферта), no B2B requirement.
-Some equipment resellers include 1-year RTKNet access with GNSS receiver purchases.
-
----
-
-## hive_cors — HIVE (RU)
-
-**status**:    paid
-**host:port**: `hive.geosystems.aero:2101` (confirmed 2026-05-02 via forum.geosystems.aero/t/nastrojki-ntrip/1233)
-**access**:    pay-per-use — RTK charged daily (until 23:59 MSK); first ~5 min (~100 KB) free per station;
-               RINEX charged hourly; station owners get free NTRIP caster software + storage + 50% revenue share
-**yearly_cost**: variable (pay-per-use; per-station daily prices only visible on map after login — not publicly listed)
-**registration**: `https://hive.geosystems.aero`
-**stations**:  742 in 79 Russian regions (independently owned; aggregation platform, not a CORS network)
-**source**:    hive.geosystems.aero (Индустриальные геодезические системы / Geosystems.aero, Omsk)
-**operator**:  Индустриальные геодезические системы (Geosystems.aero)
-
-Aggregation model — not a traditional CORS network: independent reference station owners connect
-their stations to HIVE; users pay per-station per-day for RTK (single-baseline, no VRS computation
-layer). Per-station daily prices are set by the station owner and only visible after login on the
-map card. Accepts VISA/MC and Russian e-wallets. 742 stations across 79 regions as of 2026-05-02.
-
----
-
-## geospider — ГЕОСПАЙДЕР (RU — North-West)
-
-**status**:    paid
-**host:port**: `geo-spider.net:2101` (confirmed via multiple third-party setup guides and official PDFs hosted at geospider.ru/instructions; confirm via geospider.ru if needed)
-**access**:    paid; day/week/fortnight/month/quarter/annual subscriptions; register via geospider.ru
-**yearly_cost**: ₽44,100/yr (~$519/yr, 30% annual discount applied). All prices 5% VAT included. Observed 2026-05-02.
-**registration**: `https://geospider.ru`
-**stations**:  200+ (St. Petersburg, Moscow, Leningrad, Novgorod, Pskov, Tver, Vologda oblasts and expanding)
-**source**:    geospider.ru (ООО «НПП «ГЕОМАТИК», St. Petersburg)
-**operator**:  ООО «НПП «ГЕОМАТИК»
-
-Regional-to-expanding network for North-West and Central Russia. RTK in local MSK coordinate
-system (network RTK / VRS to MSK). RINEX also available (separate subscription). Individual
-sign-up supported; no company registration required. Coverage expanding beyond original North-West
-footprint as of 2026.
 
 ---
 

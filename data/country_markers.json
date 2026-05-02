@@ -1132,7 +1132,7 @@
       "vrs": true,
       "access": "paid",
       "yearly_cost": "₽50,400/yr (~$593/yr)",
-      "registration": "https://eft-cors.ru",
+      "registration": "https://bp.eft-cors.ru/register",
       "note": "Hundreds of stations across Russia, multi-constellation. Day pass ~₽420 (~$5). Basic post-processing data free. 3-day RTK trial available."
     },
     {
@@ -1143,7 +1143,6 @@
       "lat": 56.85,
       "lon": 60.61,
       "tier": "paid",
-      "vrs": true,
       "access": "paid",
       "yearly_cost": "₽30,000/yr (~$353/yr)",
       "registration": "https://rtknet.ru",
