@@ -3,6 +3,9 @@
 Per-file rules for `docs/country-survey.md`. Pipeline context:
 `.claude/process/pipeline.md`.
 
+**Refactoring is in scope; consider the entire entry on every edit.** See
+`pipeline.md` §"Edit discipline".
+
 ## Role
 
 The **completeness picture** — per-country prose: what was investigated, what

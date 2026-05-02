@@ -3,6 +3,9 @@
 Per-file rules for `docs/networks.md`. Pipeline context:
 `.claude/process/pipeline.md`.
 
+**Refactoring is in scope; consider the entire entry on every edit.** See
+`pipeline.md` §"Edit discipline".
+
 ## Role
 
 The **refined operator catalogue, for us.** Per-network blocks (status,
@@ -24,6 +27,14 @@ country prose only. **Empty space here is a feature.**
 ## Status discipline
 
 The `status:` field drives the marker sweep — be strict.
+
+**Section placement follows status.** `networks.md` is organised into
+status-named sections (`## Free —`, `## Paid — affordable`,
+`## Paid — over cutoff or structurally restricted`,
+`## Rejected — explicitly excluded`, …). When you change a block's
+`status:`, **move the block to the matching section** — don't update in
+place. A block whose status no longer matches its section is a recurring
+failure mode and shows up downstream as wrong markers.
 
 | Status | Meaning |
 |---|---|

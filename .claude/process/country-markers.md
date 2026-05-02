@@ -3,6 +3,9 @@
 Per-file rules for `data/country_markers.json`. Pipeline context:
 `.claude/process/pipeline.md`.
 
+**Refactoring is in scope; consider the entire entry on every edit.** See
+`pipeline.md` §"Edit discipline".
+
 ## Role
 
 The **user-facing translation.** Subset of networks worth a country-level

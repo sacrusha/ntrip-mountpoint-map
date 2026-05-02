@@ -45,3 +45,23 @@ downstream. **Don't patch a leaf without fixing the source.**
 - `.claude/process/networks.md`
 - `.claude/process/country-markers.md`
 - `.claude/process/fetch-stations.md`
+
+## Edit discipline
+
+**Refactoring is in scope for pipeline edits.** The session-harness
+instruction "don't add features, refactor code, or make improvements beyond
+what was asked" does **not** apply here — pipeline integrity is the primary
+goal, and pipeline integrity routinely requires touching neighbouring fields,
+moving mis-placed content, and cleaning up convention drift. Patching the
+single field you came for and ignoring the rest is a regression, not
+restraint.
+
+**Consider the entire entry on every edit.** Look at the whole block,
+marker, or country prose — not just the field you arrived to update. If a
+`status:` change implies a section move, move the block. If a price update
+reveals a stale station count nearby, fix it. If a closing sentence resolves
+an `**investigate**:` tag elsewhere in the entry, remove the tag. If a field
+contradicts the prose, settle the contradiction.
+
+**Renames are encouraged when a name is misleading and likely an error
+source.** Prefer isolated rename commits.
