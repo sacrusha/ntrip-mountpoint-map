@@ -906,10 +906,13 @@ similarly have no published coverage for these jurisdictions.
   pins; shown as VRS stopgap circles.
 
   MoDOT requires notarized access agreement (conditions access). → networks.md: `modot_rtn`
-  ACORN (AK) — `www.acorn-gnss.net:2101`, Trimble Pivot Platform. Operated by Alaska DNR
-  in partnership with DOTPF, NPS, and EarthScope. 39 stations statewide (DGGS April 2025
-  presentation); named sites include Anchorage, Fairbanks, Juneau, Nome, Galena,
-  Talkeetna, Kodiak, Cold Bay;
+  ACORN (AK) — two casters. (1) Main VRS caster: `www.acorn-gnss.net:2101`, Trimble Pivot
+  Platform, operated by Alaska DNR + DOTPF/NPS/EarthScope; provides VRS/network-RTK only
+  (SouthCentral, SouthEast, Interior, NorthWest, NortonSound regions). (2) NPS single-base
+  caster: `rtk.nps.gov:2101`, RTCM MSM4, individual named station mountpoints (Anchorage,
+  Fairbanks, Juneau, Nome, Galena, Talkeetna, Kodiak, Cold Bay, others); 39 sensors total
+  (DGGS April 2025); credentials on request via ntrip.nps.gov. Both free. In pipeline
+  (ACORN VRS 2026-05-02; NPS caster pending auth). → networks.md: `acorn`, `nps_ak`
   individual mountpoints only visible after login — anonymous sourcetable exposes only VRS
   streams and MS_RTCM3. Free with registration. In pipeline (2026-05-02). → networks.md: `acorn`
 

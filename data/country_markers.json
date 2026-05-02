@@ -513,7 +513,7 @@
       "vrs": true,
       "access": "registration",
       "stations_declared": 39,
-      "note": "39 stations statewide (Alaska DNR / DOTPF / NPS / EarthScope partnership). VRS up to ~80 km. Free registration at acorn-gnss.net. VRS regions: SouthCentral, SouthEast, Interior, NorthWest, NortonSound.",
+      "note": "39 stations statewide (Alaska DNR / DOTPF / NPS / EarthScope). Two casters: VRS network-RTK at acorn-gnss.net:2101 (free registration); single-base raw streams at rtk.nps.gov:2101 (credentials on request via ntrip.nps.gov).",
       "registration": "https://www.acorn-gnss.net"
     },
     {

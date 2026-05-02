@@ -1427,18 +1427,35 @@ SARNET is the only documented correction source for Sardinia.
 
 **status**:    free
 **host:port**: `www.acorn-gnss.net:2101`
-**type**:      physical-coord-vrs
+**type**:      vrs
 **access**:    free; register at acorn-gnss.net
 **pipeline-access**: registration
-**stations**:  39 (Alaska DNR/DGGS April 2025 presentation)
+**stations**:  39 physical reference stations (served via separate NPS caster — see `nps_ak`)
 **source**:    acorn-gnss.net (Alaska DNR — Division of Mining, Land & Water, Survey Section)
 **operator**:  Alaska DNR, in partnership with DOTPF, NPS, and EarthScope
 
-Trimble Pivot Platform. Anonymous sourcetable exposes only VRS mountpoints (solution=1,
-coords 0,0) and MS_RTCM3; named physical station mountpoints are only visible after login.
-Pipeline will show 0 pins until authenticated fetch is possible — VRS ring renders from
-country marker. VRS regions: SouthCentral, SouthEast, Interior, NorthWest, NortonSound
-(experimental). Endpoint confirmed 2026-05-02.
+Trimble Pivot Platform. This caster provides network/VRS corrections only (I-Max, VRS
+mountpoints). Raw single-base streams from named physical stations are on the separate
+NPS caster at `rtk.nps.gov:2101`. VRS regions: SouthCentral, SouthEast, Interior,
+NorthWest, NortonSound (experimental). Endpoint confirmed 2026-05-02.
+
+---
+
+## nps_ak — NPS NTRIP Caster (US-AK)
+
+**status**:    free
+**host:port**: `rtk.nps.gov:2101`
+**type**:      single-base
+**access**:    credentials on request — see ntrip.nps.gov
+**pipeline-access**: registration
+**stations**:  individual named stations (Anchorage, Fairbanks, Juneau, Nome, Galena, Talkeetna, Kodiak, Cold Bay, others)
+**source**:    rtk.nps.gov / ntrip.nps.gov (National Park Service)
+**operator**:  National Park Service (NPS)
+
+RTCM MSM4, 1-second streams. Provides raw single-base RTK streams from ACORN's physical
+reference stations. Username and password available on request via ntrip.nps.gov.
+Auth details incomplete as of 2026-05-02 — **investigate**: confirm shared/public
+credentials or request process.
 
 ---
 
