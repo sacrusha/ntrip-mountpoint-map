@@ -308,7 +308,7 @@
 <h4>How do I know it&#x27;s actually working?</h4>
 <p>Once your client connects, an RTK fix should appear within 30–90 seconds on a cold start, faster on a warm restart. Once fixed, your numbers should look like the ones below — anything substantially worse is a sign something is wrong, not a sign your receiver is bad.</p>
 <h3>Concepts</h3>
-<h4>What is VRS? (purple rings)</h4>
+<h4>What is VRS? (green rings)</h4>
 <p>A VRS network synthesises a virtual reference station at your location, using real stations around you. One connection point, uniform cm-accuracy anywhere inside the coverage.</p>
 <h4>L1+L2 vs L1-only — what does it mean?</h4>
 <p>Your receiver tracks signals on two radio frequency bands. Using both lets it measure and remove ionospheric delay — the main error that grows with distance — extending reliable RTK from ~10 km out to ~30 km.</p>
@@ -379,7 +379,7 @@
   // Per-source data. Built once at load time from data/stations.json.
   var SOURCES={};
   var _helpTopics=null;
-  var MULTI_COLOR='#222', UNKNOWN_SOURCE_COLOR='#888', VRS_COLOR='#c0196a';
+  var MULTI_COLOR='#222', UNKNOWN_SOURCE_COLOR='#888', VRS_COLOR='#1a5d1a';
   var GREY_MARKER_COLOR='#666';   // matches stale-pin colour
   var INFO_MARKER_COLOR='#888';   // circled-? fallback / info markers
   var PAID_TIER_ICONS={
@@ -689,6 +689,9 @@
     return h+'</div>';
   }
 
+  function vrsChip(){
+    return `<button class="help-chip" onclick="event.stopPropagation();__ntripShowPopover(this,'vrs','top-left')" aria-label="What is VRS?"><span class="q">?</span></button>`;
+  }
   function carrierChip(carrier){
     var key=carrier==='L1'?'carrier-l1':'carrier';
     var label=carrier==='L1L2L5'?'What does triple-frequency mean?'
@@ -855,7 +858,7 @@
           ?'VRS/NRTK network — fixed stations on map'
           :'VRS network — virtual mountpoints only';
         var popup='<div class="popup-plain"><h3>'+esc(net.label)+'</h3>'
-          +'<div class="acc" style="color:'+VRS_COLOR+'">'+accText+'</div>'
+          +'<div class="acc" style="color:'+VRS_COLOR+'">'+accText+vrsChip()+'</div>'
           +'<div style="margin:4px 0 6px;font-size:12px">'+body+'</div>'
           +(net.openNote?'<div class="anote">'+esc(net.openNote)+'</div>':'')
           +(net.registration?'<div class="anote"><a href="'+esc(net.registration)
@@ -1242,7 +1245,7 @@
         +'<summary class="det-sum">Networks</summary>'
         +'<label style="display:flex;align-items:center;gap:4px">'
           +'<input type="checkbox" data-k="vrs_global" checked>'
-          +sw('border:2px solid '+VRS_COLOR+';background:rgba(192,25,106,0.25);border-radius:50%')
+          +sw('border:2px solid '+VRS_COLOR+';background:rgba(26,93,26,0.25);border-radius:50%')
           +(vrsCount?'VRS networks ('+vrsCount+')':'VRS circles')
         +'</label>'
         +(greyCount
