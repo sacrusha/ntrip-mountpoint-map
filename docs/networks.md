@@ -1427,17 +1427,22 @@ SARNET is the only documented correction source for Sardinia.
 
 **status**:    free
 **host:port**: `www.acorn-gnss.net:2101`
-**type**:      vrs
-**access**:    free; register at acorn-gnss.net
+**type**:      physical-coord-vrs
+**access**:    free; self-service registration at acorn-gnss.net (no professional licence field)
 **pipeline-access**: registration
-**stations**:  39 physical reference stations (served via separate NPS caster — see `nps_ak`)
+**stations**:  39 physical reference stations
 **source**:    acorn-gnss.net (Alaska DNR — Division of Mining, Land & Water, Survey Section)
 **operator**:  Alaska DNR, in partnership with DOTPF, NPS, and EarthScope
 
-Trimble Pivot Platform. This caster provides network/VRS corrections only (I-Max, VRS
-mountpoints). Raw single-base streams from named physical stations are on the separate
-NPS caster at `rtk.nps.gov:2101`. VRS regions: SouthCentral, SouthEast, Interior,
-NorthWest, NortonSound (experimental). Endpoint confirmed 2026-05-02.
+Trimble Pivot Web. Caster serves both VRS network-RTK and a nearest-station single-base
+stream. Mountpoints (per 2025 DGGS workshop): MS_RTCM3 (connects to nearest station),
+VRS_SouthCentral_RTCM3, VRS_Interior_RTCM3, VRS_SouthEast_RTCM3; NorthWest and
+NortonSound (experimental) regions also documented. Anonymous sourcetable exposes only
+VRS and MS_RTCM3 mountpoints; individual station streams visible after login. Raw
+single-base streams from named physical stations also accessible via the NPS caster at
+`rtk.nps.gov:2101`. Registration is self-service; the "Organisation" field on the login
+page is present but its requirement is not clarified in public documentation. Endpoint
+confirmed 2026-05-02.
 
 ---
 
@@ -1446,17 +1451,20 @@ NorthWest, NortonSound (experimental). Endpoint confirmed 2026-05-02.
 **status**:    free
 **host:port**: `rtk.nps.gov:2101`
 **type**:      single-base
-**access**:    conditions — email-based signup at ntrip.nps.gov; restriction scope unclear
+**access**:    conditions — credentials provisioned by emailing gnss_posnav@nps.gov; restriction scope unclear
 **pipeline-access**: conditions
-**stations**:  142 across US and territories
-**source**:    rtk.nps.gov / ntrip.nps.gov (National Park Service)
+**stations**:  142 listed; ~128 active as of 2026-05-02 (DESO, GAA2, GAA3, HALE, HAVO, PAAL, SAJU offline)
+**source**:    ntrip.nps.gov (portal) / rtk.nps.gov (NTRIP caster), National Park Service
 **operator**:  National Park Service (NPS)
 
-RTCM MSM4, 1-second streams. 142 stations spanning US and territories; includes ACORN
-physical stations in Alaska. Registration via email at ntrip.nps.gov; it is not currently
-clear whether access is open to all or limited to NPS staff, partners, or specific user
-categories. Treating as free* (conditions apply) pending clarification. In pipeline
-(sourcetable assumed public like other registration-gated casters; 2026-05-02).
+RTCM MSM4, 1-second streams. 142 stations spanning CONUS, Alaska, Pacific (Hawaii,
+American Samoa), Marianas; includes ACORN physical stations in Alaska. Portal at
+ntrip.nps.gov; NTRIP caster endpoint is rtk.nps.gov:2101. Datum: NAD 1983 (2011)
+2010.0, transitioning to MYCS3 (positions updated February 2026). Accounts provisioned
+manually by NPS staff via gnss_posnav@nps.gov; no public eligibility policy — described
+internally as supporting NPS mapping and survey projects, but access has been extended to
+ACORN partners and external contractors. Not in pipeline (credentials required;
+sourcetable not publicly accessible). Confirmed alive 2026-05-02.
 
 ---
 
