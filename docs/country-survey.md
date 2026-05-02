@@ -1,3 +1,4 @@
+<!-- Process / rules: country-survey.proc.md (pipeline: pipeline.md) -->
 # Free RTK NTRIP — country-by-country survey
 
 _How is RTK positioning solved (or not) in each country? Who runs it, is it
@@ -699,7 +700,7 @@ _Last updated: 2026-04-22._
 
 ### RU — Russia
 
-**date_added**: 2026-04-28
+**date_added**: 2026-05-02
 
 - **Government systems (not NTRIP)**:
   - СДКМ / SDCM (Система Дифференциальной Коррекции и Мониторинга): Russia's SBAS; L-band
@@ -710,17 +711,24 @@ _Last updated: 2026-04-22._
     maintained by Росреестр; research/government use only, no public NTRIP delivery.
 - **Free government RTK**: none. No federal authority provides a free public NTRIP stream.
 - **Commercial RTK** (all paid; all expensive for a hobbyist at current ₽/USD rates):
-  - **EFT-CORS** (EFT GROUP, `ntrip.eft-cors.ru:2102`): Russia's largest CORS aggregator;
-    hundreds of stations growing nationally; GPS+GLONASS+BDS+GAL; ports 2102 (all stations),
-    2103 (nearest), 2104 (sCMRx); day/month/annual plans; RINEX post-processing free;
-    3-day RTK trial. Updated tariffs from Sep 2025. → networks.md: `eft_cors`
-  - **RTKNet** (`ntrip.rtknet.ru`, ports 6030–6041 by federal district): 300+ stations since
-    2013; 30,000 ₽/yr annual (~$333/yr), 4,000 ₽/mo; 3-day free trial. → networks.md: `rtknet`
-  - **HIVE** (Geosystems Aero, `hive.geosystems.aero`): pay-per-use — daily RTK +
-    hourly RINEX; station owners contribute stations and receive revenue share. → networks.md: `hive_cors`
-  - **ГЕОСПАЙДЕР** (НПП «ГЕОМАТИК», North-West Russia, `geospider.ru`, 49 stations): regional
-    paid network centred on St. Petersburg; monthly/quarterly/annual subscriptions.
-    → networks.md: `geospider`
+  - **EFT-CORS** (EFT GROUP, `ntrip.eftgroup.ru:2101`): Russia's largest CORS aggregator;
+    hundreds of stations growing nationally; GPS+GLONASS+BDS+GAL; ports 2101 primary,
+    2102 (all stations), 2103 (nearest), 2104 (sCMRx); day/month/annual plans; RINEX
+    basic post-processing free; 3-day RTK trial; individual registration with name + email
+    only. Annual 50,400 ₽/yr (~$593/yr); day pass 420 ₽ (~$5). 5% VAT included.
+    → networks.md: `eft_cors`
+  - **RTKNet** (`cors.rtknet.ru:2101` / `94.250.250.43:2101`, regional ports 6030–6041):
+    300+ stations since 2013; 30,000 ₽/yr annual (~$353/yr at ~85 ₽/USD), 4,000 ₽/mo
+    (~$47/mo); 3-day free trial; public offer contract, individual sign-up.
+    → networks.md: `rtknet`
+  - **HIVE** (Геосистемс Аэро, `hive.geosystems.aero:2101`): aggregation platform with
+    742 stations across 79 regions; pay-per-station per-day (single-baseline RTK, no VRS);
+    hourly RINEX; station owners contribute and receive revenue share. Per-station prices
+    only visible on map after login. → networks.md: `hive_cors`
+  - **ГЕОСПАЙДЕР** (НПП «ГЕОМАТИК», `geo-spider.net:2101`): 200+ stations across North-West
+    and Central Russia; RTK in MSK local coordinate system (network RTK/VRS); annual plan
+    44,100 ₽/yr (~$519/yr, 30% discount); day pass 315–525 ₽; 5% VAT included.
+    Coverage expanding. → networks.md: `geospider`
   - **SmartNet** (Hexagon/Leica): international commercial VRS; Russia availability
     uncertain post-2022 sanctions.
 - **Post-2022 sanctions**: Western GNSS correction services (Trimble VRS Now, Leica SmartNet)
@@ -730,10 +738,10 @@ _Last updated: 2026-04-22._
 - **Volunteer**: negligible. rtk2go ~1 RU-tagged station (a MIRAI overseas station
   miscoded); Centipede negligible. Russian hobbyists typically deploy a local base station
   using SNIP Lite or open-source NTRIP casters.
-- **Gap**: no free RTK for hobbyists. Cheapest commercial option for occasional use is an
-  EFT-CORS day pass; annual plans (~30,000 ₽/yr, ~$333/yr at current rates) are expensive
-  for a hobbyist. Hobbyists needing centimetre accuracy typically set up a
-  local base.
+- **Gap**: no free RTK for hobbyists. Cheapest occasional-use option is a day pass (315–420 ₽,
+  ~$4–5); cheapest annual plan is RTKNet at 30,000 ₽/yr (~$353/yr). All annual plans are
+  expensive relative to median hobbyist budgets. Hobbyists needing centimetre accuracy
+  typically set up a local base instead.
 
 ### SK — Slovakia
 
