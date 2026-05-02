@@ -8,29 +8,28 @@ PPP/SSR/HAS mentioned as alternative in guide, not what this project is about.
 ```
 index.html                    # Single-page Leaflet app — all UI.
 guide.html                    # long-form standalone visitor primer linked from the map. content must stay aligned /w /help_topics.json
-scripts/fetch_stations.py     # updates .sourcetable files, source_health.json, stations.json.
-scripts/inject_seo_help.py    # splices a hidden SEO mirror of help_topics.json into index.html. Run after editing help_topics.json; commit the index.html diff in the same commit.
+scripts/fetch_stations.py        # updates .sourcetable files, source_health.json, stations.json.
+scripts/fetch_stations.proc.md   # editing rules for fetch_stations.py SOURCES. Read BEFORE editing the .py.
+scripts/inject_seo_help.py       # splices a hidden SEO mirror of help_topics.json into index.html. Run after editing help_topics.json; commit the index.html diff in the same commit.
 .github/workflows/
-  update-stations.yml         # Runs fetch_stations.py 4 times a day, commits to main.
+  update-stations.yml            # Runs fetch_stations.py 4 times a day, commits to main.
 data/
-  stations.json               # fetched data, consumed by index
-  country_markers.json        # Static; country-level markers, content visitor facing
-  help_topics.json            # searchable visitor-facing help repository surfaced via the Help button on the map, content must stay aligned /w guide.html
-  <source>.sourcetable        # Raw archives per fetched caster.
-docs/ 
-  gnss-ai-guide.md # deep technical GNSS primer for ai, consume before making changes to guide or help
-  requirements.md # product spec, target users, out-of-scope, data-model, visual design, tech choices, deferred items. Consult when necessary to understand target users, design, etc.
-  country-survey.md #Greppable RTK landscape by country, answers *how* public RTK coverage in country works. Always ensure edits match format and scope of existing entries. 
-  global-survey.md #Greppable RTK landscape, global networks.
-  networks.md # Greppable list of known networks, Endpoints, credentials, cost, etc. Always ensure edits match format and scope of existing entries.
-  
-.claude/process/                # rules for the RTK survey pipeline. Read the relevant per-file meta BEFORE editing the affected file.
-  pipeline.md                   # cross-file flow: country-survey → networks → markers + fetch. Referenced by all per-file metas.
-  country-survey.md             # rules for editing docs/country-survey.md
-  networks.md                   # rules for editing docs/networks.md
-  country-markers.md            # rules for editing data/country_markers.json
-  fetch-stations.md             # rules for editing scripts/fetch_stations.py SOURCES
-.claude/token-reduction-patterns.md #rules for producing token-optimized content for ai consumption, applies to gnss-ai-guide.md, can be used for other ai facing content
+  stations.json                  # fetched data, consumed by index
+  country_markers.json           # Static; country-level markers, content visitor facing
+  country_markers.proc.md        # editing rules for country_markers.json. Read BEFORE editing the .json.
+  help_topics.json               # searchable visitor-facing help repository surfaced via the Help button on the map, content must stay aligned /w guide.html
+  <source>.sourcetable           # Raw archives per fetched caster.
+docs/
+  gnss-ai-guide.md               # deep technical GNSS primer for ai, consume before making changes to guide or help
+  requirements.md                # product spec, target users, out-of-scope, data-model, visual design, tech choices, deferred items. Consult when necessary to understand target users, design, etc.
+  country-survey.md              # Greppable RTK landscape by country, answers *how* public RTK coverage in country works. Always ensure edits match format and scope of existing entries.
+  country-survey.proc.md         # editing rules for country-survey.md. Read BEFORE editing.
+  global-survey.md               # Greppable RTK landscape, global networks.
+  networks.md                    # Greppable list of known networks, Endpoints, credentials, cost, etc. Always ensure edits match format and scope of existing entries.
+  networks.proc.md               # editing rules for networks.md. Read BEFORE editing.
+  pipeline.md                    # cross-file flow: country-survey → networks → markers + fetch. Referenced by all per-file .proc.md sidecars.
+
+.claude/token-reduction-patterns.md # rules for producing token-optimized content for ai consumption, applies to gnss-ai-guide.md, can be used for other ai facing content
   
 ```
 

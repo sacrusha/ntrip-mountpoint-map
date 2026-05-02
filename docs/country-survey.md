@@ -1,4 +1,4 @@
-<!-- Process / rules: .claude/process/country-survey.md (pipeline: .claude/process/pipeline.md) -->
+<!-- Process / rules: country-survey.proc.md (pipeline: pipeline.md) -->
 # Free RTK NTRIP — country-by-country survey
 
 _How is RTK positioning solved (or not) in each country? Who runs it, is it

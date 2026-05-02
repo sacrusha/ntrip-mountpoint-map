@@ -1,7 +1,7 @@
 # country-survey.md — process
 
 Per-file rules for `docs/country-survey.md`. Pipeline context:
-`.claude/process/pipeline.md`.
+`pipeline.md` (same dir).
 
 **Refactoring is in scope; consider the entire entry on every edit.** See
 `pipeline.md` §"Edit discipline".
@@ -40,4 +40,4 @@ Pick the lightest tier that fits.
 `networks.md` only when the operator is **substantial** (nationwide,
 regional cadastre, recognised commercial operator). Small surveyors stay in
 country prose. Markers / fetch follow from `networks.md` changes; never
-edit those from a country-survey edit.
+edit those from a country-survey edit. See `networks.proc.md`.

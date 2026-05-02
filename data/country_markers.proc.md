@@ -1,10 +1,10 @@
 # country_markers.json — process
 
 Per-file rules for `data/country_markers.json`. Pipeline context:
-`.claude/process/pipeline.md`.
+`../docs/pipeline.md`.
 
 **Refactoring is in scope; consider the entire entry on every edit.** See
-`pipeline.md` §"Edit discipline".
+`../docs/pipeline.md` §"Edit discipline".
 
 ## Role
 

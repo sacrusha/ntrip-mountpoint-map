@@ -21,7 +21,8 @@ nationwide, regional cadastre, or recognised commercial operator. Small
 private surveyors stay in country prose.
 
 A `country_markers.json` marker exists only when the marker tier rules apply
-(see `country-markers.md`). Misplaced markers are worse than missing ones.
+(see `../data/country_markers.proc.md`). Misplaced markers are worse than
+missing ones.
 
 A `fetch_stations.py` SOURCES entry exists only when `networks.md` shows a
 free / candidate endpoint that resolves and supplies physical mountpoints.
@@ -41,10 +42,12 @@ downstream. **Don't patch a leaf without fixing the source.**
 
 ## Per-file rules
 
-- `.claude/process/country-survey.md`
-- `.claude/process/networks.md`
-- `.claude/process/country-markers.md`
-- `.claude/process/fetch-stations.md`
+Each target file has a co-located `.proc.md` sidecar:
+
+- `country-survey.proc.md` (same dir)
+- `networks.proc.md` (same dir)
+- `../data/country_markers.proc.md`
+- `../scripts/fetch_stations.proc.md`
 
 ## Edit discipline
 

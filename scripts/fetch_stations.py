@@ -6,8 +6,8 @@ is byte-identical to the previous run. If a source fails to fetch, its
 previous raw sourcetable on disk is reused so a transient outage does
 not wipe known-good data.
 
-Process / SOURCES editing rules: .claude/process/fetch-stations.md.
-Pipeline context: .claude/process/pipeline.md.
+Process / SOURCES editing rules: see fetch_stations.proc.md (same dir).
+Pipeline context: ../docs/pipeline.md.
 """
 from __future__ import annotations
 

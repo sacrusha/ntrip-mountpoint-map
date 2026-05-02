@@ -1,10 +1,10 @@
 # fetch_stations.py — process
 
 Per-file rules for `scripts/fetch_stations.py`. Pipeline context:
-`.claude/process/pipeline.md`.
+`../docs/pipeline.md`.
 
 **Refactoring is in scope; consider the entire entry on every edit.** See
-`pipeline.md` §"Edit discipline".
+`../docs/pipeline.md` §"Edit discipline".
 
 ## Role
 

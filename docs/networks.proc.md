@@ -1,7 +1,7 @@
 # networks.md — process
 
 Per-file rules for `docs/networks.md`. Pipeline context:
-`.claude/process/pipeline.md`.
+`pipeline.md` (same dir).
 
 **Refactoring is in scope; consider the entire entry on every edit.** See
 `pipeline.md` §"Edit discipline".
@@ -61,5 +61,5 @@ mounts), `unknown`.
 
 ## Downstream
 
-Block change → marker sweep (`.claude/process/country-markers.md`). Wiring
-a `candidate` into ingestion (`.claude/process/fetch-stations.md`).
+Block change → marker sweep (`../data/country_markers.proc.md`). Wiring
+a `candidate` into ingestion (`../scripts/fetch_stations.proc.md`).
