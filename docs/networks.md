@@ -1,3 +1,4 @@
+<!-- Process / rules: .claude/process/networks.md (pipeline: .claude/process/pipeline.md) -->
 # Free RTK NTRIP networks — technical record
 
 _Authoritative reference for every network investigated, whether in pipeline or not._

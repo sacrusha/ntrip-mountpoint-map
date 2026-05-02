@@ -5,6 +5,9 @@ Skips the write (and thereby any commit) when the set of parsed stations
 is byte-identical to the previous run. If a source fails to fetch, its
 previous raw sourcetable on disk is reused so a transient outage does
 not wipe known-good data.
+
+Process / SOURCES editing rules: .claude/process/fetch-stations.md.
+Pipeline context: .claude/process/pipeline.md.
 """
 from __future__ import annotations
 

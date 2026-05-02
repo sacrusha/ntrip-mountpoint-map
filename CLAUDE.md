@@ -24,7 +24,13 @@ docs/
   global-survey.md #Greppable RTK landscape, global networks.
   networks.md # Greppable list of known networks, Endpoints, credentials, cost, etc. Always ensure edits match format and scope of existing entries.
   
-.claude/skills/update-country-survey/SKILL.md # Rules on how to update country-survey.md, networks.md, never edit those files without having read this file 
+.claude/process/                # rules for the RTK survey pipeline. Read the relevant per-file meta BEFORE editing the affected file.
+  pipeline.md                   # cross-file flow: country-survey → networks → markers + fetch. Referenced by all per-file metas.
+  country-survey.md             # rules for editing docs/country-survey.md
+  networks.md                   # rules for editing docs/networks.md
+  country-markers.md            # rules for editing data/country_markers.json
+  fetch-stations.md             # rules for editing scripts/fetch_stations.py SOURCES
+.claude/skills/update-country-survey/SKILL.md # Workflow runbook for batch country audits. Defers to .claude/process/ for per-file rules.
 .claude/token-reduction-patterns.md #rules for producing token-optimized content for ai consumption, applies to gnss-ai-guide.md, can be used for other ai facing content
   
 ```
