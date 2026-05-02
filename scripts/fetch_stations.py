@@ -310,7 +310,7 @@ SOURCES = [
      "type": "vrs", "country": ["US"],
      "region": "Alaska", "group": "us-state-dot",
      "access": "registration", "registration": "https://www.acorn-gnss.net",
-     "openNote": "Free registration required (Alaska DOT/PF)"},
+     "openNote": "Free registration required (Alaska DNR / DOTPF)"},
     {"id": "wiscors",     "url": "http://wiscors.dot.wi.gov:2101/",
      "color": "#bf360c", "label": "WISCORS",
      "type": "physical-vrs", "country": ["US"],

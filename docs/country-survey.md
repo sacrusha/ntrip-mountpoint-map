@@ -906,9 +906,11 @@ similarly have no published coverage for these jurisdictions.
   pins; shown as VRS stopgap circles.
 
   MoDOT requires notarized access agreement (conditions access). → networks.md: `modot_rtn`
-  ACORN (AK) — `www.acorn-gnss.net:2101`, Trimble Pivot Platform, VRS-only sourcetable
-  (5 VRS regions; physical station coords not exposed). Free with registration. In pipeline
-  (2026-05-02). → networks.md: `acorn`
+  ACORN (AK) — `www.acorn-gnss.net:2101`, Trimble Pivot Platform. Operated by Alaska DNR
+  in partnership with DOTPF, NPS, and EarthScope. Named physical stations statewide
+  (Anchorage, Fairbanks, Juneau, Nome, Galena, Talkeetna, Kodiak, Cold Bay, others);
+  individual mountpoints only visible after login — anonymous sourcetable exposes only VRS
+  streams and MS_RTCM3. Free with registration. In pipeline (2026-05-02). → networks.md: `acorn`
 
   Research / dual-access arrays (no independent free hobbyist caster — listed for
   documentation, with the same physical antennae reachable through other in-pipeline

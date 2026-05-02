@@ -1430,14 +1430,15 @@ SARNET is the only documented correction source for Sardinia.
 **type**:      physical-coord-vrs
 **access**:    free; register at acorn-gnss.net
 **pipeline-access**: registration
-**stations**:  unknown (VRS-only sourcetable — physical reference stations not exposed)
-**source**:    acorn-gnss.net (Alaska DOT/PF — Department of Transportation and Public Facilities)
-**operator**:  Alaska DOT/PF
+**stations**:  statewide (Anchorage, Fairbanks, Juneau, Nome, Galena, Talkeetna, Kodiak, Cold Bay, others)
+**source**:    acorn-gnss.net (Alaska DNR — Division of Mining, Land & Water, Survey Section)
+**operator**:  Alaska DNR, in partnership with DOTPF, NPS, and EarthScope
 
-Trimble Pivot Platform. Sourcetable exposes only VRS mountpoints (solution=1, coords 0,0);
-physical reference station coordinates are not published. VRS regions: SouthCentral,
-SouthEast, Interior, NorthWest, NortonSound (experimental). Endpoint confirmed
-2026-05-02.
+Trimble Pivot Platform. Anonymous sourcetable exposes only VRS mountpoints (solution=1,
+coords 0,0) and MS_RTCM3; named physical station mountpoints are only visible after login.
+Pipeline will show 0 pins until authenticated fetch is possible — VRS ring renders from
+country marker. VRS regions: SouthCentral, SouthEast, Interior, NorthWest, NortonSound
+(experimental). Endpoint confirmed 2026-05-02.
 
 ---
 

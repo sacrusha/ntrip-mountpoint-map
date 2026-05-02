@@ -513,7 +513,7 @@
       "vrs": true,
       "access": "registration",
       "stations_declared": null,
-      "note": "Alaska state reference network (Alaska DOT/PF). VRS regions: SouthCentral, SouthEast, Interior, NorthWest, NortonSound (experimental). Free registration at acorn-gnss.net.",
+      "note": "Alaska Continuously Operating Reference Network (Alaska DNR / DOTPF / NPS / EarthScope partnership). Statewide physical stations; VRS up to ~80 km. Free registration at acorn-gnss.net. VRS regions: SouthCentral, SouthEast, Interior, NorthWest, NortonSound.",
       "registration": "https://www.acorn-gnss.net"
     },
     {
