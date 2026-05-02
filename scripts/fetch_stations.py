@@ -305,9 +305,9 @@ SOURCES = [
      "region": "Sicily", "group": "italy-regional",
      "access": "registration", "registration": "https://www.ct.ingv.it/index.php/risorse-e-servizi/sicil-net"},
     # US state DOT / CORS networks — physical-coordinate stations
-    {"id": "acorn",       "url": "http://www.acorn-gnss.net:2101/",    # Trimble Pivot; VRS-only caster; physical stations on separate NPS caster (nps_ak)
+    {"id": "acorn",       "url": "http://www.acorn-gnss.net:2101/",    # Trimble Pivot Web; anonymous sourcetable exposes VRS + MS_RTCM3 only; individual station streams require login (physical stations also on NPS caster)
      "color": "#2e5b8a", "label": "ACORN",
-     "type": "vrs", "country": ["US"],
+     "type": "vrs-only", "country": ["US"],
      "region": "Alaska", "group": "us-state-dot",
      "access": "registration", "registration": "https://www.acorn-gnss.net",
      "openNote": "Free registration required (Alaska DNR / DOTPF)"},
@@ -315,7 +315,7 @@ SOURCES = [
      "color": "#4a7c59", "label": "NPS CORS",
      "type": "single-base", "country": ["US"],
      "access": "conditions", "registration": "https://ntrip.nps.gov",
-     "openNote": "Free*; email signup at ntrip.nps.gov — access scope unclear"},
+     "openNote": "Free*; credentials via gnss_posnav@nps.gov — access scope unclear"},
     {"id": "wiscors",     "url": "http://wiscors.dot.wi.gov:2101/",
      "color": "#bf360c", "label": "WISCORS",
      "type": "physical-vrs", "country": ["US"],
