@@ -689,6 +689,9 @@
     return h+'</div>';
   }
 
+  function vrsChip(){
+    return `<button class="help-chip" onclick="event.stopPropagation();__ntripShowPopover(this,'vrs','top-left')" aria-label="What is VRS?"><span class="q">?</span></button>`;
+  }
   function carrierChip(carrier){
     var key=carrier==='L1'?'carrier-l1':'carrier';
     var label=carrier==='L1L2L5'?'What does triple-frequency mean?'
@@ -855,7 +858,7 @@
           ?'VRS/NRTK network — fixed stations on map'
           :'VRS network — virtual mountpoints only';
         var popup='<div class="popup-plain"><h3>'+esc(net.label)+'</h3>'
-          +'<div class="acc" style="color:'+VRS_COLOR+'">'+accText+'</div>'
+          +'<div class="acc" style="color:'+VRS_COLOR+'">'+accText+vrsChip()+'</div>'
           +'<div style="margin:4px 0 6px;font-size:12px">'+body+'</div>'
           +(net.openNote?'<div class="anote">'+esc(net.openNote)+'</div>':'')
           +(net.registration?'<div class="anote"><a href="'+esc(net.registration)

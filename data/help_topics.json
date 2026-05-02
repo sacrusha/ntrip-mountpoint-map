@@ -29,6 +29,11 @@
       "title": "Mountpoint",
       "body": "The name of the specific correction stream on this caster. You'll paste it into your NTRIP client's 'Mountpoint' or 'Base' field.",
       "deepKey": "mountpoint"
+    },
+    "vrs": {
+      "title": "VRS network",
+      "body": "One server address covers the whole region. The network synthesises a virtual base near your position from real stations around you — no station picking needed. Your client must send NMEA-GGA position back to the caster (look for a 'Receive GGA' or 'Send NMEA position' toggle).",
+      "deepKey": "vrs-explained"
     }
   },
   "topics": {
@@ -39,7 +44,7 @@
       "sub": "In 30 seconds",
       "lead": "Whether you're recording where a fossil came from, marking individual rare plants for return visits, or building a garden robot — ±1 m GPS isn't enough but free network RTK gets you to centimetres. This map shows the reference stations that make that possible: connect to one within ~30 km of where you're working and your GPS goes from metres-accurate to centimetres.",
       "body": "<p>Each coloured dot is one station. The green halos show where its correction is reliable: <span style=\"color:#4caf77\">green &lt;10 km, ~2 cm</span> · <span style=\"color:#b8c832\">lime 10–30 km, centimetre-level</span> · <span style=\"color:#d4a030\">amber 30–50 km, accuracy grows with distance</span> · <span style=\"color:#d46064\">red 50–100 km, decimetre range</span>.</p><p>Click any dot to get connection details — server, port, mountpoint, and credentials — to enter into your receiver or phone app.</p>",
-      "deep": "Purple rings are VRS (virtual networks — one connection point, the network picks a base for you). Grey rings are networks that exist but aren't yet ingested into this feed. Circled ? marks paid or restricted networks, shown for reference only.",
+      "deep": "Green rings are VRS (virtual networks — one connection point, the network picks a base for you). Grey rings are networks that exist but aren't yet ingested into this feed. Circled ? marks paid or restricted networks, shown for reference only.",
       "related": ["is-my-gear-compatible", "how-to-connect-emlid", "access-tiers", "is-this-for-me"]
     },
     "is-my-gear-compatible": {
@@ -105,10 +110,10 @@
     "vrs-explained": {
       "cat": "Concepts",
       "icon": "◎",
-      "q": "What is VRS? (purple rings)",
+      "q": "What is VRS? (green rings)",
       "sub": "Virtual Reference Station",
       "lead": "A VRS network synthesises a virtual reference station at your location, using real stations around you. One connection point, uniform cm-accuracy anywhere inside the coverage.",
-      "body": "<p>Purple rings on the map mark VRS networks. You connect once and never have to switch stations as you move.</p><p>Your app needs to send your current position to the network — look for a 'send GGA', 'send NMEA position', or 'Receive GGA' toggle and make sure it's on. Most apps enable this by default.</p><p>Two failure modes worth knowing about up front:</p><ul><li><b>Edge of network</b> — if your rover sits outside the polygon of physical stations, the caster silently switches from interpolation to extrapolation. There is no RTCM warning. Horizontal error stays small (~6 cm at 30 km outside the hull) but vertical can balloon to several metres.</li><li><b>Geomagnetic storm</b> — Kp 7+ collapses ambiguity-resolution success rate even inside the network. If your VRS connection worked yesterday and breaks today, check swpc.noaa.gov before suspecting hardware.</li></ul>",
+      "body": "<p>Green rings on the map mark VRS networks. You connect once and never have to switch stations as you move.</p><p>Your app needs to send your current position to the network — look for a 'send GGA', 'send NMEA position', or 'Receive GGA' toggle and make sure it's on. Most apps enable this by default.</p><p>Two failure modes worth knowing about up front:</p><ul><li><b>Edge of network</b> — if your rover sits outside the polygon of physical stations, the caster silently switches from interpolation to extrapolation. There is no RTCM warning. Horizontal error stays small (~6 cm at 30 km outside the hull) but vertical can balloon to several metres.</li><li><b>Geomagnetic storm</b> — Kp 7+ collapses ambiguity-resolution success rate even inside the network. If your VRS connection worked yesterday and breaks today, check swpc.noaa.gov before suspecting hardware.</li></ul>",
       "deep": "Under the hood, the network runs a network-RTK solver (most commonly Trimble VRS or a Geo++ MAC equivalent) that models atmosphere from 3+ neighbouring bases. For users, the practical difference vs a single base is: (a) no baseline-distance penalty, (b) no station picking, (c) slightly longer time-to-first-fix on connection.\n\nThird failure mode worth knowing: <b>steep terrain</b>. Vertical tropospheric correction extrapolates poorly in mountainous areas — roughly 27 cm of height error per 1000 m of altitude difference between you and the nearest physical station.\n\nVRS sends a continuous stream of NMEA-GGA position sentences from your rover to the caster — a privacy consideration if you're moving around with cellular data on.",
       "related": ["how-to-connect-emlid", "near-mountpoint", "kp-storm-check"]
     },
