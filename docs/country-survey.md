@@ -907,8 +907,9 @@ similarly have no published coverage for these jurisdictions.
 
   MoDOT requires notarized access agreement (conditions access). → networks.md: `modot_rtn`
   ACORN (AK) — `www.acorn-gnss.net:2101`, Trimble Pivot Platform. Operated by Alaska DNR
-  in partnership with DOTPF, NPS, and EarthScope. Named physical stations statewide
-  (Anchorage, Fairbanks, Juneau, Nome, Galena, Talkeetna, Kodiak, Cold Bay, others);
+  in partnership with DOTPF, NPS, and EarthScope. 39 stations statewide (DGGS April 2025
+  presentation); named sites include Anchorage, Fairbanks, Juneau, Nome, Galena,
+  Talkeetna, Kodiak, Cold Bay;
   individual mountpoints only visible after login — anonymous sourcetable exposes only VRS
   streams and MS_RTCM3. Free with registration. In pipeline (2026-05-02). → networks.md: `acorn`
 

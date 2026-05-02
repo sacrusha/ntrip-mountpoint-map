@@ -1430,7 +1430,7 @@ SARNET is the only documented correction source for Sardinia.
 **type**:      physical-coord-vrs
 **access**:    free; register at acorn-gnss.net
 **pipeline-access**: registration
-**stations**:  statewide (Anchorage, Fairbanks, Juneau, Nome, Galena, Talkeetna, Kodiak, Cold Bay, others)
+**stations**:  39 (Alaska DNR/DGGS April 2025 presentation)
 **source**:    acorn-gnss.net (Alaska DNR — Division of Mining, Land & Water, Survey Section)
 **operator**:  Alaska DNR, in partnership with DOTPF, NPS, and EarthScope
 
