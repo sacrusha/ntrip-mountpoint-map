@@ -381,17 +381,13 @@
   var _helpTopics=null;
   var MULTI_COLOR='#222', UNKNOWN_SOURCE_COLOR='#888', VRS_COLOR='#c0196a';
   var GREY_MARKER_COLOR='#666';   // matches stale-pin colour
-  var INFO_MARKER_COLOR='#888';   // circled-? paid/restricted markers
-
-  function sourceLabel(sid){ return (SOURCES[sid]&&SOURCES[sid].label)||sid; }
-  function sourceColor(sid){ return (SOURCES[sid]&&SOURCES[sid].color)||UNKNOWN_SOURCE_COLOR; }
-
-  function stationColor(s){
-    var src=s.mountpoints[0].source;
-    for(var i=1;i<s.mountpoints.length;i++)
-      if(s.mountpoints[i].source!==src) return MULTI_COLOR;
-    return src.color;
-  }
+  var INFO_MARKER_COLOR='#888';   // circled-? fallback / info markers
+  var PAID_TIER_ICONS={
+    affordable:{glyph:'$',color:'#22a722'},
+    paid:      {glyph:'$',color:'#d44'},
+    restricted:{glyph:'✕',color:'#d44'},
+    info:      {glyph:'?',color:'#888'},
+  };
 
   var CLICK_RADIUS_PX=8;
 
@@ -621,7 +617,7 @@
       .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
       .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
   }
-  function safeUrl(u){return /^https?:\/\//i.test(u)?u:'';}
+  function validUrl(u){return /^https?:\/\//i.test(u)?u:null;}
 
   // Copy-to-clipboard helpers — reachable from inline onclick in popups.
   function _clipboardWrite(text,done){
@@ -657,21 +653,6 @@
     try{ localStorage.setItem('ntrip-howit-seen','1'); }catch(e){}
   };
 
-  // Source metadata — server host + port for NTRIP-client configuration.
-  // Populated from stations.json URLs at load time.
-  var SERVERS={};
-  function setServers(data){
-    var src=(data&&data.sources)||{};
-    Object.keys(src).forEach(function(k){
-      var u=src[k]&&src[k].url;
-      if(!u) return;
-      try{
-        var p=new URL(u);
-        var port=p.port||(p.protocol==='https:'?'443':'80');
-        SERVERS[k]={label:k,host:p.hostname,port:port};
-      }catch(e){}
-    });
-  }
 
   function accuracySummary(carrier){
     if(carrier==='L1L2L5') return '~1–2 cm (triple-frequency L1+L2+L5 — faster fix, better multipath)';
@@ -688,11 +669,10 @@
     return `<button class="help-chip" onclick="event.stopPropagation();__ntripShowPopover(this,'mountpoint','left')" aria-label="What is a mountpoint?"><span class="q">?</span></button>`;
   }
   function serverBlock(source,mountpoint,dotCol){
-    var srv=SERVERS[source.id];
-    if(!srv||!mountpoint) return '';
+    if(!source.host||!mountpoint) return '';
     var dot=`<span style="display:inline-block;width:8px;height:8px;background:${dotCol};border-radius:50%;margin-right:4px"></span>`;
     var h=`<div class="srv"><div style="font-weight:600;font-size:11px;margin-bottom:2px">${dot}${esc(source.label)}</div>`
-      +cpRow('Server',srv.host)+cpRow('Port',srv.port)
+      +cpRow('Server',source.host)+cpRow('Port',source.port)
       +`<div class="row"><span class="lbl lbl-with-chip">Mount${mountChip()}</span><code>${esc(mountpoint)}</code><button class="cp" onclick="__ntripCopy(this,'${esc(mountpoint)}')">copy</button></div>`;
     if(source.near)
       h+='<div class="anote">or use <code>NEAR</code> to auto-select nearest</div>';
@@ -704,9 +684,8 @@
       h+=cpRow('Password',source.pass);
     if(source.openNote)
       h+=`<div class="anote">${esc(source.openNote)}</div>`;
-    var regUrl=safeUrl(source.registration||'');
-    if(regUrl)
-      h+=`<div class="anote"><a href="${esc(regUrl)}" target="_blank" rel="noopener noreferrer">${esc(visUrl(regUrl))} ↗</a></div>`;
+    if(source.registration)
+      h+=`<div class="anote"><a href="${esc(source.registration)}" target="_blank" rel="noopener noreferrer">${esc(visUrl(source.registration))} ↗</a></div>`;
     return h+'</div>';
   }
 
@@ -719,8 +698,8 @@
   function buildCopyAllPayload(s){
     var blocks=[];
     s.mountpoints.forEach(function(mp){
-      var srv=SERVERS[mp.source.id]; if(!srv) return;
-      var lines=['Server: '+srv.host,'Port: '+srv.port,'Mountpoint: '+mp.name];
+      if(!mp.source.host) return;
+      var lines=['Server: '+mp.source.host,'Port: '+mp.source.port,'Mountpoint: '+mp.name];
       if(mp.source.user) lines.push('Username: '+mp.source.user);
       else if(mp.source.userNote) lines.push('Username: '+mp.source.userNote);
       if(mp.source.pass) lines.push('Password: '+mp.source.pass);
@@ -808,7 +787,7 @@
       for(var i=0;i<n;i++){
         var s=stations[ids?ids[i]:i], pt=map.latLngToLayerPoint([s.lat,s.lon]);
         pts[i*2]=pt.x; pts[i*2+1]=pt.y;
-        (byColor[s._color]||(byColor[s._color]=[])).push(i);
+        (byColor[s.color]||(byColor[s.color]=[])).push(i);
       }
       var colors=Object.keys(byColor);
       for(var c=0;c<colors.length;c++){
@@ -840,9 +819,8 @@
                    registration:'Free with registration',
                    category:'Free for some user categories',
                    restricted:'Restricted access'})[n.access]||n.access||'';
-      var regUrl=safeUrl(n.registrationUrl||'');
       var popup=`<div class="popup-plain"><h3>${esc(n.name||n.id)}</h3><div class="acc">NRTK coverage area — cm-level inside the hull</div><div>${esc(access)}</div>`
-        +(regUrl?`<div><a href="${esc(regUrl)}" target="_blank" rel="noopener">${esc(visUrl(regUrl))} ↗</a></div>`:'')
+        +(n.registrationUrl?`<div><a href="${esc(n.registrationUrl)}" target="_blank" rel="noopener">${esc(visUrl(n.registrationUrl))} ↗</a></div>`:'')
         +`<div style="color:var(--muted);font-size:11px;margin-top:4px">${(n.stationIds||[]).length} reference stations</div></div>`;
       L.marker(c,{
         icon:L.divIcon({className:'',iconSize:[18,18],iconAnchor:[9,9],
@@ -851,66 +829,49 @@
     });
     return group;
   }
-  // Country-level markers driven by data/country_markers.json.
-  // tier describes the network's nature; m.vrs is an orthogonal flag.
-  //   tier:'free' + inPipeline + live  + vrs:true  -> coloured VRS ring  -> bySid[m.id]
-  //   tier:'free' + inPipeline + live  + vrs:false -> no ring (physical pins represent the network)
-  //   tier:'free' + inPipeline + stale             -> grey ring           -> greyById[m.id]
-  //   tier:'free' + !inPipeline                    -> no marker
-  //   tier:'paid'|'paid-affordable'|'restricted'|'weird' -> circled-? marker -> infoById[m.id]
-  function buildCountryMarkers(markers,renderer,staleDays,sourceCounts){
+  // freeNetworks routing: vrs+live -> VRS ring (bySid), dead -> grey ring (greyById), !lat -> no marker.
+  // paidTiers {affordable,paid,restricted,info} -> ? / $ / ✕ markers per tier.
+  function buildNetworkOverlays(freeNetworks,paidTiers,renderer){
     var group=L.layerGroup();
-    var bySid={}, greyById={}, infoById={};
-    (markers||[]).forEach(function(m){
-      var lat=m.lat, lon=m.lon;
-      var label=m.name||m.id;
-      var region=m.region||'';
-      var regUrl=safeUrl(m.registration||'');
-
-      if(m.tier==='free'){
-        var sid=m.id;
-        var auth=SOURCES[sid]||{};
-        var inPipeline=staleDays&&(sid in staleDays);
-        if(!inPipeline) return;
-        var isLive=staleDays[sid]<7;
-        if(!isLive){
-          var note=m.note||auth.openNote||'';
-          var gr=safeUrl((SOURCES[sid]&&SOURCES[sid].registration)||'')||regUrl;
-          var ge=addRingMarker(group,lat,lon,renderer,GREY_MARKER_COLOR,0.18,label,buildGreyPopup(label,region,note,gr));
-          ge.label=label; greyById[m.id]=ge;
-        } else if(m.vrs){
-          var col=VRS_COLOR;
-          var hasPinsPinned=sourceCounts&&(sourceCounts[sid]||0)>0;
-          var declared=m.stations_declared;
-          var body=hasPinsPinned
-            ? 'Covers <b>'+esc(region)+'</b>.'
-              +' Reference stations are shown on the map.'
-              +' Connect via a VRS mountpoint for uniform cm-accuracy across the network'
-              +' without manual base selection.'
-            : 'Covers <b>'+esc(region)+'</b>.'
-              +(declared?' Uses ~'+declared+' physical reference stations.':'')
-              +' Your NTRIP client connects to a virtual base synthesised near your location.';
-          var accText=hasPinsPinned
-            ?'VRS/NRTK network — fixed stations on map'
-            :'VRS network — virtual mountpoints only';
-          var popReg=safeUrl((SOURCES[sid]&&SOURCES[sid].registration)||'');
-          var popup='<div class="popup-plain"><h3>'+esc(label)+'</h3>'
-            +'<div class="acc" style="color:'+VRS_COLOR+'">'+accText+'</div>'
-            +'<div style="margin:4px 0 6px;font-size:12px">'+body+'</div>'
-            +(auth.openNote?'<div class="anote">'+esc(auth.openNote)+'</div>':'')
-            +(popReg?'<div class="anote"><a href="'+esc(popReg)
-              +'" target="_blank" rel="noopener noreferrer">'+esc(visUrl(popReg))+' ↗</a></div>':'')
-            +'</div>';
-          bySid[sid]=addRingMarker(group,lat,lon,renderer,col,0.25,label+' (VRS)',popup);
-        }
-
-      } else {
-        // paid | paid-affordable | restricted | weird — all render as circled-? marker.
-        var mk=addInfoMarker(group,lat,lon,buildInfoPopup(m),label);
-        infoById[m.id]={marker:mk,label:label};
+    var bySid={}, greyById={};
+    var paidLayers={affordable:{},paid:{},restricted:{},info:{}};
+    freeNetworks.forEach(function(net){
+      if(!net.lat) return;
+      if(net.staleness==='dead'){
+        var note=net.note||net.openNote||'';
+        var ge=addRingMarker(group,net.lat,net.lon,renderer,GREY_MARKER_COLOR,0.18,
+          net.label,buildGreyPopup(net.label,net.region||'',note,net.registration));
+        ge.label=net.label; greyById[net.id]=ge;
+      } else if(net.vrs){
+        var body=net.stationCount>0
+          ? 'Covers <b>'+esc(net.region||'')+'</b>.'
+            +' Reference stations are shown on the map.'
+            +' Connect via a VRS mountpoint for uniform cm-accuracy across the network'
+            +' without manual base selection.'
+          : 'Covers <b>'+esc(net.region||'')+'</b>.'
+            +(net.stationsDeclared?' Uses ~'+net.stationsDeclared+' physical reference stations.':'')
+            +' Your NTRIP client connects to a virtual base synthesised near your location.';
+        var accText=net.stationCount>0
+          ?'VRS/NRTK network — fixed stations on map'
+          :'VRS network — virtual mountpoints only';
+        var popup='<div class="popup-plain"><h3>'+esc(net.label)+'</h3>'
+          +'<div class="acc" style="color:'+VRS_COLOR+'">'+accText+'</div>'
+          +'<div style="margin:4px 0 6px;font-size:12px">'+body+'</div>'
+          +(net.openNote?'<div class="anote">'+esc(net.openNote)+'</div>':'')
+          +(net.registration?'<div class="anote"><a href="'+esc(net.registration)
+            +'" target="_blank" rel="noopener noreferrer">'+esc(visUrl(net.registration))+' ↗</a></div>':'')
+          +'</div>';
+        bySid[net.id]=addRingMarker(group,net.lat,net.lon,renderer,VRS_COLOR,0.25,net.label+' (VRS)',popup);
       }
     });
-    return {group:group,bySid:bySid,greyById:greyById,infoById:infoById};
+    ['affordable','paid','restricted','info'].forEach(function(tier){
+      var ic=PAID_TIER_ICONS[tier];
+      (paidTiers[tier]||[]).forEach(function(net){
+        var mk=addInfoMarker(group,net.lat,net.lon,buildPaidNetworkPopup(net),net.name,ic.glyph,ic.color);
+        paidLayers[tier][net.id]={marker:mk,label:net.name};
+      });
+    });
+    return {group:group,bySid:bySid,greyById:greyById,paidLayers:paidLayers};
   }
 
   function buildGreyPopup(label,region,note,regUrl){
@@ -935,26 +896,30 @@
     return {visual:visual,hit:hit};
   }
 
-  function buildInfoPopup(m){
+  function buildPaidNetworkPopup(net){
     var accessLabel=({
       'paid':'Paid subscription required',
       'paid-affordable':'Paid subscription (affordable)',
       'restricted':'Access restricted'
-    })[m.access]||'Not freely accessible';
-    var regUrl=safeUrl(m.registration||'');
-    return `<div class="popup-plain"><h3>${esc(m.name||m.id)}</h3><div class="warn">${esc(accessLabel)}</div>`
-      +(m.yearly_cost?`<div style="font-size:11px;color:var(--muted);margin:2px 0 4px">${esc(m.yearly_cost)}</div>`:'')
-      +`<div style="font-size:12px;margin:4px 0 6px">Covers <b>${esc(m.region||'')}</b>.</div>`
-      +(m.note?`<div class="anote">${esc(m.note)}</div>`:'')
-      +(regUrl?`<div class="anote"><a href="${esc(regUrl)}" target="_blank" rel="noopener noreferrer">${esc(visUrl(regUrl))} ↗</a></div>`:'')
+    })[net.access]||'Not freely accessible';
+    return `<div class="popup-plain"><h3>${esc(net.name)}</h3><div class="warn">${esc(accessLabel)}</div>`
+      +(net.yearlyCost?`<div style="font-size:11px;color:var(--muted);margin:2px 0 4px">${esc(net.yearlyCost)}</div>`:'')
+      +`<div style="font-size:12px;margin:4px 0 6px">Covers <b>${esc(net.region)}</b>.</div>`
+      +(net.note?`<div class="anote">${esc(net.note)}</div>`:'')
+      +(net.registration?`<div class="anote"><a href="${esc(net.registration)}" target="_blank" rel="noopener noreferrer">${esc(visUrl(net.registration))} ↗</a></div>`:'')
       +'</div>';
   }
 
-  function addInfoMarker(group,lat,lon,popup,label){
-    var icon=L.divIcon({
-      className:'',iconSize:[14,14],iconAnchor:[7,7],
-      html:`<svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.75" fill="white" stroke="${INFO_MARKER_COLOR}" stroke-width="1.5"/><text x="7" y="10" text-anchor="middle" font-size="8" font-weight="bold" fill="${INFO_MARKER_COLOR}">?</text></svg>`
-    });
+  function tierIconSvg(glyph,color,extraStyle){
+    var s=extraStyle?' style="'+extraStyle+'"':'';
+    return '<svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg"'+s+'>'
+      +'<circle cx="7" cy="7" r="5.75" fill="white" stroke="'+color+'" stroke-width="1.5"/>'
+      +'<text x="7" y="7" text-anchor="middle" dominant-baseline="central" font-size="8" font-weight="bold" fill="'+color+'">'+glyph+'</text>'
+      +'</svg>';
+  }
+  function addInfoMarker(group,lat,lon,popup,label,glyph,color){
+    glyph=glyph||'?'; color=color||INFO_MARKER_COLOR;
+    var icon=L.divIcon({className:'',iconSize:[14,14],iconAnchor:[7,7],html:tierIconSvg(glyph,color)});
     return L.marker([lat,lon],{icon:icon,pane:'vrsPane'})
       .bindTooltip(label,{sticky:false})
       .bindPopup(popup).addTo(group);
@@ -1179,17 +1144,20 @@
 
   function sw(s){ return '<span style="display:inline-block;width:12px;height:12px;vertical-align:middle;'+s+'"></span>'; }
 
-  function buildTogglePanel(sourceCounts,vrsLayerBySid,greyLayerById,infoLayerById,onChange){
-    var state={tier_open:true,tier_registration:true,tier_conditions:true,vrs_global:true,
-               grey_global:true,info_global:true};
-    Object.keys(sourceCounts).forEach(function(sid){ state[sid]=true; });
-    Object.keys(vrsLayerBySid).forEach(function(sid){ if(!(sid in state)) state[sid]=true; }); // VRS uses bare sid so pins:true networks share the same key as their physical-station checkbox — don't add a vrs_ prefix
+  function buildTogglePanel(freeNetworks,vrsLayerBySid,greyLayerById,paidLayers,onChange){
+    var state={tier_open:true,tier_registration:true,tier_conditions:true,vrs_global:true,grey_global:true};
+    freeNetworks.forEach(function(net){ state[net.id]=true; });
     Object.keys(greyLayerById).forEach(function(id){ state['grey:'+id]=true; });
-    Object.keys(infoLayerById).forEach(function(id){ state['info:'+id]=true; });
+    Object.keys(paidLayers).forEach(function(tier){
+      state[tier+'_global']=true;
+      Object.keys(paidLayers[tier]).forEach(function(id){ state[tier+':'+id]=true; });
+    });
+    var accessBySid={};
+    freeNetworks.forEach(function(net){ accessBySid[net.id]=net.access; });
 
     function applyMarkers(){
       Object.keys(vrsLayerBySid).forEach(function(sid){
-        var tier='tier_'+((SOURCES[sid]&&SOURCES[sid].access)||'registration');
+        var tier='tier_'+(accessBySid[sid]||'registration');
         var show=!!(state[sid]&&state[tier]&&state.vrs_global);
         var entry=vrsLayerBySid[sid];
         entry.visual.setStyle({opacity:show?1:0,fillOpacity:show?0.25:0});
@@ -1203,11 +1171,14 @@
         var el=entry.hit.getElement();
         if(el) el.style.pointerEvents=show?'all':'none';
       });
-      Object.keys(infoLayerById).forEach(function(id){
-        var show=!!(state['info:'+id]&&state.info_global);
-        var mk=infoLayerById[id].marker;
-        var el=mk&&mk.getElement&&mk.getElement();
-        if(el) el.style.display=show?'':'none';
+      Object.keys(paidLayers).forEach(function(tier){
+        var registry=paidLayers[tier];
+        Object.keys(registry).forEach(function(id){
+          var show=!!(state[tier+':'+id]&&state[tier+'_global']);
+          var mk=registry[id].marker;
+          var el=mk&&mk.getElement&&mk.getElement();
+          if(el) el.style.display=show?'':'none';
+        });
       });
     }
     function filterPred(s){
@@ -1220,30 +1191,20 @@
     }
 
     var entries=[];
-    Object.keys(sourceCounts).forEach(function(sid){
-      if(sourceCounts[sid]){
-        entries.push({members:[sid],label:sourceLabel(sid),
-          color:sourceColor(sid),count:sourceCounts[sid]});
-      }
+    freeNetworks.forEach(function(net){
+      if(net.stationCount)
+        entries.push({members:[net.id],label:net.label,color:net.color,count:net.stationCount});
     });
     var tierOrder={open:0,registration:1,conditions:2};
     entries.sort(function(a,b){
-      var ta=tierOrder[(SOURCES[a.members[0]]&&SOURCES[a.members[0]].access)]||1;
-      var tb=tierOrder[(SOURCES[b.members[0]]&&SOURCES[b.members[0]].access)]||1;
+      var ta=tierOrder[accessBySid[a.members[0]]]||1;
+      var tb=tierOrder[accessBySid[b.members[0]]]||1;
       return ta!==tb ? ta-tb : b.count-a.count;
     });
 
-    var greyIds=Object.keys(greyLayerById).sort(function(a,b){
-      var la=(greyLayerById[a].label||a).toLowerCase();
-      var lb=(greyLayerById[b].label||b).toLowerCase();
-      return la<lb?-1:la>lb?1:0;
-    });
-    var infoIds=Object.keys(infoLayerById).sort(function(a,b){
-      var la=(infoLayerById[a].label||a).toLowerCase();
-      var lb=(infoLayerById[b].label||b).toLowerCase();
-      return la<lb?-1:la>lb?1:0;
-    });
-    var greyCount=greyIds.length, infoCount=infoIds.length;
+    var greyCount=Object.keys(greyLayerById).length;
+    var paidCounts={};
+    Object.keys(paidLayers).forEach(function(tier){ paidCounts[tier]=Object.keys(paidLayers[tier]).length; });
 
     function renderRow(e){
       var mj=esc(JSON.stringify(e.members));
@@ -1261,7 +1222,16 @@
     L.DomEvent.disableScrollPropagation(d);
 
     var sep='border-top:1px solid var(--srv-border);margin-top:5px;padding-top:5px;';
-    var infoQ='<span style="display:inline-block;width:12px;height:12px;border:1.5px solid #888;border-radius:50%;text-align:center;font-size:9px;font-weight:700;color:#888;line-height:12px;vertical-align:middle;background:white">?</span>';
+    var PAID_TIER_LABELS={affordable:'Affordable',paid:'Paid',restricted:'Restricted',info:'Info'};
+    function paidTierRow(tier){
+      var n=paidCounts[tier];
+      if(!n) return '';
+      var ic=PAID_TIER_ICONS[tier]||PAID_TIER_ICONS.info;
+      return '<label style="display:flex;align-items:center;gap:4px">'
+        +'<input type="checkbox" data-k="'+tier+'_global" checked>'
+        +tierIconSvg(ic.glyph,ic.color,'vertical-align:middle')+' '+PAID_TIER_LABELS[tier]+' ('+n+')'
+        +'</label>';
+    }
     d.innerHTML=
       '<b style="font-size:12px">Legend</b><br>'
       +sw('background:rgb(0,170,0)')+' &lt;10 km — ~2 cm<br>'
@@ -1282,12 +1252,10 @@
               +'Free, no data yet ('+greyCount+')'
             +'</label>'
           : '')
-        +(infoCount
-          ? '<label style="display:flex;align-items:center;gap:4px">'
-              +'<input type="checkbox" data-k="info_global" checked>'
-              +infoQ+' Paid / restricted ('+infoCount+')'
-            +'</label>'
-          : '')
+        +paidTierRow('affordable')
+        +paidTierRow('paid')
+        +paidTierRow('restricted')
+        +paidTierRow('info')
       +'</details>'
       +'<details id="src-det" open style="'+sep+'">'
         +'<summary class="det-sum">Mountpoints</summary>'
@@ -1348,6 +1316,105 @@
     return {control:ctrl, dom:d, applyDeclutter:applyDeclutter};
   }
 
+  function buildDataModel(stationsJson, healthJson, countryMarkersJson){
+    var rawSources=(stationsJson&&stationsJson.sources)||{};
+    var healthSources=(healthJson&&healthJson.sources)||{};
+    var now=Date.now();
+    Object.keys(rawSources).forEach(function(sid){
+      var rs=rawSources[sid];
+      var host='', port='';
+      try{
+        var p=new URL(rs.url||'');
+        host=p.hostname;
+        port=p.port||(p.protocol==='https:'?'443':'80');
+      }catch(e){}
+      // Prefer source_health.json last_ok (always current) over stations.json
+      // (only updated when station data changes).
+      var lo=(healthSources[sid]&&healthSources[sid].last_ok)||rs.last_ok;
+      var days=lo?(now-new Date(lo).getTime())/86400000:0;
+      SOURCES[sid]={
+        id:           sid,
+        color:        rs.color||UNKNOWN_SOURCE_COLOR,
+        label:        rs.label||sid,
+        registration: validUrl(rs.registration||''),
+        access:       rs.access||'registration',
+        openNote:     rs.openNote||null,
+        near:         rs.near||false,
+        user:         rs.user||(rs.credentials&&rs.credentials.user&&!rs.userNote?rs.credentials.user:null),
+        pass:         rs.pass||(rs.credentials&&rs.credentials.pass)||null,
+        userNote:     rs.userNote||null,
+        host:         host||null,
+        port:         port||null,
+        staleness:    days>=STALE_HIDE_DAYS?'dead':days>=STALE_GREY_DAYS?'stale':'live',
+        // editorial fields — augmented below from country_markers (free tier)
+        stationCount: 0,
+        lat: null, lon: null, region: null, vrs: false,
+        stationsDeclared: null, note: null,
+      };
+    });
+    var bySource={};
+    Object.keys(rawSources).forEach(function(sid){
+      bySource[sid]=normalizeStations(rawSources[sid].stations);
+    });
+    var stations=mergeStations(bySource);
+    stations.forEach(function(s){
+      var seen={};
+      var staleness='dead';
+      s.mountpoints.forEach(function(mp){
+        if(!seen[mp.source.id]){
+          seen[mp.source.id]=true;
+          mp.source.stationCount++;
+        }
+        var st=mp.source.staleness;
+        if(st==='live') staleness='live';
+        else if(st==='stale'&&staleness==='dead') staleness='stale';
+      });
+      s.staleness=staleness;
+      if(staleness!=='live'){
+        s.color='#aaa';
+      } else {
+        var src=s.mountpoints[0].source, mono=true;
+        for(var i=1;i<s.mountpoints.length;i++)
+          if(s.mountpoints[i].source!==src){ mono=false; break; }
+        s.color=mono?src.color:MULTI_COLOR;
+      }
+      s.precLabel=precLabel(s.dLat,s.dLon,s.lat);
+    });
+    var affordableNetworks=[], paidNetworks=[], restrictedNetworks=[], info=[];
+    (countryMarkersJson&&countryMarkersJson.markers||[]).forEach(function(m){
+      if(m.tier==='free'){
+        var net=SOURCES[m.id]; if(!net) return;
+        net.lat=m.lat; net.lon=m.lon;
+        net.region=m.region||null;
+        net.vrs=!!m.vrs;
+        net.stationsDeclared=m.stations_declared||null;
+        net.note=m.note||null;
+        net.registration=net.registration||validUrl(m.registration||'');
+      } else {
+        var rec={id:m.id, name:m.name||m.id, lat:m.lat, lon:m.lon,
+          region:m.region||'', tier:m.tier, access:m.access||m.tier,
+          registration:validUrl(m.registration||''),
+          note:m.note||null, yearlyCost:m.yearly_cost||null};
+        if(m.tier==='paid-affordable') affordableNetworks.push(rec);
+        else if(m.tier==='paid')       paidNetworks.push(rec);
+        else if(m.tier==='restricted') restrictedNetworks.push(rec);
+        else                           info.push(rec);
+      }
+    });
+    return {
+      updated:      stationsJson&&stationsJson.updated||null,
+      networks:     (stationsJson&&stationsJson.networks||[]).map(function(n){
+        return Object.assign({},n,{registrationUrl:validUrl(n.registrationUrl||'')});
+      }),
+      stations:     stations,
+      freeNetworks:       Object.values(SOURCES),
+      affordableNetworks: affordableNetworks,
+      paidNetworks:       paidNetworks,
+      restrictedNetworks: restrictedNetworks,
+      info:               info,
+    };
+  }
+
   // IP-based geolocation — ~city-level accuracy, no permission prompt.
   // Used only to centre the initial map view; fail-open to the default.
   function getViewerPos(){
@@ -1357,7 +1424,6 @@
       .catch(function(){ return null; });
   }
 
-  var stationStaleDays;
   window.addEventListener('load',async function(){
     setupBanner();
     var map=L.map('map',{preferCanvas:true,worldCopyJump:true,minZoom:2}).setView([47.0,8.0],8); // preferCanvas required — per-station SVG blows DOM budget above ~2k stations
@@ -1404,62 +1470,15 @@
         if(_hd&&_hd.classList.contains('on')) renderHelp('');
       }
     }catch(e){}
-    setServers(data);
-
-    var rawSources=(data&&data.sources)||{};
-    var healthSources=(health&&health.sources)||{};
-    var now=Date.now();
-    var SOURCE_STALE_DAYS={};
-    Object.keys(rawSources).forEach(function(sid){
-      var rs=rawSources[sid];
-      SOURCES[sid]={
-        id:           sid,
-        color:        rs.color||UNKNOWN_SOURCE_COLOR,
-        label:        rs.label||sid,
-        registration: rs.registration||null,
-        access:       rs.access||'registration',
-        openNote:     rs.openNote||null,
-        near:         rs.near||false,
-        user:         rs.user||(rs.credentials&&rs.credentials.user&&!rs.userNote?rs.credentials.user:null),
-        pass:         rs.pass||(rs.credentials&&rs.credentials.pass)||null,
-        userNote:     rs.userNote||null,
-      };
-      // Prefer source_health.json last_ok (always current) over stations.json
-      // (only updated when station data changes).
-      var lo=(healthSources[sid]&&healthSources[sid].last_ok)||rs.last_ok;
-      SOURCE_STALE_DAYS[sid]=lo?(now-new Date(lo).getTime())/86400000:0;
-    });
-    stationStaleDays=function(s){
-      var min=Infinity;
-      s.mountpoints.forEach(function(mp){
-        var d=SOURCE_STALE_DAYS[mp.source.id]||0;
-        if(d<min) min=d;
-      });
-      return min;
-    };
-    var bySource={};
-    Object.keys(rawSources).forEach(function(sid){
-      bySource[sid]=normalizeStations(rawSources[sid].stations);
-    });
-    var updated=(data&&data.updated)||null;
-    var networks=(data&&data.networks)||[];
-    var allStations=mergeStations(bySource);
-    var sourceCounts={};
-    allStations.forEach(function(s){
-      var seen={};
-      s.mountpoints.forEach(function(mp){
-        if(!seen[mp.source.id]){
-          seen[mp.source.id]=true;
-          sourceCounts[mp.source.id]=(sourceCounts[mp.source.id]||0)+1;
-        }
-      });
-    });
+    var model=buildDataModel(data,health,cmRaw);
+    var updated=model.updated, networks=model.networks;
+    var stations=model.stations;
 
     var vp=await viewerPosProm;
     if(vp) map.setView([vp.lat,vp.lon],map.getZoom());
     var refC=vp||{lat:map.getCenter().lat,lon:map.getCenter().lng};
     var _cosRef=Math.cos(refC.lat*Math.PI/180);
-    allStations.sort(function(a,b){
+    stations.sort(function(a,b){
       var dlaA=a.lat-refC.lat, dloA=(a.lon-refC.lon)*_cosRef;
       var dlaB=b.lat-refC.lat, dloB=(b.lon-refC.lon)*_cosRef;
       return (dlaA*dlaA+dloA*dloA)-(dlaB*dlaB+dloB*dloB);
@@ -1472,12 +1491,13 @@
     map.createPane('vrsPane');
     map.getPane('vrsPane').style.zIndex=403; // above dotsPane (402); SVG paths receive events, container passes them through
     var vrsRenderer=L.svg({pane:'vrsPane',padding:0.5});
-    var countryMarkers=(cmRaw&&cmRaw.markers)||[];
-    var cmResult=buildCountryMarkers(countryMarkers,vrsRenderer,SOURCE_STALE_DAYS,sourceCounts);
+    var cmResult=buildNetworkOverlays(model.freeNetworks,
+      {affordable:model.affordableNetworks,paid:model.paidNetworks,
+       restricted:model.restrictedNetworks,info:model.info},vrsRenderer);
     cmResult.group.addTo(map);
     var vrsLayerBySid=cmResult.bySid;
     var greyLayerById=cmResult.greyById;
-    var infoLayerById=cmResult.infoById;
+    var paidLayers=cmResult.paidLayers;
     // pointer-events:all is geometric — fires on the stroke band regardless of opacity.
     // fill:false on the hit circle means no fill geometry, so the fill area is
     // not hittable and station dots inside the ring remain reachable.
@@ -1492,8 +1512,8 @@
     // Grey-dot stations (3–7 days) are shown on map but excluded from coverage
     // so the raster reflects currently-live infrastructure only.
     // Stations stale >= 7 days are hidden entirely.
-    var coverageStations=allStations.filter(function(s){ return stationStaleDays(s)<STALE_GREY_DAYS; });
-    var displayStations=allStations.filter(function(s){ return stationStaleDays(s)<STALE_HIDE_DAYS; });
+    var coverageStations=stations.filter(function(s){ return s.staleness==='live'; });
+    var displayStations=stations.filter(function(s){ return s.staleness!=='dead'; });
     var displayStationsIndex=buildStationIndex(displayStations);
 
     // Coverage raster layer (fresh stations only).
@@ -1505,7 +1525,7 @@
     var dotsLayer=new DotsLayer().addTo(map);
 
     var filter=function(){ return true; };
-    var visible=allStations;
+    var visible=stations;
     var stationIndex=null;
     var detailGroup=L.layerGroup();
     var _detailMap=new Map(); // posKey → {rect, marker}
@@ -1551,14 +1571,14 @@
         if(_detailMap.has(pk)) continue;
         if(capInsertions&&_detailMap.size>=MAX_DETAIL_MARKERS) continue;
         var entry={};
-        var fill=s._color;
+        var fill=s.color;
         try{
           if(showRect){
             entry.rect=L.rectangle([[s.lat-s.dLat,s.lon-s.dLon],
                        [s.lat+s.dLat,s.lon+s.dLon]],
               {color:fill,weight:1,fillColor:fill,fillOpacity:0.12,
                dashArray:'4 3'})
-              .bindTooltip('Station within '+precLabel(s.dLat,s.dLon,s.lat),
+              .bindTooltip('Station within '+s.precLabel,
                 {sticky:true,className:'prec-tip'})
               .addTo(detailGroup);
           }
@@ -1605,20 +1625,17 @@
     function rebuildStationLayers(){
       if(map.hasLayer(detailGroup)) map.removeLayer(detailGroup);
       visible=displayStations.filter(filter);
-      visible.forEach(function(s){
-        s._color=stationStaleDays(s)>=STALE_GREY_DAYS?'#aaa':stationColor(s);
-      });
       stationIndex=buildStationIndex(visible);
       resetDetailMap();
       dotsLayer.setStations(visible,stationIndex);
-      var coverageVisible=visible.filter(function(s){ return stationStaleDays(s)<STALE_GREY_DAYS; });
+      var coverageVisible=visible.filter(function(s){ return s.staleness==='live'; });
       coverage.setStations(coverageVisible,null);
       applyZoom();
       finishLoad();
     }
 
     var _clickPopup=L.popup({maxWidth:320});
-    var togglePanel=buildTogglePanel(sourceCounts,vrsLayerBySid,greyLayerById,infoLayerById,
+    var togglePanel=buildTogglePanel(model.freeNetworks,vrsLayerBySid,greyLayerById,paidLayers,
       function(pred){ filter=pred; rebuildStationLayers(); });
     map.on('click',function(e){
       if(!stationIndex||!visible.length) return;
