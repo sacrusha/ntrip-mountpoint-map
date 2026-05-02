@@ -1131,8 +1131,9 @@
       "tier": "paid",
       "vrs": true,
       "access": "paid",
+      "yearly_cost": "₽50,400/yr (~$593/yr)",
       "registration": "https://eft-cors.ru",
-      "note": "Hundreds of stations across Russia, multi-constellation. 3-day free trial; raw post-processing data is free."
+      "note": "Hundreds of stations across Russia, multi-constellation. Day pass ~₽420 (~$5). Basic post-processing data free. 3-day RTK trial available."
     },
     {
       "id": "rtknet",
@@ -1144,7 +1145,7 @@
       "tier": "paid",
       "vrs": true,
       "access": "paid",
-      "yearly_cost": "₽30,000/yr (~$333/yr)",
+      "yearly_cost": "₽30,000/yr (~$353/yr)",
       "registration": "https://rtknet.ru",
       "note": "300+ stations nationwide; ports 6030–6041 by federal district. 3-day trial available."
     },
@@ -1156,23 +1157,23 @@
       "lat": 55.02,
       "lon": 82.92,
       "tier": "paid",
-      "vrs": true,
       "access": "paid",
       "registration": "https://hive.geosystems.aero",
-      "note": "Pay-per-use: daily RTK or hourly post-processing. Station owners get free caster access in exchange for contributing data."
+      "note": "742 stations across 79 regions. Pay-per-use: daily RTK per station (prices vary; login required to see rates) or hourly post-processing. First ~5 min per station free."
     },
     {
       "id": "geospider",
       "name": "ГЕОСПАЙДЕР",
-      "region": "Russia (North-West)",
+      "region": "Russia (North-West and Central)",
       "country": "RU",
       "lat": 59.95,
       "lon": 30.3,
       "tier": "paid",
       "vrs": true,
       "access": "paid",
+      "yearly_cost": "₽44,100/yr (~$519/yr)",
       "registration": "https://geospider.ru",
-      "note": "49 stations across NW Russia centred on St. Petersburg. Monthly, quarterly, and annual plans available."
+      "note": "200+ stations across NW and Central Russia. Day pass from ₽315. Network RTK in local coordinate system."
     },
     {
       "id": "qianxun",
