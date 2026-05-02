@@ -311,7 +311,11 @@ SOURCES = [
      "region": "Alaska", "group": "us-state-dot",
      "access": "registration", "registration": "https://www.acorn-gnss.net",
      "openNote": "Free registration required (Alaska DNR / DOTPF)"},
-    # nps_cors: NPS CORS rtk.nps.gov:2101 — 142 stations US+territories; email signup ntrip.nps.gov; add once credentials confirmed
+    {"id": "nps_cors",    "url": "http://rtk.nps.gov:2101/",
+     "color": "#4a7c59", "label": "NPS CORS",
+     "type": "single-base", "country": ["US"],
+     "access": "conditions", "registration": "https://ntrip.nps.gov",
+     "openNote": "Free*; email signup at ntrip.nps.gov — access scope unclear"},
     {"id": "wiscors",     "url": "http://wiscors.dot.wi.gov:2101/",
      "color": "#bf360c", "label": "WISCORS",
      "type": "physical-vrs", "country": ["US"],
