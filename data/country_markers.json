@@ -513,7 +513,8 @@
       "vrs": true,
       "access": "registration",
       "stations_declared": null,
-      "note": "Alaska state reference network (Alaska DOT/PF), intended free. NTRIP endpoint not confirmed from public sources."
+      "note": "Alaska state reference network (Alaska DOT/PF). VRS regions: SouthCentral, SouthEast, Interior, NorthWest, NortonSound (experimental). Free registration at acorn-gnss.net.",
+      "registration": "https://www.acorn-gnss.net"
     },
     {
       "id": "remos_ven",

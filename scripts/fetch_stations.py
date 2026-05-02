@@ -305,6 +305,12 @@ SOURCES = [
      "region": "Sicily", "group": "italy-regional",
      "access": "registration", "registration": "https://www.ct.ingv.it/index.php/risorse-e-servizi/sicil-net"},
     # US state DOT / CORS networks — physical-coordinate stations
+    {"id": "acorn",       "url": "http://www.acorn-gnss.net:2101/",    # Trimble Pivot; VRS-only sourcetable (no physical coords); solution_filter default fine
+     "color": "#2e5b8a", "label": "ACORN",
+     "type": "vrs", "country": ["US"],
+     "region": "Alaska", "group": "us-state-dot",
+     "access": "registration", "registration": "https://www.acorn-gnss.net",
+     "openNote": "Free registration required (Alaska DOT/PF)"},
     {"id": "wiscors",     "url": "http://wiscors.dot.wi.gov:2101/",
      "color": "#bf360c", "label": "WISCORS",
      "type": "physical-vrs", "country": ["US"],
