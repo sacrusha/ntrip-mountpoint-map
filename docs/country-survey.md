@@ -883,7 +883,7 @@ similarly have no published coverage for these jurisdictions.
 
 ### US — United States
 
-**date_added**: 2026-04-30
+**date_added**: 2026-05-02
 
 - **Free government RTK**: EarthScope NOTA (`ntrip.earthscope.org:2101`, ~1,000+
   stations, single-base, non-commercial NULA) — Americas-wide, dense in western USA.
@@ -906,19 +906,20 @@ similarly have no published coverage for these jurisdictions.
   pins; shown as VRS stopgap circles.
 
   MoDOT requires notarized access agreement (conditions access). → networks.md: `modot_rtn`
-  ACORN (AK) — two casters. (1) Main VRS caster: `www.acorn-gnss.net:2101`, Trimble Pivot
-  Platform, operated by Alaska DNR + DOTPF/NPS/EarthScope; provides VRS/network-RTK only
-  (SouthCentral, SouthEast, Interior, NorthWest, NortonSound regions). (2) NPS single-base
-  caster: see `nps_cors` below — 142 stations national, includes Alaska physical stations.
-  → networks.md: `acorn`, `nps_cors`
+  ACORN (AK) — `www.acorn-gnss.net:2101`, Trimble Pivot Web, operated by Alaska DNR +
+  DOTPF/NPS/EarthScope. Caster serves both a nearest-station single-base stream
+  (MS_RTCM3) and VRS network-RTK (SouthCentral, SouthEast, Interior; NorthWest and
+  NortonSound experimental). Anonymous sourcetable exposes VRS and MS_RTCM3 mountpoints;
+  individual station streams require login. Free; self-service registration at
+  acorn-gnss.net (no professional licence field required). In pipeline (2026-05-02).
+  → networks.md: `acorn`
 
-  NPS CORS (national) — `rtk.nps.gov:2101`, 142 stations across US and territories,
-  RTCM MSM4, single-base. Operated by NPS; email-based signup at ntrip.nps.gov.
-  Whether access extends beyond NPS staff/partners is unclear — treating as free*
-  (conditions apply) pending clarification. Not yet in pipeline (credentials required).
-  → networks.md: `nps_cors`
-  individual mountpoints only visible after login — anonymous sourcetable exposes only VRS
-  streams and MS_RTCM3. Free with registration. In pipeline (2026-05-02). → networks.md: `acorn`
+  NPS CORS (national) — `rtk.nps.gov:2101`, 142 stations across US and territories
+  (~128 active 2026-05-02), RTCM MSM4, single-base. Operated by National Park Service;
+  includes ACORN physical stations in Alaska. Portal: ntrip.nps.gov; NTRIP caster:
+  rtk.nps.gov:2101. Datum transitioning to MYCS3 (positions updated February 2026).
+  Credentials via gnss_posnav@nps.gov; no public eligibility policy. Not in pipeline
+  (credentials required). → networks.md: `nps_cors`
 
   Research / dual-access arrays (no independent free hobbyist caster — listed for
   documentation, with the same physical antennae reachable through other in-pipeline
