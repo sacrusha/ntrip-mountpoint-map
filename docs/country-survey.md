@@ -906,7 +906,9 @@ similarly have no published coverage for these jurisdictions.
   pins; shown as VRS stopgap circles.
 
   MoDOT requires notarized access agreement (conditions access). → networks.md: `modot_rtn`
-  ACORN (AK) — endpoint unconfirmed, deferred. → networks.md: `acorn`
+  ACORN (AK) — `www.acorn-gnss.net:2101`, Trimble Pivot Platform, VRS-only sourcetable
+  (5 VRS regions; physical station coords not exposed). Free with registration. In pipeline
+  (2026-05-02). → networks.md: `acorn`
 
   Research / dual-access arrays (no independent free hobbyist caster — listed for
   documentation, with the same physical antennae reachable through other in-pipeline

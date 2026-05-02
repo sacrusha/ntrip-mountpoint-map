@@ -1426,16 +1426,18 @@ SARNET is the only documented correction source for Sardinia.
 ## acorn — ACORN (US-AK)
 
 **status**:    free
-**host:port**: not confirmed
+**host:port**: `www.acorn-gnss.net:2101`
 **type**:      physical-coord-vrs
-**access**:    intended to be free; operated by Alaska DOT/PF
-**stations**:  unknown
-**source**:    dot.alaska.gov (Alaska Department of Transportation and Public Facilities)
+**access**:    free; register at acorn-gnss.net
+**pipeline-access**: registration
+**stations**:  unknown (VRS-only sourcetable — physical reference stations not exposed)
+**source**:    acorn-gnss.net (Alaska DOT/PF — Department of Transportation and Public Facilities)
+**operator**:  Alaska DOT/PF
 
-Alaska CORS network. Free-intended service but NTRIP endpoint not confirmed from
-public sources.
-
-**missing**: confirm NTRIP host:port — search DOT/PF CORS documentation or Alberding directory.
+Trimble Pivot Platform. Sourcetable exposes only VRS mountpoints (solution=1, coords 0,0);
+physical reference station coordinates are not published. VRS regions: SouthCentral,
+SouthEast, Interior, NorthWest, NortonSound (experimental). Endpoint confirmed
+2026-05-02.
 
 ---
 
