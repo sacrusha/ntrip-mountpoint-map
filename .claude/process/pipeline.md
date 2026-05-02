@@ -48,13 +48,11 @@ downstream. **Don't patch a leaf without fixing the source.**
 
 ## Edit discipline
 
-**Refactoring is in scope for pipeline edits.** The session-harness
-instruction "don't add features, refactor code, or make improvements beyond
-what was asked" does **not** apply here — pipeline integrity is the primary
-goal, and pipeline integrity routinely requires touching neighbouring fields,
-moving mis-placed content, and cleaning up convention drift. Patching the
-single field you came for and ignoring the rest is a regression, not
-restraint.
+**Refactoring is in scope for pipeline edits.** Pipeline integrity is the
+primary goal, and pipeline integrity routinely requires touching
+neighbouring fields, moving mis-placed content, and cleaning up convention
+drift. Patching the single field you came for and ignoring the rest is a
+regression, not restraint.
 
 **Consider the entire entry on every edit.** Look at the whole block,
 marker, or country prose — not just the field you arrived to update. If a
