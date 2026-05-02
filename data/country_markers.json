@@ -359,9 +359,9 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
-      "registration": "https://ugrf.go.ug/SBC",
+      "registration": "https://ugrf.mlhud.go.ug/SBC",
       "stations_declared": 78,
-      "note": "78 stations, free. Endpoint disclosed only after registration."
+      "note": "78 stations, free. Single-base and VRS (I-Max) mountpoints. Free registration via UGRF portal."
     },
     {
       "id": "etcors",

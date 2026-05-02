@@ -3002,19 +3002,18 @@ similarly have no published coverage for these jurisdictions.
 
 ### UG — Uganda
 
-**date_added**: 2026-04-28
+**date_added**: 2026-05-02
 
 - **Free government RTK**: UGRF CORS (Ministry of Lands, Housing & Urban
-  Development, `ugrf.mlhud.go.ug`, 40 government + 38 private stations, VRS +
-  single-base) — stated free as of 2024 ("absolutely free of charge"); web
-  registration via Spider Business Center (`ugrf.go.ug/SBC`); host:port
-  disclosed post-registration. Single-base mountpoints: ENTB, GULU, SRTI, MBRA.
-  Deferred (endpoint withheld until post-registration).
+  Development) — 78 stations (40 government + 38 private), VRS and single-base.
+  Free with registration; endpoint `ugrf.mlhud.go.ug:2101`, sourcetable publicly
+  accessible (curl-confirmed 2026-05-02). Single-base mountpoints: ENTB, GULU,
+  SRTI, MBRA, Nearest (auto-select). Network-RTK mountpoints: I-Max, VRS.
+  Register at `ugrf.mlhud.go.ug/SBC` (Leica Spider Business Centre portal).
+  Now in pipeline.
 - **Volunteer**: 1 AUSCORS station (MBAR00UGA0, Mbarara) via EarthScope/AUSCORS;
   raw observations under non-commercial NULA — functional for RTK within range.
-- **Gap**: UGRF is the only confirmed free government NTRIP in East Africa but
-  is not yet in pipeline (endpoint not publicly findable). EagleCORS
-  (`eaglecors.com`) is a separate commercial service — out of scope.
+- **Commercial**: EagleCORS (`eaglecors.com`) — separate commercial service, out of scope.
 
 ### BI — Burundi
 

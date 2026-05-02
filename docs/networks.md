@@ -200,6 +200,24 @@ Dec 2023 upgrade. Attribute "Source: Land Information New Zealand".
 
 ---
 
+## ugrf — UGRF CORS (UG)
+
+**status**:    free
+**host:port**: `ugrf.mlhud.go.ug:2101`
+**type**:      physical-coord-vrs
+**access**:    free; register at ugrf.mlhud.go.ug/SBC (Leica Spider Business Centre)
+**pipeline-access**: registration
+**stations**:  78 (40 government + 38 private)
+**source**:    ugrf.mlhud.go.ug (Surveys and Mapping Department, MLHUD)
+**operator**:  MLHUD — Ministry of Lands, Housing and Urban Development
+
+Sourcetable publicly accessible without credentials; streaming requires individual
+registration. Single-base mountpoints: ENTB (Entebbe), GULU, SRTI, MBRA, Nearest
+(auto-select). Network-RTK mountpoints: I-Max, VRS. System: Leica GNSS Spider.
+Endpoint confirmed 2026-05-02.
+
+---
+
 ## trignet — TrigNet (ZA)
 
 **status**:    free
