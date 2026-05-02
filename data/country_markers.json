@@ -517,6 +517,19 @@
       "registration": "https://www.acorn-gnss.net"
     },
     {
+      "id": "nps_cors",
+      "name": "NPS CORS",
+      "region": "United States + territories",
+      "country": "US",
+      "lat": 39.5,
+      "lon": -98.5,
+      "tier": "free",
+      "access": "conditions",
+      "registration": "https://ntrip.nps.gov",
+      "stations_declared": 142,
+      "note": "142 stations across the US and territories, single-base raw streams (RTCM MSM4). Operated by National Park Service. Email signup at ntrip.nps.gov; whether access extends beyond NPS partners is currently unclear."
+    },
+    {
       "id": "remos_ven",
       "name": "REMOS",
       "region": "Venezuela",

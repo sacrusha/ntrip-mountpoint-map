@@ -1441,21 +1441,22 @@ NorthWest, NortonSound (experimental). Endpoint confirmed 2026-05-02.
 
 ---
 
-## nps_ak — NPS NTRIP Caster (US-AK)
+## nps_cors — NPS CORS (US + territories)
 
 **status**:    free
 **host:port**: `rtk.nps.gov:2101`
 **type**:      single-base
-**access**:    credentials on request — see ntrip.nps.gov
+**access**:    conditions — email-based signup at ntrip.nps.gov; restriction scope unclear
 **pipeline-access**: registration
-**stations**:  individual named stations (Anchorage, Fairbanks, Juneau, Nome, Galena, Talkeetna, Kodiak, Cold Bay, others)
+**stations**:  142 across US and territories
 **source**:    rtk.nps.gov / ntrip.nps.gov (National Park Service)
 **operator**:  National Park Service (NPS)
 
-RTCM MSM4, 1-second streams. Provides raw single-base RTK streams from ACORN's physical
-reference stations. Username and password available on request via ntrip.nps.gov.
-Auth details incomplete as of 2026-05-02 — **investigate**: confirm shared/public
-credentials or request process.
+RTCM MSM4, 1-second streams. 142 stations spanning US and territories; includes ACORN
+physical stations in Alaska. Registration via email at ntrip.nps.gov; it is not currently
+clear whether access is open to all or limited to NPS staff, partners, or specific user
+categories. Treating as free* (conditions apply) pending clarification. Credentials
+required — not yet in fetch pipeline.
 
 ---
 
