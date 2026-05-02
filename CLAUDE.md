@@ -1,7 +1,7 @@
 A map & guide on free public RTK correction networks for hobbyists and small
 shops who need better than ~5–10 m GPS accuracy. Enterprise / B2B is out of scope.
 DGNSS out of scope due to low real world accuracy.
-PPP/SSR/HAS mentioned as alternative in guide, not what this projedct is about.
+PPP/SSR/HAS mentioned as alternative in guide, not what this project is about.
 
 ## Repository layout
 
@@ -30,14 +30,13 @@ docs/
   networks.md                   # rules for editing docs/networks.md
   country-markers.md            # rules for editing data/country_markers.json
   fetch-stations.md             # rules for editing scripts/fetch_stations.py SOURCES
-.claude/skills/update-country-survey/SKILL.md # Workflow runbook for batch country audits. Defers to .claude/process/ for per-file rules.
 .claude/token-reduction-patterns.md #rules for producing token-optimized content for ai consumption, applies to gnss-ai-guide.md, can be used for other ai facing content
   
 ```
 
 ## Gotchas
 
-- Generating large text blocks (2kB) in this env will timeout and fail. Workaround with iteratarive output;, skeleton-first then edit; bash py etc for repetitive work.
+- Generating large text blocks (2kB) in this env will timeout and fail. Workaround with iterative output; skeleton-first then edit; bash py etc for repetitive work.
 - All color and design edits must always consider Light and Dark mode.
 - Sandbox has very limited internet access. WebSearch tool works, pretty much nothing else does, test environment before relying on it.
 - Pipeline filter flags (nmea_filter / solution_filter in SOURCES): both default True. Set nmea_filter=False only if the caster mislabels physical stations as NMEA=1; solution_filter=False only if it mislabels them as solution=1. Never set solution_filter=False for rtk2go — it is the only guard against the NEAR-xxx VRS streams. See parse_sourcetable docstring for full rules.
