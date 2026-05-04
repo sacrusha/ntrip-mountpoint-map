@@ -25,7 +25,9 @@ A `country_markers.json` marker exists only when the marker tier rules apply
 missing ones.
 
 A `fetch_stations.py` SOURCES entry exists only when `networks.md` shows a
-free / candidate endpoint that resolves and supplies physical mountpoints.
+free / candidate endpoint that lists a host:port and supplies physical
+mountpoints. Sweep SOURCES whenever a block's `status:` changes — see
+`../scripts/fetch_stations.proc.md` for the status→action table.
 
 ## The flow narrows
 
