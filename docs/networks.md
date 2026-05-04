@@ -1888,19 +1888,58 @@ Centipede ~9 IE).
 
 ---
 
-## soi_cors — SoI-CORS (IN)
+## soi_cors — SoI CORS (IN)
 
 **status**:    paid
-**date_added**: 2026-04-29
+**date_added**: 2026-05-04
 **country**:   IN — India
-**host:port**: `cors.surveyofindia.gov.in` (port not publicly listed)
-**type**:      single-base + VRS
-**access**:    paid; free only for Central/State Government and academic institutions
-**yearly_cost**: ₹5,032/month (₹60,384/yr, ~$720/yr) for private users; over $200/yr cutoff
-**stations**:  1,105+
-**source**:    surveyofindia.gov.in
+**host:port**: `103.205.244.106:2101` (Region 1 — UP, Uttarakhand, Haryana, Punjab,
+               HP, NCR, MP, Rajasthan); `103.206.29.4:2105` (Region 2 — Maharashtra,
+               Karnataka, southwards). Authoritative portal: `cors.surveyofindia.gov.in`.
+**type**:      physical-coord-vrs
+**access**:    free for Central/State Government and government academic/research; paid
+               for PSU and private users. Online registration with Aadhaar or PAN ID
+               required — no documented path for foreign nationals (Aadhaar/PAN are
+               domestic IDs). Promotional free private-individual window
+               1 Nov 2025–31 Jan 2026 expired.
+**yearly_cost**: ₹70,800/yr (RTK12, incl. 18% GST, ~$745/yr); RTK1 ₹5,900/mo (~$62);
+                 RTK3 ₹17,700 (~$186); RTK6 ₹35,400 (~$373). DGNSS1 ₹2,360/mo (~$25);
+                 online RINEX ₹150/GB + GST. All prices observed 2026-05-04 on
+                 cors.surveyofindia.gov.in/subscription-charges; over $200/yr cutoff.
+**registration**: `https://cors.surveyofindia.gov.in`
+**stations**:  1,105+ across India; an additional 70 Andhra Pradesh stations are being
+               integrated into SoI CORS following the 13 Oct 2025 MoU between SoI and
+               the AP Survey, Settlements & Land Records Department.
+**source**:    cors.surveyofindia.gov.in (Survey of India)
+**operator**:  Survey of India (Department of Science & Technology)
 
-Promotional free 3-month window (Nov 2025–Jan 2026) expired. Worth revisiting if policy changes.
+Aadhaar/PAN gating means the network is effectively Indian-residents-only. Tamil Nadu's
+separate 70-station departmental network has not been merged into SoI as of 2026-05-04
+(see `tn_cors`); Kerala's MoU dates to 18 Jan 2021 but no public caster has been
+commissioned. Worth revisiting if foreign-resident registration becomes possible or if
+TN/KL follow AP into the national network.
+
+---
+
+## tn_cors — Tamil Nadu State CORS (IN — Tamil Nadu)
+
+**status**:    restricted
+**date_added**: 2026-05-04
+**country**:   IN — Tamil Nadu
+**host:port**: not publicly listed
+**type**:      unknown
+**access**:    closed government infrastructure; access limited to Tamil Nadu Department
+               of Survey and Settlement field staff for cadastral resurvey. No public
+               NTRIP service, registration portal, or tariff exists.
+**stations**:  70 (rooftops of state government establishments)
+**source**:    tnlandsurvey.tn.gov.in (Commissionerate of Survey and Settlement);
+               surveyofindia.gov.in/documents/tenders/document-11484-tnp-tender.pdf
+**operator**:  Tamil Nadu Department of Survey and Settlement
+
+Operational since at least 2017 per state Policy Notes ("DGPS-RTK based survey ... of
+millimeter accuracy" for departmental resurvey). Not absorbed into SoI CORS as of
+2026-05-04 — unlike Andhra Pradesh, which signed an integration MoU with SoI on
+13 Oct 2025 (see `soi_cors`). rtk2go ~2 Tamil Nadu volunteer bases are unaffiliated.
 
 ---
 

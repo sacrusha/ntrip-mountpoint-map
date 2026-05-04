@@ -833,7 +833,7 @@
     },
     {
       "id": "soi_cors",
-      "name": "SoI-CORS",
+      "name": "SoI CORS",
       "region": "India",
       "country": "IN",
       "lat": 20.6,
@@ -841,8 +841,22 @@
       "tier": "paid",
       "vrs": true,
       "access": "restricted",
-      "yearly_cost": "₹5,032/month (~$720/yr)",
-      "note": "Free only for central/state government and academic institutions."
+      "yearly_cost": "₹70,800/yr (~$745/yr)",
+      "registration": "https://cors.surveyofindia.gov.in",
+      "stations_declared": 1105,
+      "note": "Free only for central/state government and academic users. Paid private subscription requires Aadhaar or PAN ID — effectively Indian residents only."
+    },
+    {
+      "id": "tn_cors",
+      "name": "Tamil Nadu State CORS",
+      "region": "Tamil Nadu",
+      "country": "IN",
+      "lat": 11.0,
+      "lon": 78.5,
+      "tier": "restricted",
+      "access": "restricted",
+      "stations_declared": 70,
+      "note": "Closed cadastral infrastructure used by the Tamil Nadu Department of Survey and Settlement. No public NTRIP service or tariff. Not currently part of SoI CORS."
     },
     {
       "id": "qc_mern",

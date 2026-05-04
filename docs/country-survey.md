@@ -1803,21 +1803,53 @@ similarly have no published coverage for these jurisdictions.
 
 ### IN — India
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-04
 
-- **Free government RTK**: SoI-CORS (Survey of India, `cors.surveyofindia.gov.in`,
-  1,105+ stations, single-base + VRS) — free only for Central/State Government and
-  academic institutions; private users ₹5,032/month (₹60,384/yr, ~$720/yr) — expensive
-  for a hobbyist. Promotional free 3-month window (Nov 2025–Jan 2026) expired.
-  Worth revisiting if policy changes. → networks.md: `soi_cors`
-- **Commercial**: Indo-CORS (Trimble, commercial RTK network — partner/licensed
-  reseller model; pricing not publicly listed, contact Trimble India
-  trimble.com/en/products). CARTOSAT satellite imagery programme (ISRO) supports
-  mapping but does not provide an NTRIP RTK correction stream.
+- **Government RTK (paid, residency-gated)**: SoI CORS (Survey of India,
+  `103.205.244.106:2101` Region 1 — UP, Uttarakhand, Haryana, Punjab, HP, NCR,
+  MP, Rajasthan; `103.206.29.4:2105` Region 2 — Maharashtra, Karnataka,
+  southwards; portal `cors.surveyofindia.gov.in`; 1,105+ physical stations
+  with VRS overlays). Free for Central/State Government and government
+  academic/research; PSU and private users pay RTK1 ₹5,900/mo (incl. 18% GST,
+  ~$62/mo) up to RTK12 ₹70,800/yr (~$745/yr); DGNSS1 ₹2,360/mo (~$25/mo);
+  online RINEX post-processing ₹150/GB + GST. Registration requires Aadhaar
+  or PAN ID, so foreign nationals have no documented sign-up path even at
+  the paid tier. Promotional free private-individual window
+  (1 Nov 2025–31 Jan 2026) expired; post-promotion private rate is the paid
+  RTK1 plan above. → networks.md: `soi_cors`
+- **State networks**:
+  - **Andhra Pradesh** — 70-station SSLR network signed an MoU with SoI on
+    13 Oct 2025 to integrate into the national SoI CORS; no standalone AP
+    NTRIP endpoint confirmed post-MoU. Coverage will surface under SoI CORS
+    once integration completes; no separate access path.
+  - **Tamil Nadu** — Department of Survey and Settlement operates 70 stations
+    on rooftops of state government buildings; closed cadastral resurvey
+    infrastructure for departmental staff only. No public NTRIP caster, no
+    tariff, no MoU with SoI as of 2026-05-04. → networks.md: `tn_cors`
+  - **Kerala** — Survey & Land Records Department signed an MoU with SoI on
+    18 Jan 2021 for a VRS/NTRIP/NavIC-capable network; CORS hardware is in
+    use by departmental surveyors for the Ente Bhoomi digital resurvey, but
+    no public endpoint or tariff has been published. Pre-commissioning for
+    external users.
+- **ISRO / NavIC**: NavIC is India's regional GNSS satellite constellation,
+  not a CORS or NTRIP RTK correction service; ISRO operates no NTRIP caster.
+  Constellation currently degraded (NVS-02 failed orbit-raising Jan 2025;
+  NVS-03/04/05 planned by Sep 2027) — out of scope here either way.
+- **Commercial**: GEODNET (`rtk.geodnet.com`) carries volunteer-contributed
+  India base stations sold via the GEODNET token-credit model; HYFIX
+  (`hyfix.in`) is the local reseller. Trimble VRS Now and Hexagon HxGN
+  SmartNet have no confirmed production NRTK coverage in India, despite
+  Trimble equipment being sold widely in country. RTKdata (`rtkdata.com`)
+  resells global NTRIP including India coverage from $40/mo with a 30-day
+  trial.
 - **Volunteer**: rtk2go ~2 IND bases (Tamil Nadu). No Centipede IND nodes.
-- **Gap**: no free public RTK for hobbyists; SoI-CORS is restricted to government
-  and academia, and the only private-user path is a paid subscription (~$720/yr) that is
-  expensive for a hobbyist.
+- **Gap**: no free public RTK for hobbyists. SoI CORS is restricted to
+  government/academia for free use, and the only private-user path is a paid
+  subscription (~$745/yr) gated behind Aadhaar/PAN — effectively
+  Indian-residents-only. State CORS networks (AP integrating into SoI; TN
+  closed; Kerala pre-commissioning) add no third-party access. Foreign
+  hobbyists have no documented free or paid NTRIP path into India; the
+  practical fallback is a self-deployed local base.
 
 ### LK — Sri Lanka
 
