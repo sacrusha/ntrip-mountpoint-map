@@ -25,10 +25,11 @@ site is for users who need better than HAS.
 - Commercial / paid caster networks.
 - Sub-metre DGNSS-only mountpoints (dominated by free Galileo HAS).
 - Raw-observation networks without real-time RTK (EPN / EUREF-IP;
-  those are for post-processing) — excluded from the map and pipeline.
-  Substantial free national RINEX networks (e.g. INEGI RGNA) are still
-  documented in `country-survey.md` and `networks.md` as PPK alternatives
-  (`status: rejected`); they produce no map marker.
+  those are for post-processing) — excluded from the ingestion pipeline.
+  Substantial free national RINEX networks (e.g. INEGI RGNA) are
+  documented in `country-survey.md` and `networks.md`, and surface on
+  the map as `weird` markers carrying a "free RINEX, no NTRIP" note so
+  target users know free post-processing data exists in their country.
 - Per-user authentication, account creation, saved configurations.
 - Mobile-app or native clients; this is a single static page served
   from GitHub Pages.
@@ -194,11 +195,15 @@ The data model is **two orthogonal axes** plus runtime data presence.
   **?** marker.
 - `restricted` — substantial national-scale operator with no hobbyist path
   at any price (TxDOT CORS, KazGeoDesy, DVRS). Renders as **?** marker.
-- `weird` — something unusual overrides the access question:
-  non-standard NTRIP (qc_mern), active jamming/spoofing (apn),
-  infrastructure too sparse to work (igrs), war-disrupted with unknown
-  status (zakpos). Renders as **?** marker; the popup note carries the
-  warning.
+- `weird` — anything interesting to a target user that doesn't fit the
+  other tiers. The freeform popup note carries the explanation and is
+  the value proposition of this tier. Examples: non-standard NTRIP
+  (qc_mern), active jamming/spoofing (apn), infrastructure too sparse
+  to work (igrs), free RINEX-only with no real-time NTRIP (rgna_mx,
+  ign_gt_cors), network announced/under construction but not yet
+  operational (sen_cors, fiji_dlss_cors), government CORS distributed
+  only via licensed commercial resellers (os_net), micro-state with no
+  local service (li_cors, sm_cors). Renders as **?** marker.
 
 `vrs` (boolean flag) is **orthogonal** to tier. `vrs: true` means the network
 delivers VRS / network-RTK streams. Free SAPOS, paid swipos, and restricted
@@ -215,12 +220,15 @@ visuals:
 - `tier:free + no vrs flag` → grey ring (small free networks like a single observatory station)
 - `tier:paid|paid-affordable|restricted|weird` → **?** marker
 
-No entry → no marker. This covers the common case where a country was
-investigated and found to have nothing accessible to a hobbyist — closed
-government infrastructure, post-processing-only RINEX, defence networks,
-etc. Absence of a marker is itself a signal: "we looked, found nothing
-useful." Don't add a marker just to mark the investigation; the
-country-survey prose is the canonical record.
+No entry → no marker. This covers the case where a country was
+investigated and found to have nothing of value to a target user —
+closed defence networks, abandoned programmes, niche scientific
+archives with no PPK signal, tiny private surveying companies. Absence
+of a marker is itself a signal: "we looked, found nothing useful."
+Don't add a marker just to mark the investigation; the country-survey
+prose is the canonical record. Free RINEX-only networks and other
+"interesting but not directly usable" cases get a `weird` marker, not
+silence.
 
 The grey circle reuses the existing stale/grey visual language and is the most
 colorblind-safe encoding (achromatic vs. coloured, no hue dependency).

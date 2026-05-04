@@ -35,12 +35,12 @@ Mis-sectioning is a recurring failure mode.
 
 | Status | Meaning |
 |---|---|
-| `free` | Free NTRIP/RTK service. RINEX-only no NTRIP → `rejected`. |
+| `free` | Free NTRIP/RTK service. |
 | `paid` / `paid-affordable` | Civilian-accessible for a fee. Requires `**yearly_cost**:`. |
 | `restricted` | Exists but unobtainable for the target user at any price. |
-| `weird` | Non-standard NTRIP, jamming, sparse infrastructure, war-disrupted. |
+| `weird` | Anything interesting to a target user that doesn't fit the other tiers: non-standard NTRIP, jamming, sparse infrastructure, war-disrupted, free RINEX-only with no real-time NTRIP, network announced/under construction but not yet operational, government CORS distributed only via licensed commercial resellers, micro-state with no local service. Produces a `weird` marker; the freeform note is the value. |
 | `candidate` | Free, endpoint known, ready to ingest, not yet in fetch. |
-| `rejected` | Investigated, ruled out. Keep RINEX-only government networks as PPK reference. |
+| `rejected` | Investigated, ruled out, and **of no value to a target user** (defence-only, abandoned, niche scientific archive). RINEX-only national networks worth flagging go to `weird`, not `rejected`. |
 
 ## yearly_cost format
 

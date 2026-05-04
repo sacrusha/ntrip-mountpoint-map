@@ -25,8 +25,8 @@ Triggered by a `networks.md` block change.
 | `paid` | Substantial national paid commercial operator over ~$200/yr. |
 | `paid-affordable` | Substantial national paid operator at or below ~$200/yr. |
 | `restricted` | Substantial network with no hobbyist path at any price. |
-| `weird` | Unusual constraint overrides access (non-standard NTRIP, jamming, war-disrupted, sparse infrastructure). |
-| _none_ | Investigated, nothing meets the bar. **Default when uncertain.** |
+| `weird` | Anything interesting to a target user that doesn't fit the other tiers: non-standard NTRIP, jamming, war-disrupted, sparse infrastructure, free RINEX-only with no real-time NTRIP, network announced/under construction but not yet operational, government CORS distributed only via licensed commercial resellers, micro-state with no local service. The note carries the explanation. |
+| _none_ | Investigated, nothing of interest to a target user. **Default when uncertain.** |
 
 `vrs: true` set if and only if the network delivers VRS / network-RTK
 streams. Independent of tier.
@@ -35,7 +35,7 @@ streams. Independent of tier.
 
 - A misplaced marker is worse than no marker.
 - Pipeline-ingested single-base free entries already rendered as physical pins → no marker.
-- `rejected` networks → no marker.
+- `rejected` networks with no signal value to a target user (defence-only, abandoned, niche scientific) → no marker. RINEX-only PPK alternatives, announced-but-not-operational networks, and similar "rejected from pipeline but interesting to a user" cases get a `weird` marker instead — see the table above.
 
 ## Note anti-patterns (beyond JSON conventions)
 
