@@ -1090,7 +1090,10 @@ duplicate pins on the map.
 
 ## Candidate — confirmed free, not yet ingested
 
-Only one network (GPSBru) remains unconfirmed; all ingested networks have been moved to the appropriate in-pipeline sections.
+Free networks with a confirmed host:port that have been added to
+`fetch_stations.py` SOURCES but have not yet completed a successful cron fetch.
+The next GitHub Actions run is the live verifier — type and counts may need
+tuning once a sourcetable is observed.
 
 ---
 
@@ -1106,6 +1109,35 @@ Only one network (GPSBru) remains unconfirmed; all ingested networks have been m
 Single station; useful only within ~30 km of Brussels. Low priority.
 
 **missing**: confirm NTRIP port (standard 2101? try ncat/telnet agn.ngi.be 2101).
+
+---
+
+## thailand_dol — Thailand DOL LandGNSS (TH)
+
+**status**:    free
+**date_added**: 2026-05-04
+**host:port**: `122.155.131.34:2101` (Central zone; full zone–port table at
+               dol-rtknetwork.com/files/manual/1(PortNumber).pdf — 404 as of
+               2026-05-04; other-zone ports not publicly accessible)
+**type**:      unknown (sourcetable not yet observed; only mountpoint name in
+               public docs is `VRS_RTCM32`)
+**access**:    free with registration; Thai national ID (13-digit) required —
+               foreign users cannot self-register via the standard form
+**pipeline-access**: conditions
+**registration**: https://dol-rtknetwork.com/index.php/register_gnss_beta
+**stations**:  ~115–220 CORS (academic sources, 63 provinces)
+**source**:    dol-rtknetwork.com (Department of Lands / กรมที่ดิน, Ministry of Interior)
+
+Thai-language portal. Caster IP updated from `110.78.0.54` to `122.155.131.34`
+(confirmed in DOL manuals); Central zone on port 2101. Added to SOURCES with a
+best-guess `physical-vrs` type (national-CORS pattern); the next cron run is the
+authoritative verifier and the type may need tuning then. Full zone–port PDF
+currently 404; other-zone ports not publicly accessible. Possible future
+credit/fee system indicated by a DOL procurement document (March 2026) but no
+paid tier active as of 2026-05-04.
+
+**investigate**: confirm sourcetable structure from the next cron run; obtain
+full zone–port mapping for all regions.
 
 ---
 
@@ -1165,29 +1197,6 @@ ASG-EUPOS (Poland) is documented in the usage rules. Natural and legal persons
 are eligible (§6 of usage rules); no professional surveying licence required.
 No residency restriction found in the usage rules; non-Lithuanian registration
 not confirmed but also not excluded.
-
----
-
-## thailand_dol — Thailand DOL LandGNSS (TH)
-
-**status**:    free
-**host:port**: `110.78.0.54` with zone-based variable ports (port table at
-               dol-rtknetwork.com/index.php/npage/view/9; PDF at
-               dol-rtknetwork.com/uploads/files/manual/1(Port%20Number).pdf)
-**type**:      VRS (network RTK)
-**access**:    free with registration; register at
-               dol-rtknetwork.com/index.php/register_gnss_beta
-**stations**:  ~114–222 CORS (2019–2023 academic sources; 63 provinces covered)
-**source**:    dol-rtknetwork.com (Department of Lands / กรมที่ดิน, Ministry of Interior)
-
-Thai-language portal and manual. Caster IP `110.78.0.54` confirmed via public
-aggregators; zone-based port scheme (multiple ports by geographic region) requires
-downloading the port-number PDF or completing the beta registration to obtain the
-full table. No single universal port confirmed for NTRIP sourcetable fetch.
-Direct contact with Dept of Lands via dol.go.th recommended before pipeline ingestion.
-
-**investigate**: confirm a single queryable sourcetable port or obtain the full
-zone-port mapping from the Thai-language PDF at the URL above.
 
 ---
 
