@@ -1786,7 +1786,7 @@ network RTK.
 
 ## os_net — OS Net (GB)
 
-**status**:    paid
+**status**:    weird
 **date_added**: 2026-04-29
 **country**:   GB
 **type**:      physical single-base / network RTK (VRS via resellers)
@@ -1836,7 +1836,7 @@ Volunteer bases on rtk2go/Centipede remain the only free option.
 
 ## osi_gnss — OSi Active GNSS Network (IE)
 
-**status**:    restricted
+**status**:    weird
 **date_added**: 2026-04-29
 **country**:   IE
 **type**:      physical single-base (RINEX archive free; real-time via commercial VRS)
@@ -3308,7 +3308,7 @@ $200/yr cutoff — not surfaced on the map. Free 1-month trial available.
 
 ## finpos — FINPOS RTK (FI)
 
-**status**:    rejected
+**status**:    weird
 **reason**:    RTK access granted only for research with written justification (3-month
                renewable); no general public tier; DGNSS free but sub-metre only
 
@@ -3414,7 +3414,7 @@ with a licensed surveying body. Same legal barrier as `bgas_china`.
 
 ## gps_emiliaromagna — Rete GPS Emilia-Romagna (IT)
 
-**status**:    rejected
+**status**:    weird
 **reason**:    public regional service discontinued; stations now commercially operated
                via NetGEO/TopNET Live (netgeo.it); not free
 
@@ -3422,7 +3422,7 @@ with a licensed surveying body. Same legal barrier as `bgas_china`.
 
 ## ergand — ERGAND Geodetic Network (AD)
 
-**status**:    rejected
+**status**:    weird
 **country**:   AD — Andorra
 **type**:      single-base (EPN reference stations)
 **host:port**: not publicly listed
@@ -3435,13 +3435,14 @@ with a licensed surveying body. Same legal barrier as `bgas_china`.
                No independent public NTRIP caster found. Hobbyists near the Spanish or
                French border can use ERGNSS (ES) or Centipede (FR) corrections.
 
-Rejected — post-processing only; no public NTRIP service found.
+Post-processing only; no public NTRIP service found. Surfaced as a `weird`
+country marker so target users in Andorra know what's locally available.
 
 ---
 
 ## li_cors — Liechtenstein Geodata / ATG (LI)
 
-**status**:    rejected
+**status**:    weird
 **country**:   LI — Liechtenstein
 **type**:      no independent CORS programme
 **host:port**: not applicable
@@ -3452,13 +3453,14 @@ Rejected — post-processing only; no public NTRIP service found.
                which covers the entire principality via AGNES stations 5–10 km across the
                Swiss border. No free public RTK endpoint exists for the territory.
 
-Rejected — no CORS programme or public NTRIP service found.
+No CORS programme or public NTRIP service found. Surfaced as a `weird`
+country marker so target users in Liechtenstein know what's locally available.
 
 ---
 
 ## sm_cors — San Marino Geodetic Reference (SM)
 
-**status**:    rejected
+**status**:    weird
 **country**:   SM — San Marino
 **type**:      single-base (permanent reference station)
 **host:port**: not publicly listed
@@ -3471,7 +3473,8 @@ Rejected — no CORS programme or public NTRIP service found.
                and the Marche region has no confirmed public caster. Commercial coverage via
                NetGEO/TopNET (~€360/yr, IT national). → networks.md: `netgeo`
 
-Rejected — post-processing only; no public NTRIP service found.
+Post-processing only; no public NTRIP service found. Surfaced as a `weird`
+country marker so target users in San Marino know what's locally available.
 
 ---
 
@@ -3586,7 +3589,7 @@ ODC and igs.org for any additional MG station IDs beyond ABPO00MDG.
 
 ## cnigs_ht — CNIGS CORS (HT)
 
-**status**:    free
+**status**:    weird
 **country**:   HT — Haiti
 **type**:      single-base (one confirmed station in Port-au-Prince; expansion unconfirmed)
 **host:port**: not publicly listed
@@ -3814,7 +3817,7 @@ pricing in BOB is not publicly available. geoboliviasrl.info was unreachable on 
 
 ## ign_gt_cors — IGN Guatemala Red CORS (GT)
 
-**status**:    rejected
+**status**:    weird
 **country**:   GT — Guatemala
 **type**:      single-base
 **host:port**: none — post-processing RINEX download service only; no NTRIP caster
@@ -3832,11 +3835,12 @@ system. RINEX 2.11 data is available for download from the IGN website. The IGN 
 public portals list only a post-processing RINEX data product ("datos CORS"); no separately
 priced or free live NTRIP/RTK streaming subscription is publicly documented. ArduSimple
 (2026) does not list Guatemala as having a national RTK network accessible to hobbyists.
-Rejected — post-processing only; no real-time NTRIP service publicly available.
+Free RINEX archive only; no real-time NTRIP service offered. Surfaced as a `weird`
+country marker so target users in Guatemala know free post-processing data exists.
 
 ## ip_cors_hn — IP CORS Honduras / IGN Honduras (HN)
 
-**status**:    rejected
+**status**:    weird
 **country**:   HN — Honduras
 **type**:      single-base
 **host:port**: none — post-processing RINEX download service only; no NTRIP caster
@@ -3857,7 +3861,8 @@ auxiliary web presence for the same network. Honduras is absent from ArduSimple 
 rtcm-ntrip.org caster directories. A 2024 public comment on the IP's Facebook page
 explicitly called for activation of a live CORS/NTRIP service, confirming it had not
 yet occurred at that date.
-Rejected — post-processing only; no real-time NTRIP service exists.
+Free RINEX archive only; no real-time NTRIP service exists. Surfaced as a `weird`
+country marker so target users in Honduras know free post-processing data exists.
 
 ## ign_hn_cors — IGN Honduras CORS (HN)
 
@@ -3874,7 +3879,7 @@ Rejected — same institution as `ip_cors_hn`; post-processing only.
 
 ## ineter_cors — INETER CORS (NI)
 
-**status**:    rejected
+**status**:    weird
 **country**:   NI — Nicaragua
 **type**:      single-base
 **host:port**: none — post-processing RINEX download service only; no NTRIP caster
@@ -3894,11 +3899,12 @@ post-processing RINEX product ("datos CORS"); no real-time RTK service is public
 documented. Nicaragua's Ortega-Murillo government is subject to targeted OFAC sanctions
 (individuals/entities), but the sanctions do not specifically restrict civil GNSS
 infrastructure access; the absence of a public NTRIP endpoint is a capacity/policy issue.
-Rejected — post-processing only; no real-time NTRIP service publicly available.
+Free RINEX archive only; no real-time NTRIP service offered. Surfaced as a `weird`
+country marker so target users in Nicaragua know free post-processing data exists.
 
 ## cnr_sv_cors — CNR/IGCN CORS (SV)
 
-**status**:    rejected
+**status**:    weird
 **country**:   SV — El Salvador
 **type**:      single-base
 **host:port**: none — post-processing RINEX download service only; no NTRIP caster
@@ -3916,7 +3922,8 @@ via the eCNR online services portal. The CNR and IGCN public portals list only a
 post-processing RINEX product ("datos CORS"); no separately priced or free live NTRIP/RTK
 streaming subscription is publicly documented. The commercial operator Survey3G provides
 the only known real-time NTRIP service in El Salvador.
-Rejected — post-processing only; no real-time NTRIP service publicly available.
+Free RINEX archive only; no real-time NTRIP service offered. Surfaced as a `weird`
+country marker so target users in El Salvador know free post-processing data exists.
 
 ## zingsa_cors — ZINGSA CORS Network (ZW)
 
@@ -4099,7 +4106,7 @@ mlre.gov.la or UniqTeK via uniqteklao.com.
 
 ## png_dlpp_cors — DLPP / WAIG CORS + Unitech LAE1 (PG)
 
-**status**:    free
+**status**:    weird
 **country**:   PG — Papua New Guinea
 **type**:      single-base (scientific reference stations; no RTK density)
 **host:port**: not publicly listed
@@ -4132,7 +4139,7 @@ station. Secondary contact: ASPNG (`aspng.org`), maintained by Quickclose.
 
 ## fiji_dlss_cors — Fiji CORS (FJ)
 
-**status**:    free
+**status**:    weird
 **country**:   FJ — Fiji
 **type**:      single-base (no public NTRIP confirmed; CORS physically established)
 **host:port**: not publicly listed
@@ -4544,7 +4551,7 @@ Zero MN mountpoints on rtk2go or Centipede.
 
 ## survey_bn — Survey Department Brunei (BN)
 
-**status**:    restricted
+**status**:    weird
 **country**:   BN — Brunei Darussalam
 **type**:      unknown (no sourcetable discovered)
 **host:port**: not publicly listed
@@ -4911,7 +4918,7 @@ whether non-commercial / hobbyist access is available via us.fo/kort/geodesi.
 
 ## gibr_gi — BIGF/IGS Reference Station Gibraltar (GI)
 
-**status**:    rejected
+**status**:    weird
 **country**:   GI — Gibraltar (British Overseas Territory)
 **type**:      single-base (scientific tide-gauge monitoring station)
 **host:port**: not publicly listed (RINEX data via BIGF archive at bigf.ac.uk)
@@ -4958,7 +4965,7 @@ determine subscription pricing.
 
 ## cw_cors — Curaçao Geodetic / Kadaster CORS (CW)
 
-**status**:    rejected
+**status**:    weird
 **country**:   CW — Curaçao
 **type**:      unknown (no public caster endpoint identified)
 **host:port**: not publicly listed
@@ -4985,7 +4992,7 @@ correction service exists or is planned.
 
 ## aw_cors — Aruba Geodetic / DLV CORS (AW)
 
-**status**:    rejected
+**status**:    weird
 **country**:   AW — Aruba
 **type**:      unknown (no public caster endpoint identified)
 **host:port**: not publicly listed
@@ -5038,7 +5045,7 @@ Zero BES-coded rtk2go or Centipede stations.
 
 ## sx_cors — Sint Maarten Geodetic / Kadaster SXM (SX)
 
-**status**:    rejected
+**status**:    weird
 **country**:   SX — Sint Maarten (Dutch part)
 **type**:      unknown (no public caster endpoint identified)
 **host:port**: not publicly listed
@@ -5135,7 +5142,7 @@ institutional basis, and whether any commercial RTK service operates in Egypt.
 
 ## ipgn — Iranian Permanent GNSS Network (IR)
 
-**status**:    restricted
+**status**:    weird
 **date_added**: 2026-05-01
 **country**:   IR
 **type**:      physical single-base (~127 stations)
@@ -5168,7 +5175,7 @@ after registration; confirm what mountpoint credentials are issued to registered
 
 ## shamim_ir — SHAMIM (IR)
 
-**status**:    restricted
+**status**:    free
 **date_added**: 2026-04-29
 **country**:   IR
 **type**:      physical single-base (VRS / NRTK capable, 144 stations)
@@ -5189,16 +5196,17 @@ reference modes; achieves 8 mm + 1 ppm accuracy in static mode. Designed to acce
 the national cadastral survey programme.
 
 Registration requires an Iranian national identification number, making the service
-inaccessible to foreign hobbyists or researchers. NTRIP caster IP (`178.252.171.15:2101`)
-is published in Persian-language surveying community documentation. Not added to pipeline:
-national-ID gating makes it a restricted domestic service, not a publicly-accessible
-free NTRIP endpoint.
+inaccessible to foreign hobbyists or residents. NTRIP caster IP (`178.252.171.15:2101`)
+is published in Persian-language surveying community documentation. Free in cost but
+nationality-gated; surfaced as a free country marker so target users in Iran know what
+exists. Not in the ingestion pipeline because the project cannot register an Iranian
+national ID.
 
 ---
 
 ## rgna_mx — Red Geodésica Nacional Activa (MX)
 
-**status**:    rejected
+**status**:    weird
 **date_added**: 2026-05-01
 **country**:   MX
 **type**:      physical single-base (~36 stations)
@@ -5277,7 +5285,7 @@ $200/yr paid-affordable cutoff. Not added to pipeline: paid service.
 
 ## sirgas_chile — RGN/SIRGAS-CHILE (CL)
 
-**status**:    free
+**status**:    weird
 **date_added**: 2026-05-01
 **country**:   CL
 **type**:      physical single-base (180+ CORS stations)
@@ -5558,7 +5566,7 @@ been identified in any sourcetable, directory, or academic reference.
 
 ## sen_cors — SEN-CORS (SN)
 
-**status**:    free
+**status**:    weird
 **date_added**: 2026-04-29
 **country**:   SN
 **type**:      single-base (planned)
