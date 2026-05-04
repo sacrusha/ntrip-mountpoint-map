@@ -2538,7 +2538,7 @@ similarly have no published coverage for these jurisdictions.
 
 ### IR — Iran
 
-**date_added**: 2026-05-01
+**date_added**: 2026-05-04
 
 - **Context**: Iran sits under comprehensive US and EU sanctions (OFAC Iran sanctions
   programme, EU Council Regulation 359/2011 and successors) that make procurement of
@@ -2552,32 +2552,43 @@ similarly have no published coverage for these jurisdictions.
   spoofing across the Strait of Hormuz, Persian Gulf, and Tehran metropolitan area,
   disrupting ride-hailing apps, delivery platforms, and consumer mapping services for
   months afterwards. The internet infrastructure is heavily filtered (national intranet
-  policy), limiting discoverability of NTRIP endpoints from outside Iran.
+  policy), and the Iranian-domain NTRIP casters listed below appear to restrict
+  external access at the IP/firewall level — direct sourcetable queries from outside
+  Iran time out, so endpoint details rely on Iranian practitioner documentation.
 
-- **Free government RTK**:
-  - IPGN — Iranian Permanent GNSS Network for Geodynamics (سازمان نقشه‌برداری کشور /
-    National Cartographic Center, `ipgn.ncc.gov.ir`), ~127 physical CORS stations;
-    designed for tectonic monitoring and geodetic reference; sign-up at
-    `ipgn.ncc.gov.ir/en/accounts/signup/` — publicly accessible on the web, though
-    `ipgn.ncc.gov.ir:2101` returns connection refused from outside Iran (confirmed
-    2026-05-01), consistent with national intranet filtering. NCC is developing
-    domestic GNSS correction software (GPS World, January 2026). Data archived to IGS;
-    primarily a post-processing / geodynamics resource. → networks.md: `ipgn`
-  - SHAMIM — Integrated Unified Property Management Network (سامانه شمیم, شبکه
-    موقعیت‌یابی یکپارچه مالکیت‌ها; Organisation for Registration of Deeds and
-    Properties, `shamim.ssaa.ir`), 144 physical stations nationwide; VRS / NRTK
-    capable; NTRIP caster `178.252.171.15:2101`; registration with Iranian national
-    ID number (`shamim.ssaa.ir`); free subscription available for non-commercial
-    use. Designed for cadastral surveying; Iranian national ID required —
-    inaccessible to foreign hobbyists. → networks.md: `shamim_ir`
+- **Government NTRIP RTK**:
+  - Hoda Pro (سامانه ملی هدی پرو, `hodapro.ncc.gov.ir:2101`) — RTK / Network-RTK
+    service from the National Cartographic Center, riding on the IPGN station
+    infrastructure. Paid subscription via `eshop.ncc.gov.ir` (rates not publicly
+    listed; the subscription portal is unreachable from outside Iran). Sign-up
+    requires Iranian national ID and Iranian banking. The legacy `hoda.ncc.gov.ir`
+    caster is DGPS-only and out of project scope. → networks.md: `hodapro_ir`
+  - SHAMIM (سامانه شمیم, شبکه موقعیت‌یابی یکپارچه مالکیت‌ها; `178.252.173.15:2101`,
+    SHAMIM Plus at `178.252.173.75:2101`) — 144-station VRS/NRTK network on a Geo++
+    GNSMART backend, operated by the Organisation for Registration of Deeds and
+    Properties for the national cadastre programme. No subscription fee, but
+    registration is documented only for cadastre-licensed surveyors with an Iranian
+    national ID, Iranian mobile, and a registered GNSS receiver serial. No documented
+    path for unaffiliated hobbyists. → networks.md: `shamim_ir`
+
+- **Other government networks**:
+  - IPGN — Iranian Permanent GPS Network for Geodynamics (`ipgn.ncc.gov.ir`,
+    National Cartographic Center), ~127 physical CORS built post-2003 Bam earthquake
+    for tectonic monitoring, velocity, and strain-field estimation; raw RINEX archived
+    to IGS for post-processing. IPGN itself does not run a public NTRIP RTK caster —
+    NCC's real-time arm is Hoda Pro above. → networks.md: `ipgn`
+  - SEMT (سمت) — a third Iranian RTK correction service named alongside SHAMIM and
+    Hoda Pro in practitioner material; operator, endpoint, and access terms not yet
+    investigated. **investigate**
 
 - **Volunteer**: none. Zero IR stations on rtk2go or Centipede.
 
-- **Gap**: the two government NTRIP-capable networks (SHAMIM and IPGN) are effectively
-  restricted to Iran residents holding a national ID; Western hardware embargoes and
-  persistent GPS jamming/spoofing make on-the-ground RTK unreliable regardless of
-  correction availability. Foreign hobbyists or researchers should use PPP or deploy a
-  local base with domestically-procurable hardware.
+- **Gap**: no documented free or affordable hobbyist path. Hoda Pro is paid and
+  payment-gated to Iranian banking; SHAMIM is no-fee but cadastre-licensed-only;
+  foreign hobbyists or residents have no registration path on either. Western
+  hardware embargoes and persistent GPS jamming/spoofing make on-the-ground RTK
+  unreliable regardless of correction availability. Practical fallback is PPP
+  or a self-deployed local base with domestically-procurable hardware.
 
 ### SY — Syria
 
