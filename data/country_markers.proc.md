@@ -42,6 +42,6 @@ streams. Independent of tier.
 - No email, phone, named individual, bank/giro details, or "contact X"
   instructions — link via `registration` instead. **Harassment guard.**
 - No audit language ("No explicit restriction found", PDF dates).
-- No hardcoded dates ("as of 2026-04-30") → "currently".
+- Anchor time claims in historical events ("installed 2022", "announced 2025"). Avoid "as of <date>" snapshots and bare "currently" — both rot silently.
 - No unexplained jargon (FKP, iMAX, SBC portal) → spell out.
 - `status: free` upstream but prose says rejected → fix `networks.md` first.
