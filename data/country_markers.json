@@ -414,9 +414,9 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
-      "registration": "https://dol-rtknetwork.com",
+      "registration": "https://dol-rtknetwork.com/index.php/register_gnss_beta",
       "stations_declared": null,
-      "note": "Free government service. Host:port not in public aggregators; the operator manual is in Thai."
+      "note": "~130 stations, free. Requires a Thai national ID — foreign visitors cannot self-register via the standard form."
     },
     {
       "id": "tpos",

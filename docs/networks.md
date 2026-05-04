@@ -1171,23 +1171,27 @@ not confirmed but also not excluded.
 ## thailand_dol — Thailand DOL LandGNSS (TH)
 
 **status**:    free
-**host:port**: `110.78.0.54` with zone-based variable ports (port table at
-               dol-rtknetwork.com/index.php/npage/view/9; PDF at
-               dol-rtknetwork.com/uploads/files/manual/1(Port%20Number).pdf)
-**type**:      VRS (network RTK)
-**access**:    free with registration; register at
-               dol-rtknetwork.com/index.php/register_gnss_beta
-**stations**:  ~114–222 CORS (2019–2023 academic sources; 63 provinces covered)
+**date_added**: 2026-05-04
+**host:port**: `122.155.131.34:2101` (Central zone confirmed; full zone–port
+               table at dol-rtknetwork.com/files/manual/1(PortNumber).pdf —
+               404 as of 2026-05-04; other-zone ports not publicly accessible)
+**type**:      vrs-only
+**access**:    free with registration; Thai national ID (13-digit) required —
+               foreign users cannot self-register via the standard form
+**registration**: https://dol-rtknetwork.com/index.php/register_gnss_beta
+**stations**:  ~115–220 CORS (academic sources, 63 provinces); NTRIP delivery
+               via `VRS_RTCM32` VRS mountpoint
 **source**:    dol-rtknetwork.com (Department of Lands / กรมที่ดิน, Ministry of Interior)
 
-Thai-language portal and manual. Caster IP `110.78.0.54` confirmed via public
-aggregators; zone-based port scheme (multiple ports by geographic region) requires
-downloading the port-number PDF or completing the beta registration to obtain the
-full table. No single universal port confirmed for NTRIP sourcetable fetch.
-Direct contact with Dept of Lands via dol.go.th recommended before pipeline ingestion.
+Thai-language portal. Caster IP updated from `110.78.0.54` to `122.155.131.34`
+(confirmed in DOL manuals); Central zone on port 2101. Full zone–port PDF
+currently 404; other-zone ports not publicly accessible. Portal and registration
+page confirmed live 2026-05-04; NTRIP TCP reachability not confirmed externally.
+Possible future credit/fee system indicated by a DOL procurement document (March
+2026) but no paid tier active as of 2026-05-04.
 
-**investigate**: confirm a single queryable sourcetable port or obtain the full
-zone-port mapping from the Thai-language PDF at the URL above.
+**investigate**: confirm `122.155.131.34:2101` serves a queryable NTRIP
+sourcetable without credentials; obtain full zone–port mapping for all regions.
 
 ---
 

@@ -1977,18 +1977,20 @@ similarly have no published coverage for these jurisdictions.
 
 ### TH — Thailand
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-04
 
-- **Free government RTK**: LandGNSS (Dept of Lands / กรมที่ดิน, `110.78.0.54`
-  zone-based ports, ~114–222 fixed reference stations (CORS), VRS network, free with registration) —
-  free; register at dol-rtknetwork.com/index.php/register_gnss_beta; Thai-language
-  portal; zone-port table at dol-rtknetwork.com/index.php/npage/view/9.
-  → networks.md: `thailand_dol` (deferred — public caster IP found, full port list
-  requires manual download or completed registration)
+- **Free government RTK**: LandGNSS (Dept of Lands / กรมที่ดิน, `122.155.131.34`,
+  zone-based ports, ~115–220 CORS reference stations, VRS corrections via
+  `VRS_RTCM32`, free with registration) — Central zone confirmed on port 2101;
+  full zone–port PDF (dol-rtknetwork.com/files/manual/1(PortNumber).pdf) currently
+  404; register at dol-rtknetwork.com/index.php/register_gnss_beta; Thai-language
+  portal; registration requires a Thai national ID — foreign users cannot
+  self-register.
+  → networks.md: `thailand_dol`
 - **Volunteer**: rtk2go ~3 TH bases; sparse.
-- **Gap**: dense domestic network exists but access details are behind Thai-language
-  registration; no confirmed single public host:port suitable for direct pipeline
-  ingestion without completing the beta-registration process.
+- **Gap**: full zone–port mapping unavailable (PDF link 404 as of 2026-05-04);
+  NTRIP TCP reachability not externally confirmed; foreign hobbyists effectively
+  excluded by the Thai national ID registration requirement.
 
 ### VN — Vietnam
 
