@@ -1902,7 +1902,7 @@
       "tier": "weird",
       "registration": "https://www.sirgaschile.cl",
       "stations_declared": 180,
-      "note": "Chile's military geographic institute publishes free RINEX files from 180+ reference stations. A real-time NTRIP service has been announced but the public endpoint is not yet working."
+      "note": "Chile's military geographic institute publishes free RINEX files from 180+ reference stations. A real-time NTRIP service was announced in 2025 but the public endpoint is not yet working."
     },
     {
       "id": "png_dlpp_cors",
@@ -1924,7 +1924,7 @@
       "lon": 178.0,
       "tier": "weird",
       "stations_declared": 10,
-      "note": "Ten CORS sites have been installed covering Viti Levu, Vanua Levu and the outer islands. The access policy is still under development; no public NTRIP caster has been announced."
+      "note": "Ten CORS sites were installed in 2022 covering Viti Levu, Vanua Levu and the outer islands. The access policy is still under development; no public NTRIP caster has been announced."
     },
     {
       "id": "sen_cors",
