@@ -5140,67 +5140,112 @@ institutional basis, and whether any commercial RTK service operates in Egypt.
 
 ---
 
-## ipgn — Iranian Permanent GNSS Network (IR)
+## ipgn — Iranian Permanent GPS Network for Geodynamics (IR)
 
 **status**:    weird
-**date_added**: 2026-05-01
+**date_added**: 2026-05-04
 **country**:   IR
-**type**:      physical single-base (~127 stations)
-**host:port**: port 2101 returns connection refused from outside Iran (confirmed
-               2026-05-01); portal `ipgn.ncc.gov.ir` responsive for registration
-**access**:    registration at `ipgn.ncc.gov.ir/en/accounts/signup/` — web portal
-               accessible internationally; real-time NTRIP streaming blocked from
-               outside Iran's national intranet (connection refused confirmed)
-**registration**: `ipgn.ncc.gov.ir/en/accounts/signup/`
-**yearly_cost**: not publicly listed
+**type**:      single-base (post-processing, no public NTRIP RTK)
+**host:port**: n/a — no public NTRIP RTK caster operates under the IPGN name; NCC's
+               real-time correction service is the separate Hoda Pro caster (see
+               `hodapro_ir`)
+**access**:    raw RINEX archived to IGS for scientific post-processing
+**registration**: `ipgn.ncc.gov.ir/en/accounts/signup/` (account portal; reachable
+                  externally but issues no public NTRIP RTK credentials)
+**yearly_cost**: n/a (not an RTK service)
 **stations**:  ~127 physical CORS (phase 1: 2004–2006, 106 stations; phase 2: completed
                2013, 127 stations in ITRF2014)
 **operator**:  National Cartographic Center of Iran (سازمان نقشه‌برداری کشور / NCC),
                `ncc.gov.ir`
 
-Iranian Permanent GNSS Network for Geodynamics: established post-2003 Bam earthquake
+Iranian Permanent GPS Network for Geodynamics: established post-2003 Bam earthquake
 for tectonic monitoring, velocity and strain-field estimation. Base network covers
 Zagros Mountains, Central Iran, Alborz, East Iran, Makran, Loot, and Kopeh-Dagh; three
-local sub-networks. Data archived to IGS for scientific post-processing. Primarily a geodynamics and reference-frame resource — real-time RTK correction delivery
-for hobbyists is not the stated purpose. Port 2101 confirmed connection refused from
-outside Iran (2026-05-01); access within Iran's intranet is unverified from outside.
-NCC is developing domestic GNSS correction software (GPS World, January 2026),
-suggesting active interest in extending real-time correction services using
-non-Western tooling.
+local sub-networks. Data archived to IGS for scientific post-processing.
 
-**missing**: confirm whether NTRIP streaming is accessible from within Iran's intranet
-after registration; confirm what mountpoint credentials are issued to registered users.
+The IPGN station infrastructure feeds NCC's real-time correction product, branded
+**Hoda Pro** (`hodapro.ncc.gov.ir`) and sold as a paid subscription via
+`eshop.ncc.gov.ir` — documented separately in `hodapro_ir`. The IPGN itself does not
+operate a public NTRIP RTK caster of its own.
+
+**missing**: confirmation that hobbyist-grade RINEX downloads from `ipgn.ncc.gov.ir`
+work without an IGS-class research affiliation; confirmation of what (if anything)
+the IPGN sign-up portal issues to non-research applicants.
+
+---
+
+## hodapro_ir — Hoda Pro (IR)
+
+**status**:    weird
+**date_added**: 2026-05-04
+**country**:   IR
+**type**:      physical-coord-vrs (RTK / Network-RTK; built on the IPGN station network)
+**host:port**: `hodapro.ncc.gov.ir:2101` (domain indexed and named in NCC material;
+               directly unreachable from outside Iran, sourcetable not externally
+               verified)
+**access**:    paid subscription, sold via `eshop.ncc.gov.ir`; sign-up requires
+               Iranian national ID and Iranian banking; the e-shop is firewall-blocked
+               from outside Iran
+**registration**: `eshop.ncc.gov.ir` (NCC e-shop; login required)
+**yearly_cost**: not publicly listed — subscription tiers from daily through annual
+                 are documented in NCC announcement material, but specific rates are
+                 not exposed on any externally reachable page
+**stations**:  built on the IPGN station infrastructure (~127 CORS, see `ipgn`)
+**operator**:  National Cartographic Center of Iran (سازمان نقشه‌برداری کشور / NCC),
+               `ncc.gov.ir`
+
+Hoda Pro (سامانه ملی هدی پرو) is the RTK / Network-RTK arm of NCC's national
+positioning programme, sitting above the legacy DGPS-only HODA service
+(`hoda.ncc.gov.ir`, out of project scope). Distinct product from the IPGN
+geodynamics network (`ipgn`), which is post-processing only and shares the
+underlying CORS sites.
+
+Classified `weird` rather than `paid` because the subscription portal and rate card
+are firewall-blocked from outside Iran, so we cannot supply a verifiable
+`yearly_cost` figure and cannot confirm whether unaffiliated Iranian individuals
+can complete registration. Foreign hobbyists or residents have no documented
+sign-up path. Not in the ingestion pipeline.
+
+**missing**: actual subscription rates; confirmation of whether registration is
+open to Iranian individuals without a licensed-surveyor credential.
 
 ---
 
 ## shamim_ir — SHAMIM (IR)
 
-**status**:    free
-**date_added**: 2026-04-29
+**status**:    restricted
+**date_added**: 2026-05-04
 **country**:   IR
-**type**:      physical single-base (VRS / NRTK capable, 144 stations)
-**host:port**: `178.252.171.15:2101`
-**access**:    free-with-registration — Iranian national ID (کد ملی) required;
-               inaccessible to foreign users; no foreign-resident registration path
+**type**:      physical-coord-vrs (Geo++ GNSMART backend; 144 stations)
+**host:port**: SHAMIM `178.252.173.15:2101`; SHAMIM Plus `178.252.173.75:2101`
+               (the two tiers are documented in Persian practitioner material;
+               externally unreachable, sourcetable not directly verified)
+**access**:    cadastre-licensed surveyors only — registration requires Iranian
+               national ID (کد ملی), Iranian mobile number for OTP, and registration
+               of a specific GNSS receiver's serial number against the user's account;
+               no documented path for general hobbyists or non-cadastre users
 **registration**: `shamim.ssaa.ir` (Organisation for Registration of Deeds and
                   Properties / سازمان ثبت اسناد و املاک کشور)
-**yearly_cost**: free for non-commercial use (personal national-ID subscription)
+**yearly_cost**: free of charge for qualified users (cadastre programme funded);
+                 not a fee gate
 **stations**:  144 physical permanent GNSS stations nationwide (installed 2016–2017)
 **operator**:  Organisation for Registration of Deeds and Properties
                (سازمان ثبت اسناد و املاک کشور, `ssaa.ir`)
 
 SHAMIM (شمیم — abbreviation for شبکه موقعیت‌یابی یکپارچه مالکیت‌ها, Integrated Unified
 Property Management Network) is the national cadastral CORS network operated by Iran's
-property registration authority. Supports Nearest, VRS, FKP, MAX, and IMAX virtual
-reference modes; achieves 8 mm + 1 ppm accuracy in static mode. Designed to accelerate
-the national cadastral survey programme.
+property registration authority. Geo++ GNSMART backend; supports Nearest, VRS, FKP,
+MAX, and IMAX virtual reference modes; the original SHAMIM caster and an expanded
+SHAMIM Plus tier run on neighbouring IPs. Designed to accelerate the national cadastre
+programme.
 
-Registration requires an Iranian national identification number, making the service
-inaccessible to foreign hobbyists or residents. NTRIP caster IP (`178.252.171.15:2101`)
-is published in Persian-language surveying community documentation. Free in cost but
-nationality-gated; surfaced as a free country marker so target users in Iran know what
-exists. Not in the ingestion pipeline because the project cannot register an Iranian
-national ID.
+Restricted rather than free at the marker level: although there is no subscription
+fee, registration is documented only for users with a professional cadastre-programme
+connection (licensed cadastral surveyors, SSAA-outsourced operators), with each
+account bound to an approved receiver's serial number. No mechanism is described
+for an unaffiliated hobbyist — Iranian or otherwise — to obtain credentials.
+Endpoints unreachable from outside Iran at the firewall level; not in the ingestion
+pipeline.
 
 ---
 

@@ -1948,16 +1948,17 @@
       "note": "One CORS station in Port-au-Prince was delivering corrections after the 2010 earthquake and a national expansion was announced, but pervasive gang violence in the capital makes operational continuity uncertain."
     },
     {
-      "id": "ipgn",
-      "name": "IPGN",
+      "id": "hodapro_ir",
+      "name": "Hoda Pro",
       "region": "Iran",
       "country": "IR",
       "lat": 35.7,
       "lon": 51.4,
       "tier": "weird",
-      "registration": "https://ipgn.ncc.gov.ir",
+      "vrs": true,
+      "registration": "https://eshop.ncc.gov.ir",
       "stations_declared": 127,
-      "note": "Iran's national geodynamics network (~127 stations) is intended for tectonic monitoring. The NTRIP streaming port is blocked from outside Iran's national intranet."
+      "note": "Paid RTK service from Iran's National Cartographic Center, run on the IPGN station network. The subscription portal is blocked outside Iran and rates are not published; sign-up needs an Iranian national ID and Iranian banking."
     },
     {
       "id": "shamim_ir",
@@ -1966,11 +1967,11 @@
       "country": "IR",
       "lat": 32.0,
       "lon": 53.0,
-      "tier": "free",
+      "tier": "restricted",
       "vrs": true,
       "registration": "https://shamim.ssaa.ir",
       "stations_declared": 144,
-      "note": "144 stations, free. Registration requires an Iranian national ID number — the service is not accessible to foreign hobbyists or residents."
+      "note": "Cadastre-programme network: registration requires an Iranian national ID, an Iranian mobile number, and a specific GNSS receiver serial registered against the account. No documented sign-up path for hobbyists; endpoints firewalled outside Iran."
     }
   ]
 }
