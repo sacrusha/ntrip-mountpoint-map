@@ -241,6 +241,10 @@ SOURCES = [
      "color": "#a93226", "label": "CORS-KOREA",
      "type": "physical-vrs", "country": ["KR"],
      "access": "conditions",   "registration": "https://www.gnssdata.or.kr", "openNote": 'Free registration required (Korean portal; national ID may be required)'},
+    {"id": "thailand_dol","url": "http://122.155.131.34:2101/",                  # Central zone; full zone–port PDF (dol-rtknetwork.com/files/manual/1(PortNumber).pdf) 404 as of 2026-05-04
+     "color": "#b8860b", "label": "DOL LandGNSS",
+     "type": "physical-vrs", "country": ["TH"],
+     "access": "conditions",   "registration": "https://dol-rtknetwork.com/index.php/register_gnss_beta", "openNote": 'Free registration required (Thai national ID required; foreign users cannot self-register)'},
     {"id": "almgg_mn",    "url": "http://rtk.gazar.gov.mn:2101/",            # MonPOS; SNIP R3.14; alt IP 66.181.168.80:2101; curl-confirmed 2026-04-30
      "color": "#9e6b00", "label": "MonPOS",
      "type": "physical-vrs", "country": ["MN"],

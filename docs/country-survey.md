@@ -1989,8 +1989,8 @@ similarly have no published coverage for these jurisdictions.
   → networks.md: `thailand_dol`
 - **Volunteer**: rtk2go ~3 TH bases; sparse.
 - **Gap**: full zone–port mapping unavailable (PDF link 404 as of 2026-05-04);
-  NTRIP TCP reachability not externally confirmed; foreign hobbyists effectively
-  excluded by the Thai national ID registration requirement.
+  foreign hobbyists effectively excluded by the Thai national ID registration
+  requirement.
 
 ### VN — Vietnam
 
