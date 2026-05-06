@@ -1,0 +1,52 @@
+# Chile [CL] — NTRIP RTK Caster Research
+**Date researched:** 2026-05-06
+
+## Status: YES — multiple private commercial NTRIP casters operating; no free public caster
+
+| Field | Value |
+|---|---|
+| **Active public NTRIP RTK caster** | Yes (private/commercial) |
+| **host:port — GEOCOM** | `ntrip.geocom.cl:2101` |
+| **host:port — KollNET** | not published (contact vendor); port 2101 timed out from outside Chile on 2026-05-06 |
+| **tariff — KollNET** | CLP 48,000 +IVA / 7 days · CLP 60,000 +IVA / 15 days · CLP 85,000 +IVA / 30 days · CLP 180,000 +IVA / 3 months · CLP 450,000 +IVA / 12 months (source: kollnerlabrana.cl/kollnet.html, observed 2026-05-06) |
+| **tariff — GEOCOM** | not published publicly; contact ventas@geocom.cl; restricted to GEOCOM/Trimble equipment customers |
+| **hobbyist_eligibility** | KollNET: yes — any brand RTK GNSS receiver; GEOCOM: unclear (equipment-vendor network) |
+| **legal_residency_required** | unclear for both; no explicit residency requirement stated |
+| **last_confirmed_alive** | `ntrip.geocom.cl:2101` returned `SOURCETABLE 200 OK` on 2026-05-06 07:47 UTC (curl verified); kollnerlabrana.cl website HTTP 200 on 2026-05-06 |
+
+## Most Recent Project Announcement
+
+**IGM / SIRGAS-Chile 2025 geodetic network launch** — The Instituto Geográfico Militar (IGM) launched the new "Época de Referencia 2025.0" national geodetic network (Red Geodésica Nacional) consisting of 28 first-level CORS stations and a redesigned SIRGAS-Chile portal. The launch announcement states plans to implement real-time services via NTRIP, VRS, and web PPP "through a strengthened Control Center," but no launch date for the public NTRIP caster is given. As of 2026-05-06 the sirgaschile.cl site offers only RINEX download, not a live NTRIP stream.
+
+Source: https://www.sirgaschile.cl/ · https://www.ejercito.cl/prensa/visor/igm-lanzo-la-nueva-red-geodesica-nacional-sirgas-chile-2025
+
+## Context Notes
+
+- **GEOCOM Red GNSS** (`ntrip.geocom.cl:2101`): Operated by Geocom S.A. (Chilean Trimble distributor) for 15+ years. The sourcetable is live and responded on 2026-05-06 with one advertised mountpoint (`TEST_RTCM`); production mountpoints requiring credentials are not listed publicly. Covers Calama, Antofagasta, Los Andes, Santiago, Talca, Concepción, Los Ángeles, Temuco, Valdivia, Osorno, Puerto Montt (approx. 23°S–41°S). GEOCOM additionally announced a free "GEOCASTER" service for GEOCOM-equipment owners; pricing and hobbyist access outside their equipment ecosystem are unknown. Contact: ventas@geocom.cl / +562 2480 3600.
+- **KollNET** (Kollner Labraña & Cia. Ltda.): Independent NTRIP service with 8 reference stations (Santiago, Valparaíso, Los Andes, Santa Cruz, Talca, Chillán, Temuco, Frutillar). Claimed precision 1–4 cm HRMS within ~100 km per station. Port 2101 on all tested KollNET hostnames timed out from external IP on 2026-05-06; the company website (kollnerlabrana.cl) is HTTP 200 and the service page is current. Caster hostname not publicly documented — provided after purchase. IVA rate for Chile is 19% (standard). Brand-agnostic: any NTRIP-capable RTK receiver accepted. Prepaid packages; no annual contract required.
+- **Geoland / SingularXYZ**: Chilean distributor (geoland.cl) selling NTRIP subscription tiers (daily / weekly / fortnightly / annual) and reselling SingularCaster software for CORS network operators. Their NTRIP product pages returned 404 on 2026-05-06; it is unclear whether they operate an independent caster network or resell access to KollNET/GEOCOM. Pricing not publicly listed.
+- **SCS Equipos Red Colaborativa NTRIP**: Trial-phase Emlid-based collaborative network in Santiago Metropolitan Region (Providen, cia, Tiltil, Colina, La Reina, San Bernardo) and Quillota; not yet recommended for professional use at time of research; access via contacto@scsequipos.com.
+- **IGM / SIRGASCHILE CORS**: 28+ CORS stations available for RINEX download (free, account required). Real-time NTRIP explicitly described as "planned" — no confirmed operational date. No caster endpoint found.
+- **No free public national caster exists** as of 2026-05-06. Chile is absent from NTRIP-list.com's South America table and from the RTK2go / Centipede sourcetables.
+- **Global commercial fallbacks** with Chile coverage: GEODNET (partial), PointOne (sparse), Starfire/Trimble RTX (PPP, not networkRTK).
+
+## Post-Processing (RINEX) Fallback
+
+| Service | URL | Cost |
+|---|---|---|
+| **SIRGASCHILE / IGM** — CORS station RINEX download (EAF stations IGM2, UBOH, ACPM, LLFN + CSN seismological stations) | https://www.sirgaschile.cl/descarga_observaciones.php | Free (account required); coordinate certificates via ventas@igm.cl |
+| **UNAVCO / EarthScope** — selected Chilean CORS (GNSS geodetic archive) | https://www.earthscope.org/data/gnss-data/ | Free non-commercial; USD 1,000/seat/yr commercial |
+
+## Sources Consulted
+- GEOCOM Red GNSS page: https://www.geocom.cl/pages/red-gnss
+- GEOCOM GEOCASTER announcement (YouTube): https://www.youtube.com/watch?v=3mPmIqamlSM
+- KollNET service page: http://www.kollnerlabrana.cl/kollnet.html
+- ArduSimple Chile NTRIP services page: https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-chile/
+- SIRGASCHILE portal: https://www.sirgaschile.cl/
+- SIRGASCHILE CORS download: https://www.sirgaschile.cl/descarga_observaciones.php
+- IGM / Ejército de Chile SIRGAS-Chile 2025 launch announcement: https://www.ejercito.cl/prensa/visor/igm-lanzo-la-nueva-red-geodesica-nacional-sirgas-chile-2025
+- NTRIP-list.com South America: https://ntrip-list.com/south-america/
+- Geoland / SingularXYZ NTRIP products: https://geoland.cl/
+- SCS Equipos Red Colaborativa NTRIP: https://www.scsequipos.com/cinco-nuevas-estaciones-ntrip-instaladas-en-santiago-por-scs-equipos/
+- curl probe of `ntrip.geocom.cl:2101` — SOURCETABLE 200 OK confirmed 2026-05-06 07:47 UTC
+- curl probe of `kollnerlabrana.cl:2101` and subdomains — connection timeout 2026-05-06
