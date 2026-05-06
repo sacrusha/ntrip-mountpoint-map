@@ -3543,17 +3543,21 @@ AFREF data centre for ML station IDs.
 **status**:    free
 **host:port**: not publicly listed
 **access**:    unknown — no public caster or registration portal discovered
-**stations**:  unknown
+**stations**:  none operational; RGT20 delivered 75 geodetic monuments + 50 orientation
+               pillars (passive control, not CORS)
 **source**:    ignfi.fr (IGN FI, Paris — implementing partner for RGT20 project)
-**operator**:  Ministère des Infrastructures et Désenclavement du Tchad (responsible national authority)
+**operator**:  Ministry of Land Planning, Housing and Urbanism (MATDHU); responsible
+               national authority for the RGT20 deliverable
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-05
 
-IGN FI installed 74 geodetic pillars and computed a geoid model for N'Djamena and surroundings
-under the RGT20 project (Spatial Data Infrastructure for N'Djamena, completed circa 2020).
-That infrastructure is passive survey control (Circé software + pillar coordinates), not a
-streaming NTRIP caster. No public endpoint found. France ended all defence and geodetic
-bilateral programme ties with Chad in January 2025.
+IGN FI installed 75 geodetic monuments plus 50 orientation pillars and computed a geoid
+model for N'Djamena and surroundings under the RGT20 project (Spatial Data Infrastructure
+for N'Djamena and environs; first pillar inaugurated March 2020, project completed February
+2021). That infrastructure is passive survey control (Circé software + pillar coordinates),
+not a streaming NTRIP caster. Chad is absent from rtk2go, corsstations.com, the GitHub
+community CORS list, SmartNet, GEODNET, and every other directory checked. France ended
+all defence and geodetic bilateral programme ties with Chad in January 2025.
 
 **missing**: confirm whether any Chadian authority (or IGN FI successor project) has published
 an NTRIP caster endpoint; check AFREF data centre for TD station IDs.
@@ -3568,19 +3572,21 @@ an NTRIP caster endpoint; check AFREF data centre for TD station IDs.
 **host:port**: not publicly listed
 **access**:    unknown — no public caster or registration portal discovered
 **registration**: ftm.mg (national mapping agency website)
-**stations**:  unknown; one IGS archive station (ABPO00MDG, ~100 km south of Antananarivo)
-               operated by UNAVCO/EarthScope — RINEX archive only, not an RTK caster
+**stations**:  one IGS contributing station (ABPO00MDG, Ambohimpanompo near Antananarivo;
+               Septentrio PolaRx5, installed 2007) operated locally by the University of
+               Antananarivo Institute of Geophysics, archived to UNAVCO/EarthScope and IGS
+               — RINEX archive only, not an RTK caster
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-05
 
 FTM (Foiben-Taosarintanin'i Madagasikara) is the national mapping and hydrographic agency,
 mandated by law to maintain the geodetic reference network and align it with AFREF/ITRF.
 FTM's stated activities include GPS densification of the national geodetic network and
 definition of a new reference system compatible with international standards. No public
 NTRIP caster endpoint, RTK streaming service, or registration portal has been found on
-ftm.mg or in AFREF/IGS documentation as of 2026. The single IGS contributing station
-(ABPO00MDG at Ambakoana, last RINEX data June 2023) is a passive archive asset, not
-an RTK correction stream.
+ftm.mg or in AFREF/IGS documentation as of 2026. ABPO00MDG is a passive scientific archive
+asset; Madagascar is absent from SmartNet, Polaris, GEODNET, and onocoy directories, and
+shows zero mountpoints on rtk2go or Centipede.
 
 **missing**: confirm whether FTM has launched any NTRIP caster since 2023; check AFREF
 ODC and igs.org for any additional MG station IDs beyond ABPO00MDG.
@@ -5073,39 +5079,39 @@ under NULA (free non-commercial) and is usable from SXM territory at that baseli
 or RTK correction service is planned; revisit as the Kadaster Netherlands cooperation
 develops.
 
-## regat_dz — REGAT Permanent GPS Network (DZ)
+## alcorsnet_dz — AL-CORS-Net (DZ)
 
 **status**:    restricted
 **country**:   DZ — Algeria
-**type**:      physical single-base (53–56 continuously operating GPS stations)
+**type**:      vrs-only (Geo++ GNSMART Network-RTK on a 6-station physical backbone)
 **host:port**: not publicly listed
 **access**:    restricted — operated under the Ministry of National Defence (INCT);
                no self-service registration or public NTRIP endpoint published
 **registration**: https://www.inct.mdn.dz/
 **yearly_cost**: n/a (no public commercial service)
-**stations**:  53–56 physical stations across the Algerian Atlas and northern Tell
-               (Algiers, Oran, Constantine, Ouargla, Béchar, Tindouf and ~47 others);
-               planned expansion to ~150+ stations
+**stations**:  6 confirmed physical stations — Algiers (DZAL), Oran (DZOR),
+               Constantine (DZCO), Ouargla (OGLA), Béchar (BECH), Tindouf (TIND);
+               long-term plan cites ~146-station national expansion
 **operator**:  Institut National de Cartographie et de Télédétection (INCT),
                Ministry of National Defence (`inct.mdn.dz`)
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-05
 
-REGAT (Réseau Géodésique de l'ATlas) is a seismotectonic/geodetic monitoring network
-operated by INCT under the Algerian Ministry of National Defence. The network spans the
-Nubia-Eurasia plate boundary — the most seismically active segment of North Africa —
-and is used for crustal deformation monitoring and seismic hazard assessment, not for
-real-time RTK corrections to end users. Station data are collected in RINEX format for
-post-processing in research contexts; no streaming NTRIP caster has been identified in
-any public documentation. INCT also deployed an initial 6-station backbone (Algiers,
-Oran, Constantine, Ouargla, Béchar, Tindouf) before 2018 with plans to reach 146
-stations nationally, but no public NTRIP service has been announced. Because INCT is a
-subordinate body of the Ministry of National Defence, a hobbyist NTRIP service is
+AL-CORS-Net delivers Network-RTK over NTRIP via a Geo++ GNSMART backend on a 6-station
+physical backbone. Published performance is ~1.3 cm horizontal, ~2.2 cm vertical (1σ)
+with ~97% VRS availability, and an academic study confirmed live VRS sessions between
+October 2021 and January 2022. INCT sits under the Ministry of National Defence; the
+INCT website returns SSL warnings and surfaces no end-user signup path, and no public
+registration portal, tariff, or NTRIP host:port has been advertised. A hobbyist path is
 structurally unlikely without a separate civilian mandate.
 
-**missing**: confirm whether any civilian or commercial NTRIP caster exists in Algeria
-(independent of INCT), and whether REGAT RINEX data are accessible via UNAVCO/EarthScope
-or a national data portal.
+REGAT (Réseau Géodésique de l'ATlas) — ~53 stations across the Algerian Atlas — is a
+**separate** seismotectonic monitoring network operated by **CRAAG** (Centre de
+Recherche en Astronomie, Astrophysique et Géophysique). RINEX archive for crustal-
+deformation research; no real-time RTK service.
+
+**missing**: confirm whether INCT has published any AL-CORS-Net host:port since 2024,
+and whether REGAT RINEX data are accessible via UNAVCO/EarthScope or a national portal.
 
 ## esa_cors_eg — Egyptian Survey Authority CORS (EG)
 

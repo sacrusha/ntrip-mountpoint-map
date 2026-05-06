@@ -1124,6 +1124,20 @@
       "note": "18+ four-constellation stations under Dubai Municipality. Professional application required; no hobbyist registration path. Online registration portal currently unavailable."
     },
     {
+      "id": "alcorsnet_dz",
+      "name": "AL-CORS-Net",
+      "region": "Algeria",
+      "country": "DZ",
+      "lat": 36.75,
+      "lon": 3.06,
+      "tier": "restricted",
+      "vrs": true,
+      "access": "restricted",
+      "registration": "https://www.inct.mdn.dz/",
+      "stations_declared": 6,
+      "note": "6-station VRS Network-RTK service (Algiers, Oran, Constantine, Ouargla, Béchar, Tindouf) on Geo++ GNSMART. Operated under the Ministry of National Defence; no public registration portal or tariff."
+    },
+    {
       "id": "regpmoc",
       "name": "REGPMOC",
       "region": "Peru",
