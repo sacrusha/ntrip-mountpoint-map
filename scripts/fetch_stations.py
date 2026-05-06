@@ -149,6 +149,10 @@ SOURCES = [
      "color": "#b05000", "label": "ERGNSS",
      "type": "physical-vrs", "country": ["ES"],
      "access": "registration", "registration": "https://ergnss.ign.es/gnuserportal/", "openNote": 'Free registration, approved immediately'},
+    {"id": "ergnss_sptr", "url": "http://ergnss-tr.ign.es:2101/",               # ERGNSS SPTR — Canary Islands sub-service; same free registration as mainland ergnss
+     "color": "#b05000", "label": "ERGNSS",
+     "type": "single-base", "country": ["ES"],
+     "access": "registration", "registration": "https://ergnss.ign.es/gnuserportal/", "openNote": 'Free registration, approved immediately (Canary Islands stations)'},
     {"id": "renep",       "url": "http://193.137.94.71:2101/",                     # port 2101 = physical single-base RTCM3; 2102 = same + MSM5; 2106/2108 = VRS
      "color": "#006b3c", "label": "ReNEP",
      "type": "single-base", "country": ["PT"],

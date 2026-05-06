@@ -371,11 +371,10 @@
       "country": "ET",
       "lat": 9.0,
       "lon": 38.7,
-      "tier": "free",
-      "vrs": true,
+      "tier": "weird",
       "access": "registration",
       "stations_declared": 10,
-      "note": "~10 stations, intended free. Launched Dec 2025 by SSGI; NTRIP endpoint not yet publicly discoverable."
+      "note": "~10 stations, intended free. Launched Dec 2024 by SSGI; NTRIP endpoint not yet publicly discoverable."
     },
     {
       "id": "muya_cors_ke",
@@ -1138,7 +1137,7 @@
     },
     {
       "id": "alcorsnet_dz",
-      "name": "AL-CORS-Net",
+      "name": "AL-CORS-Net / SAAP",
       "region": "Algeria",
       "country": "DZ",
       "lat": 36.75,
@@ -1147,8 +1146,8 @@
       "vrs": true,
       "access": "restricted",
       "registration": "https://www.inct.mdn.dz/",
-      "stations_declared": 6,
-      "note": "6-station VRS Network-RTK service (Algiers, Oran, Constantine, Ouargla, Béchar, Tindouf) on Geo++ GNSMART. Operated under the Ministry of National Defence; no public registration portal or tariff."
+      "stations_declared": 189,
+      "note": "189-station VRS Network-RTK on Geo++ GNSMART. Operated under the Ministry of National Defence; no public registration portal or tariff."
     },
     {
       "id": "regpmoc",
@@ -1999,6 +1998,19 @@
       "registration": "https://shamim.ssaa.ir",
       "stations_declared": 144,
       "note": "Cadastre-programme network: registration requires an Iranian national ID, an Iranian mobile number, and a specific GNSS receiver serial registered against the account. No documented sign-up path for hobbyists; endpoints firewalled outside Iran."
+    },
+    {
+      "id": "ghana_cors",
+      "name": "Ghana National CORS Network",
+      "region": "Ghana",
+      "country": "GH",
+      "lat": 7.9,
+      "lon": -1.0,
+      "tier": "weird",
+      "access": "restricted",
+      "registration": "https://www.lc.gov.gh/",
+      "stations_declared": 60,
+      "note": "~60 stations unveiled Aug 2025 by Lands Commission/SMD; target 100 by end of 2025. No public NTRIP endpoint published; access via licensed-surveyor channel."
     }
   ]
 }

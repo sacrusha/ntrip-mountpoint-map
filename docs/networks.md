@@ -350,17 +350,23 @@ Map shows physical station pins.
 ## ergnss — ERGNSS (ES)
 
 **status**:    free
-**host:port**: `ergnss-ip.ign.es:2101`
+**host:port**: `ergnss-ip.ign.es:2101` (mainland + Balearics)
+**host:port (Canaries)**: `ergnss-tr.ign.es:2101` (network solutions), `:2102` (single-station)
 **type**:      physical-coord-vrs
-**access**:    free; register at ergnss.ign.es/gnuserportal/ (immediate); CC-compatible
+**access**:    free; register at ergnss.ign.es/gnuserportal/ (immediate); CC-compatible;
+               max 10 simultaneous connections per account
 **pipeline-access**: registration
-**stations**:  ~128
+**stations**:  ~272 total (~120 mainland + ~15–16 Canary Islands SPTR sub-service)
 **source**:    ergnss.ign.es (IGN — Instituto Geográfico Nacional)
 **operator**:  IGN — Instituto Geográfico Nacional
 **licence**:   Attribution required per Orden FOM/2807/2015
 
-~120 physical stations. GPS+GLO+GAL+BDS. Attribution to IGN required per
-Orden FOM/2807/2015. RAP (Andalucía) supplements in the south; separate signup.
+~272 stations total. GPS+GLO+GAL+BDS. Attribution to IGN required per Orden FOM/2807/2015.
+RAP (Andalucía) supplements in the south; separate signup. Canary Islands served by SPTR
+sub-system at `ergnss-tr.ign.es`; recommended mountpoint `CERCANA3M` (nearest-station
+mode, RTCM 3.2 MSM4, automatic failover) — VRS network-RTK solutions less reliable over
+archipelago geometry. REGCAN95 coordinate update for all Canaries stations: 2024-02-01.
+~12,000 registered users as of Jan 2024 (~60% agricultural sector).
 
 ---
 
@@ -1709,6 +1715,35 @@ no confirmed path; Chinese business licence likely required for commercial use.
 ## Paid — over cutoff or structurally restricted
 
 Brief entries only.
+
+---
+
+## grafcan_repcan — GRAFCAN REPCAN (ES-Canarias)
+
+**status**:    paid
+**country**:   ES (Canary Islands sub-region)
+**type**:      physical-coord-vrs (RTCM 3.2 MSM5; CMR+/RTCM 2.3 on SNMG and TIAS)
+**host:port**: `195.53.241.146:2101` (also `gnss.grafcan.es`)
+**access**:    paid; annual fee per device/receiver — price not publicly listed;
+               purchase via tiendavirtual.grafcan.es (Tienda Virtual → Varios)
+               Free for public administrations with active SITCAN contract.
+               IGIC (7% — Canary Islands VAT rate) applies.
+**yearly_cost**: not publicly listed (contact datos@grafcan.com)
+**registration**: https://pre-web.grafcan.es/servicios/red-estaciones-gnss/alta-gnss/
+**stations**:  20 (AGUI, ALDE, ALJR, ANTI, ARGU, FRON, GRAF, HRIA, LIVA, MAZO,
+               MORJ, OLIV, SNMG, STEI, STTE, TERR, TIAS, TRLJ, VHMO, YAIZ)
+**operator**:  Cartografía de Canarias S.A. (GRAFCAN)
+**source**:    grafcan.es/servicios/red-estaciones-gnss/
+
+**date_added**: 2026-05-06
+
+Regional paid network for the Canary Islands. Recommended mountpoint: `CERCANA3M`
+(nearest station, automatic failover) or `GRAF3M` — network-RTK solutions are
+less reliable over archipelago geometry; nearest-single-station mode is the
+operator recommendation. Free RINEX archive for all 20 stations at
+`gnss.grafcan.es` (no account required). Hardware updated January 2024;
+REGCAN95 coordinate update applied 2024-02-01. Hobbyists should use the free
+IGN SPTR service (`ergnss-tr.ign.es:2101`) as first option.
 
 ---
 
@@ -3125,17 +3160,17 @@ Committee via cadastre.am.
                of Georgia (საჯარო რეესტრის ეროვნული სააგენტო)
 **registration**: geocors.napr.gov.ge/SBC/Account/Register
 **yearly_cost**: not publicly listed (paid subscription; contact NAPR)
-**stations**:  23 physical single-base CORS — 7 Class A (national geodetic frame)
-               + 16 Class B (regional densification)
+**stations**:  26 physical single-base CORS — 7 Class A (national geodetic frame)
+               + expanded Class B (regional densification)
 **signals**:   GPS, GLONASS (Leica Spider platform)
 **nmea_filter**: n/a (not in pipeline)
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-06
 
-GeoCors is Georgia's national CORS network, established since 2010 under the
+GeoCors is Georgia's national CORS network, established since 2011 under the
 National Agency of Public Registry (NAPR), a legal-entity public-law body
-under the Ministry of Justice. The 23-station network is divided into 7 Class A
-stations forming the unified national spatial grid and 16 Class B stations
+under the Ministry of Justice. The 26-station network includes 7 Class A
+stations forming the unified national spatial grid and expanded Class B stations
 providing denser regional coverage. The Leica Spider Business Center platform
 handles subscription management; a Sign Up page exists at the SBC URL.
 The service targets licensed surveyors and cadastral users. Pricing is not
@@ -5117,31 +5152,32 @@ under NULA (free non-commercial) and is usable from SXM territory at that baseli
 or RTK correction service is planned; revisit as the Kadaster Netherlands cooperation
 develops.
 
-## alcorsnet_dz — AL-CORS-Net (DZ)
+## alcorsnet_dz — AL-CORS-Net / SAAP (DZ)
 
 **status**:    restricted
 **country**:   DZ — Algeria
-**type**:      vrs-only (Geo++ GNSMART Network-RTK on a 6-station physical backbone)
+**type**:      vrs-only (Geo++ GNSMART Network-RTK)
 **host:port**: not publicly listed
 **access**:    restricted — operated under the Ministry of National Defence (INCT);
                no self-service registration or public NTRIP endpoint published
 **registration**: https://www.inct.mdn.dz/
 **yearly_cost**: n/a (no public commercial service)
-**stations**:  6 confirmed physical stations — Algiers (DZAL), Oran (DZOR),
-               Constantine (DZCO), Ouargla (OGLA), Béchar (BECH), Tindouf (TIND);
-               long-term plan cites ~146-station national expansion
+**stations**:  189 permanent GNSS stations; 6 anchor/reference stations —
+               Algiers (DZAL), Oran (DZOR), Constantine (DZCO), Ouargla (OGLA),
+               Béchar (BECH), Tindouf (TIND)
 **operator**:  Institut National de Cartographie et de Télédétection (INCT),
                Ministry of National Defence (`inct.mdn.dz`)
 
-**date_added**: 2026-05-05
+**date_added**: 2026-05-06
 
-AL-CORS-Net delivers Network-RTK over NTRIP via a Geo++ GNSMART backend on a 6-station
-physical backbone. Published performance is ~1.3 cm horizontal, ~2.2 cm vertical (1σ)
-with ~97% VRS availability, and an academic study confirmed live VRS sessions between
-October 2021 and January 2022. INCT sits under the Ministry of National Defence; the
-INCT website returns SSL warnings and surfaces no end-user signup path, and no public
-registration portal, tariff, or NTRIP host:port has been advertised. A hobbyist path is
-structurally unlikely without a separate civilian mandate.
+AL-CORS-Net (also known as SAAP — Système Algérien d'Aide au Positionnement) is a
+189-station Network-RTK service on a Geo++ GNSMART backend. Published performance is
+~1.3 cm horizontal, ~2.2 cm vertical (1σ) with ~97% VRS availability, and an academic
+study confirmed live VRS sessions between October 2021 and January 2022. INCT sits
+under the Ministry of National Defence; the INCT website returns SSL warnings and
+surfaces no end-user signup path, and no public registration portal, tariff, or NTRIP
+host:port has been advertised. A hobbyist path is structurally unlikely without a
+separate civilian mandate.
 
 REGAT (Réseau Géodésique de l'ATlas) — ~53 stations across the Algerian Atlas — is a
 **separate** seismotectonic monitoring network operated by **CRAAG** (Centre de
@@ -5685,3 +5721,34 @@ Zero ECU mountpoints currently on rtk2go; in-pipeline candidate.
 
 **missing**: verify sourcetable contents and mountpoint names at `ntrip.igm.gob.ec:2101`;
 confirm station count and geographic distribution.
+
+---
+
+## ghana_cors — Ghana National CORS Network (GH)
+
+**status**:    weird
+**date_added**: 2026-05-06
+**country**:   GH — Ghana
+**type**:      unknown
+**host:port**: not publicly listed
+**access**:    no public NTRIP endpoint found; access appears to be via licensed-surveyor
+               channel (PPP with GMX Systems Ghana Ltd and Geo-Tech Systems Ltd)
+**yearly_cost**: not applicable (no public commercial tier found)
+**stations**:  ~60 deployed nationwide as of Aug 2025; target 100 by end of 2025
+**operator**:  Survey and Mapping Division (SMD), Lands Commission (`lc.gov.gh`),
+               in PPP with GMX Systems Ghana Ltd and Geo-Tech Systems Ltd
+**source**:    gpsworld.com (GPS World Aug 2025); gna.org.gh (Ghana News Agency Aug 2025);
+               wgicouncil.org (WGIC Africa geospatial PPPs report); lc.gov.gh
+
+**date_added**: 2026-05-06
+
+Ghana National CORS Network officially unveiled August 19 2025 by the Lands Commission
+and its PPP partners GMX Systems Ghana Ltd and Geo-Tech Systems Ltd. Nationwide
+observation exercise launched to tie ~60 newly established stations into the Ghana Grid
+Coordinate System. Target of 100 stations by end of 2025. Simultaneously launched a
+"digital geospatial data system" (DGDS) for 24/7 geospatial data access. The network is
+cited as the "most extensive CORS network in West Africa" in the WGIC Africa geospatial
+PPPs report. No public NTRIP host:port or hobbyist registration portal has been found.
+
+**missing**: confirm whether a public NTRIP endpoint or hobbyist-accessible subscription
+             service is available; check lc.gov.gh for service announcements.
