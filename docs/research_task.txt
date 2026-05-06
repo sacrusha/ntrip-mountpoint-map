@@ -1,0 +1,16 @@
+Research whether any public NTRIP RTK caster operates today for [entry]
+
+Skip SBAS-only / DGNSS-only services. Use curl to verify endpoints, many use http0.9. Unknown is preferable to guesses.
+ 
+Search for:
+1. Does any public NTRIP caster operate for [entry] today? (yes/no/unknown)
+2. If yes: host:port, tariff (all rates in local currency, VAT explicit, date observed, source URL), VRS?
+3. hobbyist_eligibility: can nonlicensed individual sign up? (yes/no/unclear)
+4. legal_residency_required: (yes/no/unclear)
+5. last_confirmed_alive: date the sourcetable or login portal was last reachable
+6. If no active caster: what is the most recent project announcement (date + URL)?
+7. If no free NTRIP, what post processing services are there?
+ 
+Use searches in local administrative languages. Skip Rtk2go, centipede, NOTA searches, except where it's the obvious answer (e.g. France, Hungary, USA, Carribean)
+ 
+Return findings as structured markdown in docs/ntrip_research, matching pattern of existing files.
