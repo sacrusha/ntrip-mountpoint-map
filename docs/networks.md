@@ -1523,25 +1523,50 @@ sourcetable not publicly accessible). Confirmed alive 2026-05-02.
 **status**:    free
 **host:port**: not publicly confirmed
 **type**:      unknown
-**access**:    intended free (IGVSB government service)
-**stations**:  ~8 listed on current IGVSB website (`igvsb.gob.ve/servicio/15`,
-               2026-04-30); 27 NTRIP-capable out of 29 permanent as of 2012
-               SIRGAS bulletins
+**access**:    intended free (IGVSB government service; Stonex Venezuela advertises
+               free NTRIP for RTK equipment users via IGVSB)
+**stations**:  ~8 listed on IGVSB website; 27 NTRIP-capable out of 29 permanent as
+               of 2012 SIRGAS bulletins
 **source**:    igvsb.gob.ve (IGVSB — Instituto Geográfico de Venezuela Simón Bolívar);
-               SIRGAS Bol15/16/17 (~2010–2012, NTRIP setup documentation)
+               SIRGAS Bol15/16/17; SIRGAS Americas Facebook (December 2025)
+**date_added**: 2026-05-06
 
 Maracaibo (MARA) was the first REMOS station to stream NTRIP corrections experimentally
-(Oct 2008); plans to bring remaining stations online were unclear post-2018. No public
-host:port or registration portal confirmed. SIRGAS bulletins (Bol15–Bol17) documented
-installation of NTRIP server capability at 27 of 29 stations by ~2012 and referenced a
-primary caster in a Venezuelan government datacenter plus a planned mirror, but neither
-hostname was ever published. The BKG/RTCM-NTRIP global broadcaster registry (last updated
-2024-01-30) contains no Venezuela/IGVSB entry. The igvsb.gob.ve website was reachable on
-2026-04-30 and the REMOS service page (`/servicio/15`) confirmed 8 current stations at
-Puerto Ayacucho, Barinas, Caracas, Coro, Barquisimeto, Maturín, and Maracaibo; no
-NTRIP caster link or registration portal appeared anywhere on the site. Working hypothesis:
-the caster was set up for internal/institutional use and was never made publicly accessible,
-and continuity may have been affected by Venezuela's infrastructure situation post-2018.
+(Oct 2008). No public host:port or registration portal confirmed. SIRGAS bulletins
+(Bol15–Bol17) documented NTRIP server capability at 27 of 29 stations by ~2012 but
+never published a hostname. December 2025: IGVSB reported progress integrating CORS
+stations into the SIRGAS-RT real-time caster (SIRGAS Americas Facebook post). The
+BKG/RTCM-NTRIP global broadcaster registry (last updated 2024-01-30) contains no
+Venezuela/IGVSB entry. No public NTRIP caster link or registration portal found on
+igvsb.gob.ve. GPS jamming was reported around Venezuelan territory September–December
+2025 (FAA advisory MAIQUETIA FIR, November 2025–February 2026). Infrastructure
+degradation post-2018 documented in January 2026 Geo Week News article.
+
+---
+
+## acnovo_ve — Acnovo NTRIP (VE)
+
+**status**:    weird
+**date_added**: 2026-05-06
+**country**:   VE — Venezuela
+**type**:      single-base
+**host:port**: not publicly listed; credentials (host, port, username, password) delivered
+               post-registration via acnovo.net
+**access**:    paid; ~USD 20 per subscription period (billing cycle unclear — possibly
+               monthly or per-session; promotional coupon codes advertised); register at
+               acnovo.net / cursos.acnovo.net
+**stations**:  unconfirmed count; website claims 24/7 nationwide base stations
+**source**:    acnovo.net (confirmed live, last modified 2025-07-01); cursos.acnovo.net
+**operator**:  Acnovo (private commercial; also brands as acnovo.com)
+
+Acnovo is a private commercial NTRIP correction provider in Venezuela, operating a grid
+of base stations with RTCM 3.x output compatible with RTK receivers and drones. No public
+sourcetable URL confirmed; credentials are disclosed only after subscription. Billing cycle
+is not clearly stated — the training portal (cursos.acnovo.net) lists "SERVICIO GNSS NTRIP
+EXPRESS" at USD 20 with a promotional coupon that may reduce the cost to zero (validity
+unclear). Effective yearly cost therefore unconfirmed.
+`weird` status: real commercial NTRIP service in a country with no confirmed free option;
+annual cost cannot be established from public sources.
 
 ---
 
@@ -2874,13 +2899,13 @@ Rejected — military-operated; no public NTRIP service; conflict-disrupted infr
 **type**:      single-base (physical coordinates)
 **host:port**: not publicly listed (disclosed after subscription)
 **access**:    paid subscription; register at otc.nat.tn/geodesy/gnss/subscription; no explicit eligibility restriction found
-**yearly_cost**: 6,000 TND/yr (~$2,070/yr); prices H.T. (excl. VAT); confirmed 2026-04-30
-**stations**:  23 (physical; Saharan region not covered)
-**source**:    otc.nat.tn (OTC — Office de la Topographie et de la Cartographie)
+**yearly_cost**: 6,000 TND/yr (~$2,070/yr); VAT status not stated on the public subscription page; confirmed 2026-05-06
+**stations**:  23 (physical; Saharan south not covered — roughly south of Gafsa/Tozeur latitude)
+**source**:    otc.nat.tn (OTC — Office de la Topographie et du Cadastre)
 **operator**:  OTC (Ministère de l'Équipement et de l'Habitat, Tunisia)
 
-Full published tier table — all H.T., excl. VAT (source: otc.nat.tn/geodesy/gnss/subscription;
-at 1 TND ≈ $0.345, observed 2026-04-30):
+Full published tier table (source: otc.nat.tn/geodesy/gnss/subscription; VAT applicability
+not stated; at 1 TND ≈ $0.345, observed 2026-05-06):
 60 TND/day (~$21), 480 TND/15 days (~$166), 840 TND/month (~$290), 2,400 TND/3 months
 (~$828), 3,600 TND/6 months (~$1,242), 4,800 TND/9 months (~$1,656), 6,000 TND/yr (~$2,070).
 
@@ -4192,21 +4217,23 @@ Surveyor General's Office.
 **status**:    rejected
 **country**:   SV — El Salvador
 **type**:      single-base
-**host:port**: not publicly listed (credentials supplied with subscription)
-**access**:    paid — monthly/quarterly/annual subscription; pricing updated every 6
-               months and not listed on public web pages
-**yearly_cost**: not publicly listed (contact survey3g.com)
+**host:port**: not publicly listed (credentials supplied by email after payment)
+**access**:    paid — monthly/quarterly/annual subscription; pricing published at
+               survey3g.com/servicios-de-ntrip/ (confirmed 2026-05-06)
+**yearly_cost**: $450/yr
 **registration**: survey3g.com
-**stations**:  4 stations: Oriente, San Salvador, Occidente, UES
+**stations**:  6 stations: San Miguel, Perkin, La Unión, San Salvador-UES (research/edu),
+               Santa Ana, Cojute; ~50 km radius each; ~90% national coverage
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-06
 
 Survey3G is the principal commercial NTRIP provider in El Salvador, offering RTK
-correction streams from four stations covering the national territory. Constellations:
-GPS, GLONASS, BeiDou, Galileo; frequencies L1/L2/L5. The network operates 24/7 and
-offers flexible subscription tiers (monthly, quarterly, annual). Pricing is not
-published on the website and is updated every 6 months; contact is required for rates.
-Rejected for pipeline — paid and pricing not confirmed as under $200/yr cutoff.
+correction streams from six stations covering the national territory. Constellations:
+GPS, GLONASS, BeiDou, Galileo; frequencies L1/L2/L5. The network operates 24/7;
+credentials (IP, port, username, password) are unique per subscription period and
+supplied by email 32–48 hours before the start date. Published tiers: USD 15/7 days ·
+USD 30/15 days · USD 45/month · USD 135/3 months · USD 450/12 months. Annual cost of
+$450/yr exceeds the $200/yr hobbyist cutoff — rejected for pipeline.
 
 ---
 
@@ -5847,23 +5874,28 @@ Morocco 2026-05-06 — endpoint is private.
 ## sen_cors — SEN-CORS (SN)
 
 **status**:    weird
-**date_added**: 2026-04-29
+**date_added**: 2026-05-06
 **country**:   SN
-**type**:      single-base (planned)
-**host:port**: host:port not publicly listed
-**access**:    not yet operational; no public NTRIP caster found
-**stations**:  ~16 planned (PROCASEF/World Bank programme) + 5 additional (JICA, Dakar region)
-**source**:    anat.sn; procasef.com; ignfi.fr (PROCASEF geodetic reference network)
+**type**:      physical-coord-vrs
+**host:port**: `caster.geodesie.sn:2101`
+**access**:    paid subscription — tariff not publicly listed without account login;
+               registration at geodesie.sn requires username/name/email/company;
+               no stated residency restriction; contact ANAT (`anat.sn`)
+**stations**:  ~21 (16 PROCASEF/World Bank stations 2022–2024 + 5 JICA stations
+               integrated 2025; coverage across Senegal)
+**source**:    geodesie.sn; anat.sn; procasef.com; ignfi.fr
 **operator**:  ANAT (Agence Nationale de l'Aménagement du Territoire) and
                DTGC (Direction des Travaux Géographiques et Cartographiques)
 
-SEN-CORS is the national permanent GNSS network under construction through the
-PROCASEF land cadastre programme (World Bank funding) and a parallel JICA-backed
-5-station deployment in Dakar. Physical installation and initial testing were
-projected for late 2025/2026. No public NTRIP host:port has been published.
-
-**missing**: confirm whether SEN-CORS has launched a public NTRIP caster;
-             check anat.sn and procasef.com for service announcements.
+SENCORS (geodesie.sn) is Senegal's national GNSS correction network, built
+2022–2024 via PROCASEF (World Bank funding) plus 5 JICA-backed stations integrated
+2025. Backend is Leica Spider Business Center; delivers VRS/Network-RTK corrections.
+Portal went live early 2025; suffered a disk failure January 2026 and was restored
+March 16, 2026. As of May 2026 the network is operational. The subscription plan
+is described as "90 jours — Forfaitaire — Illimitée" (90-day flat-rate unlimited);
+pricing in XOF/USD is not visible without account login.
+`weird` status: operational with a publicly documented host:port but undisclosed
+tariff — cannot determine whether it falls within hobbyist cost range.
 
 ---
 

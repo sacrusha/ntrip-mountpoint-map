@@ -1201,12 +1201,12 @@ similarly have no published coverage for these jurisdictions.
 
 ### SV — El Salvador
 
-**date_added**: 2026-04-30
+**date_added**: 2026-05-06
 
 - **Free government RTK**: CNR/IGCN (Centro Nacional de Registros — Instituto Geográfico y del Catastro Nacional, `cnr.gob.sv`) operates active fixed reference stations (CORS) including SNJE, SSIA, and VMIG; RINEX data available via eCNR online services. The CNR portal lists only a post-processing RINEX product; no live NTRIP/RTK streaming service is publicly documented. → networks.md: `cnr_sv_cors`
-- **Commercial**: Survey3G (`survey3g.com`) — pioneer commercial NTRIP service in El Salvador; 4 stations (Oriente, San Salvador, Occidente, UES); GPS+GLONASS+BDS+GAL, L1/L2/L5; monthly/quarterly/annual subscription. Pricing not listed on public pages (updated every 6 months; contact via website). → networks.md: `survey3g_sv`
+- **Commercial**: Survey3G (`survey3g.com`) — pioneer commercial NTRIP service in El Salvador; 6 stations (San Miguel, Perkin, La Unión, San Salvador-UES, Santa Ana, Cojute); GPS+GLONASS+BDS+GAL, L1/L2/L5; credentials supplied by email after payment. Published pricing (survey3g.com/servicios-de-ntrip/, confirmed 2026-05-06): USD 45/mo · USD 135/3 mo · USD 450/12 mo — above the $200/yr hobbyist cutoff. → networks.md: `survey3g_sv`
 - **Volunteer**: none. Zero SV stations on rtk2go or Centipede.
-- **Gap**: no free public RTK for hobbyists; government CORS is post-processing only; the only real-time NTRIP option is commercial (Survey3G, pricing not disclosed publicly).
+- **Gap**: no free public RTK for hobbyists; government CORS is post-processing only; Survey3G costs ~$450/yr for annual access.
 
 ### CR — Costa Rica
 
@@ -1602,30 +1602,41 @@ similarly have no published coverage for these jurisdictions.
 - **Gap**: no free or hobbyist-accessible NTRIP confirmed; the CORS infrastructure
   exists (8 stations nationally) but no public caster endpoint is listed.
 
+### SR — Suriname
+
+**date_added**: 2026-05-06
+
+- **Free government RTK**: none confirmed. MI-GLIS (land registry/cadastral authority)
+  has no documented GNSS correction service. Suriname has at least one GNSS monument
+  processed by IBGE's SIRGAS-CON analysis centre (post-processing RINEX only; not a
+  real-time NTRIP stream). Brazil's RBMC-IP northernmost stations are ~700–900 km
+  from Paramaribo — too distant for single-base RTK.
+- **Volunteer**: none. Zero SR stations on rtk2go or Centipede.
+- **Gap**: no NTRIP caster of any kind — government, commercial, or community.
+  Deploy a local base station for RTK; use Galileo HAS / PPP for sub-metre work.
+
 ### VE — Venezuela
 
-**date_added**: 2026-04-30
+**date_added**: 2026-05-06
 
 - **Free government RTK**: REMOS (IGVSB — Instituto Geográfico de Venezuela
-  Simón Bolívar). 29 permanent stations installed nationally, 27 with NTRIP
-  capability per 2012 SIRGAS bulletins; the current REMOS service page
-  (`igvsb.gob.ve/servicio/15`, reachable 2026-04-30) lists 8 active stations
-  at Puerto Ayacucho, Barinas, Caracas, Coro, Barquisimeto, Maturín, and
-  Maracaibo. Maracaibo (MARA) was the first to stream NTRIP experimentally
-  from Oct 2008. No public caster host:port or registration portal has been
-  found anywhere on the igvsb.gob.ve site; the BKG/RTCM-NTRIP global
-  broadcaster registry (last updated 2024-01-30) contains no Venezuela/IGVSB
-  entry. SIRGAS Bol15–17 documented internal caster setup by ~2012 but never
-  published the hostname. Working hypothesis: the caster operates for
-  institutional use only and was never made publicly accessible.
+  Simón Bolívar, `igvsb.gob.ve`). 29 permanent stations installed nationally, 27 with
+  NTRIP capability per 2012 SIRGAS bulletins; as of December 2025, IGVSB reported
+  progress integrating CORS stations into the SIRGAS-RT real-time caster. No public
+  caster host:port or registration portal has been found; the caster appears to operate
+  for institutional use only. Free service advertised via Stonex Venezuela for RTK
+  equipment users. → networks.md: `remos_ven` (deferred)
+- **Commercial**: Acnovo / acnovo.net — private CORS network operating across Venezuela;
+  24/7 base stations, RTCM 3.x; ~USD 20 per subscription period (exact billing cycle
+  unclear); credentials delivered post-registration. → networks.md: (no block yet)
 - **Volunteer**: rtk2go — 0 confirmed mainland VE bases (3 rtk2go bases
   visible at ~12°N, 68–69°W are on Curaçao/Aruba, not Venezuelan territory).
   Negligible Centipede presence.
 - **Gap**: no confirmed free public NTRIP caster for mainland Venezuela.
-  IGVSB/REMOS infrastructure exists but the caster endpoint is not publicly
-  discoverable; operational continuity post-2018 uncertain. GEODNET's South
-  America server (`sa.geodnet.com:2101`, paid ~$40/month) is the nearest
-  practical paid fallback. → networks.md: `remos_ven` (deferred)
+  Acnovo.net is the most accessible commercial option (~$20/period). GPS jamming
+  was reported around Venezuelan territory September–December 2025 (FAA advisory
+  covering MAIQUETIA FIR, November 2025–February 2026); local single-base RTK
+  is less affected than satellite-derived PPP.
 
 ---
 
@@ -3064,18 +3075,20 @@ similarly have no published coverage for these jurisdictions.
 
 ### SN — Senegal
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-06
 
-- **Free government RTK**: none confirmed with a public NTRIP endpoint. ANAT
-  (Agence Nationale de l'Aménagement du Territoire) and DTGC (Direction des
-  Travaux Géographiques et Cartographiques) are building SEN-CORS — a national
-  permanent GNSS network of ~16 stations — via the World Bank-funded PROCASEF
-  programme, with an additional 5 JICA-backed stations planned for the Dakar
-  region; physical installation and first tests were projected for late 2025 /
-  2026. No public NTRIP caster or host:port has been published. → networks.md: `sen_cors`
-- **Volunteer**: Centipede ~2 SN nodes. No national NTRIP caster.
-- **Gap**: SEN-CORS is under construction; no free real-time corrections are
-  available yet — Centipede nodes are the only current option.
+- **Government RTK (paid, tariff not public)**: SENCORS (ANAT — Agence Nationale
+  de l'Aménagement du Territoire / DTGC, `caster.geodesie.sn:2101`, Leica Spider
+  Business Center). Network built 2022–2024 via World Bank PROCASEF (16 CORS
+  stations) plus 5 JICA stations integrated 2025; total ~21 stations nationwide.
+  Portal at `geodesie.sn`. Caster went offline January 2026 (disk failure) and was
+  restored March 16, 2026. Subscription plan described as 90-day flat-rate; pricing
+  not publicly disclosed without account login — contact ANAT (`anat.sn`).
+  Registration form requires username/name/email/company; no stated residency
+  restriction. → networks.md: `sen_cors`
+- **Volunteer**: rtk2go ~1 SN base; Centipede ~2 SN nodes.
+- **Gap**: SENCORS is operational since March 2026 but tariff is not publicly
+  listed; Centipede nodes remain the only confirmed free option.
 
 ### SZ — Eswatini (formerly Swaziland)
 
@@ -3191,18 +3204,19 @@ similarly have no published coverage for these jurisdictions.
 
 ### TN — Tunisia
 
-**date_added**: 2026-04-30
+**date_added**: 2026-05-06
 
-- **Free government RTK**: none. OTC (Office de la Topographie et de la Cartographie,
+- **Free government RTK**: none. OTC (Office de la Topographie et du Cadastre,
   `otc.nat.tn`) operates 23 permanent GNSS stations nationwide (3 installed 2005; 20
   added 2010; fully operational since 2011; Saharan region excluded). Network linked
-  to WGS84–ITRF 2000. RTK corrections via paid NTRIP subscription; host:port not
+  to ITRF2000/WGS84. RTK corrections via paid NTRIP subscription; host:port not
   publicly listed (disclosed on subscription). → networks.md: `otc_gnss`
 - **Volunteer**: none. Zero TN stations confirmed on rtk2go or Centipede.
-- **Paid only**: OTC GNSS — 6,000 TND/yr (~$2,070/yr) annual subscription; shorter
-  durations available from 60 TND/day (~$21) to 3,600 TND/6 months (~$1,242); all
-  prices H.T. (excl. VAT); subscribe at otc.nat.tn/geodesy/gnss/subscription. No
-  explicit eligibility restriction stated on subscription page.
+- **Paid only**: OTC GNSS — 6,000 TND/yr annual subscription; shorter durations from
+  60 TND/day to 3,600 TND/6 months; VAT status not stated on the public subscription
+  page; subscribe at otc.nat.tn/geodesy/gnss/subscription. No explicit eligibility
+  restriction. Coverage gap: stations do not extend into the Saharan south (roughly
+  south of Gafsa/Tozeur latitude).
 
 ### TZ — Tanzania
 
@@ -3347,15 +3361,19 @@ similarly have no published coverage for these jurisdictions.
 
 ### UZ — Uzbekistan
 
-**date_added**: 2026-04-28
+**date_added**: 2026-05-06
 
 - **Free government RTK**: none confirmed publicly accessible.
-  UzGeodezKadastr operates national fixed reference stations (CORS) (referenced in GNSS/seismic
-  literature); no public NTRIP endpoint found. Access restricted to licensed
-  surveyors and state agencies.
+  UzGeodezKadastr (State Committee for Land Resources, Geodesy, Cartography and State
+  Cadastre, `uzgeodezkadastr.uz`) operates 30–50 permanent GNSS reference stations
+  concentrated in Tashkent, the Fergana Valley, and major provincial centres (50-station
+  plan described in 2016–2017 literature; 2024 academic paper confirms the network is
+  operational for state/professional use). No public NTRIP endpoint, registration portal,
+  or published tariff. Access restricted to licensed surveyors and state agencies; no
+  open-data mandate analogous to Indonesia's Law No. 4/2011.
 - **Volunteer**: negligible. Zero UZ stations on rtk2go or Centipede.
-- **Gap**: no free RTK for hobbyists. Coverage demand concentrated in
-  Tashkent and the Fergana Valley; no open-data geodesy policy identified.
+- **Gap**: no free RTK for hobbyists. Central Asian pattern is uniformly closed-access;
+  deploy a local base station.
 
 ### TJ — Tajikistan
 

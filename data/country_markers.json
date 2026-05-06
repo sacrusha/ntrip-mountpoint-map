@@ -539,7 +539,7 @@
       "vrs": true,
       "access": "registration",
       "stations_declared": 8,
-      "note": "~8 stations active per current IGVSB website (27 installed with NTRIP capability as of 2012), intended free. No public endpoint; not in the BKG/RTCM-NTRIP broadcaster registry."
+      "note": "~8 stations active per IGVSB website; intended free but no public endpoint confirmed. Commercial alternative: acnovo.net (~USD 20/period). GPS jamming reported around Venezuelan airspace November 2025–February 2026."
     },
     {
       "id": "redgeo_bo",
@@ -1716,7 +1716,7 @@
       "yearly_cost": "6,000 TND/yr (~$2,070/yr)",
       "registration": "https://www.otc.nat.tn/geodesy/gnss/subscription",
       "stations_declared": 23,
-      "note": "23 physical stations, non-Saharan Tunisia. Shorter durations from 60 TND/day (~$21) also available. Prices exclude VAT."
+      "note": "23 physical stations; Saharan south not covered. Shorter durations from 60 TND/day also available. VAT applicability not stated on public subscription page."
     },
     {
       "id": "agrs_nl",
@@ -1953,13 +1953,15 @@
     },
     {
       "id": "sen_cors",
-      "name": "SEN-CORS",
+      "name": "SENCORS",
       "region": "Senegal",
       "country": "SN",
       "lat": 14.5,
       "lon": -14.5,
       "tier": "weird",
-      "note": "National CORS network under construction — ~16 stations planned via the PROCASEF land-cadastre programme plus 5 more in Dakar via JICA. No public NTRIP caster yet."
+      "vrs": true,
+      "stations_declared": 21,
+      "note": "~21 stations (16 PROCASEF + 5 JICA); operational since March 2026. Subscription required; tariff not publicly listed — contact ANAT via geodesie.sn."
     },
     {
       "id": "cnigs_ht",
