@@ -547,11 +547,24 @@ _Last updated: 2026-04-22._
 
 ### MD — Moldova
 
-**date_added**: 2026-04-28
+**date_added**: 2026-05-06
 
-- **Free government RTK**: none confirmed.
-- **Volunteer**: negligible.
-- **Gap**: no free RTK for hobbyists.
+- **Government RTK (paid, open)**: MOLDPOS (Moldova Positioning System, S.E. INGEOCAD
+  under the Agency for Geodesy, Cartography and Cadastre — AGCC, `agcc.gov.md`);
+  caster IP `185.108.183.29:8080` (Leica Spider; non-standard port); SBC portal
+  `moldpos.ingeocad.md`; VRS / MAX / MSM mountpoints; GPS+GLONASS+Galileo.
+  Paid service since AGCC Order No. 04 of 06.01.2012; MDL tariff schedule not
+  published online — contact via `ingeocad.md`. Free test
+  zones (FreeZone mountpoints: FZUTM, FZUASM, FZMA, FZINGEOCAD, FZCDEIC;
+  credentials `moldpos` / `moldpos`) allow trial without subscription. INGEOCAD
+  explicitly states "MOLDPOS is an open network; any GPS receiver owner can join."
+  No surveying licence required; no explicit residency restriction. Network
+  launched 2011 (~10 stations); 2025 modernisation adds 5 more Leica Spider
+  licences. Moldova is EU candidate (2022); ETRS89-aligned. → networks.md: `moldpos`
+- **Volunteer**: none. Zero MDA stations on rtk2go or Centipede.
+- **Gap**: no free national RTK, but FreeZone test mounts are a genuine free
+  option for the handful of fixed test locations. Outside those, the paid
+  subscription (MDL tariff via INGEOCAD) is required.
 
 ### BA — Bosnia and Herzegovina
 
@@ -696,10 +709,19 @@ _Last updated: 2026-04-22._
 
 ### MK — North Macedonia
 
-**date_added**: 2026-04-28
+**date_added**: 2026-05-06
 
-- **Free government RTK**: no confirmed national network name or NTRIP endpoint.
-- **Volunteer**: negligible.
+- **Government RTK (paid, open)**: MAKPOS (Macedonian Positioning System, Agency for
+  Real Estate Cadastre — AREC, `katastar.gov.mk`); caster `makpos.katastar.gov.mk:9001`
+  (Leica GNSS Spider RT Proxi Server + NTRIP caster; independently confirmed on Alberding
+  GmbH worldwide caster map); SBC portal `makpos.katastar.gov.mk/sbc/`. 14 reference
+  base stations at 50–70 km spacing across ~25,700 km². Services: DGPS (0.3–0.5 m,
+  RTCM 2.x), RTK (2–4 cm, RTCM 2.x/3.x), precise positioning (<1 cm, RINEX). Galileo
+  support added April 2020. Tariff: MKD schedule not publicly posted; one source indicates
+  free of charge for compatible GNSS devices on 3G/GPRS — unconfirmed if still current;
+  contact AREC Sector for Geodetic Works to confirm. No surveying licence requirement
+  found. Register at `makpos.katastar.gov.mk/sbc/Account/Register`. → networks.md: `makpos`
+- **Volunteer**: negligible. Zero MKD stations on rtk2go or Centipede.
 
 ### RO — Romania
 
@@ -1284,13 +1306,17 @@ similarly have no published coverage for these jurisdictions.
 
 ### JM — Jamaica
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-06
 
 - **Free government RTK**: none confirmed. The National Land Agency (NLA, `nla.gov.jm`) is
   the geodetic and surveys authority; no public NTRIP caster or registration portal found.
-  Two EarthScope COCONet stations in Jamaican waters (CN11, Morant Cay; CN12, ~18°N/76.75°W)
-  stream via `ntrip.earthscope.org:2101` (NULA, free non-commercial) — remote cay sites,
-  not practical base stations for mainland RTK. → networks.md: `earthscope`
+  A mid-2000s VRS network built by Spatial Innovision for NLA is unconfirmed as currently
+  active with any public endpoint. Three EarthScope NOTA/COCONet stations in Jamaican
+  waters stream via `ntrip.earthscope.org:2101` (NULA, free non-commercial): CN10 (Morant
+  Cay, ~130 km SE of Kingston), CN11 (Pedro Cay, ~130 km S of Kingston) — both remote
+  offshore cays, not practical for mainland RTK — and CN12 (Kingston, UWI Mona campus
+  Physics Dept roof), the only station useful for hobbyist RTK on the main island.
+  → networks.md: `earthscope`
 - **Volunteer**: none. Zero JM stations on rtk2go or Centipede.
 
 ### TT — Trinidad and Tobago
@@ -1333,13 +1359,16 @@ similarly have no published coverage for these jurisdictions.
 
 ### LC — Saint Lucia
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-06
 
 - **Free government RTK**: none confirmed. The Survey and Mapping Section (Ministry of
   Physical Development, Housing and Urban Renewal) is the geodetic authority; no public
-  NTRIP caster or registration portal found. UNAVCO installed two COCONet cGPS sites
-  (CN04 and CN47) in Saint Lucia in 2014 for geophysics monitoring; RINEX archive only,
-  no real-time NTRIP endpoint publicly confirmed.
+  NTRIP caster or registration portal found. UNAVCO installed two COCONet/NOTA cGPS
+  sites (CN04 and CN47, both on the roof of the NEMO building near Castries) in 2014;
+  these stream as real-time NTRIP via `ntrip.earthscope.org:2101` (free non-commercial,
+  NULA account required). Both are co-located at the same NEMO site, so geographic
+  coverage is limited to northern Saint Lucia; baseline to Vieux Fort / Soufrière in the
+  south is ~30–40 km, at the edge of reliable cm-accuracy range. → networks.md: `earthscope`
 - **Volunteer**: none. Zero LC stations on rtk2go or Centipede.
 
 ### VC — Saint Vincent and the Grenadines
@@ -2045,18 +2074,18 @@ similarly have no published coverage for these jurisdictions.
 
 ### KH — Cambodia
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-06
 
 - **Free government RTK**: Khmer GEONET (GDCG / General Department of Cadastre and
   Geography, MLMUPC) — 5 fixed reference stations (CORS) (Phnom Penh, Kandal, Kampong Speu, Siem Reap,
-  Stung Treng), built with JICA technical cooperation 2021–2024; service was free-trial
-  through June 2025; post-trial pricing not publicly listed (contact via khmergeonet.xyz).
-  NTRIP host:port not publicly documented; Trimble Pivot software visible at
-  `167.179.14.66:8080` but not a public NTRIP caster endpoint.
-  → networks.md: `khmer_geonet` (candidate)
+  Stung Treng), built with JICA technical cooperation (Aug 2021–Dec 2024); free-trial
+  period extended to 2026-07-01 (khmergeonet.xyz, observed 2026-05-06); post-trial pricing
+  not publicly listed (contact via khmergeonet.xyz). NTRIP host:port not publicly
+  documented; Trimble Pivot software visible at `167.179.14.66:8080` but not a public
+  NTRIP caster endpoint. → networks.md: `khmer_geonet` (candidate)
 - **Volunteer**: none. Zero KH stations on rtk2go or Centipede.
-- **Gap**: Khmer GEONET is the only identified CORS infrastructure; the free trial has
-  ended and ongoing pricing is unconfirmed. Sparse coverage (5 stations across
+- **Gap**: Khmer GEONET is the only identified CORS infrastructure; free trial runs to
+  July 2026; post-trial pricing unconfirmed. Sparse coverage (5 stations across
   ~181,000 km²) limits RTK to areas within ~50 km of each station.
 
 ### LA — Laos
@@ -2718,20 +2747,24 @@ similarly have no published coverage for these jurisdictions.
 
 ### KE — Kenya
 
-**date_added**: 2026-04-30
+**date_added**: 2026-05-06
 
 - **Free government RTK**: none confirmed with a public NTRIP endpoint. Survey
-  of Kenya (SoK, `survey.go.ke`) operates national geodetic control; no public
-  NTRIP caster or RTK streaming host:port has been found. survey.go.ke was
-  unreachable on 2026-04-30. RCMRD (`rcmrd.org`) hosts geodetic research
-  infrastructure but no public permanent GPS reference station stream. → networks.md: `sok_ke`
+  of Kenya (SoK, `survey.go.ke`) operates national geodetic control (~20 Tier-3
+  CORS for the KENREF geodetic reference frame); no public NTRIP caster or RTK
+  streaming host:port has been found. RCMRD (`rcmrd.org`) hosts geodetic research
+  infrastructure but no public RTK stream. → networks.md: `sok_ke`
 - **Commercial**: Muya CORS (`muya-cors.com`), operated by Measurement Systems
-  Ltd (~27 stations, single-base + network RTK) — self-serve signup; Mpesa
-  payment supported; credentials issued post-registration. KES 35,000/yr
-  (~$271/yr) from a promotional post (unverified primary source). → networks.md: `muya_cors_ke`
-- **Volunteer**: rtk2go ~1 base (NerokasRTK, Thika). No Centipede nodes.
+  Ltd (25+ stations, single-base + network RTK, GPS/GLONASS/BeiDou/Galileo) —
+  self-serve signup; flexible tiers (hourly/daily/monthly); pricing not publicly
+  listed (contact via `muya-cors.com`). Confirmed in active field use Feb 2025
+  (Orbital Africa case study, Kitisuru, Nairobi). → networks.md: `muya_cors_ke`
+- **Announced**: Kenya Power 15-station CORS network announced Apr 2025 (targeting
+  "professionals engaged in precise land and engineering surveys" under IESR);
+  undergoing gazettement submission; no live NTRIP stream confirmed.
+- **Volunteer**: rtk2go 1 base (Kenya). No Centipede nodes.
 - **Gap**: no free government or volunteer RTK coverage at national scale.
-  Hobbyists must use Muya CORS (~KES 35,000/yr, ~$271) or deploy a local base.
+  Hobbyists must use Muya CORS (pricing on inquiry) or deploy a local base.
 
 ### LR — Liberia
 
@@ -2806,17 +2839,25 @@ similarly have no published coverage for these jurisdictions.
 
 ### MA — Morocco
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-06
 
-- **Free government RTK**: none confirmed with a public NTRIP endpoint. ANCFCC
-  (Agence Nationale de la Conservation Foncière, du Cadastre et de la
-  Cartographie) operates a ~60-station permanent GNSS network
-  ([ancfcc.gov.ma](https://www.ancfcc.gov.ma/ReseauGnss/)) with nodes at
-  Laayoune and Dakhla in the MA-administered southern provinces; no public
-  NTRIP delivery has been identified — licensed professional access only.
+- **Government RTK (registration required)**: ANCFCC (Agence Nationale de la
+  Conservation Foncière, du Cadastre et de la Cartographie, `ancfcc.gov.ma`)
+  operates a 60-station permanent GNSS network with nodes at Laayoune and Dakhla
+  in the MA-administered southern provinces. The ANCFCC page
+  (ancfcc.gov.ma/nos-metiers/cartographie/reseau-gnss/) explicitly describes
+  real-time RTK and RTK-Network corrections delivered via internet (NTRIP protocol);
+  host:port not published — registration at ancfcc.gov.ma required; tariff not
+  public. Licensed professional access; hobbyist eligibility unclear.
   → networks.md: `ancfcc`
-- **Volunteer**: rtk2go ~1 base.
-- **Gap**: no free coordinated RTK coverage beyond a single volunteer base.
+- **Commercial**: itri (SAMTOP, `itri-gnss.ma`), Morocco's first private permanent
+  GNSS network (launched 2020) — 231 stations nationwide; single-base RTK, network
+  RTK, and VRS modes; GPS+GLONASS+Galileo+BeiDou. Registration at
+  `secure.itri-gnss.ma/admin/auth/register`; professional subscription, pricing
+  not public. → networks.md: `itri_ma`
+- **Volunteer**: rtk2go ~2 bases (MAR).
+- **Gap**: no free coordinated RTK coverage. Both ANCFCC and itri require
+  registration and professional subscriptions. Single volunteer base(s) only.
 - **Western Sahara (EH)**: the MA-administered territory (≈80% of Western
   Sahara, including Laayoune and Dakhla) falls within the ANCFCC network's
   nominal coverage — physical stations are confirmed in both cities. The SADR /
@@ -3325,19 +3366,23 @@ similarly have no published coverage for these jurisdictions.
 
 ### KG — Kyrgyzstan
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-06
 
-- **Free government RTK**: none free. KyrPos (State Agency for Land Resources,
+- **Free government RTK**: none free. KyrPOS (State Agency for Land Resources,
   Cadastre, Geodesy and Cartography — ГАЗРКГК, gosreg.gov.kg), operated as a
-  paid subscription service: 3,180 KGS/month per receiver (~$437/yr at ~87 KGS/USD),
-  minimum one month; contract-based sign-up (no self-service portal). Host:port
-  not listed on public pages; disclosed after contract is signed.
+  paid subscription service: 170 KGS/day · 3,180 KGS/month per receiver (~$37/mo
+  at May 2026 rates), minimum one month; contract-based sign-up (email
+  `gosreg.gov.kg` with signed contract + GNSS receiver serial, then bank
+  payment). Host:port published on gosreg.gov.kg/ky/?page_id=3029:
+  `cors.gosreg.gov.kg:8085` (non-standard port; port unreachable externally, likely
+  geo-filtered or credential-gated). 18 CORS stations in 5 zones: Chui/Bishkek area
+  (6), Fergana Valley/Osh (8), Naryn (1), Issyk-Kul (3).
   → networks.md: `kyrpos`
 - **Volunteer**: none. Zero KG stations on rtk2go or Centipede.
-- **Gap**: no free RTK for hobbyists. KyrPos is the only named network and is
-  paid; CAIAG (German-funded research institute in Bishkek) operates permanent
-  GNSS stations including a Bishkek IGS/ESA site but these are research-only
-  with no RTK correction service. Hobbyists should deploy a local base station.
+- **Gap**: no free RTK for hobbyists. KyrPOS is paid; CAIAG (German-funded research
+  institute in Bishkek) operates permanent GNSS stations including a Bishkek IGS/ESA
+  site but these are research-only with no RTK correction service. Hobbyists should
+  deploy a local base station.
 
 ### TM — Turkmenistan
 

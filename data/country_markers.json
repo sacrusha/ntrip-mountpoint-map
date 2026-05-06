@@ -386,9 +386,8 @@
       "tier": "paid",
       "vrs": true,
       "access": "paid",
-      "yearly_cost": "KES 35,000/yr (~$271/yr)",
       "registration": "https://muya-cors.com",
-      "note": "~27 base stations nationwide. Mpesa payment accepted. Price is from a promotional post — confirm current rate at sign-up."
+      "note": "25+ base stations nationwide. Mpesa payment accepted. Pricing not publicly listed — contact operator for current tiers."
     },
     {
       "id": "bfcors",
@@ -2011,6 +2010,58 @@
       "registration": "https://www.lc.gov.gh/",
       "stations_declared": 60,
       "note": "~60 stations unveiled Aug 2025 by Lands Commission/SMD; target 100 by end of 2025. No public NTRIP endpoint published; access via licensed-surveyor channel."
+    },
+    {
+      "id": "moldpos",
+      "name": "MOLDPOS",
+      "region": "Moldova",
+      "country": "MD",
+      "lat": 47.0,
+      "lon": 28.9,
+      "tier": "paid",
+      "vrs": true,
+      "access": "paid",
+      "registration": "http://moldpos.ingeocad.md/SBC/Account/Register",
+      "note": "National VRS network; no surveying licence required. Free test mounts (FZUTM, FZUASM, etc.) available with credentials moldpos/moldpos — trial without subscribing."
+    },
+    {
+      "id": "makpos",
+      "name": "MAKPOS",
+      "region": "North Macedonia",
+      "country": "MK",
+      "lat": 41.6,
+      "lon": 21.7,
+      "tier": "paid",
+      "vrs": true,
+      "access": "paid",
+      "registration": "https://makpos.katastar.gov.mk/sbc/Account/Register",
+      "note": "14 stations; Galileo-capable since 2020. One source suggests free access for users on 3G — contact AREC to confirm current tariff."
+    },
+    {
+      "id": "ancfcc",
+      "name": "Réseau GNSS ANCFCC",
+      "region": "Morocco",
+      "country": "MA",
+      "lat": 31.8,
+      "lon": -7.1,
+      "tier": "restricted",
+      "vrs": true,
+      "access": "restricted",
+      "registration": "https://www.ancfcc.gov.ma/nos-metiers/cartographie/reseau-gnss/",
+      "note": "60 stations. Real-time RTK and network-RTK confirmed. Licensed cadastral professionals only; no individual sign-up path."
+    },
+    {
+      "id": "itri_ma",
+      "name": "itri GNSS Network",
+      "region": "Morocco",
+      "country": "MA",
+      "lat": 33.6,
+      "lon": -5.6,
+      "tier": "restricted",
+      "vrs": true,
+      "access": "restricted",
+      "registration": "https://secure.itri-gnss.ma/admin/auth/register",
+      "note": "231 stations; Morocco's first private GNSS network (launched 2020). Professional subscription; pricing on inquiry."
     }
   ]
 }
