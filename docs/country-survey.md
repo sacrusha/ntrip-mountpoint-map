@@ -494,12 +494,21 @@ _Last updated: 2026-04-22._
 
 ### AL — Albania
 
-**date_added**: 2026-04-28
+**date_added**: 2026-05-06
 
-- **Free government RTK**: none confirmed with a public NTRIP endpoint. ASIG
-  (Autoriteti Shtetëror për Informacionin Gjeografik) has not published a public NTRIP caster.
-- **Volunteer**: negligible.
-- **Gap**: no free RTK for hobbyists.
+- **Free government RTK**: none with a public endpoint. ALBCORS (ASIG — Autoriteti
+  Shtetëror për Informacionin Gjeohapësinor, state geodetic authority) operates 27
+  CORS stations (21 ground-mounted + 6 roof-type, incorporating the former ALBPOS
+  system) with a control centre in Tirana; aligned to ETRS89. Access is
+  application-based (form at `krgjsh.asig.gov.al`; contact info.albcors@asig.gov.al);
+  NTRIP host:port not publicly listed. 2023 EUREF Gothenburg symposium confirmed
+  operational status. → networks.md: `albcors`
+- **Commercial**: SATNET LIVE (Land&Co / Topcon Albania distributor, `landcoal.com`)
+  — application via landcoal.com or SATNET app; 3 free days for new registrations;
+  1 year free with Land&Co GNSS equipment purchase; ongoing pricing not published.
+- **Volunteer**: none. Zero AL stations on rtk2go or Centipede.
+- **Gap**: no free public NTRIP. Apply to ALBCORS via krgjsh.asig.gov.al or try
+  SATNET LIVE via landcoal.com.
 
 ### XK — Kosovo
 
@@ -2047,12 +2056,12 @@ similarly have no published coverage for these jurisdictions.
 
 ### AE — UAE
 
-**date_added**: 2026-04-30
+**date_added**: 2026-05-06
 
 - **Free government RTK**: DVRS (Dubai Municipality, 18+ stations, 4-constellation, VRS)
-  — professional application only; no public hobbyist path. Portal geodubai.dm.gov.ae and
-  dm.gov.ae/survey-department sub-pages returning errors / 404 as of 2026-04-30; service
-  may have been restructured or migrated to DM e-services. → networks.md: `dvrs`
+  — professional application only; no public hobbyist path. The DM survey sub-pages were
+  returning 404 in late April 2026 but geodubai.dm.gov.ae was confirmed reachable again
+  by 2026-05-06; NTRIP port 2101 status unconfirmed externally. → networks.md: `dvrs`
 - **Volunteer**: negligible. Zero AE stations on rtk2go or Centipede.
 
 ### AO — Angola

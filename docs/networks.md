@@ -2621,7 +2621,7 @@ NTRIP caster. SmartNet pricing confirmed 2026-04-30 at smartnetna.com/store_prod
 ## dvrs — DVRS (AE)
 
 **status**:    restricted
-**date_added**: 2026-04-30
+**date_added**: 2026-05-06
 **access**:    restricted; professional application only (licensed engineering/surveying firms);
                no individual or hobbyist registration path at any price
 **yearly_cost**: not publicly listed (professional application required)
@@ -2631,9 +2631,10 @@ NTRIP caster. SmartNet pricing confirmed 2026-04-30 at smartnetna.com/store_prod
 Dubai Virtual Reference System. 18+ 4-constellation reference stations covering Dubai
 Emirate. Access by formal professional application only — no hobbyist path.
 
-Portal status (2026-04-30): geodubai.dm.gov.ae returning errors; dm.gov.ae/survey-department
-DVRS sub-pages returning 404. Service may have been restructured or migrated to a DM
-e-services login. Main dm.gov.ae site is live.
+Portal status (2026-05-06): dm.gov.ae/survey-department DVRS sub-pages were returning 404
+in late April 2026; geodubai.dm.gov.ae portal pages (default.aspx, Registration.aspx)
+confirmed reachable again 2026-05-06. NTRIP port 2101 on the historical hostname not
+confirmed from an external IP. Service may have migrated to a unified DM e-services login.
 
 ---
 
@@ -3040,6 +3041,40 @@ No published tariff found on any public page (ArduSimple lists AzPOS as "paid
 national service" with no price). Access requires bilateral agreement; pricing
 and final host:port confirmed only after contracting.
 Restricted — no published tariff; contract-only access.
+
+---
+
+## albcors — ALBCORS (AL)
+
+**status**:    restricted
+**country**:   AL — Albania
+**type**:      single-base (physical CORS)
+**access**:    application-required; no public self-service registration; contact
+               info.albcors@asig.gov.al or submit form at krgjsh.asig.gov.al
+**host:port**: not publicly listed
+**operator**:  ASIG — Autoriteti Shtetëror për Informacionin Gjeohapësinor
+               (State Authority for Geospatial Information), Tirana
+**registration**: https://krgjsh.asig.gov.al/?page_id=1218&lang=en
+**yearly_cost**: not publicly listed (state service; likely subsidised for licensed surveyors)
+**stations**:  27 (21 ground-mounted concrete blocks + 6 roof-type, incorporating
+               the former ALBPOS system)
+**signals**:   multi-constellation (ETRS89 reference frame)
+**nmea_filter**: n/a (not in pipeline)
+
+**date_added**: 2026-05-06
+
+ALBCORS replaced the ALBPOS system (found non-compliant with national CORS
+standards in 2015) and was confirmed operational at the 2023 EUREF Symposium in
+Gothenburg. The 27-station network covers Albania (~29,000 km²) with a control
+centre at ASIG premises in Tirana. Albania is an EU candidate country; the
+network is aligned to ETRS89 for future EU compatibility. Access requires
+submitting an application form; no open hobbyist registration portal. A
+commercial alternative, SATNET LIVE (Land&Co / Topcon Albania distributor,
+landcoal.com), offers RTK via the SATNET app with 3 free trial days.
+
+Restricted — application-based access; host:port not publicly disclosed.
+**missing**: confirm NTRIP host:port, tariff, and whether non-professional
+access is feasible — contact ASIG via krgjsh.asig.gov.al.
 
 ---
 

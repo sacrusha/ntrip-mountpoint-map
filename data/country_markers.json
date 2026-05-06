@@ -1097,6 +1097,19 @@
       "note": "120+ reference stations. Requires a Kazakh resident ID number — foreign users cannot self-register. Baselines will be long outside Almaty and Astana."
     },
     {
+      "id": "albcors",
+      "name": "ALBCORS",
+      "region": "Albania",
+      "country": "AL",
+      "lat": 41.33,
+      "lon": 20.0,
+      "tier": "restricted",
+      "access": "restricted",
+      "registration": "https://krgjsh.asig.gov.al/?page_id=1218&lang=en",
+      "stations_declared": 27,
+      "note": "27-station state CORS operated by ASIG (national geodetic authority). Application form required; no self-service registration. NTRIP host not publicly listed. A commercial alternative, SATNET LIVE (landcoal.com), offers trial access."
+    },
+    {
       "id": "azpos",
       "name": "AzPOS",
       "region": "Azerbaijan",
@@ -1121,7 +1134,7 @@
       "access": "restricted",
       "registration": "https://www.dm.gov.ae",
       "stations_declared": 18,
-      "note": "18+ four-constellation stations under Dubai Municipality. Professional application required; no hobbyist registration path. Online registration portal currently unavailable."
+      "note": "18+ four-constellation stations under Dubai Municipality. Professional application required; no hobbyist registration path. The GeoDubai portal (geodubai.dm.gov.ae) was confirmed reachable in 2026; NTRIP endpoint may have migrated."
     },
     {
       "id": "alcorsnet_dz",
