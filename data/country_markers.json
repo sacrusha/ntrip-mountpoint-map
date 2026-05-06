@@ -2062,6 +2062,45 @@
       "access": "restricted",
       "registration": "https://secure.itri-gnss.ma/admin/auth/register",
       "note": "231 stations; Morocco's first private GNSS network (launched 2020). Professional subscription; pricing on inquiry."
+    },
+    {
+      "id": "mosref",
+      "name": "MoSRef",
+      "region": "Macao SAR",
+      "country": "MO",
+      "lat": 22.19,
+      "lon": 113.55,
+      "tier": "free",
+      "vrs": true,
+      "access": "registration",
+      "registration": "https://mosref.dscc.gov.mo",
+      "stations_declared": 4,
+      "note": "4 stations, free. Register at mosref.dscc.gov.mo; GPS+GLONASS+BeiDou; single-base RTK and VRS available."
+    },
+    {
+      "id": "omancorsnet",
+      "name": "OmanCORSnet",
+      "region": "Oman",
+      "country": "OM",
+      "lat": 23.6,
+      "lon": 58.6,
+      "tier": "restricted",
+      "vrs": true,
+      "access": "restricted",
+      "registration": "https://www.nsaomangeoportal.gov.om/en/oman-corsnet",
+      "note": "47 stations; operated by NSGIA. No confirmed hobbyist registration path; host:port disclosed post-approval only."
+    },
+    {
+      "id": "qcors",
+      "name": "QCORS",
+      "region": "Qatar",
+      "country": "QA",
+      "lat": 25.3,
+      "lon": 51.2,
+      "tier": "restricted",
+      "access": "restricted",
+      "registration": "https://www.gisqatar.org.qa",
+      "note": "9 stations operated by CGIS; serves licensed surveyors and government users. No public self-registration."
     }
   ]
 }

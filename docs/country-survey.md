@@ -175,10 +175,10 @@ _Last updated: 2026-04-22._
   (station subset, no TLS). → networks.md: `agrs_nl`
 - **Paid per-station raw streams**: NETPOS — same ~30 physical stations as AGRS.NL but
   authenticated paid feed at `ntrip.cloud.kadaster.nl:443` (TLS, B;Y auth). Priced per
-  station per year (2026, excl. BTW): €475/station (1–2 stations) down to €95/station
-  (10+). Not VRS — delivers single-base raw observations for users computing their own
-  corrections. NL legal entities via eHerkenning portal; foreign users via contact form.
-  → networks.md: `netpos`
+  station per year (2026, excl. BTW): €475 (1–5 stations), €380 (6–10), €285 (11–15),
+  €190 (16–20), €95 (21+). Not VRS — delivers single-base raw observations for users
+  computing their own corrections. NL legal entities via eHerkenning portal; foreign
+  users via contact form. → networks.md: `netpos`
 - **Commercial** (paid, expensive for a hobbyist): 06-GPS (Trimble NL, VRS, ~250
   stations) — €1,500/yr excl. VAT (~€1,815 incl., ~$2,000/yr); not surfaced.
   → networks.md: `06gps`
@@ -287,7 +287,7 @@ _Last updated: 2026-04-22._
 
 ### MT — Malta
 
-**date_added**: 2026-04-28
+**date_added**: 2026-05-06
 
 - **Free government RTK**: none confirmed. The Malta Environment and Planning
   Authority (MEPA, now MCESD/PA) and the Land Registry do not operate a public
@@ -303,8 +303,8 @@ _Last updated: 2026-04-22._
   network, no VRS. Nearest government NTRIP is ERGNSS (ES, ~1,700 km) or APOS
   (AT, ~1,400 km) — both useless at that range.
 - **Closest paid alternative**: commercial surveying networks in Italy
-  (NetGEO/TopNET ~€360/yr) offer no Malta coverage. GEODNET EU node density
-  for Malta is unknown; worth checking if a node exists on the island.
+  (NetGEO/TopNET ~€360/yr) do not cover Malta. GEODNET has no confirmed node
+  on Malta or Gozo (no hexagon visible on coverage map as of 2026-05-06).
 
 ### IT — Italy
 
@@ -919,9 +919,23 @@ similarly have no published coverage for these jurisdictions.
 
 ### SJ — Svalbard (NO)
 
-**date_added**: 2026-04-28
+**date_added**: 2026-05-06
 
-- **Volunteer**: Centipede 1 node (`NYAWIPEV`, ~78.9°N — likely Ny-Ålesund research station). Useful only within ~30–40 km.
+- **Free government RTK**: none for Svalbard. CPOS (Kartverket, `159.162.103.14:2101`)
+  explicitly covers **mainland Norway only** — Svalbard and Jan Mayen excluded;
+  no Svalbard stations feed the CPOS VRS solution. Kartverket's geodetic
+  observatory at Ny-Ålesund (Brandal facility, opened 2018; VLBI + permanent
+  GNSS) provides raw RTCM 3.2 MSM5 data under commercial data agreements to
+  licensed operators — not a public NTRIP caster.
+- **Free single-base via EarthScope**: IGS stations NYA1 and NYAL at Ny-Ålesund
+  stream 1 Hz real-time observations via `ntrip.earthscope.org:2101` (free with
+  EarthScope account, non-commercial). Single-base coverage; useful within ~30–40 km
+  of Ny-Ålesund for RTK if a nearby base is configured.
+- **Volunteer**: Centipede 1 node (`NYAWIPEV`, ~78.9°N, Ny-Ålesund — AWIPEV
+  Franco-German Arctic research station). Useful within ~20–40 km (Kongsfjorden
+  area). Longyearbyen (~120 km SE) is outside reliable RTK range.
+- **Gap**: no free RTK for Longyearbyen and most of Svalbard. Hobbyists must
+  deploy a local base or use PPP (Galileo HAS, ~40 cm).
 
 ---
 
@@ -1538,10 +1552,11 @@ similarly have no published coverage for these jurisdictions.
 
 ### PE — Peru
 
-**date_added**: 2026-04-30
+**date_added**: 2026-05-06
 
 - **Free government RTK**: REGPMOC — Red Geodésica Permanente de Monitoreo Continuo (IGN — Instituto
-  Geográfico Nacional del Perú, under Ministry of Defence, `190.12.71.75:2101`, ~65 single-base stations)
+  Geográfico Nacional del Perú, under Ministry of Defence, `190.12.71.75:2101`, 70 registered ERP
+  stations / 35+ active as of late 2024; MQ04 Moquegua added March 2026)
   — paid; application + payment to IGN required; credentials issued by email; no self-service portal. IGN's
   own "Políticas de Uso del Servicio NTRIP" policy document does not explicitly restrict to licensed surveyors
   or commercial organisations. No official PEN tariff publicly available (TUPA pages returning 404); reseller
@@ -1762,35 +1777,24 @@ similarly have no published coverage for these jurisdictions.
 
 ### MO — Macao SAR (China)
 
-**date_added**: 2026-04-28
+**date_added**: 2026-05-06
 
-- **Free government RTK**: none confirmed with a public NTRIP endpoint. The
-  Cartography and Cadastre Bureau (DSCC / Direcção dos Serviços de Cartografia
-  e Cadastro) operates reference stations but does not publish a public NTRIP
-  caster. No Macao entry found in Alberding directory, EUREF listings, or any
-  cached sourcetable.
-- **Adjacent network — SatRef (HK)**: Hong Kong SatRef
-  (`ntrip.geodetic.gov.hk:2101`, free with email registration) has three
-  stations within practical range of Macao:
-  - `HKCL_32`: 22.30°N, 113.91°E — ~40 km from Macao peninsula
-  - `HKNP_32`: 22.25°N, 113.89°E — ~37 km from Macao peninsula
-  - `HKSL_32`: 22.37°N, 113.93°E — ~45 km from Macao peninsula
-
-  These baselines (37–45 km) are at the edge of reliable single-base RTK
-  (~30–40 km practical limit for cm-level accuracy). VRS mountpoint `VRS32G`
-  covers all of Hong Kong and potentially reaches Macao; whether SatRef's
-  NRTK VRS engine extends virtual reference points to Macao coordinates is
-  not confirmed — depends on server-side polygon extent. → networks.md: `satref`
+- **Free government RTK**: MoSRef — Macao Satellite Positioning Reference
+  Station Service (DSCC / Direcção dos Serviços de Cartografia e Cadastro,
+  `mosref.dscc.gov.mo:2101`, 4 stations + 4 HK partner stations, VRS) — free;
+  online registration at `mosref.dscc.gov.mo`; no professional credentials
+  required; no Macao residency required. Services include single-base RTK,
+  Network RTK (VRS), RINEX download (up to 3 months), and coordinate
+  auto-computation. BeiDou support added 2021; NTRIP introduced 2012.
+  → networks.md: `mosref`
+- **Stations**: FOMO (Peninsula, 2002), COAL (Coloane, 2006), UMAC (Hengqin
+  Island / UM campus, 2016), TAGR (Taipa Grande, relocated 2023). Four Hong
+  Kong partner stations (HKLT, HKSL, HKMW, HKNP) extend VRS coverage across
+  the Pearl River Delta.
 - **Volunteer**: none. Zero rtk2go or Centipede stations in the Macao bounding
-  box (~32 km² peninsula/island cluster).
-- **Gap**: no local free RTK. The most practical path is SatRef (HK) VRS —
-  free, requires email registration, and the VRS virtual reference is
-  compute-generated at the rover's reported position, so it may extend to
-  Macao coordinates if the server polygon covers it. Mainland China's Qianxun
-  and provincial fixed reference station networks (CORS) are restricted to licensed surveyors under
-  Surveying and Mapping Law 2017 — not a hobbyist path. GEODNET has nodes in
-  the Pearl River Delta; the $40/month tier (~$160 for a 4-month season) is
-  affordable for a hobbyist.
+  box (~30 km² territory).
+- **Gap**: well-covered; MoSRef VRS gives network-level accuracy across all of
+  Macao with a free account. No practical gap for hobbyists.
 
 ### MN — Mongolia
 
@@ -2994,32 +2998,38 @@ similarly have no published coverage for these jurisdictions.
 
 ### OM — Oman
 
-**date_added**: 2026-04-28
+**date_added**: 2026-05-06
 
 - **Free government RTK**: none confirmed with a public NTRIP endpoint.
-  National Accurate Geodetic Survey Network (NAGSN), supporting ONGD14
-  and geoid model OmG2016, is operationally managed by the National Survey
-  Authority; streams issued to licensed surveying companies via formal
-  application — no public caster URL identified for hobbyists. IGS station
-  at Muscat (MUSK) broadcasts raw observations via EarthScope/IGS-IP, not
-  RTK streams.
+  OmanCORSnet (47 stations, Leica GNSS Spider / Spider Business Center),
+  operated by NSGIA — National Survey and Geospatial Information Authority
+  (successor to NSA, under Ministry of Defence); portal at
+  `omancorsnet.gov.om`; NTRIP host:port issued post-registration only.
+  Datum: ONGD17 (Oman National Geodetic Datum 2017, ITRF2014 epoch 2017.0).
+  No hobbyist or open-registration tier documented; service targets licensed
+  surveyors and government users. IGS station MUSK (Muscat) streams raw GNSS
+  observations via EarthScope/IGS-IP — not an RTK service. → networks.md: `omancorsnet`
 - **Volunteer**: none. Zero OM stations on rtk2go or Centipede.
-- **Gap**: no free NTRIP path. Oman's ~309,500 km² and mountainous terrain
-  (Al Hajar range) mean useful national coverage requires ~20–30 stations;
-  NAGSN appears to exist at that scale but remains closed to public access.
+- **Gap**: no free NTRIP path for hobbyists. OmanCORSnet's 47 stations cover
+  Oman's ~309,500 km² at professional-tier access only; no public endpoint or
+  individual registration path has been documented.
 
 ### QA — Qatar
 
-**date_added**: 2026-04-28
+**date_added**: 2026-05-06
 
 - **Free government RTK**: none confirmed with a public NTRIP endpoint.
-  Ministry of Municipality manages fixed reference stations (CORS) tied to the Qatar National Spatial
-  Reference System (QNSRS / QND95); internal use by licensed surveyors and
-  government contractors only — no public caster URL identified.
+  QCORS — Qatar Continuously Operating Reference Stations (9 stations,
+  established 2009–2010, ±2 cm horizontal accuracy) — operated by CGIS
+  (Centre for GIS, Ministry of Municipality); portal at `gisqatar.org.qa`;
+  NTRIP host:port issued post-subscription only. No public self-registration
+  page or hobbyist tier identified; service described as for "government and
+  private survey and mapping communities." Datum: QNSRS / QND95.
+  → networks.md: `qcors`
 - **Volunteer**: none. Zero QA stations on rtk2go or Centipede.
-- **Gap**: no free NTRIP path for hobbyists. Qatar is small (~11,600 km²);
-  a single Doha reference station would theoretically cover the territory,
-  but no such public stream exists.
+- **Gap**: no free NTRIP path for hobbyists. Qatar's small territory
+  (~11,600 km²) makes QCORS sufficient for national coverage but access is
+  subscription-gated with no confirmed individual tier.
 
 ### SA — Saudi Arabia
 

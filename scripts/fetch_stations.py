@@ -171,6 +171,10 @@ SOURCES = [
      "color": "#8b008b", "label": "SatRef",
      "type": "physical-vrs", "country": ["HK"],
      "access": "registration", "registration": "https://www.geodetic.gov.hk/", "openNote": 'Free registration required — Mountpoint: VRS32G'},
+    {"id": "mosref",      "url": "http://mosref.dscc.gov.mo:2101/",
+     "color": "#8b0057", "label": "MoSRef",
+     "type": "physical-vrs", "country": ["MO"],
+     "access": "registration", "registration": "https://mosref.dscc.gov.mo", "openNote": 'Free registration required — GPS+GLONASS+BeiDou; single-base and VRS available'},
     {"id": "inacors",     "url": "http://nrtk.big.go.id:2001/",                 # port 2001, not 2101
      "color": "#1a5fa0", "label": "InaCORS",
      "type": "physical-vrs", "country": ["ID"],

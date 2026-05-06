@@ -391,6 +391,37 @@ not HTTP.
 
 ---
 
+## mosref — MoSRef (MO)
+
+**status**:    free
+**host:port**: `mosref.dscc.gov.mo:2101`
+**type**:      physical-coord-vrs
+**access**:    free; register at mosref.dscc.gov.mo; no professional credentials required;
+               no Macao residency required
+**pipeline-access**: registration
+**stations**:  4 (FOMO — Macao Peninsula 2002; COAL — Coloane 2006; UMAC — Hengqin Island 2016;
+               TAGR — Taipa Grande 2023); 4 HK partner stations extend VRS coverage
+**operator**:  DSCC — Direcção dos Serviços de Cartografia e Cadastro (Cartography and Cadastre
+               Bureau), Government of the Macao SAR
+**source**:    dscc.gov.mo; mosref.dscc.gov.mo
+**signals**:   GPS + GLONASS + BeiDou (BDS added 2021); recording interval 10 s; RINEX v3.02
+
+**date_added**: 2026-05-06
+
+MoSRef (Macao Satellite Positioning Reference Station Service) provides free NTRIP RTK
+(single-base and VRS / Network RTK), RINEX download (up to 3 months), and coordinate
+auto-computation. NTRIP introduced November 2012; BDS support added 2021. The four Macao
+stations are backed by Leica GR50 receivers; four HK partner stations (HKLT, HKSL, HKMW,
+HKNP) are included via a data-sharing agreement (since 2013), extending VRS coverage across
+the Pearl River Delta. Portal: mosref.dscc.gov.mo. DSCC states: "DSCC provides … the
+all-weather NTRIP RTK service to public for free of charge." Registration via online form;
+no supporting documents required. Standard NTRIP v1/v2 clients compatible.
+
+**missing**: confirm sourcetable response and mountpoint list from `mosref.dscc.gov.mo:2101`;
+verify whether sandbox IP range is blocked (government caster may restrict non-Macao IPs).
+
+---
+
 ## inacors — InaCORS (ID)
 
 **status**:    free
@@ -2863,6 +2894,69 @@ No free tier. No explicit eligibility restriction on subscription page.
 
 ---
 
+## omancorsnet — OmanCORSnet (OM)
+
+**status**:    restricted
+**date_added**: 2026-05-06
+**country**:   OM
+**type**:      physical-coord-vrs (Leica GNSS Spider / Spider Business Center)
+**host:port**: not publicly disclosed; issued post-registration via Spider Business Center
+**access**:    restricted; registration at `omancorsnet.gov.om/SBC/Account/Index`;
+               no confirmed hobbyist or individual tier; targets licensed surveying
+               professionals and government users
+**yearly_cost**: not publicly listed
+**stations**:  47 physical CORS distributed nationwide (installed 2016 by NSA)
+**operator**:  NSGIA — National Survey and Geospatial Information Authority
+               (successor to NSA — National Survey Authority; under Ministry of Defence)
+               Geoportal: `nsaomangeoportal.gov.om`
+**source**:    nsaomangeoportal.gov.om/en/oman-corsnet; omancorsnet.gov.om
+**signals**:   multi-constellation GNSS (exact mix not publicly confirmed)
+**datum**:     ONGD17 — Oman National Geodetic Datum 2017 (ITRF2014, epoch 2017.0)
+
+Forty-seven CORS installed by the National Survey Authority in 2016. Software platform
+is Leica GNSS Spider (Spider Business Center), consistent with VRS capability. Datum
+is ONGD17, replacing ONGD14; national geoid is OMANGEOID. The SBC login portal is
+reachable from external IPs but NTRIP caster port is not publicly documented. No
+confirmed individual/hobbyist registration tier; access appears gated to licensed
+surveyors and government contractors. IGS station MUSK (Muscat) is a separate
+EarthScope-archived observation stream, not an RTK service.
+
+Restricted — no public host:port; no hobbyist registration path confirmed.
+**missing**: confirm host:port and whether non-professional registration is possible;
+contact NSGIA via nsaomangeoportal.gov.om.
+
+---
+
+## qcors — QCORS (QA)
+
+**status**:    restricted
+**date_added**: 2026-05-06
+**country**:   QA
+**type**:      unknown (9-station network with TCP/IP data centre; VRS likely)
+**host:port**: not publicly disclosed; issued post-subscription via CGIS
+**access**:    restricted; application to CGIS required; no public self-service registration;
+               serves "government and private survey and mapping communities"
+**yearly_cost**: not publicly listed
+**stations**:  9 (connected via TCP/IP; ±2 cm horizontal, ±10 cm vertical claimed)
+**operator**:  CGIS — Centre for GIS, Ministry of Municipality (State of Qatar)
+               Portal: `gisqatar.org.qa`; GeoPortal: `geoportal.gisqatar.org.qa`
+**source**:    gisqatar.org.qa/en (CGIS Services page)
+**datum**:     QNSRS / QND95 (Qatar National Datum 1995)
+
+QCORS (Qatar Continuously Operating Reference Stations) was installed 2009 and
+commenced operations 2010 under the Centre for GIS, Ministry of Municipality.
+Nine stations connected via TCP/IP to a central data centre; described as providing
+"economical advantages against conventional GNSS surveying where two GPS units are
+necessary." No public self-registration or hobbyist tier documented. CGIS also
+operates a GeoPortal (geoportal.gisqatar.org.qa/qmape/) for GIS web mapping;
+the CORS service is separate and gated. No publicly known NTRIP host:port.
+
+Restricted — application-based; host:port not publicly disclosed; no individual tier.
+**missing**: confirm host:port, tariff, and whether non-professional registration is
+feasible; contact CGIS at `cgisinfo@gisqatar.org.qa` or +974 4426 6284.
+
+---
+
 ## rjgc_cors — RJGC CORS (JO)
 
 **status**:    restricted
@@ -3389,13 +3483,13 @@ TU Delft mirror: `gnss1.tudelft.nl:2101` — subset of stations, no TLS.
 **access**:    paid; username + password issued on activation; eHerkenning portal for
                NL legal entities; foreign users apply via contact form at nsgi.nl
 **registration**: https://nsgi.nl/referentiepunten-en-gnss-data/gnss-data/real-time-streams
-**yearly_cost**: €475/station/yr excl. BTW (~$520/yr) for 1–2 stations; volume to €95/station/yr for 10+ (2026 tariff)
+**yearly_cost**: €475/station/yr excl. BTW (~$538/yr) for 1–5 stations; volume to €95/station/yr for 21+ (2026 tariff, Tarievenregeling Kadaster BWBR0037196/2026-01-01)
 **operator**:  NSGI / Kadaster Nederland (`nsgi.nl`)
 
 NETPOS delivers raw reference station streams from the same ~30 AGRS.NL
 physically-positioned base stations, as an authenticated paid service.
-Priced per station per year (2026, excl. BTW): 1–2 stations €475/station,
-3–4 €380, 5–6 €285, 7–9 €190, 10+ €95. VAT-exempt. Not a VRS / network-RTK
+Priced per station per year (2026, excl. BTW): 1–5 stations €475/station,
+6–10 €380, 11–15 €285, 16–20 €190, 21+ €95. VAT-exempt. Not a VRS / network-RTK
 service — streams are single-base raw observations for users who compute their
 own corrections.
 
