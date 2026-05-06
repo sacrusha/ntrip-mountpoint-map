@@ -815,9 +815,11 @@ _Last updated: 2026-04-22._
 
 ### AX — Åland Islands (FI)
 
-**date_added**: 2026-04-28
+**date_added**: 2026-05-06
 
 - **Volunteer**: Centipede ~2 AX nodes (country code `ALA`). Small archipelago between Finland and Sweden; partial coverage.
+- **FINPOS (Finland NLS)**: Nominally covers Åland territory, but its real-time RTK service is restricted to research and testing use only — 3-month term grants, requires written justification. Free DGNSS (sub-metre) and RINEX raw data services are open to registered users. Not a hobbyist RTK option; see → FI entry and networks.md: `finpos`.
+- **Gap**: The two Centipede nodes are the only no-restriction centimetre-level RTK option in Åland. SWEPOS (Sweden, `swepos.lantmateriet.se:2101`) covers the nearest Swedish mainland (~200 km from Åland) but requires a paid subscription and coverage geometry is marginal at that distance.
 
 ### French overseas territories
 
@@ -1018,10 +1020,14 @@ similarly have no published coverage for these jurisdictions.
   Yacuiba; caster port 6060. Credentials issued by phone only — no self-service portal
   or published hostname. Pricing not listed publicly; Facebook page active as of
   2026-04-30 (website geoboliviasrl.info unreachable same date). → networks.md: `redgeo_bo`
+- **Commercial**: GEOEQUIPOS SRL Red CORS (`geoequipossrl.com/red-cors/`) — a second private
+  commercial network; mobile-payment friendly via QR codes in Bolivianos (≤500 Bs per
+  transaction). Host:port and pricing not publicly documented; contact via website.
 - **Volunteer**: rtk2go — 0 confirmed BO bases. Centipede — negligible.
 - **Gap**: no free public NTRIP for hobbyists. The government MARGEN-ROC service appears
   to delegate RTK corrections to GeoBolivia SRL commercially. RED-GEO is phone-subscription
-  only with unpublished pricing.
+  only with unpublished pricing. GEOEQUIPOS offers a second commercial option with QR-code
+  mobile payments.
 
 ### AR — Argentina
 
@@ -1034,19 +1040,30 @@ similarly have no published coverage for these jurisdictions.
 
 ### BR — Brazil
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-06
 
-- **Free government RTK**: RBMC-IP (IBGE, `gps-ntrip.ibge.gov.br:2101`, ~145 stations,
-  single-base) — free, gov.br signup, 5-station limit per user, 1,000 concurrent max. → networks.md: `rbmc_ip`
-- **Volunteer**: rtk2go ~19 BR bases, concentrated in São Paulo and southern states.
+- **Free government RTK**: RBMC-IP (IBGE, `gps-ntrip.ibge.gov.br:2101`, ~150 stations,
+  single-base) — free, gov.br signup, 5-station limit per user, 1,000 concurrent max.
+  Five new stations inaugurated December 2024 (Governador Valadares, Maceió, Januária,
+  Pinhais, Nova Friburgo). → networks.md: `rbmc_ip`
+- **Commercial**: geoRTK (geortk.com.br, launched September 2025) — claims largest RTK/PPK
+  network in Brazil, targeting 500 stations; BRL 10/day or BRL 79/week plans with 30-day
+  free trial. GeoPlus (geoplusbrasil.com) and RTKdata (rtkdata.com/br/, USD 40/month) also
+  operate commercial networks with national coverage claims.
+- **Volunteer**: rtk2go ~17 BR bases, concentrated in São Paulo and southern states.
 - **Gap**: RBMC-IP coverage is sparse in the Amazon basin and north-east interior; the 5-simultaneous-mountpoint cap is not a practical barrier for hobbyists but the gov.br account requirement adds a registration step.
 
 ### BZ — Belize
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-06
 
 - **Free government RTK**: none confirmed. The Surveys and Mapping Section (Ministry of Natural Resources, `naturalresources.gov.bz`) is responsible for horizontal and vertical control networks and supervises cadastral surveys; no fixed reference station network (CORS) or public NTRIP caster endpoint found. Belize's national spatial data infrastructure (BNSDI, `portal.bnsdi.gov.bz`) provides map data access but does not include a real-time GNSS correction service.
 - **Volunteer**: none. Zero BZ stations on rtk2go or Centipede.
+- **Gap**: no domestic RTK service. Cross-border reach from Mexico (INEGI CORS,
+  `ntrip.inegi.org.mx:2101`, free with registration) may cover the Corozal and Orange Walk
+  districts in northern Belize, and Guatemala's IGN CORS (`rtk.igntopo.gob.gt:2101`) may
+  extend into western Belize (Cayo District) — both unconfirmed for actual usable baselines
+  at those distances.
 
 ### CL — Chile
 
@@ -3108,7 +3125,7 @@ similarly have no published coverage for these jurisdictions.
 
 ### BI — Burundi
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-06
 
 - **Free government RTK**: none confirmed with a public NTRIP endpoint. IGEBU
   (Institut Géographique du Burundi, `igebu.bi`) is the national mapping agency
@@ -3116,11 +3133,12 @@ similarly have no published coverage for these jurisdictions.
   GNSS equipment and coordinate-transformation training under a JICA-supported
   project (technology transfer completed 2010). No public fixed reference station network (CORS) or NTRIP
   caster endpoint has been found; no BI station appears in the AFREF Operational
-  Data Centre. → networks.md: `igebu_bi`
+  Data Centre. National datum is still Arc 1960 (Clarke 1880 ellipsoid) — the geodetic
+  reference frame has not been modernised to a GNSS-based system. → networks.md: `igebu_bi`
 - **Volunteer**: none. Zero BI stations on rtk2go or Centipede.
-- **Gap**: no free RTK available in Burundi. The national geodetic infrastructure
-  is at raw-archive / benchmark level only; hobbyists must deploy a local base or
-  accept GNSS autonomous accuracy.
+- **Gap**: no free RTK available in Burundi. An RCMRD AFREF capacity-building workshop
+  (August 2024) included Burundi but announced no operational caster. Hobbyists must
+  deploy a local base or accept GNSS autonomous accuracy.
 
 ### RW — Rwanda
 

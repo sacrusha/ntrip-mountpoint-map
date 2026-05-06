@@ -244,11 +244,14 @@ Western Cape, KwaZulu-Natal clusters only.
 **type**:      single-base
 **access**:    free; gov.br signup; 5-station limit per user; 1,000 concurrent max
 **pipeline-access**: registration
-**stations**:  ~140
+**stations**:  ~150 (5 new stations inaugurated December 2024; stations also planned
+               at Lins/SP and Rosana/SP)
 **source**:    ibge.gov.br; gps-ntrip.ibge.gov.br
 **operator**:  IBGE — Instituto Brasileiro de Geografia e Estatística
 
-Alt IP: `170.84.40.52:2101`. 150 stations as of Dec 2024 (IBGE added 5 in Dec 2024).
+Alt IP: `170.84.40.52:2101`. Reached 150 stations after 5 new stations inaugurated
+December 2024 (Governador Valadares MG, Maceió AL, Januária MG, Pinhais PR,
+Nova Friburgo RJ).
 
 ---
 
