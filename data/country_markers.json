@@ -338,6 +338,20 @@
       "note": "Nationwide commercial RTK network (formerly TNT-TPI). Caster address disclosed after registration. Wartime-reduced rate."
     },
     {
+      "id": "kyivstar_rtk",
+      "name": "Kyivstar mAgri.RTK",
+      "region": "Ukraine (nationwide)",
+      "country": "UA",
+      "lat": 49.8,
+      "lon": 31.5,
+      "tier": "paid",
+      "vrs": true,
+      "access": "paid",
+      "registration": "https://kyivstar.ua/business/products/geodesiya",
+      "yearly_cost": "17,700 UAH/yr (~$430/yr)",
+      "note": "97 stations, Trimble VRS + Nearest; requires Kyivstar contract. xFill Premium continuity. Pauses during air-raid alerts."
+    },
+    {
       "id": "gpsbru",
       "name": "GPSBru / AGN",
       "region": "Belgium (Brussels)",
@@ -647,9 +661,9 @@
       "tier": "paid",
       "vrs": true,
       "access": "paid",
-      "yearly_cost": "9,000 SEK/yr (~$850/yr)",
-      "registration": "https://swepos.lantmateriet.se",
-      "note": "A free DGNSS tier exists but sub-metre only — out of scope for cm-grade work."
+      "yearly_cost": "12,000 SEK/yr (~$1,050/yr)",
+      "registration": "https://www.lantmateriet.se/en/geodata/our-products/product-list/swepos-network-rtk/",
+      "note": "A free DGNSS tier exists but sub-metre only — out of scope for cm-grade work. 1,000-min pot or 90-day block also available at 5,000 SEK."
     },
     {
       "id": "sirent",

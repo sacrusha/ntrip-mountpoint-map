@@ -389,12 +389,13 @@ _Last updated: 2026-04-22._
 
 ### SI — Slovenia
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-06
 
 - **Free government RTK**: none. SIGNAL (GURS — Surveying and Mapping Authority,
-  `gu-signal.si`, 16 stations, VRS) — €829.44/yr (~$905); early-discount €622.08/yr
-  (~$680). → networks.md: `signal`
-- **Volunteer**: rtk2go ~4 SI bases, Centipede ~5 SI nodes.
+  `178.172.26.131:8080` via gu-signal.si, 16 stations, VRS) — €829.44/yr (~$905);
+  early-discount €622.08/yr (~$680, if contracted before 2025-07-31); pay-per-use
+  €0.12/min. Public bodies and students free with documentation. → networks.md: `signal`
+- **Volunteer**: rtk2go 4 SI bases, Centipede 5 SI nodes.
 - **Gap**: no free government NTRIP; volunteer bases provide ad-hoc coverage; SIGNAL
   is the only nationwide option but at a professional subscription price.
 
@@ -514,26 +515,28 @@ _Last updated: 2026-04-22._
 
 ### PL — Poland
 
-**date_added**: 2026-04-28
+**date_added**: 2026-05-06
 
-- **Free government RTK**: ASG-EUPOS (GUGiK, `system.asgeupos.pl:2101`, 130+
+- **Free government RTK**: ASG-EUPOS (GUGiK, `system.asgeupos.pl:2101`, ~130
   stations, VRS) — free since Oct 2022; admin approval 1–2 working days.
+  Also ports :8080/:8082/:8083/:8086 for RTN/VRS variants (GPS+GLO+GAL+BDS).
   → networks.md: `asg_eupos`
-- **Volunteer**: rtk2go ~51 PL bases (third-largest national cluster on rtk2go).
+- **Volunteer**: rtk2go 53 PL bases (third-largest national cluster on rtk2go).
 - **Gap**: ASG-EUPOS is VRS (0 physical pins); NRTK polygon deferred. rtk2go offers
   real physical pins as a complement.
 
 ### SE — Sweden
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-06
 
-- **Free government RTK**: none for RTK. SWEPOS (Lantmäteriet, `dgnss-swepos.lm.se:2101`
-  for DGNSS tier, VRS) — DGNSS tier free with account (free registration); RTCM 2.3;
-  ~0.2 m horizontal — sub-metre, out of scope. Network RTK subscription ~9,000 SEK/yr
-  (~$850/yr); expensive for a hobbyist. → networks.md: `swepos`
-- **Volunteer**: rtk2go ~29 SE bases, Centipede ~1 SE node. Thin relative to
-  Sweden's large area; mostly in the south.
-- **Paid only**: SWEPOS Network RTK ~9,000 SEK/yr (~$850/yr).
+- **Free government RTK**: none for RTK. SWEPOS (Lantmäteriet, `nrtk-swepos.lm.se:80`
+  or `:8500`, VRS) — free DGNSS tier sub-metre only (out of scope for cm-grade work;
+  host `dgnss-swepos.lm.se:2101`). Network RTK subscription 12,000 SEK/yr (~$1,050/yr)
+  for 1–3 devices; 1,000-min pot or 90-day block available; expensive for a hobbyist.
+  → networks.md: `swepos`
+- **Volunteer**: rtk2go 28 SE bases, Centipede 1 SE node. Thin relative to Sweden's
+  large area; mostly in the south.
+- **Paid only**: SWEPOS Network RTK 12,000 SEK/yr (~$1,050/yr) for 1–3 subscriptions.
 - **Gap**: no free cm-accuracy NTRIP; volunteer bases cover southern Sweden adequately
   but thin out north of ~60°N.
 
@@ -754,16 +757,16 @@ _Last updated: 2026-04-22._
 
 ### RO — Romania
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-06
 
 - **Free government RTK**: ROMPOS (ANCPI — Agenția Națională de Cadastru și Publicitate
-  Imobiliară, `rtk.rompos.ro:2101`, VRS, ~80+ permanent fixed reference stations (CORS)) — paid
-  credit-based; ~€169/yr (~$183) — modest annual fee, affordable for a hobbyist. Registration via
-  `app.rompos.ro` (ANCPI account required; self-service at `epay.ancpi.ro`).
-  → networks.md: `rompos`
-- **Volunteer**: Centipede ~10 ROM/ROU nodes, rtk2go ~7 ROU bases. Modest coverage
+  Imobiliară, `rtk.rompos.ro:2101`, VRS, 86 permanent CORS stations) — paid; 1,000 RON/yr
+  (~€200/yr, VAT included; monthly: 100 RON/month) under ANCPI Order 16/2019 tariff.
+  Modest fee, affordable for a hobbyist. Registration via `app.rompos.ro`
+  (ANCPI account required; self-service at `epay.ancpi.ro`). → networks.md: `rompos`
+- **Volunteer**: Centipede 8 ROM + 2 ROU nodes, rtk2go 0 ROU bases. Modest coverage
   concentrated near major cities.
-- **Gap**: no free RTK; ROMPOS is paid-affordable at ~€169/yr and is the practical
+- **Gap**: no free RTK; ROMPOS is paid-affordable at ~€200/yr and is the practical
   option for hobbyists needing national-scale coverage.
 
 ### RS — Serbia
@@ -846,7 +849,7 @@ _Last updated: 2026-04-22._
 
 ### UA — Ukraine
 
-**date_added**: 2026-04-30
+**date_added**: 2026-05-06
 
 - **Context**: No government-run national RTK caster exists. UA-EUPOS was conceived as
   Ukraine's contribution to the pan-European EUPOS standard (same framework as Poland's
@@ -866,6 +869,10 @@ _Last updated: 2026-04-22._
     — 21,120–23,670 UAH/yr (~$515–577/yr) full national; regional packs (West/Karpaty/
     South/East) ~13,000–13,500 UAH/yr (~$317–329/yr); wartime discount packages for eastern
     and southern oblasts; Leica Spider VRS platform. → networks.md: `ua_system_net`
+  - **Kyivstar mAgri.RTK** (Kyivstar / Veon, `rtk.kyivstar.ua:2101`, 97 stations, nationwide,
+    VRS + Nearest) — GEO 365: 17,700 UAH/yr (~$430/yr); monthly/weekly/daily plans also
+    available; 7-day try-and-buy (UAH 2 trial). Requires Kyivstar contract subscription.
+    Trimble platform + xFill Premium for continuity. → networks.md: `kyivstar_rtk`
   - **ZAKPOS** (ДП "Закарпатгеодезцентр", `195.16.76.194:2102`, nationwide, VRS zone-based)
     — 15,000 UAH/yr (~$366/yr) wartime reduced tariff (April 2025); hub at Mukachevo
     (Zakarpattia, far west); pauses during air-raid alerts; service resumed after martial-law
@@ -875,13 +882,14 @@ _Last updated: 2026-04-22._
     → networks.md: `rtkhub`
   - **NGCNET** (NGC Ltd) — DNS not resolving April 2026; likely defunct. → networks.md: `ngcnet`
 
-- **Volunteer**: rtk2go ~3 UA bases; status uncertain. Zero Centipede nodes in Ukraine.
+- **Volunteer**: rtk2go 0 UA bases; Centipede 0 UA nodes. Zero volunteer coverage confirmed.
 
 - **Gap**: No free RTK anywhere in Ukraine. UA-System.NET is the largest and most modern
   (200+ stations, Leica VRS, warzone discount plans); RTK HUB is the most affordable
-  (~$256/yr) but does not publish its endpoint. Active front-line jamming and spoofing
-  further degrade signal quality in conflict zones. A self-operated base station is the
-  only reliable option in areas of active conflict.
+  (~$256/yr) but does not publish its endpoint; Kyivstar mAgri.RTK (~$430/yr) offers
+  Starlink-backed continuity. Active front-line jamming and spoofing further degrade
+  signal quality in conflict zones. A self-operated base station is the only reliable
+  option in areas of active conflict.
 
 ---
 
@@ -1874,17 +1882,17 @@ similarly have no published coverage for these jurisdictions.
 
 ### SG — Singapore
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-06
 
-- **Free government RTK**: none. SiReNT (Singapore Land Authority, `203.127.20.71:2101`,
-  VRS network solution) — paid; SGD $107/month per receiver (~SGD $1,284/yr, ~$960/yr).
-  3-day trial available (one per month) with CorpPass or SingPass login — SingPass requires
-  Singapore residency (NRIC/FIN); CorpPass requires a registered Singapore entity. Non-resident
-  hobbyists have no viable access path without a Singapore corporate presence. Registration at
-  `app.sla.gov.sg/sirent`. → networks.md: `sirent`
-- **Volunteer**: negligible (city-state). Zero SG stations on rtk2go or Centipede.
-- **Gap**: SiReNT is well-engineered for a city-state (~8 reference stations) but priced and
-  credentialled for professional surveyors; foreign hobbyists are effectively excluded.
+- **Free government RTK**: none. SiReNT (Singapore Land Authority, `199.184.151.36:2101`
+  [current; older published IP `203.127.20.71:2101`], VRS network solution, Trimble Pivot) —
+  paid; SGD 107/month per receiver (~SGD 1,284/yr, ~$960/yr). 3-day trial available (one per
+  month) with SingPass or CorpPass — SingPass requires a Singapore FIN (foreign residents can
+  apply via SFA); CorpPass requires a registered Singapore entity. Non-resident visitors have
+  no viable access path. Registration at `app.sla.gov.sg/sirent`. → networks.md: `sirent`
+- **Volunteer**: none. Zero SG stations on rtk2go or Centipede.
+- **Gap**: SiReNT covers Singapore's 733 km² with ~8 reference stations but is priced and
+  credentialled for professional use; foreign hobbyists are effectively excluded.
 
 ### TW — Taiwan
 
@@ -3105,15 +3113,18 @@ similarly have no published coverage for these jurisdictions.
 
 ### SD — Sudan
 
-**date_added**: 2026-04-28
+**date_added**: 2026-05-06
 
-- **Free government RTK**: none. Sudan Survey Authority (SSA) planned a GNSS fixed reference station network (CORS)
-  as part of AFREF participation (55 station sites identified) but no
-  operational public caster has been found. Ongoing armed conflict (April 2023–)
-  severely disrupts civil infrastructure; status unknown.
+- **Free government RTK**: none. Sudan Survey Authority (SSA) planned a GNSS CORS
+  network as part of AFREF participation (55 station sites identified in geodetic
+  network design studies) but no operational public caster has ever been deployed.
+  Ongoing armed conflict (April 2023–, SAF vs. RSF) caused severe infrastructure
+  destruction in Khartoum; SSA headquarters status unknown. GNSS interference
+  reported in Port Sudan and Bab al-Mandab area (UKMTO advisories, 2024–2025).
 - **Volunteer**: none. Zero SD stations on rtk2go or Centipede.
 - **Gap**: no free RTK for hobbyists. Do not pursue until conflict ends and
-  infrastructure is confirmed operational.
+  infrastructure is confirmed operational. A local base station is the only
+  viable approach.
 
 ### SL — Sierra Leone
 
@@ -3285,15 +3296,16 @@ similarly have no published coverage for these jurisdictions.
 
 ### UG — Uganda
 
-**date_added**: 2026-05-02
+**date_added**: 2026-05-06
 
 - **Free government RTK**: UGRF CORS (Ministry of Lands, Housing & Urban
   Development) — 78 stations (40 government + 38 private), VRS and single-base.
   Free with registration; endpoint `ugrf.mlhud.go.ug:2101`, sourcetable publicly
-  accessible (curl-confirmed 2026-05-02). Single-base mountpoints: ENTB, GULU,
-  SRTI, MBRA, Nearest (auto-select). Network-RTK mountpoints: I-Max, VRS.
-  Register at `ugrf.mlhud.go.ug/SBC` (Leica Spider Business Centre portal).
-  Now in pipeline.
+  accessible (44 mountpoints confirmed 2026-05-06). Single-base stations include
+  ENTB (Entebbe), GULU, JING (Jinja), MBAL (Mbarara), FPRT (Fort Portal), ARUA,
+  KBLE (Kabale), LIRA, MRTO (Moroto). Network-RTK mountpoints: VRSRTCM3,
+  MAXRTCM3, iMAX_RTCM, FKP_RTCM. Register at `ugrf.mlhud.go.ug/SBC` (Leica
+  Spider Business Centre portal). In pipeline.
 - **Volunteer**: 1 AUSCORS station (MBAR00UGA0, Mbarara) via EarthScope/AUSCORS;
   raw observations under non-commercial NULA — functional for RTK within range.
 - **Commercial**: EagleCORS (`eaglecors.com`) — separate commercial service, out of scope.

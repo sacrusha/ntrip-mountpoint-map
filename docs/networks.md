@@ -1336,6 +1336,32 @@ of the three major Ukrainian commercial networks.
 
 ---
 
+## kyivstar_rtk — Kyivstar mAgri.RTK (UA)
+
+**status**:    paid
+**date_added**: 2026-05-06
+**country**:   UA
+**host:port**: `rtk.kyivstar.ua:2101` (Trimble Ntrip Caster 5.2; confirmed 2026-05-06)
+**type**:      physical-coord-vrs (VRS + Nearest; Trimble Pivot Platform)
+**access**:    paid; requires active Kyivstar business contract subscription; individual
+               subscriptions available; Starlink variant (mAgri.RTK 365 StarLink)
+               for areas with unstable mobile connectivity
+**registration**: `https://kyivstar.ua/business/products/geodesiya`
+**yearly_cost**: 17,700 UAH/yr (~$430/yr) GEO 365; monthly 5,550 UAH (~$135/mo);
+               7-day 1,800 UAH; daily 450 UAH; 7-day trial UAH 2
+**stations**:  97 physical base stations (Trimble equipment; nationwide monitoring 24/7)
+**operator**:  Kyivstar (Veon Group — Ukraine's largest mobile operator)
+**source**:    kyivstar.ua/business/products/geodesiya (observed 2026-05-06)
+
+Sourcetable confirmed 2026-05-06: 14+ mountpoints including VRS (RTCM3Net), VRS_old
+(RTCM 3.1), Nearest_MSM5, Nearest_MSM7, Nearest (RTCM 3.4 MSM4), UCS2000 zone mounts,
+MSK local coordinate system mounts (MSK_80, MSK_05, MSK_07, MSK_12, MSK_14, MSK_18,
+MSK_21). GPS+GLO+GAL+BDS+QZS. Uses xFill Premium for signal continuity during outages.
+All networks pause during air-raid alerts in affected oblasts. Coverage in occupied and
+front-line territories severely degraded.
+
+---
+
 ## ngcnet — NGCNET (UA)
 
 **status**:    rejected
@@ -1698,18 +1724,24 @@ is under the $200/yr cutoff. Online credit-card payment; no licensing check docu
 ## rompos — ROMPOS (RO)
 
 **status**:    paid-affordable
-**date_added**: 2026-04-29
+**date_added**: 2026-05-06
 **country**:   RO
-**type**:      VRS (network RTK)
-**host:port**: `rtk.rompos.ro:2101` (also `93.113.10.123:2101`); port 2105 also listed
+**type**:      physical-coord-vrs (VRS; mountpoints include RO_VRS_3.1)
+**host:port**: `rtk.rompos.ro:2101` (also `93.113.10.123:2101`); port 2105 for
+               single-base product
 **access**:    paid; ANCPI account required; self-service registration at epay.ancpi.ro;
                rover managed via app.rompos.ro
-**registration**: `app.rompos.ro` (account creation at `epay.ancpi.ro`)
-**yearly_cost**: ~€169/yr (~$183) — under $200/yr cutoff; monthly subscription also
-               available; pricing set by ANCPI Order No. 16/2019
-**stations**:  80+ permanent CORS stations (VRS output)
-**source**:    rompos.ro; ancpi.ro
+**registration**: `https://app.rompos.ro` (account creation at `https://epay.ancpi.ro`)
+**yearly_cost**: 1,000 RON/yr (~€200/yr, VAT included); monthly: 100 RON/month (~€20/month);
+               pricing set by ANCPI Order No. 16/2019 (in force since 2019-02-04)
+**stations**:  86 permanent CORS stations (ETRS89); GPS+GLONASS+Galileo
+**source**:    rompos.ro; ancpi.ro (ANCPI — Agenția Națională de Cadastru și Publicitate Imobiliară)
 **operator**:  ANCPI — Agenția Națională de Cadastru și Publicitate Imobiliară
+
+Caster confirmed live 2026-05-06 (SOURCETABLE 200 OK). Accuracy ±3 cm stated.
+Payment via epay.ancpi.ro (card) or bank transfer (IBAN RO57TREZ701501503X017556);
+activation within 1 business day. At ~€200/yr this is just at the hobbyist cutoff —
+affordable for most EU-adjacent users.
 
 ---
 
@@ -1847,13 +1879,23 @@ IGN SPTR service (`ergnss-tr.ign.es:2101`) as first option.
 ## signal — SIGNAL (SI)
 
 **status**:    paid
-**host:port**: host:port not publicly listed (provided post-registration via gu-signal.si)
-**type**:      VRS (network RTK)
-**access**:    paid; registration at gu-signal.si
-**yearly_cost**: €829.44/yr (~$905); €622.08 early-discount (~$680)
-**stations**:  16 permanent CORS stations
-**source**:    gu-signal.si
+**date_added**: 2026-05-06
+**country**:   SI
+**host:port**: `178.172.26.131:8080` (Trimble Ntrip Caster 5.2; confirmed 2026-05-06)
+**type**:      physical-coord-vrs (VRS, MAC/MAX, individual station streams)
+**access**:    paid; registration requires signed contract posted to Geodetski inštitut
+               Slovenije; public bodies and students free with documentation
+**registration**: `https://gu-signal.si/postopek-registracije/`
+**yearly_cost**: €829.44/yr (~$905/yr) excl. VAT; €622.08 early-discount (~$680/yr);
+               pay-per-use €0.12/connected minute excl. VAT
+**stations**:  16 Slovenian CORS + cross-border (AT, HR, IT, HU adjacents accessible)
+**source**:    gu-signal.si (GURS — Geodetska uprava Republike Slovenije)
 **operator**:  GURS — Geodetska uprava Republike Slovenije (Surveying and Mapping Authority)
+
+Sourcetable confirmed at 178.172.26.131:8080 (2026-05-06). VRS mountpoints: VRSSLO(2_3),
+VRSSLO(3_1), VRSMSM5, VRSCMRx, VRSCMRp. MAC: MacSLO. Also individual station
+streams. GPS+GLO (RTCM 2.3/3.1); GPS+GLO+GAL+BDS (CMRx, MSM5). Annual Slovenian VAT 22%
+additional. Registration requires postal mail of signed contract — allow ~2 business days.
 
 ---
 
@@ -1895,9 +1937,21 @@ network RTK.
 ## swepos — SWEPOS Network RTK (SE)
 
 **status**:    paid
-**access**:    paid; free DGNSS tier sub-metre only (out of scope)
-**yearly_cost**: ~9,000 SEK/yr (~$850)
-**source**:    lantmateriet.se
+**date_added**: 2026-05-06
+**country**:   SE
+**type**:      vrs-only
+**host:port**: `nrtk-swepos.lm.se:80` (also port 8500); DGNSS tier: `dgnss-swepos.lm.se:2101`
+**access**:    paid; free DGNSS tier sub-metre only (out of scope for cm-grade RTK)
+**registration**: `https://www.lantmateriet.se/en/geodata/our-products/product-list/swepos-network-rtk/`
+**yearly_cost**: 12,000 SEK/yr (~$1,050/yr) for 1–3 subscriptions; 90-day block 5,000 SEK; 1,000-min pot 5,000 SEK (valid 12 months)
+**stations**:  ~480 reference stations nationwide (SWEREF 99 / ETRS89)
+**source**:    lantmateriet.se (Lantmäteriet — Swedish National Land Survey)
+**operator**:  Lantmäteriet — Swedish National Land Survey
+
+Confirmed 12,000 SEK/yr from official Lantmäteriet subscription page 2026-05-06. Earlier
+entries referencing ~9,000 SEK were stale. 10-day free trial for new customers. Nordic
+add-on: Finland +7,000 SEK/yr, Norway (CPOS) +5,000 SEK/yr. IoT/M2M SIM option for
+annual subscribers. RTCM 3.4 MSM4 (GPS+GLONASS+Galileo+BeiDou) via MSM_GNSS mountpoint.
 
 ---
 
@@ -2071,19 +2125,22 @@ Centipede ~9 IE).
 ## sirent — SiReNT (SG)
 
 **status**:    paid
-**date_added**: 2026-04-29
+**date_added**: 2026-05-06
 **country**:   SG
-**type**:      VRS (network solution — RTK, DGNSS, PP On-Demand)
-**host:port**: `203.127.20.71:2101`
-**access**:    paid; 3-day trial (one per calendar month) with CorpPass or SingPass
-               login — SingPass requires Singapore residency (NRIC/FIN); CorpPass
-               requires a registered Singapore entity. Non-resident hobbyists have
-               no viable access path without a Singapore corporate presence.
-**registration**: `app.sla.gov.sg/sirent`
-**yearly_cost**: SGD $107/month per receiver (~SGD $1,284/yr, ~$960/yr); volume
-               tiers for 10–88 accounts at SGD $64.20 and SGD $32.10/month
-**stations**:  ~8 physical reference stations covering the city-state
-**source**:    sla.gov.sg/regulatory/property-boundaries/survey-reference-system
+**type**:      physical-coord-vrs (VRS; Trimble Pivot Platform 4.7)
+**host:port**: `199.184.151.36:2101` (confirmed 2026-05-06; older published IP:
+               `203.127.20.71:2101`)
+**access**:    paid; 3-day trial (one per calendar month) with SingPass or CorpPass
+               login — SingPass requires Singapore NRIC/FIN (foreign residents may
+               apply for Singpass Foreign User Account via SFA); CorpPass requires a
+               Singapore-registered entity. Non-resident visitors have no viable
+               access path.
+**registration**: `https://app.sla.gov.sg/sirent`
+**yearly_cost**: S$107/month (~S$1,284/yr, ~$960/yr); S$64.20/month (10–50 accounts);
+               S$32.10/month (51+ accounts); one-time S$32.10 admin fee
+**stations**:  ~8 physical reference stations (SLYG, SNPT, SNUS, SNYU, SRPT confirmed)
+**source**:    app.sla.gov.sg/sirent (SLA — Singapore Land Authority)
+**operator**:  SLA — Singapore Land Authority
 
 ---
 
