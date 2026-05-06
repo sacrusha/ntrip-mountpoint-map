@@ -244,11 +244,14 @@ Western Cape, KwaZulu-Natal clusters only.
 **type**:      single-base
 **access**:    free; gov.br signup; 5-station limit per user; 1,000 concurrent max
 **pipeline-access**: registration
-**stations**:  ~140
+**stations**:  ~150 (5 new stations inaugurated December 2024; stations also planned
+               at Lins/SP and Rosana/SP)
 **source**:    ibge.gov.br; gps-ntrip.ibge.gov.br
 **operator**:  IBGE — Instituto Brasileiro de Geografia e Estatística
 
-Alt IP: `170.84.40.52:2101`. 150 stations as of Dec 2024 (IBGE added 5 in Dec 2024).
+Alt IP: `170.84.40.52:2101`. Reached 150 stations after 5 new stations inaugurated
+December 2024 (Governador Valadares MG, Maceió AL, Januária MG, Pinhais PR,
+Nova Friburgo RJ).
 
 ---
 
@@ -347,17 +350,23 @@ Map shows physical station pins.
 ## ergnss — ERGNSS (ES)
 
 **status**:    free
-**host:port**: `ergnss-ip.ign.es:2101`
+**host:port**: `ergnss-ip.ign.es:2101` (mainland + Balearics)
+**host:port (Canaries)**: `ergnss-tr.ign.es:2101` (network solutions), `:2102` (single-station)
 **type**:      physical-coord-vrs
-**access**:    free; register at ergnss.ign.es/gnuserportal/ (immediate); CC-compatible
+**access**:    free; register at ergnss.ign.es/gnuserportal/ (immediate); CC-compatible;
+               max 10 simultaneous connections per account
 **pipeline-access**: registration
-**stations**:  ~128
+**stations**:  ~272 total (~120 mainland + ~15–16 Canary Islands SPTR sub-service)
 **source**:    ergnss.ign.es (IGN — Instituto Geográfico Nacional)
 **operator**:  IGN — Instituto Geográfico Nacional
 **licence**:   Attribution required per Orden FOM/2807/2015
 
-~120 physical stations. GPS+GLO+GAL+BDS. Attribution to IGN required per
-Orden FOM/2807/2015. RAP (Andalucía) supplements in the south; separate signup.
+~272 stations total. GPS+GLO+GAL+BDS. Attribution to IGN required per Orden FOM/2807/2015.
+RAP (Andalucía) supplements in the south; separate signup. Canary Islands served by SPTR
+sub-system at `ergnss-tr.ign.es`; recommended mountpoint `CERCANA3M` (nearest-station
+mode, RTCM 3.2 MSM4, automatic failover) — VRS network-RTK solutions less reliable over
+archipelago geometry. REGCAN95 coordinate update for all Canaries stations: 2024-02-01.
+~12,000 registered users as of Jan 2024 (~60% agricultural sector).
 
 ---
 
@@ -379,6 +388,37 @@ Migrated to `ntrip.geodetic.gov.hk` Jun 2023; old `www.geodetic.gov.hk` domain
 for NTRIP decommissioned. Accounts inactive 12+ months are terminated.
 Raw TCP (NTRIP 1.0) fallback required in fetcher — responds `SOURCETABLE 200 OK`,
 not HTTP.
+
+---
+
+## mosref — MoSRef (MO)
+
+**status**:    free
+**host:port**: `mosref.dscc.gov.mo:2101`
+**type**:      physical-coord-vrs
+**access**:    free; register at mosref.dscc.gov.mo; no professional credentials required;
+               no Macao residency required
+**pipeline-access**: registration
+**stations**:  4 (FOMO — Macao Peninsula 2002; COAL — Coloane 2006; UMAC — Hengqin Island 2016;
+               TAGR — Taipa Grande 2023); 4 HK partner stations extend VRS coverage
+**operator**:  DSCC — Direcção dos Serviços de Cartografia e Cadastro (Cartography and Cadastre
+               Bureau), Government of the Macao SAR
+**source**:    dscc.gov.mo; mosref.dscc.gov.mo
+**signals**:   GPS + GLONASS + BeiDou (BDS added 2021); recording interval 10 s; RINEX v3.02
+
+**date_added**: 2026-05-06
+
+MoSRef (Macao Satellite Positioning Reference Station Service) provides free NTRIP RTK
+(single-base and VRS / Network RTK), RINEX download (up to 3 months), and coordinate
+auto-computation. NTRIP introduced November 2012; BDS support added 2021. The four Macao
+stations are backed by Leica GR50 receivers; four HK partner stations (HKLT, HKSL, HKMW,
+HKNP) are included via a data-sharing agreement (since 2013), extending VRS coverage across
+the Pearl River Delta. Portal: mosref.dscc.gov.mo. DSCC states: "DSCC provides … the
+all-weather NTRIP RTK service to public for free of charge." Registration via online form;
+no supporting documents required. Standard NTRIP v1/v2 clients compatible.
+
+**missing**: confirm sourcetable response and mountpoint list from `mosref.dscc.gov.mo:2101`;
+verify whether sandbox IP range is blocked (government caster may restrict non-Macao IPs).
 
 ---
 
@@ -1483,25 +1523,50 @@ sourcetable not publicly accessible). Confirmed alive 2026-05-02.
 **status**:    free
 **host:port**: not publicly confirmed
 **type**:      unknown
-**access**:    intended free (IGVSB government service)
-**stations**:  ~8 listed on current IGVSB website (`igvsb.gob.ve/servicio/15`,
-               2026-04-30); 27 NTRIP-capable out of 29 permanent as of 2012
-               SIRGAS bulletins
+**access**:    intended free (IGVSB government service; Stonex Venezuela advertises
+               free NTRIP for RTK equipment users via IGVSB)
+**stations**:  ~8 listed on IGVSB website; 27 NTRIP-capable out of 29 permanent as
+               of 2012 SIRGAS bulletins
 **source**:    igvsb.gob.ve (IGVSB — Instituto Geográfico de Venezuela Simón Bolívar);
-               SIRGAS Bol15/16/17 (~2010–2012, NTRIP setup documentation)
+               SIRGAS Bol15/16/17; SIRGAS Americas Facebook (December 2025)
+**date_added**: 2026-05-06
 
 Maracaibo (MARA) was the first REMOS station to stream NTRIP corrections experimentally
-(Oct 2008); plans to bring remaining stations online were unclear post-2018. No public
-host:port or registration portal confirmed. SIRGAS bulletins (Bol15–Bol17) documented
-installation of NTRIP server capability at 27 of 29 stations by ~2012 and referenced a
-primary caster in a Venezuelan government datacenter plus a planned mirror, but neither
-hostname was ever published. The BKG/RTCM-NTRIP global broadcaster registry (last updated
-2024-01-30) contains no Venezuela/IGVSB entry. The igvsb.gob.ve website was reachable on
-2026-04-30 and the REMOS service page (`/servicio/15`) confirmed 8 current stations at
-Puerto Ayacucho, Barinas, Caracas, Coro, Barquisimeto, Maturín, and Maracaibo; no
-NTRIP caster link or registration portal appeared anywhere on the site. Working hypothesis:
-the caster was set up for internal/institutional use and was never made publicly accessible,
-and continuity may have been affected by Venezuela's infrastructure situation post-2018.
+(Oct 2008). No public host:port or registration portal confirmed. SIRGAS bulletins
+(Bol15–Bol17) documented NTRIP server capability at 27 of 29 stations by ~2012 but
+never published a hostname. December 2025: IGVSB reported progress integrating CORS
+stations into the SIRGAS-RT real-time caster (SIRGAS Americas Facebook post). The
+BKG/RTCM-NTRIP global broadcaster registry (last updated 2024-01-30) contains no
+Venezuela/IGVSB entry. No public NTRIP caster link or registration portal found on
+igvsb.gob.ve. GPS jamming was reported around Venezuelan territory September–December
+2025 (FAA advisory MAIQUETIA FIR, November 2025–February 2026). Infrastructure
+degradation post-2018 documented in January 2026 Geo Week News article.
+
+---
+
+## acnovo_ve — Acnovo NTRIP (VE)
+
+**status**:    weird
+**date_added**: 2026-05-06
+**country**:   VE — Venezuela
+**type**:      single-base
+**host:port**: not publicly listed; credentials (host, port, username, password) delivered
+               post-registration via acnovo.net
+**access**:    paid; ~USD 20 per subscription period (billing cycle unclear — possibly
+               monthly or per-session; promotional coupon codes advertised); register at
+               acnovo.net / cursos.acnovo.net
+**stations**:  unconfirmed count; website claims 24/7 nationwide base stations
+**source**:    acnovo.net (confirmed live, last modified 2025-07-01); cursos.acnovo.net
+**operator**:  Acnovo (private commercial; also brands as acnovo.com)
+
+Acnovo is a private commercial NTRIP correction provider in Venezuela, operating a grid
+of base stations with RTCM 3.x output compatible with RTK receivers and drones. No public
+sourcetable URL confirmed; credentials are disclosed only after subscription. Billing cycle
+is not clearly stated — the training portal (cursos.acnovo.net) lists "SERVICIO GNSS NTRIP
+EXPRESS" at USD 20 with a promotional coupon that may reduce the cost to zero (validity
+unclear). Effective yearly cost therefore unconfirmed.
+`weird` status: real commercial NTRIP service in a country with no confirmed free option;
+annual cost cannot be established from public sources.
 
 ---
 
@@ -1706,6 +1771,35 @@ no confirmed path; Chinese business licence likely required for commercial use.
 ## Paid — over cutoff or structurally restricted
 
 Brief entries only.
+
+---
+
+## grafcan_repcan — GRAFCAN REPCAN (ES-Canarias)
+
+**status**:    paid
+**country**:   ES (Canary Islands sub-region)
+**type**:      physical-coord-vrs (RTCM 3.2 MSM5; CMR+/RTCM 2.3 on SNMG and TIAS)
+**host:port**: `195.53.241.146:2101` (also `gnss.grafcan.es`)
+**access**:    paid; annual fee per device/receiver — price not publicly listed;
+               purchase via tiendavirtual.grafcan.es (Tienda Virtual → Varios)
+               Free for public administrations with active SITCAN contract.
+               IGIC (7% — Canary Islands VAT rate) applies.
+**yearly_cost**: not publicly listed (contact datos@grafcan.com)
+**registration**: https://pre-web.grafcan.es/servicios/red-estaciones-gnss/alta-gnss/
+**stations**:  20 (AGUI, ALDE, ALJR, ANTI, ARGU, FRON, GRAF, HRIA, LIVA, MAZO,
+               MORJ, OLIV, SNMG, STEI, STTE, TERR, TIAS, TRLJ, VHMO, YAIZ)
+**operator**:  Cartografía de Canarias S.A. (GRAFCAN)
+**source**:    grafcan.es/servicios/red-estaciones-gnss/
+
+**date_added**: 2026-05-06
+
+Regional paid network for the Canary Islands. Recommended mountpoint: `CERCANA3M`
+(nearest station, automatic failover) or `GRAF3M` — network-RTK solutions are
+less reliable over archipelago geometry; nearest-single-station mode is the
+operator recommendation. Free RINEX archive for all 20 stations at
+`gnss.grafcan.es` (no account required). Hardware updated January 2024;
+REGCAN95 coordinate update applied 2024-02-01. Hobbyists should use the free
+IGN SPTR service (`ergnss-tr.ign.es:2101`) as first option.
 
 ---
 
@@ -2186,6 +2280,61 @@ contract with Solitech.
 
 ---
 
+## moldpos — MOLDPOS (MD)
+
+**status**:    paid
+**date_added**: 2026-05-06
+**country**:   MD
+**type**:      physical-coord-vrs
+**host:port**: `185.108.183.29:8080` (Leica Spider; non-standard port 8080)
+**access**:    paid subscription; registration via SBC portal
+               `moldpos.ingeocad.md/SBC/Account/Register`; free test zones
+               available without subscription (mountpoints FZUTM, FZUASM, FZMA,
+               FZINGEOCAD, FZCDEIC; credentials `moldpos` / `moldpos`)
+**yearly_cost**: MDL tariff schedule not published online; contact via
+                 `ingeocad.md` for current rates
+**stations**:  10+ (launched with 10 in 2011; 5 additional Leica Spider licences
+               procured 2025 for expansion)
+**operator**:  S.E. INGEOCAD under Agency for Geodesy, Cartography and
+               Cadastre (AGCC), `agcc.gov.md`
+**registration**: http://moldpos.ingeocad.md/SBC/Account/Register
+
+MOLDPOS — Moldova Positioning System. Paid since AGCC Order No. 04 of
+06.01.2012. Caster runs Leica Spider Business Center v7.10.0.114; VRS / MAX /
+MSM mountpoints; GPS+GLONASS+Galileo. INGEOCAD explicitly markets it as "an
+open network; any GPS receiver owner can join" — no surveying licence required.
+Free test zones (FreeZone mounts) allow trial without subscription at five fixed
+locations across Moldova. Moldova is EU candidate (2022); ETRS89-aligned.
+Contact via `ingeocad.md` (Chișinău, str. Pușkin 47).
+
+---
+
+## makpos — MAKPOS (MK)
+
+**status**:    paid
+**date_added**: 2026-05-06
+**country**:   MK
+**type**:      physical-coord-vrs
+**host:port**: `makpos.katastar.gov.mk:9001` (confirmed on Alberding GmbH
+               worldwide NTRIP caster map; Leica GNSS Spider RT Proxi Server)
+**access**:    subscription via Spider Business Center; register at
+               `makpos.katastar.gov.mk/sbc/Account/Register`. One source
+               indicates free of charge for users with compatible GNSS devices
+               on 3G/GPRS — unconfirmed if still current; contact AREC to confirm
+**yearly_cost**: MKD schedule not publicly posted; contact AREC Sector for
+                 Geodetic Works (`katastar.gov.mk/en/about-us/contact/`)
+**stations**:  14 reference base stations at 50–70 km spacing (~25,700 km²)
+**operator**:  Agency for Real Estate Cadastre (AREC), `katastar.gov.mk`
+**registration**: https://makpos.katastar.gov.mk/sbc/Account/Register
+
+MAKPOS — Macedonian Positioning System. Services: DGPS (0.3–0.5 m, RTCM 2.x),
+RTK (2–4 cm, RTCM 2.x/3.x), precise positioning (<1 cm, RINEX). Galileo support
+added April 2020. Portal: makpos.katastar.gov.mk/SpiderWeb/frmIndex.aspx. Caster
+independently confirmed reachable on Alberding GmbH worldwide caster map (port 9001).
+No professional licence requirement documented.
+
+---
+
 ## montepos — MONTEPOS (ME)
 
 **status**:    paid
@@ -2621,7 +2770,7 @@ NTRIP caster. SmartNet pricing confirmed 2026-04-30 at smartnetna.com/store_prod
 ## dvrs — DVRS (AE)
 
 **status**:    restricted
-**date_added**: 2026-04-30
+**date_added**: 2026-05-06
 **access**:    restricted; professional application only (licensed engineering/surveying firms);
                no individual or hobbyist registration path at any price
 **yearly_cost**: not publicly listed (professional application required)
@@ -2631,9 +2780,10 @@ NTRIP caster. SmartNet pricing confirmed 2026-04-30 at smartnetna.com/store_prod
 Dubai Virtual Reference System. 18+ 4-constellation reference stations covering Dubai
 Emirate. Access by formal professional application only — no hobbyist path.
 
-Portal status (2026-04-30): geodubai.dm.gov.ae returning errors; dm.gov.ae/survey-department
-DVRS sub-pages returning 404. Service may have been restructured or migrated to a DM
-e-services login. Main dm.gov.ae site is live.
+Portal status (2026-05-06): dm.gov.ae/survey-department DVRS sub-pages were returning 404
+in late April 2026; geodubai.dm.gov.ae portal pages (default.aspx, Registration.aspx)
+confirmed reachable again 2026-05-06. NTRIP port 2101 on the historical hostname not
+confirmed from an external IP. Service may have migrated to a unified DM e-services login.
 
 ---
 
@@ -2749,13 +2899,13 @@ Rejected — military-operated; no public NTRIP service; conflict-disrupted infr
 **type**:      single-base (physical coordinates)
 **host:port**: not publicly listed (disclosed after subscription)
 **access**:    paid subscription; register at otc.nat.tn/geodesy/gnss/subscription; no explicit eligibility restriction found
-**yearly_cost**: 6,000 TND/yr (~$2,070/yr); prices H.T. (excl. VAT); confirmed 2026-04-30
-**stations**:  23 (physical; Saharan region not covered)
-**source**:    otc.nat.tn (OTC — Office de la Topographie et de la Cartographie)
+**yearly_cost**: 6,000 TND/yr (~$2,070/yr); VAT status not stated on the public subscription page; confirmed 2026-05-06
+**stations**:  23 (physical; Saharan south not covered — roughly south of Gafsa/Tozeur latitude)
+**source**:    otc.nat.tn (OTC — Office de la Topographie et du Cadastre)
 **operator**:  OTC (Ministère de l'Équipement et de l'Habitat, Tunisia)
 
-Full published tier table — all H.T., excl. VAT (source: otc.nat.tn/geodesy/gnss/subscription;
-at 1 TND ≈ $0.345, observed 2026-04-30):
+Full published tier table (source: otc.nat.tn/geodesy/gnss/subscription; VAT applicability
+not stated; at 1 TND ≈ $0.345, observed 2026-05-06):
 60 TND/day (~$21), 480 TND/15 days (~$166), 840 TND/month (~$290), 2,400 TND/3 months
 (~$828), 3,600 TND/6 months (~$1,242), 4,800 TND/9 months (~$1,656), 6,000 TND/yr (~$2,070).
 
@@ -2766,6 +2916,69 @@ station is equipped with a weather sensor (temperature, pressure, humidity). Net
 referenced to WGS84–ITRF 2000 (NTT — Nouveau Système Tunisien de Triangulation).
 RTK corrections delivered via NTRIP subscription; NTRIP host:port disclosed post-subscription.
 No free tier. No explicit eligibility restriction on subscription page.
+
+---
+
+## omancorsnet — OmanCORSnet (OM)
+
+**status**:    restricted
+**date_added**: 2026-05-06
+**country**:   OM
+**type**:      physical-coord-vrs (Leica GNSS Spider / Spider Business Center)
+**host:port**: not publicly disclosed; issued post-registration via Spider Business Center
+**access**:    restricted; registration at `omancorsnet.gov.om/SBC/Account/Index`;
+               no confirmed hobbyist or individual tier; targets licensed surveying
+               professionals and government users
+**yearly_cost**: not publicly listed
+**stations**:  47 physical CORS distributed nationwide (installed 2016 by NSA)
+**operator**:  NSGIA — National Survey and Geospatial Information Authority
+               (successor to NSA — National Survey Authority; under Ministry of Defence)
+               Geoportal: `nsaomangeoportal.gov.om`
+**source**:    nsaomangeoportal.gov.om/en/oman-corsnet; omancorsnet.gov.om
+**signals**:   multi-constellation GNSS (exact mix not publicly confirmed)
+**datum**:     ONGD17 — Oman National Geodetic Datum 2017 (ITRF2014, epoch 2017.0)
+
+Forty-seven CORS installed by the National Survey Authority in 2016. Software platform
+is Leica GNSS Spider (Spider Business Center), consistent with VRS capability. Datum
+is ONGD17, replacing ONGD14; national geoid is OMANGEOID. The SBC login portal is
+reachable from external IPs but NTRIP caster port is not publicly documented. No
+confirmed individual/hobbyist registration tier; access appears gated to licensed
+surveyors and government contractors. IGS station MUSK (Muscat) is a separate
+EarthScope-archived observation stream, not an RTK service.
+
+Restricted — no public host:port; no hobbyist registration path confirmed.
+**missing**: confirm host:port and whether non-professional registration is possible;
+contact NSGIA via nsaomangeoportal.gov.om.
+
+---
+
+## qcors — QCORS (QA)
+
+**status**:    restricted
+**date_added**: 2026-05-06
+**country**:   QA
+**type**:      unknown (9-station network with TCP/IP data centre; VRS likely)
+**host:port**: not publicly disclosed; issued post-subscription via CGIS
+**access**:    restricted; application to CGIS required; no public self-service registration;
+               serves "government and private survey and mapping communities"
+**yearly_cost**: not publicly listed
+**stations**:  9 (connected via TCP/IP; ±2 cm horizontal, ±10 cm vertical claimed)
+**operator**:  CGIS — Centre for GIS, Ministry of Municipality (State of Qatar)
+               Portal: `gisqatar.org.qa`; GeoPortal: `geoportal.gisqatar.org.qa`
+**source**:    gisqatar.org.qa/en (CGIS Services page)
+**datum**:     QNSRS / QND95 (Qatar National Datum 1995)
+
+QCORS (Qatar Continuously Operating Reference Stations) was installed 2009 and
+commenced operations 2010 under the Centre for GIS, Ministry of Municipality.
+Nine stations connected via TCP/IP to a central data centre; described as providing
+"economical advantages against conventional GNSS surveying where two GPS units are
+necessary." No public self-registration or hobbyist tier documented. CGIS also
+operates a GeoPortal (geoportal.gisqatar.org.qa/qmape/) for GIS web mapping;
+the CORS service is separate and gated. No publicly known NTRIP host:port.
+
+Restricted — application-based; host:port not publicly disclosed; no individual tier.
+**missing**: confirm host:port, tariff, and whether non-professional registration is
+feasible; contact CGIS at `cgisinfo@gisqatar.org.qa` or +974 4426 6284.
 
 ---
 
@@ -2941,31 +3154,34 @@ Rejected — no public endpoint found; agency website unreachable.
 
 ---
 
-## kyrpos — KyrPos GNSS Network (KG)
+## kyrpos — KyrPOS GNSS Network (KG)
 
 **status**:    paid
 **country**:   KG
 **type**:      single-base / VRS (unclear from public documentation)
-**access**:    paid; contract-based sign-up, no self-service portal
-**yearly_cost**: 3,180 KGS/month (~$437/yr at ~87 KGS/USD, April 2026);
-                 170 KGS/day rate also offered
+**access**:    paid; contract-based sign-up via `gosreg.gov.kg/ky/?page_id=3029`;
+               submit signed contract (GNSS receiver make/model/serial + period)
+               then bank payment; credentials issued post-payment
+**yearly_cost**: 3,180 KGS/month (~$37/mo at May 2026 rates) per receiver;
+                 170 KGS/day also offered; minimum 1 month
 **operator**:  State Agency for Land Resources, Cadastre, Geodesy and
                Cartography of the Kyrgyz Republic (ГАЗРКГК — Государственное
                агентство земельных ресурсов, кадастра, геодезии и
                картографии)
-**registration**: gosreg.gov.kg/ru/forma-onlajn-podklyucheniya/ — download
-                  contract form, complete with receiver details and connection
-                  period, submit to agency; credentials issued after signing
-**host:port**: not publicly listed (disclosed after contract registration)
-**stations**:  unknown
+**registration**: gosreg.gov.kg/ky/?page_id=3029 — official KyrPOS connection
+                  page with 9-step sign-up and contract template download
+**host:port**: `cors.gosreg.gov.kg:8085` (non-standard port; confirmed on
+               gosreg.gov.kg/ky/?page_id=3029, 2026-05-06; unreachable from
+               external IP — likely geo-filtered or credential-gated)
+**stations**:  18 (Chui/Bishkek 6, Fergana Valley/Osh 8, Naryn 1, Issyk-Kul 3)
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-06
 
-KyrPos is the national GNSS correction network operated by the Kyrgyz
+KyrPOS is the national GNSS correction network operated by the Kyrgyz
 cadastral and geodesy agency (ГАЗРКГК). Subscribers pay per month per
-receiver; the minimum period is one month. No host:port or mountpoint list
-is visible on the public website. Over the $200/yr threshold — not viable
-for most hobbyists.
+receiver; the minimum period is one month. Endpoint `cors.gosreg.gov.kg:8085`
+is published on the official service page. Over the $200/yr threshold at monthly
+billing (~$37/mo × 12 = ~$444/yr) — not viable for most hobbyists.
 
 CAIAG (Central Asian Institute for Applied Geosciences, German-funded,
 Bishkek) operates a monitoring network of 30+ GNSS stations including the
@@ -3043,6 +3259,40 @@ Restricted — no published tariff; contract-only access.
 
 ---
 
+## albcors — ALBCORS (AL)
+
+**status**:    restricted
+**country**:   AL — Albania
+**type**:      single-base (physical CORS)
+**access**:    application-required; no public self-service registration; contact
+               info.albcors@asig.gov.al or submit form at krgjsh.asig.gov.al
+**host:port**: not publicly listed
+**operator**:  ASIG — Autoriteti Shtetëror për Informacionin Gjeohapësinor
+               (State Authority for Geospatial Information), Tirana
+**registration**: https://krgjsh.asig.gov.al/?page_id=1218&lang=en
+**yearly_cost**: not publicly listed (state service; likely subsidised for licensed surveyors)
+**stations**:  27 (21 ground-mounted concrete blocks + 6 roof-type, incorporating
+               the former ALBPOS system)
+**signals**:   multi-constellation (ETRS89 reference frame)
+**nmea_filter**: n/a (not in pipeline)
+
+**date_added**: 2026-05-06
+
+ALBCORS replaced the ALBPOS system (found non-compliant with national CORS
+standards in 2015) and was confirmed operational at the 2023 EUREF Symposium in
+Gothenburg. The 27-station network covers Albania (~29,000 km²) with a control
+centre at ASIG premises in Tirana. Albania is an EU candidate country; the
+network is aligned to ETRS89 for future EU compatibility. Access requires
+submitting an application form; no open hobbyist registration portal. A
+commercial alternative, SATNET LIVE (Land&Co / Topcon Albania distributor,
+landcoal.com), offers RTK via the SATNET app with 3 free trial days.
+
+Restricted — application-based access; host:port not publicly disclosed.
+**missing**: confirm NTRIP host:port, tariff, and whether non-professional
+access is feasible — contact ASIG via krgjsh.asig.gov.al.
+
+---
+
 ## armpos — ARMPOS (AM)
 
 **status**:    restricted
@@ -3087,17 +3337,17 @@ Committee via cadastre.am.
                of Georgia (საჯარო რეესტრის ეროვნული სააგენტო)
 **registration**: geocors.napr.gov.ge/SBC/Account/Register
 **yearly_cost**: not publicly listed (paid subscription; contact NAPR)
-**stations**:  23 physical single-base CORS — 7 Class A (national geodetic frame)
-               + 16 Class B (regional densification)
+**stations**:  26 physical single-base CORS — 7 Class A (national geodetic frame)
+               + expanded Class B (regional densification)
 **signals**:   GPS, GLONASS (Leica Spider platform)
 **nmea_filter**: n/a (not in pipeline)
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-06
 
-GeoCors is Georgia's national CORS network, established since 2010 under the
+GeoCors is Georgia's national CORS network, established since 2011 under the
 National Agency of Public Registry (NAPR), a legal-entity public-law body
-under the Ministry of Justice. The 23-station network is divided into 7 Class A
-stations forming the unified national spatial grid and 16 Class B stations
+under the Ministry of Justice. The 26-station network includes 7 Class A
+stations forming the unified national spatial grid and expanded Class B stations
 providing denser regional coverage. The Leica Spider Business Center platform
 handles subscription management; a Sign Up page exists at the SBC URL.
 The service targets licensed surveyors and cadastral users. Pricing is not
@@ -3258,13 +3508,13 @@ TU Delft mirror: `gnss1.tudelft.nl:2101` — subset of stations, no TLS.
 **access**:    paid; username + password issued on activation; eHerkenning portal for
                NL legal entities; foreign users apply via contact form at nsgi.nl
 **registration**: https://nsgi.nl/referentiepunten-en-gnss-data/gnss-data/real-time-streams
-**yearly_cost**: €475/station/yr excl. BTW (~$520/yr) for 1–2 stations; volume to €95/station/yr for 10+ (2026 tariff)
+**yearly_cost**: €475/station/yr excl. BTW (~$538/yr) for 1–5 stations; volume to €95/station/yr for 21+ (2026 tariff, Tarievenregeling Kadaster BWBR0037196/2026-01-01)
 **operator**:  NSGI / Kadaster Nederland (`nsgi.nl`)
 
 NETPOS delivers raw reference station streams from the same ~30 AGRS.NL
 physically-positioned base stations, as an authenticated paid service.
-Priced per station per year (2026, excl. BTW): 1–2 stations €475/station,
-3–4 €380, 5–6 €285, 7–9 €190, 10+ €95. VAT-exempt. Not a VRS / network-RTK
+Priced per station per year (2026, excl. BTW): 1–5 stations €475/station,
+6–10 €380, 11–15 €285, 16–20 €190, 21+ €95. VAT-exempt. Not a VRS / network-RTK
 service — streams are single-base raw observations for users who compute their
 own corrections.
 
@@ -3967,21 +4217,23 @@ Surveyor General's Office.
 **status**:    rejected
 **country**:   SV — El Salvador
 **type**:      single-base
-**host:port**: not publicly listed (credentials supplied with subscription)
-**access**:    paid — monthly/quarterly/annual subscription; pricing updated every 6
-               months and not listed on public web pages
-**yearly_cost**: not publicly listed (contact survey3g.com)
+**host:port**: not publicly listed (credentials supplied by email after payment)
+**access**:    paid — monthly/quarterly/annual subscription; pricing published at
+               survey3g.com/servicios-de-ntrip/ (confirmed 2026-05-06)
+**yearly_cost**: $450/yr
 **registration**: survey3g.com
-**stations**:  4 stations: Oriente, San Salvador, Occidente, UES
+**stations**:  6 stations: San Miguel, Perkin, La Unión, San Salvador-UES (research/edu),
+               Santa Ana, Cojute; ~50 km radius each; ~90% national coverage
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-06
 
 Survey3G is the principal commercial NTRIP provider in El Salvador, offering RTK
-correction streams from four stations covering the national territory. Constellations:
-GPS, GLONASS, BeiDou, Galileo; frequencies L1/L2/L5. The network operates 24/7 and
-offers flexible subscription tiers (monthly, quarterly, annual). Pricing is not
-published on the website and is updated every 6 months; contact is required for rates.
-Rejected for pipeline — paid and pricing not confirmed as under $200/yr cutoff.
+correction streams from six stations covering the national territory. Constellations:
+GPS, GLONASS, BeiDou, Galileo; frequencies L1/L2/L5. The network operates 24/7;
+credentials (IP, port, username, password) are unique per subscription period and
+supplied by email 32–48 hours before the start date. Published tiers: USD 15/7 days ·
+USD 30/15 days · USD 45/month · USD 135/3 months · USD 450/12 months. Annual cost of
+$450/yr exceeds the $200/yr hobbyist cutoff — rejected for pipeline.
 
 ---
 
@@ -4046,21 +4298,21 @@ for pipeline — paid service and no confirmed hobbyist-accessible free tier.
 **type**:      single-base (5 physical CORS)
 **host:port**: not publicly listed; Trimble Pivot web interface visible at
                167.179.14.66:8080 but not a public NTRIP endpoint
-**access**:    free trial (extended to June 2025); post-trial pricing not publicly
-               listed — contact via khmergeonet.xyz
+**access**:    free trial extended to 2026-07-01 (khmergeonet.xyz, observed 2026-05-06);
+               post-trial pricing not publicly listed — contact via khmergeonet.xyz
 **yearly_cost**: not publicly listed (contact GDCG)
 **registration**: khmergeonet.xyz
 **stations**:  5 (Phnom Penh, Kandal, Kampong Speu, Siem Reap, Stung Treng)
 **operator**:  General Department of Cadastre and Geography (GDCG), Ministry of
                Land Management, Urban Planning and Construction (MLMUPC)
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-06
 
 Cambodia's national CORS and precise positioning service, built under JICA technical
 cooperation (August 2021 – December 2024). The 5 CORS provide single-base corrections
 for registered GNSS users in pilot coverage areas. Service branded Khmer GEONET
-(khmergeonet.xyz). Free trial was extended a full year to 24 June 2025; subscription
-pricing after that date is not on the public website.
+(khmergeonet.xyz). Free trial extended to 2026-07-01; subscription pricing after
+that date is not on the public website.
 
 NTRIP caster host:port not discoverable from public sources. Trimble Pivot software
 is used for the data centre; the IP 167.179.14.66:8080 appears in a sensor-map URL
@@ -5079,31 +5331,32 @@ under NULA (free non-commercial) and is usable from SXM territory at that baseli
 or RTK correction service is planned; revisit as the Kadaster Netherlands cooperation
 develops.
 
-## alcorsnet_dz — AL-CORS-Net (DZ)
+## alcorsnet_dz — AL-CORS-Net / SAAP (DZ)
 
 **status**:    restricted
 **country**:   DZ — Algeria
-**type**:      vrs-only (Geo++ GNSMART Network-RTK on a 6-station physical backbone)
+**type**:      vrs-only (Geo++ GNSMART Network-RTK)
 **host:port**: not publicly listed
 **access**:    restricted — operated under the Ministry of National Defence (INCT);
                no self-service registration or public NTRIP endpoint published
 **registration**: https://www.inct.mdn.dz/
 **yearly_cost**: n/a (no public commercial service)
-**stations**:  6 confirmed physical stations — Algiers (DZAL), Oran (DZOR),
-               Constantine (DZCO), Ouargla (OGLA), Béchar (BECH), Tindouf (TIND);
-               long-term plan cites ~146-station national expansion
+**stations**:  189 permanent GNSS stations; 6 anchor/reference stations —
+               Algiers (DZAL), Oran (DZOR), Constantine (DZCO), Ouargla (OGLA),
+               Béchar (BECH), Tindouf (TIND)
 **operator**:  Institut National de Cartographie et de Télédétection (INCT),
                Ministry of National Defence (`inct.mdn.dz`)
 
-**date_added**: 2026-05-05
+**date_added**: 2026-05-06
 
-AL-CORS-Net delivers Network-RTK over NTRIP via a Geo++ GNSMART backend on a 6-station
-physical backbone. Published performance is ~1.3 cm horizontal, ~2.2 cm vertical (1σ)
-with ~97% VRS availability, and an academic study confirmed live VRS sessions between
-October 2021 and January 2022. INCT sits under the Ministry of National Defence; the
-INCT website returns SSL warnings and surfaces no end-user signup path, and no public
-registration portal, tariff, or NTRIP host:port has been advertised. A hobbyist path is
-structurally unlikely without a separate civilian mandate.
+AL-CORS-Net (also known as SAAP — Système Algérien d'Aide au Positionnement) is a
+189-station Network-RTK service on a Geo++ GNSMART backend. Published performance is
+~1.3 cm horizontal, ~2.2 cm vertical (1σ) with ~97% VRS availability, and an academic
+study confirmed live VRS sessions between October 2021 and January 2022. INCT sits
+under the Ministry of National Defence; the INCT website returns SSL warnings and
+surfaces no end-user signup path, and no public registration portal, tariff, or NTRIP
+host:port has been advertised. A hobbyist path is structurally unlikely without a
+separate civilian mandate.
 
 REGAT (Réseau Géodésique de l'ATlas) — ~53 stations across the Algerian Atlas — is a
 **separate** seismotectonic monitoring network operated by **CRAAG** (Centre de
@@ -5490,30 +5743,26 @@ accounts only.
 ## muya_cors_ke — Muya CORS (KE)
 
 **status**:    paid
-**date_added**: 2026-04-29
+**date_added**: 2026-05-06
 **country**:   KE
-**type**:      physical single-base + network RTK
+**type**:      physical-coord-vrs
 **host:port**: host:port disclosed post-registration (IP, port, username,
                password issued after signup at `muya-cors.com`)
 **access**:    paid with registration; self-serve signup via muya-cors.com;
-               Mpesa payment supported
-**yearly_cost**: KES 35,000/yr (~$271/yr)
-**stations**:  ~27 base stations across Kenya (single-base and networked RTK)
-**operator**:  Measurement Systems Ltd (`measurementsystems.org`),
+               Mpesa payment supported; contact via `muya-cors.com` for pricing
+**yearly_cost**: not publicly listed; flexible tiers (hourly/daily/monthly);
+                 pricing provided on inquiry
+**stations**:  25+ base stations across Kenya (GPS/GLONASS/BeiDou/Galileo)
+**operator**:  Measurement Systems Ltd, Nairobi
                operating as Muya CORS (`muya-cors.com`)
-**source**:    muya-cors.com; measurementsystems.org; ardusimple.com;
-               georole.co.ke; orbital.co.ke (field use report, Sep 2024);
-               instagram.com/measurementsystemsltd (price, 2026-04-30)
+**source**:    muya-cors.com; orbital.co.ke (field use report, Feb 2025 Kitisuru)
 
 Muya CORS provides RTK corrections and post-processing services via a
-network of GNSS CORS tracking GPS, GLONASS, BeiDou, and Galileo. Credentials
-are issued post-registration. KES 35,000/yr (~$271 at 2026-04-30 rate) is
-from a Measurement Systems Ltd promotional post (Instagram, 2026-04-30);
-no primary price sheet confirmed. Mpesa payment and individual registration
-confirmed — no surveying licence requirement found. Operationally active as
-of January 2026 (social media) and Google Play app updated October 2025.
-Over the $200/yr threshold — excluded from pipeline. Only commercial RTK
-NTRIP option confirmed for Kenya.
+network of GNSS CORS. Credentials are issued post-registration. Pricing is
+not publicly disclosed; flexible tiers (hourly/daily/monthly). Mpesa payment
+and individual registration confirmed — no surveying licence requirement.
+Operationally confirmed in active use Feb 2025 (Orbital Africa case study,
+Kitisuru, Nairobi). Only confirmed commercial RTK NTRIP option for Kenya.
 
 ## tngc_tz — Tanzania National Geo-innovation Centre / Survey Division (TZ)
 
@@ -5582,46 +5831,71 @@ mountpoints (NMEA=0) are present; add to SOURCES once verified.
 
 ## ancfcc — Réseau GNSS Permanent ANCFCC (MA)
 
-**status**:    free
-**date_added**: 2026-04-29
+**status**:    restricted
+**date_added**: 2026-05-06
 **country**:   MA
-**type**:      single-base
-**host:port**: host:port not publicly listed
-**access**:    restricted — licensed professional access only; no public NTRIP delivery identified
-**stations**:  ~60 permanent GNSS stations including nodes at Laayoune and Dakhla
-**source**:    ancfcc.gov.ma/ReseauGnss/
+**type**:      physical-coord-vrs
+**host:port**: host:port not publicly listed; registration at ancfcc.gov.ma required
+**access**:    restricted — licensed cadastral professional access only; no self-service
+               registration path for hobbyists; contact ANCFCC via +212 6 60 10 27 01–06
+**stations**:  60 permanent GNSS stations including nodes at Laayoune and Dakhla
+**source**:    ancfcc.gov.ma/nos-metiers/cartographie/reseau-gnss/
 **operator**:  ANCFCC — Agence Nationale de la Conservation Foncière, du Cadastre et de la Cartographie
 
-~60-station national GNSS network connected to a central server in Rabat via private
-network. Provides RINEX archives and RTK/Network-RTK corrections. Access appears
-restricted to licensed cadastral professionals; no public NTRIP caster endpoint has
-been identified in any sourcetable, directory, or academic reference.
+60-station national GNSS network connected to a central server in Rabat via private
+network. Services confirmed (ancfcc.gov.ma/nos-metiers/cartographie/reseau-gnss/,
+observed 2026-05-06): (1) RINEX at 1/5/10/15/20/30/60 s; (2) online coordinate
+computation; (3) real-time RTK and RTK-Network corrections via internet (NTRIP protocol
+explicitly stated). Host:port not published; registration required; professional access only.
 
-**missing**: confirm whether a public NTRIP endpoint exists or is planned; verify
-             access terms at ancfcc.gov.ma.
+---
+
+## itri_ma — itri permanent GNSS network (MA)
+
+**status**:    restricted
+**date_added**: 2026-05-06
+**country**:   MA
+**type**:      physical-coord-vrs
+**host:port**: not publicly listed; credentials issued post-registration via
+               secure.itri-gnss.ma/admin/auth/register
+**access**:    professional subscription; pricing not public; contact via `itri-gnss.ma`
+**stations**:  231 permanent GNSS stations (as of 2026-05-06)
+**operator**:  SAMTOP / itri — itri-gnss.ma
+**registration**: https://secure.itri-gnss.ma/admin/auth/register
+
+Morocco's first private permanent GNSS network, designed by SAMTOP and launched 2020.
+231 stations nationwide; GPS+GLONASS+Galileo+BeiDou. Correction modes: single-base RTK,
+network RTK, VRS. RINEX post-processing also provided. Marketed "dédié aux professionnels";
+hobbyist eligibility not confirmed. Caster port 2101 returned ECONNREFUSED from outside
+Morocco 2026-05-06 — endpoint is private.
 
 ---
 
 ## sen_cors — SEN-CORS (SN)
 
 **status**:    weird
-**date_added**: 2026-04-29
+**date_added**: 2026-05-06
 **country**:   SN
-**type**:      single-base (planned)
-**host:port**: host:port not publicly listed
-**access**:    not yet operational; no public NTRIP caster found
-**stations**:  ~16 planned (PROCASEF/World Bank programme) + 5 additional (JICA, Dakar region)
-**source**:    anat.sn; procasef.com; ignfi.fr (PROCASEF geodetic reference network)
+**type**:      physical-coord-vrs
+**host:port**: `caster.geodesie.sn:2101`
+**access**:    paid subscription — tariff not publicly listed without account login;
+               registration at geodesie.sn requires username/name/email/company;
+               no stated residency restriction; contact ANAT (`anat.sn`)
+**stations**:  ~21 (16 PROCASEF/World Bank stations 2022–2024 + 5 JICA stations
+               integrated 2025; coverage across Senegal)
+**source**:    geodesie.sn; anat.sn; procasef.com; ignfi.fr
 **operator**:  ANAT (Agence Nationale de l'Aménagement du Territoire) and
                DTGC (Direction des Travaux Géographiques et Cartographiques)
 
-SEN-CORS is the national permanent GNSS network under construction through the
-PROCASEF land cadastre programme (World Bank funding) and a parallel JICA-backed
-5-station deployment in Dakar. Physical installation and initial testing were
-projected for late 2025/2026. No public NTRIP host:port has been published.
-
-**missing**: confirm whether SEN-CORS has launched a public NTRIP caster;
-             check anat.sn and procasef.com for service announcements.
+SENCORS (geodesie.sn) is Senegal's national GNSS correction network, built
+2022–2024 via PROCASEF (World Bank funding) plus 5 JICA-backed stations integrated
+2025. Backend is Leica Spider Business Center; delivers VRS/Network-RTK corrections.
+Portal went live early 2025; suffered a disk failure January 2026 and was restored
+March 16, 2026. As of May 2026 the network is operational. The subscription plan
+is described as "90 jours — Forfaitaire — Illimitée" (90-day flat-rate unlimited);
+pricing in XOF/USD is not visible without account login.
+`weird` status: operational with a publicly documented host:port but undisclosed
+tariff — cannot determine whether it falls within hobbyist cost range.
 
 ---
 
@@ -5647,3 +5921,34 @@ Zero ECU mountpoints currently on rtk2go; in-pipeline candidate.
 
 **missing**: verify sourcetable contents and mountpoint names at `ntrip.igm.gob.ec:2101`;
 confirm station count and geographic distribution.
+
+---
+
+## ghana_cors — Ghana National CORS Network (GH)
+
+**status**:    weird
+**date_added**: 2026-05-06
+**country**:   GH — Ghana
+**type**:      unknown
+**host:port**: not publicly listed
+**access**:    no public NTRIP endpoint found; access appears to be via licensed-surveyor
+               channel (PPP with GMX Systems Ghana Ltd and Geo-Tech Systems Ltd)
+**yearly_cost**: not applicable (no public commercial tier found)
+**stations**:  ~60 deployed nationwide as of Aug 2025; target 100 by end of 2025
+**operator**:  Survey and Mapping Division (SMD), Lands Commission (`lc.gov.gh`),
+               in PPP with GMX Systems Ghana Ltd and Geo-Tech Systems Ltd
+**source**:    gpsworld.com (GPS World Aug 2025); gna.org.gh (Ghana News Agency Aug 2025);
+               wgicouncil.org (WGIC Africa geospatial PPPs report); lc.gov.gh
+
+**date_added**: 2026-05-06
+
+Ghana National CORS Network officially unveiled August 19 2025 by the Lands Commission
+and its PPP partners GMX Systems Ghana Ltd and Geo-Tech Systems Ltd. Nationwide
+observation exercise launched to tie ~60 newly established stations into the Ghana Grid
+Coordinate System. Target of 100 stations by end of 2025. Simultaneously launched a
+"digital geospatial data system" (DGDS) for 24/7 geospatial data access. The network is
+cited as the "most extensive CORS network in West Africa" in the WGIC Africa geospatial
+PPPs report. No public NTRIP host:port or hobbyist registration portal has been found.
+
+**missing**: confirm whether a public NTRIP endpoint or hobbyist-accessible subscription
+             service is available; check lc.gov.gh for service announcements.

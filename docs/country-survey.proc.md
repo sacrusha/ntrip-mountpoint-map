@@ -35,6 +35,25 @@ Pick the lightest tier that fits.
 - Mention zero rtk2go / Centipede coverage somewhere in negatives.
 - No bare email addresses — link to a website. **Harassment guard.**
 
+### Deriving volunteer caster counts
+
+rtk2go / Centipede counts come from live `data/stations.json`. Replace `XXX`
+with the country code as it appears in the data (3-letter ISO 3166-1 alpha-3
+for rtk2go; Centipede uses quirks — `ENG`=GB, `CHZ`=CZ, `SER`=RS, `BIH`=BA,
+`NLD`/`BEL` separate, etc.). Run from repo root:
+
+```
+jq '[.sources.rtk2go.stations[]    | select(.country=="XXX")] | length' data/stations.json
+jq '[.sources.centipede.stations[] | select(.country=="XXX")] | length' data/stations.json
+```
+
+For the full per-country table (use to scout codes / spot drift):
+
+```
+jq -r '.sources.rtk2go.stations[].country'    data/stations.json | sort | uniq -c | sort -rn
+jq -r '.sources.centipede.stations[].country' data/stations.json | sort | uniq -c | sort -rn
+```
+
 ## Downstream
 
 `networks.md` only when the operator is **substantial** (nationwide,
