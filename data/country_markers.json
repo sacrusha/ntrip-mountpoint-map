@@ -563,8 +563,9 @@
       "tier": "paid-affordable",
       "vrs": true,
       "access": "paid-affordable",
-      "yearly_cost": "€160/quarter (~$170)",
-      "registration": "https://www.ktimatologio.gr"
+      "yearly_cost": "€480/yr (~$520/yr)",
+      "registration": "https://www.hepos.gr",
+      "note": "98 stations, full GNSS. €160/quarter (~$170) for seasonal use. Pay-per-minute bundle (€90+VAT) for occasional access. Individual sign-up online, no professional licence required."
     },
     {
       "id": "rompos",
@@ -579,6 +580,20 @@
       "yearly_cost": "€169/yr (~$183/yr)",
       "registration": "https://www.rompos.ro",
       "note": "Under the cost of a capable base station. Monthly subscription also available."
+    },
+    {
+      "id": "orpheon",
+      "name": "Orphéon",
+      "region": "France",
+      "country": "FR",
+      "lat": 46.6,
+      "lon": 2.4,
+      "tier": "paid",
+      "vrs": true,
+      "access": "paid",
+      "yearly_cost": "€756/yr (~$820/yr)",
+      "registration": "https://www.reseau-orpheon.fr",
+      "note": "~215–220 stations. Commercial VRS network; individual subscriptions available. Centipede RTK (crtk.net:2101) provides free nationwide coverage as a Volunteer alternative."
     },
     {
       "id": "swipos",
@@ -604,9 +619,9 @@
       "tier": "paid",
       "vrs": true,
       "access": "paid",
-      "yearly_cost": "8,000+ NOK/yr (~$740/yr)",
+      "yearly_cost": "5,000+ NOK/yr (~$460/yr)",
       "registration": "https://www.kartverket.no",
-      "note": "Volunteer rtk2go/Centipede bases exist in populated areas (Oslofjord, Vestlandet)."
+      "note": "280+ stations. Agriculture tier NOK 5,000/yr; standard surveying tier NOK 11,000/yr (both ex-VAT). 1-month free trial for new customers. Volunteer rtk2go/Centipede bases cover populated areas south of ~63°N."
     },
     {
       "id": "signal",
@@ -1316,7 +1331,8 @@
       "lon": 6.1,
       "tier": "free",
       "vrs": true,
-      "stations_declared": 17
+      "stations_declared": 13,
+      "note": "13 stations, free. iMAX and VRS correction types; free registration at ACT portal (zero-cost subscription)."
     },
     {
       "id": "icecors",
@@ -1326,11 +1342,10 @@
       "lat": 64.9,
       "lon": -18.5,
       "tier": "free",
-      "vrs": true,
-      "access": "registration",
-      "registration": "https://www.natt.is/is/landmaelingar/jardstodvakerfi",
+      "access": "open",
+      "registration": "https://www.lmi.is/is/maelingar/thjonustur/icecors",
       "stations_declared": 33,
-      "note": "33 stations, free. Covers Iceland at 70–100 km spacing; single-base and VRS correction modes available."
+      "note": "33 stations, free. No registration required. Single-base only (no VRS); connect to nearest station mountpoint."
     },
     {
       "id": "cors_korea",

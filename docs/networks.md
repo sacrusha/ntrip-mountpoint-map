@@ -189,17 +189,19 @@ Australia (Geoscience Australia)".
 ## positionz — PositioNZ-RT (NZ)
 
 **status**:    free
+**date_added**: 2026-05-06
 **host:port**: `positionz-rt.linz.govt.nz:2101`
 **type**:      single-base
 **access**:    free; LINZ account required; register via linz.govt.nz; CC BY 4.0 NZ
 **pipeline-access**: registration
-**stations**:  ~62
-**source**:    linz.govt.nz; toitutewhenua.govt.nz
-**operator**:  LINZ — Land Information New Zealand
+**stations**:  37 (CORS throughout NZ mainland, Chatham Islands, and Antarctica/Scott Base)
+**source**:    linz.govt.nz; geonet.org.nz (stream management)
+**operator**:  LINZ — Land Information New Zealand (Toitū Te Whenua)
 **licence**:   CC BY 4.0 NZ
 
-NZ mainland + Chatham Islands + Antarctica. Streaming latency reduced ~90% in
-Dec 2023 upgrade. Attribute "Source: Land Information New Zealand".
+Single-base only (no VRS); raw 1 Hz RTCM 3.1 observations; recommended use within
+15 km of connected station. Streaming latency reduced ~50–90% after BKG NtripCaster
+software deployment. Attribute "Source: Land Information New Zealand".
 
 ---
 
@@ -329,16 +331,20 @@ RTK baseline). L1C/B support for QZSS QZS-6 added Jun 2025.
 ## cors_korea — CORS-KOREA (KR)
 
 **status**:    free
-**host:port**: `www.gnssdata.or.kr:2101`
+**date_added**: 2026-05-06
+**host:port**: VRS service: `vrs3.ngii.go.kr:2101`; FKP service: `fkp.ngii.go.kr:2201`
+               (service addresses updated May 2022; legacy `vrs.ngii.go.kr` decommissioned)
 **type**:      physical-coord-vrs
-**access**:    free; sourcetable public without auth; stream registration may require Korean national ID
+**access**:    free; registration at ngii.go.kr required; stream password `ngii` (shared,
+               documented in academic literature); Korean government portal account
+               (PASS/mobile identity) typically required — practical barrier for non-residents
 **pipeline-access**: conditions
-**stations**:  ~498
-**source**:    gnssdata.or.kr (NGII)
-**operator**:  NGII — National Geographic Information Institute
+**stations**:  ~60 physical stations at ~40 km spacing covering all of South Korea
+**source**:    ngii.go.kr (NGII — National Geographic Information Institute)
+**operator**:  NGII — National Geographic Information Institute, Ministry of Land
 
-VRS + FKP. ~90–100 physical stations at ~40 km spacing. Korean-language portal;
-international access may be impractical if national ID is required.
+VRS + FKP; both use shared password `ngii`. ~15,000 registered users as of 2016.
+Seoul City supplementary network at `gnss.eseoul.go.kr` (separate registration).
 
 ---
 
@@ -375,21 +381,21 @@ archipelago geometry. REGCAN95 coordinate update for all Canaries stations: 2024
 ## satref — SatRef (HK)
 
 **status**:    free
+**date_added**: 2026-05-06
 **host:port**: `ntrip.geodetic.gov.hk:2101`
 **type**:      physical-coord-vrs
-**access**:    free; register via geodetic.gov.hk or DATA.GOV.HK open-data path
+**access**:    free; application by email/form to Survey and Mapping Office (geodetic.gov.hk);
+               no professional licence required; no residency restriction
 **pipeline-access**: registration
-**stations**:  ~22
+**stations**:  19 (16 reference + 3 integrity monitoring; TCHK under maintenance since Aug 2025)
 **source**:    geodetic.gov.hk (Lands Department, Survey & Mapping Office)
-**operator**:  Lands Department, Survey and Mapping Office (SMO)
+**operator**:  Lands Department, Survey and Mapping Office (SMO), HKSAR Government
 **licence**:   Open data (commercial and non-commercial reuse permitted)
 
-19 physical stations (16 reference + 3 integrity monitoring). Mountpoint `VRS32G`
-(GPS+GLO+GAL+BDS). Open data policy (commercial and non-commercial reuse permitted).
-Migrated to `ntrip.geodetic.gov.hk` Jun 2023; old `www.geodetic.gov.hk` domain
-for NTRIP decommissioned. Accounts inactive 12+ months are terminated.
-Raw TCP (NTRIP 1.0) fallback required in fetcher — responds `SOURCETABLE 200 OK`,
-not HTTP.
+Launched Jun 2007. Mountpoint `VRS32G` (GPS+GLO+GAL+BDS). VRS centimeter-level accuracy.
+Domain migrated to `ntrip.geodetic.gov.hk` from 1 June 2023; old `www.geodetic.gov.hk`
+NTRIP endpoint decommissioned. Accounts inactive 12+ months are terminated.
+Raw TCP (NTRIP 1.0) fallback required in fetcher — responds `SOURCETABLE 200 OK`, not HTTP.
 
 ---
 
@@ -463,47 +469,44 @@ First confirmed free VRS/NRTK in Latin America. ~67% of municipalities covered a
 ## spslux — SPSLux (LU)
 
 **status**:    free
+**date_added**: 2026-05-06
 **host:port**: `stream.spslux.lu:5005`
 **type**:      physical-coord-vrs
 **access**:    free; register at spslux.lu/SBC/Account/Register (subscribe "SPSLUX (N)RTK")
 **pipeline-access**: registration
-**stations**:  ~17
-**source**:    spslux.lu (ACT — Administration du Cadastre et de la Topographie)
+**stations**:  13 (some on international territory managed by partner networks)
+**source**:    act.public.lu (ACT — Administration du Cadastre et de la Topographie)
 **operator**:  ACT — Administration du Cadastre et de la Topographie
 
 Port 5005, not 2101. IP 185.106.24.68. Luxembourg open-data policy — all services
-free of charge.
+free of charge. iMAX and VRS correction types; GPS, GLONASS, Galileo, BeiDou.
+Accuracy ~2–3 cm horizontal, ~3–5 cm vertical. ETRS89/ITRF reference frame.
 
 ---
 
 ## icecors — IceCORS (IS)
 
 **status**:    free
+**date_added**: 2026-05-06
 **host:port**: `178.19.53.126:2101`
-**type**:      physical-vrs
-**access**:    free; register by emailing icecors@natt.is with company name, contact
-               name and email address; credentials returned by email
-**pipeline-access**: registration
-**stations**:  33 (70–100 km spacing nationwide)
-**source**:    natt.is (LMÍ — Landmælingar Íslands)
+**type**:      single-base
+**access**:    free; no registration required; open anonymous access
+**pipeline-access**: open
+**stations**:  33 (~50–60 km spacing nationwide)
+**source**:    lmi.is; moe.lmi.is (LMÍ — Landmælingar Íslands)
 **operator**:  LMÍ — Landmælingar Íslands (National Land Survey of Iceland)
 
-33 physical GNSS stations covering Iceland at 70–100 km intervals. Caster at
-`178.19.53.126:2101` (GNSMART software). Offers both single-base (RTCM30,
-not recommended beyond 20 km from nearest station) and network correction
-(VRS30, FKP30). All corrections reference ISN2016.
+33 physical GNSS stations covering Iceland at 50–60 km intervals. Caster at
+`178.19.53.126:2101` (Geo++ GNNET software). Single-base RTK only — no VRS.
+Users connect to nearest station's mountpoint (e.g., HRNC_RTK, LAVI_RTK).
+All corrections reference ISN2016 (ITRF2014 epoch 2016.0); regularly updated
+for tectonic movement.
 
-The sourcetable exposes only 4 individually-addressable physical mounts
-(AUSV, GEVK, SENG, VOGC — all near Reykjavik), plus RTCM30/RTCM30_MSM
-nearest-station selectors at (0,0) and VRS3/VRS3_MSM network mounts at (0,0).
-The remaining 29 stations are reached exclusively via the RTCM30 selector or
-VRS mountpoints, not as individual entries. Displaying the 4 visible stations
-would misrepresent the 33-station network as a Reykjavik-only fragment, so the
-pipeline holds at 0 until the full sourcetable is available.
-
-**Caster misconfiguration**: GNSMART tags all mountpoints `NMEA=1` including the
-4 physical single-base entries (which have unique coordinates and `solution=0`).
-`nmea_filter=False` would be needed once display of partial data is acceptable.
+The sourcetable exposes physical station mountpoints in `STATIONCODE_RTK` format.
+GNSMART tags all mountpoints `NMEA=1` including the physical single-base entries
+(which have unique coordinates and `solution=0`). `nmea_filter=False` would be
+needed to expose these stations; pipeline currently holds at 0 to avoid
+misrepresenting the network.
 
 ---
 
@@ -647,18 +650,19 @@ Puglia regional GNSS network. 12 physical reference stations. Free registration.
 ## gnss_campania — Rete GNSS Campania (IT — Campania)
 
 **status**:    free
-**host:port**: `gps-sit.regione.campania.it:2101`
+**date_added**: 2026-05-06
+**host:port**: `gps.sit.regione.campania.it:2101`
 **type**:      physical-coord-vrs
-**access**:    conditions; new users require SPID (Italian national digital identity)
-**pipeline-access**: conditions
-               via the campania.it GNSS portal; legacy credentials publicly documented
-               in Italian surveying forums may still work on the old endpoint
-**stations**:  ~18
+**access**:    open; public shared credentials: username `Campania`, password `GNSS` for
+               30-second VRS (`1_VRS30`); 1-second RTK requires SPID (Italian national
+               digital identity)
+**pipeline-access**: open (public credentials)
+**stations**:  multiple stations covering Campania provinces
 **source**:    regione.campania.it GNSS section (Regione Campania)
-**operator**:  Regione Campania
+**operator**:  Regione Campania — SIT (Sistema Informativo Territoriale)
 
-Campania regional GNSS network. Access upgraded to SPID-authenticated portal;
-legacy endpoint may accept old credentials. Free for SPID holders.
+Campania regional GNSS network. Public credentials (`Campania`/`GNSS`) provide
+30-sec VRS without registration. 1-sec RTK requires SPID. Leica Spider caster.
 
 ---
 
@@ -935,7 +939,8 @@ restricts corrections to within Belgium territory.
 ## latpos — LatPos (LV)
 
 **status**:    free
-**host:port**: `latpos.lgia.gov.lv:2101`
+**date_added**: 2026-05-06
+**host:port**: `latpos.lgia.gov.lv:5001`
 **type**:      single-coord-vrs
 **access**:    free since 2018; SBC portal signup at latpos.lgia.gov.lv/SBC
 **pipeline-access**: registration
@@ -943,12 +948,11 @@ restricts corrections to within Belgium territory.
 **source**:    latpos.lgia.gov.lv (LGIA)
 **operator**:  LGIA — Latvijas Ģeotelpiskās informācijas aģentūra
 
-Domain `lgia.gov.lv` is live; SBC portal at `latpos.lgia.gov.lv` active but
-registration-gated. Port changed from 5001 (Alberding directory, now timing out)
-to 2101 (standard; NTRIP host:port given only post-registration).
-
-**investigate**: confirm port 2101 resolves at `latpos.lgia.gov.lv` from a
-Baltic-region IP; if still timing out, try 5001 again or contact LGIA.
+Domain `lgia.gov.lv` is live; SBC portal at `latpos.lgia.gov.lv` active.
+Port 5001 confirmed responding SOURCETABLE 200 OK on 2026-05-06. This is the
+canonical port per Alberding directory and the research confirms it is live.
+Non-standard port 5001 may be blocked by some egress firewalls (CI timeout
+observed previously). Network accuracy ~2 cm horizontal.
 
 ---
 
@@ -1364,8 +1368,9 @@ archive (up to 1 year). Host:port confirmed via provincial institutional pages 2
 ## stpos — STPOS (IT — South Tyrol / Alto Adige)
 
 **status**:    free
-**date_added**: 2026-04-30
-**host:port**: `www.stpos.it:2101` (SBC portal domain; mountpoints provided after documentation review)
+**date_added**: 2026-05-06
+**host:port**: `62.101.0.40:2109` (SOURCETABLE 200 OK on port 2109, 2026-05-07; port 2101
+               on same IP refused; domain: `www.stpos.it`)
 **type**:      physical-coord-vrs
 **access**:    registration; free; Leica Spider Business Center portal; requires ID scan + declaration
                of intended use to activate RTK access; RINEX available immediately after registration;
@@ -1375,10 +1380,10 @@ archive (up to 1 year). Host:port confirmed via provincial institutional pages 2
 **operator**:  Ufficio Catasto / Amt für Kataster, Provincia Autonoma di Bolzano / Autonome Provinz Bozen
 **source**:    stpos.it (PAB — Provincia Autonoma di Bolzano)
 
-South Tyrol Positioning Service. 10 physical reference stations. Bilingual (German/Italian).
-Additional documentation step (ID + intended-use declaration) is light — no professional
-credential required; RINEX archive available without it. Host:port confirmed via official
-Bolzano cadastral pages 2026-04-30.
+South Tyrol Positioning Service. 10 physical reference stations (Bozen, Bruneck, Corvara,
+Feldthurns, Helm-M.Elmo, Latsch, Mals, Merano2000, Prettau, Vipiteno). Bilingual (German/Italian).
+Note non-standard port 2109. Additional documentation step (ID + intended-use declaration) is
+light — no professional credential required; RINEX archive available without it.
 
 ---
 
@@ -1672,14 +1677,21 @@ Sourcetable publicly readable. Removed from free-source pipeline 2026-04-20.
 ## hepos — HEPOS (GR)
 
 **status**:    paid-affordable
-**host:port**: `uranus.gr:2101`
-**access**:    paid
-**yearly_cost**: €160/quarter (~$170) or €480/yr (~$520), unlimited flat rate; per-minute
-               plan also available (€90 one-time registration + undisclosed per-minute
-               charge) — all prices ex-VAT; quarterly flat rate is under the $200 cutoff
-**stations**:  unknown
-**source**:    ktimatologio.gr (HEPOS S.A.)
-**operator**:  HEPOS S.A. / Ktimatologio
+**date_added**: 2026-05-06
+**country**:   GR
+**host:port**: `ntrip.hepos.gr:2101`
+**type**:      vrs-only
+**access**:    paid; individual online registration accepted; no professional licence required;
+               pay-as-you-go (€90 + VAT per bundle) or flat-rate subscription
+**registration**: hepos.gr
+**yearly_cost**: €480/yr (~$520) ex-VAT flat-rate (unlimited); quarterly: €160 (~$170) ex-VAT
+**stations**:  98 permanent reference stations covering mainland Greece and islands
+**source**:    hepos.gr (KTIMATOLOGIO S.A. / Hellenic Cadastre)
+**operator**:  KTIMATOLOGIO S.A. (Hellenic Cadastre)
+
+Launched 2008; progressively upgraded to full GNSS (GPS, GLONASS, Galileo, BeiDou).
+Reference system HTRS07 (Greek realization of ETRS89). Quarterly flat rate (€160)
+is under the $200/yr cutoff. Online credit-card payment; no licensing check documented.
 
 ---
 
@@ -1781,6 +1793,28 @@ Brief entries only.
 
 ---
 
+## orpheon — Orphéon (FR)
+
+**status**:    paid
+**date_added**: 2026-05-06
+**country**:   FR
+**host:port**: `ntrip.reseau-orpheon.fr`; port 8500 (topography), port 7500 (agriculture)
+**type**:      physical-coord-vrs
+**access**:    paid; annual or multi-year subscriptions; hourly packages available;
+               no professional licence required; international users may subscribe online
+**yearly_cost**: €756–3,456 TTC/yr (VAT inclusive) depending on coverage area
+               (departmental / regional / national) and service type (topography/agriculture);
+               5% discount at 36 months, 10% at 60 months; well above $200/yr cutoff
+**stations**:  ~215–220 permanent Full GNSS stations across mainland France and French
+               West Indies; ~60 km average inter-station spacing
+**operator**:  Géodata Diffusion SAS (part of Hexagon Group)
+**source**:    reseau-orpheon.fr
+
+VRS and i-Max (individualised MAX) mountpoints. GPS, GLONASS, Galileo, BeiDou.
+Also offers pay-per-hour packages for occasional users via shop.reseau-orpheon.fr.
+
+---
+
 ## grafcan_repcan — GRAFCAN REPCAN (ES-Canarias)
 
 **status**:    paid
@@ -1870,9 +1904,18 @@ network RTK.
 ## cpos — CPOS/ETPOS (NO)
 
 **status**:    paid
-**access**:    paid
-**yearly_cost**: NOK 8,000+/yr (~$740)
-**source**:    kartverket.no
+**date_added**: 2026-05-06
+**country**:   NO
+**host:port**: `159.162.103.14:2101`
+**type**:      vrs-only
+**access**:    paid; 1-month free trial for new customers; no professional licence required;
+               ETPOS post-processing included with all subscriptions
+**registration**: kartverket.no
+**yearly_cost**: NOK 11,000/yr (~$1,020) Standard (surveying); NOK 5,000/yr (~$460) Landbruk
+               (agriculture); NOK 8,000/yr Fast (fixed installation) — all ex-VAT; agriculture
+               tier is lowest recurring commitment
+**stations**:  280+ permanent geodetic stations; ~5,000 active users
+**source**:    kartverket.no (Kartverket — Norwegian Mapping Authority)
 
 ---
 
@@ -2167,10 +2210,11 @@ solution, port 2103 single-base.
 ## gnssnet_hu — GNSSnet.hu (HU)
 
 **status**:    paid
-**date_added**: 2026-04-29
+**date_added**: 2026-05-06
 **country**:   HU
 **type**:      VRS (network RTK), single-base RTK, and DGNSS
-**host:port**: `ntrip.gnssnet.hu:2101`
+**host:port**: `ntrip1.gnssnet.hu:2101` (primary, Budapest); `ntrip2.gnssnet.hu:2101`
+               (backup, Penc/KGO) — two independently operating, identically configured servers
 **access**:    paid; web registration at gnssnet.hu; one-time per-company connection fee
 **registration**: `gnssnet.hu`
 **yearly_cost**: All figures net of ÁFA (Hungarian VAT, 27%).

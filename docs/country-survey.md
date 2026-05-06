@@ -81,18 +81,17 @@ _Last updated: 2026-04-22._
 
 ### LI — Liechtenstein
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-06
 
-- **Free government RTK**: none confirmed. The Amt für Tiefbau und Geoinformation
-  (ATG, llv.li) manages national geodata infrastructure but operates no public NTRIP
-  caster. Liechtenstein has no independent GPS reference station programme (CORS); private surveyors use swipos
-  (swisstopo, CHF 1,500/yr), which geometrically covers the entire principality via
-  Swiss AGNES stations 5–10 km away. → networks.md: `li_cors`
-- **Volunteer**: none. Zero LI stations on rtk2go or Centipede (bounding-box check
-  confirmed). Swiss volunteer bases near St. Gallen/Rhine valley may provide incidental
-  coverage.
-- **Paid only**: swipos ~CHF 1,500/yr ≈ $1,650 — expensive for a hobbyist; only practical RTK
-  service for the territory.
+- **Free government RTK**: none. The Amt für Tiefbau und Geoinformation (ATG, llv.li)
+  manages national geodata but operates no public NTRIP caster. Liechtenstein has no
+  independent CORS; full coverage provided by neighbouring networks. APOS (Austria, BEV)
+  free for agriculture/forestry users since Feb 2021; may serve LI farmers with AT APOS
+  accounts. → networks.md: `li_cors`
+- **Volunteer**: none. Zero LI stations on rtk2go or Centipede. Swiss volunteer bases near
+  St. Gallen/Rhine valley may provide incidental coverage.
+- **Paid only**: swipos (swisstopo, CHF 1,500/yr ≈ $1,650, VRS) — primary service; Swiss
+  stations 5–25 km away cover the entire principality. APOS free for agri use.
 
 ### DE — Germany
 
@@ -113,13 +112,20 @@ _Last updated: 2026-04-22._
 
 ### FR — France
 
-**date_added**: 2026-04-28
+**date_added**: 2026-05-06
 
-- **Free government RTK**: none (commercial only: Teria/Hexagon, Orphéon/Trimble).
-- **Volunteer**: Centipede ~719 volunteer bases in mainland France (densest free RTK
-  coverage in France); rtk2go ~7 FR bases (negligible alongside Centipede).
+- **Free government RTK**: none. IGN RGP (~100+ permanent GNSS stations) provides
+  free RINEX post-processing only; no public RTK NTRIP caster. Centipede fills that role.
+- **Volunteer**: Centipede ~713 volunteer bases in mainland France (densest free RTK
+  coverage in France); rtk2go ~8 FR bases (negligible alongside Centipede). Centipede
+  migrated from `caster.centipede.fr` to `crtk.net:2101` on 2025-03-18 (new Millipede
+  caster, 50× capacity improvement). ~30 RENAG scientific stations redistributed via
+  Centipede since June 2023.
+- **Paid**: Orphéon (`ntrip.reseau-orpheon.fr`, Géodata Diffusion SAS / Hexagon,
+  ~215–220 stations, VRS + i-Max) — €756–3,456 TTC/yr depending on coverage area.
+  → networks.md: `orpheon`
 - **Gap**: none in practice for mainland France — Centipede effectively provides
-  national coverage.
+  national coverage. Some overseas territories (DOM-TOM) have sparse Centipede nodes.
 
 ### GB — United Kingdom
 
@@ -165,10 +171,11 @@ _Last updated: 2026-04-22._
 
 ### LU — Luxembourg
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-06
 
-- **Free government RTK**: SPSLux (ACT, `stream.spslux.lu:5005`, VRS) — Luxembourg
-  open-data policy, all services free. → networks.md: `spslux`
+- **Free government RTK**: SPSLux (ACT, `stream.spslux.lu:5005`, 13 stations, VRS/iMAX) —
+  Luxembourg open-data policy, all services free; registration via ACT portal (zero-cost).
+  → networks.md: `spslux`
 - **Volunteer**: negligible.
 
 ### NL — Netherlands
@@ -272,27 +279,25 @@ _Last updated: 2026-04-22._
 
 ### GR — Greece
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-06
 
-- **Free government RTK**: none. HEPOS (HEPOS S.A. / Ktimatologio, `uranus.gr:2101`,
-  VRS) — flat-rate plans €160/quarter (~$170) or €480/yr (~$525), unlimited; per-minute
-  plan also available (€90 one-time registration + undisclosed per-minute charge); all
-  prices ex-VAT. Quarterly flat rate affordable for seasonal hobbyist use.
-  → networks.md: `hepos`
-- **Volunteer**: rtk2go ~2 GR bases, Centipede ~2 GR nodes.
-- **Paid affordable**: HEPOS — €160/quarter (~$170) or €480/yr (~$525) unlimited flat
-  rate; pay-per-minute option also available (€90 registration, per-minute rate not
-  published); quarterly flat rate affordable for seasonal hobbyist use.
+- **Free government RTK**: none. HEPOS (KTIMATOLOGIO S.A. / Hellenic Cadastre,
+  `ntrip.hepos.gr:2101`, 98 stations, VRS) — flat-rate plans €160/quarter (~$170) or
+  €480/yr (~$525) unlimited; per-minute bundle €90 (ex-VAT); all prices ex-VAT.
+  Quarterly flat rate is under the $200/yr cutoff; individual online registration
+  accepted; no professional licence required. → networks.md: `hepos`
+- **Volunteer**: rtk2go ~1 GR bases, Centipede ~3 GR nodes.
 - **Gap**: no free government RTK; HEPOS quarterly block is the lowest-cost
   entry; volunteer coverage very thin.
 
 ### HR — Croatia
 
-**date_added**: 2026-04-28
+**date_added**: 2026-05-06
 
-- **Free government RTK**: CROPOS (DGU, `gnss.cropos.hr:2101`, 35 stations, VRS)
-  — free since Apr 2022 (Narodne novine 39/2022). → networks.md: `cropos`
-- **Volunteer**: rtk2go ~4 HR bases, Centipede ~5 HR nodes.
+- **Free government RTK**: CROPOS (DGU, `195.29.198.194:2101` / `gnss.cropos.hr:2101`,
+  30+ stations, VRS) — free since Apr 2022 (Narodne novine 39/2022); April 2025 expansion
+  added two new stations. → networks.md: `cropos`
+- **Volunteer**: rtk2go ~2 HR bases, Centipede ~0 HR nodes.
 - **Gap**: CROPOS VRS only (0 physical pins on map); NRTK polygon deferred.
 
 ### MT — Malta
@@ -318,46 +323,45 @@ _Last updated: 2026-04-22._
 
 ### IT — Italy
 
-**date_added**: 2026-04-30
+**date_added**: 2026-05-06
 
 - **Free government RTK**: no national free public caster. Strongly regional.
-  - **FReDNet** (OGS/FVG, `gnsscaster.regione.fvg.it:8080`, ~39 stations) — Friuli-Venezia
-    Giulia + border SI/AT. Free email registration. In pipeline. → networks.md: `frednet`
-  - **SPIN3 GNSS** (CSI Piemonte, `spingnss.it:2101`, ~39 stations) — Piemonte + Lombardia +
+  - **FReDNet** (OGS/FVG, `gnsscaster.regione.fvg.it:8080`, ~40 stations) — Friuli-Venezia
+    Giulia + border SI/AT. Free registration. In pipeline. → networks.md: `frednet`
+  - **SPIN3 GNSS** (CSI Piemonte, `158.102.7.10:2101`, 39 stations) — Piemonte + Lombardia +
     Valle d'Aosta. Free registration. In pipeline. → networks.md: `spin3`
-  - **GPS-UMBRIA** (Regione Umbria, `gpsumbria.regione.umbria.it:2101`, 12 stations) — Free
+  - **GPS-UMBRIA** (Regione Umbria, `gpsumbria.regione.umbria.it:2101`, 13 stations) — Free
     registration. In pipeline. → networks.md: `gpsumbria`
   - **Abruzzo + Lazio** (`gnss-rtk.regione.abruzzo.it:2101`, ~29 stations) — Single endpoint
     since Dec 2022. Free registration. In pipeline. → networks.md: `gnss_abruzzo_lazio`
-  - **SIT Puglia** (`gps.sit.puglia.it:2101`, 12 stations) — Free registration. In pipeline.
+  - **SIT Puglia** (`gps.sit.puglia.it:2101`, 10+ stations) — Free registration. In pipeline.
     → networks.md: `sit_puglia`
-  - **Campania** (`gps-sit.regione.campania.it:2101`, ~18 stations) — SPID identity required
-    for new users; legacy credentials may work on old endpoint. Conditions access. In pipeline.
+  - **Campania** (`gps.sit.regione.campania.it:2101`, multiple stations) — public credentials
+    (user: `Campania`, pass: `GNSS`) for 30-sec VRS; 1-sec requires SPID. In pipeline.
     → networks.md: `gnss_campania`
-  - **TPOS** (Provincia Autonoma di Trento, `tpos.provincia.tn.it:2101`, 11 stations) — Free;
+  - **TPOS** (Provincia Autonoma di Trento, `194.105.50.232:2101`, 11 stations) — Free;
     self-service SBC portal; no professional licence required; VRS/MAX/NRT mountpoints + RINEX
     archive. In pipeline. → networks.md: `tpos`
-  - **STPOS** (Provincia Autonoma di Bolzano, `www.stpos.it:2101`, 10 stations) — Free; SBC
-    portal; ID scan + intended-use declaration required to activate RTK (RINEX immediate); no
-    professional restriction. In pipeline. → networks.md: `stpos`
-  - **Rete GNSS Veneto** (CISAS-Unipd, `147.162.229.53:2101`, ~20 stations) — Free; email
+  - **STPOS** (Provincia Autonoma di Bolzano, `62.101.0.40:2109`, 10 stations; note non-standard
+    port 2109) — Free; SBC portal; no professional restriction. In pipeline. → networks.md: `stpos`
+  - **Rete GNSS Veneto** (CISAS-Unipd, `147.162.229.53:2101`, 20+ stations) — Free; email
     registration; MAX3/IMAX/NRT mountpoints; open to any user. In pipeline. → networks.md: `gnss_veneto`
   - **Rete GNSS Liguria** (Regione Liguria, `81.23.86.70:2101`, 10 stations) — Free; online
     registration; open to all; 7 regional + 3 SPIN3 stations. In pipeline. → networks.md: `gnss_liguria`
   - **Sicili@net** (INGV Catania, `193.206.223.39:2101`, ~80 stations) — Sicily + S. Calabria;
-    free to all; email registration; MAX/IMAX/VRS/FKP mountpoints. In pipeline. → networks.md: `sicilianet`
+    free to all; request via ct.ingv.it/index.php/risorse-e-servizi/sicil-net;
+    MAX/IMAX/VRS/FKP mountpoints. In pipeline. → networks.md: `sicilianet`
   - **Emilia-Romagna** — public service discontinued; now commercial via NetGEO/TopNET.
     Rejected. → networks.md: `gps_emiliaromagna`
   - **Molise** — Regione Molise does not operate a GNSS network. Rejected. → networks.md: `molise_gnss`
-  - Regions **not yet confirmed**: Toscana, Basilicata. Calabria partially via Sicili@net.
-- **Commercial paid**: NetGEO/TopNET (~€360/yr, national), PegasoNow/Hexagon.
-  SARNET (Sardinia, ~14 stations, ~€250/yr ex-IVA (~$293/yr); only correction source on
-  the island; no rtk2go or Centipede stations in Sardinia).
-  → networks.md: `netgeo`, `pegasonow`, `sarnet`
-- **Volunteer**: rtk2go ~12 IT bases, Centipede ~3 IT nodes.
-- **Gap**: central Italy (Toscana, Basilicata) has no confirmed free NTRIP. Five previously
-  deferred networks (TPOS, STPOS, Veneto, Liguria, Sicili@net) now have confirmed caster
-  addresses and are candidates for pipeline ingestion.
+  - Regions **without a public caster**: Toscana, Marche, Sardegna, Basilicata. North/central
+    Calabria has no dedicated caster (Sicili@net covers southern tip only).
+- **Commercial paid**: NetGEO/TopNET (~€360/yr, national), HxGN SmartNet Italy (ItalPOS,
+  ~€385/yr+IVA). SARNET (Sardinia, ~14 stations, ~€250/yr ex-IVA (~$293/yr); only correction
+  source on the island). → networks.md: `netgeo`, `pegasonow`, `sarnet`
+- **Volunteer**: rtk2go ~11 IT bases, Centipede ~3 IT nodes.
+- **Gap**: central Italy (Toscana, Basilicata, Marche, northern Calabria) has no confirmed
+  free NTRIP. All confirmed regional networks are in pipeline.
 
 ### SM — San Marino
 
@@ -461,48 +465,52 @@ _Last updated: 2026-04-22._
 
 ### IS — Iceland
 
-**date_added**: 2026-04-28
+**date_added**: 2026-05-06
 
-- **Free government RTK**: IceCORS (LMÍ, `178.19.53.126:2101`, VRS + single-base)
-  — confirmed free ("data is free of charge" — natt.is). → networks.md: `icecors`
-- **Volunteer**: negligible. ~2 AUSCORS reference stations (HOFN, REYK) appear in the
-  pipeline but are geodetic infrastructure, not hobbyist correction services.
-- **Gap**: IceCORS physical stations all carry nmea=1 (physical-coord-vrs) so the pipeline
-  yields 0 map pins; a VRS circle is the current map representation. Registration at
-  natt.is required to obtain stream credentials.
+- **Free government RTK**: IceCORS (LMÍ, `178.19.53.126:2101`, ~33 stations, single-base
+  only — no VRS) — free, no registration required; open access. Reference frame ISN2016
+  (updated for tectonic movement). → networks.md: `icecors`
+- **Volunteer**: negligible.
+- **Gap**: IceCORS physical stations carry nmea=1 flags so the pipeline yields 0 map pins;
+  a VRS circle represents the network on the map. Interior highlands and glacier areas lack
+  cellular internet, making NTRIP impractical despite nearby stations.
 
 ### LT — Lithuania
 
-**date_added**: 2026-04-30
+**date_added**: 2026-05-06
 
-- **Free government RTK**: LitPOS (NZT / GIS-Centras, 35 stations, VRS) — free;
-  endpoint confirmed 2026-04-30 (`193.219.10.2:2101` primary, `195.182.72.152:2101`
-  secondary; both tested live). Register at geoportal.lt/web/litpos-paslauga/registracija.
-  Added to pipeline. → networks.md: `litpos`
+- **Free government RTK**: LitPOS (GIS-Centras / Construction Sector Development Agency,
+  35 stations, VRS) — free; NTRIP endpoint issued post-registration (host:port not
+  published publicly); register via Google Form at geoportal.lt/web/litpos-en/registration.
+  Added to pipeline using bare IP `193.219.10.2:2101`. → networks.md: `litpos`
 - **Volunteer**: negligible.
-- **Gap**: none — LitPOS provides national VRS coverage, free with registration.
+- **Gap**: pricing opaque; application-form registration; EUPOS member with cross-border
+  data sharing (LatPos, ASG-EUPOS).
 
 ### LV — Latvia
 
-**date_added**: 2026-04-28
+**date_added**: 2026-05-06
 
-- **Free government RTK**: LatPos (LGIA, `latpos.lgia.gov.lv:5001`, 27 LV + border
-  stations, VRS) — free since 2018. Port 5001. → networks.md: `latpos`
+- **Free government RTK**: LatPos (LGIA, `latpos.lgia.gov.lv:5001`, 27 LV + 5 EE + 4 LT
+  border stations, VRS) — free since 2018; SBC portal registration required.
+  Port 5001 confirmed responding (SOURCETABLE 200 OK, 2026-05-06). → networks.md: `latpos`
 - **Volunteer**: negligible.
-- **Gap**: currently timing out in CI (suspected egress firewall on non-standard port).
+- **Gap**: port 5001 is non-standard; some external networks block it (CI timeout suspected
+  egress firewall). Network accuracy ~2 cm horizontal.
 
 ### NO — Norway
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-06
 
-- **Free government RTK**: none. CPOS/ETPOS (Kartverket, `cpos.kartverket.no:2101`,
-  ~130 stations, VRS) — NOK 8,000+/yr (~$740/yr); expensive for a hobbyist.
-  → networks.md: `cpos`
-- **Volunteer**: rtk2go ~25 NO bases, Centipede ~21 NO nodes. Together ~46 bases;
+- **Free government RTK**: none. CPOS (Kartverket, `159.162.103.14:2101`, 280+ stations,
+  VRS) — tiered paid plans: Standard NOK 11,000/yr, Agriculture NOK 5,000/yr, fixed
+  installation NOK 8,000/yr (all ex-VAT); 1-month free trial available; no public free tier.
+  ETPOS post-processing included with all CPOS subscriptions. → networks.md: `cpos`
+- **Volunteer**: rtk2go ~30 NO bases, Centipede ~23 NO nodes. Together ~53 bases;
   reasonable in populated areas (Oslofjord, Vestlandet); sparse north of ~63°N.
-- **Paid only**: CPOS/ETPOS NOK 8,000+/yr (~$740/yr).
 - **Gap**: no free government RTK; hobbyists rely on volunteer bases (good coverage
-  south of ~63°N, sparse further north).
+  south of ~63°N, sparse further north). Lowest paid entry is CPOS Landbruk (agriculture)
+  at NOK 5,000/yr (~$460/yr).
 
 ### PL — Poland
 
@@ -688,7 +696,7 @@ _Last updated: 2026-04-22._
 
 ### HU — Hungary
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-06
 
 - **Government RTK (paid)**: GNSSnet.hu (Lechner Nonprofit Kft. / Lechner Tudásközpont,
   `ntrip.gnssnet.hu:2101`, VRS network solution + single-base RTK + DGNSS). Tariff
@@ -702,7 +710,7 @@ _Last updated: 2026-04-22._
   local-radius pass (~€38) covers a single project within 50 km of one
   point. Registration at `gnssnet.hu`.
   → networks.md: `gnssnet_hu`
-- **Volunteer**: Centipede ~223 HUN nodes (single largest non-France country in the
+- **Volunteer**: Centipede ~224 HUN nodes (single largest non-France country in the
   Centipede sourcetable), rtk2go ~6 HUN bases. Near-national free RTK coverage
   through volunteers; densest in the Great Hungarian Plain and northern Hungary.
 - **Gap**: no free government RTK. The Centipede volunteer network provides practical
@@ -1689,14 +1697,15 @@ similarly have no published coverage for these jurisdictions.
 
 ### NZ — New Zealand
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-06
 
 - **Free government RTK**: PositioNZ-RT (LINZ, `positionz-rt.linz.govt.nz:2101`,
-  ~62 fixed reference stations (CORS), single-base, CC BY 4.0 NZ) — free, LINZ account required;
-  register at linz.govt.nz. → networks.md: `positionz`
-- **Volunteer**: rtk2go ~11 NZ bases, concentrated in the North Island and upper South Island.
-- **Gap**: PositioNZ-RT covers the mainland and Chatham Islands with good single-base density;
-  no practical gap for hobbyists — registration is the only friction.
+  37 CORS stations, single-base only — no VRS, CC BY 4.0 NZ) — free, LINZ account required;
+  register at linz.govt.nz; streams managed by GeoNet (1 Hz, NZGD2000 reference frame).
+  Recommended use within 15 km of connected station. → networks.md: `positionz`
+- **Volunteer**: rtk2go ~12 NZ bases, concentrated in the North Island and upper South Island.
+- **Gap**: PositioNZ-RT covers the mainland and Chatham Islands; single-base only (no VRS);
+  registration is the only friction. Commercial VRS: Trimble CenterPoint/Vantage NZ (paid).
 
 ### FJ — Fiji
 
@@ -1786,36 +1795,44 @@ similarly have no published coverage for these jurisdictions.
 
 ### HK — Hong Kong
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-06
 
 - **Free government RTK**: SatRef (Lands Dept / SMO, `ntrip.geodetic.gov.hk:2101`,
-  19 physical stations + VRS mountpoint `VRS32G`, physical-coord-vrs, 4-constellation,
-  open data) — free, register via geodetic.gov.hk. → networks.md: `satref`
+  19 CORS (16 reference + 3 IM), VRS, 4-constellation) — free, apply via geodetic.gov.hk;
+  no professional licence or residency required; open data policy. → networks.md: `satref`
 - **Volunteer**: negligible. ~0 rtk2go HK bases; city-state geography.
-- **Gap**: well-covered; SatRef VRS gives network-level accuracy across all of Hong
-  Kong with a single email-registration account. No practical gap for hobbyists.
+- **Gap**: well-covered; SatRef VRS gives network-level accuracy across all of Hong Kong.
+  TCHK integrity monitoring station under maintenance since Aug 2025; main service unaffected.
 
 ### JP — Japan
 
-**date_added**: 2026-04-28
+**date_added**: 2026-05-06
 
-- **Free government RTK**: GEONET (GSI) — post-processing RINEX only; no public NTRIP.
-  MIRAI / Go!GNSS (Cabinet Office SPAC, `ntrip.go.gnss.go.jp:2101`, ~300+ stations,
-  free incl. commercial + automated) — raw observations. → networks.md: `mirai`
-  QZSS CLAS — satellite-delivered (L6 band), not NTRIP; free, cm-level, no internet. Out of scope.
+- **Free government RTK**: none. GEONET (GSI, 1,300+ stations) — RINEX post-processing
+  only; real-time data licensed to private providers, no public NTRIP. MIRAI / Go!GNSS
+  (Cabinet Office SPAC, `ntrip.go.gnss.go.jp:2101`, ~300+ stations, free incl. commercial
+  + automated) — raw observations / experimental. → networks.md: `mirai`
+  QZSS CLAS — satellite-delivered (L6 band), free, cm-level, no internet. Out of scope.
 - **Volunteer**: GeoRTK (Geosense, `geortk.jp:2101`, ~41 stations, no auth, free).
-  → networks.md: `geortk`; rtk2go ~24 JP bases.
-- **Gap**: well-covered between MIRAI and GeoRTK. Commercial: SoftBank ichimill ¥5–8k/month.
+  → networks.md: `geortk`; rtk2go ~22 JP bases.
+- **Paid commercial**: SoftBank ichimill (~¥39,600/yr ≈ $260/yr, 3,300+ stations, VRS);
+  Nippon GPS Data Service (`ntrip.gpsdata.co.jp:2101`, tiered pricing).
+- **Gap**: well-covered between MIRAI and GeoRTK for free access. Foreign hobbyists
+  may find ichimill impractical (Japanese address effectively required).
 
 ### KR — South Korea
 
-**date_added**: 2026-04-28
+**date_added**: 2026-05-06
 
-- **Free government RTK**: CORS-KOREA (NGII, `www.gnssdata.or.kr:2101`, ~90–100 stations,
-  VRS + FKP) — free; sourcetable public; stream registration may require Korean national ID.
-  → networks.md: `cors_korea`
+- **Free government RTK**: NGII Network RTK (NGII / 국토지리정보원, VRS service
+  `vrs3.ngii.go.kr:2101`, FKP service `fkp.ngii.go.kr:2201`, ~60 stations, VRS + FKP)
+  — free; registration at ngii.go.kr (Korean-language portal; shared password `ngii`
+  documented in academic literature). Service address updated May 2022. Seoul City
+  operates a supplementary network (`gnss.eseoul.go.kr`). → networks.md: `cors_korea`
 - **Volunteer**: rtk2go ~3 KR bases.
-- **Gap**: Korean-language portal only; international hobbyists may be blocked by national ID requirement.
+- **Gap**: registration requires Korean government portal account (PASS/mobile identity
+  verification); non-residents face practical barriers. FKP shared password may allow
+  connection without individual account but this is not the official path.
 
 ### MO — Macao SAR (China)
 
@@ -2539,12 +2556,15 @@ similarly have no published coverage for these jurisdictions.
 
 ### GM — Gambia
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-06
 
-- **Free government RTK**: none confirmed. The Department of Lands and Surveys
-  (Ministry of Lands and Regional Government) is the national geodetic authority;
-  no public fixed reference station (CORS) caster or NTRIP endpoint has been found.
+- **Free government RTK**: none confirmed. The Department of Lands and Regional Planning
+  (Ministry of Lands and Regional Government) is the national geodetic authority; no
+  public CORS, NTRIP caster, or RTK endpoint found. Not in ntrip-list.com, EUREF, or
+  any CORS registry.
 - **Volunteer**: none. Zero GM stations on rtk2go or Centipede.
+- **Gap**: nearest post-processing reference is IGS station DAKA (Dakar, Senegal, ~160 km);
+  no real-time hobbyist RTK path exists.
 
 ### GN — Guinea (Conakry)
 
