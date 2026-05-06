@@ -2249,19 +2249,26 @@ similarly have no published coverage for these jurisdictions.
 
 ### DZ — Algeria
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-05
 
-- **Free government RTK**: none. REGAT (INCT, `inct.mdn.dz`) — ~53–56 physical stations
-  across the Algerian Atlas. Operated under the Ministry of National Defence for seismic
-  and crustal-deformation research; no public NTRIP caster or RTK correction service has
-  been announced. A separate 6-station backbone (Algiers, Oran, Constantine, Ouargla,
-  Béchar, Tindouf) was planned to grow to ~146 stations nationally but no streaming
-  endpoint has been made public. Because INCT is a defence subordinate body, a hobbyist
-  NTRIP service is structurally unlikely without a separate civilian mandate.
-  → networks.md: `regat_dz`
+- **Free government RTK**: none. Two distinct national GNSS networks exist; neither
+  publishes a hobbyist-accessible NTRIP endpoint:
+  - **AL-CORS-Net** — 6-station Network-RTK / VRS service on a Geo++ GNSMART backend,
+    operated by INCT (Institut National de Cartographie et de Télédétection), a body
+    subordinate to the Ministry of National Defence. Stations at Algiers (DZAL), Oran
+    (DZOR), Constantine (DZCO), Ouargla (OGLA), Béchar (BECH), Tindouf (TIND).
+    Published performance ~1.3 cm horizontal, ~2.2 cm vertical (1σ), ~97% VRS
+    availability; an academic study confirmed live VRS sessions Oct 2021 – Jan 2022.
+    Long-term plans cite a ~146-station national expansion. No public registration
+    portal, tariff, or NTRIP host:port has been advertised. → networks.md: `alcorsnet_dz`
+  - **REGAT** (Réseau Géodésique de l'ATlas) — ~53-station seismotectonic monitoring
+    network operated by **CRAAG** (Centre de Recherche en Astronomie, Astrophysique et
+    Géophysique). Raw RINEX archive for crustal-deformation research; no real-time
+    NTRIP/RTK service.
 - **Volunteer**: none. Zero DZ stations on rtk2go or Centipede.
-- **Gap**: no free RTK for hobbyists anywhere in Algeria. No public NTRIP endpoint exists;
-  the government fixed reference station (CORS) infrastructure is restricted to internal scientific and defence use.
+- **Gap**: no free RTK for hobbyists anywhere in Algeria. AL-CORS-Net is structurally
+  unlikely to open a hobbyist path without a separate civilian mandate; REGAT is
+  research infrastructure, not a correction service.
 
 ### GA — Gabon
 
@@ -2299,7 +2306,7 @@ similarly have no published coverage for these jurisdictions.
 
 ### TD — Chad
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-05
 
 - **Context**: President Idriss Déby Itno died April 2021; his son Mahamat Idriss Déby led a
   Transitional Military Council until a managed constitutional referendum (2023) and presidential
@@ -2309,16 +2316,19 @@ similarly have no published coverage for these jurisdictions.
   support reduce the bilateral geodetic-infrastructure pipeline that had underpinned recent GNSS
   survey projects.
 
-- **Free government RTK**: none confirmed. IGN FI (France) installed 74 geodetic pillars and
-  computed a geoid model for N'Djamena and surroundings under the RGT20 project (completed circa
-  2020), operated in partnership with Chadian authorities; no ongoing public NTRIP caster has been
-  identified from that work. The responsible national geodetic authority has not published a public
-  fixed reference station (CORS) endpoint. → networks.md: `chad_cors`
+- **Free government RTK**: none. IGN FI installed 75 geodetic monuments plus 50 orientation
+  pillars and computed a geoid model for N'Djamena and surroundings under the RGT20 project
+  (Réseau Géodésique du Tchad 2020; first pillar inaugurated March 2020, project completed
+  February 2021), delivered to the Ministry of Land Planning, Housing and Urbanism (MATDHU).
+  RGT20 is passive survey control (physical pillars + Circé software), not a streaming caster.
+  No NTRIP caster host:port has been found; Chad is absent from rtk2go, corsstations.com, the
+  GitHub community CORS list, SmartNet, GEODNET, and other directories checked.
+  → networks.md: `chad_cors`
 
 - **Volunteer**: none. Zero TD stations on rtk2go or Centipede.
 
-- **Gap**: no free RTK for hobbyists. No confirmed public CORS network or NTRIP caster anywhere
-  in Chad; the RGT20 geodetic infrastructure is passive survey control, not streaming RTK.
+- **Gap**: no free RTK for hobbyists. Chad has no CORS network of any kind — government,
+  commercial, or community; the RGT20 deliverable is passive geodetic control, not real-time RTK.
 
 ### EG — Egypt
 
@@ -2747,17 +2757,19 @@ similarly have no published coverage for these jurisdictions.
 
 ### MG — Madagascar
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-05
 
 - **Free government RTK**: none. FTM (Foiben-Taosarintanin'i Madagasikara —
   Institut Géographique et Hydrographique, `ftm.mg`) is the national mapping
   authority responsible for geodesy and is mandated to maintain the national
   geodetic and levelling network compatible with AFREF/ITRF. One IGS station
-  exists (ABPO00MDG, Ambakoana ~100 km south of Antananarivo, operated by
-  UNAVCO/EarthScope); last confirmed RINEX data June 2023, and this is a
-  raw-observation archive station — not an RTK streaming caster. No public
-  NTRIP caster or RTK streaming endpoint from FTM has been found.
-  → networks.md: `ftm_mg`
+  exists (ABPO00MDG, Ambohimpanompo near Antananarivo; Septentrio PolaRx5,
+  installed 2007), operated locally by the University of Antananarivo
+  Institute of Geophysics with data archived to UNAVCO/EarthScope and IGS;
+  this is a raw-observation archive station, not an RTK streaming caster.
+  No public NTRIP caster or RTK streaming endpoint from FTM has been found,
+  and Madagascar is absent from SmartNet, Polaris, GEODNET, and onocoy
+  directories. → networks.md: `ftm_mg`
 - **Volunteer**: none. Zero MG stations on rtk2go or Centipede.
 - **Gap**: no free RTK for hobbyists in Madagascar. The IGS archive station
   provides RINEX data for scientific use only; hobbyist RTK requires
