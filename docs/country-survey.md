@@ -36,7 +36,7 @@ _Last updated: 2026-04-22._
 
 ### AT — Austria
 
-**date_added**: 2026-04-30
+**date_added**: 2026-05-06
 
 - **Paid government RTK**: APOS (BEV, `aposrtk.bev.gv.at:2101`, 37 stations, VRS) —
   paid for hobbyists via bev.gv.at portal. No annual plan; billing is per-second,
@@ -44,22 +44,23 @@ _Last updated: 2026-04-22._
   or ~$22/day). DGPS (decimetre accuracy): €20/month or €2/day. One-time setup fee
   €50. Free only for agriculture/forestry users with Austrian farm credentials (eAMA).
   → networks.md: `apos`
-- **Volunteer**: rtk2go ~14 AT bases, Centipede ~1 AT node.
+- **Volunteer**: rtk2go ~13 AT bases, Centipede ~1 AT node.
 - **Gap**: no free hobbyist RTK; the only unconditionally free option is volunteer
   stations on rtk2go. Agricultural users get APOS free via eAMA.
 
 ### BE — Belgium
 
-**date_added**: 2026-04-28
+**date_added**: 2026-05-06
 
 - **Free government RTK**:
   - FLEPOS (Flanders, `flepos.vlaanderen.be:2101`, 45 stations VRS) — free for
     all uses; currently timing out in CI. → networks.md: `flepos`
-  - WALCORS (Wallonia, `gnss.wallonie.be:2101`, 23 stations VRS) — free for
-    positioning; paid for machine-control/auto-guidance. → networks.md: `walcors`
+  - WALCORS (Wallonia, `gnss.wallonie.be:8081`, 23 stations VRS) — free for
+    positioning; paid for machine-control/auto-guidance. Port 8081 confirmed
+    2026-05-06 (port 2101 firewall-blocked). → networks.md: `walcors`
   - GPSBru/AGN (Brussels NGI, `agn.ngi.be`, 1 station) — free, registration;
     useful only within ~30 km of Brussels. Low priority. → networks.md: `gpsbru`
-- **Volunteer**: rtk2go ~24 NL+BE volunteer bases (mixed), Centipede ~25 BE/NL nodes.
+- **Volunteer**: rtk2go ~3 BE bases, ~21 NL bases (mixed geography); Centipede ~17 BE nodes, ~26 NL nodes.
 - **Gap**: FLEPOS and WALCORS are VRS-only (0 physical pins on map); NRTK polygons deferred.
 
 ### CH — Switzerland
@@ -943,7 +944,7 @@ similarly have no published coverage for these jurisdictions.
 
 ### CA — Canada
 
-**date_added**: 2026-04-30
+**date_added**: 2026-05-06
 
 - **Free government RTK**: none confirmed in any province.
   - NRCan: post-processing only (CACS/CSRS RINEX archive; NRCAN-PPP web tool). No streaming NTRIP.
@@ -954,7 +955,7 @@ similarly have no published coverage for these jurisdictions.
     commercial providers (HxGN SmartNet, Can-Net, Brandtnet); SmartNet Atlantic plan (NB, NL, NS, PE) at CAD
     $3,328/yr (~$2,429/yr); Can-Net and Brandtnet pricing not publicly listed. → networks.md: `nsacs`
   - Ontario, Alberta, Saskatchewan, Manitoba: no provincial CORS; no confirmed public NTRIP.
-- **Volunteer**: rtk2go ~56 CA bases, Centipede ~13 CA nodes. Concentrated heavily
+- **Volunteer**: rtk2go ~65 CA bases, Centipede ~19 CA nodes. Concentrated heavily
   in BC, Ontario, and southern Quebec; very thin elsewhere.
 - **Gap**: no free national or provincial NTRIP in Canada. Volunteer networks are
   the only free path for hobbyists.
@@ -1494,14 +1495,15 @@ similarly have no published coverage for these jurisdictions.
 
 ### BQ — Bonaire, Sint Eustatius, Saba (Dutch special municipalities)
 
-**date_added**: 2026-05-01
+**date_added**: 2026-05-06
 
 - **Free government RTK**: AGRS.BES — Kadaster Nederland / NSGI (`ntrip.kadaster.nl:2101`
   unencrypted, `ntrip.kadaster.nl:443` TLS) — free, anonymous, confirmed active
-  2026-05-01. Seven BES-coded RTCM 3.2 MSM streams across three islands: Bonaire
-  (BON200BES0, BONK00BES0), Saba (SABY00BES0, SABY00BES1, SABY0), Sint Eustatius
-  (SEUS00BES0, SEUS0). Single-base streams; not VRS. NSGI pricing page explicitly lists
-  BES stations as free (€0); no username or password required. → networks.md: `bq_cors`
+  2026-05-06. Seven BES-coded streams across three islands: Bonaire (BON200BES0 RTCM 3.3
+  MSM, BONK00BES0 RTCM 3.3 MSM), Saba (SABY00BES0 RTCM 3.3 MSM, SABY0 RTCM 3.1 legacy,
+  SABY00BES1 raw SBF), Sint Eustatius (SEUS00BES0 RTCM 3.3 MSM, SEUS0 RTCM 3.1 legacy).
+  Single-base streams; not VRS. NSGI pricing page explicitly lists BES stations as free
+  (€0); no username or password required. → networks.md: `bq_cors`
 - **Volunteer**: none on rtk2go or Centipede.
 - **Gap**: single-base streams only — each island has its own dedicated reference
   station(s). Bonaire: BON200BES0 or BONK00BES0; Saba: SABY00BES0; Sint Eustatius: SEUS00BES0.
@@ -1644,15 +1646,17 @@ similarly have no published coverage for these jurisdictions.
 
 ### AU — Australia
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-06
 
-- **Free government RTK**: AUSCORS (Geoscience Australia, `ntrip.data.gnss.ga.gov.au:2101`,
-  ~813 stations, single-base, CC BY 4.0) — free, web signup at gnss.ga.gov.au/registration.
+- **Free government RTK**: AUSCORS (Geoscience Australia, `ntrip.data.gnss.ga.gov.au:2101`
+  or TLS on port 443, 914 stations, single-base, CC BY 4.0) — free, web signup at
+  gnss.ga.gov.au/registration. Mountpoints follow `<STA4>00AUS0` convention; RTCM 3.3 MSM.
   → networks.md: `auscors`
 - **Commercial**: State VRS networks (CORSnet-NSW, GPSnet VIC, SARNRIP SA, CORS-Q QLD, etc.)
-  are cost-recovery and paid — pricing varies by state but generally expensive for a hobbyist; contact
-  each state land agency directly.
-- **Volunteer**: rtk2go ~27 AU bases, Centipede ~3 AU nodes. Thin relative to Australia's size;
+  are cost-recovery and paid — pricing varies by state but generally expensive for a hobbyist;
+  contact each state land agency directly. Commercial nationwide VRS also via HxGN SmartNet Aus,
+  Positioned RTK, and AllDayRTK.
+- **Volunteer**: rtk2go ~26 AU bases, Centipede ~3 AU nodes. Thin relative to Australia's size;
   supplements AUSCORS in densely populated south-eastern areas.
 - **Gap**: AUSCORS single-base coverage is solid continent-wide; state VRS networks offer
   network solutions but are paid — hobbyists should use AUSCORS directly.

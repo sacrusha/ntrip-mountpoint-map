@@ -205,7 +205,7 @@ SOURCES = [
      "color": "#3a7ca5", "label": "FLEPOS",
      "type": "vrs-only", "country": ["BE"], "region": "Flanders",
      "access": "registration", "registration": "https://flepos.vlaanderen.be", "openNote": 'Free registration required'},
-    {"id": "walcors",     "url": "http://gnss.wallonie.be:2101/",
+    {"id": "walcors",     "url": "http://gnss.wallonie.be:8081/",          # port 8081 confirmed 2026-05-06; port 2101 times out (firewall)
      "color": "#2c6e8a", "label": "WALCORS",
      "type": "vrs-only", "country": ["BE"], "region": "Wallonia",
      "access": "registration", "registration": "https://gnss.wallonie.be", "openNote": 'Free registration required (paid for machine-control / auto-guidance)'},

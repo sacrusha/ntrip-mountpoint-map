@@ -166,11 +166,11 @@ are dropped by coordinate filter. Sourcetable has shrunk over time.
 ## auscors — AUSCORS (AU)
 
 **status**:    free
-**host:port**: `ntrip.data.gnss.ga.gov.au:2101`
+**host:port**: `ntrip.data.gnss.ga.gov.au:2101` (TLS also on port 443)
 **type**:      single-base
 **access**:    free; register at gnss.ga.gov.au/registration; CC BY 4.0
 **pipeline-access**: registration
-**stations**:  ~813
+**stations**:  914
 **source**:    gnss.ga.gov.au; auscors.ga.gov.au (dead since Jul 2022)
 **operator**:  Geoscience Australia
 **licence**:   CC BY 4.0
@@ -180,7 +180,9 @@ are dropped by coordinate filter. Sourcetable has shrunk over time.
                     KIRU00SWE0 in Sweden, ENAO00PRT0 in the Azores)
 
 Operated by Geoscience Australia. Old host `auscors.ga.gov.au` dead since Jul 2022.
-TLS also available on port 443. Attribute "© Commonwealth of Australia (Geoscience Australia)".
+Port 443 (TLS/NTRIP v2.0) is the primary recommended endpoint for modern clients;
+port 2101 (plain TCP) remains live as a fallback. Attribute "© Commonwealth of
+Australia (Geoscience Australia)".
 
 ---
 
@@ -908,20 +910,20 @@ in CI — likely location-based firewall (BKG/RTCM caster list independently con
 ## walcors — WALCORS (BE — Wallonia)
 
 **status**:    free
-**host:port**: `gnss.wallonie.be:2101`
+**host:port**: `gnss.wallonie.be:8081`
 **type**:      single-coord-vrs
 **access**:    free for positioning; paid for machine-control/auto-guidance (commercial resellers)
 **pipeline-access**: registration
-**stations**:  0 (23 declared; single-coord VRS; intermittently unreachable)
+**stations**:  0 (23 declared; single-coord VRS)
 **source**:    gnss.wallonie.be (SPW)
 **operator**:  SPW — Service Public de Wallonie
 
-Intermittent outages documented. Currently timing out in CI. The SPW portal
-uses `gnss.wallonie.be`; NTRIP host:port not published — given to registered
-users only.
-
-**investigate**: endpoint `gnss.wallonie.be:2101` unconfirmed; obtain
-credentials via registration to verify.
+Port 8081 confirmed 2026-05-06 (research probe: port 2101 timed out; port 8081 resolves
+to 157.164.253.36 — firewall likely restricts to registered Belgian IPs). Three VRS product
+types: VRS32GREC (VRS), IMAX32GREC (Leica iMAX), NEAR32GREC (nearest physical). Free
+for positioning use; paid reseller subscriptions required for machine-control / auto-guidance.
+Network: 22 Wallonia stations + 13 cross-border (LU, NL, FR, DE). Geographic software polygon
+restricts corrections to within Belgium territory.
 
 ---
 
@@ -5295,8 +5297,9 @@ NSGI pricing page (nsgi.nl/referentiepunten-en-gnss-data/gnss-data/real-time-str
 confirmed 2026-05-01) explicitly lists "GNSS-stations op de BES-eilanden" as part of
 the free tier (€0, no VAT). Access is fully anonymous — no username or password
 required; using an email as username is suggested by NSGI for outage notifications
-but optional. Both casters confirmed live via sourcetable fetch (2026-05-01). Streams
-use RTCM 3.2 MSM; legacy RTCM 3.1 mountpoints also present (SABY0, SEUS0).
+but optional. Both casters confirmed live via sourcetable fetch (2026-05-06). Modern
+`00BES0`-format mountpoints use RTCM 3.3 MSM; legacy 3.1 mountpoints (SABY0, SEUS0)
+maintained for backward compatibility.
 Single-station raw reference streams — not a VRS/network-RTK service. Kadaster's
 NETPOS network-RTK service (Netherlands mainland only) does not extend to BES.
 Zero BES-coded rtk2go or Centipede stations.
