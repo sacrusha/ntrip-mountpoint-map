@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch",
+      "WebSearch",
+      "Edit(D:\\Projects\\ntrip-mountpoint-map\\**)",
+      "Write(D:\\Projects\\ntrip-mountpoint-map\\**)",
+      "Read(D:\\Projects\\ntrip-mountpoint-map\\**)",
+      "Bash(curl *)",
+      "Bash(dir *)",
+      "Bash(ls *)"
+    ]
+  }
+}

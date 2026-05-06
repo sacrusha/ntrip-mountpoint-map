@@ -1,16 +1,19 @@
-Research whether any public NTRIP RTK caster operates today for [entry]
+Research which public NTRIP RTK casters operate today for [entry]
+Start /w local mapping agencies, national&regional, fill gaps by looking for local RTK communities, hobbyist & professional, what they use. Use searches in local administrative languages, find local operator portal in primary operator language. 
+Skip Rtk2go, centipede, NOTA, except where obviously relevant (ex France, Hungary, Carribean)
 
-Skip SBAS-only / DGNSS-only services. Use curl to verify endpoints, many use http0.9. Unknown is preferable to guesses.
+Skip SBAS-only / DGNSS-only services.
+
+Use WebSearch, WebFetch, curl. Unknown is preferable to guesses.
  
 Search for:
-1. Does any public NTRIP caster operate for [entry] today? (yes/no/unknown)
-2. If yes: host:port, tariff (all rates in local currency, VAT explicit, date observed, source URL), VRS?
-3. hobbyist_eligibility: can nonlicensed individual sign up? (yes/no/unclear)
-4. legal_residency_required: (yes/no/unclear)
-5. last_confirmed_alive: date the sourcetable or login portal was last reachable
-6. If no active caster: what is the most recent project announcement (date + URL)?
-7. If no free NTRIP, what post processing services are there?
- 
-Use searches in local administrative languages. Skip Rtk2go, centipede, NOTA searches, except where it's the obvious answer (e.g. France, Hungary, USA, Carribean)
- 
-Return findings as structured markdown in docs/ntrip_research, matching pattern of existing files.
+1. Which public NTRIP casters operate in [entry]?
+2. If no free NTRIP: RINEX or similar?
+For each caster:
+3. host:port, tariff (all rates in local currency, VAT explicit, date observed, source URL), VRS?
+4. hobbyist_eligibility: can nonlicensed individual sign up? (yes/no/unclear)
+5. legal_residency_required: (yes/no/unclear)
+7. last_confirmed_alive: date  sourcetable or login portal last reachable
+8. If no active caster: what is  most recent project announcement (date + URL)?
+
+Match patterns of existing content in docs/ntrip_research/ Check existing entries in docs/ntrip_research/ and country_survey.md for starting point, but verify, expand, fill gaps. Do not edit country_survey.md, your research goes to docs/ntrip_research/ only.
