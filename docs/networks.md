@@ -358,7 +358,7 @@ Map shows physical station pins.
 **access**:    free; register at ergnss.ign.es/gnuserportal/ (immediate); CC-compatible;
                max 10 simultaneous connections per account
 **pipeline-access**: registration
-**stations**:  ~272 total (~120 mainland + ~15–16 Canary Islands SPTR sub-service)
+**stations**:  272 total (IGN permanent + 13 regional autonomous community networks + Puertos del Estado tide gauges; ~120 mainland anchor + ~15–16 Canary Islands SPTR sub-service)
 **source**:    ergnss.ign.es (IGN — Instituto Geográfico Nacional)
 **operator**:  IGN — Instituto Geográfico Nacional
 **licence**:   Attribution required per Orden FOM/2807/2015
@@ -448,14 +448,15 @@ sourcetable — likely partial data exposure. 16,800+ registered users as of las
 **type**:      physical-coord-vrs
 **access**:    free; register at redgeodesica-sbc.igac.gov.co/sbc; Law 1955/2019 mandates public access
 **pipeline-access**: registration
-**stations**:  ~17
+**stations**:  17 (unique physical coords in sourcetable; ~237–260 declared, expanding toward 300)
 **source**:    igac.gov.co; redgeodesica-sbc.igac.gov.co
 **operator**:  IGAC — Instituto Geográfico Agustín Codazzi
 **licence**:   Law 1955/2019 (public access mandated)
 
-233 stations declared; 17 unique coords in sourcetable. VRS also on `:2102`.
-National Geodetic Control Centre launched Apr 2024 (Resolution 1771/2024).
-First confirmed free VRS/NRTK in Latin America.
+~260 stations declared (26 added 2024 via Leica GR50/AR20 equipment; 39 added 2022–2024);
+17 unique physical coords in sourcetable. VRS also on `:2102`. GPS+GLO+GAL+BDS.
+National Geodetic Control Centre launched Apr 2024 (SIRGAS presentation Apr 2024).
+First confirmed free VRS/NRTK in Latin America. ~67% of municipalities covered as of 2023.
 
 ---
 
@@ -508,19 +509,23 @@ pipeline holds at 0 until the full sourcetable is available.
 
 ## SAPOS — Germany (DE, 16 Bundesländer)
 
-**status**:    free (all 16 states)
+**status**:    free (14 of 16 states; BY €20/yr non-agri flat rate; RP €120/yr/credential)
 **type**:      physical-coord-vrs (some states); single-coord-vrs (others — 0 map stations)
 **access**:    sourcetable public; streams require per-Länder web registration
 **registration**: https://www.sapos.de  (central portal links to each state's signup)
 **source**:    sapos.de; zentrale-stelle-sapos.de
 
-Federal-state RTK network. Each Bundesland operates its own NTRIP caster with
-independent registration. Most states free for all uses. Bayern charges €20/yr
-flat rate for non-agricultural use (free for agriculture) — under the $200/yr
-cutoff. States whose sourcetables report a single coordinate for all virtual
-mountpoints yield 0 map stations (single-coord VRS); coverage for those requires
-NRTK polygons (deferred). Raw TCP (NTRIP 1.0) fallback required in fetcher —
-SAPOS casters do not speak standard HTTP.
+Federal-state RTK network (~270 stations). Each Bundesland operates its own NTRIP caster
+with independent registration. 14 of 16 states free. Bayern €20/yr non-agri flat rate (free
+for agriculture) — under $200/yr cutoff. Rheinland-Pfalz paid at €120/yr/credential
+(HEPS/GPPS) + one-time €100 setup fee — most restrictive state. BW: data free, one-time
+€150 admin fee. ST free since 01.07.2023; MV free since 01.01.2024 (one-time €100 admin
+fee). SH: €0.10/min HEPS + free Open Data tier (sapos.geonord-od.de:2101, user=gast/pass=gast).
+AdV-GR 4.0 (June 2024) replaced per-minute billing with flat-rate models nationwide.
+States whose sourcetables report a single coordinate for all virtual mountpoints yield
+0 map stations (single-coord VRS); coverage for those requires NRTK polygons (deferred).
+Raw TCP (NTRIP 1.0) fallback required in fetcher — SAPOS casters do not speak standard HTTP.
+rtk2go ~31 DE volunteer bases — negligible alongside SAPOS but useful for testing.
 
 | id | state | host:port | map type | notes |
 |---|---|---|---|---|
@@ -528,7 +533,7 @@ SAPOS casters do not speak standard HTTP.
 | `sapos_NI` | Niedersachsen + Bremen | `sapos-ni-ntrip.de:2101` | single-coord VRS | 0 stations |
 | `sapos_NW` | Nordrhein-Westfalen | `sapos-nw-ntrip.de:2101` | single-coord VRS | 0 stations |
 | `sapos_HE` | Hessen | `sapos-he-ntrip.de:2101` | physical-coord VRS | ~4 stations (3 unique coords) |
-| `sapos_RP` | Rheinland-Pfalz | `sapos-ntrip.rlp.de:2101` | physical-coord VRS | ~17 stations (5 unique coords); confirmed free (LVermGeo) |
+| `sapos_RP` | Rheinland-Pfalz | `sapos-ntrip.rlp.de:2101` | physical-coord VRS | ~17 stations (5 unique coords); paid €120/yr/credential (HEPS/GPPS) + €100 one-time setup; most restrictive state |
 | `sapos_BW` | Baden-Württemberg | `sapos-bw-ntrip.de:2101` | single-coord VRS | 0 stations |
 | `sapos_BY` | Bayern | `sapos-by-ntrip.de:2101` | single-coord VRS | €20/yr non-agri flat rate; free for agriculture |
 | `sapos_SN` | Sachsen (GeoSN) | `ntrip.sachsen.de:2101` | populates on fetch | endpoint confirmed 2026-04; first successful CI fetch will populate count |
@@ -1871,12 +1876,67 @@ network RTK.
 
 ---
 
+## gpsnet_dk — GPSnet.dk (DK)
+
+**status**:    paid
+**date_added**: 2026-05-06
+**country**:   DK
+**type**:      vrs-only (Trimble VRS technology)
+**host:port**: not published; SIM-card-based delivery model (contact geoteam.dk)
+**access**:    paid; short-term logins (1 week / 1 month / 3 months) and annual surveying,
+               agriculture, construction, drone tiers available
+**yearly_cost**: not publicly listed (price shown after login/quote)
+**registration**: https://www.geoteam.dk/produkter/gpsnetdk
+**operator**:  Geoteam A/S, Ballerup (registered 2008; approved by Klimadatastyrelsen)
+**source**:    geoteam.dk
+
+Denmark's primary cadastral VRS network. Contributes 13–15 state stations from
+Klimadatastyrelsen. Registered and approved by Klimadatastyrelsen for cadastral use.
+Not added to pipeline: no published host:port and paid service.
+
+---
+
+## rtkconnect_dk — RTKconnect (DK)
+
+**status**:    paid
+**date_added**: 2026-05-06
+**country**:   DK
+**type**:      vrs-only (FKP + VRS; RTCM3, L1/L2/L5, MSM7; GPS+GLO+GAL+BDS)
+**host:port**: not published; provided after subscription (contact rtkconnect.dk)
+**access**:    paid; single-login per subscription, unlimited devices; no professional
+               licence required
+**yearly_cost**: 6,599 DKK/yr (~$840/yr)
+**registration**: https://rtkconnect.dk/products/rtk-netvaerk
+**operator**:  RTKconnect ApS, Holstebro (registered 2024)
+**source**:    rtkconnect.dk
+
+Newest Danish commercial VRS network (est. 2024). 111 stations including 13 from
+Klimadatastyrelsen; avg baseline 10 km; Class A typical (<1 cm horizontal, <2 cm vertical).
+100% uptime reported (last 365 days). Over $200/yr hobbyist cutoff. Not added to pipeline:
+paid service and no published host:port.
+
+---
+
 ## swipos — swipos (CH)
 
 **status**:    paid
-**access**:    paid; *Geoinformationsgesetz* SR 510.62 classifies RTK as value-added service
-**yearly_cost**: CHF 1,500/yr (~$1,650)
-**source**:    swisstopo.admin.ch
+**date_added**: 2026-05-06
+**country**:   CH
+**host:port**: `www.swipos.ch:2101` (plain TCP); `www.swipos.ch:2102` (TLS encrypted; credential-gated)
+**type**:      vrs-only (VRS computed from 31 AGNES permanent stations + neighbouring country stations)
+**access**:    paid; *Geoinformationsgesetz* SR 510.62 classifies RTK as value-added service;
+               individuals and foreign users may subscribe; no professional licence required
+**yearly_cost**: CHF 1,500/yr (~$1,650) first licence; CHF 600/yr 2nd–3rd; CHF 200/yr each additional
+**registration**: https://shop.swipos.ch
+**operator**:  swisstopo — Federal Office of Topography (Bundesamt für Landestopografie)
+**signals**:   GPS+GLO+GAL+BDS3; RTCM 3.2 MSM recommended (VRS mountpoints: MSM_GISGEO_LV95LN02,
+               MSM_GISGEO_LV95LHN95); legacy RTCM 3.1 via VRS_GISGEO_* mountpoints
+**source**:    swisstopo.admin.ch; shop.swipos.ch
+
+Switzerland's national VRS RTK service. 31 AGNES stations backbone; confirmed live
+2026-05-06. Individual subscriptions available to international users. No free public tier.
+rtk2go CHE volunteer bases (~17) and Centipede CHZ nodes (~30) provide partial free coverage
+on the Swiss plateau.
 
 ---
 
@@ -2218,13 +2278,15 @@ solution, port 2103 single-base.
 **host:port**: czepos.cuzk.gov.cz:2101 (RTK3 MSM, RTCM 3.2); port 2111 (legacy Leica Spider proxy)
 **access**:    free for public authorities, schools, universities, and students; all
                other users (commercial, hobbyist) charged under ČÚZK Decree 31/1995 Sb.
-               as amended by 156/2023 Sb.: 10,000 CZK/yr (~€400) per receiver, or
-               1,000 CZK/month. Registration at czepos.cuzk.gov.cz.
-**yearly_cost**: 10,000 CZK/yr (~€400) per receiver (commercial); over €200/yr hobbyist cutoff
-**stations**:  ~30 CZ permanent stations + 27 foreign-network stations; VRS only
-**notes**:     Three service tiers: DGPS, RTK (single-base), VRS3 (network solution).
-               Not a general hobbyist path. Centipede has ~3 CZ nodes, rtk2go ~4 CZ bases
-               as volunteer alternative.
+               as amended by 383/2015 Sb.: ~80 CZK+VAT/hr or ~10,000 CZK/yr (~€400)
+               flat-rate per receiver. Registration at czepos.cuzk.gov.cz.
+**yearly_cost**: ~10,000 CZK/yr (~€400) per receiver (commercial); over €200/yr hobbyist cutoff
+**stations**:  ~30 CZ permanent stations (recent additions: Opava 2026, Olomouc 2024) +
+               27 foreign-network stations; VRS (MAX, iMAX, VirtualRS)
+**notes**:     Three service tiers: DGPS (~20 CZK/hr), RTK single-base, VRS3 (network
+               solution ~80 CZK/hr). Not a general hobbyist path. Private alternative:
+               TopNET (GB-geodezie, topnet.gb-geodezie.cz:8006, ~75 CZK/hr), same price
+               bracket. Centipede ~3 CHZ nodes, rtk2go ~4 CZE bases as volunteer alternative.
 
 ---
 
@@ -5653,8 +5715,8 @@ equipment company. Not added to pipeline: paid service.
 **date_added**: 2026-04-29
 **country**:   CR
 **type**:      physical single-base (14 stations)
-**host:port**: `igncaster.snitcr.go.cr:2101` (port inferred from standard NTRIP; not
-               independently confirmed from sourcetable)
+**host:port**: `igncaster.snitcr.go.cr:2101` (port 2101 standard NTRIP; confirmed in
+               official IGN-CR YouTube tutorial; sourcetable not independently verified)
 **access**:    free-with-registration — SNIT account required; after registration a twice-daily
                validation cycle (00:00 / 12:00 local) activates caster access
 **registration**: `snitcr.go.cr` (create SNIT account → Herramientas → Herramientas GNSS →

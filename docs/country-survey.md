@@ -65,17 +65,19 @@ _Last updated: 2026-04-22._
 
 ### CH — Switzerland
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-06
 
-- **Free government RTK**: none. swipos (swisstopo) CHF 1,500/yr;
-  *Geoinformationsgesetz* SR 510.62 classifies RTK as a value-added service.
-  → networks.md: `swipos`
-- **Volunteer**: rtk2go ~20 CH bases, Centipede ~27 CH nodes (country code `CHZ`).
-  Concentrated on the Swiss plateau and Jura; partial free coverage for hobbyists
-  willing to accept volunteer uptime.
-- **Paid only**: swipos ~CHF 1,500/yr ≈ $1,650 — expensive for a hobbyist.
+- **Free government RTK**: none. swipos (swisstopo, `www.swipos.ch:2101`) CHF 1,500/yr
+  first licence (CHF 600/yr 2nd–3rd, CHF 200/yr each additional); *Geoinformationsgesetz*
+  SR 510.62 classifies RTK as a value-added service. VRS computed from 31 AGNES permanent
+  stations. GPS+GLO+GAL+BDS3 (RTCM 3.2 MSM recommended). → networks.md: `swipos`
+- **Volunteer**: rtk2go ~17 CHE bases, Centipede ~30 CHZ nodes. Concentrated on the
+  Swiss plateau and Jura; partial free coverage for hobbyists willing to accept volunteer
+  uptime.
+- **Paid only**: swipos ~CHF 1,500/yr ≈ $1,650 (first licence) — expensive for a hobbyist.
 - **Gap**: no free coordinated RTK; volunteer bases on the Swiss plateau give
-  partial hobbyist coverage but with no uptime guarantee.
+  partial hobbyist coverage but with no uptime guarantee. Liechtenstein relies on swipos
+  via Swiss AGNES stations 5–10 km across the border.
 
 ### LI — Liechtenstein
 
@@ -94,16 +96,20 @@ _Last updated: 2026-04-22._
 
 ### DE — Germany
 
-**date_added**: 2026-04-28
+**date_added**: 2026-05-06
 
-- **Free government RTK**: SAPOS (16 Bundesländer, ~270 stations, VRS). Most
-  states free. Bayern €20/yr flat rate for non-agricultural use. Sachsen endpoint
-  recently confirmed. All require per-state web registration. → networks.md: `sapos_*`
+- **Free government RTK**: SAPOS (16 Bundesländer, ~270 stations, VRS). 14 of 16
+  states are free. Exceptions: Bayern €20/yr flat rate (non-agricultural; free for
+  agriculture); Rheinland-Pfalz paid at €120/yr/credential (HEPS/GPPS) — most
+  restrictive commercial model remaining. Sachsen-Anhalt free since 01.07.2023;
+  Mecklenburg-Vorpommern free since 01.01.2024 (one-time €100 admin fee). All require
+  per-state web registration. → networks.md: `sapos_*`
   SAPOS GEPOS (BKG federal) broadcasts SSR/PPP-RTK in SSRZ format — not standard
   RTCM; requires SSR-capable receiver. Out of scope.
-- **Volunteer**: rtk2go ~14 DE bases, Centipede ~3 DE nodes — negligible alongside SAPOS.
+- **Volunteer**: rtk2go ~31 DE bases, Centipede ~3 DE nodes — negligible alongside SAPOS.
 - **Gap**: some states report single-coord VRS (0 physical pins); NRTK polygons deferred.
-  BY €20/yr surcharge for non-agricultural users is a minor friction point.
+  BY €20/yr and RP €120/yr are minor friction points. BW charges a one-time €150
+  admin fee for credential issuance (data cost zero).
 
 ### FR — France
 
@@ -230,10 +236,13 @@ _Last updated: 2026-04-22._
 
 ### ES — Spain
 
-**date_added**: 2026-04-28
+**date_added**: 2026-05-06
 
-- **Free government RTK**: ERGNSS (IGN, `ergnss-ip.ign.es:2101`, ~120 stations, VRS)
-  — free, immediate web signup; CC-compatible, attribute IGN. → networks.md: `ergnss`
+- **Free government RTK**: ERGNSS/SPTR (IGN, `ergnss-ip.ign.es:2101`, 272 stations
+  total — IGN permanent + 13 regional autonomous community networks + Puertos del Estado
+  tide gauges, VRS) — free, immediate web signup; CC-compatible (Orden FOM/2807/2015).
+  → networks.md: `ergnss`
+  Recommended mountpoint: `CERCANA3M` (nearest-station or VRS, RTCM 3.2 MSM4, auto-failover).
   RAP (Andalucía) supplements in the south; separate signup.
   Canary Islands use a separate ERGNSS sub-service (SPTR) — see ES-Canarias below.
 - **Volunteer**: rtk2go ~8 ES bases, Centipede ~1 ES node.
@@ -391,14 +400,16 @@ _Last updated: 2026-04-22._
 
 ### DK — Denmark
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-06
 
-- **Free government RTK**: none. GPSnet was privatised ~2000; the successor commercial
-  network is operated under Leica/Hexagon. SDFi (Styrelsen for Dataforsyning og Infrastruktur)
-  holds geodetic authority but offers no public NTRIP service.
-- **Volunteer**: rtk2go ~17 DNK bases, Centipede ~8 DNK nodes. Together ~25 bases;
+- **Free government RTK**: none. Klimadatastyrelsen (Danish Climate Data Agency, formerly
+  Geodatastyrelsen / SDFi) contributes 13–15 reference stations to commercial networks but
+  operates no public NTRIP caster. Free CORS RINEX for post-processing at dataforsyningen.dk.
+- **Volunteer**: rtk2go ~15 DNK bases, Centipede ~8 DNK nodes. Together ~23 bases;
   reasonable coverage in Jutland and major islands.
-- **Paid only**: commercial VRS (Leica/Hexagon).
+- **Paid only**: three registered commercial VRS networks — GPSnet.dk (Geoteam A/S,
+  primarily cadastral); HxGN SmartNet Denmark (Hexagon/Leica); RTKconnect
+  (RTKconnect ApS, est. 2024, 111 stations incl. 13 state, ~6,599 DKK/yr).
 - **Gap**: no free government RTK; volunteer rtk2go/Centipede bases are the practical
   free option, with gaps in Bornholm and remote island areas.
 
@@ -421,26 +432,32 @@ _Last updated: 2026-04-22._
 
 ### EE — Estonia
 
-**date_added**: 2026-04-28
+**date_added**: 2026-05-06
 
-- **Free government RTK**: ESTPOS (Maa-amet, `gnss-rtk.maaamet.ee:8083`, 40 stations,
-  VRS) — free until 31 Aug 2026 per director-general directive. → networks.md: `estpos`
+- **Free government RTK**: ESTPOS (Maa- ja Ruumiamet — rebranded from Maa-amet 2025/26;
+  endpoint `gnss-rtk.maaamet.ee:8083` or `gnss-rtk.maaruum.ee:2101` on new domain, 40 stations,
+  VRS/iMAX/nearest-base, MSM5, multi-constellation) — free until 31 Aug 2026 per
+  director-general directive; post-August 2026 tariff not yet announced.
+  → networks.md: `estpos`
 - **Volunteer**: negligible.
-- **Gap**: service expiry Aug 2026; currently timing out in CI (suspected egress firewall).
+- **Gap**: service expiry Aug 2026; new domain maaruum.ee is active; confirm NTRIP port
+  on new hostname before that date.
 
 ### FI — Finland
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-06
 
-- **Free government RTK**: FINPOS (Maanmittauslaitos / NLS, `finpos.nls.fi:2101`)
-  RTK granted only for research and testing with written justification; 3-month
-  renewable; no production use. DGNSS free but sub-metre — out of scope.
-  → networks.md: `finpos`
-- **Volunteer**: rtk2go ~112 FI bases (largest national cluster on rtk2go after
-  USA), Centipede ~18 FI nodes. De facto near-national free RTK through volunteer
+- **Free government RTK**: FINPOS RTK (Maanmittauslaitos / NLS, `opencaster.nls.fi:2101`)
+  granted only for research and testing with written justification; 3-month
+  renewable; no production use. DGNSS service (`opencaster.nls.fi:2102`) free and open but
+  sub-metre only — out of scope for cm-grade RTK. Note: NLS stopped sending real-time data
+  to EUREF EPN on 01.12.2024 (domestic FINPOS service unaffected). → networks.md: `finpos`
+- **Volunteer**: rtk2go ~124 FIN bases (largest national cluster on rtk2go after USA),
+  Centipede ~18 FIN nodes. De facto near-national free RTK through volunteer
   infrastructure; uptime not guaranteed.
 - **Gap**: no public free government RTK for hobbyists; volunteer coverage is
-  unusually dense and the practical free option.
+  unusually dense and the practical free option. Paid: Trimnet VRS (Geotrim, ~130
+  stations) and HxGN SmartNet Finland (Hexagon) for professional use.
 
 ### IS — Iceland
 
@@ -654,15 +671,18 @@ _Last updated: 2026-04-22._
 
 ### CZ — Czech Republic
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-06
 
-- **Free government RTK**: CZEPOS (Zeměměřický úřad / ČÚZK, `czepos.cuzk.gov.cz:2101`,
-  ~30 stations + 27 foreign-network stations, VRS) — free for public authorities,
-  schools, and students; commercial/hobbyist use charged under Decree 31/1995 Sb.
-  (as amended by 156/2023 Sb.): 10,000 CZK/yr (~€400) per receiver, or 1,000 CZK/month.
-  Registration at `czepos.cuzk.gov.cz`. Expensive for a hobbyist.
-  → networks.md: `czepos`
-- **Volunteer**: rtk2go ~4 CZE bases, Centipede ~3 CZE nodes.
+- **Free government RTK**: CZEPOS (ČÚZK — Český úřad zeměměřický a katastrální,
+  `czeposr.cuzk.gov.cz:2101`, ~30 stations + 27 foreign-network stations, VRS —
+  MAX, iMAX, VirtualRS; GPS+GLO+GAL+BDS) — free for public authorities, schools,
+  and students; commercial/hobbyist use charged under Decree 31/1995 Sb. (as amended
+  by 383/2015 Sb.): ~80 CZK+VAT/hr or ~10,000 CZK/yr (~€400) flat-rate.
+  Registration at `czepos.cuzk.gov.cz`. New stations: Opava (2026), Olomouc (2024).
+  Expensive for a hobbyist. → networks.md: `czepos`
+- **Commercial alternative**: TopNET (GB-geodezie, `topnet.gb-geodezie.cz:8006`, 32 CZ
+  stations + 7 foreign-network stations, VRS) — ~75 CZK+VAT/hr. Similar price to CZEPOS.
+- **Volunteer**: rtk2go ~4 CZE bases, Centipede ~3 CZE nodes (country code `CHZ`).
 - **Gap**: no free hobbyist path; volunteer density is too thin for national coverage;
   the only affordable option is a self-operated base or a Centipede node.
 
@@ -1151,13 +1171,18 @@ similarly have no published coverage for these jurisdictions.
 
 ### CO — Colombia
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-06
 
-- **Free government RTK**: IGAC MAGNA-ECO (IGAC, `sbc.igac.gov.co:2101`, 233 declared stations,
-  physical-coord-vrs, 17 unique physical coordinates in sourcetable) — free, register at
-  redgeodesica-sbc.igac.gov.co/sbc; Law 1955/2019 mandates public access. → networks.md: `igac`
+- **Free government RTK**: IGAC MAGNA-ECO (IGAC — Instituto Geográfico Agustín Codazzi,
+  `sbc.igac.gov.co:2101`, ~237–260 declared stations expanding toward 300, physical-coord-vrs
+  on Leica Spider SBC platform, VRS) — free, register at redgeodesica-sbc.igac.gov.co/sbc;
+  Law 1955/2019 mandates public access; Centro de Control Geodésico Nacional launched
+  April 2024 (SIRGAS presentation). GPS+GLO+GAL+BDS (Leica GR50 receivers).
+  → networks.md: `igac`
 - **Volunteer**: negligible. Two COL-coded stations appear via EarthScope NOTA.
-- **Gap**: MAGNA-ECO is the first confirmed free VRS/NRTK in Latin America; the sourcetable reports only 17 distinct physical coordinates, so hobbyists outside the populated Andean corridor may find coverage thin.
+- **Gap**: MAGNA-ECO is the first confirmed free VRS/NRTK in Latin America; ~67% of
+  municipalities covered as of 2023; hobbyists in the Amazon, Pacific coast, and other
+  remote areas may find coverage thin.
 
 ### GT — Guatemala
 
@@ -1211,14 +1236,15 @@ similarly have no published coverage for these jurisdictions.
 
 ### CR — Costa Rica
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-06
 
 - **Free government RTK**: IGN-CR CORS (Instituto Geográfico Nacional — Registro Nacional,
-  `igncaster.snitcr.go.cr`, 14 stations, single-base) — free with web registration at
-  `snitcr.go.cr` (SNIT — Sistema Nacional de Información Territorial). After creating a SNIT
-  account, navigate to Herramientas → Herramientas GNSS and accept terms; access to the caster
-  requires a twice-daily validation cycle (00:00 / 12:00 local time). Station data also used for
-  RINEX download and online post-processing. → networks.md: `ign_cr_cors`
+  `igncaster.snitcr.go.cr:2101`, 14 stations, single-base, CR05/CRTM05 reference frame)
+  — free with web registration at `snitcr.go.cr` (SNIT — Sistema Nacional de Información
+  Territorial). After creating a SNIT account, navigate to Herramientas → Herramientas GNSS
+  and accept terms; access to the caster requires a twice-daily validation cycle (00:00 / 12:00
+  local time). Station data also used for RINEX download and online post-processing.
+  → networks.md: `ign_cr_cors`
 - **Volunteer**: rtk2go ~4 CRI bases (Huacas, Alajuela, San José / OVSI area, San Isidro).
   EarthScope NOTA provides 2 CRI-coded stations (QSEC, VRAI — free, in-pipeline).
 - **Gap**: the 14-station IGN-CR CORS covers the central valley and main regions well; the
@@ -1716,7 +1742,7 @@ similarly have no published coverage for these jurisdictions.
 
 ### CN — China
 
-**date_added**: 2026-04-30
+**date_added**: 2026-05-06
 
 - **Legal framework**: 测量法 (Surveying and Mapping Law of the PRC, 2002, revised 2017),
   Articles 27–29 require institutional surveying credentials (测绘资质) to operate or access
@@ -1731,10 +1757,11 @@ similarly have no published coverage for these jurisdictions.
     licensed organisations, others charge (e.g., Sichuan ¥8,000/yr). Not hobbyist-accessible.
     → networks.md: `chinese_provincial_cors`
 - **Commercial RTK** (no professional licence required; open to individuals):
-  - **千寻知寸 Qianxun** (Alibaba + Norinco JV, `rtk.ntrip.qxwz.com:8003`): 2,700+
-    stations, 33 provinces; ¥3,600–3,800/yr (~$500–528/yr) — expensive for a hobbyist;
-    individuals register directly. Most widely used commercial CORS in China.
-    → networks.md: `qianxun`
+  - **千寻知寸 Qianxun** (Alibaba + Norinco JV, `rtk.ntrip.qxwz.com:8003` CGCS2000, also
+    `:8001` ITRF2008 / `:8002` WGS84): 2,700+ stations, 33 provinces; ¥3,600–3,800/yr
+    (~$500–528/yr) — expensive for a hobbyist; individuals register directly but Chinese
+    phone number + national ID (实名认证) required — foreign individuals face practical
+    registration barriers. Most widely used commercial CORS in China. → networks.md: `qianxun`
   - **中国移动CORS China Mobile CORS** (CMCC, 4,400+ stations, nationwide): ~¥3,600/yr
     (~$500/yr); NTRIP access via data plan; open to individuals. Same price bracket as
     Qianxun. → networks.md: `cmcc_cors`
@@ -2366,12 +2393,13 @@ similarly have no published coverage for these jurisdictions.
 
 ### DJ — Djibouti
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-06
 
-- **Free government RTK**: none confirmed. No national fixed reference station programme (CORS) or public
-  NTRIP caster found. Djibouti's small territory (~23,000 km²) and limited
-  surveying-authority capacity have not yielded any discoverable streaming RTK
-  infrastructure.
+- **Free government RTK**: none. CERD (Centre d'Études et de Recherche de Djibouti)
+  handles geodetic matters but has no GNSS CORS programme or NTRIP service. An IGS
+  tracking station (DJIG, operated by IPGP) exists for scientific monitoring only — not
+  a public RTK caster. Djibouti is not part of any regional African CORS initiative
+  providing public NTRIP (AFREF, TriGNet, etc.).
 - **Volunteer**: none. Zero DJ stations on rtk2go or Centipede.
 
 ### DZ — Algeria

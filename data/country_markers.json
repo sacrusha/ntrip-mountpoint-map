@@ -591,8 +591,8 @@
       "vrs": true,
       "access": "paid",
       "yearly_cost": "1,500 CHF/yr (~$1,650/yr)",
-      "registration": "https://www.swipos.ch",
-      "note": "At this price a local base station is likely more practical. Volunteer rtk2go/Centipede bases provide partial free coverage."
+      "registration": "https://shop.swipos.ch",
+      "note": "At this price a local base station is likely more practical. Volunteer rtk2go/Centipede bases provide partial free coverage on the Swiss plateau."
     },
     {
       "id": "cpos",
@@ -1272,7 +1272,7 @@
       "lon": -3.7,
       "tier": "free",
       "vrs": true,
-      "stations_declared": 128
+      "stations_declared": 272
     },
     {
       "id": "satref",
@@ -1305,7 +1305,7 @@
       "lon": -74.1,
       "tier": "free",
       "vrs": true,
-      "stations_declared": 233
+      "stations_declared": 260
     },
     {
       "id": "spslux",
@@ -1466,8 +1466,12 @@
       "country": "DE",
       "lat": 50.0,
       "lon": 7.3,
-      "tier": "free",
+      "tier": "paid-affordable",
       "vrs": true,
+      "access": "paid",
+      "yearly_cost": "€120/yr (~$130/yr)",
+      "registration": "https://lvermgeo.rlp.de",
+      "note": "Only paid SAPOS state at standard RTK rate. One-time €100 setup fee applies. Free tier exists for agriculture (R-HEPS, €150/device/yr) but not general hobbyist use.",
       "stations_declared": 17
     },
     {
