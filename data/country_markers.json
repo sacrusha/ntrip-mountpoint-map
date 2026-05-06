@@ -371,11 +371,10 @@
       "country": "ET",
       "lat": 9.0,
       "lon": 38.7,
-      "tier": "free",
-      "vrs": true,
+      "tier": "weird",
       "access": "registration",
       "stations_declared": 10,
-      "note": "~10 stations, intended free. Launched Dec 2025 by SSGI; NTRIP endpoint not yet publicly discoverable."
+      "note": "~10 stations, intended free. Launched Dec 2024 by SSGI; NTRIP endpoint not yet publicly discoverable."
     },
     {
       "id": "muya_cors_ke",
@@ -387,9 +386,8 @@
       "tier": "paid",
       "vrs": true,
       "access": "paid",
-      "yearly_cost": "KES 35,000/yr (~$271/yr)",
       "registration": "https://muya-cors.com",
-      "note": "~27 base stations nationwide. Mpesa payment accepted. Price is from a promotional post — confirm current rate at sign-up."
+      "note": "25+ base stations nationwide. Mpesa payment accepted. Pricing not publicly listed — contact operator for current tiers."
     },
     {
       "id": "bfcors",
@@ -541,7 +539,7 @@
       "vrs": true,
       "access": "registration",
       "stations_declared": 8,
-      "note": "~8 stations active per current IGVSB website (27 installed with NTRIP capability as of 2012), intended free. No public endpoint; not in the BKG/RTCM-NTRIP broadcaster registry."
+      "note": "~8 stations active per IGVSB website; intended free but no public endpoint confirmed. Commercial alternative: acnovo.net (~USD 20/period). GPS jamming reported around Venezuelan airspace November 2025–February 2026."
     },
     {
       "id": "redgeo_bo",
@@ -1097,6 +1095,19 @@
       "note": "120+ reference stations. Requires a Kazakh resident ID number — foreign users cannot self-register. Baselines will be long outside Almaty and Astana."
     },
     {
+      "id": "albcors",
+      "name": "ALBCORS",
+      "region": "Albania",
+      "country": "AL",
+      "lat": 41.33,
+      "lon": 20.0,
+      "tier": "restricted",
+      "access": "restricted",
+      "registration": "https://krgjsh.asig.gov.al/?page_id=1218&lang=en",
+      "stations_declared": 27,
+      "note": "27-station state CORS operated by ASIG (national geodetic authority). Application form required; no self-service registration. NTRIP host not publicly listed. A commercial alternative, SATNET LIVE (landcoal.com), offers trial access."
+    },
+    {
       "id": "azpos",
       "name": "AzPOS",
       "region": "Azerbaijan",
@@ -1121,11 +1132,11 @@
       "access": "restricted",
       "registration": "https://www.dm.gov.ae",
       "stations_declared": 18,
-      "note": "18+ four-constellation stations under Dubai Municipality. Professional application required; no hobbyist registration path. Online registration portal currently unavailable."
+      "note": "18+ four-constellation stations under Dubai Municipality. Professional application required; no hobbyist registration path. The GeoDubai portal (geodubai.dm.gov.ae) was confirmed reachable in 2026; NTRIP endpoint may have migrated."
     },
     {
       "id": "alcorsnet_dz",
-      "name": "AL-CORS-Net",
+      "name": "AL-CORS-Net / SAAP",
       "region": "Algeria",
       "country": "DZ",
       "lat": 36.75,
@@ -1134,8 +1145,8 @@
       "vrs": true,
       "access": "restricted",
       "registration": "https://www.inct.mdn.dz/",
-      "stations_declared": 6,
-      "note": "6-station VRS Network-RTK service (Algiers, Oran, Constantine, Ouargla, Béchar, Tindouf) on Geo++ GNSMART. Operated under the Ministry of National Defence; no public registration portal or tariff."
+      "stations_declared": 189,
+      "note": "189-station VRS Network-RTK on Geo++ GNSMART. Operated under the Ministry of National Defence; no public registration portal or tariff."
     },
     {
       "id": "regpmoc",
@@ -1705,7 +1716,7 @@
       "yearly_cost": "6,000 TND/yr (~$2,070/yr)",
       "registration": "https://www.otc.nat.tn/geodesy/gnss/subscription",
       "stations_declared": 23,
-      "note": "23 physical stations, non-Saharan Tunisia. Shorter durations from 60 TND/day (~$21) also available. Prices exclude VAT."
+      "note": "23 physical stations; Saharan south not covered. Shorter durations from 60 TND/day also available. VAT applicability not stated on public subscription page."
     },
     {
       "id": "agrs_nl",
@@ -1942,13 +1953,15 @@
     },
     {
       "id": "sen_cors",
-      "name": "SEN-CORS",
+      "name": "SENCORS",
       "region": "Senegal",
       "country": "SN",
       "lat": 14.5,
       "lon": -14.5,
       "tier": "weird",
-      "note": "National CORS network under construction — ~16 stations planned via the PROCASEF land-cadastre programme plus 5 more in Dakar via JICA. No public NTRIP caster yet."
+      "vrs": true,
+      "stations_declared": 21,
+      "note": "~21 stations (16 PROCASEF + 5 JICA); operational since March 2026. Subscription required; tariff not publicly listed — contact ANAT via geodesie.sn."
     },
     {
       "id": "cnigs_ht",
@@ -1986,6 +1999,110 @@
       "registration": "https://shamim.ssaa.ir",
       "stations_declared": 144,
       "note": "Cadastre-programme network: registration requires an Iranian national ID, an Iranian mobile number, and a specific GNSS receiver serial registered against the account. No documented sign-up path for hobbyists; endpoints firewalled outside Iran."
+    },
+    {
+      "id": "ghana_cors",
+      "name": "Ghana National CORS Network",
+      "region": "Ghana",
+      "country": "GH",
+      "lat": 7.9,
+      "lon": -1.0,
+      "tier": "weird",
+      "access": "restricted",
+      "registration": "https://www.lc.gov.gh/",
+      "stations_declared": 60,
+      "note": "~60 stations unveiled Aug 2025 by Lands Commission/SMD; target 100 by end of 2025. No public NTRIP endpoint published; access via licensed-surveyor channel."
+    },
+    {
+      "id": "moldpos",
+      "name": "MOLDPOS",
+      "region": "Moldova",
+      "country": "MD",
+      "lat": 47.0,
+      "lon": 28.9,
+      "tier": "paid",
+      "vrs": true,
+      "access": "paid",
+      "registration": "http://moldpos.ingeocad.md/SBC/Account/Register",
+      "note": "National VRS network; no surveying licence required. Free test mounts (FZUTM, FZUASM, etc.) available with credentials moldpos/moldpos — trial without subscribing."
+    },
+    {
+      "id": "makpos",
+      "name": "MAKPOS",
+      "region": "North Macedonia",
+      "country": "MK",
+      "lat": 41.6,
+      "lon": 21.7,
+      "tier": "paid",
+      "vrs": true,
+      "access": "paid",
+      "registration": "https://makpos.katastar.gov.mk/sbc/Account/Register",
+      "note": "14 stations; Galileo-capable since 2020. One source suggests free access for users on 3G — contact AREC to confirm current tariff."
+    },
+    {
+      "id": "ancfcc",
+      "name": "Réseau GNSS ANCFCC",
+      "region": "Morocco",
+      "country": "MA",
+      "lat": 31.8,
+      "lon": -7.1,
+      "tier": "restricted",
+      "vrs": true,
+      "access": "restricted",
+      "registration": "https://www.ancfcc.gov.ma/nos-metiers/cartographie/reseau-gnss/",
+      "note": "60 stations. Real-time RTK and network-RTK confirmed. Licensed cadastral professionals only; no individual sign-up path."
+    },
+    {
+      "id": "itri_ma",
+      "name": "itri GNSS Network",
+      "region": "Morocco",
+      "country": "MA",
+      "lat": 33.6,
+      "lon": -5.6,
+      "tier": "restricted",
+      "vrs": true,
+      "access": "restricted",
+      "registration": "https://secure.itri-gnss.ma/admin/auth/register",
+      "note": "231 stations; Morocco's first private GNSS network (launched 2020). Professional subscription; pricing on inquiry."
+    },
+    {
+      "id": "mosref",
+      "name": "MoSRef",
+      "region": "Macao SAR",
+      "country": "MO",
+      "lat": 22.19,
+      "lon": 113.55,
+      "tier": "free",
+      "vrs": true,
+      "access": "registration",
+      "registration": "https://mosref.dscc.gov.mo",
+      "stations_declared": 4,
+      "note": "4 stations, free. Register at mosref.dscc.gov.mo; GPS+GLONASS+BeiDou; single-base RTK and VRS available."
+    },
+    {
+      "id": "omancorsnet",
+      "name": "OmanCORSnet",
+      "region": "Oman",
+      "country": "OM",
+      "lat": 23.6,
+      "lon": 58.6,
+      "tier": "restricted",
+      "vrs": true,
+      "access": "restricted",
+      "registration": "https://www.nsaomangeoportal.gov.om/en/oman-corsnet",
+      "note": "47 stations; operated by NSGIA. No confirmed hobbyist registration path; host:port disclosed post-approval only."
+    },
+    {
+      "id": "qcors",
+      "name": "QCORS",
+      "region": "Qatar",
+      "country": "QA",
+      "lat": 25.3,
+      "lon": 51.2,
+      "tier": "restricted",
+      "access": "restricted",
+      "registration": "https://www.gisqatar.org.qa",
+      "note": "9 stations operated by CGIS; serves licensed surveyors and government users. No public self-registration."
     }
   ]
 }
