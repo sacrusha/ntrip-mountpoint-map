@@ -1261,14 +1261,15 @@ similarly have no published coverage for these jurisdictions.
 
 ### AG — Antigua and Barbuda
 
-**date_added**: 2026-05-01
+**date_added**: 2026-05-06
 
-- **Free government RTK**: none confirmed. The Lands and Survey Division (Ministry of Lands,
-  Housing and Agriculture) is the geodetic authority; no public NTRIP caster or registration
-  portal found. COCONet / EarthScope NOTA includes at least one station in Antigua for
-  geophysics monitoring; the legacy UNAVCO NTRIP platform was retired 2025-07-29 and
-  migrated to `ntrip.earthscope.org:2101` — Caribbean station availability on the new
-  caster is unconfirmed.
+- **Free government RTK**: none national. The Lands and Survey Division is the geodetic
+  authority; no public NTRIP caster or registration portal found.
+- **EarthScope NOTA** (`ntrip.earthscope.org:2101`) — free noncommercial (annual NULA);
+  includes COCONet stations CN00 (Codrington, Barbuda) and CN01 (Bethesda, Antigua main
+  island), plus a site on uninhabited Redonda Island. CN01 is the practical option for
+  most of Antigua: single-base, good within ~20–30 km. Legacy UNAVCO platform retired
+  2025-07-29; all streams now at earthscope.org. → networks.md: `earthscope`
 - **Volunteer**: none. Zero AG stations on rtk2go or Centipede.
 
 ### KN — Saint Kitts and Nevis
@@ -2056,15 +2057,18 @@ similarly have no published coverage for these jurisdictions.
 
 ### AO — Angola
 
-**date_added**: 2026-04-28
+**date_added**: 2026-05-06
 
-- **Free government RTK**: none. Instituto Geográfico e Cadastral de
-  Angola (IGCA) is rebuilding post-conflict geodetic infrastructure;
-  AFREF reference sites exist but are internal/research-only — no
-  public NTRIP delivery.
+- **Free government RTK**: none. IGCA (Instituto Geográfico e Cadastral de Angola)
+  operates REPANGOL — 18 permanent CORS stations installed 2010, aligned to ITRF2008,
+  maintained by TeroMovigo (last confirmed 2020). REPANGOL is a geodetic reference
+  frame; no public NTRIP endpoint has ever been documented. REPANGOL's website
+  (repangol.net) was offline (connection refused) as of 2026-05-06. Decreto
+  Presidencial n.º 115/21 (2021) mandates IGCA to manage and expand REPANGOL but
+  includes no RTK service announcement.
 - **Volunteer**: none. Zero AO stations on rtk2go or Centipede.
-- **Gap**: no free RTK for hobbyists. No confirmed public fixed reference station network (CORS)
-  or NTRIP caster anywhere in Angola.
+- **Gap**: no free RTK for hobbyists. REPANGOL infrastructure exists but is
+  post-processing / geodetic-reference only with no public NTRIP delivery.
 
 ### BF — Burkina Faso
 
