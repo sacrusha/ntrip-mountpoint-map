@@ -871,18 +871,21 @@ Indiana CORS Network. Non-standard port 10000. Free registration.
 ## iartn — IARTN (US-IA)
 
 **status**:    free
-**host:port**: `iartnsbc.iowadot.gov:2101`
+**host:port**: `165.206.203.10:10000` (primary; bare IP, no DNS hostname currently);
+               `iartnsbc.iowadot.gov:2101` (legacy, dead 2026-05-07)
 **type**:      physical-coord-vrs
 **access**:    registration; free via iowadot.gov (Iowa DOT)
 **pipeline-access**: registration
 **stations**:  83
-**source**:    iowadot.gov (Iowa Department of Transportation)
+**source**:    iowadot.gov (Iowa Department of Transportation);
+               e38surveysolutions.com/blogs/news/emlid-reach-rx-or-rs2-and-dji-rtk-connection-to-iowa-ntrip-iartn (Emlid/DJI client setup walkthrough; mountpoint `MSM_IMAX` is the recommended full-constellation RTCM3 stream)
 **operator**:  Iowa DOT
 
-Iowa Real-Time Network operated by Iowa DOT. 83 physical stations. Free registration.
-`iartnsbc.iowadot.gov:2101` confirmed dead (blank response 2026-05-07); not in pipeline.
-`165.206.203.10:10000` returns a SOURCETABLE but only exposes network-level mounts and one
-physical station anonymously — individual station streams require credentials.
+Iowa Real-Time Network operated by Iowa DOT. 83 physical stations. Free registration via
+Iowa DOT account portal; credentials retrieved from User Profile and entered into the rover's
+NTRIP profile. Legacy hostname `iartnsbc.iowadot.gov:2101` returns blank response (2026-05-07);
+bare IP `165.206.203.10:10000` is the working endpoint. SOURCETABLE is open; individual
+station streams require credentials.
 
 ---
 
@@ -1392,8 +1395,8 @@ front-line territories severely degraded.
 **date_added**: 2026-04-30
 
 Listed in FIG pub74 global CORS directory as a Ukrainian network (ngcnet.com.ua). Domain has
-no DNS record as of April 2026; likely defunct or absorbed into another network. No viable
-endpoint.
+no DNS A record (DoH lookup 2026-05-07 returns SOA-only for the `com.ua.` parent zone);
+defunct or absorbed into another network. No viable endpoint.
 
 ---
 
@@ -2219,8 +2222,13 @@ Centipede ~9 IE).
 **registration**: `https://app.sla.gov.sg/sirent`
 **yearly_cost**: S$107/month (~S$1,284/yr, ~$960/yr); S$64.20/month (10–50 accounts);
                S$32.10/month (51+ accounts); one-time S$32.10 admin fee
-**stations**:  5 physical reference stations (SNTU, SKEP, SLOY, SSEK, SNYP)
-**source**:    app.sla.gov.sg/sirent (SLA — Singapore Land Authority)
+**stations**:  5 physical reference stations (SNTU @ Nanyang Technological University,
+               SKEP @ Keppel Club, SLOY @ Loyang, SSEK @ Senoko, SNYP @ Nanyang Polytechnic).
+               Earlier docs cited 8 codes (SLYG, SNPT, SNUS, SNYU, SRPT) extracted from a
+               sourcetable read; those codes appear to be densification / structural-monitoring
+               mountpoints, not the canonical 5-station service network confirmed by SLA
+               documentation and Wikipedia.
+**source**:    app.sla.gov.sg/sirent (SLA — Singapore Land Authority); Wikipedia (SiReNT)
 **operator**:  SLA — Singapore Land Authority
 
 ---

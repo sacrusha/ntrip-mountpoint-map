@@ -886,7 +886,8 @@ _Last updated: 2026-04-22._
   - **RTK HUB** (TNT-TPI, `rtkhub.com`, nationwide; host:port not published) — 10,500
     UAH/yr (~$256/yr) from Jan 2025; endpoint disclosed post-registration.
     → networks.md: `rtkhub`
-  - **NGCNET** (NGC Ltd) — domain repurposed to a casino site as of 2026-05-07; defunct.
+  - **NGCNET** (NGC Ltd) — `ngcnet.com.ua` has no DNS A record (DoH lookup
+    2026-05-07 returns SOA-only for `com.ua.`); defunct or absorbed.
     → networks.md: `ngcnet`
 
 - **Volunteer**: rtk2go 0 UA bases; Centipede 0 UA nodes. Zero volunteer coverage confirmed.
@@ -1020,8 +1021,8 @@ similarly have no published coverage for these jurisdictions.
   operated by University of Southern Mississippi), AlCORS (AL; non-standard port 10099;
   LeicaMAX network solution), ORGN (OR, non-standard port 9881), MSRN (MI, ~95 stations,
   non-standard port 10010/10011), NYSNet (NY, ~150 stations, Leica MAC not strict VRS),
-  InCORS (IN, 60 stations including shared MI/OH/KY), IARTN (IA, 83 stations;
-  caster not publicly accessible — not in pipeline), ACORN CT (`acorn.uconn.edu:2101`, 13 sensors in CT/RI/MA/NY,
+  InCORS (IN, 60 stations including shared MI/OH/KY), IARTN (IA, 83 stations,
+  bare-IP `165.206.203.10:10000`; legacy `iartnsbc.iowadot.gov:2101` dead), ACORN CT (`acorn.uconn.edu:2101`, 13 sensors in CT/RI/MA/NY,
   operated by CTDOT + UConn; Galileo + BeiDou added mid-2025) — physical stations.
   VRS-only: KyCORS (KY), MnCORS (MN, 140+ stations incl. 4 new northern sites added
   early 2026; non-standard port 9000), ODOT RTN (OH; VRS, multi-constellation upgrade 2024),

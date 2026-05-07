@@ -263,8 +263,8 @@ SOURCES = [
      "solution_filter": False},                                                   # caster tags 6 physical stations solution=1
     {"id": "icecors",     "url": "http://178.19.53.126:2101/",
      "color": "#1e6b8c", "label": "IceCORS",
-     "type": "physical-vrs", "country": ["IS"],
-     "access": "open",         "registration": None, "openNote": 'Free, no registration required'},
+     "type": "physical-coord-vrs", "country": ["IS"],
+     "access": "registration", "registration": "https://www.lmi.is/is/maelingar/thjonustur/icecors", "openNote": 'Free registration required'},
     {"id": "ksa_cors",    "url": "http://ksacors.geoportal.sa:2101/",
      "color": "#a0522d", "label": "KSA-CORS",
      "type": "vrs-only", "country": ["SA"],
@@ -398,6 +398,11 @@ SOURCES = [
      "type": "physical-vrs", "country": ["US"],
      "region": "Connecticut", "group": "us-state-dot",
      "access": "registration", "registration": "https://acorn.uconn.edu", "openNote": 'Free registration required (CTDOT + UConn)'},
+    {"id": "iartn",       "url": "http://165.206.203.10:10000/",                  # bare IP:port; iartnsbc.iowadot.gov:2101 dead 2026-05-07; sourcetable open, per-station streams require credentials (Emlid/DJI flow documented at e38surveysolutions.com)
+     "color": "#37474f", "label": "IARTN",
+     "type": "physical-coord-vrs", "country": ["US"],
+     "region": "Iowa", "group": "us-state-dot",
+     "access": "registration", "registration": "https://iowadot.gov", "openNote": 'Free registration required (Iowa DOT)'},
     # US state DOT — VRS-only (filter_vrs drops all pins; shown as stopgap circles)
     {"id": "kycors",      "url": "http://kycors.ky.gov:2101/",
      "color": "#546e7a", "label": "KyCORS",
