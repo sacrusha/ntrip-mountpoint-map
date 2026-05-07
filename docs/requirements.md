@@ -107,9 +107,10 @@ times a day (01/07/13/19 UTC) plus on `workflow_dispatch`:
   rectangles, station details card on click.
 - **z 6–9** — dots (no labels, no accuracy boxes) + coverage raster
   (translucent). Station details card on click. Country-level glyph
-  markers (paid-tier $/✕/?, free-network antennas) hide at z ≥ 6 — once
-  individual station dots are visible, the country aggregate is
-  redundant clutter.
+  markers (paid-tier $/✕/?, free-network antennas) hide at z ≥ 8 — they
+  stay visible alongside the station-dot layer for two zoom levels (z=6,7)
+  so users transitioning from the country view aren't suddenly lost; past
+  z=8 the country aggregate is redundant clutter.
 - **z ≤ 5** — coverage raster + country-level glyph markers + coverage
   rings. No dots.
 
@@ -182,7 +183,7 @@ communicates what is known. Four visual treatments:
 | Coloured VRS ring + dark-green antenna at centroid | Free VRS network whose caster was reachable on the most recent fetch (live). Station count irrelevant — VRS-only casters that publish only virtual mountpoints qualify. Ring is visual-only; clicks land on the antenna. | Sign up — corrections exist, no fixed antennas |
 | Bright-green antenna only (no ring) | Free per-station (RS) network whose caster was reachable on the most recent fetch. Caster publishes a list of physical bases; user picks the closest. | Sign up — pick a base near you |
 | Grey ring + grey antenna at centroid | Free network whose endpoint is unknown / registration-gated, or a known free network where the most recent fetch failed (≥3 days since last successful contact) | Something free exists here; we couldn't reach the caster recently |
-| Circled **$** / **✕** / **?** | Substantial national-scale network: paid, restricted, or info-only (jamming, non-NTRIP, announced-not-live, etc.). Glyph fades out at z≥6. | Dead end or legwork required — card explains |
+| Circled **$** / **✕** / **?** | Substantial national-scale network: paid, restricted, or info-only (jamming, non-NTRIP, announced-not-live, etc.). Glyph fades out at z≥8. | Dead end or legwork required — card explains |
 | Nothing | None of the above (investigation found nothing operational, post-processing-only, defence-internal, regional surveying company too small to flag, etc.). Post-processing-only government networks still get survey + `networks.md` entries even though they produce no marker. | — |
 
 The data model is **two orthogonal axes** plus runtime data presence.
@@ -236,8 +237,9 @@ green.
 - `tier:paid` → **$** glyph (red); `tier:paid-affordable` → **$** glyph (green); `tier:restricted` → **✕** glyph; `tier:weird` → **?** glyph
 
 Country-level glyph markers (paid tiers + free-network antennas) hide at
-z ≥ ZOOM_DOTS (6) where individual station dots take over. Coverage
-rings stay visible at all zoom levels.
+z ≥ ZOOM_TAGS_HIDE (8). They overlap with the station-dot layer for
+two zoom levels (z=6,7) so the user doesn't lose orientation at the
+hand-off point. Coverage rings stay visible at all zoom levels.
 
 No entry → no marker. This covers the case where a country was
 investigated and found to have nothing of value to a target user —

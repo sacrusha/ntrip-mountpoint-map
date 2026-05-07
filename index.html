@@ -493,6 +493,7 @@
   var ZOOM_DETAIL=11;   // z >= ZOOM_DETAIL: labels + accuracy rectangles + tooltips
   var ZOOM_LABELS=9;    // z >= ZOOM_LABELS: labels only (no accuracy rectangles)
   var ZOOM_DOTS=6;      // z >= ZOOM_DOTS: dots; z < ZOOM_DOTS: coverage raster only
+  var ZOOM_TAGS_HIDE=8; // z >= ZOOM_TAGS_HIDE: country-level tag glyphs fade out (dots take over)
 
   // Coverage field radii (km). Colour per band is set inside CoverageLayer.
   var R_EXCELLENT=10, R_GOOD=30, R_MARGINAL=50, R_FLOAT=100;
@@ -957,7 +958,7 @@
   //   stale/dead  -> grey ring (visual) + grey antenna marker (greyById)
   //   !lat        -> no marker
   // Click/hover always lives on the antenna marker; rings are non-interactive.
-  // Markers sit in tierPane and inherit its z>=ZOOM_DOTS hide.
+  // Markers sit in tierPane and inherit its z>=ZOOM_TAGS_HIDE hide.
   function buildNetworkOverlays(freeNetworks,paidTiers,renderer){
     var group=L.layerGroup();
     var bySid={}, greyById={}, liveById={};
@@ -1076,7 +1077,7 @@
 
   // Antenna glyph — broadcasting-tower shape inside a white circle, drawn in
   // the marker color. Used for free network centroids (live VRS, live non-VRS,
-  // and stale). Lives in tierPane so it inherits the z>=ZOOM_DOTS hide.
+  // and stale). Lives in tierPane so it inherits the z>=ZOOM_TAGS_HIDE hide.
   function antennaIconSvg(color,size,extraStyle){
     size=size||18;
     var s=extraStyle?' style="'+extraStyle+'"':'';
@@ -1770,8 +1771,9 @@
 
     // vrsPane: coverage rings (visual-only, non-interactive). Always visible.
     // tierPane: country-level glyph markers — paid-tier $/?/✕ + free-network
-    //   antenna icons. Hidden at z>=ZOOM_DOTS where individual station dots
-    //   take over and the country aggregate becomes redundant clutter.
+    //   antenna icons. Hidden at z>=ZOOM_TAGS_HIDE — they overlap with the
+    //   station-dot layer for a couple of zoom levels (z=6,7) so users
+    //   transitioning from the country view aren't suddenly lost.
     map.createPane('vrsPane');
     map.getPane('vrsPane').style.zIndex=403; // above dotsPane (402)
     map.createPane('tierPane');
@@ -1878,7 +1880,7 @@
       map.getPane('dotsPane').style.visibility=
         z>=ZOOM_DOTS?'visible':'hidden';
       map.getPane('tierPane').style.visibility=
-        z>=ZOOM_DOTS?'hidden':'visible';
+        z>=ZOOM_TAGS_HIDE?'hidden':'visible';
       if(z>=ZOOM_LABELS){
         refreshDetailLayer(stationIndex,z>=ZOOM_DETAIL);
         if(!map.hasLayer(detailGroup)) detailGroup.addTo(map);
@@ -1956,7 +1958,7 @@
       map.getPane('dotsPane').style.visibility=
         e.zoom>=ZOOM_DOTS?'visible':'hidden';
       map.getPane('tierPane').style.visibility=
-        e.zoom>=ZOOM_DOTS?'hidden':'visible';
+        e.zoom>=ZOOM_TAGS_HIDE?'hidden':'visible';
     });
     map.on('zoomend',function(){ applyZoom(); updateViewCounts(); });
 

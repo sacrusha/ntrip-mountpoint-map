@@ -30,8 +30,9 @@ NTRIP, RTK hardware, antenna placement, and DIY base stations.
   bright-green antenna markers for per-station (RS) networks, grey rings or
   grey antennas for stale or not-yet-ingested networks, circled $ / ✕ / ?
   for affordable / restricted / info networks. All driven by
-  `data/country_markers.json`. Country markers fade out at z≥6 where individual
-  station dots take over.
+  `data/country_markers.json`. Country markers fade out at z≥8 where individual
+  station dots fully take over (they stay visible alongside the dot layer
+  for z=6,7 so the hand-off isn't jarring).
 - The station details card slides up from the bottom of the viewport on any
   marker click, surfacing the three strings you need for your NTRIP client —
   server host, port, mountpoint name — each with a one-click copy button,
