@@ -1895,7 +1895,7 @@
       "lat": 47.17,
       "lon": 9.55,
       "tier": "weird",
-      "note": "Liechtenstein has no national CORS programme. The geodata authority operates no GNSS reference network."
+      "note": "No national CORS programme. Swiss swipos (swisstopo) covers all of Liechtenstein via AGNES stations 5–10 km across the border — paid, ~CHF 1,500/yr (~$1,650/yr)."
     },
     {
       "id": "sm_cors",
@@ -2195,6 +2195,103 @@
       "access": "restricted",
       "registration": "https://www.gisqatar.org.qa",
       "note": "9 stations operated by CGIS; serves licensed surveyors and government users. No public self-registration."
+    },
+    {
+      "id": "gnet_gl",
+      "name": "GNET",
+      "region": "Greenland",
+      "country": "GL",
+      "lat": 72.0,
+      "lon": -40.0,
+      "tier": "weird",
+      "registration": "https://dataforsyningen.dk",
+      "stations_declared": 60,
+      "note": "~60 continuous GNSS stations spanning Greenland for ice-sheet and geodetic research (KDS / DTU Space / Asiaq). RINEX freely downloadable from Dataforsyningen for post-processing; no real-time NTRIP service."
+    },
+    {
+      "id": "rgn_rw",
+      "name": "Rwanda Geodetic Network",
+      "region": "Rwanda",
+      "country": "RW",
+      "lat": -1.94,
+      "lon": 29.87,
+      "tier": "weird",
+      "registration": "https://lands.rw",
+      "stations_declared": 10,
+      "note": "RLMUA operates ~10 CORS sites and distributes post-processed RINEX free of charge. No real-time NTRIP streaming endpoint published."
+    },
+    {
+      "id": "dsm_bw",
+      "name": "Botswana DSM CORS",
+      "region": "Botswana",
+      "country": "BW",
+      "lat": -22.0,
+      "lon": 24.0,
+      "tier": "weird",
+      "registration": "https://www.gov.bw",
+      "stations_declared": 55,
+      "note": "Department of Surveys and Mapping has built ~55 CORS at 30–40 km spacing since 2011, covering most of the country. No public NTRIP host:port; access requires direct DSM engagement."
+    },
+    {
+      "id": "nignet",
+      "name": "NIGNET",
+      "region": "Nigeria",
+      "country": "NG",
+      "lat": 9.1,
+      "lon": 8.7,
+      "tier": "weird",
+      "stations_declared": 16,
+      "note": "OSGoF runs ~9–16 reference stations across 924,000 km² with 500–1,000 km inter-station spacing — designed as a geodetic reference frame, not for RTK. Baselines exceed the ~50 km envelope needed for cm-grade fixes."
+    },
+    {
+      "id": "ttagn",
+      "name": "TTAGN",
+      "region": "Trinidad and Tobago",
+      "country": "TT",
+      "lat": 10.69,
+      "lon": -61.22,
+      "tier": "weird",
+      "registration": "https://gpscors.gov.tt",
+      "stations_declared": 5,
+      "note": "Five-station national network (Surveys and Mapping Division). gpscors.gov.tt portal exists but lists no host:port, registration procedure, or tariff — access requires direct contact."
+    },
+    {
+      "id": "umhvorvisstovan_fo",
+      "name": "Umhvørvisstovan GNSS",
+      "region": "Faroe Islands",
+      "country": "FO",
+      "lat": 62.0,
+      "lon": -6.78,
+      "tier": "weird",
+      "access": "restricted",
+      "registration": "https://us.fo/kort/geodesi",
+      "stations_declared": 4,
+      "note": "Four reference stations (Klaksvík, Vestmanna, Trongisvágur, Argir) advertised for surveying and construction firms. No caster, port, or tariff published — access entirely via direct contact. Danish GPSnet.dk does not cover the Faroes."
+    },
+    {
+      "id": "esa_cors_eg",
+      "name": "ESA CORS",
+      "region": "Egypt",
+      "country": "EG",
+      "lat": 30.05,
+      "lon": 31.25,
+      "tier": "weird",
+      "access": "restricted",
+      "registration": "https://www.esa.gov.eg/",
+      "stations_declared": 40,
+      "note": "~40 stations operated by the Egyptian Survey Authority for cadastral and infrastructure projects, concentrated in Cairo and the Nile Delta. No public NTRIP caster or self-service registration."
+    },
+    {
+      "id": "acnovo_ve",
+      "name": "Acnovo NTRIP",
+      "region": "Venezuela",
+      "country": "VE",
+      "lat": 8.0,
+      "lon": -66.0,
+      "tier": "weird",
+      "access": "paid",
+      "registration": "https://acnovo.net",
+      "note": "Private commercial NTRIP provider — the only one identified in Venezuela. Billing cycle (monthly vs per-session) and station count not stated publicly; credentials issued only after payment."
     }
   ]
 }
