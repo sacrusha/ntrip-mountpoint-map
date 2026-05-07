@@ -1266,6 +1266,11 @@
     }
     var physRows=entries.map(renderRow).join('');
     var vrsCount=Object.keys(vrsLayerBySid).length;
+    var hasFreeRows=vrsCount||liveCount||greyCount;
+    var hasPaidRows=paidCounts.affordable||paidCounts.paid||paidCounts.restricted||paidCounts.info;
+    var tagSep=(hasFreeRows&&hasPaidRows)
+      ? '<div style="border-top:1px solid var(--srv-border);margin:6px 0 4px"></div>'
+      : '';
 
     // Build the DOM element once; reused by both Leaflet control and mobile panel.
     var d=document.createElement('div');
@@ -1313,6 +1318,7 @@
               +'Stale ('+greyCount+')'
             +'</label>'
           : '')
+        +tagSep
         +paidTierRow('affordable')
         +paidTierRow('paid')
         +paidTierRow('restricted')
