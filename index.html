@@ -383,7 +383,7 @@
 <p>Hobbyists, citizen scientists, makers, and small volunteer groups whose work needs cm-level positioning but doesn&#x27;t justify a paid surveyor or commercial correction subscription. If your project sits between &#x27;metre-level GPS is fine&#x27; and &#x27;we need legal survey acceptance&#x27;, this map exists for you.</p>
 <h3>Connect</h3>
 <h4>How do I connect this station in my app?</h4>
-<p>Open your NTRIP client&#x27;s &#x27;correction input&#x27; or &#x27;NTRIP&#x27; settings, paste the values from the station popup, and press Connect.</p>
+<p>Open your NTRIP client&#x27;s &#x27;correction input&#x27; or &#x27;NTRIP&#x27; settings, paste the values from the station card, and press Connect.</p>
 <h4>What is the NEAR mountpoint?</h4>
 <p>Some networks (Centipede, rtk2go) publish a special mountpoint called NEAR. Connect to it and the caster automatically sends corrections from whichever base is closest to you.</p>
 <h4>Where should I put the antenna?</h4>
@@ -414,7 +414,7 @@
 <h4>Why is my fix off by 1–2 m vs Google Maps?</h4>
 <p>Cm-precise but ~1 m off vs your map is normal — your fix is in the network&#x27;s datum and epoch and your map is in another. The receiver isn&#x27;t broken.</p>
 <h4>Connection times out or refuses</h4>
-<p>NTRIP runs on whatever TCP port the caster picks — usually 2101, but the value in the popup is what counts. Corporate WiFi, campus networks, and public hotspots commonly block non-web ports outright.</p>
+<p>NTRIP runs on whatever TCP port the caster picks — usually 2101, but the value in the station card is what counts. Corporate WiFi, campus networks, and public hotspots commonly block non-web ports outright.</p>
 <h4>Worked yesterday, broken today — am I in a storm?</h4>
 <p>Solar geomagnetic storms collapse RTK fix reliability without changing anything on the ground. If your setup worked yesterday and breaks today with no other change, check the Kp index at swpc.noaa.gov before suspecting hardware.</p>
 <h4>Fix loss in the Baltic, Black Sea, Korea? Could be jamming</h4>
