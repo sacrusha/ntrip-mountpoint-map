@@ -1388,7 +1388,8 @@
       "lon": -74.1,
       "tier": "free",
       "vrs": true,
-      "stations_declared": 260
+      "stations_declared": 260,
+      "note": "~124 physical stations broadcast on port 2102; remainder reachable via VRS / network-RTK on port 2101. Free, registration required."
     },
     {
       "id": "spslux",
