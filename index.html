@@ -310,6 +310,8 @@
 <h3>Concepts</h3>
 <h4>What is VRS? (green rings)</h4>
 <p>A VRS network synthesises a virtual reference station at your location, using real stations around you. One connection point, uniform cm-accuracy anywhere inside the coverage.</p>
+<h4>What is an RS network? (green antenna)</h4>
+<p>An RS (reference station) network publishes its physical stations directly. You pick which mountpoint to connect to — usually the closest — and accuracy depends on baseline distance to the chosen station.</p>
 <h4>L1+L2 vs L1-only — what does it mean?</h4>
 <p>Your receiver tracks signals on two radio frequency bands. Using both lets it measure and remove ionospheric delay — the main error that grows with distance — extending reliable RTK from ~10 km out to ~30 km.</p>
 <h4>What is a &#x27;mountpoint&#x27;?</h4>
@@ -695,6 +697,9 @@
   function vrsChip(){
     return `<button class="help-chip" onclick="event.stopPropagation();__ntripShowPopover(this,'vrs','top-left')" aria-label="What is VRS?"><span class="q">?</span></button>`;
   }
+  function rsChip(){
+    return `<button class="help-chip" onclick="event.stopPropagation();__ntripShowPopover(this,'rs','top-left')" aria-label="What is an RS network?"><span class="q">?</span></button>`;
+  }
   function carrierChip(carrier){
     var key=carrier==='L1'?'carrier-l1':'carrier';
     var label=carrier==='L1L2L5'?'What does triple-frequency mean?'
@@ -874,7 +879,7 @@
         var liveBody='Covers <b>'+esc(net.region||'')+'</b>.'
           +(net.stationCount>0?' '+net.stationCount+' reference stations.':'');
         var livePopup='<div class="popup-plain"><h3>'+esc(net.label)+'</h3>'
-          +'<div class="acc" style="color:'+LIVE_NET_COLOR+'">RS network — connect to one reference station at a time</div>'
+          +'<div class="acc" style="color:'+LIVE_NET_COLOR+'">RS network — connect to one reference station at a time'+rsChip()+'</div>'
           +'<div style="margin:4px 0 6px;font-size:12px">'+liveBody+'</div>'
           +(net.openNote?'<div class="anote">'+esc(net.openNote)+'</div>':'')
           +(net.registration?'<div class="anote"><a href="'+esc(net.registration)

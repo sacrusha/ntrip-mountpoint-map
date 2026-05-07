@@ -34,6 +34,11 @@
       "title": "VRS network",
       "body": "One server address covers the whole region. The network synthesises a virtual base near your position from real stations around you — no station picking needed. Your client must send NMEA-GGA position back to the caster (look for a 'Receive GGA' or 'Send NMEA position' toggle).",
       "deepKey": "vrs-explained"
+    },
+    "rs": {
+      "title": "RS network",
+      "body": "The network publishes a list of physical reference stations and you pick which one to connect to — usually the closest. Accuracy is sub-cm within 10 km of the chosen station and degrades with distance. Some casters expose a NEAR mountpoint that auto-selects the nearest base.",
+      "deepKey": "rs-explained"
     }
   },
   "topics": {
@@ -116,6 +121,16 @@
       "body": "<p>Green rings on the map mark VRS networks. You connect once and never have to switch stations as you move.</p><p>Your app needs to send your current position to the network — look for a 'send GGA', 'send NMEA position', or 'Receive GGA' toggle and make sure it's on. Most apps enable this by default.</p><p>Two failure modes worth knowing about up front:</p><ul><li><b>Edge of network</b> — if your rover sits outside the polygon of physical stations, the caster silently switches from interpolation to extrapolation. There is no RTCM warning. Horizontal error stays small (~6 cm at 30 km outside the hull) but vertical can balloon to several metres.</li><li><b>Geomagnetic storm</b> — Kp 7+ collapses ambiguity-resolution success rate even inside the network. If your VRS connection worked yesterday and breaks today, check swpc.noaa.gov before suspecting hardware.</li></ul>",
       "deep": "Under the hood, the network runs a network-RTK solver (most commonly Trimble VRS or a Geo++ MAC equivalent) that models atmosphere from 3+ neighbouring bases. For users, the practical difference vs a single base is: (a) no baseline-distance penalty, (b) no station picking, (c) slightly longer time-to-first-fix on connection.\n\nThird failure mode worth knowing: <b>steep terrain</b>. Vertical tropospheric correction extrapolates poorly in mountainous areas — roughly 27 cm of height error per 1000 m of altitude difference between you and the nearest physical station.\n\nVRS sends a continuous stream of NMEA-GGA position sentences from your rover to the caster — a privacy consideration if you're moving around with cellular data on.",
       "related": ["how-to-connect-emlid", "near-mountpoint", "kp-storm-check"]
+    },
+    "rs-explained": {
+      "cat": "Concepts",
+      "icon": "▲",
+      "q": "What is an RS network? (green antenna)",
+      "sub": "Per-station reference network",
+      "lead": "An RS (reference station) network publishes its physical stations directly. You pick which mountpoint to connect to — usually the closest — and accuracy depends on baseline distance to the chosen station.",
+      "body": "<p>Green antenna markers indicate RS networks. The map's coloured bands tell you which mountpoint to pick:</p><ul><li><b>&lt;10 km</b> — sub-cm, the closer the better</li><li><b>10–30 km</b> — a few cm on a dual-frequency receiver</li><li><b>30–50 km</b> — horizontal stays cm-level but vertical and float rate degrade</li><li><b>&gt;50 km</b> — expect float; treat as a backup only</li></ul><p>Some casters publish a <b>NEAR</b> mountpoint that auto-selects the closest base — convenient if you move across a large area, less explicit about which station you're trusting.</p>",
+      "deep": "Compared with VRS: an RS network is simpler — no GGA upload, no atmosphere modelling, no edge-of-network failure mode. The trade-off is that your accuracy is tied to the baseline distance to the one station you picked. RS is the right choice when you're working close to a known good station, or when you don't want to send your position back to the caster.",
+      "related": ["near-mountpoint", "how-to-connect-emlid", "vrs-explained"]
     },
     "carrier-l1l2": {
       "cat": "Concepts",
