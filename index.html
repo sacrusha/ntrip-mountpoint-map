@@ -842,25 +842,21 @@
     var paidLayers={affordable:{},paid:{},restricted:{},info:{}};
     freeNetworks.forEach(function(net){
       if(!net.lat) return;
-      if(net.staleness==='dead'){
+      // Colored VRS ring only when caster is live AND we successfully fetched stations.
+      // Otherwise (dead, stale, or zero stations seen) render a grey "stale" ring.
+      var isLive=net.staleness==='live'&&net.stationCount>0;
+      if(!isLive){
         var note=net.note||net.openNote||'';
         var ge=addRingMarker(group,net.lat,net.lon,renderer,GREY_MARKER_COLOR,0.18,
           net.label,buildGreyPopup(net.label,net.region||'',note,net.registration));
         ge.label=net.label; greyById[net.id]=ge;
       } else if(net.vrs){
-        var body=net.stationCount>0
-          ? 'Covers <b>'+esc(net.region||'')+'</b>.'
-            +' Reference stations are shown on the map.'
-            +' Connect via a VRS mountpoint for uniform cm-accuracy across the network'
-            +' without manual base selection.'
-          : 'Covers <b>'+esc(net.region||'')+'</b>.'
-            +(net.stationsDeclared?' Uses ~'+net.stationsDeclared+' physical reference stations.':'')
-            +' Your NTRIP client connects to a virtual base synthesised near your location.';
-        var accText=net.stationCount>0
-          ?'VRS/NRTK network — fixed stations on map'
-          :'VRS network — virtual mountpoints only';
+        var body='Covers <b>'+esc(net.region||'')+'</b>.'
+          +' Reference stations are shown on the map.'
+          +' Connect via a VRS mountpoint for uniform cm-accuracy across the network'
+          +' without manual base selection.';
         var popup='<div class="popup-plain"><h3>'+esc(net.label)+'</h3>'
-          +'<div class="acc" style="color:'+VRS_COLOR+'">'+accText+vrsChip()+'</div>'
+          +'<div class="acc" style="color:'+VRS_COLOR+'">VRS/NRTK network — fixed stations on map'+vrsChip()+'</div>'
           +'<div style="margin:4px 0 6px;font-size:12px">'+body+'</div>'
           +(net.openNote?'<div class="anote">'+esc(net.openNote)+'</div>':'')
           +(net.registration?'<div class="anote"><a href="'+esc(net.registration)
@@ -1258,7 +1254,7 @@
           ? '<label style="display:flex;align-items:center;gap:4px">'
               +'<input type="checkbox" data-k="grey_global" checked>'
               +sw('border:2px solid '+GREY_MARKER_COLOR+';background:rgba(102,102,102,0.18);border-radius:50%')
-              +'Free, no data yet ('+greyCount+')'
+              +'Stale ('+greyCount+')'
             +'</label>'
           : '')
         +paidTierRow('affordable')
