@@ -346,6 +346,24 @@ RTK baseline). L1C/B support for QZSS QZS-6 added Jun 2025.
 VRS + FKP; both use shared password `ngii`. ~15,000 registered users as of 2016.
 Seoul City supplementary network at `gnss.eseoul.go.kr` (separate registration).
 
+**Republication posture (2026-05-07)**: keep listing. The Korean-ID/PASS gate
+applies to the real-time correction stream, not to station-coordinate metadata.
+NGII itself publishes the CORS layout openly: the Geospatial Information
+Service Platform (gps.ngii.go.kr) lists all unified control points and
+triangulation points with full geodetic coordinates (~4,282 unified control
+points, ~16,412 triangulation points), and flagship NGII stations SUWN and DAEJ
+are IGS members with logs and coordinates openly republished at
+`network.igs.org` (e.g. SUWN at 37.2755 N, 127.0542 E). Republishing the NTRIP
+sourcetable's mountpoint names and coarse station coordinates does not exceed
+what NGII already publishes through its own portal and IGS contributions. The
+existing `pipeline-access: conditions` flag and popup note already make the
+foreigner-registration barrier visible to the user; that is the correct level
+of disclosure. Cross-reference: SiReNT (`sirent`) is the project's precedent
+for *not* republishing — but that operator (SLA, Singapore) gates the entire
+service behind a paid subscription with no anonymous sourcetable, hence
+country-marker-only treatment. NGII is a different shape: free service, gate is
+on stream auth not on metadata.
+
 ---
 
 ## In-pipeline — physical-coord VRS
@@ -1050,8 +1068,19 @@ Old endpoint `KSACORS.gcs.gov.sa` is NXDOMAIN as of 2026-04. Currently timing
 out in CI. Coverage requires NRTK polygon (deferred). `geoportal.sa` was
 unreachable from an external session (browser-level failure, not HTTP error).
 
+**Republication posture (2026-05-07)**: keep listing. KSA-CORS is `vrs-only` —
+the sourcetable exposes single-coordinate VRS mountpoints, not physical
+antenna positions, and `data/stations.json` confirms 0 republished stations
+(VRS filter drops them). There is no per-station coordinate metadata to weigh.
+On policy: GASGI/GEOSA is a Saudi government agency and Saudi data policy is
+"Open by Default" with non-discriminatory access (data.gov.sa, Open Data
+Commons Attribution v1.0); no clause prohibiting station-metadata republication
+was found. Operator policy pages (geosa.gov.sa, geoportal.sa, gasgi.gov.sa)
+returned HTTP 503 from this sandbox and could not be read directly.
+
 **investigate**: verify `ksacors.geoportal.sa:2101` from a Saudi/GCC IP;
-cannot be confirmed or ruled out from outside the region.
+cannot be confirmed or ruled out from outside the region. Re-check operator
+policy page (gasgi.gov.sa FAQ + Getting-Started PDF) once it is reachable.
 
 ---
 
@@ -1243,8 +1272,22 @@ currently 404; other-zone ports not publicly accessible. Possible future
 credit/fee system indicated by a DOL procurement document (March 2026) but no
 paid tier active as of 2026-05-04.
 
+**Republication posture (2026-05-07)**: keep listing. As of 2026-05-07 the
+caster has never returned a parseable sourcetable from CI — `data/stations.json`
+shows 0 republished stations and status:error — so no DOL station-coordinate
+metadata is currently being surfaced. The Thai-national-ID gate is on stream
+*registration*, not on coordinate metadata: DOL's CORS layout (114 stations,
+63 provinces) is published in peer-reviewed literature (e.g. *Unification of
+GNSS CORS coordinates in Thailand*, ResearchGate 355298294; *Performance of
+Network-Based RTK GNSS for Cadastral Survey in Thailand*, IJG). dol-rtknetwork.com
+returned HTTP 503 from this sandbox, so the operator's own ToS page could not
+be read; no public clause prohibiting redistribution of station coordinates has
+been located. If a future cron run does begin returning physical mountpoints,
+revisit this note rather than assuming default-keep.
+
 **investigate**: confirm sourcetable structure from the next cron run; obtain
-full zone–port mapping for all regions.
+full zone–port mapping for all regions; re-check dol-rtknetwork.com ToS once
+reachable from CI.
 
 ---
 
@@ -3987,6 +4030,12 @@ All 31 provincial/municipal CORS networks are operated by natural-resources
 or land-resources bureaux and feed into the national BGAS. Individual
 registration is not available; credentials require institutional affiliation
 with a licensed surveying body. Same legal barrier as `bgas_china`.
+
+**Republication posture (2026-05-07, verified)**: drop confirmed. Not in
+`scripts/fetch_stations.py` SOURCES and must not be added. The 测量法 gate is
+not just a registration barrier — Articles 27–29 make unlicensed acquisition
+or republication of CORS network data legally restricted, distinct from the
+KR / TH / SA cases where the gate is on stream auth only.
 
 ---
 

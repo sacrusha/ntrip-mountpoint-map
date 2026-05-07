@@ -252,6 +252,36 @@ DGNSS-only and VRS streams, and commits the result to
 [`docs/networks.md`](docs/networks.md) for every endpoint, credentials,
 and audit trail of what was investigated.
 
+## Data attributions
+
+Station coordinates, mountpoint names, formats, and constellations are
+republished from each operator's NTRIP sourcetable. Where the operator's
+licence requires attribution, the required wording is reproduced in the
+in-app help drawer and in
+[`guide.html`](https://sacrusha.github.io/ntrip-mountpoint-map/guide.html#attributions).
+Briefly:
+
+- **AUSCORS** — © Commonwealth of Australia (Geoscience Australia), data
+  licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+- **PositioNZ** — Sourced from Land Information New Zealand and licensed
+  for re-use under
+  [Creative Commons Attribution 4.0 New Zealand](https://creativecommons.org/licenses/by/4.0/).
+- **Centipede-RTK** — © Centipede-RTK contributors. Database under
+  [ODbL v1.0](https://opendatacommons.org/licenses/odbl/1-0/);
+  documentation/software content under
+  [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
+- **ERGNSS** — Fuente: Instituto Geográfico Nacional de España. Attribution
+  required per Orden FOM/2807/2015.
+- **EarthScope NOTA** — GNSS data © EarthScope Consortium, made available
+  under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) per the
+  Non-Commercial Use Licence Agreement (NULA), which incorporates CC BY 4.0
+  by reference for the underlying data.
+
+Other operators ingested by this project publish their sourcetables
+without an attribution clause; each network is still credited by name in
+the map popup and in [`docs/networks.md`](docs/networks.md).
+
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT — see [LICENSE](LICENSE). The MIT licence covers this project's source
+code only; station data carries the licences attributed above.
