@@ -116,14 +116,16 @@ _Last updated: 2026-04-22._
 
 - **Free government RTK**: none. IGN RGP (~100+ permanent GNSS stations) provides
   free RINEX post-processing only; no public RTK NTRIP caster. Centipede fills that role.
-- **Volunteer**: Centipede ~713 volunteer bases in mainland France (densest free RTK
-  coverage in France); rtk2go ~8 FR bases (negligible alongside Centipede). Centipede
+- **Volunteer**: Centipede ~720 volunteer bases in mainland France (densest free RTK
+  coverage in France); rtk2go ~7 FR bases (negligible alongside Centipede). Centipede
   migrated from `caster.centipede.fr` to `crtk.net:2101` on 2025-03-18 (new Millipede
   caster, 50× capacity improvement). ~30 RENAG scientific stations redistributed via
   Centipede since June 2023.
 - **Paid**: Orphéon (`ntrip.reseau-orpheon.fr`, Géodata Diffusion SAS / Hexagon,
   ~215–220 stations, VRS + i-Max) — €756–3,456 TTC/yr depending on coverage area.
   → networks.md: `orpheon`
+  Teria (`teriartk.eu:2101`, Exagone / Ordre des Géomètres-Experts, ~187 stations,
+  VRS + i-Max + FKP) — from €895 HT/yr. → networks.md: `teria`
 - **Gap**: none in practice for mainland France — Centipede effectively provides
   national coverage. Some overseas territories (DOM-TOM) have sparse Centipede nodes.
 
@@ -286,6 +288,9 @@ _Last updated: 2026-04-22._
   €480/yr (~$525) unlimited; per-minute bundle €90 (ex-VAT); all prices ex-VAT.
   Quarterly flat rate is under the $200/yr cutoff; individual online registration
   accepted; no professional licence required. → networks.md: `hepos`
+- **Paid commercial**: URANUS / TopNET Live Greece (Tree Company / Treecomp, Topcon
+  distributor; 117 stations covering Greece + Cyprus; VRS; pricing not publicly listed;
+  3-day free trial). → networks.md: `uranus_gr`
 - **Volunteer**: rtk2go ~1 GR bases, Centipede ~3 GR nodes.
 - **Gap**: no free government RTK; HEPOS quarterly block is the lowest-cost
   entry; volunteer coverage very thin.
@@ -468,9 +473,10 @@ _Last updated: 2026-04-22._
 
 **date_added**: 2026-05-06
 
-- **Free government RTK**: IceCORS (LMÍ, `178.19.53.126:2101`, ~33 stations, single-base
-  only — no VRS) — free, no registration required; open access. Reference frame ISN2016
-  (updated for tectonic movement). → networks.md: `icecors`
+- **Free government RTK**: IceCORS (Náttúrufræðistofnun / formerly LMÍ,
+  `178.19.53.126:2101`, ~33 stations, physical-coord-vrs — VRS3 + nearest-station selectors +
+  4 physical mounts exposed) — free, registration required (contact `icecors@natt.is`).
+  Reference frame ISN2016 (updated for tectonic movement). → networks.md: `icecors`
 - **Volunteer**: negligible.
 - **Gap**: IceCORS physical stations carry nmea=1 flags so the pipeline yields 0 map pins;
   a VRS circle represents the network on the map. Interior highlands and glacier areas lack
@@ -480,10 +486,10 @@ _Last updated: 2026-04-22._
 
 **date_added**: 2026-05-06
 
-- **Free government RTK**: LitPOS (GIS-Centras / Construction Sector Development Agency,
-  35 stations, VRS) — free; NTRIP endpoint issued post-registration (host:port not
-  published publicly); register via Google Form at geoportal.lt/web/litpos-en/registration.
-  Added to pipeline using bare IP `193.219.10.2:2101`. → networks.md: `litpos`
+- **Free government RTK**: LitPOS (SSVA / GIS-Centras, 35 stations, VRS-only) — free;
+  register at geoportal.lt/web/litpos-en/registration; NTRIP via bare IPs
+  `193.219.10.2:2101` (primary) / `195.182.72.152:2101` (secondary). In pipeline.
+  → networks.md: `litpos`
 - **Volunteer**: negligible.
 - **Gap**: pricing opaque; application-form registration; EUPOS member with cross-border
   data sharing (LatPos, ASG-EUPOS).
@@ -685,10 +691,10 @@ _Last updated: 2026-04-22._
 **date_added**: 2026-05-06
 
 - **Free government RTK**: CZEPOS (ČÚZK — Český úřad zeměměřický a katastrální,
-  `czeposr.cuzk.gov.cz:2101`, ~30 stations + 27 foreign-network stations, VRS —
+  `czepos.cuzk.gov.cz:2101`, ~30 stations + 27 foreign-network stations, VRS —
   MAX, iMAX, VirtualRS; GPS+GLO+GAL+BDS) — free for public authorities, schools,
   and students; commercial/hobbyist use charged under Decree 31/1995 Sb. (as amended
-  by 383/2015 Sb.): ~80 CZK+VAT/hr or ~10,000 CZK/yr (~€400) flat-rate.
+  by 383/2015 Sb.): 50 CZK/hr RTK (60 CZK/hr DGPS) or ~10,000 CZK/yr (~€400) flat-rate.
   Registration at `czepos.cuzk.gov.cz`. New stations: Opava (2026), Olomouc (2024).
   Expensive for a hobbyist. → networks.md: `czepos`
 - **Commercial alternative**: TopNET (GB-geodezie, `topnet.gb-geodezie.cz:8006`, 32 CZ
@@ -703,7 +709,7 @@ _Last updated: 2026-04-22._
 
 - **Government RTK (paid)**: GNSSnet.hu (Lechner Nonprofit Kft. / Lechner Tudásközpont,
   `ntrip.gnssnet.hu:2101`, VRS network solution + single-base RTK + DGNSS). Tariff
-  (net of 27% ÁFA, Feb 2023 schedule, reconfirmed 2026-04-30): 12,000 HUF (~€30)
+  (net of 27% ÁFA, Feb 2023 schedule, reconfirmed 2026-05-07): 12,000 HUF (~€30)
   one-time registration per company; 365-day flat rate 150,000 HUF (~€375) for RTK
   or Network RTK (54,000 HUF for DGNSS); shorter flat blocks at 30/90/150 days
   (36,000 / 72,000 / 108,000 HUF); a 30-day local-radius option within 50 km of one
@@ -866,9 +872,9 @@ _Last updated: 2026-04-22._
 
 - **Commercial** (all paid; all over $200/yr):
   - **UA-System.NET** (Системи Солюшнс, `gnss.org.ua:2101`, 200+ stations, nationwide, VRS)
-    — 21,120–23,670 UAH/yr (~$515–577/yr) full national; regional packs (West/Karpaty/
-    South/East) ~13,000–13,500 UAH/yr (~$317–329/yr); wartime discount packages for eastern
-    and southern oblasts; Leica Spider VRS platform. → networks.md: `ua_system_net`
+    — 19,000 UAH/yr (~$460/yr) geodesy annual (VAT incl.; agro variant 19,200 UAH/yr;
+    shorter terms available); wartime discount packages for eastern and southern oblasts;
+    Leica Spider VRS platform. → networks.md: `ua_system_net`
   - **Kyivstar mAgri.RTK** (Kyivstar / Veon, `rtk.kyivstar.ua:2101`, 97 stations, nationwide,
     VRS + Nearest) — GEO 365: 17,700 UAH/yr (~$430/yr); monthly/weekly/daily plans also
     available; 7-day try-and-buy (UAH 2 trial). Requires Kyivstar contract subscription.
@@ -880,7 +886,8 @@ _Last updated: 2026-04-22._
   - **RTK HUB** (TNT-TPI, `rtkhub.com`, nationwide; host:port not published) — 10,500
     UAH/yr (~$256/yr) from Jan 2025; endpoint disclosed post-registration.
     → networks.md: `rtkhub`
-  - **NGCNET** (NGC Ltd) — DNS not resolving April 2026; likely defunct. → networks.md: `ngcnet`
+  - **NGCNET** (NGC Ltd) — domain repurposed to a casino site as of 2026-05-07; defunct.
+    → networks.md: `ngcnet`
 
 - **Volunteer**: rtk2go 0 UA bases; Centipede 0 UA nodes. Zero volunteer coverage confirmed.
 
@@ -991,8 +998,9 @@ similarly have no published coverage for these jurisdictions.
     commercial providers (HxGN SmartNet, Can-Net, Brandtnet); SmartNet Atlantic plan (NB, NL, NS, PE) at CAD
     $3,328/yr (~$2,429/yr); Can-Net and Brandtnet pricing not publicly listed. → networks.md: `nsacs`
   - Ontario, Alberta, Saskatchewan, Manitoba: no provincial CORS; no confirmed public NTRIP.
-- **Volunteer**: rtk2go ~65 CA bases, Centipede ~19 CA nodes. Concentrated heavily
-  in BC, Ontario, and southern Quebec; very thin elsewhere.
+- **Volunteer**: rtk2go ~65 CA bases, Centipede ~19 CA nodes. rtk2go largest cluster
+  AB (~21), followed by QC/Maritimes (~19) and ON (~17); BC/YT very thin (~1).
+  Centipede concentrated in southern QC (~15) and ON (~4).
 - **Gap**: no free national or provincial NTRIP in Canada. Volunteer networks are
   the only free path for hobbyists.
 
@@ -1012,8 +1020,8 @@ similarly have no published coverage for these jurisdictions.
   operated by University of Southern Mississippi), AlCORS (AL; non-standard port 10099;
   LeicaMAX network solution), ORGN (OR, non-standard port 9881), MSRN (MI, ~95 stations,
   non-standard port 10010/10011), NYSNet (NY, ~150 stations, Leica MAC not strict VRS),
-  InCORS (IN, 60 stations including shared MI/OH/KY), IARTN (IA, 83 stations,
-  non-standard port 10000), ACORN CT (`acorn.uconn.edu:2101`, 13 sensors in CT/RI/MA/NY,
+  InCORS (IN, 60 stations including shared MI/OH/KY), IARTN (IA, 83 stations;
+  caster not publicly accessible — not in pipeline), ACORN CT (`acorn.uconn.edu:2101`, 13 sensors in CT/RI/MA/NY,
   operated by CTDOT + UConn; Galileo + BeiDou added mid-2025) — physical stations.
   VRS-only: KyCORS (KY), MnCORS (MN, 140+ stations incl. 4 new northern sites added
   early 2026; non-standard port 9000), ODOT RTN (OH; VRS, multi-constellation upgrade 2024),
@@ -1234,8 +1242,9 @@ similarly have no published coverage for these jurisdictions.
 **date_added**: 2026-05-06
 
 - **Free government RTK**: IGAC MAGNA-ECO (IGAC — Instituto Geográfico Agustín Codazzi,
-  `sbc.igac.gov.co:2101`, ~237–260 declared stations expanding toward 300, physical-coord-vrs
-  on Leica Spider SBC platform, VRS) — free, register at redgeodesica-sbc.igac.gov.co/sbc;
+  `sbc.igac.gov.co:2102` physical stations / `:2101` VRS-only, ~124 unique physical stations
+  confirmed in sourcetable (~260 declared, expanding toward 300), physical-coord-vrs on Leica
+  Spider SBC platform) — free, register at redgeodesica-sbc.igac.gov.co/sbc;
   Law 1955/2019 mandates public access; Centro de Control Geodésico Nacional launched
   April 2024 (SIRGAS presentation). GPS+GLO+GAL+BDS (Leica GR50 receivers).
   → networks.md: `igac`
@@ -1598,12 +1607,9 @@ similarly have no published coverage for these jurisdictions.
 
 **date_added**: 2026-05-01
 
-- **Free government RTK**: none confirmed. Stichting Kadaster- en Hypotheekwezen Sint
-  Maarten (`kadaster.sx`) became GIS-capable in 2025 but operates no public NTRIP
-  caster; NSGI sourcetable carries no SXM-coded mountpoints (verified 2026-05-01).
-  An early-2026 MOU between VROMI / Kadaster Sint Maarten and Kadaster Netherlands
-  confirms institutional cooperation — not an operational NTRIP service. → networks.md:
-  `sx_cors`
+- **Free government RTK**: none. **Paid**: Kadaster St. Maarten CORS subscription
+  (XCG 3,600/yr ~$2,022/yr per receiver; host:port issued on subscription; targets
+  professional surveyors). → networks.md: `sx_cors`
 - **Volunteer**: none. Zero SX stations on rtk2go or Centipede. The nearest EarthScope
   COCONet station is CN59_RTCM3P3 (18.21°N, −63.05°W, country code AIA — on Anguilla,
   ~20 km north of Sint Maarten), which streams via `ntrip.earthscope.org:2101` under the
@@ -1835,7 +1841,7 @@ similarly have no published coverage for these jurisdictions.
     pricing is unknown. Access via an SDK integration model suggests enterprise
     developer / B2B positioning, not individual subscription. Chinese phone number and
     likely business licence required for commercial use. → networks.md: `tencent_rtk`
-- **Volunteer**: negligible. rtk2go ~1 CHN-tagged volunteer station; Centipede negligible.
+- **Volunteer**: negligible. rtk2go ~2 CHN-tagged volunteer stations; Centipede 0.
   Chinese hobbyists (drone pilots, precision-agriculture DIY, autonomous-vehicle developers)
   typically pay Qianxun at full price or deploy a local base using SinoGNSS / ComNav /
   Unicore Communications receivers.
@@ -1862,10 +1868,10 @@ similarly have no published coverage for these jurisdictions.
 
 - **Free government RTK**: none. GEONET (GSI, 1,300+ stations) — RINEX post-processing
   only; real-time data licensed to private providers, no public NTRIP. MIRAI / Go!GNSS
-  (Cabinet Office SPAC, `ntrip.go.gnss.go.jp:2101`, ~300+ stations, free incl. commercial
-  + automated) — raw observations / experimental. → networks.md: `mirai`
+  (Cabinet Office SPAC, `ntrip.go.gnss.go.jp:2101`, 16 JP stations + ~300 worldwide partner
+  stations, free incl. commercial use) — raw observations, single-base. → networks.md: `mirai`
   QZSS CLAS — satellite-delivered (L6 band), free, cm-level, no internet. Out of scope.
-- **Volunteer**: GeoRTK (Geosense, `geortk.jp:2101`, ~41 stations, no auth, free).
+- **Volunteer**: GeoRTK (Geosense, `geortk.jp:2101`, ~500+ mountpoints, no auth, free).
   → networks.md: `geortk`; rtk2go ~22 JP bases.
 - **Paid commercial**: SoftBank ichimill (~¥39,600/yr ≈ $260/yr, 3,300+ stations, VRS);
   Nippon GPS Data Service (`ntrip.gpsdata.co.jp:2101`, tiered pricing).
@@ -1876,15 +1882,19 @@ similarly have no published coverage for these jurisdictions.
 
 **date_added**: 2026-05-06
 
-- **Free government RTK**: NGII Network RTK (NGII / 국토지리정보원, VRS service
-  `vrs3.ngii.go.kr:2101`, FKP service `fkp.ngii.go.kr:2201`, ~60 stations, VRS + FKP)
-  — free; registration at ngii.go.kr (Korean-language portal; shared password `ngii`
-  documented in academic literature). Service address updated May 2022. Seoul City
-  operates a supplementary network (`gnss.eseoul.go.kr`). → networks.md: `cors_korea`
+- **Free government RTK**:
+  - GNSS Data Center (`www.gnssdata.or.kr:2101`, ~8 stations contributed by 8 member
+    agencies, single-base) — free; email-only registration (no Korean ID required);
+    50-day inactivity auto-expiry. Sparse coverage; not a substitute for a national
+    network. Confirmed alive 2026-05-07.
+  - NGII Network RTK (NGII, `vrs3.ngii.go.kr:2101` VRS / `fkp.ngii.go.kr:2201` FKP,
+    ~60 stations) — free VRS/FKP service; registration requires Korean PASS/mobile identity
+    verification — practical barrier for non-residents. Seoul City supplementary network
+    at `gnss.eseoul.go.kr`.
+  → networks.md: `cors_korea`
 - **Volunteer**: rtk2go ~3 KR bases.
-- **Gap**: registration requires Korean government portal account (PASS/mobile identity
-  verification); non-residents face practical barriers. FKP shared password may allow
-  connection without individual account but this is not the official path.
+- **Gap**: NGII VRS/FKP requires Korean residency. GNSS Data Center (gnssdata.or.kr)
+  is accessible without Korean ID but has too few stations for reliable nationwide RTK.
 
 ### MO — Macao SAR (China)
 
@@ -1935,7 +1945,7 @@ similarly have no published coverage for these jurisdictions.
   apply via SFA); CorpPass requires a registered Singapore entity. Non-resident visitors have
   no viable access path. Registration at `app.sla.gov.sg/sirent`. → networks.md: `sirent`
 - **Volunteer**: none. Zero SG stations on rtk2go or Centipede.
-- **Gap**: SiReNT covers Singapore's 733 km² with ~8 reference stations but is priced and
+- **Gap**: SiReNT covers Singapore's 728 km² with 5 reference stations but is priced and
   credentialled for professional use; foreign hobbyists are effectively excluded.
 
 ### TW — Taiwan

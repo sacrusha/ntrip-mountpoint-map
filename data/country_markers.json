@@ -320,8 +320,8 @@
       "vrs": true,
       "access": "paid",
       "registration": "https://gnss.org.ua",
-      "yearly_cost": "21,120–23,670 UAH/yr (~$515–577/yr)",
-      "note": "Largest commercial network in Ukraine; 200+ stations, Leica VRS platform. Regional packs (West/Karpaty/South/East) from ~13,000 UAH/yr (~$317/yr). Wartime discount plans for eastern and southern oblasts."
+      "yearly_cost": "19,000 UAH/yr (~$460/yr)",
+      "note": "Largest commercial network in Ukraine; 200+ stations, Leica VRS platform. Agro variant 19,200 UAH/yr; shorter terms available. Wartime discount plans for eastern and southern oblasts."
     },
     {
       "id": "rtkhub",
@@ -582,6 +582,19 @@
       "note": "98 stations, full GNSS. €160/quarter (~$170) for seasonal use. Pay-per-minute bundle (€90+VAT) for occasional access. Individual sign-up online, no professional licence required."
     },
     {
+      "id": "uranus_gr",
+      "name": "URANUS / TopNET Live Greece",
+      "region": "Greece",
+      "country": "GR",
+      "lat": 38.5,
+      "lon": 22.5,
+      "tier": "paid",
+      "vrs": true,
+      "access": "paid",
+      "registration": "https://uranus.gr",
+      "note": "117 stations covering Greece and Cyprus. 3-day free trial available. HEPOS (€480/yr) is a public-sector alternative with confirmed pricing."
+    },
+    {
       "id": "rompos",
       "name": "ROMPOS",
       "region": "Romania",
@@ -608,6 +621,20 @@
       "yearly_cost": "€756/yr (~$820/yr)",
       "registration": "https://www.reseau-orpheon.fr",
       "note": "~215–220 stations. Commercial VRS network; individual subscriptions available. Centipede RTK (crtk.net:2101) provides free nationwide coverage as a Volunteer alternative."
+    },
+    {
+      "id": "teria",
+      "name": "Teria",
+      "region": "France",
+      "country": "FR",
+      "lat": 46.0,
+      "lon": 3.5,
+      "tier": "paid",
+      "vrs": true,
+      "access": "paid",
+      "yearly_cost": "€895/yr (~$975/yr) excl. VAT",
+      "registration": "https://www.reseau-teria.com",
+      "note": "~187 stations. Operated by Exagone SAS for Ordre des Géomètres-Experts. Centipede RTK (crtk.net:2101) provides free nationwide coverage."
     },
     {
       "id": "swipos",
@@ -1383,10 +1410,11 @@
       "lat": 64.9,
       "lon": -18.5,
       "tier": "free",
-      "access": "open",
+      "vrs": true,
+      "access": "registration",
       "registration": "https://www.lmi.is/is/maelingar/thjonustur/icecors",
       "stations_declared": 33,
-      "note": "33 stations, free. No registration required. Single-base only (no VRS); connect to nearest station mountpoint."
+      "note": "33 stations, free. Registration required. Offers nearest-station selector and VRS3 (network-RTK) correction products."
     },
     {
       "id": "cors_korea",
@@ -1911,13 +1939,16 @@
     },
     {
       "id": "sx_cors",
-      "name": "Sint Maarten",
+      "name": "Kadaster Sint Maarten CORS",
       "region": "Sint Maarten",
       "country": "SX",
       "lat": 18.04,
       "lon": -63.07,
-      "tier": "weird",
-      "note": "No public RTK correction service in Sint Maarten itself."
+      "tier": "paid",
+      "access": "paid",
+      "registration": "https://kadaster.sx/services/",
+      "yearly_cost": "XCG 3,600/yr (~$2,022/yr)",
+      "note": "Covers Sint Maarten island (34 km²); pricing targets professional surveyors."
     },
     {
       "id": "rgna_mx",

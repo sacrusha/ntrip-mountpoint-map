@@ -450,17 +450,20 @@ sourcetable — likely partial data exposure. 16,800+ registered users as of las
 ## igac — IGAC MAGNA-ECO (CO)
 
 **status**:    free
-**host:port**: `sbc.igac.gov.co:2101`
+**host:port**: `sbc.igac.gov.co:2102` (physical stations; `:2101` is VRS/network mounts only)
 **type**:      physical-coord-vrs
 **access**:    free; register at redgeodesica-sbc.igac.gov.co/sbc; Law 1955/2019 mandates public access
 **pipeline-access**: registration
-**stations**:  17 (unique physical coords in sourcetable; ~237–260 declared, expanding toward 300)
+**stations**:  ~124 unique physical coords on port 2102 (143 mounts; ~260 declared, expanding toward 300)
 **source**:    igac.gov.co; redgeodesica-sbc.igac.gov.co
 **operator**:  IGAC — Instituto Geográfico Agustín Codazzi
 **licence**:   Law 1955/2019 (public access mandated)
 
 ~260 stations declared (26 added 2024 via Leica GR50/AR20 equipment; 39 added 2022–2024);
-17 unique physical coords in sourcetable. VRS also on `:2102`. GPS+GLO+GAL+BDS.
+~124 unique physical coords on port 2102 (confirmed 2026-05-07). Port 2101 exposes
+VRS/network mounts only (NEAR, iMAX, VIRS) — zero physical pins after filtering.
+Physical-station mounts on port 2102 are mislabelled nmea=1 (Leica Spider default);
+`nmea_filter=False` set in pipeline. GPS+GLO+GAL+BDS.
 National Geodetic Control Centre launched Apr 2024 (SIRGAS presentation Apr 2024).
 First confirmed free VRS/NRTK in Latin America. ~67% of municipalities covered as of 2023.
 
@@ -489,24 +492,25 @@ Accuracy ~2–3 cm horizontal, ~3–5 cm vertical. ETRS89/ITRF reference frame.
 **status**:    free
 **date_added**: 2026-05-06
 **host:port**: `178.19.53.126:2101`
-**type**:      single-base
-**access**:    free; no registration required; open anonymous access
-**pipeline-access**: open
-**stations**:  33 (~50–60 km spacing nationwide)
-**source**:    lmi.is; moe.lmi.is (LMÍ — Landmælingar Íslands)
-**operator**:  LMÍ — Landmælingar Íslands (National Land Survey of Iceland)
+**type**:      physical-coord-vrs
+**access**:    free; registration required — contact `icecors@natt.is`
+**pipeline-access**: registration
+**stations**:  33 (~70–100 km spacing nationwide); 4 physical mounts exposed in sourcetable
+               (AUSV, GEVK, SENG, VOGC — all Reykjanes peninsula); remaining 29 reachable
+               via nearest-station selector (RTCM30/RTCM30_MSM) or VRS3/VRS3_MSM
+**source**:    natt.is; ggn01.lmi.is (registration portal still on LMÍ subdomain)
+**operator**:  Náttúrufræðistofnun Íslands (Natural Science Institute of Iceland);
+               geodetic functions transferred from LMÍ ~2024–2025
 
-33 physical GNSS stations covering Iceland at 50–60 km intervals. Caster at
-`178.19.53.126:2101` (Geo++ GNNET software). Single-base RTK only — no VRS.
-Users connect to nearest station's mountpoint (e.g., HRNC_RTK, LAVI_RTK).
-All corrections reference ISN2016 (ITRF2014 epoch 2016.0); regularly updated
-for tectonic movement.
+33 physical GNSS stations covering Iceland at 70–100 km intervals. Caster at
+`178.19.53.126:2101` (Geo++ GNSMART software). VRS3 and VRS3_MSM network-solution
+mountpoints available; nearest-station selectors RTCM30/RTCM30_MSM; 4 individual
+physical mounts (Reykjanes cluster). ISN2016 (ITRF2014 epoch 2016.0).
 
-The sourcetable exposes physical station mountpoints in `STATIONCODE_RTK` format.
-GNSMART tags all mountpoints `NMEA=1` including the physical single-base entries
+GNSMART tags all mountpoints `NMEA=1` including the 4 single-base entries
 (which have unique coordinates and `solution=0`). `nmea_filter=False` would be
-needed to expose these stations; pipeline currently holds at 0 to avoid
-misrepresenting the network.
+needed to expose the 4 physical pins; pipeline currently holds at 0.
+Confirmed alive 2026-05-07 (SOURCETABLE 200 OK, 12 STR rows).
 
 ---
 
@@ -706,7 +710,7 @@ corrections. Some overlap with EarthScope NOTA expected.
 ## ardot_rtn — ARDOT RTN (US-AR)
 
 **status**:    free
-**host:port**: `gps.ardot.gov:2101`
+**host:port**: `gps.ardot.gov:2101` (IP 199.48.3.12; SOURCETABLE 200 OK 2026-05-07)
 **type**:      physical-coord-vrs
 **access**:    registration; free via ardot.gov (Arkansas DOT)
 **pipeline-access**: registration
@@ -755,12 +759,14 @@ Vermont CORS network operated by VCGI. Bare IP address; no hostname. Free regist
 **type**:      physical-coord-vrs
 **access**:    registration; free via azwater.gov (Arizona Dept. of Water Resources)
 **pipeline-access**: registration
-**stations**:  51
+**stations**:  71 (56 ADWR-managed + 15 EarthScope/NPS CORS sites; as of 2026-04-06)
 **source**:    azwater.gov (Arizona Department of Water Resources)
 **operator**:  Arizona Dept. of Water Resources (ADWR)
 
-Arizona CORS Network operated by ADWR. 51 stations; free registration. Moderate
-overlap with EarthScope NOTA expected.
+Arizona CORS Network operated by ADWR. 71 total sites (56 ADWR + 15 EarthScope/NPS);
+free registration. Moderate overlap with EarthScope NOTA expected. Port 2101 is the
+Leica SBC default; external probes timeout (Cloudflare CDN in front of the portal) —
+actual port confirmed post-registration only.
 
 ---
 
@@ -874,8 +880,9 @@ Indiana CORS Network. Non-standard port 10000. Free registration.
 **operator**:  Iowa DOT
 
 Iowa Real-Time Network operated by Iowa DOT. 83 physical stations. Free registration.
-Note: IP 165.206.203.10 port 10000 confirmed SOURCETABLE 200 OK 2026-05-07; port 2101 on
-iartnsbc.iowadot.gov returns 403/timeout from external — fetch via IP:port may be needed.
+`iartnsbc.iowadot.gov:2101` confirmed dead (blank response 2026-05-07); not in pipeline.
+`165.206.203.10:10000` returns a SOURCETABLE but only exposes network-level mounts and one
+physical station anonymously — individual station streams require credentials.
 
 ---
 
@@ -978,6 +985,24 @@ Port 5001 confirmed responding SOURCETABLE 200 OK on 2026-05-06. This is the
 canonical port per Alberding directory and the research confirms it is live.
 Non-standard port 5001 may be blocked by some egress firewalls (CI timeout
 observed previously). Network accuracy ~2 cm horizontal.
+
+---
+
+## litpos — LitPOS (LT)
+
+**status**:    free
+**date_added**: 2026-05-07
+**host:port**: Primary: `193.219.10.2:2101`; Secondary: `195.182.72.152:2101`
+**type**:      vrs-only
+**access**:    free; register at geoportal.lt/web/litpos-en/registration
+**pipeline-access**: registration
+**stations**:  35 LT + 3 PL (ASG-EUPOS) + 6 LV (LatPos) via EUPOS cooperation
+**operator**:  VšĮ Statybos sektoriaus vystymo agentūra (SSVA); GIS-Centras technical operator
+**source**:    geoportal.lt
+
+EUPOS member. VRS-only sourcetable (all mounts at 54,23 / solution=1; 0 physical pins).
+RTCM 2.3/3.1/3.2 (MSM5 GPS+GLO+GAL+BDS), CMR+, CMRx, DGPS. Confirmed alive 2026-05-07
+(both IPs SOURCETABLE 200 OK, Trimble Pivot Platform, 12 STR rows).
 
 ---
 
@@ -1151,7 +1176,7 @@ Existing users were required to re-register after the cutover. Mountpoints: `VRS
 
 **status**:    free
 **host:port**: `rtvrn.mesacounty.us:2101`
-**type**:      single-coord-vrs
+**type**:      vrs-only
 **access**:    registration; free via rtvrn.mesacounty.us
 **pipeline-access**: registration
 **stations**:  33 (17 NGS CORS + 16 county/partner stations) underlying VRS
@@ -1251,34 +1276,6 @@ a bare IP.
 
 ---
 
-## litpos — LitPOS (LT)
-
-**status**:    candidate
-**host:port**: Primary: `193.219.10.2:2101` (VilniusTech Geodesy Institute, Vilnius;
-               alt port 2111 noted by some users); Secondary: `195.182.72.152:2101`
-               (GIS-Centras / VšĮ Statybos sektoriaus vystymo agentūra); both servers
-               provide identical streams — no DNS hostnames published for either IP
-**type**:      vrs-only
-**access**:    free; register at geoportal.lt/web/litpos-paslauga/registracija
-**stations**:  35
-**operator**:  Nacionalinė žemės tarnyba (NZT — National Land Service under the Ministry
-               of Agriculture); operated by GIS-Centras / VšĮ Statybos sektoriaus
-               vystymo agentūra
-**source**:    geoportal.lt (LitPOS service page and usage rules §3 — "visi LitPOS duomenys
-               yra vieši ir teikiami nemokamai"); zinynas.geonovus.lt (IP/port, confirmed
-               2026-04-30); curl 193.219.10.2:2101 → SOURCETABLE 200 OK, Trimble Ntrip
-               Caster 5.2, Content-Length: 1677 (confirmed 2026-04-30)
-
-EUPOS member network. Supports RTCM 2.3, RTCM 3.0, CMR, CMR+, CMRx, DGPS.
-Example mountpoint: VRS_CMRx. Users can monitor live sessions at
-geoportal.lt/app/litpos. Cross-border data sharing with LatPos (Latvia) and
-ASG-EUPOS (Poland) is documented in the usage rules. Natural and legal persons
-are eligible (§6 of usage rules); no professional surveying licence required.
-No residency restriction found in the usage rules; non-Lithuanian registration
-not confirmed but also not excluded.
-
----
-
 ## zakpos — ZAKPOS (UA)
 
 **status**:    paid
@@ -1326,13 +1323,12 @@ NULP) and SULP00UKR0 (Lviv, IGS) — free reference, not NTRIP corrections.
 **type**:      physical-coord-vrs (VRS; mountpoints: nearest, automax, vrs, i-max)
 **access**:    paid subscription; Leica Spider Business Center login at gnss.org.ua
 **registration**: https://gnss.org.ua
-**yearly_cost**: 21,120–23,670 UAH/yr (~$515–577/yr) full national;
-               regional packs (West/Karpaty/South/East): 13,000–13,500 UAH/yr (~$317–329/yr);
-               also: 6.6 UAH/min (TIMER pack), 1,470 UAH/week, 3,630 UAH/month,
-               8,190 UAH/3 months, 12,600 UAH/6 months; drone RTK: 15,510 UAH/yr (~$378/yr)
+**yearly_cost**: 19,000 UAH/yr (~$460/yr) geodesy annual (VAT incl.; list ~19,900 UAH/yr);
+               agro variant: 19,200 UAH/yr; shorter terms (1/3/6 mo) available.
+               Observed 2026-05-07 via reseller gpsgeometer.com
 **stations**:  200+
 **operator**:  Системи Солюшнс (Swiss-Ukrainian joint venture); brand: UA-System.NET
-**source**:    systemnet.com.ua, gnss.org.ua (confirmed active, April 2025)
+**source**:    systemnet.com.ua, gnss.org.ua; reseller gpsgeometer.com (observed 2026-05-07)
 
 Largest commercial CORS network in Ukraine. Nationwide coverage with 200+ stations on Leica
 Spider VRS platform. Wartime discount packages available for eastern and southern oblasts.
@@ -1749,6 +1745,23 @@ is under the $200/yr cutoff. Online credit-card payment; no licensing check docu
 
 ---
 
+## uranus_gr — URANUS / TopNET Live Greece (GR)
+
+**status**:    paid
+**date_added**: 2026-05-07
+**country**:   GR
+**host:port**: credentials issued after registration (uranus.gr)
+**type**:      vrs-only
+**access**:    paid; 3-day free trial; pricing not publicly listed; contact uranus@treecomp.gr
+**yearly_cost**: not published
+**stations**:  117 reference stations covering Greece and Cyprus
+**operator**:  Tree Company Corporation A.E.B.E. (Treecomp) — Topcon distributor
+
+Private commercial VRS network; distinct from HEPOS. GPS, GLONASS, Galileo, BeiDou;
+advertised 99% coverage of Greece. Confirmed alive 2026-05-06 (uranus.gr HTTP 200).
+
+---
+
 ## rompos — ROMPOS (RO)
 
 **status**:    paid-affordable
@@ -1853,6 +1866,25 @@ Brief entries only.
 
 ---
 
+## sx_cors — Kadaster Sint Maarten CORS (SX)
+
+**status**:    paid
+**country**:   SX — Sint Maarten (Dutch part)
+**date_added**: 2026-05-07
+**type**:      unknown
+**host:port**: not publicly listed (issued on subscription)
+**access**:    paid; contact kadaster.sx
+**registration**: https://kadaster.sx/services/
+**yearly_cost**: XCG 3,600/yr (~USD 2,022/yr) per receiver; XCG 360/month option
+**stations**:  unknown (island is 34 km²; single station likely)
+**operator**:  Stichting Kadaster- en Hypotheekwezen Sint Maarten
+
+Paid CORS service confirmed on kadaster.sx/services (2026-05-07). No public sourcetable;
+host:port issued on subscription. Targets professional surveyors. Nearest free option:
+EarthScope CN59 on Anguilla (~20 km, NULA free non-commercial).
+
+---
+
 ## orpheon — Orphéon (FR)
 
 **status**:    paid
@@ -1872,6 +1904,27 @@ Brief entries only.
 
 VRS and i-Max (individualised MAX) mountpoints. GPS, GLONASS, Galileo, BeiDou.
 Also offers pay-per-hour packages for occasional users via shop.reseau-orpheon.fr.
+
+---
+
+## teria — Teria (FR)
+
+**status**:    paid
+**date_added**: 2026-05-07
+**country**:   FR
+**host:port**: `teriartk.eu:2101`
+**type**:      physical-coord-vrs
+**access**:    paid; annual and short-period subscriptions; no professional licence required;
+               sold via resellers (i3map, Tech4Maps, D3E Geospatial, Sttl-Topographie)
+**yearly_cost**: from €895 HT/yr (excl. 20% French VAT) — national unlimited RTK;
+               well above $200/yr cutoff
+**stations**:  ~187 GPS/GNSS permanent stations covering metropolitan France
+**operator**:  Exagone SAS, on behalf of Ordre des Géomètres-Experts (OGE)
+**source**:    reseau-teria.com
+
+VRS, i-Max, MAC, FKP, PRS variants in RTCM 2.3/3.0/3.1/3.2 (MSM4/MSM5). Also offers
+TERIAsat (L-band) and TERIArinex (post-processing) variants. Confirmed alive 2026-05-07
+(SOURCETABLE 200 OK, Geo++ GNSMART 2.0 caster, 30+ mountpoints).
 
 ---
 
@@ -2166,7 +2219,7 @@ Centipede ~9 IE).
 **registration**: `https://app.sla.gov.sg/sirent`
 **yearly_cost**: S$107/month (~S$1,284/yr, ~$960/yr); S$64.20/month (10–50 accounts);
                S$32.10/month (51+ accounts); one-time S$32.10 admin fee
-**stations**:  ~8 physical reference stations (SLYG, SNPT, SNUS, SNYU, SRPT confirmed)
+**stations**:  5 physical reference stations (SNTU, SKEP, SLOY, SSEK, SNYP)
 **source**:    app.sla.gov.sg/sirent (SLA — Singapore Land Authority)
 **operator**:  SLA — Singapore Land Authority
 
@@ -2297,7 +2350,7 @@ solution, port 2103 single-base.
 **status**:    paid
 **date_added**: 2026-05-06
 **country**:   HU
-**type**:      VRS (network RTK), single-base RTK, and DGNSS
+**type**:      vrs-only
 **host:port**: `ntrip1.gnssnet.hu:2101` (primary, Budapest); `ntrip2.gnssnet.hu:2101`
                (backup, Penc/KGO) — two independently operating, identically configured servers
 **access**:    paid; web registration at gnssnet.hu; one-time per-company connection fee
@@ -2323,7 +2376,7 @@ solution, port 2103 single-base.
                subscription of the same type/duration, −20% on the 3rd onwards (applied
                only to the second-and-further line items, not the first).
                Prices reflect Feb 2023 reduction; current schedule confirmed against
-               `gnssnet.hu/pdf/gnss_valosideju_szolg_arak.pdf` (2026-04-30).
+               `gnssnet.hu/pdf/gnss_valosideju_szolg_arak.pdf` (2026-05-07).
 **source**:    gnssnet.hu; lechnerkozpont.hu/oldal/gnss;
                gnssnet.hu/pdf/gnss_valosideju_szolg_arak.pdf
 **operator**:  Lechner Nonprofit Kft. (Lechner Tudásközpont / Lechner Knowledge Centre)
@@ -2694,7 +2747,7 @@ licence number required. No free hobbyist tier.
 **status**:    restricted
 **date_added**: 2026-04-30
 **country**:   BY — Belarus
-**type**:      network RTK (VRS; mountpoints: BelarusVRS, NEAR, BelarusVRS(MSM5), NEAR(MSM5) on port 8080; Precision Agriculture port 8081)
+**type**:      physical-coord-vrs
 **host:port**: `sstp.geo.by:8080` (IP fallback: `93.125.21.51:8080`)
 **access**:    paid; signed public contract (Публичный договор) with РУП «Белгеодезия»;
                available to individuals (физическое лицо) and organisations (юридическое лицо);
@@ -2718,8 +2771,10 @@ accessible outside Belarus.
 
 Access is restricted to residents of the Republic of Belarus who sign a public contract;
 both individuals and organisations may sign. No self-service portal; host:port and
-credentials issued per-contract. Confirmed alive 2026-04-30 (tariff PDF and RTK manual
-both served from geo.by).
+credentials issued per-contract. Confirmed alive 2026-05-07 (sourcetable 200 OK, 47 STR,
+tariff PDF and RTK manual served from geo.by). Port 8081 (previously referenced for Agro
+plans) was unreachable 2026-05-07; all Agro-* mountpoints now on port 8080 — **verify
+before removing the port 8081 reference from legacy docs**.
 
 Hardware supply: EU, UK, and US sanctions applied to Belarus since 2020–2022 suspend
 exports of surveying and precision-GNSS equipment (Topcon, Trimble, Leica all announced
@@ -2862,7 +2917,8 @@ processing subscription available separately. No free hobbyist tier; entry-level
 Clearinghouse for real-time GNSS data from multiple California networks: SOPAC
 (SCIGN), UC Berkeley/USGS Menlo Park (BARD), USGS Pasadena (SCIGN),
 Caltrans (CVSRN), Orange County Public Works (OCRTN), and EarthScope NOTA
-stations. RTCM 3.0, 1 Hz, latency <1 s. Registration via the CRTN Registration
+stations. RTCM 3.0, 1 Hz, latency <1 s; RTCM 3.1 available via `XXXX_RTCM3P1`
+mountpoint suffix (announced October 2025). Registration via the CRTN Registration
 form (linked from the SOPAC page); credentials issued in 7+ days. The $100
 processing fee is one-time and falls below the project's $200/yr affordability
 cutoff — surfaced in UI as a paid-affordable info marker rather than an
@@ -5565,36 +5621,6 @@ maintained for backward compatibility.
 Single-station raw reference streams — not a VRS/network-RTK service. Kadaster's
 NETPOS network-RTK service (Netherlands mainland only) does not extend to BES.
 Zero BES-coded rtk2go or Centipede stations.
-
-## sx_cors — Sint Maarten Geodetic / Kadaster SXM (SX)
-
-**status**:    weird
-**country**:   SX — Sint Maarten (Dutch part)
-**type**:      unknown (no public caster endpoint identified)
-**host:port**: not publicly listed
-**access**:    unknown — no public self-service registration portal found
-**registration**: https://kadaster.sx/
-**yearly_cost**: n/a (no public service)
-**stations**:  unknown
-**operator**:  Stichting Kadaster- en Hypotheekwezen Sint Maarten (`kadaster.sx`);
-               spatial open data via Ministry of VROMI
-               (`gis-vromi-sxm.opendata.arcgis.com`)
-
-**date_added**: 2026-05-01
-
-No public RTK correction service or NTRIP caster found for Sint Maarten. NSGI's
-sourcetable carries no SXM-coded mountpoints (verified 2026-05-01). Kadaster Sint
-Maarten is a private foundation established in 1999 that manages land registration
-and surveying; it achieved GIS capability in 2025 (ArcGIS platform deployment). An
-early-2026 MOU between VROMI / Kadaster Sint Maarten and Kadaster Netherlands confirms
-institutional cooperation — not an operational NTRIP service. The nearest EarthScope
-COCONet station is CN59_RTCM3P3 (18.21°N, −63.05°W, country code AIA — physically on
-Anguilla, ~20 km north of Sint Maarten), which streams via `ntrip.earthscope.org:2101`
-under NULA (free non-commercial) and is usable from SXM territory at that baseline.
-
-**missing**: confirm with Kadaster Sint Maarten or VROMI whether any NTRIP caster
-or RTK correction service is planned; revisit as the Kadaster Netherlands cooperation
-develops.
 
 ## alcorsnet_dz — AL-CORS-Net / SAAP (DZ)
 
