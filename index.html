@@ -950,11 +950,12 @@
     });
     return group;
   }
-  // freeNetworks routing:
-  //   vrs+live+data    -> VRS_COLOR ring (visual) + dark-green antenna marker (bySid)
-  //   non-vrs+live     -> bright-green antenna marker only, no ring (liveById)
-  //   stale/dead/no-data -> grey ring (visual) + grey antenna marker (greyById)
-  //   !lat             -> no marker
+  // freeNetworks routing — keyed off staleness only (recent successful fetch
+  // = live, regardless of station count):
+  //   vrs+live    -> VRS_COLOR ring (visual) + dark-green antenna marker (bySid)
+  //   non-vrs+live-> bright-green antenna marker only, no ring (liveById)
+  //   stale/dead  -> grey ring (visual) + grey antenna marker (greyById)
+  //   !lat        -> no marker
   // Click/hover always lives on the antenna marker; rings are non-interactive.
   // Markers sit in tierPane and inherit its z>=ZOOM_DOTS hide.
   function buildNetworkOverlays(freeNetworks,paidTiers,renderer){
@@ -963,7 +964,14 @@
     var paidLayers={affordable:{},paid:{},restricted:{},info:{}};
     freeNetworks.forEach(function(net){
       if(!net.lat) return;
-      var isLive=net.staleness==='live'&&net.stationCount>0;
+      // Grey is reserved for "we couldn't reach the caster recently": the
+      // most recent fetch failed (staleness !== 'live') OR the source isn't
+      // even in the pipeline (synthetic dead entry from country_markers).
+      // A successful recent fetch with zero ingested stations is still a
+      // live network — typical for VRS-only casters that publish virtual
+      // mountpoints without exposing a fixed reference-station list.
+      var isLive=net.staleness==='live';
+      var hasStations=net.stationCount>0;
       if(!isLive){
         var note=net.note||net.openNote||'';
         var greyPopup=buildGreyPopup(net.label,net.region||'',note,net.registration);
@@ -971,12 +979,19 @@
         var greyMk=addAntennaMarker(group,net.lat,net.lon,GREY_MARKER_COLOR,net.label,greyPopup);
         greyById[net.id]={visual:greyRing,marker:greyMk};
       } else if(net.vrs){
-        var vrsBody='Covers <b>'+esc(net.region||'')+'</b>.'
-          +' Reference stations are shown on the map.'
-          +' Connect via a VRS mountpoint for uniform cm-accuracy across the network'
-          +' without manual base selection.';
+        var vrsAcc=hasStations
+          ? 'VRS/NRTK network — fixed stations on map'
+          : 'VRS network — virtual mountpoints only';
+        var vrsBody=hasStations
+          ? 'Covers <b>'+esc(net.region||'')+'</b>.'
+            +' Reference stations are shown on the map.'
+            +' Connect via a VRS mountpoint for uniform cm-accuracy across the network'
+            +' without manual base selection.'
+          : 'Covers <b>'+esc(net.region||'')+'</b>.'
+            +(net.stationsDeclared?' Uses ~'+net.stationsDeclared+' physical reference stations.':'')
+            +' Your NTRIP client connects to a virtual base synthesised near your location.';
         var vrsPopup='<div class="popup-plain"><h3>'+esc(net.label)+'</h3>'
-          +'<div class="acc" style="color:'+VRS_COLOR+'">VRS/NRTK network — fixed stations on map'+vrsChip()+'</div>'
+          +'<div class="acc" style="color:'+VRS_COLOR+'">'+vrsAcc+vrsChip()+'</div>'
           +'<div style="margin:4px 0 6px;font-size:12px">'+vrsBody+'</div>'
           +(net.openNote?'<div class="anote">'+esc(net.openNote)+'</div>':'')
           +(net.registration?'<div class="anote"><a href="'+esc(net.registration)
@@ -987,7 +1002,7 @@
         bySid[net.id]={visual:vrsRing,marker:vrsMk};
       } else {
         var liveBody='Covers <b>'+esc(net.region||'')+'</b>.'
-          +(net.stationCount>0?' '+net.stationCount+' reference stations.':'');
+          +(hasStations?' '+net.stationCount+' reference stations.':'');
         var livePopup='<div class="popup-plain"><h3>'+esc(net.label)+'</h3>'
           +'<div class="acc" style="color:'+LIVE_NET_COLOR+'">RS network — connect to one reference station at a time'+rsChip()+'</div>'
           +'<div style="margin:4px 0 6px;font-size:12px">'+liveBody+'</div>'
