@@ -1476,17 +1476,23 @@
     if(xBtn) xBtn.onclick=collapseLegend;
     if(handle) handle.onclick=expandLegend;
     try{ if(localStorage.getItem('ntrip-legend-collapsed')) collapseLegend(); }catch(e){}
-    var _tx=null,_ty=null;
+    // Right-swipe to collapse — guard against scroll-drag false-positives:
+    //   * require a strong horizontal-dominant gesture (dx > 60 AND dx > 2*dy)
+    //   * skip if the panel scrolled vertically during the gesture (>2px delta)
+    var _tx=null,_ty=null,_tScroll=0;
     d.addEventListener('touchstart',function(e){
       if(e.touches.length!==1){ _tx=null; return; }
       _tx=e.touches[0].clientX; _ty=e.touches[0].clientY;
+      _tScroll=d.scrollTop;
     },{passive:true});
     d.addEventListener('touchend',function(e){
       if(_tx==null) return;
       var t=e.changedTouches[0];
       var dx=t.clientX-_tx, dy=Math.abs(t.clientY-_ty);
+      var scrolled=Math.abs(d.scrollTop-_tScroll)>2;
       _tx=_ty=null;
-      if(dx>50&&dy<dx) collapseLegend();
+      if(scrolled) return;
+      if(dx>60&&dx>2*dy) collapseLegend();
     },{passive:true});
 
     var ctrl=L.control({position:'topright'});
