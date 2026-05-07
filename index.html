@@ -854,7 +854,7 @@
         var greyPopup=buildGreyPopup(net.label,net.region||'',note,net.registration);
         var greyRing=addRingMarker(group,net.lat,net.lon,renderer,GREY_MARKER_COLOR,0.18);
         var greyMk=addAntennaMarker(group,net.lat,net.lon,GREY_MARKER_COLOR,net.label,greyPopup);
-        greyById[net.id]={visual:greyRing,marker:greyMk,label:net.label};
+        greyById[net.id]={visual:greyRing,marker:greyMk};
       } else if(net.vrs){
         var vrsBody='Covers <b>'+esc(net.region||'')+'</b>.'
           +' Reference stations are shown on the map.'
@@ -874,7 +874,7 @@
         var liveBody='Covers <b>'+esc(net.region||'')+'</b>.'
           +(net.stationCount>0?' '+net.stationCount+' reference stations.':'');
         var livePopup='<div class="popup-plain"><h3>'+esc(net.label)+'</h3>'
-          +'<div class="acc" style="color:'+LIVE_NET_COLOR+'">Free reference network</div>'
+          +'<div class="acc" style="color:'+LIVE_NET_COLOR+'">Per-base network — connect to one station at a time</div>'
           +'<div style="margin:4px 0 6px;font-size:12px">'+liveBody+'</div>'
           +(net.openNote?'<div class="anote">'+esc(net.openNote)+'</div>':'')
           +(net.registration?'<div class="anote"><a href="'+esc(net.registration)
@@ -888,7 +888,7 @@
       var ic=PAID_TIER_ICONS[tier];
       (paidTiers[tier]||[]).forEach(function(net){
         var mk=addInfoMarker(group,net.lat,net.lon,buildPaidNetworkPopup(net),net.name,ic.glyph,ic.color);
-        paidLayers[tier][net.id]={marker:mk,label:net.name};
+        paidLayers[tier][net.id]={marker:mk};
       });
     });
     return {group:group,bySid:bySid,greyById:greyById,liveById:liveById,paidLayers:paidLayers};
@@ -1187,7 +1187,6 @@
     var state={tier_open:true,tier_registration:true,tier_conditions:true,
                vrs_global:true,grey_global:true,live_global:true};
     freeNetworks.forEach(function(net){ state[net.id]=true; });
-    Object.keys(greyLayerById).forEach(function(id){ state['grey:'+id]=true; });
     Object.keys(paidLayers).forEach(function(tier){
       state[tier+'_global']=true;
       Object.keys(paidLayers[tier]).forEach(function(id){ state[tier+':'+id]=true; });
@@ -1205,7 +1204,7 @@
         if(mkEl) mkEl.style.display=show?'':'none';
       });
       Object.keys(greyLayerById).forEach(function(id){
-        var show=!!(state['grey:'+id]&&state.grey_global);
+        var show=!!state.grey_global;
         var entry=greyLayerById[id];
         entry.visual.setStyle({opacity:show?1:0,fillOpacity:show?0.18:0});
         var mkEl=entry.marker.getElement();
@@ -1299,7 +1298,7 @@
           ? '<label style="display:flex;align-items:center;gap:4px">'
               +'<input type="checkbox" data-k="live_global" checked>'
               +antennaIconSvg(LIVE_NET_COLOR,14,'vertical-align:middle')
-              +' Free networks ('+liveCount+')'
+              +' Per-base networks ('+liveCount+')'
             +'</label>'
           : '')
         +(greyCount
