@@ -267,6 +267,32 @@
   @media(max-width:600px){
     #help-drawer{width:100%;top:44px;}
   }
+
+  /* Card bottom-sheet — replaces Leaflet popups for station/network/paid
+     marker clicks. Width-based breakpoint at 768px keeps vertical desktops
+     and most tablets in the centered layout; only phones get the
+     full-width strip. */
+  #card-sheet{position:fixed;left:50%;bottom:16px;
+    transform:translateX(-50%) translateY(140%);
+    width:min(420px,calc(100vw - 32px));max-height:min(60vh,520px);
+    background:var(--panel-bg);border:1px solid var(--panel-border);
+    border-radius:6px;box-shadow:0 8px 30px rgba(0,0,0,.35);
+    z-index:9998;
+    transition:transform .22s cubic-bezier(.2,.8,.2,1),opacity .18s;
+    opacity:0;pointer-events:none;display:flex;flex-direction:column;}
+  #card-sheet.on{transform:translateX(-50%) translateY(0);opacity:1;pointer-events:auto;}
+  #card-sheet .card-close{position:absolute;top:6px;right:8px;
+    background:transparent;border:none;color:var(--muted);font-size:18px;
+    cursor:pointer;padding:2px 8px;line-height:1;border-radius:3px;z-index:1;}
+  #card-sheet .card-close:hover{background:var(--btn-hover);color:var(--fg);}
+  #card-sheet .card-content{padding:12px 32px 14px 18px;overflow-y:auto;}
+  #card-sheet .popup-plain{max-width:none;max-height:none;overflow:visible;}
+  @media(max-width:768px){
+    #card-sheet{left:0;right:0;bottom:0;width:100%;
+      transform:translateY(140%);
+      border-radius:8px 8px 0 0;max-height:65vh;}
+    #card-sheet.on{transform:translateY(0);}
+  }
 </style>
 </head>
 <body>
@@ -376,6 +402,11 @@
   </div>
   <div class="help-dbody" id="help-body"></div>
 </aside>
+<!-- card bottom-sheet — single card surface for any marker click -->
+<div id="card-sheet" role="dialog" aria-label="Selection details">
+  <button class="card-close" aria-label="Close">✕</button>
+  <div class="card-content"></div>
+</div>
 <!-- popover host -->
 <div id="help-popover-layer"></div>
 <script>
@@ -383,10 +414,6 @@
   // Per-source data. Built once at load time from data/stations.json.
   var SOURCES={};
   var _helpTopics=null;
-  // Map ref shared across the IIFE — set during window.load. Used by
-  // help-drawer/popover code to close any open station/network popup so only
-  // one card surface is visible at a time.
-  var _MAP=null;
   var MULTI_COLOR='#222', UNKNOWN_SOURCE_COLOR='#888', VRS_COLOR='#1a5d1a';
   var GREY_MARKER_COLOR='#666';   // matches stale-pin colour
   var INFO_MARKER_COLOR='#888';   // circled-? fallback / info markers
@@ -662,6 +689,23 @@
     try{ localStorage.setItem('ntrip-howit-seen','1'); }catch(e){}
   };
 
+  // Card sheet — single overlay surface for any marker selection. Replaces
+  // Leaflet's bindPopup for station/network/paid markers. Click-outside,
+  // ESC, map click, or opening the help drawer all dismiss it.
+  function openCardSheet(html){
+    hideHelpPopover();
+    var s=document.getElementById('card-sheet'); if(!s) return;
+    s.querySelector('.card-content').innerHTML=html;
+    s.classList.add('on');
+  }
+  function closeCardSheet(){
+    var s=document.getElementById('card-sheet'); if(s) s.classList.remove('on');
+  }
+  function isCardOpen(){
+    var s=document.getElementById('card-sheet');
+    return !!(s&&s.classList.contains('on'));
+  }
+
 
   function accuracySummary(carrier){
     if(carrier==='L1L2L5') return '~1–2 cm (triple-frequency L1+L2+L5 — faster fix, better multipath)';
@@ -840,7 +884,7 @@
       L.marker(c,{
         icon:L.divIcon({className:'',iconSize:[18,18],iconAnchor:[9,9],
           html:'<svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="7.5" fill="#1a5d1a" stroke="white" stroke-width="2"/><text x="9" y="12" text-anchor="middle" font-size="9" font-weight="bold" fill="white">N</text></svg>'})
-      }).bindPopup(popup).addTo(group);
+      }).on('click',function(){ openCardSheet(popup); }).addTo(group);
     });
     return group;
   }
@@ -950,7 +994,7 @@
     var icon=L.divIcon({className:'',iconSize:[18,18],iconAnchor:[9,9],html:tierIconSvg(glyph,color,null,18)});
     return L.marker([lat,lon],{icon:icon,pane:'tierPane'})
       .bindTooltip(label,{sticky:false})
-      .bindPopup(popup).addTo(group);
+      .on('click',function(){ openCardSheet(popup); }).addTo(group);
   }
 
   // Antenna glyph — broadcasting-tower shape inside a white circle, drawn in
@@ -970,7 +1014,7 @@
     var icon=L.divIcon({className:'',iconSize:[18,18],iconAnchor:[9,9],html:antennaIconSvg(color,18)});
     return L.marker([lat,lon],{icon:icon,pane:'tierPane'})
       .bindTooltip(label,{sticky:false})
-      .bindPopup(popup).addTo(group);
+      .on('click',function(){ openCardSheet(popup); }).addTo(group);
   }
 
   /* ——— Help drawer & popover ——— */
@@ -978,7 +1022,7 @@
 
   function openHelp(highlightId){
     hideHelpPopover();
-    if(_MAP) _MAP.closePopup();
+    closeCardSheet();
     var drawer=document.getElementById('help-drawer');
     var scrim=document.getElementById('help-scrim');
     if(drawer) drawer.classList.add('on');
@@ -1152,7 +1196,9 @@
     if(e.key==='Escape'){
       var pop=document.querySelector('.help-popover');
       if(pop){ hideHelpPopover(); return; }
-      closeHelp();
+      var drawer=document.getElementById('help-drawer');
+      if(drawer&&drawer.classList.contains('on')){ closeHelp(); return; }
+      if(isCardOpen()){ closeCardSheet(); return; }
       return;
     }
     if(e.key==='/'&&tag!=='INPUT'&&tag!=='TEXTAREA'){
@@ -1177,6 +1223,15 @@
       try{ localStorage.setItem('ntrip-howit-seen','1'); }catch(e){}
       window.open('guide.html','_blank');
     };
+    var card=document.getElementById('card-sheet');
+    if(card){
+      var cc=card.querySelector('.card-close');
+      if(cc) cc.onclick=closeCardSheet;
+      // Stop click/scroll propagation so map clicks don't close the sheet
+      // when the user is interacting with its contents.
+      L.DomEvent.disableClickPropagation(card);
+      L.DomEvent.disableScrollPropagation(card);
+    }
   });
 
   function setupBanner(){
@@ -1512,7 +1567,6 @@
   window.addEventListener('load',async function(){
     setupBanner();
     var map=L.map('map',{preferCanvas:true,worldCopyJump:true,minZoom:2}).setView([47.0,8.0],8); // preferCanvas required — per-station SVG blows DOM budget above ~2k stations
-    _MAP=map;
     map.on('movestart', hideHelpPopover);
     var viewerPosProm=getViewerPos();
 
@@ -1667,7 +1721,7 @@
           entry.marker=L.marker([s.lat,s.lon],{icon:cachedIcon(fill)})
             .bindTooltip(names.join(' / '),
               {permanent:true,direction:'right',offset:[9,0],className:'slabel'})
-            .bindPopup(getCachedPopup(s))
+            .on('click',(function(st){ return function(){ openCardSheet(getCachedPopup(st)); }; })(s))
             .addTo(detailGroup);
           _detailMap.set(pk,entry);
         }catch(e){ console.warn('detail err',e); }
@@ -1717,11 +1771,12 @@
       finishLoad();
     }
 
-    var _clickPopup=L.popup({maxWidth:320});
     var togglePanel=buildTogglePanel(model.freeNetworks,vrsLayerBySid,greyLayerById,liveLayerBySid,paidLayers,
       function(pred){ filter=pred; rebuildStationLayers(); });
+    // Map click: pick the nearest station within CLICK_RADIUS_PX, or close the
+    // card sheet if there's no station nearby (tap-on-empty-map dismisses).
     map.on('click',function(e){
-      if(!stationIndex||!visible.length) return;
+      if(!stationIndex||!visible.length){ closeCardSheet(); return; }
       var z=map.getZoom();
       var mpp=40075016.686*Math.cos(e.latlng.lat*Math.PI/180)/Math.pow(2,z+8);
       var padLat=CLICK_RADIUS_PX*mpp/111320;
@@ -1729,7 +1784,7 @@
       var ids=stationIndex.range(
         e.latlng.lng-padLon,e.latlng.lat-padLat,
         e.latlng.lng+padLon,e.latlng.lat+padLat);
-      if(!ids.length) return;
+      if(!ids.length){ closeCardSheet(); return; }
       var best=ids[0], bestD=Infinity;
       var clickPt=map.latLngToLayerPoint(e.latlng);
       for(var i=0;i<ids.length;i++){
@@ -1738,8 +1793,7 @@
         var d=(pt.x-clickPt.x)*(pt.x-clickPt.x)+(pt.y-clickPt.y)*(pt.y-clickPt.y);
         if(d<bestD){ bestD=d; best=ids[i]; }
       }
-      _clickPopup.setLatLng([visible[best].lat,visible[best].lon])
-        .setContent(getCachedPopup(visible[best])).openOn(map);
+      openCardSheet(getCachedPopup(visible[best]));
     });
 
     function updateViewCounts(){
