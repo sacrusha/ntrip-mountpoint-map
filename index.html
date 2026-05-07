@@ -874,7 +874,7 @@
         var liveBody='Covers <b>'+esc(net.region||'')+'</b>.'
           +(net.stationCount>0?' '+net.stationCount+' reference stations.':'');
         var livePopup='<div class="popup-plain"><h3>'+esc(net.label)+'</h3>'
-          +'<div class="acc" style="color:'+LIVE_NET_COLOR+'">Per-base network — connect to one station at a time</div>'
+          +'<div class="acc" style="color:'+LIVE_NET_COLOR+'">RS network — connect to one reference station at a time</div>'
           +'<div style="margin:4px 0 6px;font-size:12px">'+liveBody+'</div>'
           +(net.openNote?'<div class="anote">'+esc(net.openNote)+'</div>':'')
           +(net.registration?'<div class="anote"><a href="'+esc(net.registration)
@@ -1298,7 +1298,7 @@
           ? '<label style="display:flex;align-items:center;gap:4px">'
               +'<input type="checkbox" data-k="live_global" checked>'
               +antennaIconSvg(LIVE_NET_COLOR,14,'vertical-align:middle')
-              +' Per-base networks ('+liveCount+')'
+              +' RS networks ('+liveCount+')'
             +'</label>'
           : '')
         +(greyCount
