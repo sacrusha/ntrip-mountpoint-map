@@ -268,6 +268,23 @@
     #help-drawer{width:100%;top:44px;}
   }
 
+  /* Legend collapse — close X inside the panel; reopen via floating handle. */
+  #toggles .legend-x{position:absolute;top:4px;right:6px;background:transparent;
+    border:none;color:var(--muted);font-size:14px;cursor:pointer;padding:2px 6px;
+    line-height:1;border-radius:3px;}
+  #toggles .legend-x:hover{background:var(--btn-hover);color:var(--fg);}
+  #toggles{position:relative;}
+  #toggles.legend-hidden{display:none;}
+  #legend-handle{position:fixed;top:8px;right:8px;z-index:9997;
+    width:38px;height:38px;display:none;align-items:center;justify-content:center;
+    background:var(--ctrl-bg);border:1px solid var(--ctrl-border);
+    -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+    border-radius:5px;cursor:pointer;color:var(--fg);font-size:20px;line-height:1;
+    padding:0;font-family:inherit;}
+  #legend-handle:hover{background:var(--btn-hover);}
+  #legend-handle.on{display:flex;}
+  body.banner-visible #legend-handle{top:52px;}
+
   /* Card bottom-sheet — replaces Leaflet popups for station/network/paid
      marker clicks. Width-based breakpoint at 768px keeps vertical desktops
      and most tablets in the centered layout; only phones get the
@@ -402,6 +419,8 @@
   </div>
   <div class="help-dbody" id="help-body"></div>
 </aside>
+<!-- legend handle — fixed top-right button to re-open the legend after collapse -->
+<button id="legend-handle" aria-label="Show legend" title="Show legend">≡</button>
 <!-- card bottom-sheet — single card surface for any marker click -->
 <div id="card-sheet" role="dialog" aria-label="Selection details">
   <button class="card-close" aria-label="Close">✕</button>
@@ -1350,7 +1369,8 @@
         +'</label>';
     }
     d.innerHTML=
-      '<b style="font-size:12px">Legend</b><br>'
+      '<button class="legend-x" aria-label="Hide legend" title="Hide legend">✕</button>'
+      +'<b style="font-size:12px">Legend</b><br>'
       +sw('background:rgb(0,170,0)')+' &lt;10 km — ~2 cm<br>'
       +sw('background:rgb(180,200,30)')+' 10–30 km — ~3 cm<br>'
       +sw('background:rgb(220,150,30)')+' 30–50 km — ~5 cm<br>'
@@ -1437,6 +1457,37 @@
     if(declutterCb) declutterCb.addEventListener('change',function(){
       _declutter=declutterCb.checked; applyDeclutter(_lastCounts);
     });
+
+    // Legend collapse — X hides the panel, the fixed top-right handle shows it
+    // back. State persisted across sessions. Right-swipe on the panel also
+    // collapses (survey-tablet ergonomics — pick a direction off the screen).
+    var handle=document.getElementById('legend-handle');
+    function collapseLegend(){
+      d.classList.add('legend-hidden');
+      if(handle) handle.classList.add('on');
+      try{ localStorage.setItem('ntrip-legend-collapsed','1'); }catch(e){}
+    }
+    function expandLegend(){
+      d.classList.remove('legend-hidden');
+      if(handle) handle.classList.remove('on');
+      try{ localStorage.removeItem('ntrip-legend-collapsed'); }catch(e){}
+    }
+    var xBtn=d.querySelector('.legend-x');
+    if(xBtn) xBtn.onclick=collapseLegend;
+    if(handle) handle.onclick=expandLegend;
+    try{ if(localStorage.getItem('ntrip-legend-collapsed')) collapseLegend(); }catch(e){}
+    var _tx=null,_ty=null;
+    d.addEventListener('touchstart',function(e){
+      if(e.touches.length!==1){ _tx=null; return; }
+      _tx=e.touches[0].clientX; _ty=e.touches[0].clientY;
+    },{passive:true});
+    d.addEventListener('touchend',function(e){
+      if(_tx==null) return;
+      var t=e.changedTouches[0];
+      var dx=t.clientX-_tx, dy=Math.abs(t.clientY-_ty);
+      _tx=_ty=null;
+      if(dx>50&&dy<dx) collapseLegend();
+    },{passive:true});
 
     var ctrl=L.control({position:'topright'});
     ctrl.onAdd=function(){ return d; };
