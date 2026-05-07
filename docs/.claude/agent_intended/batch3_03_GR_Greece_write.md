@@ -1,3 +1,11 @@
+# Agent intended Write
+- batch: batch3
+- target: D:\Projects\ntrip-mountpoint-map\docs\ntrip_research\GR_Greece.md
+- transcript line: 171
+
+## CONTENT (full file)
+
+```markdown
 # Greece [GR] — NTRIP RTK Caster Research
 **Date researched:** 2026-05-06 (updated 2026-05-07: separated URANUS from HEPOS — URANUS is a private commercial network, not a HEPOS alias)
 
@@ -61,3 +69,5 @@ HEPOS offers post-processing RINEX download from registered reference stations. 
 - URANUS as listed on ntrip-list Europe: https://ntrip-list.com/europe/
 - JGC-Net: https://www.jgc.gr/jgc-net/?lang=en
 - ArduSimple Greece overview: https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-greece/
+
+```

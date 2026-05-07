@@ -1,8 +1,8 @@
 # US Southeast — NTRIP RTK Caster Research
 **States covered:** Virginia (VA), West Virginia (WV), North Carolina (NC), South Carolina (SC), Georgia (GA), Florida (FL), Alabama (AL), Mississippi (MS), Tennessee (TN), Kentucky (KY)
-**Date researched:** 2026-05-07
+**Date researched:** 2026-05-07 (re-verified 2026-05-07; NTRIP SOURCETABLE responses confirmed via curl for WV `wvrtn.cors.us:2101`, SC `scrtn.sc.gov:2101`, MS `rtn.usm.edu:2101`, KY `kycors.ky.gov:2101`, FL `48.223.232.215:10000`, AL `205.172.52.26:10011` & `:10099`, EarthScope `ntrip.earthscope.org:2101`; portals HTTP 200 for NC `rtn.nc.gov`, TN `portal.tndot.net`; NC/TN/AL standard port 2101 timed out from external probe — service active behind IP filter or non-standard port; VA and GA confirmed without free state caster as of 2026-05-07 web search)
 
-## Status: MIXED — most states have an active public or state-operated caster; Virginia has no state caster; Georgia has no free public caster
+## Status: MIXED — 8 of 10 states have an active state-operated caster (5 free, 3 paid); Virginia and Georgia have no public state caster
 
 ---
 
@@ -138,12 +138,12 @@ GDOT does not operate a public CORS RTK network. The only identified network wit
 |---|---|
 | **Network name** | Florida Permanent Reference Network (FPRN) |
 | **Operator** | Florida Dept. of Transportation (FDOT) — Geospatial office |
-| **host:port** | `www.myfloridagps.com` / IP `40.121.5.206`; NTRIP port scheme via myfloridagps.com/links/2025products.pdf (port 10000 series for network RTK; port scheme not directly confirmed by probe — port 10000 timed out from this network on 2026-05-07) |
+| **host:port** | `www.myfloridagps.com` / IP `48.223.232.215` (FAQ 2025); legacy IP `40.121.5.206` deprecated. Port `10000` for NAD83 Network Solutions (NTRIP); 11000-series ports for TCP/IP. `48.223.232.215:10000` returned `SOURCETABLE 200 OK` on 2026-05-07 (curl probe; Leica GNSS Spider 7.11.1.109 caster). |
 | **tariff** | Free — FDOT states "currently there are no plans to charge users for any FPRN services or products" (FAQ 2025) |
 | **VRS** | Yes — VRS, iMAX, MAX, FKP; VRS mountpoint `RTCM3_VRS` confirmed in user guides; formats: RTCM 2.3, RTCM 3.1, CMR+, RTCM 3.3 MSM4 |
 | **hobbyist_eligibility** | Yes — "Anyone with a NTRIP ready GPS/GNSS Receiver" and internet access; no equipment brand restrictions |
 | **legal_residency_required** | No — registration at myfloridagps.com/sbc; no Florida residency requirement stated |
-| **last_confirmed_alive** | Website (myfloridagps.com) active 2026-05-07; FPRN FAQ updated 2025; IP port 10000 timed out from external probe (likely IP-restricted; service confirmed active by user community reports) |
+| **last_confirmed_alive** | `48.223.232.215:10000` returned NTRIP `HTTP/0.9` SOURCETABLE response on 2026-05-07 (curl probe; consistent with Leica GNSS Spider 7.11.1.109 caster behaviour); website myfloridagps.com HTTP 200 on 2026-05-07; FPRN FAQ updated 2025 |
 
 ### Context Notes
 
@@ -160,12 +160,12 @@ GDOT does not operate a public CORS RTK network. The only identified network wit
 |---|---|
 | **Network name** | Alabama Department of Transportation CORS Network (ALDOT CORS / AlCORS) |
 | **Operator** | Alabama Dept. of Transportation (ALDOT) — Leica SpiderNet platform |
-| **host:port** | `aldotcors.dot.state.al.us` / IP `205.172.52.25`; primary NTRIP port is **not** 2101 (timed out); secondary IP `205.172.52.26:10099` returned `SOURCETABLE 200 OK` on 2026-05-07; reported user ports: 10011, 10099 (Leica SpiderNet non-standard ports) |
+| **host:port** | `aldotcors.dot.state.al.us` resolves to `205.172.52.25` and `205.172.52.26`; only `205.172.52.26` is reachable externally and only on ports **10011** and **10099** (both returned `HTTP/0.9` SOURCETABLE responses on 2026-05-07); standard NTRIP port 2101 is firewalled on both IPs; `205.172.52.25` not reachable on any port from external probe |
 | **tariff** | Free — confirmed free of charge in multiple surveying community sources (rpls.com, Emlid community) |
 | **VRS** | Unclear — user reports reference `LeicaMAX` mountpoint (network solution type) which implies network RTK; VRS specifically not confirmed |
 | **hobbyist_eligibility** | Unclear — registration form requires Company field (Leica SBC platform); no professional licence stated as required; hobbyists have successfully registered per community reports |
 | **legal_residency_required** | Unclear — no stated residency requirement |
-| **last_confirmed_alive** | `205.172.52.26:10099` — `SOURCETABLE 200 OK` on 2026-05-07; web portal aldotcors.dot.state.al.us returns HTTP 200 |
+| **last_confirmed_alive** | `205.172.52.26:10011` and `205.172.52.26:10099` — both returned NTRIP `HTTP/0.9` SOURCETABLE on 2026-05-07; web portal aldotcors.dot.state.al.us returns HTTP 200 |
 
 ### Context Notes
 
@@ -251,8 +251,8 @@ GDOT does not operate a public CORS RTK network. The only identified network wit
 | NC | NC RTN | NC Geodetic Survey | `rtn.nc.gov:2101` | USD 500 one-time | Yes | Unclear | Portal active; NTRIP port IP-filtered |
 | SC | SCRTN | SC Geodetic Survey | `scrtn.sc.gov:2101` | USD 1,200 first; USD 600 add'l | Yes | Unclear | Yes (SOURCETABLE confirmed) |
 | GA | None | — | — | — | — | — | N/A |
-| FL | FPRN | FDOT | `www.myfloridagps.com` / IP `40.121.5.206` (non-std ports) | Free | Yes | Yes | Website active; port scheme via products PDF |
-| AL | AlCORS | ALDOT | `aldotcors.dot.state.al.us` (port 10099) | Free | Unclear | Unclear (likely yes) | Yes (SOURCETABLE on 205.172.52.26:10099) |
+| FL | FPRN | FDOT | `48.223.232.215:10000` (current; legacy `40.121.5.206` deprecated) | Free | Yes | Yes | Yes (SOURCETABLE confirmed) |
+| AL | AlCORS | ALDOT | `aldotcors.dot.state.al.us` (ports 10011 & 10099 on 205.172.52.26) | Free | Unclear | Unclear (likely yes) | Yes (SOURCETABLE on 205.172.52.26:10011 & :10099) |
 | MS | GCGC RTN | Univ. Southern Mississippi | `rtn.usm.edu:2101` | Free | Unclear | Yes | Yes (SOURCETABLE confirmed) |
 | TN | TDOT GNSS RTN | TDOT | Not public (via portal.tndot.net) | USD 450/yr | Yes | Unclear | Portal active |
 | KY | KyCORS | KYTC | `kycors.ky.gov:2101` | Free | Yes | Unclear (likely yes) | Yes (SOURCETABLE confirmed) |

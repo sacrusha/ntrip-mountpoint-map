@@ -1,89 +1,213 @@
 # China [CN] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-07 (revising 2026-05-06 entry)
 
-## Status: NO free public NTRIP; dominant commercial operator is Qianxun (千寻位置); 34 provincial/municipal CORS networks require licensed access; foreign access effectively blocked by registration requirements
-
-| Field | Value |
-|---|---|
-| **Active public NTRIP RTK caster** | No (free/open); Yes (commercial subscription) |
-| **Note** | Hong Kong (HK) has its own separate free service — SatRef — see `HK_HongKong.md` |
-
----
-
-### Qianxun Sensing Network (千寻位置 / 千寻知寸 FindCM) — Dominant Commercial Operator
+## Status: NO free public NTRIP for individuals. Three commercial nationwide RTK services dominate (Qianxun · CMCC OneNet · Tencent CORS), each ~CNY 1,000–3,800/yr for an individual annual account. Provincial CORS networks are licensed-only under 测绘资质 (surveying qualification) and not hobbyist-accessible. Foreign individuals face hard barriers (Chinese phone number + 实名认证 national-ID verification) at every service. Volunteer NTRIP is negligible in mainland China (~2 rtk2go bases, 0 Centipede).
 
 | Field | Value |
 |---|---|
-| **Operator** | Qianxun Sensing Network Co., Ltd. (千寻位置网络有限公司) — Alibaba + SASAC joint venture |
-| **Service name** | FindCM (千寻知寸) — centimetre-level RTK; FindMSM — sub-metre SSR |
-| **host:port** | `rtk.ntrip.qxwz.com:8001` (ITRF2008) · `:8002` (WGS84) · `:8003` (CGCS2000) |
-| **Mountpoints** | `AUTO` (4-constellation 13-frequency: GPS+GLO+BDS+GAL) · `RTCM32_GGB` (legacy 3-constellation 8-frequency) |
-| **VRS** | Yes — nationwide VRS computed from 2,000+ reference stations |
-| **Stations** | 2,000+ across mainland China |
-| **Constellations** | GPS, GLONASS, BeiDou, Galileo, (QZSS for 5-star tier) |
-| **tariff — subscription** | Trial: 5-hour free trial available via Qianxun trial centre; paid plans: approx. CNY 400/month (individual survey account, from third-party reseller listings 2024) or CNY 3,600/year; enterprise pricing varies |
-| **tariff — SSR/PPP tier** | CNY 8,000–12,000/year (FastFind SSR service, Asia-Pacific coverage) |
-| **hobbyist_eligibility** | Technically yes for Chinese nationals — but real-name registration (Chinese phone number + national ID) required; foreign individuals face practical barriers |
-| **legal_residency_required** | Yes in practice — Chinese mobile phone number required for account registration; Chinese national identity verification (实名认证) mandatory |
-| **last_confirmed_alive** | Qianxun commercial service active as of 2026-05-06 (website HTTP 200; qxwz.com) |
+| **Active free public NTRIP RTK caster** | No |
+| **Active commercial NTRIP RTK casters** | Yes — Qianxun, CMCC, Tencent (and equipment-vendor networks: Huace 一张网, etc.) |
+| **Active national licensed CORS** | Yes — NGCC / Ministry of Natural Resources, 2,700+ stations, no public endpoint |
+| **Foreign hobbyist eligibility** | No practical path for any of the above |
+| **Hong Kong note** | HK has its own free SatRef NTRIP — covered in `HK_HongKong.md`. Macao has free MoSRef — `MO_Macao.md`. This file is mainland-only. |
+| **last_confirmed_alive (commercial)** | 2026-05-07 (Qianxun, CMCC China Mobile, Tencent product pages reachable) |
 
 ---
 
-### National CORS Network (全国CORS / NGCC)
+## Legal Framework
+
+The 中华人民共和国测绘法 (Surveying and Mapping Law of the PRC, 2002, revised 2017), Articles 27–29, requires institutional 测绘资质 (surveying qualifications) to operate or access fixed reference station networks. All government and provincial CORS networks are closed to unlicensed individuals as a matter of statute. Foreign organisations operating fixed reference stations in mainland China require additional approvals from the Ministry of Natural Resources and have historically been denied.
+
+The 自然资源部 ("Notice on Strengthening Survey & Mapping Information Security Management for Intelligent Connected Vehicles") tightened this framework further for automotive applications in 2024.
+
+---
+
+## 1. Qianxun (千寻位置 / 千寻知寸 FindCM) — Dominant commercial operator
 
 | Field | Value |
 |---|---|
-| **Operator** | NGCC (National Geomatics Center of China / 国家地理信息资源目录服务系统) + provincial survey bureaus |
-| **Coverage** | 34 provincial/municipal CORS networks; ~2,800+ stations nationwide |
-| **Access** | Licensed access only — restricted to licensed surveying enterprises under contract with provincial survey bureaus; not accessible to individuals or foreign entities |
-| **host:port** | Not published publicly |
+| **Operator** | Qianxun Sensing Network Co., Ltd. (千寻位置网络有限公司) — Alibaba + Norinco / SASAC joint venture |
+| **Service brands** | FindCM (千寻知寸, cm-level RTK), FindMSM / FindAR (sub-metre SSR), FindFAST / FastFind (PPP-RTK / SSR PPP) |
+| **host:port (NTRIP)** | `rtk.ntrip.qxwz.com` ports `8001` (ITRF2008) · `8002` (WGS84) · `8003` (CGCS2000) |
+| **IP (cached)** | 60.205.8.49 (was historically used; DNS now varies by region) |
+| **Mountpoints** | `AUTO` (4-constellation, 13-frequency: GPS + GLONASS + BeiDou + Galileo), `RTCM32_GGB` (legacy 3-constellation 8-frequency), `RTCM30_GG` (legacy GPS+GLO) |
+| **VRS** | Yes — nationwide VRS computed from 2,700+ reference stations |
+| **Constellations** | GPS · GLONASS · BeiDou · Galileo · (QZSS for higher tiers) |
+| **Coverage** | 33 mainland provinces / direct-administered municipalities (excl. HK / Macao / Taiwan) |
+| **Tariff — individual** | ~CNY 400/month or CNY 3,600/year (single-account "single-day-single-network" survey use); reseller-listed 2024–2026; CNY 3,600–3,800/yr commonly quoted on the survey-equipment market. 5-hour free trials available via the Qianxun trial portal. |
+| **Tariff — SSR/PPP-RTK enterprise** | CNY 8,000–12,000/year (FastFind SSR Asia-Pacific) |
+| **hobbyist_eligibility — Chinese national** | Yes in practice — register at qxwz.com or mall.qxwz.com using Chinese mobile number; pay via Alipay/WeChat Pay |
+| **hobbyist_eligibility — foreign** | No practical path — registration requires Chinese mobile number and 实名认证 (real-name ID verification with Chinese ID card / mainland-issued document) |
+| **legal_residency_required** | Yes in practice (real-name verification gate) |
+| **last_confirmed_alive** | 2026-05-07 (qxwz.com HTTP 200; product pages active; reseller listings current) |
+| **Sources** | https://www.qxwz.com/products/findcm · https://mall.qxwz.com/market/services/FindCM · https://findcm.my.qxwz.com/ |
+
+Most widely deployed commercial CORS in China; default for surveyors, drone industry, autonomous-vehicle developers; the assumed "China RTK service" in third-party rover documentation.
 
 ---
 
-### BDS Ground-Based Augmentation System (GBAS / 地基增强系统)
+## 2. China Mobile CORS / 中国移动 OnePoint (CMCC高精度定位)
 
-China's BeiDou GAS (Ground Augmentation System) began open services in May 2021, providing:
-- Wide-area augmentation: metre to sub-metre accuracy (free, broadcast)
-- Regional real-time augmentation: dm-level accuracy (licensed)
-- Real-time PPP/RTK: cm-level (commercial subscription via Qianxun or CMCC)
+| Field | Value |
+|---|---|
+| **Operator** | China Mobile Communications Corporation (中国移动) — branded "OnePoint 高精度定位" / "中移智能" |
+| **Stations** | 4,400+ reference stations (CMCC investment of ~CNY 336M; densest Chinese commercial network by station count) |
+| **Coverage** | Mainland China except HK / Macao / Taiwan and a few unpopulated regions |
+| **Service tiers** | Sub-metre · cm-level · mm-level (post-processed) |
+| **Protocol** | NTRIP (CMCC interaction mode in receiver UI) |
+| **host:port** | Not openly published; provisioned per account on activation |
+| **Tariff — individual** | ~CNY 3,600/year (survey-trade reseller listings 2024–2026) — same bracket as Qianxun, marketed as the cost-effective alternative; "OneNet" pricing emphasised as bundling-friendly for IoT devices on China Mobile data plans |
+| **hobbyist_eligibility — Chinese national** | Yes — open to individuals; account purchase via CMCC business portal or survey reseller |
+| **hobbyist_eligibility — foreign** | No practical path — requires Chinese mobile number, real-name verification |
+| **legal_residency_required** | Yes in practice |
+| **last_confirmed_alive** | 2026-05-07 (CMCC Beijing high-precision portal reachable; reseller listings current) |
+| **Sources** | http://group.bj.chinamobile.com/index/solutionnew/standardproduct/location/ · https://www.leicado.com/leicadearticle-detail/bElvRQ6W (reseller, pricing) |
 
-China Mobile (CMCC) also operates an RTK correction service for commercial clients.
+CMCC's stronger angle is bundling: account paired with a CMCC SIM/data plan for IoT (drones, agricultural autosteer, shared-bike fleets, autonomous logistics, port automation).
 
 ---
 
-## Registration Reality for Foreign Users
+## 3. Tencent CORS (腾讯网络RTK / Tencent Location Services)
 
-No public, free, or self-service NTRIP access path exists for foreign hobbyists in mainland China. Barriers:
-1. Qianxun FindCM requires Chinese phone number and real-name ID verification
-2. Provincial CORS networks require licensed surveying enterprise contracts
-3. The national CORS network is not publicly accessible
-4. Western CORS commercial services (PointPerfect, GEODNET) offer partial mainland China coverage as alternatives
+| Field | Value |
+|---|---|
+| **Operator** | Tencent Location Services (腾讯位置服务, lbs.qq.com) |
+| **Service launch** | August 2022 as public-beta; transitioned to commercial pricing late 2022 |
+| **Stations** | 2,800+ virtual network reference stations |
+| **Coverage** | 33 mainland provinces / direct-administered municipalities |
+| **Accuracy** | 2 cm horizontal / 5 cm vertical claimed; 99.99% service availability |
+| **host:port (NTRIP)** | `cors.tencent.com` ports `8001`–`8005` (different ports = different coordinate frames / reference epochs) |
+| **Mountpoints** | `RTCM32_GRECJ2`, `RTCM32_GRC`, `RTCM32_GNSS` (and others) — multi-constellation 5-system × 16-frequency |
+| **Protocol** | NTRIP 2.0 |
+| **Tariff — historical (Oct 2022)** | CNY 7.88 / 1 day · CNY 18.88 / 3 days · CNY 38.88 / 7 days · CNY 128.88 / 30 days · CNY 998.88 / 365 days |
+| **Tariff — current (2026)** | Self-service hobbyist purchase appears to have been deprecated; the lbs.qq.com/rtk product page now routes to enterprise inquiry / SDK integration. The CNY 998.88/yr 2022 figure is widely reproduced by survey resellers but no primary post-2024 price page has been confirmed. |
+| **hobbyist_eligibility — Chinese national** | Mixed — survey-reseller channels still sell short-duration accounts; Tencent direct now positions as enterprise SDK customers |
+| **hobbyist_eligibility — foreign** | No practical path — Tencent ID / WeChat / business-licence gate |
+| **legal_residency_required** | Yes in practice |
+| **last_confirmed_alive** | 2026-05-07 (lbs.qq.com/rtk reachable; no public 2026 pricing) |
+| **Sources** | https://lbs.qq.com/rtk/ · https://www.sohu.com/a/579386199_120296774 (host:port + mountpoint reference) · http://www.qxcors.net/product/26.html (reseller resale) |
 
-GEODNET (web3-based community CORS) has expanding China coverage with some international hobbyist access — worth checking if operating in China.
+Tencent's 2022 entry briefly disrupted Qianxun/CMCC pricing (CNY 998/yr ≈ 27% of their CNY 3,600/yr tier). The retreat to enterprise positioning mirrors Tencent Cloud's broader B2B pivot; remaining hobbyist purchase is via grey-market resellers selling short-duration shares.
 
-## Volunteer Coverage (rtk2go)
+---
 
-A small number of CHN-coded rtk2go volunteer bases exist, concentrated around major cities. No Centipede CHN presence.
+## 4. Equipment-vendor commercial networks (CHC, South, ComNav, Unicore)
 
-## Hong Kong Note
+Chinese GNSS receiver manufacturers operate their own CORS networks, primarily as bundled differentiators with hardware sales:
 
-Hong Kong (HK) operates a separate and independent free NTRIP service — SatRef (Survey and Mapping Office, CEDD). It is covered in a dedicated file `HK_HongKong.md` and is not part of this CN entry.
+- **Huace 华测一张网 (CHC Navigation "One Network")** — claims 4,235 reference stations (densest by self-report), AI-assisted ionosphere modelling. Pricing not on public page; sold paired with CHC X-series rovers and bundled subscriptions. Source: https://www.huace.cn/informationDetail/183 ; https://www.huace.cn/pdDetail/57
+- **South GNSS / SOUTH "南方"** — bundled with South receivers; widely used in surveying education and county-level survey teams. No public NTRIP price; reseller channels.
+- **ComNav / Unicore** — receiver chipset / OEM; networks tied to enterprise integrators, not retail.
+
+None of the vendor networks publish a hobbyist self-service tier; foreign-individual access not viable.
+
+---
+
+## 5. Government CORS — National & Provincial (licensed only)
+
+### 全国卫星导航定位基准站网 (National CORS) — Ministry of Natural Resources / NGCC
+
+| Field | Value |
+|---|---|
+| **Operator** | NGCC (National Geomatics Center of China) under Ministry of Natural Resources / 自然资源部 (formerly NASG) |
+| **Stations** | 2,700+ |
+| **Feeds** | 北斗地基增强系统 (BeiDou Ground-Based Augmentation System / BGAS) |
+| **Public NTRIP** | None — licensed CORS access only |
+| **Access** | Restricted to organisations holding 测绘资质 (Class A/B/C surveying qualifications) under contract with provincial bureaus |
+| **hobbyist_eligibility** | No |
+| **legal_residency_required** | N/A — licence-gated, not residency-gated |
+
+### 省级CORS网 (Provincial CORS — all 34 provinces / municipalities / autonomous regions)
+
+- First operational provincial network: **SZCORS Shenzhen** (2003)
+- Every province / direct-administered municipality / autonomous region now operates its own
+- Some are free for licensed organisations (e.g. SZCORS public-service tier); others charge — example: **Sichuan provincial CORS at CNY 8,000/yr**
+- All require organisational credentials + valid 测绘资质
+- Not accessible to individuals or foreigners
+
+Pipeline note: tracked in `docs/networks.md` under `bgas_china` (national) and `chinese_provincial_cors` (provincial bundle); both rejected from the public map pipeline as licensed-only.
+
+---
+
+## 6. BeiDou GBAS / SBAS-style augmentation (informational)
+
+China's BeiDou Ground-Based Augmentation System began open services in May 2021 and provides:
+- **Wide-area augmentation** — metre to sub-metre, satellite-broadcast (free, no NTRIP) — out of scope for this project (DGNSS-class)
+- **Regional real-time augmentation** — dm-level, licensed only
+- **Real-time PPP/RTK** — cm-level, commercial subscription via Qianxun / CMCC / Tencent
+
+PPP-B2b (BeiDou-3 satellite-delivered PPP) is free over-the-air for compatible receivers but is satellite SSR, not internet NTRIP — out of project scope alongside QZSS CLAS / Galileo HAS.
+
+---
+
+## Foreign-User Reality
+
+There is **no public, free, or self-service NTRIP path** for non-resident hobbyists in mainland China. Barriers stack:
+1. Qianxun, CMCC, Tencent — all require Chinese mobile number + 实名认证 (real-name ID verification with mainland ID card)
+2. Provincial / national CORS — require 测绘资质 institutional licensing (closed to individuals regardless of nationality)
+3. Vendor networks (CHC, South, etc.) — bundled with hardware sales through Chinese distributors, foreign hobbyist channel undeveloped
+4. **GEODNET** (web3 / DePIN community CORS, geodnet.com) has expanding mainland China coverage with international hobbyist access; worth checking on its coverage map for region-specific availability before assuming
+5. Setting up a private base station inside China without 测绘资质 violates the Surveying and Mapping Law
+
+In practice, foreign workers and students in mainland China who need RTK use: (a) GEODNET tokens if coverage exists, (b) a friend / employer's Qianxun account, or (c) deploy their own short-baseline base+rover (a single private base for a single user is a legal grey area but tolerated for short-baseline non-published use).
+
+---
+
+## Volunteer Coverage (rtk2go + Centipede + EarthScope)
+
+Live counts from `data/stations.json` (fetched 2026-05-06T20:16Z):
+
+| Source | CHN total | Notes |
+|---|---|---|
+| **rtk2go** | 2 | `CHENKATE` (22.67°N, 113.91°E — Pearl River Delta / Shenzhen) and `JinshitanNB` (39.09°N, 122.03°E — Dalian Jinshitan) |
+| **Centipede** | 0 | No CHN nodes |
+| **EarthScope** | (a few IGS stations: BJFS Beijing, SHAO Shanghai, WUHN Wuhan, URUM Urumqi, CHU1 — research-grade, RINEX-only via NOTA / IGS, not real-time NTRIP) | Not a hobbyist real-time path |
+
+Volunteer real-time coverage in mainland China is effectively absent.
+
+---
 
 ## Post-Processing (RINEX) Fallback
 
 | Service | URL | Cost |
 |---|---|---|
-| **CMONOC / iGMAS** — selected China CORS RINEX (scientific) | https://www.igs.org/mgex/ (IGS MGEX stations in China) | Free non-commercial |
-| **EarthScope** — IGS stations CHU1/WUHN/SHAO/BJFS/URUM | https://www.earthscope.org/data/gnss-data/ | Free non-commercial |
-| **Qianxun RINEX** | Via qxwz.com account | Paid subscription |
+| IGS MGEX (China stations: BJFS, SHAO, WUHN, URUM, etc.) | https://www.igs.org/mgex/ ; https://network.igs.org/ | Free non-commercial |
+| EarthScope IGS data archive | https://www.earthscope.org/data/gnss-data/ | Free non-commercial |
+| iGMAS (国际GNSS监测评估系统) | http://www.igmas.org/ | Free academic |
+| CMONOC (Crustal Movement Observation Network of China) | Selected stations via MGEX | Free non-commercial |
+| Qianxun RINEX archive | qxwz.com account | Paid subscription |
+
+---
+
+## Gaps & Observations
+
+1. **No free public NTRIP for individuals exists in mainland China.** This is structural — the Surveying and Mapping Law is the binding constraint, not an oversight.
+2. **The commercial market is a three-way oligopoly** (Qianxun, CMCC, Tencent) at near-identical pricing (~CNY 3,600/yr ± 30%). Tencent's 2022 CNY 998.88/yr disruption was real but appears to have been retracted; current floor is back to ~CNY 3,000–3,600/yr.
+3. **Provincial pricing is heterogeneous** — Sichuan CNY 8,000/yr is one published example; SZCORS has a free public tier; most are quote-only and licence-gated regardless of price.
+4. **Foreign-user gap is hard.** Even a Chinese national resident's account cannot legally be transferred. Foreign individuals operating in China should plan for either (a) institutional sponsorship via an employer with 测绘资质, (b) own-base deployment under careful interpretation of the law, or (c) GEODNET / private CORS-share where feasible.
+5. **The volunteer network gap is unlikely to close** — both rtk2go and Centipede have minimal Chinese presence and the regulatory environment discourages community deployment of fixed reference stations by individuals.
+6. **GEODNET / DePIN networks are the most plausible new free-ish path.** Worth a follow-up dedicated probe in 6–12 months.
+
+---
 
 ## Sources Consulted
-- Qianxun official site: https://www.qxwz.com/product-service-findcm.html (observed 2026-05-06)
-- Qianxun control console: https://findcm.my.qxwz.com/ (observed 2026-05-06)
-- CSDN Qianxun NTRIP config guide (host/port details): https://blog.csdn.net/hailiannanhai/article/details/78172313 (observed 2026-05-06)
-- xueceliang.cn Qianxun FAQ: https://www.xueceliang.cn/ce/qxwzqxzcfcjwt.html (observed 2026-05-06)
-- njhq.com third-party reseller pricing (CNY 400/month / 3,600/year): http://www.njhq.com.cn/post/1498.html (observed 2026-05-06)
-- CORS Stations profile on China CORS: https://corsstations.com/networks/china-cors-network-qianxun-spatial-intelligence-gnss-rtk-service/ (observed 2026-05-06)
-- ChinAI Substack on Qianxun+BeiDou: https://chinai.substack.com/p/chinai-192-qianxun-beidou-spatiotemporal (observed 2026-05-06)
-- Springer Nature — BDS high-precision services: https://link.springer.com/article/10.1186/s43020-024-00143-8 (observed 2026-05-06)
-- ArduSimple China caster list (confirms no national free network): https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-china/ (observed 2026-05-06)
+
+- Qianxun FindCM product page: https://www.qxwz.com/products/findcm (observed 2026-05-07)
+- Qianxun mall (FindCM): https://mall.qxwz.com/market/services/FindCM (observed 2026-05-07)
+- Qianxun control console: https://findcm.my.qxwz.com/ (observed 2026-05-07)
+- Qianxun NTRIP host/port reference: https://blog.csdn.net/hailiannanhai/article/details/78172313 (observed 2026-05-07)
+- Qianxun NTRIP IP/host CSDN Q&A: https://ask.csdn.net/questions/8506233 (observed 2026-05-07)
+- xueceliang.cn Qianxun FAQ: https://www.xueceliang.cn/ce/qxwzqxzcfcjwt.html (observed 2026-05-07)
+- CORS Stations profile of Qianxun: https://corsstations.com/networks/china-cors-network-qianxun-spatial-intelligence-gnss-rtk-service/ (observed 2026-05-07)
+- ChinAI Substack on Qianxun + BeiDou: https://chinai.substack.com/p/chinai-192-qianxun-beidou-spatiotemporal (observed 2026-05-07)
+- njhq.com Qianxun reseller pricing: http://www.njhq.com.cn/post/1498.html ; http://www.njhq.com.cn/post/552.html (observed 2026-05-07)
+- China Mobile CORS / OneNet (CMCC): http://group.bj.chinamobile.com/index/solutionnew/standardproduct/location/ (observed 2026-05-07)
+- CMCC reseller pricing reference: https://www.leicado.com/leicadearticle-detail/bElvRQ6W (observed 2026-05-07)
+- Tencent Location Services RTK: https://lbs.qq.com/rtk/ (observed 2026-05-07)
+- Tencent NTRIP host/port + mountpoints reference: https://www.sohu.com/a/579386199_120296774 ; https://www.sohu.com/a/580039508_120296774 (observed 2026-05-07)
+- Tencent reseller listing: http://www.qxcors.net/product/26.html (observed 2026-05-07)
+- Huace 华测一张网 description: https://www.huace.cn/informationDetail/183 ; https://www.huace.cn/pdDetail/57 (observed 2026-05-07)
+- Springer Nature — BDS high-precision services: https://link.springer.com/article/10.1186/s43020-024-00143-8 (observed 2026-05-07)
+- ArduSimple China caster review (confirms no national free network): https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-china/ (observed 2026-05-07)
+- Han Kun Law commentary on intelligent-vehicle survey/mapping security notice: https://hankunlaw.com/portal/article/index/cid/8/id/14389 (observed 2026-05-07)
+- Local pipeline data: `data/stations.json` (rtk2go, centipede CHN counts; fetched 2026-05-06T20:16Z)

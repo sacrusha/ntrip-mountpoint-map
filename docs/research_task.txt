@@ -16,4 +16,4 @@ For each caster:
 7. last_confirmed_alive: date  sourcetable or login portal last reachable
 8. If no active caster: what is  most recent project announcement (date + URL)?
 
-Match patterns of existing content in docs/ntrip_research/ Check existing entries in docs/ntrip_research/ and country_survey.md for starting point, but verify, expand, fill gaps. Do not edit country_survey.md, your research goes to docs/ntrip_research/ only.
+Match patterns of existing content in docs/ntrip_research/ Read existing entries related to [entry] in docs/ntrip_research/ and country_survey.md in full for a starting point. Verify, correct, expand, fill gaps. Do not edit country_survey.md, your research goes to docs/ntrip_research/ only. Use WebSearch, WebFetch, curl, grep.

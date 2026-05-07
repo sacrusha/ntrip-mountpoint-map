@@ -1,3 +1,11 @@
+# Agent intended Write
+- batch: usw
+- target: D:\Projects\ntrip-mountpoint-map\docs\ntrip_research\US-W_West.md
+- transcript line: 198
+
+## CONTENT (full file)
+
+```markdown
 # US West & Southwest — NTRIP RTK Caster Research
 **Date researched:** 2026-05-07
 
@@ -521,3 +529,5 @@ No state-operated RTK NTRIP caster found for Hawaii as of 2026-05-07. HDOT does 
   - azcors.azwater.gov:2101 — timeout (Cloudflare CDN; backend port scheme via Leica SBC provided post-registration)
   - 165.239.144.5:2101 (TURN GPS) — timeout (account-gated firewall)
   - c4gnet.xyz:9000 — DNS resolves; portal HTTP 200
+
+```

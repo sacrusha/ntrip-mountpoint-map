@@ -1,3 +1,11 @@
+# Agent intended Write
+- batch: batch5
+- target: D:\Projects\ntrip-mountpoint-map\docs\ntrip_research\SX_SintMaarten.md
+- transcript line: 233
+
+## CONTENT (full file)
+
+```markdown
 # Sint Maarten [SX] — NTRIP RTK Caster Research
 **Date researched:** 2026-05-07 (revised from 2026-05-06)
 
@@ -79,3 +87,5 @@ EarthScope's Network of the Americas (NOTA) inherited the COCONet Caribbean GNSS
 - EarthScope NOTA real-time GNSS portal: https://www.earthscope.org/data/gnss-realtime/ ; transition to new platform: https://www.earthscope.org/news/transition-to-new-real-time-gnss-streaming-platform/
 - EarthScope licensing / NULA + USD 1,000 commercial seat: https://www.earthscope.org/news/new-gnss-offering-and-licensing-details-for-commercial-use/
 - CW_Dutch_Caribbean.md (companion file confirming AGRS BES coverage and SX exclusion)
+
+```

@@ -1,3 +1,11 @@
+# Agent intended Write
+- batch: batch5
+- target: D:\Projects\ntrip-mountpoint-map\docs\ntrip_research\SG_Singapore.md
+- transcript line: 202
+
+## CONTENT (full file)
+
+```markdown
 # Singapore [SG] — NTRIP RTK Caster Research
 **Date researched:** 2026-05-07
 
@@ -60,3 +68,5 @@ There is no practical free or affordable hobbyist path for non-Singapore-residen
 - ArduSimple Singapore RTK page: https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-singapore/ (page rev. 2026-05-07; describes SiReNT as paid national service)
 - IRAS / Singpass Foreign user Account documentation: https://www.iras.gov.sg/digital-services/others/singpass-foreign-user-account-(sfa)-for-foreign-individuals — confirms SingPass requires SG identity
 - Wise / Statrys / Singbac CorpPass guides — confirms CorpPass requires registered Singapore entity
+
+```
