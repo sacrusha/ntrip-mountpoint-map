@@ -325,6 +325,17 @@
     #help-drawer .dh .x{padding:8px 12px;font-size:22px;}
   }
 
+  /* Honor OS reduced-motion preference — strip all overlay slide / fade
+     transitions and the toast/popover entrance animations. */
+  @media (prefers-reduced-motion: reduce){
+    #help-drawer, #help-scrim, #card-sheet,
+    .help-topic .chev, .help-answer .deep summary::before,
+    .det-sum::after, .leaflet-fade-anim .leaflet-tile{
+      transition:none !important;
+    }
+    .help-toast, .help-popover{ animation:none !important; }
+  }
+
   /* Visible focus ring for keyboard users on the new buttons; UA defaults
      get washed out by the frosted-glass / dark backdrops. */
   #legend-handle:focus-visible,
