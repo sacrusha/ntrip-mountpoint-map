@@ -106,15 +106,14 @@ times a day (01/07/13/19 UTC) plus on `workflow_dispatch`:
 - **z ≥ 10** — detailed view. Per-station dots with labels, accuracy
   rectangles, station details card on click.
 - **z 6–9** — dots (no labels, no accuracy boxes) + coverage raster
-  (translucent). Station details card on click. Country-level glyph
-  markers (paid-tier $/✕/?, free-network antennas) hide at z ≥ 6 — once
-  individual station dots are visible, the country aggregate is
-  redundant clutter.
+  (translucent). Country-level glyph markers stay visible for the first
+  two of these levels and hide further in, so the country-to-stations
+  hand-off is gradual rather than abrupt.
 - **z ≤ 5** — coverage raster + country-level glyph markers + coverage
   rings. No dots.
 
 Thresholds are constants at the top of `index.html` (`ZOOM_DETAIL`,
-`ZOOM_DOTS`).
+`ZOOM_LABELS`, `ZOOM_DOTS`, `ZOOM_TAGS_HIDE`).
 
 ### Why accuracy rectangles at close zoom
 
@@ -179,10 +178,10 @@ communicates what is known. Four visual treatments:
 
 | Marker | When shown | Hobbyist message |
 |---|---|---|
-| Coloured VRS ring + dark-green antenna at centroid | Free VRS network ingested into the pipeline with live data. Ring is visual-only; clicks land on the antenna. | Sign up — corrections exist, no fixed antennas |
-| Bright-green antenna only (no ring) | Free per-station (RS) network ingested with live data. Caster publishes a list of physical bases; user picks the closest. | Sign up — pick a base near you |
-| Grey ring + grey antenna at centroid | Free network whose endpoint is unknown / registration-gated, or a known free network whose pipeline data has gone stale | Something free exists here; we haven't fetched fresh data |
-| Circled **$** / **✕** / **?** | Substantial national-scale network: paid, restricted, or info-only (jamming, non-NTRIP, announced-not-live, etc.). Glyph fades out at z≥6. | Dead end or legwork required — card explains |
+| Coloured VRS ring + dark-green antenna at centroid | Free VRS network whose caster was reachable on the most recent fetch (live). Station count irrelevant — VRS-only casters that publish only virtual mountpoints qualify. Ring is visual-only; clicks land on the antenna. | Sign up — corrections exist, no fixed antennas |
+| Bright-green antenna only (no ring) | Free per-station (RS) network whose caster was reachable on the most recent fetch. Caster publishes a list of physical bases; user picks the closest. | Sign up — pick a base near you |
+| Grey ring + grey antenna at centroid | Free network whose endpoint is unknown / registration-gated, or a known free network where the most recent fetch failed (≥3 days since last successful contact) | Something free exists here; we couldn't reach the caster recently |
+| Circled **$** / **✕** / **?** | Substantial national-scale network: paid, restricted, or info-only (jamming, non-NTRIP, announced-not-live, etc.). | Dead end or legwork required — card explains |
 | Nothing | None of the above (investigation found nothing operational, post-processing-only, defence-internal, regional surveying company too small to flag, etc.). Post-processing-only government networks still get survey + `networks.md` entries even though they produce no marker. | — |
 
 The data model is **two orthogonal axes** plus runtime data presence.
@@ -223,16 +222,21 @@ Whether station data is ingested is a third axis, runtime-derived from
 `data/stations.json`. The renderer uses (tier × vrs × data-presence) to pick
 visuals:
 
-- `tier:free + vrs:true + ingested + live` → coloured ring + dark-green antenna
-- `tier:free + vrs:true + ingested + stale` → grey ring + grey antenna
-- `tier:free + vrs:true + not ingested` → grey ring + grey antenna
-- `tier:free + no vrs flag + ingested + live` → bright-green antenna (no ring)
-- `tier:free + no vrs flag + stale or not ingested` → grey ring + grey antenna
+Routing keys off `staleness` only (whether the caster was reachable on
+the most recent fetch — within ~3 days for `live`, 3–7 for `stale`,
+≥7 or never for `dead`). Station count does not gate the colour; a
+live VRS-only caster with zero ingested physical stations is still
+green.
+
+- `tier:free + vrs:true + live` → coloured ring + dark-green antenna
+- `tier:free + vrs:true + stale or dead` → grey ring + grey antenna
+- `tier:free + no vrs flag + live` → bright-green antenna (no ring)
+- `tier:free + no vrs flag + stale or dead` → grey ring + grey antenna
 - `tier:paid` → **$** glyph (red); `tier:paid-affordable` → **$** glyph (green); `tier:restricted` → **✕** glyph; `tier:weird` → **?** glyph
 
-Country-level glyph markers (paid tiers + free-network antennas) hide at
-z ≥ ZOOM_DOTS (6) where individual station dots take over. Coverage
-rings stay visible at all zoom levels.
+Country-level glyph markers (paid tiers + free-network antennas) fade
+out as the user zooms in (see "Zoom bands" above). Coverage rings stay
+visible at all zoom levels.
 
 No entry → no marker. This covers the case where a country was
 investigated and found to have nothing of value to a target user —

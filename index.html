@@ -493,6 +493,7 @@
   var ZOOM_DETAIL=11;   // z >= ZOOM_DETAIL: labels + accuracy rectangles + tooltips
   var ZOOM_LABELS=9;    // z >= ZOOM_LABELS: labels only (no accuracy rectangles)
   var ZOOM_DOTS=6;      // z >= ZOOM_DOTS: dots; z < ZOOM_DOTS: coverage raster only
+  var ZOOM_TAGS_HIDE=8; // z >= ZOOM_TAGS_HIDE: country-level tag glyphs fade out (dots take over)
 
   // Coverage field radii (km). Colour per band is set inside CoverageLayer.
   var R_EXCELLENT=10, R_GOOD=30, R_MARGINAL=50, R_FLOAT=100;
@@ -950,20 +951,28 @@
     });
     return group;
   }
-  // freeNetworks routing:
-  //   vrs+live+data    -> VRS_COLOR ring (visual) + dark-green antenna marker (bySid)
-  //   non-vrs+live     -> bright-green antenna marker only, no ring (liveById)
-  //   stale/dead/no-data -> grey ring (visual) + grey antenna marker (greyById)
-  //   !lat             -> no marker
+  // freeNetworks routing — keyed off staleness only (recent successful fetch
+  // = live, regardless of station count):
+  //   vrs+live    -> VRS_COLOR ring (visual) + dark-green antenna marker (bySid)
+  //   non-vrs+live-> bright-green antenna marker only, no ring (liveById)
+  //   stale/dead  -> grey ring (visual) + grey antenna marker (greyById)
+  //   !lat        -> no marker
   // Click/hover always lives on the antenna marker; rings are non-interactive.
-  // Markers sit in tierPane and inherit its z>=ZOOM_DOTS hide.
+  // Markers sit in tierPane and inherit its z>=ZOOM_TAGS_HIDE hide.
   function buildNetworkOverlays(freeNetworks,paidTiers,renderer){
     var group=L.layerGroup();
     var bySid={}, greyById={}, liveById={};
     var paidLayers={affordable:{},paid:{},restricted:{},info:{}};
     freeNetworks.forEach(function(net){
       if(!net.lat) return;
-      var isLive=net.staleness==='live'&&net.stationCount>0;
+      // Grey is reserved for "we couldn't reach the caster recently": the
+      // most recent fetch failed (staleness !== 'live') OR the source isn't
+      // even in the pipeline (synthetic dead entry from country_markers).
+      // A successful recent fetch with zero ingested stations is still a
+      // live network — typical for VRS-only casters that publish virtual
+      // mountpoints without exposing a fixed reference-station list.
+      var isLive=net.staleness==='live';
+      var hasStations=net.stationCount>0;
       if(!isLive){
         var note=net.note||net.openNote||'';
         var greyPopup=buildGreyPopup(net.label,net.region||'',note,net.registration);
@@ -971,12 +980,19 @@
         var greyMk=addAntennaMarker(group,net.lat,net.lon,GREY_MARKER_COLOR,net.label,greyPopup);
         greyById[net.id]={visual:greyRing,marker:greyMk};
       } else if(net.vrs){
-        var vrsBody='Covers <b>'+esc(net.region||'')+'</b>.'
-          +' Reference stations are shown on the map.'
-          +' Connect via a VRS mountpoint for uniform cm-accuracy across the network'
-          +' without manual base selection.';
+        var vrsAcc=hasStations
+          ? 'VRS/NRTK network — fixed stations on map'
+          : 'VRS network — virtual mountpoints only';
+        var vrsBody=hasStations
+          ? 'Covers <b>'+esc(net.region||'')+'</b>.'
+            +' Reference stations are shown on the map.'
+            +' Connect via a VRS mountpoint for uniform cm-accuracy across the network'
+            +' without manual base selection.'
+          : 'Covers <b>'+esc(net.region||'')+'</b>.'
+            +(net.stationsDeclared?' Uses ~'+net.stationsDeclared+' physical reference stations.':'')
+            +' Your NTRIP client connects to a virtual base synthesised near your location.';
         var vrsPopup='<div class="popup-plain"><h3>'+esc(net.label)+'</h3>'
-          +'<div class="acc" style="color:'+VRS_COLOR+'">VRS/NRTK network — fixed stations on map'+vrsChip()+'</div>'
+          +'<div class="acc" style="color:'+VRS_COLOR+'">'+vrsAcc+vrsChip()+'</div>'
           +'<div style="margin:4px 0 6px;font-size:12px">'+vrsBody+'</div>'
           +(net.openNote?'<div class="anote">'+esc(net.openNote)+'</div>':'')
           +(net.registration?'<div class="anote"><a href="'+esc(net.registration)
@@ -987,7 +1003,7 @@
         bySid[net.id]={visual:vrsRing,marker:vrsMk};
       } else {
         var liveBody='Covers <b>'+esc(net.region||'')+'</b>.'
-          +(net.stationCount>0?' '+net.stationCount+' reference stations.':'');
+          +(hasStations?' '+net.stationCount+' reference stations.':'');
         var livePopup='<div class="popup-plain"><h3>'+esc(net.label)+'</h3>'
           +'<div class="acc" style="color:'+LIVE_NET_COLOR+'">RS network — connect to one reference station at a time'+rsChip()+'</div>'
           +'<div style="margin:4px 0 6px;font-size:12px">'+liveBody+'</div>'
@@ -1061,7 +1077,7 @@
 
   // Antenna glyph — broadcasting-tower shape inside a white circle, drawn in
   // the marker color. Used for free network centroids (live VRS, live non-VRS,
-  // and stale). Lives in tierPane so it inherits the z>=ZOOM_DOTS hide.
+  // and stale). Lives in tierPane so it inherits the z>=ZOOM_TAGS_HIDE hide.
   function antennaIconSvg(color,size,extraStyle){
     size=size||18;
     var s=extraStyle?' style="'+extraStyle+'"':'';
@@ -1449,7 +1465,7 @@
         +(vrsCount
           ? '<label style="display:flex;align-items:center;gap:4px">'
               +'<input type="checkbox" data-k="vrs_global" checked>'
-              +sw('border:2px solid '+VRS_COLOR+';background:rgba(26,93,26,0.25);border-radius:50%')
+              +antennaIconSvg(VRS_COLOR,14,'vertical-align:middle')+' '
               +'VRS networks ('+vrsCount+')'
             +'</label>'
           : '')
@@ -1463,7 +1479,7 @@
         +(greyCount
           ? '<label style="display:flex;align-items:center;gap:4px">'
               +'<input type="checkbox" data-k="grey_global" checked>'
-              +sw('border:2px solid '+GREY_MARKER_COLOR+';background:rgba(102,102,102,0.18);border-radius:50%')
+              +antennaIconSvg(GREY_MARKER_COLOR,14,'vertical-align:middle')+' '
               +'Stale ('+greyCount+')'
             +'</label>'
           : '')
@@ -1755,8 +1771,9 @@
 
     // vrsPane: coverage rings (visual-only, non-interactive). Always visible.
     // tierPane: country-level glyph markers — paid-tier $/?/✕ + free-network
-    //   antenna icons. Hidden at z>=ZOOM_DOTS where individual station dots
-    //   take over and the country aggregate becomes redundant clutter.
+    //   antenna icons. Hidden at z>=ZOOM_TAGS_HIDE — they overlap with the
+    //   station-dot layer for a couple of zoom levels (z=6,7) so users
+    //   transitioning from the country view aren't suddenly lost.
     map.createPane('vrsPane');
     map.getPane('vrsPane').style.zIndex=403; // above dotsPane (402)
     map.createPane('tierPane');
@@ -1863,7 +1880,7 @@
       map.getPane('dotsPane').style.visibility=
         z>=ZOOM_DOTS?'visible':'hidden';
       map.getPane('tierPane').style.visibility=
-        z>=ZOOM_DOTS?'hidden':'visible';
+        z>=ZOOM_TAGS_HIDE?'hidden':'visible';
       if(z>=ZOOM_LABELS){
         refreshDetailLayer(stationIndex,z>=ZOOM_DETAIL);
         if(!map.hasLayer(detailGroup)) detailGroup.addTo(map);
@@ -1941,7 +1958,7 @@
       map.getPane('dotsPane').style.visibility=
         e.zoom>=ZOOM_DOTS?'visible':'hidden';
       map.getPane('tierPane').style.visibility=
-        e.zoom>=ZOOM_DOTS?'hidden':'visible';
+        e.zoom>=ZOOM_TAGS_HIDE?'hidden':'visible';
     });
     map.on('zoomend',function(){ applyZoom(); updateViewCounts(); });
 
