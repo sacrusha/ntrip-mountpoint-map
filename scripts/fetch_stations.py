@@ -205,7 +205,7 @@ SOURCES = [
      "color": "#3a7ca5", "label": "FLEPOS",
      "type": "vrs-only", "country": ["BE"], "region": "Flanders",
      "access": "registration", "registration": "https://flepos.vlaanderen.be", "openNote": 'Free registration required'},
-    {"id": "walcors",     "url": "http://gnss.wallonie.be:2101/",
+    {"id": "walcors",     "url": "http://gnss.wallonie.be:8081/",          # port 8081 confirmed 2026-05-06; port 2101 times out (firewall)
      "color": "#2c6e8a", "label": "WALCORS",
      "type": "vrs-only", "country": ["BE"], "region": "Wallonia",
      "access": "registration", "registration": "https://gnss.wallonie.be", "openNote": 'Free registration required (paid for machine-control / auto-guidance)'},
@@ -225,7 +225,7 @@ SOURCES = [
      "color": "#16a085", "label": "ESTPOS",
      "type": "vrs-only", "country": ["EE"],
      "access": "conditions",   "registration": "https://www.maaruum.ee", "openNote": 'Free registration required (free until Aug 2026)'},
-    {"id": "latpos",      "url": "http://latpos.lgia.gov.lv:2101/",             # port 5001 → 2101 (standard; 5001 was timing out)
+    {"id": "latpos",      "url": "http://latpos.lgia.gov.lv:5001/",             # port 5001 confirmed SOURCETABLE 200 OK 2026-05-06; may timeout on blocked egress firewalls
      "color": "#1a6b3c", "label": "LatPos",
      "type": "vrs-only", "country": ["LV"],
      "access": "registration", "registration": "https://latpos.lgia.gov.lv/SBC", "openNote": 'Free registration required'},
@@ -245,10 +245,10 @@ SOURCES = [
      "color": "#2471a3", "label": "MIRAI",
      "type": "single-base", "country": ["JP"],
      "access": "registration", "registration": "https://go.gnss.go.jp", "openNote": 'Free registration required (+ NtripCaster auth form)'},
-    {"id": "cors_korea",  "url": "http://www.gnssdata.or.kr:2101/",
+    {"id": "cors_korea",  "url": "http://vrs3.ngii.go.kr:2101/",               # VRS endpoint (FKP: fkp.ngii.go.kr:2201); address updated May 2022; legacy www.gnssdata.or.kr decommissioned
      "color": "#a93226", "label": "CORS-KOREA",
      "type": "physical-vrs", "country": ["KR"],
-     "access": "conditions",   "registration": "https://www.gnssdata.or.kr", "openNote": 'Free registration required (Korean portal; national ID may be required)'},
+     "access": "conditions",   "registration": "https://www.ngii.go.kr", "openNote": 'Free registration required (Korean portal; Korean national ID typically required)'},
     {"id": "thailand_dol","url": "http://122.155.131.34:2101/",                  # Central zone; full zone–port PDF (dol-rtknetwork.com/files/manual/1(PortNumber).pdf) 404 as of 2026-05-04
      "color": "#b8860b", "label": "DOL LandGNSS",
      "type": "physical-vrs", "country": ["TH"],
@@ -263,7 +263,7 @@ SOURCES = [
     {"id": "icecors",     "url": "http://178.19.53.126:2101/",
      "color": "#1e6b8c", "label": "IceCORS",
      "type": "physical-vrs", "country": ["IS"],
-     "access": "registration", "registration": "https://www.natt.is/is/landmaelingar/jardstodvakerfi", "openNote": 'Free registration required'},
+     "access": "open",         "registration": None, "openNote": 'Free, no registration required'},
     {"id": "ksa_cors",    "url": "http://ksacors.geoportal.sa:2101/",
      "color": "#a0522d", "label": "KSA-CORS",
      "type": "vrs-only", "country": ["SA"],
@@ -289,17 +289,18 @@ SOURCES = [
      "type": "physical-vrs", "country": ["IT"],
      "region": "Puglia", "group": "italy-regional",
      "access": "registration", "registration": "https://sit.puglia.it", "openNote": 'Free registration required (SIT Puglia geoportal)'},
-    {"id": "gnss_campania", "url": "http://gps-sit.regione.campania.it:2101/",  # SPID required for new users
+    {"id": "gnss_campania", "url": "http://gps.sit.regione.campania.it:2101/",  # public creds: user=Campania pass=GNSS (30-sec VRS); 1-sec requires SPID
      "color": "#6a1b9a", "label": "GNSS Campania",
      "type": "physical-vrs", "country": ["IT"],
      "region": "Campania", "group": "italy-regional",
-     "access": "conditions",   "registration": "https://www.regione.campania.it", "openNote": 'Free registration required — SPID identity (Italy)'},
+     "credentials": {"user": "Campania", "pass": "GNSS"},
+     "access": "open",         "registration": None, "openNote": 'Free; public credentials (user: Campania, pass: GNSS) for 30-sec VRS; 1-sec requires SPID'},
     {"id": "tpos",        "url": "http://tpos.provincia.tn.it:2101/",
      "color": "#00695c", "label": "TPOS",
      "type": "physical-vrs", "country": ["IT"],
      "region": "Trentino", "group": "italy-regional",
      "access": "registration", "registration": "https://www.tpos.provincia.tn.it"},
-    {"id": "stpos",       "url": "http://www.stpos.it:2101/",
+    {"id": "stpos",       "url": "http://62.101.0.40:2109/",               # SOURCETABLE 200 OK on port 2109; port 2101 refused; domain www.stpos.it
      "color": "#ad1457", "label": "STPOS",
      "type": "physical-vrs", "country": ["IT"],
      "region": "South Tyrol", "group": "italy-regional",
@@ -371,11 +372,11 @@ SOURCES = [
      "type": "physical-vrs", "country": ["US"],
      "region": "Alabama", "group": "us-state-dot",
      "access": "registration", "registration": "https://dot.state.al.us", "openNote": 'Free registration required (Alabama DOT)'},
-    {"id": "orgn",        "url": "http://167.131.0.205:9879/",                  # bare IP; port 9879 (Leica)
+    {"id": "orgn",        "url": "http://orgn.odot.state.or.us:9881/",          # hostname; port 9881 (Leica); SOURCETABLE 200 OK 2026-05-07
      "color": "#004d40", "label": "ORGN",
      "type": "physical-vrs", "country": ["US"],
      "region": "Oregon", "group": "us-state-dot",
-     "access": "registration", "registration": "https://www.oregon.gov/odot", "openNote": 'Free registration required (Oregon DOT)'},
+     "access": "registration", "registration": "https://www.oregon.gov/odot/orgn", "openNote": 'Free registration required (Oregon DOT)'},
     {"id": "msrn",        "url": "http://mdotcors.michigan.gov:10700/",         # port 10700 (Leica)
      "color": "#006064", "label": "MSRN",
      "type": "physical-vrs", "country": ["US"],
@@ -396,6 +397,11 @@ SOURCES = [
      "type": "physical-vrs", "country": ["US"],
      "region": "Iowa", "group": "us-state-dot",
      "access": "registration", "registration": "https://iowadot.gov", "openNote": 'Free registration required (Iowa DOT)'},
+    {"id": "ct_acorn",    "url": "http://acorn.uconn.edu:2101/",               # SOURCETABLE 200 OK 2026-05-07
+     "color": "#1a237e", "label": "ACORN CT",
+     "type": "physical-vrs", "country": ["US"],
+     "region": "Connecticut", "group": "us-state-dot",
+     "access": "registration", "registration": "https://acorn.uconn.edu", "openNote": 'Free registration required (CTDOT + UConn)'},
     # US state DOT — VRS-only (filter_vrs drops all pins; shown as stopgap circles)
     {"id": "kycors",      "url": "http://kycors.ky.gov:2101/",
      "color": "#546e7a", "label": "KyCORS",
@@ -422,11 +428,11 @@ SOURCES = [
      "type": "vrs-only", "country": ["US"],
      "region": "West Virginia", "group": "us-state-dot",
      "access": "registration", "registration": "https://transportation.wv.gov", "openNote": 'Free registration required (West Virginia DOH)'},
-    {"id": "mainedot",    "url": "http://mdotcors.maine.gov:2101/",             # VRS-only (transitioning)
+    {"id": "mainedot",    "url": "http://medotrtn.maine.gov:2101/",             # VRS-only; migrated from mdotcors.maine.gov Oct 2025
      "color": "#b0bec5", "label": "MaineDOT",
      "type": "vrs-only", "country": ["US"],
      "region": "Maine", "group": "us-state-dot",
-     "access": "registration", "registration": "https://www.maine.gov/mdot", "openNote": 'Free registration required (Maine DOT)'},
+     "access": "registration", "registration": "https://medotrtn.maine.gov", "openNote": 'Free registration required (Maine DOT)'},
     {"id": "mesa_rtvrn",  "url": "http://rtvrn.mesacounty.us:2101/",            # VRS-only; western Colorado
      "color": "#8d6e63", "label": "Mesa County RTVRN",
      "type": "vrs-only", "country": ["US"],

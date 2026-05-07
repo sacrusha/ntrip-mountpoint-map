@@ -1,20 +1,38 @@
 # RTK survey pipeline
 
-How a finding flows through the four files of the RTK survey.
+How a finding flows through the RTK survey files.
 
 ```
-docs/country-survey.md      ← LEAD: per-country prose, completeness picture
+docs/research_task.txt          ← prompt template; research is run externally
+        ↓ produces (out-of-band, web-enabled environment)
+docs/ntrip_research/CC_*.md     ← per-country primary research, citation-grade
+        ↓ distil
+docs/country-survey.md          ← LEAD: per-country prose, completeness picture
         ↓ distil (substantial operators only)
-docs/networks.md            ← refined operator catalogue, per-network blocks
+docs/networks.md                ← refined operator catalogue, per-network blocks
         ↓ surface (parallel, sibling consumers)
-data/country_markers.json   user-facing markers
-scripts/fetch_stations.py   ingestion of free endpoints
+data/country_markers.json       user-facing markers
+scripts/fetch_stations.py       ingestion of free endpoints
 ```
+
+## Research stage (upstream, external)
+
+`docs/ntrip_research/` is the raw research layer. Entries are produced by
+running `docs/research_task.txt` in a **different environment** with broad web
+access — this sandbox typically cannot reach the open web reliably enough to
+generate citation-grade research. Treat `ntrip_research/` files as inbound
+material to be **distilled**, not authored.
+
+When `ntrip_research/` contains entries with no matching `country-survey.md`
+heading (or with newer findings than the survey reflects), that's the next
+unit of pipeline work: distil them into the survey, then sweep downstream per
+the rules below.
 
 ## Direction of work
 
-New facts enter at the survey first. The survey is the only file that records
-what was investigated and what wasn't found — it carries the negatives.
+For pipeline-side edits, new facts enter at the survey first (distilled from
+`ntrip_research/` when present). The survey is the file that records what was
+investigated and what wasn't found — it carries the negatives.
 
 A `networks.md` block exists only when the operator is **substantial**:
 nationwide, regional cadastre, or recognised commercial operator. Small

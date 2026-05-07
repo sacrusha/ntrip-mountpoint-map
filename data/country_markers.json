@@ -338,6 +338,20 @@
       "note": "Nationwide commercial RTK network (formerly TNT-TPI). Caster address disclosed after registration. Wartime-reduced rate."
     },
     {
+      "id": "kyivstar_rtk",
+      "name": "Kyivstar mAgri.RTK",
+      "region": "Ukraine (nationwide)",
+      "country": "UA",
+      "lat": 49.8,
+      "lon": 31.5,
+      "tier": "paid",
+      "vrs": true,
+      "access": "paid",
+      "registration": "https://kyivstar.ua/business/products/geodesiya",
+      "yearly_cost": "17,700 UAH/yr (~$430/yr)",
+      "note": "97 stations, Trimble VRS + Nearest; requires Kyivstar contract. xFill Premium continuity. Pauses during air-raid alerts."
+    },
+    {
       "id": "gpsbru",
       "name": "GPSBru / AGN",
       "region": "Belgium (Brussels)",
@@ -563,8 +577,9 @@
       "tier": "paid-affordable",
       "vrs": true,
       "access": "paid-affordable",
-      "yearly_cost": "€160/quarter (~$170)",
-      "registration": "https://www.ktimatologio.gr"
+      "yearly_cost": "€480/yr (~$520/yr)",
+      "registration": "https://www.hepos.gr",
+      "note": "98 stations, full GNSS. €160/quarter (~$170) for seasonal use. Pay-per-minute bundle (€90+VAT) for occasional access. Individual sign-up online, no professional licence required."
     },
     {
       "id": "rompos",
@@ -581,6 +596,20 @@
       "note": "Under the cost of a capable base station. Monthly subscription also available."
     },
     {
+      "id": "orpheon",
+      "name": "Orphéon",
+      "region": "France",
+      "country": "FR",
+      "lat": 46.6,
+      "lon": 2.4,
+      "tier": "paid",
+      "vrs": true,
+      "access": "paid",
+      "yearly_cost": "€756/yr (~$820/yr)",
+      "registration": "https://www.reseau-orpheon.fr",
+      "note": "~215–220 stations. Commercial VRS network; individual subscriptions available. Centipede RTK (crtk.net:2101) provides free nationwide coverage as a Volunteer alternative."
+    },
+    {
       "id": "swipos",
       "name": "swipos",
       "region": "Switzerland",
@@ -591,8 +620,8 @@
       "vrs": true,
       "access": "paid",
       "yearly_cost": "1,500 CHF/yr (~$1,650/yr)",
-      "registration": "https://www.swipos.ch",
-      "note": "At this price a local base station is likely more practical. Volunteer rtk2go/Centipede bases provide partial free coverage."
+      "registration": "https://shop.swipos.ch",
+      "note": "At this price a local base station is likely more practical. Volunteer rtk2go/Centipede bases provide partial free coverage on the Swiss plateau."
     },
     {
       "id": "cpos",
@@ -604,9 +633,9 @@
       "tier": "paid",
       "vrs": true,
       "access": "paid",
-      "yearly_cost": "8,000+ NOK/yr (~$740/yr)",
+      "yearly_cost": "5,000+ NOK/yr (~$460/yr)",
       "registration": "https://www.kartverket.no",
-      "note": "Volunteer rtk2go/Centipede bases exist in populated areas (Oslofjord, Vestlandet)."
+      "note": "280+ stations. Agriculture tier NOK 5,000/yr; standard surveying tier NOK 11,000/yr (both ex-VAT). 1-month free trial for new customers. Volunteer rtk2go/Centipede bases cover populated areas south of ~63°N."
     },
     {
       "id": "signal",
@@ -632,9 +661,9 @@
       "tier": "paid",
       "vrs": true,
       "access": "paid",
-      "yearly_cost": "9,000 SEK/yr (~$850/yr)",
-      "registration": "https://swepos.lantmateriet.se",
-      "note": "A free DGNSS tier exists but sub-metre only — out of scope for cm-grade work."
+      "yearly_cost": "12,000 SEK/yr (~$1,050/yr)",
+      "registration": "https://www.lantmateriet.se/en/geodata/our-products/product-list/swepos-network-rtk/",
+      "note": "A free DGNSS tier exists but sub-metre only — out of scope for cm-grade work. 1,000-min pot or 90-day block also available at 5,000 SEK."
     },
     {
       "id": "sirent",
@@ -907,9 +936,9 @@
       "tier": "paid",
       "vrs": true,
       "access": "paid",
-      "yearly_cost": "$600/yr",
+      "yearly_cost": "$1,200 first login; $600 each additional",
       "registration": "https://scrtn.sc.gov",
-      "note": "No professional-licence requirement; any subscriber may obtain a login."
+      "note": "43 stations in SC plus shared receivers in GA and NC. No professional-licence requirement."
     },
     {
       "id": "ncrtn",
@@ -921,8 +950,9 @@
       "tier": "paid",
       "vrs": true,
       "access": "paid",
-      "yearly_cost": "$500/yr",
-      "registration": "https://www.ncems.org"
+      "yearly_cost": "$500 one-time per login",
+      "registration": "https://rtn.nc.gov",
+      "note": "Perpetual credentials (not annual). Second login included; additional logins $250 each. Free RINEX download."
     },
     {
       "id": "tdot_rtn",
@@ -935,12 +965,12 @@
       "vrs": true,
       "access": "paid",
       "yearly_cost": "$450/yr",
-      "registration": "https://www.tn.gov/tdot"
+      "registration": "https://portal.tndot.net"
     },
     {
       "id": "turn_gps",
       "name": "TURN GPS",
-      "region": "Utah",
+      "region": "Utah + Nevada (northern)",
       "country": "US",
       "lat": 39.3,
       "lon": -111.1,
@@ -948,7 +978,8 @@
       "vrs": true,
       "access": "paid",
       "yearly_cost": "$600/yr",
-      "registration": "https://turngps.org"
+      "registration": "https://turngps.utah.gov",
+      "note": "Covers Utah plus Nevada GPS Network (Reno area / northern NV only; Las Vegas not covered)."
     },
     {
       "id": "mtsrn",
@@ -961,7 +992,8 @@
       "vrs": true,
       "access": "paid",
       "yearly_cost": "$1,500/yr",
-      "registration": "https://www.mdt.mt.gov"
+      "registration": "https://msl.mt.gov/mtsrn",
+      "note": "50+ stations; launched March 2022. Free RINEX available; static post-processing does not require subscription."
     },
     {
       "id": "wsrn",
@@ -974,8 +1006,22 @@
       "vrs": true,
       "access": "paid",
       "yearly_cost": "$1,900/yr",
-      "registration": "https://www.wsdot.wa.gov",
-      "note": "PANGA/CWU contributes Puget Sound antennae and data archiving to this network."
+      "registration": "https://wsrn3.org",
+      "note": "Transitioning to NATRF2022 datum (port 2022); NAD83(2011) on port 2011. Partner agencies (govt, NGS cooperators) receive free access."
+    },
+    {
+      "id": "c4gnet",
+      "name": "C4Gnet",
+      "region": "Louisiana",
+      "country": "US",
+      "lat": 30.9,
+      "lon": -91.5,
+      "tier": "paid",
+      "vrs": true,
+      "access": "paid",
+      "yearly_cost": "$495/yr (10-hr tier)",
+      "registration": "https://store.c4g.lsu.edu",
+      "note": "Louisiana statewide RTN operated by LSU Center for GeoInformatics. GPS+GLONASS+Galileo+BeiDou. Unlimited RTK tier $3,500/yr. Free post-processing RINEX subscription available separately."
     },
     {
       "id": "crtn",
@@ -989,6 +1035,16 @@
       "yearly_cost": "$100 one-time",
       "registration": "https://sopac-csrc.ucsd.edu/index.php/crtn-connecting/",
       "note": "~250 reference stations via Scripps (UCSD); aggregates SCIGN, BARD, USGS Pasadena, Caltrans CVSRN, OCRTN, and EarthScope. Universities and schools are exempt from the fee. Significant station overlap with EarthScope (already on this map). Credentials take a week or more to issue."
+    },
+    {
+      "id": "idot_cors",
+      "name": "IDOT CORS",
+      "region": "Illinois",
+      "country": "US",
+      "lat": 40.0,
+      "lon": -89.3,
+      "tier": "weird",
+      "note": "Under construction — ~70 stations planned; announced November 2024 with federal + state funding. No live NTRIP caster as of May 2026. Interim paid option: ReIL-NET (Kara Company, Chicagoland + Central IL)."
     },
     {
       "id": "txrtn",
@@ -1272,7 +1328,7 @@
       "lon": -3.7,
       "tier": "free",
       "vrs": true,
-      "stations_declared": 128
+      "stations_declared": 272
     },
     {
       "id": "satref",
@@ -1305,7 +1361,7 @@
       "lon": -74.1,
       "tier": "free",
       "vrs": true,
-      "stations_declared": 233
+      "stations_declared": 260
     },
     {
       "id": "spslux",
@@ -1316,7 +1372,8 @@
       "lon": 6.1,
       "tier": "free",
       "vrs": true,
-      "stations_declared": 17
+      "stations_declared": 13,
+      "note": "13 stations, free. iMAX and VRS correction types; free registration at ACT portal (zero-cost subscription)."
     },
     {
       "id": "icecors",
@@ -1326,11 +1383,10 @@
       "lat": 64.9,
       "lon": -18.5,
       "tier": "free",
-      "vrs": true,
-      "access": "registration",
-      "registration": "https://www.natt.is/is/landmaelingar/jardstodvakerfi",
+      "access": "open",
+      "registration": "https://www.lmi.is/is/maelingar/thjonustur/icecors",
       "stations_declared": 33,
-      "note": "33 stations, free. Covers Iceland at 70–100 km spacing; single-base and VRS correction modes available."
+      "note": "33 stations, free. No registration required. Single-base only (no VRS); connect to nearest station mountpoint."
     },
     {
       "id": "cors_korea",
@@ -1375,7 +1431,7 @@
       "lat": -25.3,
       "lon": 133.8,
       "tier": "free",
-      "stations_declared": 813
+      "stations_declared": 914
     },
     {
       "id": "positionz",
@@ -1466,8 +1522,12 @@
       "country": "DE",
       "lat": 50.0,
       "lon": 7.3,
-      "tier": "free",
+      "tier": "paid-affordable",
       "vrs": true,
+      "access": "paid",
+      "yearly_cost": "€120/yr (~$130/yr)",
+      "registration": "https://lvermgeo.rlp.de",
+      "note": "Only paid SAPOS state at standard RTK rate. One-time €100 setup fee applies. Free tier exists for agriculture (R-HEPS, €150/device/yr) but not general hobbyist use.",
       "stations_declared": 17
     },
     {
