@@ -902,14 +902,16 @@
   }
 
   function buildPaidNetworkPopup(net){
+    var isInfo=net.tier==='weird';
     var accessLabel=({
       'paid':'Paid subscription required',
       'paid-affordable':'Paid subscription (affordable)',
       'restricted':'Access restricted'
-    })[net.access]||'Not freely accessible';
-    return `<div class="popup-plain"><h3>${esc(net.name)}</h3><div class="warn">${esc(accessLabel)}</div>`
+    })[net.access];
+    return `<div class="popup-plain"><h3>${esc(net.name)}</h3>`
+      +(!isInfo&&accessLabel?`<div class="warn">${esc(accessLabel)}</div>`:'')
       +(net.yearlyCost?`<div style="font-size:11px;color:var(--muted);margin:2px 0 4px">${esc(net.yearlyCost)}</div>`:'')
-      +`<div style="font-size:12px;margin:4px 0 6px">Covers <b>${esc(net.region)}</b>.</div>`
+      +(!isInfo&&net.region?`<div style="font-size:12px;margin:4px 0 6px">Covers <b>${esc(net.region)}</b>.</div>`:'')
       +(net.note?`<div class="anote">${esc(net.note)}</div>`:'')
       +(net.registration?`<div class="anote"><a href="${esc(net.registration)}" target="_blank" rel="noopener noreferrer">${esc(visUrl(net.registration))} ↗</a></div>`:'')
       +'</div>';
