@@ -18,18 +18,22 @@ NTRIP, RTK hardware, antenna placement, and DIY base stations.
 - Pre-aggregated station data refreshed four times daily by a GitHub Actions
   workflow; page loads from a static `data/stations.json`, no third-party proxy.
 - Three zoom bands: canvas distance-to-nearest-station raster (far), plain
-  dots (mid), labelled dots + accuracy rectangles + popups (close).
+  dots (mid), labelled dots + accuracy rectangles + station details card (close).
 - 4-band coverage palette reflecting RTK baseline math: green < 10 km,
   yellow-green 10–30 km, amber 30–50 km, pale red 50–100 km.
 - Source and access-tier toggles: filter by network and by access level
   (Free / Free with registration / Free with conditions).
 - Staleness display: sources offline 3–7 days shown as grey dots and excluded
   from the coverage raster; sources offline ≥7 days hidden entirely.
-- Country-level markers for regions with no physical pins: coloured VRS circles
-  (virtual networks with live data), grey circles (free networks pending
-  ingestion — Portugal, Lithuania, Thailand, Venezuela…), circled ? (paid or
-  restricted networks). All driven by `data/country_markers.json`.
-- Popups surface the three strings you need for your NTRIP client —
+- Country-level markers for regions with no physical pins: coloured VRS rings
+  (virtual networks with live data, dark-green centroid antenna for clicks),
+  bright-green antenna markers for per-station (RS) networks, grey rings or
+  grey antennas for stale or not-yet-ingested networks, circled $ / ✕ / ?
+  for affordable / restricted / info networks. All driven by
+  `data/country_markers.json`. Country markers fade out at z≥6 where individual
+  station dots take over.
+- The station details card slides up from the bottom of the viewport on any
+  marker click, surfacing the three strings you need for your NTRIP client —
   server host, port, mountpoint name — each with a one-click copy button,
   plus a direct link to the registration page where one is needed.
 - Accuracy rectangle at close zoom encodes the precision of the reported
@@ -54,7 +58,7 @@ NTRIP, RTK hardware, antenna placement, and DIY base stations.
   and a use-case catalogue (`is-this-for-me`).
 - Filters DGNSS-only mountpoints (sub-metre, out of scope), VRS/network-
   solution streams (no fixed coordinates), and flags legacy RTCM 2.x streams
-  in popups.
+  in the station details card.
 - IP-based geolocation (ipwho.is) for initial map centre — no permission
   prompt.
 - Source-agnostic frontend and pipeline: adding a caster is one line in
@@ -202,7 +206,7 @@ An NTRIP caster is an internet endpoint that streams RTK correction data
 from one or more reference stations. Its **sourcetable** lists every
 mountpoint it exposes — name, format, supported constellations, fee
 status. This map aggregates the public sourcetables from 66 casters and
-plots each physical reference station; the popup gives you the three
+plots each physical reference station; the station card gives you the three
 strings your NTRIP client needs (server, port, mountpoint).
 
 ### Do these mountpoints actually work without paying?
@@ -279,7 +283,7 @@ Briefly:
 
 Other operators ingested by this project publish their sourcetables
 without an attribution clause; each network is still credited by name in
-the map popup and in [`docs/networks.md`](docs/networks.md).
+the map's station card and in [`docs/networks.md`](docs/networks.md).
 
 ## License
 

@@ -267,6 +267,89 @@
   @media(max-width:600px){
     #help-drawer{width:100%;top:44px;}
   }
+
+  /* Legend collapse — close X inside the panel; reopen via floating handle. */
+  #toggles .legend-x{position:absolute;top:4px;right:6px;background:transparent;
+    border:none;color:var(--muted);font-size:14px;cursor:pointer;padding:2px 6px;
+    line-height:1;border-radius:3px;}
+  #toggles .legend-x:hover{background:var(--btn-hover);color:var(--fg);}
+  #toggles{position:relative;}
+  #toggles.legend-hidden{display:none;}
+  #legend-handle{position:fixed;top:8px;right:8px;z-index:9997;
+    width:38px;height:38px;display:none;align-items:center;justify-content:center;
+    background:var(--ctrl-bg);border:1px solid var(--ctrl-border);
+    -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+    border-radius:5px;cursor:pointer;color:var(--fg);font-size:20px;line-height:1;
+    padding:0;font-family:inherit;}
+  #legend-handle:hover{background:var(--btn-hover);}
+  #legend-handle.on{display:flex;}
+  body.banner-visible #legend-handle{top:52px;}
+
+  /* Card bottom-sheet — replaces Leaflet popups for station/network/paid
+     marker clicks. Width-based breakpoint at 768px keeps vertical desktops
+     and most tablets in the centered layout; only phones get the
+     full-width strip. */
+  #card-sheet{position:fixed;left:50%;bottom:16px;
+    transform:translateX(-50%) translateY(140%);
+    width:min(420px,calc(100vw - 32px));max-height:min(60vh,520px);
+    background:var(--panel-bg);border:1px solid var(--panel-border);
+    border-radius:6px;box-shadow:0 8px 30px rgba(0,0,0,.35);
+    z-index:9998;
+    transition:transform .22s cubic-bezier(.2,.8,.2,1),opacity .18s;
+    opacity:0;pointer-events:none;display:flex;flex-direction:column;}
+  #card-sheet.on{transform:translateX(-50%) translateY(0);opacity:1;pointer-events:auto;}
+  #card-sheet .card-close{position:absolute;top:6px;right:8px;
+    background:transparent;border:none;color:var(--muted);font-size:18px;
+    cursor:pointer;padding:2px 8px;line-height:1;border-radius:3px;z-index:1;}
+  #card-sheet .card-close:hover{background:var(--btn-hover);color:var(--fg);}
+  #card-sheet .card-content{padding:12px 32px 14px 18px;overflow-y:auto;}
+  #card-sheet .popup-plain{max-width:none;max-height:none;overflow:visible;}
+  @media(max-width:768px){
+    #card-sheet{left:0;right:0;bottom:0;width:100%;
+      transform:translateY(140%);
+      border-radius:8px 8px 0 0;max-height:65vh;}
+    #card-sheet.on{transform:translateY(0);}
+  }
+
+  /* Touch ergonomics — bump tap targets on coarse-pointer devices (survey
+     tablets, phones) without bloating the desktop layout. */
+  @media (pointer:coarse){
+    .popup-plain button.cp{padding:7px 12px;font-size:12px;min-height:32px;}
+    .help-chip{padding:4px 8px;font-size:11px;}
+    .help-chip .q{width:12px;height:12px;font-size:8px;}
+    #toggles .legend-x{padding:8px 12px;font-size:16px;}
+    #card-sheet .card-close{padding:8px 12px;font-size:20px;}
+    #legend-handle{width:44px;height:44px;font-size:22px;}
+    .help-toast h6 button{padding:6px 10px;font-size:18px;}
+    .help-popover .close{padding:6px 10px;font-size:18px;}
+    #help-drawer .dh .x{padding:8px 12px;font-size:22px;}
+  }
+
+  /* Honor OS reduced-motion preference — strip all overlay slide / fade
+     transitions and the toast/popover entrance animations. */
+  @media (prefers-reduced-motion: reduce){
+    #help-drawer, #help-scrim, #card-sheet,
+    .help-topic .chev, .help-answer .deep summary::before,
+    .det-sum::after, .leaflet-fade-anim .leaflet-tile{
+      transition:none !important;
+    }
+    .help-toast, .help-popover{ animation:none !important; }
+  }
+
+  /* Visible focus ring for keyboard users on the new buttons; UA defaults
+     get washed out by the frosted-glass / dark backdrops. */
+  #legend-handle:focus-visible,
+  #toggles .legend-x:focus-visible,
+  #card-sheet .card-close:focus-visible,
+  .popup-plain button.cp:focus-visible,
+  .popup-plain .b-primary:focus-visible,
+  .popup-plain .b-secondary:focus-visible,
+  .help-chip:focus-visible,
+  .help-toast button:focus-visible,
+  .help-popover .close:focus-visible,
+  .help-popover .more:focus-visible{
+    outline:2px solid var(--link);outline-offset:2px;
+  }
 </style>
 </head>
 <body>
@@ -300,7 +383,7 @@
 <p>Hobbyists, citizen scientists, makers, and small volunteer groups whose work needs cm-level positioning but doesn&#x27;t justify a paid surveyor or commercial correction subscription. If your project sits between &#x27;metre-level GPS is fine&#x27; and &#x27;we need legal survey acceptance&#x27;, this map exists for you.</p>
 <h3>Connect</h3>
 <h4>How do I connect this station in my app?</h4>
-<p>Open your NTRIP client&#x27;s &#x27;correction input&#x27; or &#x27;NTRIP&#x27; settings, paste the values from the station popup, and press Connect.</p>
+<p>Open your NTRIP client&#x27;s &#x27;correction input&#x27; or &#x27;NTRIP&#x27; settings, paste the values from the station card, and press Connect.</p>
 <h4>What is the NEAR mountpoint?</h4>
 <p>Some networks (Centipede, rtk2go) publish a special mountpoint called NEAR. Connect to it and the caster automatically sends corrections from whichever base is closest to you.</p>
 <h4>Where should I put the antenna?</h4>
@@ -310,6 +393,8 @@
 <h3>Concepts</h3>
 <h4>What is VRS? (green rings)</h4>
 <p>A VRS network synthesises a virtual reference station at your location, using real stations around you. One connection point, uniform cm-accuracy anywhere inside the coverage.</p>
+<h4>What is an RS network? (green antenna)</h4>
+<p>An RS (reference station) network publishes its physical stations directly. You pick which mountpoint to connect to — usually the closest — and accuracy depends on baseline distance to the chosen station.</p>
 <h4>L1+L2 vs L1-only — what does it mean?</h4>
 <p>Your receiver tracks signals on two radio frequency bands. Using both lets it measure and remove ionospheric delay — the main error that grows with distance — extending reliable RTK from ~10 km out to ~30 km.</p>
 <h4>What is a &#x27;mountpoint&#x27;?</h4>
@@ -329,7 +414,7 @@
 <h4>Why is my fix off by 1–2 m vs Google Maps?</h4>
 <p>Cm-precise but ~1 m off vs your map is normal — your fix is in the network&#x27;s datum and epoch and your map is in another. The receiver isn&#x27;t broken.</p>
 <h4>Connection times out or refuses</h4>
-<p>NTRIP runs on whatever TCP port the caster picks — usually 2101, but the value in the popup is what counts. Corporate WiFi, campus networks, and public hotspots commonly block non-web ports outright.</p>
+<p>NTRIP runs on whatever TCP port the caster picks — usually 2101, but the value in the station card is what counts. Corporate WiFi, campus networks, and public hotspots commonly block non-web ports outright.</p>
 <h4>Worked yesterday, broken today — am I in a storm?</h4>
 <p>Solar geomagnetic storms collapse RTK fix reliability without changing anything on the ground. If your setup worked yesterday and breaks today with no other change, check the Kp index at swpc.noaa.gov before suspecting hardware.</p>
 <h4>Fix loss in the Baltic, Black Sea, Korea? Could be jamming</h4>
@@ -363,9 +448,9 @@
 </div>
 <!-- help drawer -->
 <div id="help-scrim"></div>
-<aside id="help-drawer" aria-label="Help">
+<aside id="help-drawer" role="dialog" aria-modal="true" aria-labelledby="help-drawer-title">
   <div class="dh">
-    <h3>Help</h3>
+    <h3 id="help-drawer-title">Help</h3>
     <button class="x" id="help-close" aria-label="Close">✕</button>
   </div>
   <div class="help-dsearch">
@@ -374,6 +459,16 @@
   </div>
   <div class="help-dbody" id="help-body"></div>
 </aside>
+<!-- legend handle — fixed top-right button to re-open the legend after collapse -->
+<button id="legend-handle" aria-label="Show legend" title="Show legend"><span aria-hidden="true">≡</span></button>
+<!-- card bottom-sheet — single card surface for any marker click.
+     role=region (not dialog) because the sheet is non-modal: the rest of
+     the app stays interactive (tap another marker to replace, tap the map
+     to dismiss). aria-live=polite announces content changes for SR users. -->
+<div id="card-sheet" role="region" aria-label="Selection details" aria-live="polite">
+  <button class="card-close" aria-label="Close">✕</button>
+  <div class="card-content"></div>
+</div>
 <!-- popover host -->
 <div id="help-popover-layer"></div>
 <script>
@@ -384,6 +479,7 @@
   var MULTI_COLOR='#222', UNKNOWN_SOURCE_COLOR='#888', VRS_COLOR='#1a5d1a';
   var GREY_MARKER_COLOR='#666';   // matches stale-pin colour
   var INFO_MARKER_COLOR='#888';   // circled-? fallback / info markers
+  var LIVE_NET_COLOR='rgb(0,170,0)'; // free non-VRS network markers — matches <10 km coverage band
   var PAID_TIER_ICONS={
     affordable:{glyph:'$',color:'#22a722'},
     paid:      {glyph:'$',color:'#d44'},
@@ -655,6 +751,23 @@
     try{ localStorage.setItem('ntrip-howit-seen','1'); }catch(e){}
   };
 
+  // Card sheet — single overlay surface for any marker selection. Replaces
+  // Leaflet's bindPopup for station/network/paid markers. Click-outside,
+  // ESC, map click, or opening the help drawer all dismiss it.
+  function openCardSheet(html){
+    hideHelpPopover();
+    var s=document.getElementById('card-sheet'); if(!s) return;
+    s.querySelector('.card-content').innerHTML=html;
+    s.classList.add('on');
+  }
+  function closeCardSheet(){
+    var s=document.getElementById('card-sheet'); if(s) s.classList.remove('on');
+  }
+  function isCardOpen(){
+    var s=document.getElementById('card-sheet');
+    return !!(s&&s.classList.contains('on'));
+  }
+
 
   function accuracySummary(carrier){
     if(carrier==='L1L2L5') return '~1–2 cm (triple-frequency L1+L2+L5 — faster fix, better multipath)';
@@ -693,6 +806,9 @@
 
   function vrsChip(){
     return `<button class="help-chip" onclick="event.stopPropagation();__ntripShowPopover(this,'vrs','top-left')" aria-label="What is VRS?"><span class="q">?</span></button>`;
+  }
+  function rsChip(){
+    return `<button class="help-chip" onclick="event.stopPropagation();__ntripShowPopover(this,'rs','top-left')" aria-label="What is an RS network?"><span class="q">?</span></button>`;
   }
   function carrierChip(carrier){
     var key=carrier==='L1'?'carrier-l1':'carrier';
@@ -830,53 +946,67 @@
       L.marker(c,{
         icon:L.divIcon({className:'',iconSize:[18,18],iconAnchor:[9,9],
           html:'<svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="7.5" fill="#1a5d1a" stroke="white" stroke-width="2"/><text x="9" y="12" text-anchor="middle" font-size="9" font-weight="bold" fill="white">N</text></svg>'})
-      }).bindPopup(popup).addTo(group);
+      }).on('click',function(){ openCardSheet(popup); }).addTo(group);
     });
     return group;
   }
-  // freeNetworks routing: vrs+live -> VRS ring (bySid), dead -> grey ring (greyById), !lat -> no marker.
-  // paidTiers {affordable,paid,restricted,info} -> ? / $ / ✕ markers per tier.
+  // freeNetworks routing:
+  //   vrs+live+data    -> VRS_COLOR ring (visual) + dark-green antenna marker (bySid)
+  //   non-vrs+live     -> bright-green antenna marker only, no ring (liveById)
+  //   stale/dead/no-data -> grey ring (visual) + grey antenna marker (greyById)
+  //   !lat             -> no marker
+  // Click/hover always lives on the antenna marker; rings are non-interactive.
+  // Markers sit in tierPane and inherit its z>=ZOOM_DOTS hide.
   function buildNetworkOverlays(freeNetworks,paidTiers,renderer){
     var group=L.layerGroup();
-    var bySid={}, greyById={};
+    var bySid={}, greyById={}, liveById={};
     var paidLayers={affordable:{},paid:{},restricted:{},info:{}};
     freeNetworks.forEach(function(net){
       if(!net.lat) return;
-      if(net.staleness==='dead'){
+      var isLive=net.staleness==='live'&&net.stationCount>0;
+      if(!isLive){
         var note=net.note||net.openNote||'';
-        var ge=addRingMarker(group,net.lat,net.lon,renderer,GREY_MARKER_COLOR,0.18,
-          net.label,buildGreyPopup(net.label,net.region||'',note,net.registration));
-        ge.label=net.label; greyById[net.id]=ge;
+        var greyPopup=buildGreyPopup(net.label,net.region||'',note,net.registration);
+        var greyRing=addRingMarker(group,net.lat,net.lon,renderer,GREY_MARKER_COLOR,0.18);
+        var greyMk=addAntennaMarker(group,net.lat,net.lon,GREY_MARKER_COLOR,net.label,greyPopup);
+        greyById[net.id]={visual:greyRing,marker:greyMk};
       } else if(net.vrs){
-        var body=net.stationCount>0
-          ? 'Covers <b>'+esc(net.region||'')+'</b>.'
-            +' Reference stations are shown on the map.'
-            +' Connect via a VRS mountpoint for uniform cm-accuracy across the network'
-            +' without manual base selection.'
-          : 'Covers <b>'+esc(net.region||'')+'</b>.'
-            +(net.stationsDeclared?' Uses ~'+net.stationsDeclared+' physical reference stations.':'')
-            +' Your NTRIP client connects to a virtual base synthesised near your location.';
-        var accText=net.stationCount>0
-          ?'VRS/NRTK network — fixed stations on map'
-          :'VRS network — virtual mountpoints only';
-        var popup='<div class="popup-plain"><h3>'+esc(net.label)+'</h3>'
-          +'<div class="acc" style="color:'+VRS_COLOR+'">'+accText+vrsChip()+'</div>'
-          +'<div style="margin:4px 0 6px;font-size:12px">'+body+'</div>'
+        var vrsBody='Covers <b>'+esc(net.region||'')+'</b>.'
+          +' Reference stations are shown on the map.'
+          +' Connect via a VRS mountpoint for uniform cm-accuracy across the network'
+          +' without manual base selection.';
+        var vrsPopup='<div class="popup-plain"><h3>'+esc(net.label)+'</h3>'
+          +'<div class="acc" style="color:'+VRS_COLOR+'">VRS/NRTK network — fixed stations on map'+vrsChip()+'</div>'
+          +'<div style="margin:4px 0 6px;font-size:12px">'+vrsBody+'</div>'
           +(net.openNote?'<div class="anote">'+esc(net.openNote)+'</div>':'')
           +(net.registration?'<div class="anote"><a href="'+esc(net.registration)
             +'" target="_blank" rel="noopener noreferrer">'+esc(visUrl(net.registration))+' ↗</a></div>':'')
           +'</div>';
-        bySid[net.id]=addRingMarker(group,net.lat,net.lon,renderer,VRS_COLOR,0.25,net.label+' (VRS)',popup);
+        var vrsRing=addRingMarker(group,net.lat,net.lon,renderer,VRS_COLOR,0.25);
+        var vrsMk=addAntennaMarker(group,net.lat,net.lon,VRS_COLOR,net.label+' (VRS)',vrsPopup);
+        bySid[net.id]={visual:vrsRing,marker:vrsMk};
+      } else {
+        var liveBody='Covers <b>'+esc(net.region||'')+'</b>.'
+          +(net.stationCount>0?' '+net.stationCount+' reference stations.':'');
+        var livePopup='<div class="popup-plain"><h3>'+esc(net.label)+'</h3>'
+          +'<div class="acc" style="color:'+LIVE_NET_COLOR+'">RS network — connect to one reference station at a time'+rsChip()+'</div>'
+          +'<div style="margin:4px 0 6px;font-size:12px">'+liveBody+'</div>'
+          +(net.openNote?'<div class="anote">'+esc(net.openNote)+'</div>':'')
+          +(net.registration?'<div class="anote"><a href="'+esc(net.registration)
+            +'" target="_blank" rel="noopener noreferrer">'+esc(visUrl(net.registration))+' ↗</a></div>':'')
+          +'</div>';
+        var liveMk=addAntennaMarker(group,net.lat,net.lon,LIVE_NET_COLOR,net.label,livePopup);
+        liveById[net.id]={marker:liveMk};
       }
     });
     ['affordable','paid','restricted','info'].forEach(function(tier){
       var ic=PAID_TIER_ICONS[tier];
       (paidTiers[tier]||[]).forEach(function(net){
         var mk=addInfoMarker(group,net.lat,net.lon,buildPaidNetworkPopup(net),net.name,ic.glyph,ic.color);
-        paidLayers[tier][net.id]={marker:mk,label:net.name};
+        paidLayers[tier][net.id]={marker:mk};
       });
     });
-    return {group:group,bySid:bySid,greyById:greyById,paidLayers:paidLayers};
+    return {group:group,bySid:bySid,greyById:greyById,liveById:liveById,paidLayers:paidLayers};
   }
 
   function buildGreyPopup(label,region,note,regUrl){
@@ -886,57 +1016,81 @@
       +'</div>';
   }
 
-  function addRingMarker(group,lat,lon,renderer,col,fillOpacity,tooltipLabel,popup){
-    var visual=L.circle([lat,lon],{
+  // Coverage ring — non-interactive. Click/hover lives on the antenna marker
+  // at the centroid; the ring is purely a visual indicator of network reach.
+  function addRingMarker(group,lat,lon,renderer,col,fillOpacity){
+    return L.circle([lat,lon],{
       radius:25000,color:col,weight:2,
       fillColor:col,fillOpacity:fillOpacity,
       interactive:false,renderer:renderer,pane:'vrsPane'
     }).addTo(group);
-    var hit=L.circle([lat,lon],{
-      radius:25000,color:col,weight:40,
-      opacity:0,fill:false,
-      renderer:renderer,pane:'vrsPane'
-    }).bindTooltip(tooltipLabel,{sticky:false})
-      .bindPopup(popup).addTo(group);
-    return {visual:visual,hit:hit};
   }
 
   function buildPaidNetworkPopup(net){
+    var isInfo=net.tier==='weird';
     var accessLabel=({
       'paid':'Paid subscription required',
       'paid-affordable':'Paid subscription (affordable)',
       'restricted':'Access restricted'
-    })[net.access]||'Not freely accessible';
-    return `<div class="popup-plain"><h3>${esc(net.name)}</h3><div class="warn">${esc(accessLabel)}</div>`
+    })[net.access];
+    return `<div class="popup-plain"><h3>${esc(net.name)}</h3>`
+      +(!isInfo&&accessLabel?`<div class="warn">${esc(accessLabel)}</div>`:'')
       +(net.yearlyCost?`<div style="font-size:11px;color:var(--muted);margin:2px 0 4px">${esc(net.yearlyCost)}</div>`:'')
-      +`<div style="font-size:12px;margin:4px 0 6px">Covers <b>${esc(net.region)}</b>.</div>`
+      +(!isInfo&&net.region?`<div style="font-size:12px;margin:4px 0 6px">Covers <b>${esc(net.region)}</b>.</div>`:'')
       +(net.note?`<div class="anote">${esc(net.note)}</div>`:'')
       +(net.registration?`<div class="anote"><a href="${esc(net.registration)}" target="_blank" rel="noopener noreferrer">${esc(visUrl(net.registration))} ↗</a></div>`:'')
       +'</div>';
   }
 
-  function tierIconSvg(glyph,color,extraStyle){
+  function tierIconSvg(glyph,color,extraStyle,size){
+    size=size||14;
     var s=extraStyle?' style="'+extraStyle+'"':'';
-    return '<svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg"'+s+'>'
-      +'<circle cx="7" cy="7" r="5.75" fill="white" stroke="'+color+'" stroke-width="1.5"/>'
-      +'<text x="7" y="7" text-anchor="middle" dominant-baseline="central" font-size="8" font-weight="bold" fill="'+color+'">'+glyph+'</text>'
+    var c=size/2, r=c-1.25, fs=Math.round(size*8/14);
+    return '<svg width="'+size+'" height="'+size+'" viewBox="0 0 '+size+' '+size+'" xmlns="http://www.w3.org/2000/svg"'+s+'>'
+      +'<circle cx="'+c+'" cy="'+c+'" r="'+r+'" fill="white" stroke="'+color+'" stroke-width="1.5"/>'
+      +'<text x="'+c+'" y="'+c+'" text-anchor="middle" dominant-baseline="central" font-size="'+fs+'" font-weight="bold" fill="'+color+'">'+glyph+'</text>'
       +'</svg>';
   }
   function addInfoMarker(group,lat,lon,popup,label,glyph,color){
     glyph=glyph||'?'; color=color||INFO_MARKER_COLOR;
-    var icon=L.divIcon({className:'',iconSize:[14,14],iconAnchor:[7,7],html:tierIconSvg(glyph,color)});
-    return L.marker([lat,lon],{icon:icon,pane:'vrsPane'})
+    var icon=L.divIcon({className:'',iconSize:[18,18],iconAnchor:[9,9],html:tierIconSvg(glyph,color,null,18)});
+    return L.marker([lat,lon],{icon:icon,pane:'tierPane'})
       .bindTooltip(label,{sticky:false})
-      .bindPopup(popup).addTo(group);
+      .on('click',function(){ openCardSheet(popup); }).addTo(group);
+  }
+
+  // Antenna glyph — broadcasting-tower shape inside a white circle, drawn in
+  // the marker color. Used for free network centroids (live VRS, live non-VRS,
+  // and stale). Lives in tierPane so it inherits the z>=ZOOM_DOTS hide.
+  function antennaIconSvg(color,size,extraStyle){
+    size=size||18;
+    var s=extraStyle?' style="'+extraStyle+'"':'';
+    return '<svg width="'+size+'" height="'+size+'" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg"'+s+'>'
+      +'<circle cx="9" cy="9" r="7.75" fill="white" stroke="'+color+'" stroke-width="1.5"/>'
+      +'<path d="M5.5 6 Q9 3.5 12.5 6 M7 8 Q9 6.5 11 8" stroke="'+color+'" stroke-width="1.2" fill="none" stroke-linecap="round"/>'
+      +'<circle cx="9" cy="9" r="0.9" fill="'+color+'"/>'
+      +'<path d="M9 9.8 L9 13 M7 13 L11 13" stroke="'+color+'" stroke-width="1.2" fill="none" stroke-linecap="round"/>'
+      +'</svg>';
+  }
+  function addAntennaMarker(group,lat,lon,color,label,popup){
+    var icon=L.divIcon({className:'',iconSize:[18,18],iconAnchor:[9,9],html:antennaIconSvg(color,18)});
+    return L.marker([lat,lon],{icon:icon,pane:'tierPane'})
+      .bindTooltip(label,{sticky:false})
+      .on('click',function(){ openCardSheet(popup); }).addTo(group);
   }
 
   /* ——— Help drawer & popover ——— */
   var HELP_CATS=['Getting started','Before you start','Connect','Concepts','Migration','Troubleshooting','Advanced','Meta'];
+  // Element focused before openHelp() so we can return focus on close — keyboard
+  // users get back to where they were instead of being dumped at <body>.
+  var _drawerPrevFocus=null;
 
   function openHelp(highlightId){
     hideHelpPopover();
+    closeCardSheet();
     var drawer=document.getElementById('help-drawer');
     var scrim=document.getElementById('help-scrim');
+    if(drawer&&!drawer.classList.contains('on')) _drawerPrevFocus=document.activeElement;
     if(drawer) drawer.classList.add('on');
     if(scrim) scrim.classList.add('on');
     renderHelp('', highlightId||null);
@@ -954,6 +1108,28 @@
     var scrim=document.getElementById('help-scrim');
     if(drawer) drawer.classList.remove('on');
     if(scrim) scrim.classList.remove('on');
+    if(_drawerPrevFocus&&_drawerPrevFocus.focus){
+      try{ _drawerPrevFocus.focus(); }catch(e){}
+    }
+    _drawerPrevFocus=null;
+  }
+
+  // Cycle Tab/Shift+Tab focus inside `container` so keyboard users can't
+  // wander out of an open modal dialog into the inert app behind it.
+  function trapTabIn(container){
+    container.addEventListener('keydown', function(e){
+      if(e.key!=='Tab') return;
+      var fl=Array.from(container.querySelectorAll(
+        'button:not([disabled]),a[href],input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])'
+      )).filter(function(el){ return el.offsetParent!==null; });
+      if(!fl.length) return;
+      var first=fl[0], last=fl[fl.length-1];
+      if(e.shiftKey&&document.activeElement===first){
+        e.preventDefault(); last.focus();
+      } else if(!e.shiftKey&&document.activeElement===last){
+        e.preventDefault(); first.focus();
+      }
+    });
   }
 
   function renderHelp(query, highlightId){
@@ -1108,7 +1284,11 @@
     if(e.key==='Escape'){
       var pop=document.querySelector('.help-popover');
       if(pop){ hideHelpPopover(); return; }
-      closeHelp();
+      var drawer=document.getElementById('help-drawer');
+      if(drawer&&drawer.classList.contains('on')){ closeHelp(); return; }
+      if(isCardOpen()){ closeCardSheet(); return; }
+      var toast=document.getElementById('help-toast');
+      if(toast&&!toast.hidden){ window.__ntripDismissToast(); return; }
       return;
     }
     if(e.key==='/'&&tag!=='INPUT'&&tag!=='TEXTAREA'){
@@ -1133,6 +1313,13 @@
       try{ localStorage.setItem('ntrip-howit-seen','1'); }catch(e){}
       window.open('guide.html','_blank');
     };
+    var drawer=document.getElementById('help-drawer');
+    if(drawer) trapTabIn(drawer);
+    var card=document.getElementById('card-sheet');
+    if(card){
+      var cc=card.querySelector('.card-close');
+      if(cc) cc.onclick=closeCardSheet;
+    }
   });
 
   function setupBanner(){
@@ -1149,10 +1336,10 @@
 
   function sw(s){ return '<span style="display:inline-block;width:12px;height:12px;vertical-align:middle;'+s+'"></span>'; }
 
-  function buildTogglePanel(freeNetworks,vrsLayerBySid,greyLayerById,paidLayers,onChange){
-    var state={tier_open:true,tier_registration:true,tier_conditions:true,vrs_global:true,grey_global:true};
+  function buildTogglePanel(freeNetworks,vrsLayerBySid,greyLayerById,liveLayerBySid,paidLayers,onChange){
+    var state={tier_open:true,tier_registration:true,tier_conditions:true,
+               vrs_global:true,grey_global:true,live_global:true};
     freeNetworks.forEach(function(net){ state[net.id]=true; });
-    Object.keys(greyLayerById).forEach(function(id){ state['grey:'+id]=true; });
     Object.keys(paidLayers).forEach(function(tier){
       state[tier+'_global']=true;
       Object.keys(paidLayers[tier]).forEach(function(id){ state[tier+':'+id]=true; });
@@ -1166,15 +1353,22 @@
         var show=!!(state[sid]&&state[tier]&&state.vrs_global);
         var entry=vrsLayerBySid[sid];
         entry.visual.setStyle({opacity:show?1:0,fillOpacity:show?0.25:0});
-        var el=entry.hit.getElement();
-        if(el) el.style.pointerEvents=show?'all':'none';
+        var mkEl=entry.marker.getElement();
+        if(mkEl) mkEl.style.display=show?'':'none';
       });
       Object.keys(greyLayerById).forEach(function(id){
-        var show=!!(state['grey:'+id]&&state.grey_global);
+        var show=!!state.grey_global;
         var entry=greyLayerById[id];
         entry.visual.setStyle({opacity:show?1:0,fillOpacity:show?0.18:0});
-        var el=entry.hit.getElement();
-        if(el) el.style.pointerEvents=show?'all':'none';
+        var mkEl=entry.marker.getElement();
+        if(mkEl) mkEl.style.display=show?'':'none';
+      });
+      Object.keys(liveLayerBySid).forEach(function(sid){
+        var tier='tier_'+(accessBySid[sid]||'registration');
+        var show=!!(state[sid]&&state[tier]&&state.live_global);
+        var entry=liveLayerBySid[sid];
+        var mkEl=entry.marker.getElement();
+        if(mkEl) mkEl.style.display=show?'':'none';
       });
       Object.keys(paidLayers).forEach(function(tier){
         var registry=paidLayers[tier];
@@ -1208,6 +1402,7 @@
     });
 
     var greyCount=Object.keys(greyLayerById).length;
+    var liveCount=Object.keys(liveLayerBySid).length;
     var paidCounts={};
     Object.keys(paidLayers).forEach(function(tier){ paidCounts[tier]=Object.keys(paidLayers[tier]).length; });
 
@@ -1219,6 +1414,11 @@
     }
     var physRows=entries.map(renderRow).join('');
     var vrsCount=Object.keys(vrsLayerBySid).length;
+    var hasFreeRows=vrsCount||liveCount||greyCount;
+    var hasPaidRows=paidCounts.affordable||paidCounts.paid||paidCounts.restricted||paidCounts.info;
+    var tagSep=(hasFreeRows&&hasPaidRows)
+      ? '<div style="border-top:1px solid var(--srv-border);margin:6px 0 4px"></div>'
+      : '';
 
     // Build the DOM element once; reused by both Leaflet control and mobile panel.
     var d=document.createElement('div');
@@ -1238,25 +1438,36 @@
         +'</label>';
     }
     d.innerHTML=
-      '<b style="font-size:12px">Legend</b><br>'
+      '<button class="legend-x" aria-label="Hide legend" title="Hide legend">✕</button>'
+      +'<b style="font-size:12px">Legend</b><br>'
       +sw('background:rgb(0,170,0)')+' &lt;10 km — ~2 cm<br>'
       +sw('background:rgb(180,200,30)')+' 10–30 km — ~3 cm<br>'
       +sw('background:rgb(220,150,30)')+' 30–50 km — ~5 cm<br>'
       +sw('background:rgb(210,90,90)')+' 50–100 km — &lt;1 m<br>'
       +'<details open style="'+sep+'">'
-        +'<summary class="det-sum">Networks</summary>'
-        +'<label style="display:flex;align-items:center;gap:4px">'
-          +'<input type="checkbox" data-k="vrs_global" checked>'
-          +sw('border:2px solid '+VRS_COLOR+';background:rgba(26,93,26,0.25);border-radius:50%')
-          +(vrsCount?'VRS networks ('+vrsCount+')':'VRS circles')
-        +'</label>'
+        +'<summary class="det-sum">Tags</summary>'
+        +(vrsCount
+          ? '<label style="display:flex;align-items:center;gap:4px">'
+              +'<input type="checkbox" data-k="vrs_global" checked>'
+              +sw('border:2px solid '+VRS_COLOR+';background:rgba(26,93,26,0.25);border-radius:50%')
+              +'VRS networks ('+vrsCount+')'
+            +'</label>'
+          : '')
+        +(liveCount
+          ? '<label style="display:flex;align-items:center;gap:4px">'
+              +'<input type="checkbox" data-k="live_global" checked>'
+              +antennaIconSvg(LIVE_NET_COLOR,14,'vertical-align:middle')
+              +' RS networks ('+liveCount+')'
+            +'</label>'
+          : '')
         +(greyCount
           ? '<label style="display:flex;align-items:center;gap:4px">'
               +'<input type="checkbox" data-k="grey_global" checked>'
               +sw('border:2px solid '+GREY_MARKER_COLOR+';background:rgba(102,102,102,0.18);border-radius:50%')
-              +'Free, no data yet ('+greyCount+')'
+              +'Stale ('+greyCount+')'
             +'</label>'
           : '')
+        +tagSep
         +paidTierRow('affordable')
         +paidTierRow('paid')
         +paidTierRow('restricted')
@@ -1315,6 +1526,43 @@
     if(declutterCb) declutterCb.addEventListener('change',function(){
       _declutter=declutterCb.checked; applyDeclutter(_lastCounts);
     });
+
+    // Legend collapse — X hides the panel, the fixed top-right handle shows it
+    // back. State persisted across sessions. Right-swipe on the panel also
+    // collapses (survey-tablet ergonomics — pick a direction off the screen).
+    var handle=document.getElementById('legend-handle');
+    function collapseLegend(){
+      d.classList.add('legend-hidden');
+      if(handle) handle.classList.add('on');
+      try{ localStorage.setItem('ntrip-legend-collapsed','1'); }catch(e){}
+    }
+    function expandLegend(){
+      d.classList.remove('legend-hidden');
+      if(handle) handle.classList.remove('on');
+      try{ localStorage.removeItem('ntrip-legend-collapsed'); }catch(e){}
+    }
+    var xBtn=d.querySelector('.legend-x');
+    if(xBtn) xBtn.onclick=collapseLegend;
+    if(handle) handle.onclick=expandLegend;
+    try{ if(localStorage.getItem('ntrip-legend-collapsed')) collapseLegend(); }catch(e){}
+    // Right-swipe to collapse — guard against scroll-drag false-positives:
+    //   * require a strong horizontal-dominant gesture (dx > 60 AND dx > 2*dy)
+    //   * skip if the panel scrolled vertically during the gesture (>2px delta)
+    var _tx=null,_ty=null,_tScroll=0;
+    d.addEventListener('touchstart',function(e){
+      if(e.touches.length!==1){ _tx=null; return; }
+      _tx=e.touches[0].clientX; _ty=e.touches[0].clientY;
+      _tScroll=d.scrollTop;
+    },{passive:true});
+    d.addEventListener('touchend',function(e){
+      if(_tx==null) return;
+      var t=e.changedTouches[0];
+      var dx=t.clientX-_tx, dy=Math.abs(t.clientY-_ty);
+      var scrolled=Math.abs(d.scrollTop-_tScroll)>2;
+      _tx=_ty=null;
+      if(scrolled) return;
+      if(dx>60&&dx>2*dy) collapseLegend();
+    },{passive:true});
 
     var ctrl=L.control({position:'topright'});
     ctrl.onAdd=function(){ return d; };
@@ -1505,9 +1753,14 @@
     var netLayer=buildNetworkLayers(networks);
     netLayer.addTo(map);
 
-    // VRS network layer — always visible, not zoom-band gated.
+    // vrsPane: coverage rings (visual-only, non-interactive). Always visible.
+    // tierPane: country-level glyph markers — paid-tier $/?/✕ + free-network
+    //   antenna icons. Hidden at z>=ZOOM_DOTS where individual station dots
+    //   take over and the country aggregate becomes redundant clutter.
     map.createPane('vrsPane');
-    map.getPane('vrsPane').style.zIndex=403; // above dotsPane (402); SVG paths receive events, container passes them through
+    map.getPane('vrsPane').style.zIndex=403; // above dotsPane (402)
+    map.createPane('tierPane');
+    map.getPane('tierPane').style.zIndex=404;
     var vrsRenderer=L.svg({pane:'vrsPane',padding:0.5});
     var cmResult=buildNetworkOverlays(model.freeNetworks,
       {affordable:model.affordableNetworks,paid:model.paidNetworks,
@@ -1515,16 +1768,8 @@
     cmResult.group.addTo(map);
     var vrsLayerBySid=cmResult.bySid;
     var greyLayerById=cmResult.greyById;
+    var liveLayerBySid=cmResult.liveById;
     var paidLayers=cmResult.paidLayers;
-    // pointer-events:all is geometric — fires on the stroke band regardless of opacity.
-    // fill:false on the hit circle means no fill geometry, so the fill area is
-    // not hittable and station dots inside the ring remain reachable.
-    Object.values(vrsLayerBySid).forEach(function(entry){
-      var el=entry.hit.getElement(); if(el) el.style.pointerEvents='all';
-    });
-    Object.values(greyLayerById).forEach(function(entry){
-      var el=entry.hit.getElement(); if(el) el.style.pointerEvents='all';
-    });
 
     // Stations fresh enough for coverage raster (< 3 days stale).
     // Grey-dot stations (3–7 days) are shown on map but excluded from coverage
@@ -1604,7 +1849,7 @@
           entry.marker=L.marker([s.lat,s.lon],{icon:cachedIcon(fill)})
             .bindTooltip(names.join(' / '),
               {permanent:true,direction:'right',offset:[9,0],className:'slabel'})
-            .bindPopup(getCachedPopup(s))
+            .on('click',(function(st){ return function(){ openCardSheet(getCachedPopup(st)); }; })(s))
             .addTo(detailGroup);
           _detailMap.set(pk,entry);
         }catch(e){ console.warn('detail err',e); }
@@ -1617,6 +1862,8 @@
       // during zoom transitions.
       map.getPane('dotsPane').style.visibility=
         z>=ZOOM_DOTS?'visible':'hidden';
+      map.getPane('tierPane').style.visibility=
+        z>=ZOOM_DOTS?'hidden':'visible';
       if(z>=ZOOM_LABELS){
         refreshDetailLayer(stationIndex,z>=ZOOM_DETAIL);
         if(!map.hasLayer(detailGroup)) detailGroup.addTo(map);
@@ -1652,11 +1899,12 @@
       finishLoad();
     }
 
-    var _clickPopup=L.popup({maxWidth:320});
-    var togglePanel=buildTogglePanel(model.freeNetworks,vrsLayerBySid,greyLayerById,paidLayers,
+    var togglePanel=buildTogglePanel(model.freeNetworks,vrsLayerBySid,greyLayerById,liveLayerBySid,paidLayers,
       function(pred){ filter=pred; rebuildStationLayers(); });
+    // Map click: pick the nearest station within CLICK_RADIUS_PX, or close the
+    // card sheet if there's no station nearby (tap-on-empty-map dismisses).
     map.on('click',function(e){
-      if(!stationIndex||!visible.length) return;
+      if(!stationIndex||!visible.length){ closeCardSheet(); return; }
       var z=map.getZoom();
       var mpp=40075016.686*Math.cos(e.latlng.lat*Math.PI/180)/Math.pow(2,z+8);
       var padLat=CLICK_RADIUS_PX*mpp/111320;
@@ -1664,7 +1912,7 @@
       var ids=stationIndex.range(
         e.latlng.lng-padLon,e.latlng.lat-padLat,
         e.latlng.lng+padLon,e.latlng.lat+padLat);
-      if(!ids.length) return;
+      if(!ids.length){ closeCardSheet(); return; }
       var best=ids[0], bestD=Infinity;
       var clickPt=map.latLngToLayerPoint(e.latlng);
       for(var i=0;i<ids.length;i++){
@@ -1673,8 +1921,7 @@
         var d=(pt.x-clickPt.x)*(pt.x-clickPt.x)+(pt.y-clickPt.y)*(pt.y-clickPt.y);
         if(d<bestD){ bestD=d; best=ids[i]; }
       }
-      _clickPopup.setLatLng([visible[best].lat,visible[best].lon])
-        .setContent(getCachedPopup(visible[best])).openOn(map);
+      openCardSheet(getCachedPopup(visible[best]));
     });
 
     function updateViewCounts(){
@@ -1693,6 +1940,8 @@
     map.on('zoomanim',function(e){
       map.getPane('dotsPane').style.visibility=
         e.zoom>=ZOOM_DOTS?'visible':'hidden';
+      map.getPane('tierPane').style.visibility=
+        e.zoom>=ZOOM_DOTS?'hidden':'visible';
     });
     map.on('zoomend',function(){ applyZoom(); updateViewCounts(); });
 

@@ -104,10 +104,14 @@ times a day (01/07/13/19 UTC) plus on `workflow_dispatch`:
 ### Zoom bands
 
 - **z ≥ 10** — detailed view. Per-station dots with labels, accuracy
-  rectangles, full popups.
+  rectangles, station details card on click.
 - **z 6–9** — dots (no labels, no accuracy boxes) + coverage raster
-  (translucent). Popups on click.
-- **z ≤ 5** — coverage raster only. No dots.
+  (translucent). Station details card on click. Country-level glyph
+  markers (paid-tier $/✕/?, free-network antennas) hide at z ≥ 6 — once
+  individual station dots are visible, the country aggregate is
+  redundant clutter.
+- **z ≤ 5** — coverage raster + country-level glyph markers + coverage
+  rings. No dots.
 
 Thresholds are constants at the top of `index.html` (`ZOOM_DETAIL`,
 `ZOOM_DOTS`).
@@ -160,8 +164,8 @@ with `cos(lat)`).
 When `networks[].type == "nrtk"` is present in the JSON:
 
 - Translucent coverage polygon fill.
-- Clickable centroid marker; popup shows name, access terms, registration
-  URL, member-station list.
+- Clickable centroid marker; the station card shows name, access terms,
+  registration URL, member-station list.
 - At close zoom, member base stations still render as normal dots.
 
 Polygon source: **concave hull** of member stations, computed in the
@@ -175,35 +179,40 @@ communicates what is known. Four visual treatments:
 
 | Marker | When shown | Hobbyist message |
 |---|---|---|
-| Coloured VRS circle | Free VRS network ingested into the pipeline with live data | Sign up — corrections exist, no fixed antennas |
-| Grey circle | Free network whose endpoint is unknown / registration-gated, or a known free VRS network whose pipeline data has gone stale | Something free exists here; we haven't connected it yet |
-| Circled **?** | A substantial national-scale network where access isn't free or where something unusual gets in the way (paid, restricted, jamming, non-NTRIP, etc.) | Dead end or legwork required — popup explains |
+| Coloured VRS ring + dark-green antenna at centroid | Free VRS network ingested into the pipeline with live data. Ring is visual-only; clicks land on the antenna. | Sign up — corrections exist, no fixed antennas |
+| Bright-green antenna only (no ring) | Free per-station (RS) network ingested with live data. Caster publishes a list of physical bases; user picks the closest. | Sign up — pick a base near you |
+| Grey ring + grey antenna at centroid | Free network whose endpoint is unknown / registration-gated, or a known free network whose pipeline data has gone stale | Something free exists here; we haven't fetched fresh data |
+| Circled **$** / **✕** / **?** | Substantial national-scale network: paid, restricted, or info-only (jamming, non-NTRIP, announced-not-live, etc.). Glyph fades out at z≥6. | Dead end or legwork required — card explains |
 | Nothing | None of the above (investigation found nothing operational, post-processing-only, defence-internal, regional surveying company too small to flag, etc.). Post-processing-only government networks still get survey + `networks.md` entries even though they produce no marker. | — |
 
 The data model is **two orthogonal axes** plus runtime data presence.
 
 `tier` (in `data/country_markers.json`) describes the network's nature for a hobbyist:
 
-- `free` — no fee to use. Renders as coloured ring when `vrs:true` and the
-  source is in the pipeline with live data; otherwise as a grey ring. The
-  `note` field for a free marker without ingested data should be able to
-  truthfully begin with "N stations, free."
+- `free` — no fee to use. With `vrs:true` and live ingested data, renders
+  as a coloured ring + dark-green centroid antenna. Without `vrs`, with
+  live ingested data, renders as a bright-green centroid antenna (no
+  ring) — the per-station/RS-network case. With no live data (stale,
+  unknown endpoint, registration-gated), renders as grey ring + grey
+  antenna. The `note` field for a free marker without ingested data
+  should be able to truthfully begin with "N stations, free."
 - `paid` — substantial national-scale paid commercial operator (swipos,
-  CPOS, US-state DOTs). Renders as **?** marker.
+  CPOS, US-state DOTs). Renders as **$** glyph (red).
 - `paid-affordable` — substantial national-scale paid operator at or below
   the project's ~$200/yr cutoff (HEPOS, ROMPOS, AGROS, CRTN). Renders as
-  **?** marker.
+  **$** glyph (green).
 - `restricted` — substantial national-scale operator with no hobbyist path
-  at any price (TxDOT CORS, KazGeoDesy, DVRS). Renders as **?** marker.
+  at any price (TxDOT CORS, KazGeoDesy, DVRS). Renders as **✕** glyph.
 - `weird` — anything interesting to a target user that doesn't fit the
-  other tiers. The freeform popup note carries the explanation and is
-  the value proposition of this tier. Examples: non-standard NTRIP
+  other tiers. The freeform note carries the explanation and is the
+  value proposition of this tier. Examples: non-standard NTRIP
   (qc_mern), active jamming/spoofing (apn), infrastructure too sparse
   to work (igrs), free RINEX-only with no real-time NTRIP (rgna_mx,
   ign_gt_cors), network announced/under construction but not yet
   operational (sen_cors, fiji_dlss_cors), government CORS distributed
   only via licensed commercial resellers (os_net), micro-state with no
-  local service (li_cors, sm_cors). Renders as **?** marker.
+  local service (li_cors, sm_cors). Renders as **?** glyph. The card
+  hides the access/coverage labels for this tier (info-only context).
 
 `vrs` (boolean flag) is **orthogonal** to tier. `vrs: true` means the network
 delivers VRS / network-RTK streams. Free SAPOS, paid swipos, and restricted
@@ -214,11 +223,16 @@ Whether station data is ingested is a third axis, runtime-derived from
 `data/stations.json`. The renderer uses (tier × vrs × data-presence) to pick
 visuals:
 
-- `tier:free + vrs:true + ingested + live` → coloured ring
-- `tier:free + vrs:true + ingested + stale` → grey ring
-- `tier:free + vrs:true + not ingested` → grey ring
-- `tier:free + no vrs flag` → grey ring (small free networks like a single observatory station)
-- `tier:paid|paid-affordable|restricted|weird` → **?** marker
+- `tier:free + vrs:true + ingested + live` → coloured ring + dark-green antenna
+- `tier:free + vrs:true + ingested + stale` → grey ring + grey antenna
+- `tier:free + vrs:true + not ingested` → grey ring + grey antenna
+- `tier:free + no vrs flag + ingested + live` → bright-green antenna (no ring)
+- `tier:free + no vrs flag + stale or not ingested` → grey ring + grey antenna
+- `tier:paid` → **$** glyph (red); `tier:paid-affordable` → **$** glyph (green); `tier:restricted` → **✕** glyph; `tier:weird` → **?** glyph
+
+Country-level glyph markers (paid tiers + free-network antennas) hide at
+z ≥ ZOOM_DOTS (6) where individual station dots take over. Coverage
+rings stay visible at all zoom levels.
 
 No entry → no marker. This covers the case where a country was
 investigated and found to have nothing of value to a target user —
@@ -230,16 +244,16 @@ prose is the canonical record. Free RINEX-only networks and other
 "interesting but not directly usable" cases get a `weird` marker, not
 silence.
 
-The grey circle reuses the existing stale/grey visual language and is the most
-colorblind-safe encoding (achromatic vs. coloured, no hue dependency).
+Grey reuses the existing stale visual language (achromatic vs. coloured)
+and is the most colorblind-safe encoding (no hue dependency).
 
 A lock icon was considered for paid/restricted but rejected: in a map covered
 with rtk2go and Centipede volunteer pins, a lock at country-centroid scale reads
 as "the nearby stations are locked" rather than "this country has no free
-network." The **?** is unambiguous and self-documents as "click for info."
+network." The **$** / **✕** / **?** glyphs are unambiguous and self-document.
 
-The grey circle is the same shape as the coloured free-network circles; the
-grey variant extends the same idiom to the not-yet-ingested case so that
+Grey ring/antenna shares the shape of the coloured free-network ring/antenna;
+the grey variant extends the same idiom to the not-yet-ingested case so that
 free networks without published endpoints (Portugal, Lithuania, Thailand,
 Uganda…) read as "same kind of thing, not done yet."
 
@@ -252,16 +266,17 @@ URL when the source is in the pipeline), `pins` (boolean; true = physical
 station pins already on map), `access`, `registration`, `yearly_cost`,
 `stations_declared`, `note`.
 
-The **`note` field is user-facing** — it renders in the marker's popup tooltip
+The **`note` field is user-facing** — it renders in the marker's station card
 on the map and is read by hobbyists. Plain language; expand or avoid acronyms
 ("permanent GPS reference network" not "CORS"); never mention internal
 classifications like the `$200/yr cutoff`; never include audit-document
 phrasing like "no English pricing page" or "±2 cm horizontal accuracy at 95 %
 confidence." A good note tells the user what they need to know to act.
-Frontend suppresses the country-level circle for a `tier:free + vrs:true`
-entry when `pins` is false and the source currently has stations in the
-live feed (network is fully covered by physical pins). `pins:true` entries
-always show a VRS circle regardless of station count.
+Frontend suppresses the country-level ring + centroid antenna for a
+`tier:free + vrs:true` entry when `pins` is false and the source currently
+has stations in the live feed (network is fully covered by physical pins).
+`pins:true` entries always show a VRS ring + antenna regardless of
+station count.
 **Maintained by hand; not generated by the pipeline.** When adding or removing
 a network in `docs/networks.md`, update this file in the same commit: pick
 the tier per the rules above (`free` / `paid` / `paid-affordable` /
@@ -277,9 +292,14 @@ centroid, nationwide networks → country or company headquarters).
 - Dismiss × on the right. Dismissal persisted in `localStorage` under a
   versioned key so a future content change re-surfaces it.
 
-### Popups
+### Station card
 
-Plain language, minimised:
+Single bottom-anchored sheet, shared by every marker click (station,
+network centroid, paid-tier glyph) plus the map-click radius search.
+Width-based breakpoint at 768 px: centred fixed-width on viewports ≥ 768
+(vertical desktops, tablets in landscape); full-width strip across the
+bottom on phones. No auto-pan when the sheet opens. Plain language,
+minimised body for a station hit:
 
 ```
 <name>
@@ -291,19 +311,31 @@ Mountpoint: <name>          [copy]
 [repeat per source the station is in]
 ```
 
+Network and paid-tier hits show name + access tier + region + note +
+registration link (info-tier hides the access/region lines). Single
+card surface at a time: opening the help drawer, ESC, map-click on
+empty space, or clicking a different marker all dismiss / replace.
+
 ### Toggles
 
-Collapsible panel, top-right:
+Collapsible panel, top-right. Default expanded; user can collapse via the
+corner ✕ or a right-swipe (≥60 px, horizontal-dominant). When collapsed,
+a fixed top-right ☰ handle (44 × 44 px on coarse pointers) restores it.
+State persists across sessions in `localStorage`.
 
 - **Source** checkboxes generated from whatever is present in
   `data.sources` — one per configured caster.
 - **Access** checkboxes: Free / Registration / Category / Restricted
   (currently placeholder — only `free` has backing data).
-- **VRS networks (N)** — master toggle + per-network rows for VRS circles.
-- **Free, no data yet (N)** — master toggle + per-network rows for grey
-  circles (free networks not yet in the live feed).
-- **Paid / restricted (N)** — master toggle + per-network rows for circled-?
-  markers (paid, paid-affordable, restricted, or weird tiers).
+- **Tags** section (header):
+  - **VRS networks (N)** — master toggle + per-network rows for the
+    coloured VRS ring + dark-green centroid antenna.
+  - **RS networks (N)** — master toggle for bright-green per-station
+    antennas (free networks where you pick a base manually).
+  - **Stale (N)** — master toggle for grey ring + grey antenna
+    (free networks with no fresh data).
+  - Visual separator, then per-tier toggles for **Affordable** / **Paid**
+    / **Restricted** / **Info** glyph markers.
 - On change, re-filter stations, re-render dots + coverage raster +
   detail layer + country markers.
 
