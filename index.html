@@ -917,17 +917,19 @@
       +'</div>';
   }
 
-  function tierIconSvg(glyph,color,extraStyle){
+  function tierIconSvg(glyph,color,extraStyle,size){
+    size=size||14;
     var s=extraStyle?' style="'+extraStyle+'"':'';
-    return '<svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg"'+s+'>'
-      +'<circle cx="7" cy="7" r="5.75" fill="white" stroke="'+color+'" stroke-width="1.5"/>'
-      +'<text x="7" y="7" text-anchor="middle" dominant-baseline="central" font-size="8" font-weight="bold" fill="'+color+'">'+glyph+'</text>'
+    var c=size/2, r=c-1.25, fs=Math.round(size*8/14);
+    return '<svg width="'+size+'" height="'+size+'" viewBox="0 0 '+size+' '+size+'" xmlns="http://www.w3.org/2000/svg"'+s+'>'
+      +'<circle cx="'+c+'" cy="'+c+'" r="'+r+'" fill="white" stroke="'+color+'" stroke-width="1.5"/>'
+      +'<text x="'+c+'" y="'+c+'" text-anchor="middle" dominant-baseline="central" font-size="'+fs+'" font-weight="bold" fill="'+color+'">'+glyph+'</text>'
       +'</svg>';
   }
   function addInfoMarker(group,lat,lon,popup,label,glyph,color){
     glyph=glyph||'?'; color=color||INFO_MARKER_COLOR;
-    var icon=L.divIcon({className:'',iconSize:[14,14],iconAnchor:[7,7],html:tierIconSvg(glyph,color)});
-    return L.marker([lat,lon],{icon:icon,pane:'vrsPane'})
+    var icon=L.divIcon({className:'',iconSize:[18,18],iconAnchor:[9,9],html:tierIconSvg(glyph,color,null,18)});
+    return L.marker([lat,lon],{icon:icon,pane:'tierPane'})
       .bindTooltip(label,{sticky:false})
       .bindPopup(popup).addTo(group);
   }
@@ -1510,6 +1512,9 @@
     // VRS network layer — always visible, not zoom-band gated.
     map.createPane('vrsPane');
     map.getPane('vrsPane').style.zIndex=403; // above dotsPane (402); SVG paths receive events, container passes them through
+    // Country-level tier glyphs ($/?/✕) — hidden at z>=ZOOM_DOTS where station dots take over.
+    map.createPane('tierPane');
+    map.getPane('tierPane').style.zIndex=404;
     var vrsRenderer=L.svg({pane:'vrsPane',padding:0.5});
     var cmResult=buildNetworkOverlays(model.freeNetworks,
       {affordable:model.affordableNetworks,paid:model.paidNetworks,
@@ -1619,6 +1624,8 @@
       // during zoom transitions.
       map.getPane('dotsPane').style.visibility=
         z>=ZOOM_DOTS?'visible':'hidden';
+      map.getPane('tierPane').style.visibility=
+        z>=ZOOM_DOTS?'hidden':'visible';
       if(z>=ZOOM_LABELS){
         refreshDetailLayer(stationIndex,z>=ZOOM_DETAIL);
         if(!map.hasLayer(detailGroup)) detailGroup.addTo(map);
@@ -1695,6 +1702,8 @@
     map.on('zoomanim',function(e){
       map.getPane('dotsPane').style.visibility=
         e.zoom>=ZOOM_DOTS?'visible':'hidden';
+      map.getPane('tierPane').style.visibility=
+        e.zoom>=ZOOM_DOTS?'hidden':'visible';
     });
     map.on('zoomend',function(){ applyZoom(); updateViewCounts(); });
 
