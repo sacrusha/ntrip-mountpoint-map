@@ -437,9 +437,9 @@
 </div>
 <!-- help drawer -->
 <div id="help-scrim"></div>
-<aside id="help-drawer" aria-label="Help">
+<aside id="help-drawer" role="dialog" aria-modal="true" aria-labelledby="help-drawer-title">
   <div class="dh">
-    <h3>Help</h3>
+    <h3 id="help-drawer-title">Help</h3>
     <button class="x" id="help-close" aria-label="Close">✕</button>
   </div>
   <div class="help-dsearch">
@@ -450,8 +450,11 @@
 </aside>
 <!-- legend handle — fixed top-right button to re-open the legend after collapse -->
 <button id="legend-handle" aria-label="Show legend" title="Show legend">≡</button>
-<!-- card bottom-sheet — single card surface for any marker click -->
-<div id="card-sheet" role="dialog" aria-label="Selection details">
+<!-- card bottom-sheet — single card surface for any marker click.
+     role=region (not dialog) because the sheet is non-modal: the rest of
+     the app stays interactive (tap another marker to replace, tap the map
+     to dismiss). aria-live=polite announces content changes for SR users. -->
+<div id="card-sheet" role="region" aria-label="Selection details" aria-live="polite">
   <button class="card-close" aria-label="Close">✕</button>
   <div class="card-content"></div>
 </div>
@@ -1067,12 +1070,16 @@
 
   /* ——— Help drawer & popover ——— */
   var HELP_CATS=['Getting started','Before you start','Connect','Concepts','Migration','Troubleshooting','Advanced','Meta'];
+  // Element focused before openHelp() so we can return focus on close — keyboard
+  // users get back to where they were instead of being dumped at <body>.
+  var _drawerPrevFocus=null;
 
   function openHelp(highlightId){
     hideHelpPopover();
     closeCardSheet();
     var drawer=document.getElementById('help-drawer');
     var scrim=document.getElementById('help-scrim');
+    if(drawer&&!drawer.classList.contains('on')) _drawerPrevFocus=document.activeElement;
     if(drawer) drawer.classList.add('on');
     if(scrim) scrim.classList.add('on');
     renderHelp('', highlightId||null);
@@ -1090,6 +1097,28 @@
     var scrim=document.getElementById('help-scrim');
     if(drawer) drawer.classList.remove('on');
     if(scrim) scrim.classList.remove('on');
+    if(_drawerPrevFocus&&_drawerPrevFocus.focus){
+      try{ _drawerPrevFocus.focus(); }catch(e){}
+    }
+    _drawerPrevFocus=null;
+  }
+
+  // Cycle Tab/Shift+Tab focus inside `container` so keyboard users can't
+  // wander out of an open modal dialog into the inert app behind it.
+  function trapTabIn(container){
+    container.addEventListener('keydown', function(e){
+      if(e.key!=='Tab') return;
+      var fl=Array.from(container.querySelectorAll(
+        'button:not([disabled]),a[href],input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])'
+      )).filter(function(el){ return el.offsetParent!==null; });
+      if(!fl.length) return;
+      var first=fl[0], last=fl[fl.length-1];
+      if(e.shiftKey&&document.activeElement===first){
+        e.preventDefault(); last.focus();
+      } else if(!e.shiftKey&&document.activeElement===last){
+        e.preventDefault(); first.focus();
+      }
+    });
   }
 
   function renderHelp(query, highlightId){
@@ -1271,14 +1300,12 @@
       try{ localStorage.setItem('ntrip-howit-seen','1'); }catch(e){}
       window.open('guide.html','_blank');
     };
+    var drawer=document.getElementById('help-drawer');
+    if(drawer) trapTabIn(drawer);
     var card=document.getElementById('card-sheet');
     if(card){
       var cc=card.querySelector('.card-close');
       if(cc) cc.onclick=closeCardSheet;
-      // Stop click/scroll propagation so map clicks don't close the sheet
-      // when the user is interacting with its contents.
-      L.DomEvent.disableClickPropagation(card);
-      L.DomEvent.disableScrollPropagation(card);
     }
   });
 
