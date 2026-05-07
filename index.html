@@ -384,6 +384,7 @@
   var MULTI_COLOR='#222', UNKNOWN_SOURCE_COLOR='#888', VRS_COLOR='#1a5d1a';
   var GREY_MARKER_COLOR='#666';   // matches stale-pin colour
   var INFO_MARKER_COLOR='#888';   // circled-? fallback / info markers
+  var LIVE_NET_COLOR='rgb(0,170,0)'; // free non-VRS network markers — matches <10 km coverage band
   var PAID_TIER_ICONS={
     affordable:{glyph:'$',color:'#22a722'},
     paid:      {glyph:'$',color:'#d44'},
@@ -834,35 +835,53 @@
     });
     return group;
   }
-  // freeNetworks routing: vrs+live -> VRS ring (bySid), dead -> grey ring (greyById), !lat -> no marker.
-  // paidTiers {affordable,paid,restricted,info} -> ? / $ / ✕ markers per tier.
+  // freeNetworks routing:
+  //   vrs+live+data    -> VRS_COLOR ring (visual) + dark-green antenna marker (bySid)
+  //   non-vrs+live     -> bright-green antenna marker only, no ring (liveById)
+  //   stale/dead/no-data -> grey ring (visual) + grey antenna marker (greyById)
+  //   !lat             -> no marker
+  // Click/hover always lives on the antenna marker; rings are non-interactive.
+  // Markers sit in tierPane and inherit its z>=ZOOM_DOTS hide.
   function buildNetworkOverlays(freeNetworks,paidTiers,renderer){
     var group=L.layerGroup();
-    var bySid={}, greyById={};
+    var bySid={}, greyById={}, liveById={};
     var paidLayers={affordable:{},paid:{},restricted:{},info:{}};
     freeNetworks.forEach(function(net){
       if(!net.lat) return;
-      // Colored VRS ring only when caster is live AND we successfully fetched stations.
-      // Otherwise (dead, stale, or zero stations seen) render a grey "stale" ring.
       var isLive=net.staleness==='live'&&net.stationCount>0;
       if(!isLive){
         var note=net.note||net.openNote||'';
-        var ge=addRingMarker(group,net.lat,net.lon,renderer,GREY_MARKER_COLOR,0.18,
-          net.label,buildGreyPopup(net.label,net.region||'',note,net.registration));
-        ge.label=net.label; greyById[net.id]=ge;
+        var greyPopup=buildGreyPopup(net.label,net.region||'',note,net.registration);
+        var greyRing=addRingMarker(group,net.lat,net.lon,renderer,GREY_MARKER_COLOR,0.18);
+        var greyMk=addAntennaMarker(group,net.lat,net.lon,GREY_MARKER_COLOR,net.label,greyPopup);
+        greyById[net.id]={visual:greyRing,marker:greyMk,label:net.label};
       } else if(net.vrs){
-        var body='Covers <b>'+esc(net.region||'')+'</b>.'
+        var vrsBody='Covers <b>'+esc(net.region||'')+'</b>.'
           +' Reference stations are shown on the map.'
           +' Connect via a VRS mountpoint for uniform cm-accuracy across the network'
           +' without manual base selection.';
-        var popup='<div class="popup-plain"><h3>'+esc(net.label)+'</h3>'
+        var vrsPopup='<div class="popup-plain"><h3>'+esc(net.label)+'</h3>'
           +'<div class="acc" style="color:'+VRS_COLOR+'">VRS/NRTK network — fixed stations on map'+vrsChip()+'</div>'
-          +'<div style="margin:4px 0 6px;font-size:12px">'+body+'</div>'
+          +'<div style="margin:4px 0 6px;font-size:12px">'+vrsBody+'</div>'
           +(net.openNote?'<div class="anote">'+esc(net.openNote)+'</div>':'')
           +(net.registration?'<div class="anote"><a href="'+esc(net.registration)
             +'" target="_blank" rel="noopener noreferrer">'+esc(visUrl(net.registration))+' ↗</a></div>':'')
           +'</div>';
-        bySid[net.id]=addRingMarker(group,net.lat,net.lon,renderer,VRS_COLOR,0.25,net.label+' (VRS)',popup);
+        var vrsRing=addRingMarker(group,net.lat,net.lon,renderer,VRS_COLOR,0.25);
+        var vrsMk=addAntennaMarker(group,net.lat,net.lon,VRS_COLOR,net.label+' (VRS)',vrsPopup);
+        bySid[net.id]={visual:vrsRing,marker:vrsMk};
+      } else {
+        var liveBody='Covers <b>'+esc(net.region||'')+'</b>.'
+          +(net.stationCount>0?' '+net.stationCount+' reference stations.':'');
+        var livePopup='<div class="popup-plain"><h3>'+esc(net.label)+'</h3>'
+          +'<div class="acc" style="color:'+LIVE_NET_COLOR+'">Free reference network</div>'
+          +'<div style="margin:4px 0 6px;font-size:12px">'+liveBody+'</div>'
+          +(net.openNote?'<div class="anote">'+esc(net.openNote)+'</div>':'')
+          +(net.registration?'<div class="anote"><a href="'+esc(net.registration)
+            +'" target="_blank" rel="noopener noreferrer">'+esc(visUrl(net.registration))+' ↗</a></div>':'')
+          +'</div>';
+        var liveMk=addAntennaMarker(group,net.lat,net.lon,LIVE_NET_COLOR,net.label,livePopup);
+        liveById[net.id]={marker:liveMk};
       }
     });
     ['affordable','paid','restricted','info'].forEach(function(tier){
@@ -872,7 +891,7 @@
         paidLayers[tier][net.id]={marker:mk,label:net.name};
       });
     });
-    return {group:group,bySid:bySid,greyById:greyById,paidLayers:paidLayers};
+    return {group:group,bySid:bySid,greyById:greyById,liveById:liveById,paidLayers:paidLayers};
   }
 
   function buildGreyPopup(label,region,note,regUrl){
@@ -882,19 +901,14 @@
       +'</div>';
   }
 
-  function addRingMarker(group,lat,lon,renderer,col,fillOpacity,tooltipLabel,popup){
-    var visual=L.circle([lat,lon],{
+  // Coverage ring — non-interactive. Click/hover lives on the antenna marker
+  // at the centroid; the ring is purely a visual indicator of network reach.
+  function addRingMarker(group,lat,lon,renderer,col,fillOpacity){
+    return L.circle([lat,lon],{
       radius:25000,color:col,weight:2,
       fillColor:col,fillOpacity:fillOpacity,
       interactive:false,renderer:renderer,pane:'vrsPane'
     }).addTo(group);
-    var hit=L.circle([lat,lon],{
-      radius:25000,color:col,weight:40,
-      opacity:0,fill:false,
-      renderer:renderer,pane:'vrsPane'
-    }).bindTooltip(tooltipLabel,{sticky:false})
-      .bindPopup(popup).addTo(group);
-    return {visual:visual,hit:hit};
   }
 
   function buildPaidNetworkPopup(net){
@@ -925,6 +939,26 @@
   function addInfoMarker(group,lat,lon,popup,label,glyph,color){
     glyph=glyph||'?'; color=color||INFO_MARKER_COLOR;
     var icon=L.divIcon({className:'',iconSize:[18,18],iconAnchor:[9,9],html:tierIconSvg(glyph,color,null,18)});
+    return L.marker([lat,lon],{icon:icon,pane:'tierPane'})
+      .bindTooltip(label,{sticky:false})
+      .bindPopup(popup).addTo(group);
+  }
+
+  // Antenna glyph — broadcasting-tower shape inside a white circle, drawn in
+  // the marker color. Used for free network centroids (live VRS, live non-VRS,
+  // and stale). Lives in tierPane so it inherits the z>=ZOOM_DOTS hide.
+  function antennaIconSvg(color,size,extraStyle){
+    size=size||18;
+    var s=extraStyle?' style="'+extraStyle+'"':'';
+    return '<svg width="'+size+'" height="'+size+'" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg"'+s+'>'
+      +'<circle cx="9" cy="9" r="7.75" fill="white" stroke="'+color+'" stroke-width="1.5"/>'
+      +'<path d="M5.5 6 Q9 3.5 12.5 6 M7 8 Q9 6.5 11 8" stroke="'+color+'" stroke-width="1.2" fill="none" stroke-linecap="round"/>'
+      +'<circle cx="9" cy="9" r="0.9" fill="'+color+'"/>'
+      +'<path d="M9 9.8 L9 13 M7 13 L11 13" stroke="'+color+'" stroke-width="1.2" fill="none" stroke-linecap="round"/>'
+      +'</svg>';
+  }
+  function addAntennaMarker(group,lat,lon,color,label,popup){
+    var icon=L.divIcon({className:'',iconSize:[18,18],iconAnchor:[9,9],html:antennaIconSvg(color,18)});
     return L.marker([lat,lon],{icon:icon,pane:'tierPane'})
       .bindTooltip(label,{sticky:false})
       .bindPopup(popup).addTo(group);
@@ -1149,8 +1183,9 @@
 
   function sw(s){ return '<span style="display:inline-block;width:12px;height:12px;vertical-align:middle;'+s+'"></span>'; }
 
-  function buildTogglePanel(freeNetworks,vrsLayerBySid,greyLayerById,paidLayers,onChange){
-    var state={tier_open:true,tier_registration:true,tier_conditions:true,vrs_global:true,grey_global:true};
+  function buildTogglePanel(freeNetworks,vrsLayerBySid,greyLayerById,liveLayerBySid,paidLayers,onChange){
+    var state={tier_open:true,tier_registration:true,tier_conditions:true,
+               vrs_global:true,grey_global:true,live_global:true};
     freeNetworks.forEach(function(net){ state[net.id]=true; });
     Object.keys(greyLayerById).forEach(function(id){ state['grey:'+id]=true; });
     Object.keys(paidLayers).forEach(function(tier){
@@ -1166,15 +1201,22 @@
         var show=!!(state[sid]&&state[tier]&&state.vrs_global);
         var entry=vrsLayerBySid[sid];
         entry.visual.setStyle({opacity:show?1:0,fillOpacity:show?0.25:0});
-        var el=entry.hit.getElement();
-        if(el) el.style.pointerEvents=show?'all':'none';
+        var mkEl=entry.marker.getElement();
+        if(mkEl) mkEl.style.display=show?'':'none';
       });
       Object.keys(greyLayerById).forEach(function(id){
         var show=!!(state['grey:'+id]&&state.grey_global);
         var entry=greyLayerById[id];
         entry.visual.setStyle({opacity:show?1:0,fillOpacity:show?0.18:0});
-        var el=entry.hit.getElement();
-        if(el) el.style.pointerEvents=show?'all':'none';
+        var mkEl=entry.marker.getElement();
+        if(mkEl) mkEl.style.display=show?'':'none';
+      });
+      Object.keys(liveLayerBySid).forEach(function(sid){
+        var tier='tier_'+(accessBySid[sid]||'registration');
+        var show=!!(state[sid]&&state[tier]&&state.live_global);
+        var entry=liveLayerBySid[sid];
+        var mkEl=entry.marker.getElement();
+        if(mkEl) mkEl.style.display=show?'':'none';
       });
       Object.keys(paidLayers).forEach(function(tier){
         var registry=paidLayers[tier];
@@ -1208,6 +1250,7 @@
     });
 
     var greyCount=Object.keys(greyLayerById).length;
+    var liveCount=Object.keys(liveLayerBySid).length;
     var paidCounts={};
     Object.keys(paidLayers).forEach(function(tier){ paidCounts[tier]=Object.keys(paidLayers[tier]).length; });
 
@@ -1244,12 +1287,21 @@
       +sw('background:rgb(220,150,30)')+' 30–50 km — ~5 cm<br>'
       +sw('background:rgb(210,90,90)')+' 50–100 km — &lt;1 m<br>'
       +'<details open style="'+sep+'">'
-        +'<summary class="det-sum">Networks</summary>'
-        +'<label style="display:flex;align-items:center;gap:4px">'
-          +'<input type="checkbox" data-k="vrs_global" checked>'
-          +sw('border:2px solid '+VRS_COLOR+';background:rgba(26,93,26,0.25);border-radius:50%')
-          +(vrsCount?'VRS networks ('+vrsCount+')':'VRS circles')
-        +'</label>'
+        +'<summary class="det-sum">Tags</summary>'
+        +(vrsCount
+          ? '<label style="display:flex;align-items:center;gap:4px">'
+              +'<input type="checkbox" data-k="vrs_global" checked>'
+              +sw('border:2px solid '+VRS_COLOR+';background:rgba(26,93,26,0.25);border-radius:50%')
+              +'VRS networks ('+vrsCount+')'
+            +'</label>'
+          : '')
+        +(liveCount
+          ? '<label style="display:flex;align-items:center;gap:4px">'
+              +'<input type="checkbox" data-k="live_global" checked>'
+              +antennaIconSvg(LIVE_NET_COLOR,14,'vertical-align:middle')
+              +' Free networks ('+liveCount+')'
+            +'</label>'
+          : '')
         +(greyCount
           ? '<label style="display:flex;align-items:center;gap:4px">'
               +'<input type="checkbox" data-k="grey_global" checked>'
@@ -1518,16 +1570,8 @@
     cmResult.group.addTo(map);
     var vrsLayerBySid=cmResult.bySid;
     var greyLayerById=cmResult.greyById;
+    var liveLayerBySid=cmResult.liveById;
     var paidLayers=cmResult.paidLayers;
-    // pointer-events:all is geometric — fires on the stroke band regardless of opacity.
-    // fill:false on the hit circle means no fill geometry, so the fill area is
-    // not hittable and station dots inside the ring remain reachable.
-    Object.values(vrsLayerBySid).forEach(function(entry){
-      var el=entry.hit.getElement(); if(el) el.style.pointerEvents='all';
-    });
-    Object.values(greyLayerById).forEach(function(entry){
-      var el=entry.hit.getElement(); if(el) el.style.pointerEvents='all';
-    });
 
     // Stations fresh enough for coverage raster (< 3 days stale).
     // Grey-dot stations (3–7 days) are shown on map but excluded from coverage
@@ -1658,7 +1702,7 @@
     }
 
     var _clickPopup=L.popup({maxWidth:320});
-    var togglePanel=buildTogglePanel(model.freeNetworks,vrsLayerBySid,greyLayerById,paidLayers,
+    var togglePanel=buildTogglePanel(model.freeNetworks,vrsLayerBySid,greyLayerById,liveLayerBySid,paidLayers,
       function(pred){ filter=pred; rebuildStationLayers(); });
     map.on('click',function(e){
       if(!stationIndex||!visible.length) return;
