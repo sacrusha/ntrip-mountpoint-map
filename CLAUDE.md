@@ -27,9 +27,9 @@ docs/
   global-survey.md               # Greppable RTK landscape, global networks.
   networks.md                    # Greppable list of known networks, Endpoints, credentials, cost, etc. Always ensure edits match format and scope of existing entries.
   networks.proc.md               # editing rules for networks.md. Read BEFORE editing.
-  pipeline.md                    # cross-file flow: country-survey → networks → markers + fetch. Referenced by all per-file .proc.md sidecars.
-  ntrip_research/                # per-country primary research files (CC_Name.md), citation-grade. Upstream of country-survey.md but not yet formally wired into the pipeline.
-  research_task.txt              # prompt template used to produce ntrip_research/ entries.
+  pipeline.md                    # cross-file flow: ntrip_research → country-survey → networks → markers + fetch. Referenced by all per-file .proc.md sidecars.
+  ntrip_research/                # per-country primary research files (CC_Name.md), citation-grade. Upstream input to country-survey.md — see pipeline.md "Research stage".
+  research_task.txt              # prompt template used to produce ntrip_research/ entries; research is run in an external web-enabled environment, not this sandbox.
 
 .claude/token-reduction-patterns.md # rules for producing token-optimized content for ai consumption, applies to gnss-ai-guide.md, can be used for other ai facing content
   
