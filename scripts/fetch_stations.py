@@ -94,11 +94,9 @@ SOURCES = [
      "type": "physical-vrs", "country": ["DE"],
      "region": "Hessen", "group": "sapos",
      "access": "registration", "registration": "https://www.sapos.de", "openNote": 'Free registration required — select your federal state'},
-    {"id": "sapos_RP",    "url": "http://www.sapos-ntrip.rlp.de:2101/",
-     "color": "#2d6e6e", "label": "sapos RP",
-     "type": "physical-vrs", "country": ["DE"],
-     "region": "Rheinland-Pfalz", "group": "sapos",
-     "access": "registration", "registration": "https://www.sapos.de", "openNote": 'Free registration required — select your federal state'},
+    # sapos_RP removed 2026-05-07: paid-only state (€120/yr/credential HEPS/GPPS
+    # + €100 setup), most restrictive in DE. Surfaced via the paid-affordable
+    # country marker in data/country_markers.json instead.
     {"id": "sapos_BW",    "url": "http://www.sapos-bw-ntrip.de:2101/",
      "color": "#2d6e6e", "label": "sapos BW",
      "type": "vrs-only", "country": ["DE"],
