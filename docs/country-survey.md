@@ -998,22 +998,32 @@ similarly have no published coverage for these jurisdictions.
 
 ### US — United States
 
-**date_added**: 2026-05-02
+**date_added**: 2026-05-07
 
 - **Free government RTK**: EarthScope NOTA (`ntrip.earthscope.org:2101`, ~1,000+
   stations, single-base, non-commercial NULA) — Americas-wide, dense in western USA.
+  Old hostname `rtgpsout.earthscope.org` retired July 2025.
   → networks.md: `earthscope`
 
   Physical-coordinate state DOT networks (free registration unless noted; all listed
-  in `docs/networks.md`): WISCORS (WI), FPRN (FL), ARDOT RTN (AR), MaCORS (MA),
-  VECTOR (VT), AzCORS (AZ), GCGC RTN (MS), AlCORS (AL), ORGN (OR), MSRN (MI),
-  NYSNet (NY), InCORS (IN), IARTN (IA) — physical stations.
-  VRS-only: KyCORS (KY), MnCORS (MN), ODOT RTN (OH), MoDOT RTN (MO, notarized
-  agreement required), WVRTN (WV), MaineDOT (ME), Mesa County RTVRN (CO, county-level,
-  ~33 underlying stations across western Colorado).
+  in `docs/networks.md`): WISCORS (WI, 115+ stations), FPRN (FL, ~100 stations),
+  ARDOT RTN (AR), MaCORS (MA, 22 stations; VRS iMAX), VECTOR (VT, 18 stations),
+  AzCORS (AZ, 71 sites including EarthScope/NPS; operator ADWR), GCGC RTN (MS, 52 stations,
+  operated by University of Southern Mississippi), AlCORS (AL; non-standard port 10099;
+  LeicaMAX network solution), ORGN (OR, non-standard port 9881), MSRN (MI, ~95 stations,
+  non-standard port 10010/10011), NYSNet (NY, ~150 stations, Leica MAC not strict VRS),
+  InCORS (IN, 60 stations including shared MI/OH/KY), IARTN (IA, 83 stations,
+  non-standard port 10000), ACORN CT (`acorn.uconn.edu:2101`, 13 sensors in CT/RI/MA/NY,
+  operated by CTDOT + UConn; Galileo + BeiDou added mid-2025) — physical stations.
+  VRS-only: KyCORS (KY), MnCORS (MN, 140+ stations incl. 4 new northern sites added
+  early 2026; non-standard port 9000), ODOT RTN (OH; VRS, multi-constellation upgrade 2024),
+  MoDOT RTN (MO, 78 stations, notarized agreement required), WVRTN (WV, 34 stations;
+  Trimble Alloy receivers upgraded 2024), MaineDOT (ME; migrated to new host
+  `medotrtn.maine.gov:2101` October 2025, old host mdotcors.maine.gov retired),
+  Mesa County RTVRN (CO, county-level, 33 stations across western Colorado).
   → networks.md: `wiscors`, `fprn`, `ardot_rtn`, `macors`, `vector`, `azcors`,
-  `gcgc_rtn`, `alcors`, `orgn`, `msrn`, `nysnet`, `incors`, `iartn`, `kycors`,
-  `mncors`, `odot_rtn`, `modot_rtn`, `wvrtn`, `mainedot`, `mesa_rtvrn`
+  `gcgc_rtn`, `alcors`, `orgn`, `msrn`, `nysnet`, `incors`, `iartn`, `ct_acorn`,
+  `kycors`, `mncors`, `odot_rtn`, `modot_rtn`, `wvrtn`, `mainedot`, `mesa_rtvrn`
 
   Note: MnCORS, ORGN, MSRN, NYSNet, AzCORS have significant EarthScope NOTA overlap —
   expect duplicate physical pins until deduplication is added. VRS-only entries (KyCORS,
@@ -1045,15 +1055,38 @@ similarly have no published coverage for these jurisdictions.
 
   Paid/restricted states: CRTN (CA, $100 one-time fee, paid-affordable; clearinghouse for
   SOPAC SCIGN, BARD, USGS Pasadena SCIGN, Caltrans CVSRN, Orange County OCRTN, and
-  EarthScope NOTA in California; universities/schools exempt from fee), SCRTN (SC, $600/yr per login), NCRTN (NC ~$500/yr), TDOT (TN ~$450/yr), TURN GPS (UT ~$600/yr), MTSRN
-  (MT ~$1,500/yr), WSRN (WA ~$1,900/yr; PANGA/CWU contributes Puget Sound antennae),
-  TxDOT (employees-only), Caltrans (vetted agency partners only). → networks.md: `crtn`,
+  EarthScope NOTA in California; universities/schools exempt from fee; RTCM 3.1 added
+  Oct 2025), SCRTN (SC, $1,200 first login / $600 additional; scrtn.sc.gov:2101),
+  NCRTN (NC, $500 one-time per login — perpetual credentials; rtn.nc.gov:2101),
+  TDOT (TN, $450/yr per FY25 contract; migrated to Leica Feb 2025; portal.tndot.net),
+  TURN GPS (UT + NV, $600/yr, administered by Utah UGRC; Nevada GPS Network bundled),
+  MTSRN (MT, $1,500/yr, rate effective July 2024; mtsrn.org:2101; launched March 2022),
+  WSRN (WA, $1,900/yr; transitioning to NATRF2022 on port 2022; NAD83 on port 2011;
+  PANGA/CWU contributes Puget Sound antennae),
+  TxDOT (256 stations, employees/contractors-only; not open to public at any price),
+  Caltrans (vetted agency partners only). → networks.md: `crtn`,
   `scrtn`, `ncrtn`, `tdot_rtn`, `turn_gps`, `mtsrn`, `wsrn`, `txrtn`, `calrtns`
 
+  C4Gnet LA (LSU Center for GeoInformatics, `c4gnet.xyz:9000`, paid; entry-level 10-hr
+  tier $495/yr; unlimited RTK $3,500/yr; VRS + PPP products; full GREC constellation).
+  → networks.md: `c4gnet`
+
+  Under construction: IDOT CORS (Illinois) — ~70 sites planned, $4.5M federal + state
+  funding; kickoff November 2024; "first free public network of its kind in Illinois";
+  no live NTRIP endpoint or timeline as of 2026-05-07. Commercial alternative while
+  under construction: ReIL-NET (Kara Company, 55+ base stations, Chicagoland + Central IL,
+  $200/month). → networks.md: `idot_cors`
+
+  No state caster: VA (VDOT abandoned RTK network after commercial-operator litigation),
+  OK, NM, WY, ID, HI, NH, RI, NJ, PA, DE, MD, DC, ND, SD, NE, KS. EarthScope NOTA
+  provides sparse single-base fallback for all these states.
+
   No federal free NTRIP: NOAA/NGS real-time service shut Apr 2013 (budget sequestration).
-- **Volunteer**: rtk2go ~142 US bases (largest single-country cluster on rtk2go);
-  dense in upper Midwest, Pacific Northwest, mid-Atlantic. Centipede ~3 US nodes.
-- **Gap**: Great Plains and interior South have sparse coverage despite state networks.
+- **Volunteer**: rtk2go 147 US bases (largest single-country cluster on rtk2go);
+  dense in upper Midwest, Pacific Northwest, mid-Atlantic. Centipede 5 US nodes.
+- **Gap**: Great Plains (ND, SD, NE, KS), Interior South (VA, GA has no free state caster),
+  and Pacific Island states (HI) have no free public RTK. IDOT CORS under construction
+  will fill the IL gap; no funded public networks announced for the remaining gap states.
 
 ### PR — Puerto Rico (US territory)
 
@@ -1086,13 +1119,24 @@ similarly have no published coverage for these jurisdictions.
 
 ### VI — US Virgin Islands (US territory)
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-07
 
 - **Free government RTK**: none territory-operated. EarthScope NOTA (`ntrip.earthscope.org:2101`,
-  non-commercial NULA) includes COCONet/NOTA stations in the PRVI region that cover the
-  Virgin Islands; the same registration as continental US applies.
+  non-commercial NULA) streams STVI_RTCM3P3 on St. Thomas (18.34°N / −64.97°W; RTCM 3.3,
+  GPS+GLO+BDS+GAL at 1 Hz; part of PRGPS sub-network, archived since 2008). Useful for
+  short-baseline RTK within ~30–50 km (St. Thomas, St. John, BVI area); no VRS or FKP.
+  EarthScope also streams CN03_RTCM3P3 on Tortola/BVI (~30 km NE of St. Thomas) as a
+  secondary reference. Same non-commercial registration applies as for continental US.
   → networks.md: `earthscope`
+
+  NOAA NCN CORS has four USVI stations (STVI, VITH on St. Thomas; CRO1, VIKH on St. Croix)
+  — RINEX download only; no public NTRIP stream.
+
+  PRSN/UPRM (Puerto Rico Seismic Network, 18 GNSS stations covering PR + USVI + BVI)
+  operates an NTRIP service restricted to academic/government users.
 - **Volunteer**: none. Zero VI mountpoints on rtk2go or Centipede.
+- **Gap**: no VRS; single-station NOTA streams give RTK within ~50 km of St. Thomas. No
+  commercial RTK network (Trimble VRS Now, Hexagon SmartNet, GEODNET) confirmed in USVI.
 
 ---
 
@@ -3346,18 +3390,17 @@ similarly have no published coverage for these jurisdictions.
 
 ### YE — Yemen
 
-**date_added**: 2026-04-28
+**date_added**: 2026-05-07
 
 - **Free government RTK**: none. General Survey Authority (GAS) operated a small
   fixed reference station network (CORS) pre-conflict; civil war since 2015 has severely disrupted all
-  public infrastructure. No functioning public NTRIP caster is known.
-- **Volunteer**: rtk2go 1 base — `s9123A22404` at Sanaa (15.29°N, 44.24°E),
-  RTCM 3.2, GPS + BDS dual-frequency. Single independent hobbyist installation;
-  connectivity and uptime unreliable given ongoing conflict.
-- **Gap**: effectively no RTK coverage for hobbyists. The single rtk2go station
-  provides a ~50–70 km useful radius under good conditions but cannot be relied
-  upon. Note for map completeness only; recommending RTK activity in Yemen is
-  not appropriate given the conflict context.
+  public infrastructure. No functioning public NTRIP caster is known; GAS website
+  unreachable as of 2026-05-06.
+- **Volunteer**: none. rtk2go sourcetable scan for Yemen coordinates (12°–18°N / 42°–50°E)
+  and country codes returned zero results as of 2026-05-06 — a previously noted hobbyist
+  mount (`s9123A22404`, Sanaa) is no longer present. Centipede: zero YE entries.
+- **Gap**: effectively no RTK coverage for hobbyists. Galileo HAS (~40 cm, no internet)
+  is theoretically usable but of limited practical value in a conflict zone.
 
 ### ZA — South Africa
 

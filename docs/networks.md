@@ -799,16 +799,19 @@ default). Free registration.
 ## orgn — ORGN (US-OR)
 
 **status**:    free
-**host:port**: `167.131.0.205:9879`
+**host:port**: `orgn.odot.state.or.us:9881` (IP 167.131.109.57; SOURCETABLE 200 OK 2026-05-07)
 **type**:      physical-coord-vrs
-**access**:    registration; free via oregon.gov (Oregon DOT)
+**access**:    registration; free via oregon.gov/odot/orgn (Oregon DOT)
 **pipeline-access**: registration
 **stations**:  ~100
 **source**:    oregon.gov (Oregon Department of Transportation)
 **operator**:  Oregon DOT (ODOT)
+**date_added**: 2026-05-07
 
-Oregon GPS Network operated by ODOT. Bare IP address; non-standard port 9879
-(Leica). Significant overlap with EarthScope NOTA expected.
+Oregon Real-Time GNSS Network. Leica GNSS Spider. Non-standard port 9881 (confirmed
+live 2026-05-07 at IP 167.131.109.57). Note: fetch_stations.py entry uses older IP
+167.131.0.205 and port 9879 — may need update if that endpoint stops responding.
+Significant overlap with EarthScope NOTA expected.
 
 ---
 
@@ -871,6 +874,28 @@ Indiana CORS Network. Non-standard port 10000. Free registration.
 **operator**:  Iowa DOT
 
 Iowa Real-Time Network operated by Iowa DOT. 83 physical stations. Free registration.
+Note: IP 165.206.203.10 port 10000 confirmed SOURCETABLE 200 OK 2026-05-07; port 2101 on
+iartnsbc.iowadot.gov returns 403/timeout from external — fetch via IP:port may be needed.
+
+---
+
+## ct_acorn — ACORN (US-CT)
+
+**status**:    free
+**host:port**: `acorn.uconn.edu:2101`
+**type**:      physical-coord-vrs
+**access**:    registration; free via acorn.uconn.edu (CTDOT + UConn)
+**pipeline-access**: registration
+**stations**:  13 (9 in CT, 1 in RI, 2 in southern MA, 1 Long Island NY)
+**source**:    acorn.uconn.edu (Connecticut DOT + UConn Department of Natural Resources)
+**operator**:  CTDOT + University of Connecticut (UConn DNRE)
+**date_added**: 2026-05-07
+
+Advanced Continuously Operating Reference Network for Connecticut. Trimble Pivot platform.
+13 sensors covering CT, RI, southern MA, and Long Island NY. GPS + GLONASS + Galileo +
+BeiDou (Galileo and BeiDou added mid-2025). Primary VRS mountpoints: `VRS3_RTX`
+(multi-constellation) and `VRSX_RTX` (Trimble equipment). Useful fallback for Rhode Island
+users (no RI state caster). SOURCETABLE 200 OK confirmed 2026-05-07.
 
 ---
 
@@ -1103,19 +1128,22 @@ West Virginia Real-Time Network. VRS-only sourcetable. Free registration.
 
 ---
 
-## mainedot — MaineDOT CORS (US-ME)
+## mainedot — MaineDOT RTN (US-ME)
 
 **status**:    free
-**host:port**: `mdotcors.maine.gov:2101`
-**type**:      single-coord-vrs
-**access**:    registration; free via maine.gov/mdot (Maine DOT)
+**host:port**: `medotrtn.maine.gov:2101`
+**type**:      vrs-only
+**access**:    registration; free via medotrtn.maine.gov (Maine DOT)
 **pipeline-access**: registration
-**stations**:  VRS only (transitioning from single-base)
-**source**:    maine.gov/mdot (Maine Department of Transportation)
+**stations**:  VRS only
+**source**:    maine.gov/dot (Maine Department of Transportation)
 **operator**:  Maine DOT
+**date_added**: 2026-05-07
 
-Maine DOT CORS network. Currently transitioning; sourcetable may show only VRS
-streams until physical-coordinate mountpoints are published.
+Maine Real-Time Network. Migrated from legacy host `mdotcors.maine.gov` (now ECONNREFUSED)
+to `medotrtn.maine.gov:2101` (IP 52.165.92.197) via Trimble Pivot in October 2025.
+Existing users were required to re-register after the cutover. Mountpoints: `VRS_CMR`,
+`VRS_RTCM`, `VRS_RTCM_23`. SOURCETABLE 200 OK confirmed 2026-05-07.
 
 ---
 
@@ -2703,62 +2731,118 @@ unsanctioned neighbouring states, compounding the barriers to hobbyist RTK use.
 ## scrtn — SCRTN (US-SC)
 
 **status**:    paid
-**date_added**: 2026-04-30
-**type**:      VRS (Trimble Pivot NW platform)
+**date_added**: 2026-05-07
+**type**:      vrs-only
 **host:port**: `scrtn.sc.gov:2101`
-**access**:    paid; subscribe at scrtn.sc.gov; no professional-licence requirement; any subscriber may obtain a login
-**yearly_cost**: $600/yr per login (annual renewal same rate)
-**operator**:  SC Revenue and Fiscal Affairs Office / SC Department of Transportation
+**access**:    paid; subscribe at sc.accessgov.com/rfa; no professional-licence requirement
+**yearly_cost**: $1,200 first login; $600 each additional (SCGS RTN Subscriber Agreement rev. 04/2023); no refunds; GPS+GLO+GAL+BDS
+**operator**:  SC Revenue and Fiscal Affairs Office — SC Geodetic Survey
 **source**:    scrtn.sc.gov
+
+43 GNSS receivers in SC plus 2 in GA and 10 in NC. SOURCETABLE 200 OK confirmed 2026-05-07.
+Accuracy: ~2 cm horizontal / ~4 cm vertical (stated).
 
 ---
 
 ## ncrtn — NCRTN (US-NC)
 
 **status**:    paid
-**access**:    paid; subscription via ncems.org
-**yearly_cost**: ~$500/yr
-**source**:    ncems.org (North Carolina Emergency Management / NCDOT)
+**host:port**: `rtn.nc.gov:2101`
+**type**:      vrs-only
+**access**:    paid; subscribe at rtn.nc.gov; no professional-licence requirement stated
+**yearly_cost**: $500 one-time per login (perpetual credentials, not annual renewal); second login included with first; additional: $250 each
+**operator**:  NC Geodetic Survey (NC Dept. of Environment and Natural Resources)
+**source**:    rtn.nc.gov
+**date_added**: 2026-05-07
+
+Trimble Pivot VRS network. Portal HTTP 200 2026-05-07; NTRIP port IP-filtered.
+Static RINEX download is free. Payment by cheque.
 
 ---
 
 ## tdot_rtn — TDOT RTN (US-TN)
 
 **status**:    paid
-**access**:    paid; subscription via tn.gov/tdot
-**yearly_cost**: ~$450/yr
-**source**:    tn.gov/tdot (Tennessee Department of Transportation)
+**host:port**: not publicly listed; provided post-payment via portal.tndot.net
+**type**:      vrs-only
+**access**:    paid; subscribe at portal.tndot.net; no professional-licence requirement stated
+**yearly_cost**: $450/yr (FY25 rate; payment by credit/debit via portal)
+**operator**:  Tennessee Dept. of Transportation (TDOT) — Geodetics Division
+**source**:    portal.tndot.net / tn.gov/tdot
+**date_added**: 2026-05-07
+
+Migrated from Trimble-based to Leica-based platform February 1, 2025; pre-migration
+credentials no longer valid. Status page: status.tndot.net.
 
 ---
 
-## turn_gps — TURN GPS (US-UT)
+## turn_gps — TURN GPS (US-UT + NV)
 
 **status**:    paid
-**access**:    paid; subscription via turngps.org
-**yearly_cost**: ~$600/yr
-**source**:    turngps.org (State of Utah)
+**host:port**: `165.239.144.5:2101` (NAD83/2011); `165.239.144.7:2101` (alternate / NV)
+**type**:      vrs-only
+**access**:    paid; subscribe at turngps.utah.gov; Utah ID account required
+**yearly_cost**: $600/yr (covers both Utah TURN GPS and Nevada GPS Network)
+**operator**:  Utah Geospatial Resource Center (UGRC), State of Utah
+**source**:    gis.utah.gov/products/turn/
+**date_added**: 2026-05-07
+
+Trimble Pivot VRS. One subscription covers UT and the Nevada GPS Network (formerly
+Washoe County / NNCRN, now UGRC-administered; northern Nevada / Reno area only —
+Las Vegas metro not covered). Southern ID and western WY partial coverage.
 
 ---
 
 ## mtsrn — MTSRN (US-MT)
 
 **status**:    paid
-**access**:    paid; subscription via mdt.mt.gov
-**yearly_cost**: ~$1,500/yr
-**source**:    mdt.mt.gov (Montana Department of Transportation)
+**host:port**: `mtsrn.org:2101`
+**type**:      vrs-only
+**access**:    paid; subscribe at mtsrn.org; no professional-licence requirement stated
+**yearly_cost**: $1,500/yr per login (rate effective July 2024; PayZang portal)
+**operator**:  Montana State Library (MSL), with MDT, tribal nations, counties, universities
+**source**:    msl.mt.gov/mtsrn
+**date_added**: 2026-05-07
+
+Launched March 2022; five geographic VRS subnets (NE, NC, NW, SW, SC Montana). 50+
+CORS stations. Partner agencies receive access in exchange for station hosting.
+Static RINEX free to public. SOURCETABLE 200 OK confirmed 2026-05-07.
 
 ---
 
 ## wsrn — WSRN (US-WA)
 
 **status**:    paid
-**access**:    paid; subscription via wsdot.wa.gov
-**yearly_cost**: ~$1,900/yr
-**source**:    wsdot.wa.gov (Washington State Department of Transportation)
+**host:port**: `wsrn.org:2011` (NAD83/2011); `wsrn.org:2022` (NATRF2022 new datum)
+**type**:      vrs-only
+**access**:    paid; subscribe at wsrn3.org; no professional-licence requirement stated
+**yearly_cost**: $1,900/yr non-partner (5 logins $5,700; 10 logins $10,000; 20 logins $15,000); partner agencies (govt, NGS cooperators) receive free access
+**operator**:  Multi-agency cooperative (WSDOT + public/private partners), Trimble Pivot
+**source**:    wsrn3.org
+**date_added**: 2026-05-07
 
-WSRN is operated by WSDOT with PANGA/CWU contributing antennae, communications,
-and data archiving for Puget Sound stations. Multiple correction formats per
-station (RTCM 3.1, RTCM 3.2 MSM, CMR+). Free tier not publicly documented.
+Actively transitioning to NATRF2022 — port 2022 delivers NATRF2022; port 2011 delivers
+legacy NAD83(2011); port 8080 being retired. PANGA/CWU contributes Puget Sound antennae.
+SOURCETABLE 200 OK on both ports confirmed 2026-05-07.
+
+---
+
+## c4gnet — C4Gnet / Louisiana RTN (US-LA)
+
+**status**:    paid
+**host:port**: `c4gnet.xyz:9000`
+**type**:      physical-coord-vrs
+**access**:    paid; subscribe at store.c4g.lsu.edu; no professional-licence requirement
+**yearly_cost**: $495/yr (10-hr RTK tier); $1,995/yr (50-hr); $3,500/yr (unlimited RTK); $5,000/yr (full RTN membership)
+**operator**:  LSU Center for GeoInformatics (C4G), Louisiana State University
+**source**:    c4gnet.xyz
+**date_added**: 2026-05-07
+
+Louisiana statewide real-time network established 2007. Leica GNSS Spider platform.
+Full GREC constellation (GPS+GLONASS+Galileo+BeiDou). VRS, PPP, and Nearest Single
+Base (NSB) products; NAD83(2011) and ITRF2014 frames available. Free RINEX post-
+processing subscription available separately. No free hobbyist tier; entry-level
+10-hour RTK tier at $495/yr.
 
 ---
 
@@ -3775,6 +3859,21 @@ public caster.
 **reason**:    server unreachable since launch; 0 stations ever collected; operated by
                Kansi Solutions GmbH (same parent as paid rtkdata.com); no independent
                data — aggregates rtk2go/Centipede visually
+
+---
+
+## idot_cors — IDOT CORS (US-IL)
+
+**status**:    weird
+**country**:   US-IL
+**date_added**: 2026-05-07
+**reason**:    announced/under construction; no live NTRIP endpoint as of 2026-05-07.
+               IDOT launched network installation in November 2024 with $4.5M federal
+               (ADCMS grant) + matching state funds ($6.25M total); ~70 sites statewide
+               planned. IDOT described it as "the first free public network of its kind
+               in Illinois." No host:port or launch timeline published. Commercial
+               interim option: ReIL-NET (Kara Company, 55+ stations, Chicagoland +
+               Central IL, $200/month; karaco.com/pages/reil-net-rtk-network).
 
 ---
 

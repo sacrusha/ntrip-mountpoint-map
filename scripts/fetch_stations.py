@@ -372,11 +372,11 @@ SOURCES = [
      "type": "physical-vrs", "country": ["US"],
      "region": "Alabama", "group": "us-state-dot",
      "access": "registration", "registration": "https://dot.state.al.us", "openNote": 'Free registration required (Alabama DOT)'},
-    {"id": "orgn",        "url": "http://167.131.0.205:9879/",                  # bare IP; port 9879 (Leica)
+    {"id": "orgn",        "url": "http://orgn.odot.state.or.us:9881/",          # hostname; port 9881 (Leica); SOURCETABLE 200 OK 2026-05-07
      "color": "#004d40", "label": "ORGN",
      "type": "physical-vrs", "country": ["US"],
      "region": "Oregon", "group": "us-state-dot",
-     "access": "registration", "registration": "https://www.oregon.gov/odot", "openNote": 'Free registration required (Oregon DOT)'},
+     "access": "registration", "registration": "https://www.oregon.gov/odot/orgn", "openNote": 'Free registration required (Oregon DOT)'},
     {"id": "msrn",        "url": "http://mdotcors.michigan.gov:10700/",         # port 10700 (Leica)
      "color": "#006064", "label": "MSRN",
      "type": "physical-vrs", "country": ["US"],
@@ -397,6 +397,11 @@ SOURCES = [
      "type": "physical-vrs", "country": ["US"],
      "region": "Iowa", "group": "us-state-dot",
      "access": "registration", "registration": "https://iowadot.gov", "openNote": 'Free registration required (Iowa DOT)'},
+    {"id": "ct_acorn",    "url": "http://acorn.uconn.edu:2101/",               # SOURCETABLE 200 OK 2026-05-07
+     "color": "#1a237e", "label": "ACORN CT",
+     "type": "physical-vrs", "country": ["US"],
+     "region": "Connecticut", "group": "us-state-dot",
+     "access": "registration", "registration": "https://acorn.uconn.edu", "openNote": 'Free registration required (CTDOT + UConn)'},
     # US state DOT — VRS-only (filter_vrs drops all pins; shown as stopgap circles)
     {"id": "kycors",      "url": "http://kycors.ky.gov:2101/",
      "color": "#546e7a", "label": "KyCORS",
@@ -423,11 +428,11 @@ SOURCES = [
      "type": "vrs-only", "country": ["US"],
      "region": "West Virginia", "group": "us-state-dot",
      "access": "registration", "registration": "https://transportation.wv.gov", "openNote": 'Free registration required (West Virginia DOH)'},
-    {"id": "mainedot",    "url": "http://mdotcors.maine.gov:2101/",             # VRS-only (transitioning)
+    {"id": "mainedot",    "url": "http://medotrtn.maine.gov:2101/",             # VRS-only; migrated from mdotcors.maine.gov Oct 2025
      "color": "#b0bec5", "label": "MaineDOT",
      "type": "vrs-only", "country": ["US"],
      "region": "Maine", "group": "us-state-dot",
-     "access": "registration", "registration": "https://www.maine.gov/mdot", "openNote": 'Free registration required (Maine DOT)'},
+     "access": "registration", "registration": "https://medotrtn.maine.gov", "openNote": 'Free registration required (Maine DOT)'},
     {"id": "mesa_rtvrn",  "url": "http://rtvrn.mesacounty.us:2101/",            # VRS-only; western Colorado
      "color": "#8d6e63", "label": "Mesa County RTVRN",
      "type": "vrs-only", "country": ["US"],

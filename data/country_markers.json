@@ -936,9 +936,9 @@
       "tier": "paid",
       "vrs": true,
       "access": "paid",
-      "yearly_cost": "$600/yr",
+      "yearly_cost": "$1,200 first login; $600 each additional",
       "registration": "https://scrtn.sc.gov",
-      "note": "No professional-licence requirement; any subscriber may obtain a login."
+      "note": "43 stations in SC plus shared receivers in GA and NC. No professional-licence requirement."
     },
     {
       "id": "ncrtn",
@@ -950,8 +950,9 @@
       "tier": "paid",
       "vrs": true,
       "access": "paid",
-      "yearly_cost": "$500/yr",
-      "registration": "https://www.ncems.org"
+      "yearly_cost": "$500 one-time per login",
+      "registration": "https://rtn.nc.gov",
+      "note": "Perpetual credentials (not annual). Second login included; additional logins $250 each. Free RINEX download."
     },
     {
       "id": "tdot_rtn",
@@ -964,12 +965,12 @@
       "vrs": true,
       "access": "paid",
       "yearly_cost": "$450/yr",
-      "registration": "https://www.tn.gov/tdot"
+      "registration": "https://portal.tndot.net"
     },
     {
       "id": "turn_gps",
       "name": "TURN GPS",
-      "region": "Utah",
+      "region": "Utah + Nevada (northern)",
       "country": "US",
       "lat": 39.3,
       "lon": -111.1,
@@ -977,7 +978,8 @@
       "vrs": true,
       "access": "paid",
       "yearly_cost": "$600/yr",
-      "registration": "https://turngps.org"
+      "registration": "https://turngps.utah.gov",
+      "note": "Covers Utah plus Nevada GPS Network (Reno area / northern NV only; Las Vegas not covered)."
     },
     {
       "id": "mtsrn",
@@ -990,7 +992,8 @@
       "vrs": true,
       "access": "paid",
       "yearly_cost": "$1,500/yr",
-      "registration": "https://www.mdt.mt.gov"
+      "registration": "https://msl.mt.gov/mtsrn",
+      "note": "50+ stations; launched March 2022. Free RINEX available; static post-processing does not require subscription."
     },
     {
       "id": "wsrn",
@@ -1003,8 +1006,22 @@
       "vrs": true,
       "access": "paid",
       "yearly_cost": "$1,900/yr",
-      "registration": "https://www.wsdot.wa.gov",
-      "note": "PANGA/CWU contributes Puget Sound antennae and data archiving to this network."
+      "registration": "https://wsrn3.org",
+      "note": "Transitioning to NATRF2022 datum (port 2022); NAD83(2011) on port 2011. Partner agencies (govt, NGS cooperators) receive free access."
+    },
+    {
+      "id": "c4gnet",
+      "name": "C4Gnet",
+      "region": "Louisiana",
+      "country": "US",
+      "lat": 30.9,
+      "lon": -91.5,
+      "tier": "paid",
+      "vrs": true,
+      "access": "paid",
+      "yearly_cost": "$495/yr (10-hr tier)",
+      "registration": "https://store.c4g.lsu.edu",
+      "note": "Louisiana statewide RTN operated by LSU Center for GeoInformatics. GPS+GLONASS+Galileo+BeiDou. Unlimited RTK tier $3,500/yr. Free post-processing RINEX subscription available separately."
     },
     {
       "id": "crtn",
@@ -1018,6 +1035,16 @@
       "yearly_cost": "$100 one-time",
       "registration": "https://sopac-csrc.ucsd.edu/index.php/crtn-connecting/",
       "note": "~250 reference stations via Scripps (UCSD); aggregates SCIGN, BARD, USGS Pasadena, Caltrans CVSRN, OCRTN, and EarthScope. Universities and schools are exempt from the fee. Significant station overlap with EarthScope (already on this map). Credentials take a week or more to issue."
+    },
+    {
+      "id": "idot_cors",
+      "name": "IDOT CORS",
+      "region": "Illinois",
+      "country": "US",
+      "lat": 40.0,
+      "lon": -89.3,
+      "tier": "weird",
+      "note": "Under construction — ~70 stations planned; announced November 2024 with federal + state funding. No live NTRIP caster as of May 2026. Interim paid option: ReIL-NET (Kara Company, Chicagoland + Central IL)."
     },
     {
       "id": "txrtn",
