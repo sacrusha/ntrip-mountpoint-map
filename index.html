@@ -310,6 +310,35 @@
       border-radius:8px 8px 0 0;max-height:65vh;}
     #card-sheet.on{transform:translateY(0);}
   }
+
+  /* Touch ergonomics — bump tap targets on coarse-pointer devices (survey
+     tablets, phones) without bloating the desktop layout. */
+  @media (pointer:coarse){
+    .popup-plain button.cp{padding:7px 12px;font-size:12px;min-height:32px;}
+    .help-chip{padding:4px 8px;font-size:11px;}
+    .help-chip .q{width:12px;height:12px;font-size:8px;}
+    #toggles .legend-x{padding:8px 12px;font-size:16px;}
+    #card-sheet .card-close{padding:8px 12px;font-size:20px;}
+    #legend-handle{width:44px;height:44px;font-size:22px;}
+    .help-toast h6 button{padding:6px 10px;font-size:18px;}
+    .help-popover .close{padding:6px 10px;font-size:18px;}
+    #help-drawer .dh .x{padding:8px 12px;font-size:22px;}
+  }
+
+  /* Visible focus ring for keyboard users on the new buttons; UA defaults
+     get washed out by the frosted-glass / dark backdrops. */
+  #legend-handle:focus-visible,
+  #toggles .legend-x:focus-visible,
+  #card-sheet .card-close:focus-visible,
+  .popup-plain button.cp:focus-visible,
+  .popup-plain .b-primary:focus-visible,
+  .popup-plain .b-secondary:focus-visible,
+  .help-chip:focus-visible,
+  .help-toast button:focus-visible,
+  .help-popover .close:focus-visible,
+  .help-popover .more:focus-visible{
+    outline:2px solid var(--link);outline-offset:2px;
+  }
 </style>
 </head>
 <body>
