@@ -168,17 +168,18 @@ a:hover{color:#1b2b3a;}
 <div class="cov"><span class="sw" style="background:rgb(180,200,30)"></span><span><strong>Yellow-green</strong> — 10–30 km. Reliable centimetre-level.</span></div>
 <div class="cov"><span class="sw" style="background:rgb(220,150,30)"></span><span><strong>Amber</strong> — 30–50 km. Usable; accuracy grows with distance.</span></div>
 <div class="cov"><span class="sw" style="background:rgb(210,90,90)"></span><span><strong>Pale red</strong> — 50–100 km. Decimetre range; may not achieve a fix.</span></div>
-<p style="margin-top:10px"><strong>Green circles</strong> are virtual networks (VRS): the network synthesises a virtual reference near your location from multiple real stations. You connect to one server address; the network does the rest. Click a circle for details.</p>
-<p>Click any pin to see the server address, port, and mountpoint name you need to configure your NTRIP client. If several stations are within range, any of them will do — pick the nearest one in the green zone. Some networks also offer a <code>NEAR</code> mountpoint that selects the closest station automatically.</p>
+<p style="margin-top:10px"><strong>Green circles</strong> are virtual networks (VRS): the network synthesises a virtual reference near your location from multiple real stations. You connect to one server address; the network does the rest. The circle itself is just an outline — click the dark-green antenna at its centre for the network card.</p>
+<p style="margin-top:6px"><strong>Bright-green antennas</strong> mark per-station (RS) networks where the caster publishes individual reference stations and you pick the closest one. <strong>Grey antennas / circles</strong> are networks we know about but haven't successfully fetched recent station data for.</p>
+<p>Click any pin to see the server address, port, and mountpoint name you need to configure your NTRIP client. On desktop the details open in a small popup attached to the pin; on phones and tablets they slide up as a card from the bottom of the screen. If several stations are within range, any of them will do — pick the nearest one in the green zone. Some networks also offer a <code>NEAR</code> mountpoint that selects the closest station automatically.</p>
 
 <h2 id="replace">Replacing a dead mountpoint</h2>
 <p>If a previously-working mountpoint stopped responding, do this in order:</p>
 <ol>
   <li>Open the <a href="./">map</a>, zoom to your work area, and pick the nearest physical-station pin in the green or yellow-green zone. Within ~30 km gives cm-RTK; within ~10 km is best.</li>
-  <li>If only a national survey network covers your area, register on its portal — these are professionally monitored and far more reliable than volunteer bases. The pin popup links to the registration page.</li>
+  <li>If only a national survey network covers your area, register on its portal — these are professionally monitored and far more reliable than volunteer bases. The station card links to the registration page.</li>
   <li>If you can't find replacement coverage, the map's <strong>Help</strong> button → Troubleshooting walks through the less-common causes (firewall, geomagnetic storm, regional jamming, wrong-datum offsets).</li>
 </ol>
-<p><small>Why your old one stopped: volunteer bases on rtk2go and Centipede disappear from the sourcetable the moment they stop streaming, often from a dynamic-IP change or a power outage at the operator's site — around 7% of registered rtk2go bases are live at any one time. Networks occasionally rename hosts (Centipede moved to <code>crtk.net</code> in 2025); the popup always shows the current host:port. For mission-critical work — legal survey, machine control, production agriculture — use a national CORS network or a commercial service with an SLA, not a volunteer mountpoint.</small></p>
+<p><small>Why your old one stopped: volunteer bases on rtk2go and Centipede disappear from the sourcetable the moment they stop streaming, often from a dynamic-IP change or a power outage at the operator's site — around 7% of registered rtk2go bases are live at any one time. Networks occasionally rename hosts (Centipede moved to <code>crtk.net</code> in 2025); the station card always shows the current host:port. For mission-critical work — legal survey, machine control, production agriculture — use a national CORS network or a commercial service with an SLA, not a volunteer mountpoint.</small></p>
 
 <h2 id="connect">Connecting — step by step</h2>
 <p>Most survey receivers have an NTRIP client built into their settings menu. For Emlid receivers, use the Emlid Flow app. The typical workflow for standalone receivers: your phone or tablet connects to the receiver via Bluetooth, pulls correction data from the internet, and forwards it to the receiver automatically. For other hardware, free client apps include:</p>
@@ -188,7 +189,7 @@ a:hover{color:#1b2b3a;}
   <li><strong>Windows:</strong> Lefebure NTRIP Client — connects via serial or USB</li>
   <li><strong>Linux / Raspberry Pi:</strong> RTKBase (open-source, web interface) or RTKLIB <code>str2str</code></li>
 </ul>
-<p>In whichever client you use, enter three values from the map pin popup:</p>
+<p>In whichever client you use, enter three values from the map's station card:</p>
 <ol>
   <li><strong>Host</strong> — the server address</li>
   <li><strong>Port</strong> — usually 2101</li>
@@ -198,7 +199,7 @@ a:hover{color:#1b2b3a;}
 <p><strong>Your antenna must be outdoors</strong> with a clear, unobstructed view of the sky — see <a href="#antenna">Antenna placement</a> below for what works and what doesn't.</p>
 <p><strong>What success looks like:</strong> your client will show the correction stream as connected. On a cold start, your receiver should report a <em>fix</em> within 30–90 seconds (some receivers show this as "RTK Fixed" or a green indicator); a warm restart usually takes 5–15 seconds. Once fixed, position updates will reflect centimetre-level accuracy. If your software shows coordinates jumping around at metre scale, the receiver is still in <em>float</em> — wait another minute or try a different mountpoint.</p>
 <div class="callout"><strong>Troubleshooting</strong><br>
-<strong>Connection refused or times out:</strong> check the host and port; some networks use a non-standard port listed in the map popup. Corporate, campus, and public WiFi commonly block port 2101 — try a 4G/5G hotspot to confirm whether your network is the problem.<br>
+<strong>Connection refused or times out:</strong> check the host and port; some networks use a non-standard port listed in the station card. Corporate, campus, and public WiFi commonly block port 2101 — try a 4G/5G hotspot to confirm whether your network is the problem.<br>
 <strong>You see a long text listing instead of corrections:</strong> your client requested <code>/</code> rather than <code>/MOUNTPOINT</code>, so the caster is sending you the sourcetable. Re-enter the connection with the mountpoint name set.<br>
 <strong>Client connects, no error, but no corrections flow for tens of seconds before dropping:</strong> the base is offline and the caster is sending keep-alive padding. Pick a different mountpoint.<br>
 <strong>Connected but stays float:</strong> try another mountpoint on the same server. On L1+L2 receivers, expect a fix within ~30 km; if you're further out, float is the correct outcome.<br>
@@ -298,7 +299,7 @@ a:hover{color:#1b2b3a;}
   <li><strong>ERGNSS</strong> &mdash; Fuente: Instituto Geogr&aacute;fico Nacional de Espa&ntilde;a. Attribution required per Orden FOM/2807/2015.</li>
   <li><strong>EarthScope NOTA</strong> &mdash; GNSS data &copy; EarthScope Consortium, made available under <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener noreferrer">CC BY 4.0</a> (per the EarthScope Non-Commercial Use Licence Agreement, which incorporates CC BY 4.0 by reference for the underlying data). Realtime stream access itself is gated by an annual NULA registration.</li>
 </ul>
-<p>Map tiles &copy; <a href="https://www.openstreetmap.org/copyright" rel="noopener noreferrer">OpenStreetMap</a> contributors, licensed under <a href="https://opendatacommons.org/licenses/odbl/" rel="noopener noreferrer">ODbL</a>. Other operators on the map publish their sourcetables without an attribution clause; each network is still credited by name in the popup and in <a href="https://github.com/sacrusha/ntrip-mountpoint-map/blob/main/docs/networks.md" rel="noopener noreferrer">docs/networks.md</a>.</p>
+<p>Map tiles &copy; <a href="https://www.openstreetmap.org/copyright" rel="noopener noreferrer">OpenStreetMap</a> contributors, licensed under <a href="https://opendatacommons.org/licenses/odbl/" rel="noopener noreferrer">ODbL</a>. Other operators on the map publish their sourcetables without an attribution clause; each network is still credited by name in the station card and in <a href="https://github.com/sacrusha/ntrip-mountpoint-map/blob/main/docs/networks.md" rel="noopener noreferrer">docs/networks.md</a>.</p>
 </main>
 </body>
 </html>

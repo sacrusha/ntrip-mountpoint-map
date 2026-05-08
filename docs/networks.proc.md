@@ -38,9 +38,9 @@ Mis-sectioning is a recurring failure mode.
 | `free` | Free NTRIP/RTK service. |
 | `paid` / `paid-affordable` | Civilian-accessible for a fee. Requires `**yearly_cost**:`. |
 | `restricted` | Exists but unobtainable for the target user at any price. |
-| `weird` | Anything interesting to a target user that doesn't fit the other tiers: non-standard NTRIP, jamming, sparse infrastructure, war-disrupted, free RINEX-only with no real-time NTRIP, network announced/under construction but not yet operational, government CORS distributed only via licensed commercial resellers, micro-state with no local service. Produces a `weird` marker; the freeform note is the value. |
+| `weird` | Use when a substantial operator carries user-relevant facts the cost / access fields don't convey on their own — the freeform note is the load-bearing part of the block. The status doesn't enumerate cases; if a hobbyist landing on the country would be helped by knowing this exists or doesn't work the way the other fields suggest, it's `weird`. Past examples (sparse infra, RINEX-only, announced-not-live, reseller-only, non-standard NTRIP, GNSS-spoofed airspace) illustrate, they don't bound. |
 | `candidate` | Free, endpoint known, ready to ingest, not yet in fetch. |
-| `rejected` | Investigated, ruled out, and **of no value to a target user** (defence-only, abandoned, niche scientific archive). RINEX-only national networks worth flagging go to `weird`, not `rejected`. |
+| `rejected` | Investigated and **of no value to a target user** — defence-only, abandoned, niche scientific archive, duplicate of another block. The default for an entry that was looked at and produced nothing worth surfacing. If the prose is naming a real RINEX archive, a planned NTRIP service, or a substantial named operator a user might still try to reach, the entry isn't rejected — re-status it. |
 
 ## yearly_cost format
 
@@ -61,5 +61,7 @@ mounts), `unknown`.
 
 ## Downstream
 
-Block change → marker sweep (`../data/country_markers.proc.md`). Wiring
-a `candidate` into ingestion (`../scripts/fetch_stations.proc.md`).
+A block change is a **prompt to revisit** the marker
+(`../data/country_markers.proc.md`), not a rule that produces one —
+markers are an editorial extract, not a derived view. `candidate` →
+ingestion is mechanical (`../scripts/fetch_stations.proc.md`).
