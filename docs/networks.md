@@ -331,32 +331,43 @@ RTK baseline). L1C/B support for QZSS QZS-6 added Jun 2025.
 ## cors_korea — CORS-KOREA (KR)
 
 **status**:    free
-**date_added**: 2026-05-06
-**host:port**: VRS service: `vrs3.ngii.go.kr:2101`; FKP service: `fkp.ngii.go.kr:2201`
-               (service addresses updated May 2022; legacy `vrs.ngii.go.kr` decommissioned)
-**type**:      physical-coord-vrs
-**access**:    free; registration at ngii.go.kr required; stream password `ngii` (shared,
-               documented in academic literature); Korean government portal account
-               (PASS/mobile identity) typically required — practical barrier for non-residents
-**pipeline-access**: conditions
-**stations**:  ~60 physical stations at ~40 km spacing covering all of South Korea
-**source**:    ngii.go.kr (NGII — National Geographic Information Institute)
-**operator**:  NGII — National Geographic Information Institute, Ministry of Land
+**date_added**: 2026-05-08
+**host:port**: Network 1 (GNSS Data Center): `www.gnssdata.or.kr:2101`
+               Network 2 (NGII VRS/FKP): `vrs3.ngii.go.kr:2101`; FKP: `fkp.ngii.go.kr:2201`
+**type**:      single-base
+**access**:    Network 1: free; email registration at gnssdata.or.kr; NTRIP password =
+               literal `gnss` (NOT the portal login password); no Korean national ID
+               required; SOURCETABLE 200 OK 2026-05-08, 546 STR rows, 167 unique
+               physical stations. Network 2 (NGII VRS): Korean government
+               PASS/mobile-identity verification required — practical barrier for
+               non-residents.
+**pipeline-access**: registration
+**stations**:  167 physical stations (Network 1 sourcetable, 8 contributing agencies:
+               KORREF/NGII 94 rows, Single Base 433 rows, SMG/Seoul 10 rows;
+               pipeline parser yields 493 distinct mountpoints after format-variant
+               de-dup)
+**source**:    gnssdata.or.kr (Network 1); ngii.go.kr (Network 2)
+**operator**:  GNSS Data Center (federation of 8 Korean agencies — NGII, KASI, SMG,
+               KMA, etc., Network 1); NGII — National Geographic Information
+               Institute, Ministry of Land (Network 2)
 
-VRS + FKP; both use shared password `ngii`. ~15,000 registered users as of 2016.
-Seoul City supplementary network at `gnss.eseoul.go.kr` (separate registration).
+Pipeline source (`cors_korea`) fetches Network 1 (`www.gnssdata.or.kr:2101`). Network 1
+is the public hobbyist endpoint: email registration only, shared NTRIP password `gnss`.
+Network 2 is the NGII direct VRS/FKP service requiring Korean government ID.
+Seoul City supplementary network at `gnss.eseoul.go.kr` (separate registration,
+same Korean-ID gate).
 
-**Republication posture (2026-05-07)**: keep listing. The Korean-ID/PASS gate
+**Republication posture (2026-05-08)**: keep listing. The Korean-ID/PASS gate
 applies to the real-time correction stream, not to station-coordinate metadata.
-NGII itself publishes the CORS layout openly: the Geospatial Information
-Service Platform (gps.ngii.go.kr) lists all unified control points and
-triangulation points with full geodetic coordinates (~4,282 unified control
-points, ~16,412 triangulation points), and flagship NGII stations SUWN and DAEJ
-are IGS members with logs and coordinates openly republished at
-`network.igs.org` (e.g. SUWN at 37.2755 N, 127.0542 E). Republishing the NTRIP
-sourcetable's mountpoint names and coarse station coordinates does not exceed
-what NGII already publishes through its own portal and IGS contributions. The
-existing `pipeline-access: conditions` flag and popup note already make the
+The same physical stations exposed in our ingested sourcetable are also
+republished openly: flagship NGII stations SUWN and DAEJ are IGS members with
+full site logs and coordinates at `network.igs.org/SUWN00KOR` and
+`network.igs.org/DAEJ00KOR` (HTTP 200 verified 2026-05-08). The Network 1
+sourcetable itself is anonymously fetchable from `www.gnssdata.or.kr:2101` (no
+auth required to list mountpoints + base coordinates) — only the correction
+stream is gated. Republishing mountpoint names and coarse station coordinates
+does not exceed what NGII contributes openly to IGS. The existing
+`pipeline-access: registration` flag and popup note already make the
 foreigner-registration barrier visible to the user; that is the correct level
 of disclosure. Cross-reference: SiReNT (`sirent`) is the project's precedent
 for *not* republishing — but that operator (SLA, Singapore) gates the entire
@@ -561,7 +572,7 @@ rtk2go ~31 DE volunteer bases — negligible alongside SAPOS but useful for test
 | `sapos_RP` | Rheinland-Pfalz | `sapos-ntrip.rlp.de:2101` | physical-coord VRS | ~17 stations (5 unique coords); paid €120/yr/credential (HEPS/GPPS) + €100 one-time setup; most restrictive state |
 | `sapos_BW` | Baden-Württemberg | `sapos-bw-ntrip.de:2101` | single-coord VRS | 0 stations |
 | `sapos_BY` | Bayern | `sapos-by-ntrip.de:2101` | single-coord VRS | €20/yr non-agri flat rate; free for agriculture |
-| `sapos_SN` | Sachsen (GeoSN) | `ntrip.sachsen.de:2101` | populates on fetch | endpoint confirmed 2026-04; first successful CI fetch will populate count |
+| `sapos_SN` | Sachsen (GeoSN) | `www.ntrip.sachsen.de:2101` | populates on fetch | `www.` prefix required (DE_Germany research 2026-05-07); was DNS-failing without it |
 | `sapos_SL` | Saarland | `sapos-sl-ntrip.de:2101` | physical-coord VRS | ~14 stations (9 unique coords) |
 | `sapos_BE` | Berlin | `sapos-be-ntrip.de:2101` | single-coord VRS | 52.48, 13.3 |
 | `sapos_BB` | Brandenburg | `sapos-bb-ntrip.de:2101` | single-coord VRS | 52.23, 13.05 |
@@ -609,7 +620,7 @@ partial coverage across the AT border.
 ## spin3 — SPIN3 GNSS (IT — Piemonte, Lombardia, Valle d'Aosta)
 
 **status**:    free
-**host:port**: `spingnss.it:2101`
+**host:port**: `158.102.7.10:2101` (bare IP; spingnss.it hostname times out; IP confirmed SOURCETABLE 200 OK 2026-05-07)
 **type**:      physical-coord-vrs
 **access**:    registration; free via spingnss.it (CSI Piemonte public portal)
 **pipeline-access**: registration
@@ -650,7 +661,9 @@ Regional GNSS network for Umbria. Free public service with 12 physical reference
 **operator**:  Regione Abruzzo / Regione Lazio
 
 Since December 2022, Regione Lazio's stations were integrated into the Abruzzo
-caster. A single endpoint serves both regions' physical reference stations.
+caster (16 Abruzzo + 13 Lazio stations). Bare IP alias: `93.57.92.145:2101`.
+Endpoint times out from CI — service confirmed operational (connectivity contract
+renewed March 2025).
 
 ---
 
@@ -712,7 +725,7 @@ verify overlap before ingesting to avoid duplicate pins.
 ## fprn — FPRN (US-FL)
 
 **status**:    free
-**host:port**: `ntrip.myfloridagps.com:2101`
+**host:port**: `www.myfloridagps.com:10000` (IP 48.223.232.215; SOURCETABLE 200 OK 2026-05-07)
 **type**:      physical-coord-vrs
 **access**:    registration; free via myfloridagps.com (Florida DOT)
 **pipeline-access**: registration
@@ -720,7 +733,8 @@ verify overlap before ingesting to avoid duplicate pins.
 **source**:    myfloridagps.com (Florida Department of Transportation)
 **operator**:  Florida DOT (FDOT)
 
-Florida Permanent Reference Network operated by FDOT. Single-base and VRS
+Florida Permanent Reference Network operated by FDOT. Non-standard port 10000
+(Leica GNSS Spider 7.11.1.109); standard port 2101 is not used. Single-base and VRS
 corrections. Some overlap with EarthScope NOTA expected.
 
 ---
@@ -751,7 +765,8 @@ Arkansas real-time network. Free after registration.
 **source**:    massdot.state.ma.us (Massachusetts Department of Transportation)
 **operator**:  Massachusetts DOT (MassDOT)
 
-Massachusetts CORS network. 22 stations; free registration.
+Massachusetts CORS network. 22 stations; free registration. Port 2101 times out from
+CI — likely firewalled to registered or domestic IPs.
 
 ---
 
@@ -815,8 +830,9 @@ Covers Mississippi and adjacent Gulf Coast states. Free registration.
 **source**:    dot.state.al.us (Alabama Department of Transportation)
 **operator**:  Alabama DOT (ALDOT)
 
-Alabama CORS network operated by ALDOT. Non-standard port 10011 (Leica GNSS Spider
-default). Free registration.
+Alabama CORS network operated by ALDOT. Ports 10011 and 10099 both return SOURCETABLE
+200 OK (research probe 2026-05-07); standard port 2101 firewalled. Only one of the two
+resolved IPs (205.172.52.26) is externally reachable. Free registration.
 
 ---
 
@@ -842,7 +858,7 @@ Significant overlap with EarthScope NOTA expected.
 ## msrn — MSRN (US-MI)
 
 **status**:    free
-**host:port**: `mdotcors.michigan.gov:10700`
+**host:port**: `mdotcors.michigan.gov:10010` (free RTCM3 MSM4 port; 10011 = CMRx; per MSRN Port Scheme docs)
 **type**:      physical-coord-vrs
 **access**:    registration; free via michigan.gov (Michigan DOT)
 **pipeline-access**: registration
@@ -850,8 +866,9 @@ Significant overlap with EarthScope NOTA expected.
 **source**:    michigan.gov (Michigan Department of Transportation)
 **operator**:  Michigan DOT (MDOT)
 
-Michigan Spatial Reference Network operated by MDOT. Non-standard port 10700
-(Leica GNSS Spider). Significant overlap with EarthScope NOTA expected.
+Michigan Spatial Reference Network operated by MDOT. Free NTRIP ports 10010 (RTCM3 MSM4)
+and 10011 (CMRx) per MSRN Port Scheme documentation; port 10700 was incorrect.
+Significant overlap with EarthScope NOTA expected.
 
 ---
 
@@ -882,7 +899,10 @@ EarthScope NOTA expected.
 **source**:    incors.in.gov (Indiana Department of Administration)
 **operator**:  Indiana Dept. of Administration
 
-Indiana CORS Network. Non-standard port 10000. Free registration.
+Indiana CORS Network. Host and port provided post-login (User Agreement signed and
+emailed to incors@indot.in.gov; port 10000 is best-guess from Leica SBC defaults).
+Connection refused from external IPs is expected — firewalled to registered accounts.
+Free registration.
 
 ---
 
@@ -1447,7 +1467,7 @@ defunct or absorbed into another network. No viable endpoint.
 
 **status**:    free
 **date_added**: 2026-04-30
-**host:port**: `tpos.provincia.tn.it:2101` (SBC portal domain; mountpoints provided after login)
+**host:port**: `194.105.50.232:2101` (bare IP; confirmed SOURCETABLE 200 OK 2026-05-07; tpos.provincia.tn.it is the SBC portal domain, does not resolve as NTRIP caster)
 **type**:      physical-coord-vrs (VRS, MAX, NRT mountpoints)
 **access**:    registration; free; self-service Leica Spider Business Center portal; no professional licence required
 **registration**: https://www.tpos.provincia.tn.it
@@ -2273,6 +2293,31 @@ Centipede ~9 IE).
                documentation and Wikipedia.
 **source**:    app.sla.gov.sg/sirent (SLA — Singapore Land Authority); Wikipedia (SiReNT)
 **operator**:  SLA — Singapore Land Authority
+
+---
+
+## mbcrtk — MBC RTK / B-RTK (KR)
+
+**status**:    restricted
+**date_added**: 2026-05-08
+**country**:   KR
+**type**:      physical-coord-vrs (B-RTK platform; NTRIP + DMB + ATSC 3.0 distribution)
+**host:port**: not publicly listed; correction stream gated behind hardware purchase
+**access**:    restricted; no public consumer NTRIP signup. Access bundled with custom
+               B-RTK receiver hardware (SMC-3000 / MRD-1000 / MRP-2000 / TDR-3000 /
+               MGI-2000 product family) sold to fleet, automotive, and OEM integrators.
+               No published end-user pricing; sales gate is "Technical Information
+               Service Team", +82 2-789-1646 (homepage 2026-05-08). No self-serve path
+               for hobbyists at any price.
+**stations**:  140+ base stations nationwide (operator's own claim, 2026-05-08)
+**source**:    rtk.mbc.co.kr/eng (HTTPS 200 verified 2026-05-08)
+**operator**:  MBC — Munhwa Broadcasting Corporation (terrestrial broadcaster)
+
+National Korean broadcast+telecommunication-integrated RTK service operating since
+~2017; partnership with US BitPath announced 2024-05-29 to extend the same B-RTK
+platform across US ATSC 3.0 broadcasters. Supports GPS+GLONASS+BDS+Galileo+QZSS,
+RTCM 3.4. Hobbyist-relevant only as context; the free hobbyist path in KR is
+`cors_korea` (Network 1, GNSS Data Center). Marker tier: `restricted`.
 
 ---
 

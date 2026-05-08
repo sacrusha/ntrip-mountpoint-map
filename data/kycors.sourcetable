@@ -1,8 +1,8 @@
-STR;VRS_CMRplus;VRS_CMRplus;CMR+;Obs(1),Info(10),PrsInfo(11);2;GPS+GLONASS;KYCORS;USA;0;0;1;1;Trimble Pivot Platform;none;B;N;0;User ID Required;
-STR;VRS_CMRx;VRS_CMRx;CMRx;Obs(1),Info(10),PrsInfo(11);2;GPS+GLONASS;KYCORS;USA;0;0;1;1;Trimble Pivot Platform;none;B;N;0;User ID Required;
-STR;VRS_RTCM3;VRS_RTCM3;RTCM 3.1;1004(1),1005/1007(5),PBS(10);2;GPS+GLONASS;KYCORS;USA;0;0;1;1;Trimble Pivot Platform;none;B;N;0;User ID Required;
-STR;RTX_RTCM3-2;RTX_RTCM3-2;RTCM 3.2;1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs);2;GPS+GLO+GAL+BDS+QZS;KYCORS;USA;0;0;1;1;Trimble Pivot Platform;none;B;N;0;UserID Required;
-STR;RTX_CMRx;RTX_CMRx;CMRx;Obs(1),Info(10),PrsInfo(11);2;GPS+GLO+GAL+BDS+QZS;KYCORS;USA;0;0;1;1;Trimble Pivot Platform;none;B;N;0;User ID Required;
-STR;VRS_RTCM3-2;VRS_RTCM3-2;RTCM 3.2;1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs);2;GPS+GLO;KYCORS;USA;0;0;1;1;Trimble Pivot Platform;none;B;N;0;UserID Required;
-NET;KYCORS;KY Transportation Cabinet;B;N;http://kycors-p.ky.gov;http://172.23.32.41:2101;mailto:KYCORS_Admin@ky.gov;All connections require user ID and password;
-ENDSOURCETABLE
+STR;VRS_CMRplus;VRS_CMRplus;CMR+;Obs(1),Info(10),PrsInfo(11);2;GPS+GLONASS;KYCORS;USA;0;0;1;1;Trimble Pivot Platform;none;B;N;0;User ID Required;
+STR;VRS_CMRx;VRS_CMRx;CMRx;Obs(1),Info(10),PrsInfo(11);2;GPS+GLONASS;KYCORS;USA;0;0;1;1;Trimble Pivot Platform;none;B;N;0;User ID Required;
+STR;VRS_RTCM3;VRS_RTCM3;RTCM 3.1;1004(1),1005/1007(5),PBS(10);2;GPS+GLONASS;KYCORS;USA;0;0;1;1;Trimble Pivot Platform;none;B;N;0;User ID Required;
+STR;RTX_RTCM3-2;RTX_RTCM3-2;RTCM 3.2;1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs);2;GPS+GLO+GAL+BDS+QZS;KYCORS;USA;0;0;1;1;Trimble Pivot Platform;none;B;N;0;UserID Required;
+STR;RTX_CMRx;RTX_CMRx;CMRx;Obs(1),Info(10),PrsInfo(11);2;GPS+GLO+GAL+BDS+QZS;KYCORS;USA;0;0;1;1;Trimble Pivot Platform;none;B;N;0;User ID Required;
+STR;VRS_RTCM3-2;VRS_RTCM3-2;RTCM 3.2;1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs);2;GPS+GLO;KYCORS;USA;0;0;1;1;Trimble Pivot Platform;none;B;N;0;UserID Required;
+NET;KYCORS;KY Transportation Cabinet;B;N;http://kycors-p.ky.gov;http://172.23.32.41:2101;mailto:KYCORS_Admin@ky.gov;All connections require user ID and password;
+ENDSOURCETABLE

@@ -1,56 +1,56 @@
-STR;SingleBase_RTCM23;SingleBase_RTCM23;RTCM 2.3;Type (1,2,18,19);2;GPS & GLONASS;Regione FVG "A. Marussi";ITA;46.41;12.80;1;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
-STR;Ampezzo_DGPS;Ampezzo_DGPS;RTCM 2;Type 1,2;0;GPS;Regione FVG "A. Marussi";ITA;46.41;12.80;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
-STR;Barcis_DGPS;Barcis_DGPS;RTCM 2;Type 1,2;0;GPS;Regione FVG "A. Marussi";ITA;46.19;12.56;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
-STR;Bevazzana_DGPS;Bevazzana_DGPS;RTCM 2;Type (1,2);0;GPS;Regione FVG "A. Marussi";ITA;45.67;13.07;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
-STR;Pordenone_DGPS;Pordenone_DGPS;RTCM 2;Type (1,2);0;GPS;Regione FVG "A. Marussi";ITA;45.96;12.66;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
-STR;MoggioUdinese_DGPS;MoggioUdinese_DGPS;RTCM 2;Type (1,2);0;GPS;Regione FVG "A. Marussi";ITA;46.41;13.20;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
-STR;Tarvisio_DGPS;Tarvisio_DGPS;RTCM 2;Type (1,2);0;GPS;Regione FVG "A. Marussi";ITA;46.50;13.59;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
-STR;Trieste_DGPS;Trieste_DGPS;RTCM 2;Type (1,2);0;GPS;Regione FVG "A. Marussi";ITA;45.66;13.79;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
-STR;Udine_DGPS;Udine_DGPS;RTCM 2;Type (1,2);0;GPS;Regione FVG "A. Marussi";ITA;46.06;13.23;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
-STR;Ampezzo_RTK;Ampezzo_RTK;RTCM 2.3;Type (18,19);2;GPS & GLONASS;Regione FVG "A. Marussi";ITA;46.41;12.80;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
-STR;Bevazzana_RTK;Bevazzana_RTK;RTCM 2.3;Type (18,19);2;GPS & GLONASS;Regione FVG "A. Marussi";ITA;45.67;13.07;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
-STR;Barcis_RTK;Barcis_RTK;RTCM 2.3;Type (18,19);2;GPS & GLONASS;Regione FVG "A. Marussi";ITA;46.19;12.56;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
-STR;MoggioUdinese_RTK;MoggioUdinese_RTK;RTCM 2.3;Type (18,19);2;GPS & GLONASS;Regione FVG "A. Marussi";ITA;46.41;13.20;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
-STR;Tarvisio_RTK;Tarvisio_RTK;RTCM 2.3;Type (18,19);2;GPS & GLONASS;Regione FVG "A. Marussi";ITA;46.50;13.59;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
-STR;Trieste_RTK;Trieste_RTK;RTCM 2.3;Type(18,19);2;GPS & GLONASS;Regione FVG "A. Marussi";ITA;45.66;13.79;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
-STR;Udine_RTK;Udine_RTK;RTCM 2.3;Type (18,19);2;GPS & GLONASS;Regione FVG "A. Marussi";ITA;46.06;13.23;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
-STR;VRS_RTCM23;VRS_RTCM23;RTCM 2;Type (1,2,18,19);2;GPS & GLONASS;Regione FVG "A. Marussi";ITA;46.06;13.23;1;1;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
-STR;VRS_RTCM31;VRS_RTCM31;RTCM 3;Extended;2;GPS & GLONASS;Regione FVG "A. Marussi";ITA;46.06;13.23;1;1;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
-STR;VRS_CMR;VRS_CMR;CMR;;2;GPS & GLONASS;Regione FVG "A. MArussi";ITA;46.06;13.23;1;1;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
-STR;MAC_RTCM31;MAC_RTCM31;RTCM 3;RTCM Extended (1015,1016);2;GPS & GLONASS;Regione FVG "A. Marussi";ITA;46.06;13.23;1;1;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
-STR;IMAC_RTCM3;IMAC_RTCM3;RTCM 3;RTCM 3 Extended;2;GPS & GLONASS;Regione FVG "A. Marussi";ITA;46.06;13.23;1;1;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
-STR;SingleBase_RTCM31;SingleBase_RTCM31;RTCM 3.1;Compact;2;GPS & GLONASS;Regione FVG "A. Marussi";ITA;46.41;12.80;1;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
-STR;OGS_AFAL;OGS_AFAL;RTCM;RTCM 2.3 (18,19);2;GPS;OGS FReDNet;ITA;46.52;12.17;0;0;;none;B;N;-1;Reference System ETRF2000 (2008.0)
-STR;OGS_ACOM;OGS_ACOM;RTCM;RTCM 2.3 (18,19);2;GPS;OGS FReDNet;ITA;46.54;13.51;0;0;;none;B;N;-1;Reference System ETRF2000 (2008.0)
-STR;OGS_MDEA;OGS_MDEA;RAW;RTCM 2.3 (18,19);2;GPS+GLONASS;OGS FReDNet;ITA;45.92;13.93;0;0;;none;B;N;-1;Reference System ETRF2000 (2008.0)
-STR;OGS_MPRA;OGS_MPRA;RTCM;2.3 (18,19);2;GPS;OGS FReDNet;ITA;46.24;12.99;0;0;;none;B;N;-1;Reference System ETRF2000 (2008.0)
-STR;Pordenone_RTK;Pordenone_RTK;RTCM 2.3;Type (18,19);2;GPS & GLONASS;Regione FVG "A. Marussi";ITA;45.96;12.66;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
-STR;OGS_CODR;OGS_CODR;RTCM;RTCM 2.3 (18,19);2;GPS;OGS FReDNet;ITA;45.96;12.98;0;0;;none;B;N;-1;Reference System ETRF2000 (2008.0)
-STR;OGS_FUSE;OGS_FUSE;RTCM;2.3 (18,19);2;GPS;OGS FReDNet;ITA;46.41;13.00;0;0;;none;B;N;-1;Reference System ETRF2000 (2008.0)
-STR;OGS_JOAN;OGS_JOAN;RTCM;2.3 (18,19);2;GPS;OGS FReDNet;ITA;46.18;13.42;0;0;;none;B;N;-1;Reference System ETRF2000 (2008.0)
-STR;OGS_NOVE;OGS_NOVE;RAW;2.3 (18,19);2;GPS;OGS FReDNet;ITA;45.67;12.59;0;0;;none;B;N;-1;Reference System ETRF2000 (2008.0)
-STR;OGS_PAZO;OGS_PAZO;RAW;2.3 (18,19);2;GPS;OGS FReDNet;ITA;45.81;13.05;0;0;;none;B;N;-1;Reference System ETRF2000 (2008.0)
-STR;OGS_TRIE;OGS_TRIE;RAW;2.3 (18,19);2;GPS;OGS FReDNet;ITA;45.71;13.76;0;0;;none;B;N;-1;Reference System ETRF2000 (2008.0)
-STR;OGS_UDI1;OGS_UDI1;RAW;2.3 (18,19);2;GPS;OGS FReDNet;ITA;46.04;13.25;0;0;;none;B;N;-1;Reference System ETRF2000 (2008.0)
-STR;OGS_ZOUF;OGS_ZOUF;RAW;2.3 (18,19);2;GPS;OGS FReDNet;ITA;46.56;12.97;0;0;;none;B;N;-1;Reference System ETRF2000 (2008.0)
-STR;Cervignano_DGPS;Cervignano_DGPS;RTCM 2;Type 1,2;0;GPS;Regione FVG "A. Marussi";ITA;45.83;13.34;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
-STR;Cervignano_RTK;Cervignano_RTK;RTCM 2;Type (18,19);2;GPS & GLONASS;Regione FVG "A. Marussi";ITA;45.83;13.34;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
-STR;Gorizia_DGPS;Gorizia_DGPS;RTCM 2;Type (1,2);0;GPS;Regione FVG "A. Marussi";ITA;45.94;13.62;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
-STR;Gorizia_RTK;Gorizia_RTK;RTCM 2;Type (18,19);2;GPS & GLONASS;Regione FVG "A. Marussi";ITA;45.94;13.62;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
-STR;VRS_CMR_GPS;VRS_CMR_GPS;CMR;;2;GPS;Regione FVG "A. MArussi";ITA;46.06;13.23;1;1;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
-STR;SingleBase_RTCM32;SingleBase_RTCM32;RTCM 3;Compact;2;GPS+GLO+GAL+BDS;Regione FVG "A. Marussi";ITA;46.41;12.80;1;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
-STR;IMAC_RTCM32;IMAC_RTCM32;RTCM 3;RTCM 3 Extended;2;GPS+GLO+GAL+BDS;Regione FVG "A. Marussi";ITA;46.06;13.23;1;1;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
-STR;VRS_RTCM32;VRS_RTCM32;RTCM 3;Extended;2;GPS+GLO+GAL+BDS;Regione FVG "A. Marussi";ITA;46.06;13.23;1;1;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
-STR;Sappada_RTK;Sappada_RTK;RTCM 2;Type (18,19);2;GPS & GLONASS;Regione FVG "A. Marussi";ITA;46.57;12.69;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
-STR;Sappada_DGPS;Sappada_DGPS;RTCM 2;Type (1,2);0;GPS;Regione FVG "A. Marussi";ITA;46.57;12.69;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
-STR;Paularo_RTK;Paularo_RTK;RTCM 2;Type (18,19);2;GPS & GLONASS;Regione FVG "A. Marussi";ITA;46.54;13.12;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
-STR;Paularo_DGPS;Paularo_DGPS;RTCM 2;Type (1,2);0;GPS;Regione FVG "A. Marussi";ITA;46.54;13.12;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
-STR;Codroipo_DGPS;Codroipo_DGPS;RTCM 2;Type 1,2;0;GPS;Regione FVG "A. Marussi";ITA;45.96;12.98;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
-STR;Codroipo_RTK;Codroipo_RTK;RTCM 2;Type (18,19);2;GPS & GLONASS;Regione FVG "A. Marussi";ITA;45.96;12.98;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
-STR;Koper_RTK;Koper_RTK;RTCM 2;Type (18,19);2;GPS & GLONASS;Regione FVG "A. Marussi";ITA;45.55;13.73;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
-STR;Koper_DGPS;Koper_DGPS;RTCM 2;Type 1,2;0;GPS;Regione FVG "A. Marussi";ITA;45.55;13.73;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
-STR;Bovec_DGPS;Bovec_DGPS;RTCM 2;Type 1,2;0;GPS;Regione FVG "A. Marussi";ITA;46.33;13.54;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
-STR;Bovec_RTK;Bovec_RTK;RTCM 2;Type (18,19);2;GPS & GLONASS;Regione FVG "A. Marussi";ITA;46.33;13.54;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
-STR;Idrija_DGPS;Idrija_DGPS;RTCM 2;Type 1,2;0;GPS;Regione FVG "A. Marussi";ITA;46.00;14.03;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
-STR;Idrija_RTK;Idrija_RTK;RTCM 2;Type (18,19);2;GPS & GLONASS;Regione FVG "A. Marussi";ITA;46.00;14.03;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
-ENDSOURCETABLE
+STR;SingleBase_RTCM23;SingleBase_RTCM23;RTCM 2.3;Type (1,2,18,19);2;GPS & GLONASS;Regione FVG "A. Marussi";ITA;46.41;12.80;1;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
+STR;Ampezzo_DGPS;Ampezzo_DGPS;RTCM 2;Type 1,2;0;GPS;Regione FVG "A. Marussi";ITA;46.41;12.80;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
+STR;Barcis_DGPS;Barcis_DGPS;RTCM 2;Type 1,2;0;GPS;Regione FVG "A. Marussi";ITA;46.19;12.56;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
+STR;Bevazzana_DGPS;Bevazzana_DGPS;RTCM 2;Type (1,2);0;GPS;Regione FVG "A. Marussi";ITA;45.67;13.07;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
+STR;Pordenone_DGPS;Pordenone_DGPS;RTCM 2;Type (1,2);0;GPS;Regione FVG "A. Marussi";ITA;45.96;12.66;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
+STR;MoggioUdinese_DGPS;MoggioUdinese_DGPS;RTCM 2;Type (1,2);0;GPS;Regione FVG "A. Marussi";ITA;46.41;13.20;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
+STR;Tarvisio_DGPS;Tarvisio_DGPS;RTCM 2;Type (1,2);0;GPS;Regione FVG "A. Marussi";ITA;46.50;13.59;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
+STR;Trieste_DGPS;Trieste_DGPS;RTCM 2;Type (1,2);0;GPS;Regione FVG "A. Marussi";ITA;45.66;13.79;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
+STR;Udine_DGPS;Udine_DGPS;RTCM 2;Type (1,2);0;GPS;Regione FVG "A. Marussi";ITA;46.06;13.23;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
+STR;Ampezzo_RTK;Ampezzo_RTK;RTCM 2.3;Type (18,19);2;GPS & GLONASS;Regione FVG "A. Marussi";ITA;46.41;12.80;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
+STR;Bevazzana_RTK;Bevazzana_RTK;RTCM 2.3;Type (18,19);2;GPS & GLONASS;Regione FVG "A. Marussi";ITA;45.67;13.07;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
+STR;Barcis_RTK;Barcis_RTK;RTCM 2.3;Type (18,19);2;GPS & GLONASS;Regione FVG "A. Marussi";ITA;46.19;12.56;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
+STR;MoggioUdinese_RTK;MoggioUdinese_RTK;RTCM 2.3;Type (18,19);2;GPS & GLONASS;Regione FVG "A. Marussi";ITA;46.41;13.20;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
+STR;Tarvisio_RTK;Tarvisio_RTK;RTCM 2.3;Type (18,19);2;GPS & GLONASS;Regione FVG "A. Marussi";ITA;46.50;13.59;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
+STR;Trieste_RTK;Trieste_RTK;RTCM 2.3;Type(18,19);2;GPS & GLONASS;Regione FVG "A. Marussi";ITA;45.66;13.79;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
+STR;Udine_RTK;Udine_RTK;RTCM 2.3;Type (18,19);2;GPS & GLONASS;Regione FVG "A. Marussi";ITA;46.06;13.23;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
+STR;VRS_RTCM23;VRS_RTCM23;RTCM 2;Type (1,2,18,19);2;GPS & GLONASS;Regione FVG "A. Marussi";ITA;46.06;13.23;1;1;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
+STR;VRS_RTCM31;VRS_RTCM31;RTCM 3;Extended;2;GPS & GLONASS;Regione FVG "A. Marussi";ITA;46.06;13.23;1;1;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
+STR;VRS_CMR;VRS_CMR;CMR;;2;GPS & GLONASS;Regione FVG "A. MArussi";ITA;46.06;13.23;1;1;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
+STR;MAC_RTCM31;MAC_RTCM31;RTCM 3;RTCM Extended (1015,1016);2;GPS & GLONASS;Regione FVG "A. Marussi";ITA;46.06;13.23;1;1;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
+STR;IMAC_RTCM3;IMAC_RTCM3;RTCM 3;RTCM 3 Extended;2;GPS & GLONASS;Regione FVG "A. Marussi";ITA;46.06;13.23;1;1;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
+STR;SingleBase_RTCM31;SingleBase_RTCM31;RTCM 3.1;Compact;2;GPS & GLONASS;Regione FVG "A. Marussi";ITA;46.41;12.80;1;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
+STR;OGS_AFAL;OGS_AFAL;RTCM;RTCM 2.3 (18,19);2;GPS;OGS FReDNet;ITA;46.52;12.17;0;0;;none;B;N;-1;Reference System ETRF2000 (2008.0)
+STR;OGS_ACOM;OGS_ACOM;RTCM;RTCM 2.3 (18,19);2;GPS;OGS FReDNet;ITA;46.54;13.51;0;0;;none;B;N;-1;Reference System ETRF2000 (2008.0)
+STR;OGS_MDEA;OGS_MDEA;RAW;RTCM 2.3 (18,19);2;GPS+GLONASS;OGS FReDNet;ITA;45.92;13.93;0;0;;none;B;N;-1;Reference System ETRF2000 (2008.0)
+STR;OGS_MPRA;OGS_MPRA;RTCM;2.3 (18,19);2;GPS;OGS FReDNet;ITA;46.24;12.99;0;0;;none;B;N;-1;Reference System ETRF2000 (2008.0)
+STR;Pordenone_RTK;Pordenone_RTK;RTCM 2.3;Type (18,19);2;GPS & GLONASS;Regione FVG "A. Marussi";ITA;45.96;12.66;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
+STR;OGS_CODR;OGS_CODR;RTCM;RTCM 2.3 (18,19);2;GPS;OGS FReDNet;ITA;45.96;12.98;0;0;;none;B;N;-1;Reference System ETRF2000 (2008.0)
+STR;OGS_FUSE;OGS_FUSE;RTCM;2.3 (18,19);2;GPS;OGS FReDNet;ITA;46.41;13.00;0;0;;none;B;N;-1;Reference System ETRF2000 (2008.0)
+STR;OGS_JOAN;OGS_JOAN;RTCM;2.3 (18,19);2;GPS;OGS FReDNet;ITA;46.18;13.42;0;0;;none;B;N;-1;Reference System ETRF2000 (2008.0)
+STR;OGS_NOVE;OGS_NOVE;RAW;2.3 (18,19);2;GPS;OGS FReDNet;ITA;45.67;12.59;0;0;;none;B;N;-1;Reference System ETRF2000 (2008.0)
+STR;OGS_PAZO;OGS_PAZO;RAW;2.3 (18,19);2;GPS;OGS FReDNet;ITA;45.81;13.05;0;0;;none;B;N;-1;Reference System ETRF2000 (2008.0)
+STR;OGS_TRIE;OGS_TRIE;RAW;2.3 (18,19);2;GPS;OGS FReDNet;ITA;45.71;13.76;0;0;;none;B;N;-1;Reference System ETRF2000 (2008.0)
+STR;OGS_UDI1;OGS_UDI1;RAW;2.3 (18,19);2;GPS;OGS FReDNet;ITA;46.04;13.25;0;0;;none;B;N;-1;Reference System ETRF2000 (2008.0)
+STR;OGS_ZOUF;OGS_ZOUF;RAW;2.3 (18,19);2;GPS;OGS FReDNet;ITA;46.56;12.97;0;0;;none;B;N;-1;Reference System ETRF2000 (2008.0)
+STR;Cervignano_DGPS;Cervignano_DGPS;RTCM 2;Type 1,2;0;GPS;Regione FVG "A. Marussi";ITA;45.83;13.34;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
+STR;Cervignano_RTK;Cervignano_RTK;RTCM 2;Type (18,19);2;GPS & GLONASS;Regione FVG "A. Marussi";ITA;45.83;13.34;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
+STR;Gorizia_DGPS;Gorizia_DGPS;RTCM 2;Type (1,2);0;GPS;Regione FVG "A. Marussi";ITA;45.94;13.62;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
+STR;Gorizia_RTK;Gorizia_RTK;RTCM 2;Type (18,19);2;GPS & GLONASS;Regione FVG "A. Marussi";ITA;45.94;13.62;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
+STR;VRS_CMR_GPS;VRS_CMR_GPS;CMR;;2;GPS;Regione FVG "A. MArussi";ITA;46.06;13.23;1;1;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
+STR;SingleBase_RTCM32;SingleBase_RTCM32;RTCM 3;Compact;2;GPS+GLO+GAL+BDS;Regione FVG "A. Marussi";ITA;46.41;12.80;1;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
+STR;IMAC_RTCM32;IMAC_RTCM32;RTCM 3;RTCM 3 Extended;2;GPS+GLO+GAL+BDS;Regione FVG "A. Marussi";ITA;46.06;13.23;1;1;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
+STR;VRS_RTCM32;VRS_RTCM32;RTCM 3;Extended;2;GPS+GLO+GAL+BDS;Regione FVG "A. Marussi";ITA;46.06;13.23;1;1;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
+STR;Sappada_RTK;Sappada_RTK;RTCM 2;Type (18,19);2;GPS & GLONASS;Regione FVG "A. Marussi";ITA;46.57;12.69;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
+STR;Sappada_DGPS;Sappada_DGPS;RTCM 2;Type (1,2);0;GPS;Regione FVG "A. Marussi";ITA;46.57;12.69;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
+STR;Paularo_RTK;Paularo_RTK;RTCM 2;Type (18,19);2;GPS & GLONASS;Regione FVG "A. Marussi";ITA;46.54;13.12;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
+STR;Paularo_DGPS;Paularo_DGPS;RTCM 2;Type (1,2);0;GPS;Regione FVG "A. Marussi";ITA;46.54;13.12;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
+STR;Codroipo_DGPS;Codroipo_DGPS;RTCM 2;Type 1,2;0;GPS;Regione FVG "A. Marussi";ITA;45.96;12.98;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
+STR;Codroipo_RTK;Codroipo_RTK;RTCM 2;Type (18,19);2;GPS & GLONASS;Regione FVG "A. Marussi";ITA;45.96;12.98;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
+STR;Koper_RTK;Koper_RTK;RTCM 2;Type (18,19);2;GPS & GLONASS;Regione FVG "A. Marussi";ITA;45.55;13.73;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
+STR;Koper_DGPS;Koper_DGPS;RTCM 2;Type 1,2;0;GPS;Regione FVG "A. Marussi";ITA;45.55;13.73;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
+STR;Bovec_DGPS;Bovec_DGPS;RTCM 2;Type 1,2;0;GPS;Regione FVG "A. Marussi";ITA;46.33;13.54;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
+STR;Bovec_RTK;Bovec_RTK;RTCM 2;Type (18,19);2;GPS & GLONASS;Regione FVG "A. Marussi";ITA;46.33;13.54;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
+STR;Idrija_DGPS;Idrija_DGPS;RTCM 2;Type 1,2;0;GPS;Regione FVG "A. Marussi";ITA;46.00;14.03;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
+STR;Idrija_RTK;Idrija_RTK;RTCM 2;Type (18,19);2;GPS & GLONASS;Regione FVG "A. Marussi";ITA;46.00;14.03;0;0;Leica GNSS Spider;none;B;N;-1;Reference System ETRS89
+ENDSOURCETABLE

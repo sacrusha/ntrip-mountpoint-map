@@ -1,0 +1,25 @@
+SOURCETABLE 200 OK
+Server: NTRIP GNSMART_Caster 2.0/1.0
+Date: Fri, 08 May 2026 10:06:34 GMT
+Content-Type: text/plain; charset=ISO-8859-1
+Connection: close
+Content-Length: 1799
+
+CAS;192.168.1.234;2101;Regione Campania;Regione Campania;1;ITA;40.90;14.40;0.0.0.0;0;
+NET;Rete GNSS Campania;Regione Campania;B;N;https://gps-sit-regione.campania.it;https://gps-sit-regione.campania.it;;None
+STR;1_VRS30;VRS30;RTCM3;;2;gnss;Rete GNSS Campania;ITA;40.00;14.00;1;1;GNSMART;none;B;Y;4800;
+STR;11_NAPO_4C;Napoli 4 costellazioni;MSM4;;2;gnss;Rete GNSS Campania;ITA;40.00;14.00;0;1;GNSMART;none;B;Y;4800;
+STR;12_CARI_4C;carinola 4 costellazioni;MSM4;;2;gnss;Rete GNSS Campania;ITA;40.00;14.00;0;1;GNSMART;none;B;Y;4800;
+STR;13_BENE_4C;Benevento 4 costellazioni;MSM4;;2;gnss;Rete GNSS Campania;ITA;40.00;14.00;0;1;GNSMART;none;B;Y;4800;
+STR;14_TRGR_4C;Torre del Greco 4 costellazioni;MSM4;;2;gnss;Rete GNSS Campania;ITA;40.00;14.00;0;1;GNSMART;none;B;Y;4800;
+STR;15_AGRO_4C;Agropoli 4 costellazioni;MSM4;;2;gnss;Rete GNSS Campania;ITA;40.00;14.00;0;1;GNSMART;none;B;Y;4800;
+STR;16_NICO_4C;San Nicola la Strada 4 costellazioni;MSM4;;2;gnss;Rete GNSS Campania;ITA;40.00;14.00;0;1;GNSMART;none;B;Y;4800;
+STR;2_VRS;VRS_1819;RTCM 2.3;;2;gnss;Rete GNSS Campania;ITA;40.00;14.00;1;1;GNSMART;none;B;Y;4800;
+STR;3_CMR;CMR;CMR;;2;gnss;Rete GNSS Campania;ITA;40.00;14.00;1;1;GNSMART;none;B;N;4800;
+STR;4_NEAR;NEAR;RTCM 2.3;;2;gnss;Rete GNSS Campania;ITA;40.00;14.00;1;1;GNSMART;none;B;N;4800;
+STR;5_MAC;MAC;RTCM3;;2;gnss;Rete GNSS Campania;ITA;40.00;14.00;1;1;GNSMART;none;B;N;4800;
+STR;6_CODE;DGPS;RTCMM 2.3;;2;gnss;Rete GNSS Campania;ITA;40.00;14.00;1;1;GNSMART;none;B;N;4800;
+STR;7_FKP;FKP;RTCM 2.3;;2;gnss;Rete GNSS Campania;ITA;40.00;14.00;1;1;GNSMART;none;B;N;4800;
+STR;8_VRS2021;VRS2021;RTCM 2.3;;2;gnss;Rete GNSS Campania;ITA;40.00;14.00;1;1;GNSMART;none;B;N;4800;
+STR;9_NEAR3;NEAR3;RTCM 3;;2;gnss;Rete GNSS Campania;ITA;40.00;14.00;1;0;GNSMART;none;B;N;4800;
+ENDSOURCETABLE

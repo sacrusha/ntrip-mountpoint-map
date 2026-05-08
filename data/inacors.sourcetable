@@ -1,5 +1,5 @@
-STR;max-rtcm3;max-rtcm3;RTCM 3;;2;GPS+GLO;;;-6.49;106.85;1;1;Leica GNSS Spider;none;B;Y;9600;
-STR;Nearest-rtcm3;Nearest-rtcm3;RTCM 3;;2;GPS+GLO+GAL+BDS+QZSS;;;-2.53;112.94;1;0;Leica GNSS Spider;none;B;Y;9600;
-STR;imax-rtcm3;imax-rtcm3;RTCM 3;;2;GPS+GLO+GAL+BDS+QZSS;;;-2.92;132.30;1;1;Leica GNSS Spider;none;B;Y;9600;
-STR;vrs-rtcm3;vrs-rtcm3;RTCM 3;;2;GPS+GLO+GAL+BDS+QZSS;;;-6.00;106.00;1;1;Leica GNSS Spider;none;B;Y;9600;
-ENDSOURCETABLE
+STR;max-rtcm3;max-rtcm3;RTCM 3;;2;GPS+GLO;;;-6.49;106.85;1;1;Leica GNSS Spider;none;B;Y;9600;
+STR;Nearest-rtcm3;Nearest-rtcm3;RTCM 3;;2;GPS+GLO+GAL+BDS+QZSS;;;-2.53;112.94;1;0;Leica GNSS Spider;none;B;Y;9600;
+STR;imax-rtcm3;imax-rtcm3;RTCM 3;;2;GPS+GLO+GAL+BDS+QZSS;;;-2.92;132.30;1;1;Leica GNSS Spider;none;B;Y;9600;
+STR;vrs-rtcm3;vrs-rtcm3;RTCM 3;;2;GPS+GLO+GAL+BDS+QZSS;;;-6.00;106.00;1;1;Leica GNSS Spider;none;B;Y;9600;
+ENDSOURCETABLE

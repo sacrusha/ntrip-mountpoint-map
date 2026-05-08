@@ -8,6 +8,10 @@
       "Read(D:\\Projects\\ntrip-mountpoint-map\\**)",
       "Bash(curl *)",
       "Bash(dir *)",
+      "Bash(echo *)",
+      "Bash(nslookup *)",
+      "Bash(grep *)",
+      "Bash(awk *)",
       "Bash(ls *)"
     ]
   }

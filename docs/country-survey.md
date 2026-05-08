@@ -1881,21 +1881,34 @@ similarly have no published coverage for these jurisdictions.
 
 ### KR — South Korea
 
-**date_added**: 2026-05-06
+**date_added**: 2026-05-08
 
 - **Free government RTK**:
-  - GNSS Data Center (`www.gnssdata.or.kr:2101`, ~8 stations contributed by 8 member
-    agencies, single-base) — free; email-only registration (no Korean ID required);
-    50-day inactivity auto-expiry. Sparse coverage; not a substitute for a national
-    network. Confirmed alive 2026-05-07.
+  - GNSS Data Center (`www.gnssdata.or.kr:2101`, 167 physical stations from 8
+    contributing agencies, single-base) — free; email-only registration (no Korean ID
+    required); NTRIP password is the literal string `gnss`; 50-day inactivity
+    auto-expiry. ~40 km nationwide spacing; practical national coverage.
+    Re-confirmed 2026-05-08 (546-row SOURCETABLE; registration + RTCM service pages
+    HTTPS 200 with verbatim credential text). → networks.md: `cors_korea`
   - NGII Network RTK (NGII, `vrs3.ngii.go.kr:2101` VRS / `fkp.ngii.go.kr:2201` FKP,
-    ~60 stations) — free VRS/FKP service; registration requires Korean PASS/mobile identity
-    verification — practical barrier for non-residents. Seoul City supplementary network
-    at `gnss.eseoul.go.kr`.
-  → networks.md: `cors_korea`
-- **Volunteer**: rtk2go ~3 KR bases.
-- **Gap**: NGII VRS/FKP requires Korean residency. GNSS Data Center (gnssdata.or.kr)
-  is accessible without Korean ID but has too few stations for reliable nationwide RTK.
+    ~60 KORREF stations) — free VRS/FKP network solution (Geo++ GNSMART); registration
+    requires Korean PASS/mobile identity verification (휴대폰 본인인증) — practical
+    barrier for non-residents. Seoul City supplementary VRS/FKP at `gnss.eseoul.go.kr`
+    (separate registration, same Korean-ID gate).
+- **Commercial / out of scope for hobbyists**: MBC RTK (`rtk.mbc.co.kr`, terrestrial
+  broadcaster, 140+ stations, RTCM 3.4, B-RTK over NTRIP+DMB+ATSC 3.0) — no public
+  consumer pricing or self-serve NTRIP signup; access is bundled with custom hardware
+  product family (SMC/MRD/MRP/TDR/MGI series) sold to fleet/automotive integrators.
+  Point One Polaris (US-based, expanded to KR 2023) and Hexagon TerraStar-X
+  (PPP-RTK satellite-delivered, automotive) operate in KR but are global commercial
+  services without KR-specific blocks.
+- **Volunteer**: rtk2go 3 KR bases (KAIST-RTK-RTCM in Daejeon, TYMICT-ES and
+  sejongnav in Seoul/Sejong corridor). Zero Centipede KR stations.
+- **Gap**: NGII VRS/FKP (network solution) requires Korean residency to register.
+  Foreign hobbyists can use Network 1 (GNSS Data Center) for single-base RTK;
+  the same NGII KORREF physical stations are exposed there in raw form, so a
+  rover-side baseline solution recovers nearly equivalent functional accuracy
+  within ~40 km of any KORREF mount.
 
 ### MO — Macao SAR (China)
 

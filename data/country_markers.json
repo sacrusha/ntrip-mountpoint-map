@@ -1425,8 +1425,24 @@
       "lat": 36.5,
       "lon": 127.8,
       "tier": "free",
+      "access": "registration",
+      "registration": "https://www.gnssdata.or.kr/user/agree.do",
+      "stations_declared": 167,
+      "note": "167 stations from 8 Korean agencies, single-base only. Email-only registration; no Korean ID required. NTRIP password is the literal string 'gnss', not the portal login password. Accounts auto-delete after 50 days inactivity. Separate NGII VRS/FKP network-solution service requires Korean mobile-identity verification."
+    },
+    {
+      "id": "mbcrtk",
+      "name": "MBC RTK / B-RTK",
+      "region": "South Korea",
+      "country": "KR",
+      "lat": 37.55,
+      "lon": 126.97,
+      "tier": "restricted",
       "vrs": true,
-      "stations_declared": 100
+      "access": "restricted",
+      "registration": "https://rtk.mbc.co.kr/eng/",
+      "stations_declared": 140,
+      "note": "Nationwide commercial broadcast+NTRIP RTK network operated by MBC (terrestrial broadcaster). Access is bundled with custom B-RTK receiver hardware sold to fleet and OEM integrators; no self-serve consumer NTRIP signup at any price. Free hobbyist alternative: CORS-KOREA via the GNSS Data Center."
     },
     {
       "id": "almgg_mn",
