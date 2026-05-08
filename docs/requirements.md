@@ -298,12 +298,20 @@ centroid, nationwide networks → country or company headquarters).
 
 ### Station card
 
-Single bottom-anchored sheet, shared by every marker click (station,
-network centroid, paid-tier glyph) plus the map-click radius search.
-Width-based breakpoint at 768 px: centred fixed-width on viewports ≥ 768
-(vertical desktops, tablets in landscape); full-width strip across the
-bottom on phones. No auto-pan when the sheet opens. Plain language,
-minimised body for a station hit:
+Two presentation modes for the same payload, dispatched per click via
+`matchMedia('(pointer: coarse)')`:
+
+- **Desktop / pointer:fine** — marker-anchored Leaflet popup (the
+  long-standing behaviour). Vertical desktops keep this path because
+  pointer is the discriminator, not viewport size.
+- **Touch / pointer:coarse** — `#card-sheet` overlay anchored to the
+  bottom of the viewport. Centred fixed-width (~420 px) above 768 px
+  wide; full-width strip across the bottom on phones. No auto-pan.
+
+Click-through is unified: any marker (station, network centroid,
+paid-tier glyph) plus the map-click radius search routes through
+`showCard(html, latlng)`. Plain language, minimised body for a station
+hit:
 
 ```
 <name>
