@@ -476,6 +476,10 @@
   // Per-source data. Built once at load time from data/stations.json.
   var SOURCES={};
   var _helpTopics=null;
+  // Map ref shared across the IIFE — set during window.load. Used by the
+  // showCard dispatch (Leaflet popup path on pointer:fine) and by openHelp
+  // to close whatever overlay is up.
+  var _MAP=null;
   var MULTI_COLOR='#222', UNKNOWN_SOURCE_COLOR='#888', VRS_COLOR='#1a5d1a';
   var GREY_MARKER_COLOR='#666';   // matches stale-pin colour
   var INFO_MARKER_COLOR='#888';   // circled-? fallback / info markers
@@ -752,9 +756,11 @@
     try{ localStorage.setItem('ntrip-howit-seen','1'); }catch(e){}
   };
 
-  // Card sheet — single overlay surface for any marker selection. Replaces
-  // Leaflet's bindPopup for station/network/paid markers. Click-outside,
-  // ESC, map click, or opening the help drawer all dismiss it.
+  // Card sheet — overlay surface for marker selection on touch devices
+  // (pointer:coarse). On desktop / pointer:fine, marker clicks open a normal
+  // marker-anchored Leaflet popup instead; the sheet stays hidden.
+  // Click-outside, ESC, map click, or opening the help drawer all dismiss
+  // whichever surface is up.
   function openCardSheet(html){
     hideHelpPopover();
     var s=document.getElementById('card-sheet'); if(!s) return;
@@ -767,6 +773,23 @@
   function isCardOpen(){
     var s=document.getElementById('card-sheet');
     return !!(s&&s.classList.contains('on'));
+  }
+  function isPopupOpen(){
+    return !!(_MAP&&_MAP._popup&&_MAP._popup._isOpen);
+  }
+  // Dispatch a marker selection: bottom sheet on touch, marker-anchored
+  // Leaflet popup on desktop. latlng is used for popup positioning.
+  function showCard(html,latlng){
+    if(matchMedia('(pointer: coarse)').matches){
+      openCardSheet(html);
+      return;
+    }
+    if(_MAP){
+      L.popup({maxWidth:320})
+        .setLatLng(latlng)
+        .setContent(html)
+        .openOn(_MAP);
+    }
   }
 
 
@@ -947,7 +970,7 @@
       L.marker(c,{
         icon:L.divIcon({className:'',iconSize:[18,18],iconAnchor:[9,9],
           html:'<svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="7.5" fill="#1a5d1a" stroke="white" stroke-width="2"/><text x="9" y="12" text-anchor="middle" font-size="9" font-weight="bold" fill="white">N</text></svg>'})
-      }).on('click',function(){ openCardSheet(popup); }).addTo(group);
+      }).on('click',function(){ showCard(popup,c); }).addTo(group);
     });
     return group;
   }
@@ -1072,7 +1095,7 @@
     var icon=L.divIcon({className:'',iconSize:[18,18],iconAnchor:[9,9],html:tierIconSvg(glyph,color,null,18)});
     return L.marker([lat,lon],{icon:icon,pane:'tierPane'})
       .bindTooltip(label,{sticky:false})
-      .on('click',function(){ openCardSheet(popup); }).addTo(group);
+      .on('click',function(){ showCard(popup,[lat,lon]); }).addTo(group);
   }
 
   // Antenna glyph — broadcasting-tower shape inside a white circle, drawn in
@@ -1092,7 +1115,7 @@
     var icon=L.divIcon({className:'',iconSize:[18,18],iconAnchor:[9,9],html:antennaIconSvg(color,18)});
     return L.marker([lat,lon],{icon:icon,pane:'tierPane'})
       .bindTooltip(label,{sticky:false})
-      .on('click',function(){ openCardSheet(popup); }).addTo(group);
+      .on('click',function(){ showCard(popup,[lat,lon]); }).addTo(group);
   }
 
   /* ——— Help drawer & popover ——— */
@@ -1104,6 +1127,7 @@
   function openHelp(highlightId){
     hideHelpPopover();
     closeCardSheet();
+    if(_MAP) _MAP.closePopup();
     var drawer=document.getElementById('help-drawer');
     var scrim=document.getElementById('help-scrim');
     if(drawer&&!drawer.classList.contains('on')) _drawerPrevFocus=document.activeElement;
@@ -1302,7 +1326,11 @@
       if(pop){ hideHelpPopover(); return; }
       var drawer=document.getElementById('help-drawer');
       if(drawer&&drawer.classList.contains('on')){ closeHelp(); return; }
-      if(isCardOpen()){ closeCardSheet(); return; }
+      if(isCardOpen()||isPopupOpen()){
+        closeCardSheet();
+        if(_MAP) _MAP.closePopup();
+        return;
+      }
       var toast=document.getElementById('help-toast');
       if(toast&&!toast.hidden){ window.__ntripDismissToast(); return; }
       return;
@@ -1709,6 +1737,7 @@
   window.addEventListener('load',async function(){
     setupBanner();
     var map=L.map('map',{preferCanvas:true,worldCopyJump:true,minZoom:2}).setView([47.0,8.0],8); // preferCanvas required — per-station SVG blows DOM budget above ~2k stations
+    _MAP=map;
     map.on('movestart', hideHelpPopover);
     var viewerPosProm=getViewerPos();
 
@@ -1866,7 +1895,7 @@
           entry.marker=L.marker([s.lat,s.lon],{icon:cachedIcon(fill)})
             .bindTooltip(names.join(' / '),
               {permanent:true,direction:'right',offset:[9,0],className:'slabel'})
-            .on('click',(function(st){ return function(){ openCardSheet(getCachedPopup(st)); }; })(s))
+            .on('click',(function(st){ return function(){ showCard(getCachedPopup(st),[st.lat,st.lon]); }; })(s))
             .addTo(detailGroup);
           _detailMap.set(pk,entry);
         }catch(e){ console.warn('detail err',e); }
@@ -1938,7 +1967,7 @@
         var d=(pt.x-clickPt.x)*(pt.x-clickPt.x)+(pt.y-clickPt.y)*(pt.y-clickPt.y);
         if(d<bestD){ bestD=d; best=ids[i]; }
       }
-      openCardSheet(getCachedPopup(visible[best]));
+      showCard(getCachedPopup(visible[best]),[visible[best].lat,visible[best].lon]);
     });
 
     function updateViewCounts(){
