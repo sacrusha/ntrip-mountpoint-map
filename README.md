@@ -31,11 +31,9 @@ NTRIP, RTK hardware, antenna placement, and DIY base stations.
   grey antennas for stale or not-yet-ingested networks, circled $ / ✕ / ?
   for affordable / restricted / info networks. All driven by
   `data/country_markers.json`.
-- Marker clicks open a station details card — a marker-anchored popup on
-  desktop, a bottom-anchored sheet on touch devices (`pointer: coarse`).
-  Both surface the three strings you need for your NTRIP client — server
-  host, port, mountpoint name — each with a one-click copy button, plus a
-  direct link to the registration page where one is needed.
+- Marker clicks surface the three strings you need for your NTRIP client —
+  server host, port, mountpoint name — each with a one-click copy button,
+  plus a direct link to the registration page where one is needed.
 - Accuracy rectangle at close zoom encodes the precision of the reported
   coordinates, so pins in physically implausible locations don't destroy
   trust in the data.
