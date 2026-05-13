@@ -1,8 +1,15 @@
 #!/usr/bin/env python3
 """List rtk2go / Centipede / EarthScope (NOTA) stations within a radius.
 
-Usage:  python scripts/stations_by_radius.py <lat> <lon> <radius_km>
-Example: python scripts/stations_by_radius.py 48.85 2.35 150
+Usage:    py scripts/stations_by_radius.py <lat> <lon> <radius_km>
+Example:  py scripts/stations_by_radius.py 48.85 2.35 150
+
+Related tools (in this directory):
+    stations_by_country.py   list stations for a country code
+    stations_inspect.py      schema + per-source summary of stations.json
+    sources_list.py          look up source ids defined in fetch_stations.py
+    source_health.py         check status of one or all sources
+    network_lookup.py        find every mention of a network/source across the repo
 """
 import json, math, sys
 from pathlib import Path

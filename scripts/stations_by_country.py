@@ -1,13 +1,24 @@
 #!/usr/bin/env python3
 """List rtk2go / Centipede / EarthScope (NOTA) stations for a country code.
 
-Usage:  python scripts/stations_by_country.py <country_code>
-        python scripts/stations_by_country.py          # list all codes
+Usage:  py scripts/stations_by_country.py <country_code>
+        py scripts/stations_by_country.py          # list all codes
+
+Examples:
+        py scripts/stations_by_country.py FRA
+        py scripts/stations_by_country.py JAM
 
 Country codes follow each source's own convention.
-rtk2go uses ISO 3166-1 alpha-3 (FRA, USA, DEU …).
+rtk2go uses ISO 3166-1 alpha-3 (FRA, USA, DEU ...).
 Centipede quirks: CHZ=CZ  ENG=GB  SER=RS  BIH=BA  NLD/BEL separate.
 EarthScope uses USA for US stations; other territories vary.
+
+Related tools (in this directory):
+    stations_by_radius.py    list stations within a radius of a lat/lon
+    stations_inspect.py      schema + per-source summary of stations.json
+    sources_list.py          look up source ids defined in fetch_stations.py
+    source_health.py         check status of one or all sources
+    network_lookup.py        find every mention of a network/source across the repo
 """
 import json, sys
 from pathlib import Path

@@ -11,6 +11,12 @@ guide.html                    # long-form standalone visitor primer linked from 
 scripts/fetch_stations.py        # updates .sourcetable files, source_health.json, stations.json.
 scripts/fetch_stations.proc.md   # editing rules for fetch_stations.py SOURCES. Read BEFORE editing the .py.
 scripts/inject_seo_help.py       # splices a hidden SEO mirror of help_topics.json into index.html. Run after editing help_topics.json; commit the index.html diff in the same commit.
+scripts/                         # investigation toolset — run each with `-h` for purpose + examples. Prefer over ad-hoc py -c / grep when possible:
+                                 #   stations_by_country.py, stations_by_radius.py — station lookup
+                                 #   stations_inspect.py — data/stations.json schema + per-source detail
+                                 #   sources_list.py — filter the SOURCES list in fetch_stations.py
+                                 #   source_health.py — data/source_health.json summary + per-id lookup
+                                 #   network_lookup.py — find a network across networks.md, surveys, research, markers, stations.json, SOURCES
 .github/workflows/
   update-stations.yml            # Runs fetch_stations.py 4 times a day, commits to main.
 data/
