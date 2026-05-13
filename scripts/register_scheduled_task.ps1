@@ -17,7 +17,9 @@
 param(
     [string[]]$Times = @('07:00', '13:00', '19:00', '23:00'),
     [string]$TaskName = 'ntrip-mountpoint-map refresh + deploy',
-    [string]$RepoRoot
+    [string]$RepoRoot,
+    [switch]$SkipGit,
+    [switch]$SkipDeploy
 )
 
 $ErrorActionPreference = 'Stop'
@@ -25,6 +27,10 @@ if (-not $RepoRoot) { $RepoRoot = Split-Path -Parent $PSScriptRoot }
 $RepoRoot = (Resolve-Path $RepoRoot).Path
 $scriptPath = Join-Path $RepoRoot 'scripts/refresh_and_deploy.ps1'
 $repoRoot = $RepoRoot
+
+$extraArgs = ''
+if ($SkipGit)    { $extraArgs += ' -SkipGit' }
+if ($SkipDeploy) { $extraArgs += ' -SkipDeploy' }
 
 if (-not (Test-Path $scriptPath)) { throw "Orchestrator not found at $scriptPath" }
 
@@ -37,7 +43,7 @@ if ($existing) {
 
 $action = New-ScheduledTaskAction `
     -Execute 'powershell.exe' `
-    -Argument "-NoProfile -ExecutionPolicy Bypass -File `"$scriptPath`"" `
+    -Argument "-NoProfile -ExecutionPolicy Bypass -File `"$scriptPath`"$extraArgs" `
     -WorkingDirectory $repoRoot
 
 $triggers = foreach ($t in $Times) {
@@ -64,10 +70,12 @@ Register-ScheduledTask `
     -Trigger $triggers `
     -Principal $principal `
     -Settings $settings `
-    -Description "Fetches NTRIP sourcetables, commits + pushes data/, deploys to Cloudflare Pages. Local replacement for former GitHub Actions workflows." | Out-Null
+    -Description "Runs scripts/refresh_and_deploy.ps1 in $repoRoot. Local replacement for former GitHub Actions workflows." | Out-Null
 
 Write-Output "Registered task '$TaskName' with triggers: $($Times -join ', ') (local time)."
-Write-Output "Logs: $repoRoot\.tmp\refresh_and_deploy\"
+Write-Output "Working dir:  $repoRoot"
+Write-Output "Orchestrator: $scriptPath$extraArgs"
+Write-Output "Logs:         $repoRoot\.tmp\refresh_and_deploy\"
 Write-Output ""
 Write-Output "To run now:        Start-ScheduledTask -TaskName '$TaskName'"
 Write-Output "To view next run:  Get-ScheduledTaskInfo -TaskName '$TaskName'"
