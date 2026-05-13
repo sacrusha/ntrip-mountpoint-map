@@ -9,7 +9,7 @@
 | **Foreign-operated NTRIP streams covering NI** | Yes — EarthScope NOTA: `CNG2_RTCM3P3` (12.50 N, -86.70 — near Chinandega), `JAPO_RTCM3P3` (11.53 N, -85.68 — near Juigalpa/San Carlos area). Both RTCM 3.3, GPS+GLO+BDS+GAL+SBAS+QZS, TRIMBLE NETR9, single-base. Auth required (Y), no NMEA, fee flagged `SEAT_REQUIRED` |
 | **Domestic government CORS network** | Yes — INETER CORS (Dirección General de Geodesia y Cartografía); RINEX post-processing only |
 | **INETER access portal** | https://consultacf.ineter.gob.ni (Catastro Físico) — RINEX downloads on request |
-| **EarthScope sourcetable** | `gnss.earthscope.org:2101` (RTCM 3 streams listed for NIC, MEX, HND, CRI, etc.) |
+| **EarthScope sourcetable** | `ntrip.earthscope.org:2101` (RTCM 3 streams listed for NIC, MEX, HND, CRI, etc.; `gnss.earthscope.org` is the portal, not the caster) |
 | **EarthScope access policy** | Free non-commercial via NULA (No-cost User License Agreement) + a seat assignment; commercial use USD 1,000 / seat / year |
 | **hobbyist_eligibility — EarthScope** | Yes — NULA covers personal, hobbyist, educational, non-commercial use. Seat allocation requires registration with EarthScope/UNAVCO |
 | **legal_residency_required** | No — EarthScope NULA is open globally |
@@ -26,7 +26,7 @@ Two NIC stations are streamed live via EarthScope's NTRIP caster as of 2026-05-1
 
 These are single-base streams — operate effectively within ~30–50 km of each station for full RTK. CNG2 covers the Chinandega / León area (≈64 km from Managua). JAPO covers the central Cocibolca / Río San Juan corridor. Managua city centre (12.13 N, -86.25 W) sits between them; CNG2 is the closer base.
 
-To use: register a free EarthScope account → submit/accept NULA → request a seat → use issued credentials against `gnss.earthscope.org:2101`. See https://www.earthscope.org/data/gnss-data/.
+To use: register a free EarthScope account → submit/accept NULA → request a seat → use issued credentials against `ntrip.earthscope.org:2101`. See https://www.earthscope.org/data/gnss-data/.
 
 ## INETER Government CORS Network — RINEX only
 

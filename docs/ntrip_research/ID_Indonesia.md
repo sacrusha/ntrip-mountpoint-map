@@ -1,5 +1,5 @@
 # Indonesia [ID] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06 (updated 2026-05-12: live sourcetable captured at `nrtk.big.go.id:2001`)
+**Date researched:** 2026-05-06 (updated 2026-05-12: live sourcetable captured at `nrtk.big.go.id:2001`; updated 2026-05-13: InaCORS station count refreshed to 432 end-of-2024, BIG 2023 target of 435 not met that year)
 
 ## Status: YES — InaCORS (BIG) free national NTRIP caster operational; coverage outside Java/Bali sparse
 
@@ -18,7 +18,12 @@
 
 - **Operator**: BIG — Badan Informasi Geospasial (Geospatial Information Agency), the Indonesian national mapping authority
 - **Legal basis**: Law No. 4/2011 on Geospatial Information mandates free public access to the national spatial reference infrastructure
-- **Station count (declared)**: BIG reported 397 physical CORS stations by end of 2022, targeting 435 by end of 2023; BPN (National Land Agency / ATR-BPN) separately operates ~186 CORS stations; integration of BPN stations into InaCORS is in progress
+- **Station count (declared, verified 2026-05-13)**:
+  - End of 2022: 397 stations (BIG SRGI service-check page — "BIG selaku penyelenggara SRGI2013 telah membangun 397 stasiun CORS terhitung sampai akhir tahun 2022")
+  - Aug 2023: 396 stations operational per PJKGG news ("PJKGG telah membangun 396 stasiun CORS"); the announced 2023 target of 435 was NOT met that year
+  - SRGI `jaring-kontrol-geodesi` page (observed 2026-05-13): still cites 397 as of 2023
+  - End of 2024: 432 stations operational with 41 additional stations under construction (≈473 total planned by end-2025); 81.62% of Indonesia's urban+rural area within 50 km of an InaCORS station; Java and Bali fully served, Sumatra/Nusa Tenggara/Maluku/Sulawesi almost completely served, Papua and Kalimantan still gap regions
+  - BPN (National Land Agency / ATR-BPN) separately operates ~186 CORS stations; integration of BPN stations into InaCORS is in progress
 - **Station count (sourcetable)**: only 4 mountpoints appear in the live NTRIP sourcetable (confirmed 2026-05-12) — these are network solution products (`max`, `Nearest`, `imax`, `vrs`), not individual physical stations. The gap between declared (~400+ physical CORS) and exposed (4 network mounts) is by design: BIG runs Leica GNSS Spider in network-RTK mode where physical stations feed the network solution internally and individual single-base RTK mountpoints are not exposed publicly. This means the on-map "station count" derived from the sourcetable will always be 4 — actual physical coverage is much wider
 - **Coverage**: physically denser on Java, Bali, Sumatra, and Sulawesi; Papua, Kalimantan, and eastern islands have documented gaps. BIG's 2022 development planning paper identified Papua, Kalimantan, and parts of Sulawesi/Sumatra as priority expansion areas
 - **Registered users**: 16,800+ as of last published report (BIG)
@@ -54,7 +59,9 @@ No independent commercial NTRIP VRS network with Indonesia-wide coverage has bee
 - Live caster sourcetable: `curl http://nrtk.big.go.id:2001/` → `SOURCETABLE 200 OK Server: GNSS Spider 7.10.1.168/1.0` (4 STR rows: max-rtcm3, Nearest-rtcm3, imax-rtcm3, vrs-rtcm3; 2026-05-12)
 - BIG InaCORS product page: https://www.big.go.id/en/content/produk/inacors
 - SRGI — InaCORS page: https://srgi.big.go.id/page/nrtk
-- SRGI — service check: https://srgi.big.go.id/page/service-check
+- SRGI — service check: https://srgi.big.go.id/page/service-check (WebFetch 2026-05-13: "397 stasiun CORS terhitung sampai akhir tahun 2022")
+- SRGI — Jaring Kontrol Geodesi: https://srgi.big.go.id/page/jaring-kontrol-geodesi (WebFetch 2026-05-13: "Sampai tahun 2023, BIG mengelola 397 Ina-CORS")
+- BIG news 2023-09-04 "PJKGG Terus Lakukan Perawatan Stasiun InaCORS" (WebFetch 2026-05-13: 396 stations Aug 2023, target 435 by end-2023): https://big.go.id/en/news/2023/09/04/pjkgg-terus-lakukan-perawatan-stasiun-inacors
 - SRGI — dataset (InaCORS station distribution): https://data.go.id/dataset/dataset/srgi-inacors-wilayah-indonesia
 - ResearchGate — InaCORS distribution figure: https://www.researchgate.net/figure/Distribution-of-InaCORS-source-https-nrtkbiggoid_fig2_355391562
 - "The Development Planning of the InaCORS BIG for Disaster Climate Environment and Hazard Mitigation" (2022): https://www.researchgate.net/publication/364394916_The_Development_Planning_of_the_InaCORS_BIG_for_Disaster_Climate_Environment_and_Hazard_Mitigation

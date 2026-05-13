@@ -187,13 +187,18 @@ SOURCES = [
      "color": "#1a5fa0", "label": "InaCORS",
      "type": "physical-vrs", "country": ["ID"],
      "access": "registration", "registration": "https://nrtk.big.go.id", "openNote": 'Free registration required'},
+    {"id": "thailand_dol", "url": "http://122.155.131.34:2101/",                # Central zone IP; other-zone ports unpublished; sourcetable not yet parseable from CI as of 2026-05-13
+     "color": "#cc6600", "label": "DOL LandGNSS",
+     "type": "physical-vrs", "country": ["TH"],
+     "access": "conditions", "registration": "https://dol-rtknetwork.com/index.php/register_gnss_beta",
+     "openNote": 'Free trial; Thai national ID required to self-register — foreign users blocked at registration form'},
     {"id": "trignet",     "url": "http://trignet.co.za:2101/",
      "color": "#556b2f", "label": "TrigNet",
      "type": "single-base", "country": ["ZA"],
      "access": "registration", "registration": "https://www.trignet.co.za", "openNote": 'Free registration required'},
-    {"id": "ugrf",        "url": "http://ugrf.mlhud.go.ug:2101/",
+    {"id": "ugrf",        "url": "http://ugrf.mlhud.go.ug:2101/",                   # Leica GNSS Spider 7.10.1.168; 38 physical single-base + 6 network mounts; SOURCETABLE 200 OK 2026-05-13
      "color": "#b07000", "label": "UGRF CORS",
-     "type": "vrs", "country": ["UG"],
+     "type": "physical-vrs", "country": ["UG"],
      "access": "registration", "registration": "https://ugrf.mlhud.go.ug/SBC",
      "near": True, "userNote": "your registered username",
      "openNote": "Free registration required (UGRF portal — MLHUD)"},
@@ -217,7 +222,7 @@ SOURCES = [
      "color": "#1e88c7", "label": "WALCORS",
      "type": "vrs-only", "country": ["BE"], "region": "Wallonia",
      "access": "registration", "registration": "https://gnss.wallonie.be", "openNote": 'Free registration required'},
-{"id": "spslux",      "url": "http://stream.spslux.lu:5005/",               # port 5005, not 2101
+    {"id": "spslux",      "url": "http://stream.spslux.lu:5005/",               # port 5005, not 2101
      "color": "#5c6bc0", "label": "SPSLux",
      "type": "physical-vrs", "country": ["LU"],
      "access": "registration", "registration": "https://www.spslux.lu/SBC/Account/Register", "openNote": 'Free registration required'},
@@ -236,7 +241,7 @@ SOURCES = [
     {"id": "litpos",      "url": "http://193.219.10.2:2101/",                    # bare IP — no DNS hostname published; VilniusTech/GIS-Centras primary
      "color": "#0d47a1", "label": "LitPOS",
      "type": "vrs-only", "country": ["LT"],
-     "access": "registration", "registration": "https://geoportal.lt/web/litpos-paslauga/registracija", "openNote": 'Free registration required'},
+     "access": "registration", "registration": "https://www.geoportal.lt/geoportal/web/litpos-en/registration", "openNote": 'Free registration required'},
     {"id": "estpos",      "url": "http://gnss-rtk.maaamet.ee:8083/",             # free until 31 Aug 2026 per Maa- ja Ruumiamet directive; possible geo-IP filter — monitor
      "color": "#003580", "label": "ESTPOS",
      "type": "vrs-only", "country": ["EE"],
@@ -266,7 +271,7 @@ SOURCES = [
      "access": "registration", "registration": "https://go.gnss.go.jp", "openNote": 'Free registration required (+ NtripCaster auth form)'},
     {"id": "cors_korea",  "url": "http://www.gnssdata.or.kr:2101/",             # Network 1 — GNSS Data Center; aggregates 8 KR agencies (NGII, KASI, SMG, etc.); email reg only; no Korean ID; NTRIP password literal "gnss"; 167 unique base codes / 546 STR rows / 493 parsed mountpoints (2026-05-08)
      "color": "#a93226", "label": "CORS-KOREA",
-     "type": "single-base", "country": ["KR"], 
+     "type": "single-base", "country": ["KR"],
      "access": "registration", "registration": "https://www.gnssdata.or.kr/user/agree.do", "openNote": 'Free registration required'},
     {"id": "almgg_mn",    "url": "http://rtk.gazar.gov.mn:2101/",            # MonPOS; SNIP R3.14; alt IP 66.181.168.80:2101; curl-confirmed 2026-04-30
      "color": "#9e6b00", "label": "MonPOS",
@@ -277,8 +282,9 @@ SOURCES = [
      "solution_filter": False},                                                   # caster tags 6 physical stations solution=1
     {"id": "icecors",     "url": "http://178.19.53.126:2101/",
      "color": "#1e6b8c", "label": "IceCORS",
-     "type": "physical-coord-vrs", "country": ["IS"],
-     "access": "registration", "registration": "https://ggn01.lmi.is/", "openNote": 'Free registration required'},
+     "type": "physical-vrs", "country": ["IS"],
+     "access": "registration", "registration": "https://ggn01.lmi.is/", "openNote": 'Free registration required',
+     "nmea_filter": False},                                                   # GNSMART tags 4 physical Reykjanes mounts (AUSV/GEVK/SENG/VOGC) nmea=1, solution=0
     {"id": "ksa_cors",    "url": "http://ksacors.geoportal.sa:2101/",
      "color": "#a0522d", "label": "KSA-CORS",
      "type": "vrs-only", "country": ["SA"],
@@ -294,7 +300,7 @@ SOURCES = [
      "type": "physical-vrs", "country": ["IT"],
      "region": "Umbria", "group": "italy-regional",
      "access": "registration", "registration": "https://gpsumbria.regione.umbria.it", "openNote": 'Free registration required'},
-{"id": "sit_puglia",  "url": "http://gps.sit.puglia.it:2101/",
+    {"id": "sit_puglia",  "url": "http://gps.sit.puglia.it:2101/",
      "color": "#0288d1", "label": "SIT Puglia",
      "type": "physical-vrs", "country": ["IT"],
      "region": "Puglia", "group": "italy-regional",

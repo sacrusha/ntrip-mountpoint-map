@@ -6,7 +6,7 @@
 | Field | Value |
 |---|---|
 | **Active public NTRIP RTK caster (domestic)** | No — no Nepali agency operates a publicly documented NTRIP endpoint |
-| **EarthScope (NOTA) real-time stream** | Yes — single station `KUGE_RTCM3P3` (~27.62°N, 85.54°E, near Kathmandu) reachable via the EarthScope caster `rtgpsout.unavco.org:2101` after NULA registration |
+| **EarthScope (NOTA) real-time stream** | Yes — single station `KUGE_RTCM3P3` (~27.62°N, 85.54°E, near Kathmandu) reachable via the EarthScope caster `ntrip.earthscope.org:2101` after NULA registration (legacy `rtgpsout.unavco.org:2101` retired 2025-07-29) |
 | **host:port (domestic)** | null |
 | **tariff (domestic)** | null |
 | **tariff (EarthScope)** | Free for non-commercial use after NULA acceptance; USD 1,000/seat/yr commercial |
@@ -35,7 +35,7 @@
 
 | Service | URL | Cost |
 |---------|-----|------|
-| **EarthScope/NOTA real-time stream** — `rtgpsout.unavco.org:2101` mountpoint `KUGE_RTCM3P3` (Kathmandu area, RTCM 3 MSM5) | https://www.earthscope.org/data/gnss-data/real-time/ | Free non-commercial after NULA |
+| **EarthScope/NOTA real-time stream** — `ntrip.earthscope.org:2101` mountpoint `KUGE_RTCM3P3` (Kathmandu area, RTCM 3 MSM5) | https://www.earthscope.org/data/gnss-data/real-time/ | Free non-commercial after NULA |
 | **EarthScope/GAGE GNSS Archive** — archival RINEX from Nepal scientific CORS (NAST, SYBC, CHLM, etc.) | https://www.unavco.org/data/gps-gnss/ | Free non-commercial (account + NULA); $1,000/seat/yr commercial |
 | **IGS data** — KATM station (Kathmandu, IGS) | https://igs.org/ | Free |
 

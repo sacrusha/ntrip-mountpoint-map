@@ -6,7 +6,7 @@
 | Field | Value |
 |---|---|
 | **Active public NTRIP RTK caster** | Yes (commercial — TOPORED, equipment-gated; see notes) |
-| **EarthScope (NOTA) real-time streams in Panama** | 5 stations served by the EarthScope caster (`rtgpsout.unavco.org:2101`): `ACHO_RTCM3P3` (7.41°N, −80.17°W), `CN20_RTCM3P3` (9.35°N, −82.26°W, near Bocas del Toro), `CN55_RTCM3P3` (8.24°N, −80.54°W), `CN60_RTCM3P3` (8.63°N, −79.03°W, near Panama City), `PTPP_RTCM3P3` (8.20°N, −82.88°W, near David). RTCM 3 MSM5. Free non-commercial via NULA. |
+| **EarthScope (NOTA) real-time streams in Panama** | 5 stations served by the EarthScope caster (`ntrip.earthscope.org:2101`; legacy `rtgpsout.unavco.org:2101` retired 2025-07-29): `ACHO_RTCM3P3` (7.41°N, −80.17°W), `CN20_RTCM3P3` (9.35°N, −82.26°W, near Bocas del Toro), `CN55_RTCM3P3` (8.24°N, −80.54°W), `CN60_RTCM3P3` (8.63°N, −79.03°W, near Panama City), `PTPP_RTCM3P3` (8.20°N, −82.88°W, near David). RTCM 3 MSM5. Free non-commercial via NULA. |
 | **host:port — TOPORED** | Not publicly disclosed (port 2101 refused connection on 2026-05-12); website `panama.casadeltopografo.com` was unresponsive to direct curl from the research sandbox 2026-05-12 (timeouts; may be IP-geofenced or Cloudflare-blocking). Per ArduSimple and Casa del Topógrafo Facebook page, credentials are issued to equipment purchasers. |
 | **tariff — TOPORED** | Not published; access bundled with GNSS equipment purchase from Casa del Topógrafo; standalone subscription pricing not found as of 2026-05-12 |
 | **tariff — EarthScope** | Free non-commercial after NULA; USD 1,000/seat/yr commercial |
@@ -44,14 +44,14 @@ The Instituto Geográfico Nacional "Tommy Guardia" (IGNTG), a division of ANATI,
 - **IGNTG CORS**: Useful for post-processing geodetic work via SIRGAS-CON data archives; RINEX data retrievable via EarthScope / UNAVCO for stations in the SIRGAS-CON tier.
 - **GEODNET / ONOCOY / Centipede-RTK**: No confirmed coverage in Panama found.
 - **RTK2go**: No Panama-registered mountpoints (confirmed via `scripts/stations_by_country.py PAN` 2026-05-12 — no PAN tag under rtk2go).
-- **EarthScope/NOTA real-time**: 5 streams in country (ACHO, CN20, CN55, CN60, PTPP — RTCM 3 MSM5 on `rtgpsout.unavco.org:2101`). With baselines mostly ≤80 km between them, single-base RTK fixes are realistic for much of central/western Panama. This is the **only free real-time path for hobbyists in Panama**.
+- **EarthScope/NOTA real-time**: 5 streams in country (ACHO, CN20, CN55, CN60, PTPP — RTCM 3 MSM5 on `ntrip.earthscope.org:2101`). With baselines mostly ≤80 km between them, single-base RTK fixes are realistic for much of central/western Panama. This is the **only free real-time path for hobbyists in Panama**.
 - Practical workaround for hobbyists outside EarthScope baseline: Deploy a local base station for single-base RTK, or use satellite-based PPP services (Trimble RTX, u-blox PointPerfect where available, Galileo HAS).
 
 ## Real-Time + Post-Processing Fallback
 
 | Service | URL | Cost |
 |---------|-----|------|
-| **EarthScope/NOTA real-time NTRIP** — 5 PAN mountpoints (ACHO, CN20, CN55, CN60, PTPP — RTCM 3 MSM5) on `rtgpsout.unavco.org:2101` | https://www.earthscope.org/data/gnss-data/real-time/ | Free non-commercial (NULA); USD 1,000/seat/yr commercial |
+| **EarthScope/NOTA real-time NTRIP** — 5 PAN mountpoints (ACHO, CN20, CN55, CN60, PTPP — RTCM 3 MSM5) on `ntrip.earthscope.org:2101` | https://www.earthscope.org/data/gnss-data/real-time/ | Free non-commercial (NULA); USD 1,000/seat/yr commercial |
 | **EarthScope GNSS Data Archive / SIRGAS-CON** — IGN1, AZUE, DAVI, DARI, PUAR, PMEC, CHEP stations; archival RINEX from SIRGAS-CON analysis | https://www.earthscope.org/data/gnss-data/ | Free noncommercial (account + NULA); $1,000/seat/yr commercial |
 | **TOPORED (Casa del Topógrafo)** — static RINEX from 6 Panama CORS | https://panama.casadeltopografo.com/topored/ | Requires account; pricing not published |
 

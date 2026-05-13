@@ -187,7 +187,7 @@ _Last updated: 2026-04-22._
 - **Free government RTK**: AGRS.NL — NSGI / Kadaster Nederland (`ntrip.kadaster.nl:2101`
   plain TCP, `ntrip.kadaster.nl:443` TLS) — free, anonymous. ~30 mainland stations,
   RTCM 3.2 MSM. Same caster hosts BES island stations (catalogued under BQ). Legal
-  basis: Kadasterwet BWBR0037196 art. 19 lid 4. TU Delft mirror: `gnss1.tudelft.nl:2101`
+  basis: Tarievenregeling Kadaster BWBR0037196 art. 19 lid 4. TU Delft mirror: `gnss1.tudelft.nl:2101`
   (station subset, no TLS). → networks.md: `agrs_nl`
 - **Paid per-station raw streams**: NETPOS — same ~30 physical stations as AGRS.NL but
   authenticated paid feed at `ntrip.cloud.kadaster.nl:443` (TLS, B;Y auth). Priced per
@@ -1637,25 +1637,27 @@ similarly have no published coverage for these jurisdictions.
 **date_added**: 2026-05-01
 
 - **Free government RTK**: RGNA — Red Geodésica Nacional Activa (INEGI — Instituto Nacional de
-  Estadística y Geografía, ~36 stations, single-base) — RINEX files at 15-second intervals,
+  Estadística y Geografía, ~30 stations, single-base) — RINEX files at 15-second intervals,
   freely downloadable via SFTP at `geodesia.inegi.org.mx`. INEGI's current documentation
   (confirmed 2026-05-01) states no real-time NTRIP/RTK streaming is offered — post-processing
   only. A 2013 SIRGAS bulletin discussed NTRIP aspirations; these were not implemented.
   → networks.md: `rgna_mx`
-- **Commercial** (paid; pricing not on public websites — contact required):
+- **Commercial** (paid; MXN-denominated, observed 2026-05-12):
   - **Red CORS México** (DTM Topografía, `dtmtopografia.com/cors-mexico/`): largest commercial
-    network by national coverage, 85+ cities; monthly and annual memberships; pricing not listed
-    on public pages. → networks.md: `red_cors_mx`
+    network by national coverage, 85+ cities; MXN 20,500/yr (La Casa del Topógrafo 12-month
+    plan) or MXN 2,042/month (Aeros monthly). VAT/IVA inclusion not stated.
+    → networks.md: `red_cors_mx`
   - **GeoCORS / Survey+** (`en.surveyplusmx.com`): 55+ stations nationally; 15-day demo
-    available; pricing not listed publicly. → networks.md: `geocors_mx`
-  - **Hi-Target Red CORS** (resellers such as `puntovisado.com`): ~MX$2,414/month per licence;
+    available; MXN 13,200/yr + IVA (Hi-Target / GeoMax receivers) or MXN 17,600/yr + IVA
+    (other brands); monthly tiers MXN 1,320–1,760 + IVA. → networks.md: `geocors_mx`
+  - **Hi-Target Red CORS** (resellers such as `puntovisado.com`): per-month rate not published;
     resold through GNSS equipment dealers. → networks.md: `hitarget_cors_mx`
-- **Volunteer**: rtk2go ~3 MX bases (Tamaulipas, Querétaro, Baja California).
-  EarthScope NOTA provides ~18 MEX-coded single-base stations (free, in-pipeline) concentrated
+- **Volunteer**: rtk2go 5 MX bases (Tampico area, Querétaro area, Puebla, Tijuana area, Sinaloa).
+  EarthScope NOTA provides 17 MEX-coded single-base stations (free, in-pipeline) concentrated
   in Baja California and southern Mexico.
 - **Gap**: no free RTK/NTRIP endpoint in Mexico. RGNA is confirmed RINEX/PPK-only.
   EarthScope NOTA is the only confirmed free in-pipeline option, covering mainly the
-  northern border zone (~18 MEX-coded stations).
+  northern border zone (17 MEX-coded stations).
 
 ### PE — Peru
 
@@ -1712,15 +1714,22 @@ similarly have no published coverage for these jurisdictions.
 ### SR — Suriname
 
 **date_added**: 2026-05-06
+**last_researched_date**: 2026-05-13
 
-- **Free government RTK**: none confirmed. MI-GLIS (land registry/cadastral authority)
-  has no documented GNSS correction service. Suriname has at least one GNSS monument
-  processed by IBGE's SIRGAS-CON analysis centre (post-processing RINEX only; not a
-  real-time NTRIP stream). Brazil's RBMC-IP northernmost stations are ~700–900 km
-  from Paramaribo — too distant for single-base RTK.
-- **Volunteer**: none. Zero SR stations on rtk2go or Centipede.
-- **Gap**: no NTRIP caster of any kind — government, commercial, or community.
-  Deploy a local base station for RTK; use Galileo HAS / PPP for sub-metre work.
+- **Free government RTK**: none. MI-GLIS (Management Instituut voor Grondregistratie en
+  Land Informatie Systeem, the land-registry authority) operates an 8-station national
+  CORS with NTRIP delivery, but it has been a paid service since 2024-07-01. Tariffs are
+  quote-only (no published rates); the application workflow is institutional (CORS-services
+  application form + N-formulier + signed contract). One known fragment: USD 25 to reopen
+  a closed account; invoicing in SRD. → networks.md: `miglis_sr`
+- **Free fallback**: Suriname has at least one GNSS monument processed by IBGE's
+  SIRGAS-CON analysis centre (post-processing RINEX only; not a real-time NTRIP stream).
+  Brazil's RBMC-IP northernmost stations are ~700–900 km from Paramaribo — too distant
+  for single-base RTK.
+- **Volunteer**: none. Zero SR stations on rtk2go or Centipede; no EarthScope NOTA
+  station within 600 km of Paramaribo.
+- **Gap**: no free public NTRIP — only the paid MI-GLIS service, which is institutional
+  in workflow. Deploy a local base station for RTK; use Galileo HAS / PPP for sub-metre work.
 
 ### VE — Venezuela
 
@@ -2887,10 +2896,11 @@ similarly have no published coverage for these jurisdictions.
   in the wider region (Israel/Lebanon/Sinai since Oct 2023) reaches into southern and western
   Syria, further complicating practical RTK use even if corrections were available.
 
-- **Free government RTK**: none. The General Establishment for Survey (المؤسسة العامة
-  للمساحة, the national mapping authority) has no confirmed public NTRIP caster or
-  self-service registration portal. No host:port has been found in any directory, sourcetable,
-  or academic reference. → networks.md: `ges_syria`
+- **Free government RTK**: none. The General Organization of Remote Sensing (GORS,
+  الهيئة العامة للاستشعار عن بُعد, established 1986) is the pre-conflict national
+  mapping authority; its remit is remote sensing rather than GNSS CORS. No host:port
+  has been found in any directory, sourcetable, or academic reference.
+  → networks.md: `gors_syria`
 
 - **Volunteer**: none. Zero SY stations on rtk2go or Centipede.
 
@@ -3090,7 +3100,8 @@ similarly have no published coverage for these jurisdictions.
 **date_added**: 2026-04-29
 
 - **Free government RTK**: none. CENACARTA (Centro Nacional de Cartografia e
-  Teledetecção, `cenacarta.gov.mz`, under Ministry of Agriculture) operates
+  Teledetecção, `cenacarta.com`; `cenacarta.gov.mz` offline 2026-05-12; under
+  Ministry of Agriculture) operates
   ~8 fixed reference stations (CORS) (CHMO, MPTB, QLMN, NACL, LCNG, XXAI, MTND, SOFL) listed
   in the Corsmap/AFREF continental dataset; no public NTRIP caster or RTK
   streaming host:port has been found. DINAGECA (Direcção Nacional de

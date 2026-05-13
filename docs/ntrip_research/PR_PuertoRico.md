@@ -28,7 +28,7 @@ Real-time access requires an EarthScope account and acceptance of the NULA (Non-
 
 VRS Systems PR is described as the only company in Puerto Rico that owns and operates a network RTK service. Operated by HLCM Group, Inc. (Trimble distributor). The network runs on Trimble Pivot Platform software. The July 2022 upgrade added Galileo and BeiDou observations alongside the existing GPS+GLONASS support. Service is described as 24/7.
 
-No public NTRIP host:port, no published pricing, no published station count, no published hobbyist tier. Subscription contact: HLCM Group, 787-398-8852, sales@hlcmgroup.com.
+No public NTRIP host:port, no published pricing, no published hobbyist tier. Station count: eight GPS/GNSS receivers around the island per HLCM marketing copy (hlcmgroup.com/vrs.php, July 2022 upgrade page; page returned 404 on 2026-05-12 but the figure is preserved in WebSearch cached snippets). Subscription contact: HLCM Group, 787-398-8852, sales@hlcmgroup.com.
 
 ### COCONet / Network of the Americas
 

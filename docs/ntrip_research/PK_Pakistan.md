@@ -18,6 +18,7 @@
 ## Most Recent Project Announcement
 
 - **2024–2025 (SUPARCO):** Pakistan's national space agency SUPARCO is developing the Pak-SBAS (Satellite-Based Augmentation System) for sub-metre accuracy, with an indigenous receiver unveiled at the 2025 Cholistan Rally field trials. Production scaling and government agency delivery expected before end of 2026. Note: SBAS provides sub-metre accuracy only — not RTK-grade centimetre corrections, and out of scope for this project.
+- **Pak-Rehber NRTK (SUPARCO Business Solutions):** A separate, cm-level network RTK service from SUPARCO's commercial arm (SUPARCO Business Solutions Pvt. Ltd., suparco.biz) covers the Karachi metropolitan area. The official brochure (suparco.biz/wp-content/uploads/2025/03/pak-rehber.pdf) is explicit: "Only authorized users can use the Pak-Rehber precise positioning service." No public host:port, sourcetable, or hobbyist registration path. Distinct from Pak-SBAS.
 - **2024:** Pakistan's National Space Policy approved, mandating SUPARCO as the national space agency for all space-related activities, including GNSS infrastructure. No public CORS/NTRIP RTK service announced under this policy.
 - **Survey of Pakistan (SoP):** The national mapping agency (surveyofpakistan.gov.pk) has listed procurements for GNSS RTK equipment but no public NTRIP caster service has been published.
 - No named national CORS network (e.g., Pak-CORS, PCORS, PAKOR) found in any geodetic or surveying press source.
