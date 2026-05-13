@@ -12,7 +12,7 @@ scripts/fetch_stations.py        # updates .sourcetable files, source_health.jso
 scripts/fetch_stations.proc.md   # editing rules for fetch_stations.py SOURCES. Read BEFORE editing the .py.
 scripts/inject_seo_help.py       # splices a hidden SEO mirror of help_topics.json into index.html. Run after editing help_topics.json; commit the index.html diff in the same commit.
 scripts/deploy_pages.ps1         # local Cloudflare Pages deploy (replaces former deploy-pages.yml workflow). Reads .env/cloudflare.conf (gitignored; CF_API_TOKEN + CF_ACCOUNT_ID). Requires wrangler on PATH. Default branch=main; use `-Branch <name>` for preview.
-scripts/refresh_and_deploy.ps1   # orchestrator invoked by Task Scheduler 4x/day: fetch_stations.py → commit data/ locally (no push; GitHub auth blocked) → deploy_pages.ps1. Logs to .tmp/refresh_and_deploy/. Flags: -SkipGit, -SkipDeploy.
+scripts/refresh_and_deploy.ps1   # orchestrator invoked by Task Scheduler 4x/day from the data-refresh worktree: fetch_stations.py → rebase data-refresh onto main → commit data/ → deploy_pages.ps1. Never pushes (GitHub auth blocked). Logs to .tmp/refresh_and_deploy/. Flags: -SkipGit, -SkipDeploy.
 scripts/register_scheduled_task.ps1 # one-shot: registers/re-registers the Task Scheduler job. Params: -RepoRoot (point at scheduler clone), -SkipGit, -SkipDeploy, -Times. Idempotent. No admin needed; runs only when user logged in.
 scripts/                         # investigation toolset — run each with `-h` for purpose + examples. Prefer over ad-hoc py -c / grep when possible:
                                  #   stations_by_country.py, stations_by_radius.py — station lookup
@@ -21,7 +21,12 @@ scripts/                         # investigation toolset — run each with `-h` 
                                  #   source_health.py — data/source_health.json summary + per-id lookup
                                  #   network_lookup.py — find a network across networks.md, surveys, research, markers, stations.json, SOURCES
 .github/workflows/               # empty — both update-stations.yml and deploy-pages.yml were removed after GitHub disabled Actions on this account. Fetch + deploy now run locally via scripts/refresh_and_deploy.ps1 driven by Windows Task Scheduler.
-                                 # The scheduled task runs out of a SEPARATE clone at D:\Projects\ntrip-mountpoint-map.scheduler\ (not this dev checkout). That isolates the data churn from any in-flight dev work here. Scheduler clone's origin is the local dev checkout (not GitHub) — GitHub HTTPS auth is currently blocked for this account, so the scheduled job commits data/ refreshes locally and never pushes. To sync script changes from dev to scheduler: commit here, then `cd D:\Projects\ntrip-mountpoint-map.scheduler && git pull origin main`.
+                                 # Two git worktrees share this checkout's .git:
+                                 #   D:\Projects\ntrip-mountpoint-map\          → branch `main`, dev work happens here.
+                                 #   D:\Projects\ntrip-mountpoint-map.scheduler → branch `data-refresh`, Task Scheduler runs here.
+                                 # Each scheduled run rebases data-refresh onto main, refreshes data/, and commits. data-refresh always sits exactly one commit ahead of main.
+                                 # To bring fresh data into main (and into your dev working tree): from the dev worktree, `git merge --ff-only data-refresh`.
+                                 # GitHub HTTPS auth is currently blocked (account flagged); nothing is ever pushed. When unblocked, push main from the dev worktree.
 data/
   stations.json                  # fetched data, consumed by index
   country_markers.json           # Static; country-level markers, content visitor facing
