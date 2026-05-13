@@ -4,3 +4,7 @@ __pycache__/
 .claude/settings.local.json
 docs/.claude/settings.local.json
 map.zip
+.env
+.env.local
+_site/
+.wrangler/

@@ -11,14 +11,16 @@ guide.html                    # long-form standalone visitor primer linked from 
 scripts/fetch_stations.py        # updates .sourcetable files, source_health.json, stations.json.
 scripts/fetch_stations.proc.md   # editing rules for fetch_stations.py SOURCES. Read BEFORE editing the .py.
 scripts/inject_seo_help.py       # splices a hidden SEO mirror of help_topics.json into index.html. Run after editing help_topics.json; commit the index.html diff in the same commit.
+scripts/deploy_pages.ps1         # local Cloudflare Pages deploy (replaces former deploy-pages.yml workflow). Reads .env/cloudflare.conf (gitignored; CF_API_TOKEN + CF_ACCOUNT_ID). Requires wrangler on PATH. Default branch=main; use `-Branch <name>` for preview.
+scripts/refresh_and_deploy.ps1   # orchestrator invoked by Task Scheduler 4x/day: runs fetch_stations.py → commits + pushes data/ → calls deploy_pages.ps1. Logs to .tmp/refresh_and_deploy/. Flags: -SkipGit, -SkipDeploy.
+scripts/register_scheduled_task.ps1 # one-shot: registers/re-registers the Windows Task Scheduler job that drives refresh_and_deploy.ps1. Idempotent. No admin needed; runs only when user logged in.
 scripts/                         # investigation toolset — run each with `-h` for purpose + examples. Prefer over ad-hoc py -c / grep when possible:
                                  #   stations_by_country.py, stations_by_radius.py — station lookup
                                  #   stations_inspect.py — data/stations.json schema + per-source detail
                                  #   sources_list.py — filter the SOURCES list in fetch_stations.py
                                  #   source_health.py — data/source_health.json summary + per-id lookup
                                  #   network_lookup.py — find a network across networks.md, surveys, research, markers, stations.json, SOURCES
-.github/workflows/
-  update-stations.yml            # Runs fetch_stations.py 4 times a day, commits to main.
+.github/workflows/               # empty — both update-stations.yml and deploy-pages.yml were removed after GitHub disabled Actions on this account. Fetch + deploy now run locally via scripts/refresh_and_deploy.ps1 driven by Windows Task Scheduler.
 data/
   stations.json                  # fetched data, consumed by index
   country_markers.json           # Static; country-level markers, content visitor facing
