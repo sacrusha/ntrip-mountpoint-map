@@ -5,12 +5,14 @@
 # checkout sits on `main` in a sibling worktree sharing the same .git.
 #
 # Steps:
-#   1. Run scripts/fetch_stations.py (refreshes data/stations.json + data/source_health.json).
-#   2. Rebase data-refresh onto main so this run sits exactly one commit ahead
-#      of main, then commit data/ changes locally. Never pushes (GitHub auth
-#      blocked). Dev fast-forward-merges data-refresh into main when wanted:
-#         git merge --ff-only data-refresh
-#   3. Run scripts/deploy_pages.ps1 to publish to Cloudflare Pages.
+#   1. Rebase data-refresh onto main, so this run picks up the latest scripts
+#      (including any updates to fetch_stations.py itself) and any tree
+#      changes from dev.
+#   2. Run scripts/fetch_stations.py (refreshes data/stations.json + sourcetables).
+#   3. Commit data/ changes locally. Never pushes (GitHub auth blocked).
+#      Result: data-refresh sits exactly one commit ahead of main. Dev brings
+#      data in via: git merge --ff-only data-refresh
+#   4. Run scripts/deploy_pages.ps1 to publish to Cloudflare Pages.
 #
 # Logs every run to .tmp/refresh_and_deploy/<UTC-timestamp>.log.
 
@@ -37,46 +39,39 @@ Get-ChildItem $logDir -Filter '*.log' | Where-Object { $_.LastWriteTimeUtc -lt (
 try {
     Write-Output "=== refresh_and_deploy.ps1 run at $stamp UTC ==="
 
-    # --- Step 1: fetch stations ---------------------------------------------
-    Write-Output "--- Step 1: fetch_stations.py ---"
-    & py -X utf8 scripts/fetch_stations.py
-    if ($LASTEXITCODE -ne 0) { throw "fetch_stations.py exited with code $LASTEXITCODE" }
-
-    # --- Step 2: rebase onto main + local commit of data/ -------------------
-    # Worktree-aware: this script runs in the data-refresh worktree.
-    # Before committing today's data refresh, rebase onto main so we end up
-    # exactly one commit ahead of main. Never pushes (GitHub auth blocked).
+    # --- Step 1: rebase data-refresh onto main ------------------------------
+    # Picks up any updates to scripts/ (including fetch_stations.py itself)
+    # and any other tree changes from dev before we run the fetcher.
     if (-not $SkipGit) {
-        Write-Output "--- Step 2: rebase data-refresh onto main + commit data/ ---"
+        Write-Output "--- Step 1: rebase data-refresh onto main ---"
 
         $branch = (git rev-parse --abbrev-ref HEAD).Trim()
         if ($branch -ne 'data-refresh') {
-            throw "Expected worktree on 'data-refresh' branch, found '$branch'. Refusing to commit."
+            throw "Expected worktree on 'data-refresh' branch, found '$branch'. Refusing to run."
         }
 
-        # Any uncommitted fetcher output would block the rebase. Stash if dirty.
         $dirty = git status --porcelain
-        $stashed = $false
         if (-not [string]::IsNullOrWhiteSpace($dirty)) {
-            git stash push --include-untracked --message "refresh_and_deploy auto-stash $stamp"
-            if ($LASTEXITCODE -ne 0) { throw "git stash failed" }
-            $stashed = $true
+            throw "Worktree is dirty at rebase time; aborting. Investigate $repoRoot."
         }
 
         git rebase main
         if ($LASTEXITCODE -ne 0) {
             git rebase --abort 2>$null
-            if ($stashed) { git stash pop }
             throw "git rebase main failed; resolve manually in $repoRoot"
         }
+    } else {
+        Write-Output "--- Step 1: rebase skipped (-SkipGit) ---"
+    }
 
-        if ($stashed) {
-            git stash pop
-            if ($LASTEXITCODE -ne 0) { throw "git stash pop failed (conflict?)" }
-        }
+    # --- Step 2: fetch stations ---------------------------------------------
+    Write-Output "--- Step 2: fetch_stations.py ---"
+    & py -X utf8 scripts/fetch_stations.py
+    if ($LASTEXITCODE -ne 0) { throw "fetch_stations.py exited with code $LASTEXITCODE" }
 
-        # Now commit any data/ changes (from the fetch step, plus anything
-        # that came back via the stash pop).
+    # --- Step 3: commit data/ ----------------------------------------------
+    if (-not $SkipGit) {
+        Write-Output "--- Step 3: commit data/ on data-refresh ---"
         $dirty = git status --porcelain data/
         if ([string]::IsNullOrWhiteSpace($dirty)) {
             Write-Output "No changes to data/; nothing to commit."
@@ -101,15 +96,15 @@ try {
             Write-Output "Committed on data-refresh: $msg"
         }
     } else {
-        Write-Output "--- Step 2: skipped (-SkipGit) ---"
+        Write-Output "--- Step 3: commit skipped (-SkipGit) ---"
     }
 
-    # --- Step 3: deploy -----------------------------------------------------
+    # --- Step 4: deploy -----------------------------------------------------
     if (-not $SkipDeploy) {
-        Write-Output "--- Step 3: deploy_pages.ps1 ---"
+        Write-Output "--- Step 4: deploy_pages.ps1 ---"
         & (Join-Path $PSScriptRoot 'deploy_pages.ps1')
     } else {
-        Write-Output "--- Step 3: skipped (-SkipDeploy) ---"
+        Write-Output "--- Step 4: skipped (-SkipDeploy) ---"
     }
 
     Write-Output "=== refresh_and_deploy.ps1 succeeded ==="

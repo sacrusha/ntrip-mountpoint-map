@@ -34,6 +34,20 @@ if ($SkipDeploy) { $extraArgs += ' -SkipDeploy' }
 
 if (-not (Test-Path $scriptPath)) { throw "Orchestrator not found at $scriptPath" }
 
+# Sanity check: the target should be the data-refresh worktree, not the dev
+# checkout. Refuse to register against any other branch unless -SkipGit is set
+# (in which case the orchestrator won't touch git anyway).
+if (-not $SkipGit) {
+    $branch = (& git -C $RepoRoot rev-parse --abbrev-ref HEAD 2>$null)
+    if ($LASTEXITCODE -ne 0) {
+        throw "Could not read git branch at $RepoRoot (not a git repo?)."
+    }
+    $branch = $branch.Trim()
+    if ($branch -ne 'data-refresh') {
+        throw "Refusing to register: $RepoRoot is on branch '$branch', expected 'data-refresh'. Pass -SkipGit to override."
+    }
+}
+
 # Remove existing task with the same name (idempotent).
 $existing = Get-ScheduledTask -TaskName $TaskName -ErrorAction SilentlyContinue
 if ($existing) {
