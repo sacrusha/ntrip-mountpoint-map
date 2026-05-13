@@ -1,11 +1,16 @@
 # Local replacement for the .github/workflows/update-stations.yml + deploy-pages.yml
-# pipeline. Designed to be invoked by Windows Task Scheduler on the cron that
-# used to run in GHA (01:00, 07:00, 13:00, 19:00 UTC).
+# pipeline. Designed to be invoked by Windows Task Scheduler.
+#
+# Expects to run inside a git worktree on the `data-refresh` branch. The dev
+# checkout sits on `main` in a sibling worktree sharing the same .git.
 #
 # Steps:
 #   1. Run scripts/fetch_stations.py (refreshes data/stations.json + data/source_health.json).
-#   2. If data/ changed, commit + push to origin/main with rebase-retry.
-#   3. Always run scripts/deploy_pages.ps1 to publish to Cloudflare Pages.
+#   2. Rebase data-refresh onto main so this run sits exactly one commit ahead
+#      of main, then commit data/ changes locally. Never pushes (GitHub auth
+#      blocked). Dev fast-forward-merges data-refresh into main when wanted:
+#         git merge --ff-only data-refresh
+#   3. Run scripts/deploy_pages.ps1 to publish to Cloudflare Pages.
 #
 # Logs every run to .tmp/refresh_and_deploy/<UTC-timestamp>.log.
 
@@ -37,12 +42,41 @@ try {
     & py -X utf8 scripts/fetch_stations.py
     if ($LASTEXITCODE -ne 0) { throw "fetch_stations.py exited with code $LASTEXITCODE" }
 
-    # --- Step 2: local commit of data/ --------------------------------------
-    # No push: GitHub has disabled this account's Actions + write access, so
-    # the scheduler runs in a dedicated local clone and never pushes upstream.
-    # Local commits give us a rollback history if a fetch goes sideways.
+    # --- Step 2: rebase onto main + local commit of data/ -------------------
+    # Worktree-aware: this script runs in the data-refresh worktree.
+    # Before committing today's data refresh, rebase onto main so we end up
+    # exactly one commit ahead of main. Never pushes (GitHub auth blocked).
     if (-not $SkipGit) {
-        Write-Output "--- Step 2: local commit of data/ ---"
+        Write-Output "--- Step 2: rebase data-refresh onto main + commit data/ ---"
+
+        $branch = (git rev-parse --abbrev-ref HEAD).Trim()
+        if ($branch -ne 'data-refresh') {
+            throw "Expected worktree on 'data-refresh' branch, found '$branch'. Refusing to commit."
+        }
+
+        # Any uncommitted fetcher output would block the rebase. Stash if dirty.
+        $dirty = git status --porcelain
+        $stashed = $false
+        if (-not [string]::IsNullOrWhiteSpace($dirty)) {
+            git stash push --include-untracked --message "refresh_and_deploy auto-stash $stamp"
+            if ($LASTEXITCODE -ne 0) { throw "git stash failed" }
+            $stashed = $true
+        }
+
+        git rebase main
+        if ($LASTEXITCODE -ne 0) {
+            git rebase --abort 2>$null
+            if ($stashed) { git stash pop }
+            throw "git rebase main failed; resolve manually in $repoRoot"
+        }
+
+        if ($stashed) {
+            git stash pop
+            if ($LASTEXITCODE -ne 0) { throw "git stash pop failed (conflict?)" }
+        }
+
+        # Now commit any data/ changes (from the fetch step, plus anything
+        # that came back via the stash pop).
         $dirty = git status --porcelain data/
         if ([string]::IsNullOrWhiteSpace($dirty)) {
             Write-Output "No changes to data/; nothing to commit."
@@ -64,7 +98,7 @@ try {
 
             git commit -m $msg
             if ($LASTEXITCODE -ne 0) { throw "git commit failed" }
-            Write-Output "Committed locally: $msg"
+            Write-Output "Committed on data-refresh: $msg"
         }
     } else {
         Write-Output "--- Step 2: skipped (-SkipGit) ---"
