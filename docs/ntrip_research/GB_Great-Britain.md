@@ -12,7 +12,7 @@
 | **hobbyist_eligibility** | Yes (TopNet Live, HxGN SmartNet via SCCS — no surveying licence required) |
 | **legal_residency_required** | No — international exports available from listed resellers |
 | **last_confirmed_alive** | 2026-05-12 (reseller product pages active and selling licences) |
-| **Volunteer fallback** | rtk2go: 60 GBR-coded volunteer bases on 2026-05-12 (data/stations.json); Centipede: 45 ENG-coded bases on 2026-05-12 (crtk.net:2101 sourcetable) |
+| **Volunteer fallback** | rtk2go: 60 GBR-coded volunteer bases on 2026-05-12 (data/stations.json); Centipede: 45 `ENG`-coded bases on 2026-05-12 (crtk.net:2101 sourcetable). **`ENG` is Centipede's non-ISO label for the entire UK** — the 45 nodes cover England *plus* Scotland (e.g. BALL, BRACO, CRAG, DRUM, FRAS, HRVA, LARL, MLLC, TYRI, WOCF, CHAP, FHL1), Northern Ireland (DJAM, DYFM, GWMD, OATS), and Wales (PEMBS). See `_centipede_country_codes.md`. |
 
 ## Reseller Tariffs
 
@@ -79,7 +79,7 @@ Listed on the OS Net authorised-resellers page but tariffs not researched in thi
 - No free public NTRIP caster exists for Great Britain. OS Net data are not streamed publicly.
 - Global commercial services with GB coverage: GEODNET (coverage varies), Trimble RTX (PPP, not networkRTK).
 - The market range observed is approximately £100 (entry-level hourly bracket on TopNet Live) to £2,592 (1-yr unlimited HxGN SmartNet incl. VAT).
-- Volunteer fallback in GB exists at hobbyist density: rtk2go shows 60 GBR-coded bases and Centipede shows 45 ENG-coded bases as of 2026-05-12 — usable for individual sites but not a substitute for OS-Net-derived national NRTK.
+- Volunteer fallback in GB exists at hobbyist density: rtk2go shows 60 GBR-coded bases and Centipede shows 45 `ENG`-coded bases as of 2026-05-12 — usable for individual sites but not a substitute for OS-Net-derived national NRTK. **Centipede's `ENG` code is a non-ISO label that covers the entire UK including Scotland, Wales, and Northern Ireland** (see `_centipede_country_codes.md`); Northern Ireland in particular relies on the Centipede `ENG` nodes since OS Net itself does not cover NI.
 
 ## Post-Processing (RINEX) Fallback
 

@@ -331,8 +331,14 @@ _Last updated: 2026-04-22._
 **date_added**: 2026-05-06
 
 - **Free government RTK**: no national free public caster. Strongly regional.
-  - **FReDNet** (OGS/FVG, `gnsscaster.regione.fvg.it:8080`, ~40 stations) — Friuli-Venezia
-    Giulia + border SI/AT. Free registration. In pipeline. → networks.md: `frednet`
+  - **Re.M.FVG "A. Marussi"** (Regione FVG, `gnsscaster.regione.fvg.it:8080`, 14 own + 3 Slovenian
+    SIGNAL relays) — Friuli-Venezia Giulia + SI border. Quad-constellation VRS/MAC/IMAC. Free
+    registration form. In pipeline. → networks.md: `rem_fvg`
+  - **FReDNet** (OGS-CRS, `158.110.30.81:2110`, 22 RTK-active stations) — FVG + adjacent Veneto;
+    geodynamic-monitoring network with ~30–50 km station spacing. Free for public, private, and
+    scientific users. Cross-relayed by the Marussi caster (`OGS_*` mounts) and vice-versa
+    (`RAFVG_*` mounts on the FReDNet caster) — geometric coverage is the union of both. Not in
+    pipeline (Marussi-anchored ingest already surfaces OGS coverage via cross-relay). → networks.md: `frednet`
   - **SPIN3 GNSS** (CSI Piemonte, `158.102.7.10:2101`, 39 stations) — Piemonte + Lombardia +
     Valle d'Aosta. Free registration. In pipeline. → networks.md: `spin3`
   - **GPS-UMBRIA** (Regione Umbria, `gpsumbria.regione.umbria.it:2101`, 13 stations) — Free
@@ -1322,17 +1328,19 @@ similarly have no published coverage for these jurisdictions.
 
 ### EC — Ecuador
 
-**date_added**: 2026-05-01
+**date_added**: 2026-05-12
 
-- **Free government RTK**: REGME-IP — Red GNSS Militar Ecuatoriana de Posicionamiento
-  en Tiempo Real (IGM — Instituto Geográfico Militar del Ecuador,
-  `ntrip.igm.gob.ec:2101`, single-base) — free with registration at
-  `https://www.geoportaligm.gob.ec/ntrip/`; stated as "totalmente libre y gratuito".
-  Confirmed active 2026-05-01; SIRGAS bulletin (2022) names the endpoint explicitly.
-  → networks.md: `regme_ec`
+- **Free government RTK**: REGME-IP — Red GNSS Ecuatoriana de Posicionamiento en
+  tiempo real protocol IP (IGM — Instituto Geográfico Militar del Ecuador,
+  `ntrip.igm.gob.ec:2101`, 26 single-base CORS — Alausi, Ambato, Babahoyo, Cuenca,
+  Esmeraldas, Guayaquil, Loja, Quito, Riobamba and others nationwide) — free with
+  registration at `https://www.geoportaligm.gob.ec/ntrip/public/register`; stated
+  as "totalmente libre y gratuito"; service extends to "national and international"
+  users. Single-station only (no VRS rows in live sourcetable 2026-05-12);
+  in pipeline as `regme_ec`. → networks.md: `regme_ec`
 - **Volunteer**: rtk2go ~3 ECU bases.
-- **Gap**: REGME-IP is the confirmed free national caster; online registration with no
-  stated residency restriction.
+- **Gap**: nearest-station model — rovers must pick the closest IGM mount manually;
+  no auto-routing VRS mountpoint published.
 
 ### PY — Paraguay
 
@@ -1379,9 +1387,13 @@ similarly have no published coverage for these jurisdictions.
   further installations planned along the Haiti border zone with the Ministry of Defence.
   SIRGAS-compatible reference frame. → networks.md: `regna_rd`
 
+- **Other / closed-but-private**:
+  - **FUNDCORSRD** (`fundcorsrd.com`, `190.166.228.161:2103`): non-profit foundation,
+    37 physical CORS nationwide (live sourcetable 2026-05-12); credentials issued on
+    direct request via the foundation's contact form. Terms not posted publicly —
+    a hobbyist cannot tell ahead of contact whether they qualify or what they would
+    be charged. → networks.md: `fundcorsrd`
 - **Commercial** (paid; pricing not on public website):
-  - **FUNDCORSRD** (`fundcorsrd.com`): ~30 stations; foundation-operated; NTRIP subscription;
-    pricing not publicly listed (contact via website). → networks.md: `fundcorsrd`
   - **CORS-RD / Geomatica** (`geomatica.com.do`): Trimble-based commercial network;
     registration + monthly fee per rover; pricing not listed publicly. → networks.md: `cors_rd_geo`
   - **CODIA-CORS-MET** (`codia.org.do`): Professional association (engineers/architects/
@@ -2152,9 +2164,9 @@ similarly have no published coverage for these jurisdictions.
 
 - **Free government RTK**: none. MyRTKnet (JUPEM, `pxy.myrtknet.gov.my:2101` for VRS/MAC/iMAX/DGPS;
   `:2102` SB Sabah & Sarawak; `:2103` SB Peninsular, ~78 stations, VRS network solution) —
-  paid; RM 1,000 one-time registration + RM 3,000/yr real-time subscription (~$855/yr at current
-  rates) — expensive for a hobbyist. Mandated under the Survey Act as cost-recovery. Registration
-  at `myrtknet.jupem.gov.my`. → networks.md: `myrtk`
+  paid; RM 3,000/yr real-time subscription (~$670/yr at May 2026 rates) + RM 1,000 one-time
+  registration — expensive for a hobbyist. Mandated under the Survey Act as cost-recovery.
+  Registration at `myrtknet.jupem.gov.my`. → networks.md: `myrtk`
 - **Volunteer**: one MYS base on rtk2go (Malacca). Zero Centipede nodes.
 - **Gap**: no free RTK in Malaysia. Hobbyists face cost-recovery pricing; the sole practical
   alternative is deploying a local base or relying on the single Malacca volunteer base on rtk2go.
@@ -3011,21 +3023,25 @@ similarly have no published coverage for these jurisdictions.
 
 ### MR — Mauritania
 
-**date_added**: 2026-04-29
+**date_added**: 2026-05-12
 
-- **Free government RTK**: none confirmed. The DATU (Direction des Affaires
-  Topographiques et de l'Urbanisme, under the Ministry of Housing and Urbanism)
-  is the nominal authority for geodesy and cadastre in Mauritania; no public
-  NTRIP caster or RTK streaming endpoint has been found. Mauritania's territory
-  is ~1,031,000 km², mostly Saharan desert — extremely sparse infrastructure
-  makes a nationwide fixed reference station network (CORS) a very long-term prospect. AFREF contributions
-  from Mauritania, if any, are raw-archive RINEX only. → networks.md: `datu_mr`
+- **Free government RTK**: none confirmed. The DGTC (Direction de la Géodésie,
+  Topographie et de la Cartographie — sometimes referenced as GDGTA) is the
+  national authority for geodesy and cadastre; no public NTRIP caster or RTK
+  streaming endpoint has been found in Arabic, French, or English sources, in
+  AFREF station lists, or in the BKG sourcetable as of 2026-05-12. Mauritania's
+  territory is ~1,031,000 km², mostly Saharan desert — extremely sparse
+  infrastructure makes a nationwide fixed reference station network (CORS) a
+  very long-term prospect. AFREF contributions from Mauritania, if any, are
+  raw-archive RINEX only. A 2018 power-transmission survey case study used
+  Trimble RTX satellite PPP precisely because no ground-based caster was
+  available. → networks.md: `datu_mr`
 
 - **Volunteer**: none. Zero MR stations on rtk2go or Centipede.
 
 - **Gap**: no free RTK for hobbyists. Geography and infrastructure constraints
   are the primary barrier; no CORS programme has been identified. Deploy a local
-  base station.
+  base station, or use Galileo HAS / Trimble RTX satellite PPP.
 
 ### MG — Madagascar
 

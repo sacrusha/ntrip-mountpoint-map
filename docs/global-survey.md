@@ -53,13 +53,18 @@ requires per-seat licensing. Hobbyist and small-shop use confirmed in scope.
 Legacy UNAVCO platform retired 2025-07-29; all users must migrate to
 `ntrip.earthscope.org`. → networks.md: `earthscope`
 
-### FReDNet (IT + SI + AT)
+### FReDNet (IT + cross-border partnerships)
 
-Operated by OGS (Istituto Nazionale di Oceanografia e Geofisica Sperimentale,
-Trieste). Crustal-deformation science network for Friuli-Venezia Giulia (NE
-Italy), with coverage extending into Slovenia and western Austria. Free with
-email registration. Included here because it serves rovers across three countries.
-→ networks.md: `frednet`
+Operated by OGS-CRS (Istituto Nazionale di Oceanografia e di Geofisica
+Sperimentale, Udine). Crustal-deformation science network with 22 RTK-active
+stations across Friuli-Venezia Giulia plus adjacent Veneto and one outlier
+in Lombardy. Direct caster at `158.110.30.81:2110`; portal at
+`frednet.crs.ogs.it`. Free for public, private, and scientific users.
+Included here for its cross-relay relationships: FReDNet stations appear in
+the sibling Re.M.FVG (Marussi) caster under `OGS_*` mounts, and FReDNet's
+own caster re-broadcasts Marussi stations as `RAFVG_*`; Austrian BEV/APOS
+also integrates FReDNet stations as cross-border partners for VRS edge
+coverage. → networks.md: `frednet`
 
 ---
 

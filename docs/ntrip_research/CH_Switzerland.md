@@ -42,7 +42,13 @@
 - Switzerland has no free government NTRIP tier. swipos is the only official VRS RTK product.
 - The AGNES (Automatic GNSS Network for Switzerland) backbone of 31 stations underpins swipos. Selected AGNES stations participate in EUREF EPN; RINEX download available via swisstopo.
 - **rtk2go volunteer coverage:** 20 CHE-coded volunteer base stations as of 2026-05-12 fetch (BERBU, BeLaAG01, Diemerswil, FP07, Gtown, ICOMOST, LAX1090, LT05, Mirmenhof, Ormalingen_Ribi, PSHS, Riddes_station, SFRTK, Solothurn, TOMI, VSG01, chgevymg8a, eid_genoss, suedostschweiz, wegenstetten_1). Coverage spans Plateau (Zürich/Bern/Basel/Solothurn), Jura, Valais, and a thinner Alpine presence.
-- **Centipede volunteer coverage:** 30 CHZ-coded nodes as of 2026-05-12 — substantially denser than the 2026-05-06 entry's "no Centipede presence" claim. Major clusters along the Plateau (Bern, Lausanne, Yverdon, Basel/Solothurn corridor, Zürich, Eastern Switzerland). Centipede coverage in Switzerland has grown from a near-zero baseline reported in earlier research; the current density makes Centipede a meaningful free alternative to swipos for Plateau hobbyists.
+- **Centipede volunteer coverage:** 30 CHZ-coded nodes as of 2026-05-12 (Centipede uses non-ISO code `CHZ` for Switzerland — *not* Czech Republic; the actual ISO code for Switzerland is `CHE` and Czech is `CZE`, both of which are also used by other sources). Major clusters along the Plateau (Bern, Lausanne, Yverdon, Basel/Solothurn corridor, Zürich, Eastern Switzerland). The 2026-05-06 entry's "no Centipede presence" claim was a research error: archived snapshots of `caster.centipede.fr:2101` show CHZ stations have existed since at least 2023. Genuine growth of the Swiss Centipede footprint is also real and documented from Wayback snapshots — **the world has changed AND prior research undercounted**:
+  - 2023-01-01 (Wayback `caster.centipede.fr:2101` snapshot): **7 CHZ stations**
+  - 2024-01-01 (Wayback): **10 CHZ stations**
+  - 2025-01-01 (Wayback): **18 CHZ stations**
+  - 2026-05-13 (live `crtk.net:2101` probe): **30 CHZ stations**
+  
+  So the trend is genuine ~4× growth over three years, not a sudden recent appearance. The current density makes Centipede a meaningful free alternative to swipos for Plateau hobbyists. Receiver mix is consistent with steady community deployment (mostly RTKBase-based U-blox ZED-F9P, a few Unicore UM980 and Septentrio MOSAIC-X5).
 - **Liechtenstein (LI):** No independent caster. Fully relies on swipos or Austrian APOS; swipos coverage extends into Liechtenstein territory given station proximity.
 - Data volume: ~3 MB/hour for RTCM 3 + NTRIP (per swisstopo documentation).
 - Contact: swipos@swisstopo.ch / +41 58 469 01 21
@@ -64,3 +70,5 @@
 - GitHub NTRIP client for swipos: https://github.com/Michael-Perna/NTRIP_Client
 - curl probe of `www.swipos.ch:2101` — full SOURCETABLE 200 OK + 4-mountpoint dump captured 2026-05-12
 - Local pipeline data: `data/stations.json` (rtk2go CHE = 20, centipede CHZ = 30; fetched 2026-05-12T18:17Z)
+- Wayback Machine snapshots of `http://caster.centipede.fr:2101/` filtered for `;CHZ;`: 2023-01-01 = 7 stations, 2024-01-01 = 10, 2025-01-01 = 18; current `crtk.net:2101` 2026-05-13 = 30. Confirms genuine multi-year growth of Swiss Centipede footprint — the 2026-05-06 "no Centipede presence" claim was a prior-research undercount, not a real-world disappearance.
+- See also `docs/ntrip_research/_centipede_country_codes.md` for the full Centipede non-ISO country-code legend (CHZ, ENG, DAN, ROM, SER all non-standard).

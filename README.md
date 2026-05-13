@@ -81,7 +81,7 @@ toggle panel with 0 pins (virtual mountpoints have no fixed coordinates).
 
 | Source | Region | Stations | Registration |
 |--------|--------|----------|--------------|
-| FReDNet (OGS) | NE Italy + border AT/SI | ~28 | frednet.crs.ogs.it |
+| Re.M.FVG (Marussi) | NE Italy (FVG) + SI border relays | 14 own + 11 cross-relayed | rem.regione.fvg.it |
 | SAPOS (14 Länder) | Germany | ~80 VRS/physical | per-state at sapos.de |
 | ERGNSS (IGN) | Spain | ~128 | ergnss.ign.es/gnuserportal/ |
 | AUSCORS (GA) | Australia | ~811 | gnss.ga.gov.au/registration |

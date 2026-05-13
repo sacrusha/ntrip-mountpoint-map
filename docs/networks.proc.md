@@ -21,9 +21,8 @@ host:port, yearly_cost, …). Developer-facing.
 
 ## Curation threshold
 
-A block exists only for **substantial** operators (nationwide, regional
-cadastre, recognised commercial operator). Small surveying companies →
-country prose only. 
+A block exists iff the operator is relevant to target users (target-user.md).
+A free 5 station RINEX only network is relevant if there is nothing else, but irrelevant if there is also a 50 station free VRS network. To be relevant a network must represent a pareto point on cost/capability/official-ness. Small surveying companies → country prose only.
 
 ## Status discipline
 
@@ -33,7 +32,9 @@ The `status:` field drives the marker sweep — be strict.
 `paid`: Civilian-accessible for a fee. Requires `**yearly_cost**:`.
 `restricted`: Exists but unobtainable for the target user at any price.
 `RINEX`: Free RINEX post processing
-`other`: Use for user-relevant entries that don't fit. Freeform note is load-bearing part of the block. If a user (target-users.md) landing on the country would be helped by knowing this exists or a networkdoesn't work the way the other fields suggest, it's `other`. Past examples: announced-not-live, sparse infra, reseller-only, non-standard NTRIP, GNSS-spoofed airspace, civil war.
+`other`: Use for user-relevant entries that don't fit. Freeform note is load-bearing part of the block. If a user (target-users.md) landing on the country would be helped by knowing this exists or a network doesn't work the way the other fields suggest, it's `other`. Past examples: announced-not-live, sparse infra, reseller-only, non-standard NTRIP, GNSS-spoofed airspace, civil war.
+
+deferred, rejected, etc are hallucinated statuses that do not exist.
 
 ## Format:
 ---

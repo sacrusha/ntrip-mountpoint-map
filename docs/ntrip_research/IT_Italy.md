@@ -1,5 +1,5 @@
 # Italy [IT] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12 (refresh of 2026-05-07 entry — all endpoints re-probed)
+**Date researched:** 2026-05-13 (FVG refresh — FReDNet and Re.M.FVG/Marussi re-verified against operator portals; earlier 2026-05-12 pass refreshed the other regions)
 
 ## Status: YES — extensive public free NTRIP RTK infrastructure; no single national free caster; coverage is regional
 
@@ -16,8 +16,8 @@ Italy has no unified national free RTK caster. Instead, 10+ regional/autonomous 
 | Trentino (PA Trento) | TPOS | `194.105.50.232:2101` | Free (registration) | Yes (IMAX, MAX, NRT/VRS) | unclear | SOURCETABLE 200 OK |
 | Alto Adige / Südtirol (PA Bolzano) | STPOS | `62.101.0.40:2109` | Free (registration) | Yes (Netz-rete, MAX, NRT) | unclear | SOURCETABLE 200 OK |
 | Veneto | Rete GPS Veneto | `147.162.229.53:2101` | Free (email registration) | Yes (MAX3, IMAX, NRT) | unclear (email-only signup) | SOURCETABLE 200 OK |
-| Friuli-Venezia Giulia | Re.M.FVG "A. Marussi" | `gnsscaster.regione.fvg.it:8080` | Free (form registration) | Yes (VRS_RTCM23/31/32, MAC, IMAC) | Yes (form open to anyone) | SOURCETABLE 200 OK |
-| Friuli-Venezia Giulia | FReDNet (OGS/INGV) | `158.110.30.81:2110` | Free (account on frednet.crs.ogs.it) | Yes (VRS) | Yes (research/all welcome) | SOURCETABLE 200 OK |
+| Friuli-Venezia Giulia | Re.M.FVG "A. Marussi" | `gnsscaster.regione.fvg.it:8080` | Free (form registration) | Yes (VRS_RTCM23/31/32, MAC, IMAC) | Yes (form open to anyone) | SOURCETABLE 200 OK 2026-05-12 |
+| Friuli-Venezia Giulia | FReDNet (OGS) | `158.110.30.81:2110` | Free (account on frednet.crs.ogs.it) | Yes (VRS, NEAREST, FKP) | Yes (public, private, scientific) | SOURCETABLE 200 OK 2026-05-12 |
 | Umbria | GPS-UMBRIA | `gpsumbria.regione.umbria.it:2101` | Free (online form) | Yes (MAC, VRS, Nearest) | unclear | SOURCETABLE 200 OK (GNCASTER) |
 | Campania | Rete GNSS Campania | `gps.sit.regione.campania.it:2101` | Free (open credentials) | Yes (1_VRS30, 9_NEAR) | Yes (public credentials) | SOURCETABLE 200 OK (GNCASTER) |
 | Puglia | Rete GNSS Puglia | `gps.sit.puglia.it:2101` | Free (registration) | Yes (IMAX3, MAX3) | unclear | SOURCETABLE 200 OK |
@@ -112,32 +112,55 @@ Italy has no unified national free RTK caster. Instead, 10+ regional/autonomous 
 ---
 
 ### Re.M.FVG "Antonio Marussi" — Friuli-Venezia Giulia (regional network)
-- **Operator:** Regione Autonoma Friuli-Venezia Giulia; software: Leica GNSS Spider.
-- **host:port:** `gnsscaster.regione.fvg.it:8080` / `193.43.178.173:8080` (confirmed SOURCETABLE 200 OK, 2026-05-07).
-- **Stations:** 10+ stations covering entire FVG region; integrates Austrian EPOSA and Slovenian university stations at borders.
-- **Products:** VRS_RTCM23, VRS_RTCM31, VRS_RTCM32 (GPS+GLO+GAL+BDS), VRS_CMR, MAC_RTCM31, IMAC_RTCM3, IMAC_RTCM32, SingleBase, DGPS variants — confirmed in sourcetable.
-- **Tariff:** Free; credentials by email: rete.gnss.marussi@regione.fvg.it (form on website).
-- **hobbyist_eligibility:** Yes — form is open to anyone who applies.
+- **Operator:** Regione Autonoma Friuli-Venezia Giulia; software: Leica GNSS Spider (7.11.1.109 banner observed).
+- **host:port:** `gnsscaster.regione.fvg.it:8080` / `193.43.178.173:8080` (SOURCETABLE 200 OK 2026-05-12).
+- **Network history (operator-stated, 2026-05-13):** Founded 1999 (Palmanova, Ampezzo, Moggio Udinese). Open to private users since 2005. VRS since 2007. GPS+GLONASS+Galileo since 2012/2019. BEIDOU added 2024–2025 in receiver-refresh; Sappada and Paularo added 2024–2025; Slovenian SIGNAL stations integrated at the border. All consistent with the SOURCETABLE on disk.
+- **Stations:** 14 own physical stations as of 2026-05-13 (Ampezzo, Barcis, Bevazzana, Bovec*, Cervignano, Codroipo, Gorizia, Idrija*, Koper*, MoggioUdinese, Paularo, Pordenone, Sappada, Tarvisio, Trieste, Udine — `*`=Slovenian SIGNAL partner station accessible via the caster). The caster's published sourcetable also exposes 11 OGS/FReDNet mountpoints (`OGS_ACOM`, `OGS_AFAL`, `OGS_MDEA`, `OGS_MPRA`, `OGS_CODR`, `OGS_FUSE`, `OGS_JOAN`, `OGS_NOVE`, `OGS_PAZO`, `OGS_TRIE`, `OGS_UDI1`, `OGS_ZOUF`) — cross-relay of FReDNet, not new physical infrastructure. Border integration also stated with Austrian EPOSA.
+- **Products:** VRS_RTCM23, VRS_RTCM31, VRS_RTCM32 (GPS+GLO+GAL+BDS quad-constellation), VRS_CMR, MAC_RTCM31, IMAC_RTCM3, IMAC_RTCM32, SingleBase_RTCM23/31/32, plus DGPS variants per station — confirmed in sourcetable on disk.
+- **Tariff:** Free; credentials by online registration form on the Re.M.FVG portal. Per operator: "Access to the real-time service is free, but is regulated through access credentials."
+- **hobbyist_eligibility:** Yes — form is open to anyone who applies; no professional, institutional, or commercial-use restriction stated.
 - **legal_residency_required:** No.
-- **VRS:** Yes (multiple VRS formats confirmed in sourcetable).
-- **Reference system:** ETRS89 / ETRF2000 (2008.0) — RDN aligned.
-- **last_confirmed_alive:** 2026-05-07 (SOURCETABLE 200 OK, Leica GNSS Spider/7.11.1.109 confirmed).
-- Source: https://rem.regione.fvg.it/rem-fvg/servizi/correzioni-differenziali · https://www.regione.fvg.it/rafvg/cms/RAFVG/ambiente-territorio/conoscere-ambiente-territorio/FOGLIA11/FOGLIA4/
+- **VRS:** Yes (multiple VRS formats including quad-constellation RTCM 3.2).
+- **Reference system:** ETRS89 / ETRF2000 (epoch 2008.0) — RDN aligned.
+- **last_confirmed_alive:** 2026-05-12 (SOURCETABLE 200 OK, Leica GNSS Spider/7.11.1.109 confirmed).
+- Sources:
+  - https://rem.regione.fvg.it/rem-fvg/servizi/correzioni-differenziali (service description, host:port — 2026-05-13)
+  - https://rem.regione.fvg.it/rem-fvg/info/cenni-storici (history, station roster, BEIDOU refresh — 2026-05-13)
+  - https://www.regione.fvg.it/rafvg/cms/RAFVG/ambiente-territorio/conoscere-ambiente-territorio/FOGLIA11/FOGLIA4/ (regional portal entry)
 
 ---
 
-### FReDNet — Friuli-Venezia Giulia (OGS/INGV seismological network)
-- **Operator:** OGS – Istituto Nazionale di Oceanografia e di Geofisica Sperimentale, Centro di Ricerche Sismologiche (CRS).
-- **host:port:** `158.110.30.81:2110` (confirmed SOURCETABLE 200 OK, 2026-05-07; note port 2110). Also: http://frednet.crs.ogs.it/en/servizio-rtk/
-- **Stations:** Network of ~40 GNSS stations designed for seismic/geodynamic monitoring; primarily in FVG but extends into adjacent Slovenia and Austria.
-- **Products:** VRS (Virtual Reference Station) confirmed on website; RTCM 2 + RTCM 3 single-base and VRS corrections.
-- **Tariff:** Free (account via frednet.crs.ogs.it registration form).
-- **hobbyist_eligibility:** Yes — "all research and collaboration proposals are welcome." Open registration.
-- **legal_residency_required:** No.
+### FReDNet — Friuli-Venezia Giulia (OGS geodynamic network)
+- **Full name:** FReDNet = Friuli Regional Deformation Network.
+- **Operator:** OGS – Istituto Nazionale di Oceanografia e di Geofisica Sperimentale, Centro di Ricerche Sismologiche (CRS), Udine. Operating since June 2002. (Not INGV — the two institutes are distinct; the 2026-05-07 entry's "OGS/INGV" attribution was incorrect.)
+- **Partner:** ISPRA contributes a small number of stations; per the operator's `lista-stazioni` page all 24 currently listed stations are OGS-managed. Part of OGS's SMINO (North-East Italy monitoring system) and a node in the EPOS / GLASS CEGNxEPOS gateway.
+- **host:port:** `158.110.30.81:2110` (note non-standard port 2110). Listed verbatim on https://frednet.crs.ogs.it/en/servizio-rtk/ as of 2026-05-13.
+- **Stations:** 24 listed; 22 active with RTK enabled (LODI and UDIN have RTK off). Distributed across Friuli-Venezia Giulia plus Veneto (CANV, SUSE, NOVE, MGBU, AFAL) and one outlier in Lombardia (LODI). Coverage area stated as "the entire Friuli Venezia Giulia area." Inter-station spacing ~30–50 km; designed for crustal-deformation monitoring along the Adria microplate boundary, not optimised for RTK density.
+- **Active OGS station codes (RTK on, 2026-05-13):** ACOM, AFAL, CANV, CODR, FUSE, GRDO, JOAN, LOGA, MDEA, MGBU, MPRA, NOVE, PAZO, PMNT, SUSE, TOLS, TRIE, UDI1, UDI2, VALS, VARM, ZOUF. Receiver type GNSS (GPS+GLONASS+Galileo); RTK streams advertised as GPS+GLONASS RTCM 3.x.
+- **Products:** Single-station (e.g. `OGS_JOAN`), NEAREST (`OGS_NEA`), VRS (`OGS_VRS`), FKP network solution (`OGS_FKP`), DGPS (code). The caster also re-broadcasts a subset of Re.M.FVG/Marussi physical stations under the `RAFVG_*` prefix (e.g. `RAFVG_BARC`) — cross-relay of the two FVG networks.
+- **Reference system:** ETRF2000 (epoch 2008.0). RDN-aligned.
+- **Tariff:** Free for all users — operator describes the service as "freely accessible to public, private and scientific users." No charge for registration, account, or stream.
+- **Registration:** Online form at https://frednet.crs.ogs.it/en/servizio-rtk/ (RTK account management).
+- **hobbyist_eligibility:** Yes — no professional, institutional, or research-affiliation gate stated; "public, private and scientific users" is the operator's own wording.
+- **legal_residency_required:** No (not stated; no national-ID or VAT-ID requirement).
 - **VRS:** Yes.
-- **last_confirmed_alive:** 2026-05-07 (SOURCETABLE 200 OK on 158.110.30.81:2110).
-- Note: FReDNet is a scientific/research network operating in parallel to the regional Re.M.FVG network. Both serve FVG; FReDNet stations are distributed for geodynamic coverage, not optimised for RTK density.
-- Source: https://frednet.crs.ogs.it/en/servizio-rtk/
+- **Contact:** gnss@ogs.it · Via Treviso 55, 33100 Udine.
+- **last_confirmed_alive:** 2026-05-12 (SOURCETABLE 200 OK on 158.110.30.81:2110 during the 2026-05-12 IT refresh pass; portal `frednet.crs.ogs.it/en/servizio-rtk/` returned current RTK details on 2026-05-13 via WebFetch).
+- **Recent activity:** New stations in 2021 (TOLS, VALS), 2022 (LOGA, MGBU), 2017 (UDI2). Continued expansion under the PNRR MEET project (part of EPOS). No service-discontinuation signal as of 2026-05-13.
+- **Coexistence with Re.M.FVG (Marussi):** FReDNet and Re.M.FVG are two distinct, parallel free networks both serving FVG. FReDNet (OGS, scientific origin) emphasises geodynamic spatial coverage; Re.M.FVG (Regione, surveying/cadastral origin) emphasises VRS density. They cross-relay each other's stations through their respective casters (FReDNet caster carries `RAFVG_*` mounts; Marussi caster carries `OGS_*` mounts). For a hobbyist anywhere in FVG either network is usable; Re.M.FVG's denser VRS solution is typically the better default, FReDNet is the alternative when registering with the Regione is inconvenient or as a cross-check.
+- Sources:
+  - https://frednet.crs.ogs.it/en/servizio-rtk/ (operator RTK service page, mountpoint examples, contact, host:port — 2026-05-13)
+  - https://frednet.crs.ogs.it/en/lista-stazioni/ (full station list with install dates and RTK flags — 2026-05-13)
+  - https://www.ogs.it/en/northeast-italy-monitoring-system-smino (SMINO context, 22 active stations — 2026-05-13)
+  - https://gnss-metadata.eu/MOID/projnet.6425394325cd38eb370a0aa4 (M3G project/network registry — 2026-05-13)
+
+#### Pipeline status (FVG, 2026-05-13)
+
+Resolved: SOURCES id `frednet` renamed to `rem_fvg` and re-pointed at the
+Marussi caster it always served; `data/frednet.sourcetable` → `data/rem_fvg.sourcetable`;
+`networks.md` split into a `rem_fvg` block (in pipeline, Marussi) and a
+`frednet` block (OGS, not in pipeline — cross-relayed via the Marussi caster).
+Country marker, country-survey bullet, README, and global-survey updated.
 
 ---
 
@@ -309,7 +332,12 @@ San Marino (61 km², enclave within Emilia-Romagna) has no GNSS RTK network of i
 - Regione Veneto stazioni GPS: https://www.regione.veneto.it/web/ambiente-e-territorio/stazioni-gps
 - Re.M.FVG A. Marussi corrections: https://rem.regione.fvg.it/rem-fvg/servizi/correzioni-differenziali
 - Regione FVG GNSS (EN): https://www.regione.fvg.it/rafvg/cms/RAFVG/ambiente-territorio/conoscere-ambiente-territorio/FOGLIA11/FOGLIA4/
-- FReDNet OGS RTK service: https://frednet.crs.ogs.it/en/servizio-rtk/
+- FReDNet OGS RTK service: https://frednet.crs.ogs.it/en/servizio-rtk/ (host:port, mountpoints, contact, free-for-all attestation — 2026-05-13)
+- FReDNet OGS station list: https://frednet.crs.ogs.it/en/lista-stazioni/ (24 stations, install dates, RTK flags — 2026-05-13)
+- FReDNet OGS overview page: https://frednet.crs.ogs.it/en/frednet/ (22 active stations, PNRR MEET / EPOS context — 2026-05-13)
+- OGS SMINO: https://www.ogs.it/en/northeast-italy-monitoring-system-smino (network context, 22 active GNSS receivers — 2026-05-13)
+- M3G GNSS network metadata: https://gnss-metadata.eu/MOID/projnet.6425394325cd38eb370a0aa4 (operator attribution, station codes — 2026-05-13)
+- Re.M.FVG history page: https://rem.regione.fvg.it/rem-fvg/info/cenni-storici (founding 1999, 2024-25 BEIDOU + Sappada/Paularo addition, FReDNet cooperation — 2026-05-13)
 - GPS-UMBRIA (Umbriageo): https://umbriageo.regione.umbria.it/pagine/accesso-rapido-ai-servizi-gpsumbria
 - Regione Campania GNSS (via blog.analistgroup.com): https://blog.analistgroup.com/come-connettersi-alla-rete-gnss-in-campania/
 - Puglia SIT GPS: https://pugliacon.regione.puglia.it/web/sit-puglia-sit/global-positioning-system

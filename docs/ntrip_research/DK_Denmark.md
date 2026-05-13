@@ -1,7 +1,7 @@
 # Denmark [DK] — NTRIP RTK Caster Research
 **Date researched:** 2026-05-12 (initial 2026-05-06)
 
-## Status: NO free public NTRIP — three Klimadatastyrelsen-registered commercial providers (GPSnet.dk, HxGN SmartNet, RTKconnect.dk); state contributes 13–15 reference stations but operates no free public caster. Free RINEX archive via Dataforsyningen. Sparse volunteer alternatives: ~17 rtk2go DK bases + 8 Centipede DK nodes per project archives
+## Status: NO free public NTRIP — three Klimadatastyrelsen-registered commercial providers (GPSnet.dk, HxGN SmartNet, RTKconnect.dk); state contributes 13–15 reference stations but operates no free public caster. Free RINEX archive via Dataforsyningen. Sparse volunteer alternatives: ~17 rtk2go DK bases + ~18 Centipede DK nodes (split across non-ISO codes `DNK` 8 + `DAN` 10; see `_centipede_country_codes.md`) per project archives
 
 ---
 
@@ -64,7 +64,7 @@ Klimadatastyrelsen (Danish Climate Data Agency, formerly Geodatastyrelsen) is th
 
 | Option | Notes |
 |---|---|
-| **Centipede** (crtk.net) | 8 Denmark-coded nodes per `scripts/stations_by_country.py DNK` (2026-05 snapshot): `AGBI`, `AGLU`, `AGRB`, `AGSA`, `AGSB`, `AGTH`, `HZAG`, `OVTA`. Heavily clustered in Jutland (55–57°N, 8–10°E); near-zero coverage in Sjælland east. The `AG*` prefix on most suggests a coordinated agricultural-farmer deployment. |
+| **Centipede** (crtk.net) | **~18 Denmark-coded nodes total** as of 2026-05-13, split across **two parallel Centipede country codes**: 8 `DNK`-coded (`AGBI`, `AGLU`, `AGRB`, `AGSA`, `AGSB`, `AGTH`, `HZAG`, `OVTA`) and 10 `DAN`-coded (`AGBR`, `AGER`, `AGGL`, `AGPM`, `AGSE`, `AGTA`, `HEGA`, `RUDV`, `SKAM`, `SMSK`). All cluster in Jutland (54.9–57.4°N, 8.5–10.3°E); near-zero coverage in Sjælland east. The shared `AG*` prefix on most nodes (16 of 18) suggests a coordinated agricultural-farmer deployment — almost certainly one network with a labelling inconsistency in the Centipede sourcetable. Earlier research only counted `DNK` (8 nodes) and therefore undercounted by ~10. **`DAN` is a non-ISO Centipede code in parallel with `DNK`; both mean Denmark** — see `_centipede_country_codes.md`. |
 | **RTK2go** (rtk2go.com) | 17 Denmark-coded volunteer bases per `scripts/stations_by_country.py DNK` (2026-05 snapshot): `EC8700DNK`, `HEGRTK`, `Hvej12`, `KRAGELUND`, `Lovgaard`, `NGBRTKBASE`, `O-TorebyLL`, `Overtanget`, `PNRTK`, `SDS_RTK`, `SdrKildal`, `Sindal`, `Slagelse-PHK`, `TOLSHOEJ`, `Tystofte`, `Ugilt`, `roesdal`. Mostly Jutland; one node `Slagelse-PHK` (55.41°N/11.34°E) provides western Sjælland coverage. No QoS guarantee. |
 | **Dataforsyningen GNSS** | **Free CORS RINEX archive** for post-processing only (not real-time); registration at dataforsyningen.dk |
 
@@ -84,4 +84,4 @@ Klimadatastyrelsen (Danish Climate Data Agency, formerly Geodatastyrelsen) is th
 - Dataforsyningen GNSS Denmark: https://dataforsyningen.dk/data/4717
 - ArduSimple Denmark page: https://www.ardusimple.dk/rtk-correction-services-and-ntrip-casters-in-denmark/
 - NTRIP-list.com Europe: https://ntrip-list.com/europe/
-- Project pipeline `scripts/stations_by_country.py DNK` (2026-05 snapshot): 17 rtk2go bases + 8 Centipede nodes — see Free/Volunteer table above
+- Project pipeline `scripts/stations_by_country.py DNK` and `py scripts/stations_by_country.py DAN` (2026-05-13 fetch): 17 rtk2go DNK bases + **18 Centipede nodes total = 8 DNK + 10 DAN** (Centipede uses non-ISO `DAN` in parallel with `DNK` for Denmark; both must be summed). See Free/Volunteer table above and `_centipede_country_codes.md`.

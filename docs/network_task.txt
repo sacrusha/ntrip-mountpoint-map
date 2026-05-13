@@ -1,0 +1,5 @@
+ntrip_research has been updated. Learn what the pipeline is and what the target down the line is.
+
+Your task is to process research changes from `ntrip_research/` into network.md When a research file in `ntrip_research/` documents a relevant operator and no block exists, create the block, otherwise update it. Processing a research file means processing all of it, don't defer for a later process, **you** are the process. Also sweep for past blocks that may require deletion - on country research, grep  for the country name and/or code.
+
+If research seems implausible, needs ambiguity resolved, or conflicts with existing information in a way that risks vandalization, flag to the caller, but proceed.

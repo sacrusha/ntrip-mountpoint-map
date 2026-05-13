@@ -19,9 +19,9 @@
 - **Wholesale arrangement (per Tailte Éireann + OSNI cooperative model, restated 2026)**: The raw streamed data from the national CORS network is supplied to **Trimble (VRS Now Ireland)**, **Leica (HxGN SmartNet)**, and **Topcon (TopNET Live)**, who each operate their own paid NRTK casters covering the island. There is no direct-from-government NTRIP caster.
 - **ArduSimple's Ireland page** (ardusimple.com/rtk-correction-services-and-ntrip-casters-in-ireland/) explicitly states: *"as far as we know Ireland is not among"* the countries with a national free RTK network.
 - **Trimble VRS Now (Ireland)** via **Hitechniques** (IE Trimble reseller, hitechniques.ie):
-  - 1-year / **100h** subscription: **€980 excl. VAT** (€1,205.40 incl. 23% VAT) — observed 2026-05-12.
-  - 1-year / **600h** subscription: **€1,390 excl. VAT** (€1,709.70 incl. VAT) — observed 2026-05-12.
-  - The previously-noted **€590/yr/600h** tariff is stale; current pricing has moved up materially.
+  - 1-year / **100h** subscription: **€980 excl. VAT** (€1,205.40 incl. 23% VAT) — observed 2026-05-12 / 2026-05-13 (live).
+  - 1-year / **600h** subscription: **€1,390 excl. VAT** (€1,709.70 incl. VAT) — observed 2026-05-12 / 2026-05-13 (live).
+  - **Pricing has been stable, not "moved up" — earlier research was wrong.** Wayback Machine snapshots of the Hitechniques product pages confirm: 600h = €1,390 in 2020-01, 2023-01, 2024-01, 2025-01, and 2026-05; 100h = €980 in 2023-01 and 2026-05. The previously-reported `€590/yr/600h` tariff was therefore a research error — wrong product, wrong reseller, or stale cached number — *not* an upward price move by Hitechniques. **Interpretation: correction (b), not real-world change (a).** Treat the historical "€590" datapoint as discarded.
   - Availability: Republic of Ireland + Northern Ireland; UK/EU/US/AU available as add-ons.
 - **Trimble VRS Now via Korec Group**: same product, UK + Ireland coverage; Korec IE office +353 (0)1 456 4702; pricing on application (£POA).
 - **HxGN SmartNet** (Hexagon/Leica): coverage extends to Ireland through partnership/integration with the Tailte Éireann CORS feed; no dedicated Irish tariff published; contact Leica Geosystems Ireland.
@@ -65,8 +65,9 @@ These are the only free real-time RTK options in Ireland aside from rolling your
 - OSi legacy portal (redirect notice 2026-05-12): https://gnss.osi.ie
 - New Tailte Éireann GNSS portal: https://gnss.tailte.ie (HTTP unreachable from this sandbox 2026-05-12; per OSi redirect notice + ArduSimple it is the active service URL)
 - ArduSimple Ireland NTRIP guide: https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-ireland/
-- Hitechniques VRS Now 100h: https://hitechniques.ie/trimble-vrsnow-network-rtk-1y-100h-subscription-5 (€980 excl. VAT, 2026-05-12)
-- Hitechniques VRS Now 600h: https://hitechniques.ie/trimble-vrsnow-rtk-network-1y-600h-subscription-5 (€1,390 excl. VAT, 2026-05-12)
+- Hitechniques VRS Now 100h: https://hitechniques.ie/trimble-vrsnow-network-rtk-1y-100h-subscription-5 (€980 excl. VAT, 2026-05-12 / re-confirmed 2026-05-13 live)
+- Hitechniques VRS Now 600h: https://hitechniques.ie/trimble-vrsnow-rtk-network-1y-600h-subscription-5 (€1,390 excl. VAT, 2026-05-12 / re-confirmed 2026-05-13 live)
+- Wayback Machine snapshots confirming Hitechniques pricing stability: web.archive.org/web/20200101000000/hitechniques.ie/trimble-vrsnow-rtk-network-1y-600h-subscription = €1,390 / €1,709.70 incl. VAT (2020-01); 20230101 = €1,390 (600h) and €980 (100h); 20240101 and 20250101 = €1,390 (600h). The €590 figure in pre-2026 research was therefore a research error / wrong product, not an upstream price change.
 - Korec Group VRS Now: https://www.korecgroup.com/product/trimble-vrs-now/ (£POA, IE phone +353 (0)1 456 4702)
 - TU Dublin Network RTK evaluation paper: https://arrow.tudublin.ie/dsiscon/2/ (background context)
 - rtk2go IE station list: 10 bases (2026-05-12 pipeline snapshot via `scripts/stations_by_country.py IRL`)

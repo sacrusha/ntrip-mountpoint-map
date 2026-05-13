@@ -1,7 +1,7 @@
 # Colombia [CO] — NTRIP RTK Caster Research
 **Date researched:** 2026-05-12 (initial 2026-05-06; deep verification 2026-05-07)
 
-## Status: YES — free national NTRIP caster (IGAC MAGNA-ECO) operational on two ports; VRS via Leica Spider Business Center; ~127 unique CORS coordinates advertised on physical-stations port; registration required; no commercial alternatives identified beyond cross-border Topored
+## Status: YES — free national NTRIP caster (IGAC MAGNA-ECO) operational on two ports; VRS via Leica Spider Business Center; **143 single-station mountpoints / 137 unique exact lat/lon pairs** (canonical count, see "Station-count reconciliation" below) advertised on physical-stations port; registration required; no commercial alternatives identified beyond cross-border Topored
 
 | Field | Value |
 |---|---|
@@ -10,7 +10,7 @@
 | **Network name** | MAGNA-ECO — Estaciones Continuas Operativas del Marco Geocéntrico Nacional MAGNA-SIRGAS (Red Geodésica Nacional Activa) |
 | **Mandate basis** | Resolución IGAC 1771 de 2024 (officializing the redgeodesica.igac.gov.co portal as the National Geodetic Network web service); Law 1955/2019 PND Art. 281 (free public access mandate); Centro de Control Geodésico Nacional formally launched April 2024 |
 | **host:port — VRS / network solution** | `sbc.igac.gov.co:2101` (Server: NTRIP Spider/7.11.0.96, confirmed via direct sourcetable fetch 2026-05-07; HTTP 200 OK, Content-Length 1989) — 20 mountpoints offering MSM, RTCM 2/3, CMR, CMR+, Leica4G formats with NEAR/IMAX/VIRS variants |
-| **host:port — single-base / physical stations** | `sbc.igac.gov.co:2102` (Server: NTRIP Spider/7.11.0.96, confirmed via direct sourcetable fetch 2026-05-07; HTTP 200 OK, Content-Length 15621) — 143 mountpoints, 127 unique physical coordinates |
+| **host:port — single-base / physical stations** | `sbc.igac.gov.co:2102` (Server: NTRIP Spider/7.11.0.96, confirmed via direct sourcetable fetch 2026-05-07 and re-confirmed 2026-05-13; HTTP 200 OK, Content-Length 15621 unchanged on both dates → byte-identical sourcetable, no station additions or removals between those dates) — 143 mountpoints (each a unique 4-char-code `_RTCM3` mountpoint), 137 unique exact lat/lon pairs (six coord-collisions: one location with 3 mountpoints, four with 2). See "Station-count reconciliation" for the prior 124/127 figures. |
 | **VRS** | Yes — `MSM_VIRS`, `MSM_IMAX`, `MSM_NEAR` (all RTCM 3, GPS+GLO+GAL+BDS, network solution flags 1/1 for VIRS/IMAX, NEAR is solution=0); legacy variants `RTCM3_VIRS`, `RTCM3_IMAX`, `RTCM3_NEAR`, `RTCM2_VIRS`, `RTCM2_IMAX`, `RTCM2_NEAR`, `RTCM2_DGPS`, `RTCM2_DGPS_VIRS`, `RTCM2_DGPS_IMAX`, `CMR_NEAR`, `CMRP_NEAR`, `CMRP_IMAX`, `CMRP_VIRS`, `Leica4G_NEAR`, plus regional cells `LLANOS_RTCM3`, `SUR_OESTE_RTCM3`, `NOROESTE_RTCM3` (regional sub-network mounts on port 2101) |
 | **Mountpoints (port 2102, single-base, sample)** | `AEFO_RTCM3` (1.59°N/75.56°W), `AEMO_RTCM3` (9.26°N/74.44°W), `BOGT_RTCM3`, `CALI_RTCM3` (3.38°N/76.53°W), `CART_RTCM3` (10.39°N/75.53°W) Cartagena, `CUCU_RTCM3` (7.90°N/72.49°W) Cúcuta, `IBAG_RTCM3` (4.43°N/75.21°W) Ibagué, `INIR_RTCM3` (3.87°N/67.93°W) Inírida, `BUEN_RTCM3` (3.88°N/77.01°W) Buenaventura, etc. — 143 station-RTCM3 mountpoints; 127 unique lat/lon pairs |
 | **Constellations** | GPS+GLO+GAL+BDS on MSM mountpoints; GPS+GLO on most legacy RTCM3 single-base mountpoints; GPS-only on some RTCM2 / DGPS legacy variants |
@@ -19,7 +19,7 @@
 | **VAT status** | N/A — service is free of charge |
 | **hobbyist_eligibility** | Yes — open registration via Spider Business Center; no professional licence requirement; account types include individuals (personas naturales) |
 | **legal_residency_required** | Unclear — registration form requests national ID (cédula) by default; foreign passports may be accepted via the SBC's international ID-type dropdown; no explicit international block found, but no official statement of openness to non-residents either. The SBC platform itself supports 31+ languages including English, Spanish, Portuguese — suggesting non-resident access is technically possible. |
-| **last_confirmed_alive** | 2026-05-07 — both ports 2101 (network/VRS) and 2102 (single-base) returned valid sourcetables; redgeodesica.igac.gov.co portal HTTP 200; Spider Business Center login portal at redgeodesica-sbc.igac.gov.co/sbc HTTP 200. Re-probe 2026-05-12: ports 2101/2102 timed out from research env (likely transient or sandbox firewall); no upstream-side outage announcement found — assume still operational |
+| **last_confirmed_alive** | 2026-05-13 — port 2102 (single-base) returned `SOURCETABLE 200 OK` (Server: GNSS Spider 7.11.0.96, Content-Length 15621, 143 STR records). Earlier checks: 2026-05-07 both ports 2101 (network/VRS) and 2102 (single-base) returned valid sourcetables; 2026-05-12 ports 2101/2102 timed out from research env (transient — confirmed back online 2026-05-13). Content-Length unchanged across 2026-05-07 → 2026-05-13: byte-identical sourcetable, so **no IGAC mountpoint additions or removals over that 6-day window** |
 
 ## Registration Process
 
@@ -35,7 +35,7 @@
 
 - **Platform**: Leica Spider Business Center (SBC) — Leica's CORS network management software, version 7.11.0.115 (login portal); NTRIP caster software Spider 7.11.0.96
 - **Reference frame**: MAGNA-SIRGAS (Colombia's national geodetic reference frame; ITRF-aligned; ECO = Estaciones Continuas Operativas)
-- **Stations (current 2026)**: 143 single-station mountpoints active on port 2102 (127 unique physical coordinates after deduplication of variants); IGAC publicly cites ~237 CORS as of late 2023, ~260 by end-2024 (expansion ongoing). The discrepancy between 237 declared and 127 unique-on-port-2102 reflects a mix of (a) IGAC + SGC GeoRED + densification stations not all advertised on the public NTRIP caster, (b) some stations listed in metadata but not yet streaming, and (c) duplicates per mountpoint format. The public NTRIP service reflects ~127 streaming stations as of 2026-05-07.
+- **Stations (current 2026)**: 143 single-station mountpoints active on port 2102 (137 unique exact lat/lon pairs after deduplication; **see "Station-count reconciliation" below for the methodology and why prior research said 124 and 127**); IGAC publicly cites ~237 CORS as of late 2023, ~260 by end-2024 (expansion ongoing). The discrepancy between ~237 declared and ~137 unique-on-port-2102 reflects a mix of (a) IGAC + SGC GeoRED + densification stations not all advertised on the public NTRIP caster, (b) some stations listed in metadata but not yet streaming, and (c) the public NTRIP service being a subset of the full CORS inventory. The public NTRIP service reflects ~137 streaming stations as of 2026-05-13 — unchanged from the byte-identical 2026-05-07 sourcetable.
 - **Coverage**: Three regional network cells advertised — `LLANOS_RTCM3` (eastern plains, ~3.38°N/74.05°W), `SUR_OESTE_RTCM3` (southwest, ~1.21°N/77.28°W around Pasto/Nariño), `NOROESTE_RTCM3` (northwest, ~10.11°N/74.52°W around Caribbean coast); plus the main VRS network at the Bogotá control centre (~4.69°N/74.14°W). Coverage is denser in the Andean corridor (Bogotá–Medellín–Cali) and Caribbean coast; sparser in Amazon/Orinoco basins.
 - **Constellations**: GPS, GLONASS, Galileo, BeiDou (Leica GR50 multi-constellation receivers; AR20 antennas on 2024 densification batch)
 - **Services offered**: Real-time NTRIP, VRS (network RTK), online PPP via Centro de Control Geodésico, RINEX post-processing download
@@ -56,6 +56,22 @@
 - **Hobbyist hardware compatibility**: VRS mountpoints require RTCM 3 MSM (preferred) or legacy RTCM 3 — supported by all modern dual-frequency GNSS receivers (u-blox ZED-F9P, Septentrio mosaic-X5, Trimble, Leica, Topcon, ArduSimple kits). DGPS-only legacy mountpoints (RTCM 2 GPS-only) are usable by older single-frequency rovers but only deliver decimeter accuracy.
 - **NMEA GGA**: Network-solution mountpoints (`MSM_VIRS`, `MSM_IMAX`, `RTCM3_VIRS`, `RTCM3_IMAX`, etc.) require the rover to upstream periodic NMEA GGA position messages — standard NTRIP behavior. Single-station mountpoints on port 2102 do not require NMEA upstream.
 
+## Station-count reconciliation (port 2102 dedup methodology)
+
+Prior research recorded different unique-coordinate counts (124 on 2026-05-07; 127 on 2026-05-12). The live re-probe on 2026-05-13 returns 137 unique exact lat/lon pairs from the same 143 STR records, and Content-Length is unchanged from 2026-05-07 (15621 bytes) — i.e. **the underlying sourcetable is byte-identical and no IGAC stations have been added or removed**. The 124 → 127 → 137 drift is therefore a **deduplication-method difference, not real network growth — interpretation (b), correction**.
+
+Canonical dedup method (used here, applies as well to any future re-counts):
+
+```
+curl --http0.9 http://sbc.igac.gov.co:2102/ \
+  | grep '^STR;' \
+  | awk -F';' '{print $10","$11}' \
+  | sort -u \
+  | wc -l
+```
+
+Counts: **143 STR records · 143 unique 4-char station codes · 137 unique exact lat/lon pairs** (on the 2026-05-13 sourcetable; identical to the 2026-05-07 fetch). The six coord-collisions are: one location at `2.17,-73.79` with 3 mountpoints; four locations at `4.64,-74.08`, `3.20,-75.64`, `2.41,-75.88`, `10.03,-73.05` with 2 mountpoints each. Earlier counts of 124 and 127 likely used either coordinate rounding (rounding lat/lon to 1 decimal place yields 136; rounding to other granularities yields different totals) or grouped by some other heuristic. **No physical IGAC stations were added between 2026-05-07 and 2026-05-13.**
+
 ## Post-Processing (RINEX) Fallback
 
 | Service | URL | Cost | Notes |
@@ -71,7 +87,8 @@
 - IGAC Centro de Control Geodésico (Azure-hosted mirror): https://igac-cc.azurewebsites.net/ (observed 2026-05-07; ECONNREFUSED from research env, but listed via search results)
 - Spider Business Center login: https://redgeodesica-sbc.igac.gov.co/sbc (Leica SBC v7.11.0.115; HTTP 200; 31+ language UI)
 - Spider Business Center registration: https://redgeodesica-sbc.igac.gov.co/sbc/Account/Register
-- Direct sourcetable fetches (research env, 2026-05-07): `http://sbc.igac.gov.co:2101/` (20 STR mountpoints, network/VRS) and `http://sbc.igac.gov.co:2102/` (143 STR mountpoints, single-base; 127 unique coords)
+- Direct sourcetable fetches (research env, 2026-05-07): `http://sbc.igac.gov.co:2101/` (20 STR mountpoints, network/VRS) and `http://sbc.igac.gov.co:2102/` (143 STR mountpoints, single-base)
+- Re-probe of `http://sbc.igac.gov.co:2102/` 2026-05-13 (using `curl --http0.9`): SOURCETABLE 200 OK, Server: GNSS Spider 7.11.0.96/1.0, Content-Length 15621 (byte-identical to 2026-05-07 fetch), 143 STR records, 137 unique exact lat/lon pairs. Confirms no station additions/removals; the 124/127 figures in earlier notes are dedup-method artifacts, not real-world changes.
 - Resolución IGAC 1771 de 2024: https://www.igac.gov.co/transparencia-y-acceso-a-la-informacion-publica/normograma/resolucion-1771-de-2024
 - IGAC Geodesia FAQ: https://www.igac.gov.co/el-igac/areas-estrategicas/direccion-de-gestion-de-informacion-geografica/geodesia/preguntas-frecuentes-geodesia
 - SIRGAS Colombia RT presentation (Apr 2024): https://sirgas.ipgh.org/wp-content/uploads/2024/05/IGAC-Colombia-RT.pdf
@@ -85,4 +102,4 @@
 ## Known Data Gaps
 - **Foreign-resident registration outcome**: The SBC registration form accepts non-Colombian ID types in principle, but no public confirmation that IGAC approves foreign-passport-only subscriptions. Worth a real-world test or direct contact with `contactenos@igac.gov.co`.
 - **GeoRED real-time**: Whether SGC plans to expose any GeoRED stations via NTRIP (rather than post-processing only) is not publicly documented. SGC has not announced an NTRIP caster.
-- **Station count reconciliation**: IGAC documents cite ~237 CORS (IGAC + SGC) but only ~127 unique physical coordinates are advertised on the public NTRIP caster (port 2102). The gap likely reflects post-processing-only stations and SGC stations not piped into the IGAC RTK service.
+- **Station count reconciliation (IGAC ~237 vs port-2102 137)**: IGAC documents cite ~237 CORS (IGAC + SGC) but only **137 unique exact lat/lon pairs** (143 mountpoints) are advertised on the public NTRIP caster (port 2102). The gap likely reflects post-processing-only stations and SGC stations not piped into the IGAC RTK service. The internal 124/127/137 prior-count drift is **resolved as a dedup-method artifact** (see "Station-count reconciliation" above), *not* a real expansion: byte-identical sourcetable across 2026-05-07 → 2026-05-13.

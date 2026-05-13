@@ -22,9 +22,9 @@ material to be **distilled**, not authored.
 
 ## Direction of work
 
-For pipeline-side edits, new facts enter at the survey first (distilled from
-`ntrip_research/` when present). The survey is the file that records what was
-investigated and what wasn't found — it carries the negatives.
+For pipeline-side edits, new facts live in `ntrip_research/` and distil down
+into `networks.md`. `ntrip_research/` records what was investigated and what
+wasn't found — it carries the negatives.
 
 A `networks.md` block exists only when the operator is **substantial**:
 nationwide, regional cadastre, or a recognised commercial operator relevant
@@ -41,8 +41,8 @@ mountpoints. Sweep SOURCES whenever a block's `status:` changes — see
 
 ## The flow narrows
 
-A country may have survey prose with no networks block. A block may have no
-marker. A block may have no SOURCES entry. **Don't invent content just to
+A country may have research in `ntrip_research/` with no networks block. A
+block may have no marker. A block may have no SOURCES entry. **Don't invent content just to
 populate the next file** — empty space downstream is a feature, not a gap.
 
 ## Direction of repair

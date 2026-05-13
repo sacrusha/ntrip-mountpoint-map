@@ -67,10 +67,14 @@ SOURCES = [
      "credentials": {"user": "centipede", "pass": "centipede"},
      "access": "open",         "registration": None,
      "near": True, "user": "centipede", "pass": "centipede"},
-    {"id": "frednet",     "url": "http://gnsscaster.regione.fvg.it:8080/",
-     "color": "#2e6fb0", "label": "FReDNet",
+    # Re.M.FVG (Marussi) — Regione Autonoma FVG positioning service. Caster is the Marussi
+    # caster, not FReDNet. Renamed from id 'frednet' 2026-05-13 — the previous label
+    # mis-attributed Marussi infrastructure to OGS FReDNet. Sourcetable cross-relays
+    # 11 OGS_* mounts from the real FReDNet caster at 158.110.30.81:2110.
+    {"id": "rem_fvg",     "url": "http://gnsscaster.regione.fvg.it:8080/",
+     "color": "#2e6fb0", "label": "Re.M.FVG",
      "type": "physical-vrs", "country": ["IT"], "region": "Friuli-Venezia Giulia",
-     "access": "registration", "registration": "https://frednet.crs.ogs.it/", "openNote": 'Free registration required (email only)'},
+     "access": "registration", "registration": "https://rem.regione.fvg.it/rem-fvg/servizi/correzioni-differenziali", "openNote": 'Free registration form required'},
     {"id": "geortk",      "url": "http://geortk.jp:2101/",
      "color": "#1a7a4a", "label": "GeoRTK",
      "type": "single-base", "country": ["JP"],
@@ -153,10 +157,10 @@ SOURCES = [
      "color": "#b05000", "label": "ERGNSS",
      "type": "physical-vrs", "country": ["ES"],
      "access": "registration", "registration": "https://ergnss.ign.es/gnuserportal/", "openNote": 'Free registration, approved immediately'},
-    {"id": "ergnss_sptr", "url": "http://ergnss-tr.ign.es:2101/",               # ERGNSS SPTR — Canary Islands sub-service; same free registration as mainland ergnss
+    {"id": "ergnss_sptr", "url": "http://ergnss-tr.ign.es:2101/",               # ERGNSS SPTR — Canary Islands VRS sub-service (CERCANA3M/VRS3M/FKP3M); physical Canary pins on ergnss (ergnss-ip:2101)
      "color": "#b05000", "label": "ERGNSS",
-     "type": "single-base", "country": ["ES"],
-     "access": "registration", "registration": "https://ergnss.ign.es/gnuserportal/", "openNote": 'Free registration, approved immediately (Canary Islands stations)'},
+     "type": "vrs-only", "country": ["ES"],
+     "access": "registration", "registration": "https://ergnss.ign.es/gnuserportal/", "openNote": 'Free registration, approved immediately (Canary Islands VRS service)'},
     {"id": "renep",       "url": "http://193.137.94.71:2101/",                     # port 2101 = physical single-base RTCM3; 2102 = same + MSM5; 2106/2108 = VRS
      "color": "#006b3c", "label": "ReNEP",
      "type": "single-base", "country": ["PT"],
@@ -173,8 +177,8 @@ SOURCES = [
      "access": "registration", "registration": "https://www.linz.govt.nz/", "openNote": 'LINZ account required — CC BY 4.0 NZ'},
     {"id": "satref",      "url": "http://ntrip.geodetic.gov.hk:2101/",
      "color": "#8b008b", "label": "SatRef",
-     "type": "physical-vrs", "country": ["HK"],
-     "access": "registration", "registration": "https://www.geodetic.gov.hk/", "openNote": 'Free registration required — Mountpoint: VRS32G'},
+     "type": "single-base", "country": ["HK"],
+     "access": "registration", "registration": "https://www.geodetic.gov.hk/en/satref/ntrip.htm", "openNote": 'Free registration required (Survey and Mapping Office application form)'},
     {"id": "mosref",      "url": "http://mosref.dscc.gov.mo:2101/",
      "color": "#8b0057", "label": "MoSRef",
      "type": "physical-vrs", "country": ["MO"],
@@ -209,6 +213,10 @@ SOURCES = [
      "color": "#3a7ca5", "label": "FLEPOS",
      "type": "vrs-only", "country": ["BE"], "region": "Flanders",
      "access": "registration", "registration": "https://flepos.vlaanderen.be", "openNote": 'Free registration required'},
+    {"id": "walcors",     "url": "http://gnss.wallonie.be:8081/",                # port 8081 confirmed 2026-05-06; port 2101 not used
+     "color": "#1e88c7", "label": "WALCORS",
+     "type": "vrs-only", "country": ["BE"], "region": "Wallonia",
+     "access": "registration", "registration": "https://gnss.wallonie.be", "openNote": 'Free registration required'},
 {"id": "spslux",      "url": "http://stream.spslux.lu:5005/",               # port 5005, not 2101
      "color": "#5c6bc0", "label": "SPSLux",
      "type": "physical-vrs", "country": ["LU"],
@@ -229,6 +237,12 @@ SOURCES = [
      "color": "#0d47a1", "label": "LitPOS",
      "type": "vrs-only", "country": ["LT"],
      "access": "registration", "registration": "https://geoportal.lt/web/litpos-paslauga/registracija", "openNote": 'Free registration required'},
+    {"id": "estpos",      "url": "http://gnss-rtk.maaamet.ee:8083/",             # free until 31 Aug 2026 per Maa- ja Ruumiamet directive; possible geo-IP filter — monitor
+     "color": "#003580", "label": "ESTPOS",
+     "type": "vrs-only", "country": ["EE"],
+     "access": "conditions",
+     "registration": "https://geoportaal.maaamet.ee/eng/Spatial-Data/ESTPOS-national-GNSS-satellite-data-center-p839.html",
+     "openNote": 'Free until 31 Aug 2026; portal account + service agreement required'},
     {"id": "igac",        "url": "http://sbc.igac.gov.co:2102/",               # :2101 is VRS-only; :2102 has physical stations (nmea=1 mislabelled)
      "color": "#d4a017", "label": "IGAC",
      "type": "physical-coord-vrs", "country": ["CO"],
@@ -238,6 +252,14 @@ SOURCES = [
      "color": "#8b4513", "label": "EarthScope",
      "type": "single-base", "country": ["americas"],
      "access": "conditions",   "registration": "https://www.earthscope.org/data/gnss-realtime/", "openNote": 'Non-commercial annual license (NULA) required'},
+    {"id": "euref_ip",    "url": "http://euref-ip.net:2101/",                # BKG broadcaster (primary of the 3-member EUREF-IP federation; ROB + ASI mirror); ~218 STR, ~206 physical EPN stations after solution_filter; all rows NMEA=0; raw 1 Hz RTCM single-base
+     "color": "#1f4e79", "label": "EUREF-IP",
+     "type": "single-base", "country": ["europe"],
+     "access": "registration", "registration": "http://register.rtcm-ntrip.org/cgi-bin/registration.cgi", "openNote": 'Free with BKG registration (per-broadcaster account; no SSO across BKG/ROB/ASI)'},
+    {"id": "igs_ip",      "url": "http://www.igs-ip.net:2101/",              # BKG-operated global IGS observation caster; same BKG account as EUREF-IP; raw 1 Hz RTCM single-base
+     "color": "#7d3c98", "label": "IGS-IP",
+     "type": "single-base", "country": ["global"],
+     "access": "registration", "registration": "http://register.rtcm-ntrip.org/cgi-bin/registration.cgi", "openNote": 'Free with BKG registration (shared with EUREF-IP)'},
     {"id": "mirai",       "url": "http://ntrip.go.gnss.go.jp:2101/",
      "color": "#2471a3", "label": "MIRAI",
      "type": "single-base", "country": ["JP"],
@@ -256,7 +278,7 @@ SOURCES = [
     {"id": "icecors",     "url": "http://178.19.53.126:2101/",
      "color": "#1e6b8c", "label": "IceCORS",
      "type": "physical-coord-vrs", "country": ["IS"],
-     "access": "registration", "registration": "https://www.lmi.is/is/maelingar/thjonustur/icecors", "openNote": 'Free registration required'},
+     "access": "registration", "registration": "https://ggn01.lmi.is/", "openNote": 'Free registration required'},
     {"id": "ksa_cors",    "url": "http://ksacors.geoportal.sa:2101/",
      "color": "#a0522d", "label": "KSA-CORS",
      "type": "vrs-only", "country": ["SA"],
@@ -308,6 +330,11 @@ SOURCES = [
      "type": "physical-vrs", "country": ["IT"],
      "region": "Sicily", "group": "italy-regional",
      "access": "registration", "registration": "https://www.ct.ingv.it/index.php/risorse-e-servizi/sicil-net"},
+    {"id": "gnss_abruzzo_lazio", "url": "http://gnss-rtk.regione.abruzzo.it:2101/",  # times out from external IPs (firewalled); service confirmed operational via portal HTTP 200; add 2026-05-13
+     "color": "#c62828", "label": "GNSS Abruzzo+Lazio",
+     "type": "physical-vrs", "country": ["IT"],
+     "region": "Abruzzo + Lazio", "group": "italy-regional",
+     "access": "registration", "registration": "https://gnssnet.regione.abruzzo.it/accesso.php", "openNote": "Free registration required (Regione Abruzzo)"},
     # US state DOT / CORS networks — physical-coordinate stations
     {"id": "acorn",       "url": "http://www.acorn-gnss.net:2101/",    # Trimble Pivot Web; anonymous sourcetable exposes VRS + MS_RTCM3 only; individual station streams require login (physical stations also on NPS caster)
      "color": "#2e5b8a", "label": "ACORN",
@@ -409,6 +436,11 @@ SOURCES = [
      "color": "#558b2f", "label": "REGME-IP",
      "type": "single-base", "country": ["EC"],
      "access": "registration", "registration": "https://www.geoportaligm.gob.ec/ntrip/"},
+    {"id": "ign_cr_cors", "url": "http://igncaster.snitcr.go.cr:2101/",  # BKG NtripCaster 2.0.44; SOURCETABLE 200 OK 2026-05-12; 14 physical stations; SNIT account required
+     "color": "#1b7837", "label": "IGN-CR / SNIT",
+     "type": "single-base", "country": ["CR"],
+     "access": "registration", "registration": "https://www.snitcr.go.cr/",
+     "openNote": "Free SNIT account required; credentials activated at noon and midnight CR time"},
 ]
 # RTKdata.online removed 2026-04-20: server unreachable since launch (RemoteDisconnected);
 # 0 stations ever collected. Operated by Kansi Solutions GmbH (same parent as paid

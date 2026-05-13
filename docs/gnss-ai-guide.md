@@ -984,7 +984,7 @@ Project-internal sourcetable evidence (2026-04, data/*.sourcetable):
 - rtk2go (883 STR): zero frame/epoch identifiers in any field.
 - centipede (1223 STR): zero frame/epoch identifiers in any field.
 - ramsac: declares "Marco POSGAR07-ITRF2005(2006.632)" in misc field — frame + decimal-year epoch.
-- frednet: declares "Reference System ETRS89" in misc field on legacy single-base streams.
+- rem_fvg: declares "Reference System ETRS89" in misc field on legacy single-base streams.
 - mncors: encodes datum in MP name (CMR_Plus_NAD83(1996), CMR_Plus_NAD83(2011)).
 - AUSCORS, EarthScope, RBMC-IP, TrigNet, gcgc_rtn: zero in sourcetable; declared on website only.
 3 of 66 networks declare frame anywhere a rover-side parser can see.
