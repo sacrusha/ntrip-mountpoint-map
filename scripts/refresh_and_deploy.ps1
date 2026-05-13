@@ -37,9 +37,12 @@ try {
     & py -X utf8 scripts/fetch_stations.py
     if ($LASTEXITCODE -ne 0) { throw "fetch_stations.py exited with code $LASTEXITCODE" }
 
-    # --- Step 2: commit + push ----------------------------------------------
+    # --- Step 2: local commit of data/ --------------------------------------
+    # No push: GitHub has disabled this account's Actions + write access, so
+    # the scheduler runs in a dedicated local clone and never pushes upstream.
+    # Local commits give us a rollback history if a fetch goes sideways.
     if (-not $SkipGit) {
-        Write-Output "--- Step 2: commit + push data/ ---"
+        Write-Output "--- Step 2: local commit of data/ ---"
         $dirty = git status --porcelain data/
         if ([string]::IsNullOrWhiteSpace($dirty)) {
             Write-Output "No changes to data/; nothing to commit."
@@ -61,25 +64,7 @@ try {
 
             git commit -m $msg
             if ($LASTEXITCODE -ne 0) { throw "git commit failed" }
-
-            # Push with rebase-retry.
-            $branch = (git rev-parse --abbrev-ref HEAD).Trim()
-            $pushed = $false
-            foreach ($attempt in 1, 2, 3) {
-                git push origin "HEAD:$branch"
-                if ($LASTEXITCODE -eq 0) {
-                    Write-Output "Push succeeded on attempt $attempt."
-                    $pushed = $true
-                    break
-                }
-                Write-Output "Push rejected on attempt $attempt; rebasing on origin/$branch..."
-                git fetch origin $branch
-                if ($LASTEXITCODE -ne 0) { throw "git fetch failed during rebase-retry" }
-                git rebase "origin/$branch"
-                if ($LASTEXITCODE -ne 0) { throw "git rebase failed; resolve manually" }
-                Start-Sleep -Seconds ($attempt * 2)
-            }
-            if (-not $pushed) { throw "Failed to push after 3 attempts." }
+            Write-Output "Committed locally: $msg"
         }
     } else {
         Write-Output "--- Step 2: skipped (-SkipGit) ---"

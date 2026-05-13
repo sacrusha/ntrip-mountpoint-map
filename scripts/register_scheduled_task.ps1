@@ -8,16 +8,23 @@
 # Usage:
 #   .\scripts\register_scheduled_task.ps1
 #   .\scripts\register_scheduled_task.ps1 -Times '08:00','14:00','20:00','02:00'
+#   .\scripts\register_scheduled_task.ps1 -RepoRoot 'D:\Projects\ntrip-mountpoint-map.scheduler'
+#
+# The scheduler should point at a dedicated clone of this repo so it can
+# commit data/ refreshes without colliding with in-flight dev work.
 
 [CmdletBinding()]
 param(
     [string[]]$Times = @('07:00', '13:00', '19:00', '23:00'),
-    [string]$TaskName = 'ntrip-mountpoint-map refresh + deploy'
+    [string]$TaskName = 'ntrip-mountpoint-map refresh + deploy',
+    [string]$RepoRoot
 )
 
 $ErrorActionPreference = 'Stop'
-$repoRoot = Split-Path -Parent $PSScriptRoot
-$scriptPath = Join-Path $repoRoot 'scripts/refresh_and_deploy.ps1'
+if (-not $RepoRoot) { $RepoRoot = Split-Path -Parent $PSScriptRoot }
+$RepoRoot = (Resolve-Path $RepoRoot).Path
+$scriptPath = Join-Path $RepoRoot 'scripts/refresh_and_deploy.ps1'
+$repoRoot = $RepoRoot
 
 if (-not (Test-Path $scriptPath)) { throw "Orchestrator not found at $scriptPath" }
 
