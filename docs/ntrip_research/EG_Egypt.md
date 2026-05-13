@@ -1,7 +1,7 @@
 # Egypt [EG] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12 (re-verified; original 2026-05-06)
 
-## Status: NO confirmed public NTRIP caster (national CORS exists; stream not publicly available)
+## Status: NO confirmed public NTRIP caster (national CORS exists; stream not publicly available). Re-verified 2026-05-12 — no public ESA NTRIP endpoint, registration portal, or tariff has been announced since the original research; ArduSimple country page still reports no national RTK network.
 
 | Field | Value |
 |---|---|

@@ -1,5 +1,5 @@
 # Brunei [BN] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12 (initial 2026-05-06)
 
 ## Status: NO confirmed public NTRIP caster
 
@@ -10,7 +10,7 @@
 | **tariff** | null |
 | **hobbyist_eligibility** | null — no service exists |
 | **legal_residency_required** | null — no service exists |
-| **last_confirmed_alive** | null — no caster confirmed alive |
+| **last_confirmed_alive** | null — no caster confirmed alive. Survey Department portal (`survey.gov.bn`) HTTP 301 to `geoportal.survey.gov.bn/start` on 2026-05-12 — viewer-only web map, no RTK/CORS/RINEX surface. |
 
 ## Most Recent Project Announcement
 

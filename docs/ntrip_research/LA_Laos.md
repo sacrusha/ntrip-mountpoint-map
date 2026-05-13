@@ -1,7 +1,7 @@
 # Laos [LA] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-06; reverified 2026-05-12 (no new public endpoint surfaced)
 
-## Status: NO confirmed public NTRIP caster — CORS infrastructure being built (IGN FI project)
+## Status: NO confirmed public NTRIP caster — CORS infrastructure being built (IGN FI project, last public update May 2024)
 
 | Field | Value |
 |---|---|
@@ -24,7 +24,8 @@
 - The DOL-RTK network at dol-rtknetwork.com is **Thailand's** Department of Lands RTK network (Thai-language interface, 114 CORS covering Thailand), not Laos. Confusion possible due to similar naming.
 - Land administration in Laos: as of recent ADB reports, only ~1.5 million of 3–3.5 million land plots registered — highlighting need for RTK-grade positioning, but institutional capacity is still developing.
 - Regional context: neighboring Vietnam has a mature national CORS/NTRIP network; Thailand has the DOL-RTK network. Laos is several years behind both.
-- RTK2go: no Laos base stations confirmed.
+- RTK2go: no Laos base stations confirmed (stations.json 2026-05-12).
+- No stations within 200 km of Vientiane (17.97 N / 102.6 E) in any tracked source.
 - Practical alternative for hobbyists: deploy a local base station; Galileo HAS (~40 cm, no internet); GEODNET or Onocoy (coverage in LA not confirmed).
 
 ## Post-Processing (RINEX) Fallback

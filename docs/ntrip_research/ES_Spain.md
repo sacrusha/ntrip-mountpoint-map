@@ -1,7 +1,7 @@
 # Spain [ES] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12 (revision; original 2026-05-06)
 
-## Status: YES — free national NTRIP (ERGNSS/SPTR) + multiple free regional casters; VRS; one of the densest free RTK ecosystems in Europe
+## Status: YES — free national NTRIP (ERGNSS/SPTR) + multiple free regional casters; VRS; one of the densest free RTK ecosystems in Europe. ERGNSS/SPTR and CATNET sourcetables live-confirmed via direct NTRIP probe 2026-05-12.
 
 **Note on Canary Islands:** The Canary Islands (ES-Canarias) are covered in a separate file (`ES-Canarias.md`) which details SPTR and GRAFCAN REPCAN. The national ERGNSS/SPTR service described below also covers the Canary Islands via its CERCANA3M mountpoint; refer to ES-Canarias.md for archipelago-specific caveats.
 
@@ -20,10 +20,10 @@
 | **tariff** | **Free — €0.00 / $0.00** (no VAT). Date observed: 2026-05-06. Source: https://www.ign.es/web/gds-gnss-tiempo-real |
 | **hobbyist_eligibility** | **Yes** — open self-registration; no professional licence required; ~12,000 registered users as of Jan 2024 (~60% agricultural sector) |
 | **legal_residency_required** | **No** — no residency restriction published |
-| **last_confirmed_alive** | Portal HTTP 200 confirmed 2026-05-06; 272-station count confirmed in 2024–2025 documentation |
+| **last_confirmed_alive** | **2026-05-12** — sourcetable retrieved live from `ergnss-tr.ign.es:2101` (1 917 bytes; 8 STR rows: CERCANA3, CERCANA3M, FKP3, FKP3M, MAC3, MAC3M, VRS3, VRS3M; Server: NTRIP GNSMART_Caster 2.0/1.0; IP 192.148.213.42) |
 
 ### ERGNSS/SPTR Network Details
-- **Stations:** 272 GNSS reference stations (IGN permanent stations + stations from 13 regional autonomous community networks + Puertos del Estado tide gauge stations)
+- **Stations:** 272 GNSS reference stations (IGN permanent stations + stations from 13 regional autonomous community networks + Puertos del Estado tide gauge stations). Latest expansion (Jun 2025 transportes.gob.es presentation) adds PNAV, ARAJ, HOND
 - **Processing:** Divided into 17 processing subnets for optimal RTK computation
 - **Constellations:** GPS + GLONASS + Galileo + BeiDou (multi-constellation, RTCM 3.2 MSM4/MSM7)
 - **Registration:** http://ergnss.ign.es/gnuserportal/
@@ -53,9 +53,9 @@
 | **Operator** | Institut Cartogràfic i Geològic de Catalunya (ICGC; formerly ICC) |
 | **host:port** | `catnet-ip.icgc.cat:2101` (previous host: `catnet-ip.icc.es:8080`; updated March 2019) |
 | **VRS** | Yes — RTKAT virtual station service (RTCM 2.3 / 3.0 + centimetre precision) |
-| **tariff** | **Free** — account registration required via ICGC. Date observed: 2026-05-06. Source: https://catnet-ip.icgc.cat/ |
+| **tariff** | **Free** — account registration required via ICGC. Date observed: 2026-05-12. Source: https://catnet-ip.icgc.cat/ |
 | **hobbyist_eligibility** | **Yes** |
-| **last_confirmed_alive** | catnet-ip.icgc.cat accessible 2026-05-06 |
+| **last_confirmed_alive** | **2026-05-12** — sourcetable retrieved live from `catnet-ip.icgc.cat:2101` (3 566 bytes; primary mountpoint `VRS3M` multi-GNSS GPS+GLO+GAL+BDS RTCM 3 MSM, plus ~25 single-station `<CODE>2_DGNSS` legacy RTCM 2 mountpoints; Server: NTRIP Spider/7.11.1.109) |
 - Service operational since January 2006; uses NTRIP protocol
 
 ---
@@ -98,9 +98,12 @@ HxGN SmartNet (Hexagon/Leica) operates in Spain but has no published public pric
 | **RAP Andalucía RINEX** | https://www.juntadeandalucia.es/institutodeestadisticaycartografia/rap | Free |
 
 ## Sources Consulted
+- Live NTRIP probe of `ergnss-tr.ign.es:2101` — 2026-05-12 (sourcetable retrieved)
+- Live NTRIP probe of `catnet-ip.icgc.cat:2101` — 2026-05-12 (sourcetable retrieved)
 - IGN España ERGNSS/SPTR: https://www.ign.es/web/gds-gnss-tiempo-real
 - ERGNSS registration: http://ergnss.ign.es/gnuserportal/
 - GNSS Visor (REPGNSS casteres): http://ntrip.rep-gnss.es/casteres.php
+- "El Servicio de Posicionamiento GNSS en Tiempo Real del IGN" — transportes.gob.es Jun 2025: https://www.transportes.gob.es/recursos_mfom/comodin/recursos/06_el-servicio-de-posicionamiento-gnss-en-tiempo-real-del-ign.pdf
 - RAP Andalucía: https://www.juntadeandalucia.es/institutodeestadisticaycartografia/rap/nodos
 - CATNET / ICGC: https://catnet-ip.icgc.cat/
 - ERVA Valencia: https://icv.gva.es/es/web/icv-erva

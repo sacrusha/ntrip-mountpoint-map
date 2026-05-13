@@ -1,5 +1,5 @@
 # Mauritius [MU] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12 (re-verified; no operational caster found; status unchanged from 2026-05-06)
 
 ## Status: NO confirmed public NTRIP caster; CORS feasibility studied 2016; no operational deployment found
 
@@ -11,7 +11,7 @@
 | **tariff** | n/a (no public service) |
 | **hobbyist_eligibility** | n/a |
 | **legal_residency_required** | n/a |
-| **last_confirmed_alive** | housing.govmu.org reachable 2026-05-06; no MU mountpoint in any public NTRIP sourcetable |
+| **last_confirmed_alive** | housing.govmu.org reachable 2026-05-12; no MU mountpoint in any public NTRIP sourcetable; nearest Centipede stations are in Réunion (~220 km east, FR territory) and Madagascar (>1000 km west) — both too far for RTK from Mauritius |
 
 ## Operator
 
@@ -31,11 +31,11 @@ Website: https://housing.govmu.org/Pages/Dept%20and%20Org/Divisions/Survey/Surve
 
 ## Negative Findings
 
-- RTK2GO / Centipede: Zero MU mountpoints in any public sourcetable
+- RTK2GO / Centipede: Zero MU mountpoints in any public sourcetable (verified 2026-05-12 via `py scripts/stations_by_radius.py -20.2 57.5 1500`; nearest stations are 222 km away on Réunion)
 - NTRIP-list.com Africa/Indian Ocean: Mauritius not listed
 - ArduSimple country directory: Mauritius not listed with any NTRIP service
 - mvarga1989 GNSS CORS list (GitHub): No Mauritius NTRIP endpoint
-- No public caster address found in any indexed source as of 2026-05-06
+- No public caster address found in any indexed source as of 2026-05-12
 
 ## Most Recent Project Reference
 

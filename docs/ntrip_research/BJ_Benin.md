@@ -1,5 +1,5 @@
 # Benin [BJ] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12 (initial 2026-05-06)
 
 ## Status: CORS network upgraded to RTK NTRIP mode (2022); public access and caster endpoint NOT confirmed
 
@@ -10,7 +10,7 @@
 | **tariff** | Not publicly documented |
 | **hobbyist_eligibility** | Unclear — upgrade purpose is land-rights / cadastral; individual hobbyist access not confirmed |
 | **legal_residency_required** | Unclear |
-| **last_confirmed_alive** | IGN Bénin (ign.bj) reachable 2026-05-06; no NTRIP sourcetable probed |
+| **last_confirmed_alive** | 2026-05-12 — IGN Bénin `ign.bj/lign/` HTTP 200 (nginx); no public NTRIP caster URL surfaced via the site or via web search; no Benin entries in rtk2go monitor or NTRIP-list.com Africa |
 
 ## Most Recent Project Announcement
 

@@ -1,6 +1,6 @@
 # Russia [RU] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-02
-**Exchange rate used:** ~85 RUB / 1 USD (approximate spot rate, 2026-05-02)
+**Date researched:** 2026-05-12 (prior version: 2026-05-02)
+**Exchange rate used:** ~85 RUB / 1 USD (approximate spot rate, 2026-05-02; not re-checked 2026-05-12)
 
 ## Status: YES — multiple commercial NTRIP casters operating nationally
 
@@ -64,11 +64,11 @@ Note: A 6-month RINEX figure of ₽1,080 appears on one part of the tariff page;
 |---|---|
 | **host:port** | `hive.geosystems.aero:2101` |
 | **portal** | https://hive.geosystems.aero |
-| **coverage** | 742 stations across 79 Russian regions (station-owner contributed; no VRS computation layer — single-baseline RTK per station) |
-| **tariff** | Per-station, per-day model; first 100 KB (~5 minutes) free per connection day; per-day and per-hour RINEX prices are station-specific and visible only after login on the map. Account management plans: "Спутник" (individual, no fixed monthly fee) · "Шаттл" (small company) · "Энтерпрайз 750/1500" (₽750–₽1,500/mo per employee for monitoring features). Actual RTK data cost is not publicly listed. (source: hive.geosystems.aero/pricing, observed 2026-05-02) |
+| **coverage** | **386 stations across 61 Russian regions** (station-owner contributed; no VRS computation layer — single-baseline RTK per station). **Down from 742 / 79 regions reported 2026-05-02** — the landing page on 2026-05-12 shows 386 stations / 61 regions / 78,198 RTK-usage hours / 20,015 RINEX orders processed. Station-network contraction (or counter reset, or counting-method change) is unexplained on the public site; verify with support@geosystems.aero. |
+| **tariff** | Per-station, per-day model; first 100 KB (~5 minutes) free per connection day; per-day and per-hour RINEX prices are station-specific and visible only after login on the map. Account management plans: "Спутник" (individual, no fixed monthly fee) · "Шаттл" (small company) · "Энтерпрайз 750/1500" (₽750–₽1,500/mo per employee for monitoring features). Actual RTK data cost is not publicly listed. (source: hive.geosystems.aero/pricing, observed 2026-05-02; pricing page structure unchanged 2026-05-12) |
 | **hobbyist_eligibility** | Yes — "Спутник" plan for individuals; email + password registration; no licence required |
 | **legal_residency_required** | No / Unclear — accepts VISA/MC; no explicit residency requirement; de facto Russia-focused |
-| **last_confirmed_alive** | 2026-05-02 — landing page, 742-station map, and forum (forum.geosystems.aero) all live |
+| **last_confirmed_alive** | 2026-05-12 — landing page live, station count now 386 / 61 regions, English landing page operational |
 
 ## Summary Table
 
@@ -77,12 +77,14 @@ Note: A 6-month RINEX figure of ₽1,080 appears on one part of the tariff page;
 | EFT CORS | `ntrip.eftgroup.ru:2101` | ₽420 (~$4.94) | ₽5,250 (~$61.76) | ₽50,400 (~$593) | Yes | 2026-05-02 |
 | GeoSpider | `geo-spider.net:2101` | ₽315 (~$3.71, until midnight) | ₽5,250 (~$61.76) | ₽44,100 (~$519, 30% off) | Yes | 2026-05-02 |
 | RTKNet | `94.250.250.43:2101` | ₽400 (~$4.71, until next midnight) | ₽4,000 (~$47.06) | ₽30,000 (~$353) | Yes | 2026-05-02 |
-| HIVE | `hive.geosystems.aero:2101` | Per-station (not public) | Per-station (not public) | Per-station (not public) | Yes | 2026-05-02 |
+| HIVE | `hive.geosystems.aero:2101` | Per-station (not public) | Per-station (not public) | Per-station (not public) | Yes | 2026-05-12 |
 
 ## Known Data Gaps
 - **RTKNet VAT:** Pricing page does not state whether prices include or exclude 5% VAT. Confirm: msk@geodetika.ru / 8 800 600-38-77.
 - **HIVE per-station prices:** Only visible after login on the map. Contact: support@geosystems.aero.
+- **HIVE station count drop (742 → 386):** Unexplained on the public site between 2026-05-02 and 2026-05-12. Possible explanations: stale 742 figure on a different page, counter reset, departure of station owners, change in counting method (only currently-online vs. all enrolled). Verify with support@geosystems.aero.
 - **GeoSpider sourcetable:** `geo-spider.net:2101` confirmed via third-party guides and AI Overview but not directly curl-verified. Confirm via geospider.ru/instructions PDF or s@geospider.ru.
+- **GeoSpider station count:** "200+" cited on the public landing page (2026-05-12) — slightly above the 200-station figure in the prior research, but no exact number is published.
 
 ## Sources Consulted
 - EFT CORS prices: https://www.eft-cors.ru/prices (observed 2026-05-02)
@@ -91,3 +93,8 @@ Note: A 6-month RINEX figure of ₽1,080 appears on one part of the tariff page;
 - RTKNet official parameters guide: rtknet.ru/pdf/spravka-rtknet.pdf
 - HIVE pricing: https://hive.geosystems.aero/pricing (observed 2026-05-02)
 - HIVE NTRIP setup forum: forum.geosystems.aero/t/nastrojki-ntrip/1233
+- HIVE landing (EN): https://hive.geosystems.aero/landing?locale=en (observed 2026-05-12: 386 stations / 61 regions / 78,198 RTK hours / 20,015 RINEX orders)
+- HIVE landing (RU): https://hive.geosystems.aero/ (observed 2026-05-12: same 386 / 61 regions figure)
+- RTKNet 2026-05-12 — latest news 15 Apr 2026 (Shakhoskaya, Moscow region new station); Voznesenskoye Arkhangelsk added Mar 2026, Pskov Jan 2026
+- GeoSpider 2026-05-12 — "200+ stations" on landing page, regions: Saint Petersburg, Moscow, Leningrad, Novgorod, Pskov, Moscow oblast, Tver, Vologda, Smolensk + Karelia
+- EFT CORS prices re-check 2026-05-12: pricing structure unchanged (5,250 RUB/mo standard RTK, 50,400 RUB/yr; 5% VAT included)

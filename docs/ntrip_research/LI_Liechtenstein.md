@@ -1,5 +1,5 @@
 # Liechtenstein [LI] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12
 
 ## Status: NO dedicated LI caster — Liechtenstein relies entirely on Swiss swipos and Austrian APOS/EPOSA, both of which provide coverage across LI territory
 
@@ -9,12 +9,12 @@
 | **Effective coverage** | Full — Swiss swipos and Austrian APOS/EPOSA both cover Liechtenstein |
 | **Primary network — swipos** | swipos-GIS/GEO (Swiss Federal Office of Topography / swisstopo) |
 | **host:port — swipos** | `swipos.swisstopo.admin.ch:2101` (NTRIP; credentials issued after registration and subscription) |
-| **tariff — swipos flat-rate** | CHF 1,500/year (first device); CHF 600 each for 2nd and 3rd devices; CHF 200/device thereafter. Educational institutions: CHF 150/licence. All prices excl. VAT. (source: swisstopo.admin.ch/en/swipos-services-prices-and-ordering, observed 2026-05-06) |
-| **tariff — swipos pay-per-use** | CHF 0.50/minute excl. VAT |
+| **tariff — swipos flat-rate** | CHF 1,500/year (first device); CHF 600 each for 2nd and 3rd devices; CHF 200/device thereafter (same reseller). Educational institutions: CHF 150/licence. All prices net (excl. MWST). Source: swisstopo.admin.ch/en/swipos-services-prices-and-ordering, re-confirmed 2026-05-12 |
+| **tariff — swipos pay-per-use** | CHF 0.50/minute net (excl. MWST) |
 | **VRS — swipos** | Yes — Network RTK / VRS corrections; RTCM 3.x MSM; cm-level accuracy |
 | **hobbyist_eligibility — swipos** | Yes — individual registration accepted; no professional licence requirement |
 | **legal_residency_required — swipos** | No explicit requirement; Swiss VAT (MWST) applies; non-Swiss individuals can subscribe |
-| **last_confirmed_alive — swipos** | 2026-05-06 (swisstopo.admin.ch pricing page HTTP 200 confirmed) |
+| **last_confirmed_alive — swipos** | 2026-05-12 (swisstopo.admin.ch pricing page reachable; pricing unchanged since 1 Apr 2023 administrative simplification) |
 | **Secondary network — EPOSA** | EPOSA (Austrian private CORS operated by several Austrian states + Vorarlberg) |
 | **Coverage in LI — EPOSA** | Yes — EPOSA explicitly states corrections are available "approximately 80 km beyond the national border" covering Liechtenstein, Germany, Italy, Slovenia, Slovakia, and Hungary |
 | **host:port — EPOSA** | `eposa.at:2101` (NTRIP) |
@@ -32,6 +32,8 @@
 - **APOS free agriculture**: Since 1 February 2021, APOS provides RTK corrections free of charge for agriculture and forestry users (Austrian Landwirtschaftskammer announcement). Since Liechtenstein has an active farming sector (wine, dairy, livestock), this may be relevant to Liechtenstein farmers with Austrian APOS accounts.
 - **EPOSA**: Operated by Energie Steiermark Technik GmbH for a consortium of Austrian states and Vorarlberg specifically. Coverage extends 80 km across borders by design to serve cross-border users in Liechtenstein, German Bavaria, and beyond.
 - **Hobbyist note**: A Liechtenstein-based hobbyist should use swipos-GIS/GEO as the primary service. Pay-per-use at CHF 0.50/minute (no subscription) is the lowest-commitment entry point. Galileo HAS (free satellite-broadcast, ~40 cm) is a zero-cost fallback.
+- **Local geodetic authority**: As of 1 April 2022 the Liechtenstein cadastral/geoinformation authority was renamed **Amt für Tiefbau und Geoinformation** (ATG, Städtle 38, 9490 Vaduz). ATG provides the national geoportal `geodaten.llv.li` but does not operate an NTRIP caster.
+- **Centipede/rtk2go presence in/near LI**: rtk2go has 9 Swiss-side volunteer mountpoints and Centipede 9 CHZ mountpoints within 100 km of Vaduz (closest `SEGA` Sevelen 17.3 km, `suedostschweiz` 31.2 km, `LABA` 56.2 km). These are unaffiliated volunteer bases — informal alternative to swipos for hobby work, but unstable/uninsured.
 
 ## Post-Processing (RINEX) Fallback
 

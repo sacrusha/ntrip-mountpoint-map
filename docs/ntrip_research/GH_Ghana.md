@@ -1,18 +1,19 @@
 # Ghana [GH] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12 (refresh of 2026-05-06 entry)
 
-## Status: CORS network newly deployed (Aug 2025); NTRIP caster endpoint NOT publicly disclosed
+## Status: CORS network deployed (Aug 2025 nationwide launch); NTRIP caster endpoint NOT publicly disclosed
 
 | Field | Value |
 |---|---|
 | **Active public NTRIP RTK caster** | Unknown — physical network operational; no public host:port found |
 | **Network name** | Ghana National CORS Network (SMD / Lands Commission) |
 | **Operator** | Survey and Mapping Division (SMD), Lands Commission (`lc.gov.gh`), in PPP with GMX Systems Ghana Limited and Geo-Tech Systems Ltd |
-| **host:port** | Not publicly published — no caster endpoint found in any directory or sourcetable |
+| **host:port** | Not publicly published — no caster endpoint found in any directory or sourcetable as of 2026-05-12 |
 | **tariff** | Not publicly listed; access expected through licensed-surveyor channel |
 | **hobbyist_eligibility** | Unclear — network promoted for cadastral and hydrospatial surveys; no published hobbyist policy |
 | **legal_residency_required** | Unclear — no published terms of service found |
-| **last_confirmed_alive** | lc.gov.gh confirmed reachable 2026-05-06; no GH mountpoint in any public NTRIP sourcetable |
+| **last_confirmed_alive** | `https://www.lc.gov.gh/` HTTP 200 confirmed 2026-05-12; no GH mountpoint in any public NTRIP sourcetable (rtk2go / Centipede / EarthScope local stations.json 2026-05-12) |
+| **Operator contact (technical partner)** | GMX Systems Ghana — `info@gmxsys.com`, +233 24 2133760 / +233 50 8988316; CORS page: https://www.gmxgh.com/index.php/cors-network/ (lists the network but publishes no host/port/tariff) |
 
 ## Operator
 
@@ -45,11 +46,12 @@ Website: https://www.lc.gov.gh/
 
 ## Negative Findings
 
-- RTK2GO / Centipede: Zero GH mountpoints in any public sourcetable
+- RTK2GO / Centipede / EarthScope: Zero GH mountpoints in any public sourcetable (verified via local `data/stations.json` 2026-05-12)
 - NTRIP-list.com Africa: Ghana not listed
 - ArduSimple country directory: Ghana not listed with a free or commercial NTRIP service
 - mvarga1989 GNSS CORS list (GitHub): No Ghana NTRIP endpoint
-- No public caster address found in any indexed source, academic paper, or news article as of 2026-05-06
+- GMX Ghana CORS page (https://www.gmxgh.com/index.php/cors-network/, 2026-05-12) advertises the network but publishes no host, port, mountpoint, tariff or registration URL — access still gated to direct contact
+- No public caster address found in any indexed source, academic paper, or news article as of 2026-05-12
 
 ## Post-Processing (RINEX) Fallback
 
@@ -71,3 +73,6 @@ Website: https://www.lc.gov.gh/
 - mycoordinates.org — GNSS software for Ghana SMD: https://mycoordinates.org/development-of-gnss-software-for-ghana-survey-and-mapping-division/
 - RTK2GO monitor (monitor.use-snip.com) — no GH mountpoints visible
 - NTRIP-list.com/africa — Ghana not listed
+- GMX Systems Ghana CORS network page: https://www.gmxgh.com/index.php/cors-network/ (2026-05-12, fetched via WebFetch — no caster credentials disclosed)
+- Coordinates magazine — Ghana DGDS launch: https://mycoordinates.org/ghana-launches-digital-geospatial-data-system/
+- curl probe of `https://www.lc.gov.gh/` 2026-05-12 — HTTP 200 OK

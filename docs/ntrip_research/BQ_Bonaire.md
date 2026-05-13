@@ -1,5 +1,5 @@
 # Bonaire, Sint Eustatius, Saba [BQ] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12 (initial 2026-05-06)
 
 ## Status: YES — free public NTRIP via AGRS.BES (Kadaster NL / NSGI); 7 mountpoints across BES islands; no registration required
 
@@ -13,7 +13,7 @@
 | **tariff** | €0.00 — no registration required; fully anonymous access. Email as username is recommended (for outage notices) but not mandatory |
 | **hobbyist_eligibility** | Yes — fully anonymous, no account required |
 | **legal_residency_required** | No |
-| **last_confirmed_alive** | `ntrip.kadaster.nl:2101` returned all 7 BES mountpoints in SOURCETABLE on 2026-05-06 (curl verified) |
+| **last_confirmed_alive** | 2026-05-12 — `curl http://ntrip.kadaster.nl:2101/sourcetable.htm` returned all 7 BES mountpoints (BON200BES0, BONK00BES0, SABY0, SABY00BES0, SABY00BES1, SEUS0, SEUS00BES0) in AGRS.BES network table |
 
 ## Mountpoints — AGRS.BES (7 streams)
 
@@ -57,5 +57,6 @@ Connection using any NTRIP client:
 - Kadaster BES overview: https://bes.kadaster.nl/kadaster-bonaire (observed 2026-05-06)
 - NSGI BESTRANS2020 coordinate transformation document: https://www.nsgi.nl/documents/1888506/69577825/BESTRANS2020_v230405.pdf (observed 2026-05-06)
 - Tarievenregeling Kadaster BWBR0037196/2026-01-01: https://wetten.overheid.nl/BWBR0037196/2026-01-01
+- Kadaster BES 2026 tariff regulation (published Dec 2025, effective 2026-01-01; covers cadastral services, GNSS real-time NTRIP not separately priced — remains free anonymous tier): https://kadorbonaire.com/wp-content/uploads/2025/12/Tarieven-Kadaster-BES-2026.pdf
 - NL_Netherlands.md (existing research — full Netherlands context)
-- curl live probe of all 7 AGRS.BES mountpoints — confirmed present in sourcetable 2026-05-06
+- curl live probe of all 7 AGRS.BES mountpoints — confirmed present in sourcetable 2026-05-06 and 2026-05-12

@@ -1,5 +1,5 @@
 # Côte d'Ivoire [CI] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12 (revising 2026-05-06 entry — no new public RECI endpoint identified; volunteer counts re-verified)
 
 ## Status: CORS infrastructure exists; no confirmed public NTRIP endpoint
 
@@ -39,8 +39,8 @@ URL: https://ric2024.rcmrd.org/afref
 ## Context Notes
 
 - **RECI is operational, but access is opaque**: Five CORS stations are confirmed as deployed and in use for professional survey work. However, no public NTRIP caster URL, port, or registration portal has been found in any public source. Access appears to be provided through institutional channels within BNETD-CIGN and/or government survey agencies.
-- **Centipede-RTK**: ~2 volunteer nodes with country code `CIV` appear in the Centipede sourcetable — these are independent of the government RECI network and provide limited geographic coverage.
-- **RTK2go**: Zero CI government mountpoints in the sourcetable.
+- **Centipede-RTK**: The 2026-05-06 entry recorded ~2 volunteer nodes with country code `CIV` in the Centipede sourcetable; the 2026-05-12 pipeline fetch (`data/stations.json`) reports zero CIV nodes — the CI Centipede presence has dropped to nil in the current snapshot. May be transient (volunteer node off-line) but worth re-checking on next fetch.
+- **RTK2go**: Zero CI/CIV government or volunteer mountpoints in the sourcetable (2026-05-12).
 - **IGS station**: One IGS-affiliated station is referenced in the RECI tier description (consistent with the ABID station historically listed for Abidjan in some IGS lists).
 - **ArcGIS Open Data**: The RGCI (Réseau Géodésique de Côte d'Ivoire) marker dataset is published on ArcGIS for post-processing reference:
   - https://cotedivoire.africageoportal.com/items/004575bd810f47b39e7e4f0f3d73f885
@@ -53,7 +53,7 @@ URL: https://ric2024.rcmrd.org/afref
 |---------|-----|------|
 | **RGCI marker dataset (ArcGIS Open Data)** — static network point coordinates for post-processing reference | https://cotedivoire.africageoportal.com/items/004575bd810f47b39e7e4f0f3d73f885 | Free (open data) |
 | **EarthScope GNSS Data Archive** — any IGS-affiliated Abidjan station data | https://www.earthscope.org/data/gnss-data/ | Free noncommercial (account + NULA) |
-| **Centipede-RTK** — ~2 volunteer nodes (CIV) | https://caster.centipede.fr:2101 | Free / open |
+| **Centipede-RTK** — historical volunteer nodes; CIV count = 0 in 2026-05-12 fetch (was ~2 in 2026-05-06) | https://crtk.net:2101 (new Centipede caster since 2025-03-18) | Free / open |
 
 ## Sources Consulted
 - FGF 2025 congress presentation — "Le Réseau Géodésique de la Côte d'Ivoire" (Fernand BALE): https://www.geometres-francophones.org/5e8sef5sdgf/uploads/2025/09/S3-2_BALE.pdf
@@ -63,7 +63,8 @@ URL: https://ric2024.rcmrd.org/afref
 - ArcGIS — RGCI map: https://www.arcgis.com/home/item.html?id=3c9985b3d6ae45b0aff6f818109d89ba
 - AFREF 2024 Workshop / RCMRD: https://ric2024.rcmrd.org/afref
 - IGS network (network.igs.org) — searched for CI/Abidjan
-- RTK2go sourcetable — 0 CI government mountpoints
-- Centipede-RTK sourcetable — ~2 CIV nodes (volunteer)
+- Local pipeline data: `data/stations.json` (rtk2go CIV = 0, centipede CIV = 0; fetched 2026-05-12T18:17Z)
+- RTK2go sourcetable — 0 CI government mountpoints (2026-05-12)
+- Centipede-RTK sourcetable — 0 CIV nodes in 2026-05-12 fetch (down from ~2 in 2026-05-06)
 - GitHub mvarga1989 CORS list — checked for CI entries
 - ntrip-list.com/africa/ — no CI government caster listed

@@ -1,5 +1,5 @@
 # Qatar [QA] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12 (prior version: 2026-05-06)
 
 ## Status: YES — QCORS active (9 stations); subscription required; restricted to government/licensed surveyors; no hobbyist path confirmed
 
@@ -67,14 +67,16 @@ Global free fallback: **Galileo HAS** (~40 cm accuracy, no connectivity required
 
 ## Negative Findings
 
-- QCORS NTRIP caster host:port not publicly disclosed
+- QCORS NTRIP caster host:port not publicly disclosed (re-checked 2026-05-12)
 - Tariff / fee schedule not publicly documented
 - Hobbyist eligibility: unclear (not explicitly denied but no individual tier documented)
-- rtk2go: zero QA mountpoints
+- rtk2go: zero QA mountpoints (also confirmed by `py scripts/stations_by_country.py QAT` → "No stations for 'QAT'", 2026-05-12)
 - Centipede: zero QA nodes
+- EarthScope NOTA: not applicable (NOTA is Americas-only)
 - GEODNET, PointOne, HxGN SmartNet: no Qatar coverage confirmed in public documentation
 - No "World Cup legacy" commercial NTRIP network was found; no evidence that FIFA 2022 World Cup construction drove any open-access CORS initiative beyond the pre-existing QCORS
 - QNSRS internal reference: no change to public access policy found in 2024–2026 sources
+- WebSearch 2026-05-12 — no public host:port, tariff, or hobbyist-tier announcement located
 
 ---
 

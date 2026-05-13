@@ -1,5 +1,5 @@
 # New Zealand [NZ] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12 (refresh; prior pass 2026-05-06)
 
 ## Status: YES — free government NTRIP caster (PositioNZ-RT, LINZ) operating
 
@@ -7,17 +7,18 @@
 |---|---|
 | **Active public NTRIP RTK caster** | Yes (PositioNZ-RT — free) |
 | **host:port — PositioNZ-RT** | `positionz-rt.linz.govt.nz:2101` (IP: 161.65.59.99) |
-| **VRS** | No — single-base only; streams raw RTCM from nearest physical CORS; recommended use within 15 km of the connected station |
+| **mountpoints** | 62 active streams in sourcetable on 2026-05-12 (mix of LINZ + GeoNet sites; e.g. AUCK00NZL0, BLUF00NZL0, CHTI00NZL0, AVLN00NZL0). RTCM 3.2/3.3 MSM (GPS+GLO+GAL+BDS+QZS). |
+| **VRS** | No — single-base only; streams raw RTCM from nearest physical CORS; recommended use within 15 km of the connected station. LINZ does not operate a VRS / network-RTK product. |
 | **tariff** | Free — registration required |
 | **hobbyist_eligibility** | yes — no professional licensing or commercial restrictions stated; open registration |
 | **legal_residency_required** | no — no residency restriction found in public documentation |
-| **last_confirmed_alive** | `positionz-rt.linz.govt.nz:2101` returned `SOURCETABLE 200 OK` on 2026-05-06 (curl verified) |
+| **last_confirmed_alive** | `positionz-rt.linz.govt.nz:2101` SOURCETABLE 200 OK confirmed 2026-05-12 (curl, BKG Caster 2.0.36/2.0 server header) |
 
 ## Context Notes
 
 - **PositioNZ-RT**: Operated by Toitū Te Whenua Land Information New Zealand (LINZ); data streaming managed by GeoNet. Free real-time NTRIP service providing 1 Hz GNSS data from the PositioNZ CORS network in NZGD2000 reference frame.
-- **Infrastructure**: 37 continuously operating reference stations (CORS) throughout New Zealand (including Chatham Islands) and Antarctica (Scott Base). Signals from GPS, GLONASS, Galileo, BeiDou, QZSS.
-- **Mountpoint naming convention**: `XXXX00NZL0` (e.g., WARK00NZL0 = Warkworth). Full mountpoint list available via GeoNet. RTCM 3.1 format.
+- **Infrastructure**: 37 LINZ-operated continuously operating reference stations (CORS) throughout New Zealand (including Chatham Islands) and Antarctica (Scott Base). The PositioNZ-RT caster also re-streams ~15 GeoNet-operated GNSS stations, bringing the active mountpoint total to ~62 as confirmed in the live sourcetable (2026-05-12). Signals: GPS, GLONASS, Galileo, BeiDou, QZSS.
+- **Mountpoint naming convention**: `XXXX00NZL0` (e.g., WARK00NZL0 = Warkworth, AUCK00NZL0 = Whangaparaoa No 3). Operator tag in sourcetable is `LINZ` or `GeoNet` per station. Format: RTCM 3.2/3.3 with MSM (1004, 1012, 1006, 1008, 1013, 1033, 1074, 1084, 1094, 1114, 1124).
 - **Single-base limitation**: PositioNZ-RT streams raw observations, not VRS corrections. Users should connect to their nearest station and stay within 15 km. For longer baselines, accuracy degrades. No network solution / VRS product currently offered by LINZ.
 - **AUSCORS**: The Australian CORS network (Geoscience Australia) extends to some NZ-adjacent stations and is accessible free of charge; useful as supplemental coverage.
 - **Registration**: Account registration required at geodesy.linz.govt.nz; free.
@@ -45,4 +46,5 @@
 - ArduSimple NZ RTK page: https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-new-zealand/
 - Vantage NZ CenterPoint VRS: https://www.vantage-nz.com/portfolio/centerpoint-vrs/
 - HaloRTK NZ: https://halortk.co.nz/ (SSL certificate expired 2026-05-06)
-- curl probe of `positionz-rt.linz.govt.nz:2101` — SOURCETABLE 200 OK confirmed 2026-05-06
+- curl probe of `positionz-rt.linz.govt.nz:2101` — SOURCETABLE 200 OK confirmed 2026-05-12 (62 STR rows; mix of LINZ and GeoNet operators in sourcetable)
+- Volunteer rtk2go presence (`stations_by_country.py NZL`, 2026-05-12): 10 rtk2go bases in NZ (Ash_NZ, Ealing_NZ, HitchcockFarm, JYFL, MathewsLaneBase, SurreyHills_NZ, TakiViewFarm, jacksbay, knapdaleRTK, opihi)

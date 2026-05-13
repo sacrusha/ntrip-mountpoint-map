@@ -1,7 +1,7 @@
 # Zambia [ZM] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-13 (re-verification of 2026-05-06 baseline)
 
-## Status: NO public NTRIP caster — CORS exists (ZAMB / IGS) but RINEX-only
+## Status: NO public NTRIP caster — CORS exists (ZAMB / IGS) but RINEX-only; no change since 2026-05-06
 
 | Field | Value |
 |---|---|
@@ -10,11 +10,11 @@
 | **tariff** | N/A |
 | **hobbyist_eligibility** | N/A |
 | **legal_residency_required** | N/A |
-| **last_confirmed_alive** | N/A — no caster identified |
+| **last_confirmed_alive** | N/A — no caster identified; stations_by_radius.py -15.41 28.28 200 (Lusaka) returns zero results across rtk2go/centipede/earthscope sourcetables on 2026-05-13 |
 
 ## Most Recent Project Announcement
 
-No NTRIP service launch or CORS expansion announcement found for Zambia as of 2026-05-06. The Zambia Survey Department (ZSD), under the Ministry of Lands and Natural Resources, participates in the AFREF/SAFREF continental geodetic reference framework. IGS station ZAMB (Lusaka) archives RINEX data to HartRAO but does not stream real-time NTRIP corrections.
+No NTRIP service launch or CORS expansion announcement found for Zambia as of 2026-05-13. Repeat WebSearch ("Zambia Survey Department CORS NTRIP RTK GNSS 2025 2026") on 2026-05-13 returned only generic global RTK content; nothing Zambia-specific. The Zambia Survey Department (ZSD), under the Ministry of Lands and Natural Resources, participates in the AFREF/SAFREF continental geodetic reference framework. IGS station ZAMB (Lusaka) archives RINEX data to HartRAO but does not stream real-time NTRIP corrections.
 
 ## Context Notes
 

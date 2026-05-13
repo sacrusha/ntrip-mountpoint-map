@@ -1,7 +1,7 @@
 # Denmark [DK] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12 (initial 2026-05-06)
 
-## Status: NO free public NTRIP — three registered commercial providers; state contributes stations but provides no public free caster
+## Status: NO free public NTRIP — three Klimadatastyrelsen-registered commercial providers (GPSnet.dk, HxGN SmartNet, RTKconnect.dk); state contributes 13–15 reference stations but operates no free public caster. Free RINEX archive via Dataforsyningen. Sparse volunteer alternatives: ~17 rtk2go DK bases + 8 Centipede DK nodes per project archives
 
 ---
 
@@ -21,7 +21,7 @@ Klimadatastyrelsen (Danish Climate Data Agency, formerly Geodatastyrelsen) is th
 | **tariff** | Short-term login: 1 week / 1 month / 3 months available via geoteam.dk/produkt/Referencenet/729/korttidslogin — **specific DKK amounts not publicly displayed** (prices shown after login/quote). Annual subscriptions for surveying, agriculture, construction, drones — contact Geoteam. Date observed: 2026-05-06. Source: https://www.geoteam.dk/produkter/gpsnetdk |
 | **hobbyist_eligibility** | **Yes** — multiple subscription tiers including "drone" and "research and development"; no professional licence check stated |
 | **legal_residency_required** | **Unclear** — no explicit restriction; Danish company; SIM card delivery implies Danish telecom |
-| **last_confirmed_alive** | geoteam.dk portal accessible 2026-05-06; approved by Klimadatastyrelsen for cadastral use |
+| **last_confirmed_alive** | geoteam.dk portal HTTPS 200 confirmed 2026-05-12; remains on Klimadatastyrelsen approved-provider list |
 
 - **Stations:** Contributing stations from Klimadatastyrelsen (13) + Geoteam proprietary stations; Klimadatastyrelsen announced expansion to 15 state stations (April 2025 Hanstholm addition)
 - **Format:** RTCM, CMRx; VRS network solution
@@ -38,7 +38,7 @@ Klimadatastyrelsen (Danish Climate Data Agency, formerly Geodatastyrelsen) is th
 | **tariff** | Not published; enterprise subscription; contact Hexagon Denmark distributor. Date observed: 2026-05-06. Source: https://hxgnsmartnet.com/da/services/smartnet-nrtk |
 | **hobbyist_eligibility** | **Unclear** — primarily professional/enterprise |
 | **legal_residency_required** | **Unclear** |
-| **last_confirmed_alive** | hxgnsmartnet.com/da accessible 2026-05-06 |
+| **last_confirmed_alive** | hxgnsmartnet.com/da accessible 2026-05-12 |
 
 ---
 
@@ -52,7 +52,7 @@ Klimadatastyrelsen (Danish Climate Data Agency, formerly Geodatastyrelsen) is th
 | **tariff** | **6,599 DKK + VAT / year** (1-year subscription); **19,797 DKK + VAT / 3 years** (includes support contract valued at 7,164 DKK); volume pricing 2,999 DKK/user/year for 11+ simultaneous users. VAT rate: 25% (Denmark standard). Date observed: 2026-05-06. Source: https://rtkconnect.dk/products/rtk-netvaerk |
 | **hobbyist_eligibility** | **Yes** — single-login per subscription, unlimited devices; no licence requirement stated |
 | **legal_residency_required** | **Unclear** |
-| **last_confirmed_alive** | rtkconnect.dk accessible and showing 100% uptime (last 365 days) as of 2026-05-06 |
+| **last_confirmed_alive** | rtkconnect.dk accessible 2026-05-12; service product page still shows the same 6,599 DKK / 19,797 DKK / 2,999 DKK tiering and 100% uptime claim; Klimadatastyrelsen approval timestamped 17 November 2023 |
 
 - **Stations:** ~111 base stations including 13 from Klimadatastyrelsen; avg baseline 10 km
 - **Precision:** Class A typical — <1 cm horizontal, <2 cm vertical
@@ -64,8 +64,8 @@ Klimadatastyrelsen (Danish Climate Data Agency, formerly Geodatastyrelsen) is th
 
 | Option | Notes |
 |---|---|
-| **Centipede** (crtk.net) | ~8–10 Denmark-coded nodes; sparse; better in Jutland |
-| **RTK2go** (rtk2go.com) | ~17 Denmark-coded volunteer bases; no QoS guarantee |
+| **Centipede** (crtk.net) | 8 Denmark-coded nodes per `scripts/stations_by_country.py DNK` (2026-05 snapshot): `AGBI`, `AGLU`, `AGRB`, `AGSA`, `AGSB`, `AGTH`, `HZAG`, `OVTA`. Heavily clustered in Jutland (55–57°N, 8–10°E); near-zero coverage in Sjælland east. The `AG*` prefix on most suggests a coordinated agricultural-farmer deployment. |
+| **RTK2go** (rtk2go.com) | 17 Denmark-coded volunteer bases per `scripts/stations_by_country.py DNK` (2026-05 snapshot): `EC8700DNK`, `HEGRTK`, `Hvej12`, `KRAGELUND`, `Lovgaard`, `NGBRTKBASE`, `O-TorebyLL`, `Overtanget`, `PNRTK`, `SDS_RTK`, `SdrKildal`, `Sindal`, `Slagelse-PHK`, `TOLSHOEJ`, `Tystofte`, `Ugilt`, `roesdal`. Mostly Jutland; one node `Slagelse-PHK` (55.41°N/11.34°E) provides western Sjælland coverage. No QoS guarantee. |
 | **Dataforsyningen GNSS** | **Free CORS RINEX archive** for post-processing only (not real-time); registration at dataforsyningen.dk |
 
 ## Post-Processing (RINEX) Fallback
@@ -75,12 +75,13 @@ Klimadatastyrelsen (Danish Climate Data Agency, formerly Geodatastyrelsen) is th
 | **Dataforsyningen GNSS** — national CORS RINEX archive | https://dataforsyningen.dk/data/4717 | Free (account required) |
 
 ## Sources Consulted
-- Klimadatastyrelsen GNSS positioning services: https://www.klimadatastyrelsen.dk/kortlaegning/geodaesi/gnss-positioneringstjenester
+- Klimadatastyrelsen GNSS positioning services: https://www.klimadatastyrelsen.dk/kortlaegning/geodaesi/gnss-positioneringstjenester (re-verified 2026-05-12 — 3 registered providers: Geoteam (Sep 2008), Leica Geosystems / HxGN (Sep 2008), RTKconnect ApS (2024); state monitors, does not operate)
 - Klimadatastyrelsen GNSS expansion announcement (Apr 2025): https://www.klimadatastyrelsen.dk/om-klimadatastyrelsen/nyheder/nyhedsarkiv/2025/apr/klimadatastyrelsen-udvider-nettet-af-gnss-maalestationer
-- Geoteam / GPSnet.dk: https://www.geoteam.dk/produkter/gpsnetdk
+- Geoteam / GPSnet.dk: https://www.geoteam.dk/produkter/gpsnetdk (re-verified 2026-05-12 — no public pricing; subscription quote required; subscription categories cover surveying, agriculture, contractors, R&D, short-term, drones)
 - GPSnet short-term login: https://www.geoteam.dk/produkt/Referencenet/729/korttidslogin
-- RTKconnect pricing: https://rtkconnect.dk/products/rtk-netvaerk
+- RTKconnect pricing: https://rtkconnect.dk/products/rtk-netvaerk (re-verified 2026-05-12 — 6,599 DKK + VAT / 1-year; 19,797 DKK + VAT / 3-year incl. support contract valued at 7,164 DKK; volume 2,999 DKK/user/year for 11+ users; Klimadatastyrelsen approval 17 November 2023)
 - HxGN SmartNet Denmark: https://hxgnsmartnet.com/da/services/smartnet-nrtk
 - Dataforsyningen GNSS Denmark: https://dataforsyningen.dk/data/4717
 - ArduSimple Denmark page: https://www.ardusimple.dk/rtk-correction-services-and-ntrip-casters-in-denmark/
 - NTRIP-list.com Europe: https://ntrip-list.com/europe/
+- Project pipeline `scripts/stations_by_country.py DNK` (2026-05 snapshot): 17 rtk2go bases + 8 Centipede nodes — see Free/Volunteer table above

@@ -1,5 +1,5 @@
 # Afghanistan [AF] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12 (originally 2026-05-06)
 
 ## Status: NO — no NTRIP caster exists or is plausible under current conditions
 
@@ -25,7 +25,7 @@ No post-2021 announcements of geodetic CORS development in Afghanistan have been
 - **AGCHO** (Afghan Geodesy and Cartography Head Office), founded 1958, was the national cartographic agency responsible for geodetic infrastructure. It operated two permanent GNSS reference stations, both decommissioned by 2010–2011 as part of a broader programme transition. No NTRIP caster has ever been associated with AGCHO.
 - **Post-2021 situation**: The Taliban government that took power in August 2021 does not appear to have engaged with international geodetic bodies (IGS, AFREF, FIG, ICSM). International development organisations that previously supported geodetic work (World Bank, USAID, USGS) have either withdrawn or suspended Afghanistan operations. AGCHO's operational status under Taliban administration is unknown from open sources.
 - **Internet infrastructure**: Afghanistan's internet infrastructure remains fragmented and unreliable in many provinces. Even if a CORS station were operational, reliable NTRIP streaming would require sustained IP connectivity that is not universally available.
-- **Volunteer coverage**: zero AF mountpoints on rtk2go; zero nodes on Centipede.
+- **Volunteer coverage**: zero AF mountpoints on rtk2go; zero nodes on Centipede; zero EarthScope/IGS NTRIP streams. Confirmed via `scripts/stations_by_country.py AFG` (no entries) on 2026-05-12.
 - **Security and access environment**: The combination of active conflict in parts of the country, international sanctions, and restricted movement for international geodetic personnel makes CORS deployment and maintenance effectively impossible for the foreseeable future.
 - **Global commercial fallbacks**: no international commercial NTRIP provider (GEODNET, PointOne, RTKdata) lists Afghanistan coverage.
 

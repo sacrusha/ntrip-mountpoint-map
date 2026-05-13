@@ -1,5 +1,5 @@
 # Namibia [NA] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12 (re-verified; status unchanged from 2026-05-06)
 
 ## Status: NO confirmed public NTRIP caster; geodetic first-order network expanding; IGS archive only
 
@@ -11,7 +11,7 @@
 | **tariff** | n/a (no public service) |
 | **hobbyist_eligibility** | n/a |
 | **legal_residency_required** | n/a |
-| **last_confirmed_alive** | n/a — no NTRIP service confirmed |
+| **last_confirmed_alive** | n/a — no NTRIP service confirmed; radius probe `py scripts/stations_by_radius.py -22.5 17.1 800` returns no rtk2go/Centipede/EarthScope NTRIP stations within 800 km of Windhoek (2026-05-12) |
 
 ## Operator
 
@@ -37,7 +37,7 @@ Windhoek, Namibia
 - ArduSimple country directory: Namibia not listed with any NTRIP service
 - mvarga1989 GNSS CORS list (GitHub): No Namibia NTRIP endpoint
 - HartRAO data centre: WIND00NAM is archiving only; no NTRIP stream
-- No public caster address found in any indexed source as of 2026-05-06
+- No public caster address found in any indexed source as of 2026-05-12
 
 ## Most Recent Project Reference
 

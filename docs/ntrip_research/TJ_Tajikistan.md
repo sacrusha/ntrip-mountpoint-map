@@ -1,5 +1,5 @@
 # Tajikistan [TJ] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-13 (refresh of 2026-05-06 entry)
 
 ## Status: NO active public NTRIP caster confirmed
 
@@ -35,10 +35,11 @@ An academic paper referenced from neighboring-country GNSS literature notes that
 | **EarthScope GNSS Data Archive** — geodynamics-network stations in Tajikistan region | https://www.earthscope.org/data/gnss-data/ | Free noncommercial (account + NULA) |
 
 ## Sources Consulted
-- Searches in Russian and English (no Tajikistani NTRIP/CORS found)
+- Searches in Russian and English (no Tajikistani NTRIP/CORS found 2026-05-06 or 2026-05-13)
+- Tajikistan UNFCCC Fourth National Communication: https://unfccc.int/sites/default/files/resource/4NC_TJK_eng_0.pdf — no GNSS/CORS infrastructure mentioned
 - ResearchGate — "GNSS Permanent Networks in Kyrgyzstan" (regional context mentioning Tajikistan)
 - GeoComm Kazakhstan (geocomm.kz) — no Tajikistan coverage listed
 - E3S Conferences 2024 — Central Asian geodetic papers (Uzbekistan and Kazakhstan focus)
-- RTK2go monitor — no Tajikistan NTRIP streams
-- ArduSimple country selector — no Tajikistan page found
+- RTK2go monitor — no Tajikistan NTRIP streams 2026-05-13
+- ArduSimple country selector — no Tajikistan page (URL returns 404 2026-05-13)
 - GitHub mvarga1989 GNSS CORS RTK networks list — no Tajikistan entry confirmed

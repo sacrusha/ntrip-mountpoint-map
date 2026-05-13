@@ -1,5 +1,5 @@
 # Iceland [IS] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-07
+**Date researched:** 2026-05-12 (refresh of 2026-05-07 entry — caster re-probed and confirmed live)
 
 ## Status: YES — free national NTRIP RTK caster operating (IceCORS); registration required (no fee); operated by national mapping authority transferred to Náttúrufræðistofnun (Natural Science Institute of Iceland)
 
@@ -7,9 +7,9 @@
 |---|---|
 | **Active public NTRIP RTK caster** | Yes — free of charge, registration required |
 | **Network name** | IceCORS — Jarðstöðvakerfi Íslands (Icelandic GNSS Reference Station Network) |
-| **Operator** | Náttúrufræðistofnun Íslands (Natural Science Institute of Iceland; merged Veðurstofa/LMÍ functions); successor for the GNSS reference network historically operated by **Landmælingar Íslands (LMÍ)**. The user-facing portal moved from `lmi.is` to `natt.is` between 2024 and 2026 — `https://www.lmi.is/is/maelingar/thjonustur/icecors` returns 301 to `https://www.natt.is/is/maelingar/thjonustur/icecors` |
+| **Operator** | Náttúrufræðistofnun Íslands (Natural Science Institute of Iceland; merged Veðurstofa/LMÍ functions); successor for the GNSS reference network historically operated by **Landmælingar Íslands (LMÍ)**. The user-facing portal moved from `lmi.is` to `natt.is` between 2024 and 2026 — `https://www.lmi.is/is/maelingar/thjonustur/icecors` redirects to `https://www.natt.is/is/landmaelingar/jardstodvakerfi` |
 | **Mandate basis** | Národvarúðarstöð (national geodetic infrastructure) under Iceland's Náttúrufræðistofnun; reference frame ISN2016 (ITRF2014, epoch 2016.0) |
-| **host:port** | `178.19.53.126:2101` (Geo++ GNSMART caster, banner `NTRIP GNSMART_Caster 2.0/1.0`) — confirmed live 2026-05-07: `SOURCETABLE 200 OK`, 12 STR rows, `Content-Length: 1255` |
+| **host:port** | `178.19.53.126:2101` (Geo++ GNSMART caster, banner `NTRIP GNSMART_Caster 2.0/1.0`) — re-confirmed live 2026-05-12: `SOURCETABLE 200 OK`, 12 STR rows, `Content-Length: 1255`, same mountpoint roster (AUSV/GEVK/SENG/VOGC + RTCM30 selectors + VRS3 network mounts in RTCM 3.0 and RTCM 3.2 MSM variants) |
 | **Registration / portal** | `https://ggn01.lmi.is/` (account portal — historically operated under LMÍ subdomain; still active May 2026); contact `icecors@natt.is` (per existing networks.md note + ardusimple.com confirmation) |
 | **VRS** | Yes — VRS3 (RTCM 3.0) and VRS3_MSM (RTCM 3.2 MSM) network mountpoints, plus FKP-style nearest-station selectors `RTCM30` and `RTCM30_MSM` (both at `0,0` in sourcetable). Single-base streams for individual stations: `AUSV_RTK`, `GEVK_RTK`, `SENG_RTK`, `VOGC_RTK` (all near Reykjavík/Reykjanes peninsula) plus `_MSM` variants |
 | **Number of stations** | 33 physical GNSS reference stations at 70–100 km spacing nationwide (per existing networks.md description); only 4 individually-addressable physical mounts exposed in the public sourcetable (AUSV, GEVK, SENG, VOGC — all near Reykjavik) — remaining 29 stations are reached only via the RTCM30 nearest-station selector or VRS3 network mountpoint |
@@ -17,7 +17,7 @@
 | **tariff** | Free of charge — `natt.is` IceCORS service description states the data is free for users (per ardusimple.com and pre-existing networks.md confirmation citing natt.is). No published commercial tariff |
 | **hobbyist_eligibility** | Yes — registration form/email contact accepts any user. No professional-licence requirement documented |
 | **legal_residency_required** | Unclear — no public restriction on foreign users; in practice, registration appears to require contacting `icecors@natt.is` with company name (or individual name), contact name, and email; no Icelandic kennitala (national ID) or local address is publicly required, but the email-based vetting allows the operator discretion. ArduSimple's Iceland guide (2026-04-30 observation) lists IceCORS as a "free national service" requiring registration on the website without limiting eligibility to Icelandic residents |
-| **last_confirmed_alive** | 2026-05-07 — `178.19.53.126:2101` returned `SOURCETABLE 200 OK` (`GNSMART_Caster 2.0/1.0`, 12 STR rows including `VRS3`, `VRS3_MSM`, `RTCM30`, `RTCM30_MSM`, plus 8 single-base mounts for AUSV/GEVK/SENG/VOGC). `https://ggn01.lmi.is/` portal accessible. `https://www.natt.is/is/maelingar/thjonustur/icecors` reachable (LMÍ URL 301-redirects to natt.is, indicating the May 2024–2026 institutional handover) |
+| **last_confirmed_alive** | 2026-05-12 — `178.19.53.126:2101` returned `SOURCETABLE 200 OK` (`GNSMART_Caster 2.0/1.0`, 12 STR rows including `VRS3`, `VRS3_MSM`, `RTCM30`, `RTCM30_MSM`, plus 8 single-base mounts for AUSV/GEVK/SENG/VOGC). `https://ggn01.lmi.is/` portal HTTP 200. Caster, portal (ggn01.lmi.is), and contact path (icecors@natt.is) all operational. IceCORS service page: `https://www.natt.is/is/landmaelingar/jardstodvakerfi`. |
 
 ## Mountpoint Catalogue (sourcetable 2026-05-07)
 
@@ -69,7 +69,7 @@ Stations.json 2026-05-06 fetch reports `IS = 2 auscors` (i.e. only 2 IceCORS-are
 
 ## Sources Consulted
 
-- IceCORS Náttúrufræðistofnun page (post-handover): https://www.natt.is/is/maelingar/thjonustur/icecors (LMÍ URL 301-redirects here, observed 2026-05-07)
+- IceCORS Náttúrufræðistofnun page (post-handover): https://www.natt.is/is/maelingar/thjonustur/icecors — was 200 on 2026-05-07, **returns HTTP 404 on 2026-05-12** (page removed/restructured during ongoing institutional consolidation; caster + portal remain alive)
 - IceCORS user portal: https://ggn01.lmi.is/ (still resolves; user-facing geodetic portal in Icelandic)
 - LMÍ legacy IceCORS page (now redirects): https://www.lmi.is/is/maelingar/thjonustur/icecors
 - Live caster sourcetable: `curl http://178.19.53.126:2101/` → `SOURCETABLE 200 OK Server: NTRIP GNSMART_Caster 2.0/1.0` (12 STR rows, 2026-05-07)

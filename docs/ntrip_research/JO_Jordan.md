@@ -1,5 +1,5 @@
 # Jordan [JO] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12 (refresh of 2026-05-06 entry)
 
 ## Status: YES — single-station NTRIP base confirmed (ACOR, Amman); no national government or commercial caster found
 
@@ -10,7 +10,7 @@
 | **tariff — ACOR** | not published; likely free or low-cost for researchers; commercial terms unknown |
 | **hobbyist_eligibility** | Unclear — ACOR is a US non-profit research institution; individual hobbyist access not explicitly offered; contact required |
 | **legal_residency_required** | No — ACOR is internationally accessible in principle; no explicit residency requirement stated |
-| **last_confirmed_alive** | acorjordan.org/ntrip-network/ page last updated 2026-01-25 (per search metadata); HTTP 200 confirmed 2026-05-06 |
+| **last_confirmed_alive** | acorjordan.org/ntrip-network/ HTTP 200 confirmed 2026-05-12 (page substantively unchanged from 2026-01-25 last-updated stamp); no JO-tagged stations in rtk2go / Centipede / EarthScope (`scripts/stations_by_country.py JOR` returns none) |
 
 ## Most Recent Project Announcement
 
@@ -35,8 +35,8 @@
 | **ACOR GNSS post-processing** — available to registered ACOR users | https://acorjordan.org/ntrip-network/ | Likely free for researchers; contact acor@acorjordan.org |
 
 ## Sources Consulted
-- ACOR NTRIP Network page: https://acorjordan.org/ntrip-network/ — HTTP 200, page updated 2026-01-25, contact email acor@acorjordan.org confirmed 2026-05-06
-- ACOR Jordan homepage: https://acorjordan.org/ — organization profile confirmed 2026-05-06
+- ACOR NTRIP Network page: https://acorjordan.org/ntrip-network/ — HTTP 200, page last-updated 2026-01-25, content substantively unchanged on 2026-05-12; contact email acor@acorjordan.org
+- ACOR Jordan homepage: https://acorjordan.org/ — organization profile confirmed 2026-05-12
 - curl probe of `acorjordan.org:2101` — not executable: shell tools unavailable in this session
 - Royal Jordanian Geographic Centre: https://rjgc.gov.jo/en — no CORS/NTRIP service listed; phone +962 6 534 5 188; email rjgc@rjgc.gov.jo confirmed 2026-05-06
 - Department of Lands and Survey (Jordan): https://maps.dls.gov.jo/dlsweb/ — no NTRIP service listed
@@ -44,4 +44,5 @@
 - ArduSimple country RTK list (Jordan not listed): https://www.ardusimple.com/rtk-correction-services-in-your-country/
 - mvarga1989 GitHub GNSS CORS networks list (Jordan not listed): https://github.com/mvarga1989/The-list-of-GNSS-CORS-RTK-networks
 - RTK2go monitor (no Jordan stations observed)
-- WebSearch: "Jordan NTRIP RTK CORS" + Arabic-language queries — no additional national or commercial caster found (2026-05-06)
+- WebSearch: "Jordan NTRIP RTK CORS" + Arabic-language queries — no additional national or commercial caster found (re-checked 2026-05-12; result unchanged)
+- Pipeline check: no JO stations in rtk2go / Centipede / EarthScope — 2026-05-12 via `scripts/stations_by_country.py JOR`

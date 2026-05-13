@@ -1,5 +1,5 @@
 # Australia [AU] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12 (originally 2026-05-06)
 
 ## Status: YES — free national NTRIP (AUSCORS / Geoscience Australia); state networks are paid via commercial resellers
 
@@ -44,6 +44,8 @@ AUSCORS physical stations are spread across all states and territories but provi
 
 For Australian hobbyists, AUSCORS is the practical zero-cost entry point. Single-base RTK from the nearest AUSCORS station (often within 50–100 km in populated areas) gives cm-level horizontal accuracy under good baseline conditions. No paid state network offers a free hobbyist tier.
 
+**Volunteer supplement**: 24 AUS-coded rtk2go bases + 3 Centipede AUS nodes (per `scripts/stations_by_country.py AUS`, 2026-05-12). Notable rtk2go clusters: Western Australia (REDCLIFFE_PERTH_WA, RFBYCkeanespoint, UWA_Campus, Sheoak_Range, SG1NEW), Queensland (Mossman_Base, McCaffreyField, SGMCSURATRTCM cluster, MtRavensbourne, Cadarga), South Australia (Maptek, Sheoak_Range), Victoria (warrakam, MtBuffalo_001), Tasmania (Beautypoint, Nelsonbay), NSW (Codemortk, HillcrestCandelo), NT/Pilbara (SG1NEW). Centipede AUS nodes: CADA (Queensland, co-located near Cadarga), FARM48 (NSW/VIC border region).
+
 ## Post-Processing (RINEX) Fallback
 
 | Service | URL | Cost |
@@ -61,4 +63,7 @@ For Australian hobbyists, AUSCORS is the practical zero-cost entry point. Single
 - Vicmap Position / GPSnet: https://gnss.vicpos.com.au/ (observed 2026-05-06)
 - Spatial NSW CORSnet-NSW: https://www.spatial.nsw.gov.au/surveying/corsnet-nsw (observed 2026-05-06)
 - Landgate WA 2024-25 fee update: https://www.landgate.wa.gov.au/about-us/customer-news-and-media/news-and-media-articles/2024/may/landgate-customer-update-publishing-of-2024-25-landgate-regulated-and-associated-fees-increase/ (observed 2026-05-06)
+- SA CORS / DHUD: https://www.dhud.sa.gov.au/our-department/office-of-the-surveyor-general/surveying/geodetic-surveying/gnss-cors (observed 2026-05-12)
+- GA GNSS data and site logs: https://www.ga.gov.au/scientific-topics/positioning-navigation/positioning-australia/geodesy/gnss-networks/data-and-site-logs (observed 2026-05-12)
 - curl probe of `ntrip.data.gnss.ga.gov.au:443` — SOURCETABLE 200 OK, 914 STR entries confirmed 2026-05-06
+- Local data verification (2026-05-12): `scripts/stations_by_country.py AUS` — 24 rtk2go + 3 Centipede stations enumerated

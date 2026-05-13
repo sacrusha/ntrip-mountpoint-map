@@ -1,5 +1,5 @@
 # Romania [RO] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12 (prior version: 2026-05-06)
 
 ## Status: YES — paid government NTRIP caster (ROMPOS, ANCPI) operating
 
@@ -25,6 +25,7 @@
   - Bank transfer to National Cartography Center (Bucharest), IBAN RO57TREZ701501503X017556; upload receipt in "Înregistrare OP" section at app.rompos.ro; activation within 1 business day
 - **Tariff note**: ANCPI Order 16/2019 tariffs have been in force since 4 Feb 2019; as of 2026-05-06 the monthly fee observed at epay.ancpi.ro is 100 RON. VAT (TVA) is included. ~€20/month or ~€200/year at current exchange (approx).
 - **Private commercial alternative**: RTK Premium (rtkpremium.ro) offers RTK correction services; pricing not publicly listed.
+- **Volunteer presence**: local `py scripts/stations_by_country.py ROM` returns 7 Centipede ROM stations; `ROU` (country-survey) lists 6 rtk2go ROU bases. Modest cluster around major cities.
 
 ## Post-Processing (RINEX) Fallback
 
@@ -42,3 +43,5 @@
 - Wikipedia ROMPOS: https://ro.wikipedia.org/wiki/ROMPOS
 - ArduSimple Romania RTK page: https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-romania/
 - curl probe of `rtk.rompos.ro:2101` — SOURCETABLE 200 OK confirmed 2026-05-06
+- 2026-05-12 re-check: ANCPI epay portal still lists 100 RON / month for ROMPOS RTK (prodId=312100). VAT inclusion not explicitly stated on the epay product page itself; the ROMPOS Romanian-language "modalitati-de-plata" page describes the tariff schedule under ANCPI Order 16/2019 where TVA is included.
+- Local: `py scripts/stations_by_country.py ROM` → 7 Centipede ROM stations (2026-05-12).

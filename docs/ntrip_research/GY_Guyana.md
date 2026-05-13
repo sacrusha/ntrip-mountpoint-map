@@ -1,5 +1,5 @@
 # Guyana [GY] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-06 (re-verified 2026-05-12: no GUY entry in any source of data/stations.json; web searches for "Guyana CORS NTRIP 2025" return only the 2018 GLSC contract announcement and generic CORS pages — no public NTRIP host:port has been announced; status unchanged)
 
 ## Status: NO confirmed public NTRIP caster
 

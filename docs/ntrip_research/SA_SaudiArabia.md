@@ -1,5 +1,5 @@
 # Saudi Arabia [SA] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12 (prior version: 2026-05-06)
 
 ## Status: YES — KSA-CORS (free government network, 209 stations, VRS); endpoint reachability from non-SA IPs UNCONFIRMED
 
@@ -91,16 +91,17 @@ Global commercial networks (GEODNET, ONOCOY, PointOne, HxGN SmartNet) do not lis
 - **GEOSA brand evolution:** The network was originally GCS → GASGI → now GEOSA (General Authority for Survey and Geospatial Information, established by Royal Decree). The geoportal.sa domain is the current authoritative domain as of 2026.
 - **SANSRS v2.0 (Dec 2022):** Saudi Arabia published the Saudi Arabia National Spatial Reference System v2.0 implementation guidelines, standardising KSA-GRF17 as the national datum. KSA-CORS is the primary realisation mechanism.
 - **Hobbyist practical path:** Register by email (info@geosa.gov.sa); wait for credentials; test `ksacors.geoportal.sa:2101` from inside the country. Galileo HAS (free, global, ~40 cm, no connectivity needed) is the recommended fallback for users unable to access KSA-CORS from outside KSA.
-- **No rtk2go/Centipede presence:** Zero SA mountpoints on rtk2go or Centipede.
+- **rtk2go presence:** Zero SA mountpoints on rtk2go (re-confirmed 2026-05-12).
+- **Centipede presence:** 1 station — KHAY at 25.718, 39.296 (Khaybar region, north-west Saudi Arabia). `py scripts/stations_by_country.py SAU` returns this single Centipede SAU node. Useful single-base option for hobbyists in the Madinah / north-west Hejaz area while KSA-CORS access is gated.
 
 ---
 
 ## Negative Findings
 
-- `ksacors.geoportal.sa:2101` — connection timeout from external IP (2026-05-06)
+- `ksacors.geoportal.sa:2101` — connection timeout from external IP (2026-05-06; re-check 2026-05-12: GEOSA product page www.geosa.gov.sa returned ECONNREFUSED, KSACORS portal HTTP behaviour unchanged)
 - `KSACORS.gcs.gov.sa` — NXDOMAIN as of 2026-04
 - rtk2go monitor: zero SA mountpoints
-- Centipede: zero SA nodes
+- Centipede: 1 SA node (KHAY, north-west Saudi Arabia)
 - GEODNET, ONOCOY, PointOne, HxGN SmartNet: no Saudi Arabia coverage confirmed
 
 ---
@@ -120,3 +121,6 @@ Global commercial networks (GEODNET, ONOCOY, PointOne, HxGN SmartNet) do not lis
 - ArduSimple Saudi Arabia RTK/NTRIP page: https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-saudi-arabia/
 - ntrip-list.com (Middle East / Asia): https://ntrip-list.com/
 - curl probe of `ksacors.geoportal.sa:2101` — connection timeout from external IP, 2026-05-06
+- WebFetch ksacors.geoportal.sa 2026-05-12 — socket closed unexpectedly (portal likely partially reachable from EU but unstable from this environment)
+- WebFetch www.geosa.gov.sa 2026-05-12 — ECONNREFUSED
+- Local: `py scripts/stations_by_country.py SAU` → 1 Centipede station (KHAY at 25.72, 39.30) (2026-05-12)

@@ -1,7 +1,7 @@
 # Kuwait [KW] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-06; reverified 2026-05-12 (no new public endpoint surfaced)
 
-## Status: NO confirmed public NTRIP caster; government CORS exists (14 stations); access restricted to licensed firms; no policy change found
+## Status: NO confirmed public NTRIP caster; government CORS exists (14 stations, joint PACI / Kuwait Municipality); access restricted to licensed firms; no policy change found in 2025–2026
 
 | Field | Value |
 |---|---|
@@ -52,14 +52,15 @@ No public RINEX download portal for the Kuwait CORS network was found.
 
 ---
 
-## Negative Findings
+## Negative Findings (reconfirmed 2026-05-12)
 
 - PACI / Kuwait Municipality CORS: no public host:port published
-- rtk2go: zero KW mountpoints
-- Centipede: zero KW nodes
+- rtk2go: zero KW mountpoints (stations.json 2026-05-12)
+- Centipede: zero KW nodes (stations.json 2026-05-12)
 - ArduSimple: no Kuwait-specific NTRIP page indexed
 - GEODNET, PointOne, HxGN SmartNet: no Kuwait coverage confirmed in public documentation
 - No open-access mandate or policy change toward individual access found in 2024–2026 sources
+- No stations within 200 km of Kuwait City (29.3 N / 47.9 E) in any tracked source (rtk2go / centipede / earthscope)
 
 ---
 

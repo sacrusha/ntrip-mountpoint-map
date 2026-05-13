@@ -1,5 +1,5 @@
 # Brazil [BR] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12 (initial 2026-05-06)
 
 ## Status: YES — free national government caster (RBMC-IP) + multiple commercial casters
 
@@ -11,7 +11,7 @@
 | **type — RBMC-IP** | Single-base |
 | **hobbyist_eligibility** | Yes — open to any user; no professional licence required |
 | **legal_residency_required** | No — gov.br registration is open to non-Brazilians; no explicit residency requirement |
-| **last_confirmed_alive** | IBGE RBMC-IP confirmed operational; 5 new stations inaugurated Dec 2024; pipeline CI sourcetable probe 2026-05-06 |
+| **last_confirmed_alive** | 2026-05-12 — direct `gps-ntrip.ibge.gov.br:2101` sourcetable fetch returned `CAS;` line + 149 `STR;` records (RBMC-IP); +5 new stations inaugurated Dec 2024; IBGE plans 2 additional stations in 2025 |
 
 ## Network Coverage
 
@@ -23,7 +23,7 @@ Recent expansion: IBGE inaugurated 5 new RBMC stations on 9 December 2024 at Gov
 
 | Provider | host:port | Type | Tariff (observed 2026-05-06) | Notes |
 |---|---|---|---|---|
-| **geoRTK** | not published publicly (via geortk.com.br) | network RTK + PPK | BRL 10/day · BRL 79/week; monthly/annual plans; 30-day free trial | Launched Sep 2025; claims largest RTK/PPK network in Brazil; 500-station goal by 2026; coverage map at geortk.com.br/ferramentas/mapa-de-cobertura |
+| **geoRTK** | not published publicly (via geortk.com.br) | network RTK + PPK | BRL 10/day · BRL 79/week · BRL 219/month · BRL 2,099/yr (=BRL 175/mo equiv, 20% saving); 30-day free trial; cancel anytime (monthly) or 30-day cancel window (annual); claimed 99.9% uptime, 24/7; tax (ICMS/ISS) not stated on pricing page | Launched 1 Sep 2025; claims largest RTK/PPK network in Brazil; 500-station goal by 2026; coverage map at geortk.com.br/ferramentas/mapa-de-cobertura; also serves Iberian Peninsula |
 | **GeoPlus** | not published publicly (via geoplusbrasil.com) | network RTK (PPP-RTK + NTRIP) | not listed publicly; contact required | Multi-constellation, multi-signal; national coverage claim |
 | **RoverConnect (CPE Tecnologia)** | not published (cpetecnologia.com.br) | single-base NTRIP | weekly plan listed; pricing via website | Short-term prepaid; surveying/agriculture focus |
 | **RTKdata** | not published (rtkdata.com/br/) | network RTK | USD 40/month; 30-day free trial | International service with Brazilian coverage; pricing in USD |
@@ -41,7 +41,8 @@ No state-level free public NTRIP casters were confirmed beyond RBMC-IP as of 202
 - **RBMC-IP access**: Registration via gov.br (Cadastro.gov.br). The 5-simultaneous-mountpoint cap is not a practical barrier for individual hobbyists; the 1,000-concurrent-user global cap may occasionally cause connection refusals during peak demand.
 - **Volunteer**: ~19 BR-coded bases on rtk2go, concentrated in São Paulo metro and southern states (RS, SC, PR). Small number of Centipede nodes.
 - **Coverage gap**: Amazon basin and north-east interior (Amazonas interior, parts of Pará, Roraima, Piauí) have no RBMC-IP station within useful single-base baseline distances. Commercial networks (geoRTK, GeoPlus) claim national coverage but rely partly on RBMC-IP stations re-streamed or augmented; independent verification of Amazon coverage is not possible remotely.
-- **geoRTK launch**: Service launched 1 September 2025; pricing observed at geortk.com.br/planos on 2026-05-06. IVA (ICMS/ISS) applicability to digital services varies by state; pricing on website shown as base rate.
+- **geoRTK launch**: Service launched 1 September 2025; pricing observed at geortk.com.br/planos on 2026-05-12 — monthly R$219/mo (1 concurrent user), annual R$2,099/yr (=R$175/mo equivalent), weekly R$79, daily R$10; 30-day free trial; cancellation any time (monthly) or within first 30 days (annual). IVA (ICMS/ISS) applicability to digital services varies by state; pricing on website shown as base rate, no explicit VAT statement.
+- **RBMC-IP 2025 expansion (per IBGE)**: IBGE announced plan to inaugurate 2 additional RBMC stations in 2025 "focusing on major population arrangements", on top of the 5 stations added Dec 2024. As of 2026-05-12 the live sourcetable returns 149 STR records consistent with the ~150-station target.
 
 ## Post-Processing (RINEX) Fallback
 
@@ -64,4 +65,5 @@ No state-level free public NTRIP casters were confirmed beyond RBMC-IP as of 202
 - RTKdata Brazil: https://rtkdata.com/br/
 - CPE Tecnologia RoverConnect: https://www.cpetecnologia.com.br/servico-de-correcao-rtk-ntrip-rover-connect-plano-semanal/p
 - Emlid community Brazil NTRIP resources thread: https://community.emlid.com/t/estacoes-de-referencia-base-correcoes-ntrip-para-rtk-recursos-no-brasil/15553
-- Pipeline CI sourcetable probe — ~149 BR stations confirmed 2026-05-06
+- Pipeline CI sourcetable probe — ~149 BR stations confirmed 2026-05-06; re-probed 2026-05-12 (`curl http://gps-ntrip.ibge.gov.br:2101/` returned `STR;` count = 149)
+- IBGE English news (Dec 2024 inauguration, 2 stations planned 2025): https://agenciadenoticias.ibge.gov.br/en/agencia-news/2184-news-agency/news/42143-ibge-inaugurates-five-new-stations-of-the-brazilian-network-for-continuous-monitoring-publishes-time-series-of-geodetic-networks

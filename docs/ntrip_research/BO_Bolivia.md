@@ -1,5 +1,5 @@
 # Bolivia [BO] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12 (initial 2026-05-06)
 
 ## Status: YES — multiple paid, subscription-gated NTRIP RTK casters operating; no free public caster
 
@@ -12,7 +12,7 @@
 | **tariff** | All three networks: pricing not published — direct-contact only. GEOEQUIPOS uses QR-code mobile payments in Bolivianos (≤500 Bs per transaction). |
 | **hobbyist_eligibility** | RED-GEO: unclear (COTOBOL professional-surveyor mandate, Ley 2997 del Topógrafo); GEOEQUIPOS: appears more open; IGM: institutional |
 | **legal_residency_required** | unclear for all three networks |
-| **last_confirmed_alive** | `geoboliviasrl.info/redgeo` returned HTTP 301 on 2026-05-06; `geoequipossrl.com/red-cors/` active per search results 2026-05-06 |
+| **last_confirmed_alive** | 2026-05-12 — `geoboliviasrl.info/redgeo` HTTP 200 (Wix-hosted; footer © 2026 GEOBOLIVIA SRL; technical specs not exposed publicly); `geoequipossrl.com/red-cors/` HTTP 200 (page references content paths timestamped 2025/12 and 2026/01 — recent CMS activity; "0+" placeholder for station counter, signup gated to "ACCEDER A RED CORS" CTA; contact: +591 78866188, info@geoequipossrl.com, Calle Pinilla 2588 La Paz) |
 
 ## Most Recent Project Announcement
 
@@ -22,7 +22,7 @@ No new public-facing project announcement identified. Active networks have been 
 
 - **RED-GEO CORS NTRIP** (operated by GeoBolivia SRL, governed by COTOBOL — Colegio de Topógrafos de Bolivia): ~7 stations across La Paz, Cochabamba, Oruro, Sacaba, Tarija, Santa Cruz. Multi-constellation (GPS + GLONASS + Galileo + BeiDou). Port 6060. Operates under Ley 2997 del Topógrafo, which establishes professional-surveyor governance — practical implication is that hobbyist sign-up may be restricted in practice. Hostname not surfaced publicly; provided after subscription.
 - **IGM MARGEN-ROC NTRIP**: Operated by the Instituto Geográfico Militar de Bolivia (national geodetic authority). 42 continuous reference stations. Annual fee + formal written request required for access. No public host:port; the access procedure is documented on YouTube (`youtube.com/watch?v=4yuH1W05eII`).
-- **GEOEQUIPOS SRL Red CORS**: Second private commercial network. Mobile-payment friendly via QR codes in local currency (Bolivianos), capped at 500 Bs per transaction. Host, port, and pricing not publicly documented; `geoequipossrl.com/red-cors/` is active per search index but specifics behind contact gate.
+- **GEOEQUIPOS SRL Red CORS**: Second private commercial network. Mobile-payment friendly via QR codes in local currency (Bolivianos), capped at 500 Bs per transaction. Host, port, and pricing not publicly documented; `geoequipossrl.com/red-cors/` is active per direct fetch 2026-05-12 (page CMS shows 2025/12 and 2026/01 asset paths — actively maintained), but specifics remain behind contact gate. Contact: +591 78866188, info@geoequipossrl.com, Calle Pinilla 2588 La Paz, Bolivia.
 - **No free public national caster** is confirmed for Bolivia.
 - **Global commercial networks** (GEODNET, ONOCOY, Centipede-RTK, PointOne, RTK2go): no Bolivia coverage confirmed.
 

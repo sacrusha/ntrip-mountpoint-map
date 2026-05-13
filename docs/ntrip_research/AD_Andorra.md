@@ -1,24 +1,32 @@
 # Andorra [AD] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12 (originally 2026-05-06)
 
-## Status: NO — no Andorran NTRIP caster; ERGAND is post-processing only; Spanish ERGNSS border stations are the practical RTK option
+## Status: NO domestic caster; PCAR00AND streams via EUREF-IP broadcasters (single-base, free, registration); Spanish ERGNSS border stations are the practical VRS option
 
 | Field | Value |
 |---|---|
-| **Active public NTRIP RTK caster** | No |
-| **ERGAND NTRIP caster** | None confirmed — ERGAND (Govern d'Andorra geodetic agency) operates 2 EPN reference stations (PCAR at Pic de Carroi, RULL) for post-processing only |
-| **EPN real-time stream** | PCAR and RULL may stream via EUREF-IP broadcasters (euref-ip.net:2101 / euref-ip.be) — free with BKG/ROB registration; raw GNSS data, not VRS corrections |
-| **Volunteer (rtk2go)** | 0 AD stations (bounding-box confirmed) |
-| **Volunteer (Centipede)** | 0 AD nodes (bounding-box confirmed) |
-| **hobbyist_eligibility** | n/a (no domestic caster) |
-| **legal_residency_required** | n/a |
-| **last_confirmed_alive** | No live NTRIP caster to probe |
+| **Active public NTRIP RTK caster (Andorran)** | No |
+| **PCAR00AND** | EPN station at Pic de Carroi — confirmed in EPN real-time map, streams via EUREF-IP broadcasters in RTCM (free with BKG/ROB/ASI registration); raw 1 Hz GNSS, not VRS |
+| **RULL** | Second ERGAND station; EPN/EPOS member; real-time streaming status less prominent in EPN broadcaster map |
+| **EUREF-IP broadcasters** | `euref-ip.net:2101` (BKG, Frankfurt); `www.euref-ip.be:2101` (ROB, Brussels); ASI (Italy) — all three federate the EPN streams |
+| **Volunteer (rtk2go)** | 0 AD stations (confirmed via `stations_by_country.py AND` — no entries; `stations_by_radius.py 42.54 1.60 50` — no stations within 50 km) |
+| **Volunteer (Centipede)** | 0 AD nodes (same checks) |
+| **hobbyist_eligibility** | Yes for the EPN PCAR stream via euref-ip.net (free, BKG account); n/a for a domestic VRS service |
+| **legal_residency_required** | No (EUREF-IP registration is open globally) |
+| **last_confirmed_alive** | PCAR00AND listed in EPN real-time map 2026-05-12; ERGAND domestic NTRIP — none to probe |
 
 ## No Active Government Caster
 
-No Andorran NTRIP RTK caster has been identified. ERGAND operates two EUREF Permanent Network (EPN) reference stations (PCAR, RULL) and provides post-processing services and the AND08 national geoid model, but no public NTRIP endpoint for real-time RTK corrections has been announced or discovered.
+No Andorran NTRIP RTK caster has been identified. ERGAND (Govern d'Andorra geodetic agency under Cartografia / IDE Andorra) operates two EUREF Permanent Network (EPN) reference stations:
 
-ArduSimple's Andorra page (checked 2026-05-06) identifies Andorra as having no established national RTK network, offering only global fallbacks and global commercial services (Galileo HAS, Skylark Nx RTK).
+- **PCAR00AND** (Pic de Carroi, ~2,520 m elevation) — confirmed in EPN real-time map; streams via EUREF-IP federated broadcasters (BKG/ROB/ASI) in RTCM format.
+- **RULL** — second ERGAND station; EPN member; real-time streaming status less prominent in EPN broadcaster listings.
+
+ERGAND additionally provides post-processing services and the AND08 / GEOAND01 national geoid model (Leica/Topcon/Trimble formats). No domestic NTRIP caster for VRS or network RTK has been announced or discovered.
+
+Post-2025 EUREF Symposium policy: all EPN stations are by default integrated into the GNSS network of the European Plate Observing System (EPOS), with EPN metadata and RINEX data becoming discoverable within EPOS from 2026.
+
+ArduSimple's Andorra page (re-checked 2026-05-12) still identifies Andorra as having no established national RTK network, offering only global fallbacks and global commercial services (Galileo HAS, Skylark Nx RTK).
 
 ## Practical RTK Options via Spanish ERGNSS
 
@@ -37,15 +45,16 @@ ArduSimple's Andorra page (checked 2026-05-06) identifies Andorra as having no e
 
 ## Most Recent Project Announcement
 
-No Andorran government RTK project announcement found as of 2026-05-06. ERGAND's website and EPN Central Bureau listings show only post-processing services and EPN participation; no real-time RTK service is planned or mentioned.
+No Andorran government RTK project announcement found as of 2026-05-12. ERGAND's website (cartografia.ad) and EPN Central Bureau listings show only post-processing services and EPN/EPOS participation; no national real-time RTK / VRS service is planned or mentioned. The 2025 EUREF Symposium / EPN 2026 newsletter signals broader EPN→EPOS integration but no Andorra-specific RTK service launch.
 
 ## Context Notes
 
-- **ERGAND EPN stations**: PCAR (Pic de Carroi, ~2,520 m elevation) and RULL are part of the EUREF Permanent Network. EPN stations often stream real-time RTCM data through the euref-ip.net broadcaster (BKG, Frankfurt) and euref-ip.be (ROB, Brussels) — free with registration. These provide raw GNSS observations, not VRS-derived corrections, so they are usable as a single-base NTRIP stream by an NTRIP client but are not a network RTK (VRS) service.
-- **French border reach**: Centipede-RTK nodes in France's Ariège department (e.g., Foix area, ~50 km north of Andorra la Vella) may offer marginal coverage at the northern border. Coverage is not guaranteed — node density in the Pyrenean highlands is low.
+- **PCAR00AND (Pic de Carroi)**: EPN station at ~2,520 m elevation. Confirmed in EPN real-time map; streams in RTCM through the three EPN broadcasters (BKG `euref-ip.net:2101`, ROB `www.euref-ip.be:2101`, ASI). Free with registration at any of the broadcasters. Raw 1 Hz observations — usable as a single-base mountpoint, not VRS. ~5 km from Andorra la Vella; a single base at this location covers all of Andorra at < 30 km baseline.
+- **RULL**: Second ERGAND station. Time-series confirmed in EPN; real-time stream status in EPN broadcaster table is less prominent than PCAR.
+- **French border reach**: Centipede-RTK nodes in France's Ariège / Pyrénées-Orientales departments (e.g., Foix area, ~50 km north of Andorra la Vella) may offer marginal coverage at the northern border. Node density in the Pyrenean highlands is low; coverage is not guaranteed.
 - **Spanish SPTR service** (`ergnss-tr.ign.es:2102`): multi-constellation (GPS+GLONASS+Galileo+BeiDou) VRS corrections; new as of 2024–2025; free with the same ergnss.ign.es registration.
 - **Skylark Nx RTK** (Swift Navigation): lists Andorra in EU coverage per Ardusimple/Skylark marketing; commercial, requires subscription.
-- **No volunteer bases** on rtk2go or Centipede within Andorra (ISO country bounding box 42.43°N–42.65°N, 1.41°E–1.79°E) confirmed via sourcetable bounding-box check.
+- **No volunteer bases** on rtk2go or Centipede within Andorra: confirmed via `scripts/stations_by_country.py AND` (no entries) and `scripts/stations_by_radius.py 42.54 1.60 50` (no stations within 50 km of approximate Andorran centroid) on 2026-05-12.
 
 ## Post-Processing (RINEX) Fallback
 
@@ -56,10 +65,14 @@ No Andorran government RTK project announcement found as of 2026-05-06. ERGAND's
 
 ## Sources Consulted
 - ArduSimple Andorra RTK page: https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-andorra/
+- IDE Andorra i Cartografia (Govern d'Andorra): https://www.cartografia.ad/
 - IGN Spain ERGNSS portal: https://www.ign.es/web/ign/portal/gds-gnss-tiempo-real
 - ERGNSS user registration: http://ergnss.ign.es/gnuserportal/
-- EUREF Permanent GNSS Network (EPN) station map: https://epncb.oma.be/
+- EUREF Permanent GNSS Network (EPN) home: https://epncb.oma.be/
+- EPN Real-Time map: https://www.epncb.oma.be/_networkdata/data_access/real_time/map.php
 - EUREF-IP NTRIP broadcasters: https://www.euref-ip.be/ · https://euref-ip.net/home
 - EPN NTRIP broadcaster list: https://www.epncb.oma.be/_networkdata/data_access/real_time/broadcasters.php
+- EPN/EPOS newsletter (Dec 2025, EPN→EPOS integration starting 2026): http://www.epncb.oma.be/_documentation/newsletters/EUREF_Newsletter_2025_01.pdf
 - ArduSimple Spain RTK page (ERGNSS details): https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-spain/
 - Centipede-RTK network map: https://map.centipede-rtk.org/
+- Local data verification (2026-05-12): `scripts/stations_by_country.py AND` (no entries), `scripts/stations_by_radius.py 42.54 1.60 50` (no stations within 50 km)

@@ -1,7 +1,7 @@
 # Papua New Guinea [PG] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12 (refresh; prior pass 2026-05-06)
 
-## Status: NO confirmed public NTRIP caster
+## Status: NO confirmed public NTRIP caster (re-confirmed 2026-05-12 — no new announcements found)
 
 | Field | Value |
 |---|---|
@@ -25,7 +25,9 @@ Source: https://link.springer.com/chapter/10.1007/1345_2026_309 · https://ggim.
 - **ASPNG**: Identified as potential operator/host for a future subscription CORS; nothing operational yet.
 - **No public NTRIP endpoint** has been published by any PNG agency.
 - **Global commercial networks** (GEODNET, ONOCOY, Centipede-RTK): no PNG coverage confirmed.
-- Practical workaround for hobbyists: deploy a local base station for single-base RTK, or use satellite-based PPP services (Trimble RTX, u-blox PointPerfect where available).
+- **Local indexes** (`scripts/stations_by_country.py PNG` 2026-05-12): no rtk2go, Centipede or EarthScope mountpoints tagged PNG.
+- **Nearest viable cross-border alternative**: AUSCORS (Geoscience Australia) covers Torres Strait / Cape York side but the PNG mainland sits 150+ km from the nearest active AUSCORS site — outside the practical single-base baseline.
+- Practical workaround for hobbyists: deploy a local base station for single-base RTK, or use satellite-based PPP services (Trimble RTX, u-blox PointPerfect where available, Galileo HAS — note HAS service area covers Australasia).
 
 ## Post-Processing (RINEX) Fallback
 

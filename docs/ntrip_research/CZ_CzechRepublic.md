@@ -1,5 +1,5 @@
 # Czech Republic [CZ] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-07 (initial 2026-05-06)
+**Date researched:** 2026-05-12 (initial 2026-05-06; deep verification 2026-05-07)
 **Exchange rate used:** ~22.5 CZK / 1 USD; ~25.0 CZK / 1 EUR (approximate spot rates, 2026-05-07)
 
 ## Status: YES — paid national NTRIP (CZEPOS); commercial alternative Trimble VRS Now Czech via Geotronics; private TopNET via GB-geodezie; Centipede + rtk2go volunteer trickle. CZEPOS annual ~10,000 CZK (~€400) above the project's $200/yr hobbyist cutoff; cheapest hourly rate is ~50 CZK/hr (~€2/hr) for casual-use individuals.
@@ -31,7 +31,7 @@
 | **tariff — exempt categories** | **Free of charge** for: státní orgány a orgány územních samosprávných celků (state authorities, local-government bodies) for statutory functions; školy, školská zařízení a vysoké školy (schools, school facilities, universities) for educational purposes; students writing bachelor's, diploma, or other qualifying theses |
 | **hobbyist_eligibility** | Yes — paid tier accepts physical persons (`fyzická osoba`), self-employed persons (`podnikající fyzická osoba` — živnostník/OSVČ), and legal entities; registration form (`registrace.doc`) explicitly accepts physical-person applicants for "personal needs"; no professional surveying licence required |
 | **legal_residency_required** | Unclear — registration form requests Czech identification number (rodné číslo / IČO) and a Czech bank account; foreign applicants can register via email (scanned application) but practical onboarding may require Czech tax presence; foreign applicants should expect to negotiate; no explicit residency exclusion stated in vyhláška |
-| **last_confirmed_alive** | 2026-05-07 — `czepos.cuzk.gov.cz` HTTPS 200; new Opava station went live 2026-03-22 (Ostrava RTK/DGPS retired but kept in VRS network solution); recent service announcements: Olomouc activation 2024-12-01, BeiDou-3/Galileo E6 firmware upgrade 2025-02-01 |
+| **last_confirmed_alive** | 2026-05-12 — `czepos.cuzk.gov.cz` HTTPS 200; portal continues to serve the stations overview and cenik documentation. Port-2101 NTRIP fetch from research env still times out (sandbox/geo-restriction). Recent service announcements: Opava station live 2026-03-22 (Ostrava RTK/DGPS retired but kept in VRS network solution), Olomouc RTK/DGPS launched 2024-10-21, BeiDou-3/Galileo E6 firmware upgrade 2025-02-01 |
 
 ### Account types and registration
 

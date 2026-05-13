@@ -1,5 +1,5 @@
 # Malaysia [MY] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12 (re-verified; MyRTKnet portals reachable, tariff structure unchanged from 2026-05-06 observation)
 
 ## Status: YES — MyRTKnet operational; paid only; expensive for hobbyists; no free alternative
 
@@ -34,7 +34,7 @@ MyRTKnet covers both East Malaysian states (Sabah and Sarawak on Borneo) via the
 
 ## Volunteer Coverage
 
-rtk2go carries one MYS volunteer base (Malacca, Peninsular Malaysia) as of 2026-05-06. This single volunteer base provides free RTK within approximately 30–40 km for users in its vicinity but offers no practical alternative for most of the country. No Centipede nodes are present in Malaysia.
+rtk2go carries one MYS volunteer base — `gogainet` in Durian Tunggal, Melaka (2.31 N, 102.32 E), still present in the local snapshot 2026-05-12. RTCM 3.3 MSM, no auth, no fee. This single volunteer base provides free RTK within approximately 30–40 km for users in its vicinity but offers no practical alternative for most of the country. No Centipede nodes are present in Malaysia.
 
 ## Commercial and Cheaper Alternatives
 

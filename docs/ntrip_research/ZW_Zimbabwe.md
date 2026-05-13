@@ -1,5 +1,5 @@
 # Zimbabwe [ZW] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-13 (re-verification of 2026-05-06 baseline)
 
 ## Status: CORS exists — NTRIP endpoint NOT publicly disclosed
 
@@ -10,7 +10,8 @@
 | **tariff** | Not published. No pricing schedule on ZINGSA website. Contact required. |
 | **hobbyist_eligibility** | Unclear — ZINGSA describes users broadly ("surveyors, GIS users, engineers, scientists and other people who collect GNSS data") but no published hobbyist policy |
 | **legal_residency_required** | Unclear — no published terms of service |
-| **last_confirmed_alive** | 2026-05-06 — ZINGSA website and CORS portal page reachable; no ZW mountpoint found in any public NTRIP sourcetable |
+| **registration** | Not self-service; email publicrelations@zingsa.ac.zw or phone +263-8677009885 / +263-8677009884 |
+| **last_confirmed_alive** | 2026-05-13 — `https://zingsa.ac.zw/` HTTP 200 confirmed (HEAD probe); CORS portal page still indexed by search engines on 2026-05-13; no ZW mountpoint found in any public NTRIP sourcetable; stations_by_radius.py -17.83 31.05 200 (Harare) returns zero results |
 
 ## Operator
 
@@ -28,6 +29,7 @@ Website: https://zingsa.ac.zw/
 | Sep 2020 | Academic paper: Zimbabwe in "planning phase" for CORS; EU/UNDP funding earmarked for initial 5 stations |
 | Feb 4, 2024 | Herald Zimbabwe confirms ZINGSA "has embarked on densification of CORS" — network described as operational but expanding |
 | Jan 10, 2025 | 2025 national budget allocates ZiG 64.22 million (~USD 1.78M) to ZINGSA space programme including CORS |
+| Apr 27, 2026 | ZINGSA advertises Director General vacancy (applynow.co.zw) — confirms agency still operating in 2026; ZINGSA homepage marketing still describes CORS network as "established and operationalized" |
 
 ## Known Station
 
@@ -50,8 +52,10 @@ Website: https://zingsa.ac.zw/
 | **ZINGSA CORS RINEX data service** — portal page exists; access method and cost not publicly disclosed | https://zingsa.ac.zw/django-test/cors | Unknown — contact publicrelations@zingsa.ac.zw |
 
 ## Sources
-- https://zingsa.ac.zw/ (CORS portal)
+- https://zingsa.ac.zw/ (CORS portal; HTTP 200 re-confirmed 2026-05-13)
+- https://zingsa.ac.zw/django-test/cors (CORS-RINEX Data Services page)
 - https://www.heraldonline.co.zw/technology-to-enhance-countrys-ability-to-solve-challenges/ (Feb 2024)
 - https://doaj.org/article/835a37dd28564728869ad42dcde830d2 (Mlambo & Ali 2020)
 - https://spaceinafrica.com/2025/01/10/zimbabwes-2025-space-budget-a-strategic-leap-for-zingsa/
+- https://applynow.co.zw/2026/04/27/zingsa-2/ (DG vacancy April 2026 — proof of life)
 - ntrip-list.com/africa, ArduSimple country directory

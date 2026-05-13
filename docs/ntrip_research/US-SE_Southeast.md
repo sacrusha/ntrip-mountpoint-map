@@ -1,6 +1,6 @@
 # US Southeast — NTRIP RTK Caster Research
 **States covered:** Virginia (VA), West Virginia (WV), North Carolina (NC), South Carolina (SC), Georgia (GA), Florida (FL), Alabama (AL), Mississippi (MS), Tennessee (TN), Kentucky (KY)
-**Date researched:** 2026-05-07 (re-verified 2026-05-07; NTRIP SOURCETABLE responses confirmed via curl for WV `wvrtn.cors.us:2101`, SC `scrtn.sc.gov:2101`, MS `rtn.usm.edu:2101`, KY `kycors.ky.gov:2101`, FL `48.223.232.215:10000`, AL `205.172.52.26:10011` & `:10099`, EarthScope `ntrip.earthscope.org:2101`; portals HTTP 200 for NC `rtn.nc.gov`, TN `portal.tndot.net`; NC/TN/AL standard port 2101 timed out from external probe — service active behind IP filter or non-standard port; VA and GA confirmed without free state caster as of 2026-05-07 web search)
+**Date researched:** 2026-05-07 (re-verified 2026-05-07 and re-verified again 2026-05-13; NTRIP SOURCETABLE responses confirmed via curl for WV `wvrtn.cors.us:2101` (7 STR), SC `scrtn.sc.gov:2101` (14 STR), MS `rtn.usm.edu:2101` (14 STR), KY `kycors.ky.gov:2101` (6 STR), FL `48.223.232.215:10000` (101 STR), AL `205.172.52.26:10011` (10 STR) & `205.172.52.26:10099` (158 STR), EarthScope `ntrip.earthscope.org:2101` (1080 STR); portals HTTP 200 for NC `rtn.nc.gov`, TN `portal.tndot.net`; NC/TN/AL standard port 2101 timed out from external probe — service active behind IP filter or non-standard port; VA and GA confirmed without free state caster as of 2026-05-13)
 
 ## Status: MIXED — 8 of 10 states have an active state-operated caster (5 free, 3 paid); Virginia and Georgia have no public state caster
 
@@ -16,8 +16,8 @@
 | **VRS** | No — single-base streams only (individual station mountpoints) |
 | **hobbyist_eligibility** | Yes — non-commercial licence explicitly available; self-service at earthscope.org/user/licenses |
 | **legal_residency_required** | No |
-| **last_confirmed_alive** | `SOURCETABLE 200 OK` returned on 2026-05-07 (curl probe) |
-| **notes** | Old hostname `rtgpsout.earthscope.org` retired July 2025; new platform live April 2025. Provides sparse but geodetic-quality single-base streams in all 10 Southeast states. Not a substitute for a state VRS network but useful as a fallback where state networks are absent or inaccessible. |
+| **last_confirmed_alive** | `SOURCETABLE 200 OK` returned on 2026-05-13 (curl probe; 1,080 STR entries globally) |
+| **notes** | Old hostname `rtgpsout.earthscope.org` retired July 2025; new platform live April 2025. Provides sparse but geodetic-quality single-base streams in all 10 Southeast states. Not a substitute for a state VRS network but useful as a fallback where state networks are absent or inaccessible. Mountpoint epoch on the NOTA platform is 2026-03-30. |
 
 ---
 
@@ -56,13 +56,14 @@ VDOT attempted to build a statewide RTK network but abandoned the effort after l
 | **VRS** | Yes — VRS-only; recommended mountpoint `rtxRTCM3_2` (RTCM3, multi-constellation); older GPS+GLONASS-only mountpoints also present |
 | **hobbyist_eligibility** | Unclear — registration requires an organisation field; no professional licence stated as required; likely yes for any user with a valid email |
 | **legal_residency_required** | Unclear — no stated residency requirement; registration open at wvrtn.cors.us/RegisterAccount.aspx |
-| **last_confirmed_alive** | `SOURCETABLE 200 OK` returned on 2026-05-07 (curl probe of `wvrtn.cors.us:2101`) |
+| **last_confirmed_alive** | `SOURCETABLE 200 OK` returned on 2026-05-13 (curl probe of `wvrtn.cors.us:2101`; 7 STR entries returned including a new `NATRF2022_Test` mountpoint indicating WVRTN is actively preparing for the NSRS datum modernisation in 2026) |
 
 ### Context Notes
 
 - 34 CORS stations; 2024 GeoCon presentation confirmed recent upgrade to Trimble Alloy receivers (multi-constellation expansion).
+- Live 2026-05-13 mountpoint list: `vrsRTCM3_1`, `vrsCMRx`, `vrsCMRplus`, `vrsRTCM3_2`, `rtxCMRx` (multi-constellation), `rtxRTCM3_4_MSM` (multi-constellation), `NATRF2022_Test` (RTCM 3.1, GPS+GLO; preview of the upcoming datum migration). The `rtxRTCM3_2` mountpoint cited in older docs has been renamed to `rtxCMRx` / `rtxRTCM3_4_MSM`.
 - For registration issues or support: WVRTNHelpDesk@wv.gov
-- Backup / legacy hostname: `cors.us` (resolves to same IP as of 2026-05-07).
+- Backup / legacy hostname: `cors.us` (resolves to same IP as of 2026-05-13).
 
 ---
 
@@ -98,7 +99,7 @@ VDOT attempted to build a statewide RTK network but abandoned the effort after l
 | **VRS** | Yes — Trimble Pivot VRS; 43 GNSS receivers in SC plus 2 receivers in GA and 10 in NC |
 | **hobbyist_eligibility** | Unclear — subscriber agreement implies professional/business context; no explicit exclusion of individuals but USD 1,200 entry cost and formal agreement deter casual use |
 | **legal_residency_required** | Unclear — no stated residency requirement found |
-| **last_confirmed_alive** | 2026-05-07 (curl probe of scrtn.sc.gov:2101 — SOURCETABLE 200 OK) |
+| **last_confirmed_alive** | 2026-05-13 (curl probe of scrtn.sc.gov:2101 — SOURCETABLE 200 OK, 14 STR entries) |
 
 ### Context Notes
 
@@ -143,11 +144,11 @@ GDOT does not operate a public CORS RTK network. The only identified network wit
 | **VRS** | Yes — VRS, iMAX, MAX, FKP; VRS mountpoint `RTCM3_VRS` confirmed in user guides; formats: RTCM 2.3, RTCM 3.1, CMR+, RTCM 3.3 MSM4 |
 | **hobbyist_eligibility** | Yes — "Anyone with a NTRIP ready GPS/GNSS Receiver" and internet access; no equipment brand restrictions |
 | **legal_residency_required** | No — registration at myfloridagps.com/sbc; no Florida residency requirement stated |
-| **last_confirmed_alive** | `48.223.232.215:10000` returned NTRIP `HTTP/0.9` SOURCETABLE response on 2026-05-07 (curl probe; consistent with Leica GNSS Spider 7.11.1.109 caster behaviour); website myfloridagps.com HTTP 200 on 2026-05-07; FPRN FAQ updated 2025 |
+| **last_confirmed_alive** | `48.223.232.215:10000` returned SOURCETABLE 200 OK on 2026-05-13 (curl probe; 101 STR entries; Leica GNSS Spider 7.11.1.109 caster); website myfloridagps.com HTTP 200; FPRN FAQ updated 2025 |
 
 ### Context Notes
 
-- ~100 dual-frequency GNSS receivers statewide; one account required per rover.
+- ~100 dual-frequency GNSS receivers statewide (101 STR mountpoints in the 2026-05-13 live sourcetable, including network solutions and single-base streams); one account required per rover.
 - Registration: myfloridagps.com/sbc/Account/Register; account activation within 24–48 hours.
 - FPRN is widely regarded as a model state public RTK service — no fees, no professional requirement, broad constellation support.
 - Station map: myfloridagps.com/DMap/
@@ -165,7 +166,7 @@ GDOT does not operate a public CORS RTK network. The only identified network wit
 | **VRS** | Unclear — user reports reference `LeicaMAX` mountpoint (network solution type) which implies network RTK; VRS specifically not confirmed |
 | **hobbyist_eligibility** | Unclear — registration form requires Company field (Leica SBC platform); no professional licence stated as required; hobbyists have successfully registered per community reports |
 | **legal_residency_required** | Unclear — no stated residency requirement |
-| **last_confirmed_alive** | `205.172.52.26:10011` and `205.172.52.26:10099` — both returned NTRIP `HTTP/0.9` SOURCETABLE on 2026-05-07; web portal aldotcors.dot.state.al.us returns HTTP 200 |
+| **last_confirmed_alive** | `205.172.52.26:10011` returned SOURCETABLE 200 OK with 10 STR entries (`RTCMIMAX`, `AutoMAX`, `CMR+IMAX`, `LeicaMAX`, etc. — network mountpoints) and `205.172.52.26:10099` returned SOURCETABLE 200 OK with 158 STR entries (physical single-base streams, all RTCM 3 GPS+GLO) on 2026-05-13 (curl probes); web portal aldotcors.dot.state.al.us returns HTTP 200 |
 
 ### Context Notes
 
@@ -188,7 +189,7 @@ GDOT does not operate a public CORS RTK network. The only identified network wit
 | **VRS** | Unclear — Trimble Pivot platform supports VRS; specific VRS mountpoints not confirmed in public documentation; the Reference Data Shop does produce virtual RINEX files |
 | **hobbyist_eligibility** | Yes — open registration at rtn.usm.edu/RegisterAccount.aspx; no professional licence requirement stated |
 | **legal_residency_required** | No — registration open to anyone |
-| **last_confirmed_alive** | 2026-05-07 (curl probe of rtn.usm.edu:2101 — SOURCETABLE 200 OK) |
+| **last_confirmed_alive** | 2026-05-13 (curl probe of rtn.usm.edu:2101 — SOURCETABLE 200 OK, 14 STR entries) |
 
 ### Context Notes
 
@@ -232,7 +233,7 @@ GDOT does not operate a public CORS RTK network. The only identified network wit
 | **VRS** | Yes — VRS-only; recommended mountpoint `RTX_RTCM3_2` (RTCM3, multi-constellation) |
 | **hobbyist_eligibility** | Unclear — registration at kycors.ky.gov/RegisterAccount.aspx; form is not automated (manual admin approval); no professional licence explicitly required; hobbyist use reported in community guides |
 | **legal_residency_required** | Unclear — no stated residency requirement; admin approval process may exercise discretion |
-| **last_confirmed_alive** | 2026-05-07 (curl probe of kycors.ky.gov:2101 — SOURCETABLE 200 OK) |
+| **last_confirmed_alive** | 2026-05-13 (curl probe of kycors.ky.gov:2101 — SOURCETABLE 200 OK, 6 STR entries) |
 
 ### Context Notes
 
@@ -244,18 +245,18 @@ GDOT does not operate a public CORS RTK network. The only identified network wit
 
 ## Per-State Summary Table
 
-| State | Network | Operator | host:port | Tariff | VRS | Hobbyist eligible | Caster alive 2026-05-07 |
+| State | Network | Operator | host:port | Tariff | VRS | Hobbyist eligible | Caster alive 2026-05-13 |
 |---|---|---|---|---|---|---|---|
 | VA | None | — | — | — | — | — | N/A |
-| WV | WVRTN | WVDOT | `wvrtn.cors.us:2101` | Free | Yes | Unclear (likely yes) | Yes (SOURCETABLE confirmed) |
+| WV | WVRTN | WVDOT | `wvrtn.cors.us:2101` | Free | Yes | Unclear (likely yes) | Yes (SOURCETABLE confirmed, 7 STR) |
 | NC | NC RTN | NC Geodetic Survey | `rtn.nc.gov:2101` | USD 500 one-time | Yes | Unclear | Portal active; NTRIP port IP-filtered |
-| SC | SCRTN | SC Geodetic Survey | `scrtn.sc.gov:2101` | USD 1,200 first; USD 600 add'l | Yes | Unclear | Yes (SOURCETABLE confirmed) |
+| SC | SCRTN | SC Geodetic Survey | `scrtn.sc.gov:2101` | USD 1,200 first; USD 600 add'l | Yes | Unclear | Yes (SOURCETABLE confirmed, 14 STR) |
 | GA | None | — | — | — | — | — | N/A |
-| FL | FPRN | FDOT | `48.223.232.215:10000` (current; legacy `40.121.5.206` deprecated) | Free | Yes | Yes | Yes (SOURCETABLE confirmed) |
-| AL | AlCORS | ALDOT | `aldotcors.dot.state.al.us` (ports 10011 & 10099 on 205.172.52.26) | Free | Unclear | Unclear (likely yes) | Yes (SOURCETABLE on 205.172.52.26:10011 & :10099) |
-| MS | GCGC RTN | Univ. Southern Mississippi | `rtn.usm.edu:2101` | Free | Unclear | Yes | Yes (SOURCETABLE confirmed) |
+| FL | FPRN | FDOT | `48.223.232.215:10000` (current; legacy `40.121.5.206` deprecated) | Free | Yes | Yes | Yes (SOURCETABLE confirmed, 101 STR) |
+| AL | AlCORS | ALDOT | `aldotcors.dot.state.al.us` (ports 10011 & 10099 on 205.172.52.26) | Free | Unclear | Unclear (likely yes) | Yes (SOURCETABLE on 205.172.52.26:10011 (10 STR) & :10099 (158 STR)) |
+| MS | GCGC RTN | Univ. Southern Mississippi | `rtn.usm.edu:2101` | Free | Unclear | Yes | Yes (SOURCETABLE confirmed, 14 STR) |
 | TN | TDOT GNSS RTN | TDOT | Not public (via portal.tndot.net) | USD 450/yr | Yes | Unclear | Portal active |
-| KY | KyCORS | KYTC | `kycors.ky.gov:2101` | Free | Yes | Unclear (likely yes) | Yes (SOURCETABLE confirmed) |
+| KY | KyCORS | KYTC | `kycors.ky.gov:2101` | Free | Yes | Unclear (likely yes) | Yes (SOURCETABLE confirmed, 6 STR) |
 
 **Regional baseline (all 10 states):** EarthScope NOTA — `ntrip.earthscope.org:2101` — free non-commercial, single-base streams only.
 
@@ -298,4 +299,4 @@ GDOT does not operate a public CORS RTK network. The only identified network wit
 - ArduSimple — US RTK casters: https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-the-united-states-of-america-usa/
 - ArduSimple — Georgia RTK casters: https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-georgia/
 - NTRIP-list.com North America: https://ntrip-list.com/north-america/
-- curl probes of all hostnames listed — 2026-05-07
+- curl probes of all hostnames listed — 2026-05-07 and 2026-05-13 (re-verified)

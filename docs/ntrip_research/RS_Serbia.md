@@ -1,5 +1,5 @@
 # Serbia [RS] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12 (prior version: 2026-05-06)
 
 ## Status: YES — paid government NTRIP caster (AGROS, RGZ) operating
 
@@ -22,7 +22,8 @@
 - **Reference system**: ETRS89.
 - **Pricing source**: Uredba (regulation) published by RGZ; Serbian-language portal at rgz.gov.rs. Confirmed in country-survey.md from networks.md entry (sourced April 2026).
 - **Volunteer complement**: rtk2go hosts ~35 Serbian volunteer bases (SRB/SER label); Centipede hosts ~20 SER + ~3 SRB nodes. One of the denser volunteer clusters in the Western Balkans, concentrated in Vojvodina. Combined with AGROS, coverage is good for most of Serbia.
-- **Operator contact**: Republički geodetski zavod (RGZ), Bulevar vojvode Mišića 39, Beograd; https://www.rgz.gov.rs/
+- **Operator contact**: Republički geodetski zavod (RGZ), Bulevar vojvode Mišića 39, Beograd; https://www.rgz.gov.rs/ · info center 0700/500 500 · info.centar@rgz.gov.rs
+- **Local volunteer data**: `py scripts/stations_by_country.py SER` returns 11 Centipede SER stations (all in Vojvodina cluster: ADAM, BRTK, DANE, DETK, KAMA, MIRO, OSZA, RTKM, SURD, TOMA, VRTK); `SRB` rtk2go returns 26 SRB volunteer bases (BOBASL, BPACA, DJUKA …). One of the densest volunteer footprints in the Western Balkans.
 
 ## Post-Processing (RINEX) Fallback
 
@@ -34,3 +35,5 @@ RINEX data available from AGROS reference stations via the RGZ portal at agros.r
 - networks.md entry `agros` (confirmed tariffs from RGZ Uredba, April 2026): host:port and tariff data
 - ArduSimple Serbia RTK page: https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-serbia/
 - curl probe of `agros.rgz.gov.rs:2101` — DNS resolves (93.87.56.181); port 2101 connection timeout on 2026-05-06 (egress firewall suspected)
+- 2026-05-12 re-check: RGZ AGROS portal www.rgz.gov.rs/agros HTTP 200. Public English-language AGROS pricing remains absent from rgz.gov.rs and from agros.rgz.gov.rs — the only public-source RTK / DGPS pricing comes from networks.md (sourced April 2026 from RGZ Uredba): 1,125 RSD/mo RTK, 8,688 RSD/yr RTK; 703 RSD/mo DGPS, 5,379 RSD/yr DGPS.
+- Local: `py scripts/stations_by_country.py SER` → 11 Centipede stations; `SRB` → 26 rtk2go bases (2026-05-12).

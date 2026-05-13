@@ -1,7 +1,7 @@
 # Belgium [BE] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12
 
-## Status: YES — three free regional public NTRIP casters covering all Belgium (FLEPOS/Flanders, WALCORS/Wallonia, GPSBru/Brussels); VRS on two of three
+## Status: YES — three free regional public NTRIP casters covering all Belgium (FLEPOS/Flanders, WALCORS/Wallonia, GPSBru/Brussels); VRS on two of three; plus 17 Centipede volunteer nodes and 2 rtk2go bases providing redundant free coverage
 
 | Field | Value |
 |---|---|
@@ -72,7 +72,16 @@ All three networks are free and allow individual registration. For full Belgium 
 - Wallonia → WALCORS (`gnss.wallonie.be:8081`)
 - Brussels → GPSBru (`agn.ngi.be`)
 
-Together the three networks provide VRS-based RTK (FLEPOS, WALCORS) and single-base RTK (GPSBru) across all of Belgium at no cost. No volunteer rtk2go or Centipede coverage needed.
+Together the three networks provide VRS-based RTK (FLEPOS, WALCORS) and single-base RTK (GPSBru) across all of Belgium at no cost.
+
+## Volunteer / Community Backstop
+
+Belgium has dense volunteer-base coverage even though the government networks are free:
+
+- **Centipede-RTK**: 17 BEL-coded nodes confirmed in `data/stations.json` 2026-05-12 — clustered in Wallonia and the Brussels–Antwerp corridor (mountpoints include `5640`, `AHOA`, `AIDE`, `ALEX`, `BIST`, `COCO`, `CRA1`, `DEBEN`, `DEPO`, `FLEN`, `HAYE`, `JFDE`, `KUBA`, `LEMA`, `LEON`, `NLER`, `STAVE`). Access via `caster.centipede.fr:2101` — no signup required.
+- **rtk2go**: 2 BEL-coded volunteer bases — `ROOS1` (50.84°N, 4.86°E, central Belgium) and `Stuer` (51.19°N, 4.25°E, Antwerp area). Access via `rtk2go.com:2101`.
+
+These are useful redundancy if the government caster a user is registered with is down, or as a quick-start option without going through registration.
 
 ## EUREF / Scientific Relay
 

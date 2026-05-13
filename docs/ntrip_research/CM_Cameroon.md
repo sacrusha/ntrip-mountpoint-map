@@ -1,5 +1,5 @@
 # Cameroon [CM] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12 (revising 2026-05-06 entry — no material changes; volunteer counts re-verified)
 
 ## Status: NO active public NTRIP caster
 
@@ -35,7 +35,7 @@ Note: Cameroon was listed among early AFREF commitments (~2006) to establish at 
   Source: https://minresi.gov.cm/en/national-institute-of-cartography/
 - **MINDCAF** (Ministry of State Property and Land Affairs) manages cadastral infrastructure and commissioned the FUGRO passive network. No public NTRIP service operates from MINDCAF infrastructure.
 - **No streaming CORS confirmed**: The 2010–2012 FUGRO network is a passive monument network only. No CORS station with continuous GNSS logging and real-time/RINEX streaming has been confirmed operational in Cameroon in publicly available sources as of 2026-05-06.
-- **RTK2go / Centipede**: Zero CM stations in either sourcetable.
+- **RTK2go / Centipede**: Zero CM/CMR stations in either sourcetable (re-verified 2026-05-12 against `data/stations.json` fetched 2026-05-12T18:17Z).
 - **Global commercial networks** (GEODNET, ONOCOY, Centipede, RTKdata): No CM coverage identified.
 - **Hobbyist access**: Not applicable — no caster exists.
 

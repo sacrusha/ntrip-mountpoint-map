@@ -1,5 +1,5 @@
 # Greece [GR] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06 (updated 2026-05-07: separated URANUS from HEPOS — URANUS is a private commercial network, not a HEPOS alias)
+**Date researched:** 2026-05-06 (updated 2026-05-07: separated URANUS from HEPOS — URANUS is a private commercial network, not a HEPOS alias; re-verified 2026-05-12: HEPOS pricing unchanged on hepos.gr product pages, URANUS portal loads HTTP 200 with Greek content)
 
 ## Status: YES — national NTRIP RTK caster operating (HEPOS, paid); two private commercial networks (URANUS / TopNET, JGC-Net) also available; no free national NTRIP RTK in Greece
 
@@ -16,13 +16,13 @@
 | **VAT** | Greek standard VAT is 24%; prices listed above are net |
 | **hobbyist_eligibility — HEPOS** | Yes — individual registration accepted; no licensed-surveyor requirement stated |
 | **legal_residency_required — HEPOS** | Unclear — subscription/payment is online; no explicit residency restriction; Greek VAT registration may be required to receive an invoice |
-| **last_confirmed_alive — HEPOS** | 2026-05-06 (hepos.gr loaded; product/subscription pages returned HTTP 200; Akamai 403 blocks anonymous curl but pages confirmed via search-engine cache) |
+| **last_confirmed_alive — HEPOS** | 2026-05-12 (hepos.gr en/home page Akamai-protected, returns 403 to anonymous curl; product/subscription pages confirmed via WebSearch results 2026-05-12 — €160 / €480 / €90 product pages all still served) |
 | **Network name — secondary 1** | URANUS — TopNET Live Greece |
 | **Operator — URANUS** | Tree Company Corporation A.E.B.E. (Treecomp) — private commercial Topcon distributor |
 | **host:port — URANUS** | `www.uranus.gr` / NTRIP caster credentials issued after registration. ntrip-list.com lists URANUS as the public free-trial face (3-day trial), commercial subscription thereafter |
 | **VRS — URANUS** | Yes — VRS Network RTK; 117 reference stations across Greece + Cyprus; advertised 99% coverage; GPS, GLONASS, Galileo, BeiDou |
 | **tariff — URANUS** | Paid (rates not publicly listed; 3-day free trial available; contact uranus@treecomp.gr / +30 210 9473600) |
-| **last_confirmed_alive — URANUS** | 2026-05-06 (uranus.gr/home-page loaded HTTP 200; service marketed as 24/7 operational) |
+| **last_confirmed_alive — URANUS** | 2026-05-12 (uranus.gr loaded HTTP 200 with full Joomla/Helix-Ultimate page in Greek; service marketed as the largest private CORS network in Greece, certified by NTUA) |
 | **Network name — secondary 2** | JGC-Net |
 | **Operator — JGC-Net** | JGC Geoinformation Systems S.A. (private Spectra/Nikon/NovAtel distributor) |
 | **host:port — JGC-Net** | Not publicly listed; credentials issued after commercial registration with JGC |
@@ -38,7 +38,7 @@
 - **JGC-Net**: A private network run by JGC Geoinformation Systems (distributor for Spectra, Nikon, NovAtel, DJI in Greece). Operates its own CORS in northern/central Greece and islands, supplementing HEPOS. Marketed as providing >50 km baseline coverage. Pricing not publicly listed; oriented towards professional surveying customers.
 - **Hobbyist note**: HEPOS allows individual online registration and payment with credit card. No professional-licensing check is documented. The per-minute bundle (€90 + VAT) is the lowest-commitment entry point; the 3-month flat-rate (€160 + VAT ≈ €198 incl. VAT, ~$215) covers a single project at unlimited usage.
 - **DGNSS**: HEPOS also provides a DGPS/DGNSS service (sub-meter) at lower cost; out of scope for this research.
-- **Volunteer footprint (separately noted in country-survey, out of scope here)**: a small number of rtk2go and Centipede-RTK Greek bases are documented in the repository's pipeline data; the GR coverage is thin compared to HU/FR.
+- **Volunteer footprint (separately noted in country-survey, out of scope here)**: a small number of rtk2go and Centipede-RTK Greek bases are documented in the repository's pipeline data — 1 rtk2go (`NTAGIAS`, 39.19 N 22.68 E, Thessaly) and 3 Centipede-RTK (`ANOCH`, `MYRO`, `RGEO`) in the data/stations.json 2026-05-12 fetch. Thin compared to HU/FR.
 
 ## Post-Processing (RINEX) Fallback
 

@@ -1,15 +1,15 @@
 # Bahamas [BS] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12 (initial 2026-05-06)
 
-## Status: No national caster — EarthScope scientific streams available on two outer islands
+## Status: National 23-station Trimble Pivot CORS exists (deployed ~2020 for Dept. of Lands & Surveys); no public NTRIP endpoint disclosed — EarthScope scientific streams available on two outer islands
 
 | Field | Value |
 |---|---|
-| **National NTRIP RTK caster** | No |
+| **National NTRIP RTK caster** | Physical infrastructure exists (23 Trimble CORS + 3 tide gauges, Bahamas Department of Lands & Surveys, Spatial Dimension/Trimble project ~2020) — but no public host:port, sourcetable, or self-service registration portal has been published. Likely Trimble Pivot Platform; if operational it is gated for licensed Bahamian surveyors via Lands & Surveys. |
 | **Scientific GNSS streams in BS territory** | Yes — EarthScope NOTA (former COCONet) CN13 (San Salvador Island) and CN14 (Mathew Town, Great Inagua); all on `ntrip.earthscope.org:2101` |
-| **hobbyist_eligibility** | **Yes** (noncommercial tier — no surveying licence required, individual account accepted) |
-| **legal_residency_required** | **No** — no nationality or residency restriction in NULA |
-| **last_confirmed_alive** | 2026-05-06 (EarthScope portal reachable; NULA dated v. 2025-05-30) |
+| **hobbyist_eligibility** | EarthScope: **Yes** (noncommercial tier — no surveying licence required, individual account accepted). Bahamian national CORS: **unclear** — no published policy, likely restricted to licensed Bahamian surveyors. |
+| **legal_residency_required** | EarthScope: **No** — no nationality or residency restriction in NULA. Bahamian national CORS: unclear. |
+| **last_confirmed_alive** | 2026-05-12 (EarthScope portal reachable; NULA dated v. 2025-05-30); Spatial Dimension project page still served as of 2026-05-12. No live Bahamian NTRIP endpoint has ever been probed; none surfaces in any public sourcetable directory. |
 
 ---
 
@@ -36,13 +36,22 @@
 
 ## National Surveying Authority
 
-The **Department of Lands and Surveys** (Bahamas Government) is the responsible body for geodetic and cadastral work. No NTRIP caster, CORS endpoint, or real-time GPS correction service was found associated with the department as of 2026-05-06. No public announcement of a planned national RTK/CORS network was found. NOAA's National Geodetic Survey database lists an AUTEC (Atlantic Underwater Test and Evaluation Center) CORS station in Andros, Bahamas, operated by the US Navy, but this is a US Federal installation and not a Bahamian national service.
+The **Department of Lands and Surveys** (Bahamas Government) is the responsible body for geodetic and cadastral work. NOAA's National Geodetic Survey database lists an AUTEC (Atlantic Underwater Test and Evaluation Center) CORS station in Andros, Bahamas, operated by the US Navy, but this is a US Federal installation and not a Bahamian national service.
+
+### Bahamas National CORS (Spatial Dimension / Trimble, ~2020)
+
+A 23-station Bahamian national CORS network plus 3 tide-gauge monitoring stations was deployed for the Department of Lands and Surveys by Spatial Dimension in partnership with Trimble Inc. as part of a broader land-management modernisation programme (Trimble Pivot Platform + Landfolio cadastral software). Bahamian surveying kits for field crews were procured under the same contract. Reference: Spatial Dimension project profile (https://www.spatialdimension.com/projects/bahamas-department-of-lands-and-surveys, observed 2026-05-12; Trimble press release referenced June 2020).
+
+- **Host:port**: Not published. No public NTRIP sourcetable. No website on bahamas.gov.bs surfaces the caster URL. The deployment uses Trimble Pivot software (RTK/VRS-capable) but the caster endpoint is not advertised publicly.
+- **Coverage**: 23 stations across the archipelago — sufficient density (~700 km W-E, ~1,200 km N-S spread) for network RTK across populated islands if operated as VRS, but unconfirmed.
+- **Hobbyist access**: Not confirmed available. The deployment is explicitly tied to cadastral/surveying modernisation under the Department of Lands and Surveys; access is most likely gated to licensed Bahamian surveyors via institutional procedure (no online self-service portal found).
+- **Workaround for hobbyists**: EarthScope COCONet streams CN13/CN14 remain the only confirmed publicly accessible streams in Bahamian territory, but practical only for users on/near San Salvador and Great Inagua (>460 km from Nassau).
 
 ---
 
 ## Most Recent Project Announcement
 
-None found for a dedicated Bahamian national CORS/NTRIP service. No CARICOM or regional geodetic CORS project specific to the Bahamas was identified.
+**Bahamas Department of Lands & Surveys 23-CORS deployment (Spatial Dimension / Trimble, ~2020)** — reference: https://www.spatialdimension.com/projects/bahamas-department-of-lands-and-surveys. No further public announcement of a public NTRIP service tier through 2024–2026. No CARICOM or regional geodetic CORS project specific to the Bahamas was identified beyond this single deployment.
 
 ---
 
@@ -58,5 +67,7 @@ None found for a dedicated Bahamian national CORS/NTRIP service. No CARICOM or r
 - COCONet site info (station list including CN13, CN14): https://coconet.unavco.org/site-info/site-info.html
 - COCONet network overview: https://coconet.unavco.org/
 - NOAA NGS CORS database (AUTEC Andros reference): https://geodesy.noaa.gov/CORS/
+- Spatial Dimension — Bahamas Department of Lands and Surveys CORS project profile (23 Trimble CORS + 3 tide gauges): https://www.spatialdimension.com/projects/bahamas-department-of-lands-and-surveys (observed 2026-05-12)
+- Bahamas.gov.bs Department of Lands and Surveys page: https://www.bahamas.gov.bs/agencies/department-of-lands-and-surveys (HTTP 403 from automated fetch 2026-05-12; no public CORS link via Google)
 - NTRIP-list.com North America — no BS entry found
 - RTK2go / Centipede sourcetables — no BS stations found

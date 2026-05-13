@@ -1,5 +1,5 @@
 # Burundi [BI] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12 (initial 2026-05-06)
 **Note:** "BI — IG" refers to IGEBU (Institut Géographique du Burundi), the national geographic institute.
 
 ## Status: NO active public NTRIP caster
@@ -20,10 +20,10 @@ URL: https://ric2024.rcmrd.org/afref
 
 ## National Mapping Agency
 
-**IGEBU** (Institut Géographique du Burundi) — https://www.igebu.bi/
+**IGEBU** (Institut Géographique du Burundi) — https://www.igebu.bi/ (HTTP 200 nginx/1.27.1, observed 2026-05-12)
 Established 1980 (Decree 100/146). Departments: Cartography & Topography, Hydrometeorology & Hydrogeology, Administrative & Financial.
 - JICA partnership since 2009: updating cartography of Bujumbura and Gitega using GPS, remote sensing, GIS — no CORS/NTRIP deployment announced.
-- No GNSS network or RTK services listed on website.
+- No GNSS network or RTK services listed on website (re-checked 2026-05-12; no change since 2026-05-06 baseline).
 
 ## Context Notes
 

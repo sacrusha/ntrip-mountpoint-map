@@ -1,5 +1,5 @@
 # Netherlands [NL] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12 (re-verified; no material change since 2026-05-01)
 
 ## Status: YES — free public NTRIP caster (AGRS.NL + AGRS.BES) and paid professional raw-stream tier (NETPOS); no public VRS product
 
@@ -31,10 +31,18 @@
 - BES island streams (AGRS.BES) are part of the free tier and are covered in detail in the Dutch Caribbean entry (BQ).
 - No public NTRIP caster exists for the autonomous countries Curaçao (CW), Aruba (AW), or Sint Maarten (SX); see `CW_Dutch_Caribbean.md`.
 
+## Volunteer Coverage
+
+Substantial volunteer coverage exists alongside the official services:
+- **Centipede**: 26 NLD-tagged stations (Belgian/Dutch border area, Friesland, Twente, etc.); dense coverage of southern/eastern NL, sparse north of Amsterdam.
+- **rtk2go**: 22 NLD-tagged stations spread across the country (Limburg, Brabant, Friesland, Drenthe, Groningen). Free with no auth, but per-station coverage radius ≈30 km and quality varies.
+Combined: a hobbyist anywhere on the Dutch mainland has free real-time RTK options at multiple tiers (AGRS.NL official + Centipede + rtk2go + TU Delft mirror).
+
 ## Sources Consulted
-- NSGI real-time streams page: https://www.nsgi.nl/referentiepunten-en-gnss-data/gnss-data/real-time-streams (observed 2026-05-01)
+- NSGI real-time streams page: https://www.nsgi.nl/referentiepunten-en-gnss-data/gnss-data/real-time-streams (observed 2026-05-12)
 - Tarievenregeling Kadaster BWBR0037196/2026-01-01: https://wetten.overheid.nl/BWBR0037196/2026-01-01
 - Staatscourant 2024-19381 (NETPOS launch tariff): https://www.officielebekendmakingen.nl/stcrt-2024-19381
-- Live sourcetable: https://ntrip.kadaster.nl/streamtable (fetched 2026-05-01)
+- Live sourcetable: https://ntrip.kadaster.nl/streamtable (fetched 2026-05-01; re-confirmed 2026-05-12 via search)
 - TU Delft DPGA GNSS mirror: gnss1.tudelft.nl:2101 (confirmed 2026-05-01)
 - NSGI FAQ on BTW / foreign users (observed 2026-05-01)
+- Local data: `py scripts/stations_by_country.py NLD` — 22 rtk2go + 26 Centipede NLD stations (snapshot 2026-05-12)

@@ -1,16 +1,19 @@
 # Venezuela [VE] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-13 (re-verification of 2026-05-06 baseline)
 
-## Status: YES — at least two active NTRIP casters identified
+## Status: YES — at least two active NTRIP services identified (private commercial + government free); neither publishes a public sourcetable URL
 
 | Field | Value |
 |---|---|
 | **Active public NTRIP RTK caster** | Yes (private commercial + government free) |
 | **host:port** | Unknown — acnovo.net credentials delivered post-registration; IGVSB REMOS host not publicly published |
 | **tariff** | acnovo.net: ~USD 20 (one-time or per period, exact billing cycle unclear) — observed 2026-05 at cursos.acnovo.net. IGVSB REMOS: free |
+| **num_stations** | acnovo.net: not disclosed publicly. IGVSB REMOS: 29 permanent stations (historical figure, current count not republished) |
+| **vrs** | acnovo.net: ? (single-base RTCM 3.x is documented; VRS not advertised). IGVSB REMOS: ? |
 | **hobbyist_eligibility** | acnovo.net: yes (open online registration); IGVSB REMOS: unclear (appears open, no license requirement stated) |
 | **legal_residency_required** | unclear — neither service states a residency requirement explicitly |
-| **last_confirmed_alive** | acnovo.net: 2025-07-01 (WordPress article:modified_time in page header). IGVSB: December 2025 (SIRGAS Americas Facebook post confirming CORS integration progress) |
+| **registration** | acnovo.net: https://acnovo.net/ (contact form) + https://cursos.acnovo.net/courses/curso-de-medicion-con-gnss-ntrip/. IGVSB REMOS: contact via https://igvsb.gob.ve/ |
+| **last_confirmed_alive** | acnovo.net: portal returned HTTP 200 on 2026-05-13 (HEAD probe); WordPress article:modified_time still cites 2025-07-01. igvsb.gob.ve: HTTP 200 on 2026-05-13. SIRGAS-RT integration: December 2025 (SIRGAS Americas Facebook). No sourcetable could be probed (host:port not public) |
 
 ## Most Recent Project Announcement
 
@@ -34,8 +37,15 @@ URL: https://www.facebook.com/SirgasAmericas/posts/1437422241720820/
 | **IGVSB REMOS** — static RINEX data from permanent stations (MARA and others); available on request via IGVSB geoportal | https://igvsb.gob.ve/ | Free (government service) |
 | **IGS/EarthScope** — MARA station (Maracaibo) is an IGS/SIRGAS-CON station; archival RINEX retrievable via EarthScope | https://www.earthscope.org/data/gnss-data/ | Free noncommercial (account + NULA); USD 1,000/seat/yr commercial |
 
+## Verification (2026-05-13)
+
+- HEAD probe `https://acnovo.net/` → HTTP 200 OK 2026-05-13
+- HEAD probe `https://igvsb.gob.ve/` → HTTP 200 OK 2026-05-13
+- No public NTRIP host:port could be tested (acnovo.net credentials gated; IGVSB REMOS host not published). No change in stations.json: zero VE stations in the project's tracked sourcetables (rtk2go/centipede/earthscope) as of 2026-05-13.
+- WebSearch (2026-05-13) returned no new public 2026 announcement specific to a Venezuelan caster endpoint. SIRGAS-RT integration narrative unchanged from December 2025 baseline.
+
 ## Sources Consulted
-- acnovo.net homepage (live, last modified 2025-07-01)
+- acnovo.net homepage (live, last modified 2025-07-01; HTTP 200 2026-05-13)
 - cursos.acnovo.net product page — "SERVICIO GNSS NTRIP EXPRESS"
 - acnovo.com NTRIP Express service page
 - IGVSB official website (igvsb.gob.ve)

@@ -1,8 +1,8 @@
 # Canary Islands [ES-Canarias / EU-region] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06 | EUR/USD: 1 EUR = 1.1686 USD (2026-05-05)
+**Date researched:** 2026-05-12 (revision; original 2026-05-06) | EUR/USD: 1 EUR = 1.1686 USD (2026-05-05)
 **Note:** Canary Islands are outside the EU VAT area — IGIC (7%) applies instead of Spain's standard 21% VAT.
 
-## Status: TWO ACTIVE public NTRIP casters
+## Status: TWO ACTIVE public NTRIP casters — IGN España SPTR and GRAFCAN REPCAN both live-confirmed by direct NTRIP probe on 2026-05-12.
 
 ---
 
@@ -13,10 +13,10 @@
 | **host:port (network solutions)** | `ergnss-tr.ign.es:2101` |
 | **host:port (single-station)** | `ergnss-tr.ign.es:2102` |
 | **Best mountpoint for Canaries** | `CERCANA3M` (auto-routes to nearest station, RTCM 3.2 MSM4, automatic failover) |
-| **tariff** | **Free — €0.00 / $0.00** (no VAT). Date observed: 2026-05-06. Source: https://www.ign.es/web/gds-gnss-tiempo-real |
+| **tariff** | **Free — €0.00 / $0.00** (no VAT). Date observed: 2026-05-12. Source: https://www.ign.es/web/gds-gnss-tiempo-real |
 | **hobbyist_eligibility** | **Yes** — no professional licence required; open self-registration. ~12,000 registered users as of Jan 2024, ~60% agricultural sector. |
 | **legal_residency_required** | **No** — no residency restriction published |
-| **last_confirmed_alive** | Portal accessible May 2026; REGCAN95 coordinate update for all Canaries stations: 2024-02-01; 272-station count confirmed in 2024–2025 documentation |
+| **last_confirmed_alive** | **2026-05-12** — `ergnss-tr.ign.es:2101` sourcetable retrieved live (CERCANA3M live); REGCAN95 coordinate update 2024-02-01; 272-station count confirmed in 2024–2025 documentation |
 
 **Operator:** Instituto Geográfico Nacional (IGN España)
 **Registration:** http://ergnss.ign.es/gnuserportal/
@@ -36,14 +36,14 @@ EH01 (El Hierro), FUER (Fuerteventura), GOME (La Gomera), IZAN (Tenerife/Izaña)
 | **tariff** | Annual fee per device/receiver — **amount NOT publicly disclosed**; purchase via https://tiendavirtual.grafcan.es (Tienda Virtual → sección Varios). Free for public administration with active SITCAN contract. Contact: datos@grafcan.com |
 | **IGIC (local VAT)** | 7% IGIC applies (Canary Islands not in EU VAT area) — whether price is quoted net or gross not confirmed |
 | **USD equivalent** | Not determinable — base EUR price not published |
-| **Date observed** | 2026-05-06. Source: https://www.grafcan.es/servicios/red-estaciones-gnss/ |
+| **Date observed** | 2026-05-12. Source: https://www.grafcan.es/servicios/red-estaciones-gnss/ |
 | **hobbyist_eligibility** | Unclear — no explicit surveying licence requirement, but billing process implies institutional context (invoice required in registration form) |
 | **legal_residency_required** | Unclear — no stated restriction |
-| **last_confirmed_alive** | Hardware update Jan 2024; website active Dec 2024; data archive active 2025–2026; REGCAN95 update 2024-02-01 |
+| **last_confirmed_alive** | **2026-05-12** — sourcetable retrieved live from `195.53.241.146:2101` (6 683 bytes; 72 STR rows, including VHMO, AGUI, ALJR, ANTI, ARGU, FRON, GRAF, HRIA, ALDE, MORJ, SNMG and others, each in RTCM 3 / RTCM 3 MSM / CMR+/RTCM 2 variants; CERCANA3 and CERCANA3M VRS-like mountpoints live; Server: NTRIP Spider/7.10.1.168) |
 
 **Operator:** Cartografía de Canarias S.A. (GRAFCAN)
-**Stations:** 20 stations (AGUI, ALDE, ALJR, ANTI, ARGU, FRON, GRAF, HRIA, LIVA, MAZO, MORJ, OLIV, SNMG, STEI, STTE, TERR, TIAS, TRLJ, VHMO, YAIZ)
-**Format:** RTCM 3.2 MSM5 (most stations); CMR+/RTCM 2.3 on SNMG and TIAS only
+**Stations:** ~20 stations, including AGUI, ALDE, ALJR, ANTI, ARGU, FRON, GRAF, HRIA, MORJ, SNMG, VHMO and others (live sourcetable 2026-05-12 confirms station codes; some legacy CMR+/RTCM 2 streams remain on SNMG/TIAS as legacy fallback for older receivers).
+**Format:** RTCM 3 / RTCM 3 MSM (multi-GNSS GPS+GLO+GAL, BDS on FRON3M and GRAF3M); CMR+/RTCM 2 on a few stations as legacy
 **Registration:** https://pre-web.grafcan.es/servicios/red-estaciones-gnss/alta-gnss/
 
 ---
@@ -70,6 +70,8 @@ Both GRAFCAN and IGN explicitly note that network RTK solutions (VRS/MAC/FKP) ar
 | **IGN ERGNSS RINEX download** — RINEX for all IGN Canaries stations via national geodata portal | https://www.ign.es/web/gds-gnss-datos-observacion | **Free** (account registration required) |
 
 ## Sources
+- Live NTRIP probe of `ergnss-tr.ign.es:2101` — 2026-05-12 (sourcetable confirms CERCANA3M, VRS3M, MAC3M, FKP3M)
+- Live NTRIP probe of `195.53.241.146:2101` (GRAFCAN) — 2026-05-12 (sourcetable confirms 72 STR rows; CERCANA3M live)
 - https://www.ign.es/web/gds-gnss-tiempo-real
 - https://www.grafcan.es/servicios/red-estaciones-gnss/
 - https://tiendavirtual.grafcan.es

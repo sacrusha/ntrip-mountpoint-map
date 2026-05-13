@@ -1,5 +1,5 @@
 # Paraguay [PY] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12 (prior version: 2026-05-06)
 
 ## Status: NO confirmed active NTRIP caster for Paraguay
 
@@ -22,8 +22,10 @@ No formal project announcement for a Paraguay national NTRIP/RTK caster was foun
 - **Geodesical Paraguay** (geodesicalparaguay.com; Ruta 3 esq. Capitán Meza, Limpio, Paraguay): Equipment retailer and reseller (GPS receivers, total stations, software). No CORS network or NTRIP correction service operated. Contact: info@geodesicalparaguay.com / (021) 781 031.
 - **DINAC** (Dirección Nacional de Aeronáutica Civil): Manages aviation GNSS reference stations in Paraguay; no public NTRIP stream found in any registry.
 - **STP / DGEEC**: Paraguay's Secretaría Técnica de Planificación operates geo.stp.gov.py for statistical geodata; no CORS or NTRIP service.
-- **SIRGAS**: Paraguay has at least one SIRGAS station (specific 4-character station code not confirmed via public search — check sirgas.ipgh.org station list) but is not listed as a SIRGAS-RT caster node. The SIRGAS-RT network (casters in Argentina, Brazil, Uruguay, Venezuela) does not extend to Paraguay as of 2026.
-- No commercial CORS/RTK network has been identified for Paraguay in surveying industry directories, ArduSimple country pages, NTRIP-list.com, rtcm-ntrip.org, RTK2go, or Centipede-RTK sourcetables.
+- **SNC (Servicio Nacional de Catastro)**: Under the Ministry of Economy and Finance; responsible for the national cadastre. Adopts the cartographic system based on military Geographic Service products. No CORS/NTRIP service operated; no public reference station network announcement found (websearch 2026-05-12 — catastro.gov.py).
+- **SIRGAS**: Paraguay has at least one SIRGAS-CON-affiliated station (Asunción, 4-character code typically rendered as ASUN in IGS/SIRGAS publications) but is not listed as a SIRGAS-RT caster node. The SIRGAS-RT network (casters in Argentina, Brazil, Uruguay, Venezuela) does not extend to Paraguay as of May 2026.
+- No commercial CORS/RTK network has been identified for Paraguay in surveying industry directories, ArduSimple country pages, NTRIP-list.com, rtcm-ntrip.org, RTK2go, or Centipede-RTK sourcetables (re-checked 2026-05-12).
+- Local project data: `py scripts/stations_by_country.py PRY` returns 3 rtk2go bases (NPPCentralTorre at -21.08, -60.32; NPPPetronaTorre at -21.07, -60.21; SenioRTK at -25.23, -54.70). All three are volunteer single-base streams — no Centipede / EarthScope PY stations.
 - Paraguay's RTK infrastructure is underdeveloped relative to neighboring Argentina, Brazil, and Uruguay, which have mature national CORS networks.
 - **curl probe of geoequipossrl.com:2101** — not executable: shell tools unavailable in this session (would expect timeout or refused for a Bolivian host).
 - **Practical workaround for hobbyists:** Deploy a local base station, or use satellite-based PPP (Galileo HAS ~40 cm, Trimble RTX). GEODNET and Onocoy: no confirmed Paraguay coverage in public station maps.
@@ -46,3 +48,7 @@ No formal project announcement for a Paraguay national NTRIP/RTK caster was foun
 - RTK2go monitor (monitor.use-snip.com) — no Paraguay stations
 - ArduSimple country search — no Paraguay-specific page found
 - WebSearch queries in Spanish: "Paraguay CORS GNSS NTRIP correcciones tiempo real" — no active provider identified (2026-05-06)
+- WebSearch "Paraguay red CORS estaciones permanentes GNSS MOPC SNC IPA 2025 2026" — no result identifying any Paraguay national CORS network (2026-05-12)
+- SNC (Servicio Nacional de Catastro): https://www.catastro.gov.py/ — no CORS or NTRIP service mentioned (2026-05-12)
+- SIRGAS station list: https://sirgas.ipgh.org/en/gnss-network/stations/station-list/ — Asunción SIRGAS-CON station referenced; no SIRGAS-RT caster in Paraguay (2026-05-12)
+- Local: `py scripts/stations_by_country.py PRY` — 3 rtk2go bases (2026-05-12)

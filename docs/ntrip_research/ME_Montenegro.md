@@ -1,5 +1,5 @@
 # Montenegro [ME] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-06 (refreshed 2026-05-12)
 
 ## Status: YES — government NTRIP caster operating (MONTEPOS); endpoint not public; paid subscription
 
@@ -15,6 +15,7 @@
 | **tariff** | Null — tariff figures exist in PDF at `https://wapi.gov.me/download/8f6d09ed-f1d2-4650-9e87-d8d91d2526b0?version=1.0` (published 2024-04-11, "MontePos- tehnički detalji", 382 KB) but domain wapi.gov.me was not accessible from research environment. Subscription periods confirmed: 24h, 48h, 1 month, 3 months, 6 months, 1 year, 2 years. Currency: EUR (Montenegro uses EUR). |
 | **Payment process** | Payment to giro account 832-1081-58, purpose field "Montepos - RTK"; submit signed application form to uznmontepos@gmail.com or at Uprava za nekretnine counter offices |
 | **Application form** | https://wapi.gov.me/download/3647961e-34ab-41e7-9bf6-282a116f72ff?version=1.0 (394 KB, published 2024-04-11) |
+| **Service modules** | MontePos–RTK (Real-Time Kinematic) and MontePos–PPK (Post-Processed Kinematic). Established 2005; published 2–3 cm RTK accuracy. |
 | **hobbyist_eligibility** | Yes (likely) — no professional licence requirement mentioned anywhere on the public page; application/form system appears open to natural persons |
 | **legal_residency_required** | Unclear — no residency restriction stated explicitly; giro account payment system and in-person counter option suggest it is designed for residents; no explicit exclusion of non-residents |
 | **last_confirmed_alive** | 2026-04-30 (gov.me/clanak/montepos loaded normally; page publication date 2024-04-11; site news up to 2026-03; NTRIP caster endpoint unknown for independent verification) |
@@ -33,7 +34,11 @@
 - Application form ("Zahtjev za MontePos"): https://wapi.gov.me/download/3647961e-34ab-41e7-9bf6-282a116f72ff?version=1.0
 
 ## Sources Consulted
-- MONTEPOS public page: https://www.gov.me/clanak/montepos (observed 2026-04-30)
+- MONTEPOS public page: https://www.gov.me/clanak/montepos (observed 2026-04-30; re-verified URL pattern 2026-05-12)
+- Real Estate Administration: https://www.uzn.me/ (TLS/connection error from sandbox 2026-05-12 — cited in third-party sources as the canonical MontePos pricing host)
 - gov.me site news (latest entry up to 2026-03; page publication 2024-04-11)
-- Tariff PDF (inaccessible from research env): https://wapi.gov.me/download/8f6d09ed-f1d2-4650-9e87-d8d91d2526b0?version=1.0
+- Tariff PDF "MontePos- tehnički detalji" (WebFetch timeout 2026-05-12; remains the authoritative tariff document): https://wapi.gov.me/download/8f6d09ed-f1d2-4650-9e87-d8d91d2526b0?version=1.0  · mirror: https://www.gov.me/dokumenta/8f6d09ed-f1d2-4650-9e87-d8d91d2526b0
+- Application form PDF: https://wapi.gov.me/download/3647961e-34ab-41e7-9bf6-282a116f72ff?version=1.0
+- Community summary (2026-05-12 search): MontePos established 2005; offers RTK + PPK modules; 2–3 cm accuracy
 - Contact: uznmontepos@gmail.com / +382 67 641 119
+- py scripts/stations_by_radius.py 42.5 19.3 250 (2026-05-12) — zero rtk2go/Centipede/EarthScope volunteer stations within 250 km of Podgorica (no cross-border free alternative)

@@ -1,5 +1,5 @@
 # Morocco [MA] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12
 
 ## Status: TWO active NTRIP casters — ANCFCC (government, 60 stations, registration required) and itri (private commercial, 231 stations, registration required)
 
@@ -16,7 +16,7 @@
 | **tariff — itri** | Not publicly listed; professional subscription; contact contact@itri-gnss.com or +212 707 797 830 |
 | **hobbyist_eligibility** | ANCFCC: unclear; itri: marketed "dédié aux professionnels" — individual hobbyist eligibility not confirmed for either |
 | **legal_residency_required** | No explicit residency restriction found for either operator |
-| **last_confirmed_alive** | ANCFCC GNSS page HTTP 200 confirmed 2026-05-06; curl probe of `itri-gnss.ma:2101` — ECONNREFUSED 2026-05-06 09:14 UTC; itri-gnss.ma main domain — connection refused on HTTP fetch (domain resolves but web server returned error) |
+| **last_confirmed_alive** | 2026-05-12 — ANCFCC GNSS page text re-verified via WebSearch (confirms 60 stations, RINEX 1–60 s cadences); ANCFCC website unreachable from sandbox (DNS NXDOMAIN on this date). `itri-gnss.ma` and `itri-gnss.com` — DNS NXDOMAIN from sandbox 2026-05-12. WebFetch of either domain returned ECONNREFUSED. Domain reachability appears region- or DNS-resolver-dependent; itri is presumed live (active marketing, gtopic.net article references it 2022) but caster sourcetable not independently re-confirmed on this date |
 
 ## Most Recent Project Announcement
 
@@ -48,7 +48,9 @@
   - itri is not listed on ArduSimple Morocco page (which states no national network found) — confirming its closed/professional-only access model.
 
 - **GeoPrism Maroc:** Mentions GNSS correction services for Morocco; details thin; independent operator status unconfirmed.
-- **Global commercial networks:** Centipede-RTK has no Morocco base stations confirmed. GEODNET and ONOCOY Morocco coverage not confirmed.
+- **gtopic.net analysis (Apr 2022)** by Moroccan geomatics policy author: recommends a public-private partnership model where ANCFCC maintains baseline geodetic infrastructure under Law 58-00 while private partners densify under standardised guidelines — analogous to France's IGN-TERIA. The piece references both ANCFCC and itri as existing operators but does not list pricing.
+- **Global commercial networks:** Centipede-RTK has no MAR pipeline pins as of 2026-05-12 (`py scripts/stations_by_country.py` lists MAR only under rtk2go). GEODNET and ONOCOY Morocco coverage not confirmed.
+- **rtk2go volunteer presence**: 1 entry — `ProdairLAB` at 31.65, −8.04 (near Marrakech) — confirmed via `py scripts/stations_by_radius.py 31.6 -8.0 300` 2026-05-12. Hobbyist single-base option for the Marrakech area; no other public volunteer bases.
 - **Practical workaround:** Register with ANCFCC (government, likely lower cost) or itri (private, larger station density); deploy a local base for single-base RTK; or use Galileo HAS / PPP for sub-metre accuracy.
 
 ## Post-Processing (RINEX) Fallback
@@ -69,9 +71,11 @@
 - itri-gnss.ma registration: https://secure.itri-gnss.ma/admin/auth/register
 - itri-gnss.com (alternate domain): https://www.itri-gnss.com/
 - itri Facebook: https://www.facebook.com/itri.gnss/
-- ArduSimple Morocco: https://fr.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-morocco/
+- ArduSimple Morocco: https://fr.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-morocco/ — confirms (2026-05-12) Morocco "not among" the published list of countries with a single national RTK network (ArduSimple does not enumerate ANCFCC / itri on this page)
 - GeoPrism Maroc: https://geoprism-maroc.com/le-gnss/
-- NTRIP-list.com — no Morocco entries found 2026-05-06
-- RTK2go monitor (monitor.use-snip.com) — no Morocco mountpoints visible 2026-05-06
-- curl probe of `itri-gnss.ma:2101` — ECONNREFUSED 2026-05-06 09:14 UTC
-- WebFetch of ANCFCC cartographie/reseau-gnss/ — HTTP 200, 60 stations and RTK service confirmed 2026-05-06
+- gtopic.net policy analysis (PPP for Moroccan reference stations, Apr 2022): https://gtopic.net/blog/2022/04/18/stations-de-reference-gnss-actives-et-partenariat-public-prive/
+- GeoRezo forum thread (Morocco permanent stations): https://georezo.net/forum/viewtopic.php?id=119022
+- NTRIP-list.com — no Morocco entries found 2026-05-12
+- RTK2go monitor (monitor.use-snip.com) — 1 Morocco mountpoint `ProdairLAB` visible 2026-05-12
+- Local pipeline check (2026-05-12): `py scripts/stations_by_country.py MAR` returns 1 rtk2go entry (ProdairLAB 31.65, −8.04); 0 Centipede, 0 EarthScope
+- Sandbox DNS resolution for `itri-gnss.ma` and `itri-gnss.com` — NXDOMAIN 2026-05-12 (`nslookup`); `www.ancfcc.gov.ma` — NXDOMAIN 2026-05-12. ANCFCC content corroborated via WebFetch of gtopic.net mirror and WebSearch snippets referencing the 60-station figure on the cartographie page

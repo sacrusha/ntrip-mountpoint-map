@@ -1,5 +1,5 @@
 # Malawi [MW] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12 (re-verified; status unchanged from 2026-05-06)
 
 ## Status: NO confirmed public NTRIP caster; AFREF archive station in Lilongwe (RINEX only)
 
@@ -11,7 +11,7 @@
 | **tariff** | n/a (no public service) |
 | **hobbyist_eligibility** | n/a |
 | **legal_residency_required** | n/a |
-| **last_confirmed_alive** | lands.gov.mw reachable 2026-05-06; no MW mountpoint in any public NTRIP sourcetable |
+| **last_confirmed_alive** | lands.gov.mw reachable 2026-05-12; no MW mountpoint in any public NTRIP sourcetable; nearest reachable rtk2go/Centipede stations are >500 km away (in ZAF, SWZ) — radius probe `py scripts/stations_by_radius.py -15.7 35.0 500` returns no results |
 
 ## Operator
 
@@ -36,7 +36,7 @@ The Department's Geodetic and Topographic Survey Section is responsible for geod
 - ArduSimple country directory: Malawi not listed with any NTRIP service
 - mvarga1989 GNSS CORS list (GitHub): No Malawi NTRIP endpoint
 - AFREF documentation: Lilongwe station confirmed as RINEX archive only; no real-time NTRIP stream
-- No public caster address found in any indexed source as of 2026-05-06
+- No public caster address found in any indexed source as of 2026-05-12
 
 ## Most Recent Project Reference
 

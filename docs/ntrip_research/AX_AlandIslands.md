@@ -1,12 +1,12 @@
 # Åland Islands [AX] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12
 
-## Status: YES (limited) — 2 Centipede volunteer nodes; FINPOS (Finland NLS) covers Åland territory but RTK access is restricted to research/test only; no dedicated Åland CORS
+## Status: YES (limited) — 2 Centipede volunteer nodes confirmed on the main island; FINPOS (Finland NLS) covers Åland territory but RTK access is restricted to research/test only; no dedicated Åland CORS
 
 | Field | Value |
 |---|---|
 | **Active public NTRIP RTK caster** | Partial — Centipede volunteer nodes only for hobbyist use |
-| **Volunteer (Centipede)** | ~2 nodes in Åland archipelago (country code `ALA`) — `caster.centipede.fr:2101` |
+| **Volunteer (Centipede)** | **2 nodes confirmed** (country code `ALA`, `caster.centipede.fr:2101`): `MAR1` at Mariehamn (60.126°N, 19.951°E) and `FOG2` at ~28 km east (60.014°N, 20.409°E) — verified in `data/stations.json` 2026-05-12 |
 | **Volunteer (rtk2go)** | 0 AX bases confirmed |
 | **FINPOS (Finland NLS)** | host: `gnss-finland.nls.fi` / `finpos.nls.fi`; RTK service restricted to research/test use; DGNSS and RINEX services open; see notes |
 | **SWEPOS (Sweden, Lantmäteriet)** | Separate subscription; mainland Swedish coverage; Åland proximity varies — not confirmed to cover AX territory |
@@ -30,7 +30,14 @@ Registration at https://finpos.nls.fi/ or https://maanmittauslaitos.fi/en/finpos
 
 ## Centipede Volunteer Nodes
 
-Centipede-RTK is the practical free RTK option for Åland. Two nodes with country code `ALA` in the Centipede sourcetable cover portions of the archipelago. Coverage depends on node locations within the 6,500-island archipelago (~1,528 km²); the practical RTK radius per node is ~20–40 km. The main island (Fasta Åland) is ~70 km long; two nodes may leave gaps in the outer archipelago.
+Centipede-RTK is the practical free RTK option for Åland. Two nodes with country code `ALA` in the Centipede sourcetable, both on the main island (Fasta Åland):
+
+| Mountpoint | Lat | Lon | Location |
+|---|---|---|---|
+| `MAR1` | 60.126 | 19.951 | Mariehamn (capital, SW main island) |
+| `FOG2` | 60.014 | 20.409 | ~28 km east-southeast of Mariehamn |
+
+Coverage of the western main island and the area around Mariehamn is good (typical RTK radius 20–40 km per node). The outer archipelago (north, east, far west) sits beyond reliable baseline and would need additional bases or a local rover-base pair.
 
 ## No Dedicated Åland CORS
 

@@ -1,5 +1,5 @@
 # Haiti [HT] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-06 (re-verified 2026-05-12: no HTI entry in any source of data/stations.json; no public NTRIP announcement found in web searches; status unchanged)
 
 ## Status: NO active public NTRIP caster
 

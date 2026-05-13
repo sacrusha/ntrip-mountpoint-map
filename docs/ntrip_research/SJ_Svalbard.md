@@ -1,18 +1,18 @@
 # Svalbard [SJ] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-13
 
 ## Status: LIMITED — 1 Centipede node at Ny-Ålesund (NYAWIPEV, AWIPEV research station); CPOS (Kartverket) covers mainland Norway only, does not extend to Svalbard; Kartverket geodetic observatory raw data purchasable but not a public RTK caster
 
 | Field | Value |
 |---|---|
 | **Active public NTRIP RTK caster** | No public caster; one Centipede volunteer node only |
-| **Volunteer (Centipede)** | 1 node — `NYAWIPEV` (~78.9°N, Ny-Ålesund, Spitsbergen) — `caster.centipede.fr:2101`; operated by / associated with the AWIPEV Franco-German Arctic research station |
-| **Volunteer (rtk2go)** | 0 SJ bases confirmed |
-| **CPOS (Kartverket, Norway)** | Explicitly covers **mainland Norway only** — Svalbard and Jan Mayen excluded; `159.162.103.14:2101` |
+| **Volunteer (Centipede)** | 1 node — `NYAWIPEV` at 78.923°N, 11.923°E (Ny-Ålesund, Spitsbergen) — `caster.centipede.fr:2101`; operated by / associated with the AWIPEV Franco-German Arctic research station. Confirmed in local `data/stations.json` (Centipede tag SJM) 2026-05-13 |
+| **Volunteer (rtk2go)** | 0 SJ bases confirmed (no SJ/SJM tag in rtk2go data) |
+| **CPOS (Kartverket, Norway)** | Explicitly covers **mainland Norway only** — Kartverket "Guide to CPOS" states "The service covers mainland Norway", so Svalbard and Jan Mayen are excluded; `159.162.103.14:2101` |
 | **Kartverket geodetic observatory** | Ny-Ålesund observatory operates permanent GNSS stations; raw RTCM 3.2 MSM5 data available to purchase by agreement; contact post@kartverket.no; **not a public NTRIP RTK caster** |
 | **hobbyist_eligibility** | Centipede NYAWIPEV: yes — free, open; Kartverket raw data: commercial agreement only |
 | **legal_residency_required** | Centipede: no; Kartverket data purchase: no explicit residency requirement, but requires commercial/research agreement |
-| **last_confirmed_alive** | Centipede NYAWIPEV node confirmed in Centipede sourcetable; Kartverket Ny-Ålesund observatory continuously operational |
+| **last_confirmed_alive** | Centipede NYAWIPEV node present in local Centipede archive 2026-05-13 (`py scripts/stations_by_radius.py 78.22 15.65 200` returns NYAWIPEV at 113.3 km from Longyearbyen); Kartverket Ny-Ålesund observatory continuously operational |
 | **tariff** | Centipede: free; Kartverket raw station data: price on application |
 
 ## CPOS Does Not Cover Svalbard
@@ -35,7 +35,7 @@ The AWIPEV Arctic Research Station is jointly operated by the Alfred Wegener Ins
 
 ## Most Recent Project Announcement
 
-No announced Kartverket plan to extend CPOS or DPOS to Svalbard as of 2026-05-06. Kartverket's 2023–2024 Svalbard white paper analysis (High North News) addresses sovereignty and infrastructure but does not reference a public RTK correction service expansion.
+No announced Kartverket plan to extend CPOS or DPOS to Svalbard as of 2026-05-13. Kartverket's "Guide to CPOS" still states the service covers "mainland Norway" without further extension. Kartverket's 2023–2024 Svalbard white paper analysis (High North News) addresses sovereignty and infrastructure but does not reference a public RTK correction service expansion.
 
 No additional Centipede or rtk2go nodes for Svalbard have been announced.
 

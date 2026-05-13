@@ -1,5 +1,5 @@
 # Belarus [BY] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-07 (initial 2026-05-06)
+**Date researched:** 2026-05-12 (initial 2026-05-06, revised 2026-05-07)
 **Exchange rate used:** ~2.84 BYN / 1 USD (approximate spot rate, 2026-05-07)
 
 ## Status: YES — single state-monopoly NTRIP caster (ССТП РБ / Belgeodesiya); residency-restricted, paid contract only; no free hobbyist tier; no commercial alternative
@@ -26,7 +26,7 @@
 | **VAT status** | All tariffs explicitly stated "без НДС" (excluding 20% VAT); transmission costs over telecoms links also explicitly excluded and billed separately |
 | **hobbyist_eligibility** | Unclear in practice — "Общий" plan text states corrections are provided "неограниченному кругу пользователей, кроме тех, кто подпадает под действие иных тарифных планов" (unlimited circle of users except those covered by other plans), implying any individual may sign the public-offer contract. However: (1) no self-service web portal exists, all access requires signed paper contract with Belgeodesiya; (2) the entire tariff PDF is titled "для резидентов Республики Беларусь"; (3) sanctions context (see Notes) restricts non-resident access in practice. |
 | **legal_residency_required** | Yes — tariff title explicitly limits service to residents of the Republic of Belarus (физических и юридических лиц со статусом резидента); contract execution requires Belarusian banking and tax data |
-| **last_confirmed_alive** | 2026-05-07 — sourcetable fetch returned 200 OK with 47 STR records; geo.by main site, services/sstp page, tariff PDF, public-contract PDF, RTK manual PDF all served normally |
+| **last_confirmed_alive** | 2026-05-12 — `geo.by/services/sstp` HTTP 200 (nginx/1.22.0); `geo.by/images/tariffs.pdf` HTTP 200 (Content-Length 142832); direct caster probe on port 8080 not retried this session but reachability checked at HTTP layer only. 2026-05-07 sourcetable fetch returned 47 STR records (24 physical CORS + VRS/Agro mountpoints) and was the last full SOURCETABLE confirmation. |
 
 ## Context Notes
 

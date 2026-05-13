@@ -1,19 +1,20 @@
 # US Virgin Islands [VI] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-13 (re-verification of 2026-05-06 baseline)
 
-## Status: NO territory-operated NTRIP — EarthScope NOTA streams one station on St. Thomas (STVI); NOAA NCN has two USVI CORS stations (RINEX only); no VRS service; distances impractical for RTK
+## Status: NO territory-operated NTRIP — EarthScope NOTA streams one station on St. Thomas (STVI); NOAA NCN has two USVI CORS stations (RINEX only); no VRS service; distances impractical for RTK on St. Croix
 
 | Field | Value |
 |---|---|
 | **Active public NTRIP RTK caster** | No — territory-operated; no VRS |
-| **EarthScope NOTA NTRIP** | `ntrip.earthscope.org:2101` — mounts STVI_RTCM3P3 (St. Thomas, 18.34°N/−64.97°W); RTCM 3.3, GPS+GLO+BDS+GAL+SBAS+QZS at 1 Hz; Trimble NETR9; confirmed in sourcetable 2026-05-06 |
+| **EarthScope NOTA NTRIP** | `ntrip.earthscope.org:2101` — mountpoint `STVI_RTCM3P3` (St. Thomas, 18.34°N/−64.97°W); RTCM 3.3 MSM7 message set 1005(60),1007(60),1013(1),1029(60),1033(60),1077(1),1087(1),1097(1),1107(1),1117(1); GPS+GLO+BDS+GAL+SBAS+QZS at 1 Hz; Trimble NETR9; confirmed in sourcetable 2026-05-12 (direct TCP probe) and stations.json 2026-05-13 (country code USA in EarthScope feed) |
 | **EarthScope NOTA tariff** | Free for non-commercial scientific/educational/humanitarian use; USD $1,000/seat/year commercial (one concurrent stream per seat); two-week trial (5 seats) available |
 | **VRS** | No — single-base 1 Hz RTCM 3.3 streams only; no network RTK engine |
 | **hobbyist_eligibility — NOTA** | Yes — non-commercial account required; EarthScope account registration free |
 | **legal_residency_required** | No |
-| **last_confirmed_alive** | `ntrip.earthscope.org:2101` returned SOURCETABLE 200 OK with STVI_RTCM3P3 confirmed live 2026-05-06 (curl probe) |
+| **registration** | https://data.earthscope.org/ (account + NULA acceptance) |
+| **last_confirmed_alive** | `ntrip.earthscope.org:2101` — direct TCP sourcetable probe 2026-05-12 returned `STVI_RTCM3P3;…;EARTHSCOPE;USA;18.34;-64.97;…;TRIMBLE NETR9;…`. Project sourcetable in stations.json shows STVI listed under USA country code 2026-05-13 |
 | **NOAA NCN CORS in USVI** | STVI (St. Thomas, VQ state code, Operational, UNAVPS); VITH (St. Thomas, NGSSTA, Operational); CRO1 (St. Croix VLBA, JPL, Operational); VIKH (Kingshill St. Croix, NGSSTA, Operational) — all RINEX download only, no public NTRIP caster |
-| **PRSN/UPRM** | Puerto Rico Seismic Network (UPRM) operates 18 permanent GNSS stations covering PR + USVI + BVI; NTRIP endpoint restricted to academic/government users; contact redsismica.uprm.edu |
+| **PRSN/UPRM** | Puerto Rico Seismic Network (UPRM) operates ~18 permanent GNSS stations covering PR + USVI + BVI; NTRIP endpoint restricted to academic/government users; contact redsismica.uprm.edu |
 
 ## Context Notes
 
@@ -40,5 +41,6 @@
 - NOAA NCN station list (sort_sites.shtml) — VQ state code entries STVI, VITH, CRO1, VIKH confirmed: https://geodesy.noaa.gov/CORS/sort_sites.shtml
 - PRSN GNSS network overview: https://redsismica.uprm.edu/english/our_work/instrumentation.php
 - St Thomas Source / PRSN USVI monitoring article (Jan 2024): https://stthomassource.com/content/2024/01/30/puerto-rico-seismic-network-monitoring-the-u-s-virgin-islands-for-earthquakes/
-- curl probe of `ntrip.earthscope.org:2101` — SOURCETABLE 200 OK, STVI_RTCM3P3 confirmed present 2026-05-06
-- curl probe of CN03_RTCM3P3 (VGB/Tortola BVI, 18.49°N/−64.40°W) — also confirmed in sourcetable 2026-05-06
+- curl probe of `ntrip.earthscope.org:2101` — SOURCETABLE 200 OK, STVI_RTCM3P3 confirmed present 2026-05-06; re-confirmed via TCP probe 2026-05-12 (line still shows TRIMBLE NETR9, country code USA, lat/lon 18.34/-64.97)
+- curl probe of CN03_RTCM3P3 (VGB/Tortola BVI, 18.49°N/−64.40°W) — confirmed in sourcetable 2026-05-12 (SEPT POLARX5; ~62 km NE of STVI, useful as a second reference for northern USVI waters)
+- stations_by_radius.py 18.34 -64.97 100 (run 2026-05-13) — returned STVI_RTCM3P3 [USA] @ 0 km, CUPR_RTCM3P3 [USA] (Puerto Rico) @ 33 km, CN03_RTCM3P3 [VGB] @ 62 km. Confirms only one mountpoint physically on USVI territory; St. Croix (50–80 km south of these) is outside reliable single-base RTK range

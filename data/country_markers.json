@@ -1413,7 +1413,7 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
-      "registration": "https://www.lmi.is/is/maelingar/thjonustur/icecors",
+      "registration": "https://www.natt.is/is/landmaelingar/jardstodvakerfi",
       "stations_declared": 33,
       "note": "33 stations, free. Registration required. Offers nearest-station selector and VRS3 (network-RTK) correction products."
     },

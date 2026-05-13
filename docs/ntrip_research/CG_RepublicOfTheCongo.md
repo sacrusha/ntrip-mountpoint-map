@@ -1,5 +1,5 @@
 # Republic of the Congo [CG] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12 (revising 2026-05-06 entry — no material changes; volunteer counts re-verified)
 
 ## Status: NO active public NTRIP caster
 
@@ -32,7 +32,7 @@ URL: https://ric2024.rcmrd.org/afref
 - **CERGEC** (Centre de Recherche Géographique et de Production Cartographique) is the official national mapping and geodetic authority, operating under the Ministry of Scientific Research and Innovation. It is responsible for cartographic reference data and geodesy for the country.
 - **No CORS, no NTRIP**: No CORS installation, IGS-affiliated permanent station, or NTRIP caster has been identified for CG. CG does not appear in the IGS network, ITRF2020, SONEL, or the AFREF confirmed-CORS country list.
 - **IGN FI partnership scope** as of 2024: The announced cooperation covers GIS, digitisation, and "satellite location systems" broadly — not a committed CORS deployment schedule. No host:port or caster endpoint has been published.
-- **RTK2go / Centipede**: Zero CG stations in either sourcetable.
+- **RTK2go / Centipede**: Zero CG/COG stations in either sourcetable (re-verified 2026-05-12 against `data/stations.json` fetched 2026-05-12T18:17Z).
 - **Global commercial networks** (GEODNET, ONOCOY, Centipede, RTKdata): No coverage of the Republic of the Congo.
 - **Infrastructure constraints**: Electricity access is limited outside Brazzaville and Pointe-Noire; internet penetration is low in rural areas — both constrain continuous CORS operation outside urban centres.
 

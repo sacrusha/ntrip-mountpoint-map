@@ -1,5 +1,5 @@
 # Bhutan [BT] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12 (initial 2026-05-06)
 
 ## Status: YES — active government NTRIP caster (DrukNet / MIRACaster); annual subscription required
 
@@ -15,7 +15,7 @@
 | **tariff — Educational / research** | Free — official supporting document proving teaching/research purpose required |
 | **hobbyist_eligibility** | Individual hobbyist tier not explicitly defined; educational/research free tier may be accessible to serious hobbyists who can submit a supporting letter demonstrating research intent |
 | **legal_residency_required** | Not stated; pre-registration form open globally at miranet.druknet.net |
-| **last_confirmed_alive** | miranet.nlcs.gov.bt responded HTTP 200 on 2026-05-06. NLCS CORS Facility page active. NSDI metadata revised August 2024. curl probe of ntrip.druknet.net:2101 NOT executed — see Sources. |
+| **last_confirmed_alive** | 2026-05-12 — `miranet.nlcs.gov.bt` HTTP 200 (Apache/2.4.52 Ubuntu); `web.nlcs.gov.bt/cors-facility/` HTTP 200 (nginx/1.18.0) with tariff schedule unchanged from 2026-05-06 snapshot; NSDI metadata still revised August 2024. Direct NTRIP SOURCETABLE probe of `ntrip.druknet.net:2101` not executed (NTRIP/2.0 not testable in this sandbox); HTTP-layer reachability of the portal confirmed. |
 
 ## Most Recent Project Announcement
 

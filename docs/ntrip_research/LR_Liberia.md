@@ -1,7 +1,7 @@
 # Liberia [LR] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12
 
-## Status: NO — no public NTRIP RTK caster found; national geodetic reference frame (LGR) under development
+## Status: NO — no public NTRIP RTK caster operating; national geodetic reference frame (LGR) under development; one private CORS announcement (Derks Surveying Solutions, June 2024) not yet deployed
 
 | Field | Value |
 |---|---|
@@ -10,13 +10,15 @@
 | **tariff** | N/A |
 | **hobbyist_eligibility** | N/A |
 | **legal_residency_required** | N/A |
-| **last_confirmed_alive** | N/A — no caster identified |
+| **last_confirmed_alive** | N/A — no caster identified 2026-05-12 |
 
 ## Most Recent Project Announcement
 
-No CORS or NTRIP project announcement found for Liberia as of 2026-05-06.
+- **14 June 2024 — Derks Surveying Solutions (DSS) CORS plan (announcement only)**: DSS (a Liberian-owned surveying firm established 2018, led by civil engineer / retired Air Force officer Solomon Vincent) announced via FrontPage Africa that it has purchased over USD 500,000 of optical + GNSS surveying equipment and "intends to work closely with local governmental agencies to establish Continuous Operating Reference Stations (CORS) as mandated by the United Nations Economic Commission for Africa (UNECA)" to contribute to the African Geodetic Reference Frame (AFREF). The project is in **announcement / planning phase**: no operational caster, no station list, no NTRIP endpoint as of 2026-05-12. DSS also describes a planned apprenticeship programme for Liberians aged 18–30 with emphasis on women, and is seeking collaboration with government ministries, the Liberia Land Authority, civil society and private sector.
+  - Source: https://frontpageafricaonline.com/community-news/liberia-derks-surveying-solutions-seeks-collaborations-to-enhance-accuracy-in-surveying-purchases-over-500k-survey-equipment/ (14 June 2024)
+- **February 2026 — LLA strategic planning retreat in Ganta**: brought together commissioners, directors and technical staff to plan strengthening of land governance; no specific CORS / GNSS deliverables announced in the public summary.
 
-The Liberia Land Authority (LLA, `lla.gov.lr`), established under the Land Rights Act of 2018, is the national land administration body responsible for public surveying, cadastral mapping, and the national geodetic reference network. The LLA's Land Administration Department explicitly aims to ensure that all land parcels in Liberia reference the **Liberia Geodetic Reference frame (LGR)** for security of tenure, but no CORS station list, NTRIP service page, or public endpoint has been found on the LLA website or in any third-party geodetic resource.
+The **Liberia Land Authority** (LLA, `lla.gov.lr`), established under the Land Rights Act of 2018, is the national land administration body responsible for public surveying, cadastral mapping, and the national geodetic reference network. The LLA's Land Administration Department explicitly aims to ensure that all land parcels in Liberia reference the **Liberia Geodetic Reference frame (LGR)** for security of tenure, but no CORS station list, NTRIP service page, or public endpoint has been found on the LLA website or in any third-party geodetic resource.
 
 The LLA concluded a training programme on drone technology for land surveying capability under the **Inclusive Land Administration and Management Project (ILAMP)** (World Bank-funded), but ILAMP deliverables identified in search results focus on land registration, not CORS/NTRIP infrastructure.
 
@@ -26,11 +28,11 @@ The LLA concluded a training programme on drone technology for land surveying ca
 - **Liberia Geodetic Reference Frame (LGR):** The LGR is the stated national datum target; its realisation through CORS is implied but no station coordinates, baselines, or operational CORS installations have been published externally.
 - **AFREF participation:** Liberia is within the AFREF geographic scope for West Africa. Liberia does not appear in the published lists of countries with at least one AFREF-contributing CORS (approximately 22 countries as of the 2024 AFREF workshop). No GNSS station with country code LR has been found in HartRAO, EarthScope/IGS, or RCMRD archives.
 - **ILAMP project:** The World Bank-funded Inclusive Land Administration and Management Project is supporting LLA capacity; project documentation focuses on parcel registration and land governance, not geodetic CORS infrastructure.
-- **No entries on rtk2go or Centipede:** Zero LR mountpoints in either public sourcetable.
+- **No entries on rtk2go, Centipede or EarthScope:** Zero LR mountpoints in any of the project's pipelines as of 2026-05-12. `py scripts/stations_by_radius.py 6.5 -9.5 500` returns no stations within 500 km of Monrovia — the West African coast is a documented coverage gap.
 - **No entry on ntrip-list.com:** Liberia absent from ntrip-list.com Africa listing.
 - **No commercial NTRIP providers found:** GEODNET, ONOCOY, PointOne, HxGN SmartNet — none list Liberia coverage.
-- **Regional context:** Neighbouring Sierra Leone and Guinea also have no confirmed public caster. No cross-border RTK coverage applicable.
-- **Practical hobbyist guidance:** Deploy a local GNSS base station for single-base RTK; use Galileo HAS / PPP for sub-metre work without connectivity.
+- **Regional context:** Neighbouring Sierra Leone and Guinea also have no confirmed public caster. Côte d'Ivoire (to the east) and Senegal (further north-west) have isolated IGS sites but no public RTK service usable in LR. No cross-border RTK coverage applicable.
+- **Practical hobbyist guidance:** Deploy a local GNSS base station for single-base RTK; use Galileo HAS / PPP for sub-metre work without connectivity. Galileo HAS (free, ~40 cm) is the realistic zero-cost option until either DSS or the LLA bring a national CORS online.
 
 ## Post-Processing (RINEX) Fallback
 
@@ -53,9 +55,12 @@ The LLA concluded a training programme on drone technology for land surveying ca
 - Liberia Land Authority — home: https://lla.gov.lr
 - LLA Land Administration Department: https://lla.gov.lr/index.php/about-us/organizational-arrangements/land-administration-department
 - LLA services overview: https://lla.gov.lr/index.php/services
+- LLA Overview: https://www.lla.gov.lr/index.php/about-us/overview
+- Derks Surveying Solutions CORS announcement (14 Jun 2024): https://frontpageafricaonline.com/community-news/liberia-derks-surveying-solutions-seeks-collaborations-to-enhance-accuracy-in-surveying-purchases-over-500k-survey-equipment/
 - Devex — LLA profile (ILAMP context): https://www.devex.com/organizations/liberia-land-authority-liberia-128200
 - Land Portal — LLA: https://landportal.org/organization/liberia-land-authority
 - AFREF workshop 2024 (RCMRD): https://ric2024.rcmrd.org/afref
 - AFREF background (UN-SPIDER): https://un-spider.org/space-application/space-application-matrix/african-geodetic-reference-frame-afref
 - ntrip-list.com Africa: https://ntrip-list.com/africa/
 - rtk2go monitor: http://monitor.use-snip.com/?hostUrl=rtk2go.com&port=2101
+- Local pipeline check (2026-05-12): `py scripts/stations_by_radius.py 6.5 -9.5 500` → no stations within 500 km

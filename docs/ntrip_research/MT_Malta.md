@@ -1,18 +1,18 @@
 # Malta [MT] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-06 (refreshed 2026-05-12)
 
-## Status: NO government caster — one rtk2go volunteer base is the only free RTK option; no GEODNET node confirmed; Italian commercial networks do not extend to Malta
+## Status: NO government caster — one rtk2go volunteer base (EneGIS, Naxxar) is the only free RTK option on the islands; Italian commercial networks do not extend to Malta
 
 | Field | Value |
 |---|---|
 | **Active public NTRIP RTK caster** | No government or commercial Maltese caster |
-| **Volunteer (rtk2go)** | 1 base — `EneGIS` at Naxxar (35.92°N, 14.44°E), RTCM 3.2 MSM, GPS+GLONASS L1+L2; country code `MLT` |
-| **Volunteer (Centipede)** | 0 nodes detected in Malta bounding box |
-| **GEODNET** | No confirmed node on Malta or Gozo as of 2026-05-06 (coverage map shows no hexagon over the Maltese archipelago) |
+| **Volunteer (rtk2go)** | 1 genuine Malta base — `EneGIS` at Naxxar (35.92°N, 14.44°E), RTCM 3.2 MSM, GPS+GLONASS L1+L2; country code `MLT`. Note: rtk2go sourcetable also tags `S3RTK` (44.61°N, 4.78°E) as `MLT` but the coordinates place it in southern France — caster-side mis-tag, not Malta. |
+| **Volunteer (Centipede)** | 0 nodes detected in Malta bounding box (per `py scripts/stations_by_country.py` — no MLT code in Centipede dataset, 2026-05-12) |
+| **GEODNET** | No confirmed node on Malta or Gozo as of 2026-05-12 (coverage map shows no hexagon over the Maltese archipelago) |
 | **Italian commercial networks** | NetGEO/TopNET Live (~€360/yr national Italy subscription) — coverage does not extend to Malta per published maps |
 | **hobbyist_eligibility** | rtk2go EneGIS base: yes, free, no registration |
 | **legal_residency_required** | n/a (rtk2go is open globally) |
-| **last_confirmed_alive** | rtk2go EneGIS base confirmed present in rtk2go sourcetable; exact last-probe date not separately recorded |
+| **last_confirmed_alive** | EneGIS confirmed in current rtk2go sourcetable on 2026-05-12 via `py scripts/stations_by_country.py MLT`. |
 
 ## No Active Government/Commercial Caster
 
@@ -38,7 +38,7 @@ No government RTK project announcement for Malta found. The Malta Spatial Data I
 No dedicated Maltese CORS RINEX archive identified. EPN station `MALT` (EUREF permanent network) in Malta provides post-processing RINEX data via the EPN Central Bureau (epncb.oma.be) — free with BKG/ROB broadcaster registration.
 
 ## Sources Consulted
-- ArduSimple Malta RTK page: https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-malta/
+- ArduSimple Malta RTK page: https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-malta/ — confirms Malta has no national RTK network
 - GEODNET coverage map: https://rtk.geodnet.com/coverage/rtk-service
 - TopNET Live Italy network: https://rtk.topnetlive.com/italy/networks/topnet-live-italy
 - NTRIP-list Europe: https://ntrip-list.com/europe/
@@ -46,3 +46,4 @@ No dedicated Maltese CORS RINEX archive identified. EPN station `MALT` (EUREF pe
 - Malta GeoHub: https://geohub.gov.mt/
 - rtk2go sourcetable (EneGIS mountpoint, country code MLT): http://rtk2go.com/
 - EUREF Permanent GNSS Network: https://epncb.oma.be/
+- py scripts/stations_by_country.py MLT (2026-05-12) — confirms only EneGIS is a real Malta base; S3RTK is a mis-tagged French stream

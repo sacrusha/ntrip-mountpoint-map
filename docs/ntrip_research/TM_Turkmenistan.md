@@ -1,5 +1,5 @@
 # Turkmenistan [TM] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-13 (refresh of 2026-05-06 entry)
 
 ## Status: NO public NTRIP caster — government CORS infrastructure under development via FAO project; no public access confirmed
 
@@ -38,3 +38,8 @@ None confirmed. Nearest IGS/EPN stations are in Kazakhstan, Iran, or Turkey — 
 - FAO/Turkmenistan CORS project article: https://www.newscentralasia.net/2025/04/17/from-farmers-to-government-officials-everyone-benefits-from-a-digital-land-cadastre/ (observed 2026-05-06)
 - WebSearch "Turkmenistan GNSS geodesy survey authority CORS reference station 2024" (2026-05-06) — no public service found
 - WebSearch "Turkmenistan CORS GNSS NTRIP RTK network Ashgabat 2024" (2026-05-06) — no public service found
+- WebSearch "Türkmen geodeziýa CORS GNSS NTRIP 2025 Ashgabat" (Turkmen-language probe 2026-05-13) — no public service found; no follow-up announcement located on the FAO 2025-04-09 finalization
+- WebSearch "Turkmenistan FAO CORS GNSS NTRIP RTK public access 2026" (2026-05-13) — no public access announced
+- ArduSimple Turkmenistan page: HTTP 404 (no country page exists) 2026-05-13
+- RTK2go monitor — no TM NTRIP streams 2026-05-13
+- Centipede crtk.net:2101 sourcetable — no TM mountpoints 2026-05-13

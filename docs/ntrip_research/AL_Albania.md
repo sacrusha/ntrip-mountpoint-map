@@ -1,5 +1,5 @@
 # Albania [AL] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12 (originally 2026-05-06)
 
 ## Status: YES — two GNSS RTK networks active (ALBCORS / ASIG state network + SATNET LIVE / Land&Co commercial)
 
@@ -28,6 +28,7 @@ The predecessor ALBPOS system was found non-compliant with national CORS standar
 - **Topnet Live network**: It is possible that SATNET LIVE Albania feeds into or partners with Topnet Live's European coverage — exact relationship not confirmed.
 - **Coverage**: ALBCORS 27 stations for a country of ~29 000 km² — reasonable density. SATNET LIVE coverage area not precisely documented.
 - **Practical workaround**: Apply for ALBCORS at krgjsh.asig.gov.al, or register for SATNET LIVE via landcoal.com / SATNET app.
+- **Volunteer / community**: zero AL mountpoints on rtk2go; zero AL nodes on Centipede; zero EarthScope. Confirmed via `scripts/stations_by_country.py ALB` (no entries) and `scripts/stations_by_radius.py 41.15 20.17 50` (no stations within 50 km of Tirana area) on 2026-05-12.
 
 ## Post-Processing (RINEX) Fallback
 

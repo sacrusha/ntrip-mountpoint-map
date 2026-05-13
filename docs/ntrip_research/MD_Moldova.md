@@ -1,5 +1,5 @@
 # Moldova [MD] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-06 (refreshed 2026-05-12)
 
 ## Status: YES — MOLDPOS national RTK network active; registration required; open to any GPS receiver owner
 
@@ -56,3 +56,5 @@
 - WebFetch probe of `185.108.183.29:8080` — socket closed unexpectedly (NTRIP/non-HTTP response received) 2026-05-06
 - WebFetch probe of `moldpos.md:8080` — ECONNREFUSED 2026-05-06 (hostname-based access on port 8080 not responding; use IP directly)
 - RTK2go monitor — no Moldova NTRIP streams confirmed
+- py scripts/stations_by_radius.py 47.0 28.5 200 (2026-05-12) — only nearest free RTK stations are POPINCIUC (rtk2go, Romania, 125 km) and VASLUI (Centipede, Romania, 108 km) — both outside reliable single-base range (~35 km) from Chișinău
+- moldpos.md/tarife and moldpos.md/preturi return HTTP 404 (2026-05-12) — current tariff schedule still not published in open web

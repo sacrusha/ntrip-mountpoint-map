@@ -1,18 +1,20 @@
 # Ukraine [UA] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-07 (refresh of 2026-05-06 entry)
+**Date researched:** 2026-05-13 (refresh of 2026-05-07 entry)
 
 ## Status: YES — multiple commercial NTRIP casters operational; war conditions affect eastern infrastructure; no free government tier; no Centipede / no rtk2go presence worth using
 
 There is no free national government RTK caster in Ukraine. The pre-war "UA-EUPOS" framework (Ukraine's planned contribution to the pan-European EUPOS standard, alongside Poland's ASG-EUPOS and Slovakia's SKPOS) was never consolidated into a unified public service; in practice the ecosystem is dominated by competing commercial operators. Coverage in Kharkiv, Zaporizhzhia, Donetsk, Kherson, Crimea, and Luhansk oblasts is degraded or absent due to occupation, infrastructure damage, jamming and active spoofing.
 
-**Three operational commercial casters as of 2026-05-07** (curl-confirmed alive where externally reachable):
+**Operational commercial casters as of 2026-05-13** (curl-confirmed alive where externally reachable):
 
-- **System.NET** (`gnss.org.ua:2101`) — Leica GNSS Spider; 200+ stations; the largest network — **alive ✓**
-- **Kyivstar mAgri.RTK** (`rtk.kyivstar.ua:2101`) — Trimble Pivot Platform; ~97 stations — **alive ✓**
-- **RTK HUB** (TNT-TPI; `rtkhub.com`, endpoint disclosed post-registration) — Topcon — **alive (catalog reachable 2026-05-07)**
-- **ZAKPOS** (Закарпатгеодезцентр; western Ukraine) — externally unreachable from the test sandbox 2026-05-07; portal still online via web
+- **System.NET** (`gnss.org.ua:2101`) — Leica GNSS Spider 7.11.1.109; 200+ stations; the largest network — **alive ✓** (SOURCETABLE 200 OK 2026-05-13)
+- **Kyivstar mAgri.RTK** (`rtk.kyivstar.ua:2101`) — Trimble Pivot Caster 5.2; 97 stations; 45+ mountpoints incl. MSK_xx per-oblast Soviet-legacy frames — **alive ✓** (SOURCETABLE 200 OK 2026-05-13)
+- **RTK HUB** (TNT-TPI; `rtkhub.com`, endpoint disclosed post-registration) — Topcon — **alive (catalog reachable 2026-05-13)**
+- **ZAKPOS** (Закарпатгеодезцентр; western Ukraine) — externally unreachable from the test sandbox 2026-05-13; portal still online via web
+- **gnss-rtk.com** — separate Dnipro-based operator, claims 275 stations; not externally probed; pricing not on home page — **portal alive 2026-05-13**
 
-Defunct: **NGCNET** — domain `www.ngcnet.com.ua` repurposed to a casino site; service treated as defunct as of 2026-05-07.
+Defunct: **NGCNET** (former `www.ngcnet.com.ua`) — domain repurposed to a casino site; service treated as defunct.
+Reseller-only / not an independent caster: **NGC (ngc.com.ua)** — Kharkiv/Kyiv distributor that now resells SystemNET / System.NET; no separate NGCNET caster.
 
 ---
 
@@ -32,7 +34,7 @@ Defunct: **NGCNET** — domain `www.ngcnet.com.ua` repurposed to a casino site; 
 | **VAT** | Ukrainian standard VAT 20%; reseller list prices are inclusive (retail "ціна з ПДВ"). |
 | **hobbyist_eligibility** | **Yes** — purchase via online shop without licence; account registration on gnss.org.ua portal required to receive credentials |
 | **legal_residency_required** | **Unclear** — Ukrainian-incorporated reseller; foreign card payment not explicitly supported; expect friction for non-UA buyers under wartime banking restrictions |
-| **last_confirmed_alive** | `gnss.org.ua:2101` SOURCETABLE 200 OK on 2026-05-07 (curl probe) |
+| **last_confirmed_alive** | `gnss.org.ua:2101` SOURCETABLE 200 OK on 2026-05-13 (re-confirmed; 4 mountpoints; Leica GNSS Spider 7.11.1.109) |
 
 ---
 
@@ -47,6 +49,8 @@ Defunct: **NGCNET** — domain `www.ngcnet.com.ua` repurposed to a casino site; 
 | **VRS** | Yes — `VRS` (RTCM3 MSM, full GNSS) and `Nearest_MSM5/7` |
 | **Stations** | 97 RTK base stations (Trimble equipment); 24/7 NOC monitoring; xFill Premium for short-term signal continuity during outages |
 | **tariff — GEO 365 (annual)** | **UAH 17,700/yr** (~USD 425 at 41.5 UAH/USD) |
+| **tariff — GEO 730 (2 yr)** | **UAH 31,968** (kyivstar.ua/business 2026-05-13) |
+| **tariff — GEO 90 (quarterly)** | **UAH 10,200/90 days** (kyivstar.ua/business 2026-05-13) |
 | **tariff — GEO 30 (monthly)** | **UAH 5,550/30 days** |
 | **tariff — GEO 7 (weekly)** | **UAH 1,800/7 days** |
 | **tariff — GEO 1 (daily)** | **UAH 450/day** |
@@ -55,7 +59,7 @@ Defunct: **NGCNET** — domain `www.ngcnet.com.ua` repurposed to a casino site; 
 | **VAT** | Ukrainian VAT 20% — Kyivstar pricing typically TTC for retail products; verify at checkout |
 | **hobbyist_eligibility** | **Yes** for any Kyivstar contract subscriber; service is intended for B2B/agriculture but does not require a professional licence |
 | **legal_residency_required** | **Unclear → effectively yes** — service expected to require a Kyivstar mobile contract (Ukrainian carrier); foreign customers without a UA mobile number will struggle to subscribe; wartime payment restrictions further complicate non-UA enrolment |
-| **last_confirmed_alive** | `rtk.kyivstar.ua:2101` SOURCETABLE 200 OK on 2026-05-07 (curl probe) |
+| **last_confirmed_alive** | `rtk.kyivstar.ua:2101` SOURCETABLE 200 OK on 2026-05-13 (re-confirmed; ~45 mountpoints incl. ITRF2020 added; Trimble Pivot Caster 5.2; 17,942-byte sourcetable) |
 
 ---
 
@@ -77,7 +81,7 @@ Defunct: **NGCNET** — domain `www.ngcnet.com.ua` repurposed to a casino site; 
 | **VAT** | Ukrainian VAT 20% — listings are with VAT (retail "ціна з ПДВ"). Date observed: 2026-05-07. Source: https://tnt-tpi.com/catalog/pidpiski-na-poslugi-rtk |
 | **hobbyist_eligibility** | **Yes** — sold via web shop; no licence requirement |
 | **legal_residency_required** | **Unclear → likely yes** — UA shop, UAH-only retail; foreign buyers face friction |
-| **last_confirmed_alive** | https://rtkhub.com / https://tnt-tpi.com catalog reachable 2026-05-07; NTRIP endpoint not externally probable without credentials |
+| **last_confirmed_alive** | https://rtkhub.com / https://tnt-tpi.com catalog reachable 2026-05-13 (prices re-confirmed unchanged); rtkhub.com:2101 timed out from sandbox 2026-05-13 (endpoint expected post-registration) |
 
 **Position:** RTK HUB is currently the **cheapest national RTK subscription in Ukraine** (UAH 10,500/yr ≈ USD 250 — roughly 60% the price of System.NET geodesy and Kyivstar GEO 365), with the most flexible short-term packages (24-hour day passes from UAH 210 ≈ USD 5). Trade-off: smaller station footprint than System.NET; endpoint not visible until after subscription.
 
@@ -96,15 +100,33 @@ Defunct: **NGCNET** — domain `www.ngcnet.com.ua` repurposed to a casino site; 
 | **VAT** | Ukrainian VAT 20% (TTC retail listing convention) |
 | **hobbyist_eligibility** | **Yes** — open subscription |
 | **legal_residency_required** | **Unclear → likely yes** — Ukrainian state enterprise, UAH-only |
-| **last_confirmed_alive** | Web portal at http://zakpos.zakgeo.com.ua/ reachable 2026-05-07 (Joomla CMS, redirect-loop on some article URLs); NTRIP `:2102` and `:2101` did not return SOURCETABLE from the test sandbox on 2026-05-07 (timeout — could be IP allow-listing, intermittent uptime, or wartime air-raid pause). Report this as **alive (web) / unconfirmed (NTRIP)** |
+| **last_confirmed_alive** | NTRIP `:2102` and `:2101` did not return SOURCETABLE from the test sandbox on 2026-05-13 (still timing out 1 week later — could be IP allow-listing, intermittent uptime, or wartime air-raid pause). Web portal at http://zakpos.zakgeo.com.ua/ reachable 2026-05-07. Report this as **alive (web) / unconfirmed (NTRIP)** |
 
 **Operational note:** ZAKPOS pauses during air-raid alerts. Even outside alerts the public NTRIP port has been intermittently unreachable from outside Ukraine. Confirm with the operator before purchasing.
 
 ---
 
+## Service E: gnss-rtk.com (Dnipro-based; claims largest UA station footprint)
+
+| Field | Value |
+|---|---|
+| **Operator** | Operator at Slobozhanskyi Ave. 20, Dnipro; corporate name not disclosed on the home page; phone +380 50 842 6165 |
+| **host:port** | Not publicly published — distributed post-subscription |
+| **Stations claimed** | 275 base stations covering Ukraine (excluding occupied territories), 99% uptime, 410 active users (per gnss-rtk.com home page 2026-05-13). Independent verification not available; user counts and station counts on competitor sites disagree. |
+| **Service modes** | Geodetic (geodesy) and agricultural (agro) RTK corrections; daily / weekly / monthly / quarterly / half-yearly / yearly subscription terms |
+| **tariff** | Not displayed on home page; "Геодезичні поправки" and "Аграрні поправки" linked pages return tariff to logged-in users; expect a similar UAH-denominated structure to SystemNET (≈UAH 19,000/yr geodesy) |
+| **VAT** | Ukrainian VAT 20% — retail listings are TTC |
+| **hobbyist_eligibility** | **Yes** — online enrolment available |
+| **legal_residency_required** | **Unclear → likely yes** — UAH retail, UA-incorporated |
+| **last_confirmed_alive** | https://gnss-rtk.com reachable 2026-05-13; NTRIP endpoint not externally probable without credentials |
+
+**Note:** This is a separate operator from System.NET, Kyivstar, and RTK HUB; counts of "Ukrainian RTK networks" should treat it as a fourth commercial player. The 275-station figure (if accurate) would put it above System.NET's 200+ claim.
+
+---
+
 ## Defunct / Unconfirmed
 
-- **NGCNET** (NGC Ltd) — pre-war Ukrainian RTK service. Domain `www.ngcnet.com.ua` now redirects to a casino site; treated as **defunct** as of 2026-05-07. No replacement endpoint located.
+- **NGCNET** (NGC Ltd) — pre-war Ukrainian RTK service. Domain `www.ngcnet.com.ua` now redirects to a casino site; treated as **defunct** as of 2026-05-07. The NGC Kharkiv company (`ngc.com.ua`, phones +38 057 728-22-50, +38 067 715-27-37) appears to have repositioned as a **reseller of System.NET** (sells SystemNET RTK subscriptions, RINEX, and equipment rental from offices in Kharkiv and Kyiv) — it is no longer an independent caster operator.
 - **GeoTerrace** (Інститут геодезії, Lviv Polytechnic National University; https://geoterrace.lpnu.ua/) — operates the Lviv Polytechnic Permanent GNSS Stations network, but the public-facing services are **post-processing only** (RINEX downloads, coordinate transformation tools). No real-time public NTRIP RTK caster. Not an option for hobbyist real-time work.
 - **State Permanent GNSS Network (СКНЗУ, Держгеокадастр)** — operates reference stations for geodetic control and post-processing; **no public NTRIP caster**.
 
@@ -147,11 +169,13 @@ The country survey instruction to skip rtk2go/Centipede applies fully here — n
 
 | Service | host:port | Free? | VRS? | Annual price | Hobbyist | Last alive |
 |---|---|---|---|---|---|---|
-| System.NET | `gnss.org.ua:2101` | No | Yes | UAH 19,000 (geodesy) / 19,200 (agro) | Yes | 2026-05-07 ✓ |
-| Kyivstar mAgri.RTK | `rtk.kyivstar.ua:2101` | No | Yes | UAH 17,700 (GEO 365) | Yes (Kyivstar contract) | 2026-05-07 ✓ |
-| RTK HUB | (post-registration) | No | Yes | UAH 10,500 | Yes | 2026-05-07 (portal) |
-| ZAKPOS | `zakpos.zakgeo.com.ua:2102` | No | Yes | UAH 15,000 (wartime reduced) | Yes | 2026-05-07 (web only; NTRIP timed out) |
+| System.NET | `gnss.org.ua:2101` | No | Yes | UAH 19,000 (geodesy) / 19,200 (agro) | Yes | 2026-05-13 ✓ |
+| Kyivstar mAgri.RTK | `rtk.kyivstar.ua:2101` | No | Yes | UAH 17,700 (GEO 365) | Yes (Kyivstar contract) | 2026-05-13 ✓ |
+| RTK HUB | (post-registration) | No | Yes | UAH 10,500 | Yes | 2026-05-13 (portal) |
+| ZAKPOS | `zakpos.zakgeo.com.ua:2102` | No | Yes | UAH 15,000 (wartime reduced) | Yes | 2026-05-07 (web only; NTRIP timed out 2026-05-13) |
+| gnss-rtk.com | (post-registration) | No | Yes | not displayed publicly | Yes | 2026-05-13 (web) |
 | NGCNET | n/a | — | — | — | — | Defunct (domain repurposed) |
+| NGC (ngc.com.ua) | reseller only | n/a | n/a | resells System.NET | Yes via SystemNET | 2026-05-13 (reseller portal) |
 
 ---
 
@@ -172,8 +196,9 @@ The country survey instruction to skip rtk2go/Centipede applies fully here — n
 - Ukraine RTK network stability article: https://www.rtk-navigation.com/en/background-information/chi-pratsyuyut-ukrainski-ta-evropejski-rtk-merezhi-stabilno-po-vsij-teritorii-polya-chi-chasto-buvayut-rozrivi
 - ArduSimple Ukraine: https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-ukraine/
 - GeoTerrace (post-processing only): https://geoterrace.lpnu.ua/
-- curl probe of `gnss.org.ua:2101` — SOURCETABLE 200 OK 2026-05-07 (4 mountpoints; Leica GNSS Spider 7.11.1.109)
-- curl probe of `rtk.kyivstar.ua:2101` — SOURCETABLE 200 OK 2026-05-07 (25+ mountpoints; Trimble Ntrip Caster 5.2)
-- curl probe of `crtk.net:2101` — 0 UA-coded mountpoints (1,224 STR entries; confirms zero Centipede UA presence)
-- curl probe of `zakpos.zakgeo.com.ua:2102` and `:2101` — timeout from sandbox 2026-05-07 (NTRIP port not externally responsive); web portal reachable
-- curl probe of `rtkhub.com:2101` — no response (endpoint expected post-registration; not a public NTRIP port)
+- curl probe of `gnss.org.ua:2101` — SOURCETABLE 200 OK 2026-05-13 (4 mountpoints; Leica GNSS Spider 7.11.1.109)
+- curl probe of `rtk.kyivstar.ua:2101` — SOURCETABLE 200 OK 2026-05-13 (~45 mountpoints incl. ITRF2020, VRS_CS63_3/4, UCS2000_4z/5z/6z/7z, MSK_xx oblast frames; Trimble Pivot Caster 5.2; 17,942-byte sourcetable)
+- curl probe of `crtk.net:2101` — 0 UA-coded mountpoints 2026-05-13 (confirms zero Centipede UA presence persists)
+- curl probe of `zakpos.zakgeo.com.ua:2102` and `:2101` — timeout from sandbox 2026-05-07 and again 2026-05-13 (NTRIP port not externally responsive); web portal still reachable
+- curl probe of `rtkhub.com:2101` — timeout 2026-05-13 (endpoint expected post-registration; not a public NTRIP port)
+- gnss-rtk.com — home page reachable 2026-05-13; 275 stations claimed; tariffs not displayed publicly

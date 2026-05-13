@@ -1,5 +1,5 @@
 # Palestine [PS] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12 (prior version: 2026-05-06)
 
 ## Status: NO active public NTRIP caster
 
@@ -36,6 +36,25 @@ No JICA, USAID, World Bank, or EU (PEGASE-framework) funded public CORS/NTRIP pr
 
 Note: GNSS spoofing active in the region since Oct 2023 — may affect post-processed data quality as well as real-time.
 
+## 2026-05-12 Re-Check Notes
+
+- No new public NTRIP caster announcement found for the Palestinian Authority,
+  Palestinian Land Authority (PLA), An-Najah National University, or any
+  donor-funded project (JICA, USAID, World Bank, EU). WebSearch returned only
+  conflict / settler-violence / land-registration coverage; no geodetic
+  infrastructure news.
+- Israeli land-registration push into Area C (Feb 2026 cabinet decisions)
+  intensifies the political and operational constraints on any Palestinian
+  CORS rollout in open-area C terrain — surveying access for Palestinians is
+  reportedly tightening rather than expanding.
+- Bnei Eli Etkes "SpiderNET" (Israeli, private; Leica distributor) — no
+  evidence of a public sourcetable, hobbyist tariff, or formal access policy
+  for Palestinian residents. Listed on Who Profits as operating bases in the
+  West Bank (Ramallah, Jenin, Jericho, Burin, Sinjil, Dura).
+- GNSS spoofing across Israel/Lebanon/Jordan/Sinai/Cyprus, persistent since
+  October 2023, remains an operational hazard for any rover work in the West
+  Bank or Gaza.
+
 ## Sources Consulted
 - RTK2GO sourcetable, SNIP monitor
 - NTRIP-list.com, corsstations.com
@@ -47,3 +66,4 @@ Note: GNSS spoofing active in the region since Oct 2023 — may affect post-proc
 - Who Profits database
 - Survey of Israel (Mapi) portal
 - RTKdata, HxGN SmartNet
+- WebSearch 2026-05-12 — no PA / PLA / An-Najah CORS or NTRIP announcement found

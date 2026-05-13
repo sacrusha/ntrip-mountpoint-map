@@ -1,5 +1,5 @@
 # Iraq [IQ] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12 (refresh of 2026-05-06 entry — findings unchanged)
 
 ## Status: NO confirmed public NTRIP caster (CORS network exists; no public stream found)
 
@@ -21,6 +21,7 @@
 ## Context Notes
 
 - The IGRS CORS network is managed by the State Commission on Survey under the Ministry of Water Resources. Some stations were documented as having VRS (Virtual Reference Station) capability for RTK data collection, but no public NTRIP endpoint has been published.
+- NOAA's national CORS database (per ELT RTK Base reference, 2025) records the Baghdad CORS station (ISBA) as **non-operational** since its 2008 establishment, while Erbil (ISER) and Najaf (ISNA) are listed as operational. The Journal of Engineering 2024 evaluation cross-checks data from ZAXO, ISER, ISBA, ISKU, ISNA over 2015–2022.
 - Security and infrastructure conditions (post-2003 reconstruction context) historically limited public geodetic services; conditions have improved but no public RTK service announcement has emerged.
 - The Iraq Survey Board and State Commission on Survey have primary authority over geodetic infrastructure; their websites do not publish external NTRIP endpoints.
 - No commercial CORS/RTK network for Iraq was found in any surveying industry or hobbyist source.
@@ -41,4 +42,6 @@
 - Iraq Surveying (commercial company): https://iraqsurveying.com/
 - ArduSimple country RTK list (Iraq not listed): https://www.ardusimple.com/rtk-correction-services-in-your-country/
 - mvarga1989 GitHub GNSS CORS networks list (Iraq not listed): https://github.com/mvarga1989/The-list-of-GNSS-CORS-RTK-networks
-- RTK2go monitor (no Iraq stations observed)
+- RTK2go monitor (no Iraq stations observed; confirmed 2026-05-12 via `scripts/stations_by_country.py IRQ` — no IRQ tag in any source)
+- ELT RTK Base / NOAA CORS reference notes (ISBA non-operational since 2008): https://gnss.store/blogs/elt-rtk-base/2-types-of-cors-stations
+- NOAA CORS network: https://geodesy.noaa.gov/CORS/

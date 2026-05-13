@@ -1,5 +1,5 @@
 # Taiwan [TW] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-13 (refresh of 2026-05-06 entry)
 
 ## Status: YES — paid national NTRIP (e-GNSS / MOI NLSC); likely IP-restricted from outside Taiwan; day-rate pricing in TWD
 
@@ -17,12 +17,12 @@
 | **VAT** | Taiwan does not apply VAT (business tax) to government GNSS service fees; confirm at registration |
 | **hobbyist_eligibility** | Unclear — registration requires government permit application process; foreign individuals not explicitly excluded but practical access path unclear |
 | **legal_residency_required** | Unclear — caster timed out from external IP during research, suggesting possible IP restriction or geoblocking |
-| **last_confirmed_alive** | Portal egnss.nlsc.gov.tw reachable but returned ECONNREFUSED on direct caster probe 2026-05-06; NLSC website confirms service operational |
+| **last_confirmed_alive** | Direct caster probes of `210.241.63.193:81` and `:2101` timed out from non-Taiwan sandbox on 2026-05-06 and again on 2026-05-13 (consistent IP-based geo-blocking or firewalled-to-authenticated-users behaviour). Portal egnss.nlsc.gov.tw also returned ECONNREFUSED on direct fetch 2026-05-13 — likely geo-blocked or HTTPS-only enforcement from outside Taiwan. NLSC English landing page (www.nlsc.gov.tw/en/cp.aspx?n=2128) confirms the service is operational with 78 stations. |
 
 ## Context Notes
 
 - Taiwan's e-GNSS system is operated by NLSC under the Ministry of the Interior. 78 reference stations cover the entire main island of Taiwan and outlying islands.
-- The NTRIP caster IP `210.241.63.193:81` (and port 2101 on same host) both timed out from an external (non-Taiwan) IP during research on 2026-05-06. This is consistent with IP-based access restriction or firewall for authenticated users only.
+- The NTRIP caster IP `210.241.63.193:81` (and port 2101 on same host) both timed out from an external (non-Taiwan) IP during research on 2026-05-06 and again on 2026-05-13. This is consistent with IP-based access restriction or firewall for authenticated users only. ArduSimple's Taiwan page (the only neutral third-party documentation) confirms only that "their website may not be very user-friendly, so navigating the registration process might take some effort" — and offers paid registration assistance for clients who cannot complete it themselves. This is a strong signal that overseas individuals face a non-trivial registration path.
 - Tariff structure: a TWD 2,000 application permit (valid 5 years) plus TWD 300/day usage fee. Day passes can be bought on-demand — suitable for hobbyist occasional use if registration is accessible.
 - 4 NLSC e-GNSS CORS stations joined the International GNSS Service (IGS) as official IGS stations, indicating high-quality infrastructure.
 - Registration: via egnss.nlsc.gov.tw portal; English-language portal available but contact for foreign registrant process not confirmed.
@@ -42,4 +42,6 @@
 - NLSC IGS membership: https://www.nlsc.gov.tw/en/NLSC_Content.aspx?n=2110&s=124088
 - ArduSimple Taiwan page: https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-taiwan/
 - Radiodetection Asia NTRIP guide (Asia region): https://support.radiodetection.com/hc/en-gb/articles/16203507810333-Asia
-- curl probe of `210.241.63.193:81` and `210.241.63.200:2101` — both timed out 2026-05-06
+- curl probe of `210.241.63.193:81` and `210.241.63.200:2101` — both timed out 2026-05-06 and re-confirmed timed out 2026-05-13 (no change in external reachability)
+- WebFetch of egnss.nlsc.gov.tw — ECONNREFUSED 2026-05-13 (portal not externally reachable from sandbox; consistent with geo-blocking)
+- NLSC fee-schedule page (egnss.nlsc.gov.tw/content.aspx?i=20150625102159760) — referenced as the official 收費標準 (Fee Standards) page; not retrievable from outside Taiwan; per NLSC FAQ source the fee structure follows the National Land Surveying and Mapping Data Fee Standard with membership renewals every 5 years

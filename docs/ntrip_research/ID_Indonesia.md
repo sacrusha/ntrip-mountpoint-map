@@ -1,5 +1,5 @@
 # Indonesia [ID] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-06 (updated 2026-05-12: live sourcetable captured at `nrtk.big.go.id:2001`)
 
 ## Status: YES — InaCORS (BIG) free national NTRIP caster operational; coverage outside Java/Bali sparse
 
@@ -7,18 +7,19 @@
 |---|---|
 | **Active public NTRIP RTK caster** | Yes |
 | **host:port — InaCORS** | `nrtk.big.go.id:2001` (non-standard port; not 2101) |
+| **caster software** | Leica `GNSS Spider 7.10.1.168/1.0` (sourcetable banner 2026-05-12) |
 | **network type** | physical-coord-vrs — up to 5 nearest bases used per session; VRS computed corrections |
 | **tariff** | Free — mandated by Law No. 4/2011 (Geospatial Information Law) |
 | **hobbyist_eligibility** | Yes — registration open to government, academic, and private sector; no surveying licence required |
 | **legal_residency_required** | Unclear — registration at nrtk.big.go.id; no documented residency or citizenship requirement, though the registration form is in Indonesian |
-| **last_confirmed_alive** | nrtk.big.go.id and srgi.big.go.id both returned HTTP 200 on 2026-05-06; service referenced in active Indonesian surveying community guides |
+| **last_confirmed_alive** | 2026-05-12 — `nrtk.big.go.id:2001` returned `SOURCETABLE 200 OK Server: GNSS Spider 7.10.1.168/1.0` (Content-Length 445); 4 network-solution mountpoints enumerated: `max-rtcm3` (RTCM 3, GPS+GLO, near Jakarta 6.49 S 106.85 E), `Nearest-rtcm3` (full GNSS+QZSS, central Kalimantan 2.53 S 112.94 E), `imax-rtcm3` (full GNSS+QZSS, West Papua 2.92 S 132.30 E), `vrs-rtcm3` (full GNSS+QZSS, central Java 6.0 S 106.0 E) |
 
 ## InaCORS Network Details
 
 - **Operator**: BIG — Badan Informasi Geospasial (Geospatial Information Agency), the Indonesian national mapping authority
 - **Legal basis**: Law No. 4/2011 on Geospatial Information mandates free public access to the national spatial reference infrastructure
 - **Station count (declared)**: BIG reported 397 physical CORS stations by end of 2022, targeting 435 by end of 2023; BPN (National Land Agency / ATR-BPN) separately operates ~186 CORS stations; integration of BPN stations into InaCORS is in progress
-- **Station count (sourcetable)**: only ~4 unique physical coordinates appear in the live NTRIP sourcetable — the pipeline noted this discrepancy. The gap between declared (~400+) and sourced (~4) stations suggests the caster exposes only a subset of the network, or that most stations connect via internal VRS computation and do not appear as individual mountpoints
+- **Station count (sourcetable)**: only 4 mountpoints appear in the live NTRIP sourcetable (confirmed 2026-05-12) — these are network solution products (`max`, `Nearest`, `imax`, `vrs`), not individual physical stations. The gap between declared (~400+ physical CORS) and exposed (4 network mounts) is by design: BIG runs Leica GNSS Spider in network-RTK mode where physical stations feed the network solution internally and individual single-base RTK mountpoints are not exposed publicly. This means the on-map "station count" derived from the sourcetable will always be 4 — actual physical coverage is much wider
 - **Coverage**: physically denser on Java, Bali, Sumatra, and Sulawesi; Papua, Kalimantan, and eastern islands have documented gaps. BIG's 2022 development planning paper identified Papua, Kalimantan, and parts of Sulawesi/Sumatra as priority expansion areas
 - **Registered users**: 16,800+ as of last published report (BIG)
 - **Correction format**: RTCM; RINEX post-processing also offered via the same portal
@@ -27,7 +28,7 @@
 
 ## Coverage Gap and Volunteer Supplement
 
-The InaCORS sourcetable coverage problem means that outside the Java/Bali core, practical RTK coverage is unreliable. rtk2go carries approximately 8 Indonesian volunteer bases (mostly Java/Bali), which partially fills the gap in the densest population centres. Outer islands (Papua, Maluku, Nusa Tenggara Timur, most of Kalimantan) have no confirmed free RTK coverage.
+The InaCORS sourcetable coverage problem means that outside the Java/Bali core, practical RTK coverage is unreliable. rtk2go carries 8 Indonesian volunteer bases in the data/stations.json fetch 2026-05-12 — distribution: Java (`JavaIoT`, `RTK_BASE-ID_TJ1`, `SI-Indonesia`, `TECHNOGIS`), East Java/Madura (`GSM-Samudera`), Sumbawa (`Dispatch_batuhijau`), East Kalimantan (`PSP_Samudera`), South Kalimantan (`SVYKID`). No Centipede-RTK or EarthScope IDN nodes. Outer islands (Papua, Maluku, Nusa Tenggara Timur, most of Sulawesi) have no confirmed free RTK coverage outside InaCORS network mounts.
 
 ## ATR/BPN CORS
 
@@ -50,6 +51,7 @@ No independent commercial NTRIP VRS network with Indonesia-wide coverage has bee
 
 ## Sources Consulted
 - InaCORS portal: https://nrtk.big.go.id
+- Live caster sourcetable: `curl http://nrtk.big.go.id:2001/` → `SOURCETABLE 200 OK Server: GNSS Spider 7.10.1.168/1.0` (4 STR rows: max-rtcm3, Nearest-rtcm3, imax-rtcm3, vrs-rtcm3; 2026-05-12)
 - BIG InaCORS product page: https://www.big.go.id/en/content/produk/inacors
 - SRGI — InaCORS page: https://srgi.big.go.id/page/nrtk
 - SRGI — service check: https://srgi.big.go.id/page/service-check

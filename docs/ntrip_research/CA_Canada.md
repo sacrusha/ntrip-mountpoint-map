@@ -1,15 +1,15 @@
 # Canada [CA] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-07 (revising 2026-05-06 entry)
+**Date researched:** 2026-05-12 (revising 2026-05-07 entry)
 
-## Status: NO free national NTRIP. Quebec MRNF offers free per-station GNSS streams but on direct-IP (CMR+/RTCM 3.2) — not aggregated NTRIP. All other provinces are commercial-only (paid VAR networks). Volunteer rtk2go (~65 CAN bases) and Centipede (~19 CAN nodes, mostly QC + ON) are the only free NTRIP paths for hobbyists.
+## Status: NO free national NTRIP. Quebec MRNF offers free per-station GNSS streams but on direct-IP (CMR+/RTCM 3.2) — not aggregated NTRIP. All other provinces are commercial-only (paid VAR networks). Volunteer rtk2go (66 CAN bases) and Centipede (19 CAN nodes, mostly QC + ON) are the only free NTRIP paths for hobbyists.
 
 | Field | Value |
 |---|---|
 | **Active free public NTRIP RTK caster (national)** | No |
 | **Federal operator (NRCan / NRCan-CSRS)** | RINEX archive + online PPP only (CACS / CSRS-PPP / NRCAN-PPP). No streaming NTRIP. |
 | **Provincial free real-time RTK (NTRIP)** | None confirmed. Quebec is closest but uses non-NTRIP per-station TCP streams. |
-| **Volunteer NTRIP** | rtk2go ~65 CAN, Centipede ~19 CAN — pulled from `data/stations.json` 2026-05-06T20:16Z |
-| **last_confirmed_alive (volunteer)** | 2026-05-06 (latest pipeline fetch) |
+| **Volunteer NTRIP** | rtk2go 66 CAN, Centipede 19 CAN — pulled from `data/stations.json` 2026-05-12T18:17Z |
+| **last_confirmed_alive (volunteer)** | 2026-05-12 (latest pipeline fetch) |
 
 ---
 
@@ -86,18 +86,20 @@ None of these are free for an individual hobbyist; the commercial Canadian marke
 
 ## Volunteer Coverage (rtk2go + Centipede)
 
-Live counts from `data/stations.json` (fetched 2026-05-06T20:16Z):
+Live counts from `data/stations.json` (fetched 2026-05-12T18:17Z):
 
-| Source | CAN total | Approximate regional split |
+| Source | CAN total | Provincial split (longitude-binned) |
 |---|---|---|
-| **rtk2go** | 65 | AB 21, QC/Maritimes 19, ON 17, Prairies (MB/SK) 7, BC/YT 1 |
-| **Centipede** | 19 | QC 15, ON 4 |
+| **rtk2go** | 66 | AB 22, ON 22, QC 12, SK/MB 7, Maritimes 2, BC 1, YT/NWT 0 |
+| **Centipede** | 19 | QC 14, ON 5 |
 | **EarthScope NOTA** | (covers a handful of northern Canada IGS stations under non-commercial NULA; primarily a US service) | — |
 
 Notes:
-- The 2026-05-06 entry's claim that *"No Centipede equivalent for Canada exists"* was incorrect. Centipede has a real Canadian footprint (15 in southern Quebec extending the French/Acadian network across the border, plus 4 in southern Ontario).
-- rtk2go BC/YT presence is now thin (1 base in the latest fetch); historical "BC Lower Mainland" cluster has receded — Vancouver-area hobbyists are largely on commercial VAR or self-hosted bases.
-- AB rtk2go cluster (21) is the strongest Canadian volunteer concentration, mostly Calgary/Edmonton corridors and farm bases.
+- AB rtk2go cluster (~22) is the strongest Canadian volunteer concentration, mostly Calgary/Edmonton corridors and farm bases. ON has grown to a similar size (~22).
+- QC rtk2go (~12) plus QC Centipede (~14) together yield ~26 free bases in Quebec — the densest free-coverage province in Canada.
+- BC remains structurally thin (1 rtk2go base in the latest fetch). Historical "BC Lower Mainland" cluster has not recovered — Vancouver-area hobbyists are largely on commercial VAR or self-hosted bases.
+- Maritimes (2 rtk2go) and SK/MB (7 rtk2go) provide only sparse free coverage; Yukon / NWT / Nunavut have zero free bases of any kind.
+- Centipede's Canadian footprint (14 QC + 5 ON) is now established, an organic southern-Quebec → southern-Ontario corridor likely seeded by the French-language Centipede community.
 
 ---
 
@@ -119,7 +121,7 @@ Notes:
 
 1. **No free real-time NTRIP exists at any level of Canadian government.** Quebec's RRGQ is the closest analogue and is free, but the choice not to expose it via NTRIP excludes ~all consumer rover firmware without manual TCP-socket setup.
 2. **Provincial real-time tiers have devolved entirely to private VARs.** Even where the underlying CORS hardware (NSACS, BCACS, PE) is government-funded, the streaming layer is monetised by SmartNet/Can-Net/BrandtNet/Topnet under quote-only contracts.
-3. **Volunteer networks are the only free NTRIP path.** rtk2go ~65 + Centipede ~19 = ~84 free CAN bases, concentrated in AB (rtk2go), QC (Centipede + rtk2go), ON (both). Practical baselines: Calgary, Edmonton, GTA, southern Quebec are workable; Atlantic, Prairies (interior), BC interior, the territories effectively have no free coverage.
+3. **Volunteer networks are the only free NTRIP path.** rtk2go 66 + Centipede 19 = ~85 free CAN bases, concentrated in AB (rtk2go), QC (Centipede + rtk2go), ON (both). Practical baselines: Calgary, Edmonton, GTA, southern Quebec are workable; Atlantic, Prairies (interior), BC interior, the territories effectively have no free coverage.
 4. **Centipede's Canadian footprint is real and growing southward from Quebec into Ontario** — likely organic spillover from the French Centipede community given the QC linguistic tie. Worth tracking as a potential "free RTK belt" up the St. Lawrence corridor.
 5. **No federal replacement for the 2013 NGS/NRCan shutdown is signalled.** Hobbyist policy gap is structural, not pending.
 
@@ -139,4 +141,4 @@ Notes:
 - MeasurNET: https://measur.ca/products/measur-net (observed 2026-05-07)
 - ArduSimple Canada caster review: https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-canada/ (observed 2026-05-07)
 - NTRIP-list North America: https://ntrip-list.com/north-america/ (observed 2026-05-07)
-- Local pipeline data: `data/stations.json` (rtk2go, centipede source counts; fetched 2026-05-06T20:16Z)
+- Local pipeline data: `data/stations.json` (rtk2go CAN = 66, centipede CAN = 19; fetched 2026-05-12T18:17Z)

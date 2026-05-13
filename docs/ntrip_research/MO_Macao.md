@@ -1,5 +1,5 @@
 # Macao [MO] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-06 (refreshed 2026-05-12)
 
 ## Status: YES — active public NTRIP caster (MoSRef / DSCC); free, registration required
 
@@ -30,10 +30,10 @@
 
 | Code | Full Name | Location | Year Established |
 |---|---|---|---|
-| FOMO | Mount Fortress GNSS Reference Station | Macao Peninsula | 2002 |
+| FOMO | Fortaleza do Monte (Mount Fortress) GNSS Reference Station | Macao Peninsula | 2002 |
 | COAL | Coloane Alto GNSS Reference Station | Coloane Island | 2006 |
 | UMAC | University of Macau GNSS Reference Station | Hengqin Island (UM campus) | 2016 |
-| TAGR | Taipa Grande GNSS Reference Station | Taipa Island (Meteorological Bureau rooftop) | 2023 (relocated from DSMG 2008) |
+| TAGR | Taipa Grande (Tai Tung Shan) GNSS Reference Station | Taipa Island (Meteorological Bureau rooftop) | 2023 (relocated from DSMG 2008) |
 
 - **Four Hong Kong partner stations** accessible via data-sharing agreement (since 2013): HKLT, HKSL, HKMW, HKNP. These extend VRS coverage across the Pearl River Delta region.
 - **Hardware**: Leica GR50 GNSS receivers at most stations. Recording interval: 10 seconds. Data format: RINEX v3.02.
@@ -59,4 +59,5 @@
 - EIN Presswire — BeiDou upgrade 2021: https://www.einnews.com/pr_news/558530491/dscc-has-upgraded-macao-satellite-positioning-reference-station-service-to-support-beidou-navigation-satellite-system
 - DSCC user guide Part 2 (PDF, 2012): http://mosref.dscc.gov.mo/Help/ref/20121121-Part2.pdf
 - DSCC Taipa Grande location page: https://www.dscc.gov.mo/en/tripoints1_details/article/T18T.html
-- curl probe of `mosref.dscc.gov.mo:2101` — NOT EXECUTED: sandbox TCP/shell tools blocked during research 2026-05-06. WebFetch of https://mosref.dscc.gov.mo/ returned page content confirming four active stations and NTRIP service description 2026-05-06. Direct SOURCETABLE response NOT independently confirmed.
+- curl probe of `mosref.dscc.gov.mo:2101` — NOT EXECUTED: sandbox TCP/shell tools blocked during research 2026-05-06. WebFetch of https://mosref.dscc.gov.mo/ returned page content confirming four active stations and NTRIP service description 2026-05-06 and again 2026-05-12. Direct SOURCETABLE response NOT independently confirmed.
+- py scripts/stations_by_radius.py 22.2 113.55 100 (2026-05-12) — rtk2go base CHENKATE in Guangdong (PRC, 64 km) is the only nearby free volunteer alternative; the official free MoSRef service remains the preferred option in Macao.

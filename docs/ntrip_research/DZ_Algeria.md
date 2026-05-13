@@ -1,7 +1,7 @@
 # Algeria [DZ] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06 | USD/DZD rate: 1 USD ≈ 132.23 DZD
+**Date researched:** 2026-05-12 (re-verified; original 2026-05-06) | USD/DZD rate: 1 USD ≈ 132.23 DZD
 
-## Status: RESTRICTED — AL-CORS-Net operational but no public access
+## Status: RESTRICTED — AL-CORS-Net operational but no public access (re-verified 2026-05-12: no new public endpoint, tariff, or registration portal has been announced; INCT remains the sole point of contact)
 
 | Field | Value |
 |---|---|

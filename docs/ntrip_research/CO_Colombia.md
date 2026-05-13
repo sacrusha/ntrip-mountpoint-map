@@ -1,5 +1,5 @@
 # Colombia [CO] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-07 (initial 2026-05-06)
+**Date researched:** 2026-05-12 (initial 2026-05-06; deep verification 2026-05-07)
 
 ## Status: YES — free national NTRIP caster (IGAC MAGNA-ECO) operational on two ports; VRS via Leica Spider Business Center; ~127 unique CORS coordinates advertised on physical-stations port; registration required; no commercial alternatives identified beyond cross-border Topored
 
@@ -19,7 +19,7 @@
 | **VAT status** | N/A — service is free of charge |
 | **hobbyist_eligibility** | Yes — open registration via Spider Business Center; no professional licence requirement; account types include individuals (personas naturales) |
 | **legal_residency_required** | Unclear — registration form requests national ID (cédula) by default; foreign passports may be accepted via the SBC's international ID-type dropdown; no explicit international block found, but no official statement of openness to non-residents either. The SBC platform itself supports 31+ languages including English, Spanish, Portuguese — suggesting non-resident access is technically possible. |
-| **last_confirmed_alive** | 2026-05-07 — both ports 2101 (network/VRS) and 2102 (single-base) returned valid sourcetables; redgeodesica.igac.gov.co portal HTTP 200; Spider Business Center login portal at redgeodesica-sbc.igac.gov.co/sbc HTTP 200 |
+| **last_confirmed_alive** | 2026-05-07 — both ports 2101 (network/VRS) and 2102 (single-base) returned valid sourcetables; redgeodesica.igac.gov.co portal HTTP 200; Spider Business Center login portal at redgeodesica-sbc.igac.gov.co/sbc HTTP 200. Re-probe 2026-05-12: ports 2101/2102 timed out from research env (likely transient or sandbox firewall); no upstream-side outage announcement found — assume still operational |
 
 ## Registration Process
 

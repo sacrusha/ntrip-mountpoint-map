@@ -1,5 +1,5 @@
 # Botswana [BW] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12 (initial 2026-05-06)
 
 ## Status: CORS network exists (DSM, ~55 stations); NTRIP endpoint NOT publicly disclosed
 
@@ -12,7 +12,7 @@
 | **tariff** | Not publicly listed; access expected through institutional channel (licensed surveyors) |
 | **hobbyist_eligibility** | Unclear — network is described in cadastral surveying policy documents; no published hobbyist policy |
 | **legal_residency_required** | Unclear — no published terms of service found |
-| **last_confirmed_alive** | gov.bw reachable 2026-05-06; no BW mountpoint in any public NTRIP sourcetable |
+| **last_confirmed_alive** | 2026-05-12 — `gov.bw/land-management/maps-and-geospatial-data` page surfaced via search; no public NTRIP/CORS endpoint on the page; no BW mountpoint in rtk2go, Centipede, or NTRIP-list.com Africa as of 2026-05-12. DSM joined a regional SURPAC surveying-software user community (LinkedIn 2024 announcement) — operational/cadastral workflow modernisation, not a public NTRIP service. |
 
 ## Operator
 
@@ -53,7 +53,9 @@ Website: https://www.gov.bw/ (DSM sub-pages under lands/surveys)
 ## Sources Consulted
 - DiVA portal — Botswana CORS academic thesis (2017): https://www.diva-portal.org/smash/get/diva2:1137711/FULLTEXT02
 - GIM International — Developing a Fully Fledged CORS Map for Africa: https://www.gim-international.com/content/article/developing-a-fully-fledged-cors-map-for-africa
-- DSM / gov.bw (lands and survey pages) — confirmed reachable 2026-05-06
-- RTK2GO monitor (monitor.use-snip.com) — no BW mountpoints visible
+- gov.bw maps and geospatial-data overview: https://www.gov.bw/land-management/maps-and-geospatial-data (observed 2026-05-12 — DSM offers maps/orthophotos/DEMs, no RTK service exposed)
+- OICRF DSM cadastral information system reference: https://www.oicrf.org/-/botswana-department-of-survey-and-mapping-dsm-cadastral-information-system
+- LinkedIn (May 2024) — DSM Botswana joins SURPAC user community: https://www.linkedin.com/pulse/department-surveys-mapping-dsm-botswana-joins-other-surveyor-gowera
+- RTK2GO monitor (monitor.use-snip.com) — no BW mountpoints visible 2026-05-12
 - NTRIP-list.com/africa — Botswana not listed
 - ArduSimple RTK correction services directory — Botswana not listed

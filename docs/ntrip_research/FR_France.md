@@ -1,11 +1,11 @@
 # France [FR] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-07 (refresh of 2026-05-06 entry)
+**Date researched:** 2026-05-12 (refresh of 2026-05-07 entry)
 
 ## Status: YES — Centipede RTK (community) provides de-facto national free coverage; three commercial competitors (Orphéon, Teria, HxGN SmartNet); no free government caster
 
 There is no free government NTRIP RTK service in France. IGN's RGP (Réseau GNSS Permanent) operates ~470 reference stations but redistributes them only as RINEX for post-processing. Real-time public RTK in France is split between:
 
-- **Centipede RTK** — community/open-source, free, dense (~720 FR nodes on `crtk.net:2101` sourcetable 2026-05-07; the largest free RTK footprint in continental Europe)
+- **Centipede RTK** — community/open-source, free, dense (709 FRA-coded mountpoints on `crtk.net:2101` sourcetable 2026-05-12; the largest free RTK footprint in continental Europe)
 - **Three competing commercial casters** — Orphéon (Geodata Diffusion / Hexagon), Teria (Exagone / Ordre des Géomètres-Experts), HxGN SmartNet (Hexagon / Leica Geosystems) — annual subscription pricing, mostly aimed at surveyors and large-equipment agriculture
 
 ---
@@ -20,16 +20,16 @@ There is no free government NTRIP RTK service in France. IGN's RGP (Réseau GNSS
 | **Caster software** | Millipede (open-source, by Pierre Beyssac; https://github.com/pbeyssac/millipede-caster) — migrated from legacy caster on 2025-03-18 at 22:17 Paris time; ~50× capacity improvement |
 | **VRS** | No — physical base stations only; network density makes single-base RTK viable in most metropolitan France |
 | **Mountpoints** | `NEAR` (auto-nearest station, RTCM3 MSM7); `NEAR4` (auto-nearest, MSM4, lower bandwidth for older receivers); individual station names (browse https://map.centipede-rtk.org/) |
-| **tariff** | **Free — €0.00.** No subscription, no registration required. Anonymous access. Date observed: 2026-05-07. Source: https://www.centipede-rtk.org/fr/the-centipede-rtk-network |
+| **tariff** | **Free — €0.00.** No subscription, no registration required. Anonymous access. Date observed: 2026-05-12. Source: https://www.centipede-rtk.org/the-centipede-rtk-network |
 | **Credentials** | Username: `centipede` (or `c`); Password: `centipede` (or `c`); or no credentials (anonymous) |
 | **hobbyist_eligibility** | **Yes** — fully open, no registration required |
 | **legal_residency_required** | **No** |
 | **Simultaneous connection limit** | 1 device per IP address |
-| **last_confirmed_alive** | crtk.net:2101 — SOURCETABLE 200 OK on 2026-05-07 (curl probe). 1,224 STR entries globally; 720 FRA-coded. |
+| **last_confirmed_alive** | crtk.net:2101 — SOURCETABLE 200 OK on 2026-05-12 (curl probe). 1,205 STR entries globally; 709 FRA-coded. |
 
 ### Centipede Network Scale and Coverage (2025–2026)
-- **French metropolitan stations:** 720 FRA-coded mountpoints on the live sourcetable (2026-05-07); ~625 bases installed in mainland France since launch (2019), with ongoing growth.
-- **Global network:** ~860+ bases in 30 countries; France is dominant, then Hungary (~240), England (~40), Switzerland (~30), with Belgium, Germany, Spain, and others contributing dozens.
+- **French metropolitan stations:** 709 FRA-coded mountpoints on the live sourcetable (2026-05-12); ~625 bases installed in mainland France since launch (2019), with ongoing growth.
+- **Global network:** ~860+ bases in 30 countries; France is dominant, then Hungary (217 HUN-coded on 2026-05-12 sourcetable), England (45 ENG-coded), Czech Republic (30 CHZ-coded), with Belgium, Netherlands, Norway and others contributing 17–30 each.
 - **Coverage zone per base:** ~50 km radius; very dense in grain-belt agricultural regions (Occitanie, Grand Est, Bretagne) and sparser in mountainous areas (Alps, Pyrenees).
 - **RENAG integration:** Since June 2023, ~30 RENAG (Réseau National GNSS Permanent) scientific stations are re-distributed through Centipede, particularly strengthening southeastern France coverage.
 
@@ -48,18 +48,18 @@ There is no free government NTRIP RTK service in France. IGN's RGP (Réseau GNSS
 |---|---|
 | **Operator** | Géodata Diffusion SAS (part of Hexagon Group) |
 | **host** | `ntrip.reseau-orpheon.fr` |
-| **port — topography** | 8500 (SOURCETABLE 200 OK on 2026-05-07; curl probe; Leica GNSS Spider 7.11.1.105/1.0; ~22 mountpoints) |
+| **port — topography** | 8500 (SOURCETABLE 200 OK on 2026-05-12; curl probe; Leica GNSS Spider 7.11.1.105/1.0; ~22 mountpoints) |
 | **port — agriculture** | 7500 |
 | **VRS** | Yes — VRS and i-Max (individualized MAX) mountpoints |
 | **Mountpoints (topography)** | `VRS_RTCM-MSM_FULL`, `VRS_RTCM-3.0_GG`, `VRS_CMRx_GG`, `i-Max_RTCM-MSM_FULL`, `i-Max_RTCM-3.0_GG`, `Plus_pres_RTCM-3.0[_GG]`, `Max_RTCM-3.0_GG`, plus single-constellation/legacy variants |
 | **Mountpoints (agriculture)** | `VRS_RTCM-MSM_FULL`, `VRS_RTCM-3.0_GG`, `i-Max_RTCM-MSM_FULL`, `i-Max_RTCM-3.0_GG`, `Plus_pres_RTCM3_GG`, `Plus_pres_CMRPlus_GG` |
-| **tariff** | **€756 to €3,456 TTC (VAT included)** per subscription depending on coverage area (departmental/regional/national) and service type; 1–5 year commitment (5% discount at 36 months, 10% at 60 months). Antilles-Guyane sold at the same scale (from €895 HT/yr). Date observed: 2026-05-07. Source: https://www.flyingeye.fr/product/abonnement-ntrip-corrections-rtk-orpheon/ and https://reseau-orpheon.fr/en/orpheon-services/orpheon-rtk-subscriptions/ |
+| **tariff** | **€756 to €3,456 TTC (VAT included)** per subscription depending on coverage area (departmental/regional/national) and service type and hourly bracket (60h/100h/120h/200h/240h/300h packages also offered); 1–5 year commitment (5% discount at 36 months, 10% at 60 months). Antilles-Guyane sold at the same scale (from €895 HT/yr). Date observed: 2026-05-12. Source: https://www.flyingeye.fr/product/abonnement-ntrip-corrections-rtk-orpheon/ and https://reseau-orpheon.fr/en/orpheon-services/orpheon-rtk-subscriptions/ |
 | **VAT** | Prices quoted TTC (VAT inclusive); French standard VAT 20% |
 | **hobbyist_eligibility** | **Yes** — annual subscriptions and hourly packages available for individuals; no licence requirement stated |
 | **legal_residency_required** | **Unclear** — French company; international users may subscribe via web shop |
-| **last_confirmed_alive** | reseau-orpheon.fr portal accessible 2026-05-07; `ntrip.reseau-orpheon.fr:8500` SOURCETABLE 200 OK 2026-05-07 (curl) |
+| **last_confirmed_alive** | reseau-orpheon.fr portal accessible 2026-05-12; `ntrip.reseau-orpheon.fr:8500` SOURCETABLE 200 OK 2026-05-12 (curl) |
 
-- **Stations:** ~215–220 permanent Full GNSS stations across mainland France and French West Indies; ~60 km average inter-station spacing
+- **Stations:** **220 permanent Full GNSS stations** across mainland France and French West Indies/Guadeloupe (operator's own homepage 2026-05-12); ~60 km average inter-station spacing; described as "the first 100% Full GNSS network in France"
 - **Constellations:** GPS, GLONASS, Galileo, BeiDou (Full GNSS)
 - **Notes:** Orphéon also offers "RTK on demand" hourly packages via shop.reseau-orpheon.fr for occasional users; included add-ons in annual subs are 50 hours of post-processing/year, RINEX file access, smartphone app.
 
@@ -71,15 +71,15 @@ There is no free government NTRIP RTK service in France. IGN's RGP (Réseau GNSS
 |---|---|
 | **Operator** | Exagone SAS, on behalf of the Ordre des Géomètres-Experts (OGE; chartered land-surveyor order). Network created 2005. |
 | **host:port** | `teriartk.eu:2101` (also reachable at IP `78.24.131.136:2101`) |
-| **Caster software** | GNSMART_Caster 2.0 (Geo++) — confirmed 2026-05-07 SOURCETABLE 200 OK (curl), 30+ mountpoints |
+| **Caster software** | GNSMART_Caster 2.0 (Geo++) — confirmed 2026-05-12 SOURCETABLE 200 OK (curl), 30+ mountpoints |
 | **VRS** | Yes — VRS, i-Max, MAC, FKP, PRS variants in RTCM 2.3 / 3.0 / 3.1 / 3.2 (MSM4/MSM5) |
 | **Stations** | ~187 GPS/GNSS bases (per i3map reseller listing) covering metropolitan France; coverage extends to neighbouring border zones (mountpoints labelled `TERIAEU…`) |
 | **Mountpoints (selection)** | `VRS32` (VRS RTCM 3.2 MSM4), `VRS30`, `VRS30GPS`, `IMAC32`, `IMAC30`, `RTKMSM`, `RTKMSM_F9P`, `RTKMSM_LEI`, `MAC30`, `FKP30`, `PRS32`, `PRS32_F9P`, `NETMSM`, `UAV1`, `UAV2`, plus DGPS/legacy entries |
-| **tariff** | **From €895 HT/yr (excl. 20% VAT)** for unlimited national RTK; reseller listings (i3map, D3E, Tech4Maps, Sttl-Topographie) sell weekly/monthly packs and Teriasat (L-band) variants. Prices marked HT (hors taxes); add 20% French VAT for TTC. Date observed: 2026-05-07. Source: https://www.reseau-teria.com/en/subscriptions-2/, https://www.tech4maps.com/abonnements-rtk |
+| **tariff** | **From €895 HT/yr (excl. 20% VAT)** for unlimited national RTK; reseller listings (i3map, D3E, Tech4Maps, Sttl-Topographie) sell weekly/monthly packs and Teriasat (L-band) variants. Prices marked HT (hors taxes); add 20% French VAT for TTC. Date observed: 2026-05-12. Source: https://www.reseau-teria.com/en/subscriptions-2/, https://www.tech4maps.com/abonnements-rtk (the operator's own subscriptions page now redirects pricing to a quote-request form; reseller pages remain the canonical published prices) |
 | **VAT** | French standard VAT 20% (typical reseller listings quote HT) |
 | **hobbyist_eligibility** | **Yes** — annual and short-period subscriptions available; no licence requirement; sold via several public web shops |
 | **legal_residency_required** | **Unclear** — French entity; resellers ship internationally |
-| **last_confirmed_alive** | `teriartk.eu:2101` SOURCETABLE 200 OK 2026-05-07 (curl probe) |
+| **last_confirmed_alive** | `teriartk.eu:2101` SOURCETABLE 200 OK 2026-05-12 (curl probe) |
 
 - **Variants:** TERIA (NTRIP RTK), TERIAsat (L-band PPP-style augmentation, no internet required), TERIArinex (post-processing).
 
@@ -108,7 +108,7 @@ There is no free government NTRIP RTK service in France. IGN's RGP (Réseau GNSS
 | **hobbyist_eligibility** | **Unclear** — primarily for research; registration open but intended for scientific use |
 | **Stations** | ~30 French stations redistributed via Centipede since June 2023; RENAG direct caster used mainly by researchers |
 | **Coverage** | Patchy; concentrates in south-east France |
-| **last_confirmed_alive** | renag.resif.fr accessible 2026-05-07 |
+| **last_confirmed_alive** | renag.resif.fr accessible 2026-05-12 |
 
 **Practical note:** For RTK use, RENAG stations accessed via Centipede (`crtk.net:2101`) are preferable to connecting to the RENAG caster directly.
 
@@ -149,11 +149,11 @@ Centipede has handfuls of bases in Martinique, Guadeloupe, Réunion, French Guia
 
 | Service | host:port | Free? | VRS? | Hobbyist | Last alive |
 |---|---|---|---|---|---|
-| Centipede | `crtk.net:2101` | Yes | No (single-base + NEAR auto-nearest) | Yes | 2026-05-07 ✓ |
-| Orphéon | `ntrip.reseau-orpheon.fr:8500/7500` | No (€756–3,456 TTC/yr) | Yes | Yes | 2026-05-07 ✓ |
-| Teria | `teriartk.eu:2101` | No (from €895 HT/yr) | Yes | Yes | 2026-05-07 ✓ |
+| Centipede | `crtk.net:2101` | Yes | No (single-base + NEAR auto-nearest) | Yes | 2026-05-12 ✓ |
+| Orphéon | `ntrip.reseau-orpheon.fr:8500/7500` | No (€756–3,456 TTC/yr) | Yes | Yes | 2026-05-12 ✓ |
+| Teria | `teriartk.eu:2101` | No (from €895 HT/yr) | Yes | Yes | 2026-05-12 ✓ |
 | HxGN SmartNet | not public | No (not published) | Yes | Unclear | n/a |
-| RENAG | renag.resif.fr | Free + registration | No | Unclear | 2026-05-07 (portal) |
+| RENAG | renag.resif.fr | Free + registration | No | Unclear | 2026-05-12 (portal) |
 
 ---
 
@@ -182,6 +182,7 @@ Centipede has handfuls of bases in Martinique, Guadeloupe, Réunion, French Guia
 - RENAG via Centipede (June 2023): https://www.epos-france.fr/en/blog/2022/07/12/renag-distributes-its-data-in-real-time/
 - ArduSimple France: https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-france/
 - NTRIP-list.com Europe: https://ntrip-list.com/europe/
-- curl probe of `crtk.net:2101` — SOURCETABLE 200 OK 2026-05-07 (1,224 STR records; 720 FRA, 0 UKR)
-- curl probe of `teriartk.eu:2101` — SOURCETABLE 200 OK 2026-05-07 (Geo++ GNSMART, 30+ mountpoints)
-- curl probe of `ntrip.reseau-orpheon.fr:8500` — SOURCETABLE 200 OK 2026-05-07 (Leica GNSS Spider, ~22 mountpoints)
+- curl probe of `crtk.net:2101` — SOURCETABLE 200 OK 2026-05-12 (1,205 STR records; 709 FRA, 217 HUN, 45 ENG, 30 CHZ, 26 NLD, 21 NOR, 19 CAN, 18 FIN, 17 BEL — top countries by field-9 country code)
+- curl probe of `teriartk.eu:2101` — SOURCETABLE 200 OK 2026-05-12 (Geo++ GNSMART, 30+ mountpoints)
+- curl probe of `ntrip.reseau-orpheon.fr:8500` — SOURCETABLE 200 OK 2026-05-12 (Leica GNSS Spider 7.11.1.105/1.0, ~22 mountpoints)
+- Orphéon homepage station count 2026-05-12: 220 Full GNSS stations (mainland + Antilles)

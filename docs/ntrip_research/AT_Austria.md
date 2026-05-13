@@ -1,5 +1,5 @@
 # Austria [AT] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12 (originally 2026-05-06)
 
 ## Status: YES — one national NTRIP caster (APOS/BEV); free tier for agriculture/forestry via eAMA; paid for all others
 
@@ -44,8 +44,9 @@ Eligible non-farm user groups (research, advisory bodies in agriculture) may req
 - A fixed IPv4 address must be registered with BEV for each device; dynamic IPs are not accepted for the standard paid tier.
 - The eAMA tier uses the same `aposrtk.bev.gv.at:2101` endpoint; credentials differ.
 - No free public anonymous-access NTRIP tier exists. Paid standard tier requires registration at kundenservice@bev.gv.at or +43 1 21110-822160.
-- Volunteer rtk2go coverage: several Austrian stations (AUT country code); coverage sparse, concentrated around Vienna and Graz. No significant Centipede AUT presence.
-- Liechtenstein (LI) has no independent caster; relies on APOS or Swiss swipos cross-border coverage.
+- **Station-count nuance**: project pipeline observes 37 physical Austrian stations from the public sourcetable; BEV public materials cite "75 reference stations domestically and abroad" — the higher figure includes partner / neighbouring-country stations integrated for VRS edge coverage (e.g., SAPOS Bavaria, FReDNet Friuli, swipos AGNES).
+- **Volunteer**: 15 AUT-coded rtk2go bases (e.g., AUT00OBDA0, AUT_A-GLAS, AUT_VIE_27 in/near Vienna, AUT_STY_AVL Styria, HalleinANDATA Salzburg, ibk-thabest Innsbruck) + 1 Centipede AT node (BOKU university campus). Confirmed via `scripts/stations_by_country.py AUT` on 2026-05-12. Coverage is reasonable in eastern Austria (Vienna, Lower Austria, Styria) and weaker in the western Alps.
+- Liechtenstein (LI) has no independent caster; relies on APOS (free for agri/forestry via eAMA) or Swiss swipos cross-border coverage.
 
 ## Post-Processing (RINEX) Fallback
 
@@ -62,4 +63,6 @@ Eligible non-farm user groups (research, advisory bodies in agriculture) may req
 - LKÖ press release (free RTK launch Feb 2021): https://www.ots.at/presseaussendung/OTS_20201209_OTS0087/lk-oesterreich-begruesst-kostenfreies-rtk-fuer-die-land-und-forstwirtschaft (observed 2026-05-06)
 - AMA eAMA APOS registration: https://www.ama.at/fachliche-informationen/kundendaten/apos-stammdatenerhebung (observed 2026-05-06)
 - EuroGeographics precision farming case study: https://eurogeographics.org/news/precision-farming-with-the-austrian-positioning-service/ (observed 2026-05-06)
+- BEV APOS brochure (PDF) — cites "75 reference stations domestic + abroad": https://www.bev.gv.at/dam/jcr:557736c5-bac5-42c6-8445-25b1ffee3c27/AustrianPOsitioningService-Broschuere.pdf
 - curl probe of `aposrtk.bev.gv.at:2101` — SOURCETABLE 200 OK confirmed 2026-05-06
+- Local data verification (2026-05-12): `scripts/stations_by_country.py AUT` — 15 rtk2go + 1 Centipede stations enumerated

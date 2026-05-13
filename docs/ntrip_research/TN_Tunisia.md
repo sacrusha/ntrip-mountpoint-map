@@ -1,5 +1,5 @@
 # Tunisia [TN] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-13 (refresh of 2026-05-06 entry)
 
 ## Status: ACTIVE — national NTRIP caster (OTC); paid subscription; published tariff in TND
 
@@ -12,7 +12,7 @@
 | **tariff — OTC** | 60 TND / 1 day · 480 TND / 15 days · 840 TND / 30 days · 2 400 TND / 3 months · 3 600 TND / 6 months · 4 800 TND / 9 months · 6 000 TND / 12 months (source: otc.nat.tn/geodesy/gnss/subscription, observed 2026-05-06) |
 | **hobbyist_eligibility** | Marketed to professionals ("professionnels"); individual hobbyist eligibility not confirmed; document download required per tier |
 | **legal_residency_required** | No explicit overseas restriction found; service is Tunisia-focused |
-| **last_confirmed_alive** | otc.nat.tn/geodesy/gnss HTTP 200 confirmed 2026-05-06; otc.nat.tn/geodesy/gnss/subscription HTTP 200 with pricing confirmed 2026-05-06; curl probe of `otc.nat.tn:2101` — ECONNREFUSED 2026-05-06 09:14 UTC |
+| **last_confirmed_alive** | otc.nat.tn/geodesy/gnss/subscription HTTP 200 with pricing re-confirmed unchanged 2026-05-13; curl probe of `otc.nat.tn:2101` — timed out 2026-05-13 (caster endpoint not exposed on otc.nat.tn hostname; actual host distributed post-subscription) |
 
 ## Most Recent Project Announcement
 
@@ -45,6 +45,9 @@ OTC began building its permanent GNSS network in 2005 (first 3 stations: Tunis, 
 - **Caster host probe:** WebFetch attempt on `otc.nat.tn:2101` returned ECONNREFUSED — the caster endpoint is not exposed on that hostname/port publicly. Actual host delivered with credentials post-subscription.
 - **Coverage gap:** The Saharan south (roughly south of Gafsa/Tozeur latitude) has no permanent stations; corrections may be unreliable or unavailable in those areas.
 - **Global commercial fallbacks:** Centipede-RTK has no Tunisia base stations. GEODNET and ONOCOY coverage not confirmed for Tunisia.
+- **Cross-border RTK options within ~500 km** (from `py scripts/stations_by_radius.py 36.8 10.18 500`):
+  - **FM01** (Italy / Sicily) — rtk2go + Centipede, ~278 km from Tunis; usable for the northern coast on a marginal baseline
+  - **EneGIS** (Malta) — rtk2go, ~394 km; sea-only line-of-sight, baseline too long for true cm-grade RTK
 - **Practical workaround:** Subscribe to OTC (lowest cost entry: 60 TND/day); deploy a local base for single-base RTK; or use Galileo HAS / PPP for sub-metre accuracy without subscription.
 
 ## Post-Processing (RINEX) Fallback
@@ -63,6 +66,6 @@ OTC began building its permanent GNSS network in 2005 (first 3 stations: Tunis, 
 - ArduSimple Tunisia: https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-tunisia/
 - NTRIP-list.com — no Tunisia entries found 2026-05-06
 - RTK2go monitor (monitor.use-snip.com) — no Tunisia mountpoints visible 2026-05-06
-- curl probe of `otc.nat.tn:2101` — ECONNREFUSED 2026-05-06 09:14 UTC
-- WebFetch of otc.nat.tn/geodesy/gnss/subscription — HTTP 200, full tariff table extracted 2026-05-06
+- curl probe of `otc.nat.tn:2101` — ECONNREFUSED 2026-05-06 09:14 UTC; timeout 2026-05-13 (caster not on public OTC hostname/port)
+- WebFetch of otc.nat.tn/geodesy/gnss/subscription — HTTP 200, full tariff table extracted 2026-05-06; tariff re-confirmed unchanged 2026-05-13 (1 day TND 60 → 1 yr TND 6,000)
 - WebFetch of otc.nat.tn/geodesy/gnss — HTTP 200, 23-station network and contact info confirmed 2026-05-06

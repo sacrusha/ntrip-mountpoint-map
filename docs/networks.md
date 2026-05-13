@@ -73,9 +73,6 @@ ingestion is derivable from `SOURCES` in `scripts/fetch_stations.py` and from
   carry the warning.
 - **candidate** — free, endpoint known, ready to ingest but not yet wired
   into `fetch_stations.py`. Workflow state, not a network property.
-- **rejected** — investigated and explicitly excluded from the catalogue;
-  reason documented. Not a network property either; a meta-status that
-  records what we ruled out.
 
 ---
 
@@ -527,7 +524,7 @@ Accuracy ~2–3 cm horizontal, ~3–5 cm vertical. ETRS89/ITRF reference frame.
 **stations**:  33 (~70–100 km spacing nationwide); 4 physical mounts exposed in sourcetable
                (AUSV, GEVK, SENG, VOGC — all Reykjanes peninsula); remaining 29 reachable
                via nearest-station selector (RTCM30/RTCM30_MSM) or VRS3/VRS3_MSM
-**source**:    natt.is; ggn01.lmi.is (registration portal still on LMÍ subdomain)
+**source**:    natt.is/is/landmaelingar/jardstodvakerfi; ggn01.lmi.is (registration portal still on LMÍ subdomain)
 **operator**:  Náttúrufræðistofnun Íslands (Natural Science Institute of Iceland);
                geodetic functions transferred from LMÍ ~2024–2025
 

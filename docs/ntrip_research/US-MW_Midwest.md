@@ -1,5 +1,5 @@
 # US Midwest — NTRIP RTK Caster Research
-**Date researched:** 2026-05-07 (verify-and-expand pass over 2026-05-07 baseline — corrections to ODOT/MnCORS probe results, additions: WisCORS/MoDOT 2024 CMRx multi-constellation rollout, InCORS 2024-06-18 four-constellation upgrade, IaRTN cross-state station integration, NATRF2022 datum migration plan for 2026, NEBRS post-processing-only clarification)
+**Date researched:** 2026-05-07 (verify-and-expand pass over 2026-05-07 baseline — corrections to ODOT/MnCORS probe results, additions: WisCORS/MoDOT 2024 CMRx multi-constellation rollout, InCORS 2024-06-18 four-constellation upgrade, IaRTN cross-state station integration, NATRF2022 datum migration plan for 2026, NEBRS post-processing-only clarification; re-probe 2026-05-13: WISCORS, MoDOT, ARDOT, IaRTN, WVRTN, MnCORS sample re-verified SOURCETABLE 200 OK; ODOT 156.63.133.115:2101 and MnCORS mncors.dot.state.mn.us:9000 remain unreachable from external research host — consistent with prior account-gated / IP-allowlist diagnosis)
 
 **States covered:** Ohio (OH), Indiana (IN), Michigan (MI), Wisconsin (WI), Minnesota (MN), Iowa (IA), Illinois (IL), Missouri (MO), North Dakota (ND), South Dakota (SD), Nebraska (NE), Kansas (KS)
 
@@ -17,7 +17,7 @@
 | **VRS** | No — single-base streams only |
 | **hobbyist_eligibility** | Yes — non-commercial licence explicitly available |
 | **legal_residency_required** | No |
-| **last_confirmed_alive** | `SOURCETABLE 200 OK` — 2026-05-07 (curl probe) |
+| **last_confirmed_alive** | `SOURCETABLE 200 OK` — 2026-05-13 (curl probe; 1,080 STR entries globally) |
 | **MW station notes** | NOTA has stations in ND, SD, KS, and scattered across the region at geodetic spacing (~200–400 km); too sparse for reliable real-time RTK in most scenarios; useful for PPK/static post-processing. Not a substitute for any of the state VRS networks below. |
 
 ---
@@ -352,15 +352,15 @@ Sources: https://www.federalregister.gov/documents/2024/10/09/2024-23347/updated
 - InCORS station updates page: https://incors.in.gov/Station%20Updates.html (2024-06-18 four-constellation rollout confirmed)
 - RTKdata.com — Nebraska private NTRIP: https://rtkdata.com/us/nebraska/
 - SmartNet North America Oklahoma portal (KS/OK edge coverage): https://www.smartnetna.com/pr_sn_oklahoma.cfm
-- curl probes performed 2026-05-07 (research host) and 2026-05-06 (project pipeline GitHub Actions runner):
-  - `wiscors.dot.wi.gov:2101` — SOURCETABLE 200 OK (both)
-  - `gpsweb3.modot.mo.gov:2101` — SOURCETABLE 200 OK (both)
-  - `rtk3.modot.mo.gov:2101` — SOURCETABLE 200 OK (research host)
-  - `156.63.133.115:2101` (ODOT RTN IP) — SOURCETABLE 200 OK from project pipeline 2026-05-06 (research-host probe blocked by sandbox network restrictions)
-  - `mncors.dot.state.mn.us:9000` — SOURCETABLE 200 OK from project pipeline 2026-05-06
-  - `165.206.203.10:10000` (IaRTN IP, Leica SBC port) — SOURCETABLE 200 OK (research host)
+- curl probes performed 2026-05-07 (research host), 2026-05-06 (project pipeline GitHub Actions runner), and 2026-05-13 (re-verification):
+  - `wiscors.dot.wi.gov:2101` — SOURCETABLE 200 OK (2026-05-13, 9 STR entries) and earlier dates
+  - `gpsweb3.modot.mo.gov:2101` — SOURCETABLE 200 OK (2026-05-13, 8 STR entries) and earlier dates
+  - `rtk3.modot.mo.gov:2101` — SOURCETABLE 200 OK (research host, 2026-05-07)
+  - `156.63.133.115:2101` (ODOT RTN IP) — SOURCETABLE 200 OK from project pipeline 2026-05-06 (research-host probe blocked 2026-05-07 and 2026-05-13 — IP-allowlist consistent diagnosis)
+  - `mncors.dot.state.mn.us:9000` — SOURCETABLE 200 OK from project pipeline 2026-05-06 (research-host TCP probe blocked 2026-05-13 — IP-allowlist consistent diagnosis)
+  - `165.206.203.10:10000` (IaRTN IP, Leica SBC port) — SOURCETABLE 200 OK (research host, 2026-05-07 and 2026-05-13, 9 STR entries)
   - `iartnsbc.iowadot.gov:2101` — connection error from project pipeline (Leica SBC scheme; expected — port 10000 is the live mountpoint port)
-  - `ntrip.earthscope.org:2101` — SOURCETABLE 200 OK (both)
+  - `ntrip.earthscope.org:2101` — SOURCETABLE 200 OK (2026-05-13, 1,080 STR entries) and earlier dates
   - `incors.in.gov` HTTP — HTTP 302 redirect to HTTPS (server alive)
   - `incors.in.gov:10000` — connection error from project pipeline (account-gated SBC)
   - `mdotcors.michigan.gov:10700` — connection error from project pipeline (Cloudflare fronting; account-gated)

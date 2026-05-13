@@ -1,5 +1,5 @@
 # Central African Republic [CF] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12 (revising 2026-05-06 entry — no material changes; volunteer counts re-verified)
 
 ## Status: NO active public NTRIP caster
 
@@ -26,6 +26,7 @@ URL: https://ric2024.rcmrd.org/afref
 - **No CF entry** in: IGS network, ITRF2020, SONEL, AFREF 25-country list, RTKdata Africa coverage, GitHub mvarga1989 list.
 - **Enabling condition deficits**: Electricity access ~8% of households (2024); limited internet penetration; ongoing security instability — all impede fixed-infrastructure investment.
 - Global commercial networks (GEODNET, ONOCOY, Centipede-RTK, RTKdata): No CF coverage.
+- **Local pipeline data (verified 2026-05-12)**: rtk2go CAF = 0, centipede CAF = 0 in `data/stations.json` (fetched 2026-05-12T18:17Z). No change.
 
 ## Post-Processing (RINEX) Fallback
 

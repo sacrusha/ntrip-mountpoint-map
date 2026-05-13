@@ -1,7 +1,7 @@
 # Fiji [FJ] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12 (re-verified; original 2026-05-06)
 
-## Status: NO confirmed public NTRIP caster (infrastructure present, no access policy)
+## Status: NO confirmed public NTRIP caster (infrastructure present, no access policy). Re-verified 2026-05-12: no DLSS NTRIP endpoint, registration portal, or access policy has been published since the 2022 SPC milestone; FIG 2025 proceedings discuss "data handling and compilation" but do not reference a public real-time NTRIP service.
 
 | Field | Value |
 |---|---|

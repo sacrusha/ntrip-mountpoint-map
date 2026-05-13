@@ -1,5 +1,5 @@
 # Great Britain [GB] — NTRIP RTK Caster Research
-**Date researched:** 2026-04-30
+**Date researched:** 2026-05-12 (refresh of 2026-04-30 entry)
 
 ## Status: YES — multiple commercial NTRIP casters operating via OS Net reseller partners; no free public caster
 
@@ -11,12 +11,13 @@
 | **VRS** | Yes (all major resellers offer Network RTK / VRS) |
 | **hobbyist_eligibility** | Yes (TopNet Live, HxGN SmartNet via SCCS — no surveying licence required) |
 | **legal_residency_required** | No — international exports available from listed resellers |
-| **last_confirmed_alive** | 2026-04-30 (reseller product pages active, confirmed selling licences) |
+| **last_confirmed_alive** | 2026-05-12 (reseller product pages active and selling licences) |
+| **Volunteer fallback** | rtk2go: 60 GBR-coded volunteer bases on 2026-05-12 (data/stations.json); Centipede: 45 ENG-coded bases on 2026-05-12 (crtk.net:2101 sourcetable) |
 
 ## Reseller Tariffs
 
 ### Partner 1 — Leica HxGN SmartNet (via SCCS Survey)
-Source: sccssurvey.co.uk/leica-smartnet.html, observed 2026-04-30. All prices **include** 20% UK VAT.
+Source: sccssurvey.co.uk/leica-smartnet.html, observed 2026-05-12 (unchanged since 2026-04-30). All prices **include** 20% UK VAT.
 
 | Licence | Price (incl. VAT) | Price (excl. VAT) |
 |---|---|---|
@@ -33,7 +34,7 @@ Source: sccssurvey.co.uk/leica-smartnet.html, observed 2026-04-30. All prices **
 - legal_residency_required: **no** — exports available.
 
 ### Partner 2 — Trimble VRS Now (via Korec Group)
-Source: korecgroup.com/product/trimble-vrs-now/, observed 2026-04-30.
+Source: korecgroup.com/product/trimble-vrs-now/, observed 2026-05-12 (still £POA, unchanged).
 
 - tariff: **£POA** (Price On Application) — no public tariff published for GB.
 - Korec contacts: +44 (0)345 603 1214 (UK Sales), +353 (0)1 456 4702 (Ireland).
@@ -42,21 +43,24 @@ Source: korecgroup.com/product/trimble-vrs-now/, observed 2026-04-30.
 - legal_residency_required: **no** — UK + Ireland coverage, international exports available.
 
 ### Partner 3 — Topcon TopNet Live (via Drone Pilot Academy)
-Source: dronepilotacademy.co.uk/product/topnet-live-vrs-license/, observed 2026-04-30. Prices are **ex VAT** (20% UK VAT applicable). Powered by OS Net data.
+Source: dronepilotacademy.co.uk/product/topnet-live-vrs-license/, observed 2026-05-12. Prices are **ex VAT** (20% UK VAT applicable). Powered by OS Net data.
 
-| Solution | Duration | Total cost (ex VAT) |
-|---|---|---|
-| Unlimited annual | 12 months | £1,700 |
-| Limited 600 hrs annual | 12 months | £1,000 |
-| Unlimited 6 months | 6 months | £1,000 |
-| Unlimited 30 days | 30 days | £300 |
-| Unlimited 7 days | 7 days | £100 |
-| 11 hrs annual (new customer) | 12 months | £250 |
-| 10 hrs annual (existing customer) | 12 months | £200 |
-| 6 hrs annual (new customer) | 12 months | £150 |
-| 5 hrs annual (existing customer) | 12 months | £100 |
+Published price range on the product page: **£100 – £1,900 (+VAT)**. Tier list (since 2026-04-30 the line-up has grown with new 51hr/50hr/26hr/25hr brackets; the unlimited annual headline price now reaches £1,900 ex VAT vs the prior £1,700):
 
-Optional SIM card add-ons: EE data SIM £150/yr; roaming multi-network SIM £200/yr (both incl. 12-month term, annual licences only).
+| Solution | Tier name on page |
+|---|---|
+| Unlimited annual | Topcon Unlimited usage annual VRS licence |
+| 600 hrs annual | Topcon limited usage annual VRS licence (600 hrs) |
+| 51 hrs annual — new customer | Topcon 51 Hours VRS licence (New customer) |
+| 50 hrs annual — existing customer | Topcon 50 Hours VRS licence (Existing customer) |
+| 26 hrs annual — new customer | Topcon 26 Hours VRS licence (New customer) |
+| 25 hrs annual — existing customer | Topcon 25 Hours VRS licence (Existing customer) |
+| 11 hrs annual — new customer | Topcon 11 Hours VRS licence (New customer) |
+| 10 hrs annual — existing customer | Topcon 10 Hours VRS licence (Existing customer) |
+| 6 hrs annual — new customer | Topcon 6 Hours VRS licence (New customer) |
+| 5 hrs annual — existing customer | Topcon 5 Hours VRS licence (Existing customer) |
+
+Individual tier prices are presented on the live page via a dropdown selector (and a `VRS-Pricelist.jpg` image asset); the published headline range is £100 (entry-level hourly) to £1,900 (unlimited annual). For exact per-tier prices, see the live product page. Optional SIM card add-ons remain available (EE data SIM, roaming multi-network SIM, no-SIM).
 
 - hobbyist_eligibility: **yes** — marketed explicitly to drone pilots, hobbyists, and agricultural users; no professional licence required.
 - legal_residency_required: **no** — no residency restriction stated.
@@ -74,7 +78,8 @@ Listed on the OS Net authorised-resellers page but tariffs not researched in thi
 - All resellers provide Network RTK corrections (VRS, MAX, iMAX, or equivalent). Single-base RTK is not the primary product.
 - No free public NTRIP caster exists for Great Britain. OS Net data are not streamed publicly.
 - Global commercial services with GB coverage: GEODNET (coverage varies), Trimble RTX (PPP, not networkRTK).
-- The market range observed is approximately £100 (7-day trial, TopNet) to £2,592 (1-yr unlimited HxGN SmartNet incl. VAT), with the lowest ongoing annual subscription approximately £1,000 ex VAT (1-yr/600 hr TopNet).
+- The market range observed is approximately £100 (entry-level hourly bracket on TopNet Live) to £2,592 (1-yr unlimited HxGN SmartNet incl. VAT).
+- Volunteer fallback in GB exists at hobbyist density: rtk2go shows 60 GBR-coded bases and Centipede shows 45 ENG-coded bases as of 2026-05-12 — usable for individual sites but not a substitute for OS-Net-derived national NRTK.
 
 ## Post-Processing (RINEX) Fallback
 
@@ -89,3 +94,5 @@ Listed on the OS Net authorised-resellers page but tariffs not researched in thi
 - Korec Group VRS Now product page: https://www.korecgroup.com/product/trimble-vrs-now/
 - Drone Pilot Academy TopNet Live: https://www.dronepilotacademy.co.uk/product/topnet-live-vrs-license/
 - Ordnance Survey OS Net overview: https://www.ordnancesurvey.co.uk/geodesy-positioning/os-net
+- Live probe of `crtk.net:2101` (Centipede) 2026-05-12: 45 ENG-coded bases on sourcetable
+- Local data/stations.json 2026-05-12: 60 rtk2go GBR-coded volunteer bases

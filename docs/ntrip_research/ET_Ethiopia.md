@@ -1,7 +1,7 @@
 # Ethiopia [ET] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12 (re-verified; original 2026-05-06)
 
-## Status: PARTIAL — national CORS network launched Dec 2024; NTRIP public access endpoint not yet confirmed
+## Status: PARTIAL — national CORS network launched Dec 2024; NTRIP public access endpoint still not confirmed as of 2026-05-12. No SSGI press release, registration portal, host:port or tariff has been published; direct contact with SSGI remains the only documented access path.
 
 | Field | Value |
 |---|---|

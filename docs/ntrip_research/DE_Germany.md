@@ -1,5 +1,5 @@
 # Germany [DE] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-07
+**Date researched:** 2026-05-12 (deep verification 2026-05-07)
 
 ## Status: YES — extensive public NTRIP RTK coverage; primary provider is the 16-state SAPOS network; most Bundesländer now free; some remain paid
 
@@ -7,7 +7,7 @@
 
 ## Per-Bundesland SAPOS Summary Table
 
-All casters confirmed live (SOURCETABLE 200 OK) on 2026-05-07 via curl probe unless noted. Port 2101 throughout. VRS product naming follows AdV convention: `VRS_3_Xg_XX` where X = constellation count, g = letter (2G=GPS+GLO, 3G=+GAL, 4G=+BDS), XX = state code.
+All casters confirmed live (SOURCETABLE 200 OK) on 2026-05-07 via curl probe unless noted; re-spot-check of ZSS national `www.sapos-ntrip.de:2101` + Thüringen `www.sapos-th-ntrip.de:2101` + GeoNord `www.sapos.geonord.de:2101` succeeded 2026-05-12. Port 2101 throughout. VRS product naming follows AdV convention: `VRS_3_Xg_XX` where X = constellation count, g = letter (2G=GPS+GLO, 3G=+GAL, 4G=+BDS), XX = state code.
 
 | State | Code | Operator | NTRIP host | Tariff | VRS product(s) | hobbyist_eligible | residency_req | last_confirmed_alive |
 |---|---|---|---|---|---|---|---|---|
@@ -112,7 +112,13 @@ SAPOS (Satellitenpositionierungsdienst der deutschen Landesvermessung) is coordi
 
 **AdV-GR 4.0 (June 2024):** New nationwide fee directive replaced usage-based billing with flat-rate per-credential models, substantially reducing costs for remaining paid states. Rheinland-Pfalz remains the outlier with the highest cost structure.
 
-**Datum:** All SAPOS services use ETRS89/DREF91 horizontal reference + DHHN2016 height. The 2025 realisation (R2025) rollout (replacing R2016) began July 2025 in Bayern; other states to follow.
+**Bayern price model (since 01.06.2024):** Confirmed €20/year flat rate per customer account, no VAT, no monthly base fee, annual billing, 1-year contract, 1-month cancellation notice. Includes both HEPS (real-time) and GPPS (post-processing); also extended to the agricultural Landwirtschaftsfahrzeug-Positionierungs-Service (LFPS) on the same date. Source: bayern.de press release "Füracker: vereinfachtes Preismodell für den Satellitenpositionierungsdienst SAPOS — Neuer Flatrate-Tarif für SAPOS-Kunden ab 1. Juni 2024 — Nur 20 Euro jährlich pro Kundenkonto" (re-verified 2026-05-12).
+
+**Rheinland-Pfalz price model (since 03.06.2024):** Confirmed via LVermGeo RLP product page (re-verified 2026-05-12): HEPS €120/yr/credential, GPPS €120/yr/credential, EPS €70/yr/credential, R-HEPS (agriculture) €150/yr; one-time €100 setup fee on NEW HEPS/GPPS registrations from 03.06.2024 onwards (EPS and R-HEPS exempt from setup fee). VAT inclusivity not annotated on the public product page.
+
+**NRW free since 2018:** Bezirksregierung Köln / Geobasis NRW confirms (2026-05-12 search) "Die SAPOS HEPS- und GPPS-Dienste können seit dem 30.03.2018 in Nordrhein-Westfalen kostenfrei genutzt werden" — i.e., free since 30 March 2018. Registration with Geobasis NRW is still required for HEPS; OpenGeoData NRW serves the RINEX archive (15s) anonymously.
+
+**Datum:** All SAPOS services use ETRS89/DREF91 horizontal reference + DHHN2016 height. The 2025 realisation (R2025) rollout (replacing R2016) began July 2025 in Bayern (and 01.07.2025 07:00 MESZ in NRW); other states are following.
 
 ---
 
@@ -168,4 +174,8 @@ SAPOS (Satellitenpositionierungsdienst der deutschen Landesvermessung) is coordi
 - curl probe of `www.sapos.geonord.de:2101` — SOURCETABLE 200 OK, GNSMART_Caster 2.0, confirmed 2026-05-07
 - HxGN SmartNet: https://hxgnsmartnet.com/
 - Geo++ GNSMART: https://www.geopp.de/gnsmart/
-- stations.json data pull: rtk2go 31 DE stations · centipede 3 DE stations (2026-05-06)
+- stations.json data pull: rtk2go 32 DE stations · centipede 3 DE stations (2026-05 snapshot — `stations_by_country.py DEU`)
+- bayern.de Füracker press release (Bayern €20/yr flat-rate): https://www.bayern.de/fueracker-vereinfachtes-preismodell-fuer-den-satellitenpositionierungsdienst-sapos-neuer-flatrate-tarif-fuer-sapos-kunden-ab-1-juni-2024-nur-20-euro-jaehrlich-pro-kundenkonto/ (re-verified 2026-05-12)
+- bayern.de SAPOS-Nachrichten 2024_01 (Preismodell-Umstellung): https://sapos.bayern.de/download.php?file=SAPOS-Nachrichten-2024_01.pdf
+- LVermGeo RLP SAPOS Preise (re-verified 2026-05-12): HEPS €120/yr · GPPS €120/yr · EPS €70/yr · R-HEPS €150/yr · setup €100 (HEPS/GPPS new registrations from 03.06.2024)
+- NRW Geobasis kostenfrei seit 30.03.2018 (re-verified 2026-05-12): https://www.bezreg-koeln.nrw.de/geobasis-nrw/produkte-und-dienste/raumbezug/satellitenpositionierungsdienst-sapos/sapos-heps

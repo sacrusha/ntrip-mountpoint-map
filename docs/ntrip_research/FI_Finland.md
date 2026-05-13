@@ -1,7 +1,9 @@
 # Finland [FI] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12 (revision; original 2026-05-06)
 
-## Status: MIXED — two free NLS casters (DGNSS free/open; RTK research-only restricted); dense volunteer rtk2go coverage; paid commercial options
+## Status: MIXED — two free NLS casters (DGNSS free/open, live-confirmed; RTK research-only restricted); dense volunteer rtk2go coverage (~129 FIN bases); paid commercial options
+
+**NLS 2026 price update note:** The 2026-01-01 NLS price changes apply to property-owner/cadastral charges; the announcement explicitly notes that "the prices of the Land Information Service as well as interface services and data services will remain unchanged" — FINPOS DGNSS therefore remains free in 2026 (re-checked 2026-05-12).
 
 ---
 
@@ -18,7 +20,7 @@
 | **tariff** | **Free — €0.00.** Open data. Credentials via free registration. Date observed: 2026-05-06. Source: https://www.maanmittauslaitos.fi/en/finpos/dgnss |
 | **hobbyist_eligibility** | **Yes** — open registration, no licence check |
 | **legal_residency_required** | **No** |
-| **last_confirmed_alive** | maanmittauslaitos.fi/en/finpos/dgnss accessible 2026-05-06 |
+| **last_confirmed_alive** | **2026-05-12** — sourcetable retrieved live from `opencaster.nls.fi:2102` (1 102 bytes; 4 STR rows: DGNSS, DGNSS-12SAT, DGNSS-MSM1, DGNSS-PIES; Server: NTRIP GNSMART_Caster 2.0/1.0) |
 
 **Important:** This is a DGNSS (submeter) service, **not RTK** (centimetre). It is free and open but does not meet RTK-grade accuracy requirements.
 
@@ -76,8 +78,8 @@ Finland has exceptionally dense volunteer RTK coverage — the best in the EU:
 
 | Network | Finland-coded stations | Notes |
 |---|---|---|
-| **RTK2go** | ~112 FIN-coded bases | Concentrated in southern Finland and around Helsinki; no QoS guarantee |
-| **Centipede** | ~18 FIN-coded nodes | Sparse but growing |
+| **RTK2go** | **~129** FIN-coded bases (live count from data/stations.json, 2026-05-12) | Concentrated in southern Finland and around Helsinki; no QoS guarantee |
+| **Centipede** | **18** FIN-coded nodes (live count from data/stations.json, 2026-05-12) | Sparse but growing |
 
 This volunteer density makes Finland one of the best-covered countries for free hobbyist RTK in Europe despite the absence of a free government RTK caster.
 

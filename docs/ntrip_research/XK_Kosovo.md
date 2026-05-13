@@ -1,7 +1,7 @@
 # Kosovo [XK] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-13 (re-verification of 2026-05-06 baseline)
 
-## Status: YES — paid national NTRIP (KOPOS), VRS; hobbyist-eligible; caster port timed out from external IP 2026-05-06 but web portal confirmed reachable
+## Status: YES — paid national NTRIP (KOPOS), VRS; hobbyist-eligible; caster port 2101 again timed out from external IP 2026-05-12 (consistent with geo-firewall hypothesis); SBC web portal HTTPS confirmed reachable 2026-05-13
 
 | Field | Value |
 |---|---|
@@ -24,7 +24,8 @@
 | **tariff source** | AKK Administrative Instruction QRK No. 04/2024 (PDF: akk.rks-gov.net/storage/app/media/udhezim-administrativ-qrk-nr-04-2024-per-tarifat-per-produktet-cmimorja.pdf), observed 2026-05-06 |
 | **hobbyist_eligibility** | Yes — SBC registration form requests rover brand, serial number, address only; no surveying-licence requirement found |
 | **legal_residency_required** | Unclear — no confirmed restriction; not explicitly stated on registration form |
-| **last_confirmed_alive** | `kopos.rks-gov.net:2101` — connection timeout from external IP 2026-05-06 (port may be firewalled outside Kosovo); `kopos.rks-gov.net` HTTPS (SBC portal) confirmed reachable 2026-05-06; `akk.rks-gov.net` HTTP 200 2026-05-06 |
+| **registration** | https://kopos.rks-gov.net/SBC/Account/Register (Leica Spider Business Center self-service form; requires rover brand/serial/address) |
+| **last_confirmed_alive** | `kopos.rks-gov.net:2101` — TCP connection timed out from external IP 2026-05-12 (consistent with 2026-05-06 result; port likely firewalled outside Kosovo). `kopos.rks-gov.net` HTTPS (SBC login) returned HTTP 200 on 2026-05-13 (Leica Spider Business Center v7.8.1.438 still on login page). `akk.rks-gov.net` HTTP 200 on 2026-05-13 |
 
 ## Context Notes
 
@@ -51,5 +52,7 @@
 - ArduSimple Kosovo RTK services: https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-kosovo/ (KOPOS listed; no pricing detail)
 - GIM International — GNSS Reference Network for Kosovo: https://www.gim-international.com/content/news/gnss-reference-network-for-kosovo (Leica GR25, 2011)
 - mycoordinates.org — KOPOS overview article: https://mycoordinates.org/kopos-kosovo-positioning-system/ (RTCM 2.3/3.1, VRS, Leica GR15, prepaid management via SpiderWeb SBC)
-- curl probe of `kopos.rks-gov.net:2101` — connection timeout 2026-05-06 (x2; both 15s and 20s attempts)
+- curl probe of `kopos.rks-gov.net:2101` — connection timeout 2026-05-06 (x2; both 15s and 20s attempts); re-tested 2026-05-12 with 8s TCP-only probe — still timeout (geo-firewall hypothesis stable)
+- HEAD probe `https://kopos.rks-gov.net/SBC/Account/Index` — HTTP 200 2026-05-13
+- HEAD probe `https://akk.rks-gov.net/en` — HTTP 200 2026-05-13
 - country-survey.md XK entry (date_added 2026-04-30) — tariff €400/yr + €20 registration cross-confirmed by AKK PDF

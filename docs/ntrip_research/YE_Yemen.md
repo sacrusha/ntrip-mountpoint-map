@@ -1,7 +1,7 @@
 # Yemen [YE] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-13 (re-verification of 2026-05-06 baseline)
 
-## Status: NO — no public NTRIP RTK infrastructure; civil conflict since 2015 has effectively halted geodetic services; no volunteer bases in rtk2go sourcetable as of 2026-05-06
+## Status: NO — no public NTRIP RTK infrastructure; civil conflict since 2015 has effectively halted geodetic services; no volunteer bases in rtk2go / centipede / earthscope as of 2026-05-13
 
 | Field | Value |
 |---|---|
@@ -12,7 +12,7 @@
 | **tariff** | — |
 | **hobbyist_eligibility** | — |
 | **legal_residency_required** | — |
-| **last_confirmed_alive** | Unknown — no reachable GAS or geodetic portal found 2026-05-06 |
+| **last_confirmed_alive** | Unknown — no reachable GAS or geodetic portal found 2026-05-13; stations_by_radius.py 15.36 44.19 200 (Sanaa) returns zero stations across all tracked sourcetables |
 | **Most recent project announcement** | None found |
 
 ## Volunteer Coverage
@@ -34,8 +34,9 @@
 None identified. No public RINEX archive for Yemeni CORS data found.
 
 ## Sources Consulted
-- WebSearch "Yemen NTRIP CORS RTK GNSS General Survey Authority 2025 2026" — no active services found (2026-05-06)
+- WebSearch "Yemen NTRIP CORS RTK GNSS General Survey Authority 2025 2026" — no active services found (2026-05-06; re-run 2026-05-13 — still no results pointing at any Yemeni endpoint)
 - WebSearch "Yemen General Survey Authority GNSS geodesy CORS RTK 2024 2025" — no results (2026-05-06)
 - WebSearch Arabic: "هيئة المساحة Yemen GNSS RTK 2024 2025" — no results for Yemen; returned results for Saudi Arabia and Oman (2026-05-06)
 - curl probe of rtk2go.com:2101 — full sourcetable scanned for Yemen coordinates (lat 12–18°N / lon 42–50°E) and country codes; no YE entries found 2026-05-06
+- stations_by_radius.py 15.36 44.19 200 (run 2026-05-13) — zero stations within 200 km of Sanaa across rtk2go / centipede / earthscope sourcetables
 - country-survey.md YE entry (for context on pre-conflict status)

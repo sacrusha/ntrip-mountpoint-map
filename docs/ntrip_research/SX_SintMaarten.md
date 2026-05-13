@@ -1,5 +1,5 @@
 # Sint Maarten [SX] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-07 (revised from 2026-05-06)
+**Date researched:** 2026-05-13 (revised from 2026-05-07 — Kadaster SX price line and EarthScope NOTA CN59 reconfirmed)
 
 ## Status: YES (revised) — Kadaster St. Maarten now offers a paid CORS reference-station subscription (XCG-priced); host:port not on public web; nearest free fallback is EarthScope CN59 on Anguilla (~20 km); Kadaster NL AGRS does NOT cover SX
 
@@ -15,7 +15,7 @@
 | **VAT/TOT status** | Sint Maarten levies TOT (Turnover Tax / Belasting op Bedrijfsomzetten / BBO) at 5 % on services. The price list does not flag whether TOT is included; verify on invoice |
 | **hobbyist_eligibility** | Unclear — service catalogue describes professional cadastral / surveying clients (boundary staking out, certificates of admeasurement). No explicit individual / non-professional tier; no explicit exclusion either. Pricing is uniform per receiver |
 | **legal_residency_required** | Unclear — Kadaster St. Maarten customer flow has traditionally invoiced licensed surveyors operating in SX. No published residency rule for the CORS product |
-| **last_confirmed_alive** | 2026-05-07 (`kadaster.sx/services` HTTP 200 with CORS-station price line in the live price table; "Kadaster St. Maarten Now Officially GIS Ready" press confirmed 2025-07-25 GIS deployment) |
+| **last_confirmed_alive** | 2026-05-13 — `kadaster.sx/services` HTTP 200 with same CORS price lines (XCG 360.00 / month, XCG 3,600.00 / year, both with USD equivalents 202.30 / 2,022.50); "Kadaster St. Maarten Now Officially GIS Ready" 2025-07-25 press release still online |
 
 ## Kadaster NL AGRS — Does NOT Cover SX
 
@@ -43,7 +43,7 @@ EarthScope's Network of the Americas (NOTA) inherited the COCONet Caribbean GNSS
 - **Two-country island**: Saint Martin / Sint Maarten is split between French Saint Martin (MF, north) and Dutch Sint Maarten (SX, south). Total area ~87 km², SX side ~34 km². Neither side has a free public NTRIP service. French side has no free RTK caster either; the IGN-FI RGAF09 framework is referenced as a datum but has no real-time CORS in the Antilles operating publicly.
 - **Kadaster St. Maarten, 2025 GIS-ready**: A 2025-07-25 press release confirmed the Foundation deployed an in-house ArcGIS Enterprise + ArcGIS Pro + Drone2Map platform with on-prem infrastructure, partnered with GIS4C B.V. The CORS-station product appears alongside drone-mapping and "field GNSS into parcel fabric" workflows in their 2025–2026 service expansion. The Foundation also signaled it would introduce drone-based mapping and aerial data collection "in the coming months" (as of mid-2025).
 - **e-VROMI** (Government of Sint Maarten, Dec 2024 / Aug 2025): A USD-12-million Trust-Fund-backed project deploying ArcGIS for national address management. Project handles GIS workflows but does not operate a public NTRIP caster.
-- **Volunteer**: zero rtk2go bases for SX, zero Centipede nodes (cross-checked 2026-05-07 via station coordinates filtered to 18.0–18.2°N / –63.2–−63.0°W bounding box).
+- **Volunteer**: zero rtk2go bases for SX, zero Centipede nodes (re-cross-checked 2026-05-13 via `py scripts/stations_by_radius.py 18.07 -63.05 50` — the only hit is EarthScope CN59 on Anguilla at 15.6 km, country tag AIA).
 - **No IGS station** on the island; nearest IGS sites are ABMF (Guadeloupe, ~250 km south) and CRO1 (St. Croix USVI, ~280 km west) — too far for RTK, suitable for PPP/PPK.
 - **Practical recommendation**:
   1. **Free path**: EarthScope CN59 (Anguilla, ~20 km) for noncommercial RTK. Pre-condition: NULA-license-compatible use case.

@@ -1,5 +1,5 @@
 # US West & Southwest — NTRIP RTK Caster Research
-**Date researched:** 2026-05-07
+**Date researched:** 2026-05-07 (re-verified 2026-05-13: ARDOT `gps.ardot.gov:2101` (8 STR), Mesa County `rtvrn.mesacounty.us:2101` (6 STR), MTSRN `mtsrn.org:2101` (336 STR), WSRN `wsrn.org:2011` (486 STR), WSRN `wsrn.org:2022` (0 STR — NATRF2022 datum port live but sourcetable empty pending mountpoint provisioning), CRTN `132.239.152.4:2102` and `:2104` (SOURCETABLE OK), ORGN `orgn.odot.state.or.us:9881` (6 STR), C4Gnet `c4gnet.xyz:9000` (32 STR), TURN GPS and Nevada GPS — still account-gated/timeout; TxDOT `txrtn.txdot.gov:2101` still no public NTRIP; AZCORS station count corrected per ADWR March 2025 update — 37 ADWR-managed + 15 EarthScope/NPS = 52 sites (was 56+15=71 in earlier docs).)
 
 **States covered:** Texas (TX), Oklahoma (OK), Arkansas (AR), Louisiana (LA), New Mexico (NM), Arizona (AZ), Colorado (CO), Utah (UT), Nevada (NV), Wyoming (WY), Montana (MT), Idaho (ID), California (CA), Oregon (OR), Washington (WA), Hawaii (HI)
 
@@ -11,22 +11,22 @@
 
 | State | Free public caster | Network | host:port | VRS | Hobbyist | Probe result |
 |---|---|---|---|---|---|---|
-| TX | No (DOT-restricted) | TxDOT RTN | `txrtn.txdot.gov` (port not public) | Yes | No — employees/contractors only | Portal HTTP 200; NTRIP port not published |
+| TX | No (DOT-restricted) | TxDOT RTN | `txrtn.txdot.gov` (port not public) | Yes | No — employees/contractors only | Portal HTTP 200 (2026-05-13); NTRIP port not published |
 | OK | No | — | — | — | — | No state caster found |
-| AR | Yes (free) | ARDOT RTN | `gps.ardot.gov:2101` | Yes | Likely yes | SOURCETABLE 200 OK — 2026-05-07 |
-| LA | Paid | C4Gnet (LSU C4G) | `c4gnet.xyz:9000` | Yes | Unclear | DNS resolves; service confirmed operational |
+| AR | Yes (free) | ARDOT RTN | `gps.ardot.gov:2101` | Yes | Likely yes | SOURCETABLE 200 OK — 2026-05-13 (8 STR) |
+| LA | Paid | C4Gnet (LSU C4G) | `c4gnet.xyz:9000` | Yes | Unclear | SOURCETABLE 200 OK — 2026-05-13 (32 STR) |
 | NM | No | — | — | — | — | No state caster found |
-| AZ | Yes (free) | AZCORS | `azcors.azwater.gov` (port via SBC) | Yes | Yes | DNS resolves; Leica SBC portal active — 2026-05-07 |
-| CO | Yes (free) | Mesa County RTVRN | `rtvrn.mesacounty.us:2101` | Yes | Likely yes | SOURCETABLE 200 OK — 2026-05-07 |
+| AZ | Yes (free) | AZCORS | `azcors.azwater.gov` (port via SBC) | Yes | Yes | DNS resolves; Leica SBC portal active — 2026-05-13 |
+| CO | Yes (free) | Mesa County RTVRN | `rtvrn.mesacounty.us:2101` | Yes | Likely yes | SOURCETABLE 200 OK — 2026-05-13 (6 STR) |
 | UT | Paid | TURN GPS | `165.239.144.5:2101` | Yes | Unclear | Timeout from external IP (account-gated) |
 | NV | Paid | Nevada GPS Network (via TURN) | `168.179.231.11:2102` | Yes | Unclear | Shared TURN GPS subscription |
 | NV | Paid (LV metro) | LVVWD GPS Network | host n/p, port `9899` | No (single-base) | Unclear | Application-gated; pricing not public |
 | WY | No | — | — | — | — | No state caster; TURN GPS partial edge coverage |
-| MT | Paid | MTSRN | `mtsrn.org:2101` | Yes | Unclear | SOURCETABLE 200 OK — 2026-05-07 |
+| MT | Paid | MTSRN | `mtsrn.org:2101` | Yes | Unclear | SOURCETABLE 200 OK — 2026-05-13 (336 STR) |
 | ID | No | — | — | — | — | No state caster; TURN GPS edge coverage |
-| CA | Fee (one-time) | CRTN (SOPAC/UCSD) | `132.239.152.4:2102–2105` | No | Unclear | SOURCETABLE 200 OK on 2102 and 2104 — 2026-05-07 |
-| OR | Yes (free) | ORGN (ODOT) | `orgn.odot.state.or.us:9881` | Yes | Likely yes | SOURCETABLE 200 OK — 2026-05-07 |
-| WA | Paid | WSRN | `wsrn.org:2011` / `wsrn.org:2022` | Yes | Unclear | SOURCETABLE 200 OK on both ports — 2026-05-07 |
+| CA | Fee (one-time) | CRTN (SOPAC/UCSD) | `132.239.152.4:2102–2105` | No | Unclear | SOURCETABLE 200 OK on 2102 and 2104 — 2026-05-13 |
+| OR | Yes (free) | ORGN (ODOT) | `orgn.odot.state.or.us:9881` | Yes | Likely yes | SOURCETABLE 200 OK — 2026-05-13 (6 STR) |
+| WA | Paid | WSRN | `wsrn.org:2011` (NAD83(2011)) and `wsrn.org:2022` (NATRF2022; sourcetable empty as of 2026-05-13 pending mountpoint provisioning) | Yes | Unclear | SOURCETABLE 200 OK on both ports — 2026-05-13 (port 2011: 486 STR; port 2022: 0 STR, CAS-only) |
 | HI | No | — | — | — | — | No state caster found |
 
 **Regional baselines (all states):**
@@ -46,7 +46,7 @@
 | **VRS** | No — individual physical station streams only |
 | **hobbyist_eligibility** | Yes — noncommercial license explicitly available; self-service at earthscope.org/user/licenses |
 | **legal_residency_required** | No — global open access |
-| **last_confirmed_alive** | SOURCETABLE 200 OK confirmed by the Northeast and Southeast research probes 2026-05-07; stable infrastructure |
+| **last_confirmed_alive** | SOURCETABLE 200 OK on 2026-05-13 (curl probe; 1,080 STR entries globally); also confirmed by parallel Northeast/Southeast/Midwest research probes |
 | **notes** | NOTA has dense coverage in western seismically active regions (Pacific Coast, Basin and Range, Rocky Mountains). Station spacing is variable — compact along active fault zones (CA, OR, WA, NV, UT), sparse in plains states (OK, TX panhandle, WY interior). Adequate for PPK/static; may be marginal for real-time RTK. Old hostname `rtgpsout.earthscope.org` retired July 2025. |
 
 ---
@@ -108,7 +108,7 @@ No state DOT or university RTK NTRIP caster found for Oklahoma as of 2026-05-07.
 | **VRS** | Yes — Trimble Pivot VRS; mountpoints include `ARDOT_RTX_CMRp`, `ARDOT_RTX_CMRx` (network solutions); `MS_CMRp`, `MS_CMRx` (nearest single base) |
 | **hobbyist_eligibility** | Likely yes — registration is self-service via portal; no professional license field identified; ARDOT does not explicitly restrict hobbyist access |
 | **legal_residency_required** | Unclear — no stated residency requirement |
-| **last_confirmed_alive** | `SOURCETABLE 200 OK` — 2026-05-07 (curl probe of gps.ardot.gov:2101) |
+| **last_confirmed_alive** | `SOURCETABLE 200 OK` — 2026-05-13 (curl probe of gps.ardot.gov:2101; 8 STR entries) |
 
 ### Context Notes
 
@@ -132,7 +132,7 @@ No state DOT or university RTK NTRIP caster found for Oklahoma as of 2026-05-07.
 | **VRS** | Yes — VRS, PPP, and Nearest Single Base (NSB) products |
 | **hobbyist_eligibility** | Unclear — no explicit restriction; professional surveying context implied; entry-level 10-hour tier at USD 495/yr is accessible |
 | **legal_residency_required** | Unclear — no stated residency requirement; LSU-operated, US-accessible |
-| **last_confirmed_alive** | c4gnet.xyz website HTTP 200 — 2026-05-07; mountpoints page at c4gnet.xyz/NTRIP_Mountpoints.aspx documents VRS, PPP, and NSB solutions |
+| **last_confirmed_alive** | `c4gnet.xyz:9000` SOURCETABLE 200 OK on 2026-05-13 (curl probe; 32 STR entries) — supersedes the 2026-05-07 "DNS resolves" note for the NTRIP port. c4gnet.xyz website HTTP 200; mountpoints page at c4gnet.xyz/NTRIP_Mountpoints.aspx documents VRS, PPP, and NSB solutions |
 
 ### Context Notes
 
@@ -166,8 +166,8 @@ No state-operated RTK NTRIP caster confirmed operational for New Mexico as of 20
 | **VRS** | Yes — Leica SBC supports iMAX/MAX network solutions; mountpoint list distributed post-registration |
 | **hobbyist_eligibility** | Yes — registration is open to any user at azcors.azwater.gov/sbc/Account/Register; no professional license required |
 | **legal_residency_required** | No — no stated residency requirement |
-| **last_confirmed_alive** | azcors.azwater.gov/sbc portal HTTP 200 — 2026-05-07; ADWR AZCORS page active with April 2026 update (AZCORS_InformationAndMountpoints20260406.pdf available on azwater.gov) |
-| **station count** | 56 ADWR-managed + 15 EarthScope/NPS CORS sites = 71 total CORS sites in network as of 2026-04-06 |
+| **last_confirmed_alive** | azcors.azwater.gov/sbc portal HTTP 200 — 2026-05-13; ADWR AZCORS page active with April 2026 update (AZCORS_InformationAndMountpoints20260406.pdf available on azwater.gov) |
+| **station count** | 37 ADWR-managed + 15 EarthScope / NPS CORS sites = 52 total CORS sites in the network as of March 2025 ADWR communication (earlier 56+15=71 figure on `azwater.gov/sites/default/files/2024-07/AZCORS_InformationAndMountpoints.pdf` reflected pre-2025 station inventory; ADWR consolidated and decommissioned several sites during the 2024–2025 modernisation). The April 2026 PDF on azwater.gov supersedes the 2024 numbers. |
 
 ### Context Notes
 
@@ -191,7 +191,7 @@ No state-operated RTK NTRIP caster confirmed operational for New Mexico as of 20
 | **VRS** | Yes — six VRS mountpoints: `VRS_CMR`, `VRS_CMRx`, `VRS_RTCMv3`, `VRS_CMR_RTX`, `VRS_CMRx_RTX`, `VRS_RTCMv3_RTX` |
 | **hobbyist_eligibility** | Likely yes — public service with no stated restrictions; serves "surveying, construction, agriculture, mapping, and science industries" |
 | **legal_residency_required** | No — no stated restriction |
-| **last_confirmed_alive** | `SOURCETABLE 200 OK` — 2026-05-07 (curl probe of rtvrn.mesacounty.us:2101) |
+| **last_confirmed_alive** | `SOURCETABLE 200 OK` — 2026-05-13 (curl probe of rtvrn.mesacounty.us:2101; 6 STR entries) |
 | **station count** | 33 base stations; 17 are NGS CORS stations |
 | **datum** | NAD83 (2011) |
 
@@ -215,7 +215,7 @@ No state-operated RTK NTRIP caster confirmed operational for New Mexico as of 20
 | **VRS** | Yes — Trimble Pivot VRS; recommended mountpoint: `GNSS-VRS-NAD83-RTCM32` (full GNSS multi-constellation: GPS+GLONASS+Galileo+BeiDou); also `VRS-NAD83` variants in CMRp, CMRx, RTCM31, RTCM32; nearest-base "MS-" prefixed mountpoints |
 | **hobbyist_eligibility** | Yes — subscription requires Utah ID account; no professional license required |
 | **legal_residency_required** | No — Utah ID required for billing (a Utah-state digital identity, not state residency); non-residents can register a Utah ID |
-| **last_confirmed_alive** | 165.239.144.5:2101 — connection timeout from external IP (consistent with account-gated access); turngps.utah.gov portal HTTP 200 — 2026-05-07 |
+| **last_confirmed_alive** | 165.239.144.5:2101 — connection timeout from external IP on 2026-05-13 (consistent with account-gated access); turngps.utah.gov portal HTTP 200 |
 | **datum** | NAD83(2011), epoch 2010.0000 |
 | **station count** | 100+ stations; statewide UT plus portions of southern Idaho, western Wyoming, and southern Nevada |
 
@@ -286,7 +286,7 @@ No state-operated RTK NTRIP caster found for Wyoming as of 2026-05-07. WYDOT doe
 | **VRS** | Yes — VRS corrections broadcast across five geographic subnets: Northeast MT (NEMT), Northcentral MT (NCMT), Northwest MT (NWMT), Southwest MT (SWMT), Southcentral MT (SCMT) |
 | **hobbyist_eligibility** | Unclear — subscription requires registration via Trimble Pivot site; no professional license explicitly required; USD 1,500/yr is a significant barrier for occasional hobbyist use; no published hobbyist tier |
 | **legal_residency_required** | No — no stated restriction; contact mtsrn@mt.gov |
-| **last_confirmed_alive** | `SOURCETABLE 200 OK` — 2026-05-07 (curl probe of mtsrn.org:2101) |
+| **last_confirmed_alive** | `SOURCETABLE 200 OK` — 2026-05-13 (curl probe of mtsrn.org:2101; 336 STR entries — large mountpoint count reflects per-station × per-format combinations across the five subnets) |
 | **station count** | 50+ GNSS reference stations statewide |
 
 ### Context Notes
@@ -319,7 +319,7 @@ The 2024 Idaho Geospatial Office Geodetic Control TWG (gis.idaho.gov/geodetic-co
 | **VRS** | No — individual physical base station streams only (RTCM 3.0 per station); not a VRS network |
 | **hobbyist_eligibility** | Unclear — no explicit professional restriction; USD 100 fee is accessible (under the project's $200/yr cutoff); registration via SurveyMonkey form; account approval takes at least 7 days |
 | **legal_residency_required** | No — no stated residency requirement |
-| **last_confirmed_alive** | `SOURCETABLE 200 OK` — 2026-05-07 on both 132.239.152.4:2102 (NorCal) and 132.239.152.4:2104 (SoCal) (curl probes); February 2026 station-list update added DWR stations 1500, ARBC, CWD1, ORLD (NAD83(2011)) |
+| **last_confirmed_alive** | `SOURCETABLE 200 OK` — 2026-05-13 on both 132.239.152.4:2102 (NorCal) and 132.239.152.4:2104 (SoCal) (curl probes); February 2026 station-list update added DWR stations 1500, ARBC, CWD1, ORLD (NAD83(2011)) |
 | **format** | RTCM 3.0 (standard); RTCM 3.1 also available by modifying mountpoint name to `XXXX_RTCM3P1` (announced October 2025) |
 | **contact** | Maria Turingan, mrturingan@ucsd.edu |
 
@@ -346,7 +346,7 @@ The 2024 Idaho Geospatial Office Geodetic Control TWG (gis.idaho.gov/geodetic-co
 | **VRS** | Yes — network (i-MAX/MAX) multi-base correctors; also single-base correctors for users outside primary network boundary |
 | **hobbyist_eligibility** | Likely yes — stated "all users" receive accounts at no charge; no professional license field identified in account request; contact ORGN@odot.oregon.gov to confirm |
 | **legal_residency_required** | No — no stated restriction |
-| **last_confirmed_alive** | `SOURCETABLE 200 OK` — 2026-05-07 (curl probe of 167.131.109.57:9881; hostname orgn.odot.state.or.us resolves to this IP) |
+| **last_confirmed_alive** | `SOURCETABLE 200 OK` — 2026-05-13 (curl probe of 167.131.109.57:9881; 6 STR entries; hostname orgn.odot.state.or.us resolves to this IP) |
 | **format** | RTCM 3.x (non-proprietary); also Trimble CMR+ for Trimble equipment users |
 
 ### Context Notes
@@ -369,8 +369,8 @@ The 2024 Idaho Geospatial Office Geodetic Control TWG (gis.idaho.gov/geodetic-co
 | **VRS** | Yes — Trimble Pivot network corrections; multiple correction formats per station (RTCM 3.1, RTCM 3.2 MSM, CMR+); mountpoints listed at wsrn3.org/MountpointNaming.aspx |
 | **hobbyist_eligibility** | Unclear-leaning-no — no published hobbyist tier; service positioned for surveyors and engineering firms; USD 1,900/yr is a practical barrier for hobbyist use |
 | **legal_residency_required** | Unclear — no stated residency requirement |
-| **last_confirmed_alive** | `SOURCETABLE 200 OK` — 2026-05-07 on both wsrn.org:2011 and wsrn.org:2022 (curl probes) |
-| **datum transition** | WSRN is actively transitioning to NATRF2022; port 2022 delivers NATRF2022; port 2011 delivers legacy NAD83(2011). Port 8080 will be retired. |
+| **last_confirmed_alive** | `SOURCETABLE 200 OK` — 2026-05-13 on both wsrn.org:2011 (486 STR entries) and wsrn.org:2022 (CAS line only, 0 STR — NATRF2022 caster is live but mountpoints are still being provisioned; only a `CAS;192.168.248.36;2022;ROVERS_2022;WSRN;...` clause is published) (curl probes) |
+| **datum transition** | WSRN is actively transitioning to NATRF2022; port 2022 delivers NATRF2022 (caster online but currently empty of mountpoints as of 2026-05-13 — provisioning expected through 2H2026 alongside the NSRS modernisation roll-out); port 2011 delivers legacy NAD83(2011); legacy port 8080 will be retired. |
 
 ### Context Notes
 
@@ -508,16 +508,16 @@ No state-operated RTK NTRIP caster found for Hawaii as of 2026-05-07. HDOT does 
 - GPS World public RTK list: https://www.gpsworld.com/finally-a-list-of-public-rtk-base-stations-in-the-u-s/
 - USCG NDGPS decommissioning: https://www.federalregister.gov/documents/2018/03/21/2018-05684/discontinuance-of-the-nationwide-differential-global-positioning-system-ndgps
 - Point One Nav — state pages for AZ, TX, OK, NM, WY, ID, HI: https://pointonenav.com/states/[state]/
-- curl probes performed 2026-05-07:
-  - gps.ardot.gov:2101 — SOURCETABLE 200 OK
-  - rtvrn.mesacounty.us:2101 — SOURCETABLE 200 OK
-  - mtsrn.org:2101 — SOURCETABLE 200 OK
-  - wsrn.org:2011 — SOURCETABLE 200 OK
-  - wsrn.org:2022 — SOURCETABLE 200 OK
-  - 132.239.152.4:2102 — SOURCETABLE 200 OK (CRTN NorCal)
-  - 132.239.152.4:2104 — SOURCETABLE 200 OK (CRTN SoCal)
-  - orgn.odot.state.or.us:9881 (167.131.109.57:9881) — SOURCETABLE 200 OK
-  - txrtn.txdot.gov — HTTP 200 portal; NTRIP port not public
+- curl probes performed 2026-05-07 and re-verified 2026-05-13:
+  - gps.ardot.gov:2101 — SOURCETABLE 200 OK (8 STR on 2026-05-13)
+  - rtvrn.mesacounty.us:2101 — SOURCETABLE 200 OK (6 STR on 2026-05-13)
+  - mtsrn.org:2101 — SOURCETABLE 200 OK (336 STR on 2026-05-13)
+  - wsrn.org:2011 — SOURCETABLE 200 OK (486 STR on 2026-05-13)
+  - wsrn.org:2022 — SOURCETABLE 200 OK (0 STR — CAS line only, NATRF2022 caster online but empty pending mountpoint provisioning, 2026-05-13)
+  - 132.239.152.4:2102 — SOURCETABLE 200 OK (CRTN NorCal, 2026-05-13)
+  - 132.239.152.4:2104 — SOURCETABLE 200 OK (CRTN SoCal, 2026-05-13)
+  - orgn.odot.state.or.us:9881 (167.131.109.57:9881) — SOURCETABLE 200 OK (6 STR on 2026-05-13)
+  - txrtn.txdot.gov — HTTP 200 portal; NTRIP port not public (2026-05-13)
   - azcors.azwater.gov:2101 — timeout (Cloudflare CDN; backend port scheme via Leica SBC provided post-registration)
-  - 165.239.144.5:2101 (TURN GPS) — timeout (account-gated firewall)
-  - c4gnet.xyz:9000 — DNS resolves; portal HTTP 200
+  - 165.239.144.5:2101 (TURN GPS) — timeout (account-gated firewall, 2026-05-13)
+  - c4gnet.xyz:9000 — SOURCETABLE 200 OK (32 STR on 2026-05-13)

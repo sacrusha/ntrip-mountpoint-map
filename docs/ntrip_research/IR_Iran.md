@@ -1,5 +1,5 @@
 # Iran [IR] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12 (refresh of 2026-05-06 entry)
 
 ## Status: YES — two active government NTRIP RTK casters (SHAMIM / SHAMIM Plus + Hoda Pro); both restricted to Iranian nationals; endpoint IPs geo-blocked from outside Iran
 
@@ -16,7 +16,7 @@
 | **hobbyist_eligibility — SHAMIM** | No — requires licensed cadastral surveyor status or SSAA-authorised outsourcing role; receiver serial number must be pre-registered; single concurrent connection per account |
 | **hobbyist_eligibility — Hoda Pro** | Unclear — individual surveyors and engineers appear to register without company licence; Iranian national ID (شماره ملی) required; no explicit prohibition on unlicensed individuals found |
 | **legal_residency_required** | Yes (both) — Iranian national ID + Iranian banking required for Hoda Pro; Iranian national ID + Iranian mobile number for SHAMIM |
-| **last_confirmed_alive** | SHAMIM: 2025-05-04 (Google-indexed, active use confirmed in practitioner content through 2024–2025; direct TCP blocked from outside Iran). Hoda Pro: Google index confirms `hodapro.ncc.gov.ir` active; Raymand article 2024-04-30 describes live service; practitioner content through 2024–2025 confirms active use |
+| **last_confirmed_alive** | SHAMIM: TCP probe of `178.252.173.15:2101` timed out from this sandbox 2026-05-12 (consistent with prior geo-blocking observations; service remains referenced in practitioner content through 2024–2025). Hoda Pro: Google index confirms `hodapro.ncc.gov.ir` active; Raymand article 2024-04-30 describes live service; practitioner content through 2024–2025 confirms active use |
 
 ## Context Notes
 
@@ -45,3 +45,5 @@
 - orbitgeo.ir Instagram posts confirming SHAMIM / SHAMIM Plus IPs (2022–2023)
 - `ipgn.ncc.gov.ir:2101` — connection refused 2026-05-01
 - GPS World NCC domestic GNSS software article (2026-01-26): https://www.gpsworld.com
+- TCP probe 178.252.173.15:2101 timed out from sandbox 2026-05-12 (geo-block consistent with prior observations)
+- No IR-tagged stations in rtk2go / Centipede / EarthScope (confirmed 2026-05-12 via `scripts/stations_by_country.py IRN`)

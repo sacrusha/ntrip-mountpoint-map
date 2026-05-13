@@ -1,5 +1,5 @@
 # Gabon [GA] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12 (refresh of 2026-05-06 entry; no new CORS/NTRIP activity surfaced)
 
 ## Status: NO active public NTRIP caster
 
@@ -31,8 +31,8 @@ URL: https://ric2024.rcmrd.org/afref
 - **Direction Générale des Travaux Topographiques et du Cadastre** (DGTC) is the complementary directorate within the Ministry managing cadastral records.
 - **IGN FI involvement**: Two documented projects — (1) the National Geomatic Plan (2011–2013 initial phases); (2) an information system for forest spatial planning. Neither confirms a CORS deployment or NTRIP service.
 - **ANINF**: The national digital infrastructure agency co-signed the geomatic plan with IGN FI, suggesting future connectivity infrastructure could support CORS hosting — but no station or caster has materialised in public sources.
-- **No CORS confirmed**: Gabon does not appear in the IGS network, ITRF2020, SONEL, AFREF confirmed-CORS country list, or any NTRIP listing as of 2026-05-06.
-- **RTK2go / Centipede**: Zero GA stations in either sourcetable.
+- **No CORS confirmed**: Gabon does not appear in the IGS network, ITRF2020, SONEL, AFREF confirmed-CORS country list, or any NTRIP listing as of 2026-05-12.
+- **RTK2go / Centipede / EarthScope**: Zero GA / GAB stations in any sourcetable as of 2026-05-12 (verified via local `data/stations.json`).
 - **Global commercial networks** (GEODNET, ONOCOY, Centipede, RTKdata): No GA coverage identified.
 - **Infrastructure context**: Gabon has relatively high GDP per capita for the region and concentrated urban population in Libreville — better enabling conditions than many sub-Saharan peers, but no CORS has been publicly announced or confirmed as of the research date.
 
@@ -55,3 +55,4 @@ URL: https://ric2024.rcmrd.org/afref
 - Centipede-RTK sourcetable — 0 GA mountpoints
 - GitHub mvarga1989 CORS list — no GA entry
 - ntrip-list.com/africa/ — no GA entry
+- WebSearch 2026-05-12 ("Gabon ANUTTC CORS GNSS NTRIP reference station 2025 2026") — no operational caster or 2025/2026 deployment announcement surfaced

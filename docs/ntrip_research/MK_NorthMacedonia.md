@@ -1,26 +1,29 @@
 # North Macedonia [MK] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-06 (refreshed 2026-05-12)
 
-## Status: YES — MAKPOS national RTK network active; registration required
+## Status: YES — MAKPOS national RTK network active; quasi-geoid (height) corrections live since Feb 2026; registration required
 
 | Field | Value |
 |---|---|
 | **Active public NTRIP RTK caster** | Yes — MAKPOS (Macedonian Positioning System), operated by the Agency for Real Estate Cadastre (AREC) |
 | **host:port** | makpos.katastar.gov.mk : 9001 |
+| **Sample mountpoint** | `iMAX-GNSS` — iMAX-style network RTK, GPS+GLONASS+Galileo (per ArduSimple / community reporting) |
 | **tariff** | Subscription required; specific MKD amounts not publicly posted. MAKPOS users with compatible GNSS devices on 3G/GPRS reportedly offered free-of-charge access per one source — unclear if still current. Contact AREC to confirm. |
 | **hobbyist_eligibility** | Unclear — registration via Spider Business Center portal (makpos.katastar.gov.mk/sbc/); individual sign-up appears available |
 | **legal_residency_required** | Unclear |
-| **last_confirmed_alive** | makpos.katastar.gov.mk SBC login portal confirmed live (2026-05-06); Alberding GmbH worldwide datastream map confirms MAKPOS caster reachable |
+| **last_confirmed_alive** | makpos.katastar.gov.mk SBC login portal confirmed live (2026-05-06). Note: Alberding worldwide-datastreams probe of port 9001 on 2026-05-12 returned "Caster not available" — could indicate transient outage or that the public sourcetable is no longer exposed to Alberding's probe. Service announcements as recent as Feb 2026 confirm the network is operational. |
 
 ## Most Recent Project Announcement
 
-MAKPOS was upgraded for Galileo multi-constellation support in April 2020 (AREC announcement: https://www.katastar.gov.mk/en/2020/04/08/makpos-system-upgraded-for-galileo-functionalities/).
+**2026-02-23 — First official quasi-geoid model MK_HREF2022 deployed**: AREC put the new hybrid quasi-geoid into operation by Government Decision of 25 November 2025. The MK_HREF2022 model ("Macedonian Height Reference Surface 2022") was produced by AREC with the Norwegian Mapping Authority (Kartverket) and verified by Lantmäteriet (Sweden), based on 2,470 gravimetric points (all NVT3 benchmarks plus a 5×5 km grid). **The quasi-geoid is integrated into MAKPOS — RTK clients now receive both position AND height (grid + quasi-geoid) corrections in real time**, plus a desktop coordinate-transformation app for registered users. Source: https://www.katastar.gov.mk/en/2026/02/23/the-first-official-quasi-geoid-model-has-been-put-into-use-for-the-territory-of-the-republic-of-north-macedonia/
+
+**2020-04-08 — Galileo upgrade**: MAKPOS upgraded for Galileo multi-constellation support (AREC announcement: https://www.katastar.gov.mk/en/2020/04/08/makpos-system-upgraded-for-galileo-functionalities/).
 
 The system consists of 14 reference base stations positioned 50–70 km apart, a control center using Leica GNSS Spider software (RT Proxi Server + NTRIP Caster), and a web portal at makpos.katastar.gov.mk/SpiderWeb/frmIndex.aspx.
 
 Services offered:
 - **DGPS**: 0.3–0.5 m accuracy, RTCM 2.x, via GPRS + NTRIP
-- **RTK**: 0.02–0.04 m accuracy, RTCM 2.x and RTCM 3.x, via GPRS + NTRIP
+- **RTK**: 0.02–0.04 m accuracy, RTCM 2.x and RTCM 3.x, via GPRS + NTRIP (now with real-time quasi-geoid height correction as of Feb 2026)
 - **Precise positioning**: <0.01 m accuracy, RINEX, internet distribution
 
 ## Context Notes
@@ -44,9 +47,12 @@ Services offered:
 - AREC MAKPOS SpiderWeb portal: https://makpos.katastar.gov.mk/SpiderWeb/frmIndex.aspx
 - AREC Spider Business Center login / sign-up: https://makpos.katastar.gov.mk/sbc/Account/Register
 - MAKPOS Galileo upgrade announcement (Apr 2020): https://www.katastar.gov.mk/en/2020/04/08/makpos-system-upgraded-for-galileo-functionalities/
-- Alberding GmbH worldwide NTRIP casters map (confirms makpos.katastar.gov.mk:9001): https://www.alberding.eu/cgi-bin/map.cgi
+- MK_HREF2022 quasi-geoid deployment announcement (Feb 2026): https://www.katastar.gov.mk/en/2026/02/23/the-first-official-quasi-geoid-model-has-been-put-into-use-for-the-territory-of-the-republic-of-north-macedonia/
+- AREC data and services overview: https://www.katastar.gov.mk/en/data/services/
+- Alberding GmbH worldwide NTRIP casters map (probe of port 9001 returned "Caster not available" 2026-05-12; previously confirmed): https://www.alberding.eu/cgi-bin/map.cgi?caster=makpos.katastar.gov.mk&port=9001&lang=en
 - ArduSimple North Macedonia RTK page: https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-macedonia/
 - EuroGeographics — AREC member profile: https://eurogeographics.org/member/agency-for-real-estate-cadastre/
-- GitHub sctg-development RtkGps issue thread (MAKPOS user discussion): https://github.com/sctg-development/RtkGps/issues/14
+- GitHub sctg-development RtkGps issue thread (MAKPOS user discussion; mentions `iMAX-GNSS` mountpoint): https://github.com/sctg-development/RtkGps/issues/14
 - NTRIP-list.com Europe page — no North Macedonia entries found
 - RTK2go monitor (monitor.use-snip.com) — no North Macedonia streams confirmed
+- py scripts/stations_by_radius.py 41.6 21.7 200 (2026-05-12) — nearest rtk2go bases Pernik / MESTY in Bulgaria, both ~155 km from Skopje (out of useful RTK range)

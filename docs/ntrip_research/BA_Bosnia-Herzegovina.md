@@ -1,7 +1,7 @@
 # Bosnia and Herzegovina [BA] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12
 
-## Status: YES — dual government NTRIP casters operating (BiHPOS dual-entity network); paid subscription; no free tier
+## Status: YES — dual government NTRIP casters operating (BiHPOS dual-entity network); paid subscription; no free tier. Single rtk2go volunteer base in northern Bosnia (AGROORSOLIC).
 
 Bosnia and Herzegovina is a dual-entity state. Two separate government CORS networks operate under the EU-funded BiHPOS umbrella: SRPOS (Republika Srpska) and FBiHPOS (Federation of BiH). Both are paid. They are independently operated, have separate endpoints, separate tariffs, and separate registration processes.
 
@@ -99,7 +99,8 @@ Bosnia and Herzegovina is a dual-entity state. Two separate government CORS netw
 - **Port 8080**: FBiHPOS uses port 8080, not the conventional NTRIP port 2101. Firewall rules may need adjustment. SRPOS is accessible on both port 2101 (preferred) and legacy port 8080.
 - **Tariff parity**: The 1-month and annual RTK rates are essentially identical across both sub-networks (SRPOS: 250 KM/month, 1,000 KM/year; FBiHPOS: 250 KM/month, 1,000 KM/year). The key differences are: FBiHPOS adds a 100 KM one-time registration fee and has no short hourly/per-minute blocks; SRPOS has per-minute and hourly blocks making it cheaper for short-term or occasional use.
 - **No free tier on either network**: Neither SRPOS nor FBiHPOS offers any free or open-access NTRIP stream.
-- **Volunteer/community bases**: Approximately 1 BiH base on RTK2go; zero on Centipede. These are the only free alternatives and coverage is negligible.
+- **Volunteer/community bases**: **1 rtk2go base confirmed** — `AGROORSOLIC` at 45.01°N, 18.60°E (Posavina region, northern Bosnia near Orašje, country code `BIH`); visible in `data/stations.json` 2026-05-12 snapshot via `rtk2go.com:2101`. Zero Centipede BA nodes. Coverage of Bosnia at large is negligible from these free sources; users in central/southern Bosnia must subscribe to SRPOS or FBiHPOS, or self-host.
+- **Cross-border free options**: Within ~150–200 km of central Bosnia, the nearest free rtk2go cluster is on the Serbian side (~15 SRB bases between 150–200 km from Sarajevo; see `RS_Serbia.md`). Croatian / Montenegrin free coverage is also limited.
 - **SRPOS tariff history**: The SRPOS tariff was established by Decision published in Sl. glasnik RS 85/2011 at launch in September 2011. A 20% discount applied before 1 January 2013; current full rates apply post-2013.
 
 ## Post-Processing (RINEX) Fallback

@@ -1,16 +1,18 @@
 # Nepal [NP] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12 (refresh; prior pass 2026-05-06)
 
-## Status: NO confirmed public NTRIP caster (CORS infrastructure in development)
+## Status: NO national public NTRIP caster — EarthScope/NOTA streams one Nepal CORS (KUGE) over its global caster as the only real-time path
 
 | Field | Value |
 |---|---|
-| **Active public NTRIP RTK caster** | No — no publicly documented NTRIP endpoint found |
-| **host:port** | null |
-| **tariff** | null |
-| **hobbyist_eligibility** | null — no service confirmed |
-| **legal_residency_required** | null — no service confirmed |
-| **last_confirmed_alive** | null — no public caster confirmed at any date |
+| **Active public NTRIP RTK caster (domestic)** | No — no Nepali agency operates a publicly documented NTRIP endpoint |
+| **EarthScope (NOTA) real-time stream** | Yes — single station `KUGE_RTCM3P3` (~27.62°N, 85.54°E, near Kathmandu) reachable via the EarthScope caster `rtgpsout.unavco.org:2101` after NULA registration |
+| **host:port (domestic)** | null |
+| **tariff (domestic)** | null |
+| **tariff (EarthScope)** | Free for non-commercial use after NULA acceptance; USD 1,000/seat/yr commercial |
+| **hobbyist_eligibility** | EarthScope: yes (non-commercial); no domestic service to evaluate |
+| **legal_residency_required** | EarthScope: no — open globally with NULA |
+| **last_confirmed_alive** | KUGE_RTCM3P3 listed in `data/stations.json` (earthscope source, ingested via the local fetch pipeline); no Nepal-hosted caster confirmed at any date |
 
 ## Most Recent Project Announcement
 
@@ -21,17 +23,19 @@
 
 ## Context Notes
 
-- Nepal's Survey Department (Geodetic Survey Division) maintains 2 operational CORS stations at Nagarkot, with more under construction as of the most recently available information.
-- UNAVCO/EarthScope operates ~16 scientific GNSS CORS in Nepal for seismic and geodynamic monitoring — data is archival / post-processing only; no public NTRIP RTK stream is offered from these stations.
+- Nepal's Survey Department (Geodetic Survey Division) maintains 2 operational CORS stations at Nagarkot plus one at the Minbhawan head office (under construction in recent reporting), with ambition for 50+ stations covering the country. No public NTRIP endpoint has been advertised.
+- UNAVCO/EarthScope (now NOTA / GAGE) operates ~16 scientific GNSS CORS in Nepal for seismic and geodynamic monitoring. Most are archival/post-processing only. **One station (KUGE) is publicly streamed via the EarthScope NTRIP caster in RTCM 3 MSM5 format** (mountpoint `KUGE_RTCM3P3`); requires a NOTA user account (NULA). This is the only realistically reachable real-time stream for hobbyists in Nepal as of 2026-05-12.
 - NMGISC (National Mapping and Geospatial Information System Centre) and the Survey Department have both expressed intent to build a national CORS/NTRIP network, but no operational service has been publicly announced.
 - Nepal lies in a high-seismicity zone; post-2015 Gorkha earthquake geodetic infrastructure has been rebuilt with international support (UNAVCO, IGS), but the focus has been scientific monitoring rather than survey-grade real-time corrections.
 - Commercial global networks (GEODNET, ONOCOY, PointOne, Centipede): no Nepal coverage confirmed.
-- Practical workaround: Deploy a local base station, or use satellite-based PPP (Trimble RTX, Galileo HAS, NRCAN PPP). UNAVCO archival RINEX is free for post-processing.
+- rtk2go (per `scripts/stations_by_country.py NPL` 2026-05-12): no Nepal mountpoints.
+- Practical workaround for hobbyists in Nepal: connect to `KUGE_RTCM3P3` via the EarthScope caster (baseline ≤ ~30 km from Kathmandu / Bhaktapur for cm-grade fix); for sites away from KUGE, deploy a local base station or fall back to satellite PPP (Trimble RTX, Galileo HAS, NRCAN PPP).
 
-## Post-Processing (RINEX) Fallback
+## Real-Time + Post-Processing Fallback
 
 | Service | URL | Cost |
 |---------|-----|------|
+| **EarthScope/NOTA real-time stream** — `rtgpsout.unavco.org:2101` mountpoint `KUGE_RTCM3P3` (Kathmandu area, RTCM 3 MSM5) | https://www.earthscope.org/data/gnss-data/real-time/ | Free non-commercial after NULA |
 | **EarthScope/GAGE GNSS Archive** — archival RINEX from Nepal scientific CORS (NAST, SYBC, CHLM, etc.) | https://www.unavco.org/data/gps-gnss/ | Free non-commercial (account + NULA); $1,000/seat/yr commercial |
 | **IGS data** — KATM station (Kathmandu, IGS) | https://igs.org/ | Free |
 
@@ -43,4 +47,5 @@
 - Geospatial World — Surveying Mount Everest using GNSS and CORS: https://geospatialworld.net/article/surveying-mount-everest-using-gnss-and-cors/
 - UNAVCO/EarthScope real-time data: https://www.unavco.org/data/gps-gnss/real-time/real-time.html
 - ArduSimple country RTK list (Nepal not listed): https://www.ardusimple.com/rtk-correction-services-in-your-country/
-- RTK2go monitor (no Nepal stations observed)
+- RTK2go monitor (no Nepal stations observed; confirmed via `scripts/stations_by_country.py NPL` 2026-05-12)
+- Local pipeline check `scripts/stations_by_country.py NPL` (2026-05-12) — earthscope source returns 1 station (KUGE_RTCM3P3 at 27.62°N, 85.54°E)

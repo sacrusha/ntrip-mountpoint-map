@@ -1,5 +1,5 @@
 # Mozambique [MZ] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12 (re-verified; status unchanged from 2026-05-06)
 
 ## Status: Physical CORS exists but NO confirmed public NTRIP endpoint
 
@@ -40,8 +40,10 @@ No announcement of a live public NTRIP service or subscription portal found thro
 ## Context Notes
 
 - Corsmap.com (previously documented Mozambique's stations) is now offline — domain redirects to HugeDomains reseller.
-- CENACARTA website (cenacarta.gov.mz) returned connection refused at research date.
-- No Mozambique mountpoints on RTK2GO, BKG NTRIP, GEODNET, ONOCOY, or any global caster directory.
+- CENACARTA's older website (cenacarta.gov.mz) was unreachable at the 2026-05-06 research date; the working CENACARTA web service is now `www.cenacarta.com` (WebMapper at /pmapper/) — still no NTRIP caster published.
+- A separate national SDI portal `www.mozgis.gov.mz` exists (Rede Nacional SIG / ArcGIS-based) — geospatial layers only, no NTRIP product.
+- **MIRASpaco connection**: The Nigerian operator MIRASpaco lists Mozambique as one of three countries where it installs/rehabilitates GNSS CORS networks (alongside Nigeria and Angola). This suggests the CENACARTA stations are MIRASpaco-installed; whether MIRASpaco hosts a corresponding MZ NTRIP caster has not been confirmed publicly.
+- No Mozambique mountpoints on RTK2GO, BKG NTRIP, GEODNET, ONOCOY, or any global caster directory. Nearest rtk2go bases: mabuda_farm (Eswatini, 85 km from Maputo) and LouwNPP (north-east ZAF, 226 km) — practical for southern Maputo Province only.
 
 ## Post-Processing (RINEX) Fallback
 
@@ -57,9 +59,13 @@ Tel: +258 21 300 486 / +258 21 321 959
 - RTK2GO / SNIP monitor
 - NTRIP-list.com Africa
 - GIM International CORS Africa article
-- Corsmap.com (offline)
-- CENACARTA (UN-SPIDER, GIM International directory)
+- Corsmap.com (offline — domain parked)
+- CENACARTA WebMapper: https://www.cenacarta.com/pmapper/ (observed 2026-05-12)
+- UN-SPIDER CENACARTA: https://www.un-spider.org/mozambique-national-cartography-and-remote-sensing-centre-cenacarta
+- Mozambique national SDI: https://www.mozgis.gov.mz/
+- MIRASpaco GNSS service portfolio (lists Mozambique as deployment country): https://miraspaco.com/gnss/
 - World Bank Terra Segura P164551
 - AFREF (UN-SPIDER)
 - ArduSimple country selector, GitHub mvarga1989 list
 - GEODNET, ONOCOY
+- Local data: `py scripts/stations_by_radius.py -25.97 32.58 800` — 0 MOZ stations, 2 nearby (SWZ, ZAF), all 2026-05-12

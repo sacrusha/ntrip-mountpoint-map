@@ -1,5 +1,5 @@
 # Jamaica [JM] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12 (refresh of 2026-05-06 entry)
 
 ## Status: No confirmed public NTRIP caster — EarthScope scientific streams available; NLA VRS network status unknown
 
@@ -9,17 +9,17 @@
 | **Scientific GNSS streams in JM territory** | Yes — EarthScope NOTA (former COCONet) CN10 (Morant Cay), CN11 (Pedro Cay / San Pedro Cay), CN12 (Kingston / UWI Mona campus); all on `ntrip.earthscope.org:2101` |
 | **hobbyist_eligibility** | EarthScope streams: **Yes** (noncommercial tier, individual account). NLA network: **Unclear** — no public documentation |
 | **legal_residency_required** | EarthScope: **No**. NLA: **Unclear** |
-| **last_confirmed_alive** | 2026-05-06 (EarthScope portal reachable; NULA dated v. 2025-05-30). NLA portal nla.gov.jm: HTTP 200 but no NTRIP endpoint found |
+| **last_confirmed_alive** | 2026-05-12 — EarthScope GNSS real-time portal HTTP 200 (NULA v. 2025-05-30); pipeline (`scripts/stations_by_country.py JAM`) shows EarthScope CN11_RTCM3P3 and CN12_RTCM3P3 currently active; CN10 not in current sourcetable snapshot. NLA portal nla.gov.jm: no NTRIP endpoint found |
 
 ---
 
 ## EarthScope NOTA — COCONet Stations in Jamaica Territory
 
-| Station | Location | Notes |
-|---|---|---|
-| **CN10** | Morant Cay (~130 km SE of Kingston) | Remote cay; challenging corrosive marine environment; battery/comms upgrades performed |
-| **CN11** | Pedro Cay / San Pedro Cay (~130 km S of Kingston) | Remote cay; fiberglass enclosure, 1200 Ah battery bank after upgrades |
-| **CN12** | Kingston — UWI Mona campus, Physics Dept roof | Most useful for positioning on Jamaica main island; operated in partnership with UWI Earthquake Unit |
+| Station | Location | Notes | In live sourcetable 2026-05-12 |
+|---|---|---|---|
+| **CN10** | Morant Cay (~130 km SE of Kingston) | Remote cay; challenging corrosive marine environment; battery/comms upgrades performed | **No** — not present in current pipeline snapshot (likely temporarily down) |
+| **CN11** | Pedro Cay / San Pedro Cay (~130 km S of Kingston) | Remote cay; fiberglass enclosure, 1200 Ah battery bank after upgrades | Yes (`CN11_RTCM3P3`, 17.02, −77.78) |
+| **CN12** | Kingston — UWI Mona campus, Physics Dept roof | Most useful for positioning on Jamaica main island; operated in partnership with UWI Earthquake Unit | Yes (`CN12_RTCM3P3`, 18.00, −76.75) |
 
 CN10 and CN11 are isolated islets 80+ miles offshore and are outside practical single-base RTK range from any populated area on the main island. **CN12 in Kingston is the only station relevant to hobbyist RTK use on Jamaica.**
 
@@ -37,9 +37,9 @@ CN10 and CN11 are isolated islets 80+ miles offshore and are outside practical s
 
 ## National Land Agency (NLA) VRS Network
 
-**Spatial Innovision Ltd.** (a UK GIS firm) provided professional services to Jamaica's Ministry of Land & Environment and the National Land Agency to establish a national real-time GPS infrastructure of Virtual Reference Stations for RTK corrections — described at the time as "a first for the Caribbean and the developing world" and integrating GPRS, GPS, and frame relay. The project is documented on Spatial Innovision's projects page but carries no date; internal evidence suggests delivery in the mid-2000s.
+**Spatial Innovision Ltd.** (the Caribbean's Trimble business partner, est. 1998) was awarded a major contract by the **Ministry of Agriculture, Jamaica** (the Minister's award announcement is dated **12 March 2008** per Spatial Innovision's own news page) to install and commission a **National Virtual Reference System (VRS)** built on Trimble Navigation Limited hardware. The infrastructure was built on existing Cable & Wireless Frame Relay + MPLS lines plus GSM/GPRS networks from Cable & Wireless and Digicel, enabling cellphone-class end-user equipment to access nationwide RTK corrections.
 
-As of 2026-05-06:
+As of 2026-05-12:
 - No NTRIP host:port, caster address, or public access URL for the NLA VRS network was found in any source.
 - The NLA website (nla.gov.jm) and the Jamaica Business Gateway (jamaicabusinessgateway.com) describe land administration services but contain no GNSS/NTRIP correction service listing.
 - The Surveys and Mapping Division page (nla.gov.jm/content/surveys-and-mapping) makes no reference to a live RTK correction service.
@@ -51,7 +51,7 @@ It is possible the NLA VRS network continues to operate internally for licensed 
 
 ## Most Recent Project Announcement
 
-No recent (2022–2026) announcement of a new Jamaican national CORS or NTRIP expansion was found. The eLandJamaica portal (elandjamaica.nla.gov.jm) focuses on titling and mapping, not correction streaming.
+No recent (2022–2026) announcement of a new Jamaican national CORS or NTRIP expansion was found. The eLandJamaica portal (elandjamaica.nla.gov.jm) focuses on titling and mapping, not correction streaming. The most concrete Jamaican RTK infrastructure milestone remains the **2008 Spatial Innovision / Ministry of Agriculture Trimble VRS contract**.
 
 ---
 
@@ -71,6 +71,9 @@ No recent (2022–2026) announcement of a new Jamaican national CORS or NTRIP ex
 - UWI Earthquake Unit: https://www.mona.uwi.edu/earthquake/
 - NLA website: https://www.nla.gov.jm/content/surveys-and-mapping
 - Spatial Innovision Jamaica project: https://www.spatialvision.com/projects/
+- Spatial Innovision news — Ministry of Agriculture Jamaica National GPS Infrastructure contract (announcement dated 2008-03-12): https://www.spatialvision.com/ministry-of-agriculture-jamaica-signs-major-contract-with-spatial-innovision-to-deliver-the-national-gps-infrastructure/
+- Jamaica country report (UN GGIM 2011): https://ggim.un.org/country-reports/documents/Jamaica-2011-country-report.pdf
+- Pipeline EarthScope JAM stations: 2 (CN11, CN12) — 2026-05-12 via `scripts/stations_by_country.py JAM`
 - UW-Madison / Jamaica GPS network: http://www.geology.wisc.edu/~chuck/Jamaica/
 - RTK2go / Centipede sourcetables — no JM stations found
 - NTRIP-list.com North America — no JM entry found

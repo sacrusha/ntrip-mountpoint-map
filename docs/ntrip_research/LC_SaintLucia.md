@@ -1,5 +1,5 @@
 # Saint Lucia [LC] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12
 
 ## Status: No national caster — EarthScope scientific streams available (two stations, co-located)
 
@@ -9,7 +9,7 @@
 | **Scientific GNSS streams in LC territory** | Yes — EarthScope NOTA (former COCONet) CN04 and CN47, both on roof of NEMO building, Castries area; `ntrip.earthscope.org:2101` |
 | **hobbyist_eligibility** | **Yes** (noncommercial tier — no surveying licence required, individual account accepted) |
 | **legal_residency_required** | **No** — no nationality or residency restriction in NULA |
-| **last_confirmed_alive** | 2026-05-06 (EarthScope portal reachable; NULA dated v. 2025-05-30) |
+| **last_confirmed_alive** | 2026-05-12 — `ntrip.earthscope.org:2101` sourcetable returned 200 OK; `CN04_RTCM3P3` and `CN47_RTCM3P3` entries present with `LCA` country code (curl verified). EarthScope NULA v. 2025-05-30 |
 
 ---
 
@@ -36,7 +36,7 @@ Both CN04 and CN47 appear to be at or near the same site (NEMO headquarters, Cas
 
 ## National Surveying Authority
 
-The **Survey & Mapping Section**, Ministry of Physical Development, Housing and Urban Renewal, is the responsible government body for geodetic and cadastral work in Saint Lucia. The ministry collaborated with UNAVCO on the CN04/CN47 installation in 2014. No NTRIP caster, CORS endpoint, or real-time GPS correction service operated by the Survey & Mapping Section was found as of 2026-05-06. No public announcement of a planned national RTK/CORS network was found.
+The **Survey & Mapping Section**, Ministry of Physical Development, Housing and Urban Renewal (`govt.lc/ministries/physical-development/survey-mapping-section`), is the responsible government body for geodetic and cadastral work in Saint Lucia. The ministry collaborated with UNAVCO on the CN04/CN47 installation in 2014. No NTRIP caster, CORS endpoint, or real-time GPS correction service operated by the Survey & Mapping Section was found as of 2026-05-12. No public announcement of a planned national RTK/CORS network was found in any cadastral, World Bank, or trade-press source.
 
 The 2022 World Bank **OECS Data for Decision Making Project** (Grenada, Saint Lucia, Saint Vincent) funded GIS and data management capacity, but contained no GNSS CORS component.
 
@@ -59,6 +59,9 @@ None found for a dedicated Saint Lucia national CORS/NTRIP service.
 - EarthScope commercial licensing: https://www.earthscope.org/news/new-gnss-offering-and-licensing-details-for-commercial-use/
 - UNAVCO news — COCONet CN04 and CN47 Saint Lucia installation: https://www.unavco.org/news/unavco-installs-coconet-cgps-sites-cn04-and-cn47-in-saint-lucia/
 - COCONet site info: https://coconet.unavco.org/site-info/site-info.html
+- Government of Saint Lucia — Survey & Mapping Section: https://www.govt.lc/ministries/physical-development/survey-mapping-section
 - World Bank OECS Data for Decision Making Project: https://documents.worldbank.org/en/publication/documents-reports/documentdetail/520151651261033077/
 - NTRIP-list.com North America — no LC entry found
 - RTK2go / Centipede sourcetables — no LC stations found
+- Local pipeline verification (2026-05-12): `py scripts/stations_by_country.py LCA` returns the two EarthScope `LCA` entries (CN04 14.02,−60.97 and CN47 13.71,−60.94); rtk2go/centipede return zero LC stations
+- Live caster probe (2026-05-12): `curl --http0.9 http://ntrip.earthscope.org:2101/` returned 200 OK and both `CN04_RTCM3P3` and `CN47_RTCM3P3` STR rows tagged country `LCA`

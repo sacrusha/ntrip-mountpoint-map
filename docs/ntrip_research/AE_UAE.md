@@ -1,5 +1,5 @@
 # UAE [AE] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12 (originally 2026-05-06)
 
 ## Status: YES — DVRS (Dubai Municipality) active; professional application only; no hobbyist path confirmed; portal status uncertain
 
@@ -74,10 +74,13 @@ Global free fallback: **Galileo HAS** (~40 cm accuracy, no connectivity required
 
 - `dm.gov.ae/survey-department/dubai-virtual-reference-station/` — returning errors / 404 as of 2026-04-30
 - `geodubai.dm.gov.ae:2101` — NTRIP sourcetable not confirmed from external IP
-- rtk2go: zero AE mountpoints
+- rtk2go: zero AE mountpoints (`scripts/stations_by_country.py ARE` returns no entries, 2026-05-12)
 - Centipede: zero AE nodes
+- EarthScope: zero AE stations (no ARE/UAE territory tag in NOTA sourcetable)
+- No stations within 100 km of Dubai in any tracked source (`scripts/stations_by_radius.py 25.2 55.27 100` — none, 2026-05-12)
 - No Abu Dhabi, Sharjah, or federal UAE NTRIP caster found
 - ArduSimple UAE page mentions "National RTK Network" and DVRS but lists no alternative hobbyist-accessible NTRIP casters with endpoints
+- No 2025–2026 WebSearch findings on a new public host:port for DVRS or any other Emirate-level RTK service
 
 ---
 

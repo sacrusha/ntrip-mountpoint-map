@@ -1,7 +1,7 @@
 # Kenya [KE] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06 | USD/KES: 1 USD = 129.87 KES (CBK / xe.com, 2026-05-05)
+**Date researched:** 2026-05-06; verified 2026-05-12 | USD/KES: 1 USD ≈ 129–130 KES (CBK / xe.com, May 2026)
 
-## Status: ONE ACTIVE private NTRIP caster (Muya CORS)
+## Status: ONE ACTIVE private NTRIP caster (Muya CORS) — PAYG tariff now confirmed
 
 ---
 
@@ -11,10 +11,10 @@
 |---|---|
 | **Active public NTRIP RTK caster** | **Yes** |
 | **host:port** | Not publicly disclosed — credentials (IP, port, username, password) issued per account on registration |
-| **tariff** | Not publicly disclosed. Flexible tiers (hourly / daily / monthly) — no KES or USD figures in any public source. Contact: support@muya-cors.com / +254 798 519 942 / +254 111 433 499. Date observed: 2026-05-06. Source: https://muya-cors.com/ |
-| **hobbyist_eligibility** | Unclear (likely yes) — T&C require no professional licence; "company" field in registration appears non-mandatory; agricultural machinery use explicitly permitted in T&C |
-| **legal_residency_required** | **No** — no geographic restriction in T&C; governing law is Kenyan courts (dispute clause only) |
-| **last_confirmed_alive** | **2026-05-06** — portal and login reachable today; confirmed in active field use Feb 2025 (Orbital Africa case study, Kitisuru Nairobi) |
+| **tariff** | **KES 400 / 2 hours (Pay As You Go), valid 30 days** (≈ USD 3.10 PAYG). Subscriber chooses hourly / daily / monthly duration at checkout; longer-term rates not publicly itemised. Payment by M-Pesa mobile money. Source: https://measurementsystems.org/service/cors-corrections-services/ (Pay-As-You-Go price quoted by Measurement Systems; reconfirmed via web search snippet 2026-05-12). Contact: support@muya-cors.com / +254 798 519 942 / +254 111 433 499. VAT inclusion not stated. |
+| **hobbyist_eligibility** | Unclear (likely yes) — T&C permit "surveying and related activities" and "automated GNSS control of farming and agricultural machinery and construction engineering machinery"; recreational/hobbyist use is not explicitly mentioned but not excluded. "Safety-of-Life use" is explicitly prohibited. |
+| **legal_residency_required** | **No** — no geographic restriction in T&C; governing law is Kenyan courts (dispute clause only). M-Pesa payment is, however, easiest from a Kenyan mobile wallet. |
+| **last_confirmed_alive** | **2026-05-12** — muya-cors.com and Measurement Systems product page reachable; pricing snippet (KES 400 / 2 h PAYG) re-observed in search index. Field-use case study Feb 2025 (Orbital Africa, Kitisuru Nairobi). |
 
 **Operator:** Measurement Systems Limited, Nairobi
 **Website:** https://muya-cors.com/
@@ -73,12 +73,14 @@ Third-party CORS require gazettement by Director of Surveys before cadastral use
 ---
 
 ## Sources Consulted
-- https://muya-cors.com/ and T&C
+- https://muya-cors.com/ and T&C (muya-cors.com/terms_and_conditions — observed 2026-05-12)
+- https://measurementsystems.org/service/cors-corrections-services/ — KES 400 / 2 h PAYG quote (observed via WebSearch snippet 2026-05-12)
+- https://kenya.measurementsystems.org/knowledge_base/ntrip-cors-explained
 - ArduSimple Kenya page (ardusimple.com/rtk-correction-services-and-ntrip-casters-in-kenya/)
 - https://orbital.co.ke (Feb 2025 Muya CORS field use)
 - FIG 2022 — Kenya Geodetic Reference Frame proceedings
 - RCMRD corsdata.rcmrd.org, cors.rcmrd.org
-- IGS network (network.igs.org)
-- RTK2GO, ntrip-list.com/africa/, corsstations.com
+- IGS network (network.igs.org) — MALI, RCMN
+- RTK2GO, ntrip-list.com/africa/, corsstations.com — no KE rtk2go mountpoints in current stations.json
 - Kenya Power X/Twitter post Apr 2025
 - xe.com / CBK USD/KES rate

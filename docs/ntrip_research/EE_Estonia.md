@@ -1,7 +1,7 @@
 # Estonia [EE] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12 (re-verified; original 2026-05-06)
 
-## Status: YES — free national NTRIP (ESTPOS); free until 31 August 2026 per director-general order; tariff TBD afterward
+## Status: YES — free national NTRIP (ESTPOS); free until 31 August 2026 per director-general order 1-17/26/131; tariff TBD afterward (re-verified 2026-05-12: portal still describes service as "free to use for anyone until 31.08.2026"; ESTPOS user manual reissued 12.03.2026)
 
 | Field | Value |
 |---|---|
@@ -13,7 +13,7 @@
 | **tariff** | **Free until 31 August 2026** per Estonian Land and Spatial Development Board director-general directive; post-August 2026 tariff not yet announced. Date observed: 2026-05-06. Source: https://geoportaal.maaamet.ee/eng/Spatial-Data/ESTPOS-national-GNSS-satellite-data-center-p839.html |
 | **hobbyist_eligibility** | **Yes** — "free to use for anyone" (per directive); ESTPOS portal account required; no professional licence check |
 | **legal_residency_required** | **No** — internationally accessible; no geographic IP restriction mentioned (note: earlier ESTPOS versions had Estonia-only IP restriction; current status with expanded network unclear — **verify before relying on this**) |
-| **last_confirmed_alive** | ESTPOS geoportal (geoportaal.maaamet.ee) HTTP 200 confirmed 2026-05-06; user manual dated 2026 (ESTPOS_user_manual_2026.pdf) available |
+| **last_confirmed_alive** | ESTPOS geoportal (geoportaal.maaamet.ee) HTTP 200 confirmed 2026-05-12; user manual reissued 2026-03-12; NTRIP port `gnss-rtk.maaamet.ee:8083` TCP-timed-out from this sandbox 2026-05-12 (likely geo/IP filter — not authoritative as a liveness signal) |
 
 ## Registration Process
 

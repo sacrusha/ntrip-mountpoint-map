@@ -1,5 +1,5 @@
 # Luxembourg [LU] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-12
 
 ## Status: YES — free government NTRIP caster (SPSLux) operating
 
@@ -7,11 +7,11 @@
 |---|---|
 | **Active public NTRIP RTK caster** | Yes (SPSLux — free) |
 | **host:port — SPSLux** | `stream.spslux.lu:5005` (IP: 185.106.24.68) |
-| **VRS** | Yes — iMAX and VRS network correction types offered; both provide equivalent cm-level accuracy |
+| **VRS** | Yes — iMAX and VRS network correction types offered; both provide equivalent cm-level accuracy. 18 mountpoints exposed (VRS_G/GR/GRE/GREC, IMAX_G/GR/GRE/GREC variants in RTCM 3 / CMR / MSM5, plus NEAREST_* single-base and DGNSS_IMAX_RTCM2 / DGPS_IMAX_RTCM2) |
 | **tariff** | Free — all SPSLux real-time and post-processing services are provided at no cost in line with Luxembourg's open-data policy |
 | **hobbyist_eligibility** | yes — no professional licensing requirement stated; open registration |
 | **legal_residency_required** | unclear — not explicitly required; open-data policy implies broad access; no restriction stated in public documentation |
-| **last_confirmed_alive** | `stream.spslux.lu:5005` returned `SOURCETABLE 200 OK` on 2026-05-06 (curl verified) |
+| **last_confirmed_alive** | 2026-05-12 — `curl --http0.9 http://stream.spslux.lu:5005/` returned `SOURCETABLE 200 OK` (Server: `GNSS Spider 7.10.1.168/1.0`, Content-Length 1957). Sourcetable lists VRS_G(R)(E)(C)_RTCM3 / MSM5, IMAX_G(R)(E)(C)_RTCM3 / MSM5, NEAREST_G(R)(E)(C)_RTCM3 / MSM5, plus DGNSS streams; all rows tagged country `L` and `SPSLux` |
 
 ## Context Notes
 
@@ -22,14 +22,24 @@
 - **Reference system**: ETRS89 / ITRF; delivers positions in Luxembourg national reference frame compatible with EUPOS standards.
 - **Operator contact**: spslux@act.etat.lu
 
+## Cross-Border Coverage (Centipede in adjacent FR/BE/DE)
+
+While SPSLux is the natural choice inside Luxembourg, the Centipede-RTK network is dense in the neighbouring French and Belgian regions and covers the whole of LU territory with overlapping baselines:
+- 21 Centipede stations within 100 km of Luxembourg City as of 2026-05-12 (`py scripts/stations_by_radius.py 49.6 6.1 100`)
+- Closest cross-border: `GEGE` (49.455, 6.192, FRA, 17.4 km), `KUBA` (49.657, 5.866, BEL, 18.0 km), `EMC3` (49.407, 5.745, FRA, 33.4 km)
+- Centipede is fully free and open (caster.centipede.fr:2101); useful as a backup or for users who prefer the volunteer-network ethos over an account at ACT
+- rtk2go: 0 LU entries; AUS/BEL/FRA bases nearby
+
 ## Post-Processing (RINEX) Fallback
 
 RINEX data available via the same ACT portal at no cost after registration. FTP access to archived observation files.
 
 ## Sources Consulted
+
 - SPSLux service overview: https://act.public.lu/fr/gps-reseaux/spslux1.html
 - SPSLux NTRIP/Caster page: https://act.public.lu/fr/gps-reseaux/spslux1/ntripcasterclient.html
 - SPSLux access page: https://act.public.lu/fr/gps-reseaux/spslux1/1spsluxaccess.html
 - SPSLux mountpoints page: https://act.public.lu/fr/gps-reseaux/spslux1/spsluxmountpoints.html
 - ArduSimple Luxembourg RTK page: https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-luxembourg/
-- curl probe of `stream.spslux.lu:5005` — SOURCETABLE 200 OK confirmed 2026-05-06
+- Live caster probe (2026-05-12): `curl --http0.9 http://stream.spslux.lu:5005/` → SOURCETABLE 200 OK; 18 STR rows; Server `GNSS Spider 7.10.1.168/1.0`
+- Local pipeline check (2026-05-12): `py scripts/stations_by_radius.py 49.6 6.1 100` → 21 Centipede stations within 100 km (all FRA/BEL); no native LU pins in rtk2go/centipede/earthscope

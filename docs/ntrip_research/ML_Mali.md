@@ -1,5 +1,5 @@
 # Mali [ML] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-06 (refreshed 2026-05-12)
 
 ## Status: NO active public NTRIP caster
 
@@ -45,3 +45,5 @@ URL: https://anat.sn/actualites/modernisation-du-reseau-geodesique-le-senegal-va
 - BF-CORS (Burkina Faso)
 - CHCNAV Africa partner network
 - World Bank Mali road project May 2025
+- py scripts/stations_by_radius.py 12.6 -8.0 500 (2026-05-12) — zero rtk2go/Centipede/EarthScope stations within 500 km of Bamako; no cross-border free RTK alternative within useful distance
+- Re-verified 2026-05-12 via WebSearch: still no announcement of a Mali national NTRIP/CORS network

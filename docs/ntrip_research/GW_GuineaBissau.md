@@ -1,5 +1,5 @@
 # Guinea-Bissau [GW] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-06 (re-verified 2026-05-12: no GW/GNB entry in any source of data/stations.json; the only rtk2go station with GIN tag is `Gine-Albrk` in Guinea-Conakry, not Guinea-Bissau; no public NTRIP project announcement found; status unchanged)
 
 ## Status: NO active public NTRIP caster
 

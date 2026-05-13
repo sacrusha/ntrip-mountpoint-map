@@ -1,5 +1,5 @@
 # Chad [TD] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06 | Currency: XAF (Central African CFA franc, CEMAC zone) — 1 USD ≈ 560.59 XAF (fixed peg: €1 = 655.957 XAF)
+**Date researched:** 2026-05-13 (rechecked from 2026-05-06 — no operational change) | Currency: XAF (Central African CFA franc, CEMAC zone) — 1 USD ≈ 560.59 XAF (fixed peg: €1 = 655.957 XAF)
 
 ## Status: NO active public NTRIP caster
 
@@ -32,12 +32,13 @@ No commercial RTK provider (GEODNET, onocoy, SmartNet, Trimble VRS Now) has conf
 
 ## Post-Processing (RINEX) Fallback
 
-No national GNSS archive. Nearest scientific GNSS stations are in Cameroon and Nigeria (IGS/AFREF). EarthScope/CDDIS may have sparse regional data.
+No national GNSS archive. Nearest scientific GNSS stations are in Cameroon and Nigeria (IGS / AFREF). EarthScope / CDDIS may have sparse regional data. **No rtk2go or Centipede stations within 800 km of N'Djamena** (re-cross-checked 2026-05-13 via `py scripts/stations_by_radius.py 12.13 15.05 800` — zero hits). Nearest volunteer base is `fssoyo` in Nigeria, ~333 km from the south-western corner of Chad — beyond single-base RTK range.
 
 ## Sources Consulted
-- IGNFI/GEOFIT RGT20 project pages (confirmed reachable 2026-05-06):
+- IGNFI / GEOFIT RGT20 project pages (confirmed reachable 2026-05-13):
   - https://www.ignfi.fr/en/actu/tchad-inauguration-le-16-mars-de-la-premiere-borne-geodesique/
   - https://www.ignfi.fr/en/portfolio-item/infrastructure-de-donnees-spatiales-sur-ndjamena-et-ses-environs-tchad/
 - RTK2GO, ntrip-list.com/africa/, corsstations.com — no TD entries
-- GEODNET, onocoy, Trimble VRS Now, SmartNet — no TD coverage confirmed
+- GEODNET, ONOCOY, Trimble VRS Now, HxGN SmartNet, Topcon TopNET Live — no TD coverage confirmed
 - AFREF capacity-building records — no CORS station confirmed for Chad
+- `data/stations.json` cross-check (`py scripts/stations_by_radius.py 12.13 15.05 800`) — zero stations

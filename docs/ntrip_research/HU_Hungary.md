@@ -1,7 +1,7 @@
 # Hungary [HU] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-07
+**Date researched:** 2026-05-07 (updated 2026-05-12: re-verified `ntrip.gnssnet.hu:2101` returns same 10 SGO_* streams; Centipede-RTK HU node count is 216 in current data/stations.json fetch, slight drop from 224)
 
-## Status: YES — national NTRIP caster operating (GNSSnet.hu, paid). Centipede-RTK volunteer network gives effective free national coverage (~224 nodes — single largest non-French Centipede cluster).
+## Status: YES — national NTRIP caster operating (GNSSnet.hu, paid). Centipede-RTK volunteer network gives effective free national coverage (~216 nodes — single largest non-French Centipede cluster).
 
 | Field | Value |
 |---|---|
@@ -26,7 +26,7 @@
 | **Schedule effective date** | Current schedule reflects price *reduction* effective 2023-02-01 (per Lechner news article); PDF served 2026-05-07 matches the 2023 schedule |
 | **hobbyist_eligibility — GNSSnet.hu** | Unclear — leans no for the annual flat (~€375 + 27 % ÁFA → ~€476 / ~$540, over the $200/yr cutoff). The 30-day 50-km local pass (~€38 net + ÁFA = ~€48 / ~$54) is feasible for a single project. The 365-day per-minute fallback (~€1.20/hr RTK) suits ad-hoc users up to ~150 hours/year. Pricing PDF footnote 3 phrases the registration fee as paid *"by a company"* (`egy cég`), suggesting the contract template assumes a business counterparty; no separate natural-person tier is documented in the public FAQ |
 | **legal_residency_required — GNSSnet.hu** | Unclear — no explicit residency clause; English registration form not published; invoicing in HUF assumes a Hungarian-tax-number-bearing counterparty. Foreign EU users probably accommodated under reverse-charge VAT but procedure not documented online |
-| **last_confirmed_alive — GNSSnet.hu** | 2026-05-07 — `ntrip.gnssnet.hu:2101` returned `SOURCETABLE 200 OK`, all 10 SGO streams visible; pricing PDF accessible and matches Feb 2023 schedule |
+| **last_confirmed_alive — GNSSnet.hu** | 2026-05-12 — `ntrip.gnssnet.hu:2101` re-verified, `SOURCETABLE 200 OK Server: NTRIP GNSMART_Caster 2.0/1.0`, identical 10 SGO_* mount catalogue (Content-Length 2131); pricing schedule unchanged from 2023-02-01 Feb-2023 reduction |
 | **Network 2 — name** | Centipede-RTK |
 | **Operator — Centipede-RTK** | Open community project (INRAE-originated, France); Hungarian nodes operated by individual volunteers and farmers |
 | **host:port — Centipede-RTK** | `caster.centipede.fr:2101` |
@@ -34,7 +34,7 @@
 | **tariff — Centipede-RTK** | Free, open access |
 | **hobbyist_eligibility — Centipede-RTK** | Yes |
 | **legal_residency_required — Centipede-RTK** | No |
-| **last_confirmed_alive — Centipede-RTK** | 2026-05-06 (224 HU nodes in `data/stations.json` 2026-05-06 fetch — single largest non-France country in the Centipede sourcetable) |
+| **last_confirmed_alive — Centipede-RTK** | 2026-05-12 (216 HU nodes in `data/stations.json` 2026-05-12 fetch via `stations_by_country.py HUN` — single largest non-France country in the Centipede sourcetable; minor net churn from peak 224 in 2026-05-06 fetch) |
 
 ## Mountpoint Catalogue — GNSSnet.hu (sourcetable 2026-05-07)
 
@@ -55,9 +55,9 @@ All streams are single-coordinate VRS-style entries from the caster's central po
 
 ## Volunteer Free Coverage
 
-- **Centipede-RTK**: 224 HU nodes in `data/stations.json` 2026-05-06 fetch. Densest in the Great Hungarian Plain (Alföld) and northern Hungary (Borsod-Abaúj-Zemplén, Heves). Free, no auth on raw streams. Hungary has the densest non-French Centipede footprint, with ~130 nodes documented by INRAE in the 2024 expansion narrative growing to 224 by 2026-05.
-- **rtk2go**: 6 HU bases in current snapshot — small-shop hobbyist deployments under the rtk2go "Free Open NTRIP Streams" model.
-- Combined ~230 HU bases give effective national free RTK coverage for hobbyists in most populated regions, without sign-up. No formal nationwide free government tier exists.
+- **Centipede-RTK**: 216 HU nodes in `data/stations.json` 2026-05-12 fetch (down from peak 224 a week earlier — minor churn). Densest in the Great Hungarian Plain (Alföld) and northern Hungary (Borsod-Abaúj-Zemplén, Heves). Free, no auth on raw streams. Hungary has the densest non-French Centipede footprint, with ~130 nodes documented by INRAE in the 2024 expansion narrative growing to ~220 by 2026-05.
+- **rtk2go**: 5 HU bases in current snapshot (`BALO`, `FMPT`, `SanyiGazda`, `Szarka`, `SzentkiralySZLA`) — small-shop hobbyist deployments under the rtk2go "Free Open NTRIP Streams" model.
+- Combined ~221 HU bases give effective national free RTK coverage for hobbyists in most populated regions, without sign-up. No formal nationwide free government tier exists.
 
 ## Context Notes
 

@@ -1,5 +1,5 @@
 # Italy [IT] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-07
+**Date researched:** 2026-05-12 (refresh of 2026-05-07 entry — all endpoints re-probed)
 
 ## Status: YES — extensive public free NTRIP RTK infrastructure; no single national free caster; coverage is regional
 
@@ -9,19 +9,19 @@ Italy has no unified national free RTK caster. Instead, 10+ regional/autonomous 
 
 ## Per-Region Summary Table
 
-| Region | Network | host:port | Tariff | VRS | Hobbyist | curl result 2026-05-07 |
+| Region | Network | host:port | Tariff | VRS | Hobbyist | curl result 2026-05-12 |
 |--------|---------|-----------|--------|-----|----------|------------------------|
 | Valle d'Aosta, Piemonte, Lombardia | SPIN3 GNSS | `158.102.7.10:2101` | Free (registration) | Yes (VRS, iMAX, MAC, NRT) | Yes (no restriction stated) | SOURCETABLE 200 OK |
-| Liguria | Rete GNSS Liguria | `81.23.86.70:2101` | Free (registration) | Yes (VRS 2/3, MAC, NEAR, DGPS) | unclear (form-based registration) | SOURCETABLE 200 OK |
+| Liguria | Rete GNSS Liguria | `81.23.86.70:2101` | Free (registration) | Yes (VRS 2/3, MAC, NEAR, DGPS) | unclear (form-based registration) | SOURCETABLE 200 OK (GNCASTER) |
 | Trentino (PA Trento) | TPOS | `194.105.50.232:2101` | Free (registration) | Yes (IMAX, MAX, NRT/VRS) | unclear | SOURCETABLE 200 OK |
 | Alto Adige / Südtirol (PA Bolzano) | STPOS | `62.101.0.40:2109` | Free (registration) | Yes (Netz-rete, MAX, NRT) | unclear | SOURCETABLE 200 OK |
 | Veneto | Rete GPS Veneto | `147.162.229.53:2101` | Free (email registration) | Yes (MAX3, IMAX, NRT) | unclear (email-only signup) | SOURCETABLE 200 OK |
 | Friuli-Venezia Giulia | Re.M.FVG "A. Marussi" | `gnsscaster.regione.fvg.it:8080` | Free (form registration) | Yes (VRS_RTCM23/31/32, MAC, IMAC) | Yes (form open to anyone) | SOURCETABLE 200 OK |
 | Friuli-Venezia Giulia | FReDNet (OGS/INGV) | `158.110.30.81:2110` | Free (account on frednet.crs.ogs.it) | Yes (VRS) | Yes (research/all welcome) | SOURCETABLE 200 OK |
-| Umbria | GPS-UMBRIA | `gpsumbria.regione.umbria.it:2101` | Free (online form) | Yes (MAC, VRS, Nearest) | unclear | SOURCETABLE 200 OK |
-| Campania | Rete GNSS Campania | `gps.sit.regione.campania.it:2101` | Free (open credentials) | Yes (1_VRS30, 9_NEAR) | Yes (public credentials) | SOURCETABLE 200 OK |
+| Umbria | GPS-UMBRIA | `gpsumbria.regione.umbria.it:2101` | Free (online form) | Yes (MAC, VRS, Nearest) | unclear | SOURCETABLE 200 OK (GNCASTER) |
+| Campania | Rete GNSS Campania | `gps.sit.regione.campania.it:2101` | Free (open credentials) | Yes (1_VRS30, 9_NEAR) | Yes (public credentials) | SOURCETABLE 200 OK (GNCASTER) |
 | Puglia | Rete GNSS Puglia | `gps.sit.puglia.it:2101` | Free (registration) | Yes (IMAX3, MAX3) | unclear | SOURCETABLE 200 OK |
-| Abruzzo + Lazio | Rete GNSS Abruzzo-Lazio | `gnss-rtk.regione.abruzzo.it:2101` | Free (registration) | Yes (0_RTCM_MSM/VRS, VRS23/30) | Yes (form open to anyone) | timeout 2026-05-07 (see note) |
+| Abruzzo + Lazio | Rete GNSS Abruzzo-Lazio | `gnss-rtk.regione.abruzzo.it:2101` | Free (registration) | Yes (0_RTCM_MSM/VRS, VRS23/30) | Yes (form open to anyone) | timeout from sandbox 2026-05-12 (third successive probe failure; portal HTTP 200 — see note) |
 | Sicilia + S. Calabria | Sicili@NET (INGV Catania) | `193.206.223.39:2101` | Free (email request) | Yes (VRS2/3, RTK, IMAX, MAX, FKP) | Yes ("all users who request it") | SOURCETABLE 200 OK |
 | Emilia-Romagna | No public regional network | — | — | — | — | no caster |
 | Toscana | No public RTK caster | — | — | — | — | no caster |
@@ -31,7 +31,7 @@ Italy has no unified national free RTK caster. Instead, 10+ regional/autonomous 
 | Calabria (north) | No dedicated public caster | — | — | — | — | partial: Sicili@NET covers southern tip |
 | Molise | No public regional network | — | partial via Abruzzo border | — | — | see Abruzzo note |
 | **NATIONAL — commercial** | HxGN SmartNet Italy (ItalPOS) | `it.nrtk.eu:2101` | ~€385/yr +IVA (12 mo); ~€1670/yr (60 mo) | Yes (VRS, IMAX, RTK, FKP, MAX) | unclear (professional focus; no explicit ban) | SOURCETABLE 200 OK |
-| **NATIONAL — commercial** | NetGEO / TopNET Live (Topcon) | `rtk.topnetlive.com:2101` | €90/mo · €360/yr · €630/2yr · €850/3yr · €1300/5yr +IVA; VAT-ID required | Yes (NET_MSM5, NET_RTCM3, DGNSS) | No (partita IVA required) | SOURCETABLE 200 OK |
+| **NATIONAL — commercial** | NetGEO / TopNET Live (Topcon) | `rtk.topnetlive.com:2101` | €90/mo · €360/yr · €630/2yr · €850/3yr · €1300/5yr +IVA; VAT-ID required | Yes (NET_MSM5, NET_RTCM3, DGNSS) | No (partita IVA required) | SOURCETABLE 200 OK (IQProxy/1.2) |
 
 ---
 
@@ -195,7 +195,7 @@ Italy has no unified national free RTK caster. Instead, 10+ regional/autonomous 
 - **hobbyist_eligibility:** Yes — form is open to anyone; no professional credential required.
 - **legal_residency_required:** No.
 - **VRS:** Yes.
-- **last_confirmed_alive:** portal HTTP 200 on 2026-05-07; NTRIP endpoint timed out from test location; service documented as active (connectivity contract renewed March 2025 per regional procurement notice).
+- **last_confirmed_alive:** portal HTTP 200 historically; NTRIP endpoint timed out again from sandbox 2026-05-12 (third successive failure across 2026-05-07 and earlier probes). The agendadigitale.regione.abruzzo.it and trasparenza.regione.abruzzo.it pages continue to describe the service as "24/7 active" and the analistgroup / protrack guides re-confirm the IP/host as the documented production endpoint. **Likely alive but blocked / unreachable from external test locations — confirmation requires a probe from within Italy.**
 - Source: https://gnssnet.regione.abruzzo.it · https://protrack.studio/blog/it/come-connettersi-alla-rete-gnss-in-abruzzo-e-lazio/
 
 ---
@@ -328,4 +328,10 @@ San Marino (61 km², enclave within Emilia-Romagna) has no GNSS RTK network of i
 - IGM RDN: https://www.igmi.org/en/direzione-geodetica/progetto-rdn-rete-dinamica-nazionale
 - ArduSimple San Marino: https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-san-marino/
 - ProTRACK Trentino-Alto Adige guide: https://protrack.studio/blog/it/come-connettersi-alla-rete-gnss-in-trentino-alto-adige/
-- curl probes of all endpoints — 2026-05-07
+- curl probes of all endpoints — 2026-05-07 and 2026-05-12 (Abruzzo-Lazio endpoint timed out both dates; all other regional endpoints confirmed alive 2026-05-12)
+- rtk2go IT volunteer bases (12 stations, 2026-05-12): B506Fields (Lecce), Basertk-fogli (Veneto), Carpi_farm, FM01 (Sicily), GESAMP (Liguria), Garabello_RTK (Piedmont), MASCHERINA, MRCATW2020 (Lombardy), SACCO, SIMMN2024, STAP21, TOMPV22 — patchy distribution
+- Centipede IT volunteer bases (3 stations, 2026-05-12): FALA (Emilia), FM01 (Sicily), PGDV (Emilia)
+- ProTRACK Emilia-Romagna guide (no public regional network; TopNET LIVE recommended): https://protrack.studio/blog/it/come-connettersi-alla-rete-gnss-in-emilia-romagna/
+- ProTRACK Marche guide (no public regional network): https://protrack.studio/blog/it/come-connettersi-alla-rete-gnss-nelle-marche/
+- ProTRACK Toscana guide (LaMMA pilot remains in testing; no operational public caster): https://protrack.studio/blog/it/come-connettersi-alla-rete-gnss-in-toscana/
+- LaMMA (Toscana pilot, in testing): https://www.lamma.toscana.it/territorio/mobilita/rete-gps

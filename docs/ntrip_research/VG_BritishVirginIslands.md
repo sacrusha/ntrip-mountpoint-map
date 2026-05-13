@@ -1,7 +1,7 @@
 # British Virgin Islands [VG] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06
+**Date researched:** 2026-05-13 (re-verification of 2026-05-06 baseline)
 
-## Status: No national caster — EarthScope COCONet CN03 confirmed live in pipeline
+## Status: No national caster — EarthScope COCONet CN03 confirmed live (sourcetable probe 2026-05-12)
 
 | Field | Value |
 |---|---|
@@ -9,7 +9,7 @@
 | **Scientific GNSS stream in VG territory** | Yes — EarthScope NOTA (former COCONet) CN03_RTCM3P3, Tortola area; `ntrip.earthscope.org:2101` |
 | **hobbyist_eligibility** | **Yes** (noncommercial tier — no surveying licence required, individual account accepted) |
 | **legal_residency_required** | **No** — no nationality or residency restriction in NULA |
-| **last_confirmed_alive** | CN03_RTCM3P3 present in project's live EarthScope sourcetable (stations.json, 2026-05-06); EarthScope portal confirmed reachable; NULA dated v. 2025-05-30 |
+| **last_confirmed_alive** | 2026-05-12 — direct TCP/sourcetable probe of `ntrip.earthscope.org:2101` returned SOURCETABLE 200 OK with `CN03_RTCM3P3;…;EARTHSCOPE;VGB;18.49;-64.40;…;SEPT POLARX5;…` present. CN03 also tagged VGB in project stations.json (2026-05-13). NULA still dated v. 2025-05-30 |
 
 ---
 
@@ -20,7 +20,8 @@
 | **host:port** | `ntrip.earthscope.org:2101` (RTCM 3.3); port 2105 (BINEX); port 2108 (PPP) |
 | **Mountpoint** | `CN03_RTCM3P3` |
 | **Location** | 18.49°N, −64.40°W — Tortola area, British Virgin Islands |
-| **Stream type** | Raw 1 Hz multi-constellation RTCM 3.3 MSM7 (GPS + GLONASS + BDS + Galileo + SBAS + QZSS), dual-frequency; single-base reference, NOT a VRS/Network-RTK service |
+| **Receiver** | Septentrio POLARX5 (confirmed in 2026-05-12 sourcetable line for CN03) |
+| **Stream type** | Raw 1 Hz multi-constellation RTCM 3.3 — message set 1005(60),1007(60),1013(1),1029(60),1033(60),1077(1),1087(1),1097(1),1107(1),1117(1) MSM7 (GPS + GLONASS + BDS + Galileo + SBAS + QZSS), dual-frequency; single-base reference, NOT a VRS/Network-RTK service |
 | **Tariff — noncommercial** | **Free (USD $0.00)** — account + annual NULA acceptance required. Date observed: 2026-05-06. Source: https://www.earthscope.org/data/gnss-realtime/ |
 | **Tariff — commercial** | **USD $1,000 per seat per year** (EarthScope is US 501(c)(3) nonprofit; no VAT). Min 5 seats for direct billing. Date observed: 2026-05-06. Source: https://www.earthscope.org/news/new-gnss-offering-and-licensing-details-for-commercial-use/ |
 | **NULA version** | v. 2025-05-30 — https://www.earthscope.org/user/NoncommercialLicenseAgreement.pdf |
@@ -59,6 +60,7 @@ No dedicated BVI national CORS/NTRIP project announcement was found. The only id
 - EarthScope NOTA: https://www.earthscope.org/nota/
 - EarthScope platform transition announcement: https://www.earthscope.org/news/transition-to-new-real-time-gnss-streaming-platform/
 - BVI Land and Survey Department: https://www.bvi.gov.vg/departments/land-and-survey-department
-- Project stations.json sourcetable — CN03_RTCM3P3 (VGB) confirmed present 2026-05-06
+- Project stations.json sourcetable — CN03_RTCM3P3 (VGB) confirmed present 2026-05-13
+- Direct TCP probe to `ntrip.earthscope.org:2101` — SOURCETABLE 200 OK, CN03_RTCM3P3 line retrieved 2026-05-12 (SEPT POLARX5, MSM7, 18.49N -64.40W, country code VGB)
 - RTK2go / Centipede sourcetables — no VG stations found
 - NTRIP-list.com — no VG entry found

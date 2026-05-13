@@ -7,8 +7,6 @@ docs/research_task.txt          ← prompt template; research is run externally
         ↓ produces (out-of-band, web-enabled environment)
 docs/ntrip_research/CC_*.md     ← per-country primary research, citation-grade
         ↓ distil
-docs/country-survey.md          ← LEAD: per-country prose, completeness picture
-        ↓ distil (substantial operators only)
 docs/networks.md                ← refined operator catalogue, per-network blocks
         ↓ surface (parallel, sibling consumers)
 data/country_markers.json       user-facing markers
@@ -18,15 +16,9 @@ scripts/fetch_stations.py       ingestion of free endpoints
 ## Research stage (upstream, external)
 
 `docs/ntrip_research/` is the raw research layer. Entries are produced by
-running `docs/research_task.txt` in a **different environment** with broad web
-access — this sandbox typically cannot reach the open web reliably enough to
-generate citation-grade research. Treat `ntrip_research/` files as inbound
+running `docs/research_task.txt` in an environment with broad web
+access. Treat `ntrip_research/` files as inbound
 material to be **distilled**, not authored.
-
-When `ntrip_research/` contains entries with no matching `country-survey.md`
-heading (or with newer findings than the survey reflects), that's the next
-unit of pipeline work: distil them into the survey, then sweep downstream per
-the rules below.
 
 ## Direction of work
 
@@ -35,8 +27,8 @@ For pipeline-side edits, new facts enter at the survey first (distilled from
 investigated and what wasn't found — it carries the negatives.
 
 A `networks.md` block exists only when the operator is **substantial**:
-nationwide, regional cadastre, or recognised commercial operator. Small
-private surveyors stay in country prose.
+nationwide, regional cadastre, or a recognised commercial operator relevant
+to users described in target-users.md. 
 
 A `country_markers.json` marker exists only when the marker tier rules apply
 (see `../data/country_markers.proc.md`). Misplaced markers are worse than
@@ -64,22 +56,20 @@ downstream. **Don't patch a leaf without fixing the source.**
 
 Each target file has a co-located `.proc.md` sidecar:
 
-- `country-survey.proc.md` (same dir)
 - `networks.proc.md` (same dir)
 - `../data/country_markers.proc.md`
 - `../scripts/fetch_stations.proc.md`
 
 ## Edit discipline
 
-**Refactoring is in scope for pipeline edits.** Pipeline integrity is the
+**Refactoring is always in scope for pipeline edits.** Pipeline integrity is the
 primary goal, and pipeline integrity routinely requires touching
 neighbouring fields, moving mis-placed content, and cleaning up convention
 drift. Patching the single field you came for and ignoring the rest is a
 regression, not restraint.
 
 **Consider the entire entry on every edit.** Look at the whole block,
-marker, or country prose — not just the field you arrived to update. If a
-`status:` change implies a section move, move the block. If a price update
+marker, or country prose — not just the field you arrived to update.  If a price update
 reveals a stale station count nearby, fix it. If a closing sentence resolves
 an `**investigate**:` tag elsewhere in the entry, remove the tag. If a field
 contradicts the prose, settle the contradiction.

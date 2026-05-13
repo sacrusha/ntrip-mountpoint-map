@@ -1,6 +1,6 @@
 # South Korea [KR] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-08 (verification + commercial-tier sweep)
-**Prior round:** 2026-05-07
+**Date researched:** 2026-05-12 (verification refresh — corrected rtk2go count from 3 to 2)
+**Prior rounds:** 2026-05-08 (commercial-tier sweep), 2026-05-07
 
 ## Status: YES — free national NTRIP single-base caster operating (GNSS Data Center, `www.gnssdata.or.kr:2101`); aggregates ~167 physical stations (546 sourcetable rows across format variants) from 8 contributing agencies. No national ID required for registration. Network RTK / VRS service is operated separately by NGII (`vrs3.ngii.go.kr:2101`); free for registered Korean residents but practical access for foreign individuals is gated behind Korean PASS / mobile-identity verification.
 
@@ -76,7 +76,7 @@ Source-tag breakdown across the 546 rows (2026-05-08 fresh fetch): 433 `Single B
 - **Network 2 (NGII VRS/FKP) is the cm-level network-solution tier**, but Korean residency is effectively required for registration via PASS/mobile-ID. The same physical stations (94 KORREF) are exposed in raw form through Network 1 — so a foreign user gets nearly equivalent functional coverage by computing the RTK baseline at the rover.
 - **Seoul Metropolitan Government (SMG)** contributes 10 streams covering the Seoul metropolitan area (DBON Dobong, GANS Gangseo, etc.) into Network 1 — additional density for the capital region. A separate Seoul-city portal at `gnss.eseoul.go.kr/system_sub2_03` (note: `eseoul`, not `seoul`) exists for VRS/FKP service applications. The `gnss.seoul.go.kr` link surfaced in `gnssdata.or.kr` footer 2026-05-08 redirects/times-out — `gnss.eseoul.go.kr` is the live portal.
 - **Constellations**: KORREF newer mounts (RTCM 3.2) generally output GPS+GLONASS+Galileo+BeiDou; older RTCM 2.3 / 3.0 mounts are GPS+GLONASS only. BINEX is offered on a few stations for high-rate research use.
-- **Pipeline coverage** (stations.json 2026-05-08 verification): KR = 493 cors_korea + 3 rtk2go (KAIST-RTK-RTCM, TYMICT-ES, sejongnav) + 0 centipede entries. The cors_korea pipeline source corresponds to `www.gnssdata.or.kr:2101` (Network 1). 493 ≠ 546 because the pipeline parser de-duplicates per `(base, lat, lon)` even where multiple format variants exist.
+- **Pipeline coverage** (stations.json 2026-05-12 verification): KR = 493 cors_korea + 2 rtk2go (KAIST-RTK-RTCM at 36.37 N / 127.37 E; TYMICT-ES at 37.41 N / 127.13 E) + 0 centipede entries. The cors_korea pipeline source corresponds to `www.gnssdata.or.kr:2101` (Network 1). 493 ≠ 546 because the pipeline parser de-duplicates per `(base, lat, lon)` even where multiple format variants exist. *(Earlier note in this file mentioned a third rtk2go mountpoint `sejongnav` — not present in current stations.json; either decommissioned or never tagged KR.)*
 - **Maritime DGPS (NMPNT)**: The Ministry of Oceans and Fisheries operates a separate maritime NTRIP service at `nmpnt.go.kr` for DGPS corrections (sub-metre, not RTK). Out of scope for this RTK research per the project's "DGNSS out of scope" rule.
 - **ardusimple.com KR guide** (re-observed 2026-05-08): still lists only NGII's `map.ngii.go.kr/ms/svcIntrcn/gnss/baseInfo.do` (which 400-errors today) and global services (RTK2GO, IGS, EarthScope, PointPerfect, Skylark). It does **not** mention `gnssdata.or.kr` as the easier free path — confirming this project's coverage is more current than the most-linked third-party guide.
 
@@ -117,4 +117,4 @@ These are real Korean RTK services, but none offer a hobbyist NTRIP path under t
 - BitPath × MBC partnership (2024-05-29): https://www.businesswire.com/news/home/20240529305216/en/
 - Point One Navigation South Korea expansion: https://pointonenav.com/news/polaris-expands-to-south-korea/ ; https://www.gpsworld.com/point-one-navigation-expands-polaris-rtk-location-network-to-south-korea/
 - Hexagon TerraStar-X press release (2023): https://hexagon.com/company/newsroom/press-releases/2023/hexagon-expands-terrastar-x-precise-positioning-gnss-correction-service-to-south-korea
-- Stations.json (2026-05-08 verification): cors_korea = 493 stations, rtk2go KR = 3, centipede KR = 0
+- Stations.json (2026-05-12 verification): cors_korea = 493 stations, rtk2go KR = 2 (KAIST-RTK-RTCM, TYMICT-ES), centipede KR = 0
