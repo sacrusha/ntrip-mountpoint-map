@@ -194,7 +194,7 @@ SOURCES = [
      "openNote": 'Free trial; Thai national ID required to self-register — foreign users blocked at registration form'},
     {"id": "trignet",     "url": "http://trignet.co.za:2101/",
      "color": "#556b2f", "label": "TrigNet",
-     "type": "single-base", "country": ["ZA"],
+     "type": "physical-vrs", "country": ["ZA"],
      "access": "registration", "registration": "https://www.trignet.co.za", "openNote": 'Free registration required'},
     {"id": "ugrf",        "url": "http://ugrf.mlhud.go.ug:2101/",                   # Leica GNSS Spider 7.10.1.168; 38 physical single-base + 6 network mounts; SOURCETABLE 200 OK 2026-05-13
      "color": "#b07000", "label": "UGRF CORS",
@@ -368,17 +368,17 @@ SOURCES = [
      "type": "physical-vrs", "country": ["US"],
      "region": "Arkansas", "group": "us-state-dot",
      "access": "registration", "registration": "https://gps.ardot.gov", "openNote": 'Free registration required (Arkansas DOT)'},
-{"id": "vector",      "url": "http://20.185.11.35:2101/",                   # VT VCGI; bare IP
+{"id": "vector",      "url": "http://vector.vermont.gov:2101/",            # VTrans Geodetic Survey; canonical hostname (resolves to 20.185.11.35)
      "color": "#1b5e20", "label": "VECTOR VT",
      "type": "physical-vrs", "country": ["US"],
      "region": "Vermont", "group": "us-state-dot",
-     "access": "registration", "registration": "https://vcgi.vermont.gov", "openNote": 'Free registration required (Vermont VCGI)'},
+     "access": "registration", "registration": "https://vector.vermont.gov", "openNote": 'Free registration required (VTrans Geodetic Survey)'},
 {"id": "gcgc_rtn",    "url": "http://rtn.usm.edu:2101/",
      "color": "#01579b", "label": "GCGC RTN",
      "type": "physical-vrs", "country": ["US"],
      "region": "Mississippi (Gulf Coast)", "group": "us-state-dot",
      "access": "registration", "registration": "https://rtn.usm.edu", "openNote": 'Free registration required (Gulf Coast Geodetic Consortium / USM)'},
-{"id": "orgn",        "url": "http://orgn.odot.state.or.us:9881/",          # hostname; port 9881 (Leica); SOURCETABLE 200 OK 2026-05-07
+{"id": "orgn",        "url": "http://orgn.odot.state.or.us:9881/",          # hostname; port 9881 (Leica); SOURCETABLE 200 OK 2026-05-13 (6 STR)
      "color": "#004d40", "label": "ORGN",
      "type": "physical-vrs", "country": ["US"],
      "region": "Oregon", "group": "us-state-dot",
@@ -388,11 +388,26 @@ SOURCES = [
      "type": "physical-vrs", "country": ["US"],
      "region": "Michigan", "group": "us-state-dot",
      "access": "registration", "registration": "https://www.michigan.gov/mdot", "openNote": 'Free registration required (Michigan DOT)'},
-{"id": "ct_acorn",    "url": "http://acorn.uconn.edu:2101/",               # SOURCETABLE 200 OK 2026-05-07
+{"id": "ct_acorn",    "url": "http://acorn.uconn.edu:2101/",               # SOURCETABLE 200 OK 2026-05-13 (48 STR)
      "color": "#1a237e", "label": "ACORN CT",
      "type": "physical-vrs", "country": ["US"],
      "region": "Connecticut", "group": "us-state-dot",
      "access": "registration", "registration": "https://acorn.uconn.edu", "openNote": 'Free registration required (CTDOT + UConn)'},
+    {"id": "macors",      "url": "http://macorsrtk.massdot.state.ma.us:2101/",  # MassDOT Leica SpiderNet; port 2101 firewalled from external probes — account-gated; add 2026-05-13
+     "color": "#283593", "label": "MaCORS",
+     "type": "physical-vrs", "country": ["US"],
+     "region": "Massachusetts", "group": "us-state-dot",
+     "access": "registration", "registration": "https://macors.massdot.state.ma.us", "openNote": 'Free registration required (MassDOT)'},
+    {"id": "nysnet",      "url": "http://rtn.dot.ny.gov:8080/",                 # NYSDOT Leica SpiderNet; port 8080 confirmed SOURCETABLE 200 OK 2026-05-13 (18 STR); port 2101 firewalled; add 2026-05-13
+     "color": "#0d47a1", "label": "NYSNet",
+     "type": "physical-vrs", "country": ["US"],
+     "region": "New York", "group": "us-state-dot",
+     "access": "registration", "registration": "https://cors.dot.ny.gov", "openNote": 'Free registration required (NYSDOT)'},
+    {"id": "alcors",      "url": "http://aldotcors.dot.state.al.us:10099/",    # ALDOT Leica SBC; port 10099 = physical single-base (158 STR confirmed 2026-05-13); port 10011 = network mounts; port 2101 firewalled; add 2026-05-13
+     "color": "#1565c0", "label": "AlCORS",
+     "type": "physical-vrs", "country": ["US"],
+     "region": "Alabama", "group": "us-state-dot",
+     "access": "registration", "registration": "https://aldotcors.dot.state.al.us/SBC/Account/Register", "openNote": 'Free registration required (Alabama DOT)'},
     {"id": "iartn",       "url": "http://165.206.203.10:10000/",                  # bare IP:port; iartnsbc.iowadot.gov:2101 dead 2026-05-07; sourcetable open, per-station streams require credentials (Emlid/DJI flow documented at e38surveysolutions.com)
      "color": "#37474f", "label": "IARTN",
      "type": "physical-coord-vrs", "country": ["US"],
