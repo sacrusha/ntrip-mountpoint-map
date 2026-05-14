@@ -284,6 +284,7 @@ AUS` 2026-05-12.
 **vrs**:       no
 **access**:    free; LINZ account required; register via linz.govt.nz; CC BY 4.0 NZ
 **pipeline-access**: registration
+**registration**: https://www.linz.govt.nz/products-services/geodetic/positionz/positionz-real-time-service/connect-positionz-real-time-service
 **stations**:  62 active streams in sourcetable (37 LINZ CORS + ~15 GeoNet re-streams,
                covering NZ mainland, Chatham Islands, and Antarctica/Scott Base)
 **source**:    linz.govt.nz; geonet.org.nz (stream management)
@@ -656,6 +657,7 @@ ERGNSS; single ICGC account required but no professional licence. Sourcetable li
 **access**:    free; application by email/form to Survey and Mapping Office (geodetic.gov.hk);
                no professional licence required; no residency restriction
 **pipeline-access**: registration
+**registration**: https://www.geodetic.gov.hk/en/satref/ntrip.htm
 **stations**:  19 (16 reference + 3 integrity monitoring; TCHK under maintenance since Aug 2025)
 **source**:    geodetic.gov.hk (Lands Department, Survey & Mapping Office)
 **operator**:  Lands Department, Survey and Mapping Office (SMO), HKSAR Government
@@ -714,6 +716,7 @@ service described); the cron fetcher is the live verifier.
 **type**:      physical-coord-vrs
 **access**:    free; register at nrtk.big.go.id; Law No. 4/2011 mandates free public service
 **pipeline-access**: registration
+**registration**: https://nrtk.big.go.id
 **stations**:  ~4
 **source**:    big.go.id (BIG — Badan Informasi Geospasial)
 **operator**:  BIG — Badan Informasi Geospasial
@@ -992,6 +995,7 @@ independent caster and depends on APOS (via eAMA) or Swiss swipos.
 **type**:      physical-coord-vrs
 **access**:    registration; free via spingnss.it (CSI Piemonte public portal)
 **pipeline-access**: registration
+**registration**: https://www.spingnss.it/
 **stations**:  ~39
 **source**:    spingnss.it (CSI Piemonte on behalf of Regione Piemonte, Lombardia, VdA)
 **operator**:  CSI Piemonte
@@ -1010,6 +1014,7 @@ Free public access with simple registration; no annual fee documented.
 **type**:      physical-coord-vrs
 **access**:    registration; free via gpsumbria.regione.umbria.it
 **pipeline-access**: registration
+**registration**: https://umbriageo.regione.umbria.it/pagine/accesso-rapido-ai-servizi-gpsumbria
 **stations**:  13 (7 regional + 6 university; GPS+GLONASS+Galileo+BeiDou; ~40 km spacing)
 **source**:    gpsumbria.regione.umbria.it (Regione Umbria)
 **operator**:  Regione Umbria
@@ -1046,6 +1051,7 @@ renewed March 2025).
 **type**:      physical-coord-vrs
 **access**:    registration; free via sit.puglia.it (Sistema Informativo Territoriale)
 **pipeline-access**: registration
+**registration**: https://pugliacon.regione.puglia.it/web/sit-puglia-sit/global-positioning-system
 **stations**:  12
 **source**:    gps.sit.puglia.it (Regione Puglia)
 **operator**:  Regione Puglia (SIT)
@@ -1085,6 +1091,7 @@ Campania regional GNSS network. Public credentials (`Campania`/`GNSS`) provide
 **type**:      physical-coord-vrs (single-base + VRS)
 **access**:    registration; free via wiscors.dot.wi.gov (Wisconsin DOT)
 **pipeline-access**: registration
+**registration**: https://wiscorsweb.dot.wi.gov/TrimblePivotWeb/RegisterAccount.aspx
 **stations**:  115+ permanent statewide
 **source**:    wiscors.dot.wi.gov (Wisconsin Department of Transportation)
 **operator**:  Wisconsin DOT
@@ -1105,6 +1112,7 @@ ingesting to avoid duplicate pins.
 **type**:      physical-coord-vrs
 **access**:    registration; free via myfloridagps.com (Florida DOT)
 **pipeline-access**: registration
+**registration**: https://www.myfloridagps.com/sbc/Account/Register
 **stations**:  ~100 (live 2026-05-13: 101 STR rows including network solutions and single-base streams)
 **vrs**:       yes (VRS, iMAX, MAX, FKP; `RTCM3_VRS` mountpoint in user guides)
 **source**:    myfloridagps.com (Florida Department of Transportation, Geospatial office)
@@ -1128,6 +1136,7 @@ model state public RTK service. Some overlap with EarthScope NOTA expected.
 **type**:      physical-coord-vrs
 **access**:    registration; free via ardot.gov (Arkansas DOT)
 **pipeline-access**: registration
+**registration**: http://gps.ardot.gov/
 **stations**:  ~50
 **source**:    ardot.gov (Arkansas Department of Transportation)
 **operator**:  Arkansas DOT
@@ -1148,6 +1157,7 @@ Pulaski County with a separate signed-agreement registration at pagis.org.
 **type**:      physical-coord-vrs
 **access**:    registration; free via massdot.state.ma.us (MassDOT)
 **pipeline-access**: registration
+**registration**: https://macors.massdot.state.ma.us/
 **stations**:  22 (GNSS base stations, ~50 km spacing; Mass.gov current listing)
 **vrs**:       yes (Leica iMAX; recommended `RTCM3MSM_IMAX` for full-constellation GPS+GLO+GAL+BDS)
 **source**:    massdot.state.ma.us (Massachusetts Department of Transportation)
@@ -1170,6 +1180,7 @@ account is active.
 **type**:      physical-coord-vrs
 **access**:    registration; free via vector.vermont.gov (VTrans Geodetic Survey)
 **pipeline-access**: registration
+**registration**: https://vector.vermont.gov/
 **stations**:  18 physical reference stations (live 2026-05-13: 36 STR rows = physical + single-base + VRS variants)
 **vrs**:       yes (RTCM 3.1 and CMR+ single-base and network streams)
 **source**:    vtrans.vermont.gov/highway/geodetic (Vermont Agency of Transportation)
@@ -1238,6 +1249,7 @@ adjacent states. SOURCETABLE 200 OK re-confirmed 2026-05-13 (14 STR entries).
 **type**:      physical-coord-vrs
 **access**:    registration; free via aldotcors.dot.state.al.us (Alabama DOT)
 **pipeline-access**: registration
+**registration**: https://aldotcors.dot.state.al.us/SBC/Account/Register
 **stations**:  ~158 physical single-base on `:10099` (live 2026-05-13); 10 network solution mounts on `:10011`
 **vrs**:       yes (`:10011` serves Leica MAC/iMAX network-RTK mountpoints — `RTCMIMAX`, `AutoMAX`, `CMR+IMAX`, `LeicaMAX`; iMAX/MAX are NRTK products, equivalent to VRS for the user)
 **source**:    aldotcors.dot.state.al.us (Alabama Department of Transportation)
@@ -1262,6 +1274,7 @@ have successfully registered.
 **type**:      physical-coord-vrs
 **access**:    registration; free via oregon.gov/odot/orgn (Oregon DOT)
 **pipeline-access**: registration
+**registration**: https://www.oregon.gov/odot/orgn/pages/rover-requests.aspx
 **stations**:  ~100
 **source**:    oregon.gov (Oregon Department of Transportation)
 **operator**:  Oregon DOT (ODOT)
@@ -1284,6 +1297,7 @@ expected.
 **type**:      physical-coord-vrs
 **access**:    registration; free via michigan.gov (Michigan DOT)
 **pipeline-access**: registration
+**registration**: https://mdotcors.michigan.gov/sbc/Account/Register
 **stations**:  ~95 CORS statewide
 **source**:    michigan.gov (Michigan Department of Transportation)
 **operator**:  Michigan DOT (MDOT)
@@ -1305,6 +1319,7 @@ upload GGA at least every 30 seconds. Significant overlap with EarthScope NOTA e
 **type**:      physical-coord-vrs
 **access**:    registration; free via cors.dot.ny.gov (NYSDOT — credentials emailed after activation)
 **pipeline-access**: registration
+**registration**: https://cors.dot.ny.gov/
 **stations**:  unpublished current count (NYSDOT does not publish a station total; the 2006-era network was 36 with 10 planned additions; live sourcetable 2026-05-13: 18 STR rows covering MAX/iMAX/MSM/CMR variants on shared physical infrastructure)
 **vrs**:       yes (`net_msm_vrs` RTCM 3 MSM GPS+GLO+GAL+BDS; iMAX `net_msm_imax`, `GG_MSM_IMAX`; `near_msm` nearest-site)
 **source**:    dot.ny.gov (New York State Department of Transportation, Engineering Division + NYC partners)
@@ -1330,6 +1345,7 @@ expected.
 **type**:      physical-coord-vrs
 **access**:    conditions; signed User Agreement required (free); via incors.in.gov (INDOT)
 **pipeline-access**: conditions
+**registration**: https://incors.in.gov/
 **stations**:  60 in solution (45 INDOT + 15 cross-state from MI, OH, KY)
 **source**:    incors.in.gov (Indiana Department of Transportation)
 **operator**:  Indiana DOT (INDOT)
@@ -1354,6 +1370,7 @@ full-constellation also available. FTP RINEX archive at `ftp.incors.in.gov`.
 **type**:      physical-coord-vrs
 **access**:    registration; free via iowadot.gov (Iowa DOT)
 **pipeline-access**: registration
+**registration**: https://iartnsbc.iowadot.gov/sbc/Account/Register
 **stations**:  83 IaRTN reference stations + 21 cross-state contributors (10 MnDOT, 4 WisDOT, 7 MoDOT)
 **source**:    iowadot.gov (Iowa Department of Transportation);
                e38surveysolutions.com/blogs/news/emlid-reach-rx-or-rs2-and-dji-rtk-connection-to-iowa-ntrip-iartn (Emlid/DJI client setup walkthrough; mountpoint `MSM_IMAX` is the recommended full-constellation RTCM3 stream)
@@ -1379,6 +1396,7 @@ parallel mountpoints during the NAD83(2011) → NATRF2022 transition.
 **type**:      physical-coord-vrs
 **access**:    registration; free via acorn.uconn.edu (CTDOT + UConn)
 **pipeline-access**: registration
+**registration**: https://acorn.uconn.edu/
 **stations**:  13 (9 in CT, 1 in RI, 2 in southern MA, 1 Long Island NY)
 **vrs**:       yes (primary `VRS3_RTX` multi-constellation; `VRSX_RTX` for Trimble)
 **source**:    acorn.uconn.edu (Connecticut DOT + UConn Department of Natural Resources)
@@ -1461,7 +1479,7 @@ portal.
 **type**:      single-coord-vrs
 **access**:    free for positioning; paid for machine-control / auto-guidance via commercial resellers
 **pipeline-access**: registration
-**registration**: https://gnss.wallonie.be (FR/DE)
+**registration**: https://gnss.wallonie.be/walcors/inscription.html
 **stations**:  0 (22 Wallonia + 13 cross-border LU/NL/FR/DE declared; single-coord VRS)
 **vrs**:       yes
 **last_researched_date**: 2026-05-12
@@ -1577,6 +1595,7 @@ maaruum.ee/announcements for the post-2026-08-31 tariff decision.
 **type**:      single-coord-vrs
 **access**:    free; register via ksacors.geoportal.sa (online form or download form and email to the GEOSA registration contact listed on the portal); no licensed-surveyor requirement
 **pipeline-access**: conditions
+**registration**: https://ksacors.geoportal.sa/RegisterAccount.aspx
 **stations**:  0 (209 declared; single-coord; GPS+GLO+GAL+BDS; KSA-GRF17 datum)
 **source**:    ksacors.geoportal.sa (GASGI/GEOSA)
 **operator**:  GEOSA — General Authority for Survey and Geospatial Information (formerly GASGI / GCS)
@@ -1614,6 +1633,7 @@ policy page (gasgi.gov.sa FAQ + Getting-Started PDF) once it is reachable.
 **access**:    free since Apr 2022 (Narodne novine 39/2022); email/web registration at cropos.hr;
                one-time 40 EUR registration fee per Regulation NN 56/2023 / NN 106/25
 **pipeline-access**: registration
+**registration**: https://www.cropos.hr/
 **stations**:  0 (35+ declared including 2025 expansion; sourcetable reports 0/0 for all
                mountpoints — Trimble Pivot VRS convention)
 **source**:    cropos.hr (DGU)
@@ -1638,6 +1658,7 @@ alive 2026-05-12 (SOURCETABLE 200 OK, Trimble Ntrip Caster 5.2, 15 STR rows).
 **type**:      single-coord-vrs
 **access**:    registration; free via kycors.ky.gov (Kentucky Transportation Cabinet)
 **pipeline-access**: registration
+**registration**: https://kycors.ky.gov/RegisterAccount.aspx
 **stations**:  VRS only (6 STR rows live 2026-05-13)
 **vrs**:       yes (recommended `RTX_RTCM3_2` — RTCM3 multi-constellation)
 **source**:    kycors.ky.gov (Kentucky Transportation Cabinet)
@@ -1659,6 +1680,7 @@ SOURCETABLE 200 OK re-confirmed 2026-05-13.
 **type**:      single-coord-vrs
 **access**:    registration; free via mndot.gov (Minnesota DOT)
 **pipeline-access**: registration
+**registration**: https://mncors.dot.state.mn.us/
 **stations**:  VRS only (underlying ~140 physical stations)
 **source**:    mndot.gov (Minnesota Department of Transportation)
 **operator**:  Minnesota DOT (MnDOT)
@@ -1681,6 +1703,7 @@ Waters now covered. Significant overlap with EarthScope NOTA expected.
 **type**:      single-coord-vrs
 **access**:    registration; free via transportation.ohio.gov (Ohio DOT)
 **pipeline-access**: registration
+**registration**: https://transportation.ohio.gov/working/engineering/cadd-mapping/survey/cors-rtn
 **stations**:  VRS only
 **source**:    transportation.ohio.gov (Ohio Department of Transportation)
 **operator**:  Ohio DOT
@@ -1703,6 +1726,7 @@ page; no professional licence field identified. Trimble Pivot Web login at
 **access**:    conditions; requires signed and notarized MoDOT CORS access agreement;
 **pipeline-access**: conditions
                free once approved — contact via modot.mo.gov
+**registration**: https://gpsweb3.modot.mo.gov/
 **stations**:  VRS only (underlying 78 NetR5 CORS, max 70 km spacing)
 **source**:    modot.mo.gov (Missouri Department of Transportation)
 **operator**:  Missouri DOT
@@ -1727,6 +1751,7 @@ personnel changes, but individuals can sign as their own entity.
 **type**:      single-coord-vrs
 **access**:    registration; free via wvrtn.cors.us (WV Dept. of Transportation — IT Division, Highway Data Services Unit)
 **pipeline-access**: registration
+**registration**: https://wvrtn.cors.us/RegisterAccount.aspx
 **stations**:  VRS only (underlying ~34 CORS upgraded to Trimble Alloy receivers in 2024; 7 STR rows live 2026-05-13)
 **vrs**:       yes (recommended `rtxRTCM3_4_MSM` / `rtxCMRx` multi-constellation; older `rtxRTCM3_2` was renamed)
 **source**:    transportation.wv.gov (WV Department of Transportation)
@@ -1749,6 +1774,7 @@ plus a `NATRF2022_Test` preview of the 2026 NSRS datum modernisation. Backup hos
 **type**:      vrs-only
 **access**:    registration; free via medotrtn.maine.gov (MaineDOT Survey Section)
 **pipeline-access**: registration
+**registration**: https://medotrtn.maine.gov/
 **stations**:  VRS only (8 STR rows live 2026-05-13)
 **vrs**:       yes
 **source**:    maine.gov/dot (Maine Department of Transportation, Bureau of Project Development)
@@ -1770,6 +1796,7 @@ required to re-register after the cutover. Mountpoints: `VRS_CMR`, `VRS_RTCM`,
 **type**:      vrs-only
 **access**:    registration; free via rtvrn.mesacounty.us
 **pipeline-access**: registration
+**registration**: https://rtvrn.mesacounty.us/RegisterAccount.aspx
 **stations**:  33 (17 NGS CORS + 16 county/partner stations) underlying VRS
 **source**:    mesacounty.us/departments-and-services/public-works/gps-survey
 **operator**:  Mesa County Public Works (Western Colorado)

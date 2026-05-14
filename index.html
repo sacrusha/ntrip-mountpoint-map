@@ -1015,7 +1015,7 @@
       var hasStations=net.stationCount>0;
       if(!isLive){
         var note=net.note||net.openNote||'';
-        var greyPopup=buildGreyPopup(net.label,net.region||'',note,net.registration);
+        var greyPopup=buildGreyPopup(net.label,net.region||'',note,net.registration,net.stationsDeclared);
         var greyRing=addRingMarker(group,net.lat,net.lon,renderer,GREY_MARKER_COLOR,0.18);
         var greyMk=addAntennaMarker(group,net.lat,net.lon,GREY_MARKER_COLOR,net.label,greyPopup);
         greyById[net.id]={visual:greyRing,marker:greyMk};
@@ -1065,8 +1065,8 @@
     return {group:group,bySid:bySid,greyById:greyById,liveById:liveById,paidLayers:paidLayers};
   }
 
-  function buildGreyPopup(label,region,note,regUrl){
-    return `<div class="popup-plain"><h3>${esc(label)}</h3><div style="color:var(--muted);font-weight:600;margin-bottom:6px">Free network (pending)</div><div style="font-size:12px;margin:4px 0 6px">Covers <b>${esc(region)}</b>.</div>`
+  function buildGreyPopup(label,region,note,regUrl,stationsDeclared){
+    return `<div class="popup-plain"><h3>${esc(label)}</h3><div style="color:var(--muted);font-weight:600;margin-bottom:6px">Free network (pending)</div><div style="font-size:12px;margin:4px 0 6px">Covers <b>${esc(region)}</b>.${stationsDeclared?' '+stationsDeclared+' reference stations.':''}</div>`
       +(note?`<div class="anote">${esc(note)}</div>`:'')
       +(regUrl?`<div class="anote"><a href="${esc(regUrl)}" target="_blank" rel="noopener noreferrer">${esc(visUrl(regUrl))} ↗</a></div>`:'')
       +'</div>';
@@ -1092,7 +1092,7 @@
     return `<div class="popup-plain"><h3>${esc(net.name)}</h3>`
       +(!isInfo&&accessLabel?`<div class="warn">${esc(accessLabel)}</div>`:'')
       +(net.yearlyCost?`<div style="font-size:11px;color:var(--muted);margin:2px 0 4px">${esc(net.yearlyCost)}</div>`:'')
-      +(!isInfo&&net.region?`<div style="font-size:12px;margin:4px 0 6px">Covers <b>${esc(net.region)}</b>.</div>`:'')
+      +(!isInfo&&net.region||net.stationsDeclared?`<div style="font-size:12px;margin:4px 0 6px">${!isInfo&&net.region?'Covers <b>'+esc(net.region)+'</b>.':''}${net.stationsDeclared?(!isInfo&&net.region?' ':'')+net.stationsDeclared+' reference stations.':''}</div>`:'')
       +(net.note?`<div class="anote">${esc(net.note)}</div>`:'')
       +(net.registration?`<div class="anote"><a href="${esc(net.registration)}" target="_blank" rel="noopener noreferrer">${esc(visUrl(net.registration))} ↗</a></div>`:'')
       +'</div>';
@@ -1723,7 +1723,8 @@
         var rec={id:m.id, name:m.name||m.id, lat:m.lat, lon:m.lon,
           region:m.region||'', tier:m.tier, access:m.access||m.tier,
           registration:validUrl(m.registration||''),
-          note:m.note||null, yearlyCost:m.yearly_cost||null};
+          note:m.note||null, yearlyCost:m.yearly_cost||null,
+          stationsDeclared:m.stations_declared||null};
         if(m.tier==='paid'||m.tier==='paid-affordable'){
           var n=m.yearly_cost_normalized;
           rec.color=affordabilityColor(n);
