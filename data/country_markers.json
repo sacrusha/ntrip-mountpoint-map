@@ -2136,7 +2136,8 @@
       "lon": -75.6,
       "tier": "free",
       "vrs": true,
-      "registration": "https://cors.dot.ny.gov/"
+      "registration": "https://cors.dot.ny.gov/",
+      "note": "NTRIP runs on the non-standard port 8080 at rtn.dot.ny.gov; the usual port 2101 is firewalled. Configure receivers accordingly."
     },
     {
       "id": "incors",
