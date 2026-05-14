@@ -224,8 +224,7 @@
       "tier": "free",
       "vrs": true,
       "registration": "https://kycors.ky.gov/RegisterAccount.aspx",
-      "stations_declared": null,
-      "note": "Registration is approved manually by a KYTC admin and the portal warns not to click submit twice. Expect a wait before credentials arrive."
+      "stations_declared": null
     },
     {
       "id": "mncors",
@@ -285,8 +284,7 @@
       "tier": "free",
       "vrs": true,
       "registration": "https://medotrtn.maine.gov/",
-      "stations_declared": null,
-      "note": "MaineDOT migrated to a new caster (medotrtn.maine.gov) in October 2025. Old credentials from mdotcors.maine.gov no longer work; existing users must re-register."
+      "stations_declared": null
     },
     {
       "id": "mesa_rtvrn",
@@ -1148,8 +1146,7 @@
       "vrs": true,
       "access": "paid",
       "yearly_cost": "$450/yr",
-      "registration": "https://portal.tndot.net",
-      "note": "Tennessee has no free state caster. EarthScope NOTA has TN reference stations available free for single-base / post-processing if VRS is not essential."
+      "registration": "https://portal.tndot.net"
     },
     {
       "id": "keynetgps",
@@ -1679,8 +1676,7 @@
       "lon": 114.2,
       "tier": "free",
       "registration": "https://www.geodetic.gov.hk/en/satref/ntrip.htm",
-      "stations_declared": 19,
-      "note": "Application is a downloadable PDF form returned by email or fax to the Survey and Mapping Office; no web self-service. Accounts inactive for 12 months are terminated."
+      "stations_declared": 19
     },
     {
       "id": "inacors",
@@ -1807,8 +1803,7 @@
       "lon": 174.8,
       "tier": "free",
       "registration": "https://www.linz.govt.nz/products-services/geodetic/positionz/positionz-real-time-service/connect-positionz-real-time-service",
-      "stations_declared": 62,
-      "note": "Single-base only — no VRS or network solution. LINZ recommends staying within 15 km of the connected station for centimetre accuracy."
+      "stations_declared": 62
     },
     {
       "id": "trignet",
@@ -1842,8 +1837,7 @@
       "lon": -64.0,
       "tier": "free",
       "registration": "https://www.ign.gob.ar/NuestrasActividades/Geodesia/RamsacNtrip/Registro",
-      "stations_declared": 203,
-      "note": "Single-base only — no VRS, pick the nearest mountpoint. Sessions cap at 8 hours and require reconnection. Patagonia coverage is sparse."
+      "stations_declared": 203
     },
     {
       "id": "regna_rou",
@@ -1877,8 +1871,7 @@
       "lat": 36.2,
       "lon": 138.3,
       "tier": "free",
-      "stations_declared": 44,
-      "note": "Rovers connect without registration — only volunteers running reference stations need to sign up. Bases are operator-volunteered so quality varies by station."
+      "stations_declared": 44
     },
     {
       "id": "sapos_HE",
@@ -2136,7 +2129,8 @@
       "lon": -75.6,
       "tier": "free",
       "vrs": true,
-      "registration": "https://cors.dot.ny.gov/"
+      "registration": "https://cors.dot.ny.gov/",
+      "note": "NTRIP runs on the non-standard port 8080 at rtn.dot.ny.gov; the usual port 2101 is firewalled. Configure receivers accordingly."
     },
     {
       "id": "incors",
