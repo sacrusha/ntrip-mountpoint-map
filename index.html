@@ -486,24 +486,26 @@
   var LIVE_NET_COLOR='rgb(0,170,0)'; // free non-VRS network markers — matches <10 km coverage band
   var PAID_TIER_ICONS={
     affordable:{glyph:'$',color:'#22a722'},
-    paid:      {glyph:'$',color:'#d44'},
+    paid:      {glyph:'$',color:'#b02828'},
     restricted:{glyph:'✕',color:'#d44'},
     info:      {glyph:'?',color:'#888'},
   };
   // Per-marker color from yearly_cost_normalized. Legend swatches keep the
-  // bucket extremes (green/red); individual markers gradient through a dark
-  // yellow that reads on white. <=100 green, 300 yellow, >=1000 red.
+  // bucket extremes (green/red); individual markers gradient through the
+  // IGAC dark-gold yellow that reads on white. <=100 green, 300 yellow,
+  // >=1500 red; missing normalized cost → black.
   function affordabilityColor(n){
-    var G=[34,167,34], Y=[184,134,11], R=[221,68,68];
+    var G=[34,167,34], Y=[212,160,23], R=[176,40,40];
+    if(n==null) return '#000';
     function mix(a,b,t){
       return 'rgb('+Math.round(a[0]+(b[0]-a[0])*t)+','
                    +Math.round(a[1]+(b[1]-a[1])*t)+','
                    +Math.round(a[2]+(b[2]-a[2])*t)+')';
     }
-    if(n==null||n>=1000) return mix(R,R,0);
-    if(n<=100)           return mix(G,G,0);
-    if(n<300)            return mix(G,Y,(n-100)/200);
-    return mix(Y,R,(n-300)/700);
+    if(n>=1500) return mix(R,R,0);
+    if(n<=100)  return mix(G,G,0);
+    if(n<300)   return mix(G,Y,(n-100)/200);
+    return mix(Y,R,(n-300)/1200);
   }
 
   var CLICK_RADIUS_PX=8;
