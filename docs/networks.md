@@ -307,18 +307,33 @@ Endpoint confirmed 2026-05-02.
 ## trignet — TrigNet (ZA)
 
 **status**:    free
+**country**:   ZA — South Africa
 **host:port**: `trignet.co.za:2101`
-**type**:      single-base
+**type**:      physical-vrs
+**vrs**:       yes — Network RTK clusters in Gauteng, Western Cape, KwaZulu-Natal; single-base RTK elsewhere; DGPS countrywide
 **access**:    free; register at trignet.co.za
 **pipeline-access**: registration
-**stations**:  ~72
+**registration**: http://www.trignet.co.za/RegisterAccount.aspx
+**stations**:  ~83 (STR entries in 2026-05-12 sourcetable; single-base mounts e.g. `Pret-SB`, `Ctwn-SB` plus three Network RTK clusters `RTKNetWCape`, Gauteng, KZN equivalents)
 **source**:    trignet.co.za (NGI / National Geospatial Information, DALRRD)
-**operator**:  NGI — National Geospatial Information (DALRRD)
+**operator**:  NGI — Chief Directorate: National Geo-spatial Information, Dept. of Agriculture, Land Reform and Rural Development (DALRRD)
 **licence**:   Public mandate — all NGI products free of charge
+**last_researched_date**: 2026-05-13
 
 All NGI products and services free of charge. No explicit CC licence; public mandate.
+Caster software upgraded to Trimble Ntrip Caster 5.2 (observed 2026-05-12);
+mountpoint entries still tagged "Trimble Pivot Platform" as the back-end CORS engine.
 Single-base RTK (~5 cm) within 30–40 km; Network RTK (~3 cm) in Gauteng,
-Western Cape, KwaZulu-Natal clusters only.
+Western Cape, KwaZulu-Natal clusters only; DGPS (~0.35 m) countrywide.
+
+Authentication: Basic Auth (username + password) after registration; NTRIP v1/v2
+clients only (RTKLIB, Lefebure, u-blox) — standard HTTP libraries fail.
+Volunteer supplement: 1 rtk2go base (`LouwNPP`, Paulpietersburg KZN/MP border)
+and 1 Centipede node (`PIER`, near Pearston, Eastern Cape, u-blox ZED-F9P)
+per `stations_by_country.py ZAF` 2026-05-13.
+
+HxGN SmartNet South Africa: Leica has ZA commercial presence but no ZA-specific
+mountpoints publicly listed and no ZAR tariff published — not a hobbyist option.
 
 ---
 
@@ -5527,33 +5542,41 @@ country marker so target users in El Salvador know free post-processing data exi
 
 ## zingsa_cors — ZINGSA CORS Network (ZW)
 
-**status**:    paid
+**status**:    other
 **country**:   ZW — Zimbabwe
+**operator**:  ZINGSA — Zimbabwe National Geospatial and Space Agency
 **type**:      single-base
-**host:port**: not publicly listed
-**access**:    paid — S.I. 47 of 2023 (Land Survey Act, Surveyor-General's Office
-               Prescribed Fees Amendment Notice, 7 April 2023) establishes fees for
-               CORS access; contact ZINGSA or the Surveyor General's Office for rates
-**yearly_cost**: not publicly listed
-**registration**: zingsa.ac.zw (Zimbabwe National Geospatial and Space Agency)
-**stations**:  unknown — national coverage stated
+**host:port**: not publicly listed — CORS portal at zingsa.ac.zw/django-test/cors does not expose NTRIP host:port
+**access**:    contact-only — no self-service registration; email/phone enquiry via zingsa.ac.zw.
+               S.I. 47 of 2023 (Land Survey Act, Surveyor-General's Office Prescribed Fees
+               Amendment Notice, 7 April 2023) establishes fees for CORS access; rate schedule
+               not published
+**registration**: https://zingsa.ac.zw/
+**stations**:  unknown — national coverage stated; one known station ZINH (Harare) per
+               internal ZINGSA DJI M300 RTK setup document
+**last_researched_date**: 2026-05-13
 
 **date_added**: 2026-04-29
 
-ZINGSA (Zimbabwe National Geospatial and Space Agency), launched by President
-Mnangagwa in 2021, operates a national CORS network used for high-precision
-surveying, precision agriculture, geophysical research, and ionospheric
-monitoring. The Surveyor General's Office (Ministry of Lands, Agriculture,
-Fisheries, Water and Rural Development, agric.gov.zw) administers the same
-infrastructure under the Land Survey Act. The 2023 statutory instrument
-(S.I. 47 of 2023) confirms a paid-access model; no public free tier or NTRIP
-caster host:port has been found. US Zimbabwe sanctions programme terminated
-March 2024 (OFAC Executive Order revoked, transitional designations moved to
-GLOMAG); no sanctions barrier to hardware import exists as of April 2026.
-No public registration portal or host:port discoverable without direct contact.
+ZINGSA (Zimbabwe National Geospatial and Space Agency), established by Presidential
+decree 2018 and launched publicly 2021, operates a national CORS network used for
+high-precision surveying, precision agriculture, geophysical research, and ionospheric
+monitoring. The Surveyor General's Office (Ministry of Lands, Agriculture, Fisheries,
+Water and Rural Development, agric.gov.zw) administers the same infrastructure under
+the Land Survey Act. The 2023 statutory instrument (S.I. 47 of 2023) confirms a
+paid-access model; no public free tier, rate schedule, or NTRIP caster host:port has
+been found. Herald Zimbabwe (Feb 2024) confirms ZINGSA "has embarked on densification
+of CORS" — network described as operational but expanding. The 2025 national budget
+allocates ZiG 64.22 million (~USD 1.78M) to the ZINGSA space programme including CORS.
+US Zimbabwe sanctions programme terminated March 2024 (OFAC Executive Order revoked,
+transitional designations moved to GLOMAG); no sanctions barrier to hardware import.
+Proof of life: ZINGSA Director General vacancy advertised April 2026; homepage still
+markets CORS as "established and operationalized" 2026-05-13. Filed as `other`
+(named operator, no published endpoint, no published rate) — no usable hobbyist path
+without direct ZINGSA contact.
 
 **missing**: confirm whether a free or registration-only tier exists; obtain
-host:port and fee schedule from ZINGSA (zingsa.ac.zw/geodesy) or the
+host:port and fee schedule from ZINGSA (zingsa.ac.zw/django-test/cors) or the
 Surveyor General's Office.
 
 ## survey3g_sv — Survey3G NTRIP (SV)

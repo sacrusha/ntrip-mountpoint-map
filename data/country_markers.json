@@ -1653,7 +1653,8 @@
       "lat": -29.0,
       "lon": 25.0,
       "tier": "free",
-      "stations_declared": 72
+      "vrs": true,
+      "stations_declared": 83
     },
     {
       "id": "rbmc_ip",
@@ -2440,6 +2441,17 @@
       "registration": "https://www.gov.bw",
       "stations_declared": 55,
       "note": "Department of Surveys and Mapping has built ~55 CORS at 30–40 km spacing since 2011, covering most of the country. No public NTRIP host:port; access requires direct DSM engagement."
+    },
+    {
+      "id": "zingsa_cors",
+      "name": "ZINGSA CORS",
+      "region": "Zimbabwe",
+      "country": "ZW",
+      "lat": -17.83,
+      "lon": 31.05,
+      "tier": "weird",
+      "registration": "https://zingsa.ac.zw/",
+      "note": "National CORS run by ZINGSA, marketed as operational and densifying since 2024. No public NTRIP host:port, no published rate card — access only via direct enquiry to ZINGSA."
     },
     {
       "id": "nignet",

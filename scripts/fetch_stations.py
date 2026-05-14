@@ -189,7 +189,7 @@ SOURCES = [
      "access": "registration", "registration": "https://nrtk.big.go.id", "openNote": 'Free registration required'},
     {"id": "trignet",     "url": "http://trignet.co.za:2101/",
      "color": "#556b2f", "label": "TrigNet",
-     "type": "single-base", "country": ["ZA"],
+     "type": "physical-vrs", "country": ["ZA"],
      "access": "registration", "registration": "https://www.trignet.co.za", "openNote": 'Free registration required'},
     {"id": "ugrf",        "url": "http://ugrf.mlhud.go.ug:2101/",
      "color": "#b07000", "label": "UGRF CORS",
