@@ -18,7 +18,7 @@
       "access": "registration",
       "registration": "https://system.asgeupos.pl",
       "stations_declared": 190,
-      "note": "Free since 2 Oct 2022. Registration approval 1–2 working days."
+      "note": "Free since 2 Oct 2022. Account approval takes 1–2 working days."
     },
     {
       "id": "cropos",
@@ -30,7 +30,7 @@
       "tier": "free",
       "vrs": true,
       "stations_declared": 35,
-      "note": "RTK (VPPS) is free since Apr 2022. A one-time 40 EUR registration fee applies per Regulation NN 56/2023."
+      "note": "Free since April 2022. One-time 40 EUR registration fee."
     },
     {
       "id": "flepos",
@@ -76,7 +76,7 @@
       "vrs": true,
       "stations_declared": 40,
       "registration": "https://geoportaal.maaamet.ee/eng/Spatial-Data/ESTPOS-national-GNSS-satellite-data-center-p839.html",
-      "note": "Free under a 2025 directive through 31 Aug 2026; tariff after that date not announced. Portal account and service agreement required."
+      "note": "Currently free through 31 Aug 2026; pricing afterwards not announced. A signed service agreement via the portal is required."
     },
     {
       "id": "ksa_cors",
@@ -288,7 +288,7 @@
       "access": "registration",
       "registration": "https://renep.dgterritorio.gov.pt",
       "stations_declared": 47,
-      "note": "Mainland + Azores + Madeira. New Funchal station added May 2026."
+      "note": "Coverage includes mainland Portugal, the Azores, and Madeira."
     },
     {
       "id": "litpos",
@@ -314,7 +314,7 @@
       "registration": "https://www.ua-pos.net",
       "yearly_cost": "15,000 UAH/yr (~$366/yr)",
       "yearly_cost_normalized": 366,
-      "note": "Nationwide network, hub at Mukachevo (western Ukraine). Wartime-reduced rate (April 2025). Pauses automatically during air-raid alerts."
+      "note": "Price is a reduced wartime rate (April 2025). Streams pause automatically during air-raid alerts."
     },
     {
       "id": "ua_system_net",
@@ -329,7 +329,7 @@
       "registration": "https://gnss.org.ua",
       "yearly_cost": "19,000 UAH/yr (~$460/yr)",
       "yearly_cost_normalized": 460,
-      "note": "Largest commercial network in Ukraine; 200+ stations, Leica VRS platform. Shorter terms available. Wartime discount plans for eastern and southern oblasts."
+      "note": "Shorter subscription terms available. Wartime discount for eastern and southern oblasts."
     },
     {
       "id": "rtkhub",
@@ -344,7 +344,7 @@
       "registration": "https://rtkhub.com",
       "yearly_cost": "10,500 UAH/yr (~$256/yr)",
       "yearly_cost_normalized": 256,
-      "note": "Nationwide commercial RTK network (formerly TNT-TPI). Caster address disclosed after registration. Wartime-reduced rate."
+      "note": "Caster address issued after registration. Price is a reduced wartime rate."
     },
     {
       "id": "kyivstar_rtk",
@@ -359,7 +359,8 @@
       "registration": "https://kyivstar.ua/business/products/geodesiya",
       "yearly_cost": "17,700 UAH/yr (~$430/yr)",
       "yearly_cost_normalized": 430,
-      "note": "97 stations, Trimble VRS + Nearest; requires Kyivstar contract. xFill Premium continuity. Pauses during air-raid alerts."
+      "stations_declared": 97,
+      "note": "Sold only bundled with a Kyivstar mobile contract, not as a standalone subscription. Streams pause during air-raid alerts."
     },
     {
       "id": "gpsbru",
@@ -372,7 +373,7 @@
       "access": "registration",
       "registration": "https://agn.ngi.be",
       "stations_declared": 1,
-      "note": "Single station (UKKE) at Uccle observatory; host:port issued after AGN login request. Useful within ~20 km of Brussels."
+      "note": "Single station at Uccle observatory; caster address issued after registration. Useful within ~20 km of Brussels."
     },
     {
       "id": "ugrf",
@@ -386,7 +387,7 @@
       "access": "registration",
       "registration": "https://ugrf.mlhud.go.ug/SBC",
       "stations_declared": 78,
-      "note": "Single-base, VRS, MAC (incl. iMAX) and FKP mountpoints."
+      "note": "Single-base, VRS, MAC (including iMAX), and FKP mountpoints offered."
     },
     {
       "id": "etcors",
@@ -398,7 +399,7 @@
       "tier": "weird",
       "registration": "https://ssgi.gov.et",
       "stations_declared": 10,
-      "note": "10-station national network launched Dec 2024 by SSGI; planned expansion to ~200. No public NTRIP endpoint or access terms published — contact SSGI directly."
+      "note": "Launched Dec 2024 by the Space Science and Geospatial Institute; expansion to ~200 stations planned. No public caster address or access terms yet — contact SSGI directly."
     },
     {
       "id": "muya_cors_ke",
@@ -413,7 +414,7 @@
       "yearly_cost": "KES 400 / 2 h PAYG (~$3, 30-day voucher)",
       "yearly_cost_normalized": 100,
       "stations_declared": 25,
-      "note": "Pay-as-you-go vouchers via M-Pesa; longer hourly/daily/monthly tiers offered at checkout but not itemised publicly. Practical to pay only from a Kenyan mobile wallet."
+      "note": "Pay-as-you-go vouchers via M-Pesa. Longer hourly, daily, and monthly tiers are offered at checkout but not itemised publicly. Payment needs a Kenyan mobile-money account."
     },
     {
       "id": "bfcors",
@@ -425,7 +426,7 @@
       "tier": "weird",
       "registration": "https://www.igb.bf",
       "stations_declared": 13,
-      "note": "13 CORS stations (established 2011–2018) managed by IGB; post-processing RINEX is the documented service. No confirmed public NTRIP RTK caster. Ongoing armed conflict covers ~40–60% of the country."
+      "note": "Free RINEX for post-processing only; no real-time NTRIP service. Active armed conflict covers an estimated 40–60% of the country."
     },
     {
       "id": "kyrpos",
@@ -440,7 +441,7 @@
       "yearly_cost": "3,180 KGS/mo (~$37/mo, ~$444/yr)",
       "yearly_cost_normalized": 444,
       "stations_declared": 18,
-      "note": "Signup is a 9-step paper-contract flow (download, mail, sign, bank transfer) — practical only with a Kyrgyz postal address and bank account. Minimum 1-month subscription. Caster port appears geo-filtered."
+      "note": "Sign-up is a paper-contract flow: download, post, bank transfer; needs a local postal address and bank account. Minimum 1-month subscription. The caster appears geo-filtered outside Kyrgyzstan."
     },
     {
       "id": "khmer_geonet",
@@ -452,7 +453,7 @@
       "tier": "weird",
       "registration": "https://khmergeonet.xyz",
       "stations_declared": 5,
-      "note": "JICA-built pilot CORS at 5 sites (Phnom Penh, Kandal, Kampong Speu, Siem Reap, Stung Treng); free trial period in force through 1 Jul 2026. Registration runs through a Trimble Pivot web admin; standard NTRIP host:port not publicly advertised. ~200 km gaps between stations."
+      "note": "Free trial through 1 Jul 2026. Stations are 100–200 km apart, so RTK only works close to each site. Caster address issued via the portal."
     },
     {
       "id": "survey_mm",
@@ -463,7 +464,7 @@
       "lon": 96.1,
       "tier": "weird",
       "stations_declared": 10,
-      "note": "Built 2019 by the Survey Department (3 to IGS standard) for internal geodetic use. No public NTRIP endpoint, mountpoint list, or registration channel; post-2021-coup operational status unverified. Nearest free RTK base is in Bangladesh (~430 km), far beyond useful single-base range."
+      "note": "Government geodetic network used internally; no public caster or registration. No free RTK base within useful range from neighbouring countries — plan to deploy a local base."
     },
     {
       "id": "kw_paci",
@@ -475,7 +476,7 @@
       "tier": "restricted",
       "access": "restricted",
       "stations_declared": 14,
-      "note": "14-station government CORS network jointly operated by PACI and Kuwait Municipality; streams issued only to licensed surveying firms under municipal contract. No individual or hobbyist path at any price. No public NTRIP host:port published."
+      "note": "Streams issued only to licensed surveying firms under a municipal contract. No public caster address."
     },
     {
       "id": "caymanland_cors_ky",
@@ -487,7 +488,7 @@
       "tier": "weird",
       "registration": "https://www.caymanlandinfo.ky/services/survey/geodetic-system",
       "stations_declared": 4,
-      "note": "4-station government CORS (CIGD11 datum). An RTK subscription exists but the host:port, mountpoints, and RTK price are not on the public page — access runs through the Chief Surveyor's office. The caymanlandinfo.ky tier prices (Bronze 3 300 / Silver 4 950 / Gold 7 150 / Platinum 12 100 KYD per year) are mapping-only and do NOT include RTK."
+      "note": "An RTK subscription exists, but neither caster address nor price is published. Access runs through the Chief Surveyor's office — apply directly. The tiered prices on caymanlandinfo.ky are for mapping data and do not include RTK."
     },
     {
       "id": "kn_cors",
@@ -497,7 +498,7 @@
       "lat": 17.30,
       "lon": -62.72,
       "tier": "weird",
-      "note": "No national NTRIP service. UWI Seismic Research Centre runs scientific cGPS (STKN on St. Kitts, BATH on Nevis) since 2007 but does not stream RTK. Nearest free real-time base is EarthScope NOTA RDON on Redonda (~35 km south of Nevis, NULA non-commercial)."
+      "note": "No national RTK service. UWI Seismic Research Centre runs scientific GNSS sites on St. Kitts and Nevis but does not stream corrections. The nearest free real-time base is an EarthScope station on Redonda, ~35 km south of Nevis (non-commercial use only)."
     },
     {
       "id": "thailand_dol",
@@ -511,7 +512,7 @@
       "access": "conditions",
       "registration": "https://dol-rtknetwork.com/index.php/register_gnss_beta",
       "stations_declared": 114,
-      "note": "Free trial, but registration requires a Thai national ID — foreign visitors cannot self-register. Volunteer rtk2go bases inside Thailand offer a foreign-accessible fallback."
+      "note": "Currently a free trial. Registration requires a 13-digit Thai national ID card number; foreign visitors without one cannot self-register. A handful of volunteer rtk2go bases inside Thailand are open to anyone."
     },
     {
       "id": "tpos",
@@ -553,7 +554,7 @@
       "access": "registration",
       "registration": "https://retegnssveneto.cisas.unipd.it",
       "stations_declared": 20,
-      "note": "~20 stations, free. Open to any user; credentials assigned by email after registration. Multiple stream formats available."
+      "note": "Open to any user; credentials emailed after registration. Multiple stream formats available."
     },
     {
       "id": "gnss_liguria",
@@ -567,7 +568,7 @@
       "access": "registration",
       "registration": "https://geoportal.regione.liguria.it/servizi/rete-gnss-liguria",
       "stations_declared": 10,
-      "note": "10 stations, free. 7 Liguria stations + 3 shared with SPIN3 GNSS (northern border)."
+      "note": "7 stations in Liguria plus 3 shared with SPIN3 GNSS along the northern border."
     },
     {
       "id": "sicilianet",
@@ -581,7 +582,7 @@
       "access": "registration",
       "registration": "https://www.ct.ingv.it/index.php/risorse-e-servizi/sicil-net",
       "stations_declared": 80,
-      "note": "~80 stations (INGV Catania seismic network), free. Credentials assigned by email after registration. Multiple stream formats including VRS (virtual reference station)."
+      "note": "INGV Catania seismic network; credentials emailed after registration. Single-base and VRS streams available."
     },
     {
       "id": "sarnet",
@@ -597,7 +598,7 @@
       "yearly_cost_normalized": 293,
       "registration": "https://www.geodesia.biz/iscrizione-sarnet",
       "stations_declared": 14,
-      "note": "Commercial network (SARNET s.r.l.). RTK, VRS, DGPS, and RINEX archive. Sardinia-specific network; HxGN SmartNet Italy (ItalPOS) also covers Sardinia as part of its national service. Operational status uncertain — see block note."
+      "note": "Sardinia-specific commercial network (SARNET s.r.l.). RTK, VRS, DGPS, and a RINEX archive."
     },
     {
       "id": "hxgn_smartnet_italy",
@@ -612,7 +613,7 @@
       "yearly_cost": "€385+IVA/yr (~$520/yr)",
       "yearly_cost_normalized": 520,
       "registration": "https://it.nrtk.eu",
-      "note": "Nationwide commercial VRS network (ItalPOS). Useful where no free regional caster exists, e.g. Sardinia and central/northern Calabria (southern Calabria is covered free by sicilianet). Professional focus; no explicit hobbyist ban."
+      "note": "Nationwide commercial VRS network (ItalPOS), filling gaps where Italy's free regional casters do not reach (notably Sardinia and northern Calabria)."
     },
     {
       "id": "acorn",
@@ -624,7 +625,7 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
-      "note": "Alaska DNR / DOTPF / NPS / EarthScope partnership. Four regional VRS solutions (South Central, Interior, Southeast, Northwest) plus a Norton Sound experimental VRS and a nearest-station single-base stream.",
+      "note": "Four regional VRS solutions (South Central, Interior, Southeast, Northwest), a Norton Sound experimental VRS, and a nearest-station single-base stream. Self-service registration, no licence required.",
       "registration": "https://www.acorn-gnss.net"
     },
     {
@@ -637,7 +638,7 @@
       "tier": "free",
       "registration": "https://ntrip.nps.gov",
       "stations_declared": 141,
-      "note": "Single-base mountpoints across CONUS, Alaska, Hawaii, American Samoa, and the Marianas. Operated by the National Park Service; credentials are provisioned manually and whether access extends beyond NPS partners is unclear."
+      "note": "Single-base streams across the continental US, Alaska, Hawaii, American Samoa, and the Marianas. Operated by the National Park Service; credentials are issued manually and access outside NPS partner organisations is not guaranteed."
     },
     {
       "id": "remos_ven",
@@ -649,7 +650,7 @@
       "tier": "free",
       "access": "registration",
       "stations_declared": 8,
-      "note": "~8 stations active per IGVSB website; intended free but no public endpoint confirmed. Commercial alternative: acnovo.net (~USD 20/period). GPS jamming around Venezuelan airspace was reported Sep–Dec 2025 (FAA advisory MAIQUETIA FIR, Nov 2025–Feb 2026)."
+      "note": "IGVSB lists ~8 active stations but publishes no caster address. GPS jamming around Venezuelan airspace was reported Sep 2025 – Feb 2026 (FAA advisory, MAIQUETIA FIR), so any RTK solution may be intermittent."
     },
     {
       "id": "redgeo_bo",
@@ -689,7 +690,7 @@
       "vrs": true,
       "access": "paid",
       "registration": "https://uranus.gr",
-      "note": "117 stations covering Greece and Cyprus. 3-day free trial available. HEPOS (€480/yr) is a public-sector alternative with confirmed pricing."
+      "note": "Covers Greece and Cyprus. 3-day free trial available."
     },
     {
       "id": "rompos",
@@ -705,7 +706,7 @@
       "yearly_cost_normalized": 220,
       "stations_declared": 86,
       "registration": "https://app.rompos.ro",
-      "note": "VAT included. Monthly subscription also available (100 RON/mo). Pricing set by ANCPI Order 16/2019."
+      "note": "Price includes VAT. Monthly subscription also available at 100 RON/mo."
     },
     {
       "id": "orpheon",
@@ -720,7 +721,7 @@
       "yearly_cost": "€756/yr (~$820/yr)",
       "yearly_cost_normalized": 820,
       "registration": "https://www.reseau-orpheon.fr",
-      "note": "~215–220 stations. Commercial VRS network; individual subscriptions available. Centipede RTK (crtk.net:2101) provides free nationwide coverage as a Volunteer alternative."
+      "note": "Commercial VRS network; individual subscriptions available. France also has the volunteer Centipede network (crtk.net:2101), free and nationwide."
     },
     {
       "id": "teria",
@@ -735,7 +736,7 @@
       "yearly_cost": "€895/yr (~$975/yr) excl. VAT",
       "yearly_cost_normalized": 975,
       "registration": "https://www.reseau-teria.com",
-      "note": "~187 stations. Operated by Exagone SAS for Ordre des Géomètres-Experts. Centipede RTK (crtk.net:2101) provides free nationwide coverage."
+      "note": "Operated by Exagone SAS for the Ordre des Géomètres-Experts. France also has the volunteer Centipede network (crtk.net:2101), free and nationwide."
     },
     {
       "id": "swipos",
@@ -750,7 +751,7 @@
       "yearly_cost": "1,500 CHF/yr (~$1,650/yr)",
       "yearly_cost_normalized": 1650,
       "registration": "https://shop.swipos.ch",
-      "note": "At this price a local base station is likely more practical. Volunteer rtk2go/Centipede bases provide partial free coverage on the Swiss plateau."
+      "note": "At this price a local base station is often more practical. Volunteer bases on the Swiss plateau give partial free coverage; pay-per-use CHF 0.50/min is available."
     },
     {
       "id": "cpos",
@@ -766,7 +767,7 @@
       "yearly_cost_normalized": 460,
       "registration": "https://www.kartverket.no",
       "stations_declared": 280,
-      "note": "Agriculture tier NOK 5,000/yr; standard surveying tier NOK 11,000/yr (both ex-VAT). 1-month free trial for new customers. Volunteer rtk2go/Centipede bases cover populated areas south of ~63°N."
+      "note": "Agriculture tier 5,000 NOK/yr; surveying tier 11,000 NOK/yr (both ex VAT). 1-month free trial for new customers. Volunteer bases give partial free coverage of populated areas south of ~63°N."
     },
     {
       "id": "signal",
@@ -781,7 +782,7 @@
       "yearly_cost": "€829/yr (~$905/yr)",
       "yearly_cost_normalized": 905,
       "registration": "https://www.gu-signal.si",
-      "note": "Early-discount tier sometimes available — confirm with GURS before paying. Volunteer rtk2go/Centipede bases provide partial free coverage."
+      "note": "An early-payer discount tier is sometimes advertised — confirm with GURS before paying. Volunteer bases give partial free coverage of the country."
     },
     {
       "id": "swepos",
@@ -796,7 +797,7 @@
       "yearly_cost": "12,000 SEK/yr (~$1,050/yr)",
       "yearly_cost_normalized": 1050,
       "registration": "https://www.lantmateriet.se/en/geodata/our-products/product-list/swepos-network-rtk/",
-      "note": "10-day free trial for new customers. The included DGNSS sub-service is sub-metre only, not centimetre RTK. Shorter-commitment blocks (90 days, 1,000-minute pot) also available."
+      "note": "10-day free trial for new customers. Shorter blocks available (90-day pass, 1,000-minute pot). The bundled DGNSS service is sub-metre only, not cm-grade RTK."
     },
     {
       "id": "sirent",
@@ -827,7 +828,7 @@
       "yearly_cost_normalized": 745,
       "stations_declared": 78,
       "registration": "https://myrtknet.jupem.gov.my",
-      "note": "JUPEM operates this as a cost-recovery service mandated by the Survey Act; no free national alternative. One rtk2go volunteer base near Malacca is the only no-cost option."
+      "note": "Cost-recovery service operated by JUPEM under the Survey Act. A single volunteer base near Malacca is the only free alternative inside the country."
     },
     {
       "id": "tusaga",
@@ -842,7 +843,7 @@
       "yearly_cost": "₺8,135/yr (~$247) RTK; ₺2,985/yr (~$91) DGPS",
       "yearly_cost_normalized": 247,
       "registration": "https://tusaga-aktif.gov.tr",
-      "note": "Online registration requires a Turkish national ID (TC Kimlik No) — foreign users cannot self-register. Monthly (₺1,000) and 6-month (₺6,000) plans available for occasional use. ₺550 one-time device registration fee also applies. Prices include VAT."
+      "note": "Online registration requires a Turkish TC Kimlik number, so foreign visitors cannot self-register. Monthly (₺1,000) and 6-month (₺6,000) plans available. ₺550 one-time device registration fee. Prices include VAT."
     },
     {
       "id": "vngeonet",
@@ -858,7 +859,7 @@
       "yearly_cost_normalized": 266,
       "stations_declared": 65,
       "registration": "https://gddt.vngeonet.vn",
-      "note": "Foreigners can register with a passport. Monthly (750,000 VNĐ) and 6-month (4,280,000 VNĐ) plans also available. A free annual tier exists in zones with >80 km station spacing — relevant outside the densely covered river deltas."
+      "note": "Foreigners can register with a passport. Monthly (750,000 VNĐ) and 6-month (4,280,000 VNĐ) plans also available. A free tier applies in areas with >80 km station spacing — anywhere outside the densely covered river deltas."
     },
     {
       "id": "pagenet",
@@ -874,7 +875,7 @@
       "yearly_cost_normalized": 95,
       "stations_declared": 50,
       "registration": "https://pagenet.namria.gov.ph",
-      "note": "No annual plan; the per-hour tier (PHP 100/hr, ~$1.77/hr) is the only one within the hobbyist cutoff. Day (~$18) and 15-day (~$133) tiers exist. PHP 1,000 (~$18) one-time registration. Non-Metro Manila clients pay by LandBank deposit — a practical barrier for foreigners."
+      "note": "Pay-per-hour at PHP 100/hr (~$1.77/hr); day pass ~$18; 15-day pass ~$133. PHP 1,000 one-time registration. Outside Metro Manila, payment is by LandBank deposit — a practical barrier for foreign visitors."
     },
     {
       "id": "gnssnet_hu",
@@ -889,7 +890,7 @@
       "yearly_cost": "150,000 HUF/yr (~€375, ~$415)",
       "yearly_cost_normalized": 415,
       "registration": "https://gnssnet.hu",
-      "note": "A 30-day local-radius pass (~€38, within 50 km of one point) or pay-per-minute billing (~€1.20–1.80/hr) suits a short project. One-time €30 registration fee."
+      "note": "Occasional use: a 30-day local-radius pass (~€38, within 50 km of one point) or pay-per-minute billing (~€1.20–1.80/hr). One-time €30 registration fee."
     },
     {
       "id": "agros",
@@ -905,7 +906,7 @@
       "yearly_cost_normalized": 81,
       "stations_declared": 30,
       "registration": "https://www.rgz.gov.rs",
-      "note": "Trimble VRS Now backbone. Hourly and monthly packages also available. Serbian-language portal only."
+      "note": "Hourly and monthly packages available. Portal is Serbian-language only."
     },
     {
       "id": "geonet_bg",
@@ -919,7 +920,7 @@
       "yearly_cost": "€600/yr (~$650/yr) ex-VAT unlimited",
       "yearly_cost_normalized": 720,
       "registration": "https://geonet.bg",
-      "note": "The only commercial caster identified in Bulgaria (gnss.geonet.bg:2101), distributed by Solitech AD. Cheapest occasional-use tier is ГеоНет 150 at €15/mo with 150 RTK minutes included (24-month contract). 6 rtk2go and 2 Centipede volunteer bases provide partial free single-base coverage of central, northern and eastern Bulgaria."
+      "note": "Caster at gnss.geonet.bg:2101. Cheapest occasional-use tier is ГеоНет 150 at €15/mo (150 RTK minutes, 24-month contract). Several volunteer single-base stations give partial free coverage of central, northern, and eastern Bulgaria."
     },
     {
       "id": "montepos",
@@ -976,7 +977,7 @@
       "yearly_cost": "TWD 300/receiver/day (~$9/day) plus TWD 2,000 / 5-yr permit (~$60)",
       "yearly_cost_normalized": 462,
       "registration": "https://www.nlsc.gov.tw",
-      "note": "Pay-per-use; 78 stations, VBS-RTK. Caster and portal both appear geo-blocked from outside Taiwan, so foreign users face a non-trivial registration path. Annual contracts available for regular users."
+      "note": "Pay-per-use; annual contracts available for regular users. Caster and portal appear geo-blocked from outside Taiwan."
     },
     {
       "id": "czepos",
@@ -990,7 +991,7 @@
       "access": "paid",
       "yearly_cost": "10,000 CZK/yr (~€400/yr, ~$430/yr)",
       "yearly_cost_normalized": 430,
-      "note": "Free only for education and government bodies. Hourly tariff also available (50 CZK/hr RTK/VRS, 60 CZK/hr DGPS) under vyhláška 31/1995 Sb."
+      "note": "Free for education and government bodies; hobbyists pay the standard tariff. Hourly billing also available: 50 CZK/hr RTK/VRS, 60 CZK/hr DGPS."
     },
     {
       "id": "skpos",
@@ -1005,7 +1006,7 @@
       "yearly_cost": "€70/yr (~$79)",
       "yearly_cost_normalized": 79,
       "registration": "https://skpos.gku.sk/register/",
-      "note": "~26 stations. Monthly plans suit short projects. Registration accepts private individuals from most countries — no trade licence required. Free for Slovak public-sector bodies."
+      "note": "Monthly plans suit short projects. Registration accepts private individuals from most countries — no trade licence required. Free for Slovak public-sector bodies."
     },
     {
       "id": "soi_cors",
@@ -1045,7 +1046,7 @@
       "access": "restricted",
       "registration": "https://mrnf.gouv.qc.ca/repertoire-geographique/reseau-geodesique-donnees-gnss/",
       "stations_declared": 18,
-      "note": "18 free government reference stations (MRNF — formerly MERN/MRN), but NOT standard NTRIP — each station delivers a raw TCP stream (per-station IP:port, CMR+/RTCM 3.2). Standard NTRIP clients will not connect; you need a TCP-capable receiver (e.g. Emlid RS2) or an RTKLIB str2str bridge."
+      "note": "18 free government reference stations, but NOT standard NTRIP — each station is a raw TCP stream (per-station IP:port, CMR+/RTCM 3.2). Standard NTRIP clients will not connect; needs a TCP-capable receiver (e.g. Emlid RS2) or an RTKLIB str2str bridge."
     },
     {
       "id": "bc_rtn",
@@ -1129,7 +1130,7 @@
       "vrs": true,
       "access": "paid",
       "registration": "https://www.keypre.com/keynetgps/",
-      "note": "Commercial Trimble VRS3Net covering the whole Northeast. A practical paid option in NH, NJ, PA, DE, MD, DC, RI, where no free state caster exists (SmartNet and Trimble VRS Now also cover parts of this region). Pricing not posted; quoted via Keypre or resellers."
+      "note": "Commercial VRS network covering the whole US Northeast — useful in NH, NJ, PA, DE, MD, DC, and RI, which have no free state caster. Pricing on quote from Keypre or resellers."
     },
     {
       "id": "alpha_rtk",
@@ -1143,7 +1144,7 @@
       "yearly_cost": "~$798/yr (24-month tier)",
       "yearly_cost_normalized": 798,
       "registration": "https://www.alphartk.com",
-      "note": "No annual plan — the 24-month rolling subscription is the cheapest sustained option ($1,595 / 24 mo). 1-week free trial useful for spot jobs."
+      "note": "No annual plan; cheapest sustained option is the 24-month rolling subscription ($1,595 / 24 mo). 1-week free trial useful for spot jobs."
     },
     {
       "id": "egps_ga",
@@ -1158,7 +1159,7 @@
       "yearly_cost": "$1,650/yr (Plan B VRS)",
       "yearly_cost_normalized": 1650,
       "registration": "https://egps.net/netservices.html",
-      "note": "Only RTK network identified with Georgia coverage; GDOT runs no public caster. Plan C \"Flex\" ($50/day capped $400/mo) is the most practical for occasional use; dual-network Plan A is $2,475/yr."
+      "note": "Plan C \"Flex\" ($50/day capped $400/mo) suits occasional use; dual-network Plan A is $2,475/yr. Georgia DOT runs no public caster."
     },
     {
       "id": "turn_gps",
@@ -1172,7 +1173,7 @@
       "access": "paid",
       "yearly_cost": "$600/yr",
       "registration": "https://turngps.utah.gov",
-      "note": "Covers Utah plus Nevada GPS Network (Reno area / northern NV only; Las Vegas not covered)."
+      "note": "Covers Utah and northern Nevada (Reno area) via the Nevada GPS Network. Las Vegas is not covered."
     },
     {
       "id": "mtsrn",
@@ -1298,7 +1299,7 @@
       "vrs": true,
       "access": "restricted",
       "registration": "https://suparco.biz",
-      "note": "Operated by SUPARCO Business Solutions. Explicitly restricted to authorised users; no public registration path."
+      "note": "Coverage is Karachi metro only, not nationwide. Operated by SUPARCO Business Solutions for authorised users; no public registration path."
     },
     {
       "id": "slcorsnet",
@@ -1327,7 +1328,7 @@
       "access": "paid",
       "registration": "https://corsnet.lk/user/register/",
       "stations_declared": 21,
-      "note": "Private island-wide network, founded 2014. Self-service registration open to individuals; rates issued on inquiry — no public LKR rate card. Mountpoints delivered after payment."
+      "note": "Island-wide commercial network, founded 2014. Self-service registration open to individuals; rates quoted on inquiry. Caster address delivered after payment."
     },
     {
       "id": "sob_bd",
@@ -1340,7 +1341,7 @@
       "vrs": true,
       "access": "paid",
       "registration": "https://data.sob.gov.bd",
-      "note": "6-station national VRS (Dhaka, Chittagong, Rajshahi, Khulna, Maulavibazar, Rangpur). Pricing unpublished; payment via Rocket/bKash/SureCash requires a Bangladeshi mobile-banking account. Free volunteer Centipede coverage near Chittagong."
+      "note": "VRS solution with stations in Dhaka, Chittagong, Rajshahi, Khulna, Maulavibazar, and Rangpur. Pricing not published; payment via Rocket/bKash/SureCash needs a Bangladeshi mobile-banking account. A volunteer base near Chittagong provides a free single-base alternative there."
     },
     {
       "id": "miranet_bt",
@@ -1355,7 +1356,7 @@
       "yearly_cost_normalized": 110,
       "registration": "https://miranet.nlcs.gov.bt",
       "stations_declared": 13,
-      "note": "13 CORS stations across Bhutan. Educational and research accounts are free with an official supporting letter from your institution."
+      "note": "Educational and research accounts are free with a supporting letter from your institution."
     },
     {
       "id": "kazgeodesy",
@@ -1369,7 +1370,7 @@
       "access": "paid",
       "registration": "https://rtk.qgeo.kz",
       "stations_declared": 86,
-      "note": "National network operated by KGS. Pricing not publicly listed since rtk.qgeo.kz reverted to a near-empty header; sales-contact only. Kazakh ИИН/БИН and KZT bank transfer needed — foreign self-registration not possible. Baselines ~180 km outside the Astana–Almaty corridor."
+      "note": "Pricing not published — sales-contact only via the rtk.qgeo.kz landing page. Sign-up needs a Kazakh ИИН/БИН ID number and KZT bank transfer; foreign self-registration is not possible. Baselines reach ~180 km outside the Astana–Almaty corridor, beyond useful RTK range."
     },
     {
       "id": "uzpos",
@@ -1380,7 +1381,7 @@
       "lon": 69.28,
       "tier": "weird",
       "registration": "https://uzgeodezkadastr.uz",
-      "note": "State UZPOS CORS (~30–50 stations) is closed to the public. No rtk2go, Centipede or EarthScope stations within 800 km of Tashkent either. Hobbyists must deploy a private base."
+      "note": "State CORS network closed to the public. No free volunteer base within 800 km of Tashkent either — hobbyists need to deploy a local base."
     },
     {
       "id": "albcors",
@@ -1393,7 +1394,7 @@
       "access": "restricted",
       "registration": "https://krgjsh.asig.gov.al/?page_id=1218&lang=en",
       "stations_declared": 27,
-      "note": "State CORS operated by ASIG (national geodetic authority). Application required; no self-service registration and no public NTRIP host. A commercial alternative, SATNET LIVE (landcoal.com), offers trial access."
+      "note": "Application required; no self-service registration and no published caster address. A commercial alternative, SATNET LIVE (landcoal.com), offers trial access."
     },
     {
       "id": "azpos",
@@ -1407,7 +1408,7 @@
       "access": "restricted",
       "registration": "https://www.emlak.gov.az/en/page/view/96",
       "stations_declared": 45,
-      "note": "Leica Spider VRS backend. Requires a bilateral service agreement with a government office in Baku; no self-service registration and no published tariff. One rtk2go volunteer base covers greater Baku."
+      "note": "Requires a bilateral service agreement with a government office in Baku; no self-service registration and no published tariff. A single volunteer base provides free coverage of greater Baku."
     },
     {
       "id": "armpos",
@@ -1420,7 +1421,7 @@
       "access": "restricted",
       "registration": "https://www.cadastre.am/en",
       "stations_declared": 12,
-      "note": "12-station network installed 2013, operated by the Cadastre Committee. No public NTRIP host — access restricted to licensed surveyors. No free RTK anywhere in the South Caucasus."
+      "note": "Operated by the Cadastre Committee; access restricted to licensed surveyors. No published caster address and no free RTK alternative in the wider South Caucasus."
     },
     {
       "id": "geocors_ge",
@@ -1433,7 +1434,7 @@
       "access": "paid",
       "registration": "http://geocors.napr.gov.ge/SBC",
       "stations_declared": 26,
-      "note": "26-station national CORS network (NAPR). Registration open via Leica Spider Business Center; pricing not publicly listed — contact via geocors.napr.gov.ge. No explicit restriction on non-professional users documented."
+      "note": "Registration open via the operator's online portal; pricing not published — quoted by contact with NAPR."
     },
     {
       "id": "dvrs",
@@ -1447,7 +1448,7 @@
       "access": "restricted",
       "registration": "https://geodubai.dm.gov.ae/sites/buildingsmart/en/Pages/Registration.aspx",
       "stations_declared": 18,
-      "note": "18+ four-constellation stations under Dubai Municipality. Professional application required; no hobbyist registration path. NTRIP endpoint may have migrated — the GeoDubai portal remains the application front-end."
+      "note": "Operated by Dubai Municipality; application required and limited to surveying professionals. The published caster address may have moved — apply via the GeoDubai portal."
     },
     {
       "id": "slrb_bh",
@@ -1458,7 +1459,7 @@
       "lon": 50.55,
       "tier": "free",
       "registration": "https://www.slrb.gov.bh/en/permanent-reference-networkprn",
-      "note": "Apply by email with the form from the SLRB page; credentials issued within 1–2 working days. Host:port disclosed in the credentials email only. SLRB notes the service may become paid."
+      "note": "Apply by email using the form on the SLRB page; credentials are issued within 1–2 working days and include the caster address. The service may become paid in future per SLRB's own notice."
     },
     {
       "id": "alcorsnet_dz",
@@ -1472,7 +1473,7 @@
       "access": "restricted",
       "registration": "https://www.inct.mdn.dz/",
       "stations_declared": 189,
-      "note": "189-station VRS Network-RTK on Geo++ GNSMART. Operated under the Ministry of National Defence; no public registration portal or tariff."
+      "note": "Operated under the Ministry of National Defence; no public registration portal or tariff."
     },
     {
       "id": "regpmoc",
@@ -1484,7 +1485,7 @@
       "tier": "paid",
       "access": "paid",
       "stations_declared": 70,
-      "note": "Single-base stations under IGN/Ministry of Defence (35+ active). Access requires application + payment to IGN; no online self-service portal. IGN's policy does not explicitly exclude individuals, but there is no hobbyist-accessible sign-up path."
+      "note": "Single-base stations under IGN / Ministry of Defence (35+ active). Access requires application and payment to IGN, no online self-service. Individuals are not explicitly excluded, but there is no published path for them."
     },
     {
       "id": "eft_cors",
@@ -1499,7 +1500,7 @@
       "yearly_cost": "₽50,400/yr (~$593/yr)",
       "yearly_cost_normalized": 593,
       "registration": "https://bp.eft-cors.ru/register",
-      "note": "Hundreds of stations across Russia, multi-constellation. Day-pass and shorter plans available. Basic 30s RINEX free. 3-day RTK trial available."
+      "note": "Day-pass and shorter plans available. 3-day RTK trial. Basic 30-second RINEX is free."
     },
     {
       "id": "rtknet",
@@ -1525,7 +1526,7 @@
       "tier": "paid",
       "access": "paid",
       "registration": "https://hive.geosystems.aero",
-      "note": "Aggregator of independently owned stations across Russian regions; the station count visible on the landing page contracted sharply between two recent checks (reason unexplained on the site). Pay-per-use: daily RTK per station (prices vary; login required) or hourly post-processing. First ~5 min per station free."
+      "note": "Aggregator of independently owned stations across Russian regions; station count fluctuates. Pay-per-use: daily RTK per station (prices vary, login required) or hourly post-processing. First ~5 min on each station is free."
     },
     {
       "id": "geospider",
@@ -1540,7 +1541,7 @@
       "yearly_cost": "₽44,100/yr (~$519/yr)",
       "yearly_cost_normalized": 519,
       "registration": "https://geospider.ru",
-      "note": "200+ stations across NW and Central Russia. Short day/week tiers available. Network RTK in local MSK coordinate system."
+      "note": "Covers Northwest and Central Russia. Short day/week tiers available. Network RTK is delivered in the local MSK coordinate system."
     },
     {
       "id": "qianxun",
@@ -1555,7 +1556,7 @@
       "yearly_cost": "¥3,600-3,800/yr (~$500-528/yr)",
       "yearly_cost_normalized": 500,
       "registration": "https://www.qxwz.com",
-      "note": "2,700+ stations across 33 provinces, multi-constellation. Chinese nationals can register without a surveying licence. Foreign visitors require a Chinese phone number and national-ID verification — no practical self-service path."
+      "note": "Multi-constellation, nationwide. Chinese residents can register without a surveying licence. Sign-up needs a Chinese phone number and real-name ID check — no path for foreign visitors without those."
     },
     {
       "id": "cmcc_cors",
@@ -1569,7 +1570,7 @@
       "access": "paid",
       "yearly_cost": "¥3,600/yr (~$500/yr)",
       "yearly_cost_normalized": 500,
-      "note": "4,400+ stations nationwide via China Mobile — the largest of the three commercial options. Chinese nationals can register individually. Foreign visitors require a Chinese phone number and real-name ID verification."
+      "note": "Operated by China Mobile; sign-up is bundled with a Chinese mobile contract. Chinese residents can register individually. Foreign visitors need a Chinese phone number and real-name ID check."
     },
     {
       "id": "tencent_rtk",
@@ -1618,7 +1619,7 @@
       "access": "registration",
       "registration": "https://catnet-ip.icgc.cat/",
       "stations_declared": 25,
-      "note": "Free ICGC regional RTK caster for Catalonia. Separate operator and registration from national ERGNSS. Single ICGC account required; no professional licence."
+      "note": "Regional ICGC caster for Catalonia, separate from the national ERGNSS. Free; requires a single ICGC account, no professional licence."
     },
     {
       "id": "grafcan_repcan",
@@ -1632,7 +1633,7 @@
       "vrs": true,
       "registration": "https://pre-web.grafcan.es/servicios/red-estaciones-gnss/alta-gnss/",
       "stations_declared": 20,
-      "note": "20-station Canary Islands network. Pricing not published — see tiendavirtual.grafcan.es. Free IGN ERGNSS (ergnss-tr.ign.es:2101) covers the Canaries at no cost and is the recommended first option."
+      "note": "Pricing not published — see tiendavirtual.grafcan.es. Free Spanish ERGNSS (ergnss-tr.ign.es:2101) also covers the Canaries."
     },
     {
       "id": "satref",
@@ -1654,7 +1655,7 @@
       "tier": "free",
       "vrs": true,
       "stations_declared": 432,
-      "note": "Sparse map pins — the caster exposes 4 network-solution mounts, not individual station pins. Coverage is denser on Java and Bali; outer islands (Papua, Kalimantan) have gaps."
+      "note": "The caster exposes 4 network-solution mounts rather than individual stations, so the map shows few pins. Coverage is dense on Java and Bali; outer islands (Papua, Kalimantan) have gaps."
     },
     {
       "id": "igac",
@@ -1666,7 +1667,7 @@
       "tier": "free",
       "vrs": true,
       "stations_declared": 260,
-      "note": "137 physical stations broadcast on port 2102; VRS / network-RTK on port 2101."
+      "note": "Physical single-base streams on port 2102; VRS / network-RTK on port 2101."
     },
     {
       "id": "spslux",
@@ -1692,7 +1693,7 @@
       "access": "registration",
       "registration": "https://ggn01.lmi.is/",
       "stations_declared": 33,
-      "note": "33 stations, free. Nearest-station selector and VRS3 network-RTK available."
+      "note": "Nearest-station selector and VRS3 network-RTK available."
     },
     {
       "id": "cors_korea",
@@ -1704,7 +1705,7 @@
       "tier": "free",
       "registration": "https://www.gnssdata.or.kr/user/agree.do",
       "stations_declared": 167,
-      "note": "Federated single-base feed from 8 Korean agencies. Email-only registration; no Korean ID required. NTRIP password is the literal string 'gnss', not the portal login password. Accounts auto-delete after 50 days inactivity. Separate NGII VRS/FKP network-solution service requires Korean mobile-identity verification."
+      "note": "Federated single-base feed from 8 Korean agencies. Email-only registration; no Korean ID required. The NTRIP password is the literal string 'gnss', not the portal login password. Accounts are auto-deleted after 50 days of inactivity. The separate NGII network-solution service does require Korean mobile-ID verification."
     },
     {
       "id": "mbcrtk",
@@ -1718,7 +1719,7 @@
       "access": "restricted",
       "registration": "https://rtk.mbc.co.kr/eng/",
       "stations_declared": 140,
-      "note": "Nationwide commercial broadcast+NTRIP RTK network operated by MBC (terrestrial broadcaster). Access is bundled with custom B-RTK receiver hardware sold to fleet and OEM integrators; no self-serve consumer NTRIP signup at any price. Free hobbyist alternative: CORS-KOREA via the GNSS Data Center."
+      "note": "Operated by broadcaster MBC; access is bundled with custom B-RTK receiver hardware sold to fleet and OEM integrators, with no consumer NTRIP signup."
     },
     {
       "id": "almgg_mn",
@@ -1819,7 +1820,7 @@
       "tier": "free",
       "registration": "https://go.gnss.go.jp",
       "stations_declared": 16,
-      "note": "16 Japan-located physical stations (caster also re-streams ~309 worldwide partner stations from AU/NZ/US/CA/etc.). Free registration plus a separate NtripCaster authorization step; accounts auto-expire after 365 days inactivity."
+      "note": "16 stations in Japan; the caster also re-streams ~309 partner stations from Australia, New Zealand, the US, Canada, and others. Free registration plus a separate caster authorisation step. Accounts auto-expire after 365 days of inactivity."
     },
     {
       "id": "geortk",
@@ -1855,7 +1856,7 @@
       "yearly_cost": "€120/yr (~$130/yr)",
       "yearly_cost_normalized": 163,
       "registration": "https://lvermgeo.rlp.de",
-      "note": "The only SAPOS state that charges for standard RTK — all other SAPOS states offer it free. One-time €100 setup fee applies (amortised in the figure shown). Agriculture has a cheaper €150/device/yr R-HEPS tier; no free hobbyist path.",
+      "note": "One-time €100 setup fee on top of the annual charge (already amortised in the figure shown). Farms can use the cheaper R-HEPS tier at €150/device/yr.",
       "stations_declared": 17
     },
     {
@@ -2001,7 +2002,7 @@
       "tier": "free",
       "vrs": true,
       "stations_declared": 13,
-      "note": "Extends with 1 station in RI, 2 in southern MA, 1 on Long Island NY — useful fallback for Rhode Island."
+      "note": "Network also includes 1 station in Rhode Island, 2 in southern Massachusetts, and 1 on Long Island, NY — a useful fallback for Rhode Island where no state caster exists."
     },
     {
       "id": "azcors",
@@ -2015,7 +2016,7 @@
       "access": "registration",
       "registration": "https://azcors.azwater.gov",
       "stations_declared": 52,
-      "note": "52-station Arizona CORS (37 ADWR + 15 EarthScope/NPS). Free registration via ADWR; Leica SBC platform. Actual NTRIP port confirmed post-registration."
+      "note": "37 ADWR stations plus 15 EarthScope/NPS streams. Free registration via ADWR; caster port confirmed after registration."
     },
     {
       "id": "gcgc_rtn",
@@ -2028,7 +2029,7 @@
       "access": "registration",
       "registration": "https://rtn.usm.edu",
       "stations_declared": 52,
-      "note": "52-station RTK network (Univ. of Southern Mississippi Gulf Coast Geospatial Center). Free; no professional licence required. Trimble Pivot platform; VRS availability unconfirmed."
+      "note": "Operated by the University of Southern Mississippi Gulf Coast Geospatial Center. No professional licence required for registration."
     },
     {
       "id": "alcors",
@@ -2108,7 +2109,7 @@
       "yearly_cost_normalized": 475,
       "stations_declared": 8,
       "registration": "https://akk.rks-gov.net",
-      "note": "Operational since 2012. One-time €20 registration fee also applies; monthly (€60) and 6-month (€250) plans available. NTRIP credentials issued inside the online portal after account creation."
+      "note": "One-time €20 registration fee. Monthly (€60) and 6-month (€250) plans also available. Credentials issued inside the portal after account creation."
     },
     {
       "id": "otc_gnss",
@@ -2123,7 +2124,7 @@
       "yearly_cost_normalized": 2070,
       "registration": "https://www.otc.nat.tn/geodesy/gnss/subscription",
       "stations_declared": 23,
-      "note": "Saharan south not covered. Shorter durations from 60 TND/day also available."
+      "note": "Coverage is northern Tunisia only; the Saharan south is not served. Shorter terms from 60 TND/day also available."
     },
     {
       "id": "agrs_nl",
@@ -2134,7 +2135,7 @@
       "lon": 5.3,
       "tier": "free",
       "stations_declared": 30,
-      "note": "~30 stations across the Netherlands + 7 streams on the BES Islands (Bonaire, Saba, Sint Eustatius), free, anonymous. ntrip.kadaster.nl:2101 or :443 (TLS). Single-base, not VRS. TU Delft mirror at gnss1.tudelft.nl:2101 carries a Netherlands subset."
+      "note": "Also covers the BES Islands (Bonaire, Saba, Sint Eustatius). Anonymous access at ntrip.kadaster.nl:2101 (or :443 over TLS). Single-base, not VRS. TU Delft runs a mirror at gnss1.tudelft.nl:2101 with a Netherlands subset."
     },
     {
       "id": "finpos",
@@ -2182,7 +2183,7 @@
       "access": "paid",
       "registration": "https://gnss.tailte.ie",
       "stations_declared": 24,
-      "note": "Free RINEX post-processing only (gnss.tailte.ie); real-time corrections sold through commercial resellers only (Trimble VRS Now ~€980–1,390/yr, HxGN SmartNet). ~18 free volunteer bases on rtk2go + Centipede."
+      "note": "Free RINEX for post-processing at gnss.tailte.ie; real-time corrections are sold only through commercial resellers (Trimble VRS Now ~€980–1,390/yr, HxGN SmartNet). Volunteer single-base stations across the country offer free real-time fallback."
     },
     {
       "id": "gibr_gi",
@@ -2193,7 +2194,7 @@
       "lon": -5.35,
       "tier": "weird",
       "registration": "https://www.bigf.ac.uk/request_data/form.html",
-      "note": "Tide-gauge GNSS station, RINEX archive only — no real-time RTK service in Gibraltar."
+      "note": "Tide-gauge GNSS station; RINEX archive only, no real-time RTK service in Gibraltar."
     },
     {
       "id": "ergand",
@@ -2204,7 +2205,7 @@
       "lon": 1.60,
       "tier": "weird",
       "registration": "http://register.rtcm-ntrip.org/cgi-bin/registration.cgi",
-      "note": "No Andorran national caster. EPN station PCAR00AND0 (Pic de Carroi, ~5 km from Andorra la Vella) streams free single-base RTCM via EUREF-IP broadcasters — a BKG, ROB, or ASI account gives access. Spanish ERGNSS (ergnss-ip.ign.es) is the practical VRS option."
+      "note": "No Andorran national caster. An EUREF-IP station at Pic de Carroi (~5 km from Andorra la Vella) streams free single-base RTCM via the BKG, ROB, or ASI broadcasters. Spanish ERGNSS (ergnss-ip.ign.es) gives nationwide VRS coverage."
     },
     {
       "id": "sm_cors",
@@ -2239,7 +2240,7 @@
       "registration": "https://kadaster.sx/services/",
       "yearly_cost": "XCG 3,600/yr (~$2,022/yr)",
       "yearly_cost_normalized": 2022,
-      "note": "Pricing targets professional surveyors. Nearest free fallback is EarthScope CN59 on Anguilla (~20 km, NULA non-commercial)."
+      "note": "Pricing targets professional surveyors. The nearest free alternative is an EarthScope station on Anguilla (~20 km), for non-commercial use only."
     },
     {
       "id": "rgna_mx",
@@ -2251,7 +2252,7 @@
       "tier": "weird",
       "registration": "https://en.www.inegi.org.mx/temas/geodesia_activa/",
       "stations_declared": 30,
-      "note": "INEGI publishes free 15-second RINEX from ~30 national stations for post-processing (SFTP, anonymous). No real-time NTRIP/RTK streaming. Commercial NTRIP RTK is sold by several private resellers (Red CORS México, Survey+, TopNET Live)."
+      "note": "INEGI publishes free 15-second RINEX from its stations via anonymous SFTP — post-processing only, no real-time service. Real-time RTK in Mexico is sold by private resellers (Red CORS México, Survey+ MX, TopNET Live México)."
     },
     {
       "id": "red_cors_mx",
@@ -2267,7 +2268,7 @@
       "yearly_cost_normalized": 1015,
       "stations_declared": 60,
       "registration": "https://www.topografia.com/wptopo/producto/corsmexico-12meses/",
-      "note": "Largest commercial NTRIP network in Mexico (60–85+ cities), resold under several vendor brands. Sold per month or per year in MXN; Mexican phone/banking needed at sign-up. Survey+ MX and TopNET Live México are parallel commercial options."
+      "note": "Coverage spans 60–85+ Mexican cities, resold under several vendor brands. Billed monthly or yearly in MXN; a Mexican phone number and bank account are needed at sign-up."
     },
     {
       "id": "ign_gt_cors",
@@ -2279,7 +2280,7 @@
       "tier": "weird",
       "registration": "https://www.ign.gob.gt",
       "stations_declared": 16,
-      "note": "Guatemala's national mapping institute publishes free RINEX files from 16 reference stations for post-processing. No real-time NTRIP service is offered."
+      "note": "The national mapping institute publishes free RINEX for post-processing; no real-time NTRIP service."
     },
     {
       "id": "ip_cors_hn",
@@ -2302,7 +2303,7 @@
       "lon": -85.0,
       "tier": "weird",
       "registration": "https://consultacf.ineter.gob.ni",
-      "note": "INETER publishes free RINEX files for post-processing via the Catastro Físico portal; no domestic NTRIP service. For real-time, EarthScope NOTA hosts two free non-commercial Nicaraguan streams (Chinandega/CNG2 and central/JAPO) under a NULA."
+      "note": "INETER publishes free RINEX for post-processing via the Catastro Físico portal; no domestic NTRIP service. EarthScope hosts two free real-time streams in Nicaragua (Chinandega and central) for non-commercial use."
     },
     {
       "id": "cnr_sv_cors",
@@ -2313,7 +2314,7 @@
       "lon": -88.9,
       "tier": "weird",
       "registration": "https://e.cnr.gob.sv",
-      "note": "CNR/IGCN hosts the SSIA reference station near San Salvador and publishes free RINEX for post-processing via the eCNR portal. No real-time NTRIP service is offered."
+      "note": "Free RINEX for post-processing via the eCNR portal; no real-time NTRIP service."
     },
     {
       "id": "survey3g_sv",
@@ -2328,7 +2329,7 @@
       "yearly_cost_normalized": 450,
       "stations_declared": 6,
       "registration": "https://survey3g.com/servicios-de-ntrip/",
-      "note": "Only commercial RTK provider identified in the country; ~90% national coverage. Free alternative: EarthScope NOTA station SSIA near San Salvador (NULA, non-commercial)."
+      "note": "~90% national coverage. An EarthScope station near San Salvador is a free real-time alternative for non-commercial use."
     },
     {
       "id": "sirgas_chile",
@@ -2354,7 +2355,7 @@
       "yearly_cost": "CLP 450,000/yr (~$470/yr)",
       "yearly_cost_normalized": 470,
       "registration": "https://kollnerlabrana.cl/kollnet.html",
-      "note": "Only confirmed paid hobbyist-accessible NTRIP service in Chile; 8 stations from Santiago to Frutillar. Will become less relevant once the planned public IGM/SHOA national network goes live."
+      "note": "8 stations spanning Santiago to Frutillar. A free national service is planned by IGM/SHOA but not yet live."
     },
     {
       "id": "png_dlpp_cors",
@@ -2365,7 +2366,7 @@
       "lon": 145.0,
       "tier": "weird",
       "stations_declared": 6,
-      "note": "Sparse network of ~6 scientific reference stations underpinning the PNG2020 datum; baselines are too long for reliable RTK outside Lae and Port Moresby. A subscription NTRIP service (ASPNG-hosted) has been discussed but is not yet active."
+      "note": "Scientific reference stations supporting the PNG2020 datum; baselines too long for reliable RTK outside Lae and Port Moresby. A paid NTRIP service has been discussed but is not yet live."
     },
     {
       "id": "fiji_dlss_cors",
@@ -2389,7 +2390,7 @@
       "vrs": true,
       "stations_declared": 21,
       "registration": "https://geodesie.sn/",
-      "note": "PROCASEF + JICA stations delivering VRS / i-MAX corrections; restored March 2026 after a disk failure. Subscription required; tariff not published."
+      "note": "PROCASEF + JICA stations delivering VRS / iMAX corrections; restored March 2026 after a disk failure. Subscription required; tariff not published."
     },
     {
       "id": "cnigs_ht",
@@ -2399,7 +2400,7 @@
       "lat": 18.5,
       "lon": -72.3,
       "tier": "weird",
-      "note": "No public NTRIP service. A 23-station national CORS plan (2015) and a 2018 expansion announcement never produced a live caster. Use PPP corrections or a local base."
+      "note": "No public NTRIP service. Successive expansion plans (2015 and 2018) never delivered a live caster. Plan to use PPP corrections or deploy a local base."
     },
     {
       "id": "miglis_sr",
@@ -2411,7 +2412,7 @@
       "tier": "weird",
       "stations_declared": 8,
       "registration": "https://miglis.sr/cors-data-stations/",
-      "note": "National CORS network operated by the land registry; paid since July 2024 but tariffs are quote-only and the workflow targets institutions. No public host:port and no published hobbyist tier."
+      "note": "Operated by the land registry; paid since July 2024 but tariffs are quote-only and the application workflow targets institutions. No published caster address."
     },
     {
       "id": "hodapro_ir",
@@ -2437,7 +2438,7 @@
       "vrs": true,
       "stations_declared": 144,
       "registration": "https://shamim.ssaa.ir",
-      "note": "Cadastre-programme network installed 2016-17: registration requires an Iranian national ID, an Iranian mobile number, and a specific GNSS receiver serial registered against the account. No documented sign-up path for hobbyists; endpoints firewalled outside Iran."
+      "note": "Cadastre-programme network: registration requires an Iranian national ID number, an Iranian mobile number, and a specific GNSS receiver serial. Caster firewalled outside Iran."
     },
     {
       "id": "repangol",
@@ -2448,7 +2449,7 @@
       "lon": 18.5,
       "tier": "weird",
       "stations_declared": 18,
-      "note": "Eighteen IGCA CORS installed 2010 underpin the national reference frame, but no public NTRIP endpoint has ever been published and the repangol.net portal is offline."
+      "note": "IGCA CORS network underpinning the national reference frame, installed 2010. No public NTRIP endpoint has ever been published; the repangol.net portal is offline."
     },
     {
       "id": "ftm_mg",
@@ -2458,7 +2459,7 @@
       "lat": -18.9,
       "lon": 47.5,
       "tier": "weird",
-      "note": "FTM, the national mapping agency, maintains only passive geodetic control — no NTRIP service. Two volunteer Centipede bases (near Mahajanga and Antananarivo) cover ~35 km each; the south coast, far north and east have no free RTK."
+      "note": "The national mapping agency (FTM) maintains only passive geodetic control — no NTRIP service. Two volunteer bases near Mahajanga and Antananarivo cover ~35 km each; the south coast, far north, and east have no free RTK."
     },
     {
       "id": "bahamas_lands_cors",
@@ -2469,7 +2470,7 @@
       "lon": -77.7,
       "tier": "weird",
       "stations_declared": 23,
-      "note": "23-station Trimble CORS deployed ~2020 by Spatial Dimension for the Department of Lands and Surveys; access is institutional, no public NTRIP endpoint."
+      "note": "Government CORS deployed ~2020 for the Department of Lands and Surveys; institutional access only, no public NTRIP endpoint."
     },
     {
       "id": "reci_ci",
@@ -2480,7 +2481,7 @@
       "lon": -5.5,
       "tier": "weird",
       "stations_declared": 5,
-      "note": "Five-station BNETD-CIGN CORS upgraded to RTK NTRIP mode in 2022, but the public host:port has not been published — access via institutional channel only."
+      "note": "BNETD-CIGN CORS upgraded to RTK in 2022, but the caster address is not public — access through institutional channels only."
     },
     {
       "id": "ghana_cors",
@@ -2504,7 +2505,7 @@
       "lon": 1.0,
       "tier": "weird",
       "registration": "https://urbanisme.gouv.tg",
-      "note": "National CORS network made mandatory for all topographic and cadastral work by a March 2026 inter-ministerial communiqué (three-month compliance window). No public host:port; credentials issued by IGNTOGO on request. The igntogo.tg portal was unreachable as of May 2026."
+      "note": "Made mandatory for all topographic and cadastral work by a March 2026 government communiqué. No published caster address; credentials issued by IGNTOGO on request. The igntogo.tg portal has been unreachable since May 2026."
     },
     {
       "id": "ign_bj",
@@ -2517,7 +2518,7 @@
       "access": "restricted",
       "registration": "https://service-public.bj",
       "stations_declared": 7,
-      "note": "7-station MCA-funded GNSS CORS network. Host:port not public; disclosed via IGN Bénin / CatIS registration (service-public.bj PS01085). Hobbyist eligibility unconfirmed — service oriented toward cadastral use."
+      "note": "MCA-funded CORS network. Caster address not public; disclosed after registration via IGN Bénin / CatIS (service-public.bj form PS01085). Service is oriented toward cadastral use; individual eligibility unconfirmed."
     },
     {
       "id": "sstp_by",
@@ -2533,7 +2534,7 @@
       "yearly_cost_normalized": 640,
       "registration": "https://geo.by/services/sstp",
       "stations_declared": 98,
-      "note": "Residency-only service; signed paper contract with Belgeodesiya required. Western GNSS hardware import is suspended under EU/UK/US sanctions since 2022."
+      "note": "Sign-up requires Belarusian residency and a signed paper contract with Belgeodesiya. Western GNSS hardware import has been blocked under EU/UK/US sanctions since 2022."
     },
     {
       "id": "moldpos",
@@ -2559,7 +2560,7 @@
       "vrs": true,
       "access": "paid",
       "registration": "https://makpos.katastar.gov.mk/sbc/Account/Register",
-      "note": "14 stations; Galileo-capable since 2020. Subscription via Spider Business Center; rates are not published — one community source mentions free 3G access, unconfirmed."
+      "note": "Galileo-capable since 2020. Subscription rates are not published; a community report of free 3G-mobile access exists but is unconfirmed — contact AREC."
     },
     {
       "id": "ancfcc",
@@ -2585,7 +2586,7 @@
       "vrs": true,
       "access": "restricted",
       "registration": "https://secure.itri-gnss.ma/admin/auth/register",
-      "note": "231 stations; Morocco's first private GNSS network (launched 2020). Marketed to surveying professionals; rates are not published."
+      "note": "Morocco's first private GNSS network (launched 2020). Sold to surveying professionals; rates not published."
     },
     {
       "id": "mosref",
@@ -2599,7 +2600,7 @@
       "access": "registration",
       "registration": "https://mosref.dscc.gov.mo",
       "stations_declared": 4,
-      "note": "Free registration; GPS+GLONASS+BeiDou (since 2021). Single-base RTK and VRS; four HK partner stations extend coverage across the Pearl River Delta."
+      "note": "Free registration. GPS + GLONASS + BeiDou since 2021. Single-base and VRS; four Hong Kong partner stations extend coverage across the Pearl River Delta."
     },
     {
       "id": "omancorsnet",
@@ -2613,7 +2614,7 @@
       "access": "restricted",
       "registration": "https://www.nsaomangeoportal.gov.om/en/oman-corsnet",
       "stations_declared": 47,
-      "note": "Operated by NSGIA. The caster at omancorsnet.gov.om:2101 advertises VRS/MAX/Nearest network-RTK mountpoints, but streaming credentials are issued only via the Spider Business Center after manual approval; no hobbyist tier confirmed."
+      "note": "Operated by NSGIA. Caster at omancorsnet.gov.om:2101 advertises VRS, MAX, and Nearest mountpoints, but credentials are issued only after manual approval; no confirmed hobbyist path."
     },
     {
       "id": "qcors",
@@ -2626,7 +2627,7 @@
       "access": "restricted",
       "stations_declared": 9,
       "registration": "https://www.gisqatar.org.qa",
-      "note": "Operated by CGIS; serves licensed surveyors and government users. No public self-registration."
+      "note": "Operated by CGIS for licensed surveyors and government users. No public self-registration."
     },
     {
       "id": "gnet_gl",
@@ -2638,7 +2639,7 @@
       "tier": "weird",
       "registration": "https://dataforsyningen.dk",
       "stations_declared": 60,
-      "note": "~60 continuous GNSS stations spanning Greenland for ice-sheet and geodetic research (KDS / DTU Space / Asiaq). RINEX freely downloadable from Dataforsyningen for post-processing; no real-time NTRIP service."
+      "note": "Continuous GNSS stations across Greenland for ice-sheet and geodetic research. RINEX is free to download from Dataforsyningen for post-processing; no real-time NTRIP service."
     },
     {
       "id": "rgn_rw",
@@ -2650,17 +2651,17 @@
       "tier": "weird",
       "registration": "https://lands.rw",
       "stations_declared": 10,
-      "note": "RLMUA operates ~10 CORS sites with free post-processed RINEX; no real-time NTRIP endpoint published. Three EarthScope stations near Lake Kivu (Rubavu/Kibuye) stream free real-time corrections — useful for western Rwanda."
+      "note": "Free post-processed RINEX from the RLMUA portal; no real-time NTRIP. Three EarthScope stations near Lake Kivu stream free real-time corrections, useful for western Rwanda."
     },
     {
       "id": "nyawipev_sj",
-      "name": "NYAWIPEV (Centipede) + IGS Ny-Ålesund",
+      "name": "Svalbard — Ny-Ålesund only",
       "region": "Svalbard (Ny-Ålesund area)",
       "country": "SJ",
       "lat": 78.92,
       "lon": 11.92,
       "tier": "weird",
-      "note": "Single free Centipede base (NYAWIPEV) at the AWIPEV Arctic research station covers ~20–40 km around Ny-Ålesund. Norway's CPOS does not extend to Svalbard. Longyearbyen has no public RTK — deploy a local base or use PPP."
+      "note": "A volunteer Centipede base at the AWIPEV Arctic research station covers ~20–40 km around Ny-Ålesund. Norway's CPOS does not reach Svalbard, and Longyearbyen has no public RTK — plan for a local base or PPP."
     },
     {
       "id": "dsm_bw",
@@ -2672,7 +2673,7 @@
       "tier": "weird",
       "registration": "https://www.gov.bw",
       "stations_declared": 55,
-      "note": "Department of Surveys and Mapping has built ~55 CORS at 30–40 km spacing since 2011, covering most of the country. No public NTRIP host:port; access requires direct DSM engagement."
+      "note": "Department of Surveys and Mapping operates ~55 CORS at 30–40 km spacing, covering most of the country. No public caster address; access requires direct DSM engagement."
     },
     {
       "id": "cenacarta_mz",
@@ -2683,7 +2684,7 @@
       "lon": 32.58,
       "tier": "weird",
       "stations_declared": 8,
-      "note": "8 CENACARTA reference stations exist (Maputo, Beira, Chimoio, Tete, Quelimane, Nacala, Lichinga, Xai-Xai) but no public NTRIP endpoint is published; built for post-processing."
+      "note": "Stations in Maputo, Beira, Chimoio, Tete, Quelimane, Nacala, Lichinga, and Xai-Xai, built for post-processing. No public NTRIP endpoint."
     },
     {
       "id": "zingsa_cors",
@@ -2694,7 +2695,7 @@
       "lon": 31.05,
       "tier": "weird",
       "registration": "https://zingsa.ac.zw/",
-      "note": "National reference station network run by ZINGSA. Statutory fee of US$200/yr (S.I. 47 of 2023), but no published caster address or self-service signup — credentials come only after a direct enquiry to ZINGSA."
+      "note": "Statutory fee of US$200/yr. No published caster address or self-service signup — credentials issued only after direct enquiry to ZINGSA."
     },
     {
       "id": "nignet",
@@ -2706,7 +2707,7 @@
       "tier": "weird",
       "registration": "https://miranet.nignet.net/",
       "stations_declared": 15,
-      "note": "OSGOF's ~15-station geodetic network is fronted by the MIRAnet portal at miranet.nignet.net (caster ntrip.nignet.net:21011). Accounts are manually approved and described as fee-paying, with no published tariff or hobbyist tier. 500-1,000 km inter-station baselines exceed the ~50 km RTK envelope until the announced 165-station expansion lands."
+      "note": "Caster at ntrip.nignet.net:21011, fronted by the MIRAnet portal. Accounts are manually approved and fee-paying; no published tariff. Inter-station baselines of 500–1,000 km exceed useful RTK range until the planned 165-station expansion lands."
     },
     {
       "id": "ttagn",
@@ -2718,7 +2719,7 @@
       "tier": "weird",
       "registration": "https://agriculture.gov.tt/divisions-units/divisions/surveys-and-mapping/online-web-services/",
       "stations_declared": 5,
-      "note": "Five-station national network (Surveys and Mapping Division). Ministry lists the service but the gpscors.gov.tt portal stopped resolving externally — access likely ministry-network-internal or limited to licensed surveyors."
+      "note": "Run by the Surveys and Mapping Division. The gpscors.gov.tt portal no longer resolves externally; access appears to be ministry-internal or limited to licensed surveyors."
     },
     {
       "id": "umhvorvisstovan_fo",
@@ -2731,7 +2732,7 @@
       "access": "restricted",
       "registration": "https://us.fo/kort/geodesi",
       "stations_declared": 4,
-      "note": "Four reference stations (Klaksvík, Vestmanna, Trongisvágur, Argir) advertised for surveying and construction firms. No caster, port, or tariff published — access entirely via direct contact. Danish GPSnet.dk does not cover the Faroes."
+      "note": "Stations at Klaksvík, Vestmanna, Trongisvágur, and Argir, advertised for surveying and construction firms. No caster address or tariff published — apply by direct contact. Danish GPSnet.dk does not cover the Faroes."
     },
     {
       "id": "esa_cors_eg",
@@ -2744,7 +2745,7 @@
       "access": "restricted",
       "registration": "https://www.esa.gov.eg/",
       "stations_declared": 40,
-      "note": "~40 stations operated by the Egyptian Survey Authority for cadastral and infrastructure projects, concentrated in Cairo and the Nile Delta. No public NTRIP caster or self-service registration."
+      "note": "Operated by the Egyptian Survey Authority for cadastral and infrastructure work; stations are concentrated in Cairo and the Nile Delta. No public caster or self-service registration."
     },
     {
       "id": "acnovo_ve",
@@ -2756,7 +2757,7 @@
       "tier": "weird",
       "access": "paid",
       "registration": "https://acnovo.net",
-      "note": "Private commercial NTRIP provider — the only one identified in Venezuela. Billing cycle (monthly vs per-session) and station count not stated publicly; credentials issued only after payment."
+      "note": "Private commercial NTRIP provider. Billing cycle (monthly vs per-session) and station count not stated publicly; credentials issued after payment."
     },
     {
       "id": "gas_ye",
@@ -2765,7 +2766,7 @@
       "lat": 15.36,
       "lon": 44.19,
       "tier": "weird",
-      "note": "Civil conflict since 2015 has halted public geodetic services. The General Survey Authority website is unreachable; no public NTRIP caster, RINEX archive, or volunteer base anywhere in Yemen."
+      "note": "Civil conflict since 2015 has halted public geodetic services. The General Survey Authority website is unreachable, and there is no public NTRIP caster, RINEX archive, or volunteer base in Yemen."
     },
     {
       "id": "cypos",
@@ -2781,7 +2782,7 @@
       "yearly_cost_normalized": 262,
       "stations_declared": 7,
       "registration": "https://portal.dls.moi.gov.cy/en/application_forms/engrafi-cypos/",
-      "note": "7 stations on the south coast and plateau; operational since 2010. Profile must be validated in person at a Citizen Service Centre — a practical barrier for visitors without a Cypriot civil registration number. A free EUREF-IP single-base station (NICO, Nicosia) covers ~30 km radius via BKG/ROB/ASI broadcasters."
+      "note": "Account profile must be validated in person at a Citizen Service Centre, which is a practical barrier without a Cypriot civil registration number. An EUREF-IP single-base station in Nicosia gives ~30 km of free coverage via the BKG, ROB, or ASI broadcasters."
     },
     {
       "id": "geocuba_gnss",
@@ -2792,7 +2793,7 @@
       "lon": -79.5,
       "tier": "weird",
       "stations_declared": 13,
-      "note": "13 permanent GNSS stations operational since 2019 under GEOCUBA (MINFAR). NTRIP service confirmed in a 2024 paper but no public host, port, or registration portal has been published. US OFAC regulations add a further practical barrier for visitors."
+      "note": "Operated by GEOCUBA (MINFAR), running since 2019. An NTRIP service is documented in a 2024 paper but no public caster address or registration portal has been published. US OFAC regulations add a further practical barrier for visitors."
     },
     {
       "id": "gpsnet_dk",
@@ -2805,7 +2806,7 @@
       "vrs": true,
       "access": "paid",
       "registration": "https://www.geoteam.dk/produkter/gpsnetdk",
-      "note": "Denmark's main cadastral VRS network. Short-term (weekly / monthly) and annual plans available; price shown after login. Volunteer fallback: ~17 rtk2go bases and ~18 Centipede nodes, mostly in Jutland."
+      "note": "Denmark's main cadastral VRS network. Weekly, monthly, and annual plans available; price shown only after login. Volunteer single-base stations across Denmark (mostly Jutland) give partial free coverage."
     },
     {
       "id": "rtkconnect_dk",
@@ -2821,7 +2822,7 @@
       "yearly_cost_normalized": 840,
       "stations_declared": 111,
       "registration": "https://rtkconnect.dk/products/rtk-netvaerk",
-      "note": "111-station FKP/VRS network; 10 km average baseline. Approved by Klimadatastyrelsen."
+      "note": "FKP and VRS streams; ~10 km average baseline. Approved by Klimadatastyrelsen."
     },
     {
       "id": "ngd_laos_cors",
@@ -2831,7 +2832,7 @@
       "lat": 17.97,
       "lon": 102.6,
       "tier": "weird",
-      "note": "No public NTRIP service. The IGN FI portfolio page (updated May 2024) describes a Lao CORS installation; no host:port, mountpoint, or access path is disclosed. First pilot CORS commissioned 2013 (ComNav, BeiDou). Deploy a local base or use Galileo HAS."
+      "note": "No public NTRIP service. IGN FI's portfolio page describes a Lao CORS installation but discloses no caster address. Plan for a local base or Galileo HAS."
     },
     {
       "id": "trignet_ls",
@@ -2841,7 +2842,7 @@
       "lat": -29.31,
       "lon": 27.48,
       "tier": "weird",
-      "note": "No local caster. Nearest free service is South Africa's TrigNet at trignet.co.za:2101, but the closest station (Bloemfontein) sits ~210 km from Maseru — too far for cm-grade single-base RTK. Deploy a local base or use Galileo HAS."
+      "note": "No local caster. The nearest free service is South Africa's TrigNet at trignet.co.za:2101; its closest station in Bloemfontein sits ~210 km from Maseru, too far for cm-grade single-base RTK. Plan for a local base or Galileo HAS."
     },
     {
       "id": "li_cors",
@@ -2851,7 +2852,7 @@
       "lat": 47.14,
       "lon": 9.52,
       "tier": "weird",
-      "note": "No Liechtenstein caster. Swiss swipos (paid, ~CHF 1,500/yr or CHF 0.50/min pay-per-use) covers the country directly; Austrian APOS adds coverage and is free for farmers via eAMA. Centipede and rtk2go have volunteer bases within 20–60 km."
+      "note": "No Liechtenstein caster. Swiss swipos (paid; CHF 1,500/yr or CHF 0.50/min pay-per-use) covers the country directly. Austrian APOS reaches the eastern half and is free for Austrian farmers via eAMA. Volunteer bases sit 20–60 km away."
     }
   ]
 }
