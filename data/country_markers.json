@@ -873,6 +873,8 @@
       "vrs": true,
       "access": "paid",
       "yearly_cost": "PHP 100/hr (~$1.77/hr); no flat annual rate",
+      "yearly_cost_normalized": 448,
+      "yearly_cost_comment": "normalized cost based on 250h use per year (PHP 100/hr) plus PHP 1,000 one-time registration / 3, replace when an annual tier becomes known",
       "stations_declared": 50,
       "registration": "https://pagenet.namria.gov.ph",
       "note": "Day pass ~$18; 1-month ~$212. PHP 1,000 one-time registration. Outside Metro Manila, payment is by LandBank deposit — a practical barrier for foreign visitors."
