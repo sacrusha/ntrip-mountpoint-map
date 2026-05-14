@@ -2248,7 +2248,7 @@ via geodesia.biz confirmed). Services claimed: RTK single-base, SARNET VRS (RTCM
 RINEX archive. Note: research summary table describes the original SARNET public project as
 "proposed, never activated"; the current commercial service under the SARNET brand at geodesia.biz
 may be a separate successor offering. Zero rtk2go or Centipede stations on the island —
-SARNET is the only documented correction source for Sardinia if operational.
+SARNET is the only Sardinia-specific correction service if operational; HxGN SmartNet Italy (ItalPOS) also covers Sardinia as part of its national service.
 
 **investigate**: confirmed NTRIP caster host:port — contact via geodesia.biz/iscrizione-sarnet.
 
@@ -4904,8 +4904,8 @@ Enterprise-focused commercial NRTK network covering Italy. Not free.
 **last_researched_date**: 2026-05-13
 
 HxGN SmartNet Italy, branded as ItalPOS, is the Hexagon-operated commercial NRTK
-network covering all of Italy including the islands. It is the only network providing
-VRS corrections for Sardinia, Calabria, and other regions without free regional casters.
+network covering all of Italy including the islands. It provides VRS corrections for regions without free regional casters,
+including Sardinia (alongside SARNET) and Calabria.
 Professional focus (licensed surveyor and engineering use cases); no explicit hobbyist
 ban in publicly available terms. Subscription via it.nrtk.eu.
 

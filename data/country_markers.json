@@ -597,7 +597,7 @@
       "yearly_cost_normalized": 293,
       "registration": "https://www.geodesia.biz/iscrizione-sarnet",
       "stations_declared": 14,
-      "note": "Commercial network (SARNET s.r.l.). RTK, VRS, DGPS, and RINEX archive. Only documented correction source in Sardinia."
+      "note": "Commercial network (SARNET s.r.l.). RTK, VRS, DGPS, and RINEX archive. Sardinia-specific network; HxGN SmartNet Italy (ItalPOS) also covers Sardinia as part of its national service. Operational status uncertain — see block note."
     },
     {
       "id": "hxgn_smartnet_italy",
@@ -612,7 +612,7 @@
       "yearly_cost": "€385+IVA/yr (~$520/yr)",
       "yearly_cost_normalized": 520,
       "registration": "https://it.nrtk.eu",
-      "note": "Nationwide commercial VRS network (ItalPOS). Only correction source for Sardinia, Calabria, and other regions without free casters. Professional focus; no explicit hobbyist ban."
+      "note": "Nationwide commercial VRS network (ItalPOS). Covers regions without free regional casters, including Sardinia and Calabria. Professional focus; no explicit hobbyist ban."
     },
     {
       "id": "acorn",
