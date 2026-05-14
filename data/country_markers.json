@@ -511,7 +511,7 @@
       "access": "conditions",
       "registration": "https://dol-rtknetwork.com/index.php/register_gnss_beta",
       "stations_declared": 114,
-      "note": "Free trial, but registration requires a Thai national ID — foreign visitors cannot self-register. Three rtk2go community bases inside Thailand (TH-Kukot near Bangkok, sylvania near Rayong, LivingOnCrypto in Nakhon Sawan) offer a foreign-accessible fallback."
+      "note": "Free trial, but registration requires a Thai national ID — foreign visitors cannot self-register. Volunteer rtk2go bases inside Thailand offer a foreign-accessible fallback."
     },
     {
       "id": "tpos",
@@ -1340,7 +1340,7 @@
       "vrs": true,
       "access": "paid",
       "registration": "https://data.sob.gov.bd",
-      "note": "6-station national VRS (Dhaka, Chittagong, Rajshahi, Khulna, Maulavibazar, Rangpur). Pricing unpublished; payment via Rocket/bKash/SureCash requires a Bangladeshi mobile-banking account. Free volunteer coverage near Chittagong: Centipede mount BENGLA4."
+      "note": "6-station national VRS (Dhaka, Chittagong, Rajshahi, Khulna, Maulavibazar, Rangpur). Pricing unpublished; payment via Rocket/bKash/SureCash requires a Bangladeshi mobile-banking account. Free volunteer Centipede coverage near Chittagong."
     },
     {
       "id": "miranet_bt",
@@ -1407,7 +1407,7 @@
       "access": "restricted",
       "registration": "https://www.emlak.gov.az/en/page/view/96",
       "stations_declared": 45,
-      "note": "Leica Spider VRS backend. Requires a bilateral service agreement with a government office in Baku; no self-service registration and no published tariff. One rtk2go volunteer base (WHTCTY) covers greater Baku."
+      "note": "Leica Spider VRS backend. Requires a bilateral service agreement with a government office in Baku; no self-service registration and no published tariff. One rtk2go volunteer base covers greater Baku."
     },
     {
       "id": "armpos",
@@ -2458,7 +2458,7 @@
       "lat": -18.9,
       "lon": 47.5,
       "tier": "weird",
-      "note": "FTM, the national mapping agency, maintains only passive geodetic control — no NTRIP service. Two volunteer Centipede bases (MAHA near Mahajanga, MIRACAD near Antananarivo) on caster.centipede.fr:2101 cover ~35 km each; the south coast, far north and east have no free RTK."
+      "note": "FTM, the national mapping agency, maintains only passive geodetic control — no NTRIP service. Two volunteer Centipede bases (near Mahajanga and Antananarivo) cover ~35 km each; the south coast, far north and east have no free RTK."
     },
     {
       "id": "bahamas_lands_cors",
@@ -2683,7 +2683,7 @@
       "lon": 32.58,
       "tier": "weird",
       "stations_declared": 8,
-      "note": "8 CENACARTA reference stations exist (Maputo, Beira, Chimoio, Tete, Quelimane, Nacala, Lichinga, Xai-Xai) but no public NTRIP endpoint is published; built for post-processing. Nearest known free option for Maputo is a volunteer rtk2go base in Eswatini (~85 km); volunteer bases can disappear without notice — check current status before relying on it."
+      "note": "8 CENACARTA reference stations exist (Maputo, Beira, Chimoio, Tete, Quelimane, Nacala, Lichinga, Xai-Xai) but no public NTRIP endpoint is published; built for post-processing."
     },
     {
       "id": "zingsa_cors",
