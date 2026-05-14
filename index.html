@@ -717,15 +717,34 @@
     return Object.values(byKey);
   }
 
-  function solidSVG(col,r){
-    r=r||7; var d=r*2;
-    return `<svg width="${d}" height="${d}" viewBox="0 0 ${d} ${d}" xmlns="http://www.w3.org/2000/svg"><circle cx="${r}" cy="${r}" r="${r-0.75}" fill="${col}" stroke="white" stroke-width="1.5"/></svg>`;
+  // Multi-source stations render as a pie of source colors. Single-color input
+  // collapses to a plain filled circle (and to the same cache key as before).
+  function dotSVG(colors,r){
+    r=r||7; var d=r*2, c=r, rr=r-0.75;
+    var inner;
+    if(colors.length===1){
+      inner='<circle cx="'+c+'" cy="'+c+'" r="'+rr+'" fill="'+colors[0]+'"/>';
+    } else {
+      inner='';
+      var step=(Math.PI*2)/colors.length;
+      for(var i=0;i<colors.length;i++){
+        var a0=i*step - Math.PI/2, a1=(i+1)*step - Math.PI/2;
+        var x0=(c+rr*Math.cos(a0)).toFixed(2), y0=(c+rr*Math.sin(a0)).toFixed(2);
+        var x1=(c+rr*Math.cos(a1)).toFixed(2), y1=(c+rr*Math.sin(a1)).toFixed(2);
+        var large=step>Math.PI?1:0;
+        inner+='<path d="M '+c+' '+c+' L '+x0+' '+y0+' A '+rr+' '+rr+' 0 '+large+' 1 '+x1+' '+y1+' Z" fill="'+colors[i]+'"/>';
+      }
+    }
+    return '<svg width="'+d+'" height="'+d+'" viewBox="0 0 '+d+' '+d+'" xmlns="http://www.w3.org/2000/svg">'
+      +inner
+      +'<circle cx="'+c+'" cy="'+c+'" r="'+rr+'" fill="none" stroke="white" stroke-width="1.5"/></svg>';
   }
   var _iconCache={};
-  function cachedIcon(col){
-    if(!_iconCache[col]) _iconCache[col]=L.divIcon(
-      {className:'',html:solidSVG(col),iconSize:[14,14],iconAnchor:[7,7]});
-    return _iconCache[col];
+  function cachedIcon(colors){
+    var key=colors.join('|');
+    if(!_iconCache[key]) _iconCache[key]=L.divIcon(
+      {className:'',html:dotSVG(colors),iconSize:[14,14],iconAnchor:[7,7]});
+    return _iconCache[key];
   }
   function getCachedPopup(s){
     if(!s._popup) s._popup=buildPopup(s);
@@ -944,22 +963,40 @@
         :null;
       var n=ids?ids.length:stations.length;
       if(!n) return;
-      var R=4, TAU=Math.PI*2;
-      var pts=new Float32Array(n*2), byColor={};
+      var R=4, TAU=Math.PI*2, HALFPI=Math.PI/2;
+      var pts=new Float32Array(n*2), monoByColor={}, multis=[];
       for(var i=0;i<n;i++){
         var s=stations[ids?ids[i]:i], pt=map.latLngToLayerPoint([s.lat,s.lon]);
         pts[i*2]=pt.x; pts[i*2+1]=pt.y;
-        (byColor[s.color]||(byColor[s.color]=[])).push(i);
+        if(s.colors.length===1){
+          var c0=s.colors[0];
+          (monoByColor[c0]||(monoByColor[c0]=[])).push(i);
+        } else {
+          multis.push(i);
+        }
       }
-      var colors=Object.keys(byColor);
-      for(var c=0;c<colors.length;c++){
-        var col=colors[c], idxs=byColor[col];
+      // Mono stations: batch by color, one fill per color.
+      var monoColors=Object.keys(monoByColor);
+      for(var c=0;c<monoColors.length;c++){
+        var col=monoColors[c], idxs=monoByColor[col];
         ctx.beginPath();
         for(var j=0;j<idxs.length;j++){
           var k=idxs[j]*2;
           ctx.moveTo(pts[k]+R,pts[k+1]); ctx.arc(pts[k],pts[k+1],R,0,TAU);
         }
         ctx.fillStyle=col; ctx.fill();
+      }
+      // Multi-source stations: draw N wedges each, first slice at 12 o'clock.
+      for(var m=0;m<multis.length;m++){
+        var mi=multis[m], cs=stations[ids?ids[mi]:mi].colors;
+        var x=pts[mi*2], y=pts[mi*2+1], step=TAU/cs.length;
+        for(var w=0;w<cs.length;w++){
+          ctx.beginPath();
+          ctx.moveTo(x,y);
+          ctx.arc(x,y,R,w*step-HALFPI,(w+1)*step-HALFPI);
+          ctx.closePath();
+          ctx.fillStyle=cs[w]; ctx.fill();
+        }
       }
       ctx.beginPath();
       for(i=0;i<n;i++){
@@ -1443,13 +1480,15 @@
         });
       });
     }
-    function filterPred(s){
+    // Returns the subset of mountpoints currently enabled by source + tier
+    // toggles. Empty array means the station should be hidden.
+    function filterMountpoints(s){
+      var out=[];
       for(var i=0;i<s.mountpoints.length;i++){
-        var src=s.mountpoints[i].source;
-        if(!state[src.id]) continue;
-        if(state['tier_'+(src.access||'registration')]) return true;
+        var mp=s.mountpoints[i], src=mp.source;
+        if(state[src.id]&&state['tier_'+(src.access||'registration')]) out.push(mp);
       }
-      return false;
+      return out;
     }
 
     var entries=[];
@@ -1565,13 +1604,13 @@
     d.querySelectorAll('input[data-m]').forEach(function(cb){
       cb.addEventListener('change',function(){
         JSON.parse(cb.dataset.m).forEach(function(sid){ state[sid]=cb.checked; });
-        applyMarkers(); onChange(filterPred);
+        applyMarkers(); onChange(filterMountpoints);
       });
     });
     d.querySelectorAll('input[data-k]').forEach(function(cb){
       cb.addEventListener('change',function(){
         state[cb.dataset.k]=cb.checked;
-        applyMarkers(); onChange(filterPred);
+        applyMarkers(); onChange(filterMountpoints);
       });
     });
 
@@ -1686,15 +1725,9 @@
         else if(st==='stale'&&staleness==='dead') staleness='stale';
       });
       s.staleness=staleness;
-      if(staleness!=='live'){
-        s.color='#aaa';
-      } else {
-        var src=s.mountpoints[0].source, mono=true;
-        for(var i=1;i<s.mountpoints.length;i++)
-          if(s.mountpoints[i].source!==src){ mono=false; break; }
-        s.color=mono?src.color:MULTI_COLOR;
-      }
       s.precLabel=precLabel(s.dLat,s.dLon,s.lat);
+      // s.color / s.colors are derived per rebuild in rebuildStationLayers
+      // so toggling a network updates dot colour and slice composition.
     });
     var affordableNetworks=[], paidNetworks=[], restrictedNetworks=[], info=[];
     (countryMarkersJson&&countryMarkersJson.markers||[]).forEach(function(m){
@@ -1857,9 +1890,33 @@
     map.getPane('dotsPane').style.zIndex=402; // above overlayPane (400); below vrsPane SVG (403)
     var dotsLayer=new DotsLayer().addTo(map);
 
-    var filter=function(){ return true; };
-    var visible=stations;
+    // filter(s) returns the visible mountpoints for s (empty array hides it).
+    // Default = all mountpoints, used until the toggle panel is wired up.
+    var filter=function(s){ return s.mountpoints; };
+    var visible=[];
     var stationIndex=null;
+
+    // Build a per-rebuild "display shadow" of a station with only the
+    // mountpoints currently enabled. Dot colour and pie slices derive from
+    // this filtered list, so toggling a network updates attribution in dots,
+    // tooltips, popups, and "Copy all" in one pass. Stale stations stay grey
+    // regardless of source attribution.
+    function makeDisplayStation(s,vm){
+      var sources={};
+      for(var i=0;i<vm.length;i++) sources[vm[i].source.id]=vm[i].source.color;
+      var ids=Object.keys(sources).sort();
+      var colors;
+      if(s.staleness==='live'){
+        colors=ids.map(function(id){ return sources[id]; });
+      } else {
+        colors=['#aaa'];
+      }
+      return Object.assign({},s,{
+        mountpoints: vm,
+        colors:      colors,
+        color:       colors.length>1?MULTI_COLOR:colors[0],
+      });
+    }
     var detailGroup=L.layerGroup();
     var _detailMap=new Map(); // posKey → {rect, marker}
     var _detailShowRect=false;
@@ -1904,7 +1961,10 @@
         if(_detailMap.has(pk)) continue;
         if(capInsertions&&_detailMap.size>=MAX_DETAIL_MARKERS) continue;
         var entry={};
-        var fill=s.color;
+        // Rect echoes one of the colors in the pie (colors[0]) rather than
+        // the MULTI_COLOR fallback, so the dashed uncertainty box doesn't
+        // look unrelated to the dot it surrounds.
+        var fill=s.colors[0];
         try{
           if(showRect){
             entry.rect=L.rectangle([[s.lat-s.dLat,s.lon-s.dLon],
@@ -1915,9 +1975,19 @@
                 {sticky:true,className:'prec-tip'})
               .addTo(detailGroup);
           }
-          var names=s.mountpoints.map(function(mp){ return mp.name; });
-          entry.marker=L.marker([s.lat,s.lon],{icon:cachedIcon(fill)})
-            .bindTooltip(names.join(' / '),
+          // Dedup names: same-name mountpoints across multiple networks
+          // (IGS backbone stations like BRUX broadcast through EUREF/IGS/MIRAI)
+          // collapse to one label. Then cap to keep the permanent label compact.
+          var nameSet={}, names=[];
+          for(var ni=0;ni<s.mountpoints.length;ni++){
+            var nm=s.mountpoints[ni].name;
+            if(!nameSet[nm]){ nameSet[nm]=true; names.push(nm); }
+          }
+          var label=names.length>3
+            ? names.slice(0,3).join(' / ')+' +'+(names.length-3)+' more'
+            : names.join(' / ');
+          entry.marker=L.marker([s.lat,s.lon],{icon:cachedIcon(s.colors)})
+            .bindTooltip(label,
               {permanent:true,direction:'right',offset:[9,0],className:'slabel'})
             .on('click',(function(st){ return function(){ showCard(getCachedPopup(st),[st.lat,st.lon]); }; })(s))
             .addTo(detailGroup);
@@ -1959,7 +2029,11 @@
 
     function rebuildStationLayers(){
       if(map.hasLayer(detailGroup)) map.removeLayer(detailGroup);
-      visible=displayStations.filter(filter);
+      visible=[];
+      for(var i=0;i<displayStations.length;i++){
+        var s=displayStations[i], vm=filter(s);
+        if(vm.length) visible.push(makeDisplayStation(s,vm));
+      }
       stationIndex=buildStationIndex(visible);
       resetDetailMap();
       dotsLayer.setStations(visible,stationIndex);
