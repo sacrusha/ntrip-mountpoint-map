@@ -555,7 +555,7 @@
       "vrs": true,
       "access": "registration",
       "stations_declared": 8,
-      "note": "~8 stations active per IGVSB website; intended free but no public endpoint confirmed. Commercial alternative: acnovo.net (~USD 20/period). GPS jamming reported around Venezuelan airspace November 2025–February 2026."
+      "note": "~8 stations active per IGVSB website; intended free but no public endpoint confirmed. Commercial alternative: acnovo.net (~USD 20/period). GPS jamming around Venezuelan airspace was reported Sep–Dec 2025 (FAA advisory MAIQUETIA FIR, Nov 2025–Feb 2026)."
     },
     {
       "id": "redgeo_bo",
@@ -754,8 +754,10 @@
       "vrs": true,
       "access": "paid",
       "yearly_cost": "6,750,000 VNĐ/yr (~$266)",
+      "yearly_cost_normalized": 266,
+      "stations_declared": 65,
       "registration": "https://gddt.vngeonet.vn",
-      "note": "65 stations on a VRS + iMAX + single-base caster. Foreigners can register with a passport. Monthly (750,000 VNĐ) and 6-month (4,280,000 VNĐ) plans also available. A free annual tier exists in areas with >80 km station spacing — relevant outside the densely covered river deltas."
+      "note": "Foreigners can register with a passport. Monthly (750,000 VNĐ) and 6-month (4,280,000 VNĐ) plans also available. A free annual tier exists in zones with >80 km station spacing — relevant outside the densely covered river deltas."
     },
     {
       "id": "pagenet",
@@ -1976,8 +1978,10 @@
       "vrs": true,
       "access": "paid",
       "yearly_cost": "€400/yr (~$468/yr)",
+      "yearly_cost_normalized": 475,
+      "stations_declared": 8,
       "registration": "https://akk.rks-gov.net",
-      "note": "8 CORS stations, VRS network. One-time €20 registration fee also applies. NTRIP credentials issued inside the online portal after account creation."
+      "note": "Operational since 2012. One-time €20 registration fee also applies; monthly (€60) and 6-month (€250) plans available. NTRIP credentials issued inside the online portal after account creation."
     },
     {
       "id": "otc_gnss",
@@ -2497,6 +2501,15 @@
       "access": "paid",
       "registration": "https://acnovo.net",
       "note": "Private commercial NTRIP provider — the only one identified in Venezuela. Billing cycle (monthly vs per-session) and station count not stated publicly; credentials issued only after payment."
+    },
+    {
+      "id": "gas_ye",
+      "name": "Yemen GAS",
+      "country": "YE",
+      "lat": 15.36,
+      "lon": 44.19,
+      "tier": "weird",
+      "note": "Civil conflict since 2015 has halted public geodetic services. The General Survey Authority website is unreachable; no public NTRIP caster, RINEX archive, or volunteer base anywhere in Yemen."
     },
     {
       "id": "cypos",

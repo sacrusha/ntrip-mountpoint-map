@@ -2135,17 +2135,19 @@ pipeline (credentials required; sourcetable not publicly accessible).
 **source**:    igvsb.gob.ve (IGVSB — Instituto Geográfico de Venezuela Simón Bolívar);
                SIRGAS Bol15/16/17; SIRGAS Americas Facebook (December 2025)
 **date_added**: 2026-05-06
+**last_researched_date**: 2026-05-13
 
 Maracaibo (MARA) was the first REMOS station to stream NTRIP corrections experimentally
 (Oct 2008). No public host:port or registration portal confirmed. SIRGAS bulletins
 (Bol15–Bol17) documented NTRIP server capability at 27 of 29 stations by ~2012 but
 never published a hostname. December 2025: IGVSB reported progress integrating CORS
-stations into the SIRGAS-RT real-time caster (SIRGAS Americas Facebook post). The
-BKG/RTCM-NTRIP global broadcaster registry (last updated 2024-01-30) contains no
-Venezuela/IGVSB entry. No public NTRIP caster link or registration portal found on
-igvsb.gob.ve. GPS jamming was reported around Venezuelan territory September–December
-2025 (FAA advisory MAIQUETIA FIR, November 2025–February 2026). Infrastructure
-degradation post-2018 documented in January 2026 Geo Week News article.
+stations into the SIRGAS-RT real-time caster (SIRGAS Americas Facebook post); the
+narrative is unchanged at 2026-05-13. The BKG/RTCM-NTRIP global broadcaster registry
+(last updated 2024-01-30) contains no Venezuela/IGVSB entry. `igvsb.gob.ve` returned
+HTTP 200 on 2026-05-13 but no NTRIP caster link or registration portal is published.
+GPS jamming was reported around Venezuelan territory September–December 2025 (FAA
+advisory MAIQUETIA FIR, November 2025–February 2026). Infrastructure degradation
+post-2018 documented in January 2026 Geo Week News article.
 
 ---
 
@@ -2161,17 +2163,20 @@ degradation post-2018 documented in January 2026 Geo Week News article.
                monthly or per-session; promotional coupon codes advertised); register at
                acnovo.net / cursos.acnovo.net
 **stations**:  unconfirmed count; website claims 24/7 nationwide base stations
-**source**:    acnovo.net (confirmed live, last modified 2025-07-01); cursos.acnovo.net
+**source**:    acnovo.net (confirmed live, last modified 2025-07-01; HTTP 200 re-confirmed
+               2026-05-13); cursos.acnovo.net
 **operator**:  Acnovo (private commercial; also brands as acnovo.com)
+**last_researched_date**: 2026-05-13
 
 Acnovo is a private commercial NTRIP correction provider in Venezuela, operating a grid
 of base stations with RTCM 3.x output compatible with RTK receivers and drones. No public
 sourcetable URL confirmed; credentials are disclosed only after subscription. Billing cycle
 is not clearly stated — the training portal (cursos.acnovo.net) lists "SERVICIO GNSS NTRIP
-EXPRESS" at USD 20 with a promotional coupon that may reduce the cost to zero (validity
-unclear). Effective yearly cost therefore unconfirmed.
-`weird` status: real commercial NTRIP service in a country with no confirmed free option;
-annual cost cannot be established from public sources.
+EXPRESS" at USD 20 with a promotional coupon (code `NTRIPEXPRESS`) that may reduce the
+cost to zero (validity unclear). Effective yearly cost therefore unconfirmed.
+`other` status: real commercial NTRIP service in a country with no confirmed free option;
+annual cost cannot be established from public sources, so the structured fields can't
+carry the story.
 
 ---
 
@@ -2974,13 +2979,21 @@ millimeter accuracy" for departmental resurvey). Not absorbed into SoI CORS as o
                the network where station density is sparse — useful free option
                for hobbyists outside the densely covered river deltas.
 **yearly_cost_normalized**: 266
-**stations**:  65
+**stations**:  65 (24 Geodetic CORS + 41 NRTK CORS); commissioning completed 2019
 **source**:    vngeonet.vn; gddt.vngeonet.vn (National Centre for Satellite
                Positioning Station Management / Trung tâm Quản lý trạm định vị
-               vệ tinh quốc gia, Bộ TN&MT)
+               vệ tinh quốc gia). Operator string in sourcetable: `DoSM` (Department
+               of Survey, Mapping and Geographic Information / Cục Đo đạc, Bản đồ
+               và Thông tin địa lý). Parent ministry: MONRE until late 2025; from
+               2026 the merged Ministry of Agriculture and Environment
+**last_researched_date**: 2026-05-12
 
 Three-port caster: port 2101 VRS network solution, port 2102 iMAX network
-solution, port 2103 single-base.
+solution, port 2103 single-base. Sourcetable probe `vngeonet.vn:2101` 2026-05-12
+returned SOURCETABLE 200 OK with 20 VRS mountpoints (all `VRS.*M3`/`M6` Leica
+Spider products, GPS+GLO+GAL+BDS+QZSS, NMEA-driven, listed at network reference
+point 20.67°N 105.53°E); server header `GNSS Spider 7.7.1.9072/1.0`. Foreign-receiver
+users should test `VRS.WGS84` first.
 
 ---
 
@@ -3394,20 +3407,33 @@ a higher one-time registration (100 KM vs 0).
 **status**:    paid
 **date_added**: 2026-04-30
 **country**:   XK
-**type**:      VRS (8 CORS stations + computation centre in Pristina; Leica GNSS Spider)
-**host:port**: `kopos.rks-gov.net:2101` (Spider Business Center login portal; NTRIP mountpoints and credentials provided inside portal post-login)
+**type**:      VRS (8 CORS stations + computation centre in Pristina; Leica GNSS Spider /
+               Spider Business Center v7.8.1.438; RTCM 2.3 FKP + VRS; GPS+GLONASS+Galileo)
+**host:port**: `kopos.rks-gov.net:2101` (IP 91.239.145.45; Spider Business Center login
+               portal; NTRIP mountpoints and credentials provided inside portal
+               post-login). TCP probes to port 2101 timed out from external IP
+               2026-05-06 and 2026-05-12 — likely geo-firewalled outside Kosovo;
+               credentials are issued via the SBC HTTPS portal which remains reachable
 **access**:    paid; annual subscription + one-time registration fee; register at akk.rks-gov.net; no surveying-licence requirement found
-**yearly_cost**: €400/yr (~$468); plus €20 one-time registration fee
+**yearly_cost**: €400/yr (~$468); plus €20 one-time registration fee. Shorter durations
+               available: €250/6 months, €60/month. RINEX post-processing tier €100/yr
+               or €30/month. Kosovo standard VAT 18%; tariff document does not state
+               whether prices include VAT — verify at AKK
 **yearly_cost_normalized**: 475
 **stations**:  8 permanent CORS; RTK horizontal ±2 cm, vertical ±4 cm
 **operator**:  Agjencia Kadastrale e Kosovës (Kosovo Cadastral Agency / AKK)
-**source**:    akk.rks-gov.net
+**source**:    akk.rks-gov.net; Administrative Instruction QRK No. 04/2024 (tariff PDF)
+**last_researched_date**: 2026-05-13
 
 Kosovo's national GNSS reference network, operated by the Kosovo Cadastral Agency (AKK)
-as an EUPOS-aligned CORS network. AKK 04/24 tariff schedule confirmed via the 2025 Annual
-Report (issued 2026-03-25); pricing unchanged since early 2024. Portal alive 2026-04-30.
-The SBC registration form requests rover brand, serial number, and address; no surveying
-licence number required. No free hobbyist tier.
+as an EUPOS-aligned CORS network. Network commissioned 2012–2013 under a 2011 World
+Bank-funded ICB contract with Leica Geosystems; eight AR25 choke-ring antenna reference
+stations distributed nationwide; control centre in Pristina. AKK 04/24 tariff schedule
+confirmed via the 2025 Annual Report (issued 2026-03-25) and the source PDF; pricing
+unchanged since early 2024. SBC portal HTTPS alive 2026-05-13. The SBC registration
+form requests rover brand, serial number, and address; no surveying licence number
+required. No free hobbyist tier. Kosovo's non-UN-member status has historically
+complicated EUREF/EPN participation; no confirmed EPN station.
 
 ---
 
@@ -3979,6 +4005,41 @@ deployment. Do not pursue until EUREF, IGS, or direct government sources confirm
 operational caster.
 
 Rejected — military-operated; no public NTRIP service; conflict-disrupted infrastructure.
+
+---
+
+## gas_ye — General Survey Authority (YE)
+
+**status**:    other
+**date_added**: 2026-05-13
+**country**:   YE — Yemen
+**type**:      unknown
+**host:port**: not publicly listed
+**access**:    no confirmed public NTRIP
+**yearly_cost**: N/A
+**stations**:  unknown; pre-conflict CORS stations operated by GAS; current status not
+               verifiable
+**source**:    not publicly listed (General Survey Authority / هيئة المساحة العامة; website
+               unreachable 2026-05-13)
+**operator**:  General Survey Authority (GAS), Yemen
+**last_researched_date**: 2026-05-13
+
+Yemen's national geodetic authority. No public NTRIP caster, open sourcetable, or
+hobbyist registration portal has been found in any directory, sourcetable, or academic
+reference. The country has been in active civil conflict since 2015 between Houthi
+forces (Sanaa and the north-west) and the internationally recognised government (Aden);
+hostilities have severely disrupted all public infrastructure including geodetic and
+mapping services. The GAS website was unreachable in all searches conducted 2026-05-06
+and 2026-05-13. The historic IGS site ADEN (Aden) has not appeared in current IGS
+operational lists. Zero YE stations on rtk2go, Centipede, or EarthScope; `stations_by_radius.py
+15.36 44.19 200` (Sanaa) returns zero results 2026-05-13. No commercial RTK provider
+(GEODNET, PointOne, etc.) lists Yemen coverage. Galileo HAS (~40 cm, no internet) is
+theoretically usable but of limited practical value in a conflict zone with restricted
+import of GNSS equipment.
+
+Surfaced as `other` so YE users land on a marker that explains why no service is
+reachable rather than a silent gap. Do not pursue until a confirmed public NTRIP
+endpoint appears in a directory or official Yemeni government announcement.
 
 ---
 
@@ -5961,26 +6022,105 @@ Zero LC mountpoints on rtk2go or Centipede.
 
 **status**:    free
 **country**:   VC — Saint Vincent and the Grenadines
-**type**:      unknown (no confirmed public NTRIP caster)
-**host:port**: not publicly listed
-**access**:    no public NTRIP caster found
-**registration**: no public portal identified
-**stations**:  unknown; geodetic modernisation work underway (Caribbean Digital
-               Transformation Project, World Bank, 2020–2025)
-**operator**:  Lands and Surveys Department (`transport.gov.vc`)
-
+**type**:      single-base (EarthScope NOTA streams in neighbouring islands; no VC-national caster)
+**host:port**: `ntrip.earthscope.org:2101` (nearest free streams; no VC-territory station)
+**access**:    free non-commercial via EarthScope; account + annual NULA acceptance required
+**registration**: https://www.earthscope.org/data/gnss-realtime/
+**stations**:  no station in VC territory; nearest EarthScope NOTA streams are CN47
+               (Saint Lucia, ~58 km north of Kingstown) and CN46 (Carriacou/Grenada,
+               ~88 km south). Geodetic modernisation work underway (Caribbean Digital
+               Transformation Project, World Bank, 2020–2026)
+**operator**:  Lands and Surveys Department (`transport.gov.vc`); EarthScope NOTA
+               stations operated by the EarthScope Consortium (former UNAVCO/COCONet)
 **date_added**: 2026-04-29
+**last_researched_date**: 2026-05-13
+
+No COCONet/EarthScope station sits in VC territory. The nearest free streams are
+EarthScope NOTA single-base mountpoints in neighbouring countries: `CN47_RTCM3P3`
+on Saint Lucia (13.71°N, −60.94°W, ~58 km north of Kingstown) and `CN46_RTCM3P3`
+on Carriacou, Grenada (12.49°N, −61.43°W, ~88 km south). CN47 is at the comfortable
+edge of single-base RTK practicality for dual-frequency multi-constellation receivers;
+CN46 is degraded but workable for decimetre work in the southern Grenadines. Hobbyists
+needing cm-grade fixes on Saint Vincent itself should deploy a local base.
 
 The World Bank–funded Caribbean Digital Transformation Project (US$28 million,
-2020–2025) included a geodetic reference network modernisation component for
-Saint Vincent and the Grenadines: datum update from BWI 1945 Grid to ITRF,
-equipment procurement, and a digital mapping exercise (Dec 2024 – Jan 2025).
-No public NTRIP caster host:port has been announced as of early 2025.
-Zero VC mountpoints on rtk2go or Centipede.
+2020–2026) includes a geodetic reference network modernisation component for SVG:
+datum update from BWI 1945 Grid to ITRF, equipment procurement (handover Feb 2024),
+and a digital mapping exercise completed Dec 2024 – Jan 2025 with This is PLACE
+using a fixed-wing VTOL drone. No CORS / NTRIP follow-on has been announced. Zero
+VC mountpoints on rtk2go or Centipede.
 
 **missing**: re-check whether the CARDTP geodetic modernisation resulted in a
 public CORS NTRIP endpoint; contact Lands and Surveys Department via
 `transport.gov.vc` for any planned public caster.
+
+## vg_cors — British Virgin Islands GNSS / COCONet (VG)
+
+**status**:    free
+**date_added**: 2026-05-13
+**country**:   VG — British Virgin Islands (UK Overseas Territory)
+**operator**:  Land and Survey Department (`bvi.gov.vg`); EarthScope NOTA station
+               operated by the EarthScope Consortium (former UNAVCO/COCONet)
+**type**:      single-base (EarthScope NOTA stream; no VG-national caster)
+**host:port**: `ntrip.earthscope.org:2101` (RTCM 3.3); ports 2105 (BINEX), 2108 (PPP)
+**access**:    free non-commercial via EarthScope; account + annual NULA acceptance required
+**registration**: https://www.earthscope.org/data/gnss-realtime/
+**stations**:  1 EarthScope NOTA — `CN03_RTCM3P3` (Tortola, 18.49°N, −64.40°W;
+               Septentrio POLARX5; raw 1 Hz multi-constellation RTCM 3.3 MSM7)
+**last_researched_date**: 2026-05-12
+
+No VG-national RTK service exists. The Land and Survey Department holds geodetic
+responsibility but operates no NTRIP caster. As a UK Overseas Territory the BVI is
+outside Ordnance Survey's OS Net coverage and no FCDO geospatial aid programme has
+funded an NTRIP service. Real-time corrections in BVI territory come exclusively
+from EarthScope NOTA (former COCONet/UNAVCO; legacy `rtgpsout.unavco.org` retired
+2025-07-29):
+
+- **CN03_RTCM3P3** (Septentrio POLARX5, 18.49 -64.40) — Tortola, the main BVI
+  island; single-base reference (NOT VRS). Reliable RTK within ~20–30 km of the
+  antenna covers most of Tortola and Virgin Gorda. Anegada (~60 km north) is at the
+  outer limit; STVI on St. Thomas (USVI, ~30 km west) is a useful second reference.
+
+Sourcetable probe `ntrip.earthscope.org:2101` returned SOURCETABLE 200 OK 2026-05-12
+with CN03 listed under country code `VGB`. Tariff (NULA v. 2025-05-30): free
+non-commercial; USD $1,000/seat/yr commercial (min 5 seats). Zero VG mountpoints on
+rtk2go or Centipede.
+
+## vi_cors — US Virgin Islands GNSS / COCONet (VI)
+
+**status**:    free
+**date_added**: 2026-05-13
+**country**:   VI — US Virgin Islands (US territory)
+**operator**:  US territory; no VI-territorial NTRIP caster. EarthScope NOTA station
+               operated by the EarthScope Consortium (former UNAVCO/COCONet); NOAA
+               NCN CORS provides RINEX only
+**type**:      single-base (EarthScope NOTA stream; no VRS engine)
+**host:port**: `ntrip.earthscope.org:2101` (RTCM 3.3); ports 2105 (BINEX), 2108 (PPP)
+**access**:    free non-commercial via EarthScope; account + annual NULA acceptance required
+**registration**: https://www.earthscope.org/data/gnss-realtime/
+**stations**:  1 EarthScope NOTA streaming in VI territory — `STVI_RTCM3P3` (St. Thomas,
+               18.34°N, −64.97°W; Trimble NETR9; tagged country code `USA` in the
+               EarthScope sourcetable). NOAA NCN lists four USVI stations (STVI and
+               VITH on St. Thomas; CRO1 and VIKH on St. Croix) for RINEX download only
+**last_researched_date**: 2026-05-12
+
+No VI-territorial RTK service exists. Real-time corrections come from EarthScope NOTA
+single-base streams:
+
+- **STVI_RTCM3P3** (Trimble NETR9, 18.34 -64.97) — St. Thomas (~5 km SW of Charlotte
+  Amalie); part of the legacy Puerto Rico GPS Network (PRGPS) sub-network. Useful for
+  short-baseline RTK within ~30–50 km — covers St. Thomas, St. John, and the BVI side
+  via CN03 as a second reference (~30 km NE). St. Croix (50–80 km south) is outside
+  reliable single-base RTK range from STVI.
+
+The Puerto Rico Seismic Network (PRSN/UPRM) operates ~18 GNSS stations covering
+PR + USVI + BVI; its NTRIP endpoint is restricted to academic/government users and
+the public NTRIP info page returned ECONNREFUSED 2026-05-06 — see `prsn_cors` block.
+EarthScope sourcetable probe `ntrip.earthscope.org:2101` returned SOURCETABLE 200 OK
+2026-05-12 with STVI present. Tariff (NULA v. 2025-05-30): free non-commercial;
+USD $1,000/seat/yr commercial (min 5 seats). Zero VI mountpoints on rtk2go or
+Centipede; no commercial RTK network (Trimble VRS Now, Hexagon SmartNet, GEODNET)
+confirmed to cover USVI.
 
 ## glsc_cors — Guyana CORS (GY)
 
