@@ -249,7 +249,7 @@
       "lon": -80.5,
       "tier": "free",
       "vrs": true,
-      "stations_declared": null
+      "stations_declared": 34
     },
     {
       "id": "mainedot",
@@ -1012,6 +1012,49 @@
       "registration": "https://portal.tndot.net"
     },
     {
+      "id": "keynetgps",
+      "name": "KeyNetGPS",
+      "region": "US Northeast (VA through ME)",
+      "country": "US",
+      "lat": 40.6,
+      "lon": -75.5,
+      "tier": "paid",
+      "vrs": true,
+      "access": "paid",
+      "registration": "https://www.keypre.com/keynetgps/",
+      "note": "Commercial Trimble VRS3Net covering the whole Northeast. The practical paid option in NH, NJ, PA, DE, MD, DC, RI where no free state caster exists. Pricing not posted; quoted via Keypre or resellers."
+    },
+    {
+      "id": "alpha_rtk",
+      "name": "AlphaRTK",
+      "region": "US Mid-Atlantic (DE, MD, NJ, PA, DC)",
+      "country": "US",
+      "lat": 39.4,
+      "lon": -76.0,
+      "tier": "paid",
+      "vrs": true,
+      "access": "paid",
+      "yearly_cost": "$195/mo (no annual plan)",
+      "yearly_cost_normalized": 798,
+      "registration": "https://www.alphartk.com",
+      "note": "No annual plan; 24-month rolling subscription (~$798/yr equivalent) is the cheapest sustained option. 1-week free trial useful for spot jobs."
+    },
+    {
+      "id": "egps_ga",
+      "name": "eGPS Solutions RTN",
+      "region": "Georgia",
+      "country": "US",
+      "lat": 32.7,
+      "lon": -83.5,
+      "tier": "paid",
+      "vrs": true,
+      "access": "paid",
+      "yearly_cost": "$1,650/yr (VRS only) · $2,475/yr dual network",
+      "yearly_cost_normalized": 1650,
+      "registration": "https://egps.net/netservices.html",
+      "note": "Only RTK network with Georgia coverage; GDOT runs no public caster. Plan C \"Flex\" ($50/day capped $400/mo) is the most practical for occasional use."
+    },
+    {
       "id": "turn_gps",
       "name": "TURN GPS",
       "region": "Utah + Nevada (northern)",
@@ -1630,7 +1673,7 @@
       "lon": -56.0,
       "tier": "free",
       "vrs": true,
-      "stations_declared": 26
+      "stations_declared": 35
     },
     {
       "id": "mirai",
@@ -1777,7 +1820,7 @@
       "lon": -82.5,
       "tier": "free",
       "vrs": true,
-      "stations_declared": 120
+      "stations_declared": 100
     },
     {
       "id": "ardot_rtn",
@@ -1810,7 +1853,19 @@
       "lon": -72.7,
       "tier": "free",
       "vrs": true,
-      "stations_declared": 15
+      "stations_declared": 18
+    },
+    {
+      "id": "ct_acorn",
+      "name": "ACORN",
+      "region": "Connecticut",
+      "country": "US",
+      "lat": 41.6,
+      "lon": -72.7,
+      "tier": "free",
+      "vrs": true,
+      "stations_declared": 13,
+      "note": "Covers CT plus 1 station in RI, 2 in southern MA, 1 on Long Island NY — useful fallback for Rhode Island."
     },
     {
       "id": "azcors",
@@ -1826,13 +1881,13 @@
     {
       "id": "gcgc_rtn",
       "name": "GCGC RTN",
-      "region": "Mississippi / Gulf Coast",
+      "region": "Mississippi",
       "country": "US",
       "lat": 31.0,
       "lon": -89.5,
       "tier": "free",
       "vrs": true,
-      "stations_declared": 35
+      "stations_declared": 52
     },
     {
       "id": "alcors",
@@ -1843,7 +1898,7 @@
       "lon": -86.7,
       "tier": "free",
       "vrs": true,
-      "stations_declared": 50
+      "stations_declared": 158
     },
     {
       "id": "orgn",
