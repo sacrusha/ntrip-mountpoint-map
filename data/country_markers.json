@@ -599,7 +599,7 @@
       "yearly_cost_normalized": 293,
       "registration": "https://www.geodesia.biz/iscrizione-sarnet",
       "stations_declared": 14,
-      "note": "Sardinia-specific commercial network (SARNET s.r.l.). RTK, VRS, DGPS, and a RINEX archive."
+      "note": "Sardinia-specific commercial network (SARNET s.r.l.). RTK, VRS, and a RINEX archive."
     },
     {
       "id": "hxgn_smartnet_italy",
@@ -799,7 +799,7 @@
       "yearly_cost": "12,000 SEK/yr (~$1,050/yr)",
       "yearly_cost_normalized": 1050,
       "registration": "https://www.lantmateriet.se/en/geodata/our-products/product-list/swepos-network-rtk/",
-      "note": "10-day free trial for new customers. Shorter blocks available (90-day pass, 1,000-minute pot). The bundled DGNSS service is sub-metre only, not cm-grade RTK."
+      "note": "10-day free trial for new customers. Shorter blocks available (90-day pass, 1,000-minute pot)."
     },
     {
       "id": "sirent",
@@ -995,7 +995,7 @@
       "access": "paid",
       "yearly_cost": "10,000 CZK/yr (~€400/yr, ~$430/yr)",
       "yearly_cost_normalized": 430,
-      "note": "Free for education and government bodies; hobbyists pay the standard tariff. Hourly billing also available: 50 CZK/hr RTK/VRS, 60 CZK/hr DGPS."
+      "note": "Free for education and government bodies; hobbyists pay the standard tariff. Hourly billing also available: 50 CZK/hr RTK/VRS."
     },
     {
       "id": "skpos",
@@ -1750,7 +1750,7 @@
       "stations_declared": 37,
       "yearly_cost": "€200/mo RTK (~$220/mo)",
       "yearly_cost_normalized": 2640,
-      "note": "Short-term: €20/day for RTK or €2/day for decimetre-grade DGPS. €50 one-time setup fee. Free for Austrian farmers with a registered farm."
+      "note": "Short-term: €20/day for RTK. €50 one-time setup fee. Free for Austrian farmers with a registered farm."
     },
     {
       "id": "auscors",
@@ -2153,7 +2153,7 @@
       "lon": 26.0,
       "tier": "weird",
       "access": "restricted",
-      "note": "Access is granted only for research, with written justification renewable every 3 months. A separate FINPOS DGNSS service is open to anyone but only delivers sub-metre (~0.5 m) accuracy."
+      "note": "Access is granted only for research, with written justification renewable every 3 months."
     },
     {
       "id": "gps_emiliaromagna",
