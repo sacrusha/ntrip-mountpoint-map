@@ -612,7 +612,7 @@
       "yearly_cost": "€385+IVA/yr (~$520/yr)",
       "yearly_cost_normalized": 520,
       "registration": "https://it.nrtk.eu",
-      "note": "Nationwide commercial VRS network (ItalPOS). Covers regions without free regional casters, including Sardinia and Calabria. Professional focus; no explicit hobbyist ban."
+      "note": "Nationwide commercial VRS network (ItalPOS). Useful where no free regional caster exists, e.g. Sardinia and central/northern Calabria (southern Calabria is covered free by sicilianet). Professional focus; no explicit hobbyist ban."
     },
     {
       "id": "acorn",
@@ -919,7 +919,7 @@
       "yearly_cost": "€600/yr (~$650/yr) ex-VAT unlimited",
       "yearly_cost_normalized": 720,
       "registration": "https://geonet.bg",
-      "note": "Bulgaria's only commercial caster (gnss.geonet.bg:2101), distributed by Solitech AD. Cheapest occasional-use tier is ГеоНет 150 at €15/mo with 150 RTK minutes included (24-month contract). 6 rtk2go and 2 Centipede volunteer bases provide partial free single-base coverage of central, northern and eastern Bulgaria."
+      "note": "The only commercial caster identified in Bulgaria (gnss.geonet.bg:2101), distributed by Solitech AD. Cheapest occasional-use tier is ГеоНет 150 at €15/mo with 150 RTK minutes included (24-month contract). 6 rtk2go and 2 Centipede volunteer bases provide partial free single-base coverage of central, northern and eastern Bulgaria."
     },
     {
       "id": "montepos",
@@ -1129,7 +1129,7 @@
       "vrs": true,
       "access": "paid",
       "registration": "https://www.keypre.com/keynetgps/",
-      "note": "Commercial Trimble VRS3Net covering the whole Northeast. The practical paid option in NH, NJ, PA, DE, MD, DC, RI where no free state caster exists. Pricing not posted; quoted via Keypre or resellers."
+      "note": "Commercial Trimble VRS3Net covering the whole Northeast. A practical paid option in NH, NJ, PA, DE, MD, DC, RI, where no free state caster exists (SmartNet and Trimble VRS Now also cover parts of this region). Pricing not posted; quoted via Keypre or resellers."
     },
     {
       "id": "alpha_rtk",
@@ -1158,7 +1158,7 @@
       "yearly_cost": "$1,650/yr (Plan B VRS)",
       "yearly_cost_normalized": 1650,
       "registration": "https://egps.net/netservices.html",
-      "note": "Only RTK network with Georgia coverage; GDOT runs no public caster. Plan C \"Flex\" ($50/day capped $400/mo) is the most practical for occasional use; dual-network Plan A is $2,475/yr."
+      "note": "Only RTK network identified with Georgia coverage; GDOT runs no public caster. Plan C \"Flex\" ($50/day capped $400/mo) is the most practical for occasional use; dual-network Plan A is $2,475/yr."
     },
     {
       "id": "turn_gps",
@@ -2328,7 +2328,7 @@
       "yearly_cost_normalized": 450,
       "stations_declared": 6,
       "registration": "https://survey3g.com/servicios-de-ntrip/",
-      "note": "Only commercial RTK provider in the country; ~90% national coverage. Free alternative: EarthScope NOTA station SSIA near San Salvador (NULA, non-commercial)."
+      "note": "Only commercial RTK provider identified in the country; ~90% national coverage. Free alternative: EarthScope NOTA station SSIA near San Salvador (NULA, non-commercial)."
     },
     {
       "id": "sirgas_chile",
@@ -2683,7 +2683,7 @@
       "lon": 32.58,
       "tier": "weird",
       "stations_declared": 8,
-      "note": "8 CENACARTA reference stations exist (Maputo, Beira, Chimoio, Tete, Quelimane, Nacala, Lichinga, Xai-Xai) but no public NTRIP endpoint is published; built for post-processing. Nearest free option is the rtk2go base in Eswatini, ~85 km from Maputo."
+      "note": "8 CENACARTA reference stations exist (Maputo, Beira, Chimoio, Tete, Quelimane, Nacala, Lichinga, Xai-Xai) but no public NTRIP endpoint is published; built for post-processing. Nearest known free option for Maputo is a volunteer rtk2go base in Eswatini (~85 km); volunteer bases can disappear without notice — check current status before relying on it."
     },
     {
       "id": "zingsa_cors",
