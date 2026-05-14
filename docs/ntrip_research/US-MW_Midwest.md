@@ -218,7 +218,7 @@ Contact ReIL-NET: 708-482-8888 / karaco.com/pages/reil-net-rtk-network
 | **Operator** | Missouri Department of Transportation (MoDOT) — Trimble Pivot platform |
 | **host:port** | `gpsweb3.modot.mo.gov:2101` (= `rtk3.modot.mo.gov:2101`; IP 168.166.125.30) |
 | **tariff** | Free — "No, it is a free network" (MoDOT RTN FAQ) |
-| **VRS** | Yes — VRS-only; mountpoints: `VRS_RTCM31` (RTCM 3.1, GPS+GLONASS — recommended for most equipment), `VRS_CMRplus`, `VRS_CRMx`, `VRS_RTCM21`, `VRS_RTCM23`, `RTCM3Net_Autocell` |
+| **VRS** | Yes — VRS-only; mountpoints: `VRS_RTCM31` (RTCM 3.1, GPS+GLONASS — recommended for most equipment), `VRS_CMRplus`, `VRS_CMRx`, `VRS_RTCM21`, `VRS_RTCM23`, `RTCM3NET_AUTOCELL` |
 | **hobbyist_eligibility** | Unclear — User Agreement must be downloaded, signed, notarised, and submitted to MoDOT; agreement language refers to "company owner or officer" in FAQ guidance, but no professional licence requirement was found; individual users can sign as their own entity |
 | **legal_residency_required** | Unclear — no stated requirement |
 | **last_confirmed_alive** | `SOURCETABLE 200 OK` — 2026-05-07 (curl probe of gpsweb3.modot.mo.gov:2101 and rtk3.modot.mo.gov:2101) and 2026-05-06 (project pipeline) |

@@ -46,7 +46,7 @@ Stream format: RTCM 3.4 (and CMRx for the two Trimble-targeted mountpoints). Rec
 | **Alaska station count** | 140 permanent stations across the Aleutians, mainland, and Arctic (EarthScope NOTA "Learn about NOTA" page); ~66 fall within 1,500 km of Fairbanks per project pipeline data. 87 of the AK NOTA stations are inside the subduction zone footprint (Akutan, Augustine, Unimak volcanic clusters). |
 | **tariff** | Free non-commercial (annual self-service licence renewal); USD 1,000/seat/yr commercial |
 | **last_confirmed_alive** | 2026-05-13 — `ntrip.earthscope.org:2101` SOURCETABLE 200 OK (1,080 STR entries globally) |
-| **notes** | EarthScope NOTA is the densest single-base alternative in Alaska. ACORN's 8 VRS / single-base mountpoints are the only network-RTK option; NOTA fills the gaps between ACORN's three regional VRS solutions (SouthCentral, Interior, SouthEast, NorthWest) with raw physical-station streams. |
+| **notes** | EarthScope NOTA is the densest single-base alternative in Alaska. ACORN's 8 VRS / single-base mountpoints are the only network-RTK option; NOTA fills the gaps between ACORN's four regional VRS solutions (SouthCentral, Interior, SouthEast, NorthWest) — plus the NortonSound experimental VRS — with raw physical-station streams. |
 
 ## Sources Consulted
 - ACORN portal: https://www.acorn-gnss.net (HTTP 200 and NTRIP SOURCETABLE 200 OK observed 2026-05-13)

@@ -428,7 +428,7 @@ require vendor-direct contact; no published AR-specific pricing.
 **type**:      physical-coord-vrs
 **access**:    free; web registration at rtk.igm.gub.uy/SBC/Account/Register
 **pipeline-access**: registration
-**stations**:  ~35 unique physical (live sourcetable 2026-05-13: 96 STR rows after format-variant dedup)
+**stations**:  ~35 unique physical (live sourcetable 2026-05-13: 96 raw STR rows → ~35 after deduplicating per-format `_MSM4`/`_GNSS_MSM3`/`-V2` variants)
 **vrs**:       yes (15 zone VRS A–Z + `RTCM3-VRS` + `RTCM3-iMAX`)
 **source**:    igm.gub.uy
 **operator**:  IGM — Instituto Geográfico Militar (Uruguay)
@@ -1135,7 +1135,7 @@ Pulaski County with a separate signed-agreement registration at pagis.org.
 
 Massachusetts CORS network on Leica SpiderNet (SBC). 22 stations; free registration
 ("MassDOT does not currently charge a fee for network access"). Formats: RTCM 2.3,
-RTCM 3.1/3.2 MSM4, CMR, CMR+. Coverage extends into RI, southern NH, eastern CT.
+RTCM 3.1, CMR, CMR+, and RTCM 3.2 MSM4. Coverage extends into RI, southern NH, eastern CT.
 Port 2101 times out from external probes (re-verified 2026-05-13) — firewalled or
 IP-allowlisted; users report successful connections from within the US once the
 account is active.
@@ -1284,7 +1284,7 @@ upload GGA at least every 30 seconds. Significant overlap with EarthScope NOTA e
 **type**:      physical-coord-vrs
 **access**:    registration; free via cors.dot.ny.gov (NYSDOT — credentials emailed after activation)
 **pipeline-access**: registration
-**stations**:  ~150 (live sourcetable 2026-05-13: 18 STR rows covering MAX/iMAX/MSM/CMR variants on shared physical infrastructure)
+**stations**:  unpublished current count (NYSDOT does not publish a station total; the 2006-era network was 36 with 10 planned additions; live sourcetable 2026-05-13: 18 STR rows covering MAX/iMAX/MSM/CMR variants on shared physical infrastructure)
 **vrs**:       yes (`net_msm_vrs` RTCM 3 MSM GPS+GLO+GAL+BDS; iMAX `net_msm_imax`, `GG_MSM_IMAX`; `near_msm` nearest-site)
 **source**:    dot.ny.gov (New York State Department of Transportation, Engineering Division + NYC partners)
 **operator**:  New York State DOT (NYSDOT)
@@ -1316,7 +1316,8 @@ expected.
 
 Indiana CORS Network operated by INDOT on a Leica Spider Business Center platform. Host
 and port provided after the User Agreement (incors.in.gov/useragreement.pdf) is signed
-and returned to incors@indot.in.gov; port 10000 is best-guess from Leica SBC defaults.
+and returned to INDOT (contact details on the agreement form); port 10000 is best-guess
+from Leica SBC defaults.
 Connection refused from external IPs is expected — firewalled to registered accounts.
 All four constellations (GPS+GLO+GAL+BDS) supported network-wide following the
 2024-06-18 station upgrade; recommended mountpoint `RTCM3_MAX` (GPS+GLO), MSM4
@@ -1624,9 +1625,9 @@ alive 2026-05-12 (SOURCETABLE 200 OK, Trimble Ntrip Caster 5.2, 15 STR rows).
 
 Kentucky Real Time Reference Network. VRS-only sourcetable; no physical-coordinate
 mountpoints. Registration at kycors.ky.gov/RegisterAccount.aspx is manual (admin
-approval; portal warns "DO NOT click REGISTER button more than once"); contact
-KYCORS_Admin@ky.gov before registering if unsure. SOURCETABLE 200 OK re-confirmed
-2026-05-13.
+approval; portal warns "DO NOT click REGISTER button more than once"); the portal's
+KyCORS admin contact (linked from kycors.ky.gov) handles pre-registration queries.
+SOURCETABLE 200 OK re-confirmed 2026-05-13.
 
 ---
 
@@ -2261,7 +2262,7 @@ is not clarified in public documentation.
 **status**:    free
 **host:port**: `rtk.nps.gov:2101`
 **type**:      single-base
-**access**:    conditions — credentials provisioned by emailing gnss_posnav@nps.gov; restriction scope unclear
+**access**:    conditions — credentials provisioned manually by NPS staff via the ntrip.nps.gov contact address; restriction scope unclear
 **pipeline-access**: conditions
 **stations**:  141 active mountpoints (live sourcetable 2026-05-13; the seven stations previously offline — DESO, GAA2, GAA3, HALE, HAVO, PAAL, SAJU — are all back)
 **source**:    ntrip.nps.gov (portal) / rtk.nps.gov (NTRIP caster), National Park Service
@@ -2275,24 +2276,27 @@ Alaska. Constellations: GPS+GLO+GAL+BDS network-wide per live sourcetable — up
 the earlier MSM4 GPS-only configuration documented in 2022. Portal at ntrip.nps.gov;
 NTRIP caster endpoint is rtk.nps.gov:2101. Datum: NAD 1983 (2011) 2010.0; MYCS3 (NGS
 Multi-Year CORS Solution 3, ITRF2020 epoch 2020.00) applied 2026-02-13 using August 2025
-data. Accounts provisioned manually by NPS staff via gnss_posnav@nps.gov; no public
-eligibility policy — described internally as supporting NPS mapping and survey projects,
-but access has been extended to ACORN partners and external contractors. Not in
-pipeline (credentials required; sourcetable not publicly accessible).
+data. Accounts provisioned manually by NPS staff via the contact address on the
+ntrip.nps.gov portal; no public eligibility policy — described internally as supporting
+NPS mapping and survey projects, but access has been extended to ACORN partners and
+external contractors. Not in pipeline (credentials required; sourcetable not publicly
+accessible).
 
 ---
 
 ## remos_ven — REMOS (VE)
 
 **status**:    free
+**country**:   VE — Venezuela
+**operator**:  IGVSB — Instituto Geográfico de Venezuela Simón Bolívar
+               (`igvsb.gob.ve`)
 **host:port**: not publicly confirmed
 **type**:      unknown
 **access**:    intended free (IGVSB government service; Stonex Venezuela advertises
                free NTRIP for RTK equipment users via IGVSB)
 **stations**:  ~8 listed on IGVSB website; 27 NTRIP-capable out of 29 permanent as
                of 2012 SIRGAS bulletins
-**source**:    igvsb.gob.ve (IGVSB — Instituto Geográfico de Venezuela Simón Bolívar);
-               SIRGAS Bol15/16/17; SIRGAS Americas Facebook (December 2025)
+**source**:    igvsb.gob.ve; SIRGAS Bol15/16/17; SIRGAS Americas Facebook (December 2025)
 **date_added**: 2026-05-06
 **last_researched_date**: 2026-05-13
 
@@ -3663,9 +3667,9 @@ a higher one-time registration (100 KM vs 0).
                credentials are issued via the SBC HTTPS portal which remains reachable
 **access**:    paid; annual subscription + one-time registration fee; register at akk.rks-gov.net; no surveying-licence requirement found
 **yearly_cost**: €400/yr (~$468); plus €20 one-time registration fee. Shorter durations
-               available: €250/6 months, €60/month. RINEX post-processing tier €100/yr
-               or €30/month. Kosovo standard VAT 18%; tariff document does not state
-               whether prices include VAT — verify at AKK
+               available: €250/6 months, €60/month. RINEX post-processing tier €100/yr,
+               €70/6 months, or €30/month. Kosovo standard VAT 18%; tariff document does
+               not state whether prices include VAT — verify at AKK
 **yearly_cost_normalized**: 475
 **stations**:  8 permanent CORS; RTK horizontal ±2 cm, vertical ±4 cm
 **operator**:  Agjencia Kadastrale e Kosovës (Kosovo Cadastral Agency / AKK)
@@ -3788,11 +3792,10 @@ re-confirmed 2026-05-13.
 
 **status**:    paid
 **date_added**: 2026-05-13
-**country**:   US — VA, DC, MD, DE, PA, NJ, NY, CT, RI, MA, VT, NH, ME
+**country**:   US — United States (Northeast multi-state coverage: VA, DC, MD, DE, PA, NJ, NY, CT, RI, MA, VT, NH, ME)
 **host:port**: `vrs.keynetgps.com:2101` (IP 209.255.196.164; SOURCETABLE 200 OK 2026-05-13, 6 STR)
 **type**:      vrs-only
 **access**:    paid; pricing not publicly listed — contact via keypre.com or resellers
-**yearly_cost**: not published
 **vrs**:       yes (Trimble VRS3Net; mountpoints `VRS_CMRp`, `VRS_CMRx`, `SingleBase_CMRp`, `SingleBase_RTCM3`)
 **stations**:  unknown (commercial — not disclosed)
 **operator**:  Keystone Precision Solutions (Keypre)
@@ -3811,11 +3814,11 @@ stated. SOURCETABLE 200 OK confirmed 2026-05-13 (6 STR entries).
 
 **status**:    paid
 **date_added**: 2026-05-13
-**country**:   US — DE, MD, NJ, PA, DC
+**country**:   US — United States (DE, MD, NJ, PA, DC coverage)
 **host:port**: not publicly listed; credentials issued post-subscription
-**type**:      vrs-only (presumed; Trimble-based per reseller materials, unconfirmed)
+**type**:      unknown (Trimble-based per reseller materials; sourcetable host not publicly listed — VRS-vs-single-base unconfirmed)
 **access**:    paid; 1-week free trial; subscribe via alphartk.com
-**yearly_cost**: $195/month · $995/6 months · $1,595/24 months (alphartk.com, observed 2026-05-07; no annual plan)
+**yearly_cost**: ~$798/yr (24-month rolling tier, cheapest sustained equivalent)
 **yearly_cost_normalized**: 798
 **stations**:  unknown
 **operator**:  AlphaRTK (commercial)
@@ -3823,9 +3826,11 @@ stated. SOURCETABLE 200 OK confirmed 2026-05-13 (6 STR entries).
 **last_researched_date**: 2026-05-13
 
 Commercial paid network covering Delaware, Maryland, New Jersey, Pennsylvania, and
-Washington DC. No annual plan; cheapest sustained-use is the 24-month rolling
-subscription (~$798/yr equivalent). 1-week free trial available, useful for spot
-jobs. Subscriber agreement required; hobbyist eligibility not explicitly stated.
+Washington DC. No annual plan; tiers (alphartk.com observed 2026-05-07): $195/month,
+$995/6 months, $1,595/24 months — 24-month works out to ~$798/yr equivalent and is the
+cheapest sustained-use option. 1-week free trial available, useful for spot jobs.
+Subscriber agreement required; hobbyist eligibility not explicitly stated. Correction
+type (VRS / single-base) not disclosed publicly.
 
 ---
 
@@ -3837,7 +3842,7 @@ jobs. Subscriber agreement required; hobbyist eligibility not explicitly stated.
 **host:port**: not publicly listed; provided post-subscription
 **type**:      vrs-only (GEO++ and eGPS VRS network products)
 **access**:    paid; subscribe at egps.net
-**yearly_cost**: $2,475/yr Plan A (dual network) · $1,650/yr Plan B (VRS only) · Plan C $50/day capped $400/mo · Plan D agriculture $1,000/yr (egps.net/netservices.html, 2026-05-07)
+**yearly_cost**: $1,650/yr (Plan B — VRS only; cheapest sustained non-agriculture tier)
 **yearly_cost_normalized**: 1650
 **vrs**:       yes
 **stations**:  unknown
@@ -3846,9 +3851,11 @@ jobs. Subscriber agreement required; hobbyist eligibility not explicitly stated.
 **last_researched_date**: 2026-05-13
 
 The only identified RTK network with Georgia coverage; GDOT does not operate a public
-caster. No hobbyist tier — cheapest sustained option is Plan B at $1,650/yr. Plan C
-"Flex" ($50/day, capped $400/mo) is the most practical for occasional use. EarthScope
-NOTA provides sparse free single-base streams in Georgia as a non-commercial fallback.
+caster. Tiers (egps.net/netservices.html, 2026-05-07): Plan A $2,475/yr dual network,
+Plan B $1,650/yr VRS only, Plan C $50/day capped $400/mo (Flex), Plan D $1,000/yr
+agriculture-only. No hobbyist tier; Plan C "Flex" is the most practical for occasional
+use. EarthScope NOTA provides sparse free single-base streams in Georgia as a
+non-commercial fallback.
 
 ---
 
@@ -3858,7 +3865,7 @@ NOTA provides sparse free single-base streams in Georgia as a non-commercial fal
 **host:port**: `165.239.144.5:2101` (NAD83/2011); `165.239.144.7:2101` (alternate / NV — account-gated; external probes time out)
 **type**:      vrs-only
 **access**:    paid; subscribe at turngps.utah.gov; Utah ID account required (digital identity, not residency)
-**yearly_cost**: $600/yr per login (currently covers both Utah TURN GPS and Nevada GPS Network; UGRC has indicated this may split per-region in future)
+**yearly_cost**: $600/yr per login (covers both Utah TURN GPS and Nevada GPS Network)
 **yearly_cost_normalized**: 600
 **operator**:  Utah Geospatial Resource Center (UGRC), State of Utah
 **source**:    gis.utah.gov/products/turn/
@@ -4264,7 +4271,6 @@ pre-conflict mapping authority's correct name (GORS, not the previously-recorded
 **type**:      unknown
 **host:port**: not publicly listed
 **access**:    no confirmed public NTRIP
-**yearly_cost**: N/A
 **stations**:  unknown; pre-conflict CORS stations operated by GAS; current status not
                verifiable
 **source**:    not publicly listed (General Survey Authority / هيئة المساحة العامة; website
@@ -4654,12 +4660,12 @@ No public endpoint; government-internal infrastructure only.
 
 **status**:    other
 **country**:   UZ — Uzbekistan
-**type**:      physical (CORS network; RTK service architecture per 2016–2017 literature)
+**type**:      unknown
 **access**:    government-internal / licensed-surveyors-only; no public NTRIP endpoint
                or registration portal published
 **operator**:  State Committee for Land Resources, Geodesy, Cartography and State
                Cadastre (UzGeodezKadastr); control centre in Tashkent
-**registration**: https://uzgeodezkadastr.uz (HTTP 200 2026-05-13; no NTRIP portal)
+**registration**: https://uzgeodezkadastr.uz
 **host:port**: not publicly documented
 **stations**:  30–50 planned (Type-A geodetic + Type-B RTK, per Ergashev et al.
                2016–2017); active stations confirmed by 2024 quality-analysis paper
@@ -5895,35 +5901,41 @@ country marker so target users in El Salvador know free post-processing data exi
 **host:port**: not publicly listed — CORS portal at zingsa.ac.zw/django-test/cors does not expose NTRIP host:port
 **access**:    contact-only — no self-service registration; email/phone enquiry via zingsa.ac.zw.
                S.I. 47 of 2023 (Land Survey Act, Surveyor-General's Office Prescribed Fees
-               Amendment Notice, 7 April 2023) establishes fees for CORS access; rate schedule
-               not published
+               Amendment Notice, 7 April 2023, Item 17) sets a published flat fee of
+               **US$200/year** for CORS use; credentials and host:port are still obtained
+               by contacting ZINGSA or the Surveyor-General's Office
 **registration**: https://zingsa.ac.zw/
 **stations**:  unknown — national coverage stated; one known station ZINH (Harare) per
                internal ZINGSA DJI M300 RTK setup document
-**last_researched_date**: 2026-05-13
+**last_researched_date**: 2026-05-14
 
 **date_added**: 2026-04-29
 
-ZINGSA (Zimbabwe National Geospatial and Space Agency), established by Presidential
-decree 2018 and launched publicly 2021, operates a national CORS network used for
-high-precision surveying, precision agriculture, geophysical research, and ionospheric
-monitoring. The Surveyor General's Office (Ministry of Lands, Agriculture, Fisheries,
-Water and Rural Development, agric.gov.zw) administers the same infrastructure under
-the Land Survey Act. The 2023 statutory instrument (S.I. 47 of 2023) confirms a
-paid-access model; no public free tier, rate schedule, or NTRIP caster host:port has
-been found. Herald Zimbabwe (Feb 2024) confirms ZINGSA "has embarked on densification
-of CORS" — network described as operational but expanding. The 2025 national budget
-allocates ZiG 64.22 million (~USD 1.78M) to the ZINGSA space programme including CORS.
-US Zimbabwe sanctions programme terminated March 2024 (OFAC Executive Order revoked,
-transitional designations moved to GLOMAG); no sanctions barrier to hardware import.
-Proof of life: ZINGSA Director General vacancy advertised April 2026; homepage still
-markets CORS as "established and operationalized" 2026-05-13. Filed as `other`
-(named operator, no published endpoint, no published rate) — no usable hobbyist path
-without direct ZINGSA contact.
+ZINGSA (Zimbabwe National Geospatial and Space Agency), established under the Research
+Act [Chapter 10:22] in 2018 and publicly launched by President Mnangagwa in September
+2021 at the University of Zimbabwe Science Park, operates a national CORS network used
+for high-precision surveying, precision agriculture, geophysical research, and ionospheric
+monitoring. The Surveyor-General's Office (Ministry of Lands, Agriculture, Fisheries,
+Water and Rural Development, agric.gov.zw) administers fee collection under the Land
+Survey Act [Cap. 20:12]; Statutory Instrument 47 of 2023, Item 17, prescribes a flat
+US$200/year tariff for CORS use. No NTRIP caster host:port is publicly listed and
+ZINGSA does not run a self-service signup portal — the tariff is on paper but the
+access path remains contact-only. Herald Zimbabwe (Feb 2024) confirms ZINGSA "has
+embarked on densification of CORS" — network described as operational but expanding.
+The 2025 national budget allocates ZiG 64.22 million (~USD 1.78M) to the ZINGSA space
+programme including CORS. The US Zimbabwe sanctions programme was terminated on
+4 March 2024 (Executive Orders 13288/13391/13469 revoked, country-programme SDN
+designations delisted; 11 individuals and 3 entities re-designated under Global
+Magnitsky/GLOMAG E.O. 13818); no sanctions barrier to ordinary GNSS hardware import
+remains. Proof of life: ZINGSA Director General vacancy advertised April 2026;
+homepage still markets CORS as "established and operationalized" 2026-05-13. Filed
+as `other` (named operator with a published statutory tariff but no published endpoint
+and contact-only access) — no usable hobbyist path without direct ZINGSA contact.
 
-**investigate**: confirm whether a free or registration-only tier exists; obtain
-host:port and fee schedule from ZINGSA (zingsa.ac.zw/django-test/cors) or the
-Surveyor General's Office.
+**investigate**: obtain host:port and confirm the practical subscription procedure
+from ZINGSA (zingsa.ac.zw/django-test/cors) or the Surveyor-General's Office; verify
+whether the US$200/yr SI 47/2023 tariff applies to hobbyist as well as professional
+users.
 
 ## survey3g_sv — Survey3G NTRIP (SV)
 
@@ -6495,6 +6507,8 @@ VC mountpoints on rtk2go or Centipede.
 public CORS NTRIP endpoint; contact Lands and Surveys Department via
 `transport.gov.vc` for any planned public caster.
 
+---
+
 ## vg_cors — British Virgin Islands GNSS / COCONet (VG)
 
 **status**:    free
@@ -6520,12 +6534,14 @@ from EarthScope NOTA (former COCONet/UNAVCO; legacy `rtgpsout.unavco.org` retire
 - **CN03_RTCM3P3** (Septentrio POLARX5, 18.49 -64.40) — Tortola, the main BVI
   island; single-base reference (NOT VRS). Reliable RTK within ~20–30 km of the
   antenna covers most of Tortola and Virgin Gorda. Anegada (~60 km north) is at the
-  outer limit; STVI on St. Thomas (USVI, ~30 km west) is a useful second reference.
+  outer limit; STVI on St. Thomas (USVI, ~62 km SW) is a useful second reference.
 
 Sourcetable probe `ntrip.earthscope.org:2101` returned SOURCETABLE 200 OK 2026-05-12
 with CN03 listed under country code `VGB`. Tariff (NULA v. 2025-05-30): free
 non-commercial; USD $1,000/seat/yr commercial (min 5 seats). Zero VG mountpoints on
 rtk2go or Centipede.
+
+---
 
 ## vi_cors — US Virgin Islands GNSS / COCONet (VI)
 
@@ -6551,7 +6567,7 @@ single-base streams:
 - **STVI_RTCM3P3** (Trimble NETR9, 18.34 -64.97) — St. Thomas (~5 km SW of Charlotte
   Amalie); part of the legacy Puerto Rico GPS Network (PRGPS) sub-network. Useful for
   short-baseline RTK within ~30–50 km — covers St. Thomas, St. John, and the BVI side
-  via CN03 as a second reference (~30 km NE). St. Croix (50–80 km south) is outside
+  via CN03 as a second reference (~62 km NE). St. Croix (50–80 km south) is outside
   reliable single-base RTK range from STVI.
 
 The Puerto Rico Seismic Network (PRSN/UPRM) operates ~18 GNSS stations covering
@@ -6562,6 +6578,8 @@ EarthScope sourcetable probe `ntrip.earthscope.org:2101` returned SOURCETABLE 20
 USD $1,000/seat/yr commercial (min 5 seats). Zero VI mountpoints on rtk2go or
 Centipede; no commercial RTK network (Trimble VRS Now, Hexagon SmartNet, GEODNET)
 confirmed to cover USVI.
+
+---
 
 ## glsc_cors — Guyana CORS (GY)
 

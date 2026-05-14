@@ -192,7 +192,7 @@ SOURCES = [
      "type": "physical-vrs", "country": ["TH"],
      "access": "conditions", "registration": "https://dol-rtknetwork.com/index.php/register_gnss_beta",
      "openNote": 'Free trial; Thai national ID required to self-register — foreign users blocked at registration form'},
-    {"id": "trignet",     "url": "http://trignet.co.za:2101/",
+    {"id": "trignet",     "url": "http://trignet.co.za:2101/",                  # Trimble Ntrip Caster 5.2; ~83 STR entries in 2026-05-12 sourcetable mix single-base (Pret-SB, Ctwn-SB...) with Network RTK clusters (RTKNetWCape, Gauteng, KZN) — migrated single-base → physical-vrs 2026-05-14
      "color": "#556b2f", "label": "TrigNet",
      "type": "physical-vrs", "country": ["ZA"],
      "access": "registration", "registration": "https://www.trignet.co.za", "openNote": 'Free registration required'},
@@ -377,7 +377,7 @@ SOURCES = [
      "color": "#01579b", "label": "GCGC RTN",
      "type": "physical-vrs", "country": ["US"],
      "region": "Mississippi (Gulf Coast)", "group": "us-state-dot",
-     "access": "registration", "registration": "https://rtn.usm.edu", "openNote": 'Free registration required (Gulf Coast Geodetic Consortium / USM)'},
+     "access": "registration", "registration": "https://rtn.usm.edu", "openNote": 'Free registration required (Gulf Coast Geospatial Center / USM)'},
 {"id": "orgn",        "url": "http://orgn.odot.state.or.us:9881/",          # hostname; port 9881 (Leica); SOURCETABLE 200 OK 2026-05-13 (6 STR)
      "color": "#004d40", "label": "ORGN",
      "type": "physical-vrs", "country": ["US"],
@@ -438,7 +438,7 @@ SOURCES = [
      "color": "#90a4ae", "label": "WVRTN",
      "type": "vrs-only", "country": ["US"],
      "region": "West Virginia", "group": "us-state-dot",
-     "access": "registration", "registration": "https://transportation.wv.gov", "openNote": 'Free registration required (West Virginia DOH)'},
+     "access": "registration", "registration": "https://transportation.wv.gov", "openNote": 'Free registration required (WVDOT — IT Division)'},
     {"id": "mainedot",    "url": "http://medotrtn.maine.gov:2101/",             # VRS-only; migrated from mdotcors.maine.gov Oct 2025
      "color": "#b0bec5", "label": "MaineDOT",
      "type": "vrs-only", "country": ["US"],
