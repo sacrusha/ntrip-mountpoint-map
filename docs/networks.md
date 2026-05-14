@@ -1218,7 +1218,7 @@ adjacent states. SOURCETABLE 200 OK re-confirmed 2026-05-13 (14 STR entries).
 **access**:    registration; free via aldotcors.dot.state.al.us (Alabama DOT)
 **pipeline-access**: registration
 **stations**:  ~158 physical single-base on `:10099` (live 2026-05-13); 10 network solution mounts on `:10011`
-**vrs**:       unclear (network mounts include `LeicaMAX`/`RTCMIMAX` — implies network RTK; VRS not explicitly confirmed)
+**vrs**:       yes (`:10011` serves Leica MAC/iMAX network-RTK mountpoints — `RTCMIMAX`, `AutoMAX`, `CMR+IMAX`, `LeicaMAX`; iMAX/MAX are NRTK products, equivalent to VRS for the user)
 **source**:    aldotcors.dot.state.al.us (Alabama Department of Transportation)
 **operator**:  Alabama DOT (ALDOT) — Leica SpiderNet
 **last_researched_date**: 2026-05-13
