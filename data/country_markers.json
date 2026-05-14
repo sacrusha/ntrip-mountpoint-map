@@ -600,6 +600,21 @@
       "note": "Commercial network (SARNET s.r.l.). RTK, VRS, DGPS, and RINEX archive. Only documented correction source in Sardinia."
     },
     {
+      "id": "hxgn_smartnet_italy",
+      "name": "HxGN SmartNet Italy (ItalPOS)",
+      "region": "Italy (nationwide)",
+      "country": "IT",
+      "lat": 42.5,
+      "lon": 12.5,
+      "tier": "paid",
+      "vrs": true,
+      "access": "paid",
+      "yearly_cost": "€385+IVA/yr (~€470/yr, ~$520/yr)",
+      "yearly_cost_normalized": 470,
+      "registration": "https://it.nrtk.eu",
+      "note": "Nationwide commercial VRS network (ItalPOS). Only correction source for Sardinia, Calabria, and other regions without free casters. Professional focus; no explicit hobbyist ban."
+    },
+    {
       "id": "acorn",
       "name": "ACORN",
       "region": "Alaska",
@@ -2306,6 +2321,20 @@
       "registration": "https://www.sirgaschile.cl",
       "stations_declared": 180,
       "note": "Chile's military geographic institute publishes free RINEX files from 180+ reference stations. A real-time NTRIP service was announced in 2025 but the public endpoint is not yet working."
+    },
+    {
+      "id": "kollnet_cl",
+      "name": "KollNET",
+      "region": "Chile (central, 8 stations)",
+      "country": "CL",
+      "lat": -35.0,
+      "lon": -71.0,
+      "tier": "paid",
+      "access": "paid",
+      "yearly_cost": "CLP 450,000/yr (~$470/yr)",
+      "yearly_cost_normalized": 470,
+      "registration": "https://kollnerlabrana.cl/kollnet.html",
+      "note": "Only confirmed paid NTRIP service in Chile; 8 stations from Santiago to Frutillar. Will become less relevant once the planned public IGM/SHOA national network goes live."
     },
     {
       "id": "png_dlpp_cors",
