@@ -527,7 +527,7 @@
       "access": "registration",
       "registration": "https://www.tpos.provincia.tn.it",
       "stations_declared": 11,
-      "note": "11 stations, free. Self-service portal; no professional licence required. RTK, VRS/MAX/NRT mountpoints, and 1-year historical data archive."
+      "note": "Self-service registration; no professional licence required. 1-year RINEX archive available for post-processing."
     },
     {
       "id": "stpos",
@@ -541,7 +541,7 @@
       "access": "registration",
       "registration": "https://www.stpos.it",
       "stations_declared": 10,
-      "note": "10 stations, free. Online registration; ID + intended-use declaration required to activate RTK (RINEX available immediately). No professional restriction."
+      "note": "Open to anyone, no professional licence required. ID and an intended-use declaration are needed to activate RTK; RINEX is available immediately."
     },
     {
       "id": "gnss_veneto",
@@ -614,7 +614,7 @@
       "yearly_cost": "€385+IVA/yr (~$520/yr)",
       "yearly_cost_normalized": 520,
       "registration": "https://it.nrtk.eu",
-      "note": "Nationwide commercial VRS network (ItalPOS), filling gaps where Italy's free regional casters do not reach (notably Sardinia and northern Calabria)."
+      "note": "Covers gaps in Italy's free regional networks, notably Sardinia and northern Calabria. Sold under the ItalPOS brand."
     },
     {
       "id": "acorn",
@@ -663,7 +663,7 @@
       "tier": "paid",
       "access": "paid",
       "registration": "https://geoboliviasrl.info",
-      "note": "~7 base stations nationwide (La Paz, Cochabamba, Oruro, Sacaba, Tarija, Santa Cruz, Yacuiba). Access requires phone registration — no self-service portal or published pricing."
+      "note": "About 7 stations covering La Paz, Cochabamba, Oruro, Sacaba, Tarija, Santa Cruz, and Yacuiba. Sign-up is by phone; no self-service portal or published pricing."
     },
     {
       "id": "hepos",
@@ -678,7 +678,8 @@
       "yearly_cost": "€480/yr (~$520/yr)",
       "yearly_cost_normalized": 520,
       "registration": "https://www.hepos.gr",
-      "note": "98 stations, full GNSS. €160/quarter (~$170) for seasonal use. Pay-per-minute bundle (€90+VAT) for occasional access. Individual sign-up online, no professional licence required."
+      "stations_declared": 98,
+      "note": "Cheaper tiers: €160/quarter (~$170) for seasonal use, or a pay-per-minute bundle (€90+VAT). Individual sign-up online; no professional licence required."
     },
     {
       "id": "uranus_gr",
@@ -813,7 +814,7 @@
       "yearly_cost": "S$107/month (~$960/yr)",
       "yearly_cost_normalized": 960,
       "registration": "https://www.sla.gov.sg",
-      "note": "3-day trial available but requires SingPass (Singapore residents only)."
+      "note": "3-day trial available; sign-up needs SingPass, which is restricted to Singapore residents."
     },
     {
       "id": "myrtk",
@@ -934,7 +935,8 @@
       "tier": "paid",
       "access": "paid",
       "registration": "https://www.gov.me/clanak/montepos",
-      "note": "9 CORS stations. Subscription plans from 24 hours to 2 years. Host:port issued after account creation."
+      "stations_declared": 9,
+      "note": "Subscription plans from 24 hours to 2 years. Caster address is issued after account creation."
     },
     {
       "id": "srpos_ba",
@@ -949,7 +951,7 @@
       "yearly_cost": "1,000 KM/yr (~$578/yr)",
       "yearly_cost_normalized": 578,
       "registration": "https://www.rgurs.org/stranica/srpos",
-      "note": "Republika Srpska half of the BiHPOS network. ~17 stations, VRS + FKP + iMAX. Shorter prepaid blocks: 10 hours (~$17), 20 hours (~$29), 1 month (~$145). KM is pegged to the euro at 1.95583."
+      "note": "About 17 stations. Shorter prepaid plans: 10 hours (~$17), 20 hours (~$29), 1 month (~$145). The convertible mark (KM) is pegged 1.95583 to the euro."
     },
     {
       "id": "fbihpos_ba",
@@ -964,7 +966,7 @@
       "yearly_cost": "1,000 KM/yr (~$580/yr)",
       "yearly_cost_normalized": 599,
       "registration": "https://www.fgu.com.ba/bs/servisi.html",
-      "note": "Federation of BiH half of the BiHPOS network. ~17 stations, VRS + MAX + iMAX. Caster at fbihpos.katastar.ba port 8080 (not the standard 2101). Shorter plans: 7 days (~$87), 1 month (~$145). 100 KM (~$58) one-time registration fee. Open to private individuals."
+      "note": "Open to private individuals. About 17 stations. 100 KM (~$58) one-time registration fee. Shorter plans: 7 days (~$87), 1 month (~$145). Non-standard caster port 8080."
     },
     {
       "id": "egnss_tw",
@@ -1023,7 +1025,7 @@
       "yearly_cost": "₹70,800/yr (~$745/yr)",
       "registration": "https://cors.surveyofindia.gov.in",
       "stations_declared": 1105,
-      "note": "Free only for central/state government and academic users. Paid private subscription requires Aadhaar or PAN ID — effectively Indian residents only."
+      "note": "Free for central/state government and academic users. The paid private subscription requires Aadhaar or PAN, so it is effectively limited to Indian residents."
     },
     {
       "id": "tn_cors",
@@ -1035,7 +1037,7 @@
       "tier": "restricted",
       "access": "restricted",
       "stations_declared": 70,
-      "note": "Closed cadastral infrastructure used by the Tamil Nadu Department of Survey and Settlement. No public NTRIP service or tariff. Not currently part of SoI CORS."
+      "note": "Used internally by the Department of Survey and Settlement for cadastral work. No public NTRIP service. Not part of SoI CORS."
     },
     {
       "id": "qc_mern",
@@ -1063,7 +1065,7 @@
       "yearly_cost": "CAD 1,650/yr (~$1,212/yr)",
       "yearly_cost_normalized": 1212,
       "registration": "https://www2.gov.bc.ca/gov/content/data/geographic-data-services/geobc",
-      "note": "Subscription portal currently unavailable (government website reorganisation); check the registration link for updates. No Canadian province offers free public NTRIP."
+      "note": "Subscription portal has been offline pending a BC government website reorganisation; check the registration link for updates."
     },
     {
       "id": "nsacs",
@@ -1078,7 +1080,7 @@
       "yearly_cost": "CAD 3,328/yr (~$2,429/yr)",
       "yearly_cost_normalized": 2429,
       "stations_declared": 40,
-      "note": "40 government reference stations; real-time corrections only via paid commercial resellers (HxGN SmartNet, Can-Net, Brandtnet); no direct provincial caster. Price shown is HxGN SmartNet Atlantic plan — Can-Net and Brandtnet pricing not public."
+      "note": "Real-time corrections are only sold through commercial resellers (HxGN SmartNet, Can-Net, Brandtnet); there is no direct provincial caster. The listed price is the HxGN SmartNet Atlantic plan; Can-Net and Brandtnet do not publish theirs."
     },
     {
       "id": "scrtn",
@@ -1092,7 +1094,8 @@
       "access": "paid",
       "yearly_cost": "$1,200 first login; $600 each additional",
       "registration": "https://sc.accessgov.com/rfa/Forms/Page/rfa/scrtn",
-      "note": "43 stations in SC plus shared receivers in GA and NC. No professional-licence requirement."
+      "stations_declared": 43,
+      "note": "Coverage extends into bordering Georgia and North Carolina via shared receivers. No professional licence required."
     },
     {
       "id": "ncrtn",
@@ -1106,7 +1109,7 @@
       "access": "paid",
       "yearly_cost": "$500 one-time per login",
       "registration": "https://rtn.nc.gov",
-      "note": "Perpetual credentials (not annual). Second login included; additional logins $250 each. Free RINEX download."
+      "note": "Credentials are perpetual, not annual. A second login is included; further logins $250 each. Free RINEX download."
     },
     {
       "id": "tdot_rtn",
@@ -1189,7 +1192,7 @@
       "access": "paid",
       "yearly_cost": "$1,500/yr",
       "registration": "https://msl.mt.gov/mtsrn",
-      "note": "50+ stations; launched March 2022. Free RINEX available; static post-processing does not require subscription."
+      "note": "Free RINEX download; static post-processing does not need a subscription."
     },
     {
       "id": "wsrn",
@@ -1203,7 +1206,7 @@
       "access": "paid",
       "yearly_cost": "$1,900/yr",
       "registration": "https://wsrn3.org",
-      "note": "Transitioning to NATRF2022 datum (port 2022); NAD83(2011) on port 2011. Partner agencies (govt, NGS cooperators) receive free access."
+      "note": "Two ports: 2011 for NAD83(2011), 2022 for the new NATRF2022 datum. Government and NGS-cooperator agencies get free access."
     },
     {
       "id": "c4gnet",
@@ -1217,7 +1220,7 @@
       "access": "paid",
       "yearly_cost": "$495/yr (10-hr tier)",
       "registration": "https://store.c4g.lsu.edu",
-      "note": "Louisiana statewide RTN operated by LSU Center for GeoInformatics. GPS+GLONASS+Galileo+BeiDou. Unlimited RTK tier $3,500/yr. Free post-processing RINEX subscription available separately."
+      "note": "An unlimited RTK tier is $3,500/yr. A free post-processing RINEX subscription is available separately."
     },
     {
       "id": "crtn",
@@ -1231,7 +1234,7 @@
       "yearly_cost": "$100 one-time",
       "yearly_cost_normalized": 33,
       "registration": "https://sopac-csrc.ucsd.edu/index.php/crtn-connecting/",
-      "note": "~250 reference stations via Scripps (UCSD); aggregates SCIGN, BARD, USGS Pasadena, Caltrans CVSRN, OCRTN, and EarthScope. Universities and schools are exempt from the fee. Significant station overlap with EarthScope (already on this map). Credentials take a week or more to issue."
+      "note": "About 250 stations aggregated by Scripps (UCSD) from SCIGN, BARD, USGS Pasadena, Caltrans CVSRN, OCRTN, and EarthScope. Universities and schools are exempt from the fee. Many stations overlap with the free EarthScope network. Credentials take a week or more to issue."
     },
     {
       "id": "idot_cors",
@@ -1241,7 +1244,7 @@
       "lat": 40.0,
       "lon": -89.3,
       "tier": "weird",
-      "note": "Under construction — ~70 stations planned; announced November 2024 with federal + state funding. No live NTRIP caster as of May 2026. Interim paid option: ReIL-NET (Kara Company, Chicagoland + Central IL)."
+      "note": "Announced Nov 2024 with about 70 stations planned; no live NTRIP caster yet. ReIL-NET (Kara Company) is an interim paid option covering Chicagoland and central Illinois."
     },
     {
       "id": "txrtn",
@@ -1253,7 +1256,7 @@
       "tier": "restricted",
       "vrs": true,
       "access": "restricted",
-      "note": "TxDOT employees and contractors only. No hobbyist registration path."
+      "note": "TxDOT employees and contractors only."
     },
     {
       "id": "calrtns",
@@ -1265,7 +1268,7 @@
       "tier": "restricted",
       "vrs": true,
       "access": "restricted",
-      "note": "Vetted state/county agency partners only. No public registration path."
+      "note": "State and county agency partners only."
     },
     {
       "id": "apn",
@@ -1278,7 +1281,7 @@
       "vrs": true,
       "access": "restricted",
       "registration": "https://mapigps.co.il",
-      "note": "Government service (Survey of Israel), licensed surveyors only. WARNING: pervasive military GNSS spoofing across Israel and the surrounding region since Oct 2023 — RTK is unreliable regardless of NTRIP access."
+      "note": "Government service (Survey of Israel), open only to licensed surveyors. WARNING: pervasive military GNSS spoofing across Israel and the surrounding region since Oct 2023 — RTK is unreliable regardless of NTRIP access."
     },
     {
       "id": "igrs",
@@ -1289,7 +1292,7 @@
       "lon": 44.4,
       "tier": "weird",
       "access": "restricted",
-      "note": "Iraq Geodetic Reference System has only 7 reference stations at 500–800 km spacing — far too sparse for RTK. No public NTRIP caster."
+      "note": "Only 7 reference stations spaced 500–800 km apart — far too sparse for RTK. No public NTRIP caster."
     },
     {
       "id": "pak_rehber",
@@ -1317,7 +1320,7 @@
       "yearly_cost": "360,000 LKR/yr (~$1,127/yr)",
       "yearly_cost_normalized": 1127,
       "registration": "https://slcorsnet.survey.gov.lk",
-      "note": "Government network by the Survey Department; coverage mainly Western Province with island-wide rollout ongoing. Bank transfer payment only — may be a barrier for non-residents."
+      "note": "Coverage is mainly the Western Province; island-wide rollout in progress. Bank transfer payment only, which may block non-residents."
     },
     {
       "id": "corsnet_lk",
@@ -1517,7 +1520,7 @@
       "yearly_cost": "₽30,000/yr (~$353/yr)",
       "yearly_cost_normalized": 353,
       "registration": "https://rtknet.ru",
-      "note": "Covers all federal districts; ports 6030–6041 by district. 3-day trial available."
+      "note": "A different port (6030–6041) is used for each federal district. 3-day trial available."
     },
     {
       "id": "hive_cors",
@@ -1586,7 +1589,7 @@
       "vrs": true,
       "access": "paid",
       "registration": "https://lbs.qq.com/rtk",
-      "note": "~2,800+ virtual stations across 33 provinces. Access via enterprise business inquiry only — no self-service pricing. Chinese phone number and likely a Chinese business licence required for commercial use."
+      "note": "Enterprise sales only — no self-service pricing. Sign-up needs a Chinese phone number and a Chinese business licence."
     },
     {
       "id": "rem_fvg",
@@ -1622,7 +1625,7 @@
       "access": "registration",
       "registration": "https://catnet-ip.icgc.cat/",
       "stations_declared": 25,
-      "note": "Regional ICGC caster for Catalonia, separate from the national ERGNSS. Free; requires a single ICGC account, no professional licence."
+      "note": "Run by ICGC, separate from the national ERGNSS network. A single ICGC account is enough; no professional licence required."
     },
     {
       "id": "grafcan_repcan",
@@ -1682,7 +1685,7 @@
       "tier": "free",
       "vrs": true,
       "stations_declared": 13,
-      "note": "13 stations, free. iMAX and VRS correction types; free registration at ACT portal (zero-cost subscription)."
+      "note": "No professional licence required."
     },
     {
       "id": "icecors",
@@ -1747,7 +1750,7 @@
       "stations_declared": 37,
       "yearly_cost": "€200/mo RTK (~$220/mo)",
       "yearly_cost_normalized": 2640,
-      "note": "Short-term use: €20/day (RTK, centimetre accuracy) or €2/day (DGPS, decimetre accuracy). Monthly subscription also available. €50 one-time setup fee. Free for Austrian agricultural users with farm registration."
+      "note": "Short-term: €20/day for RTK or €2/day for decimetre-grade DGPS. €50 one-time setup fee. Free for Austrian farmers with a registered farm."
     },
     {
       "id": "auscors",
@@ -2150,7 +2153,7 @@
       "lon": 26.0,
       "tier": "weird",
       "access": "restricted",
-      "note": "Government RTK service, but access is granted only for research with written justification (renewable every 3 months). FINPOS DGNSS is advertised separately for general use but is out of scope for cm-grade work."
+      "note": "Access is granted only for research, with written justification renewable every 3 months. A separate FINPOS DGNSS service is open to anyone but only delivers decimetre accuracy."
     },
     {
       "id": "gps_emiliaromagna",
@@ -2161,7 +2164,7 @@
       "lon": 11.0,
       "tier": "weird",
       "access": "paid",
-      "note": "The region's previously free public RTK network was discontinued; the same physical stations now carry commercial corrections only (NetGEO/TopNET Live)."
+      "note": "The previously free regional network has been discontinued; the same physical stations now carry commercial corrections only, via NetGEO and TopNET Live."
     },
     {
       "id": "os_net",
@@ -2174,7 +2177,7 @@
       "access": "paid",
       "registration": "https://www.ordnancesurvey.co.uk/business-government/products/os-net",
       "stations_declared": 110,
-      "note": "Ordnance Survey runs ~110 reference stations but distributes corrections only through licensed commercial resellers (Leica HxGN SmartNet, Trimble VRS Now, Topcon TopNet Live, AXIO-NET, others). No direct OS endpoint and no free hobbyist tier."
+      "note": "Corrections are distributed only through licensed commercial resellers — Leica HxGN SmartNet, Trimble VRS Now, Topcon TopNet Live, AXIO-NET, and others. No direct Ordnance Survey caster."
     },
     {
       "id": "osi_gnss",
@@ -2219,7 +2222,7 @@
       "lat": 43.94,
       "lon": 12.45,
       "tier": "weird",
-      "note": "One reference station (RSMC) distributing raw GNSS data for post-processing. No real-time RTK service."
+      "note": "Single reference station; RINEX is published for post-processing only, with no real-time RTK service."
     },
     {
       "id": "survey_bn",
@@ -2230,7 +2233,7 @@
       "lon": 114.7,
       "tier": "weird",
       "registration": "https://www.survey.gov.bn",
-      "note": "Internal-use cadastral CORS only; no public NTRIP service has been announced."
+      "note": "Cadastral CORS used internally; no public NTRIP service."
     },
     {
       "id": "sx_cors",
@@ -2296,7 +2299,7 @@
       "tier": "weird",
       "registration": "https://cors.ip.gob.hn",
       "stations_declared": 5,
-      "note": "Five government reference stations (Tegucigalpa, San Pedro Sula, Juticalpa, Siguatepeque, La Ceiba) publish free RINEX files for post-processing. No real-time NTRIP service is offered."
+      "note": "Free RINEX from five government sites (Tegucigalpa, San Pedro Sula, Juticalpa, Siguatepeque, La Ceiba) for post-processing. No real-time NTRIP service."
     },
     {
       "id": "ineter_cors",
@@ -2345,7 +2348,7 @@
       "tier": "weird",
       "registration": "https://www.sirgaschile.cl",
       "stations_declared": 180,
-      "note": "Chile's military geographic institute publishes free RINEX files from 180+ reference stations. A real-time NTRIP service was announced in 2025 but the public endpoint is not yet working."
+      "note": "Free RINEX for post-processing. A real-time NTRIP service was announced in 2025; the public endpoint is not yet live."
     },
     {
       "id": "kollnet_cl",
@@ -2359,7 +2362,8 @@
       "yearly_cost": "CLP 450,000/yr (~$470/yr)",
       "yearly_cost_normalized": 470,
       "registration": "https://kollnerlabrana.cl/kollnet.html",
-      "note": "8 stations spanning Santiago to Frutillar. A free national service is planned by IGM/SHOA but not yet live."
+      "stations_declared": 8,
+      "note": "Coverage runs from Santiago to Frutillar. A free national service is planned by IGM/SHOA; not yet live."
     },
     {
       "id": "png_dlpp_cors",
@@ -2381,7 +2385,7 @@
       "lon": 178.0,
       "tier": "weird",
       "stations_declared": 10,
-      "note": "Ten CORS sites were installed in 2022 covering Viti Levu, Vanua Levu and the outer islands. The access policy is still under development; no public NTRIP caster has been announced."
+      "note": "Installed in 2022 across Viti Levu, Vanua Levu, and the outer islands. No public NTRIP caster yet; access policy still being worked out."
     },
     {
       "id": "sen_cors",
@@ -2429,7 +2433,7 @@
       "vrs": true,
       "registration": "https://eshop.ncc.gov.ir",
       "stations_declared": 127,
-      "note": "Paid RTK service from Iran's National Cartographic Center, run on the IPGN station network. The subscription portal is blocked outside Iran and rates are not published; sign-up needs an Iranian national ID and Iranian banking."
+      "note": "Run by Iran's National Cartographic Center on the IPGN stations. The subscription portal is blocked outside Iran and rates are not published. Sign-up needs an Iranian Melli Code (national ID) and an Iranian bank account."
     },
     {
       "id": "shamim_ir",
@@ -2498,7 +2502,7 @@
       "access": "restricted",
       "registration": "https://www.lc.gov.gh/",
       "stations_declared": 60,
-      "note": "~60 stations unveiled Aug 2025 by Lands Commission/SMD; target 100 by end of 2025. No public NTRIP endpoint published; access via licensed-surveyor channel."
+      "note": "Unveiled by the Lands Commission in August 2025. No public NTRIP caster; access is routed through licensed surveyors."
     },
     {
       "id": "dgigc_tg",
@@ -2522,7 +2526,7 @@
       "access": "restricted",
       "registration": "https://service-public.bj",
       "stations_declared": 7,
-      "note": "MCA-funded CORS network. Caster address not public; disclosed after registration via IGN Bénin / CatIS (service-public.bj form PS01085). Service is oriented toward cadastral use; individual eligibility unconfirmed."
+      "note": "Caster address is disclosed only after registration via IGN Bénin / CatIS. The service is oriented to cadastral use."
     },
     {
       "id": "sstp_by",
@@ -2551,7 +2555,7 @@
       "vrs": true,
       "access": "paid",
       "registration": "http://moldpos.ingeocad.md/SBC/Account/Register",
-      "note": "National VRS network; no surveying licence required. Free test mounts (FZUTM, FZUASM, etc.) available with credentials moldpos/moldpos — trial without subscribing."
+      "note": "No surveying licence required. Free test mountpoints are available with shared credentials moldpos/moldpos — try before subscribing."
     },
     {
       "id": "makpos",
@@ -2577,7 +2581,7 @@
       "vrs": true,
       "access": "restricted",
       "registration": "https://www.ancfcc.gov.ma/nos-metiers/cartographie/reseau-gnss/",
-      "note": "60 stations. Real-time RTK and network-RTK confirmed. Licensed cadastral professionals only; no individual sign-up path."
+      "note": "Licensed cadastral professionals only; no individual sign-up path."
     },
     {
       "id": "itri_ma",
