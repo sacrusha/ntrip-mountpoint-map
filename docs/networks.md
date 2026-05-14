@@ -1040,15 +1040,20 @@ model state public RTK service. Some overlap with EarthScope NOTA expected.
 ## ardot_rtn — ARDOT RTN (US-AR)
 
 **status**:    free
-**host:port**: `gps.ardot.gov:2101` (IP 199.48.3.12; SOURCETABLE 200 OK 2026-05-07)
+**host:port**: `gps.ardot.gov:2101` (IP 199.48.3.12; SOURCETABLE 200 OK 2026-05-13, 8 STR)
 **type**:      physical-coord-vrs
 **access**:    registration; free via ardot.gov (Arkansas DOT)
 **pipeline-access**: registration
 **stations**:  ~50
 **source**:    ardot.gov (Arkansas Department of Transportation)
 **operator**:  Arkansas DOT
+**last_researched_date**: 2026-05-13
 
-Arkansas real-time network. Free after registration.
+Arkansas real-time network on Trimble Pivot. Free after registration via the
+gps.ardot.gov portal. Sensor map at gps.ardot.gov/Map/SensorMap.aspx. Mountpoints
+include `ARDOT_RTX_CMRp/CMRx` (network solutions) and `MS_CMRp/CMRx` (nearest single
+base). PAGIS (Pulaski Area GIS) supplementary single-base station serves Little Rock /
+Pulaski County with a separate signed-agreement registration at pagis.org.
 
 ---
 
@@ -1105,14 +1110,17 @@ same IP.
 **type**:      physical-coord-vrs
 **access**:    registration; free via azwater.gov (Arizona Dept. of Water Resources)
 **pipeline-access**: registration
-**stations**:  71 (56 ADWR-managed + 15 EarthScope/NPS CORS sites; as of 2026-04-06)
+**stations**:  52 (37 ADWR-managed + 15 EarthScope/NPS CORS sites; per ADWR March 2025 update reflected in AZCORS_InformationAndMountpoints20260406.pdf)
 **source**:    azwater.gov (Arizona Department of Water Resources)
 **operator**:  Arizona Dept. of Water Resources (ADWR)
+**last_researched_date**: 2026-05-13
 
-Arizona CORS Network operated by ADWR. 71 total sites (56 ADWR + 15 EarthScope/NPS);
-free registration. Moderate overlap with EarthScope NOTA expected. Port 2101 is the
-Leica SBC default; external probes timeout (Cloudflare CDN in front of the portal) —
-actual port confirmed post-registration only.
+Arizona CORS Network operated by ADWR. 52 total sites (37 ADWR + 15 EarthScope/NPS);
+ADWR consolidated and decommissioned several sites during the 2024–2025 modernisation,
+superseding the earlier 71-site figure. Free registration at azcors.azwater.gov/sbc.
+Moderate overlap with EarthScope NOTA expected. Port 2101 is the Leica SBC default;
+external probes timeout (Cloudflare CDN in front of the portal) — actual port confirmed
+post-registration only.
 
 ---
 
@@ -1166,7 +1174,7 @@ have successfully registered.
 ## orgn — ORGN (US-OR)
 
 **status**:    free
-**host:port**: `orgn.odot.state.or.us:9881` (IP 167.131.109.57; SOURCETABLE 200 OK 2026-05-07)
+**host:port**: `orgn.odot.state.or.us:9881` (IP 167.131.109.57; SOURCETABLE 200 OK 2026-05-13, 6 STR)
 **type**:      physical-coord-vrs
 **access**:    registration; free via oregon.gov/odot/orgn (Oregon DOT)
 **pipeline-access**: registration
@@ -1174,11 +1182,14 @@ have successfully registered.
 **source**:    oregon.gov (Oregon Department of Transportation)
 **operator**:  Oregon DOT (ODOT)
 **date_added**: 2026-05-07
+**last_researched_date**: 2026-05-13
 
-Oregon Real-Time GNSS Network. Leica GNSS Spider. Non-standard port 9881 (confirmed
-live 2026-05-07 at IP 167.131.109.57). Note: fetch_stations.py entry uses older IP
-167.131.0.205 and port 9879 — may need update if that endpoint stops responding.
-Significant overlap with EarthScope NOTA expected.
+Oregon Real-Time GNSS Network. Leica GNSS Spider. Non-standard port 9881 (network
+solutions); single-base solutions also offered on 167.131.0.205:9879 per ODOT PDFs.
+Accounts issued via the rover request form at oregon.gov/odot/orgn/pages/rover-requests.aspx;
+ODOT states it may "charge reasonable subscription fees for rover accounts" in future,
+but partner accounts remain free permanently. Significant overlap with EarthScope NOTA
+expected.
 
 ---
 
@@ -1639,20 +1650,22 @@ required to re-register after the cutover. Mountpoints: `VRS_CMR`, `VRS_RTCM`,
 ## mesa_rtvrn — Mesa County RTVRN (US-CO)
 
 **status**:    free
-**host:port**: `rtvrn.mesacounty.us:2101`
+**host:port**: `rtvrn.mesacounty.us:2101` (IP 35.131.54.14; SOURCETABLE 200 OK 2026-05-13, 6 STR)
 **type**:      vrs-only
 **access**:    registration; free via rtvrn.mesacounty.us
 **pipeline-access**: registration
 **stations**:  33 (17 NGS CORS + 16 county/partner stations) underlying VRS
 **source**:    mesacounty.us/departments-and-services/public-works/gps-survey
 **operator**:  Mesa County Public Works (Western Colorado)
+**last_researched_date**: 2026-05-13
 
 VRS-only network covering western Colorado. Mountpoints are all VRS_* (CMR,
 CMRx, RTCMv3, RTX variants) — no single-base mountpoints exposed. Free
 sign-up at rtvrn.mesacounty.us; same credentials used for NTRIP. Trimble
-PIVOT backend. Underlying 17 NGS CORS likely overlap with EarthScope NOTA
-in northern Mesa County, but VRS streams have no fixed coordinate so no
-duplicate pins on the map.
+PIVOT backend; NAD83(2011). The 33-station network extends useful coverage
+across western Colorado and into adjacent Utah and Wyoming; underlying 17 NGS CORS
+likely overlap with EarthScope NOTA in northern Mesa County, but VRS streams have
+no fixed coordinate so no duplicate pins on the map.
 
 ---
 
@@ -3569,25 +3582,28 @@ NOTA provides sparse free single-base streams in Georgia as a non-commercial fal
 ## turn_gps — TURN GPS (US-UT + NV)
 
 **status**:    paid
-**host:port**: `165.239.144.5:2101` (NAD83/2011); `165.239.144.7:2101` (alternate / NV)
+**host:port**: `165.239.144.5:2101` (NAD83/2011); `165.239.144.7:2101` (alternate / NV — account-gated; external probes time out)
 **type**:      vrs-only
-**access**:    paid; subscribe at turngps.utah.gov; Utah ID account required
-**yearly_cost**: $600/yr (covers both Utah TURN GPS and Nevada GPS Network)
+**access**:    paid; subscribe at turngps.utah.gov; Utah ID account required (digital identity, not residency)
+**yearly_cost**: $600/yr per login (currently covers both Utah TURN GPS and Nevada GPS Network; UGRC has indicated this may split per-region in future)
 **yearly_cost_normalized**: 600
 **operator**:  Utah Geospatial Resource Center (UGRC), State of Utah
 **source**:    gis.utah.gov/products/turn/
 **date_added**: 2026-05-07
+**last_researched_date**: 2026-05-13
 
-Trimble Pivot VRS. One subscription covers UT and the Nevada GPS Network (formerly
-Washoe County / NNCRN, now UGRC-administered; northern Nevada / Reno area only —
-Las Vegas metro not covered). Southern ID and western WY partial coverage.
+Trimble Pivot VRS, 100+ stations across UT plus southern ID, western WY, and southern
+NV edge coverage. Full GNSS via RTCM32 (`GNSS-VRS-NAD83-RTCM32`: GPS+GLONASS+Galileo+BeiDou).
+One subscription covers UT and the Nevada GPS Network (formerly Washoe County / NNCRN,
+now UGRC-administered; northern Nevada / Reno area only — Las Vegas metro is covered
+instead by the application-gated LVVWD network).
 
 ---
 
 ## mtsrn — MTSRN (US-MT)
 
 **status**:    paid
-**host:port**: `mtsrn.org:2101`
+**host:port**: `mtsrn.org:2101` (SOURCETABLE 200 OK 2026-05-13, 336 STR — per-station × per-format combinations across the five subnets)
 **type**:      vrs-only
 **access**:    paid; subscribe at mtsrn.org; no professional-licence requirement stated
 **yearly_cost**: $1,500/yr per login (rate effective July 2024; PayZang portal)
@@ -3595,17 +3611,19 @@ Las Vegas metro not covered). Southern ID and western WY partial coverage.
 **operator**:  Montana State Library (MSL), with MDT, tribal nations, counties, universities
 **source**:    msl.mt.gov/mtsrn
 **date_added**: 2026-05-07
+**last_researched_date**: 2026-05-13
 
 Launched March 2022; five geographic VRS subnets (NE, NC, NW, SW, SC Montana). 50+
 CORS stations. Partner agencies receive access in exchange for station hosting.
-Static RINEX free to public. SOURCETABLE 200 OK confirmed 2026-05-07.
+Static RINEX free to public. Rates are reviewed each biennium and announced January
+of odd-numbered years (next review due January 2027 for July 2027 effective date).
 
 ---
 
 ## wsrn — WSRN (US-WA)
 
 **status**:    paid
-**host:port**: `wsrn.org:2011` (NAD83/2011); `wsrn.org:2022` (NATRF2022 new datum)
+**host:port**: `wsrn.org:2011` (NAD83/2011, 486 STR); `wsrn.org:2022` (NATRF2022 — caster live but mountpoints not yet provisioned as of 2026-05-13)
 **type**:      vrs-only
 **access**:    paid; subscribe at wsrn3.org; no professional-licence requirement stated
 **yearly_cost**: $1,900/yr non-partner (5 logins $5,700; 10 logins $10,000; 20 logins $15,000); partner agencies (govt, NGS cooperators) receive free access
@@ -3613,17 +3631,20 @@ Static RINEX free to public. SOURCETABLE 200 OK confirmed 2026-05-07.
 **operator**:  Multi-agency cooperative (WSDOT + public/private partners), Trimble Pivot
 **source**:    wsrn3.org
 **date_added**: 2026-05-07
+**last_researched_date**: 2026-05-13
 
 Actively transitioning to NATRF2022 — port 2022 delivers NATRF2022; port 2011 delivers
 legacy NAD83(2011); port 8080 being retired. PANGA/CWU contributes Puget Sound antennae.
-SOURCETABLE 200 OK on both ports confirmed 2026-05-07.
+SOURCETABLE 200 OK re-confirmed 2026-05-13 — port 2011 returns 486 STR rows; port 2022
+returns only the CAS line (0 STR, mountpoint provisioning expected through 2H2026
+alongside the NSRS modernisation roll-out).
 
 ---
 
 ## c4gnet — C4Gnet / Louisiana RTN (US-LA)
 
 **status**:    paid
-**host:port**: `c4gnet.xyz:9000`
+**host:port**: `c4gnet.xyz:9000` (SOURCETABLE 200 OK 2026-05-13, 32 STR)
 **type**:      physical-coord-vrs
 **access**:    paid; subscribe at store.c4g.lsu.edu; no professional-licence requirement
 **yearly_cost**: $495/yr (10-hr RTK tier); $1,995/yr (50-hr); $3,500/yr (unlimited RTK); $5,000/yr (full RTN membership)
@@ -3631,6 +3652,7 @@ SOURCETABLE 200 OK on both ports confirmed 2026-05-07.
 **operator**:  LSU Center for GeoInformatics (C4G), Louisiana State University
 **source**:    c4gnet.xyz
 **date_added**: 2026-05-07
+**last_researched_date**: 2026-05-13
 
 Louisiana statewide real-time network established 2007. Leica GNSS Spider platform.
 Full GREC constellation (GPS+GLONASS+Galileo+BeiDou). VRS, PPP, and Nearest Single
@@ -3644,7 +3666,8 @@ processing subscription available separately. No free hobbyist tier; entry-level
 
 **status**:    paid
 **host:port**: `132.239.152.4:2102` (NorCal zones 1–2), `:2103` (NorCal zones 3–4),
-               `:2104` (SoCal zone 5), `:2105` (SoCal zone 6)
+               `:2104` (SoCal zone 5), `:2105` (SoCal zone 6) — SOURCETABLE 200 OK on
+               :2102 and :2104 re-confirmed 2026-05-13
 **type**:      single-base
 **access**:    paid; one-time $100 processing fee; universities and schools exempt
 **yearly_cost**: $100 one-time (under the $200 cutoff) — not annual
@@ -3653,6 +3676,7 @@ processing subscription available separately. No free hobbyist tier; entry-level
 **source**:    sopac-csrc.ucsd.edu/index.php/crtn (Scripps Orbit and Permanent Array
                Center, UC San Diego)
 **operator**:  CSRC EC / SOPAC at UCSD
+**last_researched_date**: 2026-05-13
 
 Clearinghouse for real-time GNSS data from multiple California networks: SOPAC
 (SCIGN), UC Berkeley/USGS Menlo Park (BARD), USGS Pasadena (SCIGN),
@@ -4292,6 +4316,37 @@ Rejected — no public endpoint; government-internal infrastructure only.
 
 ---
 
+## uzpos — UZPOS (UZ)
+
+**status**:    other
+**country**:   UZ — Uzbekistan
+**type**:      physical (CORS network; RTK service architecture per 2016–2017 literature)
+**access**:    government-internal / licensed-surveyors-only; no public NTRIP endpoint
+               or registration portal published
+**operator**:  State Committee for Land Resources, Geodesy, Cartography and State
+               Cadastre (UzGeodezKadastr); control centre in Tashkent
+**registration**: https://uzgeodezkadastr.uz (HTTP 200 2026-05-13; no NTRIP portal)
+**host:port**: not publicly documented
+**stations**:  30–50 planned (Type-A geodetic + Type-B RTK, per Ergashev et al.
+               2016–2017); active stations confirmed by 2024 quality-analysis paper
+               (continuous data flow from Samarkand to Tashkent control centre)
+**date_added**: 2026-05-13
+**last_researched_date**: 2026-05-13
+
+Uzbekistan's national CORS infrastructure (UZPOS) is operated as a closed archival
+service for licensed professionals and state agencies — no open NTRIP registration
+path exists. Cross-checked 2026-05-13: zero UZ mountpoints on rtk2go, Centipede,
+or EarthScope; project pipeline radius probe at (41.3°N, 69.3°E) returns zero
+stations within 800 km of Tashkent. No commercial international caster (GEODNET,
+Point One, RTKdata, SmartNet, Trimble VRS Now) advertises Uzbekistan coverage.
+Hobbyists must deploy a private base station for RTK work. RINEX post-processing
+is available via the IGS station TASH (EarthScope/UNAVCO; also an EPN supplementary
+site). Central Asian pattern is uniformly closed-access (cf. `kazgeodesy` paid-but-
+ИИН-gated, `kyrpos` paid contract-based, `tm_cors` government-internal,
+`almgc_tj` no endpoint).
+
+---
+
 ## azpos — AzPOS (AZ)
 
 **status**:    restricted
@@ -4760,7 +4815,15 @@ public caster.
 ## txrtn — TXDOT CORS (US-TX)
 
 **status**:    restricted
-**reason**:    restricted to TXDOT employees and contractors only; no public or hobbyist registration
+**country**:   US — Texas
+**host:port**: `txrtn.txdot.gov` (portal HTTP 200 2026-05-13; NTRIP port not published)
+**operator**:  Texas Department of Transportation (TxDOT) — Information Systems Division
+**stations**:  256 CORS statewide (all 254 counties)
+**reason**:    access explicitly restricted to TxDOT employees and contractors/consultants
+               on TxDOT-funded projects; no public registration pathway. Sensor map visible
+               at txrtn.txdot.gov/Map/SensorMap.aspx. One of the largest state CORS networks
+               in the country but never opened to public use.
+**last_researched_date**: 2026-05-13
 
 ---
 

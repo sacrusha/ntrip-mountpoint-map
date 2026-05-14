@@ -1266,6 +1266,16 @@
       "note": "120+ reference stations. Requires a Kazakh resident ID number — foreign users cannot self-register. Baselines will be long outside Almaty and Astana."
     },
     {
+      "id": "uzpos",
+      "name": "UZPOS",
+      "country": "UZ",
+      "lat": 41.31,
+      "lon": 69.28,
+      "tier": "weird",
+      "registration": "https://uzgeodezkadastr.uz",
+      "note": "State UZPOS CORS (~30–50 stations) is closed to the public. No rtk2go, Centipede or EarthScope stations within 800 km of Tashkent either. Hobbyists must deploy a private base."
+    },
+    {
       "id": "albcors",
       "name": "ALBCORS",
       "region": "Albania",
@@ -1876,7 +1886,7 @@
       "lon": -111.9,
       "tier": "free",
       "vrs": true,
-      "stations_declared": 51
+      "stations_declared": 52
     },
     {
       "id": "gcgc_rtn",

@@ -372,7 +372,7 @@ SOURCES = [
      "type": "physical-vrs", "country": ["US"],
      "region": "Mississippi (Gulf Coast)", "group": "us-state-dot",
      "access": "registration", "registration": "https://rtn.usm.edu", "openNote": 'Free registration required (Gulf Coast Geodetic Consortium / USM)'},
-{"id": "orgn",        "url": "http://orgn.odot.state.or.us:9881/",          # hostname; port 9881 (Leica); SOURCETABLE 200 OK 2026-05-07
+{"id": "orgn",        "url": "http://orgn.odot.state.or.us:9881/",          # hostname; port 9881 (Leica); SOURCETABLE 200 OK 2026-05-13 (6 STR)
      "color": "#004d40", "label": "ORGN",
      "type": "physical-vrs", "country": ["US"],
      "region": "Oregon", "group": "us-state-dot",
