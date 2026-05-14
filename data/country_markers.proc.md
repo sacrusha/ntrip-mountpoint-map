@@ -73,9 +73,9 @@ hardware, or paperwork tolerance. If the marker only confirms absence
 | `restricted` | Substantial network with no hobbyist path at any price (licence gate, sector-only, bundled-hardware). National ID requirement is noteworthy, but doesn't make a network restricted - users should be assumed to often be locals | The specific blocker in plain words, and the next-best free alternative if one exists. |
 | `weird` | User-relevant fact that the structured fields cannot carry. The note IS the marker. Past examples (illustrative, not exhaustive): RINEX-only / no real-time NTRIP, announced-but-not-live network, sparse infra (huge baselines), GNSS jamming or spoofing, reseller-only distribution, non-standard NTRIP, named operator with no published endpoint, civil-war disruption, micro-state with no local service. | The note is load-bearing — it has to stand alone. |
 
-`vrs: true` whenever the network delivers VRS/NRTK streams — classic VRS,
-Leica MAC/iMAX, Geo++ FKP, PRS/Near-RS all qualify. Orthogonal to tier —
-free+VRS, paid+VRS, restricted+VRS are all valid.
+`vrs: true` whenever the network delivers any NRTK product, not just
+mountpoints literally named "VRS". Orthogonal to tier — free+VRS,
+paid+VRS, restricted+VRS are all valid.
 
 ## Disqualifiers
 

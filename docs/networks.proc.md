@@ -47,7 +47,7 @@ operator:	Name of the operator/agency
 url :    Service portal, if any, otherwise skip
 registration:	url of registration portal, fallback official url describing registration process, otherwise skip
 host:port:	`host:port` - freeform if partially known, otherwise skip. prefer url over ip.
-vrs:	yes | no | unknown - Use only for RTK networks. "yes" covers any NRTK flavor — classic VRS, Leica MAC/iMAX, Geo++ FKP, PRS / Near-RS, etc. — not just literal "VRS" mountpoints.
+vrs:	yes | no | unknown - Use only for RTK networks. "yes" covers any NRTK product, not just mountpoints literally named "VRS".
 access:    free / registration / paid [brief terms] / government-internal
 stations:  N (approximate), skip if unknown, freeform if complicated
 yearly_cost:	Only on paid | restricted networks. Single short line, primary annual tier: `€120/yr (~$130/yr)`. If no annual plan, most practical sustained-use plan (`€12/mo (~$13/mo)`). Multi-tier tables go in entry prose. 
