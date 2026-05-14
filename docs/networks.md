@@ -3366,7 +3366,6 @@ SST status for JUPEM subscriptions not confirmed; prices as published.
                hours/year. The 1-day pass (~$18) covers a single session;
                longer blocks rise quickly (1 month ~$212 is just over the
                cutoff). No annual flat rate is published.
-**yearly_cost_normalized**: 95
 **stations**:  ~50 physical CORS (60 STR rows in live sourcetable include 3
                network-RTK products + multi-format duplicates)
 **operator**:  NAMRIA — National Mapping and Resource Information Authority

@@ -412,7 +412,8 @@
       "access": "paid",
       "registration": "https://muya-cors.com",
       "yearly_cost": "KES 400 / 2 h PAYG (~$3, 30-day voucher)",
-      "yearly_cost_normalized": 100,
+      "yearly_cost_normalized": 388,
+      "yearly_cost_comment": "normalized cost based on 250h use per year, replace when more pricing options become known",
       "stations_declared": 25,
       "note": "Pay-as-you-go vouchers via M-Pesa. Longer hourly, daily, and monthly tiers are offered at checkout but not itemised publicly. Payment needs a Kenyan mobile-money account."
     },
@@ -871,11 +872,10 @@
       "tier": "paid",
       "vrs": true,
       "access": "paid",
-      "yearly_cost": "PHP 12,000/mo (~$212/mo)",
-      "yearly_cost_normalized": 95,
+      "yearly_cost": "PHP 100/hr (~$1.77/hr); no flat annual rate",
       "stations_declared": 50,
       "registration": "https://pagenet.namria.gov.ph",
-      "note": "Pay-per-hour at PHP 100/hr (~$1.77/hr); day pass ~$18; 15-day pass ~$133. PHP 1,000 one-time registration. Outside Metro Manila, payment is by LandBank deposit — a practical barrier for foreign visitors."
+      "note": "Day pass ~$18; 1-month ~$212. PHP 1,000 one-time registration. Outside Metro Manila, payment is by LandBank deposit — a practical barrier for foreign visitors."
     },
     {
       "id": "gnssnet_hu",
