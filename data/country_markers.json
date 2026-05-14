@@ -1229,6 +1229,7 @@
       "tier": "paid-affordable",
       "access": "paid-affordable",
       "yearly_cost": "$100 one-time",
+      "yearly_cost_normalized": 33,
       "registration": "https://sopac-csrc.ucsd.edu/index.php/crtn-connecting/",
       "note": "~250 reference stations via Scripps (UCSD); aggregates SCIGN, BARD, USGS Pasadena, Caltrans CVSRN, OCRTN, and EarthScope. Universities and schools are exempt from the fee. Significant station overlap with EarthScope (already on this map). Credentials take a week or more to issue."
     },
