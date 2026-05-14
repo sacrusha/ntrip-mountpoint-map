@@ -1855,7 +1855,7 @@
       "yearly_cost": "€120/yr (~$130/yr)",
       "yearly_cost_normalized": 163,
       "registration": "https://lvermgeo.rlp.de",
-      "note": "Only paid SAPOS state at standard RTK rate. One-time €100 setup fee applies (amortised in the figure shown). Agriculture has a cheaper €150/device/yr R-HEPS tier; no free hobbyist path.",
+      "note": "The only SAPOS state that charges for standard RTK — all other SAPOS states offer it free. One-time €100 setup fee applies (amortised in the figure shown). Agriculture has a cheaper €150/device/yr R-HEPS tier; no free hobbyist path.",
       "stations_declared": 17
     },
     {
