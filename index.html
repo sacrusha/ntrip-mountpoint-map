@@ -1961,7 +1961,10 @@
         if(_detailMap.has(pk)) continue;
         if(capInsertions&&_detailMap.size>=MAX_DETAIL_MARKERS) continue;
         var entry={};
-        var fill=s.color;
+        // Rect echoes one of the colors in the pie (colors[0]) rather than
+        // the MULTI_COLOR fallback, so the dashed uncertainty box doesn't
+        // look unrelated to the dot it surrounds.
+        var fill=s.colors[0];
         try{
           if(showRect){
             entry.rect=L.rectangle([[s.lat-s.dLat,s.lon-s.dLon],
@@ -1972,9 +1975,19 @@
                 {sticky:true,className:'prec-tip'})
               .addTo(detailGroup);
           }
-          var names=s.mountpoints.map(function(mp){ return mp.name; });
+          // Dedup names: same-name mountpoints across multiple networks
+          // (IGS backbone stations like BRUX broadcast through EUREF/IGS/MIRAI)
+          // collapse to one label. Then cap to keep the permanent label compact.
+          var nameSet={}, names=[];
+          for(var ni=0;ni<s.mountpoints.length;ni++){
+            var nm=s.mountpoints[ni].name;
+            if(!nameSet[nm]){ nameSet[nm]=true; names.push(nm); }
+          }
+          var label=names.length>3
+            ? names.slice(0,3).join(' / ')+' +'+(names.length-3)+' more'
+            : names.join(' / ');
           entry.marker=L.marker([s.lat,s.lon],{icon:cachedIcon(s.colors)})
-            .bindTooltip(names.join(' / '),
+            .bindTooltip(label,
               {permanent:true,direction:'right',offset:[9,0],className:'slabel'})
             .on('click',(function(st){ return function(){ showCard(getCachedPopup(st),[st.lat,st.lon]); }; })(s))
             .addTo(detailGroup);
