@@ -39,18 +39,15 @@ free / candidate endpoint that lists a host:port and supplies physical
 mountpoints. Sweep SOURCES whenever a block's `status:` changes — see
 `../scripts/fetch_stations.proc.md` for the status→action table.
 
-## The flow narrows
+## Upstream is the source of truth
 
-A country may have research in `ntrip_research/` with no networks block. A
-block may have no marker. A block may have no SOURCES entry. **Don't invent content just to
-populate the next file** — empty space downstream is a feature, not a gap.
-
-## Direction of repair
-
-Fix from upstream. A status mismatch in `networks.md` invalidates the marker
-downstream; a mislabelled access in country prose creates a wrong marker
-tier. Settle the question at the highest source in the chain, then sweep
-downstream. **Don't patch a leaf without fixing the source.**
+- **Don't invent content just to populate the next file.** A country may have
+  research with no networks block; a block may have no marker; a block may
+  have no SOURCES entry — empty space downstream is a feature, not a gap.
+- **Don't patch a leaf without fixing the source.** Settle the question at
+  the highest source in the chain, then sweep downstream. A status mismatch
+  in `networks.md` invalidates the marker; a mislabelled access in country
+  prose creates a wrong marker tier.
 
 ## Per-file rules
 
