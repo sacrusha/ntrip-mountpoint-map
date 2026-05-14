@@ -2922,15 +2922,17 @@ similarly have no published coverage for these jurisdictions.
   infrastructure but no public RTK stream. → networks.md: `sok_ke`
 - **Commercial**: Muya CORS (`muya-cors.com`), operated by Measurement Systems
   Ltd (25+ stations, single-base + network RTK, GPS/GLONASS/BeiDou/Galileo) —
-  self-serve signup; flexible tiers (hourly/daily/monthly); pricing not publicly
-  listed (contact via `muya-cors.com`). Confirmed in active field use Feb 2025
-  (Orbital Africa case study, Kitisuru, Nairobi). → networks.md: `muya_cors_ke`
+  self-serve signup; PAYG voucher KES 400 / 2 h (~$3, 30-day voucher) is the
+  only publicly quoted rate, longer hourly/daily/monthly tiers offered at
+  checkout but not itemised publicly; M-Pesa payment. Confirmed in active
+  field use Feb 2025 (Orbital Africa case study, Kitisuru, Nairobi).
+  → networks.md: `muya_cors_ke`
 - **Announced**: Kenya Power 15-station CORS network announced Apr 2025 (targeting
   "professionals engaged in precise land and engineering surveys" under IESR);
   undergoing gazettement submission; no live NTRIP stream confirmed.
 - **Volunteer**: rtk2go 1 base (Kenya). No Centipede nodes.
 - **Gap**: no free government or volunteer RTK coverage at national scale.
-  Hobbyists must use Muya CORS (pricing on inquiry) or deploy a local base.
+  Hobbyists must use Muya CORS (PAYG ~$3 per 2 h voucher) or deploy a local base.
 
 ### LR — Liberia
 

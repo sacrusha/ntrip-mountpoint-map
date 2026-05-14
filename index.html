@@ -490,6 +490,21 @@
     restricted:{glyph:'✕',color:'#d44'},
     info:      {glyph:'?',color:'#888'},
   };
+  // Per-marker color from yearly_cost_normalized. Legend swatches keep the
+  // bucket extremes (green/red); individual markers gradient through a dark
+  // yellow that reads on white. <=100 green, 300 yellow, >=1000 red.
+  function affordabilityColor(n){
+    var G=[34,167,34], Y=[184,134,11], R=[221,68,68];
+    function mix(a,b,t){
+      return 'rgb('+Math.round(a[0]+(b[0]-a[0])*t)+','
+                   +Math.round(a[1]+(b[1]-a[1])*t)+','
+                   +Math.round(a[2]+(b[2]-a[2])*t)+')';
+    }
+    if(n==null||n>=1000) return mix(R,R,0);
+    if(n<=100)           return mix(G,G,0);
+    if(n<300)            return mix(G,Y,(n-100)/200);
+    return mix(Y,R,(n-300)/700);
+  }
 
   var CLICK_RADIUS_PX=8;
 
@@ -1041,7 +1056,7 @@
     ['affordable','paid','restricted','info'].forEach(function(tier){
       var ic=PAID_TIER_ICONS[tier];
       (paidTiers[tier]||[]).forEach(function(net){
-        var mk=addInfoMarker(group,net.lat,net.lon,buildPaidNetworkPopup(net),net.name,ic.glyph,ic.color);
+        var mk=addInfoMarker(group,net.lat,net.lon,buildPaidNetworkPopup(net),net.name,ic.glyph,net.color||ic.color);
         paidLayers[tier][net.id]={marker:mk};
       });
     });
@@ -1707,8 +1722,12 @@
           region:m.region||'', tier:m.tier, access:m.access||m.tier,
           registration:validUrl(m.registration||''),
           note:m.note||null, yearlyCost:m.yearly_cost||null};
-        if(m.tier==='paid-affordable') affordableNetworks.push(rec);
-        else if(m.tier==='paid')       paidNetworks.push(rec);
+        if(m.tier==='paid'||m.tier==='paid-affordable'){
+          var n=m.yearly_cost_normalized;
+          rec.color=affordabilityColor(n);
+          if(n!=null&&n<300){ rec.access='paid-affordable'; affordableNetworks.push(rec); }
+          else              { rec.access='paid';            paidNetworks.push(rec); }
+        }
         else if(m.tier==='restricted') restrictedNetworks.push(rec);
         else                           info.push(rec);
       }
