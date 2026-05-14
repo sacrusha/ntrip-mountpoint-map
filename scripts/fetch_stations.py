@@ -356,7 +356,8 @@ SOURCES = [
      "color": "#4a7c59", "label": "NPS CORS",
      "type": "single-base", "country": ["US"],
      "access": "conditions", "registration": "https://ntrip.nps.gov",
-     "openNote": "Free*; credentials via gnss_posnav@nps.gov — access scope unclear"},
+     "openNote": "Free*; credentials via gnss_posnav@nps.gov — access scope unclear",
+     "nmea_filter": False},  # Trimble Pivot tags all 141 physical stations nmea=1
     {"id": "wiscors",     "url": "http://wiscors.dot.wi.gov:2101/",
      "color": "#bf360c", "label": "WISCORS",
      "type": "physical-vrs", "country": ["US"],
