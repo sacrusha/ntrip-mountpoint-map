@@ -989,17 +989,20 @@ Campania regional GNSS network. Public credentials (`Campania`/`GNSS`) provide
 ## wiscors — WISCORS (US-WI)
 
 **status**:    free
-**host:port**: `wiscors.dot.wi.gov:2101`
+**host:port**: `wiscors.dot.wi.gov:2101` (IP 165.189.65.133)
 **type**:      physical-coord-vrs (single-base + VRS)
 **access**:    registration; free via wiscors.dot.wi.gov (Wisconsin DOT)
 **pipeline-access**: registration
-**stations**:  ~180
+**stations**:  115+ permanent statewide
 **source**:    wiscors.dot.wi.gov (Wisconsin Department of Transportation)
 **operator**:  Wisconsin DOT
+**last_researched_date**: 2026-05-13
 
-Wisconsin CORS Network operated by WisDOT. Offers both single-base streams
-and VRS corrections. Many WI stations also appear in EarthScope NOTA —
-verify overlap before ingesting to avoid duplicate pins.
+Wisconsin CORS Network operated by WisDOT (Trimble Pivot). Offers both single-base
+streams and VRS corrections. Recommended mountpoint `RTCM32` (RTCM3 GPS+GLO+GAL);
+`CMRxGNSS` added 2024 for Trimble receivers adds full multi-constellation including
+BeiDou. Many WI stations also appear in EarthScope NOTA — verify overlap before
+ingesting to avoid duplicate pins.
 
 ---
 
@@ -1143,13 +1146,16 @@ Significant overlap with EarthScope NOTA expected.
 **type**:      physical-coord-vrs
 **access**:    registration; free via michigan.gov (Michigan DOT)
 **pipeline-access**: registration
-**stations**:  ~120
+**stations**:  ~95 CORS statewide
 **source**:    michigan.gov (Michigan Department of Transportation)
 **operator**:  Michigan DOT (MDOT)
+**last_researched_date**: 2026-05-13
 
-Michigan Spatial Reference Network operated by MDOT. Free NTRIP ports 10010 (RTCM3 MSM4)
-and 10011 (CMRx) per MSRN Port Scheme documentation; port 10700 was incorrect.
-Significant overlap with EarthScope NOTA expected.
+Michigan Spatial Reference Network operated by MDOT (Leica Spider Business Center).
+Free NTRIP ports 10010 (RTCM3 MSM4) and 10011 (CMRx) per MSRN Port Scheme documentation;
+port 10700 was incorrect. Account creation at `mdotcors.michigan.gov/sbc/Account/Register`;
+recommended mountpoint `NS-IMAX-MSM4` (network-mode, full constellation). Rover must
+upload GGA at least every 30 seconds. Significant overlap with EarthScope NOTA expected.
 
 ---
 
@@ -1172,18 +1178,22 @@ EarthScope NOTA expected.
 ## incors — InCORS (US-IN)
 
 **status**:    free
-**host:port**: `incors.in.gov:10000`
+**host:port**: `incors.in.gov:10000` (IP 108.59.49.226; Leica SBC scheme)
 **type**:      physical-coord-vrs
-**access**:    registration; free via incors.in.gov (Indiana Dept. of Administration)
-**pipeline-access**: registration
-**stations**:  ~70
-**source**:    incors.in.gov (Indiana Department of Administration)
-**operator**:  Indiana Dept. of Administration
+**access**:    conditions; signed User Agreement required (free); via incors.in.gov (INDOT)
+**pipeline-access**: conditions
+**stations**:  60 in solution (45 INDOT + 15 cross-state from MI, OH, KY)
+**source**:    incors.in.gov (Indiana Department of Transportation)
+**operator**:  Indiana DOT (INDOT)
+**last_researched_date**: 2026-05-13
 
-Indiana CORS Network. Host and port provided post-login (User Agreement signed and
-emailed to incors@indot.in.gov; port 10000 is best-guess from Leica SBC defaults).
+Indiana CORS Network operated by INDOT on a Leica Spider Business Center platform. Host
+and port provided after the User Agreement (incors.in.gov/useragreement.pdf) is signed
+and returned to incors@indot.in.gov; port 10000 is best-guess from Leica SBC defaults.
 Connection refused from external IPs is expected — firewalled to registered accounts.
-Free registration.
+All four constellations (GPS+GLO+GAL+BDS) supported network-wide following the
+2024-06-18 station upgrade; recommended mountpoint `RTCM3_MAX` (GPS+GLO), MSM4
+full-constellation also available. FTP RINEX archive at `ftp.incors.in.gov`.
 
 ---
 
@@ -1195,16 +1205,21 @@ Free registration.
 **type**:      physical-coord-vrs
 **access**:    registration; free via iowadot.gov (Iowa DOT)
 **pipeline-access**: registration
-**stations**:  83
+**stations**:  83 IaRTN reference stations + 21 cross-state contributors (10 MnDOT, 4 WisDOT, 7 MoDOT)
 **source**:    iowadot.gov (Iowa Department of Transportation);
                e38surveysolutions.com/blogs/news/emlid-reach-rx-or-rs2-and-dji-rtk-connection-to-iowa-ntrip-iartn (Emlid/DJI client setup walkthrough; mountpoint `MSM_IMAX` is the recommended full-constellation RTCM3 stream)
 **operator**:  Iowa DOT
+**last_researched_date**: 2026-05-13
 
-Iowa Real-Time Network operated by Iowa DOT. 83 physical stations. Free registration via
-Iowa DOT account portal; credentials retrieved from User Profile and entered into the rover's
-NTRIP profile. Legacy hostname `iartnsbc.iowadot.gov:2101` returns blank response (2026-05-07);
+Iowa Real-Time Network operated by Iowa DOT (Leica SBC). 83 physical stations placed at
+Iowa DOT maintenance facilities; supplemented along borders by 10 MnDOT, 4 WisDOT, and
+7 MoDOT cross-state stations included in the network solution. Free self-service
+registration at `iartnsbc.iowadot.gov/sbc/Account/Register`; credentials emailed within
+2 business days. Recommended mountpoint `MSM_IMAX` (RTCM3 MSM4, full constellation).
+Legacy hostname `iartnsbc.iowadot.gov:2101` returns blank response (2026-05-07);
 bare IP `165.206.203.10:10000` is the working endpoint. SOURCETABLE is open; individual
-station streams require credentials.
+station streams require credentials. NATRF2022 migration planned mid-to-late 2026 with
+parallel mountpoints during the NAD83(2011) → NATRF2022 transition.
 
 ---
 
@@ -1453,49 +1468,68 @@ Register at kycors.ky.gov.
 ## mncors — MnCORS (US-MN)
 
 **status**:    free
-**host:port**: `mncors.dot.state.mn.us:9000`
+**host:port**: `mncors.dot.state.mn.us:9000` (IP 151.111.142.75; non-standard Trimble Pivot port)
 **type**:      single-coord-vrs
 **access**:    registration; free via mndot.gov (Minnesota DOT)
 **pipeline-access**: registration
-**stations**:  VRS only (underlying ~125 physical stations)
+**stations**:  VRS only (underlying ~140 physical stations)
 **source**:    mndot.gov (Minnesota Department of Transportation)
 **operator**:  Minnesota DOT (MnDOT)
+**last_researched_date**: 2026-05-13
 
-Minnesota CORS Network operated by MnDOT. Non-standard port 9000. VRS-only
-sourcetable; physical stations not individually listed. Significant overlap
-with EarthScope NOTA expected.
+Minnesota CORS Network operated by MnDOT (Trimble Pivot). Non-standard port 9000.
+VRS-only sourcetable; physical stations not individually listed. Mountpoints include
+`RTCM_32_NAD83(2011)` (RTCM3, multi-constellation); formats RTCM 2.3 / 3.1 / 3.4, CMR+,
+CMRx. Accounts deactivate after one year of inactivity (≥1 second of use retains
+active status). Four northern stations added to network solution in early 2026 (Stony
+River, Tofte, Seagull Lake Access, Gunflint Midtrail) — northern wilderness / Boundary
+Waters now covered. Significant overlap with EarthScope NOTA expected.
 
 ---
 
 ## odot_rtn — ODOT RTN (US-OH)
 
 **status**:    free
-**host:port**: `156.63.133.115:2101`
+**host:port**: `156.63.133.115:2101` (DNS `ortn.dot.state.oh.us`; HTTPS portal account-gated)
 **type**:      single-coord-vrs
 **access**:    registration; free via transportation.ohio.gov (Ohio DOT)
 **pipeline-access**: registration
 **stations**:  VRS only
 **source**:    transportation.ohio.gov (Ohio Department of Transportation)
 **operator**:  Ohio DOT
+**last_researched_date**: 2026-05-13
 
-Ohio DOT real-time network. Bare IP address; VRS-only sourcetable. Free registration.
+Ohio Real-Time Network (Trimble Pivot). VRS-only sourcetable; mountpoints
+`ODOT_G_R_E_C_RTX_RTCM3` (multi-constellation GPS+GLO+GAL+BDS+L5) and
+`ODOT_G_R_E_C_RTX_CMRx` (Trimble) added after a 2024 receiver/software upgrade — the
+network was previously GPS+GLO only. Free registration via the ODOT survey/CORS landing
+page; no professional licence field identified. Trimble Pivot Web login at
+`ortn.dot.state.oh.us/TrimblePivotWeb/Login.aspx`.
 
 ---
 
 ## modot_rtn — MoDOT RTN (US-MO)
 
 **status**:    free
-**host:port**: `rtk3.modot.mo.gov:2101`
+**host:port**: `rtk3.modot.mo.gov:2101` (= `gpsweb3.modot.mo.gov:2101`; IP 168.166.125.30)
 **type**:      single-coord-vrs
 **access**:    conditions; requires signed and notarized MoDOT CORS access agreement;
 **pipeline-access**: conditions
                free once approved — contact via modot.mo.gov
-**stations**:  VRS only
+**stations**:  VRS only (underlying 78 NetR5 CORS, max 70 km spacing)
 **source**:    modot.mo.gov (Missouri Department of Transportation)
 **operator**:  Missouri DOT
+**last_researched_date**: 2026-05-13
 
-Missouri DOT CORS network. VRS-only. Requires notarized access agreement
-submitted to MoDOT before credentials are issued.
+Missouri DOT Real-Time Network (Trimble Pivot). VRS-only sourcetable; mountpoints:
+`VRS_RTCM31` (GPS+GLO, recommended), `VRS_CMRplus`, `VRS_CMRx`, `VRS_RTCM21`,
+`VRS_RTCM23`, `RTCM3Net_Autocell`. A multi-constellation `RTX_CMRx` mountpoint was
+added in 2024 for Trimble receivers. Underlying network is 78 CORS stations (NetR5
+receivers with Zephyr Geodetic II antennas) covering all 114 Missouri counties.
+Requires notarized access agreement
+(`gpsweb3.modot.mo.gov/MODOT_RTK_GPS_USER_AGREEMENT.pdf`) submitted to MoDOT before
+credentials are issued; FAQ suggests registering under an organisation name to survive
+personnel changes, but individuals can sign as their own entity.
 
 ---
 
@@ -1959,22 +1993,25 @@ SARNET is the only documented correction source for Sardinia.
 
 **status**:    free
 **host:port**: `www.acorn-gnss.net:2101`
-**type**:      physical-coord-vrs
+**type**:      vrs-only (anonymous sourcetable)
 **access**:    free; self-service registration at acorn-gnss.net (no professional licence field)
 **pipeline-access**: registration
-**stations**:  39 physical reference stations
+**stations**:  39 physical reference stations underlying 4 regional VRS solutions + 1 experimental
 **source**:    acorn-gnss.net (Alaska DNR — Division of Mining, Land & Water, Survey Section)
 **operator**:  Alaska DNR, in partnership with DOTPF, NPS, and EarthScope
+**last_researched_date**: 2026-05-13
 
-Trimble Pivot Web. Caster serves both VRS network-RTK and a nearest-station single-base
-stream. Mountpoints (per 2025 DGGS workshop): MS_RTCM3 (connects to nearest station),
-VRS_SouthCentral_RTCM3, VRS_Interior_RTCM3, VRS_SouthEast_RTCM3; NorthWest and
-NortonSound (experimental) regions also documented. Anonymous sourcetable exposes only
-VRS and MS_RTCM3 mountpoints; individual station streams visible after login. Raw
-single-base streams from named physical stations also accessible via the NPS caster at
-`rtk.nps.gov:2101`. Registration is self-service; the "Organisation" field on the login
-page is present but its requirement is not clarified in public documentation. Endpoint
-confirmed 2026-05-02.
+Trimble Pivot Web (NTRIP Trimble Ntrip Caster 5.2). Caster serves both VRS network-RTK
+and a nearest-station single-base stream. Live sourcetable (2026-05-13) lists 8 STR
+mountpoints: `MS_RTCM3` (connects to nearest station), `VRS_SouthCentral_RTCM3` (+CMRx),
+`VRS_Interior_RTCM3`, `VRS_SouthEast_RTCM3` (+CMRx), `VRS_NorthWest_RTCM3`, and
+`VRS_NortonSound_RTCM3_EXPERIMENTAL` (Seward Peninsula / Norton Sound). All eight
+mountpoints declare GPS+GLO+GAL+BDS — upgrade from the older GPS+GLO-only configuration.
+Anonymous sourcetable exposes only VRS and MS_RTCM3 mountpoints; individual physical
+station streams visible only after login. Raw single-base streams from named physical
+stations also accessible via the NPS caster at `rtk.nps.gov:2101`. Registration is
+self-service; the "Organisation" field on the login page is present but its requirement
+is not clarified in public documentation.
 
 ---
 
@@ -1985,18 +2022,22 @@ confirmed 2026-05-02.
 **type**:      single-base
 **access**:    conditions — credentials provisioned by emailing gnss_posnav@nps.gov; restriction scope unclear
 **pipeline-access**: conditions
-**stations**:  142 listed; ~128 active as of 2026-05-02 (DESO, GAA2, GAA3, HALE, HAVO, PAAL, SAJU offline)
+**stations**:  141 active mountpoints (live sourcetable 2026-05-13; the seven stations previously offline — DESO, GAA2, GAA3, HALE, HAVO, PAAL, SAJU — are all back)
 **source**:    ntrip.nps.gov (portal) / rtk.nps.gov (NTRIP caster), National Park Service
 **operator**:  National Park Service (NPS)
+**last_researched_date**: 2026-05-13
 
-RTCM MSM4, 1-second streams. 142 stations spanning CONUS, Alaska, Pacific (Hawaii,
-American Samoa), Marianas; includes ACORN physical stations in Alaska. Portal at
-ntrip.nps.gov; NTRIP caster endpoint is rtk.nps.gov:2101. Datum: NAD 1983 (2011)
-2010.0, transitioning to MYCS3 (positions updated February 2026). Accounts provisioned
-manually by NPS staff via gnss_posnav@nps.gov; no public eligibility policy — described
-internally as supporting NPS mapping and survey projects, but access has been extended to
-ACORN partners and external contractors. Not in pipeline (credentials required;
-sourcetable not publicly accessible). Confirmed alive 2026-05-02.
+RTCM 3.2 (most stations) / RTCM 3.4 (newest), 1-second single-base streams; declared
+message set `1004(1),1005/1007(5),PBS(10)`. 141 active mountpoints spanning CONUS,
+Alaska, Pacific (Hawaii, American Samoa), Marianas; includes ACORN physical stations in
+Alaska. Constellations: GPS+GLO+GAL+BDS network-wide per live sourcetable — upgrade from
+the earlier MSM4 GPS-only configuration documented in 2022. Portal at ntrip.nps.gov;
+NTRIP caster endpoint is rtk.nps.gov:2101. Datum: NAD 1983 (2011) 2010.0; MYCS3 (NGS
+Multi-Year CORS Solution 3, ITRF2020 epoch 2020.00) applied 2026-02-13 using August 2025
+data. Accounts provisioned manually by NPS staff via gnss_posnav@nps.gov; no public
+eligibility policy — described internally as supporting NPS mapping and survey projects,
+but access has been extended to ACORN partners and external contractors. Not in
+pipeline (credentials required; sourcetable not publicly accessible).
 
 ---
 
@@ -4561,7 +4602,8 @@ public caster.
 **status**:    other
 **country**:   US-IL
 **date_added**: 2026-05-07
-**reason**:    announced/under construction; no live NTRIP endpoint as of 2026-05-07.
+**last_researched_date**: 2026-05-13
+**reason**:    announced/under construction; no live NTRIP endpoint as of 2026-05-13.
                IDOT launched network installation in November 2024 with $4.5M federal
                (ADCMS grant) + matching state funds ($6.25M total); ~70 sites statewide
                planned. IDOT described it as "the first free public network of its kind

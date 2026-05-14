@@ -216,7 +216,7 @@
       "lon": -94.0,
       "tier": "free",
       "vrs": true,
-      "stations_declared": null
+      "stations_declared": 140
     },
     {
       "id": "odot_rtn",
@@ -528,7 +528,7 @@
       "vrs": true,
       "access": "registration",
       "stations_declared": 39,
-      "note": "39 stations statewide (Alaska DNR / DOTPF / NPS / EarthScope). Free, self-service registration. VRS network-RTK and nearest-station single-base streams at acorn-gnss.net:2101; no professional licence required to sign up.",
+      "note": "39 reference stations (Alaska DNR / DOTPF / NPS / EarthScope) feeding regional VRS solutions for South Central, Interior, Southeast, and Northwest Alaska, plus a nearest-station single-base stream. Free self-service registration; no professional licence field.",
       "registration": "https://www.acorn-gnss.net"
     },
     {
@@ -541,8 +541,8 @@
       "tier": "free",
       "access": "conditions",
       "registration": "https://ntrip.nps.gov",
-      "stations_declared": 142,
-      "note": "~128 active stations across the US and territories (of 142 listed), single-base streams. Operated by National Park Service. Request access via ntrip.nps.gov; whether access extends beyond NPS partners is currently unclear."
+      "stations_declared": 141,
+      "note": "141 single-base mountpoints across CONUS, Alaska, Hawaii, American Samoa, and the Marianas. Operated by the National Park Service. Request credentials via ntrip.nps.gov; whether access extends beyond NPS partners is unclear."
     },
     {
       "id": "remos_ven",
@@ -1766,7 +1766,7 @@
       "lon": -90.0,
       "tier": "free",
       "vrs": true,
-      "stations_declared": 180
+      "stations_declared": 115
     },
     {
       "id": "fprn",
@@ -1865,7 +1865,7 @@
       "lon": -84.7,
       "tier": "free",
       "vrs": true,
-      "stations_declared": 120
+      "stations_declared": 95
     },
     {
       "id": "nysnet",
@@ -1887,7 +1887,7 @@
       "lon": -86.2,
       "tier": "free",
       "vrs": true,
-      "stations_declared": 70
+      "stations_declared": 60
     },
     {
       "id": "iartn",
