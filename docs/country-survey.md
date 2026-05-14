@@ -542,8 +542,8 @@ _Last updated: 2026-04-22._
 **date_added**: 2026-05-06
 
 - **Free government RTK**: none for RTK. SWEPOS (Lantmäteriet, `nrtk-swepos.lm.se:80`
-  or `:8500`, VRS) — free DGNSS tier sub-metre only (out of scope for cm-grade work;
-  host `dgnss-swepos.lm.se:2101`). Network RTK subscription 12,000 SEK/yr (~$1,050/yr)
+  or `:8500`, VRS) — DGNSS sub-service is included with the paid subscription but
+  delivers only sub-metre accuracy (`dgnss-swepos.lm.se:2101`). Network RTK subscription 12,000 SEK/yr (~$1,050/yr)
   for 1–3 devices; 1,000-min pot or 90-day block available; expensive for a hobbyist.
   → networks.md: `swepos`
 - **Volunteer**: rtk2go 28 SE bases, Centipede 1 SE node. Thin relative to Sweden's
@@ -1650,14 +1650,15 @@ similarly have no published coverage for these jurisdictions.
   - **GeoCORS / Survey+** (`en.surveyplusmx.com`): 55+ stations nationally; 15-day demo
     available; MXN 13,200/yr + IVA (Hi-Target / GeoMax receivers) or MXN 17,600/yr + IVA
     (other brands); monthly tiers MXN 1,320–1,760 + IVA. → networks.md: `geocors_mx`
-  - **Hi-Target Red CORS** (resellers such as `puntovisado.com`): per-month rate not published;
-    resold through GNSS equipment dealers. → networks.md: `hitarget_cors_mx`
-- **Volunteer**: rtk2go 5 MX bases (Tampico area, Querétaro area, Puebla, Tijuana area, Sinaloa).
-  EarthScope NOTA provides 17 MEX-coded single-base stations (free, in-pipeline) concentrated
-  in Baja California and southern Mexico.
+  - **Hi-Target Red CORS** (resellers such as `puntovisado.com`): MXN 2,350/month, IVA included
+    (Punto Visado 1-month licence); resold through GNSS equipment dealers.
+    → networks.md: `hitarget_cors_mx`
+- **Volunteer**: rtk2go 6 MX bases (Tampico area, Monterrey/Coahuila area ×2, Querétaro
+  area, Puebla, Tijuana area). EarthScope NOTA provides 18 MEX-coded single-base stations
+  (free, in-pipeline) concentrated in Baja California and southern Mexico.
 - **Gap**: no free RTK/NTRIP endpoint in Mexico. RGNA is confirmed RINEX/PPK-only.
   EarthScope NOTA is the only confirmed free in-pipeline option, covering mainly the
-  northern border zone (17 MEX-coded stations).
+  northern border zone (18 MEX-coded stations).
 
 ### PE — Peru
 
@@ -3100,13 +3101,15 @@ similarly have no published coverage for these jurisdictions.
 **date_added**: 2026-04-29
 
 - **Free government RTK**: none. CENACARTA (Centro Nacional de Cartografia e
-  Teledetecção, `cenacarta.com`; `cenacarta.gov.mz` offline 2026-05-12; under
-  Ministry of Agriculture) operates
-  ~8 fixed reference stations (CORS) (CHMO, MPTB, QLMN, NACL, LCNG, XXAI, MTND, SOFL) listed
-  in the Corsmap/AFREF continental dataset; no public NTRIP caster or RTK
-  streaming host:port has been found. DINAGECA (Direcção Nacional de
-  Geografia e Cadastro, under Ministry of Land and Environment) handles
-  cadastral geodesy; no independent NTRIP caster confirmed.
+  Teledetecção, under Ministry of Agriculture) operates ~8 fixed reference
+  stations (CORS) (CHMO, MPTB, QLMN, NACL, LCNG, XXAI, MTND, SOFL) listed in
+  the Corsmap/AFREF continental dataset; no public NTRIP caster or RTK
+  streaming host:port has been found. Both historical operator URLs are
+  currently dysfunctional (`cenacarta.gov.mz` ECONNREFUSED; `cenacarta.com`
+  repurposed to unrelated content-farm content as of 2026-05-14) — direct
+  phone/email is the only channel. DINAGECA (Direcção Nacional de Geografia
+  e Cadastro, under Ministry of Land and Environment) handles cadastral
+  geodesy; no independent NTRIP caster confirmed.
   → networks.md: `cenacarta_mz`
 - **Volunteer**: none. Zero MZ stations on rtk2go or Centipede. Four TrigNet ZA
   stations near the Limpopo border (Nspt, Pbwa, Sprt, Tdou) are in pipeline via

@@ -18,7 +18,8 @@
 
 - **2023**: Original Taipa Grande station (DSMG, 2008) relocated and renamed to TAGR (Taipa Grande GNSS Reference Station) following a rooftop improvement project at the Macao Meteorological and Geophysical Bureau building. Station code and site name changed; location remains on same rooftop.
 - **2021**: DSCC upgraded MoSRef to support BeiDou Navigation Satellite System (BDS) in addition to GPS and GLONASS. All four stations now track GPS + GLONASS + BDS continuously 24 × 7.
-- **2016**: University of Macau station (UMAC) added as third full station (Hengqin Island campus), and a data-sharing agreement with Hong Kong GNSS reference stations initiated.
+- **2016**: University of Macau station (UMAC) added as third full station (Hengqin Island campus).
+- **2013**: DSCC and the Hong Kong Lands Department co-launched the project "Data Sharing Between Hong Kong and Macao Satellite Positioning Reference Stations" (DSCC primary source: dscc.gov.mo services system page). Precursor: a 2012 joint control survey across 3 Macao + 4 HK reference stations established the transformation between the Macao and Hong Kong geodetic coordinate systems.
 - **November 2012**: NTRIP protocol introduced, enabling real-time mobile RTK access via MoSRef.
 - **2009**: MoSRef service established by DSCC.
 - **2002**: First reference station (FOMO — Mount Fortress) constructed.
@@ -35,7 +36,7 @@
 | UMAC | University of Macau GNSS Reference Station | Hengqin Island (UM campus) | 2016 |
 | TAGR | Taipa Grande (Tai Tung Shan) GNSS Reference Station | Taipa Island (Meteorological Bureau rooftop) | 2023 (relocated from DSMG 2008) |
 
-- **Four Hong Kong partner stations** accessible via data-sharing agreement (since 2013): HKLT, HKSL, HKMW, HKNP. These extend VRS coverage across the Pearl River Delta region.
+- **Four Hong Kong partner stations** accessible via data-sharing agreement initiated 2013 (project name: "Data Sharing Between Hong Kong and Macao Satellite Positioning Reference Stations"; precursor was a 2012 joint control survey): HKLT, HKSL, HKMW, HKNP. These extend VRS coverage across the Pearl River Delta region.
 - **Hardware**: Leica GR50 GNSS receivers at most stations. Recording interval: 10 seconds. Data format: RINEX v3.02.
 - **Services provided** (all free): DGPS, single-base RTK, Network RTK (VRS), static RINEX download (up to 3 months of observation data), and coordinate automatic computation service for static surveying data.
 - **Satellite systems**: GPS (US), GLONASS (Russia), BeiDou/BDS (China). Galileo reception status not confirmed in public documentation.

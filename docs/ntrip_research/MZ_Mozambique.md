@@ -1,5 +1,5 @@
 # Mozambique [MZ] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12 (re-verified; status unchanged from 2026-05-06)
+**Date researched:** 2026-05-14 (re-verified; status unchanged from 2026-05-06)
 
 ## Status: Physical CORS exists but NO confirmed public NTRIP endpoint
 
@@ -40,7 +40,10 @@ No announcement of a live public NTRIP service or subscription portal found thro
 ## Context Notes
 
 - Corsmap.com (previously documented Mozambique's stations) is now offline — domain redirects to HugeDomains reseller.
-- CENACARTA's older website (cenacarta.gov.mz) was unreachable at the 2026-05-06 research date; the working CENACARTA web service is now `www.cenacarta.com` (WebMapper at /pmapper/) — still no NTRIP caster published.
+- **CENACARTA web presence is currently broken** (re-verified 2026-05-14):
+  - `cenacarta.gov.mz` — ECONNREFUSED on HTTPS; remains unreachable since at least 2026-05-06.
+  - `www.cenacarta.com` — the domain still resolves but the content is now an unrelated Thai/English content-farm blog (articles about plumbing, SEO, ERP software etc.); the `/pmapper/` path returns HTTP 404. The domain appears to have been sold or hijacked since the 2018 datahub.io snapshot that listed it as the Mozambique WebMapper. UN-SPIDER still describes CENACARTA but no longer publishes a working URL.
+  - Net effect: there is no currently-reachable CENACARTA web property (no portal, no WebMapper, no contact form). Direct phone/email contact (numbers below) is the only remaining channel.
 - A separate national SDI portal `www.mozgis.gov.mz` exists (Rede Nacional SIG / ArcGIS-based) — geospatial layers only, no NTRIP product.
 - **MIRASpaco connection**: The Nigerian operator MIRASpaco lists Mozambique as one of three countries where it installs/rehabilitates GNSS CORS networks (alongside Nigeria and Angola). This suggests the CENACARTA stations are MIRASpaco-installed; whether MIRASpaco hosts a corresponding MZ NTRIP caster has not been confirmed publicly.
 - No Mozambique mountpoints on RTK2GO, BKG NTRIP, GEODNET, ONOCOY, or any global caster directory. Nearest rtk2go bases: mabuda_farm (Eswatini, 85 km from Maputo) and LouwNPP (north-east ZAF, 226 km) — practical for southern Maputo Province only.
@@ -49,7 +52,7 @@ No announcement of a live public NTRIP service or subscription portal found thro
 
 | Service | URL | Cost |
 |---------|-----|------|
-| **CENACARTA** — 8-station CORS network built primarily for RINEX/post-processing (land administration, geodetic reference frame); direct contact required for access | cenacarta.gov.mz (offline at research date) | Unknown — contact +258 21 300 486 / +258 21 321 959 |
+| **CENACARTA** — 8-station CORS network built primarily for RINEX/post-processing (land administration, geodetic reference frame); direct contact required for access | cenacarta.gov.mz (offline 2026-05-06 → 2026-05-14); cenacarta.com (domain no longer hosts CENACARTA content as of 2026-05-14) | Unknown — contact +258 21 300 486 / +258 21 321 959 |
 
 ## Contact for Access Enquiries
 CENACARTA, Av. Josina Machel 537, Maputo
@@ -60,7 +63,7 @@ Tel: +258 21 300 486 / +258 21 321 959
 - NTRIP-list.com Africa
 - GIM International CORS Africa article
 - Corsmap.com (offline — domain parked)
-- CENACARTA WebMapper: https://www.cenacarta.com/pmapper/ (observed 2026-05-12)
+- CENACARTA WebMapper: https://www.cenacarta.com/pmapper/ (was the active operator URL per 2018 datahub.io; HTTP 404 / domain repurposed to content-farm content by 2026-05-14)
 - UN-SPIDER CENACARTA: https://www.un-spider.org/mozambique-national-cartography-and-remote-sensing-centre-cenacarta
 - Mozambique national SDI: https://www.mozgis.gov.mz/
 - MIRASpaco GNSS service portfolio (lists Mozambique as deployment country): https://miraspaco.com/gnss/

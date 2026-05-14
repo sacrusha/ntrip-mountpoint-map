@@ -9,7 +9,7 @@
 | **Foreign-operated NTRIP streams covering NI** | Yes — EarthScope NOTA: `CNG2_RTCM3P3` (12.50 N, -86.70 — near Chinandega), `JAPO_RTCM3P3` (11.53 N, -85.68 — near Juigalpa/San Carlos area). Both RTCM 3.3, GPS+GLO+BDS+GAL+SBAS+QZS, TRIMBLE NETR9, single-base. Auth required (Y), no NMEA, fee flagged `SEAT_REQUIRED` |
 | **Domestic government CORS network** | Yes — INETER CORS (Dirección General de Geodesia y Cartografía); RINEX post-processing only |
 | **INETER access portal** | https://consultacf.ineter.gob.ni (Catastro Físico) — RINEX downloads on request |
-| **EarthScope sourcetable** | `ntrip.earthscope.org:2101` (RTCM 3 streams listed for NIC, MEX, HND, CRI, etc.; `gnss.earthscope.org` is the portal, not the caster) |
+| **EarthScope sourcetable** | `ntrip.earthscope.org:2101` (RTCM 3 streams listed for NIC, MEX, HND, CRI, etc.). EarthScope's user/licensing portal lives at `earthscope.org/user/` (NULA acceptance, seat assignment); there is no separate `gnss.earthscope.org` hostname — caster, portal and archive (`gage-data.earthscope.org`) are distinct names on the `earthscope.org` tree. |
 | **EarthScope access policy** | Free non-commercial via NULA (No-cost User License Agreement) + a seat assignment; commercial use USD 1,000 / seat / year |
 | **hobbyist_eligibility — EarthScope** | Yes — NULA covers personal, hobbyist, educational, non-commercial use. Seat allocation requires registration with EarthScope/UNAVCO |
 | **legal_residency_required** | No — EarthScope NULA is open globally |

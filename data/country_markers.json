@@ -313,6 +313,7 @@
       "access": "paid",
       "registration": "https://www.ua-pos.net",
       "yearly_cost": "15,000 UAH/yr (~$366/yr)",
+      "yearly_cost_normalized": 366,
       "note": "Nationwide network, hub at Mukachevo (western Ukraine). Wartime-reduced rate (April 2025). Pauses automatically during air-raid alerts."
     },
     {
@@ -327,7 +328,8 @@
       "access": "paid",
       "registration": "https://gnss.org.ua",
       "yearly_cost": "19,000 UAH/yr (~$460/yr)",
-      "note": "Largest commercial network in Ukraine; 200+ stations, Leica VRS platform. Agro variant 19,200 UAH/yr; shorter terms available. Wartime discount plans for eastern and southern oblasts."
+      "yearly_cost_normalized": 460,
+      "note": "Largest commercial network in Ukraine; 200+ stations, Leica VRS platform. Shorter terms available. Wartime discount plans for eastern and southern oblasts."
     },
     {
       "id": "rtkhub",
@@ -341,6 +343,7 @@
       "access": "paid",
       "registration": "https://rtkhub.com",
       "yearly_cost": "10,500 UAH/yr (~$256/yr)",
+      "yearly_cost_normalized": 256,
       "note": "Nationwide commercial RTK network (formerly TNT-TPI). Caster address disclosed after registration. Wartime-reduced rate."
     },
     {
@@ -355,6 +358,7 @@
       "access": "paid",
       "registration": "https://kyivstar.ua/business/products/geodesiya",
       "yearly_cost": "17,700 UAH/yr (~$430/yr)",
+      "yearly_cost_normalized": 430,
       "note": "97 stations, Trimble VRS + Nearest; requires Kyivstar contract. xFill Premium continuity. Pauses during air-raid alerts."
     },
     {
@@ -382,7 +386,7 @@
       "access": "registration",
       "registration": "https://ugrf.mlhud.go.ug/SBC",
       "stations_declared": 78,
-      "note": "78 stations, free. Single-base and VRS (I-Max) mountpoints. Free registration via UGRF portal."
+      "note": "Single-base, VRS, MAC (incl. iMAX) and FKP mountpoints."
     },
     {
       "id": "etcors",
@@ -504,10 +508,10 @@
       "lon": 101.0,
       "tier": "free",
       "vrs": true,
-      "access": "registration",
+      "access": "conditions",
       "registration": "https://dol-rtknetwork.com/index.php/register_gnss_beta",
-      "stations_declared": null,
-      "note": "~130 stations, free. Requires a Thai national ID — foreign visitors cannot self-register. Three rtk2go community bases inside Thailand (TH-Kukot near Bangkok, sylvania near Rayong, LivingOnCrypto in Nakhon Sawan) offer a foreign-accessible fallback."
+      "stations_declared": 114,
+      "note": "Free trial, but registration requires a Thai national ID — foreign visitors cannot self-register. Three rtk2go community bases inside Thailand (TH-Kukot near Bangkok, sylvania near Rayong, LivingOnCrypto in Nakhon Sawan) offer a foreign-accessible fallback."
     },
     {
       "id": "tpos",
@@ -749,7 +753,8 @@
       "yearly_cost": "5,000+ NOK/yr (~$460/yr)",
       "yearly_cost_normalized": 460,
       "registration": "https://www.kartverket.no",
-      "note": "280+ stations. Agriculture tier NOK 5,000/yr; standard surveying tier NOK 11,000/yr (both ex-VAT). 1-month free trial for new customers. Volunteer rtk2go/Centipede bases cover populated areas south of ~63°N."
+      "stations_declared": 280,
+      "note": "Agriculture tier NOK 5,000/yr; standard surveying tier NOK 11,000/yr (both ex-VAT). 1-month free trial for new customers. Volunteer rtk2go/Centipede bases cover populated areas south of ~63°N."
     },
     {
       "id": "signal",
@@ -762,8 +767,9 @@
       "vrs": true,
       "access": "paid",
       "yearly_cost": "€829/yr (~$905/yr)",
+      "yearly_cost_normalized": 905,
       "registration": "https://www.gu-signal.si",
-      "note": "€622/yr (~$680/yr) early-discount tier available. Volunteer rtk2go/Centipede bases provide partial free coverage."
+      "note": "Early-discount tier sometimes available — confirm with GURS before paying. Volunteer rtk2go/Centipede bases provide partial free coverage."
     },
     {
       "id": "swepos",
@@ -776,8 +782,9 @@
       "vrs": true,
       "access": "paid",
       "yearly_cost": "12,000 SEK/yr (~$1,050/yr)",
+      "yearly_cost_normalized": 1050,
       "registration": "https://www.lantmateriet.se/en/geodata/our-products/product-list/swepos-network-rtk/",
-      "note": "A free DGNSS tier exists but sub-metre only — out of scope for cm-grade work. 1,000-min pot or 90-day block also available at 5,000 SEK."
+      "note": "10-day free trial for new customers. The included DGNSS sub-service is sub-metre only, not centimetre RTK. Shorter-commitment blocks (90 days, 1,000-minute pot) also available."
     },
     {
       "id": "sirent",
@@ -790,6 +797,7 @@
       "vrs": true,
       "access": "paid",
       "yearly_cost": "S$107/month (~$960/yr)",
+      "yearly_cost_normalized": 960,
       "registration": "https://www.sla.gov.sg",
       "note": "3-day trial available but requires SingPass (Singapore residents only)."
     },
@@ -820,6 +828,7 @@
       "vrs": true,
       "access": "paid",
       "yearly_cost": "₺8,135/yr (~$247) RTK; ₺2,985/yr (~$91) DGPS",
+      "yearly_cost_normalized": 247,
       "registration": "https://tusaga-aktif.gov.tr",
       "note": "Online registration requires a Turkish national ID (TC Kimlik No) — foreign users cannot self-register. Monthly (₺1,000) and 6-month (₺6,000) plans available for occasional use. ₺550 one-time device registration fee also applies. Prices include VAT."
     },
@@ -951,6 +960,7 @@
       "vrs": true,
       "access": "paid",
       "yearly_cost": "TWD 300/receiver/day (~$9/day) plus TWD 2,000 / 5-yr permit (~$60)",
+      "yearly_cost_normalized": 462,
       "registration": "https://www.nlsc.gov.tw",
       "note": "Pay-per-use; 78 stations, VBS-RTK. Caster and portal both appear geo-blocked from outside Taiwan, so foreign users face a non-trivial registration path. Annual contracts available for regular users."
     },
@@ -979,8 +989,9 @@
       "vrs": true,
       "access": "paid",
       "yearly_cost": "€70/yr (~$79)",
+      "yearly_cost_normalized": 79,
       "registration": "https://skpos.gku.sk/register/",
-      "note": "~26 stations. Monthly plans (~€25/mo) suit short projects. Registration accepts private individuals from most countries — no trade licence required. Free for Slovak public-sector bodies."
+      "note": "~26 stations. Monthly plans suit short projects. Registration accepts private individuals from most countries — no trade licence required. Free for Slovak public-sector bodies."
     },
     {
       "id": "soi_cors",
@@ -1406,7 +1417,7 @@
       "tier": "paid",
       "access": "paid",
       "stations_declared": 70,
-      "note": "70 single-base stations under IGN/Ministry of Defence (35+ active). Access requires application + payment to IGN; no online self-service portal. IGN's policy does not explicitly exclude individuals, but there is no hobbyist-accessible sign-up path."
+      "note": "Single-base stations under IGN/Ministry of Defence (35+ active). Access requires application + payment to IGN; no online self-service portal. IGN's policy does not explicitly exclude individuals, but there is no hobbyist-accessible sign-up path."
     },
     {
       "id": "eft_cors",
@@ -1419,8 +1430,9 @@
       "vrs": true,
       "access": "paid",
       "yearly_cost": "₽50,400/yr (~$593/yr)",
+      "yearly_cost_normalized": 593,
       "registration": "https://bp.eft-cors.ru/register",
-      "note": "Hundreds of stations across Russia, multi-constellation. Day pass ~₽420 (~$5). Basic post-processing data free. 3-day RTK trial available."
+      "note": "Hundreds of stations across Russia, multi-constellation. Day-pass and shorter plans available. Basic 30s RINEX free. 3-day RTK trial available."
     },
     {
       "id": "rtknet",
@@ -1432,8 +1444,9 @@
       "tier": "paid",
       "access": "paid",
       "yearly_cost": "₽30,000/yr (~$353/yr)",
+      "yearly_cost_normalized": 353,
       "registration": "https://rtknet.ru",
-      "note": "300+ stations nationwide; ports 6030–6041 by federal district. 3-day trial available."
+      "note": "Covers all federal districts; ports 6030–6041 by district. 3-day trial available."
     },
     {
       "id": "hive_cors",
@@ -1445,7 +1458,7 @@
       "tier": "paid",
       "access": "paid",
       "registration": "https://hive.geosystems.aero",
-      "note": "386 stations across 61 regions on landing page May 2026 (down from 742 / 79 regions earlier — reason unexplained on the site). Pay-per-use: daily RTK per station (prices vary; login required) or hourly post-processing. First ~5 min per station free."
+      "note": "Aggregator of independently owned stations across Russian regions; the station count visible on the landing page contracted sharply between two recent checks (reason unexplained on the site). Pay-per-use: daily RTK per station (prices vary; login required) or hourly post-processing. First ~5 min per station free."
     },
     {
       "id": "geospider",
@@ -1458,8 +1471,9 @@
       "vrs": true,
       "access": "paid",
       "yearly_cost": "₽44,100/yr (~$519/yr)",
+      "yearly_cost_normalized": 519,
       "registration": "https://geospider.ru",
-      "note": "200+ stations across NW and Central Russia. Day pass from ₽315. Network RTK in local coordinate system."
+      "note": "200+ stations across NW and Central Russia. Short day/week tiers available. Network RTK in local MSK coordinate system."
     },
     {
       "id": "qianxun",
@@ -2007,9 +2021,10 @@
       "tier": "paid",
       "access": "paid",
       "yearly_cost": "6,000 TND/yr (~$2,070/yr)",
+      "yearly_cost_normalized": 2070,
       "registration": "https://www.otc.nat.tn/geodesy/gnss/subscription",
       "stations_declared": 23,
-      "note": "23 physical stations; Saharan south not covered. Shorter durations from 60 TND/day also available. VAT applicability not stated on public subscription page."
+      "note": "Saharan south not covered. Shorter durations from 60 TND/day also available."
     },
     {
       "id": "agrs_nl",
@@ -2124,7 +2139,8 @@
       "access": "paid",
       "registration": "https://kadaster.sx/services/",
       "yearly_cost": "XCG 3,600/yr (~$2,022/yr)",
-      "note": "Covers Sint Maarten island (34 km²); pricing targets professional surveyors."
+      "yearly_cost_normalized": 2022,
+      "note": "Pricing targets professional surveyors. Nearest free fallback is EarthScope CN59 on Anguilla (~20 km, NULA non-commercial)."
     },
     {
       "id": "rgna_mx",
@@ -2198,7 +2214,7 @@
       "lon": -88.9,
       "tier": "weird",
       "registration": "https://e.cnr.gob.sv",
-      "note": "Government reference stations (San Salvador, San José Las Flores, Vimig) publish free RINEX files for post-processing via the eCNR portal. No real-time NTRIP service is offered."
+      "note": "CNR/IGCN hosts the SSIA reference station near San Salvador and publishes free RINEX for post-processing via the eCNR portal. No real-time NTRIP service is offered."
     },
     {
       "id": "survey3g_sv",
@@ -2213,7 +2229,7 @@
       "yearly_cost_normalized": 450,
       "stations_declared": 6,
       "registration": "https://survey3g.com/servicios-de-ntrip/",
-      "note": "Only commercial RTK provider in the country; six stations cover ~90% of national territory. Monthly tier $45 is the cheapest sustained-use option. Free alternative: EarthScope NOTA station SSIA near San Salvador (NULA, non-commercial)."
+      "note": "Only commercial RTK provider in the country; ~90% national coverage. Free alternative: EarthScope NOTA station SSIA near San Salvador (NULA, non-commercial)."
     },
     {
       "id": "sirgas_chile",
@@ -2260,7 +2276,7 @@
       "vrs": true,
       "stations_declared": 21,
       "registration": "https://geodesie.sn/",
-      "note": "21 PROCASEF + JICA stations delivering VRS / i-MAX corrections; restored March 2026 after a disk failure. Subscription required; tariff not published, contact ANAT via geodesie.sn."
+      "note": "PROCASEF + JICA stations delivering VRS / i-MAX corrections; restored March 2026 after a disk failure. Subscription required; tariff not published."
     },
     {
       "id": "cnigs_ht",
@@ -2282,7 +2298,7 @@
       "tier": "weird",
       "stations_declared": 8,
       "registration": "https://miglis.sr/cors-data-stations/",
-      "note": "8-station national CORS network operated by the land registry; paid since July 2024 but tariffs are quote-only and the workflow targets institutions. Apply via corsserver email; no public host:port or hobbyist tier."
+      "note": "National CORS network operated by the land registry; paid since July 2024 but tariffs are quote-only and the workflow targets institutions. No public host:port and no published hobbyist tier."
     },
     {
       "id": "hodapro_ir",
@@ -2375,7 +2391,7 @@
       "lon": 1.0,
       "tier": "weird",
       "registration": "https://urbanisme.gouv.tg",
-      "note": "National CORS network made mandatory for all topographic and cadastral work by a March 2026 inter-ministerial communiqué (three-month compliance window). No public host:port; credentials issued by IGNTOGO on request. The igntogo.tg portal is not yet live."
+      "note": "National CORS network made mandatory for all topographic and cadastral work by a March 2026 inter-ministerial communiqué (three-month compliance window). No public host:port; credentials issued by IGNTOGO on request. The igntogo.tg portal was unreachable as of May 2026."
     },
     {
       "id": "sstp_by",
@@ -2513,6 +2529,7 @@
     {
       "id": "nyawipev_sj",
       "name": "NYAWIPEV (Centipede) + IGS Ny-Ålesund",
+      "region": "Svalbard (Ny-Ålesund area)",
       "country": "SJ",
       "lat": 78.92,
       "lon": 11.92,
@@ -2564,7 +2581,7 @@
       "tier": "weird",
       "registration": "https://agriculture.gov.tt/divisions-units/divisions/surveys-and-mapping/online-web-services/",
       "stations_declared": 5,
-      "note": "Five-station national network (Surveys and Mapping Division). Ministry still lists the service in 2026 but the gpscors.gov.tt portal stopped resolving externally — access likely ministry-network-internal or limited to licensed surveyors."
+      "note": "Five-station national network (Surveys and Mapping Division). Ministry lists the service but the gpscors.gov.tt portal stopped resolving externally — access likely ministry-network-internal or limited to licensed surveyors."
     },
     {
       "id": "umhvorvisstovan_fo",
