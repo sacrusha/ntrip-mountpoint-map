@@ -618,9 +618,30 @@ IGN registration covers all): ARAGEA (Aragón), ERVA (Valencia), ITACYL
 (Castilla y León), RAP (Andalucía), REGAM (Murcia), REP (Extremadura), RGAC
 (Cantabria), RGAN (Navarra), RGAPA (Asturias — open access, no auth), RGE
 (Basque Country), RGM (Madrid), RIOJA (La Rioja), XGAIB (Balearics), Puertos
-del Estado. **CATNET** (Catalonia, ICGC) is separate — own caster
-`catnet-ip.icgc.cat:2101` with own registration; sourcetable retrieved 2026-05-12
-(VRS3M MSM + ~25 single-station legacy RTCM 2 mountpoints).
+del Estado. **CATNET** (Catalonia) is separate — own caster and own registration
+(see `catnet` block below).
+
+---
+
+## catnet — CATNET (ES — Catalonia)
+
+**status**:    free
+**date_added**: 2026-05-14
+**country**:   ES — Catalonia
+**operator**:  ICGC — Institut Cartogràfic i Geològic de Catalunya
+**host:port**: `catnet-ip.icgc.cat:2101` (previous host: `catnet-ip.icc.es:8080`; updated March 2019)
+**type**:      physical-vrs (VRS3M + ~25 single-station legacy RTCM 2 mountpoints)
+**access**:    free; ICGC account registration required
+**pipeline-access**: registration
+**registration**: https://catnet-ip.icgc.cat/
+**vrs**:       yes — RTKAT virtual station service (RTCM 2.3 / 3.0 + centimetre precision)
+**stations**:  ~25 physical reference stations covering Catalonia
+**signals**:   GPS+GLO+GAL+BDS (VRS3M MSM); legacy GPS-only RTCM 2 mountpoints also served
+**last_researched_date**: 2026-05-12
+
+ICGC regional free RTK caster for Catalonia. Separate operator and registration from national
+ERGNSS; single ICGC account required but no professional licence. Sourcetable live-confirmed
+2026-05-12 (Server: NTRIP Spider/7.11.1.109). Operational since January 2006.
 
 ---
 
@@ -1191,7 +1212,7 @@ post-registration only.
 
 **status**:    free
 **host:port**: `rtn.usm.edu:2101`
-**type**:      physical-coord-vrs
+**type**:      single-base
 **access**:    registration; free via usm.edu Gulf Coast Geospatial Center portal
 **pipeline-access**: registration
 **stations**:  ~52 CORS (Mississippi-focused; 14 STR live 2026-05-13)
@@ -1518,7 +1539,7 @@ stations under EUPOS cooperation.
 
 ## estpos — ESTPOS (EE)
 
-**status**:    free
+**status**:    free (until 31 Aug 2026; post-date tariff unannounced)
 **date_added**: 2026-05-13
 **country**:   EE — Estonia
 **operator**:  Maa- ja Ruumiamet (Estonian Land and Spatial Development Board; formerly Maaamet)
@@ -1983,7 +2004,7 @@ NULP) and SULP00UKR0 (Lviv, IGS) — free reference, not NTRIP corrections.
 Largest commercial CORS network in Ukraine. Nationwide coverage with 200+ stations on Leica
 Spider VRS platform. Wartime discount packages available for eastern and southern oblasts.
 Drone/UAV mode via port 2222; MSK local coordinate system ports via rtk.gnss.org.ua.
-Website and portal confirmed active as of April 2025.
+Website and portal confirmed active as of 2026-05-13.
 
 ---
 
@@ -2222,10 +2243,12 @@ commercial services.
 **operator**:  SARNET s.r.l. (private consortium, geodesia.biz)
 **source**:    geodesia.biz (SARNET s.r.l.)
 
-Sardinia regional GNSS network. ~14 permanent stations covering Sardinia. Services: RTK
-single-base, SARNET VRS (RTCM 3.0), DGPS, RINEX archive. No professional licence restriction
-stated; hobbyists not explicitly excluded. Zero rtk2go or Centipede stations on the island —
-SARNET is the only documented correction source for Sardinia.
+Sardinia regional GNSS network referenced in public procurement documents (active subscriptions
+via geodesia.biz confirmed). Services claimed: RTK single-base, SARNET VRS (RTCM 3.0), DGPS,
+RINEX archive. Note: research summary table describes the original SARNET public project as
+"proposed, never activated"; the current commercial service under the SARNET brand at geodesia.biz
+may be a separate successor offering. Zero rtk2go or Centipede stations on the island —
+SARNET is the only Sardinia-specific correction service if operational; HxGN SmartNet Italy (ItalPOS) also covers Sardinia as part of its national service.
 
 **investigate**: confirmed NTRIP caster host:port — contact via geodesia.biz/iscrizione-sarnet.
 
@@ -2235,7 +2258,7 @@ SARNET is the only documented correction source for Sardinia.
 
 **status**:    free
 **host:port**: `www.acorn-gnss.net:2101`
-**type**:      vrs-only (anonymous sourcetable)
+**type**:      physical-vrs (VRS solutions + MS_RTCM3 nearest-station single-base; anonymous sourcetable)
 **access**:    free; self-service registration at acorn-gnss.net (no professional licence field)
 **pipeline-access**: registration
 **stations**:  39 physical reference stations underlying 4 regional VRS solutions + 1 experimental
@@ -3274,7 +3297,8 @@ users should test `VRS.WGS84` first.
                egnss.nlsc.gov.tw also ECONNREFUSED on direct fetch 2026-05-13)
 **access**:    pay-per-use, web membership registration
 **registration**: https://egnss.nlsc.gov.tw/content.aspx?i=20150625102221503
-**yearly_cost**: TWD 300/receiver/day (~$9/day) plus TWD 2,000/5-yr permit (~$60)
+**yearly_cost**: TWD 300/receiver/day (~$9/day) plus TWD 2,000/5-yr permit (~$60);
+                normalized assuming ~50 active days/year: 50×$9 + $12/yr permit ≈ $462
 **yearly_cost_normalized**: 462
 **stations**:  78 physical base stations (VBS virtual output); 4 stations are official IGS members
 **source**:    egnss.nlsc.gov.tw (NLSC/MoI — 國土測繪中心)
@@ -3355,6 +3379,7 @@ SST status for JUPEM subscriptions not confirmed; prices as published.
 **status**:    paid
 **date_added**: 2026-05-13
 **country**:   CZ — Czech Republic
+**operator**:  ČÚZK — Český úřad zeměměřický a katastrální (Czech Office for Surveying, Mapping and Cadastre)
 **last_researched_date**: 2026-05-12
 **type**:      VRS (network solution)
 **host:port**: czepos.cuzk.gov.cz:2101 (RTK3 MSM, RTCM 3.2); port 2111 (legacy Leica Spider proxy)
@@ -4803,7 +4828,7 @@ Committee via cadastre.am.
 
 ## geocors_ge — GeoCors (GE)
 
-**status**:    restricted
+**status**:    paid
 **date_added**: 2026-05-13
 **country**:   GE — Georgia
 **last_researched_date**: 2026-05-12
@@ -4825,12 +4850,13 @@ under the Ministry of Justice. The 26-station network includes 7 Class A
 stations forming the unified national spatial grid and expanded Class B stations
 providing denser regional coverage. The Leica Spider Business Center platform
 handles subscription management; a Sign Up page exists at the SBC URL.
-The service targets licensed surveyors and cadastral users. Pricing is not
+The service is oriented toward professional and cadastral use; no explicit restriction
+on non-professional users has been found in publicly available terms. Pricing is not
 listed on the public website; the intended NTRIP port is 2101 (standard SBC
 default). The 2024–2025 Georgian political crisis (disputed parliamentary
 election) has not been reported to affect the technical operation of GeoCors.
 
-Restricted — paid subscription; pricing and access terms not publicly documented; no hobbyist registration path.
+Paid subscription; pricing not publicly listed — contact NAPR via geocors.napr.gov.ge. Registration open via Leica Spider Business Center; eligibility terms not publicly disclosed.
 **investigate**: pricing, mountpoint list, and confirmed access conditions for
 non-professional users.
 
@@ -4857,6 +4883,31 @@ made available commercially after regional network restructuring (e.g. Emilia-Ro
 **source**:    pegasonow.it (Hexagon / Leica Geosystems Italy)
 
 Enterprise-focused commercial NRTK network covering Italy. Not free.
+
+---
+
+## hxgn_smartnet_italy — HxGN SmartNet Italy / ItalPOS (IT)
+
+**status**:    paid
+**date_added**: 2026-05-14
+**country**:   IT — Italy
+**operator**:  Hexagon / Leica Geosystems Italy (service marketed as ItalPOS)
+**host:port**: `it.nrtk.eu:2101`
+**type**:      physical-coord-vrs (nationwide VRS coverage; mainland + islands)
+**access**:    paid subscription
+**registration**: https://it.nrtk.eu
+**yearly_cost**: €385+IVA/yr (~€470/yr, ~$520/yr)
+**yearly_cost_normalized**: 520
+**vrs**:       yes — nationwide VRS including Sardinia, Calabria, and regions without free regional casters
+**stations**:  nationwide (exact count not published; covers all Italian regions)
+**signals**:   GPS+GLONASS+Galileo+BeiDou (MSM)
+**last_researched_date**: 2026-05-13
+
+HxGN SmartNet Italy, branded as ItalPOS, is the Hexagon-operated commercial NRTK
+network covering all of Italy including the islands. It provides VRS corrections for regions without free regional casters,
+including Sardinia (alongside SARNET) and Calabria.
+Professional focus (licensed surveyor and engineering use cases); no explicit hobbyist
+ban in publicly available terms. Subscription via it.nrtk.eu.
 
 ---
 
@@ -5479,8 +5530,7 @@ ODC and igs.org for any additional MG station IDs beyond ABPO00MDG.
 **host:port**: not publicly listed
 **access**:    unknown — host:port not publicly discoverable; CNIGS contact required
 **registration**: cnigs.ht (agency website — accessibility uncertain as of 2026)
-**stations**:  1 confirmed operational (Port-au-Prince, 2018); broader national expansion
-               planned but unconfirmed
+**stations**:  1 reported operational (Port-au-Prince, 2018; current status unconfirmed); broader national expansion planned but unconfirmed
 
 **date_added**: 2026-04-29
 
@@ -6473,7 +6523,7 @@ own. Zero LC mountpoints on rtk2go or Centipede.
 
 ## vc_cors — Saint Vincent and the Grenadines GNSS (VC)
 
-**status**:    free
+**status**:    other
 **country**:   VC — Saint Vincent and the Grenadines
 **type**:      single-base (EarthScope NOTA streams in neighbouring islands; no VC-national caster)
 **host:port**: `ntrip.earthscope.org:2101` (nearest free streams; no VC-territory station)
@@ -6781,7 +6831,7 @@ network coords are open via ArcGIS Africa GeoPortal.
 
 ## ign_bj — IGN Bénin Permanent GNSS Station Network (BJ)
 
-**status**:    free
+**status**:    restricted
 **date_added**: 2026-05-13
 **country**:   BJ — Benin
 **operator**:  IGN Bénin — Institut Géographique National du Bénin (`ign.bj`),
@@ -7173,8 +7223,6 @@ within useful L1+L2 RTK baseline. See `ergnss`.
 **stations**:  unknown; NSGI can establish GNSS infrastructure at local government request
 **operator**:  Stichting Kadaster en Openbare Registers Curaçao (`kadaster.cw`);
                geodetic support available from NSGI (`nsgi.nl`) on request
-
-**date_added**: 2026-05-01
 
 No public RTK correction service or NTRIP caster found for Curaçao. Kadaster Curaçao
 (`kadaster.cw`, confirmed alive 2026-05-01) has no GNSS or NTRIP section. Neither
@@ -7673,6 +7721,9 @@ fiducial stations. Not added to pipeline: paid service.
 
 Commercial NTRIP CORS correction service operated by a Chilean surveying
 equipment company. Brand-agnostic — any NTRIP-capable RTK receiver accepted.
+Currently the only confirmed paid hobbyist-accessible NTRIP service in Chile;
+will become less relevant once the planned public IGM/SHOA national CORS network
+goes live.
 
 ---
 
@@ -8011,7 +8062,7 @@ tariff — cannot determine whether it falls within hobbyist cost range.
 **access**:    no public NTRIP endpoint found; access appears to be via licensed-surveyor
                channel (PPP with GMX Systems Ghana Ltd and Geo-Tech Systems Ltd)
 **yearly_cost**: not applicable (no public commercial tier found)
-**stations**:  ~60 deployed nationwide as of Aug 2025; target 100 by end of 2025
+**stations**:  ~60 deployed nationwide as of Aug 2025; target 100 by end of 2025 (deadline passed; current count unconfirmed)
 **operator**:  Survey and Mapping Division (SMD), Lands Commission (`lc.gov.gh`),
                in PPP with GMX Systems Ghana Ltd and Geo-Tech Systems Ltd
 **source**:    gpsworld.com (GPS World Aug 2025); gna.org.gh (Ghana News Agency Aug 2025);

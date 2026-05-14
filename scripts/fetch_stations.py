@@ -157,6 +157,10 @@ SOURCES = [
      "color": "#b05000", "label": "ERGNSS",
      "type": "physical-vrs", "country": ["ES"],
      "access": "registration", "registration": "https://ergnss.ign.es/gnuserportal/", "openNote": 'Free registration, approved immediately'},
+    {"id": "catnet",      "url": "http://catnet-ip.icgc.cat:2101/",              # CATNET — ICGC Catalonia; separate caster and registration from ERGNSS
+     "color": "#a00020", "label": "CATNET",
+     "type": "physical-vrs", "country": ["ES"], "region": "Catalonia",
+     "access": "registration", "registration": "https://catnet-ip.icgc.cat/", "openNote": 'Free ICGC account required'},
     {"id": "ergnss_sptr", "url": "http://ergnss-tr.ign.es:2101/",               # ERGNSS SPTR — Canary Islands VRS sub-service (CERCANA3M/VRS3M/FKP3M); physical Canary pins on ergnss (ergnss-ip:2101)
      "color": "#b05000", "label": "ERGNSS",
      "type": "vrs-only", "country": ["ES"],
@@ -342,9 +346,9 @@ SOURCES = [
      "region": "Abruzzo + Lazio", "group": "italy-regional",
      "access": "registration", "registration": "https://gnssnet.regione.abruzzo.it/accesso.php", "openNote": "Free registration required (Regione Abruzzo)"},
     # US state DOT / CORS networks — physical-coordinate stations
-    {"id": "acorn",       "url": "http://www.acorn-gnss.net:2101/",    # Trimble Pivot Web; anonymous sourcetable exposes VRS + MS_RTCM3 only; individual station streams require login (physical stations also on NPS caster)
+    {"id": "acorn",       "url": "http://www.acorn-gnss.net:2101/",    # Trimble Pivot Web; anonymous sourcetable exposes VRS + MS_RTCM3 (nearest single-base) + named VRS solutions
      "color": "#2e5b8a", "label": "ACORN",
-     "type": "vrs-only", "country": ["US"],
+     "type": "physical-vrs", "country": ["US"],
      "region": "Alaska", "group": "us-state-dot",
      "access": "registration", "registration": "https://www.acorn-gnss.net",
      "openNote": "Free registration required (Alaska DNR / DOTPF)"},
@@ -375,7 +379,7 @@ SOURCES = [
      "access": "registration", "registration": "https://vector.vermont.gov", "openNote": 'Free registration required (VTrans Geodetic Survey)'},
 {"id": "gcgc_rtn",    "url": "http://rtn.usm.edu:2101/",
      "color": "#01579b", "label": "GCGC RTN",
-     "type": "physical-vrs", "country": ["US"],
+     "type": "single-base", "country": ["US"],
      "region": "Mississippi (Gulf Coast)", "group": "us-state-dot",
      "access": "registration", "registration": "https://rtn.usm.edu", "openNote": 'Free registration required (Gulf Coast Geospatial Center / USM)'},
 {"id": "orgn",        "url": "http://orgn.odot.state.or.us:9881/",          # hostname; port 9881 (Leica); SOURCETABLE 200 OK 2026-05-13 (6 STR)
@@ -444,6 +448,11 @@ SOURCES = [
      "type": "vrs-only", "country": ["US"],
      "region": "Maine", "group": "us-state-dot",
      "access": "registration", "registration": "https://medotrtn.maine.gov", "openNote": 'Free registration required (Maine DOT)'},
+    {"id": "azcors",      "url": "http://azcors.azwater.gov:2101/",              # Arizona CORS; ADWR (Arizona Dept of Water Resources); pipeline-access: registration
+     "color": "#c2692e", "label": "AZ CORS",
+     "type": "physical-coord-vrs", "country": ["US"],
+     "region": "Arizona", "group": "us-state-dot",
+     "access": "registration", "registration": "https://azcors.azwater.gov", "openNote": 'Free registration required (ADWR — Arizona Dept of Water Resources)'},
     {"id": "mesa_rtvrn",  "url": "http://rtvrn.mesacounty.us:2101/",            # VRS-only; western Colorado
      "color": "#8d6e63", "label": "Mesa County RTVRN",
      "type": "vrs-only", "country": ["US"],
