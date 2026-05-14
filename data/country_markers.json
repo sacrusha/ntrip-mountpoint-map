@@ -527,7 +527,7 @@
       "access": "registration",
       "registration": "https://www.tpos.provincia.tn.it",
       "stations_declared": 11,
-      "note": "Self-service registration; no professional licence required. 1-year RINEX archive available for post-processing."
+      "note": "Self-service registration; no professional licence required."
     },
     {
       "id": "stpos",
@@ -541,7 +541,7 @@
       "access": "registration",
       "registration": "https://www.stpos.it",
       "stations_declared": 10,
-      "note": "Open to anyone, no professional licence required. ID and an intended-use declaration are needed to activate RTK; RINEX is available immediately."
+      "note": "Online registration; no professional licence required."
     },
     {
       "id": "gnss_veneto",
@@ -1065,7 +1065,7 @@
       "yearly_cost": "CAD 1,650/yr (~$1,212/yr)",
       "yearly_cost_normalized": 1212,
       "registration": "https://www2.gov.bc.ca/gov/content/data/geographic-data-services/geobc",
-      "note": "Subscription portal has been offline pending a BC government website reorganisation; check the registration link for updates."
+      "note": "BC has no public real-time caster; access is sold only through commercial VARs (Can-Net, HxGN SmartNet NA, BrandtNet, Topnet). Free RINEX for post-processing is available with a BCeID account."
     },
     {
       "id": "nsacs",
@@ -2153,7 +2153,7 @@
       "lon": 26.0,
       "tier": "weird",
       "access": "restricted",
-      "note": "Access is granted only for research, with written justification renewable every 3 months. A separate FINPOS DGNSS service is open to anyone but only delivers decimetre accuracy."
+      "note": "Access is granted only for research, with written justification renewable every 3 months. A separate FINPOS DGNSS service is open to anyone but only delivers sub-metre (~0.5 m) accuracy."
     },
     {
       "id": "gps_emiliaromagna",
@@ -2176,8 +2176,8 @@
       "tier": "weird",
       "access": "paid",
       "registration": "https://www.ordnancesurvey.co.uk/business-government/products/os-net",
-      "stations_declared": 110,
-      "note": "Corrections are distributed only through licensed commercial resellers — Leica HxGN SmartNet, Trimble VRS Now, Topcon TopNet Live, AXIO-NET, and others. No direct Ordnance Survey caster."
+      "stations_declared": 120,
+      "note": "Corrections are distributed only through 7 licensed commercial resellers — Leica HxGN SmartNet, Trimble VRS Now, Topcon TopNet Live, FarmRTK, and others. No direct Ordnance Survey caster."
     },
     {
       "id": "osi_gnss",
@@ -2216,13 +2216,13 @@
     },
     {
       "id": "sm_cors",
-      "name": "San Marino RSMC",
+      "name": "San Marino",
       "region": "San Marino",
       "country": "SM",
       "lat": 43.94,
       "lon": 12.45,
       "tier": "weird",
-      "note": "Single reference station; RINEX is published for post-processing only, with no real-time RTK service."
+      "note": "No domestic RTK or CORS service. Italian commercial networks (HxGN SmartNet, NetGEO) physically reach the territory; the nearest free volunteer base is roughly 90 km away in northern Emilia-Romagna, beyond practical RTK range."
     },
     {
       "id": "survey_bn",
@@ -2347,7 +2347,7 @@
       "lon": -71.0,
       "tier": "weird",
       "registration": "https://www.sirgaschile.cl",
-      "stations_declared": 180,
+      "stations_declared": 28,
       "note": "Free RINEX for post-processing. A real-time NTRIP service was announced in 2025; the public endpoint is not yet live."
     },
     {
@@ -2363,7 +2363,7 @@
       "yearly_cost_normalized": 470,
       "registration": "https://kollnerlabrana.cl/kollnet.html",
       "stations_declared": 8,
-      "note": "Coverage runs from Santiago to Frutillar. A free national service is planned by IGM/SHOA; not yet live."
+      "note": "Coverage runs from Santiago to Frutillar. A free national service is planned by IGM; not yet live."
     },
     {
       "id": "png_dlpp_cors",
