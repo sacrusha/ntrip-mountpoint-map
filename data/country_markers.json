@@ -609,8 +609,8 @@
       "tier": "paid",
       "vrs": true,
       "access": "paid",
-      "yearly_cost": "€385+IVA/yr (~€470/yr, ~$520/yr)",
-      "yearly_cost_normalized": 470,
+      "yearly_cost": "€385+IVA/yr (~$520/yr)",
+      "yearly_cost_normalized": 520,
       "registration": "https://it.nrtk.eu",
       "note": "Nationwide commercial VRS network (ItalPOS). Only correction source for Sardinia, Calabria, and other regions without free casters. Professional focus; no explicit hobbyist ban."
     },
@@ -1429,11 +1429,11 @@
       "country": "GE",
       "lat": 42.0,
       "lon": 43.5,
-      "tier": "restricted",
-      "access": "restricted",
+      "tier": "paid",
+      "access": "paid",
       "registration": "http://geocors.napr.gov.ge/SBC",
       "stations_declared": 26,
-      "note": "26-station national network operated by the National Agency of Public Registry. Registration via the Leica Spider Business Center portal; pricing not published and no documented hobbyist access path."
+      "note": "26-station national CORS network (NAPR). Registration open via Leica Spider Business Center; pricing not publicly listed — contact via geocors.napr.gov.ge. No explicit restriction on non-professional users documented."
     },
     {
       "id": "dvrs",
@@ -1605,6 +1605,20 @@
       "tier": "free",
       "vrs": true,
       "stations_declared": 272
+    },
+    {
+      "id": "catnet",
+      "name": "CATNET",
+      "region": "Catalonia",
+      "country": "ES",
+      "lat": 41.7,
+      "lon": 1.8,
+      "tier": "free",
+      "vrs": true,
+      "access": "registration",
+      "registration": "https://catnet-ip.icgc.cat/",
+      "stations_declared": 25,
+      "note": "Free ICGC regional RTK caster for Catalonia. Separate operator and registration from national ERGNSS. Single ICGC account required; no professional licence."
     },
     {
       "id": "grafcan_repcan",
@@ -1998,7 +2012,10 @@
       "lon": -111.9,
       "tier": "free",
       "vrs": true,
-      "stations_declared": 52
+      "access": "registration",
+      "registration": "https://azcors.azwater.gov",
+      "stations_declared": 52,
+      "note": "52-station Arizona CORS (37 ADWR + 15 EarthScope/NPS). Free registration via ADWR; Leica SBC platform. Actual NTRIP port confirmed post-registration."
     },
     {
       "id": "gcgc_rtn",
@@ -2008,7 +2025,10 @@
       "lat": 31.0,
       "lon": -89.5,
       "tier": "free",
-      "stations_declared": 52
+      "access": "registration",
+      "registration": "https://rtn.usm.edu",
+      "stations_declared": 52,
+      "note": "52-station RTK network (Univ. of Southern Mississippi Gulf Coast Geospatial Center). Free; no professional licence required. Trimble Pivot platform; VRS availability unconfirmed."
     },
     {
       "id": "alcors",
@@ -2334,7 +2354,7 @@
       "yearly_cost": "CLP 450,000/yr (~$470/yr)",
       "yearly_cost_normalized": 470,
       "registration": "https://kollnerlabrana.cl/kollnet.html",
-      "note": "Only confirmed paid NTRIP service in Chile; 8 stations from Santiago to Frutillar. Will become less relevant once the planned public IGM/SHOA national network goes live."
+      "note": "Only confirmed paid hobbyist-accessible NTRIP service in Chile; 8 stations from Santiago to Frutillar. Will become less relevant once the planned public IGM/SHOA national network goes live."
     },
     {
       "id": "png_dlpp_cors",
@@ -2485,6 +2505,19 @@
       "tier": "weird",
       "registration": "https://urbanisme.gouv.tg",
       "note": "National CORS network made mandatory for all topographic and cadastral work by a March 2026 inter-ministerial communiqué (three-month compliance window). No public host:port; credentials issued by IGNTOGO on request. The igntogo.tg portal was unreachable as of May 2026."
+    },
+    {
+      "id": "ign_bj",
+      "name": "IGN Bénin CORS",
+      "region": "Benin",
+      "country": "BJ",
+      "lat": 9.3,
+      "lon": 2.3,
+      "tier": "restricted",
+      "access": "restricted",
+      "registration": "https://service-public.bj",
+      "stations_declared": 7,
+      "note": "7-station MCA-funded GNSS CORS network. Host:port not public; disclosed via IGN Bénin / CatIS registration (service-public.bj PS01085). Hobbyist eligibility unconfirmed — service oriented toward cadastral use."
     },
     {
       "id": "sstp_by",

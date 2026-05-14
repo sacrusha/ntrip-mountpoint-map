@@ -379,7 +379,7 @@ SOURCES = [
      "access": "registration", "registration": "https://vector.vermont.gov", "openNote": 'Free registration required (VTrans Geodetic Survey)'},
 {"id": "gcgc_rtn",    "url": "http://rtn.usm.edu:2101/",
      "color": "#01579b", "label": "GCGC RTN",
-     "type": "physical-vrs", "country": ["US"],
+     "type": "single-base", "country": ["US"],
      "region": "Mississippi (Gulf Coast)", "group": "us-state-dot",
      "access": "registration", "registration": "https://rtn.usm.edu", "openNote": 'Free registration required (Gulf Coast Geospatial Center / USM)'},
 {"id": "orgn",        "url": "http://orgn.odot.state.or.us:9881/",          # hostname; port 9881 (Leica); SOURCETABLE 200 OK 2026-05-13 (6 STR)
@@ -450,7 +450,7 @@ SOURCES = [
      "access": "registration", "registration": "https://medotrtn.maine.gov", "openNote": 'Free registration required (Maine DOT)'},
     {"id": "azcors",      "url": "http://azcors.azwater.gov:2101/",              # Arizona CORS; ADWR (Arizona Dept of Water Resources); pipeline-access: registration
      "color": "#c2692e", "label": "AZ CORS",
-     "type": "physical-vrs", "country": ["US"],
+     "type": "physical-coord-vrs", "country": ["US"],
      "region": "Arizona", "group": "us-state-dot",
      "access": "registration", "registration": "https://azcors.azwater.gov", "openNote": 'Free registration required (ADWR — Arizona Dept of Water Resources)'},
     {"id": "mesa_rtvrn",  "url": "http://rtvrn.mesacounty.us:2101/",            # VRS-only; western Colorado

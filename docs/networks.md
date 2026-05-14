@@ -4850,12 +4850,13 @@ under the Ministry of Justice. The 26-station network includes 7 Class A
 stations forming the unified national spatial grid and expanded Class B stations
 providing denser regional coverage. The Leica Spider Business Center platform
 handles subscription management; a Sign Up page exists at the SBC URL.
-The service targets licensed surveyors and cadastral users. Pricing is not
+The service is oriented toward professional and cadastral use; no explicit restriction
+on non-professional users has been found in publicly available terms. Pricing is not
 listed on the public website; the intended NTRIP port is 2101 (standard SBC
 default). The 2024–2025 Georgian political crisis (disputed parliamentary
 election) has not been reported to affect the technical operation of GeoCors.
 
-Paid subscription; pricing not publicly listed — contact NAPR via geocors.napr.gov.ge. Registration open via Leica Spider Business Center; targets licensed surveyors and cadastral users.
+Paid subscription; pricing not publicly listed — contact NAPR via geocors.napr.gov.ge. Registration open via Leica Spider Business Center; eligibility terms not publicly disclosed.
 **investigate**: pricing, mountpoint list, and confirmed access conditions for
 non-professional users.
 
@@ -4882,6 +4883,31 @@ made available commercially after regional network restructuring (e.g. Emilia-Ro
 **source**:    pegasonow.it (Hexagon / Leica Geosystems Italy)
 
 Enterprise-focused commercial NRTK network covering Italy. Not free.
+
+---
+
+## hxgn_smartnet_italy — HxGN SmartNet Italy / ItalPOS (IT)
+
+**status**:    paid
+**date_added**: 2026-05-14
+**country**:   IT — Italy
+**operator**:  Hexagon / Leica Geosystems Italy (service marketed as ItalPOS)
+**host:port**: `it.nrtk.eu:2101`
+**type**:      physical-coord-vrs (nationwide VRS coverage; mainland + islands)
+**access**:    paid subscription
+**registration**: https://it.nrtk.eu
+**yearly_cost**: €385+IVA/yr (~€470/yr, ~$520/yr)
+**yearly_cost_normalized**: 520
+**vrs**:       yes — nationwide VRS including Sardinia, Calabria, and regions without free regional casters
+**stations**:  nationwide (exact count not published; covers all Italian regions)
+**signals**:   GPS+GLONASS+Galileo+BeiDou (MSM)
+**last_researched_date**: 2026-05-13
+
+HxGN SmartNet Italy, branded as ItalPOS, is the Hexagon-operated commercial NRTK
+network covering all of Italy including the islands. It is the only network providing
+VRS corrections for Sardinia, Calabria, and other regions without free regional casters.
+Professional focus (licensed surveyor and engineering use cases); no explicit hobbyist
+ban in publicly available terms. Subscription via it.nrtk.eu.
 
 ---
 
