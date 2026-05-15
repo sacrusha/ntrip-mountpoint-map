@@ -161,6 +161,8 @@ GDOT does not operate a public CORS RTK network. The only identified network wit
 |---|---|
 | **Network name** | Alabama Department of Transportation CORS Network (ALDOT CORS / AlCORS) |
 | **Operator** | Alabama Dept. of Transportation (ALDOT) — Leica SpiderNet platform |
+| **landing_url** | `https://aldotcors.dot.state.al.us/` — operator-owned Spider Business Center portal home (welcome page describes the network). No standalone ALDOT.gov page for AlCORS was found on `www.dot.state.al.us`. |
+| **access_url** | Skip — no operator-owned access description was identified beyond the landing portal; `/SBC/Account/Register` is the bare registration form. Community guides (rplstoday, ArduSimple) describe the workflow but are third-party. |
 | **host:port** | `aldotcors.dot.state.al.us` resolves to `205.172.52.25` and `205.172.52.26`; only `205.172.52.26` is reachable externally and only on ports **10011** and **10099** (both returned `HTTP/0.9` SOURCETABLE responses on 2026-05-07); standard NTRIP port 2101 is firewalled on both IPs; `205.172.52.25` not reachable on any port from external probe |
 | **tariff** | Free — confirmed free of charge in multiple surveying community sources (rpls.com, Emlid community) |
 | **VRS** | Unclear — user reports reference `LeicaMAX` mountpoint (network solution type) which implies network RTK; VRS specifically not confirmed |
@@ -228,6 +230,8 @@ GDOT does not operate a public CORS RTK network. The only identified network wit
 |---|---|
 | **Network name** | Kentucky Real Time Reference Network (KyCORS) |
 | **Operator** | Kentucky Transportation Cabinet (KYTC) — Trimble Pivot platform |
+| **landing_url** | `https://kycors.ky.gov/` — operator-owned KyCORS portal home; welcome page describes the service (2 cm horiz / 4 cm vert accuracy, manual admin approval). Alternative: ArcGIS-hosted overview `https://www.arcgis.com/home/item.html?id=1ada443a5bc6432091d15ac8cf2ec5a0`. |
+| **access_url** | Skip — landing_url covers the manual-approval registration workflow and routes pre-registration queries to `KYCORS_Admin@ky.gov`. `kycors.ky.gov/RegisterAccount.aspx` is the bare registration form, not a service description page. |
 | **host:port** | `kycors.ky.gov:2101` — `SOURCETABLE 200 OK` returned on 2026-05-07 (curl probe) |
 | **tariff** | Free |
 | **VRS** | Yes — VRS-only; recommended mountpoint `RTX_RTCM3_2` (RTCM3, multi-constellation) |

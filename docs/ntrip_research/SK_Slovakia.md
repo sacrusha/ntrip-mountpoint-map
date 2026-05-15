@@ -8,6 +8,8 @@
 | **Active public NTRIP RTK caster** | Yes |
 | **Network name** | SKPOS (Slovak Real-Time Positioning Service) |
 | **Operator** | Geodetický a kartografický ústav Bratislava (GKÚ Bratislava) / ÚGKK SR |
+| **landing_url** | `https://skpos.gku.sk/en/o-skpos.php` — operator-owned SKPOS "About" page (EN; SK variant exists). Describes the service tiers, tariff table, technical parameters. SK variant linked from the same site root `https://skpos.gku.sk/`. |
+| **access_url** | Skip — landing_url already covers tariff and account types ("Fyzická osoba bez živnostenského listu" listed in dropdown). `skpos.gku.sk/register/` is the bare registration form, not a service description page. |
 | **Mandate basis** | Act 215/1995 + ÚGKK SR Regulation 300/2009 |
 | **host:port** | `skpos.gku.sk:2101` (old IP active until 2026-06-30 per April 2026 notice; IP not disclosed in public docs). Sourcetable advertises mountpoints SKPOS_CM_32, SKPOS_CM_32_MSM7, SKPOS_CM_CMRx, SKPOS_CM_CMRplus, SKPOS_CM_31, SKPOS_CM_23, SKPOS_DM_SVK (RTCM 2.1), SKPOS_DM_SVK_23, SKPOS_CM_NS_34_MSM7 |
 | **VRS** | Yes (phase corrections / VRS RTK; 2–4 cm accuracy). Network solution streams advertised in RTCM 2.3 / 3.1 / 3.4 (incl. MSM7), CMR+ and CMRx |

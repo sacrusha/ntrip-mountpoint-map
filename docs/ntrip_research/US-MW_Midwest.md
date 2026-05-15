@@ -96,6 +96,8 @@
 |---|---|
 | **Network name** | Michigan Department of Transportation CORS / Michigan Statewide Reference Network (MDOT CORS / MSRN) |
 | **Operator** | Michigan Department of Transportation (MDOT) — Leica Spider Business Center (SBC) platform |
+| **landing_url** | `https://mdotcors.michigan.gov/sbc` — operator-owned SBC portal home (welcome page describes the network and free port scheme). Auxiliary operator-owned alternative: `https://mdotcors.org/`. |
+| **access_url** | Skip — no operator-owned access description was identified beyond the landing portal; `/sbc/Account/Register` is the bare registration form. The `Account/ReadTermsOfUse` page describes the service but is framed as legal terms, not access guidance. |
 | **host:port** | `mdotcors.michigan.gov` (Leica SBC web portal); IP `148.149.0.87` (MSRN NTRIP effective 2021-04-15); free GNSS RTCM3 RTK datastreams on ports 10010–10011; standard NTRIP port 2101 not confirmed available from external; `mdotcors.michigan.gov:2101` resolves via Cloudflare (104.18.35.27 / 172.64.152.229) but timed out from external (2026-05-07) |
 | **tariff** | Free — "FREE access to all RTK datastreams and RINEX data streams for ports 10010–10011 on the MSRN Port Scheme" (MSRN Port Scheme documentation); also free access on legacy GPS/GNSS ports 10000–10006 |
 | **VRS** | Yes — network-mode (iMAX equivalent); recommended mountpoint `NS-IMAX-MSM4` (RTCM3 MSM4 full constellation) |

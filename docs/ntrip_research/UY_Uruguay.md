@@ -6,6 +6,8 @@
 | Field | Value |
 |---|---|
 | **Active public NTRIP RTK caster** | Yes |
+| **landing_url** | `https://igm.gub.uy/2016/05/20/servicios-regna-rou/` — operator-owned (IGM) REGNA-ROU service page describing the network, free policy, registration path. |
+| **access_url** | `https://igm.gub.uy/geoportal/instructivos-2/` — operator-owned geoportal "instructivos" hub with the use/configure guides for REGNA-ROU. More useful than landing for someone about to register and connect. `rtk.igm.gub.uy/SBC/Account/Register` is the bare SBC registration form, not a service description page. |
 | **host:port** | `rtk.igm.gub.uy:2101` (IP 201.217.132.178; `GNSS Spider 7.11.1.109/1.0` caster) |
 | **tariff** | Free — "El Servicio no tiene costo" (IGM official statement) |
 | **type** | Single-base + VRS (Virtual Reference Station) + iMAX (`RTCM3-iMAX` mountpoint) |

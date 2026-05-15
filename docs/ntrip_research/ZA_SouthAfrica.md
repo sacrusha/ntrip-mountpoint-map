@@ -10,6 +10,8 @@
 | Field | Value |
 |---|---|
 | **Active public NTRIP RTK caster** | **Yes** |
+| **landing_url** | `https://ngi.dalrrd.gov.za/index.php/what-we-do/geodetic-and-control-survey-services/37-trignet-continuously-operating-gnss-network` — operator-owned (CD:NGI under DALRRD) TrigNet description page. States the R 0.00 free-of-charge policy. Alternative: `http://www.trignet.co.za/` (the operator-owned portal/Spider home). |
+| **access_url** | Skip — landing_url describes the registration path; no operator-owned non-form access doc identified beyond the portal welcome. `http://www.trignet.co.za/RegisterAccount.aspx` is the bare registration form, not a service description page. |
 | **host:port** | `trignet.co.za:2101` — direct TCP/sourcetable probe 2026-05-12 returned SOURCETABLE 200 OK, server `NTRIP Trimble Ntrip Caster 5.2`, Content-Length 11487 |
 | **Caster software** | Trimble Ntrip Caster 5.2 (observed 2026-05-12 — upgraded from older Trimble Pivot platform; mountpoint entries still tagged "Trimble Pivot Platform" as the back-end CORS engine) |
 | **num_stations** | ~83 STR entries in 2026-05-12 sourcetable, covering single-base RTCM 3.4 mounts (e.g. `Pret-SB` at -25.73, 28.28) and three Network RTK clusters (`RTKNetWCape`, plus Gauteng/KZN equivalents) |

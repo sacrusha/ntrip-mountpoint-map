@@ -8,6 +8,8 @@
 | **Active public NTRIP RTK caster** | Yes (registration required) |
 | **Network name** | GEO-CORS |
 | **Operator** | National Agency of Public Registry (NAPR), Ministry of Justice of Georgia — napr.gov.ge |
+| **landing_url** | `http://geocors.napr.gov.ge/SBC/spider-business-center` — operator-owned SBC service description page (live 2026-05-12). Alternative: NAPR agency landing `https://www.napr.gov.ge/en/`. |
+| **access_url** | Skip — landing_url describes the SBC service and registration path; `geocors.napr.gov.ge/SBC/Account/Register` is the bare registration form, not a service description page. |
 | **host:port — GEO-CORS** | Not publicly documented; delivered with SBC credentials post-registration; SBC portal at http://geocors.napr.gov.ge/SBC |
 | **tariff — GEO-CORS** | Not publicly listed; governed by NAPR subscription terms; contact ghahubia@napr.gov.ge or +995 577 62 03 33 |
 | **hobbyist_eligibility** | Registration is open to applicants; no explicit hobbyist restriction found; terms not publicly disclosed |

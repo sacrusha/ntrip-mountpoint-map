@@ -116,7 +116,7 @@ SOURCES = [
      "color": "#2d6e6e", "label": "sapos BY",
      "type": "vrs-only", "country": ["DE"],
      "region": "Bayern", "group": "sapos",
-     "access": "conditions",   "registration": "https://www.sapos.de", "openNote": 'Free registration required — select your federal state'},
+     "access": "conditions",   "registration": "https://sapos.bayern.de/", "openNote": 'Free registration required — Bayern €20/yr'},
     {"id": "sapos_SN",    "url": "http://www.ntrip.sachsen.de:2101/",
      "color": "#2d6e6e", "label": "sapos SN",
      "type": "physical-vrs", "country": ["DE"],
@@ -199,7 +199,7 @@ SOURCES = [
     {"id": "trignet",     "url": "http://trignet.co.za:2101/",                  # Trimble Ntrip Caster 5.2; ~83 STR entries in 2026-05-12 sourcetable mix single-base (Pret-SB, Ctwn-SB...) with Network RTK clusters (RTKNetWCape, Gauteng, KZN) — migrated single-base → physical-vrs 2026-05-14
      "color": "#556b2f", "label": "TrigNet",
      "type": "physical-vrs", "country": ["ZA"],
-     "access": "registration", "registration": "https://www.trignet.co.za", "openNote": 'Free registration required'},
+     "access": "registration", "registration": "https://ngi.dalrrd.gov.za/index.php/what-we-do/geodetic-and-control-survey-services/37-trignet-continuously-operating-gnss-network", "openNote": 'Free registration required'},
     {"id": "ugrf",        "url": "http://ugrf.mlhud.go.ug:2101/",                   # Leica GNSS Spider 7.10.1.168; 38 physical single-base + 6 network mounts; SOURCETABLE 200 OK 2026-05-13
      "color": "#b07000", "label": "UGRF CORS",
      "type": "physical-vrs", "country": ["UG"],
@@ -217,19 +217,19 @@ SOURCES = [
     {"id": "regna_rou",   "url": "http://rtk.igm.gub.uy:2101/",
      "color": "#1a9e5c", "label": "REGNA-ROU",
      "type": "physical-vrs", "country": ["UY"],
-     "access": "registration", "registration": "https://rtk.igm.gub.uy/SBC/Account/Register", "openNote": 'Free registration required'},
+     "access": "registration", "registration": "https://igm.gub.uy/2016/05/20/servicios-regna-rou/", "openNote": 'Free registration required'},
     {"id": "flepos",      "url": "http://flepos.vlaanderen.be:2101/",           # ntrip.flepos.be NXDOMAIN as of 2026-04
      "color": "#3a7ca5", "label": "FLEPOS",
      "type": "vrs-only", "country": ["BE"], "region": "Flanders",
-     "access": "registration", "registration": "https://flepos.vlaanderen.be", "openNote": 'Free registration required'},
+     "access": "registration", "registration": "https://overheid.vlaanderen.be/en/producten-diensten/centimetre-accurate-positioning-flepos", "openNote": 'Free registration required'},
     {"id": "walcors",     "url": "http://gnss.wallonie.be:8081/",                # port 8081 confirmed 2026-05-06; port 2101 not used
      "color": "#1e88c7", "label": "WALCORS",
      "type": "vrs-only", "country": ["BE"], "region": "Wallonia",
-     "access": "registration", "registration": "https://gnss.wallonie.be", "openNote": 'Free registration required'},
+     "access": "registration", "registration": "https://gnss.wallonie.be/walcors.html", "openNote": 'Free registration required'},
     {"id": "spslux",      "url": "http://stream.spslux.lu:5005/",               # port 5005, not 2101
      "color": "#5c6bc0", "label": "SPSLux",
      "type": "physical-vrs", "country": ["LU"],
-     "access": "registration", "registration": "https://www.spslux.lu/SBC/Account/Register", "openNote": 'Free registration required'},
+     "access": "registration", "registration": "https://act.public.lu/fr/gps-reseaux/spslux1.html", "openNote": 'Free registration required'},
     {"id": "asg_eupos",   "url": "http://system.asgeupos.pl:2101/",
      "color": "#7b5ea7", "label": "ASG-EUPOS",
      "type": "vrs-only", "country": ["PL"],
@@ -241,7 +241,7 @@ SOURCES = [
 {"id": "latpos",      "url": "http://latpos.lgia.gov.lv:5001/",             # port 5001 confirmed SOURCETABLE 200 OK 2026-05-06; may timeout on blocked egress firewalls
      "color": "#1a6b3c", "label": "LatPos",
      "type": "vrs-only", "country": ["LV"],
-     "access": "registration", "registration": "https://latpos.lgia.gov.lv/SBC", "openNote": 'Free registration required'},
+     "access": "registration", "registration": "https://www.lgia.gov.lv/en/latpos", "openNote": 'Free registration required'},
     {"id": "litpos",      "url": "http://193.219.10.2:2101/",                    # bare IP — no DNS hostname published; VilniusTech/GIS-Centras primary
      "color": "#0d47a1", "label": "LitPOS",
      "type": "vrs-only", "country": ["LT"],
@@ -256,7 +256,7 @@ SOURCES = [
      "color": "#d4a017", "label": "IGAC",
      "type": "physical-coord-vrs", "country": ["CO"],
      "nmea_filter": False,
-     "access": "registration", "registration": "https://redgeodesica-sbc.igac.gov.co/sbc", "openNote": 'Free registration required'},
+     "access": "registration", "registration": "https://redgeodesica.igac.gov.co/", "openNote": 'Free registration required'},
     {"id": "earthscope",  "url": "http://ntrip.earthscope.org:2101/",
      "color": "#8b4513", "label": "EarthScope",
      "type": "single-base", "country": ["americas"],
@@ -292,7 +292,7 @@ SOURCES = [
     {"id": "ksa_cors",    "url": "http://ksacors.geoportal.sa:2101/",
      "color": "#a0522d", "label": "KSA-CORS",
      "type": "vrs-only", "country": ["SA"],
-     "access": "conditions",   "registration": "https://ksacors.geoportal.sa", "openNote": 'Free registration required'},
+     "access": "conditions",   "registration": "https://www.geosa.gov.sa/en/products/geodesy/pages/ksa-cors.aspx", "openNote": 'Free registration required'},
     # Italy — regional networks
     {"id": "spin3",       "url": "http://158.102.7.10:2101/",                   # bare IP; spingnss.it hostname times out; IP confirmed SOURCETABLE 200 OK 2026-05-07
      "color": "#1565c0", "label": "SPIN3 GNSS",
@@ -392,7 +392,7 @@ SOURCES = [
      "color": "#006064", "label": "MSRN",
      "type": "physical-vrs", "country": ["US"],
      "region": "Michigan", "group": "us-state-dot",
-     "access": "registration", "registration": "https://www.michigan.gov/mdot", "openNote": 'Free registration required (Michigan DOT)'},
+     "access": "registration", "registration": "https://mdotcors.michigan.gov/sbc", "openNote": 'Free registration required (Michigan DOT)'},
 {"id": "ct_acorn",    "url": "http://acorn.uconn.edu:2101/",               # SOURCETABLE 200 OK 2026-05-13 (48 STR)
      "color": "#1a237e", "label": "ACORN CT",
      "type": "physical-vrs", "country": ["US"],
@@ -412,7 +412,7 @@ SOURCES = [
      "color": "#1565c0", "label": "AlCORS",
      "type": "physical-vrs", "country": ["US"],
      "region": "Alabama", "group": "us-state-dot",
-     "access": "registration", "registration": "https://aldotcors.dot.state.al.us/SBC/Account/Register", "openNote": 'Free registration required (Alabama DOT)'},
+     "access": "registration", "registration": "https://aldotcors.dot.state.al.us/", "openNote": 'Free registration required (Alabama DOT)'},
     {"id": "iartn",       "url": "http://165.206.203.10:10000/",                  # bare IP:port; iartnsbc.iowadot.gov:2101 dead 2026-05-07; sourcetable open, per-station streams require credentials (Emlid/DJI flow documented at e38surveysolutions.com)
      "color": "#37474f", "label": "IARTN",
      "type": "physical-coord-vrs", "country": ["US"],
@@ -423,7 +423,7 @@ SOURCES = [
      "color": "#546e7a", "label": "KyCORS",
      "type": "vrs-only", "country": ["US"],
      "region": "Kentucky", "group": "us-state-dot",
-     "access": "registration", "registration": "https://kycors.ky.gov", "openNote": 'Free registration required (Kentucky Transportation Cabinet)'},
+     "access": "registration", "registration": "https://kycors.ky.gov/", "openNote": 'Free registration required (Kentucky Transportation Cabinet)'},
     {"id": "mncors",      "url": "http://mncors.dot.state.mn.us:9000/",         # port 9000; VRS-only
      "color": "#455a64", "label": "MnCORS",
      "type": "vrs-only", "country": ["US"],

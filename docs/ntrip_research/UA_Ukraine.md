@@ -23,6 +23,8 @@ Reseller-only / not an independent caster: **NGC (ngc.com.ua)** — Kharkiv/Kyiv
 | Field | Value |
 |---|---|
 | **Operator** | Системи Солюшнс (Systems Solutions LLC); Swiss-Ukrainian joint venture; Leica Geosystems GNSS Spider platform |
+| **landing_url** | `https://gnss.org.ua` — operator-owned network portal (Leica Spider Business Center; root page is a login wall with limited description but is the canonical network face — station map at `/User/SiteMap/SiteMapPublic` is openly browsable). Alternative operator corporate site: `https://systemnet.com.ua` (Kyiv office address; thin landing). |
+| **access_url** | `https://gpsgeometer.com/en/products/gnss-rtk-network-subscription-plan-for-geodesy-1-year` — authorised reseller product page (EN) with full tariff, registration path. More descriptive than the Leica login portal for a target user. Not operator-owned but most-official EN signup channel. |
 | **host:port** | `gnss.org.ua:2101` (IP `91.239.233.25`) |
 | **Sourcetable confirmed** | 2026-05-07: SOURCETABLE 200 OK; Server `GNSS Spider 7.11.1.109/1.0`; Content-Length 366 bytes (small public sourcetable; production mountpoints behind authentication) |
 | **Mountpoints (public sourcetable)** | `autom`, `nearest`, `imax`, `vrs` (vrs is GPS+GLO+GAL+BDS) |
@@ -68,6 +70,8 @@ Reseller-only / not an independent caster: **NGC (ngc.com.ua)** — Kharkiv/Kyiv
 | Field | Value |
 |---|---|
 | **Operator** | TNT-TPI (Topcon distributor in Ukraine); brand `RTKHUB` |
+| **landing_url** | `https://rtkhub.com/` — operator-owned brand landing; describes the network (RTK 1–2 cm accuracy, coverage, service modes). Not a bare login. Alternative: `https://tnt-tpi.com/brand/rtkhub` (distributor-side mirror). |
+| **access_url** | `https://tnt-tpi.com/catalog/pidpiski-na-poslugi-rtk` — RTK subscription catalog with tariffs (1/7/30/90/180/365 days) and per-package terms. More useful than landing for someone deciding to register. |
 | **host:port** | Not publicly published — disclosed post-registration; portal at https://rtkhub.com (also https://tnt-tpi.com/brand/rtkhub) |
 | **Modes offered** | Network RTK (VRS), Nearest RTK, Station RTK, DGPS RTK; ~1–2 cm accuracy claim |
 | **Stations** | Multiple base stations across Ukraine; coverage continuing to expand (recent additions in KMST/ORIH/VASL areas, per RTK HUB news Dec 2024–2025) |

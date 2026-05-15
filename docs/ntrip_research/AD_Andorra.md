@@ -15,6 +15,11 @@
 | **legal_residency_required** | No (EUREF-IP registration is open globally) |
 | **last_confirmed_alive** | PCAR00AND listed in EPN real-time map 2026-05-12; ERGAND domestic NTRIP — none to probe |
 
+## URL Fields (for the ergand country marker)
+
+- **landing_url**: `https://www.cartografia.ad/` — operator-owned (Govern d'Andorra, Cartografia / IDE Andorra) landing page for ERGAND and Andorran geodesy. Describes the agency, EPN station role, post-processing services.
+- **access_url**: `https://www.epncb.oma.be/_networkdata/data_access/real_time/broadcasters.php` — EPN central description of the three EUREF-IP broadcasters and how to register for access to PCAR00AND streams. More useful than the bare BKG CGI form `register.rtcm-ntrip.org/cgi-bin/registration.cgi`, which is the registration submission endpoint without service description.
+
 ## No Active Government Caster
 
 No Andorran NTRIP RTK caster has been identified. ERGAND (Govern d'Andorra geodetic agency under Cartografia / IDE Andorra) operates two EUREF Permanent Network (EPN) reference stations:

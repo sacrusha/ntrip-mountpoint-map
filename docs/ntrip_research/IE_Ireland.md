@@ -6,6 +6,8 @@
 | Field | Value |
 |---|---|
 | **Active public NTRIP RTK caster** | No — national CORS network (Tailte Éireann + OSNI) exposes only RINEX (post-processing) to end users; its NRTK raw stream is wholesaled to Trimble (VRS Now), Leica (SmartNet), and Topcon |
+| **landing_url — Tailte Éireann GNSS** | `https://gnss.tailte.ie/` — operator-owned active GNSS service portal (Tailte Éireann, post-OSi rebrand). Legacy `gnss.osi.ie` redirects here. |
+| **access_url — Tailte Éireann GNSS** | `https://tailte.ie/services/geodetic/` — describes the geodetic services (RINEX archive, monitoring, coord conversion) and the absence of direct real-time NTRIP. More useful than the bare portal for a user trying to understand access conditions and commercial reseller routing. |
 | **host:port** | null — no public NTRIP caster endpoint exists for the national network |
 | **tariff** | null (no real-time service direct from operator) |
 | **VRS** | N/A directly (commercial resellers offer VRS via NRTK wholesale) |

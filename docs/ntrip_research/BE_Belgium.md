@@ -14,6 +14,8 @@
 | Field | Value |
 |---|---|
 | **Operator** | Agentschap Informatie Vlaanderen (Government of Flanders) |
+| **landing_url** | `https://overheid.vlaanderen.be/en/producten-diensten/centimetre-accurate-positioning-flepos` — Vlaanderen Intern product page (EN; NL variant at `/flepos-2-flepos-ondersteuning`). Operator-owned, describes service, conditions, links to registration. Dedicated subdomain `https://flepos.vlaanderen.be/` ("FLEPOS - Welcome") exists but is a login gateway with no service description. |
+| **access_url** | Skip — landing_url already describes the registration path. Direct login `flepos.vlaanderen.be/Login.aspx` and the dynamic registration form on `dynamicforms.crmiv.vlaanderen.be` are bare login/form pages with no service description. |
 | **host:port** | `flepos.vlaanderen.be:2101` |
 | **IP (as of June 2024)** | 3.64.78.173 (migrated June 17, 2024) |
 | **VRS** | Yes |
@@ -32,6 +34,8 @@
 | Field | Value |
 |---|---|
 | **Operator** | Service Public de Wallonie (SPW) — DGO3 (Direction générale opérationnelle Agriculture, Ressources naturelles et Environnement) |
+| **landing_url** | `https://gnss.wallonie.be/walcors.html` — operator-owned WALCORS landing on the SPW gnss portal. Alternative: `https://geoportail.wallonie.be/walcors` (Wallonie Géoportail higher-level government page). |
+| **access_url** | `https://gnss.wallonie.be/walcors/acces-au-reseau/acces-au-reseau-1.html` — informational "access to the network" page describing how registration works. `gnss.wallonie.be/walcors/inscription.html` is the bare inscription form, not a service description page. |
 | **host:port** | `gnss.wallonie.be:8081` |
 | **IP (as of 2026)** | 157.164.253.36 |
 | **VRS** | Yes — VRS, IMAX, and NEAR correction types |

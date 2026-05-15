@@ -30,6 +30,18 @@ All casters confirmed live (SOURCETABLE 200 OK) on 2026-05-07 via curl probe unl
 
 ---
 
+## Per-Bundesland URL Fields (new landing_url/access_url spec — 2026-05)
+
+The wide per-state table above intentionally does not carry
+`landing_url` / `access_url` fields per row. Record below only for entries
+whose previously-surfaced URL is a bare login or registration form without
+a service description, and which need a replacement URL pinned for the
+downstream sweep.
+
+- **sapos_BY — Bayern (LDBV)**
+  - `landing_url`: `https://sapos.bayern.de/` — operator-owned SAPOS Bayern landing, run by LDBV. Describes the service and current €20/yr flat-rate model. Alternative: the LDBV agency page (general Bayern Vermessung portal).
+  - `access_url`: `https://sapos.bayern.de/download.php?file=SAPOS-Nachrichten-2024_01.pdf` — operator-published "SAPOS-Nachrichten 2024_01" newsletter PDF describing the price-model conversion to the €20 flat rate effective 01.06.2024; useful as the substantive access/tariff doc. `https://sapos.bayern.de/register.php` is the bare registration form (no service description); avoid linking it downstream.
+
 ## National / Aggregator NTRIP Services
 
 ### ZSS — Zentrale Stelle SAPOS (Paid national aggregator)

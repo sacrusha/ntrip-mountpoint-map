@@ -6,6 +6,8 @@
 | Field | Value |
 |---|---|
 | **Active public NTRIP RTK caster** | Yes |
+| **landing_url — SoI CORS** | `https://cors.surveyofindia.gov.in/` — operator-owned portal (Survey of India CORS). Describes service, regions, station coverage. |
+| **access_url — SoI CORS** | `https://cors.surveyofindia.gov.in/subscription-charges` — pricing + registration terms. More useful than the bare portal for someone deciding to subscribe. |
 | **host:port — Region 1** | `103.205.244.106:2101` (UP, Uttarakhand, Haryana, Punjab, Himachal Pradesh, NCR, MP, Rajasthan) |
 | **host:port — Region 2** | `103.206.29.4:2105` (Maharashtra, Karnataka, south) |
 | **portal** | https://cors.surveyofindia.gov.in (HTTPS portal not reachable from this sandbox 2026-05-12 — likely geo-routing; HTTP at 103.205.244.106 returns full portal HTML 200 OK with 2026 footer, confirming alive) |

@@ -72,6 +72,8 @@ All seven STR rows carry `solution=1` (network solution; `SBASE_MSM4` is `soluti
 
 ## CORSnet (private)
 
+- **landing_url**: `https://corsnet.lk/` — operator-owned commercial CORSnet homepage. Describes the islandwide 21-station network, accuracy claims, service modes, and registration entry-point. About page `https://corsnet.lk/about-us/` is a useful sibling.
+- **access_url**: Skip — pricing is sales-contact only ("rates on inquiry"); no operator-owned access/tariff page exists beyond the landing. `corsnet.lk/user/register/` is the bare registration form, not a service description page.
 - **History**: Launched 20 May 2014 by SULECO (Pvt) Ltd as Sri Lanka's first islandwide commercial CORS RTK network, initially covering Western and Sabaragamuwa provinces. Operations now under CORSnet (Pvt) Ltd; SULECO provides technical/sales support
 - **Station count 2026-05-12**: 21 stations (corsnet.lk homepage). Older SULECO product page still lists 17. 315+ active customers, 172,000+ RTK service-hours per homepage banner
 - **Services**: DGNSS (sub-metre), single-base RTK, Network RTK / VRS, RINEX post-processing — via NTRIP and TCP/IP. Correction formats: RTCM 2.x / 3.x, CMR, CMR+, sCMRx, RTD, NMEA

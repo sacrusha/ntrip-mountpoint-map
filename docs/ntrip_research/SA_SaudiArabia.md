@@ -8,6 +8,8 @@
 | **Active public NTRIP RTK caster** | Yes (free, self-registration) — reachability from outside Saudi Arabia / GCC unconfirmed |
 | **Network name** | KSA-CORS (Kingdom of Saudi Arabia Continuously Operating Reference Station Network) |
 | **Operator** | GEOSA — General Authority for Survey and Geospatial Information (formerly GASGI / GCS) |
+| **landing_url** | `https://www.geosa.gov.sa/en/products/geodesy/pages/ksa-cors.aspx` — operator-owned KSA-CORS product page on GEOSA's authority site (EN). Describes the network, free-tier policy, station count, datum. Portal alternative: `https://ksacors.geoportal.sa/` (service portal; less descriptive). |
+| **access_url** | `https://www.geoportal.sa/pdf/How_to_Register_to_KSA-CORS_Network_v.1.0.pdf` — operator-owned How-to-Register PDF describing the registration workflow (online form or email to info@geosa.gov.sa). `ksacors.geoportal.sa/RegisterAccount.aspx` is the bare registration form, not a service description page. |
 | **host:port — current** | `ksacors.geoportal.sa:2101` (active portal domain as of 2026-05-06) |
 | **host:port — legacy** | `ksacors.gcs.gov.sa:2101` (old domain; login page still resolves but domain authority migrated to GEOSA/geoportal.sa) |
 | **host:port — obsolete** | `KSACORS.gcs.gov.sa` / `ksacors.geosa.gov.sa` — NXDOMAIN / redirected as of 2026-04 |

@@ -16,6 +16,8 @@
 
 | Field | Value |
 |---|---|
+| **landing_url** | `https://www.eft-cors.ru/` — operator-owned EFT CORS service landing (RU). Describes the network, stations, services. |
+| **access_url** | `https://www.eft-cors.ru/prices` — full tariff schedule (RTK, RTK+, RTK for EFT hardware, RINEX) with VAT-inclusive prices. More useful than landing for sign-up decision. `bp.eft-cors.ru/register` is the bare billing-portal registration form, not a service description page. |
 | **host:port** | `ntrip.eftgroup.ru:2101` |
 | **portal** | https://www.eft-cors.ru; billing: bp.eft-cors.ru |
 | **coverage** | Russia-wide |
@@ -49,6 +51,8 @@ Note: A 6-month RINEX figure of ₽1,080 appears on one part of the tariff page;
 
 | Field | Value |
 |---|---|
+| **landing_url** | `https://rtknet.ru/` — operator-owned RTKNet landing (RU). Describes the network, regional coverage, stations. Not a bare login. |
+| **access_url** | `https://rtknet.ru/выбор-тарифного-плана/` — tariff page with all subscription tiers (day/month/3/6/12 mo). More useful than landing for sign-up. |
 | **host:port** | `94.250.250.43:2101` (also `cors.rtknet.ru:2101`; additional regional ports 6030–6041 for RTCM32-MSM streams) |
 | **portal** | https://rtknet.ru |
 | **coverage** | Russia-wide |

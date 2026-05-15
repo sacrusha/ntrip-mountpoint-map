@@ -6,6 +6,8 @@
 | Field | Value |
 |---|---|
 | **Active public NTRIP RTK caster** | Yes (SPSLux — free) |
+| **landing_url — SPSLux** | `https://act.public.lu/fr/gps-reseaux/spslux1.html` — operator-owned (Administration du Cadastre et de la Topographie / ACT) SPSLux service overview page (FR). Describes the network, free policy, accuracy. |
+| **access_url — SPSLux** | `https://act.public.lu/fr/gps-reseaux/spslux1/1spsluxaccess.html` — operator-owned access page describing the cadastre-portal subscription workflow. `https://www.spslux.lu/SBC/Account/Register` is the bare SBC registration form, not a service description page. |
 | **host:port — SPSLux** | `stream.spslux.lu:5005` (IP: 185.106.24.68) |
 | **VRS** | Yes — iMAX and VRS network correction types offered; both provide equivalent cm-level accuracy. 18 mountpoints exposed (VRS_G/GR/GRE/GREC, IMAX_G/GR/GRE/GREC variants in RTCM 3 / CMR / MSM5, plus NEAREST_* single-base and DGNSS_IMAX_RTCM2 / DGPS_IMAX_RTCM2) |
 | **tariff** | Free — all SPSLux real-time and post-processing services are provided at no cost in line with Luxembourg's open-data policy |

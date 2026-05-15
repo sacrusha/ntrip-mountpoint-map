@@ -6,6 +6,8 @@
 | Field | Value |
 |---|---|
 | **Active public NTRIP RTK caster** | Yes — MOLDPOS (Moldova Positioning System), operated by S.E. INGEOCAD under the Agency for Geodesy, Cartography and Cadastre (AGCC / agcc.gov.md) |
+| **landing_url — MOLDPOS** | `https://moldpos.md/` — operator-owned MOLDPOS service site (RO/RU); describes the network, mountpoints (VRS/MAX/MSM, FreeZone), test credentials. Alternative: `https://agcc.gov.md/content/moldpos` (AGCC agency-level MOLDPOS page). |
+| **access_url — MOLDPOS** | Skip — the MDL tariff schedule is not published in open web (`moldpos.md/tarife` and `/preturi` returned HTTP 404 on 2026-05-12); pricing is contact-only via `moldpos@ingeocad.md`. The SBC entry at `http://moldpos.ingeocad.md/SBC/Account/Register` is a bare registration form, not a service description page. |
 | **host:port — MOLDPOS** | `185.108.183.29 : 8080` (updated from former IP 188.237.130.50:8080). SBC portal: `moldpos.ingeocad.md`. Source: moldpos.md official pages, observed 2026-05-06. |
 | **tariff — MOLDPOS** | Paid service (became paid per AGCC Order No. 04 of 06.01.2012). Current MDL tariff schedule not published in open sources — contact INGEOCAD at moldpos@ingeocad.md or +373 22 881200 for current rates. Free test credentials for trial zones: login `moldpos` / password `moldpos`. |
 | **hobbyist_eligibility** | Open — INGEOCAD explicitly states "MOLDPOS is an open network; any GPS receiver owner can join" (MOLDPOS – ОТКРЫТАЯ СЕТЬ: ЛЮБОЙ ОБЛАДАТЕЛЬ GPS ПРИЕМНИКА МОЖЕТ ПРИСОЕДИНИТЬСЯ К НАМ). Registration via SBC portal appears sufficient; no licensed-surveyor restriction found. |

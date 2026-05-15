@@ -6,6 +6,8 @@
 | Field | Value |
 |---|---|
 | **Active public NTRIP RTK caster** | Yes — MAKPOS (Macedonian Positioning System), operated by the Agency for Real Estate Cadastre (AREC) |
+| **landing_url** | `https://makpos.katastar.gov.mk/SpiderWeb/frmIndex.aspx` — operator-owned MAKPOS SpiderWeb portal landing. Alternative: `https://www.katastar.gov.mk/en/data/services/` (AREC agency services overview including MAKPOS). |
+| **access_url** | Skip — pricing/tariff is not published in open web; access is via the SBC portal. The SBC entry at `https://makpos.katastar.gov.mk/sbc/Account/Register` is a bare registration form, not a service description page. |
 | **host:port** | makpos.katastar.gov.mk : 9001 |
 | **Sample mountpoint** | `iMAX-GNSS` — iMAX-style network RTK, GPS+GLONASS+Galileo (per ArduSimple / community reporting) |
 | **tariff** | Subscription required; specific MKD amounts not publicly posted. MAKPOS users with compatible GNSS devices on 3G/GPRS reportedly offered free-of-charge access per one source — unclear if still current. Contact AREC to confirm. |

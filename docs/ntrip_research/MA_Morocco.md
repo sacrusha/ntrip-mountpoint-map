@@ -12,6 +12,8 @@
 | **tariff — ANCFCC** | Not publicly listed; contact ANCFCC via +212 6 60 10 27 01–06 or +212 5 37 70 58 85 (fax) |
 | **Network name — itri** | itri (first private Moroccan GNSS permanent-station network) |
 | **Operator — itri** | itri / SAMTOP — itri-gnss.ma / itri-gnss.com |
+| **landing_url — itri** | `https://itri-gnss.ma/index.html` — operator-owned itri landing (FR). Describes the 231-station network, constellation support, correction modes (single-base RTK / network RTK / VRS), RINEX post-processing. Alternative mirror: `https://www.itri-gnss.com/`. |
+| **access_url — itri** | `https://www.itri-gnss.ma/documentation/index.html` — operator-owned documentation hub describing service usage and configuration. More useful than the bare `https://secure.itri-gnss.ma/admin/auth/register` admin-auth registration endpoint, which has no service description. |
 | **host:port — itri** | Not publicly documented; credentials issued post-registration at https://secure.itri-gnss.ma/admin/auth/register |
 | **tariff — itri** | Not publicly listed; professional subscription; contact contact@itri-gnss.com or +212 707 797 830 |
 | **hobbyist_eligibility** | ANCFCC: unclear; itri: marketed "dédié aux professionnels" — individual hobbyist eligibility not confirmed for either |

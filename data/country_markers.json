@@ -37,7 +37,7 @@
       "lon": 4.5,
       "tier": "free",
       "vrs": true,
-      "registration": "https://flepos.vlaanderen.be/Login.aspx",
+      "registration": "https://overheid.vlaanderen.be/en/producten-diensten/centimetre-accurate-positioning-flepos",
       "stations_declared": 45
     },
     {
@@ -49,7 +49,7 @@
       "lon": 4.8,
       "tier": "free",
       "vrs": true,
-      "registration": "https://gnss.wallonie.be/walcors/inscription.html",
+      "registration": "https://gnss.wallonie.be/walcors.html",
       "stations_declared": 22
     },
     {
@@ -61,7 +61,7 @@
       "lon": 24.1,
       "tier": "free",
       "vrs": true,
-      "registration": "https://latpos.lgia.gov.lv/SBC/Account/Register",
+      "registration": "https://www.lgia.gov.lv/en/latpos",
       "stations_declared": 27
     },
     {
@@ -86,7 +86,7 @@
       "lon": 45.0,
       "tier": "free",
       "vrs": true,
-      "registration": "https://ksacors.geoportal.sa/RegisterAccount.aspx",
+      "registration": "https://www.geosa.gov.sa/en/products/geodesy/pages/ksa-cors.aspx",
       "stations_declared": 209
     },
     {
@@ -146,7 +146,7 @@
       "lon": 11.58,
       "tier": "free",
       "vrs": true,
-      "registration": "https://sapos.bayern.de/register.php",
+      "registration": "https://sapos.bayern.de/",
       "stations_declared": null
     },
     {
@@ -218,7 +218,7 @@
       "lon": -84.9,
       "tier": "free",
       "vrs": true,
-      "registration": "https://kycors.ky.gov/RegisterAccount.aspx",
+      "registration": "https://kycors.ky.gov/",
       "stations_declared": null,
       "note": "Registration is approved manually by a KYTC admin and the portal warns not to click submit twice. Expect a wait before credentials arrive."
     },
@@ -890,7 +890,7 @@
       "vrs": true,
       "yearly_cost": "150,000 HUF/yr (~€375, ~$415)",
       "yearly_cost_normalized": 415,
-      "registration": "https://gnssnet.hu",
+      "registration": "https://www.gnssnet.hu/",
       "note": "Occasional use: a 30-day local-radius pass (~€38, within 50 km of one point) or pay-per-minute billing (~€1.20–1.80/hr). One-time €30 registration fee."
     },
     {
@@ -999,7 +999,7 @@
       "vrs": true,
       "yearly_cost": "€70/yr (~$79)",
       "yearly_cost_normalized": 79,
-      "registration": "https://skpos.gku.sk/register/",
+      "registration": "https://skpos.gku.sk/en/o-skpos.php",
       "note": "Monthly plans suit short projects. Registration accepts private individuals from most countries — no trade licence required. Free for Slovak public-sector bodies."
     },
     {
@@ -1313,7 +1313,7 @@
       "lon": 80.7,
       "tier": "paid",
       "vrs": true,
-      "registration": "https://corsnet.lk/user/register/",
+      "registration": "https://corsnet.lk/",
       "stations_declared": 21,
       "note": "Pricing on request; self-service registration open to individuals."
     },
@@ -1353,7 +1353,7 @@
       "lon": 71.45,
       "tier": "paid",
       "vrs": true,
-      "registration": "https://rtk.qgeo.kz",
+      "registration": "https://qazgeodesy.kz/",
       "stations_declared": 86,
       "note": "Pricing on request. Sign-up requires a Kazakh ИИН/БИН ID and KZT bank transfer. Baselines reach ~180 km outside the Astana–Almaty corridor."
     },
@@ -1413,7 +1413,7 @@
       "lat": 42.0,
       "lon": 43.5,
       "tier": "paid",
-      "registration": "http://geocors.napr.gov.ge/SBC",
+      "registration": "http://geocors.napr.gov.ge/SBC/spider-business-center",
       "stations_declared": 26,
       "note": "Pricing on request. A volunteer rtk2go base near Tbilisi gives partial free coverage."
     },
@@ -1476,7 +1476,7 @@
       "vrs": true,
       "yearly_cost": "₽50,400/yr (~$593/yr)",
       "yearly_cost_normalized": 593,
-      "registration": "https://bp.eft-cors.ru/register",
+      "registration": "https://www.eft-cors.ru/",
       "note": "Day-pass and shorter plans available. 3-day RTK trial. Basic 30-second RINEX is free."
     },
     {
@@ -1641,7 +1641,7 @@
       "lon": -74.1,
       "tier": "free",
       "vrs": true,
-      "registration": "https://redgeodesica-sbc.igac.gov.co/sbc/Account/Register",
+      "registration": "https://redgeodesica.igac.gov.co/",
       "stations_declared": 260,
       "note": "Physical single-base streams on port 2102; VRS / network-RTK on port 2101."
     },
@@ -1654,7 +1654,7 @@
       "lon": 6.1,
       "tier": "free",
       "vrs": true,
-      "registration": "https://www.spslux.lu/SBC/Account/Register",
+      "registration": "https://act.public.lu/fr/gps-reseaux/spslux1.html",
       "stations_declared": 13,
       "note": "No professional licence required."
     },
@@ -1755,7 +1755,7 @@
       "lon": 25.0,
       "tier": "free",
       "vrs": true,
-      "registration": "http://www.trignet.co.za/RegisterAccount.aspx",
+      "registration": "https://ngi.dalrrd.gov.za/index.php/what-we-do/geodetic-and-control-survey-services/37-trignet-continuously-operating-gnss-network",
       "stations_declared": 83
     },
     {
@@ -1790,7 +1790,7 @@
       "lon": -56.0,
       "tier": "free",
       "vrs": true,
-      "registration": "https://rtk.igm.gub.uy/SBC/Account/Register",
+      "registration": "https://igm.gub.uy/2016/05/20/servicios-regna-rou/",
       "stations_declared": 35
     },
     {
@@ -2035,7 +2035,7 @@
       "lon": -86.7,
       "tier": "free",
       "vrs": true,
-      "registration": "https://aldotcors.dot.state.al.us/SBC/Account/Register",
+      "registration": "https://aldotcors.dot.state.al.us/",
       "stations_declared": 158
     },
     {
@@ -2059,7 +2059,7 @@
       "lon": -84.7,
       "tier": "free",
       "vrs": true,
-      "registration": "https://mdotcors.michigan.gov/sbc/Account/Register",
+      "registration": "https://mdotcors.michigan.gov/sbc",
       "stations_declared": 95
     },
     {
@@ -2202,7 +2202,7 @@
       "lat": 42.54,
       "lon": 1.6,
       "tier": "weird",
-      "registration": "http://register.rtcm-ntrip.org/cgi-bin/registration.cgi",
+      "registration": "https://www.cartografia.ad/",
       "note": "No Andorran national caster. An EUREF-IP station at Pic de Carroi (~5 km from Andorra la Vella) streams free single-base RTCM via the BKG, ROB, or ASI broadcasters. Spanish ERGNSS (ergnss-ip.ign.es) gives nationwide VRS coverage."
     },
     {
@@ -2538,7 +2538,7 @@
       "lon": 28.9,
       "tier": "paid",
       "vrs": true,
-      "registration": "http://moldpos.ingeocad.md/SBC/Account/Register",
+      "registration": "https://moldpos.md/",
       "stations_declared": 10,
       "note": "Pricing on request. Free test mountpoints (FZUTM, FZUASM, FZMA, FZINGEOCAD, FZCDEIC) are usable with shared credentials moldpos/moldpos."
     },
@@ -2551,7 +2551,7 @@
       "lon": 21.7,
       "tier": "paid",
       "vrs": true,
-      "registration": "https://makpos.katastar.gov.mk/sbc/Account/Register",
+      "registration": "https://makpos.katastar.gov.mk/SpiderWeb/frmIndex.aspx",
       "stations_declared": 14,
       "note": "Pricing on request."
     },
@@ -2576,7 +2576,7 @@
       "lon": -5.6,
       "tier": "restricted",
       "vrs": true,
-      "registration": "https://secure.itri-gnss.ma/admin/auth/register",
+      "registration": "https://itri-gnss.ma/index.html",
       "note": "Morocco's first private GNSS network (launched 2020). Sold to surveying professionals; rates not published."
     },
     {

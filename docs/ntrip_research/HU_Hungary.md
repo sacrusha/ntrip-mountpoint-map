@@ -8,6 +8,8 @@
 | **Active public NTRIP RTK caster** | Yes |
 | **Network 1 — name** | GNSSnet.hu |
 | **Operator — GNSSnet.hu** | Lechner Nonprofit Kft. (Lechner Tudásközpont / Lechner Knowledge Centre); GNSS Service Center hosted at Penc Cosmic Geodetic Observatory (KGO) |
+| **landing_url — GNSSnet.hu** | `https://www.gnssnet.hu/` — operator-owned, service-branded landing (HU). Alternative: `https://lechnerkozpont.hu/oldal/gnss` (operator org's GNSS page; EN variant at `/en/oldal/services`). |
+| **access_url — GNSSnet.hu** | `https://www.gnssnet.hu/index.php?r=site/realtime` — realtime services page describing endpoints, mountpoints, registration. More useful than the bare service homepage for someone wanting to subscribe. |
 | **Mandate basis — GNSSnet.hu** | Lechner Nonprofit Kft. is the central state-controlled mapping/geoinformatics organisation; legacy continuation of FÖMI's GNSS service |
 | **host:port — primary (Budapest)** | `ntrip1.gnssnet.hu:2101` |
 | **host:port — secondary (Penc)** | `ntrip2.gnssnet.hu:2101` |

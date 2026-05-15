@@ -6,6 +6,8 @@
 | Field | Value |
 |---|---|
 | **Active public NTRIP RTK caster** | Yes (LatPos — free since 2018) |
+| **landing_url — LatPos** | `https://www.lgia.gov.lv/en/latpos` — operator-owned LatPos info page on the LGIA agency site (EN; LV variant at `/lv/latpos`). Describes the service, free-access policy, station network. |
+| **access_url — LatPos** | Skip — landing_url describes the registration path. The SBC entry at `https://latpos.lgia.gov.lv/SBC/Account/Register` is a bare registration form with no service description. |
 | **host:port — LatPos** | `latpos.lgia.gov.lv:5001` (IP: 91.216.2.20) |
 | **VRS** | Yes — network RTK corrections; 27 Latvian + 5 Estonian + 4 Lithuanian base stations enable network-level solution. 7 mountpoints exposed: `SITE` (nearest single base, GPS+GLO RTCM 3), `NETW-MAX` (master-auxiliary RTCM 3 GPS+GLO), `NETW-iMAX` (iMAX GPS+GLO), `VIRTUAL-RS` (VRS RTCM 3 extended GPS+GLO), `SITE-BeiDOU` (GPS+GLO+BDS), `NETW-iMAX-BeiDOU` (iMAX GPS+GLO+BDS), `VRS-BeiDOU` (VRS GPS+GLO+BDS) |
 | **tariff** | Free — explicit free-access policy in force since 2018 ("government-supported maintenance and open access") |

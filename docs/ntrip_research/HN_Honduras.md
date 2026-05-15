@@ -6,6 +6,8 @@
 | Field | Value |
 |---|---|
 | **Active NTRIP RTK caster** | No |
+| **landing_url — IP/DGCG CORS** | `https://cors.ip.gob.hn/` — operator-owned portal (Instituto de la Propiedad / Dirección General de Cartografía y Geografía). Describes the 5-station network and the FTP RINEX archive (not a bare login). Self-signed cert — TLS verification fails on some Windows stacks; HTTP works. |
+| **access_url — IP/DGCG CORS** | Skip — landing_url already conveys the (FTP archive) access path; no separate registration page exists. The IP parent dir's cartography services page `https://www.ip.gob.hn/direcciones/cartografia-geografia/tramites-cartografia-y-geografia` is an alternative if a non-cors.ip.gob.hn URL is preferred. |
 | **Government CORS network** | Yes — IP/DGCG 5-station network; RINEX post-processing only via FTP archive `ftp://ceiba.ip.gob.hn` (linked from the cors.ip.gob.hn "Descargar Archivos" portal; the portal even instructs users to enable browser FTP downloads — `chrome://flags/#enable-ftp` / `edge://flags/#enable-ftp`) |
 | **hobbyist_eligibility** | N/A — no real-time service exists |
 | **legal_residency_required** | N/A |
