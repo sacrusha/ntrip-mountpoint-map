@@ -155,7 +155,7 @@ authoritative legend; per-country research files cite it.
 **type**:      physical-coord-vrs
 **access**:    free; account via operator portal; "public, private and scientific users"
 **pipeline-access**: registration
-**registration**: https://frednet.crs.ogs.it/en/servizio-rtk/
+**access_url**: https://frednet.crs.ogs.it/en/servizio-rtk/
 **stations**:  22 RTK-active (24 listed; LODI and UDIN have RTK off). Codes: ACOM, AFAL, CANV, CODR, FUSE, GRDO, JOAN, LOGA, MDEA, MGBU, MPRA, NOVE, PAZO, PMNT, SUSE, TOLS, TRIE, UDI1, UDI2, VALS, VARM, ZOUF.
 **vrs**:       yes (`OGS_VRS`, `OGS_NEA` nearest-station, `OGS_FKP` network solution, single-station, DGPS)
 **source**:    frednet.crs.ogs.it
@@ -186,7 +186,7 @@ Marussi-anchored ingest already surfaces OGS coverage geometrically.
 **type**:      physical-coord-vrs
 **access**:    sourcetable open; stream requires free registration form on Re.M.FVG portal
 **pipeline-access**: registration
-**registration**: https://rem.regione.fvg.it/rem-fvg/servizi/correzioni-differenziali
+**access_url**: https://rem.regione.fvg.it/rem-fvg/servizi/correzioni-differenziali
 **stations**:  14 own physical (Ampezzo, Barcis, Bevazzana, Cervignano, Codroipo, Gorizia, MoggioUdinese, Paularo, Pordenone, Sappada, Tarvisio, Trieste, Udine) + 3 Slovenian SIGNAL relays (Bovec, Idrija, Koper). Sourcetable also cross-relays 11 `OGS_*` mounts from FReDNet.
 **vrs**:       yes (VRS_RTCM23/31/32 quad-constellation GPS+GLO+GAL+BDS, MAC, IMAC, plus DGPS)
 **source**:    rem.regione.fvg.it; regione.fvg.it
@@ -239,7 +239,7 @@ operator-volunteer uptime.
 **type**:      single-base
 **access**:    free; register at gnss.ga.gov.au/registration; CC BY 4.0
 **pipeline-access**: registration
-**registration**: https://gnss.ga.gov.au/registration
+**access_url**: https://gnss.ga.gov.au/registration
 **stations**:  914 (sourcetable 2026-05-06)
 **vrs**:       no
 **signals**:   RTCM 3.3 MSM; GPS+GLO+GAL+BDS+QZS on most stations
@@ -284,7 +284,7 @@ AUS` 2026-05-12.
 **vrs**:       no
 **access**:    free; LINZ account required; register via linz.govt.nz; CC BY 4.0 NZ
 **pipeline-access**: registration
-**registration**: https://www.linz.govt.nz/products-services/geodetic/positionz/positionz-real-time-service/connect-positionz-real-time-service
+**access_url**: https://www.linz.govt.nz/products-services/geodetic/positionz/positionz-real-time-service/connect-positionz-real-time-service
 **stations**:  62 active streams in sourcetable (37 LINZ CORS + ~15 GeoNet re-streams,
                covering NZ mainland, Chatham Islands, and Antarctica/Scott Base)
 **source**:    linz.govt.nz; geonet.org.nz (stream management)
@@ -332,7 +332,7 @@ unaffected); registration / SBC may be HTTPS-only.
 **vrs**:       yes — Network RTK clusters in Gauteng, Western Cape, KwaZulu-Natal; single-base RTK elsewhere; DGPS countrywide
 **access**:    free; register at trignet.co.za
 **pipeline-access**: registration
-**registration**: http://www.trignet.co.za/RegisterAccount.aspx
+**access_url**: http://www.trignet.co.za/RegisterAccount.aspx
 **stations**:  ~83 (STR entries in 2026-05-12 sourcetable; single-base mounts e.g. `Pret-SB`, `Ctwn-SB` plus three Network RTK clusters `RTKNetWCape`, Gauteng, KZN equivalents)
 **source**:    trignet.co.za (NGI / National Geospatial Information, DALRRD)
 **operator**:  NGI — Chief Directorate: National Geo-spatial Information, Dept. of Agriculture, Land Reform and Rural Development (DALRRD)
@@ -366,7 +366,7 @@ mountpoints publicly listed and no ZAR tariff published — not a hobbyist optio
 **type**:      single-base
 **access**:    free; gov.br signup; 5-station limit per user; 1,000 concurrent max
 **pipeline-access**: registration
-**registration**: https://www.gov.br/pt-br/servicos/obter-acesso-a-rbmc-ip
+**access_url**: https://www.gov.br/pt-br/servicos/obter-acesso-a-rbmc-ip
 **stations**:  ~150 (149 STR in sourcetable 2026-05-12); 5 stations inaugurated
                Dec 2024 (Governador Valadares MG, Maceió AL, Januária MG, Pinhais PR,
                Nova Friburgo RJ); IBGE planned 2 more in 2025 (Lins/SP, Rosana/SP)
@@ -401,7 +401,7 @@ casters.
 **type**:      single-base
 **access**:    free; register via ign.gob.ar portal; 8-hr session cap, re-authentication required
 **pipeline-access**: registration
-**registration**: https://www.ign.gob.ar/NuestrasActividades/Geodesia/RamsacNtrip/Registro
+**access_url**: https://www.ign.gob.ar/NuestrasActividades/Geodesia/RamsacNtrip/Registro
 **stations**:  ~203 (sourcetable 2026-05-12); modernisation programme expanded from 154 to ~204
 **reference_frame**: POSGAR 07 (SIRGAS / ITRF compatible)
 **last_researched_date**: 2026-05-12
@@ -458,7 +458,7 @@ sub-50 km baselines.
 **host:port**: `ntrip.igm.gob.ec:2101`
 **access**:    free with registration; no stated residency restriction; service
                described as extending to "national and international" users
-**registration**: https://www.geoportaligm.gob.ec/ntrip/public/register
+**access_url**: https://www.geoportaligm.gob.ec/ntrip/public/register
 **stations**:  26 physical CORS (live sourcetable 2026-05-12; nationwide
                coverage — Alausi, Ambato, Babahoyo, Chaco, Cotopaxi, Cuenca,
                El Carmen, Esmeraldas, ESPE, Francisco de Orellana, Guayaquil,
@@ -508,7 +508,7 @@ permitted per NULA.
 **vrs**:       no
 **access**:    free incl. commercial + automated ("peaceful purposes"); separate NtripCaster auth form
 **pipeline-access**: registration
-**registration**: https://go.gnss.go.jp
+**access_url**: https://go.gnss.go.jp
 **stations**:  ~325 STR rows (16 JP physical stations + ~309 worldwide partners
                2026-05-12: AUS 176, NZL 55, JPN 16, USA/CAN 11 each, etc.)
 **source**:    go.gnss.go.jp (Cabinet Office SPAC)
@@ -592,7 +592,7 @@ Map shows physical station pins.
 **access**:    free; register at ergnss.ign.es/gnuserportal/ (immediate); CC-compatible;
                max 10 simultaneous connections per account; ~12,000 registered users as of Jan 2024 (~60% agricultural sector)
 **pipeline-access**: registration
-**registration**: http://ergnss.ign.es/gnuserportal/
+**access_url**: http://ergnss.ign.es/gnuserportal/
 **stations**:  272 total (IGN permanent + 13 regional autonomous community networks + Puertos
                del Estado tide gauges; latest expansion adds PNAV, ARAJ, HOND per Jun 2025
                transportes.gob.es presentation); 17 processing subnets
@@ -634,7 +634,7 @@ del Estado. **CATNET** (Catalonia) is separate — own caster and own registrati
 **type**:      physical-vrs (VRS3M + ~25 single-station legacy RTCM 2 mountpoints)
 **access**:    free; ICGC account registration required
 **pipeline-access**: registration
-**registration**: https://catnet-ip.icgc.cat/
+**access_url**: https://catnet-ip.icgc.cat/
 **vrs**:       yes — RTKAT virtual station service (RTCM 2.3 / 3.0 + centimetre precision)
 **stations**:  ~25 physical reference stations covering Catalonia
 **signals**:   GPS+GLO+GAL+BDS (VRS3M MSM); legacy GPS-only RTCM 2 mountpoints also served
@@ -657,7 +657,7 @@ ERGNSS; single ICGC account required but no professional licence. Sourcetable li
 **access**:    free; application by email/form to Survey and Mapping Office (geodetic.gov.hk);
                no professional licence required; no residency restriction
 **pipeline-access**: registration
-**registration**: https://www.geodetic.gov.hk/en/satref/ntrip.htm
+**access_url**: https://www.geodetic.gov.hk/en/satref/ntrip.htm
 **stations**:  19 (16 reference + 3 integrity monitoring; TCHK under maintenance since Aug 2025)
 **source**:    geodetic.gov.hk (Lands Department, Survey & Mapping Office)
 **operator**:  Lands Department, Survey and Mapping Office (SMO), HKSAR Government
@@ -716,7 +716,7 @@ service described); the cron fetcher is the live verifier.
 **type**:      physical-coord-vrs
 **access**:    free; register at nrtk.big.go.id; Law No. 4/2011 mandates free public service
 **pipeline-access**: registration
-**registration**: https://nrtk.big.go.id
+**access_url**: https://nrtk.big.go.id
 **stations**:  ~4
 **source**:    big.go.id (BIG — Badan Informasi Geospasial)
 **operator**:  BIG — Badan Informasi Geospasial
@@ -749,7 +749,7 @@ of end-2024.
 **access**:    free; register at redgeodesica-sbc.igac.gov.co/sbc; Law 1955/2019 (PND Art. 281)
                mandates public access; Resolución IGAC 1771 de 2024 officialized the portal
 **pipeline-access**: registration
-**registration**: https://redgeodesica-sbc.igac.gov.co/sbc/Account/Register
+**access_url**: https://redgeodesica-sbc.igac.gov.co/sbc/Account/Register
 **stations**:  143 STR / 137 unique exact lat/lon pairs on port 2102. Sourcetable
                byte-identical 2026-05-07 → 2026-05-13 (Content-Length 15621): no station
                additions or removals in that window. IGAC declares ~260 CORS in total
@@ -792,7 +792,7 @@ Zero CO rtk2go / Centipede.
 **type**:      physical-coord-vrs
 **access**:    free; subscribe "SPSLUX (N)RTK" via the ACT cadastre portal (zero-cost)
 **pipeline-access**: registration
-**registration**: https://www.spslux.lu/SBC/Account/Register
+**access_url**: https://www.spslux.lu/SBC/Account/Register
 **stations**:  13 (some on international territory managed by partner networks); sourcetable exposes 18 mountpoints (VRS_G/GR/GRE/GREC, IMAX_G/GR/GRE/GREC in RTCM 3 / MSM5, plus NEAREST_* single-base and DGNSS_IMAX_RTCM2 / DGPS_IMAX_RTCM2)
 **source**:    act.public.lu (ACT — Administration du Cadastre et de la Topographie)
 **last_researched_date**: 2026-05-12
@@ -816,7 +816,7 @@ of Luxembourg City (closest `GEGE` 17.4 km, `KUBA` 18.0 km).
 **type**:      physical-coord-vrs
 **access**:    free; registration via the natt.is contact form
 **pipeline-access**: registration
-**registration**: https://www.natt.is/is/landmaelingar/jardstodvakerfi
+**access_url**: https://www.natt.is/is/landmaelingar/jardstodvakerfi
 **stations**:  33 (~70–100 km spacing nationwide); 4 physical mounts exposed in sourcetable
                (AUSV, GEVK, SENG, VOGC — all Reykjanes peninsula); remaining 29 reachable
                via nearest-station selector (RTCM30/RTCM30_MSM) or VRS3/VRS3_MSM
@@ -863,7 +863,7 @@ Reykjanes mounts. See `euref_ip`.
                page (`monpos.gazar.gov.mn/monpos/3/`): username `rover`,
                password `262461`; individual accounts also available via
                `geodesy.gov.mn` (citizen / legal entity login)
-**registration**: https://monpos.gazar.gov.mn (MonPOS portal);
+**access_url**: https://monpos.gazar.gov.mn (MonPOS portal);
                   https://geodesy.gov.mn (individual account registration —
                   ГЗЗУНС portal; "Иргэн" = citizen and "Хуулийн этгээд" =
                   legal entity options; Mongolian DAN QR login may be required
@@ -903,7 +903,7 @@ Zero MN mountpoints on rtk2go or Centipede.
 **access**:    sourcetable public; streams require per-Länder web registration. Free in 14
                of 16 states; BY €20/yr non-agri flat rate (free for agriculture); RP €120/yr/credential
                (HEPS/GPPS) + €100 one-time setup — surfaced separately as `sapos_RP` marker.
-**registration**: https://www.sapos.de  (central portal links to each state's signup)
+**access_url**: https://www.sapos.de  (central portal links to each state's signup)
 **operator**:  AdV (Arbeitsgemeinschaft der Vermessungsverwaltungen der Länder); 16 Bundesland operators
 **source**:    sapos.de; zentrale-stelle-sapos.de
 **last_researched_date**: 2026-05-12
@@ -955,7 +955,7 @@ SSR-capable receiver or Geo++ SSR2OBS converter. Out of scope for this pipeline.
                (Austrian Betriebsnummer / LFBIS-Nr.)
 **yearly_cost**: €200/mo RTK (~$220/mo); no annual plan — per-second, per-day, per-month only
 **yearly_cost_normalized**: 2640
-**registration**: https://www.bev.gv.at
+**access_url**: https://www.bev.gv.at
 **stations**:  37 physical AT stations in sourcetable; BEV brochure cites 75 including
                cross-border partner stations (SAPOS Bavaria, FReDNet, swipos AGNES)
 **vrs**:       yes (nationwide VRS, no baseline-distance degradation)
@@ -996,7 +996,7 @@ independent caster and depends on APOS (via eAMA) or Swiss swipos.
 **type**:      physical-coord-vrs
 **access**:    registration; free via spingnss.it (CSI Piemonte public portal)
 **pipeline-access**: registration
-**registration**: https://www.spingnss.it/
+**access_url**: https://www.spingnss.it/
 **stations**:  ~39
 **source**:    spingnss.it (CSI Piemonte on behalf of Regione Piemonte, Lombardia, VdA)
 **operator**:  CSI Piemonte
@@ -1015,7 +1015,7 @@ Free public access with simple registration; no annual fee documented.
 **type**:      physical-coord-vrs
 **access**:    registration; free via gpsumbria.regione.umbria.it
 **pipeline-access**: registration
-**registration**: https://umbriageo.regione.umbria.it/pagine/accesso-rapido-ai-servizi-gpsumbria
+**access_url**: https://umbriageo.regione.umbria.it/pagine/accesso-rapido-ai-servizi-gpsumbria
 **stations**:  13 (7 regional + 6 university; GPS+GLONASS+Galileo+BeiDou; ~40 km spacing)
 **source**:    gpsumbria.regione.umbria.it (Regione Umbria)
 **operator**:  Regione Umbria
@@ -1032,7 +1032,7 @@ Regional GNSS network for Umbria. Free public service with 13 physical reference
 **type**:      physical-coord-vrs
 **access**:    registration; free via gnssnet.regione.abruzzo.it/accesso.php
 **pipeline-access**: registration
-**registration**: https://gnssnet.regione.abruzzo.it/accesso.php
+**access_url**: https://gnssnet.regione.abruzzo.it/accesso.php
 **stations**:  ~29
 **source**:    gnss-rtk.regione.abruzzo.it (Regione Abruzzo / Regione Lazio)
 **operator**:  Regione Abruzzo / Regione Lazio
@@ -1052,7 +1052,7 @@ renewed March 2025).
 **type**:      physical-coord-vrs
 **access**:    registration; free via sit.puglia.it (Sistema Informativo Territoriale)
 **pipeline-access**: registration
-**registration**: https://pugliacon.regione.puglia.it/web/sit-puglia-sit/global-positioning-system
+**access_url**: https://pugliacon.regione.puglia.it/web/sit-puglia-sit/global-positioning-system
 **stations**:  12
 **source**:    gps.sit.puglia.it (Regione Puglia)
 **operator**:  Regione Puglia (SIT)
@@ -1092,7 +1092,7 @@ Campania regional GNSS network. Public credentials (`Campania`/`GNSS`) provide
 **type**:      physical-coord-vrs (single-base + VRS)
 **access**:    registration; free via wiscors.dot.wi.gov (Wisconsin DOT)
 **pipeline-access**: registration
-**registration**: https://wisconsindot.gov/Pages/doing-bus/eng-consultants/cnslt-rsrces/tools/wiscors/default.aspx (WisDOT info page; account creation form at wiscorsweb.dot.wi.gov/trimblepivotweb/)
+**access_url**: https://wisconsindot.gov/Pages/doing-bus/eng-consultants/cnslt-rsrces/tools/wiscors/default.aspx (WisDOT info page; account creation form at wiscorsweb.dot.wi.gov/trimblepivotweb/)
 **stations**:  115+ permanent statewide
 **source**:    wiscors.dot.wi.gov (Wisconsin Department of Transportation)
 **operator**:  Wisconsin DOT
@@ -1113,7 +1113,7 @@ ingesting to avoid duplicate pins.
 **type**:      physical-coord-vrs
 **access**:    registration; free via myfloridagps.com (Florida DOT)
 **pipeline-access**: registration
-**registration**: https://www.fdot.gov/geospatial/fprn.shtm (SBC at myfloridagps.com/sbc/Account/Register)
+**access_url**: https://www.fdot.gov/geospatial/fprn.shtm (SBC at myfloridagps.com/sbc/Account/Register)
 **stations**:  ~100 (live 2026-05-13: 101 STR rows including network solutions and single-base streams)
 **vrs**:       yes (VRS, iMAX, MAX, FKP; `RTCM3_VRS` mountpoint in user guides)
 **source**:    myfloridagps.com (Florida Department of Transportation, Geospatial office)
@@ -1137,7 +1137,7 @@ model state public RTK service. Some overlap with EarthScope NOTA expected.
 **type**:      physical-coord-vrs
 **access**:    registration; free via ardot.gov (Arkansas DOT)
 **pipeline-access**: registration
-**registration**: https://ardot.gov/divisions/surveys/control-surveys/ (SBC at gps.ardot.gov)
+**access_url**: https://ardot.gov/divisions/surveys/control-surveys/ (SBC at gps.ardot.gov)
 **stations**:  ~50
 **source**:    ardot.gov (Arkansas Department of Transportation)
 **operator**:  Arkansas DOT
@@ -1158,7 +1158,7 @@ Pulaski County with a separate signed-agreement registration at pagis.org.
 **type**:      physical-coord-vrs
 **access**:    registration; free via massdot.state.ma.us (MassDOT)
 **pipeline-access**: registration
-**registration**: https://www.mass.gov/how-to/the-massachusetts-continuously-operating-reference-station-network-macors (SBC at macors.massdot.state.ma.us)
+**access_url**: https://www.mass.gov/how-to/the-massachusetts-continuously-operating-reference-station-network-macors (SBC at macors.massdot.state.ma.us)
 **stations**:  22 (GNSS base stations, ~50 km spacing; Mass.gov current listing)
 **vrs**:       yes (Leica iMAX; recommended `RTCM3MSM_IMAX` for full-constellation GPS+GLO+GAL+BDS)
 **source**:    massdot.state.ma.us (Massachusetts Department of Transportation)
@@ -1181,7 +1181,7 @@ account is active.
 **type**:      physical-coord-vrs
 **access**:    registration; free via vector.vermont.gov (VTrans Geodetic Survey)
 **pipeline-access**: registration
-**registration**: https://vtrans.vermont.gov/highway/geodetic/cors/real-time (SBC at vector.vermont.gov)
+**access_url**: https://vtrans.vermont.gov/highway/geodetic/cors/real-time (SBC at vector.vermont.gov)
 **stations**:  18 physical reference stations (live 2026-05-13: 36 STR rows = physical + single-base + VRS variants)
 **vrs**:       yes (RTCM 3.1 and CMR+ single-base and network streams)
 **source**:    vtrans.vermont.gov/highway/geodetic (Vermont Agency of Transportation)
@@ -1206,7 +1206,7 @@ same IP.
 **type**:      physical-coord-vrs
 **access**:    registration; free via azwater.gov (Arizona Dept. of Water Resources)
 **pipeline-access**: registration
-**registration**: https://www.azwater.gov/hydrology/azcors (SBC at azcors.azwater.gov)
+**access_url**: https://www.azwater.gov/hydrology/azcors (SBC at azcors.azwater.gov)
 **stations**:  52 (37 ADWR-managed + 15 EarthScope/NPS CORS sites; per ADWR March 2025 update reflected in AZCORS_InformationAndMountpoints20260406.pdf)
 **source**:    azwater.gov (Arizona Department of Water Resources)
 **operator**:  Arizona Dept. of Water Resources (ADWR)
@@ -1228,7 +1228,7 @@ post-registration only.
 **type**:      single-base
 **access**:    registration; free via usm.edu Gulf Coast Geospatial Center portal
 **pipeline-access**: registration
-**registration**: https://www.usm.edu/gulf-coast-geospatial-center/real_time_network.php (SBC at rtn.usm.edu/RegisterAccount.aspx)
+**access_url**: https://www.usm.edu/gulf-coast-geospatial-center/real_time_network.php (SBC at rtn.usm.edu/RegisterAccount.aspx)
 **stations**:  ~52 CORS (Mississippi-focused; 14 STR live 2026-05-13)
 **vrs**:       unclear (Trimble Pivot platform supports VRS; specific VRS mountpoints not confirmed in public docs)
 **source**:    rtn.usm.edu (Gulf Coast Geospatial Center / University of Southern Mississippi)
@@ -1252,7 +1252,7 @@ adjacent states. SOURCETABLE 200 OK re-confirmed 2026-05-13 (14 STR entries).
 **type**:      physical-coord-vrs
 **access**:    registration; free via aldotcors.dot.state.al.us (Alabama DOT)
 **pipeline-access**: registration
-**registration**: https://aldotcors.dot.state.al.us/SBC/Account/Register
+**access_url**: https://aldotcors.dot.state.al.us/SBC/Account/Register
 **stations**:  ~158 physical single-base on `:10099` (live 2026-05-13); 10 network solution mounts on `:10011`
 **vrs**:       yes (`:10011` serves Leica MAC/iMAX network-RTK mountpoints — `RTCMIMAX`, `AutoMAX`, `CMR+IMAX`, `LeicaMAX`; iMAX/MAX are NRTK products, equivalent to VRS for the user)
 **source**:    aldotcors.dot.state.al.us (Alabama Department of Transportation)
@@ -1277,7 +1277,7 @@ have successfully registered.
 **type**:      physical-coord-vrs
 **access**:    registration; free via oregon.gov/odot/orgn (Oregon DOT)
 **pipeline-access**: registration
-**registration**: https://www.oregon.gov/odot/orgn/pages/rover-requests.aspx
+**access_url**: https://www.oregon.gov/odot/orgn/pages/rover-requests.aspx
 **stations**:  ~100
 **source**:    oregon.gov (Oregon Department of Transportation)
 **operator**:  Oregon DOT (ODOT)
@@ -1300,7 +1300,7 @@ expected.
 **type**:      physical-coord-vrs
 **access**:    registration; free via michigan.gov (Michigan DOT)
 **pipeline-access**: registration
-**registration**: https://mdotcors.michigan.gov/sbc/Account/Register
+**access_url**: https://mdotcors.michigan.gov/sbc/Account/Register
 **stations**:  ~95 CORS statewide
 **source**:    michigan.gov (Michigan Department of Transportation)
 **operator**:  Michigan DOT (MDOT)
@@ -1322,7 +1322,7 @@ upload GGA at least every 30 seconds. Significant overlap with EarthScope NOTA e
 **type**:      physical-coord-vrs
 **access**:    registration; free via cors.dot.ny.gov (NYSDOT — credentials emailed after activation)
 **pipeline-access**: registration
-**registration**: https://www.dot.ny.gov/divisions/engineering/design/design-services/land-survey/cors (SBC at cors.dot.ny.gov/SBC)
+**access_url**: https://www.dot.ny.gov/divisions/engineering/design/design-services/land-survey/cors (SBC at cors.dot.ny.gov/SBC)
 **stations**:  unpublished current count (NYSDOT does not publish a station total; the 2006-era network was 36 with 10 planned additions; live sourcetable 2026-05-13: 18 STR rows covering MAX/iMAX/MSM/CMR variants on shared physical infrastructure)
 **vrs**:       yes (`net_msm_vrs` RTCM 3 MSM GPS+GLO+GAL+BDS; iMAX `net_msm_imax`, `GG_MSM_IMAX`; `near_msm` nearest-site)
 **source**:    dot.ny.gov (New York State Department of Transportation, Engineering Division + NYC partners)
@@ -1348,7 +1348,7 @@ expected.
 **type**:      physical-coord-vrs
 **access**:    conditions; signed User Agreement required (free); via incors.in.gov (INDOT)
 **pipeline-access**: conditions
-**registration**: https://incors.in.gov/
+**access_url**: https://incors.in.gov/
 **stations**:  60 in solution (45 INDOT + 15 cross-state from MI, OH, KY)
 **source**:    incors.in.gov (Indiana Department of Transportation)
 **operator**:  Indiana DOT (INDOT)
@@ -1373,7 +1373,7 @@ full-constellation also available. FTP RINEX archive at `ftp.incors.in.gov`.
 **type**:      physical-coord-vrs
 **access**:    registration; free via iowadot.gov (Iowa DOT)
 **pipeline-access**: registration
-**registration**: https://iowadot.gov/consultants-contractors/design/iowa-real-time-network (SBC at iartnsbc.iowadot.gov/sbc/Account/Register)
+**access_url**: https://iowadot.gov/consultants-contractors/design/iowa-real-time-network (SBC at iartnsbc.iowadot.gov/sbc/Account/Register)
 **stations**:  83 IaRTN reference stations + 21 cross-state contributors (10 MnDOT, 4 WisDOT, 7 MoDOT)
 **source**:    iowadot.gov (Iowa Department of Transportation);
                e38surveysolutions.com/blogs/news/emlid-reach-rx-or-rs2-and-dji-rtk-connection-to-iowa-ntrip-iartn (Emlid/DJI client setup walkthrough; mountpoint `MSM_IMAX` is the recommended full-constellation RTCM3 stream)
@@ -1399,7 +1399,7 @@ parallel mountpoints during the NAD83(2011) → NATRF2022 transition.
 **type**:      physical-coord-vrs
 **access**:    registration; free via acorn.uconn.edu (CTDOT + UConn)
 **pipeline-access**: registration
-**registration**: https://ctsurveyors.org/acorn-real-time-positioning-for-connecticut/ (SBC at acorn.uconn.edu)
+**access_url**: https://ctsurveyors.org/acorn-real-time-positioning-for-connecticut/ (SBC at acorn.uconn.edu)
 **stations**:  13 (9 in CT, 1 in RI, 2 in southern MA, 1 Long Island NY)
 **vrs**:       yes (primary `VRS3_RTX` multi-constellation; `VRSX_RTX` for Trimble)
 **source**:    acorn.uconn.edu (Connecticut DOT + UConn Department of Natural Resources)
@@ -1457,7 +1457,7 @@ requires NRTK polygon (deferred).
 **type**:      single-coord-vrs
 **access**:    free for all uses; web self-signup at flepos.vlaanderen.be
 **pipeline-access**: registration
-**registration**: https://flepos.vlaanderen.be/Login.aspx
+**access_url**: https://flepos.vlaanderen.be/Login.aspx
 **stations**:  0 (45 declared; single-coord Flanders centroid)
 **vrs**:       yes
 **last_researched_date**: 2026-05-12
@@ -1482,7 +1482,7 @@ portal.
 **type**:      single-coord-vrs
 **access**:    free for positioning; paid for machine-control / auto-guidance via commercial resellers
 **pipeline-access**: registration
-**registration**: https://gnss.wallonie.be/walcors/inscription.html
+**access_url**: https://gnss.wallonie.be/walcors/inscription.html
 **stations**:  0 (22 Wallonia + 13 cross-border LU/NL/FR/DE declared; single-coord VRS)
 **vrs**:       yes
 **last_researched_date**: 2026-05-12
@@ -1515,7 +1515,7 @@ Antwerp). Useful when government caster registration is pending.
                0 physical pins surface in the pipeline)
 **source**:    latpos.lgia.gov.lv (LGIA)
 **operator**:  LGIA — Latvijas Ģeotelpiskās informācijas aģentūra
-**registration**: https://latpos.lgia.gov.lv/SBC/Account/Register
+**access_url**: https://latpos.lgia.gov.lv/SBC/Account/Register
 
 Domain `lgia.gov.lv` is live; SBC portal at `latpos.lgia.gov.lv` active.
 Port 5001 confirmed responding SOURCETABLE 200 OK on 2026-05-12 (Server
@@ -1540,7 +1540,7 @@ registration is delayed.
 **type**:      vrs-only
 **access**:    free; usage rules §3 (geoportal.lt) make all LitPOS data public and free
 **pipeline-access**: registration
-**registration**: https://www.geoportal.lt/geoportal/web/litpos-en/registration
+**access_url**: https://www.geoportal.lt/geoportal/web/litpos-en/registration
 **stations**:  35 LT + 3 PL (ASG-EUPOS) + 6 LV (LatPos) via EUPOS cooperation
 **source**:    geoportal.lt
 **last_researched_date**: 2026-05-12
@@ -1572,7 +1572,7 @@ stations under EUPOS cooperation.
                + service agreement; previously had Estonia-only IP restriction (current
                status with expanded network unclear — verify before relying)
 **pipeline-access**: conditions
-**registration**: https://geoportaal.maaamet.ee/eng/Spatial-Data/ESTPOS-national-GNSS-satellite-data-center-p839.html
+**access_url**: https://geoportaal.maaamet.ee/eng/Spatial-Data/ESTPOS-national-GNSS-satellite-data-center-p839.html
 **stations**:  40 CORS as of June 2025; rebuilt 2024–2025 with EU NextGenerationEU funding
 **vrs**:       yes — iMAX, VRS, nearest-station; mountpoints `DGNSS_iMAX/VRS/Nearest`,
                `RTCM2_*`, `RTCM3_*`, `MSM5_*`
@@ -1598,7 +1598,7 @@ maaruum.ee/announcements for the post-2026-08-31 tariff decision.
 **type**:      single-coord-vrs
 **access**:    free; register via ksacors.geoportal.sa (online form or download form and email to the GEOSA registration contact listed on the portal); no licensed-surveyor requirement
 **pipeline-access**: conditions
-**registration**: https://ksacors.geoportal.sa/RegisterAccount.aspx
+**access_url**: https://ksacors.geoportal.sa/RegisterAccount.aspx
 **stations**:  0 (209 declared; single-coord; GPS+GLO+GAL+BDS; KSA-GRF17 datum)
 **source**:    ksacors.geoportal.sa (GASGI/GEOSA)
 **operator**:  GEOSA — General Authority for Survey and Geospatial Information (formerly GASGI / GCS)
@@ -1636,7 +1636,7 @@ policy page (gasgi.gov.sa FAQ + Getting-Started PDF) once it is reachable.
 **access**:    free since Apr 2022 (Narodne novine 39/2022); email/web registration at cropos.hr;
                one-time 40 EUR registration fee per Regulation NN 56/2023 / NN 106/25
 **pipeline-access**: registration
-**registration**: https://www.cropos.hr/
+**access_url**: https://www.cropos.hr/
 **stations**:  0 (35+ declared including 2025 expansion; sourcetable reports 0/0 for all
                mountpoints — Trimble Pivot VRS convention)
 **source**:    cropos.hr (DGU)
@@ -1661,7 +1661,7 @@ alive 2026-05-12 (SOURCETABLE 200 OK, Trimble Ntrip Caster 5.2, 15 STR rows).
 **type**:      single-coord-vrs
 **access**:    registration; free via kycors.ky.gov (Kentucky Transportation Cabinet)
 **pipeline-access**: registration
-**registration**: https://kycors.ky.gov/RegisterAccount.aspx
+**access_url**: https://kycors.ky.gov/RegisterAccount.aspx
 **stations**:  VRS only (6 STR rows live 2026-05-13)
 **vrs**:       yes (recommended `RTX_RTCM3_2` — RTCM3 multi-constellation)
 **source**:    kycors.ky.gov (Kentucky Transportation Cabinet)
@@ -1683,7 +1683,7 @@ SOURCETABLE 200 OK re-confirmed 2026-05-13.
 **type**:      single-coord-vrs
 **access**:    registration; free via mndot.gov (Minnesota DOT)
 **pipeline-access**: registration
-**registration**: https://www.dot.state.mn.us/surveying/cors/index.html (SBC at mncors.dot.state.mn.us)
+**access_url**: https://www.dot.state.mn.us/surveying/cors/index.html (SBC at mncors.dot.state.mn.us)
 **stations**:  VRS only (underlying ~140 physical stations)
 **source**:    mndot.gov (Minnesota Department of Transportation)
 **operator**:  Minnesota DOT (MnDOT)
@@ -1706,7 +1706,7 @@ Waters now covered. Significant overlap with EarthScope NOTA expected.
 **type**:      single-coord-vrs
 **access**:    registration; free via transportation.ohio.gov (Ohio DOT)
 **pipeline-access**: registration
-**registration**: https://transportation.ohio.gov/working/engineering/cadd-mapping/survey/cors-rtn
+**access_url**: https://transportation.ohio.gov/working/engineering/cadd-mapping/survey/cors-rtn
 **stations**:  VRS only
 **source**:    transportation.ohio.gov (Ohio Department of Transportation)
 **operator**:  Ohio DOT
@@ -1729,7 +1729,7 @@ page; no professional licence field identified. Trimble Pivot Web login at
 **access**:    conditions; requires signed and notarized MoDOT CORS access agreement;
 **pipeline-access**: conditions
                free once approved — contact via modot.mo.gov
-**registration**: https://www.modot.org/gps-utility-mapping-system (notarised User Agreement; SBC at gpsweb3.modot.mo.gov)
+**access_url**: https://www.modot.org/gps-utility-mapping-system (notarised User Agreement; SBC at gpsweb3.modot.mo.gov)
 **stations**:  VRS only (underlying 78 NetR5 CORS, max 70 km spacing)
 **source**:    modot.mo.gov (Missouri Department of Transportation)
 **operator**:  Missouri DOT
@@ -1754,7 +1754,7 @@ personnel changes, but individuals can sign as their own entity.
 **type**:      single-coord-vrs
 **access**:    registration; free via wvrtn.cors.us (WV Dept. of Transportation — IT Division, Highway Data Services Unit)
 **pipeline-access**: registration
-**registration**: https://wvrtn.cors.us/ (signup form at /RegisterAccount.aspx)
+**access_url**: https://wvrtn.cors.us/ (signup form at /RegisterAccount.aspx)
 **stations**:  VRS only (underlying ~34 CORS upgraded to Trimble Alloy receivers in 2024; 7 STR rows live 2026-05-13)
 **vrs**:       yes (recommended `rtxRTCM3_4_MSM` / `rtxCMRx` multi-constellation; older `rtxRTCM3_2` was renamed)
 **source**:    transportation.wv.gov (WV Department of Transportation)
@@ -1777,7 +1777,7 @@ plus a `NATRF2022_Test` preview of the 2026 NSRS datum modernisation. Backup hos
 **type**:      vrs-only
 **access**:    registration; free via medotrtn.maine.gov (MaineDOT Survey Section)
 **pipeline-access**: registration
-**registration**: https://www.maine.gov/dot/doing-business/permitting-policy/survey-and-right-of-way-information (SBC at medotrtn.maine.gov)
+**access_url**: https://www.maine.gov/dot/doing-business/permitting-policy/survey-and-right-of-way-information (SBC at medotrtn.maine.gov)
 **stations**:  VRS only (8 STR rows live 2026-05-13)
 **vrs**:       yes
 **source**:    maine.gov/dot (Maine Department of Transportation, Bureau of Project Development)
@@ -1799,7 +1799,7 @@ required to re-register after the cutover. Mountpoints: `VRS_CMR`, `VRS_RTCM`,
 **type**:      vrs-only
 **access**:    registration; free via rtvrn.mesacounty.us
 **pipeline-access**: registration
-**registration**: https://www.mesacounty.us/departments-and-services/public-works/gps-survey (Mesa County Public Works info page; account creation form at rtvrn.mesacounty.us)
+**access_url**: https://www.mesacounty.us/departments-and-services/public-works/gps-survey (Mesa County Public Works info page; account creation form at rtvrn.mesacounty.us)
 **stations**:  33 (17 NGS CORS + 16 county/partner stations) underlying VRS
 **source**:    mesacounty.us/departments-and-services/public-works/gps-survey
 **operator**:  Mesa County Public Works (Western Colorado)
@@ -1833,7 +1833,7 @@ tuning once a sourcetable is observed.
 **host:port**: via AGN portal at agn.ngi.be (host/port issued after login request)
 **type**:      single-base (UKKE — Uccle/Ukkel NGI campus, one physical station)
 **access**:    free; login request via agn.ngi.be
-**registration**: https://agn.ngi.be
+**access_url**: https://agn.ngi.be
 **stations**:  1 (UKKE)
 **vrs**:       no
 **mountpoints**: UKKE_GNSS_3.0 (RTCM 3.0, GPS+GLONASS); RTCM 2.1/2.3 variants (GPS only)
@@ -1862,7 +1862,7 @@ login request.
                (13-digit) required — foreign users cannot self-register via the
                standard form (reconfirmed 2026-05-13 on register_gnss_beta form)
 **pipeline-access**: conditions
-**registration**: https://dol-rtknetwork.com/index.php/register_gnss_beta
+**access_url**: https://dol-rtknetwork.com/index.php/register_gnss_beta
 **stations**:  ~115–220 CORS (academic sources, 63 provinces)
 **source**:    dol-rtknetwork.com (Department of Lands / กรมที่ดิน, Ministry of Interior)
 
@@ -1914,7 +1914,7 @@ reachable from CI.
 **access**:    free of charge as of 2026-05-12; application by email to PRN@slrb.gov.bh
                with completed GPS Network Application Form; credentials issued in 1–2
                working days; one device per credential
-**registration**: https://www.slrb.gov.bh/en/permanent-reference-networkprn
+**access_url**: https://www.slrb.gov.bh/en/permanent-reference-networkprn
 **stations**:  not disclosed (Bahrain ~765 km² — a single well-sited station covers
                the entire kingdom within typical 30 km RTK baseline)
 **last_researched_date**: 2026-05-12
@@ -1984,7 +1984,7 @@ a bare IP.
 **type**:      physical-coord-vrs (VRS zone mountpoints: VRSx_WEST/CENTR/EAST/SOUTH;
                SK63 zones 1–6; MSK_05; USK2000_4; UTM_35; MUKA_32 city base)
 **access**:    paid subscription; account registration at www.ua-pos.net
-**registration**: https://www.ua-pos.net
+**access_url**: https://www.ua-pos.net
 **yearly_cost**: 15,000 UAH/yr (~$366/yr) (wartime reduced tariff, April 2025);
                also: 2.43 UAH/min RTK, 1.08 UAH/min post-processing, 225 UAH/day,
                675 UAH/week, 1,600 UAH/month, 4,300 UAH/3 months, 8,000 UAH/6 months;
@@ -2022,7 +2022,7 @@ NULP) and SULP00UKR0 (Lviv, IGS) — free reference, not NTRIP corrections.
                `:2222` (drone/UAV); MSK local-system zone ports (20001–20005+) via rtk.gnss.org.ua
 **type**:      physical-coord-vrs (VRS; mountpoints: nearest, automax, vrs, i-max)
 **access**:    paid subscription; Leica Spider Business Center login at gnss.org.ua
-**registration**: https://gnss.org.ua
+**access_url**: https://gnss.org.ua
 **yearly_cost**: 19,000 UAH/yr (~$460/yr) geodesy annual (VAT incl.; list ~19,900 UAH/yr);
                agro variant: 19,200 UAH/yr; shorter terms (1/3/6 mo) available.
                Observed 2026-05-07 via reseller gpsgeometer.com
@@ -2047,7 +2047,7 @@ Website and portal confirmed active as of 2026-05-13.
                tnt-tpi.com catalog reachable 2026-05-13)
 **type**:      physical-coord-vrs (services: Network RTK, nearest, single-base, DGPS, RINEX download)
 **access**:    paid subscription; registration at rtkhub.com
-**registration**: https://rtkhub.com
+**access_url**: https://rtkhub.com
 **yearly_cost**: 10,500 UAH/yr (~$256/yr) (from 01 Jan 2025; reduced from 15,000 UAH/yr);
                also: 2.50 UAH/min, 210 UAH/day, 600 UAH/week, 1,800 UAH/month,
                4,650 UAH/3 months, 6,300 UAH/6 months
@@ -2077,7 +2077,7 @@ of the three major Ukrainian commercial networks.
 **access**:    paid; requires active Kyivstar business contract subscription; individual
                subscriptions available; Starlink variant (mAgri.RTK 365 StarLink)
                for areas with unstable mobile connectivity
-**registration**: `https://kyivstar.ua/business/products/geodesiya`
+**access_url**: `https://kyivstar.ua/business/products/geodesiya`
 **yearly_cost**: 17,700 UAH/yr (~$430/yr) GEO 365; monthly 5,550 UAH (~$135/mo);
                7-day 1,800 UAH; daily 450 UAH; 7-day trial UAH 2
 **yearly_cost_normalized**: 430
@@ -2104,7 +2104,7 @@ front-line territories severely degraded.
 **type**:      unknown (geodesy + agro RTK correction products; "Геодезичні поправки"
                and "Аграрні поправки" landing pages, sourcetable not exposed)
 **access**:    paid subscription; online enrolment; portal at gnss-rtk.com
-**registration**: https://gnss-rtk.com
+**access_url**: https://gnss-rtk.com
 **yearly_cost**: not publicly listed (tariff visible only after login)
 **stations**:  275 claimed (network home-page banner, 2026-05-13); independent
                verification not available; competitor sites disagree on user
@@ -2146,7 +2146,7 @@ System.NET subscriptions and equipment — not an independent caster.
 **host:port**: `194.105.50.232:2101` (bare IP; confirmed SOURCETABLE 200 OK 2026-05-07; tpos.provincia.tn.it is the SBC portal domain, does not resolve as NTRIP caster)
 **type**:      physical-coord-vrs (VRS, MAX, NRT mountpoints)
 **access**:    registration; free; self-service Leica Spider Business Center portal; no professional licence required
-**registration**: https://www.tpos.provincia.tn.it
+**access_url**: https://www.tpos.provincia.tn.it
 **stations**:  11
 **operator**:  Servizio Catasto, Provincia Autonoma di Trento
 **source**:    tpos.provincia.tn.it (PAT — Provincia Autonoma di Trento)
@@ -2168,7 +2168,7 @@ archive (up to 1 year). Host:port confirmed via provincial institutional pages 2
 **access**:    registration; free; Leica Spider Business Center portal; requires ID scan + declaration
                of intended use to activate RTK access; RINEX available immediately after registration;
                no professional licence restriction
-**registration**: https://www.stpos.it
+**access_url**: https://www.stpos.it
 **stations**:  10
 **operator**:  Ufficio Catasto / Amt für Kataster, Provincia Autonoma di Bolzano / Autonome Provinz Bozen
 **source**:    stpos.it (PAB — Provincia Autonoma di Bolzano)
@@ -2189,7 +2189,7 @@ light — no professional credential required; RINEX archive available without i
 **type**:      physical-coord-vrs (MAX3, IMAX, NRT mountpoints)
 **access**:    registration; free; email retegpsveneto@gmail.com with name, address, intended use;
                credentials assigned manually; open to any user ("liberamente accessibile previa registrazione")
-**registration**: https://retegnssveneto.cisas.unipd.it
+**access_url**: https://retegnssveneto.cisas.unipd.it
 **stations**:  ~20
 **operator**:  CISAS (Centro Interdipartimentale di Studi e Attività Spaziali), Università di Padova,
                on behalf of Regione del Veneto
@@ -2211,7 +2211,7 @@ Host:port confirmed from site FAQ 2026-04-30.
 **type**:      physical-coord-vrs
 **access**:    registration; free; online form via Liguria Geoportal; open to all users
                ("tutti gli utenti interessati al rilievo"); no professional credential required
-**registration**: https://geoportal.regione.liguria.it/servizi/rete-gnss-liguria
+**access_url**: https://geoportal.regione.liguria.it/servizi/rete-gnss-liguria
 **stations**:  10 (7 regional + 3 shared with SPIN3 GNSS)
 **operator**:  Regione Liguria, Settore Informatica
 **source**:    geoportal.regione.liguria.it (Regione Liguria)
@@ -2231,7 +2231,7 @@ contributed from SPIN3 GNSS (Piemonte/Lombardia border). Host:port confirmed on 
 **type**:      physical-coord-vrs (MAX/IMAX, VRS, FKP, RTCM 3.0; single-base and network solutions)
 **access**:    registration; free; email to request credentials via ct.ingv.it; explicitly open
                to all interested users ("in modo totalmente gratuito e a tutti gli utenti interessati")
-**registration**: https://www.ct.ingv.it/index.php/risorse-e-servizi/sicil-net
+**access_url**: https://www.ct.ingv.it/index.php/risorse-e-servizi/sicil-net
 **stations**:  ~80
 **operator**:  INGV Osservatorio Etneo, Sezione di Catania (ct.ingv.it)
 **source**:    ct.ingv.it (INGV — Istituto Nazionale di Geofisica e Vulcanologia, Catania)
@@ -2265,7 +2265,7 @@ commercial services.
 **host:port**: not confirmed (previously cited www.sarnet.it:2101 / 94.32.107.44:2101 are likely wrong)
 **type**:      physical-coord-vrs (VRS, single-base, DGPS, RINEX archive)
 **access**:    paid subscription; register via geodesia.biz/iscrizione-sarnet; no professional licence restriction stated
-**registration**: https://www.geodesia.biz/iscrizione-sarnet
+**access_url**: https://www.geodesia.biz/iscrizione-sarnet
 **yearly_cost**: €250/yr ex-IVA (~$293/yr); IVA 22% applies (→ ~€305/yr gross, ~$357/yr);
                confirmed via multiple current public procurement documents referencing SARNET subscriptions
 **yearly_cost_normalized**: 293
@@ -2502,7 +2502,7 @@ Sourcetable publicly readable. Removed from free-source pipeline 2026-04-20.
 **type**:      vrs-only
 **access**:    paid; individual online registration accepted; no professional licence required;
                pay-as-you-go (€90 + VAT per bundle) or flat-rate subscription
-**registration**: hepos.gr
+**access_url**: hepos.gr
 **yearly_cost**: €480/yr (~$520) ex-VAT flat-rate (unlimited); quarterly: €160 (~$170) ex-VAT
 **yearly_cost_normalized**: 520
 **stations**:  98 permanent reference stations covering mainland Greece and islands
@@ -2544,7 +2544,7 @@ advertised 99% coverage of Greece. Confirmed alive 2026-05-06 (uranus.gr HTTP 20
                single-base product
 **access**:    paid; ANCPI account required; self-service registration at epay.ancpi.ro;
                rover managed via app.rompos.ro
-**registration**: https://epay.ancpi.ro
+**access_url**: https://epay.ancpi.ro
 **yearly_cost**: 1,000 RON/yr (~€200/yr, VAT included); monthly: 100 RON/month (~€20/month);
                pricing set by ANCPI Order No. 16/2019 (in force since 2019-02-04;
                ANCPI epay portal re-confirmed 2026-05-12)
@@ -2585,7 +2585,7 @@ codes are used in parallel and must be summed for the per-country total.
                private individuals with no professional registration. Country
                list covers virtually every UN member state; no Slovak residency
                restriction stated.
-**registration**: `skpos.gku.sk/register/`
+**access_url**: `skpos.gku.sk/register/`
 **yearly_cost**: €70/yr (~$79) — SKPOS_cm/RTK 1 device, includes 50 h RINEX
 **yearly_cost_normalized**: 79
 **stations**:  ~26 SK permanent reference stations; VRS only (SKPOS_cm service)
@@ -2646,7 +2646,7 @@ Brief entries only.
 **type**:      unknown
 **host:port**: not publicly listed (issued on subscription)
 **access**:    paid; contact kadaster.sx
-**registration**: https://kadaster.sx/services/
+**access_url**: https://kadaster.sx/services/
 **yearly_cost**: XCG 3,600/yr (~USD 2,022/yr) per receiver
 **yearly_cost_normalized**: 2022
 **stations**:  unknown (island is 34 km²; single station likely)
@@ -2674,7 +2674,7 @@ already in pipeline via `earthscope`.
 **yearly_cost**: not publicly listed for RTK (the four caymanlandinfo.ky
                  subscription tiers — Bronze KYD 3 300/yr, Silver 4 950, Gold 7 150,
                  Platinum 12 100 — are mapping/registry only and do NOT include RTK)
-**registration**: https://www.caymanlandinfo.ky/services/survey/geodetic-system
+**access_url**: https://www.caymanlandinfo.ky/services/survey/geodetic-system
 **stations**:  4 (Cayman Brac, Little Cayman, two on Grand Cayman)
 **operator**:  Lands & Survey Department, Government of Cayman Islands
 **last_researched_date**: 2026-05-12
@@ -2751,7 +2751,7 @@ TERIAsat (L-band) and TERIArinex (post-processing) variants. Confirmed alive 202
                Free for public administrations with active SITCAN contract.
                IGIC (7% — Canary Islands VAT rate) applies.
 **yearly_cost**: not publicly listed (purchase via tiendavirtual.grafcan.es)
-**registration**: https://pre-web.grafcan.es/servicios/red-estaciones-gnss/alta-gnss/
+**access_url**: https://pre-web.grafcan.es/servicios/red-estaciones-gnss/alta-gnss/
 **stations**:  20 (AGUI, ALDE, ALJR, ANTI, ARGU, FRON, GRAF, HRIA, LIVA, MAZO,
                MORJ, OLIV, SNMG, STEI, STTE, TERR, TIAS, TRLJ, VHMO, YAIZ)
 **operator**:  Cartografía de Canarias S.A. (GRAFCAN)
@@ -2780,7 +2780,7 @@ IGN SPTR service (`ergnss-tr.ign.es:2101`) as first option.
 **type**:      physical-coord-vrs (VRS, MAC/MAX, individual station streams)
 **access**:    paid; registration requires signed contract posted to Geodetski inštitut
                Slovenije; public bodies and students free with documentation
-**registration**: `https://gu-signal.si/postopek-registracije/`
+**access_url**: `https://gu-signal.si/postopek-registracije/`
 **yearly_cost**: €829.44/yr (~$905/yr) excl. VAT
 **yearly_cost_normalized**: 905
 **stations**:  16 Slovenian CORS + cross-border (AT, HR, IT, HU adjacents accessible)
@@ -2813,7 +2813,7 @@ on the registration page. Pay-per-use €0.12/connected minute (excl. VAT).
 **host:port**: runtime caster host:port issued only after subscription activation; not advertised externally
 **access**:    paid subscription; profile-validation at a Citizen Service Centre (Cypriot ID or
                residence-permit-backed civil registration) — practical residency gate
-**registration**: `portal.dls.moi.gov.cy/en/application_forms/engrafi-cypos/`
+**access_url**: `portal.dls.moi.gov.cy/en/application_forms/engrafi-cypos/`
 **yearly_cost**: **€238.00/yr per receiver** (12-month tier) or €142.80/6 months — confirmed
                from official `helpfiles.dls.moi.gov.cy/en-us/CYPOSNetwork.pdf` Figure 4
                (2026-05-12); 2nd/3rd-receiver bundles same per-receiver rate. VAT inclusivity
@@ -2856,7 +2856,7 @@ the only path to island-wide network RTK.
                TCP probe SOURCETABLE 200 OK 2026-05-13 — 7 STR mountpoints: MSM_GNSS,
                MSM_GEC, MSM_GRE, RTCM3_GNSS, RTCM3_GPS, RTCM2_GPS, DGNSS.
 **access**:    paid; DGNSS sub-service included in annual subscription but sub-metre only (not cm-grade RTK); 10-day trial for new customers
-**registration**: `https://www.lantmateriet.se/en/geodata/our-products/product-list/swepos-network-rtk/`
+**access_url**: `https://www.lantmateriet.se/en/geodata/our-products/product-list/swepos-network-rtk/`
 **yearly_cost**: 12,000 SEK/yr (~$1,050/yr) for 1–3 subscriptions
 **yearly_cost_normalized**: 1050
 **stations**:  ~480 reference stations nationwide (SWEREF 99 / ETRS89)
@@ -2887,7 +2887,7 @@ of ~60°N; nothing useful in Norrland above ~63°N.
                ETPOS post-processing included with all subscriptions; Undervisning (teaching),
                Forskning (research, ≤2yr) and Innovasjon (startup, ≤1yr) tiers free for approved
                organisations
-**registration**: kartverket.no
+**access_url**: kartverket.no
 **yearly_cost**: NOK 11,000/yr (~$1,020) Standard (surveying); NOK 5,000/yr (~$460) Landbruk
                (agriculture); NOK 8,000/yr Fast (fixed installation); NOK 5,000/yr Utland
                (use abroad) — all ex-VAT; agriculture tier is lowest recurring commitment
@@ -2909,7 +2909,7 @@ of ~60°N; nothing useful in Norrland above ~63°N.
 **access**:    paid; short-term logins (1 week / 1 month / 3 months) and annual surveying,
                agriculture, construction, drone tiers available
 **yearly_cost**: not publicly listed (price shown after login/quote)
-**registration**: https://www.geoteam.dk/produkter/gpsnetdk
+**access_url**: https://www.geoteam.dk/produkter/gpsnetdk
 **operator**:  Geoteam A/S, Ballerup (registered 2008; approved by Klimadatastyrelsen)
 **source**:    geoteam.dk
 
@@ -2938,7 +2938,7 @@ Jutland; near-zero Centipede coverage in Sjælland. See
                licence required
 **yearly_cost**: 6,599 DKK/yr (~$840/yr)
 **yearly_cost_normalized**: 840
-**registration**: https://rtkconnect.dk/products/rtk-netvaerk
+**access_url**: https://rtkconnect.dk/products/rtk-netvaerk
 **operator**:  RTKconnect ApS, Holstebro (registered 2024)
 **source**:    rtkconnect.dk
 
@@ -2962,7 +2962,7 @@ paid service and no published host:port.
 **yearly_cost**: CHF 1,500/yr (~$1,650) first licence; CHF 600/yr 2nd–3rd; CHF 200/yr each additional;
                pay-per-use CHF 0.50/min; swipos-INFRA CHF 310/mo/station for raw access. All fees net of 8.1% VAT.
 **yearly_cost_normalized**: 1650
-**registration**: https://shop.swipos.ch
+**access_url**: https://shop.swipos.ch
 **signals**:   GPS+GLO+GAL+BDS; **RTCM 3.4 MSM4** rolled in 2026 (mountpoints `MSM_GISGEO_LV95LN02`,
                `MSM_GISGEO_LV95LHN95`); legacy RTCM 3.1 GPS+GLO via `VRS_GISGEO_*` mountpoints
 **last_researched_date**: 2026-05-12
@@ -3093,7 +3093,7 @@ backstops: rtk2go (10 IE bases) and Centipede (8 IE bases — east-coast cluster
                apply for Singpass Foreign User Account via SFA); CorpPass requires a
                Singapore-registered entity. Non-resident visitors have no viable
                access path.
-**registration**: `https://app.sla.gov.sg/sirent`
+**access_url**: `https://app.sla.gov.sg/sirent`
 **yearly_cost**: S$107/month (~S$1,284/yr, ~$960/yr); S$64.20/month (10–50 accounts);
                S$32.10/month (51+ accounts); one-time S$32.10 admin fee
 **yearly_cost_normalized**: 970
@@ -3152,7 +3152,7 @@ RTCM 3.4. Hobbyist-relevant only as context; the free hobbyist path in KR is
                  online RINEX ₹150/GB + GST. All prices observed 2026-05-04 on
                  cors.surveyofindia.gov.in/subscription-charges; over $200/yr cutoff.
 **yearly_cost_normalized**: 745
-**registration**: `https://cors.surveyofindia.gov.in`
+**access_url**: `https://cors.surveyofindia.gov.in`
 **stations**:  1,105+ across India; an additional 70 Andhra Pradesh stations are being
                integrated into SoI CORS following the 13 Oct 2025 MoU between SoI and
                the AP Survey, Settlements & Land Records Department.
@@ -3198,7 +3198,7 @@ millimeter accuracy" for departmental resurvey). Not absorbed into SoI CORS as o
 **operator**:  TKGM — Tapu ve Kadastro Genel Müdürlüğü (General Directorate of
                Land Registry and Cadastre)
 **type**:      vrs-only (Trimble Pivot; Ağ-RTK / Network RTK, no per-station physical mountpoints)
-**registration**: https://tusaga-aktif.gov.tr/
+**access_url**: https://tusaga-aktif.gov.tr/
 **host:port**: `212.156.70.42:2101` (also reachable as `tusaga-aktif.gov.tr:2101`;
                legacy port 55600; SOURCETABLE 200 OK 2026-05-13, Trimble Pivot
                Caster 5.2, 9 mountpoints incl. VRSRTCM34 multi-constellation,
@@ -3282,7 +3282,7 @@ users should test `VRS.WGS84` first.
 **host:port**: `ntrip1.gnssnet.hu:2101` (primary, Budapest); `ntrip2.gnssnet.hu:2101`
                (backup, Penc/KGO) — two independently operating, identically configured servers
 **access**:    paid; web registration at gnssnet.hu; one-time per-company connection fee
-**registration**: `gnssnet.hu`
+**access_url**: `gnssnet.hu`
 **yearly_cost**: All figures net of ÁFA (Hungarian VAT, 27%).
                One-time registration: 12,000 HUF (~€30) per company, regardless of service mix.
                Per-minute (default if no flat-rate subscription is active):
@@ -3324,7 +3324,7 @@ users should test `VRS.WGS84` first.
                or firewalled-to-authenticated-users behaviour; portal
                egnss.nlsc.gov.tw also ECONNREFUSED on direct fetch 2026-05-13)
 **access**:    pay-per-use, web membership registration
-**registration**: https://egnss.nlsc.gov.tw/content.aspx?i=20150625102221503
+**access_url**: https://egnss.nlsc.gov.tw/content.aspx?i=20150625102221503
 **yearly_cost**: TWD 300/receiver/day (~$9/day) plus TWD 2,000/5-yr permit (~$60);
                 normalized assuming ~50 active days/year: 50×$9 + $12/yr permit ≈ $462
 **yearly_cost_normalized**: 462
@@ -3352,7 +3352,7 @@ TWD 100/receiver/day. Annual-account contracts available for regular users.
 **access**:    paid; registration mandatory; cost-recovery basis under Survey Act;
                private-sector users pay both a one-time registration fee and an
                annual subscription fee; government departments pay reduced registration
-**registration**: https://myrtknet.jupem.gov.my
+**access_url**: https://myrtknet.jupem.gov.my
 **yearly_cost**: RM 3,000/yr (~$670/yr) + RM 1,000 one-time registration
 **yearly_cost_normalized**: 745
 **stations**:  ~78 physical reference stations (65 Peninsular + ~13 Sabah & Sarawak;
@@ -3521,7 +3521,7 @@ physical-station count for GeoNet.
                procured 2025 for expansion)
 **operator**:  S.E. INGEOCAD under Agency for Geodesy, Cartography and
                Cadastre (AGCC), `agcc.gov.md`
-**registration**: http://moldpos.ingeocad.md/SBC/Account/Register
+**access_url**: http://moldpos.ingeocad.md/SBC/Account/Register
 
 MOLDPOS — Moldova Positioning System. MDL tariff schedule not published online;
 contact via `ingeocad.md` for current rates. Paid since AGCC Order No. 04 of
@@ -3548,7 +3548,7 @@ Contact via `ingeocad.md` (Chișinău, str. Pușkin 47).
                on 3G/GPRS — unconfirmed if still current; contact AREC to confirm
 **stations**:  14 reference base stations at 50–70 km spacing (~25,700 km²)
 **operator**:  Agency for Real Estate Cadastre (AREC), `katastar.gov.mk`
-**registration**: https://makpos.katastar.gov.mk/sbc/Account/Register
+**access_url**: https://makpos.katastar.gov.mk/sbc/Account/Register
 
 MAKPOS — Macedonian Positioning System. Services: DGPS (0.3–0.5 m, RTCM 2.x),
 RTK (2–4 cm, RTCM 2.x/3.x), precise positioning (<1 cm, RINEX). Galileo support
@@ -3760,7 +3760,7 @@ complicated EUREF/EPN participation; no confirmed EPN station.
 **operator**:  РУП «Белгеодезия» (Belgeodesiya state enterprise),
                under Государственный комитет по имуществу Республики Беларусь
                (State Committee for Property — Госкомимущество)
-**registration**: https://geo.by/services/sstp
+**access_url**: https://geo.by/services/sstp
 
 Belarus national CORS network (Спутниковая система точного позиционирования — ССТП РБ).
 Provides RTK and DGPS differential corrections plus RINEX post-processing files
@@ -3789,7 +3789,7 @@ unsanctioned neighbouring states, compounding the barriers to hobbyist RTK use.
 **type**:      vrs-only
 **host:port**: `scrtn.sc.gov:2101`
 **access**:    paid; subscribe at sc.accessgov.com/rfa; no professional-licence requirement
-**registration**: https://rfa.sc.gov/programs-services/geodetic/rtnstatus (subscription form at sc.accessgov.com/rfa)
+**access_url**: https://rfa.sc.gov/programs-services/geodetic/rtnstatus (subscription form at sc.accessgov.com/rfa)
 **yearly_cost**: $1,200 first login; $600 each additional (SCGS RTN Subscriber Agreement rev. 04/2023); no refunds; GPS+GLO+GAL+BDS
 **yearly_cost_normalized**: 400
 **operator**:  SC Revenue and Fiscal Affairs Office — SC Geodetic Survey
@@ -3808,7 +3808,7 @@ Payment due at time of application; no refunds.
 **host:port**: `rtn.nc.gov:2101` (DNS 207.4.106.112)
 **type**:      vrs-only
 **access**:    paid; subscribe at rtn.nc.gov; no professional-licence requirement stated
-**registration**: https://ncgs.state.nc.us/pages/CORS-and-GNSS.htm (signup at rtn.nc.gov)
+**access_url**: https://ncgs.state.nc.us/pages/CORS-and-GNSS.htm (signup at rtn.nc.gov)
 **yearly_cost**: $500 one-time per login (perpetual credentials, not annual renewal); second login included with first; additional: $250 each
 **yearly_cost_normalized**: 167
 **operator**:  NC Geodetic Survey (NC Dept. of Environment and Natural Resources)
@@ -3828,7 +3828,7 @@ by cheque. Invoicing first week of month following account creation.
 **host:port**: not publicly listed; provided post-payment via portal.tndot.net
 **type**:      vrs-only
 **access**:    paid; subscribe at portal.tndot.net; no professional-licence requirement stated
-**registration**: https://www.tn.gov/tdot/engineering-division/geodetics/gnss-reference-network.html (account creation at portal.tndot.net)
+**access_url**: https://www.tn.gov/tdot/engineering-division/geodetics/gnss-reference-network.html (account creation at portal.tndot.net)
 **yearly_cost**: $450/yr (FY25 rate; payment by credit/debit via portal)
 **yearly_cost_normalized**: 450
 **operator**:  Tennessee Dept. of Transportation (TDOT) — Geodetics Division
@@ -3922,7 +3922,7 @@ non-commercial fallback.
 **yearly_cost**: $600/yr per login (covers both Utah TURN GPS and Nevada GPS Network)
 **yearly_cost_normalized**: 600
 **operator**:  Utah Geospatial Resource Center (UGRC), State of Utah
-**registration**: https://gis.utah.gov/products/turn/
+**access_url**: https://gis.utah.gov/products/turn/
 **source**:    gis.utah.gov/products/turn/
 **date_added**: 2026-05-07
 **last_researched_date**: 2026-05-13
@@ -3982,7 +3982,7 @@ alongside the NSRS modernisation roll-out).
 **host:port**: `c4gnet.xyz:9000` (SOURCETABLE 200 OK 2026-05-13, 32 STR)
 **type**:      physical-coord-vrs
 **access**:    paid; subscribe at store.c4g.lsu.edu; no professional-licence requirement
-**registration**: https://c4g.lsu.edu/c4g-gps-gnss-real-time-network/ (storefront subscription at store.c4g.lsu.edu)
+**access_url**: https://c4g.lsu.edu/c4g-gps-gnss-real-time-network/ (storefront subscription at store.c4g.lsu.edu)
 **yearly_cost**: $3,500/yr unlimited RTK (NTRIP only); $1,995/yr (50-hr cap); $495/yr (10-hr cap); $5,000/yr (full RTN membership); $1,500/yr unlimited AG GNSS (agricultural-steering only)
 **yearly_cost_normalized**: 1995
 **operator**:  LSU Center for GeoInformatics (C4G), Louisiana State University
@@ -4116,7 +4116,7 @@ via direct UPRM contact; verify current station count.
 **type**:      VRS (virtual reference station; Trimble Pivot Platform)
 **host:port**: not publicly listed
 **access**:    paid subscription (commercial service); contact HLCM Group
-**registration**: https://hlcmgroup.com/contact/ (hlcmgroup.com/vrs.php and /vrs-faqs/ returned 404 on 2026-05-12)
+**access_url**: https://hlcmgroup.com/contact/ (hlcmgroup.com/vrs.php and /vrs-faqs/ returned 404 on 2026-05-12)
 **stations**:  8 physical GNSS receivers providing island-wide VRS coverage
 **operator**:  HLCM Group, Inc. (Bayamón, Puerto Rico)
 **yearly_cost**: not publicly disclosed
@@ -4140,7 +4140,7 @@ website; out of scope for the map (paid, no free tier) but documented for comple
 **type**:      VRS (Trimble-based)
 **host:port**: not publicly listed (GeoBC website reorganisation; portal URLs returning 404 as of 2026-04-30)
 **access**:    paid; contact GeoBC (gov.bc.ca/geobc or 1-800-663-7867); no self-service portal currently accessible
-**registration**: https://www2.gov.bc.ca/gov/content/data/geographic-data-services/geo-spatial-referencing/bcacs (BCACS info page; contact GeoBCInfo@gov.bc.ca)
+**access_url**: https://www2.gov.bc.ca/gov/content/data/geographic-data-services/geo-spatial-referencing/bcacs (BCACS info page; contact GeoBCInfo@gov.bc.ca)
 **yearly_cost**: CAD 1,650/yr (~$1,212); statutory fee per Land Act, B.C. Reg. 55/98, confirmed to 2026-04-21
 **yearly_cost_normalized**: 1212
 **operator**:  GeoBC / Province of British Columbia
@@ -4164,7 +4164,7 @@ sources following a gov.bc.ca website reorganisation.
                resellers only: HxGN SmartNet NA (`smartnetna.com`, CAD $3,327.96/yr Atlantic;
                CAD $6,084/yr national), Can-Net (`gps.can-net.ca`, pricing not public),
                Brandtnet (`rtk.brandt.ca`, pricing behind account login)
-**registration**: https://geonova.novascotia.ca/coordinate-referencing (NSCRS/NSACS info page; real-time via commercial NRTK resellers)
+**access_url**: https://geonova.novascotia.ca/coordinate-referencing (NSCRS/NSACS info page; real-time via commercial NRTK resellers)
 **yearly_cost**: CAD 3,328/yr (~$2,429/yr) — HxGN SmartNet Atlantic (NB, NL, NS, PE) plan;
                Can-Net and Brandtnet pricing not publicly listed; national SmartNet: CAD 6,084/yr (~$4,441/yr).
                GST/HST status not stated on SmartNet product page — treat as unknown; confirm at checkout.
@@ -4189,7 +4189,7 @@ NTRIP caster. SmartNet pricing confirmed 2026-04-30 at smartnetna.com/store_prod
 **type**:      VRS (network-RTK with NMEA GGA upload)
 **host:port**: `geodubai.dm.gov.ae:2101` (historical; external NTRIP port not confirmed 2026-05-12)
 **access**:    restricted; professional application via DM portal (surveying / construction / GIS / government contractors); no individual or hobbyist registration path
-**registration**: https://geodubai.dm.gov.ae/sites/buildingsmart/en/Pages/Registration.aspx
+**access_url**: https://geodubai.dm.gov.ae/sites/buildingsmart/en/Pages/Registration.aspx
 **vrs**:       yes
 **stations**:  18+ quad-constellation (GPS+GLO+GAL+BDS) reference stations across Dubai Emirate
 **last_researched_date**: 2026-05-12
@@ -4268,7 +4268,7 @@ not a usable RTK resource for hobbyists.
 **type**:      unknown
 **host:port**: not publicly listed
 **access**:    military-operated geodetic directorate; no public NTRIP service or hobbyist portal
-**registration**: https://www.lebarmy.gov.lb
+**access_url**: https://www.lebarmy.gov.lb
 **stations**:  unknown
 
 Lebanon's sole national geodetic authority. Established by law on 6 February 1962
@@ -4363,7 +4363,7 @@ endpoint appears in a directory or official Yemeni government announcement.
 **type**:      single-base (physical coordinates)
 **host:port**: not publicly listed (disclosed after subscription)
 **access**:    paid subscription; no explicit eligibility restriction found
-**registration**: https://www.otc.nat.tn/geodesy/gnss/subscription
+**access_url**: https://www.otc.nat.tn/geodesy/gnss/subscription
 **yearly_cost**: 6,000 TND/yr (~$2,070/yr)
 **yearly_cost_normalized**: 2070
 **stations**:  23 (physical; Saharan south not covered — roughly south of Gafsa/Tozeur latitude)
@@ -4528,7 +4528,7 @@ out of scope.
                payment may complicate non-resident registration in practice
 **yearly_cost**: 360,000 LKR/yr (~$1,127/yr)
 **yearly_cost_normalized**: 1127
-**registration**: https://slcorsnet.survey.gov.lk
+**access_url**: https://slcorsnet.survey.gov.lk
 **stations**:  unknown count (Phase 1: Western Province + surroundings; island-wide rollout ongoing); 7 STR rows in sourcetable — VRS, VRS_BDS, VRS_MSM4, FKP, MAC, MSM, plus single-base SBASE_MSM4
 **last_researched_date**: 2026-05-12
 
@@ -4557,7 +4557,7 @@ a SOURCES entry.
                individuals (register → confirm email → request connection → pay →
                activate); rates on inquiry — no public LKR figures listed
 **yearly_cost**: unpublished — sales-contact only
-**registration**: https://corsnet.lk/user/register/
+**access_url**: https://corsnet.lk/user/register/
 **stations**:  21 island-wide (corsnet.lk homepage 2026-05-12; older SULECO page still cites 17)
 **last_researched_date**: 2026-05-12
 
@@ -4588,7 +4588,7 @@ entry.
 **access**:    paid subscription; sales-contact gated; sign-up requires a Kazakh
                ИИН (individual) or БИН (business) and KZT bank transfer
 **yearly_cost**: unpublished — sales-contact only
-**registration**: https://rtk.qgeo.kz
+**access_url**: https://rtk.qgeo.kz
 **stations**:  86 reference stations (per KGS national-operator figure); 60-station legacy figure also cited
 **last_researched_date**: 2026-05-12
 **investigate**: confirm public NTRIP host:port via direct KGS or reseller contact; reconcile the earlier 2026-04-30 tariff snapshot (65,000 ₸/yr annual, 7,000 ₸/month at qgeo.kz/tarifs) with the 2026-05-12 reverify showing no public pricing page
@@ -4660,7 +4660,7 @@ No public endpoint found; agency website unreachable.
                Cartography of the Kyrgyz Republic (ГАЗРКГК — Государственное
                агентство земельных ресурсов, кадастра, геодезии и
                картографии)
-**registration**: https://gosreg.gov.kg/ky/?page_id=3029
+**access_url**: https://gosreg.gov.kg/ky/?page_id=3029
 **host:port**: `cors.gosreg.gov.kg:8085` (non-standard port; confirmed on
                gosreg.gov.kg/ky/?page_id=3029, reconfirmed 2026-05-12;
                unreachable from external IP — likely geo-filtered or credential-gated)
@@ -4721,7 +4721,7 @@ No public endpoint; government-internal infrastructure only.
                or registration portal published
 **operator**:  State Committee for Land Resources, Geodesy, Cartography and State
                Cadastre (UzGeodezKadastr); control centre in Tashkent
-**registration**: https://uzgeodezkadastr.uz
+**access_url**: https://uzgeodezkadastr.uz
 **host:port**: not publicly documented
 **stations**:  30–50 planned (Type-A geodetic + Type-B RTK, per Ergashev et al.
                2016–2017); active stations confirmed by 2024 quality-analysis paper
@@ -4757,7 +4757,7 @@ site). Central Asian pattern is uniformly closed-access (cf. `kazgeodesy` paid-b
                or authenticated NTRIP). Actual delivered hostname/port issued per subscriber.
 **access**:    bilateral service agreement required; no self-service registration;
                "legal entities and individuals" may apply; process conducted in Azerbaijani
-**registration**: https://www.emlak.gov.az/en/page/view/96; contact: azpos@emlak.gov.az
+**access_url**: https://www.emlak.gov.az/en/page/view/96; contact: azpos@emlak.gov.az
 **stations**:  45 (37 original 2014 commissioning + 8 restored in Karabakh 2024:
                Fuzuli, Jebrail, Zangilan, Kəlbəcər ×2, Ağdam, Şuşa, Laçın)
 **signals**:   GPS + GLONASS (2014 baseline); Galileo + BeiDou per recent project documentation
@@ -4794,7 +4794,7 @@ Restricted — no published tariff; contract-only access.
 **type**:      single-base (physical CORS)
 **host:port**: not publicly listed (issued after application via krgjsh.asig.gov.al)
 **access**:    application-required via the ASIG portal; no public self-service registration
-**registration**: https://krgjsh.asig.gov.al/?page_id=1218&lang=en
+**access_url**: https://krgjsh.asig.gov.al/?page_id=1218&lang=en
 **stations**:  27 (21 ground-mounted concrete blocks + 6 roof-type, incorporating
                the former ALBPOS system)
 **signals**:   multi-constellation; aligned to ETRS89
@@ -4829,7 +4829,7 @@ access is feasible — apply via krgjsh.asig.gov.al.
 **type**:      single-base (physical CORS)
 **host:port**: not publicly listed (application via cadastre.am)
 **access**:    restricted; intended for licensed surveyors and government cadastre users; no open self-service registration
-**registration**: https://www.cadastre.am/en
+**access_url**: https://www.cadastre.am/en
 **stations**:  12 single-base stations, ~50 km spacing across ~30,000 km²
 **signals**:   GPS + GLONASS (original Leica L1+L2; multi-constellation upgrade status not publicly documented)
 **reference_frame**: ARMREF02
@@ -4868,7 +4868,7 @@ Committee via cadastre.am.
 **host:port**: `geocors.napr.gov.ge:2101` (standard SBC port; pricing not public)
 **operator**:  National Agency of Public Registry (NAPR), Ministry of Justice
                of Georgia (საჯარო რეესტრის ეროვნული სააგენტო)
-**registration**: geocors.napr.gov.ge/SBC/Account/Register
+**access_url**: geocors.napr.gov.ge/SBC/Account/Register
 **yearly_cost**: not publicly listed (paid subscription; contact NAPR)
 **stations**:  26 physical single-base CORS — 7 Class A (national geodetic frame)
                + expanded Class B (regional densification)
@@ -4926,7 +4926,7 @@ Enterprise-focused commercial NRTK network covering Italy. Not free.
 **host:port**: `it.nrtk.eu:2101`
 **type**:      physical-coord-vrs (nationwide VRS coverage; mainland + islands)
 **access**:    paid subscription
-**registration**: https://it.nrtk.eu
+**access_url**: https://it.nrtk.eu
 **yearly_cost**: €385+IVA/yr (~€470/yr, ~$520/yr)
 **yearly_cost_normalized**: 520
 **vrs**:       yes — nationwide VRS including Sardinia, Calabria, and regions without free regional casters
@@ -4954,7 +4954,7 @@ ban in publicly available terms. Subscription via it.nrtk.eu.
 **access**:    paid; day/month/6-month/annual plans; 3-day free RTK trial; basic 30 s RINEX free
 **yearly_cost**: ₽50,400/yr (~$593/yr) standard RTK, 5% VAT incl.
 **yearly_cost_normalized**: 593
-**registration**: `https://bp.eft-cors.ru/register`
+**access_url**: `https://bp.eft-cors.ru/register`
 **stations**:  hundreds, growing; GPS+GLONASS+BDS+GAL
 **source**:    eft-cors.ru (EFT GROUP, Moscow)
 **operator**:  EFT GROUP
@@ -4984,7 +4984,7 @@ RTK trial is free.
 **access**:    paid; 3-day free trial (new customers or via geodetika.ru support); register at rtknet.ru
 **yearly_cost**: ₽30,000/yr (~$353/yr)
 **yearly_cost_normalized**: 353
-**registration**: `https://rtknet.ru`
+**access_url**: `https://rtknet.ru`
 **stations**:  count not published; covers all federal districts; RTCM 3.0 and RTCM 3.2-MSM4; 1 Hz
 **source**:    rtknet.ru (ООО «ГЕОДЕТИКА» / Geodetika)
 **operator**:  ООО «ГЕОДЕТИКА» (Geodetika)
@@ -5009,7 +5009,7 @@ added Apr 2026; Voznesenskoye / Arkhangelsk Mar 2026; Pskov Jan 2026).
 **access**:    pay-per-use — RTK charged daily (until 23:59 MSK); first ~5 min (~100 KB) free per station;
                RINEX charged hourly; station owners get free NTRIP caster software + storage + 50% revenue share
 **yearly_cost**: not publicly listed (pay-per-use; per-station daily prices visible only after login)
-**registration**: `https://hive.geosystems.aero`
+**access_url**: `https://hive.geosystems.aero`
 **stations**:  386 across 61 Russian regions on 2026-05-12 landing page (78,198 RTK-usage hours / 20,015 RINEX orders) — down from 742 / 79 regions on 2026-05-02; contraction unexplained on the public site (possible counter reset, station-owner departures, or counting-method change). Independently owned aggregation platform, not a CORS network.
 **source**:    hive.geosystems.aero (Индустриальные геодезические системы / Geosystems.aero, Omsk)
 **operator**:  Индустриальные геодезические системы (Geosystems.aero)
@@ -5033,7 +5033,7 @@ map card. Accepts VISA/MC and Russian e-wallets.
 **access**:    paid; day/week/fortnight/month/quarter/annual subscriptions; register via geospider.ru
 **yearly_cost**: ₽44,100/yr (~$519/yr) — 30% annual discount, 5% VAT incl.
 **yearly_cost_normalized**: 519
-**registration**: `https://geospider.ru`
+**access_url**: `https://geospider.ru`
 **stations**:  200+ (St. Petersburg, Moscow, Leningrad, Novgorod, Pskov, Tver, Vologda, Smolensk oblasts + Karelia; expanding)
 **source**:    geospider.ru (ООО «НПП «ГЕОМАТИК», St. Petersburg)
 **operator**:  ООО «НПП «ГЕОМАТИК»
@@ -5068,7 +5068,7 @@ on 2026-05-12.
 **type**:      single-base (~30 mainland stations; BES islands catalogued separately under `bq_cors`)
 **host:port**: `ntrip.kadaster.nl:2101` (plain TCP) / `ntrip.kadaster.nl:443` (TLS)
 **access**:    free, anonymous; email as username suggested for outage notifications but optional
-**registration**: https://nsgi.nl/referentiepunten-en-gnss-data/gnss-data/real-time-streams
+**access_url**: https://nsgi.nl/referentiepunten-en-gnss-data/gnss-data/real-time-streams
 **operator**:  NSGI / Kadaster Nederland (`nsgi.nl`)
 
 NSGI's Active Geodetic Reference System for the Netherlands (AGRS.NL). Free,
@@ -5091,7 +5091,7 @@ already (snapshot 2026-05-12). Both pipelines surface on the map as physical pin
 **host:port**: `ntrip.cloud.kadaster.nl:443` (TLS only; NTRIP auth B;Y required)
 **access**:    paid; username + password issued on activation; eHerkenning portal for
                NL legal entities; foreign users apply via contact form at nsgi.nl
-**registration**: https://nsgi.nl/referentiepunten-en-gnss-data/gnss-data/real-time-streams
+**access_url**: https://nsgi.nl/referentiepunten-en-gnss-data/gnss-data/real-time-streams
 **yearly_cost**: €475/station/yr excl. BTW (~$538/yr) for 1–5 stations; volume to €95/station/yr for 21+ (2026 tariff, Tarievenregeling Kadaster BWBR0037196/2026-01-01)
 **yearly_cost_normalized**: 538
 **operator**:  NSGI / Kadaster Nederland (`nsgi.nl`)
@@ -5113,7 +5113,7 @@ own corrections.
 **type**:      vrs-only
 **host:port**: not publicly listed (proprietary Trimble VRS caster)
 **access**:    paid — €1,500/yr excl. VAT (~€1,815 incl. 21 % BTW, ~$2,000/yr)
-**registration**: 06-gps.nl/tarieven-aanmelding/ (subscription form; schools and
+**access_url**: 06-gps.nl/tarieven-aanmelding/ (subscription form; schools and
                municipalities have separate rate categories)
 **yearly_cost**: €1,500/yr excl. VAT (~$2,000/yr)
 **stations**:  ~250 (VRS, physical reference stations across NL)
@@ -5136,7 +5136,7 @@ $200/yr cutoff — not surfaced on the map. Free 1-month trial available.
                `www.euref-ip.be:2101` (ROB; TLS `:2102`) and `euref-ip.asi.it:2101` (ASI)
 **access**:    free with **per-broadcaster registration** (no SSO across the three);
                no residency / no professional gating
-**registration**: BKG `http://register.rtcm-ntrip.org/cgi-bin/registration.cgi`
+**access_url**: BKG `http://register.rtcm-ntrip.org/cgi-bin/registration.cgi`
                   (also covers IGS-IP and products.igs-ip.net);
                   ROB `https://www.euref-ip.be/user-registration/user-registration-main-page.php`
 **stations**:  ~229 unique EPN stations across the federation (BKG 218 STR, ROB 214 STR,
@@ -5167,7 +5167,7 @@ separate APOS authorisation.
 **type**:      single-base (raw 1 Hz RTCM 3.x observations from global IGS stations; no VRS)
 **host:port**: `www.igs-ip.net:2101`
 **access**:    free with BKG account (same registration form as EUREF-IP)
-**registration**: http://register.rtcm-ntrip.org/cgi-bin/registration.cgi
+**access_url**: http://register.rtcm-ntrip.org/cgi-bin/registration.cgi
 **vrs**:       no
 **last_researched_date**: 2026-05-13
 
@@ -5241,7 +5241,7 @@ public caster.
 ## idot_cors — IDOT CORS (US-IL)
 
 **status**:    other
-**registration**: https://idot.illinois.gov/about-idot/stay-connected/idot-blog/cors-network-installation-kicks-off.html (IDOT blog; no live caster yet)
+**access_url**: https://idot.illinois.gov/about-idot/stay-connected/idot-blog/cors-network-installation-kicks-off.html (IDOT blog; no live caster yet)
 **country**:   US-IL
 **date_added**: 2026-05-07
 **last_researched_date**: 2026-05-13
@@ -5273,7 +5273,7 @@ public caster.
 ## calrtns — CalRTNS / Caltrans CORS (US-CA)
 
 **status**:    restricted
-**registration**: https://dot.ca.gov/caltrans-near-me/district-6/district-6-programs/d6-land-surveys/d6-rtn-gps (restricted; no public signup)
+**access_url**: https://dot.ca.gov/caltrans-near-me/district-6/district-6-programs/d6-land-surveys/d6-rtn-gps (restricted; no public signup)
 **reason**:    access restricted to vetted state/county agency partners; no general public
                or hobbyist registration available
 
@@ -5341,7 +5341,7 @@ KR / TH / SA cases where the gate is on stream auth only.
                `185.194.59.113:2101`. No Andorran national caster.
 **access**:    free with per-broadcaster EUREF-IP registration (no SSO across the three);
                no Andorran public NTRIP service
-**registration**: BKG `http://register.rtcm-ntrip.org/cgi-bin/registration.cgi` or
+**access_url**: BKG `http://register.rtcm-ntrip.org/cgi-bin/registration.cgi` or
                   ROB `https://www.euref-ip.be/user-registration/user-registration-main-page.php`
 **stations**:  2 EPN members operated by ERGAND — **PCAR00AND0** at Pic de Carroi (~2520 m,
                ~5 km from Andorra la Vella; baselines stay <30 km across the country) and
@@ -5393,7 +5393,7 @@ country marker so target users in Liechtenstein know what's locally available.
 **type**:      single-base (permanent reference station)
 **host:port**: not publicly listed
 **access**:    no public NTRIP caster identified; raw GNSS data distributed for post-processing
-**registration**: https://www.gov.sm/pub1/GovSM/Dipartimenti/Dipartimento-Territorio-e-Ambiente/Ufficio-Tecnico-del-Catasto-e-Cartografia.html
+**access_url**: https://www.gov.sm/pub1/GovSM/Dipartimenti/Dipartimento-Territorio-e-Ambiente/Ufficio-Tecnico-del-Catasto-e-Cartografia.html
 **stations**:  1 (RSMC permanent station)
 
 The Ufficio Tecnico del Catasto distributes raw GNSS data from the RSMC permanent station
@@ -5411,7 +5411,7 @@ country marker so target users in San Marino know what's locally available.
 ## qc_mern — Réseau GNSS du Québec / MERN (CA-QC)
 
 **status**:    other
-**registration**: https://mrnf.gouv.qc.ca/repertoire-geographique/reseau-geodesique-donnees-gnss/ (per-station direct TCP, no NTRIP)
+**access_url**: https://mrnf.gouv.qc.ca/repertoire-geographique/reseau-geodesique-donnees-gnss/ (per-station direct TCP, no NTRIP)
 **reason**:    per-station direct TCP streams (not NTRIP aggregated); incompatible with
                standard NTRIP pipeline; no NTRIP caster endpoint published
 
@@ -5532,7 +5532,7 @@ an NTRIP caster endpoint; check AFREF data centre for TD station IDs.
 **type**:      unknown (no streaming NTRIP found)
 **host:port**: not publicly listed
 **access**:    no public NTRIP caster found
-**registration**: ftm.mg (national mapping agency website)
+**access_url**: ftm.mg (national mapping agency website)
 **stations**:  one IGS contributing station (ABPO00MDG, Ambohimpanompo near Antananarivo;
                Septentrio PolaRx5, installed 2007) operated locally by the University of
                Antananarivo Institute of Geophysics, archived to UNAVCO/EarthScope and IGS
@@ -5563,7 +5563,7 @@ ODC and igs.org for any additional MG station IDs beyond ABPO00MDG.
 **type**:      single-base (one confirmed station in Port-au-Prince; expansion unconfirmed)
 **host:port**: not publicly listed
 **access**:    unknown — host:port not publicly discoverable; CNIGS contact required
-**registration**: cnigs.ht (agency website — accessibility uncertain as of 2026)
+**access_url**: cnigs.ht (agency website — accessibility uncertain as of 2026)
 **stations**:  1 reported operational (Port-au-Prince, 2018; current status unconfirmed); broader national expansion planned but unconfirmed
 
 **date_added**: 2026-04-29
@@ -5597,7 +5597,7 @@ IDs and their current uptime.
 **access**:    paid subscription, quote-only; reopen-account fee USD 25; invoicing in SRD at
                weekly Central Bank rate. Application via email + CORS-services application
                PDF + N-formulier (instrument registration); workflow targets institutions.
-**registration**: https://miglis.sr/cors-data-stations/
+**access_url**: https://miglis.sr/cors-data-stations/
 **stations**:  8 physical (PMB1 Paramaribo, SRZN Zanderij, SRBR Brokopondo, SRTK Tijgerkreek,
                SRMM Merian mine, SRHR Henarpolder/Nickerie, SRTS Totness, SRMG Moengo);
                populated Atlantic coast + interior mining areas; Sipaliwini interior uncovered
@@ -5628,7 +5628,7 @@ hobbyist eligibility uncertain. Surfaced as a `weird` country marker.
 **host:port**: `ntrip.ign.gob.do` (NTRIP port behind Cloudflare WAF — direct TCP probe
                to 2101 timed out 2026-05-12; portal reachable, port disclosed after registration)
 **access**:    free with registration; credentials issued after form submission
-**registration**: https://ntrip.ign.gob.do/
+**access_url**: https://ntrip.ign.gob.do/
 **stations**:  2 original (Moca, Puerto Plata) + November 2025 expansion announcement
                (size/locations not yet enumerated publicly; mid-2024 had certified 11+ in
                northern region; 5 additional certified by August 2025)
@@ -5660,7 +5660,7 @@ registered; verify whether any VRS/network solution (MAC/iMAX) is offered.
                R3.19.00 of 2025-12-19)
 **access**:    credentials issued on direct request via fundcorsrd.com contact form;
                terms not posted publicly
-**registration**: fundcorsrd.com
+**access_url**: fundcorsrd.com
 **stations**:  37 (live sourcetable 2026-05-12 — nationwide; e.g. BARA La Romana,
                FCAC Azua, FCBN Bani, FCBO Bonao, FCSC Santiago)
 
@@ -5688,7 +5688,7 @@ whether they qualify or what (if anything) they would be charged.
 **type**:      single-base (Trimble-based physical CORS)
 **host:port**: not publicly listed
 **access**:    paid — registration fee + monthly per-rover fee; pricing not listed publicly
-**registration**: geomatica.com.do
+**access_url**: geomatica.com.do
 **yearly_cost**: not publicly listed
 **stations**:  not listed publicly
 
@@ -5713,7 +5713,7 @@ on public website.
 **access**:    members-only paid subscription — requires active CODIA membership (annual
                dues) plus a separate CORS subscription with credentials from the CODIA-CORS
                department; pricing not listed publicly
-**registration**: codia.org.do
+**access_url**: codia.org.do
 **yearly_cost**: not publicly listed
 **stations**:  not listed publicly
 
@@ -5740,7 +5740,7 @@ without professional membership. Pricing not on public website.
 **access**:    government-internal in practice — registration procedure and tariff not
                published; gpscors.gov.tt portal not externally resolvable; ministry portal
                at agriculture.gov.tt still lists TTAGN as an active service
-**registration**: https://agriculture.gov.tt/divisions-units/divisions/surveys-and-mapping/online-web-services/
+**access_url**: https://agriculture.gov.tt/divisions-units/divisions/surveys-and-mapping/online-web-services/
 **stations**:  ~5 (installed across Trinidad and Tobago c.2010s; current operational count
                unverified)
 **operator**:  Surveys and Mapping Division, Ministry of Agriculture, Land and Fisheries
@@ -5779,7 +5779,7 @@ hobbyists or restricted to licensed surveyors; verify station count and operatio
                (`youtube.com/watch?v=4yuH1W05eII`)
 **access**:    paid; annual fee + formal written request; no self-service registration
 **yearly_cost**: not publicly listed (contact CEPAG — igmbolivia.gob.bo)
-**registration**: igmbolivia.gob.bo (IGM Bolivia website)
+**access_url**: igmbolivia.gob.bo (IGM Bolivia website)
 **stations**:  42 continuous reference stations; MARGEN-ROC contributes to SIRGAS-CON via CEPAG
 **last_researched_date**: 2026-05-12
 
@@ -5820,7 +5820,7 @@ pricing, if any service exists, has not been found.
 **access**:    paid; professional-surveyor governance under Ley 2997 implies
                hobbyist sign-up may be restricted in practice
 **yearly_cost**: not publicly listed (contact GeoBolivia SRL via Facebook or phone)
-**registration**: geoboliviasrl.info (Wix-hosted; HTTP 200 on 2026-05-12, technical
+**access_url**: geoboliviasrl.info (Wix-hosted; HTTP 200 on 2026-05-12, technical
                   specs not exposed); Facebook "GeoBolivia SRL - Geomática" active
 **stations**:  ~7 stations: La Paz (GEO 1), Cochabamba (GEO 2), Oruro (GEO 3),
                Sacaba (GEO 4), Tarija (GEO 5), Santa Cruz (GEO 6), Yacuiba (Tarija dept.)
@@ -5864,7 +5864,7 @@ pricing in BOB is not publicly available. geoboliviasrl.info was unreachable on 
 **type**:      single-base
 **host:port**: none — post-processing RINEX download service only; no NTRIP caster
 **access**:    free RINEX data downloadable from ign.gob.gt; no real-time corrections
-**registration**: ign.gob.gt (Instituto Geográfico Nacional — Guatemala)
+**access_url**: ign.gob.gt (Instituto Geográfico Nacional — Guatemala)
 **stations**:  16 confirmed (live IGN geoportal 2026-05-12; programmatic target 17)
 
 Guatemala's Instituto Geográfico Nacional (IGN) operates a Red CORS (Continuously Operating
@@ -5889,7 +5889,7 @@ country marker so target users in Guatemala know free post-processing data exist
 **type**:      single-base
 **host:port**: none — post-processing RINEX download service only; no NTRIP caster
 **access**:    free RINEX data downloadable at cors.ip.gob.hn; no real-time corrections
-**registration**: https://cors.ip.gob.hn
+**access_url**: https://cors.ip.gob.hn
 **stations**:  5 (Tegucigalpa/TEG, San Pedro Sula/ICF1, Juticalpa/JUT1,
                Siguatepeque/UNCF, La Ceiba/CEIB)
 
@@ -5928,7 +5928,7 @@ Rejected — same institution as `ip_cors_hn`; post-processing only.
 **type**:      single-base
 **host:port**: none — post-processing RINEX download service only; no NTRIP caster
 **access**:    free RINEX data accessible via consultacf.ineter.gob.ni; no real-time corrections
-**registration**: consultacf.ineter.gob.ni (INETER — Catastro Físico)
+**access_url**: consultacf.ineter.gob.ni (INETER — Catastro Físico)
 **stations**:  unknown
 
 INETER (Instituto Nicaragüense de Estudios Territoriales), through its Dirección General
@@ -5957,7 +5957,7 @@ country marker so target users in Nicaragua know free post-processing data exist
 **type**:      single-base
 **host:port**: none — post-processing RINEX download service only; no NTRIP caster
 **access**:    free RINEX data accessible via https://e.cnr.gob.sv; no real-time corrections
-**registration**: https://e.cnr.gob.sv
+**access_url**: https://e.cnr.gob.sv
 **stations**:  SSIA (Ilopango Airport, IGS station SSIA00SLV — on-site host agency CNR);
                further CNR/IGCN CORS stations not independently documented in current research
 
@@ -5988,7 +5988,7 @@ country marker so target users in El Salvador know free post-processing data exi
                Amendment Notice, 7 April 2023, Item 17) sets a published flat fee of
                **US$200/year** for CORS use; credentials and host:port are still obtained
                by contacting ZINGSA or the Surveyor-General's Office
-**registration**: https://zingsa.ac.zw/
+**access_url**: https://zingsa.ac.zw/
 **stations**:  unknown — national coverage stated; one known station ZINH (Harare) per
                internal ZINGSA DJI M300 RTK setup document
 **last_researched_date**: 2026-05-14
@@ -6030,7 +6030,7 @@ users.
 **type**:      single-base
 **host:port**: not publicly listed (credentials supplied by email after payment)
 **access**:    paid — monthly/quarterly/annual subscription
-**registration**: https://survey3g.com/servicios-de-ntrip/
+**access_url**: https://survey3g.com/servicios-de-ntrip/
 **yearly_cost**: $450/yr
 **yearly_cost_normalized**: 450
 **stations**:  6 stations: San Miguel, Perkín, La Unión, San Salvador-UES (research/edu),
@@ -6057,7 +6057,7 @@ single-base RTCM stream under NULA — already in pipeline via `earthscope`.
 **type**:      single-base
 **host:port**: not publicly listed
 **access**:    no public NTRIP caster; real-time access requires direct contact with IGNTG
-**registration**: ignpanama.anati.gob.pa (Instituto Geográfico Nacional "Tommy Guardia")
+**access_url**: ignpanama.anati.gob.pa (Instituto Geográfico Nacional "Tommy Guardia")
 **stations**:  ~19 national CORS; 7 are SIRGAS-CON internet-connected nodes (IGN1, AZUE,
                DAVI, DARI, PUAR, PMEC, CHEP); 8 additional stations being restored under
                the 2025 modernisation project; 6 new CORS antennas installed Sept 2025
@@ -6096,7 +6096,7 @@ modernisation completes — check ignpanama.anati.gob.pa/index.php/cors for upda
 **access**:    bundled with GNSS equipment purchase from Casa del Topógrafo; no standalone
                subscription pricing published as of 2026-05-12; emits differential
                corrections via NTRIP
-**registration**: panama.casadeltopografo.com/topored (Casa del Topógrafo Panama)
+**access_url**: panama.casadeltopografo.com/topored (Casa del Topógrafo Panama)
 **stations**:  ~28 stations across Panama and Colombia (6 specifically in Panama;
                control centre in Bogotá, Colombia)
 **operator**:  Casa del Topógrafo (Bogotá/Panama City); network branded "Topored"
@@ -6125,7 +6125,7 @@ bought surveying gear.
                (ECONNREFUSED on probe 2026-05-12 — transient or geo-filter).
 **access**:    free trial extended to 2026-07-01 (khmergeonet.xyz, reconfirmed
                2026-05-12); post-trial pricing not announced
-**registration**: khmergeonet.xyz (per-station pages link to Trimble Pivot RegisterAccount.aspx)
+**access_url**: khmergeonet.xyz (per-station pages link to Trimble Pivot RegisterAccount.aspx)
 **stations**:  5 (`PNH100KHM` Phnom Penh + Kandal, Kampong Speu, Siem Reap, Stung Treng)
 **operator**:  General Department of Cadastre and Geography (GDCG), Ministry of
                Land Management, Urban Planning and Construction (MLMUPC)
@@ -6233,7 +6233,7 @@ local base station. Secondary contact: ASPNG (`aspng.org`), maintained by Quickc
 **type**:      single-base (no public NTRIP confirmed; CORS physically established)
 **host:port**: not publicly listed
 **access**:    no public NTRIP caster found; access policy under development (as of 2022)
-**registration**: no self-service portal identified
+**access_url**: no self-service portal identified
 **stations**:  ~10 (2 legacy: Suva, Lautoka; 8 new: Labasa, Nabouwalu, Taveuni,
                Kadavu, Koro Island, Lakeba, Ono-i-Lau, Rotuma)
 **operator**:  Department of Lands and Survey (Ministry of Lands and Mineral
@@ -6270,7 +6270,7 @@ programme.
 **type**:      unknown (no confirmed network)
 **host:port**: not publicly listed
 **access**:    no public NTRIP caster found
-**registration**: no public portal identified
+**access_url**: no public portal identified
 **stations**:  unknown; no operational CORS network confirmed
 **operator**:  nominal — General Authority for Information and Communication
                Technology (GAICT) and the National Centre for Remote Sensing
@@ -6303,7 +6303,7 @@ unified administration and published CORS programme are confirmed.
 **host:port**: not publicly listed
 **access**:    internal government use only; no external NTRIP endpoint, registration
                portal, or hobbyist channel found
-**registration**: surveydepartment.gov.mm (agency website; accessibility intermittent)
+**access_url**: surveydepartment.gov.mm (agency website; accessibility intermittent)
 **stations**:  10 CORS established 2019 by Myanmar Survey Department for the National
                Geodetic Reference Frame and RTK network; 3 of the 10 built to IGS-station
                guidelines (UN-GGIM 10th Session country report, 2020)
@@ -6332,7 +6332,7 @@ public NTRIP endpoint announcement via surveydepartment.gov.mm or UN-GGIM update
 **type**:      unknown (no confirmed public NTRIP caster)
 **host:port**: not publicly listed
 **access**:    no public NTRIP caster found
-**registration**: no public portal identified
+**access_url**: no public portal identified
 **stations**:  unknown; national geodetic control network exists but no
                streaming RTK endpoint confirmed
 **operator**:  Surveyor General's Department (SGDN), Ministry of Agriculture,
@@ -6362,7 +6362,7 @@ Namibia-hosted streaming endpoint.
 **type**:      physical CORS network; no public NTRIP caster
 **host:port**: not publicly listed; `repangol.net` returned ECONNREFUSED 2026-05-06 (DNS resolves, TCP refused)
 **access**:    no public NTRIP service documented; access path via IGCA only
-**registration**: contact IGCA via `igca.gov.ao` (the `repangol.net` portal is offline)
+**access_url**: contact IGCA via `igca.gov.ao` (the `repangol.net` portal is offline)
 **stations**:  18 permanent CORS installed 2010 (IGCA mandate per Decreto Presidencial n.º 115/21); maintenance completed 2020 by TeroMovigo
 **reference_frame**: ITRF2008
 **last_researched_date**: 2026-05-12
@@ -6387,7 +6387,7 @@ explains national infrastructure exists but isn't publicly accessible.
 **type**:      physical CORS network; no confirmed public NTRIP caster
 **host:port**: not publicly listed
 **access**:    no public NTRIP caster found; access requires direct engagement with DSM
-**registration**: no public portal identified
+**access_url**: no public portal identified
 **stations**:  ~55 physical CORS (project commenced 2011, ~10 stations/yr); average
                spacing ~30–40 km across ~582,000 km². 2017 academic snapshot showed
                only 28 of installed stations operating correctly — reliability has
@@ -6416,7 +6416,7 @@ host:port and access terms.
 **type**:      unknown (feasibility stage; no confirmed operational caster)
 **host:port**: not publicly listed
 **access**:    no public NTRIP caster found
-**registration**: no public portal identified
+**access_url**: no public portal identified
 **stations**:  unknown; CORS network feasibility studied 2016, no confirmed
                operational deployment
 **operator**:  Survey Division, Ministry of Housing and Land Use Planning,
@@ -6452,7 +6452,7 @@ streaming endpoint.
                station CPVG (REGINA, Espargos/Sal Island) — not RTK
 **host:port**: not publicly listed
 **access**:    no public NTRIP caster found
-**registration**: no public portal identified
+**access_url**: no public portal identified
 **stations**:  CPVG (Sal Island) IGS reference station only — REGINA network (CNES/IGN France)
 **last_researched_date**: 2026-05-12
 
@@ -6473,7 +6473,7 @@ mountpoints on rtk2go or Centipede.
 **type**:      single-base (EarthScope NOTA streams; no AG-national caster)
 **host:port**: `ntrip.earthscope.org:2101` (RTCM 3.3); ports 2105 (BINEX), 2108 (PPP)
 **access**:    free non-commercial via EarthScope; account + annual NULA acceptance required
-**registration**: https://www.earthscope.org/data/gnss-realtime/
+**access_url**: https://www.earthscope.org/data/gnss-realtime/
 **stations**:  3 EarthScope NOTA — CN01 (Bethesda, Antigua main), BGGY (Codrington, Barbuda),
                RDON (Redonda Island). No AG-national caster.
 **last_researched_date**: 2026-05-12
@@ -6540,7 +6540,7 @@ on Montserrat / Antigua (CN62, OLVN, AIRS, TRNT, RCHY, BGGY) sit 60–100 km out
 **type**:      single-base (RTCM 3.3 MSM7; not VRS)
 **host:port**: `ntrip.earthscope.org:2101` (CN04_RTCM3P3, CN47_RTCM3P3 — both at NEMO building, Castries; co-located redundancy, not geographic spread)
 **access**:    free for non-commercial use after EarthScope account + annual NULA acceptance; commercial use USD $1,000/seat/yr
-**registration**: https://www.earthscope.org/data/gnss-realtime/
+**access_url**: https://www.earthscope.org/data/gnss-realtime/
 **stations**:  2 COCONet cGPS sites (CN04, CN47) installed Feb–Mar 2014; both at the NEMO building rooftop — single-base baseline only, ~30–40 km to southern Saint Lucia (Vieux Fort, Soufrière)
 **last_researched_date**: 2026-05-12
 
@@ -6562,7 +6562,7 @@ own. Zero LC mountpoints on rtk2go or Centipede.
 **type**:      single-base (EarthScope NOTA streams in neighbouring islands; no VC-national caster)
 **host:port**: `ntrip.earthscope.org:2101` (nearest free streams; no VC-territory station)
 **access**:    free non-commercial via EarthScope; account + annual NULA acceptance required
-**registration**: https://www.earthscope.org/data/gnss-realtime/
+**access_url**: https://www.earthscope.org/data/gnss-realtime/
 **stations**:  no station in VC territory; nearest EarthScope NOTA streams are CN47
                (Saint Lucia, ~58 km north of Kingstown) and CN46 (Carriacou/Grenada,
                ~88 km south). Geodetic modernisation work underway (Caribbean Digital
@@ -6603,7 +6603,7 @@ public CORS NTRIP endpoint; contact Lands and Surveys Department via
 **type**:      single-base (EarthScope NOTA stream; no VG-national caster)
 **host:port**: `ntrip.earthscope.org:2101` (RTCM 3.3); ports 2105 (BINEX), 2108 (PPP)
 **access**:    free non-commercial via EarthScope; account + annual NULA acceptance required
-**registration**: https://www.earthscope.org/data/gnss-realtime/
+**access_url**: https://www.earthscope.org/data/gnss-realtime/
 **stations**:  1 EarthScope NOTA — `CN03_RTCM3P3` (Tortola, 18.49°N, −64.40°W;
                Septentrio POLARX5; raw 1 Hz multi-constellation RTCM 3.3 MSM7)
 **last_researched_date**: 2026-05-12
@@ -6638,7 +6638,7 @@ rtk2go or Centipede.
 **type**:      single-base (EarthScope NOTA stream; no VRS engine)
 **host:port**: `ntrip.earthscope.org:2101` (RTCM 3.3); ports 2105 (BINEX), 2108 (PPP)
 **access**:    free non-commercial via EarthScope; account + annual NULA acceptance required
-**registration**: https://www.earthscope.org/data/gnss-realtime/
+**access_url**: https://www.earthscope.org/data/gnss-realtime/
 **stations**:  1 EarthScope NOTA streaming in VI territory — `STVI_RTCM3P3` (St. Thomas,
                18.34°N, −64.97°W; Trimble NETR9; tagged country code `USA` in the
                EarthScope sourcetable). NOAA NCN lists four USVI stations (STVI and
@@ -6674,7 +6674,7 @@ confirmed to cover USVI.
 **type**:      single-base (professional/government access; no public NTRIP confirmed)
 **host:port**: not publicly listed
 **access**:    no public NTRIP caster found
-**registration**: no self-service portal identified
+**access_url**: no self-service portal identified
 **stations**:  8 (Eclipse Falls, Supenaam, Georgetown, New Amsterdam, Olive Creek,
                Lethem, Linden + 1 additional site)
 **operator**:  GL&SC (Guyana Lands and Surveys Commission, `glsc.gov.gy`)
@@ -6708,7 +6708,7 @@ CORS network software, 2023) for signs of an operational caster rollout.
                legacy `202.40.181.3:8021` recorded by ArduSimple
 **access**:    registration required; pricing not listed on public website —
                consult `data.sob.gov.bd` or contact SOB directly
-**registration**: `data.sob.gov.bd/signup-user.php`
+**access_url**: `data.sob.gov.bd/signup-user.php`
 **yearly_cost**: not publicly listed (payment via Rocket/bKash/SureCash mobile
                banking per SOB data-service model — a Bangladeshi phone number /
                bank account is needed to actually transact)
@@ -6748,7 +6748,7 @@ publicly available.
 **access**:    paid subscription tiers — Basic (1 user) Nu 10,000/yr, Standard (2 users)
                Nu 17,500/yr, Premium (3 users) Nu 22,500/yr; government agencies flat
                Nu 10,000/yr unlimited; education/research free with supporting document
-**registration**: `miranet.nlcs.gov.bt/pre-registration/form`
+**access_url**: `miranet.nlcs.gov.bt/pre-registration/form`
 **yearly_cost**: Nu 10,000/yr (~$110/yr) Basic; up to Nu 22,500/yr Premium
 **yearly_cost_normalized**: 110
 **stations**:  13 single-base stations (2024 NSDI metadata); network established 2014
@@ -6778,7 +6778,7 @@ Vertical datum: DrukGeoid 2015.
 **type**:      Zero Order GNSS Network (8 stations, established ~2009); no public NTRIP caster
 **host:port**: not publicly listed
 **access**:    no open NTRIP service found
-**registration**: no self-service portal identified; contact `survey.gov.bn`
+**access_url**: no self-service portal identified; contact `survey.gov.bn`
 **stations**:  8 documented in 2011 UN-GNSS presentation (KBEL, LABI, MURA, LAMU,
                LIAN, TEMB, TUTO, UKUR) supporting GDBD2009 datum; 2017 SEASC
                referenced a planned "Positioning Augmentation Center"
@@ -6811,7 +6811,7 @@ check `survey.gov.bn` directly or contact the department for geodetic services.
                NTRIP tariff or endpoint published)
 **access**:    contact IGB; post-processing RINEX is the explicitly documented use
                case in IGB materials — no NTRIP real-time caster service announced
-**registration**: contact IGB via `igb.bf`
+**access_url**: contact IGB via `igb.bf`
 **stations**:  ~13 physical: 9 original (2011 MCA-BF funding) + 4 capital-region (2018)
 **last_researched_date**: 2026-05-12
 
@@ -6846,7 +6846,7 @@ post-processing-only RINEX access).
 **type**:      physical CORS network; RTK NTRIP mode enabled 2022; no public host:port
 **host:port**: not publicly listed
 **access**:    no public NTRIP service; access via institutional channel (BNETD-CIGN, government survey agencies)
-**registration**: contact BNETD-CIGN via `cntig.net`
+**access_url**: contact BNETD-CIGN via `cntig.net`
 **stations**:  5 permanent CORS (RECI — Réseau CORS Ivoirien) + 1 IGS station; passive
                monumentation tiers RGIR (43 markers), RGIO (716 markers), and RGID densification
 **last_researched_date**: 2026-05-12
@@ -6874,7 +6874,7 @@ network coords are open via ArcGIS Africa GeoPortal.
 **host:port**: not publicly listed (disclosed after registration via IGN Bénin / CatIS)
 **access**:    free with registration; accessible via Benin Cadastral Information System;
                hobbyist eligibility not confirmed (upgrade purpose is land-rights / cadastral)
-**registration**: https://service-public.bj (service PS01085 — "Fichier des stations permanentes GNSS")
+**access_url**: https://service-public.bj (service PS01085 — "Fichier des stations permanentes GNSS")
                   or direct contact with IGN Bénin (`ign.bj`)
 **stations**:  7 physical: Cotonou, Abomey, Savalou, Parakou, Natitingou, Nikki, Kandi
 **last_researched_date**: 2026-05-12
@@ -6968,7 +6968,7 @@ and Senegal (SENCORS, undisclosed tariff).
                contact IGNTOGO via `urbanisme.gouv.tg`
 **access**:    professional use mandated by 2026-03-09 communiqué; tariff (free vs fee)
                not announced; credentials via IGNTOGO direct contact
-**registration**: https://urbanisme.gouv.tg
+**access_url**: https://urbanisme.gouv.tg
 **stations**:  unconfirmed count; deployment began in the late 2010s; 614 geodetic benchmarks
                nationwide as of 2025; CORS stations at key reference points
 **operator**:  IGNTOGO (formerly DGIGC — Direction Générale de l'Information
@@ -7005,7 +7005,7 @@ replaces `igntogo.tg`.
 **type**:      unknown
 **host:port**: not publicly listed
 **access**:    unknown
-**registration**: no public portal found
+**access_url**: no public portal found
 **stations**:  unknown; no stations identified in IGS Network or AFREF ODC
 **operator**:  Ministry of Town Planning and Housing (IGN-equivalent national
                mapping function); ICASEES (`icasees.org`) handles statistics
@@ -7030,7 +7030,7 @@ Operational Data Centre. Zero CF mountpoints on rtk2go or Centipede.
 **type**:      unknown
 **host:port**: not publicly listed
 **access**:    unknown
-**registration**: no public portal found
+**access_url**: no public portal found
 **stations**:  unknown; no GW station identified in IGS Network or AFREF ODC
 **operator**:  DGCF — Direcção-Geral de Cartografia e Fotogrametria, Ministry
                of Urban Planning and Construction
@@ -7059,7 +7059,7 @@ portals for any announced GNSS modernisation programme.
 **type**:      unknown
 **host:port**: not publicly listed
 **access**:    unknown
-**registration**: no public portal found
+**access_url**: no public portal found
 **stations**:  unknown; no BI station identified in IGS Network or AFREF ODC
 **last_researched_date**: 2026-05-12
 
@@ -7087,7 +7087,7 @@ government portals for any announced RTK programme.
 **host:port**: not publicly listed
 **access**:    free (post-processed RINEX confirmed); real-time RTK/NTRIP access
                model not confirmed — likely requires direct contact with RLMUA
-**registration**: `lands.rw` (RLMUA portal)
+**access_url**: `lands.rw` (RLMUA portal)
 **stations**:  ~10 CORS sites nationwide
 **operator**:  RLMUA — Rwanda Land Management and Use Authority (`lands.rw`)
 **reason**:    real-time NTRIP RTK access not publicly confirmed; only post-processed RINEX
@@ -7126,7 +7126,7 @@ grown since the 2010s AFREF affiliation efforts.
 **host:port**: n/a — no NTRIP caster; RINEX files via Dataforsyningen
 **access**:    RINEX 2/3 freely available via `dataforsyningen.dk`; no RTK/NTRIP
                stream identified in any aggregator as of 2026-05-01
-**registration**: https://dataforsyningen.dk (Dataforsyningen — Danish national
+**access_url**: https://dataforsyningen.dk (Dataforsyningen — Danish national
                   geodata portal); UNAVCO/EarthScope archive also accessible
 **stations**:  ~60 continuous GNSS stations across Greenland
 **operator**:  KDS/Klimadatastyrelsen (Danish Agency for Climate Data, formerly SDFi)
@@ -7194,7 +7194,7 @@ to extend CPOS to Svalbard as of 2026-05-13.
 **host:port**: not publicly listed; access requires direct contact with Umhvørvisstovan
 **access**:    professional/commercial clients (surveying firms, construction companies);
                no self-service portal or published endpoint; hobbyist eligibility unclear
-**registration**: https://us.fo/kort/geodesi (agency contact; no self-service signup)
+**access_url**: https://us.fo/kort/geodesi (agency contact; no self-service signup)
 **stations**:  4 physical: Klaksvík, Vestmanna, Trongisvágur, Argir (confirmed 2026-05-01)
 **operator**:  Umhvørvisstovan — The Faroese Environment Agency (`us.fo`,
                formerly `umhvorvisstovan.fo`)
@@ -7225,7 +7225,7 @@ whether non-commercial / hobbyist access is available via us.fo/kort/geodesi.
                **GIBR is NOT exposed on any EUREF-IP broadcaster** (verified absent from
                BKG, ROB, and ASI sourcetables 2026-05-13).
 **access**:    restricted — archive data only; no real-time NTRIP stream
-**registration**: https://www.bigf.ac.uk/request_data/form.html
+**access_url**: https://www.bigf.ac.uk/request_data/form.html
 **stations**:  1 (GIBR — at the Gibraltar tide gauge; IGS TIGA sea-level project)
 **yearly_cost**: n/a (archive data free on request; no subscription)
 **last_researched_date**: 2026-05-13
@@ -7252,7 +7252,7 @@ within useful L1+L2 RTK baseline. See `ergnss`.
 **type**:      unknown (no public caster endpoint identified)
 **host:port**: not publicly listed
 **access**:    unknown — no public self-service registration portal found
-**registration**: https://www.kadaster.cw/contact
+**access_url**: https://www.kadaster.cw/contact
 **yearly_cost**: n/a (no public service)
 **stations**:  unknown; NSGI can establish GNSS infrastructure at local government request
 **operator**:  Stichting Kadaster en Openbare Registers Curaçao (`kadaster.cw`);
@@ -7278,7 +7278,7 @@ bases near Willemstad (CWM_JAJO, MPA_JAJO, UTE_JAJO) supplement EarthScope cover
 **type**:      EarthScope NOTA + rtk2go volunteer (no Aruban national caster)
 **host:port**: EarthScope: `ntrip.earthscope.org:2101`; rtk2go: `rtk2go.com:2101`
 **access**:    free non-commercial (EarthScope NULA) or open volunteer (rtk2go)
-**registration**: EarthScope account at https://www.earthscope.org/data/gnss-realtime/; rtk2go: none
+**access_url**: EarthScope account at https://www.earthscope.org/data/gnss-realtime/; rtk2go: none
 **stations**:  2 free streams cover the island — **CN19_RTCM3P3** (EarthScope NOTA, NW
                coast near California Lighthouse, 12.61°N -70.05°W, installed by UNAVCO
                June 2013) and **PINOST1** (rtk2go volunteer, Santa Cruz, 12.50°N
@@ -7310,7 +7310,7 @@ down: local base/rover pair, Galileo HAS (~40 cm), or commercial PPP.
 **host:port**: not publicly listed
 **access**:    no public NTRIP service; access likely gated to licensed Bahamian
                surveyors via institutional procedure (Department of Lands and Surveys)
-**registration**: https://www.spatialdimension.com/projects/bahamas-department-of-lands-and-surveys (Spatial Dimension project page; no public NTRIP endpoint; bahamas.gov.bs returned HTTP 403 from automated fetch 2026-05-12)
+**access_url**: https://www.spatialdimension.com/projects/bahamas-department-of-lands-and-surveys (Spatial Dimension project page; no public NTRIP endpoint; bahamas.gov.bs returned HTTP 403 from automated fetch 2026-05-12)
 **stations**:  23 Trimble CORS + 3 tide-gauge stations deployed ~2020 under the
                Landfolio cadastral-modernisation programme
 **last_researched_date**: 2026-05-12
@@ -7338,7 +7338,7 @@ federal installation, not a Bahamian national service.
 **type**:      single-base (7 streams: 2 on Bonaire, 3 on Saba, 2 on Sint Eustatius)
 **host:port**: `ntrip.kadaster.nl:2101` (unencrypted) / `ntrip.kadaster.nl:443` (TLS)
 **access**:    free, anonymous; no username/password required
-**registration**: https://nsgi.nl/referentiepunten-en-gnss-data/gnss-data/real-time-streams
+**access_url**: https://nsgi.nl/referentiepunten-en-gnss-data/gnss-data/real-time-streams
 **stations**:  Bonaire: BON200BES0 (Stonex SC2200, GPS+GLO+GAL+BDS),
                BONK00BES0 (Leica GR30, GPS+GLO+GAL+BDS);
                Saba: SABY00BES0 (Septentrio PolRX5E, GPS+GLO+GAL+BDS),
@@ -7368,7 +7368,7 @@ Zero BES-coded rtk2go or Centipede stations.
 **host:port**: not publicly listed
 **access**:    restricted — operated under the Ministry of National Defence (INCT);
                no self-service registration or public NTRIP endpoint published
-**registration**: https://www.inct.mdn.dz/
+**access_url**: https://www.inct.mdn.dz/
 **yearly_cost**: n/a (no public commercial service)
 **stations**:  189 permanent GNSS stations; 6 anchor/reference stations —
                Algiers (DZAL), Oran (DZOR), Constantine (DZCO), Ouargla (OGLA),
@@ -7405,7 +7405,7 @@ and whether REGAT RINEX data are accessible via UNAVCO/EarthScope or a national 
 **host:port**: not publicly listed
 **access**:    restricted — established for internal government/cadastral use and
                national infrastructure projects; no public self-service portal found
-**registration**: https://www.esa.gov.eg/
+**access_url**: https://www.esa.gov.eg/
 **yearly_cost**: n/a (no public commercial service)
 **stations**:  ~40 physical stations across Cairo, Nile Delta, and surrounding regions
                (CORS network established 2012, adjusted to ITRF2008/2014; NACN
@@ -7437,7 +7437,7 @@ institutional basis, and whether any commercial RTK service operates in Egypt.
 **type**:      single-base
 **host:port**: n/a — post-processing only; no public NTRIP caster
 **access**:    raw RINEX archived to IGS for scientific post-processing
-**registration**: `ipgn.ncc.gov.ir/en/accounts/signup/`
+**access_url**: `ipgn.ncc.gov.ir/en/accounts/signup/`
 **yearly_cost**: n/a
 **stations**:  ~127 physical CORS (phase 1 2004–2006, 106 stations; phase 2 completed
                2013 to 127 stations in ITRF2014)
@@ -7471,7 +7471,7 @@ applicants.
 **access**:    paid subscription via `eshop.ncc.gov.ir`; sign-up requires Iranian
                national ID and Iranian banking; e-shop firewall-blocked from outside
                Iran
-**registration**: `eshop.ncc.gov.ir`
+**access_url**: `eshop.ncc.gov.ir`
 **yearly_cost**: not publicly listed
 **stations**:  ~127 (shares the IPGN station network — see `ipgn`)
 **operator**:  National Cartographic Center of Iran (سازمان نقشه‌برداری کشور / NCC),
@@ -7506,7 +7506,7 @@ individuals without a licensed-surveyor credential.
                national ID (کد ملی), Iranian mobile for OTP, and a specific GNSS
                receiver's serial number bound to the account; no documented path
                for unaffiliated users
-**registration**: `shamim.ssaa.ir`
+**access_url**: `shamim.ssaa.ir`
 **yearly_cost**: n/a (no fee, but cadastre-programme gated)
 **stations**:  144 permanent CORS installed on registry-unit buildings nationwide
                (project completion winter 1395 / Dec 2016 – Feb 2017; figure
@@ -7567,7 +7567,7 @@ local base, or Galileo HAS (~40 cm, satellite-broadcast).
 **access**:    RINEX files freely downloadable via SFTP at `geodesia.inegi.org.mx`
                (user `rgnaftp` / pass `rgnaftp`; FTP→SFTP migration Oct 2024);
                no RTK/NTRIP streaming offered
-**registration**: https://en.www.inegi.org.mx/temas/geodesia_activa/
+**access_url**: https://en.www.inegi.org.mx/temas/geodesia_activa/
 **stations**:  ~30 permanent GNSS stations distributed nationally (CALE2025 coordinate catalogue)
 **operator**:  INEGI — Instituto Nacional de Estadística y Geografía (`inegi.org.mx`)
 
@@ -7590,7 +7590,7 @@ bulletin recorded INEGI's intent to publish an NTRIP caster; never implemented t
 **access**:    paid — monthly and annual memberships, resold under multiple vendor product
                pages (DTM Topografía, Aeros, La Casa del Topógrafo all market the same
                network); pricing in MXN, Mexican phone numbers in vendor sign-up flow
-**registration**: https://dtmtopografia.com/cors-mexico/membresias/
+**access_url**: https://dtmtopografia.com/cors-mexico/membresias/
 **yearly_cost**: MXN 20,500/yr (~$1,015/yr) — 12-month plan via La Casa del Topógrafo
                (observed 2026-05-12); MXN 2,042/month (~$101/mo, ~$1,210/yr) via Aeros
                monthly (observed 2026-05-12); VAT/IVA inclusion not stated. 7-day, 1, 3,
@@ -7615,7 +7615,7 @@ physical network resold under multiple vendor product pages.
 **type**:      physical single-base (55+ stations across 31 states)
 **host:port**: not publicly listed; issued post-subscription
 **access**:    paid — subscription; 15-day demo available
-**registration**: https://en.surveyplusmx.com/corsm%C3%A9xico
+**access_url**: https://en.surveyplusmx.com/corsm%C3%A9xico
 **yearly_cost**: MXN 13,200/yr + IVA (~$650/yr) for Hi-Target / GeoMax receivers;
                MXN 17,600/yr + IVA (~$870/yr) for other GNSS brands; monthly tiers
                MXN 1,320/mo and MXN 1,760/mo + IVA respectively (re-verified 2026-05-14
@@ -7641,7 +7641,7 @@ demo for GNSS devices.
 **access**:    paid — monthly licence sold via Mexican GNSS resellers (e.g. Punto Visado);
                MXN 2,350 / month with IVA included (Punto Visado 1-month licence,
                observed 2026-05-14)
-**registration**: https://puntovisado.com/producto/licencia-red-cors-1-mes/
+**access_url**: https://puntovisado.com/producto/licencia-red-cors-1-mes/
 **yearly_cost**: MXN 2,350/mo IVA incl. (~$117/mo, ~$1,400/yr) — only monthly tier sold
 **yearly_cost_normalized**: 1400
 **stations**:  not published separately (resold network)
@@ -7662,7 +7662,7 @@ networks.
 **type**:      VRS (Topcon-aligned national)
 **host:port**: not publicly listed; issued post-subscription
 **access**:    paid — Topcon distributor sells annual subscriptions; pricing in USD with IVA
-**registration**: https://topografiaguadalajara.com (Topcon Mexican distributor)
+**access_url**: https://topografiaguadalajara.com (Topcon Mexican distributor)
 **yearly_cost**: USD 1,200/yr + IVA (~$1,390/yr incl. 16% IVA) observed 2026-05-12 via
                topografiaguadalajara.com
 **yearly_cost_normalized**: 1390
@@ -7687,7 +7687,7 @@ México, GeoCORS / Survey+).
 **access**:    RINEX free via `sirgaschile.cl`; real-time NTRIP unconfirmed —
                ArduSimple (2025) describes the network as CORS/PPK only; IGM
                announced NTRIP in 2025 (procedure: youtube.com/watch?v=4yuH1W05eII)
-**registration**: `sirgaschile.cl` (coordinate certificates and RINEX); NTRIP streaming
+**access_url**: `sirgaschile.cl` (coordinate certificates and RINEX); NTRIP streaming
                   registration not self-service
 **yearly_cost**: RINEX free; streaming terms not publicly documented
 **stations**:  180+ CORS stations; expanded by 28 new first-level stations announced 2025
@@ -7720,7 +7720,7 @@ sirgaschile.cl and igm.cl for a working caster address and registration pathway.
                on public website; ventas@geocom.cl / +562 2480 3600. A free "GEOCASTER"
                service for GEOCOM-equipment owners is also announced (hobbyist access outside
                their equipment ecosystem undocumented).
-**registration**: `geocom.cl/pages/red-gnss`
+**access_url**: `geocom.cl/pages/red-gnss`
 **yearly_cost**: not publicly listed
 **stations**:  not published; coverage spans Calama, Antofagasta, Los Andes, Santiago, Talca,
                Concepción, Los Ángeles, Temuco, Valdivia, Osorno, Puerto Montt (~23°S–41°S)
@@ -7743,7 +7743,7 @@ fiducial stations. Not added to pipeline: paid service.
                from external IPs in 2026-05-06 and 2026-05-12 probes — consistent with
                purchase-gated access
 **access**:    paid prepaid packages (brand-agnostic NTRIP receiver accepted; no annual contract required)
-**registration**: `kollnerlabrana.cl/kollnet.html`
+**access_url**: `kollnerlabrana.cl/kollnet.html`
 **yearly_cost**: tariff confirmed 2026-05-12 (CLP, +19% IVA): CLP 48,000 / 7 days · CLP 60,000 /
                15 days · CLP 85,000 / 30 days · CLP 180,000 / 3 mo · **CLP 450,000 / 12 mo**
                (~$470/yr at 2026-05-12 spot rate — over $200/yr cutoff)
@@ -7774,7 +7774,7 @@ goes live.
 **access**:    free-with-registration — SNIT account required; account credentials validated
                against caster at 12:00 midnight and 12:00 noon CR time (UTC−6); initial access
                may take up to 12 h after registration
-**registration**: `snitcr.go.cr` (Herramientas → Herramientas GNSS → Caster → accept T&Cs)
+**access_url**: `snitcr.go.cr` (Herramientas → Herramientas GNSS → Caster → accept T&Cs)
 **stations**:  14 physical (QUEP3 Quepos, LBRA3 Liberia, NYCO3 Nicoya, SAGE3 San-Isidro-PZ,
                NEIL3 Ciudad-Neilly, CIQE3 Ciudad-Quesada, PUNT3 Puntarenas, RIDC3 Curridabat,
                LIMN3 Limón, BRBR3 Bribri, CHLS3 Los-Chiles, LCRZ3 La-Cruz, CAPO3 Cariari,
@@ -8013,7 +8013,7 @@ practical for southern Maputo Province only.
 **stations**:  60 permanent GNSS stations including nodes at Laayoune and Dakhla
 **source**:    ancfcc.gov.ma/nos-metiers/cartographie/reseau-gnss/
 **operator**:  ANCFCC — Agence Nationale de la Conservation Foncière, du Cadastre et de la Cartographie
-**registration**: https://www.ancfcc.gov.ma/nos-metiers/cartographie/reseau-gnss/
+**access_url**: https://www.ancfcc.gov.ma/nos-metiers/cartographie/reseau-gnss/
 
 60-station national GNSS network (grew from original 18 stations, expanded by
 a 2017 densification adding 12 more, now 60 nationwide including Western Sahara),
@@ -8041,7 +8041,7 @@ hobbyist sign-up path documented; contact ANCFCC directly.
 **stations**:  231 permanent GNSS stations (claim per itri 2026-05-06; not independently
                verified — caster sourcetable not externally reachable)
 **operator**:  SAMTOP / itri — itri-gnss.ma
-**registration**: https://secure.itri-gnss.ma/admin/auth/register
+**access_url**: https://secure.itri-gnss.ma/admin/auth/register
 
 Morocco's first private permanent GNSS network, designed by SAMTOP and launched 2020.
 Claims 231 stations nationwide; GPS+GLONASS+Galileo+BeiDou. Correction modes:
@@ -8121,7 +8121,7 @@ PPPs report. No public NTRIP host:port or hobbyist registration portal has been 
 **type**:      unknown (no confirmed public NTRIP endpoint)
 **host:port**: not publicly listed
 **access**:    unknown — no public registration portal or caster host:port found
-**registration**: https://ssgi.gov.et
+**access_url**: https://ssgi.gov.et
 **stations**:  10 (Addis Ababa, Bonga, Semera, Jigjiga, Debre Berhan, Jimma,
                plus 4 in Sheger and surrounding towns); planned expansion to
                20 in 2024/25 and ~200 long-term
