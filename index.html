@@ -275,7 +275,7 @@
   #toggles .legend-x:hover{background:var(--btn-hover);color:var(--fg);}
   #toggles{position:relative;}
   #toggles.legend-hidden{display:none;}
-  #legend-handle{position:fixed;top:8px;right:8px;z-index:9997;
+  #legend-handle{position:fixed;top:8px;right:8px;z-index:9999;
     width:38px;height:38px;display:none;align-items:center;justify-content:center;
     background:var(--ctrl-bg);border:1px solid var(--ctrl-border);
     -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
@@ -332,6 +332,7 @@
      transitions and the toast/popover entrance animations. */
   @media (prefers-reduced-motion: reduce){
     #help-drawer, #help-scrim, #card-sheet,
+    #toggles.leaflet-control, #legend-handle,
     .help-topic .chev, .help-answer .deep summary::before,
     .det-sum::after, .leaflet-fade-anim .leaflet-tile{
       transition:none !important;
@@ -392,7 +393,7 @@
       transform:translateY(-50%);
       width:auto;height:auto;
       flex-direction:column;align-items:center;gap:6px;
-      padding:14px 7px;
+      padding:14px 12px;
       border-radius:5px 0 0 5px;border-right:none;
       font-size:12px;line-height:1;
       transition:right .24s cubic-bezier(.2,.8,.2,1);
@@ -406,8 +407,11 @@
     }
     /* Chevron points the way the panel will travel on tap:
        open  → tap closes → panel moves right → ›
-       closed→ tap opens  → panel moves left  → ‹ */
-    #legend-handle .lh-chev{display:block;font-size:13px;opacity:.7;}
+       closed→ tap opens  → panel moves left  → ‹
+       text-orientation:upright keeps the glyph horizontal inside the
+       vertical-rl tab so the arrow reads as left/right, not up/down. */
+    #legend-handle .lh-chev{display:block;font-size:13px;opacity:.7;
+      writing-mode:horizontal-tb;text-orientation:upright;}
     #legend-handle:not(.on) .lh-chev::before{content:"\203A";}
     #legend-handle.on        .lh-chev::before{content:"\2039";}
   }
@@ -522,7 +526,7 @@
 </aside>
 <!-- legend handle — desktop: top-right re-open button after collapse. Mobile: vertical
      edge-tab on the right rim, always visible, toggles the drawer in both directions. -->
-<button id="legend-handle" aria-label="Toggle legend" title="Toggle legend"
+<button id="legend-handle" aria-label="Hide legend" aria-expanded="true" title="Hide legend"
   ><span aria-hidden="true" class="lh-icon">≡</span
   ><span aria-hidden="true" class="lh-label">Legend</span
   ><span aria-hidden="true" class="lh-chev"></span></button>
@@ -1698,14 +1702,23 @@
     // back. State persisted across sessions. Right-swipe on the panel also
     // collapses (survey-tablet ergonomics — pick a direction off the screen).
     var handle=document.getElementById('legend-handle');
+    function setHandleState(expanded){
+      if(!handle) return;
+      handle.setAttribute('aria-expanded', expanded?'true':'false');
+      var lbl=expanded?'Hide legend':'Show legend';
+      handle.setAttribute('aria-label', lbl);
+      handle.setAttribute('title', lbl);
+    }
     function collapseLegend(){
       d.classList.add('legend-hidden');
       if(handle) handle.classList.add('on');
+      setHandleState(false);
       try{ localStorage.setItem('ntrip-legend-collapsed','1'); }catch(e){}
     }
     function expandLegend(){
       d.classList.remove('legend-hidden');
       if(handle) handle.classList.remove('on');
+      setHandleState(true);
       try{ localStorage.removeItem('ntrip-legend-collapsed'); }catch(e){}
     }
     var xBtn=d.querySelector('.legend-x');
