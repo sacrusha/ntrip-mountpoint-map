@@ -231,7 +231,7 @@
       "lon": -94.0,
       "tier": "free",
       "vrs": true,
-      "registration": "https://mncors.dot.state.mn.us/",
+      "registration": "https://www.dot.state.mn.us/surveying/cors/index.html",
       "stations_declared": 140
     },
     {
@@ -255,7 +255,7 @@
       "lon": -92.5,
       "tier": "free",
       "vrs": true,
-      "registration": "https://gpsweb3.modot.mo.gov/",
+      "registration": "https://www.modot.org/gps-utility-mapping-system",
       "stations_declared": 78
     },
     {
@@ -267,7 +267,7 @@
       "lon": -80.5,
       "tier": "free",
       "vrs": true,
-      "registration": "https://wvrtn.cors.us/RegisterAccount.aspx",
+      "registration": "https://wvrtn.cors.us/",
       "stations_declared": 34
     },
     {
@@ -279,7 +279,7 @@
       "lon": -69.0,
       "tier": "free",
       "vrs": true,
-      "registration": "https://medotrtn.maine.gov/",
+      "registration": "https://www.maine.gov/dot/doing-business/permitting-policy/survey-and-right-of-way-information",
       "stations_declared": null,
       "note": "MaineDOT migrated to a new caster (medotrtn.maine.gov) in October 2025. Old credentials from mdotcors.maine.gov no longer work; existing users must re-register."
     },
@@ -292,7 +292,7 @@
       "lon": -108.55,
       "tier": "free",
       "vrs": true,
-      "registration": "https://rtvrn.mesacounty.us/RegisterAccount.aspx",
+      "registration": "https://www.mesacounty.us/departments-and-services/public-works/gps-survey",
       "stations_declared": 33
     },
     {
@@ -1051,7 +1051,7 @@
       "vrs": true,
       "yearly_cost": "CAD 1,650/yr (~$1,212/yr)",
       "yearly_cost_normalized": 1212,
-      "registration": "https://www2.gov.bc.ca/gov/content/data/geographic-data-services/geobc",
+      "registration": "https://www2.gov.bc.ca/gov/content/data/geographic-data-services/geo-spatial-referencing/bcacs",
       "note": "BC has no public real-time caster; access is sold only through commercial VARs (Can-Net, HxGN SmartNet NA, BrandtNet, Topnet). Free RINEX for post-processing is available with a BCeID account."
     },
     {
@@ -1066,7 +1066,8 @@
       "yearly_cost": "CAD 3,328/yr (~$2,429/yr)",
       "yearly_cost_normalized": 2429,
       "stations_declared": 40,
-      "note": "Real-time corrections are only sold through commercial resellers (HxGN SmartNet, Can-Net, Brandtnet); there is no direct provincial caster. The listed price is the HxGN SmartNet Atlantic plan; Can-Net and Brandtnet do not publish theirs."
+      "note": "Real-time corrections are only sold through commercial resellers (HxGN SmartNet, Can-Net, Brandtnet); there is no direct provincial caster. The listed price is the HxGN SmartNet Atlantic plan; Can-Net and Brandtnet do not publish theirs.",
+      "registration": "https://geonova.novascotia.ca/coordinate-referencing"
     },
     {
       "id": "scrtn",
@@ -1079,7 +1080,7 @@
       "vrs": true,
       "yearly_cost": "$1,200 first login; $600 each additional",
       "yearly_cost_normalized": 400,
-      "registration": "https://sc.accessgov.com/rfa/Forms/Page/rfa/scrtn",
+      "registration": "https://rfa.sc.gov/programs-services/geodetic/rtnstatus",
       "stations_declared": 43,
       "note": "Coverage extends into bordering Georgia and North Carolina via shared receivers. No professional licence required."
     },
@@ -1094,7 +1095,7 @@
       "vrs": true,
       "yearly_cost": "$500 one-time per login",
       "yearly_cost_normalized": 167,
-      "registration": "https://rtn.nc.gov",
+      "registration": "https://ncgs.state.nc.us/pages/CORS-and-GNSS.htm",
       "note": "Second login included; further logins $250 each. Payment by cheque. Free RINEX download."
     },
     {
@@ -1108,7 +1109,7 @@
       "vrs": true,
       "yearly_cost": "$450/yr",
       "yearly_cost_normalized": 450,
-      "registration": "https://portal.tndot.net",
+      "registration": "https://www.tn.gov/tdot/engineering-division/geodetics/gnss-reference-network.html",
       "note": "EarthScope NOTA stations in Tennessee work free for single-base / post-processing."
     },
     {
@@ -1161,7 +1162,7 @@
       "vrs": true,
       "yearly_cost": "$600/yr",
       "yearly_cost_normalized": 600,
-      "registration": "https://turngps.utah.gov",
+      "registration": "https://gis.utah.gov/products/turn/",
       "stations_declared": 100,
       "note": "Sign-up requires a Utah ID (state digital identity, not residency). Las Vegas not covered."
     },
@@ -1205,7 +1206,7 @@
       "vrs": true,
       "yearly_cost": "$3,500/yr unlimited; $1,995/yr (50-hr cap); $495/yr (10-hr cap)",
       "yearly_cost_normalized": 1995,
-      "registration": "https://store.c4g.lsu.edu",
+      "registration": "https://c4g.lsu.edu/c4g-gps-gnss-real-time-network/",
       "note": "The 10-hr and 50-hr caps are total RTK time over the year, not per-month. Agriculture-steering unlimited tier is $1,500/yr. Free RINEX subscription available separately for post-processing."
     },
     {
@@ -1229,7 +1230,8 @@
       "lat": 40.0,
       "lon": -89.3,
       "tier": "weird",
-      "note": "Announced Nov 2024 with about 70 stations planned; no live NTRIP caster yet. ReIL-NET (Kara Company) is an interim paid option covering Chicagoland and central Illinois."
+      "note": "Announced Nov 2024 with about 70 stations planned; no live NTRIP caster yet. ReIL-NET (Kara Company) is an interim paid option covering Chicagoland and central Illinois.",
+      "registration": "https://idot.illinois.gov/about-idot/stay-connected/idot-blog/cors-network-installation-kicks-off.html"
     },
     {
       "id": "txrtn",
@@ -1251,7 +1253,8 @@
       "lon": -119.6,
       "tier": "restricted",
       "vrs": true,
-      "note": "State and county agency partners only."
+      "note": "State and county agency partners only.",
+      "registration": "https://dot.ca.gov/caltrans-near-me/district-6/district-6-programs/d6-land-surveys/d6-rtn-gps"
     },
     {
       "id": "apn",
@@ -1932,7 +1935,7 @@
       "lon": -90.0,
       "tier": "free",
       "vrs": true,
-      "registration": "https://wiscorsweb.dot.wi.gov/TrimblePivotWeb/RegisterAccount.aspx",
+      "registration": "https://wisconsindot.gov/Pages/doing-bus/eng-consultants/cnslt-rsrces/tools/wiscors/default.aspx",
       "stations_declared": 115
     },
     {
@@ -1944,7 +1947,7 @@
       "lon": -82.5,
       "tier": "free",
       "vrs": true,
-      "registration": "https://www.myfloridagps.com/sbc/Account/Register",
+      "registration": "https://www.fdot.gov/geospatial/fprn.shtm",
       "stations_declared": 100
     },
     {
@@ -1956,7 +1959,7 @@
       "lon": -92.3,
       "tier": "free",
       "vrs": true,
-      "registration": "http://gps.ardot.gov/",
+      "registration": "https://ardot.gov/divisions/surveys/control-surveys/",
       "stations_declared": 50
     },
     {
@@ -1968,7 +1971,7 @@
       "lon": -71.5,
       "tier": "free",
       "vrs": true,
-      "registration": "https://macors.massdot.state.ma.us/",
+      "registration": "https://www.mass.gov/how-to/the-massachusetts-continuously-operating-reference-station-network-macors",
       "stations_declared": 22
     },
     {
@@ -1980,7 +1983,7 @@
       "lon": -72.7,
       "tier": "free",
       "vrs": true,
-      "registration": "https://vector.vermont.gov/",
+      "registration": "https://vtrans.vermont.gov/highway/geodetic/cors/real-time",
       "stations_declared": 18
     },
     {
@@ -1992,7 +1995,7 @@
       "lon": -72.7,
       "tier": "free",
       "vrs": true,
-      "registration": "https://acorn.uconn.edu/",
+      "registration": "https://ctsurveyors.org/acorn-real-time-positioning-for-connecticut/",
       "stations_declared": 13,
       "note": "Network also includes 1 station in Rhode Island, 2 in southern Massachusetts, and 1 on Long Island, NY — a useful fallback for Rhode Island where no state caster exists."
     },
@@ -2006,7 +2009,7 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
-      "registration": "https://azcors.azwater.gov",
+      "registration": "https://www.azwater.gov/hydrology/azcors",
       "stations_declared": 52,
       "note": "37 ADWR stations plus 15 EarthScope/NPS streams. Free registration via ADWR; caster port confirmed after registration."
     },
@@ -2019,7 +2022,7 @@
       "lon": -89.5,
       "tier": "free",
       "access": "registration",
-      "registration": "https://rtn.usm.edu",
+      "registration": "https://www.usm.edu/gulf-coast-geospatial-center/real_time_network.php",
       "stations_declared": 52,
       "note": "Operated by the University of Southern Mississippi Gulf Coast Geospatial Center. No professional licence required for registration."
     },
@@ -2068,7 +2071,7 @@
       "lon": -75.6,
       "tier": "free",
       "vrs": true,
-      "registration": "https://cors.dot.ny.gov/",
+      "registration": "https://www.dot.ny.gov/divisions/engineering/design/design-services/land-survey/cors",
       "note": "NTRIP runs on the non-standard port 8080 at rtn.dot.ny.gov; the usual port 2101 is firewalled. Configure receivers accordingly."
     },
     {
@@ -2092,7 +2095,7 @@
       "lon": -93.5,
       "tier": "free",
       "vrs": true,
-      "registration": "https://iartnsbc.iowadot.gov/sbc/Account/Register",
+      "registration": "https://iowadot.gov/consultants-contractors/design/iowa-real-time-network",
       "stations_declared": 83
     },
     {
@@ -2462,7 +2465,8 @@
       "lon": -77.7,
       "tier": "weird",
       "stations_declared": 23,
-      "note": "Government CORS deployed ~2020 for the Department of Lands and Surveys; institutional access only, no public NTRIP endpoint."
+      "note": "Government CORS deployed ~2020 for the Department of Lands and Surveys; institutional access only, no public NTRIP endpoint.",
+      "registration": "https://www.spatialdimension.com/projects/bahamas-department-of-lands-and-surveys"
     },
     {
       "id": "reci_ci",

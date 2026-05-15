@@ -1091,7 +1091,7 @@ Campania regional GNSS network. Public credentials (`Campania`/`GNSS`) provide
 **type**:      physical-coord-vrs (single-base + VRS)
 **access**:    registration; free via wiscors.dot.wi.gov (Wisconsin DOT)
 **pipeline-access**: registration
-**registration**: https://wiscorsweb.dot.wi.gov/TrimblePivotWeb/RegisterAccount.aspx
+**registration**: https://wisconsindot.gov/Pages/doing-bus/eng-consultants/cnslt-rsrces/tools/wiscors/default.aspx (WisDOT info page; account creation form at wiscorsweb.dot.wi.gov/trimblepivotweb/)
 **stations**:  115+ permanent statewide
 **source**:    wiscors.dot.wi.gov (Wisconsin Department of Transportation)
 **operator**:  Wisconsin DOT
@@ -1112,7 +1112,7 @@ ingesting to avoid duplicate pins.
 **type**:      physical-coord-vrs
 **access**:    registration; free via myfloridagps.com (Florida DOT)
 **pipeline-access**: registration
-**registration**: https://www.myfloridagps.com/sbc/Account/Register
+**registration**: https://www.fdot.gov/geospatial/fprn.shtm (SBC at myfloridagps.com/sbc/Account/Register)
 **stations**:  ~100 (live 2026-05-13: 101 STR rows including network solutions and single-base streams)
 **vrs**:       yes (VRS, iMAX, MAX, FKP; `RTCM3_VRS` mountpoint in user guides)
 **source**:    myfloridagps.com (Florida Department of Transportation, Geospatial office)
@@ -1136,7 +1136,7 @@ model state public RTK service. Some overlap with EarthScope NOTA expected.
 **type**:      physical-coord-vrs
 **access**:    registration; free via ardot.gov (Arkansas DOT)
 **pipeline-access**: registration
-**registration**: http://gps.ardot.gov/
+**registration**: https://ardot.gov/divisions/surveys/control-surveys/ (SBC at gps.ardot.gov)
 **stations**:  ~50
 **source**:    ardot.gov (Arkansas Department of Transportation)
 **operator**:  Arkansas DOT
@@ -1157,7 +1157,7 @@ Pulaski County with a separate signed-agreement registration at pagis.org.
 **type**:      physical-coord-vrs
 **access**:    registration; free via massdot.state.ma.us (MassDOT)
 **pipeline-access**: registration
-**registration**: https://macors.massdot.state.ma.us/
+**registration**: https://www.mass.gov/how-to/the-massachusetts-continuously-operating-reference-station-network-macors (SBC at macors.massdot.state.ma.us)
 **stations**:  22 (GNSS base stations, ~50 km spacing; Mass.gov current listing)
 **vrs**:       yes (Leica iMAX; recommended `RTCM3MSM_IMAX` for full-constellation GPS+GLO+GAL+BDS)
 **source**:    massdot.state.ma.us (Massachusetts Department of Transportation)
@@ -1180,7 +1180,7 @@ account is active.
 **type**:      physical-coord-vrs
 **access**:    registration; free via vector.vermont.gov (VTrans Geodetic Survey)
 **pipeline-access**: registration
-**registration**: https://vector.vermont.gov/
+**registration**: https://vtrans.vermont.gov/highway/geodetic/cors/real-time (SBC at vector.vermont.gov)
 **stations**:  18 physical reference stations (live 2026-05-13: 36 STR rows = physical + single-base + VRS variants)
 **vrs**:       yes (RTCM 3.1 and CMR+ single-base and network streams)
 **source**:    vtrans.vermont.gov/highway/geodetic (Vermont Agency of Transportation)
@@ -1205,6 +1205,7 @@ same IP.
 **type**:      physical-coord-vrs
 **access**:    registration; free via azwater.gov (Arizona Dept. of Water Resources)
 **pipeline-access**: registration
+**registration**: https://www.azwater.gov/hydrology/azcors (SBC at azcors.azwater.gov)
 **stations**:  52 (37 ADWR-managed + 15 EarthScope/NPS CORS sites; per ADWR March 2025 update reflected in AZCORS_InformationAndMountpoints20260406.pdf)
 **source**:    azwater.gov (Arizona Department of Water Resources)
 **operator**:  Arizona Dept. of Water Resources (ADWR)
@@ -1226,6 +1227,7 @@ post-registration only.
 **type**:      single-base
 **access**:    registration; free via usm.edu Gulf Coast Geospatial Center portal
 **pipeline-access**: registration
+**registration**: https://www.usm.edu/gulf-coast-geospatial-center/real_time_network.php (SBC at rtn.usm.edu/RegisterAccount.aspx)
 **stations**:  ~52 CORS (Mississippi-focused; 14 STR live 2026-05-13)
 **vrs**:       unclear (Trimble Pivot platform supports VRS; specific VRS mountpoints not confirmed in public docs)
 **source**:    rtn.usm.edu (Gulf Coast Geospatial Center / University of Southern Mississippi)
@@ -1319,7 +1321,7 @@ upload GGA at least every 30 seconds. Significant overlap with EarthScope NOTA e
 **type**:      physical-coord-vrs
 **access**:    registration; free via cors.dot.ny.gov (NYSDOT — credentials emailed after activation)
 **pipeline-access**: registration
-**registration**: https://cors.dot.ny.gov/
+**registration**: https://www.dot.ny.gov/divisions/engineering/design/design-services/land-survey/cors (SBC at cors.dot.ny.gov/SBC)
 **stations**:  unpublished current count (NYSDOT does not publish a station total; the 2006-era network was 36 with 10 planned additions; live sourcetable 2026-05-13: 18 STR rows covering MAX/iMAX/MSM/CMR variants on shared physical infrastructure)
 **vrs**:       yes (`net_msm_vrs` RTCM 3 MSM GPS+GLO+GAL+BDS; iMAX `net_msm_imax`, `GG_MSM_IMAX`; `near_msm` nearest-site)
 **source**:    dot.ny.gov (New York State Department of Transportation, Engineering Division + NYC partners)
@@ -1370,7 +1372,7 @@ full-constellation also available. FTP RINEX archive at `ftp.incors.in.gov`.
 **type**:      physical-coord-vrs
 **access**:    registration; free via iowadot.gov (Iowa DOT)
 **pipeline-access**: registration
-**registration**: https://iartnsbc.iowadot.gov/sbc/Account/Register
+**registration**: https://iowadot.gov/consultants-contractors/design/iowa-real-time-network (SBC at iartnsbc.iowadot.gov/sbc/Account/Register)
 **stations**:  83 IaRTN reference stations + 21 cross-state contributors (10 MnDOT, 4 WisDOT, 7 MoDOT)
 **source**:    iowadot.gov (Iowa Department of Transportation);
                e38surveysolutions.com/blogs/news/emlid-reach-rx-or-rs2-and-dji-rtk-connection-to-iowa-ntrip-iartn (Emlid/DJI client setup walkthrough; mountpoint `MSM_IMAX` is the recommended full-constellation RTCM3 stream)
@@ -1396,7 +1398,7 @@ parallel mountpoints during the NAD83(2011) → NATRF2022 transition.
 **type**:      physical-coord-vrs
 **access**:    registration; free via acorn.uconn.edu (CTDOT + UConn)
 **pipeline-access**: registration
-**registration**: https://acorn.uconn.edu/
+**registration**: https://ctsurveyors.org/acorn-real-time-positioning-for-connecticut/ (SBC at acorn.uconn.edu)
 **stations**:  13 (9 in CT, 1 in RI, 2 in southern MA, 1 Long Island NY)
 **vrs**:       yes (primary `VRS3_RTX` multi-constellation; `VRSX_RTX` for Trimble)
 **source**:    acorn.uconn.edu (Connecticut DOT + UConn Department of Natural Resources)
@@ -1680,7 +1682,7 @@ SOURCETABLE 200 OK re-confirmed 2026-05-13.
 **type**:      single-coord-vrs
 **access**:    registration; free via mndot.gov (Minnesota DOT)
 **pipeline-access**: registration
-**registration**: https://mncors.dot.state.mn.us/
+**registration**: https://www.dot.state.mn.us/surveying/cors/index.html (SBC at mncors.dot.state.mn.us)
 **stations**:  VRS only (underlying ~140 physical stations)
 **source**:    mndot.gov (Minnesota Department of Transportation)
 **operator**:  Minnesota DOT (MnDOT)
@@ -1726,7 +1728,7 @@ page; no professional licence field identified. Trimble Pivot Web login at
 **access**:    conditions; requires signed and notarized MoDOT CORS access agreement;
 **pipeline-access**: conditions
                free once approved — contact via modot.mo.gov
-**registration**: https://gpsweb3.modot.mo.gov/
+**registration**: https://www.modot.org/gps-utility-mapping-system (notarised User Agreement; SBC at gpsweb3.modot.mo.gov)
 **stations**:  VRS only (underlying 78 NetR5 CORS, max 70 km spacing)
 **source**:    modot.mo.gov (Missouri Department of Transportation)
 **operator**:  Missouri DOT
@@ -1751,7 +1753,7 @@ personnel changes, but individuals can sign as their own entity.
 **type**:      single-coord-vrs
 **access**:    registration; free via wvrtn.cors.us (WV Dept. of Transportation — IT Division, Highway Data Services Unit)
 **pipeline-access**: registration
-**registration**: https://wvrtn.cors.us/RegisterAccount.aspx
+**registration**: https://wvrtn.cors.us/ (signup form at /RegisterAccount.aspx)
 **stations**:  VRS only (underlying ~34 CORS upgraded to Trimble Alloy receivers in 2024; 7 STR rows live 2026-05-13)
 **vrs**:       yes (recommended `rtxRTCM3_4_MSM` / `rtxCMRx` multi-constellation; older `rtxRTCM3_2` was renamed)
 **source**:    transportation.wv.gov (WV Department of Transportation)
@@ -1774,7 +1776,7 @@ plus a `NATRF2022_Test` preview of the 2026 NSRS datum modernisation. Backup hos
 **type**:      vrs-only
 **access**:    registration; free via medotrtn.maine.gov (MaineDOT Survey Section)
 **pipeline-access**: registration
-**registration**: https://medotrtn.maine.gov/
+**registration**: https://www.maine.gov/dot/doing-business/permitting-policy/survey-and-right-of-way-information (SBC at medotrtn.maine.gov)
 **stations**:  VRS only (8 STR rows live 2026-05-13)
 **vrs**:       yes
 **source**:    maine.gov/dot (Maine Department of Transportation, Bureau of Project Development)
@@ -1796,7 +1798,7 @@ required to re-register after the cutover. Mountpoints: `VRS_CMR`, `VRS_RTCM`,
 **type**:      vrs-only
 **access**:    registration; free via rtvrn.mesacounty.us
 **pipeline-access**: registration
-**registration**: https://rtvrn.mesacounty.us/RegisterAccount.aspx
+**registration**: https://www.mesacounty.us/departments-and-services/public-works/gps-survey (Mesa County Public Works info page; account creation form at rtvrn.mesacounty.us)
 **stations**:  33 (17 NGS CORS + 16 county/partner stations) underlying VRS
 **source**:    mesacounty.us/departments-and-services/public-works/gps-survey
 **operator**:  Mesa County Public Works (Western Colorado)
@@ -3786,6 +3788,7 @@ unsanctioned neighbouring states, compounding the barriers to hobbyist RTK use.
 **type**:      vrs-only
 **host:port**: `scrtn.sc.gov:2101`
 **access**:    paid; subscribe at sc.accessgov.com/rfa; no professional-licence requirement
+**registration**: https://rfa.sc.gov/programs-services/geodetic/rtnstatus (subscription form at sc.accessgov.com/rfa)
 **yearly_cost**: $1,200 first login; $600 each additional (SCGS RTN Subscriber Agreement rev. 04/2023); no refunds; GPS+GLO+GAL+BDS
 **yearly_cost_normalized**: 400
 **operator**:  SC Revenue and Fiscal Affairs Office — SC Geodetic Survey
@@ -3804,6 +3807,7 @@ Payment due at time of application; no refunds.
 **host:port**: `rtn.nc.gov:2101` (DNS 207.4.106.112)
 **type**:      vrs-only
 **access**:    paid; subscribe at rtn.nc.gov; no professional-licence requirement stated
+**registration**: https://ncgs.state.nc.us/pages/CORS-and-GNSS.htm (signup at rtn.nc.gov)
 **yearly_cost**: $500 one-time per login (perpetual credentials, not annual renewal); second login included with first; additional: $250 each
 **yearly_cost_normalized**: 167
 **operator**:  NC Geodetic Survey (NC Dept. of Environment and Natural Resources)
@@ -3823,6 +3827,7 @@ by cheque. Invoicing first week of month following account creation.
 **host:port**: not publicly listed; provided post-payment via portal.tndot.net
 **type**:      vrs-only
 **access**:    paid; subscribe at portal.tndot.net; no professional-licence requirement stated
+**registration**: https://www.tn.gov/tdot/engineering-division/geodetics/gnss-reference-network.html (account creation at portal.tndot.net)
 **yearly_cost**: $450/yr (FY25 rate; payment by credit/debit via portal)
 **yearly_cost_normalized**: 450
 **operator**:  Tennessee Dept. of Transportation (TDOT) — Geodetics Division
@@ -3912,10 +3917,11 @@ non-commercial fallback.
 **status**:    paid
 **host:port**: `165.239.144.5:2101` (NAD83/2011); `165.239.144.7:2101` (alternate / NV — account-gated; external probes time out)
 **type**:      vrs-only
-**access**:    paid; subscribe at turngps.utah.gov; Utah ID account required (digital identity, not residency)
+**access**:    paid; subscribe via gis.utah.gov/products/turn/ (signup portal: turngps-billpay.ugrc.utah.gov); Utah ID account required (digital identity, not residency)
 **yearly_cost**: $600/yr per login (covers both Utah TURN GPS and Nevada GPS Network)
 **yearly_cost_normalized**: 600
 **operator**:  Utah Geospatial Resource Center (UGRC), State of Utah
+**registration**: https://gis.utah.gov/products/turn/
 **source**:    gis.utah.gov/products/turn/
 **date_added**: 2026-05-07
 **last_researched_date**: 2026-05-13
@@ -3975,6 +3981,7 @@ alongside the NSRS modernisation roll-out).
 **host:port**: `c4gnet.xyz:9000` (SOURCETABLE 200 OK 2026-05-13, 32 STR)
 **type**:      physical-coord-vrs
 **access**:    paid; subscribe at store.c4g.lsu.edu; no professional-licence requirement
+**registration**: https://c4g.lsu.edu/c4g-gps-gnss-real-time-network/ (storefront subscription at store.c4g.lsu.edu)
 **yearly_cost**: $3,500/yr unlimited RTK (NTRIP only); $1,995/yr (50-hr cap); $495/yr (10-hr cap); $5,000/yr (full RTN membership); $1,500/yr unlimited AG GNSS (agricultural-steering only)
 **yearly_cost_normalized**: 1995
 **operator**:  LSU Center for GeoInformatics (C4G), Louisiana State University
@@ -4132,6 +4139,7 @@ website; out of scope for the map (paid, no free tier) but documented for comple
 **type**:      VRS (Trimble-based)
 **host:port**: not publicly listed (GeoBC website reorganisation; portal URLs returning 404 as of 2026-04-30)
 **access**:    paid; contact GeoBC (gov.bc.ca/geobc or 1-800-663-7867); no self-service portal currently accessible
+**registration**: https://www2.gov.bc.ca/gov/content/data/geographic-data-services/geo-spatial-referencing/bcacs (BCACS info page; contact GeoBCInfo@gov.bc.ca)
 **yearly_cost**: CAD 1,650/yr (~$1,212); statutory fee per Land Act, B.C. Reg. 55/98, confirmed to 2026-04-21
 **yearly_cost_normalized**: 1212
 **operator**:  GeoBC / Province of British Columbia
@@ -4155,6 +4163,7 @@ sources following a gov.bc.ca website reorganisation.
                resellers only: HxGN SmartNet NA (`smartnetna.com`, CAD $3,327.96/yr Atlantic;
                CAD $6,084/yr national), Can-Net (`gps.can-net.ca`, pricing not public),
                Brandtnet (`rtk.brandt.ca`, pricing behind account login)
+**registration**: https://geonova.novascotia.ca/coordinate-referencing (NSCRS/NSACS info page; real-time via commercial NRTK resellers)
 **yearly_cost**: CAD 3,328/yr (~$2,429/yr) — HxGN SmartNet Atlantic (NB, NL, NS, PE) plan;
                Can-Net and Brandtnet pricing not publicly listed; national SmartNet: CAD 6,084/yr (~$4,441/yr).
                GST/HST status not stated on SmartNet product page — treat as unknown; confirm at checkout.
@@ -5231,6 +5240,7 @@ public caster.
 ## idot_cors — IDOT CORS (US-IL)
 
 **status**:    other
+**registration**: https://idot.illinois.gov/about-idot/stay-connected/idot-blog/cors-network-installation-kicks-off.html (IDOT blog; no live caster yet)
 **country**:   US-IL
 **date_added**: 2026-05-07
 **last_researched_date**: 2026-05-13
@@ -5262,6 +5272,7 @@ public caster.
 ## calrtns — CalRTNS / Caltrans CORS (US-CA)
 
 **status**:    restricted
+**registration**: https://dot.ca.gov/caltrans-near-me/district-6/district-6-programs/d6-land-surveys/d6-rtn-gps (restricted; no public signup)
 **reason**:    access restricted to vetted state/county agency partners; no general public
                or hobbyist registration available
 
@@ -5399,6 +5410,7 @@ country marker so target users in San Marino know what's locally available.
 ## qc_mern — Réseau GNSS du Québec / MERN (CA-QC)
 
 **status**:    other
+**registration**: https://mrnf.gouv.qc.ca/repertoire-geographique/reseau-geodesique-donnees-gnss/ (per-station direct TCP, no NTRIP)
 **reason**:    per-station direct TCP streams (not NTRIP aggregated); incompatible with
                standard NTRIP pipeline; no NTRIP caster endpoint published
 
@@ -7297,8 +7309,7 @@ down: local base/rover pair, Galileo HAS (~40 cm), or commercial PPP.
 **host:port**: not publicly listed
 **access**:    no public NTRIP service; access likely gated to licensed Bahamian
                surveyors via institutional procedure (Department of Lands and Surveys)
-**registration**: contact Department of Lands and Surveys via `bahamas.gov.bs`
-               (HTTP 403 from automated fetch 2026-05-12)
+**registration**: https://www.spatialdimension.com/projects/bahamas-department-of-lands-and-surveys (Spatial Dimension project page; no public NTRIP endpoint; bahamas.gov.bs returned HTTP 403 from automated fetch 2026-05-12)
 **stations**:  23 Trimble CORS + 3 tide-gauge stations deployed ~2020 under the
                Landfolio cadastral-modernisation programme
 **last_researched_date**: 2026-05-12
