@@ -689,7 +689,8 @@
       "tier": "paid",
       "access": "paid",
       "registration": "https://geoboliviasrl.info",
-      "note": "About 7 stations covering La Paz, Cochabamba, Oruro, Sacaba, Tarija, Santa Cruz, and Yacuiba. Sign-up is by phone; no self-service portal or published pricing."
+      "stations_declared": 7,
+      "note": "Sign-up by phone; pricing on request. Surveyor-licence governance under Ley 2997 may restrict hobbyist sign-up."
     },
     {
       "id": "hepos",
@@ -710,7 +711,7 @@
     {
       "id": "uranus_gr",
       "name": "URANUS / TopNET Live Greece",
-      "region": "Greece",
+      "region": "Greece + Cyprus",
       "country": "GR",
       "lat": 38.5,
       "lon": 22.5,
@@ -718,7 +719,8 @@
       "vrs": true,
       "access": "paid",
       "registration": "https://uranus.gr",
-      "note": "Covers Greece and Cyprus. 3-day free trial available."
+      "stations_declared": 117,
+      "note": "3-day free trial; pricing on request."
     },
     {
       "id": "rompos",
@@ -887,7 +889,7 @@
       "yearly_cost_normalized": 266,
       "stations_declared": 65,
       "registration": "https://gddt.vngeonet.vn",
-      "note": "Foreigners can register with a passport. Monthly (750,000 VNĐ) and 6-month (4,280,000 VNĐ) plans also available. A free tier applies in areas with >80 km station spacing — anywhere outside the densely covered river deltas."
+      "note": "Registration accepts a Vietnamese Citizen ID or a passport. Monthly (750,000 VNĐ) and 6-month (4,280,000 VNĐ) plans also available. A free tier applies in areas with >80 km station spacing — anywhere outside the densely covered river deltas."
     },
     {
       "id": "pagenet",
@@ -962,7 +964,7 @@
       "access": "paid",
       "registration": "https://www.gov.me/clanak/montepos",
       "stations_declared": 9,
-      "note": "Subscription plans from 24 hours to 2 years. Caster address is issued after account creation."
+      "note": "Subscription tiers from 24 h to 2 years. Pricing on request."
     },
     {
       "id": "srpos_ba",
@@ -1052,7 +1054,7 @@
       "yearly_cost_normalized": 745,
       "registration": "https://cors.surveyofindia.gov.in",
       "stations_declared": 1105,
-      "note": "Free for central/state government and academic users. The paid private subscription requires Aadhaar or PAN, so it is effectively limited to Indian residents."
+      "note": "Free for central/state government and academic users. The paid private subscription requires registration with an Aadhaar or PAN ID."
     },
     {
       "id": "tn_cors",
@@ -1166,7 +1168,7 @@
       "vrs": true,
       "access": "paid",
       "registration": "https://www.keypre.com/keynetgps/",
-      "note": "Commercial VRS network covering the whole US Northeast — useful in NH, NJ, PA, DE, MD, DC, and RI, which have no free state caster. Pricing on quote from Keypre or resellers."
+      "note": "Pricing on request via Keypre or resellers (Laser Industries, Duncan-Parnell)."
     },
     {
       "id": "alpha_rtk",
@@ -1355,7 +1357,7 @@
       "yearly_cost": "360,000 LKR/yr (~$1,127/yr)",
       "yearly_cost_normalized": 1127,
       "registration": "https://slcorsnet.survey.gov.lk",
-      "note": "Coverage is mainly the Western Province; island-wide rollout in progress. Bank transfer payment only, which may block non-residents."
+      "note": "Coverage is mainly the Western Province; island-wide rollout in progress. Payment is by LKR deposit at People's Bank Narahenpita."
     },
     {
       "id": "corsnet_lk",
@@ -1369,7 +1371,7 @@
       "access": "paid",
       "registration": "https://corsnet.lk/user/register/",
       "stations_declared": 21,
-      "note": "Island-wide commercial network, founded 2014. Self-service registration open to individuals; rates quoted on inquiry. Caster address delivered after payment."
+      "note": "Pricing on request; self-service registration open to individuals."
     },
     {
       "id": "sob_bd",
@@ -1382,7 +1384,8 @@
       "vrs": true,
       "access": "paid",
       "registration": "https://data.sob.gov.bd",
-      "note": "VRS solution with stations in Dhaka, Chittagong, Rajshahi, Khulna, Maulavibazar, and Rangpur. Pricing not published; payment via Rocket/bKash/SureCash needs a Bangladeshi mobile-banking account. A volunteer base near Chittagong provides a free single-base alternative there."
+      "stations_declared": 6,
+      "note": "Pricing on request; payment via Rocket/bKash/SureCash requires a Bangladeshi mobile-banking account. A Centipede base near Chittagong gives partial free coverage."
     },
     {
       "id": "miranet_bt",
@@ -1411,7 +1414,7 @@
       "access": "paid",
       "registration": "https://rtk.qgeo.kz",
       "stations_declared": 86,
-      "note": "Pricing not published — sales-contact only via the rtk.qgeo.kz landing page. Sign-up needs a Kazakh ИИН/БИН ID number and KZT bank transfer; foreign self-registration is not possible. Baselines reach ~180 km outside the Astana–Almaty corridor, beyond useful RTK range."
+      "note": "Pricing on request. Sign-up requires a Kazakh ИИН/БИН ID and KZT bank transfer. Baselines reach ~180 km outside the Astana–Almaty corridor."
     },
     {
       "id": "uzpos",
@@ -1475,7 +1478,7 @@
       "access": "paid",
       "registration": "http://geocors.napr.gov.ge/SBC",
       "stations_declared": 26,
-      "note": "Registration open via the operator's online portal; pricing not published — quoted by contact with NAPR."
+      "note": "Pricing on request. A volunteer rtk2go base near Tbilisi gives partial free coverage."
     },
     {
       "id": "dvrs",
@@ -1526,7 +1529,7 @@
       "tier": "paid",
       "access": "paid",
       "stations_declared": 70,
-      "note": "Single-base stations under IGN / Ministry of Defence (35+ active). Access requires application and payment to IGN, no online self-service. Individuals are not explicitly excluded, but there is no published path for them."
+      "note": "Application and payment to IGN required; pricing on request. Volunteer rtk2go bases near Tacna and Lima give partial free coverage."
     },
     {
       "id": "eft_cors",
@@ -1567,7 +1570,7 @@
       "tier": "paid",
       "access": "paid",
       "registration": "https://hive.geosystems.aero",
-      "note": "Aggregator of independently owned stations across Russian regions; station count fluctuates. Pay-per-use: daily RTK per station (prices vary, login required) or hourly post-processing. First ~5 min on each station is free."
+      "note": "Aggregator of independently owned stations; per-station daily pricing visible after login. First ~5 min on each station is free."
     },
     {
       "id": "geospider",
@@ -1624,7 +1627,7 @@
       "vrs": true,
       "access": "paid",
       "registration": "https://lbs.qq.com/rtk",
-      "note": "Enterprise sales only — no self-service pricing. Sign-up needs a Chinese phone number and a Chinese business licence."
+      "note": "Self-service purchase deprecated since 2024 — enterprise SDK only direct; resellers still sell short-duration accounts. Sign-up requires a Chinese phone number and real-name ID verification."
     },
     {
       "id": "rem_fvg",
@@ -1676,7 +1679,7 @@
       "vrs": true,
       "registration": "https://pre-web.grafcan.es/servicios/red-estaciones-gnss/alta-gnss/",
       "stations_declared": 20,
-      "note": "Pricing not published — see tiendavirtual.grafcan.es. Free Spanish ERGNSS (ergnss-tr.ign.es:2101) also covers the Canaries."
+      "note": "Pricing on request via tiendavirtual.grafcan.es. Free Spanish ERGNSS also covers the Canaries."
     },
     {
       "id": "satref",
@@ -2625,7 +2628,8 @@
       "vrs": true,
       "access": "paid",
       "registration": "http://moldpos.ingeocad.md/SBC/Account/Register",
-      "note": "No surveying licence required. Free test mountpoints are available with shared credentials moldpos/moldpos — try before subscribing."
+      "stations_declared": 10,
+      "note": "Pricing on request. Free test mountpoints (FZUTM, FZUASM, FZMA, FZINGEOCAD, FZCDEIC) are usable with shared credentials moldpos/moldpos."
     },
     {
       "id": "makpos",
@@ -2638,7 +2642,8 @@
       "vrs": true,
       "access": "paid",
       "registration": "https://makpos.katastar.gov.mk/sbc/Account/Register",
-      "note": "Galileo-capable since 2020. Subscription rates are not published; a community report of free 3G-mobile access exists but is unconfirmed — contact AREC."
+      "stations_declared": 14,
+      "note": "Pricing on request."
     },
     {
       "id": "ancfcc",
@@ -2884,7 +2889,7 @@
       "vrs": true,
       "access": "paid",
       "registration": "https://www.geoteam.dk/produkter/gpsnetdk",
-      "note": "Denmark's main cadastral VRS network. Weekly, monthly, and annual plans available; price shown only after login. Volunteer single-base stations across Denmark (mostly Jutland) give partial free coverage."
+      "note": "Pricing on request (shown after login). Volunteer rtk2go/Centipede bases across Denmark — mostly Jutland — give partial free coverage."
     },
     {
       "id": "rtkconnect_dk",

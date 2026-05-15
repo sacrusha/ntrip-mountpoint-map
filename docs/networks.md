@@ -3142,8 +3142,7 @@ RTCM 3.4. Hobbyist-relevant only as context; the free hobbyist path in KR is
 **type**:      physical-coord-vrs
 **access**:    free for Central/State Government and government academic/research; paid
                for PSU and private users. Online registration with Aadhaar or PAN ID
-               required — no documented path for foreign nationals (Aadhaar/PAN are
-               domestic IDs). Promotional free private-individual window
+               required. Promotional free private-individual window
                1 Nov 2025–31 Jan 2026 expired.
 **yearly_cost**: ₹70,800/yr (RTK12, incl. 18% GST, ~$745/yr); RTK1 ₹5,900/mo (~$62);
                  RTK3 ₹17,700 (~$186); RTK6 ₹35,400 (~$373). DGNSS1 ₹2,360/mo (~$25);
@@ -4579,9 +4578,8 @@ entry.
 **operator**:  JSC NC Қазақстан Ғарыш Сапары (Kazakhstan Gharysh Sapary / KGS) — national-operator role; commercial resellers GeoComm, EFT, Geokurs, RTKNet front the access layer
 **type**:      physical-coord-vrs (network RTK)
 **host:port**: not publicly disclosed (rtk.qgeo.kz portal reduced to a near-empty header on 2026-05-12)
-**access**:    paid subscription; sales-contact gated; Kazakh ИИН (individual) or
-               БИН (business) and KZT bank transfer are the practical onboarding
-               workflow — foreign users cannot complete self-service
+**access**:    paid subscription; sales-contact gated; sign-up requires a Kazakh
+               ИИН (individual) or БИН (business) and KZT bank transfer
 **yearly_cost**: unpublished — sales-contact only
 **registration**: https://rtk.qgeo.kz
 **stations**:  86 reference stations (per KGS national-operator figure); 60-station legacy figure also cited
