@@ -26,7 +26,7 @@ editorial user-facing extract of `networks.md` - "what the user on a network mar
 | `yearly_cost` | recommended on paid* | '$X/yr' / 'X €/yr' / '£X/yr', etc. local currency. if no yearly option, fall back to /mo, /h, /min, one time payment. Only one price, additional relevant pricing options in note field. No known pricing = no yearly_cost field
 | `yearly_cost_normalized` | required if yearly_cost present | Integer, used as color hint for affordability  |
 | `stations_declared` | when known | Integer
-| `registration` | when useful | URL: how to sign up. Ideally registration portal, that explains what the service is and how to register; fallback to service portal if nothing better. Avoid form or login pages without any useful explanation |
+| `registration` | when useful | URL describing the network (operator, what it is, how to register/gain access); prefer the most official source. Skip rather than link a bare login or form page. |
 | `note` | conditional | If helpful to target user |
 
 ## How markers render

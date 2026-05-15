@@ -38,7 +38,7 @@ deferred, rejected, etc are hallucinated statuses that do not exist.
 
 ## Format:
 
-Each field is a single-line atom. Multi-tier prices, future-tense clauses, probe notes, narrative parentheticals → prose.
+Each field is one line. Caveats, alternative URLs, probe notes, multi-tier prices, future-tense → prose.
 
 ---
 
@@ -48,7 +48,7 @@ status:	free | paid | restricted | RINEX | other
 country:	AU — Australia
 operator:	Name of the operator/agency
 url :    Service portal, if any, otherwise skip
-registration:	url of registration portal, fallback official url describing registration process, otherwise skip
+registration:	most-official url describing the network (operator, what it is, how to register/gain access). Not a bare signup form.
 host:port:	`host:port` - freeform if partially known, otherwise skip. prefer url over ip.
 vrs:	yes | no | unknown - Use only for RTK networks. "yes" covers any NRTK product, not just mountpoints literally named "VRS".
 access:    free / registration / paid [brief terms] / government-internal
