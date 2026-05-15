@@ -1084,10 +1084,9 @@
         {color:'#1a5d1a',weight:1,fillColor:'#1a5d1a',fillOpacity:0.15,
          dashArray:'3 3'}).addTo(group);
       var b=poly.getBounds(), c=b.getCenter();
-      var access=({free:'Free, no signup',
+      var access=({open:'Free, no signup',
                    registration:'Free with registration',
-                   category:'Free for some user categories',
-                   restricted:'Restricted access'})[n.access]||n.access||'';
+                   conditions:'Free with conditions'})[n.access]||n.access||'';
       var popup=`<div class="popup-plain"><h3>${esc(n.name||n.id)}</h3><div class="acc">NRTK coverage area — cm-level inside the hull</div><div>${esc(access)}</div>`
         +(n.registrationUrl?`<div><a href="${esc(n.registrationUrl)}" target="_blank" rel="noopener">${esc(visUrl(n.registrationUrl))} ↗</a></div>`:'')
         +`<div style="color:var(--muted);font-size:11px;margin-top:4px">${(n.stationIds||[]).length} reference stations</div></div>`;
@@ -1841,7 +1840,7 @@
           registration:validUrl(m.registration||''),
           note:m.note||null, yearlyCost:m.yearly_cost||null,
           stationsDeclared:m.stations_declared||null};
-        if(m.tier==='paid'||m.tier==='paid-affordable'){
+        if(m.tier==='paid'){
           var n=m.yearly_cost_normalized;
           rec.color=affordabilityColor(n);
           if(n!=null&&n<300){ rec.access='paid-affordable'; affordableNetworks.push(rec); }
