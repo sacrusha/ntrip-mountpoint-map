@@ -1,9 +1,9 @@
 STR;VRS_CMR;VRS_CMR;CMR+;Obs(1),Info(10),PrsInfo(11);2;GPS+GLONASS;MAINE DOT CORS;USA;0;0;1;1;Trimble Pivot Platform;none;B;N;0;;
-STR;VRS_RTCM;VRS_RTCM;RTCM 3.4;1004(1),1005/1007(5),PBS(10);2;GPS+GLO+GAL+BDS+QZS;MAINE DOT CORS;USA;0;0;1;1;Trimble Pivot Platform;none;B;N;0;;
+STR;VRS_RTCM;VRS_RTCM;RTCM 3.4;1004(1),1005/1007(5),PBS(10);2;GPS+GLONASS;MAINE DOT CORS;USA;0;0;1;1;Trimble Pivot Platform;none;B;N;0;;
 STR;VRS_RTCM_23;VRS_RTCM_23;RTCM 2.3;1(1),3(10),20(1),21(1);2;GPS+GLONASS;MAINE DOT CORS;USA;0;0;1;1;Trimble Pivot Platform;none;B;N;0;;
-STR;VRS_CMRx;VRS_CMRx;CMRx;Obs(1),Info(10),PrsInfo(11);2;GPS+GLO+GAL+BDS+QZS;MAINE DOT CORS;USA;0;0;1;1;Trimble Pivot Platform;none;B;N;0;;
-STR;SingleStation_Nearest_RTCM23;SingleStation_Nearest_RTCM23;RTCM 2.3;1(1),3(10),18(1),19(1);2;GPS+GLO;MAINE DOT CORS;USA;0;0;1;0;Trimble Pivot Platform;none;B;N;0;;
-STR;SingleStation_Nearest_RTCM_MSM;SingleStation_Nearest_RTCM_MSM;RTCM 3.4;1004(1),1005/1007(5),PBS(10);2;GPS+GLO+GAL+BDS+QZS;MAINE DOT CORS;USA;0;0;1;0;Trimble Pivot Platform;none;B;N;0;;
-STR;SingleStation_Nearest_CMRX;SingleStation_Nearest_CMRX;CMRx;Obs(1),Info(10),PrsInfo(11);2;GPS+GLO+GAL+BDS+QZS;MAINE DOT CORS;USA;0;0;1;0;Trimble Pivot Platform;none;B;N;0;;
 STR;SingleStation_Nearest_CMR_PLUS;SingleStation_Nearest_CMR_PLUS;CMR+;Obs(1),Info(10),PrsInfo(11);2;GPS+GLO;MAINE DOT CORS;USA;0;0;1;0;Trimble Pivot Platform;none;B;N;0;;
+STR;SingleStation_Nearest_CMRX;SingleStation_Nearest_CMRX;CMRx;Obs(1),Info(10),PrsInfo(11);2;GPS+GLO+GAL+BDS+QZS;MAINE DOT CORS;USA;0;0;1;0;Trimble Pivot Platform;none;B;N;0;;
+STR;SingleStation_Nearest_RTCM_MSM;SingleStation_Nearest_RTCM_MSM;RTCM 3.4;Obs(1),Info(10),PrsInfo(11);2;GPS+GLO+GAL+BDS+QZS;MAINE DOT CORS;USA;0;0;1;0;Trimble Pivot Platform;none;B;N;0;;
+STR;SingleStation_Nearest_RTCM23;SingleStation_Nearest_RTCM23;RTCM 2.3;1(1),3(10),18(1),19(1);2;GPS+GLO;MAINE DOT CORS;USA;0;0;1;0;Trimble Pivot Platform;none;B;N;0;;
+STR;VRS_CMRx;VRS_CMRx;CMRx;Obs(1),Info(10),PrsInfo(11);2;GPS+GLO+GAL+BDS+QZS;MAINE DOT CORS;USA;0;0;1;1;Trimble Pivot Platform;none;B;N;0;;
 ENDSOURCETABLE
