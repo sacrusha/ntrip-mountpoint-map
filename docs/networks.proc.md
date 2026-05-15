@@ -47,8 +47,8 @@ Each field is one line. Caveats, alternative URLs, probe notes, multi-tier price
 status:	free | paid | restricted | RINEX | other 
 country:	AU — Australia
 operator:	Name of the operator/agency
-url:	Network landing page (required, every network). Operator-owned where available; most-official source otherwise.
-registration:	URL describing how to register/gain access. Skip if not more useful than url:. Not a bare signup form.
+landing_url:	Network landing page (required, every network). Operator-owned where available; most-official source otherwise.
+access_url:	URL describing how to register/gain access. Skip if not more useful than landing_url:. Not a bare signup form.
 host:port:	`host:port` - freeform if partially known, otherwise skip. prefer url over ip.
 vrs:	yes | no | unknown - Use only for RTK networks. "yes" covers any NRTK product, not just mountpoints literally named "VRS".
 access:    free / registration / paid [brief terms] / government-internal
