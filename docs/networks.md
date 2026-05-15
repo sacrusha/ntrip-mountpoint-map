@@ -3867,17 +3867,16 @@ stated. SOURCETABLE 200 OK confirmed 2026-05-13 (6 STR entries).
 **host:port**: not publicly listed; credentials issued post-subscription
 **type**:      unknown (Trimble-based per reseller materials; sourcetable host not publicly listed — VRS-vs-single-base unconfirmed)
 **access**:    paid; 1-week free trial; subscribe via alphartk.com
-**yearly_cost**: ~$798/yr (24-month rolling tier, cheapest sustained equivalent)
-**yearly_cost_normalized**: 798
+**yearly_cost**: $995/yr (12-month tier); $1,595 / 24 months; $695 / 6 months; $195/month
+**yearly_cost_normalized**: 995
 **stations**:  unknown
 **operator**:  AlphaRTK (commercial)
 **source**:    alphartk.com
 **last_researched_date**: 2026-05-13
 
 Commercial paid network covering Delaware, Maryland, New Jersey, Pennsylvania, and
-Washington DC. No annual plan; tiers (alphartk.com observed 2026-05-07): $195/month,
-$995/6 months, $1,595/24 months — 24-month works out to ~$798/yr equivalent and is the
-cheapest sustained-use option. 1-week free trial available, useful for spot jobs.
+Washington DC. Tiers (alphartk.com observed via direct fetch in pipeline review):
+$195/month, $695/6 months, $995/12 months, $1,595/24 months. 1-week free trial.
 Subscriber agreement required; hobbyist eligibility not explicitly stated. Correction
 type (VRS / single-base) not disclosed publicly.
 
@@ -3976,8 +3975,8 @@ alongside the NSRS modernisation roll-out).
 **host:port**: `c4gnet.xyz:9000` (SOURCETABLE 200 OK 2026-05-13, 32 STR)
 **type**:      physical-coord-vrs
 **access**:    paid; subscribe at store.c4g.lsu.edu; no professional-licence requirement
-**yearly_cost**: $495/yr (10-hr RTK tier); $1,995/yr (50-hr); $3,500/yr (unlimited RTK); $5,000/yr (full RTN membership)
-**yearly_cost_normalized**: 495
+**yearly_cost**: $3,500/yr unlimited RTK (NTRIP only); $1,995/yr (50-hr cap); $495/yr (10-hr cap); $5,000/yr (full RTN membership); $1,500/yr unlimited AG GNSS (agricultural-steering only)
+**yearly_cost_normalized**: 1995
 **operator**:  LSU Center for GeoInformatics (C4G), Louisiana State University
 **source**:    c4gnet.xyz
 **date_added**: 2026-05-07

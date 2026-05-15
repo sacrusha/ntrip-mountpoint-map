@@ -1179,10 +1179,10 @@
       "lon": -76.0,
       "tier": "paid",
       "access": "paid",
-      "yearly_cost": "~$798/yr (24-month tier)",
-      "yearly_cost_normalized": 798,
+      "yearly_cost": "$995/yr (12-mo); $1,595/24-mo; $695/6-mo; $195/mo",
+      "yearly_cost_normalized": 995,
       "registration": "https://www.alphartk.com",
-      "note": "No annual plan; cheapest sustained option is the 24-month rolling subscription ($1,595 / 24 mo). 1-week free trial useful for spot jobs."
+      "note": "1-week free trial."
     },
     {
       "id": "egps_ga",
@@ -1256,10 +1256,10 @@
       "tier": "paid",
       "vrs": true,
       "access": "paid",
-      "yearly_cost": "$495/yr (10-hr tier)",
-      "yearly_cost_normalized": 495,
+      "yearly_cost": "$3,500/yr unlimited; $1,995/yr (50-hr cap); $495/yr (10-hr cap)",
+      "yearly_cost_normalized": 1995,
       "registration": "https://store.c4g.lsu.edu",
-      "note": "An unlimited RTK tier is $3,500/yr. A free post-processing RINEX subscription is available separately."
+      "note": "The 10-hr and 50-hr caps are total RTK time over the year, not per-month. Agriculture-steering unlimited tier is $1,500/yr. Free RINEX subscription available separately for post-processing."
     },
     {
       "id": "crtn",
