@@ -4,14 +4,17 @@ Start with national/regional mapping agencies in local administrative language; 
 Skip SBAS/DGNSS-only services.
 
 For each caster found, collect:
+- landing_url — operator-owned where available; most-official otherwise
+- access_url — best page to allow user to find what the network is, how to sign up, and the conditions
 - host:port — curl the sourcetable; note date
 - tariff — all tiers, local currency, VAT stated, date observed, source URL
 - num_stations — physical CORS count
 - vrs — yes/no/?
 - hobbyist_eligibility — yes/no/?
 - legal_residency_required — yes/no/?
-- registration — signup URL
 - last_confirmed_alive — date + what was tested (sourcetable / login portal)
+
+URLs unreachable from this sandbox are acceptable, but require extraordinary evidence that they are reachable for a target user, and an evidence-backed explanation why this sandbox cannot reach them — not a guess.
 
 If no active caster: most recent project/announcement (date + URL). Note nearest viable cross-border alternative if within ~50 km.
 
@@ -19,4 +22,4 @@ To check rtk2go / Centipede / EarthScope (NOTA) coverage from the local data:
   py scripts/stations_by_radius.py <lat> <lon> <km>  # use this first — reveals actual country tags used per source
   py scripts/stations_by_country.py <code>           # run bare to list all available codes
 
-Read prior research in docs/ntrip_research/ for [entry] and grep [entry] in docs/networks.md, docs/country-survey.md, and data/country_markers.json as a starting point, but do not trust, may contain errors. Verify, correct, expand, fill gaps, do your own research. Output to docs/ntrip_research/ only. 
+Read prior research in docs/ntrip_research/ for [entry] and grep [entry] in docs/networks.md, docs/country-survey.md, and data/country_markers.json as a starting point, but do not trust, may contain errors. Verify, correct, expand, fill gaps, do your own research. Output to docs/ntrip_research/ only.
