@@ -2329,8 +2329,8 @@ Multi-Year CORS Solution 3, ITRF2020 epoch 2020.00) applied 2026-02-13 using Aug
 data. Accounts provisioned manually by NPS staff via the contact address on the
 ntrip.nps.gov portal; no public eligibility policy — described internally as supporting
 NPS mapping and survey projects, but access has been extended to ACORN partners and
-external contractors. Not in pipeline (credentials required; sourcetable not publicly
-accessible).
+external contractors. Sourcetable is publicly listable (SOURCETABLE 200 OK without auth)
+and is ingested in the pipeline; credentials are only required for stream subscription.
 
 ---
 

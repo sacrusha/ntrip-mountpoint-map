@@ -141,6 +141,7 @@ Concrete cases in tree (good calibration):
 | `auscors` | `solution_filter=False` | 42 IGS partner stations tagged solution=1; all physical with fixed coords |
 | `igac` | `nmea_filter=False` | Leica Spider default; physical mounts on port 2102 tagged nmea=1 |
 | `almgg_mn` | `solution_filter=False` | SNIP caster tags 6 physical stations solution=1 |
+| `nps_cors` | `nmea_filter=False` | Trimble Pivot tags all 141 physical stations nmea=1 |
 
 ## Picking ports when networks.md offers several
 
