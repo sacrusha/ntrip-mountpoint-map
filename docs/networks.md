@@ -36,7 +36,7 @@ candidates whose endpoint is withheld).
 ```
 ## <id> — <Name> (<COUNTRY>)
 
-**status**:    free | paid-affordable | paid | restricted | weird | candidate | rejected
+**status**:    free | paid | restricted | weird | candidate | rejected
 **host:port**: `host:port`
 **type**:      single-base | physical-coord-vrs | single-coord-vrs
 **access**:    free / registration / paid [brief terms]
@@ -61,9 +61,9 @@ ingestion is derivable from `SOURCES` in `scripts/fetch_stations.py` and from
 - **free** — no fee to use. Includes both networks already wired into the
   pipeline and free networks whose host:port is still missing or only
   disclosable after registration. The entry text says which.
-- **paid-affordable** — paid, under the project's ~$200/yr cutoff; surfaced
-  in the UI as a hobbyist-reachable fallback.
-- **paid** — paid, over the cutoff.
+- **paid** — paid commercial network. Affordability is captured by the
+  marker's `yearly_cost_normalized` field, which drives the colour hint
+  in the UI.
 - **restricted** — exists but unobtainable for the target user (vetted
   partners only, sector-limited, no published rate).
 - **weird** — something unusual that overrides the access question:
@@ -925,7 +925,7 @@ rtk2go ~31 DE volunteer bases — negligible alongside SAPOS but useful for test
 | `sapos_NI` | Niedersachsen + Bremen | `www.sapos-ni-ntrip.de:2101` | single-coord VRS | 0 stations |
 | `sapos_NW` | Nordrhein-Westfalen | `www.sapos-nw-ntrip.de:2101` | single-coord VRS | 0 stations |
 | `sapos_HE` | Hessen | `www.sapos-he-ntrip.de:2101` | physical-coord VRS | ~4 stations (3 unique coords) |
-| _Rheinland-Pfalz_ | _RP_ | _`www.sapos-ntrip.rlp.de:2101`_ | _not ingested_ | paid €120/yr/credential (HEPS/GPPS) + €100 one-time setup, most restrictive state — surfaced as a paid-affordable country marker in `data/country_markers.json`, not in the pipeline |
+| _Rheinland-Pfalz_ | _RP_ | _`www.sapos-ntrip.rlp.de:2101`_ | _not ingested_ | paid €120/yr/credential (HEPS/GPPS) + €100 one-time setup, most restrictive state — surfaced as a paid country marker in `data/country_markers.json`, not in the pipeline |
 | `sapos_BW` | Baden-Württemberg | `www.sapos-bw-ntrip.de:2101` | single-coord VRS | 0 stations |
 | `sapos_BY` | Bayern | `www.sapos-by-ntrip.de:2101` | single-coord VRS | €20/yr non-agri flat rate; free for agriculture |
 | `sapos_SN` | Sachsen (GeoSN) | `www.ntrip.sachsen.de:2101` | populates on fetch | `www.` prefix required (DE_Germany research 2026-05-07); was DNS-failing without it |
@@ -3438,7 +3438,7 @@ SST status for JUPEM subscriptions not confirmed; prices as published.
 **stations**:  ~30 permanent CORS (denser in Vojvodina; sparser in southern Serbia)
 **source**:    rgz.gov.rs (Republički geodetski zavod — RGZ)
 
-Serbia's national CORS network. RTK flat-rate is paid-affordable (~€74/yr, under $200/yr cutoff).
+Serbia's national CORS network. RTK flat-rate is ~€74/yr — affordable for hobbyists.
 Pricing confirmed from official Uredba (regulation) published by RGZ; Serbian portal only.
 RGZ AGROS portal re-confirmed 2026-05-12 (HTTP 200); English AGROS sub-portal
 at `agros.rgz.gov.rs/navigation.php` was unresponsive on 2026-05-06/05-12.
@@ -4012,9 +4012,8 @@ Caltrans (CVSRN), Orange County Public Works (OCRTN), and EarthScope NOTA
 stations. RTCM 3.0, 1 Hz, latency <1 s; RTCM 3.1 available via `XXXX_RTCM3P1`
 mountpoint suffix (announced October 2025). Registration via the CRTN Registration
 form (linked from the SOPAC page); credentials issued in 7+ days. The $100
-processing fee is one-time and falls below the project's $200/yr affordability
-cutoff — surfaced in UI as a paid-affordable info marker rather than an
-in-pipeline entry. Significant station overlap with `earthscope` (already in
+processing fee is one-time — surfaced in UI as a paid country marker
+rather than an in-pipeline entry. Significant station overlap with `earthscope` (already in
 pipeline, free with annual NULA non-commercial agreement) — same physical
 antennae are reachable through either caster.
 
@@ -4025,7 +4024,7 @@ antennae are reachable through either caster.
 **status**:    free
 **host:port**: no independent caster — streams disseminated via `crtn`
 **type**:      single-base (physical stations)
-**access**:    via SOPAC CRTN (paid-affordable, one-time $100) or EarthScope NOTA
+**access**:    via SOPAC CRTN (paid, one-time $100) or EarthScope NOTA
                (free, in-pipeline, annual NULA)
 **stations**:  ~40 continuously operating GNSS receivers in Northern California
 **source**:    seismo.berkeley.edu/bard (UC Berkeley Seismological Laboratory) /

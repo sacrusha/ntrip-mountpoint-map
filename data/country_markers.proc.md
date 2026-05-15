@@ -21,9 +21,9 @@ editorial user-facing extract of `networks.md` - "what the user on a network mar
 | `country` | yes | ISO 3166-1 alpha-2. |
 | `lat`,`lon` | yes | marker map placement |
 | `tier` | yes | `free`, `paid`, `restricted`, `weird` |
-| `access` | for free | `free`, `registration`, `conditions` |
+| `access` | for free | `open`, `registration`, `conditions` |
 | `vrs` | when true | boolean, "true" if network delivers VRS/NRTK streams
-| `yearly_cost` | recommended on paid* | '$X/yr' / 'X €/yr' / '£X/yr', etc. local currency. if no yearly option, fall back to /mo, /h, /min, one time payment. Only one price, addidional relevamt pricing options in note field. No known pricing = no yearly_cost field
+| `yearly_cost` | recommended on paid* | '$X/yr' / 'X €/yr' / '£X/yr', etc. local currency. if no yearly option, fall back to /mo, /h, /min, one time payment. Only one price, additional relevant pricing options in note field. No known pricing = no yearly_cost field
 | `yearly_cost_normalized` | required if yearly_cost present | Integer, used as color hint for affordability  |
 | `stations_declared` | when known | Integer
 | `registration` | when useful | URL: how to sign up. Ideally registration portal, that explains what the service is and how to register; fallback to service portal if nothing better. Avoid form or login pages without any useful explanation |
@@ -74,7 +74,6 @@ The marker represents a pareto point - coverage, affordability / official-ness. 
 | Tier | Add when | Note convention |
 |---|---|---|
 | `free` | Free network worth showing at country level even when no pins render (VRS-only, or in-pipeline but currently dead). Pipeline-ingested free entries that render as physical pins → no marker. | Open with `"N stations, free."` when no data is ingested yet. Otherwise often skip note entirely; structured fields suffice. |
-| `paid-affordable` | Deprecated. Will be read as paid, yearly_cost_normalized tells affordability  |
-| `paid` | Substantial paid commercial operator | Why a hobbyist would still care, free trial |
+| `paid` | Substantial paid commercial operator. Affordability is conveyed via `yearly_cost_normalized`. | Why a hobbyist would still care, free trial |
 | `restricted` | Substantial network with no hobbyist path at any price (licence gate, sector-only, bundled-hardware). National ID requirement is noteworthy, but doesn't make a network restricted - users should be assumed to often be locals | The specific blocker in plain words, and the next-best free alternative if one exists. |
 | `weird` | User-relevant fact that the structured fields cannot carry. The note IS the marker. Past examples (illustrative, not exhaustive): RINEX-only / no real-time NTRIP, announced-but-not-live network, sparse infra (huge baselines), GNSS jamming or spoofing, reseller-only distribution, non-standard NTRIP, named operator with no published endpoint, civil-war disruption, micro-state with no local service. | The note is load-bearing — it has to stand alone. |

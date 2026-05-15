@@ -40,8 +40,7 @@ The decision lives upstream in `docs/networks.md`. When a block's
 |---|---|---|
 | `free` with host:port | **add** | Free endpoint, must ingest. |
 | `candidate` | **add** | Endpoint known, ready to verify in production. The next cron run is the test. |
-| `paid-affordable` | **remove** if present | Paid → renders as country marker, not pin. |
-| `paid` | **remove** if present | Same. |
+| `paid` | **remove** if present | Paid → renders as country marker, not pin. |
 | `restricted` | **remove** if present | Same. |
 | `weird` | usually **remove** | Weird means structured fields can't carry the story — pins lie. Keep only when stream metadata genuinely helps users. |
 

@@ -35,7 +35,7 @@
 | **Operator** | Scripps Orbit and Permanent Array Center (SOPAC), UC San Diego — clearinghouse for SOPAC/SCIGN, BARD (UC Berkeley/USGS), USGS Pasadena SCIGN, Caltrans CVSRN, Orange County OCRTN, EarthScope NOTA-CA |
 | **host:port** | `132.239.152.4:2102` (NorCal zones 1–2) · `:2103` (NorCal zones 3–4) · `:2104` (SoCal zone 5) · `:2105` (SoCal zone 6) — confirmed on SOPAC pages 2026-02-21 |
 | **Type** | Single-base (RTCM 3.0, 1 Hz, latency <1 s); ~250 stations |
-| **Tariff** | USD 100 one-time processing fee (universities and schools exempt). Below the project's $200/yr affordability cutoff — surfaced as paid-affordable. No annual subscription. (Source: sopac-csrc.ucsd.edu/index.php/crtn, observed 2026-05-07) |
+| **Tariff** | USD 100 one-time processing fee (universities and schools exempt) — surfaced as paid. No annual subscription. (Source: sopac-csrc.ucsd.edu/index.php/crtn, observed 2026-05-07) |
 | **VRS?** | No — single-base streams from physical stations |
 | **hobbyist_eligibility** | Unclear-leaning-yes — registration via Survey Monkey form; no statement excluding individuals; no licence field. Credentials issued in ~7 days. |
 | **legal_residency_required** | No statement; UC San Diego policy does not impose a residency restriction on the form. |

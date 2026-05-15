@@ -778,7 +778,7 @@ _Last updated: 2026-04-22._
   (ANCPI account required; self-service at `epay.ancpi.ro`). → networks.md: `rompos`
 - **Volunteer**: Centipede 8 ROM + 2 ROU nodes, rtk2go 0 ROU bases. Modest coverage
   concentrated near major cities.
-- **Gap**: no free RTK; ROMPOS is paid-affordable at ~€200/yr and is the practical
+- **Gap**: no free RTK; ROMPOS is paid at ~€200/yr and is the practical
   option for hobbyists needing national-scale coverage.
 
 ### RS — Serbia
@@ -793,7 +793,7 @@ _Last updated: 2026-04-22._
   → networks.md: `agros`
 - **Volunteer**: Centipede ~20 SER + ~3 SRB nodes, rtk2go ~35 SRB/SER bases — one of
   the denser volunteer clusters in the Western Balkans, concentrated in Vojvodina.
-- **Gap**: AGROS RTK is paid-affordable (~€74/yr, well within hobbyist reach);
+- **Gap**: AGROS RTK is paid (~€74/yr, well within hobbyist reach);
   volunteer coverage is good in Vojvodina but sparse in southern Serbia.
 
 ### RU — Russia
@@ -845,7 +845,7 @@ _Last updated: 2026-04-22._
 
 **date_added**: 2026-04-29
 
-- **Government RTK (paid-affordable, hobbyist-eligible)**: SKPOS (GKÚ
+- **Government RTK (paid, hobbyist-eligible)**: SKPOS (GKÚ
   Bratislava / Geodetický a kartografický ústav, `skpos.gku.sk:2101`, ~26
   stations, VRS). 2026 schedule confirmed 2026-04-30: SKPOS_cm/RTK
   **€70/yr (~$79)** or €25/mo (~$28) per device; dual-receiver €140/yr;
@@ -1068,7 +1068,7 @@ similarly have no published coverage for these jurisdictions.
   stations processed at CWU, Pacific Northwest / Cascadia) reaches NTRIP via EarthScope
   NOTA or — for Washington only — paid WSRN. → networks.md: `bard`, `panga`
 
-  Paid/restricted states: CRTN (CA, $100 one-time fee, paid-affordable; clearinghouse for
+  Paid/restricted states: CRTN (CA, $100 one-time fee, paid; clearinghouse for
   SOPAC SCIGN, BARD, USGS Pasadena SCIGN, Caltrans CVSRN, Orange County OCRTN, and
   EarthScope NOTA in California; universities/schools exempt from fee; RTCM 3.1 added
   Oct 2025), SCRTN (SC, $1,200 first login / $600 additional; scrtn.sc.gov:2101),
@@ -3517,7 +3517,7 @@ similarly have no published coverage for these jurisdictions.
   (unconfirmed). Portal confirmed live 2026-04-30.
   → networks.md: `kazgeodesy`
 - **Volunteer**: negligible. Zero KZ stations on rtk2go or Centipede.
-- **Gap**: no free RTK for hobbyists. НЦГПИ is paid-affordable for Kazakh
+- **Gap**: no free RTK for hobbyists. НЦГПИ is paid for Kazakh
   residents (~$141/yr) but de-facto unavailable to foreign users without a
   Kazakh ИИН. Country is ~2.7 million km²; even with a subscription,
   baselines will be long outside Almaty, Astana, and the northern corridor.
