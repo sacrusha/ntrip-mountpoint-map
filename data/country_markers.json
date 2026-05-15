@@ -1140,7 +1140,7 @@
       "yearly_cost": "$500 one-time per login",
       "yearly_cost_normalized": 167,
       "registration": "https://rtn.nc.gov",
-      "note": "Credentials are perpetual, not annual. A second login is included; further logins $250 each. Free RINEX download."
+      "note": "Second login included; further logins $250 each. Payment by cheque. Free RINEX download."
     },
     {
       "id": "tdot_rtn",
@@ -1155,7 +1155,7 @@
       "yearly_cost": "$450/yr",
       "yearly_cost_normalized": 450,
       "registration": "https://portal.tndot.net",
-      "note": "Tennessee has no free state caster. EarthScope NOTA has TN reference stations available free for single-base / post-processing if VRS is not essential."
+      "note": "EarthScope NOTA stations in Tennessee work free for single-base / post-processing."
     },
     {
       "id": "keynetgps",
@@ -1212,7 +1212,8 @@
       "yearly_cost": "$600/yr",
       "yearly_cost_normalized": 600,
       "registration": "https://turngps.utah.gov",
-      "note": "Covers Utah and northern Nevada (Reno area) via the Nevada GPS Network. Las Vegas is not covered."
+      "stations_declared": 100,
+      "note": "Sign-up requires a Utah ID (state digital identity, not residency). Las Vegas not covered."
     },
     {
       "id": "mtsrn",
@@ -1227,7 +1228,8 @@
       "yearly_cost": "$1,500/yr",
       "yearly_cost_normalized": 1500,
       "registration": "https://msl.mt.gov/mtsrn",
-      "note": "Free RINEX download; static post-processing does not need a subscription."
+      "stations_declared": 50,
+      "note": "Free RINEX download for post-processing."
     },
     {
       "id": "wsrn",
@@ -1242,7 +1244,7 @@
       "yearly_cost": "$1,900/yr",
       "yearly_cost_normalized": 1900,
       "registration": "https://wsrn3.org",
-      "note": "Two ports: 2011 for NAD83(2011), 2022 for the new NATRF2022 datum. Government and NGS-cooperator agencies get free access."
+      "note": "Free for government and NGS-cooperator agencies. Production traffic uses NAD83(2011) on port 2011; the new NATRF2022 port is live but mountpoints are still being provisioned."
     },
     {
       "id": "c4gnet",

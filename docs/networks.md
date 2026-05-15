@@ -3156,11 +3156,10 @@ RTCM 3.4. Hobbyist-relevant only as context; the free hobbyist path in KR is
 **source**:    cors.surveyofindia.gov.in (Survey of India)
 **operator**:  Survey of India (Department of Science & Technology)
 
-Aadhaar/PAN gating means the network is effectively Indian-residents-only. Tamil Nadu's
-separate 70-station departmental network has not been merged into SoI as of 2026-05-04
-(see `tn_cors`); Kerala's MoU dates to 18 Jan 2021 but no public caster has been
-commissioned. Worth revisiting if foreign-resident registration becomes possible or if
-TN/KL follow AP into the national network.
+Tamil Nadu's separate 70-station departmental network has not been merged into SoI as
+of 2026-05-04 (see `tn_cors`); Kerala's MoU dates to 18 Jan 2021 but no public caster
+has been commissioned. Revisit if the Aadhaar/PAN registration requirement relaxes
+or if TN/KL follow AP into the national network.
 
 ---
 
