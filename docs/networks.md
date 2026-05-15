@@ -863,11 +863,7 @@ Reykjanes mounts. See `euref_ip`.
                page (`monpos.gazar.gov.mn/monpos/3/`): username `rover`,
                password `262461`; individual accounts also available via
                `geodesy.gov.mn` (citizen / legal entity login)
-**access_url**: https://monpos.gazar.gov.mn (MonPOS portal);
-                  https://geodesy.gov.mn (individual account registration —
-                  ГЗЗУНС portal; "Иргэн" = citizen and "Хуулийн этгээд" =
-                  legal entity options; Mongolian DAN QR login may be required
-                  for full portal access)
+**access_url**: https://monpos.gazar.gov.mn
 **stations**:  40+ (Trimble NetR8/NetR9 with choke-ring and Zephyr Geodetic
                antennas; Ulaanbaatar, Darkhan, Erdenet + nationwide)
 **operator**:  General Office of Land Relations, Geodesy and Cartography
@@ -5113,8 +5109,7 @@ own corrections.
 **type**:      vrs-only
 **host:port**: not publicly listed (proprietary Trimble VRS caster)
 **access**:    paid — €1,500/yr excl. VAT (~€1,815 incl. 21 % BTW, ~$2,000/yr)
-**access_url**: 06-gps.nl/tarieven-aanmelding/ (subscription form; schools and
-               municipalities have separate rate categories)
+**access_url**: https://06-gps.nl/tarieven-aanmelding/
 **yearly_cost**: €1,500/yr excl. VAT (~$2,000/yr)
 **stations**:  ~250 (VRS, physical reference stations across NL)
 **operator**:  06-GPS B.V. (Trimble distribution partner / independent NL operator)
@@ -5136,9 +5131,7 @@ $200/yr cutoff — not surfaced on the map. Free 1-month trial available.
                `www.euref-ip.be:2101` (ROB; TLS `:2102`) and `euref-ip.asi.it:2101` (ASI)
 **access**:    free with **per-broadcaster registration** (no SSO across the three);
                no residency / no professional gating
-**access_url**: BKG `http://register.rtcm-ntrip.org/cgi-bin/registration.cgi`
-                  (also covers IGS-IP and products.igs-ip.net);
-                  ROB `https://www.euref-ip.be/user-registration/user-registration-main-page.php`
+**access_url**: http://register.rtcm-ntrip.org/cgi-bin/registration.cgi
 **stations**:  ~229 unique EPN stations across the federation (BKG 218 STR, ROB 214 STR,
                ASI 201 STR; high overlap). Mountpoint convention: IGS 9-char + monument
                number, e.g. `PCAR00AND0` (Andorra), `REYK00ISL0` (Iceland),
@@ -5148,7 +5141,7 @@ $200/yr cutoff — not surfaced on the map. Free 1-month trial available.
                most streams GPS+GLO+GAL+BDS, some add QZS/SBAS/IRS
 **last_researched_date**: 2026-05-13
 
-ROB registration page disclaims kinematic suitability ("raw GNSS data streams are
+The BKG registration form (`register.rtcm-ntrip.org/cgi-bin/registration.cgi`) also covers IGS-IP and `products.igs-ip.net`. ROB requires a separate account at `www.euref-ip.be/user-registration/user-registration-main-page.php`; ASI registration not surfaced (contact via the EUREF-IP federation site). ROB's registration page disclaims kinematic suitability ("raw GNSS data streams are
 unsuitable for operational real-time kinematic positioning"); BKG and ASI make no
 equivalent statement. NMEA=0 across the federation (no GGA upload required); all
 streams require Basic auth except a handful (DELF00NLD0 on BKG; 7 open streams on
@@ -5341,8 +5334,7 @@ KR / TH / SA cases where the gate is on stream auth only.
                `185.194.59.113:2101`. No Andorran national caster.
 **access**:    free with per-broadcaster EUREF-IP registration (no SSO across the three);
                no Andorran public NTRIP service
-**access_url**: BKG `http://register.rtcm-ntrip.org/cgi-bin/registration.cgi` or
-                  ROB `https://www.euref-ip.be/user-registration/user-registration-main-page.php`
+**access_url**: http://register.rtcm-ntrip.org/cgi-bin/registration.cgi
 **stations**:  2 EPN members operated by ERGAND — **PCAR00AND0** at Pic de Carroi (~2520 m,
                ~5 km from Andorra la Vella; baselines stay <30 km across the country) and
                **RULL** which is **RINEX-only** (not exposed on any EUREF-IP broadcaster as of
@@ -5355,7 +5347,7 @@ RTK baselines from a single station. ERGAND also publishes post-processing
 data and the AND08 / GEOAND01 national geoid (Leica/Topcon/Trimble
 formats); no independent Andorran NTRIP caster has been announced.
 
-Practical VRS alternative: ERGNSS (ES) at `ergnss-ip.ign.es:2101` and the
+BKG covers the PCAR stream by default; ROB requires a separate account at `www.euref-ip.be/user-registration/user-registration-main-page.php`. Practical VRS alternative: ERGNSS (ES) at `ergnss-ip.ign.es:2101` and the
 multi-constellation SPTR sub-service `ergnss-tr.ign.es:2102`, free with
 registration; Catalan border stations are within VRS range of Andorra.
 Centipede-RTK has sparse coverage in Ariège / Pyrénées-Orientales (France)
@@ -5820,14 +5812,13 @@ pricing, if any service exists, has not been found.
 **access**:    paid; professional-surveyor governance under Ley 2997 implies
                hobbyist sign-up may be restricted in practice
 **yearly_cost**: not publicly listed (contact GeoBolivia SRL via Facebook or phone)
-**access_url**: geoboliviasrl.info (Wix-hosted; HTTP 200 on 2026-05-12, technical
-                  specs not exposed); Facebook "GeoBolivia SRL - Geomática" active
+**access_url**: https://geoboliviasrl.info
 **stations**:  ~7 stations: La Paz (GEO 1), Cochabamba (GEO 2), Oruro (GEO 3),
                Sacaba (GEO 4), Tarija (GEO 5), Santa Cruz (GEO 6), Yacuiba (Tarija dept.)
 **last_researched_date**: 2026-05-12
 
-A 2026-05-12 page fetch shows the site live but no public pricing or
-hostname. Station coordinates are tied to Class A/B points of the
+A 2026-05-12 page fetch shows the Wix-hosted site live (HTTP 200) but no public pricing or
+hostname and no technical specs exposed; the "GeoBolivia SRL - Geomática" Facebook page is the active contact channel. Station coordinates are tied to Class A/B points of the
 government MARGEN framework. A Facebook post offered one year of RED-GEO
 access free as a hardware-bundle bonus, confirming the service is active.
 
@@ -6874,8 +6865,7 @@ network coords are open via ArcGIS Africa GeoPortal.
 **host:port**: not publicly listed (disclosed after registration via IGN Bénin / CatIS)
 **access**:    free with registration; accessible via Benin Cadastral Information System;
                hobbyist eligibility not confirmed (upgrade purpose is land-rights / cadastral)
-**access_url**: https://service-public.bj (service PS01085 — "Fichier des stations permanentes GNSS")
-                  or direct contact with IGN Bénin (`ign.bj`)
+**access_url**: https://service-public.bj
 **stations**:  7 physical: Cotonou, Abomey, Savalou, Parakou, Natitingou, Nikki, Kandi
 **last_researched_date**: 2026-05-12
 
@@ -7126,8 +7116,7 @@ grown since the 2010s AFREF affiliation efforts.
 **host:port**: n/a — no NTRIP caster; RINEX files via Dataforsyningen
 **access**:    RINEX 2/3 freely available via `dataforsyningen.dk`; no RTK/NTRIP
                stream identified in any aggregator as of 2026-05-01
-**access_url**: https://dataforsyningen.dk (Dataforsyningen — Danish national
-                  geodata portal); UNAVCO/EarthScope archive also accessible
+**access_url**: https://dataforsyningen.dk
 **stations**:  ~60 continuous GNSS stations across Greenland
 **operator**:  KDS/Klimadatastyrelsen (Danish Agency for Climate Data, formerly SDFi)
                + DTU Space; Asiaq (Greenland Survey) contributes territorial operations
@@ -7135,7 +7124,7 @@ grown since the 2010s AFREF affiliation efforts.
 GNET (go-gnet.org) is a geodetic monitoring network spanning Greenland, maintained
 primarily for ice-sheet dynamics research, sea-level and glacial isostatic rebound
 studies, and geodetic reference-frame maintenance. RINEX 2/3 observation files are
-distributed via Dataforsyningen (`dataforsyningen.dk`); go-gnet.org and asiaq.gl
+distributed via Dataforsyningen (`dataforsyningen.dk`, Danish national geodata portal); the UNAVCO/EarthScope archive carries the same stations as a mirror. go-gnet.org and asiaq.gl
 confirmed alive 2026-05-01. Asiaq (`asiaq.gl`) lists Survey and Construction services
 but publishes no GNSS correction product. No public NTRIP streaming caster found in
 any aggregator (ntrip-list.com/europe, rtk2go, EarthScope NOTA sourcetable) as of
@@ -7687,8 +7676,7 @@ México, GeoCORS / Survey+).
 **access**:    RINEX free via `sirgaschile.cl`; real-time NTRIP unconfirmed —
                ArduSimple (2025) describes the network as CORS/PPK only; IGM
                announced NTRIP in 2025 (procedure: youtube.com/watch?v=4yuH1W05eII)
-**access_url**: `sirgaschile.cl` (coordinate certificates and RINEX); NTRIP streaming
-                  registration not self-service
+**access_url**: https://www.sirgaschile.cl
 **yearly_cost**: RINEX free; streaming terms not publicly documented
 **stations**:  180+ CORS stations; expanded by 28 new first-level stations announced 2025
 **operator**:  IGM — Instituto Geográfico Militar de Chile (`igm.cl`, `sirgaschile.cl`)
