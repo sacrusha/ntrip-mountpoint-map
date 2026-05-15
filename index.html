@@ -275,7 +275,7 @@
   #toggles .legend-x:hover{background:var(--btn-hover);color:var(--fg);}
   #toggles{position:relative;}
   #toggles.legend-hidden{display:none;}
-  #legend-handle{position:fixed;top:8px;right:8px;z-index:9997;
+  #legend-handle{position:fixed;top:8px;right:8px;z-index:9999;
     width:38px;height:38px;display:none;align-items:center;justify-content:center;
     background:var(--ctrl-bg);border:1px solid var(--ctrl-border);
     -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
@@ -284,6 +284,9 @@
   #legend-handle:hover{background:var(--btn-hover);}
   #legend-handle.on{display:flex;}
   body.banner-visible #legend-handle{top:52px;}
+  /* Desktop hides the mobile-only label + chevron; the ≡ glyph is the affordance. */
+  #legend-handle .lh-label,
+  #legend-handle .lh-chev{display:none;}
 
   /* Card bottom-sheet — replaces Leaflet popups for station/network/paid
      marker clicks. Width-based breakpoint at 768px keeps vertical desktops
@@ -329,6 +332,7 @@
      transitions and the toast/popover entrance animations. */
   @media (prefers-reduced-motion: reduce){
     #help-drawer, #help-scrim, #card-sheet,
+    #toggles.leaflet-control, #legend-handle,
     .help-topic .chev, .help-answer .deep summary::before,
     .det-sum::after, .leaflet-fade-anim .leaflet-tile{
       transition:none !important;
@@ -349,6 +353,67 @@
   .help-popover .close:focus-visible,
   .help-popover .more:focus-visible{
     outline:2px solid var(--link);outline-offset:2px;
+  }
+
+  /* Mobile (≤768px) — legend becomes a right-anchored drawer with a labeled
+     vertical edge-tab. The tab is anchored to the viewport's right rim in
+     BOTH states: it's the close affordance when the panel is open and the
+     pull tab when collapsed. Open-by-default behaviour is unchanged; the
+     refactor exists so the closed state is finally discoverable.
+
+     CSS var --legend-w keeps the panel width and tab offset in sync. */
+  @media(max-width:768px){
+    :root{--legend-w:min(85vw,300px);}
+    /* Break the panel out of Leaflet's topright stack into a fixed drawer. */
+    #toggles.leaflet-control{
+      position:fixed;
+      top:0;right:0;bottom:0;
+      width:var(--legend-w);
+      max-height:none;height:auto;
+      margin:0!important;
+      border-radius:5px 0 0 5px;border-right:none;
+      transform:translateX(0);
+      transition:transform .24s cubic-bezier(.2,.8,.2,1);
+      z-index:9996;overflow-y:auto;
+    }
+    body.banner-visible #toggles.leaflet-control{top:44px;}
+    /* Slide off-screen instead of display:none so the drawer animates and the
+       tab's :not(.on) ↔ .on transition can play in tandem. */
+    #toggles.legend-hidden{
+      display:block!important;
+      transform:translateX(100%);
+      pointer-events:none;
+    }
+    /* Edge tab — vertical labeled pull on the right rim, always visible.
+       Sits flush with the panel's left edge when open; slides to the
+       viewport edge when collapsed. */
+    #legend-handle{
+      display:flex!important;
+      top:50%;right:var(--legend-w);
+      transform:translateY(-50%);
+      width:auto;height:auto;
+      flex-direction:column;align-items:center;gap:6px;
+      padding:14px 12px;
+      border-radius:5px 0 0 5px;border-right:none;
+      font-size:12px;line-height:1;
+      transition:right .24s cubic-bezier(.2,.8,.2,1);
+    }
+    body.banner-visible #legend-handle{top:calc(50% + 22px);}
+    #legend-handle.on{right:0;}
+    #legend-handle .lh-icon{display:none;}
+    #legend-handle .lh-label{
+      display:block;writing-mode:vertical-rl;
+      font-weight:600;letter-spacing:.06em;font-size:12px;
+    }
+    /* Chevron points the way the panel will travel on tap:
+       open  → tap closes → panel moves right → ›
+       closed→ tap opens  → panel moves left  → ‹
+       text-orientation:upright keeps the glyph horizontal inside the
+       vertical-rl tab so the arrow reads as left/right, not up/down. */
+    #legend-handle .lh-chev{display:block;font-size:13px;opacity:.7;
+      writing-mode:horizontal-tb;text-orientation:upright;}
+    #legend-handle:not(.on) .lh-chev::before{content:"\203A";}
+    #legend-handle.on        .lh-chev::before{content:"\2039";}
   }
 </style>
 </head>
@@ -459,8 +524,12 @@
   </div>
   <div class="help-dbody" id="help-body"></div>
 </aside>
-<!-- legend handle — fixed top-right button to re-open the legend after collapse -->
-<button id="legend-handle" aria-label="Show legend" title="Show legend"><span aria-hidden="true">≡</span></button>
+<!-- legend handle — desktop: top-right re-open button after collapse. Mobile: vertical
+     edge-tab on the right rim, always visible, toggles the drawer in both directions. -->
+<button id="legend-handle" aria-label="Hide legend" aria-expanded="true" title="Hide legend"
+  ><span aria-hidden="true" class="lh-icon">≡</span
+  ><span aria-hidden="true" class="lh-label">Legend</span
+  ><span aria-hidden="true" class="lh-chev"></span></button>
 <!-- card bottom-sheet — single card surface for any marker click.
      role=region (not dialog) because the sheet is non-modal: the rest of
      the app stays interactive (tap another marker to replace, tap the map
@@ -1633,19 +1702,32 @@
     // back. State persisted across sessions. Right-swipe on the panel also
     // collapses (survey-tablet ergonomics — pick a direction off the screen).
     var handle=document.getElementById('legend-handle');
+    function setHandleState(expanded){
+      if(!handle) return;
+      handle.setAttribute('aria-expanded', expanded?'true':'false');
+      var lbl=expanded?'Hide legend':'Show legend';
+      handle.setAttribute('aria-label', lbl);
+      handle.setAttribute('title', lbl);
+    }
     function collapseLegend(){
       d.classList.add('legend-hidden');
       if(handle) handle.classList.add('on');
+      setHandleState(false);
       try{ localStorage.setItem('ntrip-legend-collapsed','1'); }catch(e){}
     }
     function expandLegend(){
       d.classList.remove('legend-hidden');
       if(handle) handle.classList.remove('on');
+      setHandleState(true);
       try{ localStorage.removeItem('ntrip-legend-collapsed'); }catch(e){}
     }
     var xBtn=d.querySelector('.legend-x');
     if(xBtn) xBtn.onclick=collapseLegend;
-    if(handle) handle.onclick=expandLegend;
+    // Handle is desktop's reopen affordance and mobile's always-visible edge
+    // tab — toggle so the same tap closes when open.
+    if(handle) handle.onclick=function(){
+      if(d.classList.contains('legend-hidden')) expandLegend(); else collapseLegend();
+    };
     try{ if(localStorage.getItem('ntrip-legend-collapsed')) collapseLegend(); }catch(e){}
     // Right-swipe to collapse — guard against scroll-drag false-positives:
     //   * require a strong horizontal-dominant gesture (dx > 60 AND dx > 2*dy)
