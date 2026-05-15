@@ -1668,7 +1668,7 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
-      "registration": "https://ggn01.lmi.is/",
+      "registration": "https://www.natt.is/is/landmaelingar/jardstodvakerfi",
       "stations_declared": 33,
       "note": "Nearest-station selector and VRS3 network-RTK available."
     },

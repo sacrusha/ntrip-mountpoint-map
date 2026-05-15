@@ -816,6 +816,7 @@ of Luxembourg City (closest `GEGE` 17.4 km, `KUBA` 18.0 km).
 **type**:      physical-coord-vrs
 **access**:    free; registration via the natt.is contact form
 **pipeline-access**: registration
+**registration**: https://www.natt.is/is/landmaelingar/jardstodvakerfi
 **stations**:  33 (~70–100 km spacing nationwide); 4 physical mounts exposed in sourcetable
                (AUSV, GEVK, SENG, VOGC — all Reykjanes peninsula); remaining 29 reachable
                via nearest-station selector (RTCM30/RTCM30_MSM) or VRS3/VRS3_MSM
