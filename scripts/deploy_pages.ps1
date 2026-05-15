@@ -48,7 +48,7 @@ if (Test-Path $siteDir) { Remove-Item -Recurse -Force $siteDir }
 New-Item -ItemType Directory -Path $siteDir | Out-Null
 New-Item -ItemType Directory -Path (Join-Path $siteDir 'data') | Out-Null
 
-$rootFiles = @('index.html', 'guide.html', 'robots.txt', 'sitemap.xml', 'og-preview.png')
+$rootFiles = @('index.html', 'guide.html', 'robots.txt', 'sitemap.xml', 'og-preview.png', 'favicon.svg')
 foreach ($f in $rootFiles) {
     $src = Join-Path $repoRoot $f
     if (-not (Test-Path $src)) { throw "Missing site file: $f" }
