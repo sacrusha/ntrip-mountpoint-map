@@ -26,8 +26,8 @@ To check rtk2go / Centipede / EarthScope (NOTA) coverage from the local data:
   py scripts/stations_by_radius.py <lat> <lon> <km>  # use this first — reveals actual country tags used per source
   py scripts/stations_by_country.py <code>           # run bare to list all available codes
   
-Use helper scripts/ for accurate mountpoint entries on sourced networks, but not all mountpoints are real stations and not all casters publish all real stations (vrs/nrtk).
+Use helper scripts/ for accurate mountpoint entries on sourced networks. not all mountpoints are real stations (NEAR, virtual, multi format streams from single station) and not all casters publish all real stations (nrtk).
 
-Read prior research in docs/ntrip_research/ for [entry] and grep [entry] in docs/networks.md, docs/country-survey.md, and data/country_markers.json as a starting point, but do not trust. Verify, correct, expand, fill gaps, do your own research. On conflicts resolve with multiple sources, consider webfetch's haiku can be non-deterministic. Refactor the research file, don't just add - removing bad research is better than padding it. Output to docs/ntrip_research/ only.
+Read prior research in docs/ntrip_research/ & docs/ardusimple/ for [entry], grep [entry] in docs/networks.md, docs/country-survey.md, and data/country_markers.json as a starting point, but do not trust. Verify, correct, expand, fill gaps, do your own research. On conflicts resolve with multiple sources, webfetch's haiku can be non-deterministic and performance prompt dependent. Refactor the research file, don't just add - removing bad research is better than padding it. Output to docs/ntrip_research/ only.
 
 The file is the deliverable. Don't pollute caller context with output until genuinely valuable.
