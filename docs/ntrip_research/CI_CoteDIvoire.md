@@ -1,70 +1,75 @@
 # Côte d'Ivoire [CI] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12 (revising 2026-05-06 entry — no new public RECI endpoint identified; volunteer counts re-verified)
+**Date researched:** 2026-05-15
 
-## Status: CORS infrastructure exists; no confirmed public NTRIP endpoint
+## Status: One public NTRIP mountpoint live (Centipede `INP02`, Yamoussoukro). National RECI CORS remains non-public.
 
 | Field | Value |
 |---|---|
-| **Active public NTRIP RTK caster** | Unknown — CORS network (RECI, 5 stations) is operational; no public host:port has been published |
-| **host:port** | unknown — not published; likely requires institutional registration |
-| **tariff** | unknown |
-| **hobbyist_eligibility** | unclear — CORS access appears to be restricted to government and professional users |
-| **legal_residency_required** | unclear |
-| **last_confirmed_alive** | RECI network confirmed operational in September 2025 conference presentation; no NTRIP sourcetable probe possible without a disclosed host:port |
+| **Active public NTRIP RTK caster** | Centipede-RTK `INP02` (single volunteer base, 6.873°N -5.238°W — Yamoussoukro). National RECI CORS (BNETD-CIGN, 5 stations) is operational but not publicly addressable. |
+| **landing_url** | https://www.centipede-rtk.org/ |
+| **access_url** | https://docs.centipede.fr (anonymous; no registration required for caster.centipede.fr:2101) |
+| **host:port** | caster.centipede.fr:2101 (alias crtk.net:2101) — mountpoint `INP02` |
+| **tariff** | free |
+| **num_stations** | 1 (Centipede INP02). RECI = 5 institutional stations, no public endpoint. |
+| **vrs** | No — single physical base, RTCM3 MSM (1004/1005/1006/1008/1012/1019/1020/1033/1042/1045/1046/1077/1087/1097/1107/1127/1230); GPS+GLO+GAL+BDS+SBAS. |
+| **hobbyist_eligibility** | Yes for Centipede INP02 (open access, anonymous). No for RECI (institutional channel only). |
+| **legal_residency_required** | No (Centipede). Unclear / likely yes for RECI. |
+| **last_confirmed_alive** | 2026-05-15 — `STR;INP02;CIV;RTCM3;...;CentipedeRTK` returned by `curl --http0.9 http://caster.centipede.fr:2101/` (three consecutive probes). |
+| **datum_epoch** | Centipede stations stream raw RTCM3 referenced to ITRF / IGS realisation; Centipede docs do not pin a published epoch for individual volunteer bases. https://docs.centipede.fr |
 
-## Most Recent Project Announcement
+## Operational NTRIP Endpoint
 
-**September 2025 — "Le Réseau Géodésique de la Côte d'Ivoire" (Fernand BALE, Director CIGN)**: A presentation delivered at the Francophone surveyors congress (Fédération des géomètres francophones, Abidjan, 3–5 September 2025) describes Côte d'Ivoire's four-tier geodetic network:
+**Centipede-RTK `INP02`** — Yamoussoukro region (lat 6.873, lon -5.238). Receiver: Unicore UM980 running RTKBase 2.7.0; full multi-GNSS RTCM3 MSM message set. Country code in sourcetable: `CIV`. Caster identity line: `CAS;crtk.net;2101;Millipede-caster;Centipede-RTK;0;FRA;...`. The node was not present in earlier 2026-05-12 fetches and is absent from the local 2026-05-15 18:22Z pipeline snapshot (`data/centipede.sourcetable`); it is present in three live probes on 2026-05-15 — likely added between pipeline runs. Next scheduled fetch should ingest it.
 
-- **RECI** (Réseau CORS Ivoirien): 5 permanent GNSS stations plus 1 IGS station — the active continuous-operation tier
-- **RGIR** (Réseau Géodésique de Référence Ivoirien): 43 markers at ~1 point/100 km, established 1998; includes a permanent station at Yamoussoukro
-- **RGIO** (Réseau Géodésique Opérationnel Ivoirien): 716 markers
-- **RGID** (Réseau Géodésique de Détail Ivoirien): densification tier
+Connect example: `host=caster.centipede.fr port=2101 mount=INP02 user=centipede pass=centipede` (Centipede uses a shared anonymous credential per https://docs.centipede.fr).
 
-The presentation confirms that RECI CORS stations have been deployed and are "significantly reducing time and errors in land demarcation operations." It does not publish a caster host:port or describe public NTRIP access.
+## National CORS (Non-Public): RECI
 
-Source: https://www.geometres-francophones.org/5e8sef5sdgf/uploads/2025/09/S3-2_BALE.pdf
+**RECI (Réseau CORS Ivoirien)** — operated by **BNETD-CIGN** (Bureau National d'Études Techniques et de Développement — Centre d'Information Géographique National). Five permanent GNSS stations plus one IGS site (YKRO, Yamoussoukro). RTK NTRIP mode enabled 2022. The four-tier national geodetic framework:
 
-**Toposat / BNETD-CIGN CORS deployment**: Toposat (a French GNSS/drone survey company) supported BNETD-CIGN (Bureau National d'Études Techniques et de Développement — Centre d'Information Géographique National) in establishing the 5-station RECI CORS network. The project involved "project management and supervision of the improvement and modernization of Ivory Coast's geodetic infrastructure."
+- **RECI** — 5 active CORS + IGS YKRO (continuous-operation tier)
+- **RGIR** (Réseau Géodésique de Référence Ivoirien) — 43 markers at ~1 point per 100 km, established 1998
+- **RGIO** (Réseau Géodésique Opérationnel Ivoirien) — 716 markers
+- **RGID** (Réseau Géodésique de Détail Ivoirien) — densification tier
 
-Source: https://toposat.com/modernization-of-the-geodetic-infrastructure-of-ivory-coast/?lang=en
+**No public NTRIP caster host:port has been published for RECI.** Access is institutional only — contact BNETD-CIGN via CNTIG (Comité National de Télédétection et d'Information Géographique, https://cntig.net/). Confirmed operational in the September 2025 FGF congress presentation "Le Réseau Géodésique de la Côte d'Ivoire" (Fernand BALE, Directeur CIGN). Modernisation supported by Toposat.
 
-**CNTIG** (Comité National de Télédétection et d'Information Géographique) is described as "a central actor in modernising public action" with a GIS/remote sensing mandate linked to national development plans, but is not the operator of the CORS network (that role sits with BNETD-CIGN).
+Sources:
+- FGF 2025 congress: https://www.geometres-francophones.org/5e8sef5sdgf/uploads/2025/09/S3-2_BALE.pdf
+- Toposat project page: https://toposat.com/modernization-of-the-geodetic-infrastructure-of-ivory-coast/?lang=en
+- CNTIG: https://cntig.net/
 
-Source: https://cntig.net/ · https://www.linkedin.com/company/cntig
+## Reference Stations & Post-Processing
 
-**AFREF Workshop 2024**: Côte d'Ivoire is listed among the ~22 African countries confirmed to have at least one operational CORS installation — consistent with the RECI network.
-URL: https://ric2024.rcmrd.org/afref
+| Service | URL | Notes / Cost |
+|---|---|---|
+| **IGS `YKRO00CIV`** (Yamoussoukro) — operated by JPL, IGS + IGS Multi-GNSS networks, status 4 (operational), last RINEX 2026-05-13 | https://network.igs.org/YKRO00CIV | Free. **Data-archive only** — IGS API reports `real_time_systems: []`. No NTRIP stream. Useful for static post-processing. |
+| **RGCI marker dataset** (Réseau Géodésique de Côte d'Ivoire) — passive monument coordinates | https://cotedivoire.africageoportal.com/items/004575bd810f47b39e7e4f0f3d73f885 | Free open data. Post-processing reference only. |
+| **EarthScope GNSS Data Archive** — mirrors IGS holdings incl. YKRO | https://www.earthscope.org/data/gnss-data/ | Free noncommercial (account + NULA). |
 
-## Context Notes
+## Centipede Catchment & Cross-Border
 
-- **RECI is operational, but access is opaque**: Five CORS stations are confirmed as deployed and in use for professional survey work. However, no public NTRIP caster URL, port, or registration portal has been found in any public source. Access appears to be provided through institutional channels within BNETD-CIGN and/or government survey agencies.
-- **Centipede-RTK**: The 2026-05-06 entry recorded ~2 volunteer nodes with country code `CIV` in the Centipede sourcetable; the 2026-05-12 pipeline fetch (`data/stations.json`) reports zero CIV nodes — the CI Centipede presence has dropped to nil in the current snapshot. May be transient (volunteer node off-line) but worth re-checking on next fetch.
-- **RTK2go**: Zero CI/CIV government or volunteer mountpoints in the sourcetable (2026-05-12).
-- **IGS station**: One IGS-affiliated station is referenced in the RECI tier description (consistent with the ABID station historically listed for Abidjan in some IGS lists).
-- **ArcGIS Open Data**: The RGCI (Réseau Géodésique de Côte d'Ivoire) marker dataset is published on ArcGIS for post-processing reference:
-  - https://cotedivoire.africageoportal.com/items/004575bd810f47b39e7e4f0f3d73f885
-- **Global commercial networks**: GEODNET, ONOCOY, PointOne — no CI coverage identified as of 2026-05-06.
-- **Hobbyist path**: Centipede volunteer nodes (code `CIV`) provide some RTK access; a local base station is the fallback. Contact BNETD-CIGN directly to enquire about institutional RECI access.
+- **INP02** alone gives sub-cm RTK only within roughly 30–50 km of Yamoussoukro before baseline length degrades the fix. Abidjan (~225 km SE of INP02), San-Pédro, Bouaké, Korhogo all sit well outside that range — local base / NRTK still required there.
+- **Nearest cross-border alternatives within ~50 km of CI borders: none.** Ghana's national CORS (Lands Commission, unveiled August 2025) has no public NTRIP caster. IGN Bénin and IGNTOGO Togo CORS are likewise non-public. Burkina Faso, Mali, Liberia, Guinea have no documented public RTK service.
+- **Global commercial networks**: GEODNET, ONOCOY, PointOne, Skylark — no CI coverage identified as of 2026-05-15.
 
-## Post-Processing (RINEX) Fallback
+## Probes (2026-05-15)
 
-| Service | URL | Cost |
-|---------|-----|------|
-| **RGCI marker dataset (ArcGIS Open Data)** — static network point coordinates for post-processing reference | https://cotedivoire.africageoportal.com/items/004575bd810f47b39e7e4f0f3d73f885 | Free (open data) |
-| **EarthScope GNSS Data Archive** — any IGS-affiliated Abidjan station data | https://www.earthscope.org/data/gnss-data/ | Free noncommercial (account + NULA) |
-| **Centipede-RTK** — historical volunteer nodes; CIV count = 0 in 2026-05-12 fetch (was ~2 in 2026-05-06) | https://crtk.net:2101 (new Centipede caster since 2025-03-18) | Free / open |
+- `curl --http0.9 --max-time 10 http://caster.centipede.fr:2101/` → returned full sourcetable; `STR;INP02;CIV;RTCM3;1004,...,1230;3;GLO+GAL+SBS+BDS+GPS;NONE;CIV;6.873;-5.238;0;0;NTRIP RTKBase Unicore_UM980 2.7.0 R4.10Build17548;none;N;N;15200;CentipedeRTK` (consistent across 3 probes).
+- `curl --http0.9 --max-time 10 http://crtk.net:2101/` → same INP02 entry (DNS alias).
+- `curl http://rtk2go.com:2101/` → zero CI/CIV mountpoints (one false-positive `INGLOCIVIL;Cuenca` in Ecuador).
+- IGS API `https://network.igs.org/api/public/stations/?country=CIV` → 1 station: `YKRO00CIV`, status 4, last data 2026-05-13, `real_time_systems: []`.
 
 ## Sources Consulted
-- FGF 2025 congress presentation — "Le Réseau Géodésique de la Côte d'Ivoire" (Fernand BALE): https://www.geometres-francophones.org/5e8sef5sdgf/uploads/2025/09/S3-2_BALE.pdf
+
+- Live caster probes: `caster.centipede.fr:2101`, `crtk.net:2101`, `rtk2go.com:2101`
+- IGS Network API: https://network.igs.org/api/public/stations/?country=CIV
+- IGS station page: https://network.igs.org/YKRO00CIV
+- FGF 2025 congress — "Le Réseau Géodésique de la Côte d'Ivoire" (BALE, CIGN): https://www.geometres-francophones.org/5e8sef5sdgf/uploads/2025/09/S3-2_BALE.pdf
 - Toposat — Modernisation of geodetic infrastructure of Ivory Coast: https://toposat.com/modernization-of-the-geodetic-infrastructure-of-ivory-coast/?lang=en
-- CNTIG official site: https://cntig.net/
+- CNTIG: https://cntig.net/
 - ArcGIS Africa GeoPortal — RGCI dataset: https://cotedivoire.africageoportal.com/items/004575bd810f47b39e7e4f0f3d73f885
-- ArcGIS — RGCI map: https://www.arcgis.com/home/item.html?id=3c9985b3d6ae45b0aff6f818109d89ba
-- AFREF 2024 Workshop / RCMRD: https://ric2024.rcmrd.org/afref
-- IGS network (network.igs.org) — searched for CI/Abidjan
-- Local pipeline data: `data/stations.json` (rtk2go CIV = 0, centipede CIV = 0; fetched 2026-05-12T18:17Z)
-- RTK2go sourcetable — 0 CI government mountpoints (2026-05-12)
-- Centipede-RTK sourcetable — 0 CIV nodes in 2026-05-12 fetch (down from ~2 in 2026-05-06)
-- GitHub mvarga1989 CORS list — checked for CI entries
-- ntrip-list.com/africa/ — no CI government caster listed
+- Centipede-RTK: https://www.centipede-rtk.org/ · docs https://docs.centipede.fr
+- Local pipeline: `data/centipede.sourcetable` (snapshot 2026-05-15 18:22Z — INP02 not yet captured), `data/stations.json` (CIV count = 0 in current snapshot)
+- mvarga1989/The-list-of-GNSS-CORS-RTK-networks — no public CI entry
+- AFREF 2024 / RCMRD: https://ric2024.rcmrd.org/afref

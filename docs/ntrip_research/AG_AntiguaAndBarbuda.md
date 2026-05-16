@@ -1,70 +1,101 @@
 # Antigua and Barbuda [AG] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12 (originally 2026-05-06)
+**Date researched:** 2026-05-15
 
-## Status: No national caster — EarthScope scientific streams active on Antigua, Barbuda, and Redonda
+## Status: No national NTRIP caster — EarthScope NOTA single-base streams active on Antigua, Barbuda, and Redonda
 
 | Field | Value |
 |---|---|
 | **National NTRIP RTK caster** | No |
-| **Scientific GNSS streams in AG territory** | Yes — EarthScope NOTA: **CN01** (Bethesda, Antigua main island; lat 17.05, lon -61.76), **BGGY** (Codrington area, Barbuda; lat 17.05, lon -61.86), **RDON** (Redonda Island; lat 16.93, lon -62.35). All RTCM 3.3, GPS+GLO+BDS+GAL+SBAS+QZS, on `ntrip.earthscope.org:2101` |
-| **hobbyist_eligibility** | **Yes** (noncommercial tier — no surveying licence required, individual account accepted) |
-| **legal_residency_required** | **No** — no nationality or residency restriction in NULA |
-| **last_confirmed_alive** | 2026-05-12: 3 ATG stations confirmed in `data/earthscope.sourcetable` (CN01, BGGY, RDON; receivers Trimble NetR9 / Septentrio PolaRx5); NULA dated v. 2025-05-30 |
+| **Scientific GNSS streams in AG territory** | Yes — EarthScope NOTA: **CN01** (Bethesda, Antigua main island; 17.05, -61.76), **BGGY** (Codrington, Barbuda; 17.05, -61.86), **RDON** (Redonda Island; 16.93, -62.35). All RTCM 3.3, GPS+GLO+BDS+GAL+SBAS+QZS, single-base raw, on `ntrip.earthscope.org:2101` |
+| **hobbyist_eligibility** | Yes — non-commercial NULA accepts individual accounts; no surveying licence required |
+| **legal_residency_required** | No — NULA imposes no nationality/residency restriction |
+| **last_confirmed_alive** | 2026-05-15: local `data/earthscope.sourcetable` (refreshed today by scripts/fetch_stations.py) lists all 3 ATG mountpoints. Source health: ok. EarthScope landing page reachable from sandbox; NULA PDF returned but text content was non-extractable (binary stream). |
 
 ---
 
-## EarthScope NOTA — COCONet/NOTA Stations in Antigua and Barbuda Territory
+## EarthScope NOTA — Caribbean single-base stations in AG territory
 
-| Mountpoint | Location (sourcetable lat/lon) | Receiver | Notes |
+| Mountpoint | Sourcetable lat/lon | Receiver | Notes |
 |---|---|---|---|
-| **CN01_RTCM3P3** | 17.05, -61.76 (Bethesda, Antigua main island) | Trimble NetR9 | COCONet original site; primary station for Antigua positioning |
-| **BGGY_RTCM3P3** | 17.05, -61.86 (Barbuda; Codrington area) | Trimble NetR9 | COCONet Barbuda site (legacy code CN00 has been superseded by BGGY in the current sourcetable) |
-| **RDON_RTCM3P3** | 16.93, -62.35 (Redonda Island; ~56 km SW of Antigua) | Septentrio PolaRx5 | Uninhabited dependency of Antigua; COCONet expansion-phase install |
+| **CN01_RTCM3P3** | 17.05, -61.76 (Bethesda, Antigua main island) | Trimble NetR9 | Original COCONet site; primary single-base for Antigua main island |
+| **BGGY_RTCM3P3** | 17.05, -61.86 (Codrington, Barbuda) | Trimble NetR9 | UNAVCO/GAGE DOI 10.7283/T5PK0D9W records site coords 17.0451, -61.8612, "still collecting data" through 2026-05-14. Legacy COCONet code CN00 superseded by BGGY. |
+| **RDON_RTCM3P3** | 16.93, -62.35 (Redonda Island, uninhabited AG dependency) | Septentrio PolaRx5 | COCONet expansion-phase install; ~60 km SW of CN01 |
 
-Mountpoint naming convention: legacy 4-char COCONet code + `_RTCM3P3` suffix. Format RTCM 3.3 MSM (1077/1087/1097/1107/1117) + station coordinates (1005/1007), 60 s intervals on metadata streams. Single-base raw observations — not a VRS / network-RTK service.
+Mountpoint format: 4-char station code + `_RTCM3P3` suffix. Stream: raw 1 Hz multi-constellation RTCM 3.3 MSM7 (msgs 1077/1087/1097/1107/1117), plus 1005/1007 station coords and 1013/1029/1033 metadata. **Single-base** — NOT VRS / network-RTK.
 
 | Field | Value |
 |---|---|
-| **host:port** | `ntrip.earthscope.org:2101` (RTCM 3.3); port 2105 (BINEX); port 2108 (PPP) |
-| **Stream type** | Raw 1 Hz multi-constellation RTCM 3.3 MSM7 (single-base reference, NOT a VRS/Network-RTK service) |
-| **Tariff — noncommercial** | **Free (USD $0.00)** — account + annual NULA acceptance required. Date observed: 2026-05-06. Source: https://www.earthscope.org/data/gnss-realtime/ |
-| **Tariff — commercial** | **USD $1,000 per seat per year** (EarthScope is US 501(c)(3) nonprofit; no VAT). Min 5 seats for direct billing. Date observed: 2026-05-06. Source: https://www.earthscope.org/news/new-gnss-offering-and-licensing-details-for-commercial-use/ |
-| **NULA version** | v. 2025-05-30 — https://www.earthscope.org/user/NoncommercialLicenseAgreement.pdf |
+| **landing_url** | https://www.earthscope.org/data/gnss-realtime/ |
+| **access_url** | https://www.earthscope.org/data/gnss-realtime/ (sign-up flow + license terms on same page) |
+| **host:port** | `ntrip.earthscope.org:2101` (RTCM 3.3); also port 2105 (BINEX), port 2108 (onboard PPP, GGK/GSOF) |
+| **num_stations** | 3 in AG territory (CN01, BGGY, RDON), all physical CORS; verified 2026-05-15 against `data/earthscope.sourcetable` |
+| **vrs** | No (single-base raw streams) |
+| **hobbyist_eligibility** | Yes — non-commercial NULA accepts individuals for scientific, educational, or humanitarian use; charging for derived data prohibited |
+| **legal_residency_required** | No |
+| **tariff — non-commercial** | Free (USD $0.00); annual NULA acceptance required. Date observed: 2026-05-15. Source: https://www.earthscope.org/data/gnss-realtime/ |
+| **tariff — commercial** | USD $1,000 per seat per year (one seat = one concurrent connection); 5-seat minimum for direct billing; 2-week 5-seat trial available once per account. EarthScope is a US 501(c)(3) nonprofit; no VAT. Date observed: 2026-05-15. Source: https://www.earthscope.org/data/gnss-realtime/ and https://www.earthscope.org/news/new-gnss-offering-and-licensing-details-for-commercial-use/ (announcement dated 2024-03-07; service live since 2024-05-01). |
+| **NULA reference** | https://www.earthscope.org/user/NoncommercialLicenseAgreement.pdf (PDF served; text content not machine-extractable from this sandbox — version date not confirmed in this run) |
+| **last_confirmed_alive** | 2026-05-15 — local sourcetable refresh succeeded for all 3 ATG mountpoints |
 
-**Practical note on CN01 (Bethesda, Antigua)**: This is the most useful station for positioning on Antigua's main island. Single-base RTK accuracy is good within ~20–30 km. BGGY on Barbuda (~30 km north of Antigua) is at the edge of single-base reliable range from southern Antigua but ideal for users on Barbuda itself. RDON on Redonda (~56 km SW of Antigua) is too distant for cm-accuracy single-base from the main islands but useful for any work on Redonda.
+**Practical positioning notes**
+- CN01 (Bethesda, Antigua) is the only usable single-base for cm-grade work on Antigua's main island (baselines <20–30 km).
+- BGGY (Codrington, Barbuda) serves Barbuda directly; ~30 km north of CN01, marginal for southern Antigua.
+- RDON (Redonda) is useful only for work on Redonda itself (~56 km SW of CN01, too long for reliable L1+L2 ambiguity resolution from the main islands).
+- Cross-border fallback: 5 EarthScope stations on Montserrat (CN62, TRNT, RCHY, AIRS, OLVN — 50–60 km from CN01/RDON) can be used as alternates with degraded fix probability at those baselines.
 
-**Cross-territory cluster (Montserrat)**: 5 additional EarthScope stations on Montserrat (CN62, TRNT, RCHY, AIRS, OLVN — all MSR territory) lie 50–60 km from Redonda and Antigua; they can be used as alternate single-base mountpoints if CN01/BGGY are unavailable, though baselines of 50+ km degrade L1+L2 fix probability.
-
-**Note on legacy platform**: Old UNAVCO caster (`rtgpsout.unavco.org`) retired 2025-07-29; all streams now at `ntrip.earthscope.org`.
-
----
-
-## National Surveying Authority
-
-The **Lands and Survey Division** (also referred to as the Survey Department) is the government body responsible for geodetic and cadastral surveys in Antigua and Barbuda. A **Landfolio** land management portal is operated at `lands.gov.ag`. No NTRIP caster, CORS endpoint, or real-time GPS correction service was found on or linked from that portal as of 2026-05-06. No public announcement of a planned national RTK/CORS network was found.
-
----
-
-## Most Recent Project Announcement
-
-None found for a dedicated Antigua and Barbuda national CORS/NTRIP service. No OECS or CARICOM-wide CORS/NTRIP project specific to Antigua was identified.
+**Legacy platform**: `rtgpsout.unavco.org` retired 2025-07-29; all NOTA streams now on `ntrip.earthscope.org`.
 
 ---
 
-## Post-Processing (RINEX) Fallback
+## National surveying authority
+
+The **Lands and Survey Division** (Ministry of Lands, Housing and Agriculture) operates a Landfolio public-access portal at `lands.gov.ag` for cadastral records. Direct WebFetch to `lands.gov.ag` and the Landfolio sub-path failed from this sandbox (ECONNREFUSED). No public announcement of a national CORS/NTRIP service, no NTRIP caster, and no real-time correction product is referenced from any English-language search result targeting the domain. No OECS- or CARICOM-wide real-time CORS programme specific to AG was identified.
+
+---
+
+## Datum / epoch
+
+Omitted. No citable official declaration of geodetic datum or epoch by the Antigua and Barbuda government was located. EPSG and general references list WGS84 as the customary coordinate frame for AG, but no governmental publication tying cadastre, surveying regulation, or CORS metadata to a specific datum realisation and epoch was found in this round of research.
+
+---
+
+## Most recent project announcement
+
+None identified for a dedicated AG national CORS/NTRIP service. No 2024–2026 procurement, donor-funded project, or operator portal launch surfaced in WebSearch.
+
+---
+
+## Post-processing (RINEX) fallback
 
 | Service | URL | Cost |
 |---|---|---|
-| **EarthScope GNSS Data Archive** — COCONet CN00 and CN01 RINEX archive | https://www.earthscope.org/data/gnss-data/ | Free noncommercial (account + NULA); $1,000/seat/yr commercial |
+| EarthScope GNSS Data Archive (RINEX for BGGY, CN01, RDON) | https://www.earthscope.org/data/gnss-data/ | Free non-commercial under NULA; USD $1,000/seat/yr commercial |
 
-## Sources Consulted
+---
+
+## Live-probe results (this sandbox, 2026-05-15)
+
+| URL | Result |
+|---|---|
+| https://www.earthscope.org/data/gnss-realtime/ | 200 — content extracted |
+| https://www.earthscope.org/news/new-gnss-offering-and-licensing-details-for-commercial-use/ | 200 — content extracted (pub. 2024-03-07) |
+| https://www.earthscope.org/nota/ | 200 — content extracted |
+| https://www.earthscope.org/user/NoncommercialLicenseAgreement.pdf | 200 — binary PDF returned; text non-extractable here |
+| https://www.unavco.org/data/doi/10.7283/T5PK0D9W (BGGY DOI page) | 200 — content extracted |
+| https://lands.gov.ag/ | ECONNREFUSED |
+| https://lands.gov.ag/landfolio.publicaccess.web/Contents/about_us.aspx | ECONNREFUSED |
+| http://ntrip.earthscope.org:2101/ (sourcetable HTTP) | TLS/certificate error from sandbox; local copy in `data/earthscope.sourcetable` is the source of truth |
+
+Sandbox network limits (per CLAUDE.md) prevent direct caster probing; the `data/earthscope.sourcetable` refresh path (scripts/fetch_stations.py, run 2026-05-15) is the canonical liveness check and reports all 3 ATG mountpoints present.
+
+---
+
+## Sources consulted
 - EarthScope GNSS real-time data page: https://www.earthscope.org/data/gnss-realtime/
-- EarthScope Network of the Americas (NOTA): https://www.earthscope.org/nota/
-- EarthScope commercial licensing announcement: https://www.earthscope.org/news/new-gnss-offering-and-licensing-details-for-commercial-use/
-- EarthScope NULA v. 2025-05-30: https://www.earthscope.org/user/NoncommercialLicenseAgreement.pdf
-- COCONet site info page (UNAVCO/GAGE): https://coconet.unavco.org/site-info/site-info.html
-- COCONet Redonda Island expansion news: https://www.unavco.org/news/coconet-gps-network-expansion-redonda-island/
-- Antigua and Barbuda Lands and Survey Division portal: https://www.lands.gov.ag/landfolio.publicaccess.web/Contents/about_us.aspx
-- Local data verification (2026-05-12): `data/earthscope.sourcetable` lines 86 (BGGY), 122 (CN01), 973 (RDON) — 3 ATG mountpoints; `scripts/stations_by_country.py ATG` confirms same 3 stations
-- RTK2go / Centipede sourcetables — no AG stations found
-- NTRIP-list.com North America — no AG entry found
+- EarthScope Network of the Americas: https://www.earthscope.org/nota/
+- EarthScope commercial licensing announcement (2024-03-07): https://www.earthscope.org/news/new-gnss-offering-and-licensing-details-for-commercial-use/
+- EarthScope NULA PDF: https://www.earthscope.org/user/NoncommercialLicenseAgreement.pdf
+- UNAVCO/GAGE BGGY station DOI page: https://www.unavco.org/data/doi/10.7283/T5PK0D9W
+- Antigua and Barbuda Lands and Survey Landfolio portal (unreachable from sandbox): https://lands.gov.ag/landfolio.publicaccess.web/Contents/about_us.aspx
+- Local verification: `data/earthscope.sourcetable` lines 83 (BGGY), 118 (CN01), 970 (RDON); `scripts/stations_by_country.py ATG` returns same 3 stations; `scripts/source_health.py earthscope` = ok at 2026-05-15
+- rtk2go and Centipede sourcetables — zero AG stations

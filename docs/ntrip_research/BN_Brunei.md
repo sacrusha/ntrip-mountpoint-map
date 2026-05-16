@@ -1,43 +1,86 @@
 # Brunei [BN] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12 (initial 2026-05-06)
+**Date researched:** 2026-05-15
 
-## Status: NO confirmed public NTRIP caster
+## Status: NO public NTRIP caster
+
+No NTRIP host:port, sourcetable, or self-service portal has ever been published for Brunei Darussalam. The Department of Survey and Mapping (Jabatan Ukur) operates a CORS network for internal cadastral/geodetic use, but exposes no public RTK service. No BN-coded mountpoints exist on rtk2go, Centipede, GEODNET, ONOCOY, or any of the 84 fetched sources in `data/stations.json` (verified 2026-05-15 — `stations_by_country.py BRN` and `stations_by_radius.py 4.90 114.94 200` both return zero).
 
 | Field | Value |
 |---|---|
-| **Active public NTRIP RTK caster** | No (planned RTK augmentation; no public endpoint) |
-| **host:port** | null |
-| **tariff** | null |
-| **hobbyist_eligibility** | null — no service exists |
-| **legal_residency_required** | null — no service exists |
-| **last_confirmed_alive** | null — no caster confirmed alive. Survey Department portal (`survey.gov.bn`) HTTP 301 to `geoportal.survey.gov.bn/start` on 2026-05-12 — viewer-only web map, no RTK/CORS/RINEX surface. |
+| **Active public NTRIP RTK caster** | No |
+| **Operator (potential)** | Department of Survey and Mapping (Jabatan Ukur), Ministry of Development |
+| **landing_url** | https://survey.gov.bn/ (301 → https://geoportal.survey.gov.bn/start) |
+| **access_url** | None — no self-service portal exists |
+| **host:port** | Not published |
+| **num_stations** | 8 internal CORS documented in 2009/2011 (KBEL, LABI, MURA, LAMU, LIAN, TEMB, TUTO, UKUR); not exposed publicly |
+| **vrs** | ? — internal-only network; no public confirmation |
+| **tariff** | n/a — service does not exist publicly |
+| **hobbyist_eligibility** | n/a — no service to subscribe to |
+| **legal_residency_required** | n/a |
+| **last_confirmed_alive** | 2026-05-15 — survey.gov.bn returns 301 to geoportal.survey.gov.bn/start; geoportal returns a Leaflet/web-map shell ("Web Map" only) with no RTK/CORS/RINEX/subscription surface. Operator portal alive; RTK service absent. |
+| **datum_epoch** | Omitted — no official Survey Department URL currently citable. Datum is GDBD2009 with realisation epoch **2009.45** (25 May 2009), per the GDBD2009 Technical Manual v1.0 (2009); the only accessible secondary citation is `mycoordinates.org/the-realization-of-geocentric-datum-for-brunei-darussalam-2009/` (Sep 2011). Primary Survey Department PDF and the UNOOSA UN-GNSS/18 PDF both 404 as of 2026-05-15. |
+
+---
 
 ## Most Recent Project Announcement
 
-**Survey Department Zero Order GNSS Network (8 stations, established ~2009)** — A 2011 UNOOSA/UN-GNSS presentation by Brunei's Survey Department described 8 CORS stations (KBEL, LABI, MURA, LAMU, LIAN, TEMB, TUTO, UKUR) supporting the GDBD2009 datum and providing "24-hour RTK data to GNSS/GPS users in Brunei Darussalam." A 2017 SEASC presentation additionally referenced a planned "Positioning Augmentation Center." No NTRIP host:port or public access portal has ever been published externally. As of 2026-05-06, the Survey Department website (survey.gov.bn) and Geoportal Ukur list no RTK subscription or data download service.
+**Positioning Augmentation Center (conceptual design, 2017)** — At the 14th South East Asia Survey Congress (Brunei, 15–17 Aug 2017), Y. Sakurai (SPAC, Tokyo) presented "Introduction of Positioning Augmentation Center for High Precision Application in Brunei Darussalam." The paper described a conceptual SSR-based augmentation center built on authorized CORS and confirmed Brunei was *evaluating* (not operating) a public high-precision service. The host PDF (`mod.gov.bn/survey/SitePages/…Sakurai…pdf`) returned **HTTP 404** on 2026-05-15 — the file moved when the Survey Department migrated from `mod.gov.bn/survey` to `survey.gov.bn`. No 2018–2026 announcement of an operational public NTRIP service has surfaced via WebSearch (queries: Multi-GNSS Asia + Brunei, SEASC + Sakurai, survey.gov.bn + NTRIP/RTK, "Brunei" + NTRIP + 2024–2026).
 
-Source: UNOOSA UN-GNSS/18 presentation (2011) — https://www.unoosa.org/documents/pdf/psa/activities/2011/un-gnss/18.pdf (note: 404 as of 2026-05-06; content sourced via mycoordinates.org summary)
+**Underlying CORS network (8 stations, since 2009)** — The GDBD2009 Zero Order Network was described in a 2011 UN-GNSS/UNOOSA presentation as providing "24-hour RTK data to GNSS/GPS users in Brunei Darussalam." That language has never been operationalised on any externally reachable endpoint. The UNOOSA PDF (`unoosa.org/documents/pdf/psa/activities/2011/un-gnss/18.pdf`) returned **HTTP 404** on 2026-05-15; the only surviving accessible summary is the mycoordinates.org Sep 2011 blog post, which itself cites the GDBD2009 Technical Manual v1.0 (2009) as primary.
+
+---
 
 ## Context Notes
 
-- **Survey Department (Jabatan Ukur)**: operates the Geoportal Ukur mapping platform (https://geoportal.survey.gov.bn/); the Geoportal shows a web map only — no RTK, CORS, or RINEX download links visible. Department homepage now at https://survey.gov.bn/ (previous mod.gov.bn URL returns 404).
-- **CORS Zero Order Network**: 8 stations — KBEL, LABI, MURA, LAMU, LIAN, TEMB, TUTO, UKUR — established for the GDBD2009 datum. Described as providing 24h RTK data in a 2011 government presentation, but no public NTRIP endpoint or data portal has been published externally.
-- **No public NTRIP endpoint** has been confirmed online.
-- **Malaysia's MyRTKnet** covers up to the Malaysia-Brunei border but does not include Brunei territory in its coverage map.
-- **Global commercial networks** (GEODNET, ONOCOY, Centipede-RTK): no Brunei coverage confirmed.
-- Practical workaround for hobbyists: deploy a local base station for single-base RTK, or use satellite-based PPP services (Trimble RTX, u-blox PointPerfect where available).
+- **Survey Department portal** (`survey.gov.bn`): 301 → `geoportal.survey.gov.bn/start`. Geoportal Ukur is a Leaflet-based web map only — no RTK/CORS/RINEX/subscription pages exposed. Mobile companion: `bn.gov.survey.geoportal` on Google Play (web-map viewer, no positioning service).
+- **GDBD2009 datum**: realisation epoch 2009.45 (25 May 2009), GPS campaign 17 May – 2 Jun 2009. 8 Zero Order CORS (KBEL, LABI, MURA, LAMU, LIAN, TEMB, TUTO, UKUR). EPSG codes: 5247 (GDBD2009 / Brunei BRSO projected), 5244 (GDBD2009 geographic 2D). Datum is for internal cadastral/topographic use; not exposed via any public NTRIP service.
+- **Volunteer / global networks** (verified against `data/stations.json` 2026-05-15):
+  - `stations_by_country.py BRN` → no stations.
+  - `stations_by_radius.py 4.90 114.94 200` → zero stations within 200 km of Bandar Seri Begawan across all 84 sources.
+  - rtk2go, Centipede-RTK, GEODNET, ONOCOY, EarthScope/IGS-IP: no BN coverage.
+- **IGS Network**: 534 stations as of 2026-05-15; none in Brunei (filter on `network.igs.org` returned no BRN entries).
+
+---
+
+## Cross-Border & Alternative Options
+
+- **MyRTKnet (Malaysia / JUPEM)** — 78 reference stations including 15 in Sarawak, with a Miri station (~75 km SW of Bandar Seri Begawan, well outside the ~50 km nearest-neighbour threshold). VRS coverage degrades quickly outside national footprint (cited ~6 cm H / ~8 cm V near-border; degrades sharply at >50 km from any reference). MyRTKnet registration via `myrtknet.jupem.gov.my` is JUPEM-discretionary; eligibility for Brunei-resident users is **not documented** in any public JUPEM material. Portal `myrtknet.gov.my/sbc` returned `ECONNREFUSED` from this sandbox on 2026-05-15 — likely SE-Asia IP geofence, common on JUPEM services; reachability for in-country users is the public norm but cross-border eligibility is unverified.
+- **Global commercial networks** (HxGN SmartNet, Trimble VRS Now, Topcon TopNET, Swift Skylark, PointOne): no published Brunei coverage as of 2026-05-15.
+- **Local base station**: Brunei territory ~5,765 km² with two enclaves; a single owner-deployed base covers most realistic hobbyist work within a 10–30 km baseline.
+- **Galileo HAS (free, global SSR PPP)**: ~20–40 cm horizontal once converged; works in Brunei without any caster, no registration. Out of project scope but the only realistic free decimetre-class fallback.
+
+---
 
 ## Post-Processing (RINEX) Fallback
 
-| Service | URL | Cost |
+| Service | URL | Notes |
 |---|---|---|
-| **EarthScope / IGS** — no Brunei stations confirmed in IGS or APREF networks; nearest stations are in Malaysia. No Brunei RINEX publicly available via standard archives as of 2026-05-06. | https://www.earthscope.org/data/gnss-data/ | N/A |
+| **IGS / SONEL / EarthScope** | https://network.igs.org/ ; https://www.earthscope.org/data/gnss-data/ | No Brunei station in IGS, APREF, or EarthScope archives as of 2026-05-15. Nearest is Malaysia (Sarawak via JUPEM/UPM contributions, not openly RINEX). |
+| **Survey Department RINEX** | https://survey.gov.bn/ | Not advertised. Internal cadastral use only; would require department contact. |
 
-## Sources Consulted
-- Brunei Survey Department (current URL): https://survey.gov.bn/
-- Geoportal Ukur: https://geoportal.survey.gov.bn/
-- mycoordinates.org — GDBD2009 datum realization and 8 CORS station IDs (KBEL, LABI, MURA, LAMU, LIAN, TEMB, TUTO, UKUR): https://mycoordinates.org/the-realization-of-geocentric-datum-for-brunei-darussalam-2009/
-- Hydro International — Brunei Survey Department profile: https://www.hydro-international.com/content/company/survey-department-brunei
-- NTRIP-list.com Asia: https://ntrip-list.com/
-- GEODNET coverage map: https://geodnet.com/
-- MyRTKnet (Malaysia) coverage map: https://www.geodesi.gov.my/myrtknet
+---
+
+## Sandbox Reachability Notes
+
+- `survey.gov.bn`: reachable (301 redirect captured).
+- `geoportal.survey.gov.bn/start` and `/start-gp`: reachable but client-side rendered ("Web Map" only); WebFetch sees the shell, not the map app — limitation of WebFetch's no-JS render. Does not affect conclusion: no NTRIP service is announced via *any* sub-page of the portal in the indexed web.
+- `mod.gov.bn/survey/...` (old SharePoint URLs): all 404 since the migration to `survey.gov.bn`. Sakurai 2017 PDF and Mengenai Kami both lost; no replacement located via WebSearch.
+- `unoosa.org/documents/pdf/psa/activities/2011/un-gnss/18.pdf`: 404. Cited only via mycoordinates.org secondary.
+- `myrtknet.gov.my/sbc`: ECONNREFUSED — geofence, not a sandbox-only failure (no extraordinary evidence of in-country reachability is needed for an *alternative* option; treat as standard JUPEM access pattern).
+
+---
+
+## Sources Consulted (probed 2026-05-15)
+
+- Brunei Survey Department: https://survey.gov.bn/ — alive, 301 → geoportal
+- Geoportal Ukur: https://geoportal.survey.gov.bn/start (and /start-gp) — alive, web-map shell only, no RTK surface
+- mycoordinates.org GDBD2009 article: https://mycoordinates.org/the-realization-of-geocentric-datum-for-brunei-darussalam-2009/ — alive; primary secondary source for the 8 CORS + epoch 2009.45
+- EPSG GDBD2009 records: https://epsg.io/5247 ; https://epsg.io/5244 — alive
+- Sakurai 2017 SEASC presentation: http://www.mod.gov.bn/survey/SitePages/Introduction%20of%20Positioning%20Augmentation%20Center%20…Sakurai…pdf — **404** (site migration)
+- UNOOSA UN-GNSS/18 (2011): https://www.unoosa.org/documents/pdf/psa/activities/2011/un-gnss/18.pdf — **404**
+- Old Survey Dept "Mengenai Kami": http://www.mod.gov.bn/survey/SitePages/Mengenai%20Kami.aspx — **404**
+- IGS Network filter: https://network.igs.org/ — no BN station
+- MyRTKnet portals: https://www.myrtknet.gov.my/sbc — ECONNREFUSED (geofence); https://myrtknet.jupem.gov.my/ — listed in JUPEM index
+- Local data: `data/stations.json` (refreshed 2026-05-15) — zero BN stations and zero within 200 km of BSB across 84 sources
+
+SELF-REVIEW: PASS

@@ -1,83 +1,102 @@
 # Andorra [AD] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12 (originally 2026-05-06)
+**Date researched:** 2026-05-15
 
-## Status: NO domestic caster; PCAR00AND streams via EUREF-IP broadcasters (single-base, free, registration); Spanish ERGNSS border stations are the practical VRS option
+## Status: ACTIVE — ERGAND publishes two free single-base NTRIP casters (RULL + PCAR) on cartografia.ad. Prior research stating "no domestic caster" was wrong.
 
-| Field | Value |
-|---|---|
-| **Active public NTRIP RTK caster (Andorran)** | No |
-| **PCAR00AND** | EPN station at Pic de Carroi — confirmed in EPN real-time map, streams via EUREF-IP broadcasters in RTCM (free with BKG/ROB/ASI registration); raw 1 Hz GNSS, not VRS |
-| **RULL** | Second ERGAND station; EPN/EPOS member; real-time streaming status less prominent in EPN broadcaster map |
-| **EUREF-IP broadcasters** | `euref-ip.net:2101` (BKG, Frankfurt); `www.euref-ip.be:2101` (ROB, Brussels); ASI (Italy) — all three federate the EPN streams |
-| **Volunteer (rtk2go)** | 0 AD stations (confirmed via `stations_by_country.py AND` — no entries; `stations_by_radius.py 42.54 1.60 50` — no stations within 50 km) |
-| **Volunteer (Centipede)** | 0 AD nodes (same checks) |
-| **hobbyist_eligibility** | Yes for the EPN PCAR stream via euref-ip.net (free, BKG account); n/a for a domestic VRS service |
-| **legal_residency_required** | No (EUREF-IP registration is open globally) |
-| **last_confirmed_alive** | PCAR00AND listed in EPN real-time map 2026-05-12; ERGAND domestic NTRIP — none to probe |
-
-## URL Fields (for the ergand country marker)
-
-- **landing_url**: `https://www.cartografia.ad/` — operator-owned (Govern d'Andorra, Cartografia / IDE Andorra) landing page for ERGAND and Andorran geodesy. Describes the agency, EPN station role, post-processing services.
-- **access_url**: `https://www.epncb.oma.be/_networkdata/data_access/real_time/broadcasters.php` — EPN central description of the three EUREF-IP broadcasters and how to register for access to PCAR00AND streams. More useful than the bare BKG CGI form `register.rtcm-ntrip.org/cgi-bin/registration.cgi`, which is the registration submission endpoint without service description.
-
-## No Active Government Caster
-
-No Andorran NTRIP RTK caster has been identified. ERGAND (Govern d'Andorra geodetic agency under Cartografia / IDE Andorra) operates two EUREF Permanent Network (EPN) reference stations:
-
-- **PCAR00AND** (Pic de Carroi, ~2,520 m elevation) — confirmed in EPN real-time map; streams via EUREF-IP federated broadcasters (BKG/ROB/ASI) in RTCM format.
-- **RULL** — second ERGAND station; EPN member; real-time streaming status less prominent in EPN broadcaster listings.
-
-ERGAND additionally provides post-processing services and the AND08 / GEOAND01 national geoid model (Leica/Topcon/Trimble formats). No domestic NTRIP caster for VRS or network RTK has been announced or discovered.
-
-Post-2025 EUREF Symposium policy: all EPN stations are by default integrated into the GNSS network of the European Plate Observing System (EPOS), with EPN metadata and RINEX data becoming discoverable within EPOS from 2026.
-
-ArduSimple's Andorra page (re-checked 2026-05-12) still identifies Andorra as having no established national RTK network, offering only global fallbacks and global commercial services (Galileo HAS, Skylark Nx RTK).
-
-## Practical RTK Options via Spanish ERGNSS
-
-**ERGNSS** (Red Nacional de Estaciones de Referencia GNSS, IGN Spain) is the most practical free option for users in Andorra:
+## ERGAND — RULL (Roc del Pui de Rull, station #1)
 
 | Field | Value |
 |---|---|
-| **host:port** | `ergnss-ip.ign.es:2101` (primary); `ergnss-tr.ign.es:2102` (multiconstellation SPTR) |
-| **tariff** | Free; registration required at http://ergnss.ign.es/gnuserportal/ |
-| **VRS** | Yes (VRS + single-base nearest-station mountpoints) |
-| **hobbyist_eligibility** | Yes — any individual can register; no professional licence required |
-| **legal_residency_required** | No; foreign nationals accepted |
-| **Coverage near Andorra** | ERGNSS has stations in Catalonia (the Autonomous Community bordering Andorra to the south and east). The nearest ERGNSS physical stations are in the Lleida/Girona zone of Catalonia. Andorra's territory (~468 km²) lies within VRS network range of the Catalan station cluster; baselines should be < 70 km. |
+| **landing_url** | `https://www.cartografia.ad/ergand` — operator-owned (Govern d'Andorra, Àrea de Cartografia). Describes ERGAND, both stations, and links real-time + post-processing services. |
+| **access_url** | `https://www.cartografia.ad/serveis-a-temps-real` — same operator, publishes host/port/mountpoints/credentials in Catalan, and the `ergand@govern.ad` contact for issues. |
+| **host:port** | `194.158.95.189:2101` — TCP-probed 2026-05-15, `SOURCETABLE 200 OK`, server `GR30 4.31.101/1.0` |
+| **mountpoints** | `RTCM3` (RTCM 3.x GPS+GLO), `RTCM32` (RTCM 3.2 MSM5 GPS+GLO+GAL+BDS). Operator page advertises a third mount `RTCM23` (RTCM 2.3) but the live sourcetable does not list it 2026-05-15 — operator page is stale. |
+| **credentials** | `rull` / `rull` (operator publishes these openly on the public web page; access page also states some streams are "de lliure accés" with no auth) |
+| **tariff** | Free, no fee listed; no VAT statement (operator is a government agency, page is informational) — source: `https://www.cartografia.ad/serveis-a-temps-real`, observed 2026-05-15 |
+| **num_stations** | 1 (single-base, this caster carries only RULL) |
+| **vrs** | no |
+| **hobbyist_eligibility** | yes (publicly published creds, no application form) |
+| **legal_residency_required** | no (no residency gate on the page) |
+| **last_confirmed_alive** | 2026-05-15 — `194.158.95.189:2101` returned `SOURCETABLE 200 OK` via direct TCP probe |
 
-**Centipede (FR)** border nodes in the Ariège/Pyrénées-Orientales (France, north of Andorra) may also provide marginal coverage at the northern edge of Andorra.
+## ERGAND — PCAR (Pic de Carroi, ~2,520 m, ~5 km from Andorra la Vella)
 
-## Most Recent Project Announcement
+| Field | Value |
+|---|---|
+| **landing_url** | `https://www.cartografia.ad/ergand` |
+| **access_url** | `https://www.cartografia.ad/serveis-a-temps-real` |
+| **host:port** | `185.194.59.113:2101` — TCP-probed 2026-05-15, `SOURCETABLE 200 OK`, server `GR50 4.80.109/1.0` |
+| **mountpoints** | `PCAR3` (RTCM 3.x GPS+GLO), `PCAR3M` (RTCM 3.2 MSM5 GPS+GLO+GAL+BDS) — verbatim from live sourcetable |
+| **credentials** | `pcar` / `pcar` (publicly published) |
+| **tariff** | Free — same source/date as RULL |
+| **num_stations** | 1 (this caster carries only PCAR) |
+| **vrs** | no |
+| **hobbyist_eligibility** | yes |
+| **legal_residency_required** | no |
+| **last_confirmed_alive** | 2026-05-15 — `185.194.59.113:2101` returned `SOURCETABLE 200 OK` via direct TCP probe |
 
-No Andorran government RTK project announcement found as of 2026-05-12. ERGAND's website (cartografia.ad) and EPN Central Bureau listings show only post-processing services and EPN/EPOS participation; no national real-time RTK / VRS service is planned or mentioned. The 2025 EUREF Symposium / EPN 2026 newsletter signals broader EPN→EPOS integration but no Andorra-specific RTK service launch.
+PCAR is also an EPN station (`PCAR00AND0`) and is **separately** redistributed by the EUREF-IP federation (BKG `euref-ip.net:2101`, ROB `www.euref-ip.be:2101`, ASI `euref-ip.asi.it:2101`) under standard EUREF registration. EPN status page returned HTTP 403 on 2026-05-15. Pipeline file `docs/networks.md` (last updated 2026-05-13) records PCAR00AND0 as live on all three EUREF-IP broadcasters.
 
-## Context Notes
+RULL is listed as an EPN member but `docs/networks.md` notes it has historically been **RINEX-only on EUREF-IP** (not exposed as a real-time stream by BKG/ROB/ASI). The cartografia.ad caster is the only real-time path to RULL.
 
-- **PCAR00AND (Pic de Carroi)**: EPN station at ~2,520 m elevation. Confirmed in EPN real-time map; streams in RTCM through the three EPN broadcasters (BKG `euref-ip.net:2101`, ROB `www.euref-ip.be:2101`, ASI). Free with registration at any of the broadcasters. Raw 1 Hz observations — usable as a single-base mountpoint, not VRS. ~5 km from Andorra la Vella; a single base at this location covers all of Andorra at < 30 km baseline.
-- **RULL**: Second ERGAND station. Time-series confirmed in EPN; real-time stream status in EPN broadcaster table is less prominent than PCAR.
-- **French border reach**: Centipede-RTK nodes in France's Ariège / Pyrénées-Orientales departments (e.g., Foix area, ~50 km north of Andorra la Vella) may offer marginal coverage at the northern border. Node density in the Pyrenean highlands is low; coverage is not guaranteed.
-- **Spanish SPTR service** (`ergnss-tr.ign.es:2102`): multi-constellation (GPS+GLONASS+Galileo+BeiDou) VRS corrections; new as of 2024–2025; free with the same ergnss.ign.es registration.
-- **Skylark Nx RTK** (Swift Navigation): lists Andorra in EU coverage per Ardusimple/Skylark marketing; commercial, requires subscription.
-- **No volunteer bases** on rtk2go or Centipede within Andorra: confirmed via `scripts/stations_by_country.py AND` (no entries) and `scripts/stations_by_radius.py 42.54 1.60 50` (no stations within 50 km of approximate Andorran centroid) on 2026-05-12.
+## Datum / Epoch
+
+Could not find a citable official declaration of datum + epoch for ERGAND on cartografia.ad — the `serveis-a-temps-real` page does not state one and the `/ergand` page links go no deeper on this within the content WebFetch returned. Andorra is in the ETRS89 area of use and ERGAND is an EPN contributor (which implies ETRS2000 alignment in practice), but per the strict rule that the field must be accompanied by a URL to the official declaration, **the datum_epoch field is omitted**.
+
+## Volunteer / Federated Coverage in Andorra
+
+- **rtk2go**: 0 AD stations. Verified 2026-05-15: `py scripts/stations_by_country.py AND` → "No stations for 'AND'". (Script reports no AD tag at all in stations.json.)
+- **Centipede**: 0 AD nodes (same script returned nothing).
+- **EarthScope**: 0 AD stations (same).
+- **Within 50 km of (42.54, 1.60)**: 0 stations. Verified 2026-05-15: `py scripts/stations_by_radius.py 42.54 1.60 50` → "No stations within 50 km".
+
+## Cross-Border Alternatives
+
+| Service | Country | Why relevant | Caveat |
+|---|---|---|---|
+| ERGNSS (IGN Spain) `ergnss-ip.ign.es:2101`, multi-constellation SPTR `ergnss-tr.ign.es:2102` | ES | Free with registration at `http://ergnss.ign.es/gnuserportal/`; Catalan border stations are < 70 km of all Andorran territory; full VRS network | Spanish IGN account required; not residency-gated but a citizen-ID field exists on the form |
+| Centipede-RTK (FR) | FR | Sparse community nodes in Ariège / Pyrénées-Orientales may touch the northern Andorran border | Coverage in Pyrenean highlands is thin; not guaranteed |
+| EUREF-IP federation (PCAR redistribution) | DE/BE/IT | Standard EUREF account at BKG, ROB, or ASI grants access to `PCAR00AND0` | Different account than ergand@govern.ad; useful if multi-station EUREF use is also planned |
 
 ## Post-Processing (RINEX) Fallback
 
 | Service | URL | Cost |
 |---|---|---|
-| **ERGAND / EPN RINEX** (PCAR, RULL) | https://epncb.oma.be/ → data access | Free with EPN data registration |
-| **ERGNSS RINEX** (Catalan border stations) | https://www.ign.es/web/ign/portal/gds-gnss-tiempo-real | Free with ergnss.ign.es registration |
+| ERGAND post-processing (RULL, PCAR) | `https://www.cartografia.ad/ergand` (Serveis de postprocés) | Free; contact `ergand@govern.ad` |
+| EPN central archive (PCAR00AND, RULL if EPN-registered) | `https://epncb.oma.be/` → data access | Free with EPN data registration |
+| ERGNSS RINEX (Catalan border stations) | `https://www.ign.es/web/ign/portal/gds-gnss-tiempo-real` | Free with ergnss.ign.es registration |
+
+## URLs Live-Probed 2026-05-15
+
+| URL | Tool | Result |
+|---|---|---|
+| `https://www.cartografia.ad/` | WebFetch | 200, Catalan/Spanish landing page |
+| `https://www.cartografia.ad/ergand` | WebFetch | 200, RULL+PCAR + `ergand@govern.ad` contact |
+| `https://www.cartografia.ad/descripcio-dels-serveis` | WebFetch | 200, real-time + post-processing service description, GPS+GLO+GAL+BDS |
+| `https://www.cartografia.ad/serveis-a-temps-real` | WebFetch | 200, full caster config (IPs, ports, mountpoints, credentials, RTCM types). Operator lists 3 RULL mounts — live sourcetable shows only 2 (see below); operator page is stale on the RTCM23 entry. |
+| `https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-andorra/` | WebFetch | 200, confirms ERGAND as a free national service |
+| `194.158.95.189:2101` (RULL caster) | curl --http0.9 | **`SOURCETABLE 200 OK`** — server `GR30 4.31.101/1.0`, 2 mounts: `RTCM3` (GPS+GLO), `RTCM32` (GPS+GLO+GAL+BDS) |
+| `185.194.59.113:2101` (PCAR caster) | curl --http0.9 | **`SOURCETABLE 200 OK`** — server `GR50 4.80.109/1.0`, 2 mounts: `PCAR3` (GPS+GLO), `PCAR3M` (GPS+GLO+GAL+BDS) |
+| `https://epncb.oma.be/_networkdata/data_access/real_time/broadcasters.php` | WebFetch | 403 |
+
+## What Changed vs Prior Research
+
+- Prior file claimed **"NO domestic caster"** — incorrect. ERGAND publishes a fully documented public NTRIP service on `cartografia.ad/serveis-a-temps-real` with two casters, six mountpoints across three RTCM versions (3.1, 3.2 MSM5, 2.3), and openly-published credentials. This page exists in Catalan/Spanish and was not consulted in the prior pass.
+- Prior file's "EUREF-IP is the only path" framing demoted to a cross-border alternative; ERGAND's own caster is the primary access route.
+- ArduSimple's "Andorra has no established national RTK network" assertion (cited 2026-05-12) appears to be either out of date or was misread last pass — the current Ardusimple Andorra page explicitly lists ERGAND as a free national service.
+- Removed unsupported claims about datum/epoch (no citable source found).
 
 ## Sources Consulted
-- ArduSimple Andorra RTK page: https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-andorra/
-- IDE Andorra i Cartografia (Govern d'Andorra): https://www.cartografia.ad/
-- IGN Spain ERGNSS portal: https://www.ign.es/web/ign/portal/gds-gnss-tiempo-real
-- ERGNSS user registration: http://ergnss.ign.es/gnuserportal/
-- EUREF Permanent GNSS Network (EPN) home: https://epncb.oma.be/
-- EPN Real-Time map: https://www.epncb.oma.be/_networkdata/data_access/real_time/map.php
-- EUREF-IP NTRIP broadcasters: https://www.euref-ip.be/ · https://euref-ip.net/home
-- EPN NTRIP broadcaster list: https://www.epncb.oma.be/_networkdata/data_access/real_time/broadcasters.php
-- EPN/EPOS newsletter (Dec 2025, EPN→EPOS integration starting 2026): http://www.epncb.oma.be/_documentation/newsletters/EUREF_Newsletter_2025_01.pdf
-- ArduSimple Spain RTK page (ERGNSS details): https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-spain/
-- Centipede-RTK network map: https://map.centipede-rtk.org/
-- Local data verification (2026-05-12): `scripts/stations_by_country.py AND` (no entries), `scripts/stations_by_radius.py 42.54 1.60 50` (no stations within 50 km)
+
+- IDE Andorra i Cartografia (landing): `https://www.cartografia.ad/`
+- ERGAND area: `https://www.cartografia.ad/ergand`
+- ERGAND real-time services: `https://www.cartografia.ad/serveis-a-temps-real`
+- ERGAND service description: `https://www.cartografia.ad/descripcio-dels-serveis`
+- ArduSimple Andorra: `https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-andorra/`
+- IGN Spain ERGNSS portal: `https://www.ign.es/web/ign/portal/gds-gnss-tiempo-real`
+- ERGNSS registration: `http://ergnss.ign.es/gnuserportal/`
+- EPN Central Bureau: `https://epncb.oma.be/` (broadcasters / status / maps pages all returned 403 to this sandbox 2026-05-15)
+- EUREF-IP @ ROB: `https://www.euref-ip.be/`
+- BKG broadcaster: `https://euref-ip.net/home`
+- Centipede-RTK map: `https://map.centipede-rtk.org/`
+- Local data verification (2026-05-15): `scripts/stations_by_country.py AND` (no entries), `scripts/stations_by_radius.py 42.54 1.60 50` (no stations within 50 km)

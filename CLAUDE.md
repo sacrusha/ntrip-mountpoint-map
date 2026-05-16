@@ -52,5 +52,4 @@ docs/
 
 - Generating large text blocks (2kB) in this env will timeout and fail. Workaround with iterative output; skeleton-first then edit; bash py etc for repetitive work.
 - All color and design edits must always consider Light and Dark mode.
-- Sandbox has very limited internet access. WebSearch tool works, pretty much nothing else does, test environment before relying on it.
 - Pipeline filter flags (nmea_filter / solution_filter in SOURCES): both default True. Set nmea_filter=False only if the caster mislabels physical stations as NMEA=1; solution_filter=False only if it mislabels them as solution=1. Never set solution_filter=False for rtk2go — it is the only guard against the NEAR-xxx VRS streams. See parse_sourcetable docstring for full rules.

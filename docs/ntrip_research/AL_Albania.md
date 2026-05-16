@@ -1,52 +1,66 @@
 # Albania [AL] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12 (originally 2026-05-06)
+**Date researched:** 2026-05-15 (originally 2026-05-06)
 
-## Status: YES — two GNSS RTK networks active (ALBCORS / ASIG state network + SATNET LIVE / Land&Co commercial)
+## Status: YES — two active NTRIP casters (ALBCORS state network, SATNET LIVE commercial)
+
+## Caster 1 — ALBCORS (state, ASIG)
 
 | Field | Value |
 |---|---|
-| **Active public NTRIP RTK caster** | Yes — ALBCORS (state, ASIG) and SATNET LIVE (commercial, Land&Co / Topcon) |
-| **host:port** | ALBCORS: krgjsh.asig.gov.al (port not confirmed publicly; contact info.albcors@asig.gov.al). SATNET LIVE: provided after registration via landcoal.com or SATNET app. |
-| **tariff** | ALBCORS: unknown — state service, likely subsidized or low-cost for licensed surveyors. SATNET LIVE: commercial; 3 free days for new users; free for 1 year with Land&Co GPS equipment purchase. Ongoing rate not published. |
-| **hobbyist_eligibility** | ALBCORS: Unclear — application form (ASIG_Formulari-i-aplikimit-ALBCORS) required; professional context implied. SATNET LIVE: Unclear — open registration via mobile app suggests broader access. |
-| **legal_residency_required** | Unclear for both |
-| **last_confirmed_alive** | krgjsh.asig.gov.al confirmed live (2026-05-06); landcoal.com confirmed live (2026-05-06) |
+| **landing_url** | https://krgjsh.asig.gov.al/?page_id=1210&lang=en (advertised in the caster's NET record) |
+| **access_url** | https://asig.gov.al/en/application-form/ (ALBCORS application PDF + Geoportal registration form, contact info.albcors@asig.gov.al) |
+| **host:port** | albcors.asig.gov.al:2101 (live sourcetable fetched 2026-05-15; not advertised on the public web — discovered via DNS guess) |
+| **tariff** | Not published. Application-gated; ASIG sets terms case-by-case. Tariff line in sourcetable is `B` (fee=basic / non-free) per NTRIP convention. |
+| **num_stations** | 27 physical CORS (21 ground-mounted concrete pillars + 6 roof-mounted stations inherited from the predecessor ALBPOS system); KRGJSH operates the control centre at ASIG, Tirana. |
+| **vrs** | yes — sourcetable advertises VRS (`CMR_plus`, `VRS_RTCM_2.3`, `VRS-MSM-GG`), FKP (`FKP01`), MAC (`MAC01`), Nearest Station (`NSTA-GG`, `NSTAT`), and single-base PRS streams. GPS+GLO on all; `NSTAT` and `PRS-MSM` add GAL+BDS. |
+| **hobbyist_eligibility** | ? — eligibility criteria not published; the application PDF (`ASIG_Formulari-i-aplikimit-ALBCORS-04.03.2021.pdf`) is the gating document but its readable contents are not online. Professional/cadastral context strongly implied; no language excluding hobbyists located. |
+| **legal_residency_required** | ? — not stated publicly. |
+| **last_confirmed_alive** | 2026-05-15 — TCP sourcetable fetch from albcors.asig.gov.al:2101 returned `SOURCETABLE 200 OK` (Server: NTRIP GNSMART_Caster 2.0/1.0, 12 mountpoints, 2034 bytes). |
 
-## Most Recent Project Announcement
+Datum_epoch omitted: the geodetic frame is ETRS89-ALB (KRGJSH 2010) per Council of Ministers Decision 669 (2013-08-07), but no single citable URL pins the broadcast epoch of the caster output itself; EPSG:6870 treats the underlying datum as an ETRF ensemble.
 
-**ALBCORS** is the state GNSS CORS network operated by the State Authority for Geospatial Information (ASIG — Autoriteti Shtetëror për Informacionin Gjeohapësinor). It comprises 27 CORS stations (21 ground-mounted concrete blocks + 6 roof-type stations integrated from the former ALBPOS system) with a control center at ASIG premises in Tirana. A 2023 EUREF Gothenburg symposium presentation (EUREF, 2023-Gothenburg) confirmed Albania's geodetic reference frame and ALBCORS operational status.
+## Caster 2 — SATNET LIVE ALBANIA (commercial, Land&Co / Topcon)
 
-The predecessor ALBPOS system was found non-compliant with national CORS standards in 2015; ALBCORS was built as a replacement. Contact: info.albcors@asig.gov.al.
+| Field | Value |
+|---|---|
+| **landing_url** | https://landcoal.com/ (Land&Co — Topcon distributor for Albania, Tirana) |
+| **access_url** | https://landcoal.com/satnet_live_rtk_cors_network (service page; registration via on-page form or the "SATNET live" mobile app) |
+| **host:port** | 77.242.24.183:2101 (caster IP printed on the Land&Co service page; live sourcetable fetched 2026-05-15) |
+| **tariff** | 3 free days for all new registrants; 1 year free with purchase of Land&Co GPS hardware. Ongoing subscription rate not published on the site (contact Land&Co). VAT status not stated. Observed 2026-05-15 on landcoal.com. |
+| **num_stations** | Not disclosed. Sourcetable advertises 6 mountpoints (CMR, CMR+, DGPS, RTCM 2.3, RTCM 3.0, RTCM 3.2-MSM, plus a branded `landco` MSM stream), all with the same station identifier `NRS0.221011` and 0.00/0.00 coordinates — consistent with a single-base or anonymised setup, not a multi-station network. |
+| **vrs** | no — no VRS/Nearest/FKP/MAC mountpoints in the sourcetable; only fixed-format physical-style streams. Service page does not claim VRS. |
+| **hobbyist_eligibility** | ? — site language ("ofrohet posaqërisht për përdoruesit nga kompania" / "specifically for users of the company") implies Land&Co-customer-first; mobile-app self-registration suggests broader access is at least technically possible. No explicit exclusion of hobbyists found. |
+| **legal_residency_required** | ? — not stated. |
+| **last_confirmed_alive** | 2026-05-15 — TCP sourcetable fetch from 77.242.24.183:2101 returned `SOURCETABLE 200 OK` (Server: EagleGnss-basic/200923, 6 mountpoints, 764 bytes). |
 
-**SATNET LIVE ALBANIA** is a commercial RTK CORS network service offered by Land&Co (Topcon Albania distributor, landcoal.com, Tirana). It is also accessible via the "SATNET live" mobile application (available on App Store).
+Datum_epoch omitted: not declared by the operator.
 
-## Context Notes
+## Geodetic context (no citable single declaration → datum_epoch omitted on both casters)
 
-- **ALBCORS host**: The GNSS network subdomain is krgjsh.asig.gov.al (KRGJSH = Kontrolli i Rrjetit Gjeodezik dhe Shërbimeve Hartografike). The precise NTRIP caster hostname and port are not published openly; the application form (PDF linked from krgjsh.asig.gov.al) must be submitted to ASIG.
-- **ALBCORS ETRS89**: The network is aligned to ETRS89 European reference frame, supporting future EU-compatible surveying standards (Albania is an EU candidate country).
-- **SATNET LIVE**: Land&Co is the Topcon distributor in Albania and uses the Topnet Live / SATNET platform. Customers who purchase GPS/GNSS equipment from Land&Co get 1 year free RTK access. New registrations get 3 free days. Ongoing subscription pricing is not published on the website; contact Land&Co directly.
-- **Topnet Live network**: It is possible that SATNET LIVE Albania feeds into or partners with Topnet Live's European coverage — exact relationship not confirmed.
-- **Coverage**: ALBCORS 27 stations for a country of ~29 000 km² — reasonable density. SATNET LIVE coverage area not precisely documented.
-- **Practical workaround**: Apply for ALBCORS at krgjsh.asig.gov.al, or register for SATNET LIVE via landcoal.com / SATNET app.
-- **Volunteer / community**: zero AL mountpoints on rtk2go; zero AL nodes on Centipede; zero EarthScope. Confirmed via `scripts/stations_by_country.py ALB` (no entries) and `scripts/stations_by_radius.py 41.15 20.17 50` (no stations within 50 km of Tirana area) on 2026-05-12.
+- Albania's national frame is **ETRS89-ALB (KRGJSH 2010)**, central meridian 20°E, GRS80 ellipsoid (EPSG:6870, https://epsg.io/6870).
+- First realisation: 2007–2008 GNSS campaign linking the legacy Albanian datum to ETRS89. Anchor epoch commonly cited as 2008 by ASIG documentation, but no operator declaration pins the broadcast epoch of ALBCORS or SATNET streams to a specific ETRFyy realisation — EPSG treats the underlying datum as an ensemble.
+- Legal basis: Decision of the Council of Ministers no. 669, 2013-08-07.
 
-## Post-Processing (RINEX) Fallback
+## Volunteer / community coverage
 
-| Service | URL | Cost |
-|---------|-----|------|
-| **ASIG / ALBCORS** — RINEX data for registered users | https://krgjsh.asig.gov.al | Contact ASIG |
-| **EUREF Permanent GNSS Network** — regional stations near Albania | https://epncb.oma.be/ | Free (account required) |
-| **ASIG Geoportal** — national spatial data | https://geoportal.asig.gov.al | Free (account required) |
+- rtk2go: zero AL mountpoints (`scripts/stations_by_country.py ALB` returns "No stations for 'ALB'", 2026-05-15).
+- Centipede-RTK: zero AL bases (none indexed in `stations.json`).
+- EarthScope: zero (out of geography).
+- Nearest cross-border alternative checked via `scripts/stations_by_radius.py`: the only volunteer station within 200 km of the Albanian coast is **B506Fields** (rtk2go, Puglia, Italy) at ~127 km from south-Albanian shore (40.41°N, 18.00°E) — too far across the Adriatic for usable single-base RTK. Inland borders (Kosovo, North Macedonia, Montenegro, Greece) have no rtk2go/Centipede/EarthScope stations within 200 km of Albanian territory.
 
-## Sources Consulted
-- ASIG GNSS network (ALBCORS) page and application form: https://krgjsh.asig.gov.al/?page_id=1218&lang=en
-- ASIG State Authority for Geospatial Information home: https://asig.gov.al/en/home/
-- Land&Co SATNET LIVE service page: https://landcoal.com/satnet_live_rtk_cors_network
-- EUREF Symposium 2023 Gothenburg — Albania presentation (ASIG / Lasku): http://www.euref.eu/sites/default/files/symposia/2023Gothenburg/04-01-Albania.pdf
-- Wikipedia — State Authority for Geospatial Information (Albania): https://en.wikipedia.org/wiki/State_Authority_for_Geospatial_Information
-- SpringerLink — "Development of Classical and Modern Geodetic Reference Systems of Albania" (2023): https://link.springer.com/book/10.1007/978-3-031-25366-9
-- LinkedIn — "The Role and Contribution of Geodetic Reference Frame to the NSDI in Albania" (Arian Lasku)
-- ResearchGate — "Coordinate Reference Systems Used in Albania to Date"
-- ResearchGate — "Albanian National GNSS map" figure
-- ArduSimple country selector — no dedicated Albania page found
-- RTK2go monitor (monitor.use-snip.com) — no Albania NTRIP streams confirmed
+## Sandbox reachability notes
+
+- `https://krgjsh.asig.gov.al/?page_id=1218&lang=en` returned **HTTP 404** via WebFetch from this sandbox on 2026-05-15, but the same URL is indexed by search engines and works in normal browsers — likely a UA/redirect filter on the WordPress site.
+- `http://77.242.24.183:2101/` raw HTTP via WebFetch failed with a TLS-cert error (the tool auto-upgrades to HTTPS, which the NTRIP caster does not serve); a raw-socket NTRIP GET succeeded, confirming the caster is alive.
+- `albcors.asig.gov.al:2101` was discovered by DNS-guess after the public KRGJSH page declined to list it; a raw-socket NTRIP GET returned the full sourcetable.
+
+## Sources consulted
+
+- ASIG GNSS Network page (KRGJSH): https://krgjsh.asig.gov.al/?page_id=1218&lang=en
+- ASIG application-form landing page: https://asig.gov.al/en/application-form/
+- ALBCORS application PDF (binary, not parseable in tool): https://krgjsh.asig.gov.al/wp-content/uploads/2021/03/ASIG_Formulari-i-aplikimit-ALBCORS-04.03.2021.pdf
+- Land&Co — SATNET LIVE service page (caster IP advertised here): https://landcoal.com/satnet_live_rtk_cors_network
+- EPSG:6870 ETRS89-ALB KRGJSH 2010: https://epsg.io/6870
+- EUREF 2023 Gothenburg symposium — Albania country report: http://www.euref.eu/sites/default/files/symposia/2023Gothenburg/04-01-Albania.pdf
+- ASIG laws and bylaws (CoM Decision 669/2013 reference): https://asig.gov.al/en/laws-and-bylaws/
+- Live NTRIP sourcetables (raw-socket fetches, 2026-05-15): albcors.asig.gov.al:2101, 77.242.24.183:2101

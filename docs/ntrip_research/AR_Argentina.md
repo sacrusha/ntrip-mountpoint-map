@@ -1,63 +1,72 @@
 # Argentina [AR] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12 (originally 2026-05-06)
+**Date researched:** 2026-05-15
 
-## Status: YES — free national government caster (RAMSAC-NTRIP) + commercial alternatives
+## Status: YES — free national government caster (RAMSAC-NTRIP) + small rtk2go fringe
+
+## RAMSAC-NTRIP (IGN)
 
 | Field | Value |
 |---|---|
-| **Active public NTRIP RTK caster** | Yes |
-| **host:port — RAMSAC-NTRIP** | `ntrip.ign.gob.ar:2101` |
-| **tariff — RAMSAC-NTRIP** | Free; registration required at ign.gob.ar/NuestrasActividades/Geodesia/RamsacNtrip/Registro |
-| **session cap** | 8 hours per connection; re-authentication required |
-| **type** | Single-base (not VRS) |
-| **hobbyist_eligibility** | Yes — open to any user; no professional licence required |
-| **legal_residency_required** | No — foreign users may register; no explicit residency requirement stated |
-| **last_confirmed_alive** | ign.gob.ar RAMSAC pages HTTP 200 on 2026-05-06; sourcetable endpoint confirmed in pipeline CI |
+| **landing_url** | https://www.ign.gob.ar/NuestrasActividades/Geodesia/RamsacNtrip |
+| **access_url** | https://www.ign.gob.ar/NuestrasActividades/Geodesia/RamsacNtrip/Registro |
+| **host:port** | `ntrip.ign.gob.ar:2101` |
+| **tariff** | Free; no fee for registration, use, or RINEX archive (operator page, observed 2026-05-15). No tier above free. |
+| **num_stations** | 186 sites on operator status page 2026-05-15 (138 ONLINE / 29 OFFLINE / 17 SIN NOVEDAD / 2 FUERA DE FUNCIONAMIENTO), of which ~155 producing data (ONLINE + SIN NOVEDAD). Live sourcetable `ntrip.ign.gob.ar:2101` 2026-05-15: 192 STR rows. |
+| **vrs** | No — single-base only; user picks nearest mountpoint manually |
+| **hobbyist_eligibility** | Yes — registration form requests username/email/profession/receiver; no professional license or organizational affiliation checked |
+| **legal_residency_required** | No — registration form has a Country dropdown and no explicit residency clause; foreign signup is structurally allowed but not affirmatively documented in the ToS |
+| **last_confirmed_alive** | 2026-05-15 — operator pages return HTTP 200; live curl `ntrip.ign.gob.ar:2101` returned SOURCETABLE 200 OK with 192 STR rows |
+| **datum_epoch** | POSGAR 07, ITRF2005 (IGS05) realization, epoch 2006.632 — adopted by IGN Disposición N° 20/2009 (15 May 2009). Source: https://www.ign.gob.ar/NuestrasActividades/Geodesia/Posgar07 |
+
+**Session policy:** 8-hour max per continuous connection (re-authenticate to extend); up to 3 simultaneous connections per credential (operator page, 2026-05-15).
+
+**Formats / constellations:** RTCM 2.3 and RTCM 3.0 streams; GPS+GLONASS on the sampled mountpoint (`25MA-v3.0`). Single-frequency receivers reach metre-class via DGPS streams; cm RTK requires dual-frequency within ~50 km baseline.
 
 ## Network Coverage
 
-RAMSAC-NTRIP is operated by the Instituto Geográfico Nacional (IGN) of Argentina. As of 2026-05-12 the network lists approximately 203 stations in the pipeline sourcetable, consistent with the publicly announced modernisation programme that expanded RAMSAC from 154 to ~204 permanent GNSS stations under an IGN strategic agreement (announced 2024–2025). Stations span all 23 provinces plus CABA, with densest coverage in Buenos Aires, Córdoba, Santa Fe, and Mendoza provinces. Coverage is thinner in Patagonia (La Pampa, Chubut, Santa Cruz, Tierra del Fuego) where communications constraints limit real-time streaming; IGN has announced plans to add additional Patagonia-region sites as cellular/satellite connectivity improves. Reference frame: POSGAR 07 (aligned to SIRGAS, ITRF-compatible).
+RAMSAC is operated by Instituto Geográfico Nacional (IGN). Stations span all 23 provinces + CABA; densest in Buenos Aires, Santa Fe, Córdoba, Mendoza. Patagonia (Chubut, Santa Cruz, Tierra del Fuego) remains sparse — baselines >100 km occur. No VRS / network-RTK product is published; corrections are emitted per physical station.
 
 ## Commercial Alternatives
 
-| Provider | Host:port | Type | Tariff | Notes |
-|---|---|---|---|---|
-| **RTKArg** | not published (contact via rtkarg.com) | network RTK | not publicly listed | Commercial caster serving agriculture, surveying, drone ops; details require registration |
-| **Trimble RTX** | PPP/SSR via satellite/internet | PPP-RTX (not networkRTK) | subscription; pricing via trimble.com/positioningservices | Sub-decimeter PPP; not NTRIP-RTCM network RTK |
-| **HxGN SmartNet+** | regional via Hexagon | VRS | not publicly listed for AR | No confirmed Argentine-specific nodes; enquire via hexagongeosystems.com |
-| **TopNET Live** | topconpositioning.com | network RTK | subscription; regional pricing not published | Some South America coverage; AR-specific node count unconfirmed |
+| Provider | Status in AR | Notes |
+|---|---|---|
+| **RTKArg** (rtkarg.com) | Operating; no public sourcetable | Quote-by-contact only (WhatsApp/email). No published host, tariff, or station count. Targets surveying / drone / precision-ag professionals. Hobbyist eligibility unconfirmed. |
+| **Trimble VRS Now** | Not listed on Trimble's published coverage map for Argentina (2026-05-15). Trimble RTX (PPP/SSR) is the commercial option Trimble offers locally; not networkRTK NTRIP. |
+| **Hexagon HxGN SmartNet** | No Argentina-specific node confirmed on operator portal. |
+| **Topcon TopNET Live** | Some LATAM presence; no AR-specific mountpoint disclosure found. |
 
-No confirmed free VRS / network-RTK service operates in Argentina beyond RAMSAC. All commercial VRS options require vendor-direct contact for pricing and coverage confirmation.
+No free commercial-grade VRS service is publicly advertised for Argentina; RAMSAC-NTRIP is the only free national caster.
 
-## Provincial CORS Initiatives
+## Volunteer / Community Casters
 
-Several Argentine provincial institutions (Catastros, universities, professional engineering councils) contributed stations to RAMSAC; these stations feed the national caster rather than operating independent provincial casters. No confirmed independent provincial NTRIP caster (separate from RAMSAC) identified as of 2026-05-06.
+`scripts/stations_by_country.py ARG` (2026-05-15) — 5 AR-tagged rtk2go bases:
 
-## Context Notes
+| Mountpoint | Lat | Lon | Region |
+|---|---|---|---|
+| CASISA | -31.45 | -64.35 | Córdoba |
+| MPBSAS001 | -34.94 | -58.81 | Greater Buenos Aires |
+| PGDB-Arrias | -30.29 | -63.64 | Córdoba |
+| PGDB-Luque | -31.65 | -63.34 | Córdoba |
+| PRNAMEI | -31.72 | -60.52 | Entre Ríos / Santa Fe border |
 
-- **RAMSAC origin**: Established 2010 by IGN with contributions from national and provincial institutions, cadastral offices, universities, professional councils, and private companies. Originally ~69 GPS stations; grown to ~203 by 2026.
-- **Single-base limitation**: RAMSAC does not offer VRS; users must select the nearest mountpoint manually. Hobbyist use requires re-connection every 8 hours.
-- **Volunteer**: 6 AR-coded bases on rtk2go (CASISA, LACU-COR-ARGENTINA, MPBSAS001, PGDB-Arrias, PGDB-Luque, PRNAMEI) — mostly Córdoba province (Cba/Luque/PGDB) plus 1 Buenos Aires metro (MPBSAS001) and 1 Entre Ríos (PRNAMEI). Zero AR-coded Centipede nodes. Confirmed via `scripts/stations_by_country.py ARG` on 2026-05-12.
-- **Coverage gap**: Patagonia (south of ~40°S) has sparse RAMSAC coverage; nearest station baselines can exceed 100 km in parts of Chubut and Santa Cruz provinces.
-- **Currency note**: Any Argentine commercial pricing would be quoted in ARS (Argentine peso), subject to high inflation; always confirm current rates directly.
+Zero AR-tagged Centipede nodes. Zero EarthScope NOTA stations in Argentina (EarthScope tags ARG-relevant only for Caribbean/Central America in this pipeline, 2026-05-15).
 
 ## Post-Processing (RINEX) Fallback
 
 | Service | URL | Cost |
 |---|---|---|
-| **RAMSAC RINEX** (IGN) — full archive per station | https://www.ign.gob.ar/NuestrasActividades/Geodesia/Ramsac | Free (same registration as NTRIP) |
-| **EarthScope NOTA** — selected Argentine stations | https://www.earthscope.org/data/gnss-realtime/ | Free non-commercial (NULA) |
+| **RAMSAC RINEX archive** (per-station daily/hourly files) | https://www.ign.gob.ar/NuestrasActividades/Geodesia/Ramsac | Free (same IGN registration) |
 
-## Sources Consulted
-- IGN RAMSAC-NTRIP service page: https://www.ign.gob.ar/NuestrasActividades/Geodesia/RamsacNtrip
-- IGN RAMSAC network map: https://www.ign.gob.ar/NuestrasActividades/Geodesia/RamsacNtrip/Mapa
-- IGN RAMSAC registration: https://www.ign.gob.ar/NuestrasActividades/Geodesia/RamsacNtrip/Registro
-- ArduSimple RTK correction services Argentina: https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-argentina/
-- RTKArg commercial caster: https://www.rtkarg.com/
-- SIRGAS RAMSAC-NTRIP paper (2010): https://www.ign.gob.ar/descargas/geodesia/ServicioNTRIPArgentina2011.pdf
-- SIRGAS bulletin RAMSAC (2022): https://sirgas.ipgh.org/docs/Boletines/Bol22/03-ServicioArgentino-RAMSAC-NTRIP.pdf
-- History and future of RAMSAC (2018 paper): https://www.ign.gob.ar/descargas/geodesia/2018_The_history_state_and_future_of_RAMSAC.pdf
-- IGN modernisation agreement (154→204 stations expansion): https://www.ign.gob.ar/content/el-ign-firm%C3%B3-un-convenio-estrat%C3%A9gico-para-modernizar-la-red-argentina-de-monitoreo-satelital
-- IGN RAMSAC station status: https://www.ign.gob.ar/NuestrasActividades/Ramsac/EstacionesPermanentes
-- Pipeline CI sourcetable probe — ~203 AR stations confirmed 2026-05-06
-- Local data verification (2026-05-12): `scripts/stations_by_country.py ARG` — 6 rtk2go AR bases enumerated
+## Sources Consulted (verified 2026-05-15)
+
+- IGN RAMSAC-NTRIP service: https://www.ign.gob.ar/NuestrasActividades/Geodesia/RamsacNtrip — reachable (200)
+- IGN RAMSAC-NTRIP registration: https://www.ign.gob.ar/NuestrasActividades/Geodesia/RamsacNtrip/Registro — reachable (200)
+- IGN station-status page (186 sites, online/offline breakdown): https://www.ign.gob.ar/nuestrasactividades/ramsac/estacionespermanentes — reachable (200)
+- POSGAR 07 official declaration page: https://www.ign.gob.ar/NuestrasActividades/Geodesia/Posgar07 — reachable (200)
+- Datum technical doc (RAMSAC adoption of POSGAR 07): https://ramsac.ign.gob.ar/posgar07_pg_web/documentos/POSGAR_07_RAMSAC.pdf
+- SIRGAS bulletin on RAMSAC-NTRIP (2022): https://www.sirgas.org/fileadmin/docs/Boletines/Bol22/03-ServicioArgentino-RAMSAC-NTRIP.pdf
+- Pino & co. NTRIP Service in Argentina (2011 launch paper): https://www.ign.gob.ar/descargas/geodesia/ServicioNTRIPArgentina2011.pdf
+- RTKArg landing page: https://www.rtkarg.com/ — reachable (200); no public technical or pricing detail
+- ArduSimple AR caster list: https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-argentina/ — reachable (200)
+- Pipeline sourcetable fetch (data/stations.json via `scripts/stations_inspect.py ramsac`): 196 mountpoints on 2026-05-15
+- Pipeline volunteer-caster enumeration (`scripts/stations_by_country.py ARG`): 5 rtk2go bases on 2026-05-15

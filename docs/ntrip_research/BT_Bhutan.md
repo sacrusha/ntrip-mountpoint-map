@@ -1,59 +1,64 @@
 # Bhutan [BT] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12 (initial 2026-05-06)
+**Date researched:** 2026-05-15 (prior 2026-05-12, initial 2026-05-06)
 
-## Status: YES — active government NTRIP caster (DrukNet / MIRACaster); annual subscription required
+## Status: YES — active government NTRIP caster (DrukNet / MIRACaster); annual subscription required; live SOURCETABLE confirmed 2026-05-15
 
 | Field | Value |
 |---|---|
 | **Active public NTRIP RTK caster** | Yes (government-operated; annual subscription required) |
 | **Operator** | National Land Commission Secretariat (NLCS), Royal Government of Bhutan |
 | **Network name** | DrukNet GNSS National Network |
-| **Caster software** | MIRACaster (operated by MIRASpaco — Measuring Earth from Space, Portugal) |
-| **host:port — NLCS DrukNet** | `ntrip.druknet.net:2101` (IP: 103.252.84.100) |
-| **tariff — Government agencies** | Nu. 10,000 / year · unlimited simultaneous users (Dzongkhags + 4 Gelyong Thromdes) |
-| **tariff — Corporations / private firms** | Nu. 10,000 / year · 1 user · Basic; Nu. 17,500 / year · 2 users · Standard; Nu. 22,500 / year · 3 users · Premium |
+| **Caster software** | MIRACaster (Server header: `NTRIP MIRACaster MIRASpaco-00001/2.0`); platform branded MiraNet v2.0.0, operated by MIRASpaco (Portugal) |
+| **landing_url** | https://web.nlcs.gov.bt/cors-facility/ |
+| **access_url** | https://miranet.druknet.net/pre-registration/form |
+| **host:port** | `ntrip.druknet.net:2101` (hostname does not resolve in public DNS — confirmed against multiple resolvers 2026-05-15; direct IP `103.252.84.100:2101` returned SOURCETABLE 200 OK same date) |
+| **num_stations** | 14 active mountpoints in live sourcetable (2026-05-15): THIM, BUMT, KANG, PHUN, DTNG, LHUN, DGPL, HAAC, SPGT, WNGD, SIPS, ZHEM, GASA, JOMO. All RTCM3.3; multi-GNSS (BDS+GAL+GLO+GPS+IRS+QZS+SBAS) |
+| **vrs** | No — single-base only; 14 physical mountpoints, no VRS/MAC/iMAX entries in sourcetable |
+| **tariff — Government agencies** | Nu. 10,000 / year · "unlimited users" (Dzongkhags + 4 Gelyong Thromdes) |
+| **tariff — Private sector** | Basic Nu. 10,000 / yr · 1 user; Standard Nu. 17,500 / yr · 2 users; Premium Nu. 22,500 / yr · 3 users |
 | **tariff — Educational / research** | Free — official supporting document proving teaching/research purpose required |
-| **hobbyist_eligibility** | Individual hobbyist tier not explicitly defined; educational/research free tier may be accessible to serious hobbyists who can submit a supporting letter demonstrating research intent |
-| **legal_residency_required** | Not stated; pre-registration form open globally at miranet.druknet.net |
-| **last_confirmed_alive** | 2026-05-12 — `miranet.nlcs.gov.bt` HTTP 200 (Apache/2.4.52 Ubuntu); `web.nlcs.gov.bt/cors-facility/` HTTP 200 (nginx/1.18.0) with tariff schedule unchanged from 2026-05-06 snapshot; NSDI metadata still revised August 2024. Direct NTRIP SOURCETABLE probe of `ntrip.druknet.net:2101` not executed (NTRIP/2.0 not testable in this sandbox); HTTP-layer reachability of the portal confirmed. |
+| **Simultaneous-connection rule** | CORS Facility page: *"Simultaneous connections to the network are not allowed, that is, each subscription can only make one connection to the network at the same time"* and *"the users will be given **a** credential (Username and Password)"* (singular). Operator text is ambiguous between (a) the 1/2/3-user tiers granting N separate credentials, each one-session-at-a-time, and (b) one shared credential with N being an authorised-headcount cap. Resolving requires contacting NLCS directly. |
+| **hobbyist_eligibility** | No explicit hobbyist tier. The cheapest private slot is Nu. 10,000/yr (~USD 120). Educational/research free tier is the only practical path for an individual and requires a supporting institutional letter. Casual hobbyist access: effectively closed |
+| **legal_residency_required** | Not stated; pre-registration form at miranet.druknet.net accepts global submissions, but credentials are released only after administrative approval |
+| **datum_epoch** | DrukGeoid 2015 (vertical); horizontal datum not stated in NLCS Cadastral Guideline v1 Dec 2023 — OMIT URL |
+| **last_confirmed_alive** | 2026-05-15 — direct TCP probe `curl http://103.252.84.100:2101/` returned `SOURCETABLE 200 OK` from `NTRIP MIRACaster MIRASpaco-00001/2.0`, server date `Fri, 15 May 2026 20:00:53 GMT`, 14 STR records, Content-Length 1594. miranet.nlcs.gov.bt HTTP 200, MiraNet v2.0.0 with live UTC clock. CORS Facility page reachable; tariff schedule unchanged. CORS Notification dated 3 September 2025 published on NLCS site (image-only, no extractable text) |
 
 ## Most Recent Project Announcement
 
-- **August 2024**: NLCS CORS / DrukNet NSDI metadata record last revised (nsdi.systems.gov.bt), confirming 13 CORS stations operational.
-- **2023**: Two new stations (SIPS and ZHEM) added, bringing total to 13 active stations. Leica hardware; server hosted by MIRASpaco (Portugal).
-- **May 2025**: NLCS published NCRP Journal 2025 (web.nlcs.gov.bt), confirming NLCS institutionally active and CORS network context referenced.
-- **2014**: Network founded with 6 initial CORS stations (THIM, BUMT, KANG, PHUN, GELE, DEOT). Note: DEOT and GELE are flagged for decommissioning; effective current total may vary.
+- **3 September 2025**: NLCS published a CORS Notification on web.nlcs.gov.bt/cors-notification/ (image-only; text not machine-readable from the page).
+- **May 2025**: NCRP Journal 2025 published (web.nlcs.gov.bt) — confirms NLCS institutionally active.
+- **2025–2026 (inferred from live sourcetable)**: Two new mountpoints **GASA** (27.908°N, 89.728°E — Gasa Dzongkhag, north-west) and **JOMO** (26.894°N, 92.099°E — easternmost station, near Trashigang) appear in the current sourcetable but were not in prior 2024 NSDI metadata (which listed 13 stations). DEOT and GELE no longer appear, consistent with 2024 decommissioning flag.
+- **August 2024**: NSDI CORS metadata last revised (13 stations at that time).
+- **2014**: Network founded with 6 initial CORS stations.
 
 ## Context Notes
 
-- **DrukNet** is the official name of Bhutan's national GNSS CORS network; **MIRACaster** is the caster software/portal. The NTRIP server is maintained by MIRASpaco (Portugal) on behalf of NLCS. The MIRANet web application at miranet.nlcs.gov.bt / www.miranet.druknet.net provides RINEX data download and account management.
-- **13 CORS stations** as of 2024 (NSDI metadata confirmed); covers ~38,000 km² of mountainous terrain. Stations installed in waves: 6 in 2011–2012 (THIM, BUMT, KANG, PHUN, GELE, DEOT); DTNG added 2020; WNGD, DGPL added 2020; HAAC, LHUN, SPGT added 2022; SIPS, ZHEM added 2023. DEOT and GELE flagged for decommissioning (net operational count may be 11–13).
-- **Geographic coverage**: West 88.626°E to East 92.232°E; South 26.417°N to North 28.496°N.
-- **Each subscription allows one simultaneous connection** per user slot (Basic = 1 slot, Standard = 2, Premium = 3).
-- **Pre-registration**: Form at https://miranet.druknet.net/pre-registration/form — fields: Full Name, Email, Organization (optional), Telephone, Preferred Username. Account activated after administrative approval; credentials sent automatically.
-- **RINEX post-processing**: Daily and hourly RINEX data available for download on the MIRANet portal; included in subscription. Educational accounts also get RINEX access.
-- **Official vertical datum**: DrukGeoid 2015 used with CORS network for cadastral surveys.
-- **Cadastral guidelines** (NLCS, Dec 2023): baseline up to 40 km acceptable using CORS as base station. Precision claimed: centimeter-level horizontal RTK.
-- **Contact**: Jamphel Gyeltshen, Topographic Division, Sr. Surveyor — Phone: 02-331447. NLCS main office: web.nlcs.gov.bt.
-- **VAT/tax**: Bhutan corporate tax is 25%; subscription tariffs as listed on CORS Facility page do not specify whether taxes are inclusive or exclusive.
-- Bhutan's network is notably advanced for its size and economic context, reflecting sustained NLCS institutional investment in geodetic infrastructure since 2011.
-- No Bhutan stations appear in the RTK2go or Centipede sourcetables (confirmed monitor.use-snip.com check at research date).
+- **DrukNet** is the official name of Bhutan's national GNSS CORS network; **MIRACaster** is the NTRIP caster software, hosted by **MIRASpaco** (Portugal) on behalf of NLCS. The MIRANet web application at miranet.nlcs.gov.bt / www.miranet.druknet.net provides RINEX download and account management.
+- **14 active mountpoints** (2026-05-15 SOURCETABLE), up from 13 in 2024 NSDI metadata. Net change: +GASA, +JOMO; –DEOT, –GELE (decommissioning previously flagged). Coverage spans ~88.88°E (SIPS) to ~92.10°E (JOMO), ~26.82°N (DTNG) to ~27.91°N (GASA) — broadly all of Bhutan; max baseline within country ~370 km.
+- **Mountpoint format**: all 14 streams are RTCM 3.3, multi-constellation (GPS+GLO+GAL+BDS+QZS+IRS+SBAS). Carrier flag = 2 (L1+L2). No NMEA position required (mountpoints are physical base stations, not VRS).
+- **Pre-registration**: Form at https://miranet.druknet.net/pre-registration/form — fields: Full Name, Email, Organization (optional), Telephone, Preferred Username. Credentials issued after administrative approval.
+- **Tariff/user-slot interpretation (UNRESOLVED)**: The CORS Facility page says "each subscription can only make one connection at the same time" and that the user receives "a credential" (singular). This is ambiguous between (a) 1/2/3 separate credentials per tier, each one-session-at-a-time, and (b) one shared credential with N being an authorised-headcount cap. The two readings have very different operational implications for multi-user organisations; resolving requires direct contact with NLCS.
+- **RINEX post-processing**: Daily and hourly RINEX data available via the MiraNet portal; included in subscription. Educational accounts also receive RINEX access.
+- **Datum**: Official vertical datum DrukGeoid 2015. Cadastral guideline (NLCS, Dec 2023) accepts baselines up to 40 km from a CORS base.
+- **Contact**: Jamphel Gyeltshen, Sr. Surveyor, Topographic Division — Phone: 02-331447. NLCS HQ: web.nlcs.gov.bt.
+- **No Bhutan stations in third-party casters**: confirmed not present in RTK2go or Centipede sourcetables; only the official DrukNet caster serves Bhutan CORS data.
+- **Cross-border alternatives within ~50 km**: None known. Nearest plausible alternatives are well beyond 50 km — India (no public CORS NTRIP within 50 km of the BT border that hobbyists can access), Nepal, Bangladesh, China (Tibet) — none currently offer open hobbyist-eligible NTRIP feeds in that range.
 
 ## Post-Processing (RINEX) Fallback
 
 | Service | URL | Cost |
 |---|---|---|
-| **DrukNet MIRANet RINEX archive** — daily and hourly data, 13 stations | https://miranet.nlcs.gov.bt | Included in paid subscription (Nu. 10,000–22,500/yr); free with educational account |
+| **DrukNet MiraNet RINEX archive** — daily and hourly data, 14 stations | https://miranet.nlcs.gov.bt | Included in paid subscription (Nu. 10,000–22,500/yr); free with educational account |
 | **IGS / EarthScope archive** — any IGS stations in Bhutan, if any | https://www.earthscope.org/data/gnss-data/ | Free non-commercial |
 
 ## Sources Consulted
-- NLCS CORS Facility page (tariff tiers confirmed): https://web.nlcs.gov.bt/cors-facility/
-- DrukNet / MIRANet portal: https://miranet.nlcs.gov.bt/
-- MIRANet pre-registration form: https://miranet.druknet.net/pre-registration/form
+- Direct NTRIP SOURCETABLE probe (2026-05-15, 20:00:53 UTC): `curl --http0.9 --max-time 10 http://103.252.84.100:2101/` → `SOURCETABLE 200 OK`, 14 STR records (THIM, BUMT, KANG, PHUN, DTNG, LHUN, DGPL, HAAC, SPGT, WNGD, SIPS, ZHEM, GASA, JOMO). DNS `ntrip.druknet.net` returned NXDOMAIN against multiple public resolvers; direct IP works.
+- NLCS CORS Facility page: https://web.nlcs.gov.bt/cors-facility/
+- DrukNet / MiraNet portal: https://miranet.nlcs.gov.bt/ (MiraNet v2.0.0, live UTC clock 2026-05-15)
+- MiraNet pre-registration form: https://miranet.druknet.net/pre-registration/form
+- NLCS CORS Notification page (latest 3 September 2025): https://web.nlcs.gov.bt/cors-notification/
 - Bhutan NSDI CORS metadata (13 stations, revised Aug 2024): https://nsdi.systems.gov.bt/portal/sharing/rest/content/items/453406824ec04042b261c114cea594f9/info/metadata/metadata.xml?format=default&output=html
 - NLCS GNSS-RTK Cadastral Guideline v1 Dec 2023: https://web.nlcs.gov.bt/wp-content/uploads/2023/12/Guideline-for-using-GNSS-RTK-in-Cadastral_Surveyingv1.pdf
 - NLCS NCRP Journal 2025: https://web.nlcs.gov.bt/wp-content/uploads/2025/05/NCRP_JOURNAL_2025.pdf
-- NLCS CORS Notification page: https://web.nlcs.gov.bt/cors-notification/
 - MIRASpaco GNSS page: https://miraspaco.com/gnss/
 - RTK2go monitor (no BT stations): http://monitor.use-snip.com/?hostUrl=rtk2go.com&port=2101
-- curl probe of `ntrip.druknet.net:2101` — NOT EXECUTED: sandbox TCP/shell tools blocked during research 2026-05-06. miranet.nlcs.gov.bt WebFetch returned HTTP 200 (portal active). Direct NTRIP SOURCETABLE response NOT confirmed.

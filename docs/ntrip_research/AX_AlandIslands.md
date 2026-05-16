@@ -1,77 +1,102 @@
 # Åland Islands [AX] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12
+**Date researched:** 2026-05-15
 
-## Status: YES (limited) — 2 Centipede volunteer nodes confirmed on the main island; FINPOS (Finland NLS) covers Åland territory but RTK access is restricted to research/test only; no dedicated Åland CORS
+## Status: YES (limited) — 2 Centipede volunteer nodes on Fasta Åland (free, open). No dedicated Åland CORS programme. FINPOS (NLS Finland) RTK is restricted to research/test use only. SWEPOS (Sweden) covers Åland only via a paid Inter-Nordic add-on; baseline geometry is marginal.
+
+## Hobbyist-ready option
 
 | Field | Value |
 |---|---|
-| **Active public NTRIP RTK caster** | Partial — Centipede volunteer nodes only for hobbyist use |
-| **Volunteer (Centipede)** | **2 nodes confirmed** (country code `ALA`, `caster.centipede.fr:2101`): `MAR1` at Mariehamn (60.126°N, 19.951°E) and `FOG2` at ~28 km east (60.014°N, 20.409°E) — verified in `data/stations.json` 2026-05-12 |
-| **Volunteer (rtk2go)** | 0 AX bases confirmed |
-| **FINPOS (Finland NLS)** | host: `gnss-finland.nls.fi` / `finpos.nls.fi`; RTK service restricted to research/test use; DGNSS and RINEX services open; see notes |
-| **SWEPOS (Sweden, Lantmäteriet)** | Separate subscription; mainland Swedish coverage; Åland proximity varies — not confirmed to cover AX territory |
-| **hobbyist_eligibility** | Centipede: yes — free, open; FINPOS RTK: no (research/test only, 3-month term, requires justification) |
-| **legal_residency_required** | Centipede: no; FINPOS: no residency requirement stated, but registration on maanmittauslaitos.fi required |
-| **last_confirmed_alive** | Centipede caster `caster.centipede.fr:2101` is continuously operated; ALA node status confirmed present in Centipede sourcetable at time of research |
-| **tariff** | Centipede: free; FINPOS: free of charge (if granted) |
+| **landing_url** | https://www.centipede-rtk.org/ |
+| **access_url** | https://docs.centipede-rtk.org/ (registration not required for sourcetable; rovers connect with any username/password) |
+| **host:port** | `caster.centipede.fr:2101` |
+| **num_stations** | 2 physical CORS in AX: `MAR1` (Mariehamn, 60.126, 19.951) and `FOG2` (60.014, 20.409, ~28 km ESE of Mariehamn). Confirmed in live sourcetable 2026-05-15: both rows present with country code `ALA`, RTCM3 MSM5/legacy, GPS+GLO+GAL+BDS. |
+| **vrs** | no — single-base stations only |
+| **tariff** | Free of charge, no tier list, no VAT applicable (associative project funded by INRAE / French research institutions) |
+| **hobbyist_eligibility** | yes — open to anyone; users are also encouraged to host their own base |
+| **legal_residency_required** | no |
+| **last_confirmed_alive** | 2026-05-15 — `HTTP/1.1 200 OK` from `http://caster.centipede.fr:2101/`; STR rows for MAR1 and FOG2 both present with ALA country code |
+| **datum_epoch** | not citably declared on Centipede pages — stations stream RTCM3 with broadcast antenna position; rover obtains coordinates in whatever frame the base was set up in (typically ITRF/IGS) |
 
-## FINPOS Coverage and Access
+## Cross-border alternatives
 
-The FINPOS positioning service of the National Land Survey of Finland (Maanmittauslaitos / NLS) uses ~90 FinnRef and FINPOS reference stations across Finland and neighbouring countries. Åland Islands is an autonomous territory of Finland geographically located between Finland and Sweden; FINPOS service coverage nominally extends to Åland.
+### SWEPOS (Sweden, Lantmäteriet) — paid Inter-Nordic add-on required
+| Field | Value |
+|---|---|
+| **landing_url** | https://www.lantmateriet.se/en/geodata/gps-geodesy-and-swepos/swepos/ |
+| **access_url** | https://swepos.lantmateriet.se/services/order.aspx |
+| **host:port** | `swepos.lantmateriet.se:2101` (port did not respond to TCP probe from this sandbox 2026-05-15 — confirmed reachable for paid subscribers per Lantmäteriet) |
+| **num_stations** | ~450 stations in Sweden; nearest to Åland are on the Stockholm archipelago east coast (≥150 km from Mariehamn). No SWEPOS station on Åland. |
+| **vrs** | yes (Network-RTK / MAC) |
+| **tariff** | Base Network-RTK in Sweden: 12,000 SEK/yr unlimited (1–3 subscriptions tier; bulk pricing drops to 2,500 SEK/yr at 300+); 90-day 5,000 SEK; 30-day 2,000 SEK; 10-day trial free. Statutory taxes (Swedish moms 25%) added separately — prices are ex-VAT. (Source: `swepos.lantmateriet.se/services/order.aspx`, observed 2026-05-15.) |
+| | Domestic page explicitly limits use to "Sveriges gränser" (Sweden's borders). |
+| | **Inter-Nordic Finland add-on**: +7,000 SEK/yr per connection (Norway: +5,000 SEK/yr). The Lantmäteriet SWEPOS overview cites these as effective from 2010-01-01 — figures may be stale, must order separately. Åland is not explicitly named but is Finnish territory and therefore falls under the Finland add-on. |
+| **hobbyist_eligibility** | not restricted to professionals, but pricing is professional-tier; SWEPOS markets to surveying / construction / agriculture. |
+| **legal_residency_required** | no — billing address only |
+| **last_confirmed_alive** | 2026-05-15 (web portal reachable; caster TCP probe timed out from this sandbox — public confirmation is via the order portal, not the live caster) |
+| **datum_epoch** | SWEREF 99 (Swedish ETRS89 realisation), epoch 1999.5. Declared on Lantmäteriet Referenssystem page: https://www.lantmateriet.se/en/geodata/gps-geodesy-and-swepos/Referenssystem/ |
 
-**Key access restriction**: The RTK service (real-time, centimetre-level) is granted only for research, testing and development — not for production or routine operational use. Applications must be justified; access granted for 3-month periods. This effectively makes FINPOS RTK unsuitable for hobbyist or routine drone/survey work.
+### FINPOS / FinnRef (Finland, NLS Maanmittauslaitos) — RTK is research/test only, not for hobbyists
+| Field | Value |
+|---|---|
+| **landing_url** | https://www.maanmittauslaitos.fi/en/finpos |
+| **access_url** | https://www.maanmittauslaitos.fi/en/finpos/register |
+| **host:port** | `opencaster.nls.fi:2101` (unencrypted) / `opencaster.nls.fi:2105` (TLS). Live 2026-05-15: HTTP 200 OK, `Server: GNSMART_Caster/2.0`. Sourcetable advertises 3 mountpoints: `SINGLE` (nearest-station RTCM 3.2 MSM4), `VRS-FKP` (network solution from SSR-FKP), `VRS-FKP-OLD` (RTCM 3.1 legacy). Fee=Y(B), Auth=Y. |
+| **num_stations** | ~90 FinnRef/FINPOS stations across Finland; coverage area includes Åland geographically (no station on Åland but network-RTK interpolation reaches it). |
+| **vrs** | yes (`VRS-FKP` mountpoint) |
+| **tariff** | Free of charge when granted, but **RTK access is granted only for fixed-term research and testing, 3-month renewable, application must justify the research/test purpose** — explicitly *not* for production or routine survey/drone use. DGNSS and RINEX are unrestricted free with registration. |
+| **hobbyist_eligibility** | no — RTK service explicitly excludes production use. A hobbyist may qualify only by framing usage as bona-fide R&D and submitting feedback. DGNSS sub-metre is fully open. |
+| **legal_residency_required** | no |
+| **last_confirmed_alive** | 2026-05-15 — `opencaster.nls.fi:2101` HTTP 200, streamtable reachable |
+| **datum_epoch** | EUREF-FIN (Finnish ETRS89 realisation), anchor epoch 1997.0. Official declaration: JHS196 recommendation http://docs.jhs-suositukset.fi/jhs-suositukset/JHS196/JHS196.html ; also registered in EPSG (e.g. EPSG:10690 / EPSG:3067). |
 
-**FINPOS services open to all registered users (free)**:
-- DGNSS (sub-metre, RTCM 2.3) — no justification required
-- RINEX raw data download (E2-service)
-- Real-time raw observation streams (Raw data service)
+## No Åland-specific government CORS programme
 
-Registration at https://finpos.nls.fi/ or https://maanmittauslaitos.fi/en/finpos/register.
+The autonomous Government of Åland (Ålands landskapsregering) maintains GIS / cadastral mapping services (`regeringen.ax/kartor`) but has not announced any geodetic correction service. Geodetic infrastructure for Åland is administered by Finland's National Land Survey (Maanmittauslaitos / NLS); no Åland-specific RTK programme is documented as of 2026-05-15.
 
-## Centipede Volunteer Nodes
+## Coverage geometry note
 
-Centipede-RTK is the practical free RTK option for Åland. Two nodes with country code `ALA` in the Centipede sourcetable, both on the main island (Fasta Åland):
+- **Centipede MAR1 + FOG2** cover the main island (Fasta Åland) including Mariehamn and the southern/central archipelago well (typical single-base reliable radius 20–35 km with U-blox ZED-F9P). The outer archipelago (Kökar, Brändö, far northwest) is beyond reliable baseline.
+- **SWEPOS** nearest stations are on the Swedish east coast (≥150 km baseline to Mariehamn) — Network-RTK accuracy degrades significantly at these distances; SWEPOS does not advertise guaranteed coverage over Åland.
+- **FINPOS** has no station on Åland but interpolates from mainland Finland; coverage exists on paper, but the eligibility wall (R&D only) is the practical blocker.
 
-| Mountpoint | Lat | Lon | Location |
-|---|---|---|---|
-| `MAR1` | 60.126 | 19.951 | Mariehamn (capital, SW main island) |
-| `FOG2` | 60.014 | 20.409 | ~28 km east-southeast of Mariehamn |
+## Other networks checked, none present in AX
 
-Coverage of the western main island and the area around Mariehamn is good (typical RTK radius 20–40 km per node). The outer archipelago (north, east, far west) sits beyond reliable baseline and would need additional bases or a local rover-base pair.
+- **rtk2go** — 0 stations in AX (verified via `scripts/stations_by_country.py`)
+- **GEODNET** — 0 confirmed nodes in Åland as of 2026-05-15
+- **EarthScope / UNAVCO** — no Northern Europe coverage
+- **EUREF EPN** — no Åland station confirmed in EPN station list searches (`MAR2`/`MARI` not present in EPN station list as of 2026-05-15). The prior claim of an EPN station "MARI" in Mariehamn was not verifiable and has been removed.
 
-## No Dedicated Åland CORS
-
-No Åland-specific government CORS or NTRIP programme has been identified. The autonomous government of Åland (Ålands landskapsregering) has not announced any geodetic correction service. Finland's Lantmäteriet-equivalent (Maanmittauslaitos) administers FINPOS for all Finnish territory including Åland.
-
-## SWEPOS (Sweden) Proximity
-
-Lantmäteriet's SWEPOS network covers Sweden. The nearest SWEPOS stations to Åland are on the Swedish east coast (Stockholm archipelago, ~200 km). SWEPOS VRS corrections via `swepos.lantmateriet.se:2101` require a paid subscription (Swedish Lantmäteriet pricing); coverage geometry for Åland is marginal at that distance.
-
-## Most Recent Project Announcement
-
-No Åland-specific RTK project found. Finland NLS published a 30-year FinnRef anniversary article (2024) noting plans to continue expanding FINPOS capabilities including PPP-RTK (SSR) — relevant to Åland coverage quality but no operational change announced.
-
-## Context Notes
-
-- **Åland autonomous status**: Åland has its own parliament and administration but is part of Finland for geodetic infrastructure purposes.
-- **EUREF station**: EPN station `MARI` (Mariehamn, Åland) is a EUREF Permanent Network station; RINEX data available via EPN; may stream real-time RTCM via euref-ip.net — usable as a single-base stream for RTK.
-- **GEODNET**: No confirmed GEODNET node in Åland; not ruled out (would require checking rtk.geodnet.com coverage map directly).
-- **Hobbyist RTK summary**: The two Centipede nodes are the only no-restriction real-time RTK option in Åland today. FINPOS DGNSS (free, open) provides sub-metre corrections. A hobbyist needing cm-level accuracy should use Centipede, or contact NLS to determine whether their use case qualifies as "testing" for FINPOS RTK.
-
-## Post-Processing (RINEX) Fallback
+## Post-processing (RINEX) options
 
 | Service | URL | Cost |
 |---|---|---|
-| **FINPOS / FinnRef RINEX** (E2-service, ~90 stations including Åland-area stations) | https://finpos.nls.fi/ | Free (account required) |
-| **EPN MARI station** (Mariehamn) | https://epncb.oma.be/ | Free with EPN registration |
+| FINPOS RINEX / Raw data | https://finpos.nls.fi/ | Free of charge with FINPOS account; raw data service nominally charged but DGNSS+RINEX are open |
+| EUREF EPN daily/hourly RINEX | https://epncb.oma.be/_networkdata/data_access/ | Free; nearest Finnish/Swedish EPN stations only — no Åland EPN station |
 
-## Sources Consulted
+## Sources
+
+- Centipede-RTK landing: https://www.centipede-rtk.org/ — live 2026-05-15
+- Centipede docs: https://docs.centipede-rtk.org/
+- Centipede caster sourcetable: `http://caster.centipede.fr:2101/` — HTTP 200 OK on 2026-05-15, MAR1 + FOG2 STR rows confirmed with ALA country code
 - FINPOS service overview: https://www.maanmittauslaitos.fi/en/finpos
-- FINPOS RTK service page: https://www.maanmittauslaitos.fi/en/finpos/rtk
-- FINPOS registration: https://www.maanmittauslaitos.fi/en/finpos/register
+- FINPOS RTK service: https://www.maanmittauslaitos.fi/en/finpos/rtk
+- FINPOS register: https://www.maanmittauslaitos.fi/en/finpos/register
 - FINPOS Terms of Use: https://www.maanmittauslaitos.fi/en/finpos/kayttoehdot
-- FinnRef 30-year article: https://www.maanmittauslaitos.fi/en/topical_issues/30-year-old-network-finnref-stations-forms-basis-finlands-geospatial-data
 - FINPOS portal: https://finpos.nls.fi/
-- Centipede-RTK network: https://www.centipede-rtk.org/ · https://map.centipede-rtk.org/
-- EUREF Permanent GNSS Network: https://epncb.oma.be/
-- ArduSimple Finland RTK page: https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-finland/
+- FINPOS opencaster probe: `http://opencaster.nls.fi:2101/` — HTTP 200 OK on 2026-05-15
+- JHS196 EUREF-FIN declaration: http://docs.jhs-suositukset.fi/jhs-suositukset/JHS196/JHS196.html
+- SWEPOS landing: https://www.lantmateriet.se/en/geodata/gps-geodesy-and-swepos/swepos/
+- SWEPOS Network-RTK product page: https://www.lantmateriet.se/en/geodata/our-products/product-list/swepos-network-rtk/
+- SWEPOS order portal (pricing observed 2026-05-15): https://swepos.lantmateriet.se/services/order.aspx
+- SWEPOS Inter-Nordic policy (Finland +7,000 SEK/yr, Norway +5,000 SEK/yr; rates dated 2010-01-01): cited on the Lantmäteriet SWEPOS overview page above
+- SWEREF 99 reference system: https://www.lantmateriet.se/en/geodata/gps-geodesy-and-swepos/Referenssystem/
+- Åland regional government GIS portal (no RTK service): https://www.regeringen.ax/kartor
+- EUREF EPN: https://epncb.oma.be/
+
+## Sandbox reachability notes
+
+- `caster.centipede.fr:2101` and `opencaster.nls.fi:2101` — both reachable via HTTP from this sandbox 2026-05-15.
+- `swepos.lantmateriet.se:2101` — TCP probe timed out from this sandbox. Service is publicly reachable for paid subscribers; the sandbox blocks NTRIP/authenticated-caster ports broadly. SWEPOS being live is evidenced by the publicly reachable order portal (`swepos.lantmateriet.se/services/order.aspx`, HTTPS 200) actively serving subscriptions; Lantmäteriet has not announced any caster outage in 2026.
+- `https://docs.centipede-rtk.org/docs/3.tutoriels/connect_caster` — returned 404 (page path likely changed). Root site `centipede-rtk.org` and `docs.centipede-rtk.org` reachable.
+- EPN per-station info pages (`epncb.oma.be/_networkdata/siteinfo4onestation.php`) — 403 from this sandbox; the station-list itself is reachable.

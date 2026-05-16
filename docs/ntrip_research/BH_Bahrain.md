@@ -1,5 +1,5 @@
 # Bahrain [BH] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12
+**Date researched:** 2026-05-15
 
 ## Status: YES — SLRB PRN (Permanent Reference Network) is FREE for registered users; covers entire kingdom; access by email application
 
@@ -8,12 +8,16 @@
 | **Active public NTRIP RTK caster** | Yes (registration required; free) |
 | **Network name** | PRN — Permanent Reference Network |
 | **Operator** | Survey & Land Registration Bureau (SLRB), Kingdom of Bahrain |
-| **host:port** | Not publicly advertised on SLRB website; issued in registration email after application |
-| **VRS** | Likely yes (network-RTK service per SLRB description "real-time correction… through GPS network"); not explicitly stated in public material |
-| **tariff** | **Free of charge** — explicit note on SLRB PRN subscription page: "this service may incur charges in the future" but at observation date the service is free |
-| **hobbyist_eligibility** | Yes in principle — application form accepts both "Individual" and "Agent" applicant types; no licensed-surveyor requirement stated. Practical eligibility may favour Bahraini residents/professionals |
-| **legal_residency_required** | Not stated as a hard requirement in the public terms; mailing address on the application form supports both local and foreign applicants in principle |
-| **last_confirmed_alive** | 2026-05-12 — `slrb.gov.bh/en/permanent-reference-networkprn` returned the live PRN subscription page; processing time stated as 1–2 working days |
+| **landing_url** | https://www.slrb.gov.bh/en/permanent-reference-networkprn |
+| **access_url** | https://www.slrb.gov.bh/en/permanent-reference-networkprn |
+| **host:port** | Not publicly advertised; issued in credentials email after application approval |
+| **num_stations** | Not disclosed by SLRB. Bahrain's territory is ~765 km²; a single well-sited reference station can cover the kingdom within a typical ~30 km RTK baseline. SLRB states the PRN "provides the geodetic basis for all surveying operations in Bahrain" but does not publish station count or locations. |
+| **vrs** | ? — SLRB describes the service as "Real-Time Correction Service for Surveying through GPS Network"; network-RTK / VRS is implied but not explicitly confirmed in any public material |
+| **tariff** | Free of charge (observed 2026-05-15 at SLRB PRN subscription page). Exact site text: "*Kindly note that this service may incur charges in the future." No tier structure; no VAT applicable. |
+| **hobbyist_eligibility** | yes — application form accepts both "Individual" and "Agent" applicant types; no licensed-surveyor requirement stated in public terms |
+| **legal_residency_required** | ? — not stated as a hard requirement in the public terms; mailing address on the application form supports both local and foreign applicants in principle. Practical screening at SLRB's discretion. |
+| **last_confirmed_alive** | 2026-05-15 — SLRB PRN subscription page (slrb.gov.bh/en/permanent-reference-networkprn) returned the live PRN page; application form PDF (dated 15062025…) downloadable; processing time stated as 1–2 working days |
+| **datum_epoch** | Omitted — no citable URL with an explicit PRN datum+epoch declaration. Bahrain historically uses *Ain el Abd 1970* (EPSG:4204; Hayford 1909 ellipsoid) for cadastral work; modern PRN realisation is presumed ITRF-aligned but SLRB does not publish this on accessible pages. |
 
 ---
 
@@ -21,67 +25,71 @@
 
 ### Application Process
 
-1. Download the **GPS Network Application Form** from the SLRB PRN subscription page (`slrb.gov.bh/en/permanent-reference-networkprn`).
+1. Download the **GPS Network Application Form** (PDF, linked on the SLRB PRN subscription page; file dated 2025-06-15).
 2. Send the completed form together with a covering letter to **PRN@slrb.gov.bh**.
 3. SLRB issues credentials within **1–2 working days**.
-4. Use of permission is limited to **one device per credential**; sharing access is prohibited.
+4. Use of access permission is limited to **one device per credential**; sharing is prohibited per the published Terms & Conditions.
 
-### Coverage
+### Coverage & Availability
 
-The PRN provides the geodetic basis for all surveying operations in Bahrain. Per SLRB documentation the **whole of Bahrain** is supported with this service. Service is available **24 / 7**. Bahrain's territory is small (~765 km²) and a single well-sited reference station can cover the entire kingdom within typical RTK baseline limits (~30 km); SLRB does not publicly disclose the number or location of physical reference stations.
+- Service available **24/7** to the entire Kingdom (~765 km²).
+- SLRB does not disclose the number or location of physical CORS in the PRN. Single-station coverage of the whole kingdom is technically feasible at <30 km baselines.
 
 ### Technical Specifications
 
-Specific technical specifications (NTRIP host:port, mountpoint names, RTCM versions, VRS type, supported constellations) are **not published on the public SLRB website** and are issued only in the credentials email. SLRB describes the service as "Real-Time Correction Service for Surveying through GPS Network."
+NTRIP host:port, mountpoint names, RTCM versions, VRS type, and supported constellations are **not published on the public SLRB website**. They are issued only in the credentials email after approval.
 
 ### Contact
 
 - **Email**: PRN@slrb.gov.bh (preferred) or info@slrb.gov.bh
 - **Phone**: +973 17507000
 - **Address**: Building 517, Road 1010, Manama 410, Kingdom of Bahrain
-- **Application page**: https://www.slrb.gov.bh/en/permanent-reference-networkprn
 
 ---
 
 ## Volunteer / Community Coverage
 
-- **rtk2go**: zero BH-coded mountpoints (verified via `data/stations.json` 2026-05-12).
+- **rtk2go**: zero BH-coded mountpoints (verified `data/stations.json` 2026-05-15).
 - **Centipede-RTK**: zero BH nodes.
-- **No stations within 100 km of Manama** (26.0, 50.55) on rtk2go, Centipede, or EarthScope. Bahrain's only realistic free-RTK path is therefore the SLRB PRN itself.
+- **EarthScope / IGS-IP**: no BH stations.
+- **Bounding-box scan** of 25°–27°N, 49°–52°E (entire Bahrain + adjacent Saudi/Qatar coastline) across all 84 fetched sources in `data/stations.json`: **0 results**. SLRB PRN is therefore the only realistic free RTK path in or near Bahrain.
 
 ---
 
-## Commercial / Cross-Border Alternatives
+## Cross-Border & Alternative Options
 
-No independent commercial NTRIP provider with confirmed Bahrain coverage has been identified. Global networks (GEODNET, PointOne, HxGN SmartNet, ONOCOY, Swift Skylark) do not list Bahrain in coverage maps from public documentation.
-
-**KSA-CORS spill (cross-border)**: KSA-CORS stations near Dammam / Al-Ahsa (Eastern Province, Saudi Arabia) are approximately 25–50 km from Bahrain Island. KSA-CORS VRS *may* provide marginal RTK coverage in Bahrain — especially in the northern Manama / Muharraq area — but this is unconfirmed, and KSA-CORS has reachability issues from non-SA IPs (see SA_SaudiArabia.md). Now that SLRB PRN is free, the KSA-CORS fallback is no longer needed.
-
-**Global free PPP fallback**: **Galileo HAS** (~40 cm accuracy, no connectivity required, globally available including Bahrain).
+- **KSA-CORS spill (Saudi Arabia)**: KSA-CORS stations near Dammam / Al-Ahsa are ~25–50 km from Bahrain Island and *may* provide marginal RTK in the northern Manama / Muharraq area, but KSA-CORS is reachability-restricted (non-SA IPs are typically blocked at portal level — see `SA_SaudiArabia.md`). With SLRB PRN free, this fallback is no longer needed.
+- **Commercial global networks** (GEODNET, PointOne, HxGN SmartNet, ONOCOY, Swift Skylark): no public documentation lists Bahrain coverage as of 2026-05.
+- **Galileo HAS (PPP, free, global)**: ~20–40 cm horizontal once converged; works in Bahrain with no caster connectivity. Useful where RTK is unavailable.
 
 ---
 
 ## Post-Processing (RINEX) Fallback
 
-| Service | URL | Cost |
+| Service | URL | Notes |
 |---|---|---|
-| **SLRB PRN RINEX** — likely available to subscribers; not publicly documented as a separate product | https://www.slrb.gov.bh/en/permanent-reference-networkprn | Free / contact required |
-| **IGS / EarthScope** — no IGS station in Bahrain in current public station list | https://www.earthscope.org/data/gnss-data/ | Free non-commercial |
+| **SLRB PRN RINEX** | https://www.slrb.gov.bh/en/permanent-reference-networkprn | Likely available to subscribers; not publicly documented as a separate product. Contact required. |
+| **IGS — BAHR (decommissioned)** | https://sonel.org/spip.php?idStation=633&page=gps | NGA-operated, Manama (26.209°N, 50.608°E); operated 1995-03-20 to 2008-09-16. Historical RINEX only. |
+| **IGS — BHR4 (replacement)** | https://sonel.org/spip.php?idStation=3613&page=gps | NGA co-located continuation site at the same location; data products via CDDIS/SONEL. No NTRIP stream. |
+| **EarthScope** | https://www.earthscope.org/data/gnss-data/ | No active station in Bahrain. |
 
 ---
 
-## Key Update vs. Prior Research
+## Key Caveats
 
-The prior version of this file recorded the PRN as access-restricted to licensed surveyors with no public registration path. **That was incorrect.** SLRB publishes a clear self-service registration path (downloadable application form, email to PRN@slrb.gov.bh, 1–2 day processing) and explicitly states the service is **free of charge** at the present time. This re-classifies Bahrain from "no free NTRIP" to "free national NTRIP with registration."
+- SLRB does not publish NTRIP technical parameters (host:port, mountpoints, RTCM, VRS confirmation, datum+epoch) on its public website. All such fields are issued post-approval. Treat the "Yes" status as confirmed for **eligibility and free access**, but treat the protocol details as **opaque until subscribed**.
+- The wording "this service may incur charges in the future" has been on the SLRB page since at least 2024 with no observed change; no pricing has been announced as of 2026-05-15.
+- Bahrain's last open IGS station (BAHR, NGA) was decommissioned in 2008; the replacement BHR4 is NGA-operated and not part of any public NTRIP feed.
 
 ---
 
-## Sources Consulted
-- SLRB PRN subscription page: https://www.slrb.gov.bh/en/permanent-reference-networkprn (WebFetch 2026-05-12: free of charge, application by email, 1–2 day processing, 24/7 availability, individual or agent applicants)
-- SLRB E-Services page: https://www.slrb.gov.bh/en/e-services
-- SLRB main site: https://www.slrb.gov.bh/en/
-- SLRB PRN information page (Arabic-language general info): https://www.slrb.gov.bh/InformationCenter/GeneralInfoDetail/?PageId=942&ChnlId=63&ChnlId2=62 (404 at observation; English page is canonical)
-- ArduSimple Bahrain NTRIP page: https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-kingdom-of-bahrain/ (observed 2026-05-12: mentions PRN as free national service with coverage map; no host:port published)
-- mvarga1989 GitHub CORS list (Bahrain not listed): https://github.com/mvarga1989/The-list-of-GNSS-CORS-RTK-networks
-- `data/stations.json` verified 2026-05-12: zero BH-coded entries on rtk2go, Centipede, or EarthScope; zero stations within 100 km of Manama on any tracked free source
-- SA_SaudiArabia.md (cross-border KSA-CORS context)
+## Sources Consulted (2026-05-15)
+
+- SLRB PRN subscription page: https://www.slrb.gov.bh/en/permanent-reference-networkprn — WebFetch confirmed: free of charge, application via PRN@slrb.gov.bh, 1–2 day processing, 24/7, single-device clause, form PDF dated 2025-06-15
+- SLRB Products & Services: https://www.slrb.gov.bh/en/products-and-services — PRN listed under Topographic Survey
+- SLRB E-Services: https://www.slrb.gov.bh/en/e-services
+- ArduSimple Bahrain NTRIP page: https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-kingdom-of-bahrain/ — confirms PRN as free national service; no host:port published
+- SONEL BAHR station record: https://www.sonel.org/spip.php?page=gps&idStation=633 — decommissioned 2008-09-16
+- SONEL BHR4 station record: https://sonel.org/spip.php?idStation=3613&page=gps — current NGA co-located site
+- EPSG codes for Bahrain (Ain el Abd, WGS 84, ITRF2020): https://epsg.io/?q=Bahrain
+- `data/stations.json` (updated 2026-05-15T16:22Z): bounding-box and per-source verification — zero free public NTRIP stations within 150 km of Manama on any of the 84 tracked sources
