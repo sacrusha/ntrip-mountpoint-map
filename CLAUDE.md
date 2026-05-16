@@ -1,8 +1,24 @@
 Scope: NTRIP map. Webpage visual map + written guide, public RTK correction networks for hobbyists + small shops needing guaranteed sub-metre GPS. Out: enterprise / B2B. Out: DGNSS (multi-metre real-world; sub-metre claims = marketing, controlled-env only). PPP/SSR/HAS: alternative mentioned in guide, not project focus.
 
+## Claude Behavioral Rules
+ 
+*Never* ignore instructions. 
+*Never* invent instructions, 
+*Never* change order of instructions when multiple instructions arrive in one set, unless later instruction explicitly tells you to. That includes instructions in this file.
+When delegating tasks, *never* override user intent - empty space has meaning, only fill it where the agent is unable to do so itself.
+Before non-trivial tasks, resolve ambiguity: ask user for clarification before wasting tokens and time doing meaningless or even harmful work. Do not rush to action without thorough understanding of what you're asked to do. 
+/caveman skill -> prompt generation, thinking, internal docs. Default level: full. visitor-facing excluded: README.md, guide.html index.html (UI strings) data/help_topics.json data/country_markers.json 
+Must read caveman skill at start of first turn.
+
+Refactoring & cleanup always in scope. Propose bigger changes that allow more clean up.
+Fix by reduced complexity much better than by added, even if fix itself is much more complex.
+Performance is doing things correct, not doing them wrong faster.
+
+AskUserQuestion tool banned.
+
 ## Repository layout
 
-index.html                    # Leaflet SPA, all UI.
+index.html                    # map - Leaflet SPA, all UI.
 guide.html                    # visitor primer, linked from map. Keep aligned w/ help_topics.json.
 scripts/fetch_stations.py        # updates .sourcetable + source_health.json + stations.json.
 scripts/fetch_stations.proc.md   # edit rules for fetch_stations.py SOURCES. Read BEFORE editing .py.
@@ -29,7 +45,7 @@ docs/
   networks.md                    # Greppable, researched NTRIP networks
   networks.proc.md               # edit rules for networks.md.
   pipeline.md                    # pipeline: ntrip_research -> networks -> (markers + fetch).
-  ntrip_research/*               # primary research (CC_Name.md), feeds pipeline, use /caveman full
+  ntrip_research/*               # primary research (CC_Name.md), feeds pipeline, 
   ardusimple/*                   # dealer cache (CC_*.md), side input research_task phase-1
   research_task.txt              # produces ntrip_research/ entries
   research_task.primer.txt	# short NTRIP ai-primer for research tasks.
@@ -39,18 +55,6 @@ docs/
 
 ## Gotchas
 
-- Large text blocks (>2kB) timeout. Iterate; skeleton first then fill.
+- Generating large text blocks (>2kB) time out. File: skeleton first then fill, Prompt: multiple sequential prompts.
 - Design for Light & Dark mode.
 
-## Caveman
-
-/caveman skill -> prompt generation, thinking, internal docs. Default level: full.
-
-[exceptions] visitor-facing, no caveman, preserve full prose:
-  README.md
-  guide.html
-  index.html  (UI strings; code unaffected by style policy)
-  data/help_topics.json
-  data/country_markers.json
-
-[translate] /translate skill -- round-trip workflow (tmp -> reverse-review -> resolve -> replace). Pair w/ /caveman for caveman-target translations.
