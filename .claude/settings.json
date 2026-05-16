@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch",
+      "Bash(curl:*)",
+      "Bash(nslookup:*)",
+      "Bash(py scripts/stations_by_country.py:*)",
+      "Bash(py scripts/stations_by_radius.py:*)",
+      "Bash(py scripts/stations_inspect.py:*)",
+      "Bash(py scripts/source_health.py:*)",
+      "Bash(py scripts/sources_list.py:*)",
+      "Bash(py scripts/network_lookup.py:*)"
+    ]
+  }
+}
