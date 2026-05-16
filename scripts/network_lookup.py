@@ -10,7 +10,6 @@ matching section of docs/networks.md (instead of paging by line offset).
 
 Searched locations:
     docs/networks.md                      (prints the matching ## section)
-    docs/country-survey.md
     docs/global-survey.md
     docs/ntrip_research/*.md
     data/country_markers.json             (by substring)
@@ -124,7 +123,7 @@ def main():
             print("  (no matches)")
 
     # other docs
-    for sub in ("country-survey.md", "global-survey.md"):
+    for sub in ("global-survey.md",):
         p = ROOT / "docs" / sub
         hits = grep_file(p, patterns)
         if hits:

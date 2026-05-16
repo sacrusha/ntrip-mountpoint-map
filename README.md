@@ -145,18 +145,16 @@ records country-level knowledge for the 66 in-pipeline networks plus known
 networks not yet ingested. **221 markers** as of 2026-04-29. Three tiers appear
 on the map for regions with no physical pins: coloured VRS circles (virtual
 networks with live data), grey circles (~83 free networks pending ingestion —
-Portugal, Lithuania, Thailand, Venezuela, plus the country-survey-audit
-additions across Africa / Caribbean / Central Asia), and circled ? (~75 paid
+Portugal, Lithuania, Thailand, Venezuela, plus research-audit additions
+across Africa / Caribbean / Central Asia), and circled ? (~75 paid
 or restricted networks — swipos, CPOS, HEPOS, ROMPOS, AGROS, TUSAGA-Aktif,
 CZEPOS, MIRANET, the Russia and China commercial clusters, Dubai DVRS, Peru
 REGPMOC, Quebec MERN, Israel APN, etc.).
 
-A complementary `docs/country-survey.md` documents the RTK access landscape
-for **188 country/territory entries** (top-120 GDP ∪ top-120 population +
-administered territories), with Tier A entries carrying a contextual paragraph
-where sanctions, civil war, or legal barriers materially affect access. See
-[`docs/networks.md`](docs/networks.md) for per-network endpoints, credentials,
-and the deferred candidates list.
+Per-country research lives in `docs/ntrip_research/CC_*.md` (citation-grade
+primary research, ~190 country/territory entries), distilled into per-network
+blocks in [`docs/networks.md`](docs/networks.md) (endpoints, credentials,
+deferred candidates).
 
 ## Contributing / Next-session handover
 

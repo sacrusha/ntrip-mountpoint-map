@@ -1,55 +1,56 @@
-A map & guide on free public RTK correction networks for hobbyists and small
-shops who need better than ~5–10 m GPS accuracy. Enterprise / B2B is out of scope.
-DGNSS out of scope due to low real world accuracy.
-PPP/SSR/HAS mentioned as alternative in guide, not what this project is about.
+Scope: NTRIP map. Webpage visual map + written guide, public RTK correction networks for hobbyists + small shops needing guaranteed sub-metre GPS. Out: enterprise / B2B. Out: DGNSS (multi-metre real-world; sub-metre claims = marketing, controlled-env only). PPP/SSR/HAS: alternative mentioned in guide, not project focus.
 
 ## Repository layout
 
-```
-index.html                    # Single-page Leaflet app — all UI.
-guide.html                    # long-form standalone visitor primer linked from the map. content must stay aligned /w /help_topics.json
-scripts/fetch_stations.py        # updates .sourcetable files, source_health.json, stations.json.
-scripts/fetch_stations.proc.md   # editing rules for fetch_stations.py SOURCES. Read BEFORE editing the .py.
-scripts/inject_seo_help.py       # splices a hidden SEO mirror of help_topics.json into index.html. Run after editing help_topics.json; commit the index.html diff in the same commit.
-scripts/deploy_pages.ps1         # local Cloudflare Pages deploy (replaces former deploy-pages.yml workflow). Reads .env/cloudflare.conf (gitignored; CF_API_TOKEN + CF_ACCOUNT_ID). Requires wrangler on PATH. Default branch=main; use `-Branch <name>` for preview.
-scripts/refresh_and_deploy.ps1   # orchestrator invoked by Task Scheduler 4x/day from the data-refresh worktree: fetch_stations.py → rebase data-refresh onto main → commit data/ → deploy_pages.ps1. Never pushes (GitHub auth blocked). Logs to .tmp/refresh_and_deploy/. Flags: -SkipGit, -SkipDeploy.
-scripts/register_scheduled_task.ps1 # one-shot: registers/re-registers the Task Scheduler job. Params: -RepoRoot (point at the data-refresh worktree), -SkipGit, -SkipDeploy, -Times. Sanity-checks the target is on `data-refresh`. Idempotent. No admin needed; runs only when user logged in.
-scripts/                         # investigation toolset — run each with `-h` for purpose + examples. Prefer over ad-hoc py -c / grep when possible:
-                                 #   stations_by_country.py, stations_by_radius.py — station lookup
-                                 #   stations_inspect.py — data/stations.json schema + per-source detail
-                                 #   sources_list.py — filter the SOURCES list in fetch_stations.py
-                                 #   source_health.py — data/source_health.json summary + per-id lookup
-                                 #   network_lookup.py — find a network across networks.md, surveys, research, markers, stations.json, SOURCES
-.github/workflows/               # empty — both update-stations.yml and deploy-pages.yml were removed after GitHub disabled Actions on this account. Fetch + deploy now run locally via scripts/refresh_and_deploy.ps1 driven by Windows Task Scheduler.
-                                 # Two git worktrees share this checkout's .git:
-                                 #   D:\Projects\ntrip-mountpoint-map\          → branch `main`, dev work happens here.
-                                 #   D:\Projects\ntrip-mountpoint-map.scheduler → branch `data-refresh`, Task Scheduler runs here.
-                                 # Each scheduled run rebases data-refresh onto main, refreshes data/, and commits. data-refresh always sits exactly one commit ahead of main.
-                                 # To bring fresh data into main (and into your dev working tree): from the dev worktree, `git merge --ff-only data-refresh`.
-                                 # GitHub HTTPS auth is currently blocked (account flagged); nothing is ever pushed. When unblocked, push main from the dev worktree.
+index.html                    # Leaflet SPA, all UI.
+guide.html                    # visitor primer, linked from map. Keep aligned w/ help_topics.json.
+scripts/fetch_stations.py        # updates .sourcetable + source_health.json + stations.json.
+scripts/fetch_stations.proc.md   # edit rules for fetch_stations.py SOURCES. Read BEFORE editing .py.
+scripts/inject_seo_help.py       # splices hidden SEO mirror of help_topics.json into index.html. Run after editing help_topics.json; commit index.html diff same commit.
+scripts/deploy_pages.ps1         # local Cloudflare Pages deploy. Runs on worktree ntrip-mountpoint-map.scheduler/; dev on worktree ntrip-mountpoint-map/.
+scripts/refresh_and_deploy.ps1   # Task Scheduler -> fetch_stations.py -> rebase data-refresh onto main -> commit data/ -> deploy_pages.ps1. Logs: .tmp/refresh_and_deploy/. Flags: -SkipGit, -SkipDeploy.
+scripts/register_scheduled_task.ps1 # (re-)register Task Scheduler job.
+scripts/                         # investigation toolset, each takes -h for purpose + examples.
+  stations_by_country.py, stations_by_radius.py # station lookup
+  stations_inspect.py # data/stations.json schema + per-source detail
+  sources_list.py # filter SOURCES list in fetch_stations.py
+  source_health.py # data/source_health.json summary + per-id lookup
+  network_lookup.py # find network across networks.md, surveys, research, markers, stations.json, SOURCES
 data/
-  stations.json                  # fetched data, consumed by index
-  country_markers.json           # Static; country-level markers, content visitor facing
-  country_markers.proc.md        # editing rules for country_markers.json. Read BEFORE editing the .json.
-  help_topics.json               # searchable visitor-facing help repository surfaced via the Help button on the map, content must stay aligned /w guide.html
-  <source>.sourcetable           # Raw archives per fetched caster.
+  country_markers.json           # static; network/country-level markers, visitor-facing
+  country_markers.proc.md        # edit rules for country_markers.json. Read BEFORE editing .json.
+  help_topics.json               # searchable user-facing help. Surfaced via Help button on map; aligned w/ guide.html.
+  <source>.sourcetable           # cached raw NTRIP response per fetched caster.
+  stations.json                  # fetched mountpoint data, consumed by index
 docs/
-  gnss-ai-guide.md               # deep technical GNSS primer for ai, consume before making changes to guide or help
-  requirements.md                # product spec, target users, out-of-scope, data-model, visual design, tech choices, deferred items. Consult when necessary to understand target users, design, etc.
+  gnss-ai-guide.md               # deep GNSS primer. Read before changing guide or help.
+  requirements.md                # product spec, possibly outdated
   global-survey.md               # Greppable RTK landscape, global networks.
-  networks.md                    # Greppable list of known networks, Endpoints, credentials, cost, etc. Always ensure edits match format and scope of existing entries.
-  networks.proc.md               # editing rules for networks.md. Read BEFORE editing.
-  pipeline.md                    # cross-file flow: ntrip_research → country-survey → networks → markers + fetch. Referenced by all per-file .proc.md sidecars.
-  ntrip_research/                # per-country primary research files (CC_Name.md), citation-grade. Upstream input to country-survey.md — see pipeline.md "Research stage".
-  research_task.txt              # prompt template used to produce ntrip_research/ entries; research is run in an external web-enabled environment, not this sandbox.
-  target-users.md	             # read to understand who the target users are			
+  networks.md                    # Greppable, researched NTRIP networks
+  networks.proc.md               # edit rules for networks.md.
+  pipeline.md                    # pipeline: ntrip_research -> networks -> (markers + fetch).
+  ntrip_research/*               # primary research (CC_Name.md), feeds pipeline, use /caveman full
+  ardusimple/*                   # dealer cache (CC_*.md), side input research_task phase-1
+  research_task.txt              # produces ntrip_research/ entries
+  research_task.primer.txt	# short NTRIP ai-primer for research tasks.
+  target-users.md	             # defines target users
+.tmp/ # all temp files
 
-.claude/token-reduction-patterns.md # rules for producing token-optimized content for ai consumption, applies to gnss-ai-guide.md, can be used for other ai facing content
-  
-```
 
 ## Gotchas
 
-- Generating large text blocks (2kB) in this env will timeout and fail. Workaround with iterative output; skeleton-first then edit; bash py etc for repetitive work.
-- All color and design edits must always consider Light and Dark mode.
-- Pipeline filter flags (nmea_filter / solution_filter in SOURCES): both default True. Set nmea_filter=False only if the caster mislabels physical stations as NMEA=1; solution_filter=False only if it mislabels them as solution=1. Never set solution_filter=False for rtk2go — it is the only guard against the NEAR-xxx VRS streams. See parse_sourcetable docstring for full rules.
+- Large text blocks (>2kB) timeout. Iterate; skeleton first then fill.
+- Design for Light & Dark mode.
+
+## Caveman
+
+/caveman skill -> prompt generation, thinking, internal docs. Default level: full.
+
+[exceptions] visitor-facing, no caveman, preserve full prose:
+  README.md
+  guide.html
+  index.html  (UI strings; code unaffected by style policy)
+  data/help_topics.json
+  data/country_markers.json
+
+[translate] /translate skill -- round-trip workflow (tmp -> reverse-review -> resolve -> replace). Pair w/ /caveman for caveman-target translations.

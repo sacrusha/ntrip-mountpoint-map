@@ -1,9 +1,15 @@
-Research public NTRIP RTK casters for [entry]. Prefer dedicated tools (easier to approve, safer guards): WebSearch, WebFetch (incl. PDF URLs), Read, Grep, Glob, Write, Edit. Narrow Bash: Bash(curl:*), Bash(nslookup:*), Bash(py scripts/<name>.py:*) where <name> in {stations_by_country, stations_by_radius, stations_inspect, source_health, sources_list, network_lookup}. NOT Bash(py:*) (covers py -c inline Python); do NOT author new scripts/*.py to bypass. Other narrow tools (awk, pdftotext, etc.) per-approval when WebFetch result is questionable or conflicts. Unknown > guess. Output: docs/ntrip_research/ only. File = deliverable; don't pollute caller context until valuable.
+Research public NTRIP RTK casters for [entry]. Unknown > guess. Output: docs/ntrip_research/ only. File = deliverable; don't pollute caller context until valuable.
 
 Read first: docs/research_task.primer.txt (scope, sourcetable, NRTK detection, datum/epoch, ingested-globals, licensing, skip-list). Apply before fetching.
 
+[tools]
+prefer dedicated (easier to approve, safer guards): WebSearch, WebFetch (incl. PDF URLs), Read, Grep, Glob, Write, Edit.
+narrow Bash: Bash(curl:*), Bash(nslookup:*), Bash(py scripts/<name>.py:*) where <name> in {stations_by_country, stations_by_radius, stations_inspect, source_health, sources_list, network_lookup}.
+NOT Bash(py:*) (covers py -c inline Python); do NOT author new scripts/*.py to bypass.
+other narrow tools (awk, pdftotext, etc.) per-approval when WebFetch result is questionable or conflicts.
+
 [method]
-phase 1 orient (fast): prior research as starting point, do NOT trust -> verify, correct, expand, fill gaps. read: docs/ntrip_research/[entry], docs/ardusimple/[entry]. grep [entry] in docs/networks.md + docs/country-survey.md + data/country_markers.json.
+phase 1 orient (fast): prior research as starting point, do NOT trust -> verify, correct, expand, fill gaps. read: docs/ntrip_research/[entry], docs/ardusimple/[entry]. grep [entry] in docs/networks.md + data/country_markers.json.
 phase 2 research (deep): national/regional mapping agency in local admin languages -> operator portal in primary language. gaps via RTK hobbyist + professional communities. facts no fluff, ai consumption.
 conflicts -> resolve via multiple sources. WebFetch (Haiku) non-deterministic + prompt-dependent -> retry with directed prompt.
 refactor target file. remove bad research > pad it.
@@ -31,4 +37,4 @@ do NOT access online unless [entry] = that caster: rtk2go, Centipede, EarthScope
 helper scripts also yield accurate MP entries on any sourced network (not all MPs = real stations: NEAR/virtual/multi-format-from-1-station; not all casters publish all real stations: NRTK. primer [sourcetable] + [stations-vs-mps]).
 
 [changelog]
-registration removed; landing_url+access_url added; datum_epoch added; research_task.primer.txt added.
+registration removed; landing_url+access_url added; datum_epoch added; research_task.primer.txt added; country-survey.md deprecated (merged into networks.md + ntrip_research/).

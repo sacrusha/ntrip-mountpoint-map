@@ -3,6 +3,11 @@
     "allow": [
       "WebSearch",
       "WebFetch",
+      "Read(./**)",
+      "Grep(./**)",
+      "Glob(./**)",
+      "Write(./**)",
+      "Edit(./**)",
       "Bash(curl:*)",
       "Bash(nslookup:*)",
       "Bash(py scripts/stations_by_country.py:*)",
@@ -11,6 +16,13 @@
       "Bash(py scripts/source_health.py:*)",
       "Bash(py scripts/sources_list.py:*)",
       "Bash(py scripts/network_lookup.py:*)"
+    ],
+    "deny": [
+      "Read(./.git/**)",
+      "Grep(./.git/**)",
+      "Glob(./.git/**)",
+      "Write(./.git/**)",
+      "Edit(./.git/**)"
     ]
   }
 }

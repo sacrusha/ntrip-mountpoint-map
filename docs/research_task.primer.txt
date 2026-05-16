@@ -1,4 +1,4 @@
-NTRIP RTK research primer. Audience: agents running docs/research_task.txt. Self-contained operational knowledge. Deeper material: docs/gnss-ai-guide.md (load section only if primer insufficient). AI-only file; aggressive compression per .claude/token-reduction-patterns.md.
+NTRIP RTK research primer. Audience: agents running docs/research_task.txt. Self-contained operational knowledge. Deeper material: docs/gnss-ai-guide.md (load section only if primer insufficient). AI-only file; compression per /caveman skill at level full (see CLAUDE.md).
 
 abbrev: MP=mountpoint, ST=sourcetable, NRTK=Network RTK, VRS=Virtual Ref Station, MAC=Master-Aux Concept, FKP=Flachen-Korrektur-Parameter, SSR=State-Space Repr, OSR=Observation-Space Repr, CORS=Continuously Operating Ref Station, IAR=Integer Ambiguity Resolution, ITRF=Internat Terr Ref Frame, IGS=Internat GNSS Service.
 

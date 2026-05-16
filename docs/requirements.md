@@ -27,7 +27,7 @@ site is for users who need better than HAS.
 - Raw-observation networks without real-time RTK (EPN / EUREF-IP;
   those are for post-processing) — excluded from the ingestion pipeline.
   Substantial free national RINEX networks (e.g. INEGI RGNA) are
-  documented in `country-survey.md` and `networks.md`, and surface on
+  documented in `ntrip_research/` and `networks.md`, and surface on
   the map as `weird` markers carrying a "free RINEX, no NTRIP" note so
   target users know free post-processing data exists in their country.
 - Per-user authentication, account creation, saved configurations.
@@ -242,7 +242,7 @@ investigated and found to have nothing of value to a target user —
 closed defence networks, abandoned programmes, niche scientific
 archives with no PPK signal, tiny private surveying companies. Absence
 of a marker is itself a signal: "we looked, found nothing useful."
-Don't add a marker just to mark the investigation; the country-survey
+Don't add a marker just to mark the investigation; the ntrip_research/
 prose is the canonical record. Free RINEX-only networks and other
 "interesting but not directly usable" cases get a `weird` marker, not
 silence.

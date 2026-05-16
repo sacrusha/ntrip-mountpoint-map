@@ -5,10 +5,10 @@ a global service. Answers: what is it, who runs it, where does it cover, what
 is the access model, and is it in scope?_
 
 _Technical detail (endpoints, credentials, pipeline status) lives in
-`docs/networks.md`. Per-country analysis of how these networks contribute
-to national coverage lives in `docs/country-survey.md`. Network references
-use the pattern `→ networks.md: \`id\`` at the end of the relevant bullet —
-preserving this exact form lets you audit coverage with
+`docs/networks.md`. Per-country primary research lives in
+`docs/ntrip_research/CC_*.md`. Network references use the pattern
+`→ networks.md: \`id\`` at the end of the relevant bullet — preserving this
+exact form lets you audit coverage with
 `grep "networks.md:" docs/global-survey.md`._
 
 _Last updated: 2026-04-20._

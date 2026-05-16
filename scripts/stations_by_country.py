@@ -10,7 +10,7 @@ Examples:
 
 Country tagging follows each source's own convention (no normalization here).
   rtk2go / centipede / earthscope use ISO 3166-1 alpha-3 (FRA, USA, DEU ...).
-  Centipede quirks: CHZ=CZ  ENG=GB  SER=RS  BIH=BA  DAN=DK  ROM=RO  NLD/BEL separate.
+  Centipede non-ISO tags: CHZ=CZ  ENG=GB  SER=RS  DAN=DK  ROM=RO  (NLD/BEL/BIH use ISO alpha-3).
     Auto-aliased: querying CZE/GBR/SRB/DNK/ROU also pulls centipede CHZ/ENG/SER/DAN/ROM.
   EarthScope uses USA for US stations; other territories vary.
   EUREF-IP / IGS-IP also alpha-3.

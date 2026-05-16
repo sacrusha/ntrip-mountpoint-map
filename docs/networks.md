@@ -7,12 +7,12 @@ _Read before touching `scripts/fetch_stations.py` or `index.html`._
 ## Role of this file
 
 This is the **refined operator catalogue for our use**: networks discovered
-via `docs/country-survey.md` and `docs/global-survey.md` are pulled in here,
-verified, and curated into per-network blocks with endpoints, access terms,
-pricing, and pipeline status. Think of it as the working bench between two
-ends:
+via `docs/ntrip_research/` (per-country primary research) and
+`docs/global-survey.md` are pulled in here, verified, and curated into
+per-network blocks with endpoints, access terms, pricing, and pipeline status.
+Think of it as the working bench between two ends:
 
-- The country/global surveys feed candidates in (broad, completeness-focused).
+- Research + global survey feed candidates in (broad, completeness-focused).
 - This file refines them into structured records we can act on.
 - `data/country_markers.json` then translates the subset that warrants a
   map marker into user-facing copy.
