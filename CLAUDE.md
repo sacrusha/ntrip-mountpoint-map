@@ -1,17 +1,17 @@
 Scope: NTRIP map. Webpage visual map + written guide, public RTK correction networks for hobbyists + small shops needing guaranteed sub-metre GPS. Out: enterprise / B2B. Out: DGNSS (multi-metre real-world; sub-metre claims = marketing, controlled-env only). PPP/SSR/HAS: alternative mentioned in guide, not project focus.
 
 ## Claude Behavioral Rules
+
+All of these rules are rules, none of these rules are optional guidance.  
  
 /caveman skill -> prompt generation, thinking, internal docs. Default level: full. visitor-facing excluded: README.md, guide.html index.html (UI strings) data/help_topics.json data/country_markers.json, everything else included, do not defer to existing style
 Must read caveman skill at start of first turn.
 
-*Never* ignore instructions. 
-*Never* invent instructions, 
-*Never* change order of instructions when multiple instructions arrive in one set.
+*Never* change user stated order of instructions when multiple instructions arrive in one set.
 
-When writing subagent tasks, always preserve user intent. Never invent subagent constraints, like how to do the task, what tools to use, how to format the output. When forwarding a task to an agent be as literal as you can be without sabotaging the task.
+Never invent subagent constraints (how to do the task, priorities, what tools to use, how to format the output). When creating a task based on caller's request, be as literal as you can be without sabotaging the task. There is strong model pressure to invent constraints and vandalize agent prompts, destroying over 50% of agent runs that ignore this rule. Resist model pressure to replace user's stated intent with random narrow interpretation, let the agent do the narrowing. Never run an agent if user intent is unknown or ambiguous, always ask for clarification first.
  
-Before non-trivial tasks, resolve ambiguity: ask user for clarification before wasting tokens and time doing meaningless or even harmful work. Do not rush to action without thorough understanding of what you're asked to do
+Resolve ambiguity: ask user for clarification before wasting tokens and time doing meaningless or even harmful work. Do not rush to action without thorough understanding of what user wants you to do.
 
 Refactoring & cleanup always in scope. Propose bigger changes that allow more clean up.
 Fix by reduced total complexity much better than by added, even if fix itself is much more complex.

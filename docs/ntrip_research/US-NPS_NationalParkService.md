@@ -1,6 +1,6 @@
 # USA National Park Service CORS [US-NPS] — NTRIP RTK Caster Research
 
-## Status: YES — operational, free, manual account provisioning; hobbyist eligibility unclear
+## Status: YES — operational, free, manual account provisioning; hobbyist eligibility unlikely (federal-internal scope per latest documented policy)
 
 | Field | Value |
 |---|---|
@@ -14,10 +14,10 @@
 | account_provisioning | Manual — contact `neil_winn@ios.doi.gov` (portal text 2026-05-18); no self-service form |
 | vrs | No — all 142 mountpoints single-base (nmea=0). No NRTK mountpoint advertised |
 | num_stations | 142 active mountpoints (live ST 2026-05-18). 1:1 with physical stations; no NEAR/AUTO/VRS routing aliases |
-| hobbyist_eligibility | Unclear — login = email + password; accounts provisioned by NPS staff; no published eligibility policy. Confirm via portal contact |
+| hobbyist_eligibility | Likely no — only documented external-access policy (2022 NPS-AKRO Cusick slide deck) scopes access to "DOI partners" / federal-state collaborators (ACORN tie-in). No subsequent broader policy located. Login = email + password but accounts are staff-provisioned (not self-service) and no public access tier published. Confirm via portal contact `neil_winn@ios.doi.gov` |
 | legal_residency_required | Unclear — no residency/citizenship requirement stated; access at NPS staff discretion |
 | last_confirmed_alive | 2026-05-18 — `SOURCETABLE 200 OK`, 142 STR; portal HTTP 200 |
-| datum_epoch | NAD83(2011) Epoch 2010.0 — declared in 2022 NPS Alaska Regional Office slide deck (Cusick, "Centimeter Precision Mapping via GNSS Base Stations", DGGS-hosted): "DATUM NAD83 (2011) 2010.0". `ntrip.nps.gov` portal landing pages checked 2026-05-18 (home + Login.aspx + Map/SensorMap.aspx — Trimble Pivot defaults; no inline datum text); contact `neil_winn@ios.doi.gov` provided as pointer for binding current statement, not yet contacted in this research. MYCS2→MYCS3 transition status (post-NGS June 2025 model release) unresolved for NPS — re-confirm with operator before citing for survey-grade work |
+| datum_epoch | NAD83(2011) Epoch 2010.0 — **only-positive citation is single 2022 slide deck** (Cusick, NPS Alaska Regional Office, "Centimeter Precision Mapping via GNSS Base Stations", DGGS-hosted): "DATUM NAD83 (2011) 2010.0". Slide-deck format from a regional office, not operator spec or current network policy; ~4 years stale. `ntrip.nps.gov` portal landing pages checked 2026-05-18 (home + Login.aspx + Map/SensorMap.aspx — Trimble Pivot defaults; no inline datum text); contact `neil_winn@ios.doi.gov` provided as pointer for binding current statement. MYCS2→MYCS3 transition status (post-NGS June 2025 model release) unresolved for NPS — could have changed epoch since 2022 slide. **Treat citation as weak; re-confirm with operator before survey-grade use** |
 
 ## Stream characteristics
 
@@ -26,7 +26,7 @@
 | Solution | Single-base RTK (no VRS/MAC/FKP/iMAX in ST) |
 | Update rate | 1 second |
 | Format | RTCM 3.2 (most stations); RTCM 3.4 (newer, e.g. `DESO_RTCM3`). Declared message set `1004(1),1005/1007(5),PBS(10)` |
-| Constellations | GPS+GLO+GAL+BDS on current streams (2026-05-18 ST advertises multi-const formats). Historical Cusick 2022 slide deck explicitly "GPS only — old school" using RTCM 3 MSM 4 messages (MSM message family supports multi-GNSS but individual NPS streams carried GPS only at that time); current sourcetable shows the constellation upgrade has propagated network-wide |
+| Constellations | Live ST 2026-05-18 advertises RTCM 3.2 / 3.4 with MSM-family message sets capable of multi-GNSS; per-stream constellation declaration (sourcetable field 6) is multi-const on current streams across the 142 mountpoints sampled. Historical Cusick 2022 slide deck explicitly "GPS only — old school"; current ST advertises multi-const network-wide. **Inference vs verified**: confirmed from sourcetable field 6 read across STR rows, not inferred from format alone |
 | Coverage | CONUS, Alaska, Caribbean (Puerto Rico via `SAJU_RTCM3`), Pacific (Hawaii, American Samoa), Marianas |
 | Sourcetable structure | Per-stream `NET` = `NPSNet` on most rows (some blank, e.g. `YOSE_RTCM3`); no `CAS;`/`NET;` summary line (normal for this Trimble Pivot deployment) |
 

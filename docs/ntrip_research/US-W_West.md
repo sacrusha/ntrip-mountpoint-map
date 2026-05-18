@@ -49,7 +49,7 @@ Free public: AR (ARDOT), AZ (AZCORS), CO (Mesa County RTVRN), OR (ORGN). Paid: L
 | hobbyist_eligibility | No — restricted to TxDOT employees + contractors/consultants on TxDOT-funded projects |
 | legal_residency_required | N/A (restricted) |
 | last_confirmed_alive | Portal HTTPS 200 2026-05-18; sensor map at txrtn.txdot.gov/Map/SensorMap.aspx |
-| datum_epoch | NAD83(2011)/2010.00 — Texas State Plane per TxDOT survey datum policy; omitted citation (no public TxDOT RTN datum doc accessible to non-staff) |
+| datum_epoch | omitted — no operator-declared datum doc publicly accessible (TxDOT RTN portal is employees/contractors only). Prior value "NAD83(2011)/2010.00" was educated inference from generic Texas State Plane / NGS practice, not a TxDOT-declared frame for this caster; per primer [datum-epoch] (no operator declaration → omit), removed |
 
 One of largest state CORS networks in country (256 stations, all 254 counties) but not opened to public. No public registration. Practical fallback: EarthScope NOTA (sparse), commercial (RTKdata, Point One, SmartNet).
 
@@ -74,7 +74,7 @@ Commercial: SmartNet Oklahoma (Leica; OKC + Tulsa), RTKdata (USD 40/mo, claimed 
 | hobbyist_eligibility | Likely yes — self-service portal; no professional licence; no published restriction |
 | legal_residency_required | Unclear — no stated requirement |
 | last_confirmed_alive | 2026-05-18 — `SOURCETABLE 200 OK` (8 STR; Trimble Caster 5.2) |
-| datum_epoch | NAD83(2011)/2010.00 — stated on ARDOT Control Surveys page (aligned with NGS NSRS). Citation: https://ardot.gov/divisions/surveys/control-surveys/ |
+| datum_epoch | NAD83(2011)/2010.00 — stated on ARDOT Control Surveys page (aligned with NGS NSRS). Citation: https://ardot.gov/divisions/surveys/control-surveys/ (live via browser UA per 2026-05-18 re-probe; HTTP 200) |
 
 Sensor map: http://gps.ardot.gov/Map/SensorMap.aspx. Trimble config guide: http://gps.ardot.gov/Configuring%20Trimble%20Receiver%20on%20ARDOT%20RTN.pdf.
 
@@ -96,7 +96,7 @@ Sensor map: http://gps.ardot.gov/Map/SensorMap.aspx. Trimble config guide: http:
 | hobbyist_eligibility | Unclear — no explicit restriction; entry USD 495/yr above hobbyist USD 200/yr threshold |
 | legal_residency_required | Unclear |
 | last_confirmed_alive | 2026-05-18 — `c4gnet.xyz:9000` `SOURCETABLE 200 OK` (32 STR; Trimble Caster 5.2) |
-| datum_epoch | NAD83(2011) Epoch 2010.00 (primary, mountpoint suffix `..._NAD83`) — operator landing (c4gnet.xyz fetched 2026-05-18): "Current NGS Reference Frame is NAD 83 (2011) Epoch 2010.00 for the conterminous U.S." For ITRF product: **operator landing page text still names "IGS08 epoch 2005.00"** as the ITRF reference, but live sourcetable (2026-05-18) advertises **ITRF2020** mountpoints (`PPP_GREC_CMRx_ITRF2020`, `PPP_GREC_RTCM3_4_ITRF2020`), not IGS08. Landing page stale vs broadcast. Confirm via `rosbor1@lsu.edu` or `vdubinin@lsu.edu` before survey-grade ITRF use. Geoid: GEOID18. Citations: https://c4gnet.xyz/, http://c4gnet.xyz/NTRIP_Mountpoints.aspx, live ST `c4gnet.xyz:9000` 2026-05-18 |
+| datum_epoch | NAD83(2011) Epoch 2010.00 (primary, mountpoint suffix `..._NAD83`) — operator landing (c4gnet.xyz fetched 2026-05-18): "Current NGS Reference Frame is NAD 83 (2011) Epoch 2010.00 for the conterminous U.S." For ITRF product: **operator landing page text still names "IGS08 epoch 2005.00"** as the ITRF reference, but live sourcetable (2026-05-18) advertises *both* **ITRF2014** mountpoints (`PPP_GNSS_CMRx_ITRF2014`, `PPP_GNSS_RTCM3_2_ITRF2014`) *and* **ITRF2020** mountpoints (`PPP_GREC_CMRx_ITRF2020`, `PPP_GREC_RTCM3_4_ITRF2020`) — neither matches the IGS08 named on the landing. Landing page stale vs broadcast on ITRF; PPP product carries dual ITRF realisations side-by-side. Confirm via `rosbor1@lsu.edu` or `vdubinin@lsu.edu` before survey-grade ITRF use. Geoid: GEOID18. Citations: https://c4gnet.xyz/, http://c4gnet.xyz/NTRIP_Mountpoints.aspx, live ST `c4gnet.xyz:9000` 2026-05-18 |
 
 Network established 2007. Mountpoint naming: `TYPE_SATS_FORMAT_REFERENCEFRAME` (e.g. `GLN_RTCM3_2`, `PPP_GNSS_CMRp_NAD83`). Free RINEX subscription separate; contact `rosbor1@lsu.edu` or `vdubinin@lsu.edu`.
 
@@ -104,7 +104,7 @@ Network established 2007. Mountpoint naming: `TYPE_SATS_FORMAT_REFERENCEFRAME` (
 
 No state-operated RTK NTRIP caster confirmed operational for NM 2026-05-18. NMDOT does not operate public CORS RTK. GPS World, E38, Point One do not list NM as having public service.
 
-**Historic ARTGN (Albuquerque Real-Time GNSS Network):** Launched 2007 by City of Albuquerque as paid subscription ~USD 200/mo (Dec 2010 American Surveyor article); served AGRS ~800-monument framework. Post-2013 operational status undocumented online — no press releases, municipal updates, or operator page surfaced. City of Albuquerque AGRS page (cabq.gov/municipaldevelopment/.../albuquerque-geodetic-reference-system) makes no current ARTGN reference. ARTGN connection guide (Yumpu mirror, 2013) is latest accessible doc. To confirm operational status contact City Surveyor 505-768-3614 / Construction Services Division.
+**Historic ARTGN (Albuquerque Real-Time GNSS Network):** Launched 2007 by City of Albuquerque as paid subscription ~USD 200/mo (Dec 2010 American Surveyor article); served AGRS ~800-monument framework. Post-2013 operational status undocumented online — no press releases, municipal updates, or operator page surfaced. City of Albuquerque AGRS page (cabq.gov/municipaldevelopment/.../albuquerque-geodetic-reference-system) makes no current ARTGN reference. ARTGN connection guide (Yumpu mirror, 2013) is latest accessible doc. To confirm operational status contact City Surveyor 505-768-3614 / Construction Services Division — phone contact not attempted in this research; operational status remains undocumented.
 
 Commercial: RTKdata (USD 40/mo, claims statewide NM), Point One Polaris, RTK Premium. EarthScope NOTA stations in NM (moderate density along Rio Grande Rift); useful for PPK + possibly single-base RTK near TUCUMCARI, PIETOWN, WHITE SANDS. Cross-border within ~50 km: AZCORS (free) reachable from western NM.
 
@@ -123,7 +123,7 @@ Commercial: RTKdata (USD 40/mo, claims statewide NM), Point One Polaris, RTK Pre
 | hobbyist_eligibility | Yes — open registration; no professional licence required; "AZCORS is open to any users with an open-data policy" |
 | legal_residency_required | No — no stated requirement |
 | last_confirmed_alive | ADWR AZCORS landing active (Cloudflare challenge for scripted GETs; HTTP 200 in browser; last update banner 2026/04/14). ArduSimple US RTK list also lists AZCORS as free public |
-| datum_epoch | NAD83(2011)/2010.00 — **citation chain unverified from sandbox 2026-05-18**: AZCORS_InformationAndMountpoints20260406.pdf returns HTTP 403 (anti-bot); ADWR landing https://www.azwater.gov/hydrology/azcors also HTTP 403 to scripted probes. Whether the datum statement appears on the landing text (reachable in browser) or only in the gated PDF cannot be determined from current research state. Treat as carried-from-prior-research; re-confirm in browser before survey-grade use |
+| datum_epoch | omitted — citation chain unverified from sandbox 2026-05-18: AZCORS_InformationAndMountpoints20260406.pdf returns HTTP 403 (anti-bot, no UA-swap or wayback bypass); ADWR landing https://www.azwater.gov/hydrology/azcors also HTTP 403. Prior value "NAD83(2011)/2010.00" carried from earlier research without a re-validated operator citation; per primer [datum-epoch] (declared only, not inferred, no operator declaration → omit), value omitted until operator page can be confirmed in-browser. Pointer: PDF filename pattern suggests datum content but is not a fetchable citation |
 
 ADWR operates two virtual servers for redundancy. Information + mountpoints PDF (2026-04-06): https://www.azwater.gov/sites/default/files/2026-04/AZCORS_InformationAndMountpoints20260406.pdf. Also: https://azgeo-data-hub-agic.hub.arcgis.com/pages/azcors. AZCORS incorporates EarthScope + NPS stations for broad statewide coverage incl. remote desert / canyon country. AZHMP (Arizona Height Modernization Program) is the umbrella program; AZCORS is its CORS implementation (listed separately on NGS state-provider FAQ as "Arizona Height Mod Program (AZHMP)" but operationally identical).
 
@@ -147,7 +147,7 @@ Commercial alternative: AZGPS (azgps.net) — paid VRS network covering AZ + sou
 | last_confirmed_alive | 2026-05-18 — `SOURCETABLE 200 OK` (6 STR; Trimble Caster 5.3) |
 | datum_epoch | NAD83(2011); epoch omitted — same "RTVRN Login Instructions and NTRIP Mountpoints" PDF (2025-05) was read for station count + datum but contains no epoch declaration (PDF re-extracted via pdftotext 2026-05-18: mountpoint table + format notes only, no epoch text). RTVRN portal also silent on epoch. Datum citation: https://www.mesacounty.us/sites/default/files/2025-05/RTVRN%20Login%20Instructions%20and%20NTRIP%20Mountpoints.pdf |
 
-Login format: `organization/username` (e.g. `ABC surveying/ABC1`). Coverage centred Western CO (Grand Junction / Mesa County); 33-station network reaches western CO and edges into adjacent UT and WY. Only confirmed free public VRS network in CO; CDOT does not operate public RTK caster.
+Login format: `organization/username` (e.g. `ABC surveying/ABC1`). Coverage centred Western CO (Grand Junction / Mesa County); 33-station network reaches western CO and edges into adjacent UT and WY — extent of UT/WY overlap not enumerated by operator; likely 10-30 km cross-border (single-base RTK threshold) rather than full state-wide coverage. Only confirmed free public VRS network in CO; CDOT does not operate public RTK caster.
 
 ## UT — TURN GPS
 
@@ -176,15 +176,15 @@ State-managed paid service, not commercial vendor. Registration: turngps.utah.go
 |---|---|
 | Network | Nevada GPS Network (formerly Washoe County GPS / NNCRN) |
 | Operator | UGRC — administered jointly; historically Washoe County NV |
-| landing_url | https://gis.utah.gov/gps/ngps/ |
-| access_url | https://nevadagps.utah.gov/ (subscription via TURN bundle) |
+| landing_url | https://nevadagps.utah.gov/ — operator Nevada GPS portal (Reno area; UGRC-managed). Prior cite `https://gis.utah.gov/gps/ngps/` HTTP 301 → `https://gis.utah.gov/products/turn/` (TURN-only page covering "Utah and portions of Idaho, Wyoming, and southern Nevada" — does not address the Reno-area Nevada GPS Network) 2026-05-18; ngps slug no longer routes to a Nevada-specific page |
+| access_url | https://nevadagps.utah.gov/ (subscription via TURN bundle; same Utah ID) |
 | host:port | `168.179.231.11:2102` (NAD83/HARN legacy); `165.239.144.7:2101` (NAD83/2011) |
 | tariff | Paid — USD 600/yr bundled with TURN GPS UT; same Utah ID |
 | vrs | Yes — Trimble Pivot (shared with TURN) |
 | num_stations | Reno / Washoe County area; not statewide — southern NV and Las Vegas not covered |
 | hobbyist_eligibility | Yes — same as TURN |
 | legal_residency_required | No — same as TURN |
-| last_confirmed_alive | gis.utah.gov/gps/ngps/ HTTPS 200; nevadagps.utah.gov HTTPS timeout external; 168.179.231.11:2102 TCP timeout |
+| last_confirmed_alive | nevadagps.utah.gov HTTPS timeout external 2026-05-18; gis.utah.gov/gps/ngps/ HTTP 301 → gis.utah.gov/products/turn/ (TURN-only landing, no NV-specific content); 168.179.231.11:2102 TCP timeout |
 | datum_epoch | NAD83(2011)/2010.0000 on `165.239.144.7:2101`; legacy NAD83/HARN (NAD83/94 HARN) on `168.179.231.11:2102`. Citation: https://gis.utah.gov/documentation/turn/connecting/ |
 
 ### LVVWD GPS Base Station Network (Las Vegas Valley)
@@ -255,7 +255,7 @@ TURN GPS (UT) extends paid coverage (USD 600/yr) into southern ID. EarthScope NO
 | hobbyist_eligibility | Likely yes — USD 100 one-time fee under project's USD 200/yr cutoff; no explicit professional restriction; SurveyMonkey form |
 | legal_residency_required | No — no stated requirement |
 | last_confirmed_alive | 2026-05-18 — `SOURCETABLE 200 OK` on all four ports (server "NTRIP Sopac Caster/1.0"); 677 STR total |
-| datum_epoch | **CSRS Epoch 2025.00 (NAD83(2011))** since 2025-08-11 migration. Operator verbatim (connecting page 2026-05-18): "CRTN base stations broadcast CSRS Epoch 2025.00 (NAD83) positions." Explainer (csrn-epoch-2025-00 2026-05-18): formally **"CSRN Epoch 2025.00 NAD83(2011)"** — CSRS = California Spatial Reference System ("realized by the geodetic coordinates and uncertainties of the CSRN on the date of 2025.00"; **not** Canadian Spatial Reference System NAD83(CSRS)). Operator: "rigorously aligned to the current definition of the National Spatial Reference System (NSRS) through a set of coordinate transformations from ITRF2020." Historical streams previously NAD83(2011)/2010.00. Citations: http://sopac-csrc.ucsd.edu/index.php/crtn-connecting/, https://sopac-csrc.ucsd.edu/index.php/csrn-epoch-2025-00/ |
+| datum_epoch | **CSRS Epoch 2025.00 (NAD83(2011))** since 2025-08-11 migration. **CSRS here = California Spatial Reference System, NOT Canadian Spatial Reference System NAD83(CSRS)** — name collision; California operator uses "CSRS" / "CSRN" terminology in their own framework. Operator verbatim (connecting page 2026-05-18): "CRTN base stations broadcast CSRS Epoch 2025.00 (NAD83) positions." Explainer (csrn-epoch-2025-00 2026-05-18): formally **"CSRN Epoch 2025.00 NAD83(2011)"** — "realized by the geodetic coordinates and uncertainties of the CSRN on the date of 2025.00." Operator: "rigorously aligned to the current definition of the National Spatial Reference System (NSRS) through a set of coordinate transformations from ITRF2020." Historical streams previously NAD83(2011)/2010.00. Citations: http://sopac-csrc.ucsd.edu/index.php/crtn-connecting/, https://sopac-csrc.ucsd.edu/index.php/csrn-epoch-2025-00/ |
 | format | RTCM 3.1 / 3.3 — varies by mountpoint (legacy BARD: RTCM 3.1; NOTA-integration: RTCM 3.3) |
 | contact | Maria Turingan, `mrturingan@ucsd.edu` |
 
@@ -339,7 +339,7 @@ Topcon announced Topnet Live expansion to include HI in October 2024 (commercial
 - **WSRN USD 1,900/yr** = most expensive western state network. LVVWD pricing undisclosed.
 - **CRTN USD 100 one-time** = cheapest gateway to large station network (431 GNSS-capable stations / ~685 STR rows 2026-05-18) in West; under hobbyist threshold. Migrated to CSRS Epoch 2025.00 NAD83(2011) 2025-08-11 (transmitted via existing RTCM 3.3 streams).
 - **Mesa County RTVRN** geographically narrow (Western CO) but free and maintained.
-- **AZCORS** = 71 sites (56 ADWR + 15 EarthScope/NPS) per ADWR 2026-04-14 page.
+- **AZCORS** = 71 sites (56 ADWR + 15 EarthScope/NPS) per ADWR 2026-04-14 page — figure carried from prior research; 2026-05-18 sandbox cannot re-fetch ADWR landing/PDF (HTTP 403, no UA-swap or wayback bypass) to re-validate the 71/56/15 breakdown.
 - **WSRN NATRF2022 port (2022)** = caster handshake live, empty mountpoint catalogue — provisioning expected through 2H2026 alongside NSRS modernisation rollout.
 - **Volunteer/community casters** (rtk2go) in West cluster densely in PNW (WA, OR) — counted via `data/stations.json` per pipeline.
 - **Open items requiring direct contact**: ARTGN (NM) operational status (505-768-3614); LVVWD (NV) pricing + hobbyist eligibility; AZCORS confirmed external NTRIP port (Cloudflare CDN obscures anonymous probe); MTSRN biennial rate review for 2026-07-01 (March 2026 glidepath published, no rate change announced).
@@ -375,8 +375,8 @@ Topcon announced Topnet Live expansion to include HI in October 2024 (commercial
 - TURN GPS connecting (datum + tariff citation): https://gis.utah.gov/documentation/turn/connecting/
 - TURN GPS bill pay: https://turngps-billpay.ugrc.utah.gov
 - TURN GPS portal: https://turngps.utah.gov/
-- Nevada GPS Network UGRC: https://gis.utah.gov/gps/ngps/
-- Nevada GPS Network (Reno): https://nevadagps.utah.gov/
+- Nevada GPS Network (Reno area; operator portal): https://nevadagps.utah.gov/
+- Nevada GPS Network legacy UGRC slug (HTTP 301 → gis.utah.gov/products/turn/ 2026-05-18, no longer Nevada-specific): https://gis.utah.gov/gps/ngps/
 - Washoe County GPS Base Stations: https://washoecounty.gov/csd/engineering_capitalprojects/development_services/gps_base_stations/index.php
 - LVVWD survey/right-of-way: https://www.lvvwd.com/engineering-resources/survey-right-of-way/
 - LVVWD account request: https://www.lvvwd.com/apps/base-station-network-access/

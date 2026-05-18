@@ -11,7 +11,7 @@
 | State | Network | Operator | host:port | Tariff | VRS | Hobbyist | Live 2026-05-18 | Datum citable |
 |---|---|---|---|---|---|---|---|---|
 | VA | None | — | — | — | — | — | N/A | N/A |
-| WV | WVRTN | WVDOT | `wvrtn.cors.us:2101` | Free | Yes | Unclear (likely yes) | OK 7 STR | No |
+| WV | WVRTN | WVDOT | `wvrtn.cors.us:2101` | Free | Yes | Unclear (likely yes) | OK 7 STR | Datum only (NAD83(2011); no epoch) |
 | NC | NC RTN | NC Geodetic Survey | `rtn.nc.gov:2101` | Paid USD 500 one-time | Yes | Unclear | Portal HTTP 200; NTRIP firewalled | No |
 | SC | SCRTN | SC Geodetic Survey | `scrtn.sc.gov:2101` | Paid USD 1,200 first | Yes | Unclear | OK 14 STR | No |
 | GA | None | — | — | — | — | — | N/A | N/A |
@@ -29,7 +29,7 @@
 
 ## VA — no state-operated public caster
 
-VDOT reportedly attempted statewide RTK network and abandoned after litigation from Leica/Topcon (commercial SmartNet etc. already operating) — sourced from RPLS forum thread, not independently confirmed by VDOT press release or court filing. **No further verification attempted in this session** (VDOT press-release archive, eVA procurement records, Virginia court-records databases not searched) — litigation claim status remains unresolved; treat as community lore until corroborated. As of 2026-05-18 no VDOT or other VA state-agency caster identified.
+Community lore (RPLS forum thread) describes VDOT attempting a statewide RTK network and abandoning after commercial-vendor pushback. Not corroborated by VDOT press release, court filing, or procurement record located in research. **Retained as pointer only — do not repeat as fact.** As of 2026-05-18 no VDOT or other VA state-agency caster identified.
 
 | Field | Value |
 |---|---|
@@ -53,7 +53,7 @@ VDOT Survey Manual (Chapter 5, last updated 2023) acknowledges commercial RTK/VR
 | hobbyist_eligibility | Unclear — registration requires Organization field; no professional licence stated; likely yes for any user with valid email |
 | legal_residency_required | Unclear — no stated requirement |
 | last_confirmed_alive | 2026-05-18 — `SOURCETABLE 200 OK` (7 STR: `vrsRTCM3_1`, `vrsCMRx`, `vrsCMRplus`, `vrsRTCM3_2`, `rtxCMRx`, `rtxRTCM3_4_MSM`, `NATRF2022_Test`; Trimble Caster 5.2 / PIVOT 4.3.2) |
-| datum_epoch | NAD 83(2011) — portal explicit: "Current coordinate system is NAD 83(2011)". NATRF2022 plan: "When details are provided on NATRF 2022, the WVRTN will provide details regarding how it will be implemented" (`NATRF2022_Test` mountpoint already live; Trimble beta). Citation: https://wvrtn.cors.us/ |
+| datum_epoch | NAD 83(2011) (epoch omitted by operator) — portal explicit: "Current coordinate system is NAD 83(2011)" and mountpoint table reiterates "NAD 83(2011)"; **no epoch declared anywhere on operator portal as of 2026-05-18** — primer [datum-epoch] requires operator declaration; recording datum only without epoch. NATRF2022 plan: "When details are provided on NATRF 2022, the WVRTN will provide details regarding how it will be implemented" (`NATRF2022_Test` mountpoint already live; Trimble beta). Citation: https://wvrtn.cors.us/ |
 
 Recent Trimble Alloy receiver upgrades. Support: `WVRTNHelpDesk@wv.gov`. Backup hostname: `cors.us` (same IP).
 
@@ -115,7 +115,7 @@ EarthScope NOTA provides sparse single-base in GA. GCGC RTN (USM, MS) coverage d
 | Network | Florida Permanent Reference Network (FPRN) |
 | Operator | FDOT Geospatial office |
 | landing_url | https://www.fdot.gov/geospatial/fprn.shtm |
-| access_url | https://www.myfloridagps.com/ — Leica SBC portal |
+| access_url | https://www.myfloridagps.com/sbc — Leica SBC portal entry (registration). Bare `https://www.myfloridagps.com/` returns IIS Windows Server default page 2026-05-18, not the SBC welcome; users must hit `/sbc` (or FAQ subpath) |
 | host:port | `48.223.232.215:10000` (NAD83-broadcast Network Solutions); 11000-series ports for TCP/IP; legacy IP `40.121.5.206` deprecated |
 | tariff | Free — FAQ explicit: "Currently there are no plans to charge users for any FPRN services or products" |
 | vrs | Yes — VRS, iMAX, MAX, FKP; mountpoint `RTCM3_VRS`; formats RTCM 2.3 / RTCM 3.1 / CMR+ / RTCM 3.3 MSM4 |
@@ -136,7 +136,7 @@ Account activation 24-48h. Only SE caster with clearly operator-declared datum/e
 | landing_url | https://aldotcors.dot.state.al.us/ — Leica SBC portal welcome |
 | access_url | Skip — landing portal serves both purposes (routes to `/SBC/Account/Register`) |
 | host:port | `aldotcors.dot.state.al.us` resolves to `205.172.52.25` and `205.172.52.26`; only `:26` reachable externally on ports 10011 (network solutions) + 10099 (single-base). Std NTRIP port 2101 firewalled on both IPs |
-| num_stations | 158 physical single-base streams on `205.172.52.26:10099` (live ST 2026-05-18; 1 stream per CORS — RTCM 3 GPS+GLO). Port `:10011` carries 10-mountpoint network-solution layer (LeicaMAX/iMAX/NEAR/MSM4 variants), not per-station |
+| num_stations | 158 STR on `205.172.52.26:10099` (live ST 2026-05-18; 1 stream per CORS — RTCM 3 GPS+GLO). **Caveat**: 158 = single-base mountpoint count on :10099; whether this equals 158 distinct physical CORS or includes legacy/redundant streams from the same antenna is not declared on ALDOT pages and not separately enumerated by the operator. Port `:10011` carries 10-mountpoint network-solution layer (LeicaMAX/iMAX/NEAR/MSM4 variants), not per-station |
 | tariff | Free — confirmed by surveying community sources (rpls.com, Emlid community) |
 | vrs | Yes — `:10011` advertises Leica `LeicaMAX` / `LeicaIMAX` / `IMAX_MSM4` (iMAX) and `NEAR_MSM4`. iMAX = Leica NRTK product functionally equivalent to VRS. Canonical `_VRS` mountpoint name not published; NRTK capability operator-advertised |
 | hobbyist_eligibility | Unclear — registration form requires Company field (Leica SBC standard); no professional licence; hobbyists have successfully registered per community |

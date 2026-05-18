@@ -14,10 +14,10 @@
 | num_stations | Physical CORS count not declared on operator pages. 8 mountpoints live: 1 nearest-station alias (`MS_RTCM3`) + 5 regional VRS + 1 NorthWest VRS + 1 experimental NortonSound VRS. Trimble Pivot single-tenant convention hides per-station ST entries |
 | tariff | Free — explicit per 2025 DGGS workshop ("data products will be shared freely"). No rate card |
 | vrs | Yes — 5 regional VRS + experimental NortonSound VRS; `MS_RTCM3` = nearest-station alias |
-| hobbyist_eligibility | Unclear (likely yes) — self-service registration; no professional licence field; portal requires "Organization" field (purpose ambiguous). Confirm: ACORN@ALASKA.GOV |
+| hobbyist_eligibility | Unclear — self-service registration; no professional licence field; portal requires "Organization" field (purpose ambiguous); 2023 Flint DGGS deck says partners receive "free or paid access" (paid = inter-agency cost-sharing, not end-user fee) but no confirmed hobbyist case located. Confirm: ACORN@ALASKA.GOV |
 | legal_residency_required | Unclear — Country field on form suggests international use possible; no stated residency rule |
 | last_confirmed_alive | 2026-05-18 — `SOURCETABLE 200 OK`, 8 STR; portal HTTP 200 |
-| datum_epoch | NAD83(2011) Epoch 2010.0 — Alaska DNR (Gervelis) 2025 DGGS AKGeoSummit ACORN workshop PDF: "Reference Position: NAD83(2011) Epoch 2010.0 / Height above Ellipsoid (m)". Citation: https://dggs.alaska.gov/webpubs/dggs/ago/documents/2025AKGeoSummit/Workshop_Gervelis_State_of_Alaska_ACORN.pdf |
+| datum_epoch | NAD83(2011) Epoch 2010.0 — Alaska DNR (Gervelis) 2025 DGGS AKGeoSummit ACORN workshop PDF: "Reference Position: NAD83(2011) Epoch 2010.0 / Height above Ellipsoid (m)". Citation: https://dggs.alaska.gov/webpubs/dggs/ago/documents/2025AKGeoSummit/Workshop_Gervelis_State_of_Alaska_ACORN.pdf. **Citation quality**: ACORN operator slide deck delivered by Alaska DNR (the network operator) at state geodesy workshop — operator authorship affirmed, but slide-deck format vs. dedicated spec page. No operator-portal datum statement located (FAQ "Coming Soon!"). Confirm with `ACORN@ALASKA.GOV` for survey-grade work |
 
 ## Mountpoints (live 2026-05-18)
 
@@ -30,7 +30,7 @@
 | `VRS_SouthEast_RTCM3` | VRS | RTCM 3.4 | GPS+GLO+GAL+BDS |
 | `VRS_SouthEast_CMRx` | VRS Trimble | CMRx | GPS+GLO+GAL+BDS |
 | `VRS_NorthWest_RTCM3` | VRS | RTCM 3.4 | GPS+GLO+GAL+BDS |
-| `VRS_NortonSound_RTCM3_EXPERIMENTAL` | VRS Seward Pen / Norton Sound | RTCM 3.4 | GPS+GLO+GAL+BDS |
+| `VRS_NortonSound_RTCM3_EXPERIMENTAL` | VRS Seward Pen / Norton Sound (EXPERIMENTAL — stability unknown; operator does not publish stability/availability tier for this mount, suitability for hobbyists vs geodetic/research partners not stated) | RTCM 3.4 | GPS+GLO+GAL+BDS |
 
 All eight mountpoints serve GPS+GLO+GAL+BDS — upgrade from older GPS+GLO-only config in historical ACORN docs.
 

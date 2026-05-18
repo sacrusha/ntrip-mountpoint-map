@@ -20,8 +20,8 @@ do NOT author new scripts/*.py to bypass.
 other narrow tools (awk, etc.) per-approval when WebFetch result is questionable or conflicts.
 
 [fields] per caster:
-- landing_url            operator-owned where available; most-official otherwise
-- access_url             best page for user to learn network + signup + conditions. Url, not email, not phone
+- landing_url            operator-owned where available; most-official otherwise. No bare login or form page. No operator info-page + no semi-official third-party page → Skip.
+- access_url             best page for user to learn network + signup + conditions. Url, not email, not phone. Bare login/form page allowed iff that is genuinely the signup workflow and nothing better exists
 - host:port              curl ST; note date
 - tariff                 all tiers; local currency; VAT stated; date observed; source URL
 - num_stations           physical CORS count per caster (primer [stations-vs-mps])

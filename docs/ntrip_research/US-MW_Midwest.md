@@ -37,7 +37,7 @@ Hobbyist `?` = no explicit eligibility statement; no professional-licence field;
 |---|---|
 | Network | Ohio Real Time Network (ex-ODOT VRS) |
 | Operator | ODOT Engineering & Surveying; Trimble Pivot |
-| landing_url | https://transportation.ohio.gov/working/engineering/cadd-mapping/survey/cors-rtn |
+| landing_url | https://geodesy.noaa.gov/CORS/cors_faqs.shtml — NGS CORS state-provider FAQ (lists OH state RTK provider). Most-official third-party fallback; operator-owned landing absent — `transportation.ohio.gov/working/engineering/cadd-mapping/survey/cors-rtn` HTTP 404 2026-05-18 (entire `/working/engineering/` tree gone in ODOT site reorg, no operator-side successor surfaced); operator subdomain `ortn.dot.state.oh.us/TrimblePivotWeb/` is bare Trimble Pivot Login (excluded by landing_url spec; IP-allowlist gated externally) |
 | access_url | https://ortn.dot.state.oh.us/TrimblePivotWeb/Login.aspx (Trimble Pivot Web; account-gated) |
 | host:port | `156.63.133.115:2101` (DNS `ortn.dot.state.oh.us`) |
 | tariff | Free |
@@ -46,7 +46,7 @@ Hobbyist `?` = no explicit eligibility statement; no professional-licence field;
 | hobbyist_eligibility | ? — access-request form, no professional-licence field |
 | legal_residency_required | ? |
 | last_confirmed_alive | 2026-05-06 — pipeline `SOURCETABLE 200 OK`. External probes blocked (IP allowlist) |
-| datum_epoch | omitted — operator portal (Trimble Pivot Login) + ODOT CORS-RTN landing page (HTTP 404 2026-05-18; previously cached) checked, no citable datum declaration located; no separate operator FAQ/user-guide page reachable from sandbox |
+| datum_epoch | omitted — operator portal (Trimble Pivot Login) account-gated; ODOT transportation.ohio.gov `/working/engineering/cadd-mapping/survey/cors-rtn` landing page HTTP 404 2026-05-18 (entire `/working/engineering/` tree removed in site reorg); no citable datum declaration located; ODOT Survey Manual / ODOT geodetics index not exhaustively searched for an ODOT-internal datum spec |
 
 Contact: `cors@dot.state.oh.us`. Reseller (training/support): Laser Instruments / Precision Laser & Instrument.
 
@@ -58,14 +58,14 @@ Contact: `cors@dot.state.oh.us`. Reseller (training/support): Laser Instruments 
 | Operator | INDOT, Land & Aerial Survey Office; Leica SBC |
 | landing_url | https://incors.in.gov/ |
 | access_url | https://incors.in.gov/useragreement.pdf (signed UA returned to `incors@indot.in.gov`) |
-| host:port | not published; IP `108.59.49.226`; SBC ports 9000, 7071-7073, 10000 emailed after activation |
+| host:port | not published; IP `108.59.49.226`; SBC ports 9000, 7071-7073, 10000 emailed after activation — port list carried from prior research, no operator-public citation located on incors.in.gov; non-standard Leica SBC range 7071-7073 unusual, treat as best-available pointer until operator email confirms |
 | tariff | Free — "any user recognizing the value of such a service at no charge" |
 | vrs | Yes — iMAX + MAX. Recommended `RTCM3_MAX` (GPS+GLO); MSM4 full-constellation available. 4-constellation network-wide since 2024-06-18 station upgrade |
 | num_stations | 45 INDOT + 15 cross-state (MI/OH/KY) = 60 in solution |
 | hobbyist_eligibility | ? — "any user" language; no professional-licence field; mailed UA |
 | legal_residency_required | ? |
-| last_confirmed_alive | 2026-05-07 — portal HTTP 302→HTTPS; SBC port account-gated (expected) |
-| datum_epoch | omitted — operator portal landing + linked Station Updates page + user agreement PDF checked, no citable datum declaration found; no separate operator FAQ page located |
+| last_confirmed_alive | 2026-05-18 — `incors.in.gov` socket connection closed unexpectedly (HTTPS unreachable from sandbox; was HTTP 302 on 2026-05-07; transient or new outage). NTRIP ports account-gated regardless. Pipeline (NTRIP) status independent of portal availability |
+| datum_epoch | omitted — operator portal landing + linked Station Updates page + user agreement PDF checked, no citable datum declaration found; INDOT Land & Aerial Survey Office page / Indiana Geographic Information Council resources not exhaustively searched for an INDOT-internal datum spec |
 
 Credentials emailed after manual activation. Station updates: https://incors.in.gov/Station%20Updates.html. Public RINEX FTP: https://ftp.incors.in.gov/
 
@@ -94,7 +94,7 @@ GGA every 30s required. Alt domain `mdotcors.org` redirects to Michigan portal (
 |---|---|
 | Network | Wisconsin Continuously Operating Reference Station Network |
 | Operator | WisDOT; Trimble Pivot |
-| landing_url | https://wisconsindot.gov/Pages/doing-business/eng-consultants/cnslt-rsrces/tools/wiscors/default.aspx |
+| landing_url | https://wisconsindot.gov/Pages/doing-bus/eng-consultants/cnslt-rsrces/tools/wiscors/default.aspx — WisDOT page; HTTP 200 2026-05-18. Earlier-cited `/Pages/doing-business/...` slug is 404 (WisDOT path uses `doing-bus`, not `doing-business`) |
 | access_url | https://wiscorsweb.dot.wi.gov/TrimblePivotWeb/RegisterAccount.aspx |
 | host:port | `wiscors.dot.wi.gov:2101` (165.189.65.133; was 130.47.252.87 pre-2016) |
 | tariff | Free |
@@ -180,7 +180,7 @@ Confirmed (GPS World Dec 2024 lists explicitly "No public service"; E38 Survey S
 
 - **ND**: no state caster. NOTA stations at geodetic spacing.
 - **SD**: no state caster. NOTA stations. TrueNav Tech (Sioux Falls) markets single-base NTRIP across SD/MN/IA/NE with self-service 30-day free trial; hobbyist-friendly via trial; pricing not published.
-- **NE**: no state caster. NEBRS (UNL + NDOT) = post-processing RINEX only. NDOT runs ~40 internal-only stations. Public-network advocacy paper: agrasoft.net/info/nebraska-rtk-cors-modernization (Jan 2024, author Kevin Kenney). **Caveat: AGRAsoft is a commercial agriculture-software vendor; the page is policy advocacy, not a neutral source — treat the "$3M/yr potentially leaving the state in subscription fees" figure as advocacy framing, not audited data.**
+- **NE**: no state caster. NEBRS (UNL + NDOT) = post-processing RINEX only; account-required and free per UNL School of Natural Resources NEBRS page (covers data download policy + station list). NDOT runs ~40 internal-only stations. Public-network advocacy paper: agrasoft.net/info/nebraska-rtk-cors-modernization (Jan 2024, author Kevin Kenney). **Caveat: AGRAsoft is a commercial agriculture-software vendor; the page is policy advocacy, not a neutral source — treat the "$3M/yr potentially leaving the state in subscription fees" figure as advocacy framing, not audited data.**
 - **KS**: no state caster. KDOT GIS Resources lists no CORS/RTK. SmartNet North America Oklahoma portal covers OK/KS/TX corridor (paid).
 
 Commercial fallbacks (out of scope, context only): Trimble VRS Now / RTX, Midstates VRS (now Trimble Positioning Services), Midwest RTK Network (mwrtk.net), RTKdata.com.
@@ -201,12 +201,12 @@ NOAA NCN CORS RINEX (free, no account); EarthScope NOTA RINEX (free non-commerci
 
 ## Sources
 
-- WISCORS: https://wiscorsweb.dot.wi.gov/trimblepivotweb/ ; https://wisconsindot.gov/Pages/doing-business/eng-consultants/cnslt-rsrces/tools/wiscors/default.aspx ; FAQ PDF wiscorsweb.dot.wi.gov/TrimblePivotWeb/documents/wiscors-faq.pdf ; www.seilergeo.com/wiscors-ip-address-and-url-change-2/
+- WISCORS: https://wiscorsweb.dot.wi.gov/trimblepivotweb/ ; https://wisconsindot.gov/Pages/doing-bus/eng-consultants/cnslt-rsrces/tools/wiscors/default.aspx ; FAQ PDF wiscorsweb.dot.wi.gov/TrimblePivotWeb/documents/wiscors-faq.pdf ; www.seilergeo.com/wiscors-ip-address-and-url-change-2/
 - InCORS: https://incors.in.gov/ ; https://incors.in.gov/useragreement.pdf ; https://incors.in.gov/Station%20Updates.html ; https://ftp.incors.in.gov/
 - MDOT CORS: https://mdotcors.michigan.gov/sbc ; https://mdotcors.michigan.gov/sbc/Account/Register ; MSRN Port Scheme XLSX
 - MnCORS: https://www.dot.state.mn.us/surveying/cors/index.html ; FAQ https://www.dot.state.mn.us/surveying/cors/mncors_faq.html ; https://mncors.dot.state.mn.us/ ; Feb 2025 MnDOT bulletin content.govdelivery.com/accounts/MNDOT/bulletins/3d3904c
 - IaRTN: https://iowadot.gov/consultants-contractors/design/iowa-real-time-network ; portal https://iartnsbc.iowadot.gov/ ; reference station list https://iowadot.gov/media/1387/download?inline= ; NATRF2022 announcement https://iowadot.gov/announcement/2025-12-02/new-reference-frame-2026
-- ODOT RTN: https://transportation.ohio.gov/working/engineering/cadd-mapping/survey/cors-rtn ; https://ortn.dot.state.oh.us/TrimblePivotWeb/Login.aspx ; multi-const 2021-02-02 announcement https://ohiosurveyor.org/aws/osps/pt/sd/news_article/350530/_PARENT/layout_details/false
+- ODOT RTN: https://ortn.dot.state.oh.us/TrimblePivotWeb/Login.aspx (operator Trimble Pivot Web) ; prior `https://transportation.ohio.gov/working/engineering/cadd-mapping/survey/cors-rtn` is HTTP 404 2026-05-18 (site reorg, full `/working/engineering/` tree removed) ; multi-const 2021-02-02 announcement https://ohiosurveyor.org/aws/osps/pt/sd/news_article/350530/_PARENT/layout_details/false
 - MoDOT RTN: https://gpsweb3.modot.mo.gov/ ; FAQ https://gpsweb3.modot.mo.gov/faq.html ; UA PDF https://gpsweb3.modot.mo.gov/MODOT_RTK_GPS_USER_AGREEMENT.pdf ; multi-const update www.seilergeo.com/update-to-wiscors-and-modot-rtk-networks/
 - IDOT CORS: https://idot.illinois.gov/about-idot/stay-connected/idot-blog/cors-network-installation-kicks-off.html ; meritalkslg.com/articles/illinois-kicks-off-cors-network-installation/ ; clearinghouse.isgs.illinois.edu/webdocs/ilhmp/reference.html ; ReIL-NET karaco.com/pages/reil-net-rtk-network
 - Regional refs: https://www.gpsworld.com/finally-a-list-of-public-rtk-base-stations-in-the-u-s/ ; e38surveysolutions.com/pages/ntrip-rtk-network-access-by-state ; pointonenav.com/states/{north-dakota,south-dakota,nebraska,kansas,michigan}/ ; ntrip-list.com/north-america/ ; www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-the-united-states-of-america-usa/

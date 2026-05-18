@@ -10,7 +10,7 @@ Five free state networks (ME, VT, MA, CT, NY). NH/RI/NJ/PA/DE/MD/DC have no free
 
 | State | Free public caster | Network | host:port | VRS | Hobbyist | Probe |
 |---|---|---|---|---|---|---|
-| ME | Yes | MaineDOT RTN | `medotrtn.maine.gov:2101` | Yes | Likely yes | OK 8 STR |
+| ME | Yes | MaineDOT RTN | `medotrtn.maine.gov:2101` | Yes | Unclear | OK 8 STR |
 | NH | No | — | — | — | — | No state caster |
 | VT | Yes | VECTOR | `vector.vermont.gov:2101` | Yes | Yes (explicit) | OK 36 STR |
 | MA | Yes | MaCORS | `macorsrtk.massdot.state.ma.us:2101` | Yes (iMAX) | Yes | Timeout external (firewall); DNS resolves |
@@ -43,7 +43,7 @@ See `US-NOTA_NetworkOfTheAmericas.md` for operator-scope detail. NE sub-coverage
 | hobbyist_eligibility | Unclear — self-service registration (own Org/Username/Password); no professional-licence field; no explicit restriction |
 | legal_residency_required | Unclear — no stated requirement |
 | last_confirmed_alive | 2026-05-18 — `SOURCETABLE 200 OK` (8 STR; Trimble Caster 5.3) |
-| datum_epoch | NAD83(2011) Epoch 2010.00 — MaineDOT operator datasheet: https://www.maine.gov/mdot/surveyinfo/docs/NAD832011Epoch2010Datasheets.pdf |
+| datum_epoch | omitted — prior citation https://www.maine.gov/mdot/surveyinfo/docs/NAD832011Epoch2010Datasheets.pdf returns HTTP 404 2026-05-18 (datasheets PDF no longer published at that path); MaineDOT survey-info landing https://www.maine.gov/dot/doing-business/permitting-policy/survey-and-right-of-way-information does not declare a frame; portal medotrtn.maine.gov login-only. Filename of broken URL suggested NAD83(2011) Epoch 2010 but is not a usable citation. Re-confirm via `rtnsupport.medot@maine.gov` |
 
 MaineDOT replaced legacy CORS system (mdotcors.maine.gov, ECONNREFUSED since pre-cutover) with Trimble Pivot at medotrtn.maine.gov in 2025. Pre-cutover users had to re-register.
 
@@ -54,6 +54,8 @@ No state DOT or university RTK network. NHDOT operates CORS contributing to NOAA
 EarthScope NOTA has one NH station (P776 central NH) as single-base fallback. Commercial: KeyNetGPS (paid, see multi-state section).
 
 ## VT — VECTOR
+
+**Practical limitation for non-Trimble multi-constellation rovers**: VECTOR sourcetable advertises full multi-const (GPS+GLO+GAL+BDS) *only* via CMRx (Trimble proprietary). RTCM 3.1 and CMR+ streams cap at GPS+GLO. No RTCM 3.2/3.3 MSM mountpoint. ZED-F9P / Emlid / non-Trimble multi-const rovers therefore cannot consume VECTOR's Galileo/BeiDou; they get GPS+GLO via the RTCM 3.1 streams only.
 
 | Field | Value |
 |---|---|
@@ -92,13 +94,13 @@ NetR9 → current-generation receiver upgrades completed 2025.
 | station_count | 22 GNSS base stations ~50 km apart (current Mass.gov 2026 listing). Older sources reference 18 |
 | formats | RTCM 2.3, RTCM 3.1, CMR, CMR+, RTCM 3.2 MSM4 |
 | coverage | Massachusetts + edge into RI, southern NH, CT |
-| datum_epoch | omitted — no citable operator declaration. Mass.gov MaCORS landing fetched 2026-05-18 returns HTTP 403 to scripted probe (anti-bot); prior cached fetches contained no frame/epoch text. Leica SBC portal account-gated. Third-party `MaCORS_FAQs_Rev2.pdf` mirror at ashgps.com states NAD83(2011) ep 2010.00 (**pointer carried forward from prior research; mirror PDF not re-fetched in this session — re-verify before citing**). Not citable on MassDOT-controlled domain |
+| datum_epoch | omitted — no citable operator declaration on MassDOT-controlled domain. Mass.gov MaCORS landing returns HTTP 403 to scripted probe 2026-05-18 (anti-bot, did not defeat via UA swap); prior cached fetches contained no frame/epoch text. Leica SBC portal account-gated. Reseller mirror `ashgps.com/.../MaCORS_FAQs_Rev2.pdf` states NAD83(2011) ep 2010.00 — **mirror PDF is third-party reseller copy, not an operator-controlled citation; per primer [datum-epoch] only operator portal/spec citable, so this is pointer only** |
 
 Port 2101 firewalled to registered accounts (Leica SBC standard).
 
 ## RI — no dedicated state caster
 
-Relies on neighbour networks: ACORN (CT) places `URIL` station in Kingston RI (41.49°N -71.53°W) served as `URIL3`/`URILP`/`URILX` + inside ACORN VRS hull; MaCORS (MA) southernmost stations reach northern RI.
+Relies on neighbour networks: ACORN (CT) places `URIL` station in Kingston RI (41.49°N -71.53°W) served as `URIL3`/`URILP`/`URILX` + inside ACORN VRS hull; MaCORS (MA) southernmost stations reach northern RI — specific stations and baselines into RI not enumerated by MassDOT publicly; RI users at the MA/RI line ~10-20 km from southernmost MA bases, RTK marginal at single-base baselines beyond ~30 km per primer [accuracy].
 
 Commercial fallback: KeyNetGPS (see multi-state section).
 
@@ -225,7 +227,7 @@ Resellers: Laser Industries 412-510-3089; Duncan-Parnell 833-916-0557. Primary p
 - MALSCE MaCORS announcement: https://www.malsce.org/news/massdots-gps-network-now-available-for-use/
 - Maine DOT Survey: https://www.maine.gov/dot/doing-business/permitting-policy/survey-and-right-of-way-information
 - MaineDOT RTN portal: https://medotrtn.maine.gov/
-- MaineDOT NAD83(2011) datasheets (datum citation): https://www.maine.gov/mdot/surveyinfo/docs/NAD832011Epoch2010Datasheets.pdf
+- MaineDOT NAD83(2011) datasheets (HTTP 404 2026-05-18; previously published, no longer): https://www.maine.gov/mdot/surveyinfo/docs/NAD832011Epoch2010Datasheets.pdf
 - VTrans VECTOR real-time: https://vtrans.vermont.gov/highway/geodetic/cors/real-time
 - VECTOR portal: https://vector.vermont.gov/
 - ACORN welcome: http://acorn.uconn.edu/
