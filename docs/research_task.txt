@@ -1,19 +1,21 @@
 Research public NTRIP RTK casters for [entry]. Unknown > guess. Output: docs/ntrip_research/ only. File = deliverable; don't pollute caller context until valuable.
 
-Read first: docs/research_task.primer.txt (scope, sourcetable, NRTK detection, datum/epoch, ingested-globals, licensing, skip-list). Apply before fetching.
+NTRIP primer: docs/research_task.primer.txt 
 
 [tools]
-prefer dedicated (easier to approve, safer guards): WebSearch, WebFetch (incl. PDF URLs), Read, Grep, Glob, Write, Edit.
-narrow Bash: Bash(curl:*), Bash(nslookup:*), Bash(py scripts/<name>.py:*) where <name> in {stations_by_country, stations_by_radius, stations_inspect, source_health, sources_list, network_lookup}.
-NOT Bash(py:*) (covers py -c inline Python); do NOT author new scripts/*.py to bypass.
+WebSearch, WebFetch (incl. PDF URLs), Read, Grep, Glob, Write, Edit, pdftotext.
+Bash(curl:*), Bash(nslookup:*), Bash(py scripts/<name>.py:*) ex: Bash(py scripts/stations_by_country.py ZAF)
+Different paths, PowerShell, and compound commands will likely be rejected. Try parent domain on failed webfetch, http 0.9 on failed curl.
+do NOT author new scripts/*.py to bypass.
 other narrow tools (awk, pdftotext, etc.) per-approval when WebFetch result is questionable or conflicts.
 
 [method]
-phase 1 orient (fast): prior research as starting point, do NOT trust -> verify, correct, expand, fill gaps. read: docs/ntrip_research/[entry], docs/ardusimple/[entry]. grep [entry] in docs/networks.md + data/country_markers.json.
-phase 2 research (deep): national/regional mapping agency in local admin languages -> operator portal in primary language. gaps via RTK hobbyist + professional communities. facts no fluff, ai consumption.
-conflicts -> resolve via multiple sources. WebFetch (Haiku) non-deterministic + prompt-dependent -> retry with directed prompt.
-refactor target file. remove bad research > pad it.
+read docs/ntrip_research/[entry], docs/ardusimple/[entry], grep [entry] in docs/networks.md + data/country_markers.json as starting point, don't trust. Use tools to verify, correct, expand, fill gaps. 
+Look for national/regional mapping agency in local admin languages, operator portal in primary language, fill gaps with press releases, research papers, RTK hobbyist + professional communities, local survey associations, etc. 
+conflicting information -> resolve via multiple sources, date, estimated current reliability of source. WebFetch (Haiku) non-deterministic + prompt-dependent -> retry with directed prompt.
+refactor target file, not add. it's a research file, not a research log. There is no requirement to preserve previous style.
 no active caster -> most recent project/announcement (date + URL).
+
 
 [fields] per caster:
 - landing_url            operator-owned where available; most-official otherwise
@@ -31,10 +33,11 @@ no active caster -> most recent project/announcement (date + URL).
 URL unreachable from sandbox acceptable iff: extraordinary evidence target user CAN reach + evidence-backed reason this sandbox cannot.
 
 [ingested-globals]
-do NOT access online unless [entry] = that caster: rtk2go, Centipede, EarthScope NOTA, EUREF-IP, IGS-IP (source ids: rtk2go, centipede, earthscope, euref_ip, igs_ip). coverage from local data:
+access rtk2go, centipede, earthscope, euref_ip, igs_ip from local date only, unless those are the networks you are investigating
   py scripts/stations_by_radius.py <lat> <lon> <km>   # use first; reveals country tags per source
-  py scripts/stations_by_country.py <code>             # bare = list codes
-helper scripts also yield accurate MP entries on any sourced network (not all MPs = real stations: NEAR/virtual/multi-format-from-1-station; not all casters publish all real stations: NRTK. primer [sourcetable] + [stations-vs-mps]).
+  py scripts/stations_by_country.py <code>            # bare = list codes
+Don't use for num_stations, sanity check only.
+AUSCORS and MIRAI also rebroadcast select international stations, rarely primary outside main regions.  
 
 [changelog]
-registration removed; landing_url+access_url added; datum_epoch added; research_task.primer.txt added; country-survey.md deprecated (merged into networks.md + ntrip_research/).
+registration removed; landing_url+access_url added; datum_epoch added; 

@@ -10,6 +10,7 @@
       "Edit(./**)",
       "Bash(curl:*)",
       "Bash(nslookup:*)",
+      "Bash(pdftotext:*)",
       "Bash(py scripts/stations_by_country.py:*)",
       "Bash(py scripts/stations_by_radius.py:*)",
       "Bash(py scripts/stations_inspect.py:*)",

@@ -1,117 +1,65 @@
 NTRIP RTK research primer. Audience: agents running docs/research_task.txt. Self-contained operational knowledge. Deeper material: docs/gnss-ai-guide.md (load section only if primer insufficient). AI-only file; compression per /caveman skill at level full (see CLAUDE.md).
 
-abbrev: MP=mountpoint, ST=sourcetable, NRTK=Network RTK, VRS=Virtual Ref Station, MAC=Master-Aux Concept, FKP=Flachen-Korrektur-Parameter, SSR=State-Space Repr, OSR=Observation-Space Repr, CORS=Continuously Operating Ref Station, IAR=Integer Ambiguity Resolution, ITRF=Internat Terr Ref Frame, IGS=Internat GNSS Service.
-
-[scope]
-in: RTK + NRTK over NTRIP. Free, public, hobbyist-eligible.
-out: PPP, PPP-RTK, SSR/SPARTN (Galileo HAS, QZSS CLAS, BeiDou PPP-B2b, Trimble RTX, NovAtel TerraStar, u-blox PointPerfect, Swift Skylark). SBAS (WAAS/EGNOS/MSAS/GAGAN/SDCM). DGNSS-only (pseudorange).
-quick test: carrier-phase + RTCM 3.x + NTRIP -> in. otherwise -> out.
-mixed networks (RTK + SBAS + PPP): in iff >=1 RTK MP exists. document only RTK side.
+abbrev: NRTK=Network RTK, VRS=Virtual Ref Station, MAC=Master-Aux Concept, FKP=Flachen-Korrektur-Parameter, SSR=State-Space Repr, OSR=Observation-Space Repr, CORS=Continuously Operating Ref Station, IAR=Integer Ambiguity Resolution, ITRF=Internat Terr Ref Frame, IGS=Internat GNSS Service.
 
 [ntrip]
-3 roles: NtripSource (base pushes RTCM) -> NtripCaster (HTTP server, holds ST) -> NtripClient (rover GETs MP).
-port 2101 = convention only. real-world: 80, 443, 2101-2104, 5005, 9879, 10011. some casters expose 443 TLS for firewall traversal.
-auth: B=basic, D=digest, N=none. ST field 15.
-v1 vs v2: v1=HTTP/1.0, GET /MP, GGA out-of-band. v2=HTTP/1.1 chunked, GGA in-band. most casters dual-mode. older Trimble = v1 only.
+RTCM corrections over TCP. v2 = HTTP/1.1; v1 = raw TCP, HTTP-shaped request but no Host header, response starts "SOURCETABLE 200 OK" not "HTTP/1.1 200". Many national casters (SAPOS, several others in SOURCES) are v1-only — HTTP clients fail with BadStatusLine; fetch_stations.py falls back to raw socket.
+port 2101 = convention only. real port arbitrary: 2001 InaCORS, 5001 LatPos, 8080 NYSNet, 9881 ORGN, 10010 MSRN, 10099 AlCORS, etc. wrong port = silent refusal; published port often firewalled even when service alive.
+probe: `curl --http0.9 -A 'NTRIP/1.0' --max-time 8 http://rtk2go.com:2101/`
+client flow: GET / -> sourcetable; GET /MOUNTPOINT -> RTCM byte stream. auth = HTTP Basic (base64). shared creds common on open casters (rtk2go any-email/none; Centipede centipede/centipede; MonPOS rover/262461). VRS mounts also need rover to push back NMEA GGA; without GGA = TCP open, zero RTCM.
 
 [sourcetable]
-HTTP GET / on caster (no MP). probe: `curl -A 'NTRIP/1.0' --max-time 8 http://host:port/`. some casters close on default curl UA -- retry with NTRIP-style UA before declaring dead.
-3 record types: STR (stream), NET (network), CAS (caster).
-STR field index, 0-based:
-  0:"STR" 1:MP 3:format(RTCM ver+msgs) 5:carrier 9:lat 10:lon 11:nmea 14:fee
-field 5 carrier: 0=DGNSS, 1=L1, 2=L1+L2, 3=tri-band. carrier=0 -> OUT.
-field 11 nmea: 1 -> caster needs rover GGA -> any NRTK (VRS/MAC/FKP/i-MAX) OR routing alias. 0 + valid lat/lon -> single-base physical station.
-field 14 fee: "N"=free at protocol. does not imply unrestricted; may need registration (see [licensing]).
-routing aliases, NOT physical stations, do NOT count in num_stations:
-  NEAR (rtk2go, Centipede): routes to closest base by rover GGA. nmea=1.
-  AUTO/VRS-named MP: single entry-point -> per-rover synthetic stream. nmea=1.
-use scripts/stations_by_country.py + stations_by_radius.py for our local sources; they apply nmea_filter/solution_filter correctly (see scripts/fetch_stations.proc.md).
+caster index. STR;mountpoint;identifier;format;format-details;carrier;nav-system;network;country;lat;lon;nmea;solution;... (also NET, CAS records, ignored).
+fetch_stations.py reads fields: 1=mountpoint, 3=format, 5=carrier, 6=nav-system, 8=country, 9=lat, 10=lon, 11=nmea, 12=solution. accuracy-rectangle uses lat/lon decimal places.
+filters applied in pipeline:
+  carrier 0 = DGNSS (code-only, multi-metre) -> dropped, out of scope.
+  carrier blank + format "RTCM 3*" -> treated as carrier 2 (rtk2go fills carrier sloppily).
+  carrier not in {1,2,3} -> dropped invalid.
+  nmea=1 -> caster expects rover GGA = VRS/MAC/FKP/iMAX/NEAR; no real coord -> dropped.
+  solution=1 -> "network solution" per spec, same meaning -> dropped.
+  lat=lon=0 or non-finite -> dropped.
+  longitude >180 normalized -360 (ERGNSS reports 353.65 instead of -6.35).
+  all coords identical across mountpoints -> whole source dropped as vrs-only (one rounded city centre, not antennas).
+operator misconfig common: physical stations mis-tagged nmea=1 or solution=1. fetch_stations.py SOURCES carries per-caster nmea_filter / solution_filter = False overrides (rtk2go, geortk, renep, auscors, igac, icecors, almgg_mn, nps_cors). do NOT infer nrtk presence from nmea/solution flags alone — read sourcetable rows + operator portal.
 
 [nrtk-detection]
-nmea=1 in ST -> NRTK or routing alias. distinguishing the 4 modes from ST alone usually impossible; operator docs or stream inspection needed.
-research field vrs: yes (any NRTK confirmed - VRS/MAC/FKP/i-MAX), no (single-base only), ? (unknown).
-4-mode summary (full: gnss-ai-guide.md §6):
-  VRS   server interpolates per rover. Trimble origin. most commercial NRTK.
-  MAC   rover interpolates from master+aux deltas. RTCM 1014-1017. Geo++/Leica; some SAPOS, swiss swipos, EUREF.
-  FKP   rover evaluates polynomial atm coeffs per sat. RTCM 1034. SAPOS legacy, some AT.
-  i-MAX MAC-format frames but server-interpolated (degenerate). Trimble.
-all 4 carry nmea=1; same scope decision (all in).
+operator docs strongly preferred.
+sourcetable inspection can confirm nrtk by mountpoint name (ex: *_VRS, *_MAC, *_FKP, *_iMAX, *_NEAR) but NRTK mounts may live invisibly on a second sourcetable on an unknown port. nmea=1 alone is unreliable: misconfigured by operator both directions.
 
 [stations-vs-mps]
-not all MPs = physical stations:
-  multi-format streams from one station (RTCM3 + CMR + legacy + MSM-only) -> count station once.
-  routing aliases (NEAR/AUTO/VRS) -> 0 stations.
-  test/dev MPs -> not user-facing; exclude unless operator presents them.
-not all stations appear in ST:
-  NRTK casters may publish only the network MP, hide individual stations -> num_stations from operator portal, not ST line count.
-  per-station ST records on networks like AUSCORS = individual streams visible to rovers.
-num_stations = physical CORS count; treat as the count an operator publishes; cite source.
+mountpoints do not map clean to physical stations:
+  multiple streams from one station (RTCM3 + CMR + legacy + MSM-only)
+  some casters publish routing aliases (NEAR/AUTO/VRS + variants) in addition to, or instead of, individual stations
+  DGNSS mountpoints are not RTK in our sense.
 
 [base-roles]
 CORS = continuously operating reference station. real physical RTK base, real-time RTCM via NTRIP.
-IGS station != CORS in this project's sense. network.igs.org publishes ~500 stations; many post-process only (RINEX archive, no real-time RTCM). check "real_time_systems" / "Streams" field on the IGS station page or operator caster ST. station on a public NTRIP caster ST -> real-time CORS = in scope. station only on IGS archive -> out.
-single-base RTK MP = 1 CORS, 1 stream. effective up to ~10-30 km. degrades via ppm.
-NRTK MP = multi-station synthesis, effective baseline ~0 km inside network hull (<=70 km spacing); degrades fast outside hull (silent extrapolation, dm-m errors, no RTCM warning).
+some networks have both RTK and post-process only (RINEX archive, no real-time RTCM); our station count of RTK networks refers to RTK stations.
+single-base RTK mountpoint = 1 CORS, 1 stream. effective up to ~10-30 km. degrades via ppm.
+NRTK mountpoint = multi-station synthesis, effective baseline ~0 km inside network hull (<=70 km spacing); degrades fast outside hull (silent extrapolation, dm-m errors, no RTCM warning).
 
 [datum-epoch]
 datum = geodetic frame coords expressed in. examples: ETRS89, NAD83(CSRS), GDA2020, CGCS2000, ITRF2014, IGS20, WGS84(Gxxxx).
 epoch = date station coords anchored. examples: 2010.0, 2020.0.
-why: rover position output adopts base frame. wrong frame -> cm-dm shift; grows ~2-7 cm/yr via tectonic drift. same-frame hobbyist use unaffected; cross-frame work is not.
+why: cross-epoch conversion cm offset per year, cross-datum conversion metre-offset.
 plate-fixed national frames (ETRS89, NAD83(CSRS), CGCS2000, SIRGAS2000): tied to continental plate; drift only across plate boundaries.
 global realizations (ITRFyyyy, IGSyy, WGS84(Gxxxx)): used by international casters (EarthScope NOTA, IGS, BKG).
 semi-dynamic (AU GDA2020 @ 2020.0, NZ NZGD2000 @ 2000.0): publish velocity model; cm-accurate transform needs coord + per-station velocity.
-operational citation rule (also in research_task.txt): only operator portal/spec/decree citable. EPSG, Wikipedia, NGS/NOAA explainers, vendor blogs NOT citable. no operator declaration -> `omitted -- no citable declaration`. do NOT infer from continental plate, neighbour country, or EPSG-suggested CRS.
-
-[ingested-globals]
-5 globally-relevant casters ingested locally. do NOT access online unless this caster is the entry being researched. for coverage checks: scripts/stations_by_radius.py / stations_by_country.py (source ids in parens).
-  rtk2go (rtk2go)         rtk2go.com:2101              any-email/none        volunteer pool; non-commercial implicit; ports 2103=PL 2104=JP
-  Centipede (centipede)   crtk.net:2101                centipede/centipede   volunteer pool; migrated from .fr 2025-03-18
-  EarthScope NOTA (earthscope) ntrip.earthscope.org:2101  NULA portal        annual non-commercial click-through; missed renewal = lost access; UNAVCO URLs dead 2025-07-29
-  EUREF-IP (euref_ip)     euref-ip.net:2101            BKG reg               BKG broadcaster + ROB/ASI mirrors; ~206 physical EPN stations; nmea=0; raw 1 Hz RTCM single-base
-  IGS-IP (igs_ip)         www.igs-ip.net:2101          BKG reg               BKG global IGS observation caster; same BKG account as EUREF-IP; raw 1 Hz RTCM single-base
+operational citation rule (also in research_task.txt): only operator portal/spec/decree citable. declared only, not inferred. no operator declaration -> omit.
+some networks have a few stations running on their own datum & epoch, usually older or geographically distinct — don't stop datum-epoch research early.
 
 [national-portals]
-host:port + creds + notes for casters frequently surfacing in cross-border research. (deep: gnss-ai-guide.md §5.11 + §18.) accessing one IS appropriate when researching its country; for cross-border coverage checks use stations_by_radius.py.
-  AUSCORS (AU)   ntrip.data.gnss.ga.gov.au:2101   gnss.ga.gov.au/registration  auto-approve; CC BY 4.0; 443 TLS available
-  PositioNZ (NZ) positionz-rt.linz.govt.nz:2101   linz.govt.nz portal      near-immediate; CC BY 4.0 NZ
-  SAPOS (DE, per-state)  per-state portal                                  free/immediate most states; Bavaria 20 EUR/yr non-agri; NTRIP 1.0 raw TCP; VRS only
-  TrigNet (ZA)   trignet.co.za:2101               trignet.co.za            NGI approval ~days
-slow/unusual: ASG-EUPOS 1-2 days admin; MIRAI 2 forms + 365d inactivity expiry; MoDOT signed+notarised; CORS-KOREA national ID; SatRef HK + MIRAI 12-mo inactivity termination.
+national casters AUSCORS and MIRAI also rebroadcast select international stations, rarely primary outside main regions.
 
 [licensing]
-3 families -> hobbyist_eligibility:
+known types:
   CC BY / national-survey-free  AU, NZ, most EU national CORS, BR, CO     yes; citation on publications
-  NULA-style non-commercial     EarthScope NOTA                            yes for personal; no for paid work (real -- landscaper-for-pay -> not free)
+  NULA-style non-commercial     EarthScope NOTA                            yes for personal; no for paid work (landscaper-for-pay -> not free)
   volunteer-pool implicit       rtk2go, community Centipede                yes; "use freely don't abuse"
-  restricted / paid             Gulf-state networks, some DE Lander tiers  no (free hobbyist tier absent)
-rebroadcast: re-serving any of the above via your own caster -- forbidden by nearly all terms. str2str ease != legal permission.
+  restricted / paid             Gulf-state networks, some DE Lander tiers  no
 
 [accuracy]
 RTK acc = fixed_mm + (ppm * baseline_km). typical hobbyist hardware (Emlid RS2+, ZED-F9P + survey antenna): 7mm + 1ppm.
 @10km ~17mm. @30km ~37mm. >30km single-base = marginal.
 VRS inside hull (<=70km station spacing) ~0km effective baseline -> ~7-8mm regardless of nearest physical station. outside hull = silent extrapolation, dm-m errors, no warning.
 relevance to research: single-base CORS 30+km from user = marginal. NRTK with <=70km spacing = good throughout hull. note when operator publishes baseline guidance.
-
-[skip-list]
-generic primer pages do NOT fetch (content already herein or in gnss-ai-guide.md):
-  pointonenav.com/news/*               NTRIP/RTK intro
-  gnss.store/blogs/elt-rtk-base/*      caster how-tos
-  rtkdata.com/blog/*                   NTRIP flow explainers
-  emlid.com/ntrip-caster               caster overview
-  sparkfun.com/tutorials/...gnss-reference-station  base setup primer
-  use-snip.com/kb/*                    some legit field-parsing pages; explainer overlaps with §5.2
-  en.wikipedia.org/wiki/<concept>      Datum, ITRF, ETRS89, RTK, NTRIP generic entries; country-specific entity pages = OK
-  navipedia generic explainers         GSSC ESA glossary
-  gpsworld.com tutorials               industry-press how-tos
-  epsg.io/<code>                       datum reference; NOT citable for datum_epoch
-  geodesy.noaa.gov/CORS/ explainers    NOT the live ST or per-station data pages (those = operational, OK)
-  spatial.nsw.gov.au/...*.pdf          Janssen-style VRS-vs-MAC academic explainers
-  researchgate.net/publication/*       general RTK research papers
-operational, NOT primer, fetch as needed:
-  monitor.use-snip.com                 rtk2go live status
-  network.igs.org/<sta>                per-station real-time/post-process status
-  earthscope.org station map           NOTA caster catalog
-  operator portals                     always
-
-[cross-ref]
-deep dive in docs/gnss-ai-guide.md: §3 modes, §4 RTCM, §5 NTRIP, §5.2 ST field semantics, §5.11 volunteer casters, §6 NRTK, §10 base setup, §10.7 monitoring, §11.3 MP disappeared, §18 licensing.

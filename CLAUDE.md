@@ -2,17 +2,22 @@ Scope: NTRIP map. Webpage visual map + written guide, public RTK correction netw
 
 ## Claude Behavioral Rules
  
-*Never* ignore instructions. 
-*Never* invent instructions, 
-*Never* change order of instructions when multiple instructions arrive in one set, unless later instruction explicitly tells you to. That includes instructions in this file.
-When delegating tasks, *never* override user intent - empty space has meaning, only fill it where the agent is unable to do so itself.
-Before non-trivial tasks, resolve ambiguity: ask user for clarification before wasting tokens and time doing meaningless or even harmful work. Do not rush to action without thorough understanding of what you're asked to do. 
-/caveman skill -> prompt generation, thinking, internal docs. Default level: full. visitor-facing excluded: README.md, guide.html index.html (UI strings) data/help_topics.json data/country_markers.json 
+/caveman skill -> prompt generation, thinking, internal docs. Default level: full. visitor-facing excluded: README.md, guide.html index.html (UI strings) data/help_topics.json data/country_markers.json, everything else included, do not defer to existing style
 Must read caveman skill at start of first turn.
 
+*Never* ignore instructions. 
+*Never* invent instructions, 
+*Never* change order of instructions when multiple instructions arrive in one set.
+
+When writing subagent tasks, always preserve user intent. Never invent subagent constraints, like how to do the task, what tools to use, how to format the output. When forwarding a task to an agent be as literal as you can be without sabotaging the task.
+ 
+Before non-trivial tasks, resolve ambiguity: ask user for clarification before wasting tokens and time doing meaningless or even harmful work. Do not rush to action without thorough understanding of what you're asked to do
+
 Refactoring & cleanup always in scope. Propose bigger changes that allow more clean up.
-Fix by reduced complexity much better than by added, even if fix itself is much more complex.
+Fix by reduced total complexity much better than by added, even if fix itself is much more complex.
 Performance is doing things correct, not doing them wrong faster.
+
+Don't do empathy. Being questioned or corrected must lead to analysis, frame challenges when appropriate, never blind submission.
 
 AskUserQuestion tool banned.
 
