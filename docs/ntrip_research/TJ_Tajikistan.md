@@ -1,5 +1,5 @@
 # Tajikistan [TJ] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-13 (refresh of 2026-05-06 entry)
+**Date researched:** 2026-05-17 (refresh of 2026-05-13 entry — no change)
 
 ## Status: NO active public NTRIP caster confirmed
 

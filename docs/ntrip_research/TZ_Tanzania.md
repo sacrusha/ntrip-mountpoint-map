@@ -1,5 +1,5 @@
 # Tanzania [TZ] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-13 (refresh of 2026-05-06 entry)
+**Date researched:** 2026-05-17 (refresh of 2026-05-13 entry; no operational change — still NO active public NTRIP caster)
 
 ## Status: NO active public NTRIP caster
 
@@ -22,12 +22,13 @@
 - **RCMRD CORS portal** (corsdata.rcmrd.org): Tanzania is an RCMRD member state; portal is Leica Spider Business Center login-gated. Whether Tanzania has a station connected and whether real-time NTRIP is dispensed cannot be confirmed from public-facing data. RCMRD itself has a single GNSS CORS at its Nairobi HQ; Tanzania-territory coverage from this would be too long-baseline to be practical for RTK.
   Contact: rcmrd@rcmrd.org / +254 723 786161
 
-- **Ardhi University (ARU), Dar es Salaam — internal CORS station**: ARU's Department of Geospatial Sciences and Technology lists a "CORS station" among its high-tech research equipment (alongside total stations, robotic total stations, MESA satellite receiving station, automatic tide gauge). Source: aru.ac.tz/pages/department-of-geospatial-sciences-and-technology (observed 2026-05-13). No public NTRIP endpoint, station name, or sourcetable is advertised; the station appears to be used for academic teaching, research, and post-processing, not as a public real-time NTRIP caster. No academic publication located that documents a TZ-hosted public NTRIP service.
+- **Ardhi University (ARU), Dar es Salaam — internal CORS station**: ARU's Department of Geospatial Sciences and Technology lists a "CORS station" among its high-tech research equipment (alongside total stations, robotic total stations, MESA satellite receiving station, automatic tide gauge). Source: aru.ac.tz/pages/department-of-geospatial-sciences-and-technology (observed 2026-05-13). No public NTRIP endpoint, station name, or sourcetable advertised; appears academic-teaching / post-processing only, not a public real-time NTRIP caster. No academic publication located documenting a TZ-hosted public NTRIP service.
+- **Datum/epoch declaration:** omitted -- no citable operator declaration (no active caster; East View Geospatial country profile mentions "TAREF 11, WGS84 / EGM 96" but is not an operator source under primer rule).
 
 ## Nearest Confirmed RTK Streams
 - **Rwanda**: EarthScope BYAH/KMBR/NYBA/RUBO (institutional account required)
 - **Kenya**: Muya CORS (commercial, 25+ stations)
-- Local-data probe via `py scripts/stations_by_radius.py -6.16 35.74 500` (Dodoma centre, 500 km radius): **zero** rtk2go / Centipede / EarthScope hits — confirms no usable public real-time NTRIP coverage within reach of any populated Tanzanian centre.
+- Local-data probe via `py scripts/stations_by_radius.py -6.16 35.74 500` (Dodoma centre, 500 km radius): **zero** rtk2go / Centipede / EarthScope hits per 2026-05-13 run — confirms no usable public real-time NTRIP coverage within reach of any populated Tanzanian centre. Re-run on data refresh to verify persistence.
 
 ## Post-Processing (RINEX) Fallback
 
@@ -37,7 +38,7 @@
 | **IGS/CDDIS** — no Tanzania station confirmed; nearest: MAL200KEN (Malindi, Kenya) | https://cddis.nasa.gov/Data_and_Derived_Products/GNSS/daily_30second_data.html | Free (NASA Earthdata account required) |
 
 ## ArduSimple Page
-ArduSimple Tanzania page (ardusimple.com/rtk-correction-services-and-ntrip-casters-in-tanzania/), re-checked 2026-05-13, explicitly states Tanzania is not among countries with a national RTK network. Lists only RTK2GO (community, no QA), IGS, EarthScope as free options; RTK Premium Network (54€/mo) and Galileo HAS as paid/alt; suggests independent base station deployment as primary path.
+ArduSimple Tanzania page (ardusimple.com/rtk-correction-services-and-ntrip-casters-in-tanzania/), re-checked 2026-05-13 (no change observed 2026-05-17), explicitly states Tanzania is not among countries with a national RTK network. Lists only RTK2GO (community, no QA), IGS, EarthScope as free options; RTK Premium Network (54€/mo) and Galileo HAS as paid/alt; suggests independent base station deployment as primary path.
 
 ## Sources Consulted
 - RTK2GO live sourcetable (no TZ-coded stations 2026-05-13)

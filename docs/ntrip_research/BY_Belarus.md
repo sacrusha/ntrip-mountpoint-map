@@ -1,5 +1,5 @@
 # Belarus [BY] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-15
+**Date researched:** 2026-05-17 (prior 2026-05-15)
 **Exchange rate used:** ~2.84 BYN / 1 USD (approximate spot rate, May 2026)
 
 ## Status: YES — single state-monopoly NTRIP caster (ССТП РБ / Belgeodesiya); residency-restricted, paid contract only; no free hobbyist tier; no commercial alternative
@@ -12,8 +12,8 @@
 | **Operator** | РУП «Белгеодезия» (RUE Belgeodesiya — state unitary enterprise) under Государственный комитет по имуществу Республики Беларусь (State Committee for Property of the Republic of Belarus) |
 | **Service name** | ССТП РБ — Спутниковая система точного позиционирования Республики Беларусь (Satellite System of Precise Positioning of the Republic of Belarus); brand "Сеть ПДП" (Network of Permanently-Operating Reference Stations) |
 | **Mandate basis** | Public-offer contract (Публичный договор присоединения) under Belarusian Civil Code; tariff schedule explicitly titled "для резидентов Республики Беларусь" |
-| **host:port** | `sstp.geo.by:8080` (IP fallback `93.125.21.51:8080` — same caster, identical sourcetable); confirmed 2026-05-15 |
-| **num_stations** | 47 advertised STR records on port 8080 (24 distinct physical CORS mountpoints + VRS/NEAR/Agro/DGPS variants); operator declares ~98 physical CORS nationwide (full network not exposed in the public sourcetable) |
+| **host:port** | `sstp.geo.by:8080` (IP fallback `93.125.21.51:8080` — same caster, identical sourcetable); re-confirmed 2026-05-17 |
+| **num_stations** | 47 advertised STR records on port 8080 (24 distinct physical CORS mountpoints + VRS/NEAR/Agro/DGPS variants); operator declares ~98 physical CORS nationwide (full network not exposed in the public sourcetable); re-probed 2026-05-17, count unchanged |
 | **Mountpoints (port 8080, fetched 2026-05-15)** | VRS network solution: `BelarusVRS`, `BelarusVRS(MSM5)`, `BelarusVRS(MSM4)`, `BelarusVRSMSM5`; nearest-station: `NEAR`, `NEAR(MSM5)`, `NEARMSM5`, `NEARMSM4`; DGPS: `BelarusDGPS`, `NearDGPS`; precision-agriculture network: `AgroVRS`, `AgroNEAR`, `AgroGPS`, `AgroN`, `AgroMSM4`, `AgroCMR`; per-station agriculture: `AgroPINSK`, `AgroLUNINEC`, `AgroSKDL`, `AgroBBER`, `AgroSLUC`, `AgroIVAC`, `AgroSLON`; physical CORS: `SOKO`, `MRIT`, `DKSH`, `ZHLO`, `KLNK`, `UZDA`, `KLEC`, `PLES`, `RADO`, `SMOR`, `minsk`, `GROD`, `LUNI`, `BBER`, `STOL`, `VITR`, `GORO`, `ZHIT`, `BY01`, `BERE`, `NOVP`, `VILE`, `LIOZ`, `MRGO` |
 | **vrs** | Yes — `BelarusVRS*`, `AgroVRS` mountpoints flagged solution=1, NMEA=1 (network solution requiring GGA from rover); `NEAR*` mountpoints serve nearest-physical-station correction (solution=0, NMEA=0/1) |
 | **Constellations** | GPS+GLO on legacy mountpoints (`BelarusVRS`, `NEAR`, `BelarusDGPS`, `AgroGPS`, `AgroN`); GPS+GLO+GAL+BDS on MSM4/MSM5 mountpoints and most Agro-* mountpoints |
@@ -28,10 +28,10 @@
 | **tariff — Agriculture flat-rate (territorial restriction)** | 700.00 BYN/month or 6,000.00 BYN/year (~$2,113/yr) per device, unlimited connections, limited to Customer's registered land-use parcel(s) |
 | **tariff — Educational ("Учебный") plan** | Belarusian state-funded educational institutions only; per-minute rate cell empty in published PDF (gap) |
 | **VAT status** | All tariffs explicitly stated "без НДС" (excluding 20% VAT); telecom transmission costs also excluded |
-| **Tariff source** | https://geo.by/images/tariffs.pdf — 2-page Russian PDF effective 2023-05-01; HTTP 200, Content-Length 142,832; identical file served 2026-05-15 as in May 2026 (no 2024–2026 revision) |
+| **Tariff source** | https://geo.by/images/tariffs.pdf — 2-page Russian PDF effective 2023-05-01; HTTP 200, Content-Length 142,832, Last-Modified `Thu, 21 Dec 2023 18:04:56 GMT`; identical file 2026-05-17 as in prior passes (no 2024–2026 revision) |
 | **hobbyist_eligibility** | No (effective). The "Общий" plan text covers "неограниченному кругу пользователей", so an individual may sign the public-offer contract on paper, but: (1) no self-service portal; (2) tariff title restricts to residents; (3) sanctions context (below) restricts non-resident access. Cheapest path (RTK fixed) is ~$637/yr — above the project's $200/yr hobbyist cutoff. |
 | **legal_residency_required** | Yes — tariff title explicitly limits service to residents of the Republic of Belarus (физических и юридических лиц со статусом резидента); contract execution requires Belarusian banking and tax data |
-| **last_confirmed_alive** | 2026-05-15 — direct sourcetable fetch `http://sstp.geo.by:8080/` returned `SOURCETABLE 200 OK`, `Server: GNSS Spider 7.8.3.9486/1.0`, 47 STR records, Content-Length 4,796. IP fallback `http://93.125.21.51:8080/` returned identical sourcetable. `geo.by/services/sstp` and `geo.by/images/tariffs.pdf` both HTTP 200 via nginx/1.22.0 (HTTP→HTTPS 301). Port 8081 connected but returned no body — closed/idle, not a separate caster as of 2026-05-15. |
+| **last_confirmed_alive** | 2026-05-17 — direct sourcetable fetch `http://sstp.geo.by:8080/` returned `SOURCETABLE 200 OK`, `Server: GNSS Spider 7.8.3.9486/1.0`, server date `Sun, 17 May 2026 14:06:12 GMT`, 47 STR records, 4,939 bytes. `geo.by/services/sstp/predostavlenie-informatsii-sstp` and `geo.by/images/tariffs.pdf` both HTTP 200 via nginx/1.22.0. |
 
 ## Context Notes
 

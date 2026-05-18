@@ -1,5 +1,5 @@
 # Brazil [BR] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-15
+**Date researched:** 2026-05-17 (prior 2026-05-15)
 
 ## Status: YES — free national government caster (RBMC-IP) + multiple commercial casters; no separately-accessible state-level free caster verified
 
@@ -9,19 +9,20 @@
 |---|---|
 | **landing_url** | https://www.ibge.gov.br/geociencias/informacoes-sobre-posicionamento-geodesico/servicos-para-posicionamento-geodesico/16332-rbmc-ip-rede-brasileira-de-monitoramento-continuo-dos-sistemas-gnss-em-tempo-real.html |
 | **access_url** | https://www.gov.br/pt-br/servicos/obter-acesso-a-rbmc-ip |
-| **host:port** | `gps-ntrip.ibge.gov.br:2101` (advertised alt IP `170.84.40.52:2101`) — sourcetable fetched 2026-05-15, HTTP 200, `CAS;gps-ntrip.ibge.gov.br;2101;Ntrip_Prof_1.5.8;IBGE;0;BRA;…` plus 147 BRA-coded `STR;` records |
-| **tariff** | Free; gov.br federal account required; cap of 5 simultaneous mountpoints per user; 1,000 concurrent connections caster-wide (per IBGE service page, observed 2026-05-15) |
-| **num_stations** | 153 physical RBMC stations operational (IBGE Dec 2025 announcement); 147 currently transmitting in real time via RBMC-IP sourcetable (2026-05-15 probe). Gap of ~6 = stations offline, RINEX-only, or announced-but-not-yet-streaming (see Caruaru below). |
+| **host:port** | `gps-ntrip.ibge.gov.br:2101` (advertised alt IP `170.84.40.52:2101`) — re-probed 2026-05-17, HTTP 200, 30,466 bytes, 146 total `STR;` rows of which 142 country=BRA (down from 147 BRA on 2026-05-15; likely transient outage of ~5 stations, sourcetable composition else unchanged) |
+| **tariff** | Free; gov.br federal account required; cap of 5 simultaneous mountpoints per user; 1,000 concurrent connections caster-wide (per IBGE service page, observed 2026-05-17) |
+| **num_stations** | 153 physical RBMC stations declared operational (IBGE Dec 2025 announcement); 142 BRA-coded streams in live sourcetable 2026-05-17 (was 147 on 2026-05-15). Gap of ~11 = stations offline, RINEX-only, or announced-but-not-yet-streaming (see Caruaru below). |
 | **vrs** | No — single-base; mountpoints map 1:1 to physical sites (e.g. `BRAZ1`, `POLI1`, `CUIB1`) |
 | **hobbyist_eligibility** | Yes — open to any user, no professional licence required |
 | **legal_residency_required** | No — gov.br registration is open to non-residents (CPF *or* passport accepted at signup; foreign-passport path documented on gov.br) |
-| **last_confirmed_alive** | 2026-05-15 — `curl http://gps-ntrip.ibge.gov.br:2101/` returned HTTP 200 with 147 BRA `STR;` rows; gov.br signup page returned HTTP 200 |
-| **datum_epoch** | SIRGAS2000, epoch 2000.4 — official Brazilian geodetic reference frame since 2005 (per IBGE; also referenced in SIRGAS-RT documentation). Sourcetable also exposes `SIRGAS00001`/`SIRGAS00002` IGS-combination SSR streams (these are BKG passthroughs, station = Frankfurt) |
+| **last_confirmed_alive** | 2026-05-17 — `curl http://gps-ntrip.ibge.gov.br:2101/` HTTP 200, 30,466 bytes, 142 BRA `STR;` rows |
+| **datum_epoch** | SIRGAS2000, epoch 2000.4 — Brazilian official geodetic reference frame since 2005 per IBGE [Resolução do Presidente nº 1/2015](https://geoftp.ibge.gov.br/metodos_e_outros_documentos_de_referencia/normas/rpr_01_2015_sirgas2000.pdf) (mandates SIRGAS2000 as national frame; epoch 2000.4 is the SIRGAS realisation reference epoch, not directly re-declared per-RBMC-IP stream by IBGE). Sourcetable also exposes `SIRGAS00001`/`SIRGAS00002` IGS-combination SSR streams (BKG passthroughs, station = Frankfurt — not RTK, out of scope) |
 
 ### Mountpoint conventions
 
-- Per-station single-base streams: 5-character RBMC code + `1` (or `0` for legacy), e.g. `BRAZ1` (Brasília), `POLI1` (USP São Paulo), `POAL1` (Porto Alegre), `CUIB1` (Cuiabá), `RNNA1` (Natal). Format RTCM 3.0, messages 1004/1006/1008/1012/1013/1019/1020/1033, GPS+GLONASS (a handful also Galileo/BDS where receiver supports it).
-- SSR/ephemeris passthroughs from BKG Frankfurt: `SSRA02IGS0_SIRGAS2000`, `SSRA03IGS0_SIRGAS2000`, `SSRA03IGS0`, `BCEP00BKG0` — not RTK, useful for PPP-RTK clients and ephemeris-only listeners.
+- Per-station single-base streams: 5-character RBMC code + `1` (or `0` for legacy), e.g. `BRAZ1` (Brasília), `POLI1` (USP São Paulo), `POAL1` (Porto Alegre), `CUIB1` (Cuiabá), `RNNA1` (Natal). Format RTCM 3.0, messages 1004/1006/1008/1012/1013/1019/1020/1033, GPS+GLONASS legacy obs (no MSM, no BDS/GAL multi-const in standard streams). A handful of streams advertise Galileo/BDS where receiver supports it but message-number evidence in the live sourcetable still leans 1004/1012 legacy.
+- **MSM / multi-constellation status for 2023-25 new stations** (MGGV, ALMC, ROCO0, STHA0, ROSA0, SPLI0): live sourcetable 2026-05-17 shows these stations using the same RTCM 3.0 legacy message set as older RBMC stations (1004/1006/1008/1012/1013/1019/1020/1033, GPS+GLONASS). No MSM7 (107x/108x/109x/110x/111x) and no per-station BDS/GAL multi-const observation streams confirmed for the new mountpoints. If IBGE has plans to upgrade RBMC-IP to MSM/multi-const, no public announcement has surfaced.
+- SSR/ephemeris passthroughs from BKG Frankfurt: `SSRA02IGS0_SIRGAS2000`, `SSRA03IGS0_SIRGAS2000`, `SSRA03IGS0`, `BCEP00BKG0` — **NOT RTK, out of project scope**. These are SSR/PPP-RTK and broadcast-ephemeris streams (per primer: SSR ≠ OSR, not single-base or NRTK corrections); they are useful only to PPP-RTK / ephemeris-only clients, not to the hobbyist RTK rover use case the project targets. Pipeline should not treat these as RTK mountpoints.
 
 ### Coverage
 
@@ -31,7 +32,7 @@ All 26 states + Federal District. Densest in SP/MG/RJ/PR/RS (south-east + south)
 
 - 2024-12-09: 5 new stations inaugurated — Governador Valadares (MG, MGGV), Maceió (AL, ALMC), Januária (MG), Pinhais (PR), Nova Friburgo (RJ). MGGV and ALMC replace legacy GVA1/ALMA codes. (IBGE Agência de Notícias)
 - 2023-12-20: 6 new stations operationalized — Blumenau/SC, Cascavel/PR, Guajará-Mirim/RO, Guaíra/PR, Irecê/BA, Resende/RJ. Total reached 147 then. (A Mira)
-- 2025-12 (per IBGE communications): 3 new stations inaugurated at Caruaru (PE), Colorado do Oeste (RO), Santa Helena (PR). Total cited: **153 stations**. Live sourcetable 2026-05-15: `ROCO0` (Colorado do Oeste) and `STHA0` (Santa Helena) confirmed streaming; **no Caruaru / PE mountpoint present** — announced but not yet live. (IBGE news / X account)
+- 2025-12 (per IBGE communications): 3 new stations inaugurated at Caruaru (PE), Colorado do Oeste (RO), Santa Helena (PR). Total cited: **153 stations**. Live sourcetable 2026-05-17: `ROCO0` (Colorado do Oeste) and `STHA0` (Santa Helena) confirmed streaming; **no Caruaru / PE mountpoint present** — announced but not yet live. (IBGE news / X account; confirmed via MundoGEO Connect 2025 mirror)
 - Sourcetable also includes `ROSA0` (Rosana, SP) and `SPLI0` (Lins, SP) — these were on IBGE's pre-2025 expansion roadmap and are now operational; exact inauguration date not pinned down in this pass.
 - Strategic expansion plan announced 2024 targets ongoing growth focused on major population centres; no public 2026 inauguration list yet at time of research.
 
@@ -39,7 +40,7 @@ All 26 states + Federal District. Densest in SP/MG/RJ/PR/RS (south-east + south)
 
 | Provider | Endpoint | Type | Tariff (BRL unless noted, observed 2026-05-15) | hobbyist | Notes |
 |---|---|---|---|---|---|
-| **geoRTK** | endpoint not public (configured per account after signup at geortk.com.br) | network RTK + PPK | R$10/day · R$79/week · R$219/month · R$2,099/year (=R$175/mo equiv); 30-day free trial; monthly cancel anytime, annual cancel within first 30 days; no VAT statement on pricing page | Yes | Launched 1 Sep 2025; 500-station target by end-2026; coverage map at geortk.com.br/ferramentas/mapa-de-cobertura. 1 concurrent user per plan tier |
+| **geoRTK** | host:port not published pre-registration, confirmed via signup-flow inspection (configured per account after signup at geortk.com.br) | network RTK + PPK | R$10/day · R$79/week · R$219/month · R$2,099/year (=R$175/mo equiv); 30-day free trial; monthly cancel anytime, annual cancel within first 30 days; no VAT statement on pricing page | Yes | Launched 1 Sep 2025; 500-station target by end-2026; coverage map at geortk.com.br/ferramentas/mapa-de-cobertura. 1 concurrent user per plan tier |
 | **Geo+ (GeoPlus / Guandalini / SPGeo reseller)** | endpoint per-account; landing geoplusbrasil.com or spgeo.com.br/rede-ntrip-ppp-rtk | hybrid NRTK + PPP-RTK | Quote via WhatsApp/contact form; no public price list; plans NRTK / PPP-RTK / ULTIMATE; daily / weekly / monthly / annual on demand | ? (treated as B2B agro/survey) | Claims 130+ bases (SP near-total) expanding S/SE/NE; "100% Brazilian hybrid infrastructure" per Mundogeo 2025-12-09 piece |
 | **RoverConnect (CPE Tecnologia)** | endpoint per-account | single-base NTRIP | Weekly/monthly prepaid via cpetecnologia.com.br; pricing requires product page open | Yes | Surveying / ag focus; uses CPE-owned bases |
 | **RTKdata** | rtkdata.com/br | network RTK | USD 40/month; 30-day free trial | Yes | International multi-country operator; BR-specific station count not declared |
@@ -65,10 +66,10 @@ Despite expectations of state programs, **no independent free public NTRIP caste
 
 ## Probes & sandbox notes
 
-- `curl http://gps-ntrip.ibge.gov.br:2101/` — HTTP 200, 30,915 bytes, 144 BRA-coded `STR;` rows, sourcetable 2026-05-15.
-- `curl https://www.gov.br/pt-br/servicos/obter-acesso-a-rbmc-ip` — HTTP 200, 2026-05-15.
-- WebFetch on `ibge.gov.br` and `geortk.com.br/planos` partially blocked (ECONNREFUSED on some pages); enough already-public data extracted via search snippets + direct caster probe + the one WebFetch that succeeded for geortk pricing.
-- `agenciadenoticias.ibge.gov.br` returned HTTP 403 to WebFetch (anti-bot); content was retrievable indirectly via WebSearch snippets and MundoGEO / A Mira mirror articles.
+- `curl http://gps-ntrip.ibge.gov.br:2101/` — 2026-05-17 HTTP 200, 30,466 bytes, 146 total STR / 142 BRA (was 30,915 bytes / 147 BRA on 2026-05-15; ~5-station net dropout, likely transient).
+- `geortk.com.br/planos` WebFetch 2026-05-17 confirms unchanged BRL pricing: R$10/day · R$79/week · R$219/month · R$2,099/year, 30-day free trial.
+- `agenciadenoticias.ibge.gov.br` HTTP 403 to WebFetch (anti-bot); MundoGEO / MundoGEO Connect / A Mira mirrors usable.
+- **GEODNET / Onocoy Brazil probe (2026-05-17)**: GEODNET runs a paid South-America node `sa.geodnet.com:2101` (~USD 40/month, removed from project SOURCES 2026-04-20 as paid-only — per `scripts/fetch_stations.py` SOURCES comments and `docs/networks.md#geodnet_sa`). HYFIX.AI / GEODNET public map (geodnet.com) shows triangle nodes inside Brazil but the operator's NTRIP service is gated behind subscription; no free hobbyist tier — out of project scope. Onocoy public coverage map (onocoy.com) and Centipede crowd-source map were both checked: Onocoy lists no BR-located miner node in the Brazil region as of 2026-05-17 (positive negative). Hobbyist-eligible free routes for BR remain RBMC-IP (gov), EarthScope NOTA selected stations, and rtk2go volunteer bases (~17 BR-coded as of 2026-05-15).
 
 ## Sources
 

@@ -1,274 +1,250 @@
-# US Northeast — NTRIP RTK Caster Research
-**Date researched:** 2026-05-07 (re-verified 2026-05-13: ACORN/UConn, VECTOR, MaineDOT RTN, KeyNetGPS all SOURCETABLE 200 OK; NYSNet's `rtn.dot.ny.gov:8080` confirmed alive — SOURCETABLE 200 OK with 18 STR entries including the public `net_msm_vrs`, `net_msm_imax`, and `near_msm` mountpoints — superseding the 2026-05-07 timeout result; standard NTRIP port 2101 on NYSNet remains firewalled; MaCORS remains unreachable from external probes; MaCORS station count corrected to 22 base stations)
+# US Northeast [US-NE] — NTRIP RTK Caster Research
 
-**States covered:** Maine (ME), New Hampshire (NH), Vermont (VT), Massachusetts (MA), Rhode Island (RI), Connecticut (CT), New York (NY), New Jersey (NJ), Pennsylvania (PA), Delaware (DE), Maryland (MD), Washington DC (DC)
+**States:** ME, NH, VT, MA, RI, CT, NY, NJ, PA, DE, MD, DC
 
-## Status: MIXED — five free state networks (ME, VT, MA, CT, NY); NH/RI/NJ/PA/DE/MD/DC have no free public state caster; EarthScope NOTA provides sparse single-base fallback region-wide
+## Status (region)
 
----
+Five free state networks (ME, VT, MA, CT, NY). NH/RI/NJ/PA/DE/MD/DC have no free public state caster. EarthScope NOTA provides sparse single-base fallback region-wide.
 
-## Per-State Summary Table
+## Per-state summary
 
-| State | Free public caster | Network | host:port | VRS | Hobbyist | Probe result |
+| State | Free public caster | Network | host:port | VRS | Hobbyist | Probe |
 |---|---|---|---|---|---|---|
-| ME | Yes (free) | MaineDOT RTN | `medotrtn.maine.gov:2101` | Yes | Likely yes | SOURCETABLE 200 OK — 2026-05-13 |
-| NH | No | — | — | — | — | No state caster found |
-| VT | Yes (free) | VECTOR | `vector.vermont.gov:2101` | Yes | Yes (no restriction stated) | SOURCETABLE 200 OK — 2026-05-13 (36 STR entries) |
-| MA | Yes (free) | MaCORS | `macorsrtk.massdot.state.ma.us:2101` | Yes (iMAX) | Yes (no restriction stated) | Timeout from external IP (firewall); DNS resolves; state confirmed operational |
-| RI | No | — | — | — | — | No state caster; MaCORS edge coverage |
-| CT | Yes (free) | ACORN | `acorn.uconn.edu:2101` | Yes | Yes (public registration) | SOURCETABLE 200 OK — 2026-05-13 (48 STR entries) |
-| NY | Yes (free) | NYSNet | `rtn.dot.ny.gov:8080` (NTRIP); `cors.dot.ny.gov:443` (portal) | Yes (iMAX/MAC + `net_msm_vrs`) | Likely yes | NTRIP port 8080: SOURCETABLE 200 OK — 2026-05-13 (18 STR); port 2101: timeout from external IP |
-| NJ | No | — | — | — | — | No state caster found |
-| PA | No | — | — | — | — | No state caster found |
-| DE | No | — | — | — | — | No state caster found |
-| MD | No | — | — | — | — | No state caster found |
-| DC | No | — | — | — | — | No state caster found |
+| ME | Yes | MaineDOT RTN | `medotrtn.maine.gov:2101` | Yes | Likely yes | OK 8 STR |
+| NH | No | — | — | — | — | No state caster |
+| VT | Yes | VECTOR | `vector.vermont.gov:2101` | Yes | Yes (explicit) | OK 36 STR |
+| MA | Yes | MaCORS | `macorsrtk.massdot.state.ma.us:2101` | Yes (iMAX) | Yes | Timeout external (firewall); DNS resolves |
+| RI | No | — | — | — | — | ACORN + MaCORS edge coverage |
+| CT | Yes | ACORN | `acorn.uconn.edu:2101` | Yes | Yes (explicit) | OK 47 STR |
+| NY | Yes | NYSNet | `rtn.dot.ny.gov:8080` (NTRIP); `cors.dot.ny.gov:443` portal | Yes (iMAX/MAC + `net_msm_vrs`) | Likely yes | OK 18 STR |
+| NJ | No | — | — | — | — | No state caster |
+| PA | No | — | — | — | — | No state caster |
+| DE | No | — | — | — | — | No state caster |
+| MD | No | — | — | — | — | No state caster (`mdotcors.org` → Michigan, not Maryland) |
+| DC | No | — | — | — | — | No state caster |
 
----
+## Regional baseline: EarthScope NOTA
 
-## EarthScope NOTA — Regional Baseline (all states)
+See `US-NOTA_NetworkOfTheAmericas.md` for operator-scope detail. NE sub-coverage sparse — only 2 stations inside strict NE bbox (`P776_RTCM3P3` central NH, `P817_RTCM3P3` central PA). Cross-border stations just outside bbox reachable for stations near NE border; query `py scripts/stations_by_radius.py <lat> <lon> 100 --source earthscope`. Geodetic spacing — best as PPK fallback, not real-time RTK in NE.
 
-| Field | Value |
-|---|---|
-| **host:port** | `ntrip.earthscope.org:2101` (RTCM 3.3); also ports 2105 (BINEX), 2108 (position solutions) |
-| **tariff** | Free (noncommercial license, annual renewal, no fee) · Commercial: USD 1,000/seat/yr |
-| **VRS** | No — single-base physical station streams only |
-| **hobbyist_eligibility** | Yes — noncommercial license explicitly allows individual use with no revenue from derived products |
-| **legal_residency_required** | No — global open access |
-| **last_confirmed_alive** | `SOURCETABLE 200 OK` confirmed 2026-05-13 (curl probe; 1,080 STR entries globally) |
-| **NE station count** | 2 stations within strict NE bbox (38–48°N, 66–82°W): `P776_RTCM3P3` (43.54°N, −71.38°W — central NH) and `P817_RTCM3P3` (40.15°N, −78.51°W — central PA). Station spacing ~200–400 km in this region — adequate for PPK/static, baseline distance may degrade real-time RTK |
-| **format** | RTCM 3.3 (MSM4/5 full constellation: GPS+GLO+BDS+GAL+SBAS+QZS) |
-| **registration** | EarthScope account required; self-service at earthscope.org/data/gnss-realtime/; noncommercial license accepted online; free trial: 2 weeks / 5 seats (one-time) |
-
-**Context:** NOTA is a geodetic science network, not a surveying infrastructure network. NE station spacing is too wide for reliable real-time RTK in most scenarios; it is best used for PPK post-processing or as a fallback where no state network exists. New service launched 2024-05-01.
-
----
-
-## ME — Maine: MaineDOT Real-Time Network
+## ME — MaineDOT Real-Time Network
 
 | Field | Value |
 |---|---|
-| **Network name** | Maine Real-Time Network (MaineDOT RTN) |
-| **Operator** | Maine Department of Transportation (MaineDOT), Bureau of Project Development, Survey Section |
-| **Software** | Trimble Pivot (migrated from legacy system; migration cutover October 1, 2025) |
-| **host:port** | `medotrtn.maine.gov:2101` (IP 52.165.92.197) |
-| **tariff** | Free |
-| **VRS** | Yes — mountpoints: `VRS_CMR`, `VRS_RTCM`, `VRS_RTCM_23` |
-| **hobbyist_eligibility** | Unclear — registration is self-service (select own Organization/Username/Password); no professional license field identified; no explicit restriction; contact rtnsupport.medot@maine.gov to confirm |
-| **legal_residency_required** | Unclear — no stated requirement |
-| **last_confirmed_alive** | `SOURCETABLE 200 OK` — 2026-05-13 (curl probe of medotrtn.maine.gov:2101; 8 STR entries) |
+| Network | Maine Real-Time Network (MaineDOT RTN) |
+| Operator | MaineDOT Bureau of Project Development, Survey Section |
+| Software | Trimble Pivot (migrated from legacy system; cutover 2025-10-01) |
+| landing_url | https://medotrtn.maine.gov/ — operator Trimble Pivot portal; service description + signup |
+| access_url | Skip — landing portal serves both purposes (state DOT pattern); support `rtnsupport.medot@maine.gov` |
+| host:port | `medotrtn.maine.gov:2101` (52.165.92.197) |
+| tariff | Free |
+| vrs | Yes (VRS) — confirmed by live ST 2026-05-18 |
+| num_stations | unknown — sourcetable contains only routing aliases (4 `VRS_*` + 4 `SingleStation_Nearest_*`); operator pages do not enumerate. Per primer [stations-vs-mps], ST count ≠ CORS count. Escalation: `rtnsupport.medot@maine.gov` |
+| hobbyist_eligibility | Unclear — self-service registration (own Org/Username/Password); no professional-licence field; no explicit restriction |
+| legal_residency_required | Unclear — no stated requirement |
+| last_confirmed_alive | 2026-05-18 — `SOURCETABLE 200 OK` (8 STR; Trimble Caster 5.3) |
+| datum_epoch | NAD83(2011) Epoch 2010.00 — MaineDOT operator datasheet: https://www.maine.gov/mdot/surveyinfo/docs/NAD832011Epoch2010Datasheets.pdf |
 
-**Context:** MaineDOT replaced the previous CORS system (mdotcors.maine.gov, which became unresponsive) with a Trimble Pivot-based system at medotrtn.maine.gov in 2025. Existing users were required to re-register after October 1, 2025 cutover. The legacy host mdotcors.maine.gov returns ECONNREFUSED as of 2026-05-07. Support: rtnsupport.medot@maine.gov.
+MaineDOT replaced legacy CORS system (mdotcors.maine.gov, ECONNREFUSED since pre-cutover) with Trimble Pivot at medotrtn.maine.gov in 2025. Pre-cutover users had to re-register.
 
----
+## NH — no public state caster
 
-## NH — New Hampshire: No Public State Caster
+No state DOT or university RTK network. NHDOT operates CORS contributing to NOAA NCN for static post-processing only. Multiple sources (GPS World Dec 2024, E38, Point One) confirm "no public service".
 
-No state DOT or university RTK network found for New Hampshire as of 2026-05-07. NHDOT maintains CORS stations contributing to NOAA NCN for static post-processing only. Multiple sources (GPS World Dec 2024, E38 Survey Solutions, Point One Nav) confirm "no public service" in NH.
+EarthScope NOTA has one NH station (P776 central NH) as single-base fallback. Commercial: KeyNetGPS (paid, see multi-state section).
 
-**Gap:** EarthScope NOTA has one station in NH (P776, central NH) as a single-base fallback. Commercial options: KeyNetGPS (vrs.keynetgps.com:2101, paid — see Multi-State section below) covers NH as part of its Northeast VRS network.
-
----
-
-## VT — Vermont: VECTOR
-
-| Field | Value |
-|---|---|
-| **Network name** | VECTOR — Vermont Enhanced CORS and Transmission Of Real-time Corrections |
-| **Operator** | Vermont Agency of Transportation (VTrans), Geodetic Survey unit; CORS stations accredited with NOAA NCN |
-| **Software** | Trimble Pivot |
-| **host:port** | `vector.vermont.gov:2101` (IP 20.185.11.35) |
-| **tariff** | Free |
-| **VRS** | Yes — RTCM 3.1 and CMR+ single-base and network streams |
-| **hobbyist_eligibility** | Yes — explicitly "a free service utilized by State and Federal Agencies, Surveyors, GIS users, Engineers, Scientists, and the public at large"; no professional license required |
-| **legal_residency_required** | No — no stated restriction |
-| **last_confirmed_alive** | `SOURCETABLE 200 OK` — 2026-05-13 (curl probe; 36 STR entries) |
-| **station count** | 18 reference stations statewide (live sourcetable on 2026-05-13 declares 36 STR mountpoints — physical, single-base, and VRS combinations); all except VJSC and VTWR accredited with NOAA NCN |
-
-**Context:** Registration is self-service at vector.vermont.gov (email link: vtrans.vermont.gov/highway/geodetic). Equipment upgrades from NetR9 to current-generation receivers were completed in 2025.
-
----
-
-## MA — Massachusetts: MaCORS
+## VT — VECTOR
 
 | Field | Value |
 |---|---|
-| **Network name** | MaCORS — Massachusetts Continuously Operating Reference Station Network |
-| **Operator** | MassDOT (Massachusetts Department of Transportation) |
-| **Software** | Leica SpiderNet (Spider Business Center) |
-| **host:port** | `macorsrtk.massdot.state.ma.us:2101` (IP 193.8.43.161) |
-| **tariff** | Free — "MassDOT does not currently charge a fee for network access" |
-| **VRS** | Yes — iMAX network mount points (multi-base network correction); recommended mountpoint: `RTCM3MSM_IMAX` (full constellation GPS+GLO+BDS+GAL) |
-| **hobbyist_eligibility** | Yes — "MassDOT is now granting public access"; no professional license field in registration; no stated restriction |
-| **legal_residency_required** | No — no stated restriction |
-| **last_confirmed_alive** | DNS resolves to 193.8.43.161; port 2101 times out from external IP (firewall or IP allowlist likely required) — confirmed again 2026-05-13; MassDOT portal (macors.massdot.state.ma.us) HTTP 200 as of 2026-05-07. Service confirmed operational by multiple user reports and current Mass.gov MaCORS page |
-| **station count** | 22 GNSS base stations approximately 50 km apart (current Mass.gov 2026 listing). Older sources reference 18 stations; the 22-station count is the current figure. |
-| **formats** | RTCM 2.3, RTCM 3.1, CMR, CMR+, RTCM 3.2 MSM4 |
-| **coverage** | Massachusetts + edge coverage into Rhode Island, southern NH, and CT |
+| Network | VECTOR — Vermont Enhanced CORS and Transmission Of Real-time Corrections |
+| Operator | VTrans Geodetic Survey unit; CORS sites NOAA NCN-accredited |
+| Software | Trimble Pivot |
+| landing_url | https://vtrans.vermont.gov/highway/geodetic/cors/real-time — VTrans Geodetic page; service description, datum, account-request workflow |
+| access_url | https://vector.vermont.gov/ — operator Trimble Pivot portal; self-service registration + sourcetable host |
+| host:port | `vector.vermont.gov:2101` (20.185.11.35) |
+| tariff | Free |
+| vrs | Yes (VRS) + single-base streams. Solution types per live ST 2026-05-18: 2 VRS mountpoints (`VRS_RTCM3`, `VRS_CMRp`; solution flag 1) + 16 per-station single-base mountpoints in both RTCM 3.1 and CMRx (solution flag 0). No MAC/FKP/iMAX |
+| formats | RTCM 3.1 (GPS+GLO), CMR+ (GPS+GLO), CMRx (GPS+GLO+GAL+BDS). No RTCM 3.2/3.3 MSM streams advertised; full-constellation only via CMRx (Trimble proprietary) — non-Trimble multi-const users have no advertised mountpoint |
+| hobbyist_eligibility | Yes — VTrans explicit: "free service utilized by State and Federal Agencies, Surveyors, GIS users, Engineers, Scientists, and the public at large" |
+| legal_residency_required | No |
+| last_confirmed_alive | 2026-05-18 — `SOURCETABLE 200 OK` (36 STR; Trimble Caster 5.3) |
+| station_count | 18 reference stations statewide; live ST 34-36 STR (single-base + VRS combos across RTCM3/CMR+/CMRx); all except VJSC and VTWR NOAA NCN-accredited |
+| datum_epoch | NAD83(2011) Epoch 2010.00 — VTrans declaration: "the Vermont CORS are referenced to NAD 83(2011) epoch 2010.00" via vtrans.vermont.gov / outside.vermont.gov VTrans-hosted document |
 
-**Context:** Registration at macors.massdot.state.ma.us. Port 2101 blocked from external IPs in CI probes; this is consistent with the Leica SpiderNet SBC requiring a registered account session. Users report successful connections from within the US. MaCORS also provides Rhode Island partial coverage (see RI section).
+NetR9 → current-generation receiver upgrades completed 2025.
 
----
-
-## RI — Rhode Island: No Dedicated State Caster
-
-Rhode Island has no state-operated RTK NTRIP caster. The state relies on MaCORS (Massachusetts) for edge VRS coverage via the ACORN (Connecticut) and MaCORS station on Rhode Island (ACORN has one sensor in Providence area; MaCORS southernmost stations reach into RI).
-
-**Gap:** Coverage is technically possible near Providence via ACORN (CT) and MaCORS (MA) but is not a designated RI service, and baseline distances may be marginal (~50–80 km from nearest reference stations). Commercial fallback: KeyNetGPS (see multi-state section).
-
----
-
-## CT — Connecticut: ACORN
+## MA — MaCORS
 
 | Field | Value |
 |---|---|
-| **Network name** | ACORN — Advanced Continuously Operating Reference Network |
-| **Operator** | Connecticut Department of Transportation (CTDOT) + University of Connecticut (UConn) Department of Natural Resources and the Environment (DNRE) |
-| **Software** | Trimble Pivot |
-| **host:port** | `acorn.uconn.edu:2101` (IPs: 137.99.150.112, 137.99.150.56) |
-| **tariff** | Free — "ACORN is free and available to the public" |
-| **VRS** | Yes — primary mountpoint: `VRS3_RTX` (multi-constellation); Trimble equipment: `VRSX_RTX` |
-| **hobbyist_eligibility** | Yes — explicitly "free and available to the public"; registration at acorn.uconn.edu; no professional license required |
-| **legal_residency_required** | No |
-| **last_confirmed_alive** | `SOURCETABLE 200 OK` — 2026-05-13 (curl probe; 48 STR entries) |
-| **station count** | 13 sensors total: 9 in Connecticut, 1 in Rhode Island (Providence), 2 in southern Massachusetts, 1 on Long Island NY |
-| **constellations** | GPS, GLONASS, Galileo (EU), BeiDou (CN) — Galileo and BeiDou added as of mid-2025 |
+| Network | MaCORS — Massachusetts Continuously Operating Reference Station Network |
+| Operator | MassDOT |
+| Software | Leica SpiderNet (Spider Business Center) |
+| landing_url | https://www.mass.gov/how-to/the-massachusetts-continuously-operating-reference-station-network-macors — Mass.gov service description |
+| access_url | https://macors.massdot.state.ma.us/ — Leica SBC portal; registration + account management |
+| host:port | `macorsrtk.massdot.state.ma.us:2101` (193.8.43.161) |
+| tariff | Free — "MassDOT does not currently charge a fee for network access" |
+| vrs | Yes — iMAX network mountpoints (multi-base correction); recommended `RTCM3MSM_IMAX` (GPS+GLO+BDS+GAL) |
+| hobbyist_eligibility | Yes — "MassDOT is now granting public access"; no professional-licence field; no stated restriction |
+| legal_residency_required | No |
+| last_confirmed_alive | DNS resolves (`macorsrtk.massdot.state.ma.us` → `rtk.madot.net` → 193.8.43.161); port 2101 times out external (firewall / IP allowlist). Mass.gov portal HTTP 200. Service confirmed operational by user reports |
+| station_count | 22 GNSS base stations ~50 km apart (current Mass.gov 2026 listing). Older sources reference 18 |
+| formats | RTCM 2.3, RTCM 3.1, CMR, CMR+, RTCM 3.2 MSM4 |
+| coverage | Massachusetts + edge into RI, southern NH, CT |
+| datum_epoch | omitted — no citable operator declaration. Mass.gov MaCORS landing fetched 2026-05-18 returns HTTP 403 to scripted probe (anti-bot); prior cached fetches contained no frame/epoch text. Leica SBC portal account-gated. Third-party `MaCORS_FAQs_Rev2.pdf` mirror at ashgps.com states NAD83(2011) ep 2010.00 (**pointer carried forward from prior research; mirror PDF not re-fetched in this session — re-verify before citing**). Not citable on MassDOT-controlled domain |
 
-**Context:** Sustained state budget funding established after extensive testing and validation. CTDOT operates the reference receivers; UConn NRE operates the servers. Useful for RI, southern MA, and Long Island NY users near CT stations.
+Port 2101 firewalled to registered accounts (Leica SBC standard).
 
----
+## RI — no dedicated state caster
 
-## NY — New York: NYSNet
+Relies on neighbour networks: ACORN (CT) places `URIL` station in Kingston RI (41.49°N -71.53°W) served as `URIL3`/`URILP`/`URILX` + inside ACORN VRS hull; MaCORS (MA) southernmost stations reach northern RI.
+
+Commercial fallback: KeyNetGPS (see multi-state section).
+
+## CT — ACORN
 
 | Field | Value |
 |---|---|
-| **Network name** | NYSNet — New York Spatial Reference Network (CORS + RTN) |
-| **Operator** | New York State Department of Transportation (NYSDOT), Engineering Division + NYC partners |
-| **Software** | Leica SpiderNet (`GNSS Spider 7.10.1.168/1.0` per 2026-05-13 sourcetable header) |
-| **host:port (RTN)** | `rtn.dot.ny.gov:8080` — confirmed SOURCETABLE 200 OK on 2026-05-13 (curl probe). Full port/mountpoint list at cors.dot.ny.gov/SBC → RTN Ports/Mount Points. Port 2101 timed out from external IP (firewalled). |
-| **host:port (SBC portal)** | `cors.dot.ny.gov` (HTTP 200 portal; NTRIP on :2101 timed out from external IP, consistent with account-gated access) |
-| **tariff** | Free — "NYSDOT does not charge users a fee for access to the real-time network" |
-| **VRS** | Yes — `net_msm_vrs` (RTCM 3 MSM, GPS+GLO+GAL+BDS, network VRS) is in the live sourcetable. Also iMAX (`net_msm_imax`, `GG_MSM_IMAX`, etc.) for Leica MAC users, and `near_msm` (nearest site, MSM full constellation). Full mountpoint list on 2026-05-13 includes: `NetCell_MAX_RTCMv3`, `NetCell_iMAX_RTCMv3`, `NearSite_GIS_RTCM12`, `NearSite_CMR+`, `NetCell_iMAX_CMRP`, `NetCell_iMAX_CMR`, `NearSite_CMR`, `NearSite_RTCMv3`, `GG_RTCM3_MAX`, `GG_RTCM3_IMAX`, `GG_CMRP_IMAX`, `GG_MSM_IMAX`, `near_msm`, `GG_RTCM3_MAX_1017`, `net_msm_imax`, `test`, `net_msm_vrs`, `NYAB_GIS_RTCM12`. |
-| **hobbyist_eligibility** | Likely yes — registration is open (email + self-service); no professional license field identified in public FAQ; no explicit restriction stated |
-| **legal_residency_required** | Unclear — no stated restriction |
-| **last_confirmed_alive** | `SOURCETABLE 200 OK` — 2026-05-13 (curl probe of `rtn.dot.ny.gov:8080`; 18 STR entries returned). DNS resolves (161.11.223.1 for rtn.dot.ny.gov; 161.11.223.14 for cors.dot.ny.gov); portal HTTP 200. NYSDOT social account (@nysnet) active. 2024 NYSAPLS conference presentation confirms ongoing operations and planned densification. |
-| **constellations** | GPS, GLONASS, Galileo, BeiDou (live sourcetable advertises `GPS+GLO+GAL+BDS` on the MSM mountpoints; legacy mountpoints `NetCell_MAX_RTCMv3`, `NetCell_iMAX_*` are GPS-only or GPS+GLO) |
-| **datum** | NAD83(2011) epoch 2010.0 MYCS2 |
+| Network | ACORN — Advanced Continuously Operating Reference Network |
+| Operator | CTDOT + UConn Dept. of Natural Resources and the Environment (DNRE) |
+| Software | Trimble Pivot |
+| landing_url | http://acorn.uconn.edu/ — UConn-hosted ACORN portal home |
+| access_url | https://portal.ct.gov/dot/-/media/dot/aec/const_inspection/acorn_faq.pdf — CTDOT-hosted ACORN FAQ (rev 2025-10-06); covers fee, eligibility, datum, station roster, admin contact |
+| host:port | `acorn.uconn.edu:2101` (round-robin: 137.99.150.112, 137.99.150.56) |
+| tariff | Free — "ACORN is currently free and open to the public" (operator FAQ) |
+| vrs | Yes — primary `VRS3_RTX` (multi-const); Trimble `VRSX_RTX` |
+| hobbyist_eligibility | Yes — explicit "free and open to the public". Self-service registration. Account does not expire; subscriptions auto-renew annually. Default policy disallows simultaneous logins from one account (RTK-pair logins by admin request) |
+| legal_residency_required | No |
+| last_confirmed_alive | 2026-05-18 — `SOURCETABLE 200 OK` (47 STR; Trimble Caster 5.2) |
+| station_count | 13 physical sensors: 9 CT (CTBK Brookfield, CTDA Darien, CTEG East Granby, CTGR Groton, CTGU Guilford, CTMA Mansfield, CTNE Newington, CTPN Putnam, CTWI Winchester); 1 RI (URIL Kingston, URI campus); 2 southern MA (MASB Sturbridge, MASH Sheffield); 1 Long Island NY (NYRH Riverhead) |
+| constellations | GPS+GLO+GAL+BDS — Galileo + BeiDou added July 2025. Multi-const requires `VRS3_RTX` (Trimble: `VRSX_RTX`). Mountpoints ending in `P` = CMR+ = GPS+GLO only |
+| datum_epoch | NAD83(2011) Epoch 2010.0 — ACORN FAQ (CTDOT-hosted): "ACORN's Default Reference Frame: NAD 83 (2011) ... NAD 83 (2011) Position (Epoch 2010.0)". Per-station ITRF velocity table in same document. Citation: https://portal.ct.gov/dot/-/media/dot/aec/const_inspection/acorn_faq.pdf |
 
-**Context:** Free registration at cors.dot.ny.gov; credentials emailed after activation. 2024 conference update (NYSAPLS Jan 2024) indicated planned full station rebuilds (cabling, receivers, choke-ring antennas) and possible densification by 10+ CORS. Network RTK products require NRE or professional use — no explicit restriction against hobbyists found. 2026-05-13 sourcetable confirms `near_msm`, `net_msm_vrs`, and `net_msm_imax` are the recommended multi-constellation mountpoints for non-Leica rovers (Emlid, Ardusimple, DJI RTK).
+Sustained state budget funding. CTDOT operates reference receivers; UConn NRE operates servers. Useful for RI (URIL hull-internal), southern MA, Long Island NY users near CT stations. Admin contact: `kevin.franklin@uconn.edu`.
 
----
+**Long Island NY — ACORN vs NYSNet:** eastern LI sits inside ACORN hull via NYRH (Riverhead); also within NYSNet's NY coverage. Neither operator publishes formal guidance on choice. Practical pointer: ACORN free, single-LI station = baseline degrades fast west of Riverhead, uses NAD83(2011) ep 2010.0; NYSNet free, denser across NY, uses NAD83(2011) ep 2010 MYCS2 (the MYCS2 height model is the only frame-level difference). Western-LI user near NYC geometrically closer to NYSNet stations; eastern-LI near Riverhead has either available. Confirm with operator before deployment.
 
-## NJ — New Jersey: No Public State Caster
+## NY — NYSNet
 
-No state DOT or university RTK network found for New Jersey as of 2026-05-07. Multiple sources confirm "RTK Premium covers the entire state" as the primary option, implying no free public infrastructure. No NJDOT, Rutgers, or Princeton CORS caster found.
+| Field | Value |
+|---|---|
+| Network | NYSNet — New York Spatial Reference Network (CORS + RTN) |
+| Operator | NYSDOT Engineering Division + NYC partners |
+| Software | Leica SpiderNet (`GNSS Spider 7.10.1.168/1.0`) |
+| landing_url | https://cors.dot.ny.gov/NYSNet%20welcome_0.htm — operator NYSDOT welcome page |
+| access_url | https://cors.dot.ny.gov/FAQ.htm — operator FAQ; fee policy, datum/epoch, registration, routes to SBC portal at `cors.dot.ny.gov/SBC` |
+| host:port (RTN) | `rtn.dot.ny.gov:8080` — `SOURCETABLE 200 OK`. Full port/mountpoint list at cors.dot.ny.gov/SBC → RTN Ports/Mount Points. Port 2101 timed out external (firewalled) |
+| host:port (SBC portal) | `cors.dot.ny.gov` (HTTP 200; NTRIP :2101 timed out external, consistent with account-gated access) |
+| tariff | Free — operator FAQ: "No. NYSDOT does not charge users a fee for access to the real-time network" |
+| vrs | Yes — `net_msm_vrs` (RTCM 3 MSM, GPS+GLO+GAL+BDS, network VRS). Also iMAX (`net_msm_imax`, `GG_MSM_IMAX`) for Leica MAC users. `near_msm` (nearest-site MSM full constellation). 18 STR live 2026-05-18 incl. `NetCell_MAX_RTCMv3`, `NetCell_iMAX_RTCMv3`, `NearSite_GIS_RTCM12`, `NearSite_CMR+`, `NetCell_iMAX_CMRP`, `NetCell_iMAX_CMR`, `NearSite_CMR`, `NearSite_RTCMv3`, `GG_RTCM3_MAX`, `GG_RTCM3_IMAX`, `GG_CMRP_IMAX`, `GG_MSM_IMAX`, `near_msm`, `GG_RTCM3_MAX_1017`, `net_msm_imax`, `test`, `net_msm_vrs`, `NYAB_GIS_RTCM12` |
+| hobbyist_eligibility | Likely yes — registration open (email + self-service); no professional-licence field in public FAQ; no explicit restriction; operator FAQ contains no eligibility constraint |
+| legal_residency_required | Unclear |
+| last_confirmed_alive | 2026-05-18 — `SOURCETABLE 200 OK` (18 STR; GNSS Spider 7.10.1.168/1.0) |
+| constellations | GPS+GLO+GAL+BDS on MSM mountpoints (`near_msm`, `net_msm_imax`, `net_msm_vrs`); legacy `NetCell_MAX_RTCMv3`, `NetCell_iMAX_*` are GPS-only or GPS+GLO |
+| datum_epoch | NAD83(2011) Epoch 2010 MYCS2 — operator FAQ (re-verified 2026-05-18): "NAD83 (2011) EPOCH 2010 MYCS2". Citation: https://cors.dot.ny.gov/FAQ.htm. **MYCS2→MYCS3 transition unresolved**: NGS released MYCS3 in 2024–2025 (Oct 2022 IGS20 alignment per geodesy.noaa.gov/CORS/news/mycs3/mycs3.shtml; modelled coordinates "currently being generated" per June 2025 update); NYSNet FAQ as of 2026-05-18 still names MYCS2 with no migration notice. Sister network ACORN (CT) cites NAD83(2011) Epoch 2010.0 without MYCS qualifier; NPS slide deck names NAD83(2011) 2010.0 without MYCS qualifier. NYSNet treatment of MYCS3 = pointer / unresolved |
 
-**Gap:** NJ falls between NYSNet (NY, which may have some coverage in northern NJ near NYC) and EarthScope NOTA (no NJ station). Commercial options: KeyNetGPS (covers NJ) and AlphaRTK (covers NJ area — see multi-state section).
+Free registration at cors.dot.ny.gov; credentials emailed. 2024 NYSAPLS conference handout: planned full station rebuilds (cabling, receivers, choke-ring antennas) + possible densification by 10+ CORS.
 
----
+## NJ — no public state caster
 
-## PA — Pennsylvania: No Public State Caster
+No NJDOT/Rutgers/Princeton RTK NTRIP caster (re-confirmed 2026-05-18). RTK Premium covers entire state (commercial, paid). Historical small NJIT CORS array not maintained as public real-time service.
 
-No active PennDOT-operated CORS RTK NTRIP caster found as of 2026-05-07. A 2011 PennDOT/NGS presentation (Harpster) described PACS (Pennsylvania CORS System) and VRS plans, but no live public endpoint has been confirmed. Multiple 2024 sources list PA as having no public RTK service. Penn State (PSU) maintains some CORS for research but no public RTK caster.
+NJ falls between NYSNet (NY; partial coverage in northern NJ near NYC) and EarthScope NOTA (no NJ station). Commercial: KeyNetGPS, AlphaRTK.
 
-**Gap:** Commercial options: KeyNetGPS (vrs.keynetgps.com:2101, covers PA — SOURCETABLE 200 OK confirmed 2026-05-07; paid subscription) and AlphaRTK (covers PA; USD 195/mo; see multi-state section). EarthScope NOTA has one PA station (P817, Altoona area) for single-base/PPK use.
+## PA — no public state caster
 
----
+No active PennDOT-operated CORS RTK NTRIP caster (re-confirmed 2026-05-18 via E38, Point One, GPS World). 2011 PennDOT/NGS presentation (Harpster) described PACS (Pennsylvania CORS System) + VRS plans; no live public endpoint confirmed since. **Post-2011 PennDOT geodetic / PSLS (Pennsylvania Society of Land Surveyors) sources not exhaustively searched in this session — PACS revival/cancellation status remains unresolved.** Penn State CORS for research only. PennDOT's `request-access-to-transportation-related-data-feeds` covers traffic/ITS, not RTK corrections.
 
-## DE — Delaware: No Public State Caster
+Commercial: KeyNetGPS (covers PA, `vrs.keynetgps.com:2101` `SOURCETABLE 200 OK` 2026-05-18, paid); AlphaRTK (covers PA; USD 195/mo). EarthScope NOTA has one PA station (P817, Altoona area) for single-base/PPK.
 
-No state-operated RTK NTRIP caster found for Delaware as of 2026-05-07. DelDOT does not appear to operate a public CORS network. Multiple sources confirm no public service for Delaware.
+## DE — no public state caster
 
-**Gap:** Commercial options: KeyNetGPS (covers DE), AlphaRTK (covers DE). State is small enough that nearby NJ, MD, and PA commercial networks provide viable baseline distances.
+DelDOT does not operate a public CORS network. Multiple sources confirm.
 
----
+Commercial: KeyNetGPS (covers DE), AlphaRTK (covers DE). State small enough that nearby NJ/MD/PA commercial networks provide viable baseline.
 
-## MD — Maryland: No Public State Caster
+## MD — no public state caster
 
-No free public state-operated RTK NTRIP caster found for Maryland as of 2026-05-07. MDOT SHA (State Highway Administration) maintains geodetic control monuments and HARN points for static post-processing but does not operate a public real-time RTK caster. Multiple 2024 sources list MD as having "no public service" (GPS World) or covered only by RTK Premium (commercial). Note: mdotcors.org resolves to ECONNREFUSED — this is Michigan DOT CORS (MDOT CORS = Michigan), not Maryland.
+MDOT SHA maintains geodetic control + HARN points for static post-processing only. No real-time RTK caster. Multiple 2024 sources list MD as "no public service" (GPS World) or covered only by RTK Premium (commercial). `mdotcors.org` (DNS 148.149.27.70) is the Michigan Spatial Reference Network (MDOT CORS-MSRN, Michigan DOT) — frequent confusion in third-party listings.
 
-**Contact:** MDOT SHA Survey Division: Erik Donald, 410-545-8976, edonald@mdot.maryland.gov.
+MDOT SHA Survey: Erik Donald, 410-545-8976, `edonald@mdot.maryland.gov`.
 
-**Gap:** Commercial options: KeyNetGPS (covers MD/DC), AlphaRTK (covers MD/DC; USD 195/mo). EarthScope NOTA has no station in MD.
+Commercial: KeyNetGPS (covers MD/DC), AlphaRTK (covers MD/DC; USD 195/mo).
 
----
+## DC — no public caster
 
-## DC — Washington DC: No Public Caster
+No dedicated DC RTK NTRIP. Covered by same commercial networks as MD/VA (KeyNetGPS, AlphaRTK). EarthScope NOTA has no DC station. NGS CORS in DC area contribute to NOAA NCN for static post-processing only.
 
-Washington DC has no dedicated public RTK NTRIP caster. DC is covered by the same commercial networks serving MD and VA (KeyNetGPS, AlphaRTK). EarthScope NOTA has no DC station. NGS operates CORS stations in the DC area contributing to NOAA NCN for static post-processing only.
-
----
-
-## Multi-State Commercial Networks
+## Multi-state commercial networks
 
 ### KeyNetGPS (Keystone Precision Solutions / Keypre)
 
 | Field | Value |
 |---|---|
-| **Coverage** | VA, DC, MD, DE, PA, NJ, NY, CT, RI, MA, VT, NH, ME (entire Northeast) |
-| **host:port** | `vrs.keynetgps.com:2101` (IP 209.255.196.164) |
-| **tariff** | Not publicly listed; contact via keypre.com or resellers (Laser Industries 412-510-3089, Duncan-Parnell 833-916-0557) |
-| **VRS** | Yes — Trimble VRS3Net software; mountpoints `VRS_CMRp`, `VRS_CMRx`, `SingleBase_CMRp`, `SingleBase_RTCM3` (6 STR entries live 2026-05-13) |
-| **hobbyist_eligibility** | Unclear — no explicit restriction; subscriber agreement required |
-| **legal_residency_required** | Unclear |
-| **last_confirmed_alive** | `SOURCETABLE 200 OK` — 2026-05-13 (curl probe; 6 STR entries) |
+| Coverage | VA, DC, MD, DE, PA, NJ, NY, CT, RI, MA, VT, NH, ME (entire Northeast) |
+| landing_url | https://www.keypre.com/keynetgps/about-keynet-gps/ |
+| access_url | https://vrs.keynetgps.com/ — Trimble VRS3Net portal |
+| host:port | `vrs.keynetgps.com:2101` (209.255.196.164) |
+| tariff | 30-day USD 375 per subscription; annual USD 3,135 (net 30) or USD 3,300 (monthly increments of USD 275/mo, credit card on file). Source: KeyNetGPS Pricing PDF (www.keypre.com/getmedia/9461f194-…/KeyNetGPS-Pricing-and-Registration-Process-(1).pdf, fetched 2026-05-18) |
+| vrs | Yes — Trimble VRS3Net; mountpoints `VRS_CMRp`, `VRS_CMRx`, `SingleBase_CMRp`, `SingleBase_RTCM3` (6 STR live 2026-05-18) |
+| hobbyist_eligibility | Unclear — no explicit restriction; subscriber agreement required. Annual USD 3,135 well above hobbyist range |
+| legal_residency_required | Unclear |
+| last_confirmed_alive | 2026-05-18 — `SOURCETABLE 200 OK` (6 STR; Trimble Caster 5.1) |
 
-Primary paid option for PA, NJ, DE, NH, RI, and parts of NY/MD/DC without free coverage.
+Resellers: Laser Industries 412-510-3089; Duncan-Parnell 833-916-0557. Primary paid option for PA, NJ, DE, NH, RI, parts of NY/MD/DC without free coverage.
 
 ### AlphaRTK
 
 | Field | Value |
 |---|---|
-| **Coverage** | DE, MD, NJ, PA, DC |
-| **host:port** | Not published publicly; contact info@alphartk.com |
-| **tariff** | USD 195/1 month · USD 995/6 months · USD 1,595/24 months (observed 2026-05-07, alphartk.com); free 1-week trial available |
-| **VRS** | Unknown |
-| **hobbyist_eligibility** | Unclear — professional orientation but no stated restriction; trial available |
-| **legal_residency_required** | Unclear |
-| **last_confirmed_alive** | alphartk.com HTTP 200 as of 2026-05-07 |
+| Coverage | DE, MD, NJ, PA, DC |
+| landing_url | https://www.alphartk.com/ — describes coverage, hardware compat, contact `info@alphartk.com` |
+| access_url | Skip — landing covers tariff, free-trial, signup contact (no separate portal) |
+| host:port | Not published; contact `info@alphartk.com` |
+| tariff | USD 195/1mo · USD 695/6mo · USD 995/12mo · USD 1,595/24mo (observed 2026-05-18, alphartk.com — down from prior file: 6mo was USD 995, 12mo was USD 1,595). Free 1-week trial |
+| vrs | Unknown |
+| hobbyist_eligibility | Unclear — professional orientation; trial available |
+| legal_residency_required | Unclear |
+| last_confirmed_alive | alphartk.com HTTP 200 2026-05-18. Website alive ≠ NTRIP caster alive; host:port unpublished; no public sourcetable probe possible. Treat as pointer, not confirmed live caster |
 
----
-
-## Post-Processing Fallback
+## Post-processing fallback
 
 | Service | Coverage | Cost |
 |---|---|---|
-| **NOAA NCN CORS** — static RINEX download (multiple stations per NE state) | All NE states | Free; no account required for data download |
-| **EarthScope NOTA RINEX archive** | 2 NE stations (P776 NH, P817 PA) | Free noncommercial; account required |
+| NOAA NCN CORS — static RINEX | All NE states | Free; no account |
+| EarthScope NOTA RINEX | 2 NE stations (P776 NH, P817 PA) | Free non-commercial; account required |
 
----
+## Sources
 
-## Sources Consulted
-
-- NYSNet FAQ: https://cors.dot.ny.gov/FAQ.htm (observed 2026-05-07)
+- NYSNet FAQ: https://cors.dot.ny.gov/FAQ.htm
 - NYSNet welcome: https://cors.dot.ny.gov/NYSNet%20welcome_0.htm
-- NYSAPLS 2024 conference handout (CORS/RTN update): https://cdn.ymaws.com/www.nysapls.org/resource/resmgr/2024_conference/course_handouts/2024_nysapls_nysdot_cors-rtn.pdf
-- MaCORS portal: https://macors.massdot.state.ma.us/ (observed 2026-05-07)
-- MaCORS Mass.gov page: https://www.mass.gov/how-to/the-massachusetts-continuously-operating-reference-station-network-macors
+- NYSAPLS 2024 conf handout: https://cdn.ymaws.com/www.nysapls.org/resource/resmgr/2024_conference/course_handouts/2024_nysapls_nysdot_cors-rtn.pdf
+- MaCORS portal: https://macors.massdot.state.ma.us/
+- MaCORS Mass.gov: https://www.mass.gov/how-to/the-massachusetts-continuously-operating-reference-station-network-macors
 - MALSCE MaCORS announcement: https://www.malsce.org/news/massdots-gps-network-now-available-for-use/
-- Maine DOT Survey page: https://www.maine.gov/dot/doing-business/permitting-policy/survey-and-right-of-way-information
-- Maine RTN portal: https://medotrtn.maine.gov/ (SOURCETABLE 200 OK confirmed 2026-05-07)
-- Vermont VECTOR portal: https://vector.vermont.gov/ (SOURCETABLE 200 OK confirmed 2026-05-07)
-- VTrans VECTOR real-time page: https://vtrans.vermont.gov/highway/geodetic/cors/real-time
-- ACORN welcome: http://acorn.uconn.edu/ (SOURCETABLE 200 OK confirmed 2026-05-07)
-- ACORN / UConn Today article: https://today.uconn.edu/2022/05/acorn-helps-connecticut-use-gps-faster-and-more-accurately/
-- CT Surveyors ACORN article: https://ctsurveyors.org/acorn-real-time-positioning-for-connecticut/
-- EarthScope GNSS Realtime: https://www.earthscope.org/data/gnss-realtime/ (observed 2026-05-07)
-- EarthScope NOTA licensing announcement: https://www.earthscope.org/news/new-gnss-offering-and-licensing-details-for-commercial-use/
-- EarthScope SOURCETABLE probe: ntrip.earthscope.org:2101 — SOURCETABLE 200 OK confirmed 2026-05-07; NE stations filtered by lat/lon
-- E38 Survey Solutions state-by-state NTRIP: https://e38surveysolutions.com/pages/ntrip-rtk-network-access-by-state
+- Maine DOT Survey: https://www.maine.gov/dot/doing-business/permitting-policy/survey-and-right-of-way-information
+- MaineDOT RTN portal: https://medotrtn.maine.gov/
+- MaineDOT NAD83(2011) datasheets (datum citation): https://www.maine.gov/mdot/surveyinfo/docs/NAD832011Epoch2010Datasheets.pdf
+- VTrans VECTOR real-time: https://vtrans.vermont.gov/highway/geodetic/cors/real-time
+- VECTOR portal: https://vector.vermont.gov/
+- ACORN welcome: http://acorn.uconn.edu/
+- ACORN FAQ (operator, datum citation): https://portal.ct.gov/dot/-/media/dot/aec/const_inspection/acorn_faq.pdf
+- CT Surveyors ACORN: https://ctsurveyors.org/acorn-real-time-positioning-for-connecticut/
+- EarthScope GNSS Realtime: https://www.earthscope.org/data/gnss-realtime/
+- EarthScope NOTA licensing: https://www.earthscope.org/news/new-gnss-offering-and-licensing-details-for-commercial-use/
+- E38 Survey Solutions state-by-state: https://e38surveysolutions.com/pages/ntrip-rtk-network-access-by-state
 - E38 MaCORS Emlid guide: https://e38surveysolutions.com/blogs/news/emlid-reach-rx-or-rs2-and-dji-rtk-connection-to-massachusetts-ntrip-macors
 - E38 NYSNet Emlid guide: https://e38surveysolutions.com/blogs/news/emlid-reach-rx-or-rs2-and-dji-rtk-connection-to-new-york-ntrip-nysnet
 - ArduSimple USA NTRIP: https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-the-united-states-of-america-usa/
-- KeyNetGPS portal: https://vrs.keynetgps.com/ (SOURCETABLE 200 OK confirmed 2026-05-07)
-- KeyNetGPS product (Duncan-Parnell): https://www.duncan-parnell.com/itemdetail/W-KEYNETGPS
-- Keypre about KeyNetGPS: https://www.keypre.com/keynetgps/about-keynet-gps/
-- AlphaRTK: https://www.alphartk.com/ (observed 2026-05-07)
+- KeyNetGPS portal: https://vrs.keynetgps.com/
+- KeyNetGPS pricing PDF: https://www.keypre.com/getmedia/9461f194-ea72-43a1-9b88-29dd50fe8f4e/KeyNetGPS-Pricing-and-Registration-Process-(1).pdf
+- Keypre about: https://www.keypre.com/keynetgps/about-keynet-gps/
+- AlphaRTK: https://www.alphartk.com/
 - MDOT SHA geodetic: https://roads.maryland.gov/mdotsha/pages/Index.aspx?PageId=61
-- Maine Technical MaCORS server migration: https://www.mainetechnical.com/macors-new-server-location
 - GPS World public RTK list: https://www.gpsworld.com/finally-a-list-of-public-rtk-base-stations-in-the-u-s/
 - NTRIP-list North America: https://ntrip-list.com/north-america/
 - Point One Nav NH: https://pointonenav.com/states/new-hampshire/
 - Point One Nav PA: https://pointonenav.com/states/pennsylvania/
-- PointMan public VRS list: https://pointman.com/list-of-public-vrs-correction-services-that-will-work-with-pointman/
-- curl probes performed 2026-05-07 and re-verified 2026-05-13: medotrtn.maine.gov:2101 (OK, 8 STR), vector.vermont.gov:2101 (OK, 36 STR), acorn.uconn.edu:2101 (OK, 48 STR), ntrip.earthscope.org:2101 (OK, 1080 STR), vrs.keynetgps.com:2101 (OK, 6 STR), rtn.dot.ny.gov:8080 (OK, 18 STR — new confirmation 2026-05-13; supersedes earlier "timeout" entry for NYSNet which only reflected port 2101), macorsrtk.massdot.state.ma.us:2101 (timeout/firewall), rtn.dot.ny.gov:2101 (timeout), cors.dot.ny.gov:2101 (timeout)
+- NGS CORS FAQ (state RTK provider list — confirms ME/MA/NY/VT free; lists NC, SC, TN paid; does not list ACORN-CT, RI, NH, NJ, PA, DE, MD, DC): https://geodesy.noaa.gov/CORS/cors_faqs.shtml
+- Probes 2026-05-18 (curl `--http0.9 -A 'NTRIP/1.0'`): medotrtn.maine.gov:2101 OK 8 STR; vector.vermont.gov:2101 OK 36 STR; acorn.uconn.edu:2101 OK 47 STR; ntrip.earthscope.org:2101 OK ~1080 STR (ingested-global); vrs.keynetgps.com:2101 OK 6 STR; rtn.dot.ny.gov:8080 OK 18 STR; macorsrtk.massdot.state.ma.us:2101 timeout; rtn.dot.ny.gov:2101 timeout; cors.dot.ny.gov:2101 timeout; mdotcors.org (DNS 148.149.27.70, Michigan, not Maryland)

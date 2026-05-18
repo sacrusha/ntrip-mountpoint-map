@@ -1,5 +1,5 @@
 # Eswatini [SZ] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-13 (revised from 2026-05-06 — Surveyor General status unchanged; one volunteer rtk2go base inside SZ territory now confirmed)
+**Date researched:** 2026-05-17 (re-verified from 2026-05-13 — `mabuda_farm` rtk2go base still present in local stations.json; Surveyor General status unchanged)
 
 ## Status: NO national caster; Surveyor General maintains only a passive trigonometric network. ONE volunteer rtk2go base (`mabuda_farm`) is operating inside Eswatini at -26.47°, 31.94°; nearest national network (South Africa TrigNet) does not extend into SZ
 
@@ -13,6 +13,7 @@
 | **hobbyist_eligibility** | — for government caster (none); see Volunteer below for rtk2go |
 | **legal_residency_required** | — |
 | **last_confirmed_alive** | — for government caster (none); rtk2go `mabuda_farm` station coordinates last confirmed 2026-05-13 in `data/stations.json` |
+| **datum_epoch** | omitted — no citable declaration (no operator portal exists; EPSG / Wikipedia not citable per primer skip-list) |
 | **Most recent project announcement** | None found for GNSS CORS; geological mapping programme with South Africa's Council for Geoscience announced 2023-12, concluded mid-2024 — no CORS component. Ministry annual budget performance report for 2024/25 mentions Deeds Registry document volumes only, no GNSS-infrastructure line items |
 
 ## Volunteer Option Inside Eswatini
@@ -37,7 +38,7 @@ The next-nearest base is `LouwNPP` on the South African side at –27.34°, 30.9
 
 - Eswatini (formerly Swaziland) is a small landlocked kingdom (~17,400 km²) in southern Africa, bordered by South Africa and Mozambique.
 - The Surveyor General's Department under the Ministry of Natural Resources and Energy handles geodetic controls, cadastral survey approval, and trigonometric network maintenance. Functions are traditional (trigonometric network, cadastral survey approval, boundary demarcation) with no mention of CORS or RTK real-time services. The Deeds Registry, also under this ministry, handles cadastral documentation but operates no GNSS service.
-- The national datum is Hartebeesthoek94 (shared with South Africa, Lesotho, Zimbabwe).
+- Geographic-historical context: Eswatini sits inside the southern-African geodetic frame shared with South Africa, Lesotho and Zimbabwe (Hartebeesthoek94 in EPSG terms). No Surveyor General publication declares this for real-time GNSS, so it is not cited as the operational datum in the field above.
 - **South Africa TrigNet:** The South African National Geo-spatial Information (NGI) TrigNet network (`trignet.co.za`) is free and covers South Africa with NTRIP RTK, but does not extend into Eswatini territory. The nearest TrigNet station is near the South African border, approximately 10–30 km outside Eswatini. From border areas (Lavumisa, Nhlangano), a single-base TrigNet connection to a near-border SA station may be possible; full Network RTK (VRS / iMAX) coverage does not extend over SZ.
 - No IGS permanent station on Eswatini territory.
 - A joint geoscience mapping programme between Eswatini Geological Survey and South Africa's Council for Geoscience was active 2023–2024, using AI for mineral resource mapping — no GNSS CORS component identified.

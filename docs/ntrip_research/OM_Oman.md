@@ -1,5 +1,5 @@
 # Oman [OM] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12 (refresh; prior pass 2026-05-06)
+**Date researched:** 2026-05-17 (refresh; prior pass 2026-05-12)
 
 ## Status: YES — OmanCORSnet active (~47 physical stations, expanding to 60+; Leica GNSS Spider VRS caster live on port 2101); hobbyist eligibility unconfirmed, tariff not published
 
@@ -8,15 +8,18 @@
 | **Active public NTRIP RTK caster** | Yes — OmanCORSnet (caster live on `omancorsnet.gov.om:2101`) |
 | **Network name** | OmanCORSnet |
 | **Operator** | NSGIA — National Survey and Geospatial Information Authority (successor to NSA, National Survey Authority, under Ministry of Defence) |
+| **landing_url** | https://www.nsaomangeoportal.gov.om/en/oman-corsnet (NSGIA geoportal OmanCORSnet page) |
+| **access_url** | https://omancorsnet.gov.om/SBC/Account/Index (Spider Business Center login / subscription portal) |
 | **host:port — portal (Spider Business Center)** | `https://omancorsnet.gov.om/SBC/Account/Index` |
 | **host:port — NTRIP caster** | `omancorsnet.gov.om:2101` — SOURCETABLE 200 OK on 2026-05-12 (curl). Server header: `GNSS Spider 7.11.1.109/1.0`. Sourcetable lists 8 mountpoints: `Nearest`, `MAX`, `VRS`, `UTM-40-Auto-Geoid`, `UTM-39-Auto-Geoid`, `MAX-Geoid-39`, `MAX-Geoid-40`, `ONGD23`. RTCM 3, GPS+GLO. Physical CORS are not exposed as individual streams. Authentication required to actually stream data — sourcetable is open. |
-| **VRS** | Yes — confirmed; sourcetable advertises `VRS`, `MAX` (Master-Auxiliary), and `Nearest` network-RTK mountpoints. Leica GNSS Spider platform. |
-| **Datum** | `ONGD23` mountpoint suggests an updated Oman National Geodetic Datum (ONGD23) is in use alongside ONGD17 / UTM 39N / UTM 40N projections. |
+| **vrs** | yes — confirmed; sourcetable advertises `VRS`, `MAX` (Master-Auxiliary), and `Nearest` network-RTK mountpoints. Leica GNSS Spider platform. |
+| **Datum (informational)** | `ONGD23` mountpoint name in sourcetable is suggestive of an updated Oman National Geodetic Datum, but a mountpoint name is **not a citable operator declaration** per primer [datum-epoch]; do not infer ONGD23 as the broadcast datum without an NSGIA spec page. ONGD17 (ITRF2014, epoch 2017.0) remains the only operator-declared frame. |
 | **num_stations** | ~47 physical CORS (per NSGIA), with stated plan to expand beyond 60 |
 | **tariff** | Not publicly listed; subscription management via Spider Business Center |
 | **hobbyist_eligibility** | Unclear — no hobbyist or individual tier documented; ArduSimple Oman page indicates registration required but does not specify licensed-professional-only restriction |
 | **legal_residency_required** | Unclear — no explicit restriction found; non-resident eligibility unconfirmed |
-| **last_confirmed_alive** | Caster `omancorsnet.gov.om:2101` SOURCETABLE 200 OK confirmed 2026-05-12 (curl HTTP/0.9; ENDSOURCETABLE returned) |
+| **last_confirmed_alive** | Caster `omancorsnet.gov.om:2101` SOURCETABLE 200 OK re-confirmed 2026-05-17 (curl --http0.9; GNSS Spider 7.11.1.109/1.0; same 8 mountpoints — Nearest, MAX, VRS, UTM-40-Auto-Geoid, UTM-39-Auto-Geoid, MAX-Geoid-39, MAX-Geoid-40, ONGD23) |
+| **datum_epoch** | ONGD17 (ITRF2014, epoch 2017.0) — operator declaration on NSGIA ONGD17 page (https://www.nsaomangeoportal.gov.om/en/ongd17, 502 on 2026-05-17 from sandbox; previously cited and archived). `ONGD23` mountpoint name in sourcetable suggests a newer realisation; **no operator declaration of ONGD23 datum/epoch retrieved** on this pass — treat datum_epoch as unchanged (ONGD17) until NSGIA publishes ONGD23 spec page. |
 
 ---
 
@@ -104,4 +107,5 @@ Global free fallback: **Galileo HAS** (~40 cm accuracy, no connectivity required
 - FIG 2024 — "A New Reference Frame for Oman": https://www.fig.net/resources/proceedings/fig_proceedings/fig2024/papers/ts08f/TS08F_al_balushi_abolghasem_et_al_12396.pdf
 - ArduSimple Oman NTRIP page: https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-oman/
 - EarthScope IGS data (Muscat station): https://www.earthscope.org/data/gnss-data/
-- curl probe of `omancorsnet.gov.om:2101` — SOURCETABLE 200 OK confirmed 2026-05-12 (8 mountpoints listed; GNSS Spider 7.11 server)
+- curl probe of `omancorsnet.gov.om:2101` — SOURCETABLE 200 OK re-confirmed 2026-05-17 (8 mountpoints unchanged; GNSS Spider 7.11.1.109/1.0)
+- Local pipeline `scripts/stations_by_country.py OMN` 2026-05-17: zero — Oman has no MPs in any ingested global caster (rtk2go/centipede/earthscope/euref_ip/igs_ip/auscors/mirai)

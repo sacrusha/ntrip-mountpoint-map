@@ -1,5 +1,5 @@
 # Antigua and Barbuda [AG] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-15
+**Date researched:** 2026-05-17 (prior: 2026-05-15)
 
 ## Status: No national NTRIP caster — EarthScope NOTA single-base streams active on Antigua, Barbuda, and Redonda
 
@@ -9,7 +9,7 @@
 | **Scientific GNSS streams in AG territory** | Yes — EarthScope NOTA: **CN01** (Bethesda, Antigua main island; 17.05, -61.76), **BGGY** (Codrington, Barbuda; 17.05, -61.86), **RDON** (Redonda Island; 16.93, -62.35). All RTCM 3.3, GPS+GLO+BDS+GAL+SBAS+QZS, single-base raw, on `ntrip.earthscope.org:2101` |
 | **hobbyist_eligibility** | Yes — non-commercial NULA accepts individual accounts; no surveying licence required |
 | **legal_residency_required** | No — NULA imposes no nationality/residency restriction |
-| **last_confirmed_alive** | 2026-05-15: local `data/earthscope.sourcetable` (refreshed today by scripts/fetch_stations.py) lists all 3 ATG mountpoints. Source health: ok. EarthScope landing page reachable from sandbox; NULA PDF returned but text content was non-extractable (binary stream). |
+| **last_confirmed_alive** | 2026-05-17: local `data/earthscope.sourcetable` (refreshed today by scripts/fetch_stations.py) lists all 3 ATG mountpoints. Source health: ok. EarthScope landing page reachable from sandbox; NULA PDF returned but text content was non-extractable (binary stream). |
 
 ---
 
@@ -28,14 +28,14 @@ Mountpoint format: 4-char station code + `_RTCM3P3` suffix. Stream: raw 1 Hz mul
 | **landing_url** | https://www.earthscope.org/data/gnss-realtime/ |
 | **access_url** | https://www.earthscope.org/data/gnss-realtime/ (sign-up flow + license terms on same page) |
 | **host:port** | `ntrip.earthscope.org:2101` (RTCM 3.3); also port 2105 (BINEX), port 2108 (onboard PPP, GGK/GSOF) |
-| **num_stations** | 3 in AG territory (CN01, BGGY, RDON), all physical CORS; verified 2026-05-15 against `data/earthscope.sourcetable` |
+| **num_stations** | 3 in AG territory (CN01, BGGY, RDON), all physical CORS; verified 2026-05-17 against `data/earthscope.sourcetable` |
 | **vrs** | No (single-base raw streams) |
 | **hobbyist_eligibility** | Yes — non-commercial NULA accepts individuals for scientific, educational, or humanitarian use; charging for derived data prohibited |
 | **legal_residency_required** | No |
-| **tariff — non-commercial** | Free (USD $0.00); annual NULA acceptance required. Date observed: 2026-05-15. Source: https://www.earthscope.org/data/gnss-realtime/ |
-| **tariff — commercial** | USD $1,000 per seat per year (one seat = one concurrent connection); 5-seat minimum for direct billing; 2-week 5-seat trial available once per account. EarthScope is a US 501(c)(3) nonprofit; no VAT. Date observed: 2026-05-15. Source: https://www.earthscope.org/data/gnss-realtime/ and https://www.earthscope.org/news/new-gnss-offering-and-licensing-details-for-commercial-use/ (announcement dated 2024-03-07; service live since 2024-05-01). |
+| **tariff — non-commercial** | Free (USD $0.00); annual NULA acceptance required. Date observed: 2026-05-17. Source: https://www.earthscope.org/data/gnss-realtime/ |
+| **tariff — commercial** | USD $1,000 per seat per year (one seat = one concurrent connection); 5-seat minimum for direct billing; 2-week 5-seat trial available once per account. EarthScope is a US 501(c)(3) nonprofit; no VAT. Date observed: 2026-05-17. Source: https://www.earthscope.org/data/gnss-realtime/ and https://www.earthscope.org/news/new-gnss-offering-and-licensing-details-for-commercial-use/ (announcement dated 2024-03-07; service live since 2024-05-01). |
 | **NULA reference** | https://www.earthscope.org/user/NoncommercialLicenseAgreement.pdf (PDF served; text content not machine-extractable from this sandbox — version date not confirmed in this run) |
-| **last_confirmed_alive** | 2026-05-15 — local sourcetable refresh succeeded for all 3 ATG mountpoints |
+| **last_confirmed_alive** | 2026-05-17 — local sourcetable refresh succeeded for all 3 ATG mountpoints |
 
 **Practical positioning notes**
 - CN01 (Bethesda, Antigua) is the only usable single-base for cm-grade work on Antigua's main island (baselines <20–30 km).
@@ -44,6 +44,17 @@ Mountpoint format: 4-char station code + `_RTCM3P3` suffix. Stream: raw 1 Hz mul
 - Cross-border fallback: 5 EarthScope stations on Montserrat (CN62, TRNT, RCHY, AIRS, OLVN — 50–60 km from CN01/RDON) can be used as alternates with degraded fix probability at those baselines.
 
 **Legacy platform**: `rtgpsout.unavco.org` retired 2025-07-29; all NOTA streams now on `ntrip.earthscope.org`.
+
+---
+
+## Commercial / volunteer overlay check (2026-05-17)
+
+- **rtk2go**: zero AG/B mountpoints. Verified 2026-05-17: `py scripts/stations_by_country.py ATG` → only the 3 EarthScope stations.
+- **Centipede-RTK**: zero AG/B nodes (same script; not in stations.json).
+- **GEODNET**: zero AG/B stations. Coverage map (`rtk.geodnet.com/coverage/`) renders client-side; sandbox cannot extract tiles, but no AG/B station cited in any web result and GEODNET is not in local pipeline sources.
+- **ONOCOY**: zero AG/B stations. Coverage map (`console.onocoy.com`) renders client-side; no AG/B station cited in any web result.
+- **Trimble VRS Now**: not advertised for AG/B on Trimble's published coverage map.
+- **Hexagon HxGN SmartNet / Topcon TopNET Live**: no AG/B node confirmed on operator portals.
 
 ---
 
@@ -73,7 +84,7 @@ None identified for a dedicated AG national CORS/NTRIP service. No 2024–2026 p
 
 ---
 
-## Live-probe results (this sandbox, 2026-05-15)
+## Live-probe results (this sandbox, 2026-05-17)
 
 | URL | Result |
 |---|---|
@@ -86,7 +97,7 @@ None identified for a dedicated AG national CORS/NTRIP service. No 2024–2026 p
 | https://lands.gov.ag/landfolio.publicaccess.web/Contents/about_us.aspx | ECONNREFUSED |
 | http://ntrip.earthscope.org:2101/ (sourcetable HTTP) | TLS/certificate error from sandbox; local copy in `data/earthscope.sourcetable` is the source of truth |
 
-Sandbox network limits (per CLAUDE.md) prevent direct caster probing; the `data/earthscope.sourcetable` refresh path (scripts/fetch_stations.py, run 2026-05-15) is the canonical liveness check and reports all 3 ATG mountpoints present.
+Sandbox network limits (per CLAUDE.md) prevent direct caster probing; the `data/earthscope.sourcetable` refresh path (scripts/fetch_stations.py, run 2026-05-17) is the canonical liveness check and reports all 3 ATG mountpoints present.
 
 ---
 
@@ -97,5 +108,5 @@ Sandbox network limits (per CLAUDE.md) prevent direct caster probing; the `data/
 - EarthScope NULA PDF: https://www.earthscope.org/user/NoncommercialLicenseAgreement.pdf
 - UNAVCO/GAGE BGGY station DOI page: https://www.unavco.org/data/doi/10.7283/T5PK0D9W
 - Antigua and Barbuda Lands and Survey Landfolio portal (unreachable from sandbox): https://lands.gov.ag/landfolio.publicaccess.web/Contents/about_us.aspx
-- Local verification: `data/earthscope.sourcetable` lines 83 (BGGY), 118 (CN01), 970 (RDON); `scripts/stations_by_country.py ATG` returns same 3 stations; `scripts/source_health.py earthscope` = ok at 2026-05-15
+- Local verification: `data/earthscope.sourcetable` lines 83 (BGGY), 118 (CN01), 970 (RDON); `scripts/stations_by_country.py ATG` returns same 3 stations; `scripts/source_health.py earthscope` = ok at 2026-05-17
 - rtk2go and Centipede sourcetables — zero AG stations

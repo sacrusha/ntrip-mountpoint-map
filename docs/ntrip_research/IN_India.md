@@ -1,5 +1,5 @@
 # India [IN] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12 (refresh of 2026-05-04 entry)
+**Date researched:** 2026-05-17 (refresh of 2026-05-12 entry; HTTP IP 103.205.244.106 still serves SoI portal; HTTPS portal + Region 2 (103.206.29.4:2105) sandbox-unreachable — geo-route consistent w/ prior; subscription-charges page WebFetch ECONNREFUSED 2026-05-17)
 
 ## Status: YES — national SoI CORS caster operational; paid for private users; Indian ID required
 
@@ -10,15 +10,16 @@
 | **access_url — SoI CORS** | `https://cors.surveyofindia.gov.in/subscription-charges` — pricing + registration terms. More useful than the bare portal for someone deciding to subscribe. |
 | **host:port — Region 1** | `103.205.244.106:2101` (UP, Uttarakhand, Haryana, Punjab, Himachal Pradesh, NCR, MP, Rajasthan) |
 | **host:port — Region 2** | `103.206.29.4:2105` (Maharashtra, Karnataka, south) |
-| **portal** | https://cors.surveyofindia.gov.in (HTTPS portal not reachable from this sandbox 2026-05-12 — likely geo-routing; HTTP at 103.205.244.106 returns full portal HTML 200 OK with 2026 footer, confirming alive) |
+| **portal** | https://cors.surveyofindia.gov.in (HTTPS portal not reachable from sandbox 2026-05-12 + 2026-05-17 — geo-routing pattern; HTTP at 103.205.244.106 returns HTTP 200 + portal HTML 200 OK 2026-05-17 + portal markup 2026 footer, confirming alive) |
 | **tariff — Gov / Academic** | Free (no subscription fee; KYC registration required) |
-| **tariff — private (RTK, excl. GST)** | ₹5,000/mo · ₹15,000/3 mo · ₹30,000/6 mo · ₹60,000/yr; add 18% GST → ₹5,900 · ₹17,700 · ₹35,400 · ₹70,800 incl. GST (last confirmed via subscription-charges page 2026-05-04; page not re-fetchable from sandbox 2026-05-12) |
+| **tariff — private (RTK, excl. GST)** | ₹5,000/mo · ₹15,000/3 mo · ₹30,000/6 mo · ₹60,000/yr; add 18% GST → ₹5,900 · ₹17,700 · ₹35,400 · ₹70,800 incl. GST (last confirmed via subscription-charges page 2026-05-04; re-fetch attempts 2026-05-12 + 2026-05-17 returned ECONNREFUSED from sandbox — geo-routing) |
 | **tariff — private (DGNSS, excl. GST)** | ₹2,000/mo (DGNSS1) incl. GST ₹2,360; DGNSS3/DGNSS12 prices not confirmed publicly |
 | **tariff VAT note** | 18% GST added at checkout; all prices above are gross (incl. GST) where confirmed |
 | **promotional free access (private sector)** | Confirmed: SoI has run promotional free 3-month CORS access campaigns for private-sector users (Geospatial World coverage 2025; SoI's own X/Facebook accounts have continued to repost a "Free Subscription of CORS Services by Survey of India" announcement as recently as October 2025 — see SoI X status 1983899442022367368, 2025-10-30). Promotional terms re-issued periodically; post-promo status reverts to the paid tariff above |
 | **hobbyist_eligibility** | Unclear / conditionally yes — private individuals can register and pay; no surveying licence required |
 | **legal_residency_required** | Yes (effectively) — Aadhaar Card or PAN Card required for registration; foreign nationals cannot hold either in the ordinary course |
-| **last_confirmed_alive** | 2026-05-12 — `http://103.205.244.106` returned full portal HTML 200 OK (27,688 bytes) with 2026 footer; HTTPS portal cors.surveyofindia.gov.in not reachable from sandbox (likely geo-routing rather than outage); rtk2go shows 1 IN station (IndiaTN02, Tamil Nadu, 10.97,78.08) |
+| **last_confirmed_alive** | 2026-05-17 — `http://103.205.244.106` returned HTTP 200 (ASP.NET portal, fresh session cookie 2026-05-17); HTTPS portal cors.surveyofindia.gov.in + Region 2 NTRIP `103.206.29.4:2105` both sandbox-unreachable (geo-route, not outage); rtk2go shows 1 IN station (IndiaTN02, Tamil Nadu, 10.97,78.08); AUSCORS rebroadcasts 2 IN IGS stations (GDKG, IISC); igs_ip carries 3 (GDKG, IISC, IITK Kanpur) |
+| **datum_epoch** | omitted — no citable operator declaration. SoI CORS subscription page not re-fetchable; connection-settings page sandbox-unreachable 2026-05-17. National survey datum is WGS84-based per IS public statements but no real-time-service datum statement obtained from operator portal |
 
 ## Context Notes
 
@@ -51,4 +52,5 @@
 - SoI X — Free Subscription of CORS Services repost (2025-10-30): https://x.com/india_soi/status/1983899442022367368
 - Financial Content / WRAL — AP CORS integration coverage (2025-10-17): https://markets.financialcontent.com/wral/article/tokenring-2025-10-17-andhra-pradesh-forges-geospatial-future-cors-integration-promises-precision-revolution
 - Geospatial World — SoI announces three-month free CORS service for private sector: https://geospatialworld.net/prime/soi-announces-three-month-free-cors-service-for-private-sector/
-- rtk2go IN station count: 1 (IndiaTN02 in Tamil Nadu) — 2026-05-12 pipeline snapshot via `scripts/stations_by_country.py IND`
+- rtk2go IN station count: 1 (IndiaTN02 in Tamil Nadu) — 2026-05-17 pipeline snapshot via `scripts/stations_by_country.py IND`. AUSCORS rebroadcasts 2 IN (GDKG, IISC); igs_ip carries 3 (GDKG, IISC, IITK)
+- ArduSimple India cache (docs/ardusimple/IN_India.md 2026-05-16): notes only SoI CORS as national paid service; aligns w/ this entry

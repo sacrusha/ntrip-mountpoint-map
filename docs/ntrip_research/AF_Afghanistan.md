@@ -1,5 +1,5 @@
 # Afghanistan [AF] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-15 (originally 2026-05-06)
+**Date researched:** 2026-05-17 (prior: 2026-05-15, originally 2026-05-06)
 
 ## Status: NO public NTRIP RTK caster — none ever documented; none plausible under current conditions
 
@@ -22,7 +22,7 @@
 - **Post-2021 break in international engagement.** Following the Taliban takeover (August 2021), USAID/USGS geospatial assistance to AGCHO was suspended; no successor donor programme for CORS deployment has been announced. AGCHO's operational status under the de-facto authorities is opaque.
 - **No IGS / EUREF / AFREF membership** for any Afghan station; Afghanistan does not appear in the IGS network filter, EPN, or AFREF rosters.
 - **No commercial coverage.** GEODNET, PointOne Polaris, Swift Skylark, Trimble VRS Now, Hexagon HxGN SmartNet, and Topcon TopNET Live publish no Afghanistan PoPs.
-- **No volunteer coverage.** Local sourcetable archives in `data/` contain zero AF entries. Verified 2026-05-15 via `py scripts/stations_by_country.py AFG` (rtk2go: not listed; Centipede: not listed; EarthScope: not listed) and `py scripts/stations_by_radius.py 34.5 69.2 500` (no stations within 500 km of Kabul).
+- **No volunteer coverage.** Local sourcetable archives in `data/` contain zero AF entries. Verified 2026-05-17 via `py scripts/stations_by_country.py AFG` (rtk2go: not listed; Centipede: not listed; EarthScope: not listed) and `py scripts/stations_by_radius.py 34.5 69.2 500` (no stations within 500 km of Kabul).
 
 ## Research-only GNSS infrastructure (not a caster)
 
@@ -32,7 +32,7 @@
 | **Afghan footprint** | 1 permanent GNSS station (location not published on the operator's public page) |
 | **Purpose** | Tectonic / crustal-deformation monitoring (post-processed) |
 | **NTRIP / real-time** | Not advertised; CAIAG's GNSS page describes monitoring use only |
-| **Source** | http://www.caiag.kg/en/scientific-infrastructure/monitoring-systems/gnss-monitoring (fetched 2026-05-15, 200 OK; states "30 permanent stations … Afghanistan (1)") |
+| **Source** | http://www.caiag.kg/en/scientific-infrastructure/monitoring-systems/gnss-monitoring (fetched 2026-05-17, 200 OK; states "30 permanent stations … Afghanistan (1)") |
 | **Field-work record** | Metzger et al., "Report of the GNSS field work in Afghanistan and Kyrgyzstan 2014–2018", GFZ Potsdam (data publication 10.5880.GFZ.4.1.2021.003) — PDF returned binary in sandbox; URL resolves. |
 
 This station is a science instrument, not a public RTK service. There is no published NTRIP mountpoint, no RTCM stream, and no hobbyist eligibility path.
@@ -42,7 +42,7 @@ This station is a science instrument, not a public RTK service. There is no publ
 **USGS Geospatial Infrastructure Development programme (pre-2021)** — USGS trained AGCHO staff and worked toward geodetic-infrastructure modernisation. Halted after August 2021; no public CORS or NTRIP output was confirmed before the programme ended.
 Source: https://www.usgs.gov/special-topics/usgs-projects-in-afghanistan/science/geospatial-infrastructure-development
 
-No post-2021 announcement of a public Afghan CORS or NTRIP caster has surfaced in open sources as of 2026-05-15.
+No post-2021 announcement of a public Afghan CORS or NTRIP caster has surfaced in open sources as of 2026-05-17.
 
 ## Nearest cross-border alternatives
 
@@ -65,7 +65,7 @@ These are useful for static post-processing only; the baselines are far too long
 
 Datum/epoch: omitted — no citable, currently-issued Afghan national datum declaration found. USGS-era geoTIFFs used WGS 84 / UTM zones 41–43, but that is a mapping convention, not an official geodetic-reference-frame declaration from AGCHO.
 
-## Sandbox reachability log (2026-05-15)
+## Sandbox reachability log (2026-05-17)
 - WebFetch http://www.caiag.kg/en/scientific-infrastructure/monitoring-systems/gnss-monitoring — 200 OK, content read.
 - WebFetch http://agcho.gov.af/en — ECONNREFUSED from sandbox. Independent search results list the site as live, but no NTRIP/RTK content is referenced in any cached page or external citation; treat reachability as unverified.
 - WebFetch https://datapub.gfz-potsdam.de/.../2021-003_Metzger-et-al_ReportFieldWork.pdf — fetched as binary PDF (1.3 MB), content not parsed in sandbox; URL resolves.
@@ -74,11 +74,11 @@ Datum/epoch: omitted — no citable, currently-issued Afghan national datum decl
 
 ## Sources consulted
 - Afghan Geodesy and Cartography Head Office (Wikipedia): https://en.wikipedia.org/wiki/Afghan_Geodesy_and_Cartography_Head_Office
-- AGCHO official site: http://agcho.gov.af/en (ECONNREFUSED from sandbox 2026-05-15)
+- AGCHO official site: http://agcho.gov.af/en (ECONNREFUSED from sandbox 2026-05-17)
 - USGS Geospatial Infrastructure Development (Afghanistan): https://www.usgs.gov/special-topics/usgs-projects-in-afghanistan/science/geospatial-infrastructure-development
 - CAIAG GNSS monitoring: http://www.caiag.kg/en/scientific-infrastructure/monitoring-systems/gnss-monitoring
 - Metzger et al. 2021, GFZ field-work report: https://datapub.gfz-potsdam.de/download/10.5880.GFZ.4.1.2021.003vuRB/2021-003_Metzger-et-al_ReportFieldWork.pdf
 - IGS network browser: https://network.igs.org/
 - GEODNET coverage map: https://rtk.geodnet.com/coverage/
 - EPSG coordinate-system index for Afghanistan: https://epsg.io/?q=Afghanistan.
-- Local data verification 2026-05-15: `py scripts/stations_by_country.py AFG` (no entries on rtk2go / Centipede / EarthScope), `py scripts/stations_by_radius.py 34.5 69.2 500` (no stations within 500 km of Kabul)
+- Local data verification 2026-05-17: `py scripts/stations_by_country.py AFG` (no entries on rtk2go / Centipede / EarthScope), `py scripts/stations_by_radius.py 34.5 69.2 500` (no stations within 500 km of Kabul)

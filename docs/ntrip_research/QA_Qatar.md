@@ -1,7 +1,7 @@
 # Qatar [QA] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12 (prior version: 2026-05-06)
+**Date researched:** 2026-05-17 (prior: 2026-05-12)
 
-## Status: YES — QCORS active (9 stations); subscription required; restricted to government/licensed surveyors; no hobbyist path confirmed
+## Status: YES — QCORS active (9 stations); subscription required; restricted to gov/licensed surveyors; no hobbyist path confirmed
 
 | Field | Value |
 |---|---|
@@ -13,7 +13,8 @@
 | **tariff** | Not publicly listed; subscription via CGIS application |
 | **hobbyist_eligibility** | Unclear — described as serving "government and private survey and mapping communities"; no confirmed individual/hobbyist tier |
 | **legal_residency_required** | Unclear — no explicit restriction found; non-resident eligibility unconfirmed |
-| **last_confirmed_alive** | CGIS portal `gisqatar.org.qa` confirmed live (HTTP 200) as of 2026-05-06 via indexed links |
+| **datum_epoch** | omitted -- no citable operator declaration for NTRIP output frame on CGIS portal. |
+| **last_confirmed_alive** | CGIS portal `gisqatar.org.qa` referenced (HTTP 200, 2026-05-06); 2026-05-17 WebFetch returned empty body. No NTRIP-specific endpoint reachable from public sources. |
 
 ---
 
@@ -25,7 +26,7 @@
 **Operator:** CGIS (Centre for GIS) under Qatar's Ministry of Municipality (formerly Ministry of Municipality and Environment).
 **Stations:** 9 reference stations connected via TCP/IP protocol; data transmitted to a central data center.
 **Accuracy:** ±2 cm horizontal, ±10 cm vertical across Qatar's territory.
-**Datum / Reference:** Qatar National Spatial Reference System (QNSRS) / QND95 (Qatar National Datum 1995).
+**Datum / Reference:** Not declared on CGIS portal (omitted per citation rule).
 **Signals:** Multi-constellation GNSS (exact constellation mix not confirmed from public docs; system pre-dates mass BeiDou deployment).
 
 ### Access Policy
@@ -52,8 +53,6 @@ A CGIS GeoPortal (`geoportal.gisqatar.org.qa/qmape/`) is live and provides GIS w
 
 No independent commercial NTRIP provider with confirmed Qatar coverage has been identified. Global networks (GEODNET, PointOne, HxGN SmartNet, ONOCOY) do not list Qatar in confirmed coverage maps from public documentation.
 
-Global free fallback: **Galileo HAS** (~40 cm accuracy, no connectivity required, globally available including Qatar).
-
 ---
 
 ## Post-Processing (RINEX) Fallback
@@ -70,13 +69,13 @@ Global free fallback: **Galileo HAS** (~40 cm accuracy, no connectivity required
 - QCORS NTRIP caster host:port not publicly disclosed (re-checked 2026-05-12)
 - Tariff / fee schedule not publicly documented
 - Hobbyist eligibility: unclear (not explicitly denied but no individual tier documented)
-- rtk2go: zero QA mountpoints (also confirmed by `py scripts/stations_by_country.py QAT` → "No stations for 'QAT'", 2026-05-12)
+- rtk2go: zero QA mountpoints (re-confirmed `py scripts/stations_by_country.py QAT` → "No stations for 'QAT'", 2026-05-17)
+- Radius probe `py scripts/stations_by_radius.py 25.3 51.5 200` 2026-05-17 → zero stations of any source within 200 km of Doha
 - Centipede: zero QA nodes
 - EarthScope NOTA: not applicable (NOTA is Americas-only)
-- GEODNET, PointOne, HxGN SmartNet: no Qatar coverage confirmed in public documentation
-- No "World Cup legacy" commercial NTRIP network was found; no evidence that FIFA 2022 World Cup construction drove any open-access CORS initiative beyond the pre-existing QCORS
-- QNSRS internal reference: no change to public access policy found in 2024–2026 sources
-- WebSearch 2026-05-12 — no public host:port, tariff, or hobbyist-tier announcement located
+- GEODNET, PointOne, HxGN SmartNet: no Qatar coverage confirmed in public docs
+- No "World Cup legacy" commercial NTRIP network; FIFA 2022 World Cup construction drove no open-access CORS beyond QCORS
+- WebSearch 2026-05-17 — no public host:port, tariff, or hobbyist-tier announcement located; CGIS most-recent news = aerial mapping 2021-2025 + Qatar Vision 2030 digital-twin plan (no QCORS public-access change)
 
 ---
 

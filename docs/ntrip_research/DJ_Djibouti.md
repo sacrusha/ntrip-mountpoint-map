@@ -1,7 +1,7 @@
 # Djibouti [DJ] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12 (initial 2026-05-06)
+**Date researched:** 2026-05-17 (re-verified; initial 2026-05-06)
 
-## Status: NO — no NTRIP RTK caster, no national CORS programme, no volunteer coverage. One scientific IGS station (DJIG, operated by CNES France's REGINA programme) exists in Djibouti City for post-processing only
+## Status: NO — no NTRIP RTK caster, no national CORS programme, no volunteer coverage. One scientific IGS station (DJIG, operated by CNES France's REGINA programme) exists in Djibouti City for post-processing only. SONEL station record re-verified 2026-05-17: station active, equipment Septentrio PolaRx5 fw 5.3.2 since 2020-02-26, time-series spans 2001–2026.
 
 | Field | Value |
 |---|---|
@@ -17,7 +17,7 @@
 
 ## Context Notes
 
-- **National geodetic authority:** CERD (Centre d'Études et de Recherche de Djibouti) handles geodetic and geophysical matters. No GNSS CORS programme or NTRIP service has been identified on their website or in search results as of 2026-05-12.
+- **National geodetic authority:** CERD (Centre d'Études et de Recherche de Djibouti) handles geodetic and geophysical matters. No GNSS CORS programme or NTRIP service has been identified on their website or in search results as of 2026-05-17.
 - **IGS scientific station DJIG (Djibouti City)**: Site name `DJIBOUTI`, four-character ID `DJIG`, full code `DJIG00DJI`, DOMES 39901M005. Located in Djibouti, Republic of Djibouti at **11.52628757°N, 42.84706445°E**. **Operated by CNES** (Centre National d'Études Spatiales, France) as part of CNES/IGN France's **REGINA** programme (Receiver GNSS Network for IGS and Navigation). Installed 2001-01-01; current equipment Septentrio PolaRx5 (firmware 5.3.2) since 2020-02-26, tracking GPS+GLO+GAL+BDS+SBAS+IRNSS. **Post-processing data only** via CDDIS / IGN-IGS / SONEL — no public real-time NTRIP RTK stream. *(Earlier draft attributed operation to IPGP; the SONEL station record confirms CNES.)*
 - **Volunteer alternatives**: zero DJI-coded bases on rtk2go and Centipede (verified 2026-05 archives). `stations_by_radius.py 11.6 43.1 200` returns no project-tracked stations within 200 km of Djibouti City.
 - **Regional African CORS initiatives**: Djibouti is not part of AFREF operational stations, TrigNet, or any other regional public-NTRIP programme. The country's geodetic infrastructure development is at an early stage and likely dependent on bilateral cooperation (France via CNES; possibly Japan via JICA or China via cooperation programmes).

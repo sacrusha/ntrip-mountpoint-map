@@ -1,5 +1,5 @@
 # Slovakia [SK] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-13
+**Date researched:** 2026-05-17 (re-probed; tariff and 9-mountpoint sourcetable unchanged from 2026-05-13)
 
 ## Status: YES — national government NTRIP caster operating (SKPOS); paid subscription
 
@@ -9,20 +9,21 @@
 | **Network name** | SKPOS (Slovak Real-Time Positioning Service) |
 | **Operator** | Geodetický a kartografický ústav Bratislava (GKÚ Bratislava) / ÚGKK SR |
 | **landing_url** | `https://skpos.gku.sk/en/o-skpos.php` — operator-owned SKPOS "About" page (EN; SK variant exists). Describes the service tiers, tariff table, technical parameters. SK variant linked from the same site root `https://skpos.gku.sk/`. |
-| **access_url** | Skip — landing_url already covers tariff and account types ("Fyzická osoba bez živnostenského listu" listed in dropdown). `skpos.gku.sk/register/` is the bare registration form, not a service description page. |
+| **access_url** | Skip <!-- rationale: landing_url already covers tariff and account types ("Fyzická osoba bez živnostenského listu" listed in dropdown); `skpos.gku.sk/register/` is the bare registration form, not a service description page --> |
 | **Mandate basis** | Act 215/1995 + ÚGKK SR Regulation 300/2009 |
 | **host:port** | `skpos.gku.sk:2101` (old IP active until 2026-06-30 per April 2026 notice; IP not disclosed in public docs). Sourcetable advertises mountpoints SKPOS_CM_32, SKPOS_CM_32_MSM7, SKPOS_CM_CMRx, SKPOS_CM_CMRplus, SKPOS_CM_31, SKPOS_CM_23, SKPOS_DM_SVK (RTCM 2.1), SKPOS_DM_SVK_23, SKPOS_CM_NS_34_MSM7 |
 | **VRS** | Yes (phase corrections / VRS RTK; 2–4 cm accuracy). Network solution streams advertised in RTCM 2.3 / 3.1 / 3.4 (incl. MSM7), CMR+ and CMRx |
 | **tariff — RTK 1 month (1 device)** | €25 (~$28 USD) |
 | **tariff — RTK 1 year (1 device)** | €70 (~$79 USD); includes 50 h RINEX |
 | **tariff — RTK 1 year (2 devices/SIMs)** | €140 (~$158 USD) |
-| **tariff — DGNSS 1 year (1 device)** | €25 (~$28 USD); includes 50 h RINEX; code corrections, 0.3–1 m accuracy |
+| **tariff — DGNSS 1 year (1 device)** | €25 (~$28 USD); includes 50 h RINEX; code corrections, 0.3–1 m accuracy. *Out of project scope per primer [scope] (DGNSS-only excluded); listed for completeness only* |
 | **tariff — Post-processing RINEX (per hour)** | €3.00 base + €0.07/hr |
 | **tariff — Post-processing RINEX (bulk)** | €70 / 1,000 hr/year |
 | **VAT status** | Not explicitly labelled on public-facing pages; GKÚ Bratislava is a public state institution (príspevková organizácia); charges set by ÚGKK SR price order; historically treated as fees net of VAT for B2B invoicing — not stated explicitly |
 | **hobbyist_eligibility** | Yes — registration form explicitly offers account type "Fyzická osoba bez živnostenského listu" (Natural person without trade/business licence) as the first option in the user-type dropdown; no professional registration required |
 | **legal_residency_required** | No — registration country list includes virtually every UN member state; no restriction to Slovak residents; state organisations/municipalities get free access under Act 145/1995, but paid individual access is internationally open |
-| **last_confirmed_alive** | 2026-05-13 — `skpos.gku.sk:2101` TCP probe returned `SOURCETABLE 200 OK` (Trimble NTRIP Caster 5.2); 9 STR mountpoints visible; CAS / NET entries confirm caster identity `SKPOS @ GKU Bratislava`. Service-description page (skpos.gku.sk/en/o-skpos.php) loaded normally; news entry 2026-04-23 "List of supported antennas for SKPOS Online Postprocessing" still latest |
+| **last_confirmed_alive** | 2026-05-17 — `skpos.gku.sk:2101` curl --http0.9 returned `SOURCETABLE 200 OK` (Server: NTRIP Trimble Ntrip Caster 5.2, Content-Length 1706); 9 STR mountpoints unchanged (SKPOS_CM_32, _32_MSM7, _CMRx, _CMRplus, _31, _23, _DM_SVK, _DM_SVK_23, _CM_NS_34_MSM7); CAS/NET records confirm `skpos.gku.sk:2101 SKPOS GKU Bratislava`. `https://skpos.gku.sk/en/o-skpos.php` HTTP 200 |
+| **datum_epoch** | omitted -- no citable declaration (operator service-description page does not state datum/epoch; pre-2022 cenník PDF is obsolete and not citable; SK national frame is ETRS89-realised but inferring it from EPSG or neighbour networks is not citable per primer rule) |
 
 ## Context Notes
 

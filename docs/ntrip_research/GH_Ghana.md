@@ -1,5 +1,5 @@
 # Ghana [GH] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12 (refresh of 2026-05-06 entry)
+**Date researched:** 2026-05-17 (refresh of 2026-05-12 entry; news search surfaces "52 CORS already operational" figure superseding 60-station Aug-2025 framing; 100-station target slipped past end-2025 with no public caster endpoint disclosed)
 
 ## Status: CORS network deployed (Aug 2025 nationwide launch); NTRIP caster endpoint NOT publicly disclosed
 
@@ -34,10 +34,11 @@ Website: https://www.lc.gov.gh/
 | 2021 | Geo-Tech Systems / GMX Systems enter public-private partnership with Ghana Water Company and Lands Commission for a nationwide 85-station CORS network — described as the most extensive CORS network in West Africa at the time |
 | Aug 19, 2025 | Lands Commission officially unveils the CORS network; nationwide observation exercise launched to tie 60+ newly established stations into the national geodetic framework (Ghana Grid Coordinate System). Plan to expand to 100 stations by end of 2025 |
 | Aug 19, 2025 | Lands Commission simultaneously launches "digital geospatial data system" (DGDS) — a broader platform for 24/7 geospatial data access including CORS-derived corrections |
+| 2026-05-17 | Subsequent reporting (newsghana.com.gh, theoverseeronline.com) cites **52 CORS stations operational** under the LC–LiSAG–GMX partnership; 100-station target reaffirmed but no end-2025 completion announcement surfaced. No public NTRIP host:port disclosed. |
 
 ## Network Details
 
-- **Stations:** ~60 physical CORS deployed nationwide as of Aug 2025; target 100 stations
+- **Stations:** ~60 physical CORS announced at Aug 2025 unveiling; 52 reported operational in subsequent reporting (2026); target 100 stations (timeline slipped past end-2025)
 - **Zoning:** Three geographic sectors — southern, middle belt, and upper
 - **Claimed precision:** Centimetre-level accuracy for RTK fieldwork
 - **Purpose stated:** Cadastral surveys, hydrospatial surveys, and other geospatial applications
@@ -76,3 +77,5 @@ Website: https://www.lc.gov.gh/
 - GMX Systems Ghana CORS network page: https://www.gmxgh.com/index.php/cors-network/ (2026-05-12, fetched via WebFetch — no caster credentials disclosed)
 - Coordinates magazine — Ghana DGDS launch: https://mycoordinates.org/ghana-launches-digital-geospatial-data-system/
 - curl probe of `https://www.lc.gov.gh/` 2026-05-12 — HTTP 200 OK
+- WebFetch lc.gov.gh 2026-05-17 — no CORS portal, no host:port, no datum/epoch text on Lands Commission landing page
+- News Ghana parliamentary CORS reform coverage 2026-05-17: https://www.newsghana.com.gh/parliament-backs-lands-commission-reform-drive/ (52 stations operational, 100-station target reaffirmed)

@@ -1,5 +1,5 @@
 # Jordan [JO] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12 (refresh of 2026-05-06 entry)
+**Date researched:** 2026-05-12 (refresh of 2026-05-06 entry); ACOR navigation re-verified 2026-05-17 (target page returned a single 404 same day — likely transient; parent nav still lists the service)
 
 ## Status: YES — single-station NTRIP base confirmed (ACOR, Amman); no national government or commercial caster found
 
@@ -10,7 +10,8 @@
 | **tariff — ACOR** | not published; likely free or low-cost for researchers; commercial terms unknown |
 | **hobbyist_eligibility** | Unclear — ACOR is a US non-profit research institution; individual hobbyist access not explicitly offered; contact required |
 | **legal_residency_required** | No — ACOR is internationally accessible in principle; no explicit residency requirement stated |
-| **last_confirmed_alive** | acorjordan.org/ntrip-network/ HTTP 200 confirmed 2026-05-12 (page substantively unchanged from 2026-01-25 last-updated stamp); no JO-tagged stations in rtk2go / Centipede / EarthScope (`scripts/stations_by_country.py JOR` returns none) |
+| **last_confirmed_alive** | 2026-05-17 — `acorjordan.org/` re-fetched; navigation still lists "High-Precision GNSS with ACOR's NTRIP Network" under Initiatives → Other Projects, link → `https://acorjordan.org/ntrip-network/` (target returned a 404 on a single fetch attempt 2026-05-17 — likely cache / transient, as the parent nav still surfaces the link, contrary to a permanent removal). 2026-05-12 prior fetch of the same target was HTTP 200 with last-updated stamp 2026-01-25. No JO-tagged stations in rtk2go / Centipede / EarthScope (`scripts/stations_by_country.py JOR` returns none, 2026-05-12). |
+| **datum_epoch** | omitted -- no citable declaration (ACOR ntrip-network page describes generic NTRIP concept and contact procedure only; no datum / frame / epoch statement; AMMN00JOR EUREF station page is not the operator declaration for the ACOR caster) |
 
 ## Most Recent Project Announcement
 

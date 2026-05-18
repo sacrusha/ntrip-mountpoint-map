@@ -1,5 +1,5 @@
 # Turkey [TR] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-13 (refresh of 2026-04-30 entry)
+**Date researched:** 2026-05-17 (refresh of 2026-05-13 entry; sourcetable byte-identical, 1140 bytes, 9 MPs unchanged)
 
 ## Status: YES — national government NTRIP RTK caster operating (TUSAGA-Aktif / CORS-TR)
 
@@ -11,7 +11,8 @@
 | **VRS** | Yes (Ağ-RTK / Network RTK corrections) |
 | **hobbyist_eligibility** | Yes — individual ("bireysel") registration accepted; same-day activation |
 | **legal_residency_required** | Yes (effectively) — online registration requires TC Kimlik No (Turkish national ID); foreign nationals without a Turkish ID cannot self-register online |
-| **last_confirmed_alive** | 2026-05-13 — `212.156.70.42:2101` SOURCETABLE 200 OK; Trimble Pivot Caster 5.2; 9 mountpoints (VRSCMRP, VRSRTCM31, VRSRTCM34, RTCM3Net, FKP_RTCM31, DGPSNet, TG20-BATI/ORTA/DOGU latitude-banded broadcast streams in ITRF96 epoch 2005.0) |
+| **last_confirmed_alive** | 2026-05-17 — `212.156.70.42:2101` SOURCETABLE 200 OK; Trimble Pivot Caster 5.2; 9 mountpoints; 1140-byte sourcetable byte-identical to 2026-05-13 |
+| **datum_epoch** | cited https://212.156.70.42:2101/ sourcetable -- TG20-BATI / TG20-ORTA / TG20-DOGU broadcast streams declare `{"REF":{"NAME":"ITRF96","EPOCH":2005.0}}` inline in sourcetable field 19 (TUREF national frame is ITRF96 epoch 2005.0). VRS / FKP / DGPS streams output the same TUREF frame implicitly per TKGM publications. |
 
 ## Tariff (2026, KDV / VAT dahil / inclusive)
 
@@ -35,7 +36,7 @@
 | 30 sec RINEX | ₺0.00 | Free |
 | 1 sec RINEX | ₺4.00 / file | ~$0.12 |
 
-Source: https://tusaga-aktif.gov.tr/ (homepage, re-confirmed 2026-05-13). All prices set annually by BHİKPK (Interministerial Coordination and Planning Commission for Mapping).
+Source: https://tusaga-aktif.gov.tr/ (homepage, re-confirmed 2026-05-13; not re-fetched 2026-05-17 — no signal of mid-year tariff revision in caster sourcetable byte-comparison). All prices set annually by BHİKPK (Interministerial Coordination and Planning Commission for Mapping).
 
 **Note on discounts:** Public institutions and universities receive a **75% discount** on 1-sec RINEX. Universities and vocational schools may apply for **free use** within their campus areas.
 
@@ -56,7 +57,7 @@ Source: https://tusaga-aktif.gov.tr/ (homepage, re-confirmed 2026-05-13). All pr
 | **TUSAGA-Aktif 30-sec RINEX** | https://tusaga-aktif.gov.tr/ | Free (account required) |
 | **TUSAGA-Aktif 1-sec RINEX** | https://tusaga-aktif.gov.tr/ | ₺4.00 per session (~$0.12); 75% discount for institutions |
 
-## Sourcetable Mountpoints (curl probe 2026-05-13)
+## Sourcetable Mountpoints (curl probe 2026-05-17; byte-identical to 2026-05-13)
 
 - `VRSCMRP` — VRS, CMR+, GPS+GLO
 - `VRSRTCM31` — VRS, RTCM 3.1, GPS+GLO
@@ -76,4 +77,4 @@ The three TG20 broadcast streams are one-way (no NMEA upload required), which ma
 - TKGM FAQ (TC Kimlik No requirement, pricing): https://www.tkgm.gov.tr/sss/tusaga-aktif-sistemi-kullanici-islemleri
 - TKGM FAQ (technical, IP/port): https://www.tkgm.gov.tr/sss/tusaga-aktif-sistemi-teknik-konulari
 - TKGM pricing FAQ node: https://www.tkgm.gov.tr/node/3364
-- curl probe of `212.156.70.42:2101` (and `tusaga-aktif.gov.tr:2101`) — SOURCETABLE 200 OK 2026-05-13 (Trimble Pivot Caster 5.2; 9 mountpoints; 1140-byte sourcetable)
+- curl probe of `212.156.70.42:2101` — SOURCETABLE 200 OK 2026-05-17 (Trimble Pivot Caster 5.2; 9 mountpoints; 1140-byte sourcetable; byte-identical to 2026-05-13)

@@ -1,19 +1,22 @@
 # Svalbard [SJ] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-13
+**Date researched:** 2026-05-17
 
-## Status: LIMITED — 1 Centipede node at Ny-Ålesund (NYAWIPEV, AWIPEV research station); CPOS (Kartverket) covers mainland Norway only, does not extend to Svalbard; Kartverket geodetic observatory raw data purchasable but not a public RTK caster
+## Status: LIMITED — free single-base options exist: IGS-IP stream LYR100NOR0 at Longyearbyen (~5.8 km from town); Centipede NYAWIPEV at Ny-Ålesund (~113 km from Longyearbyen, useful for Kongsfjorden); EarthScope/EUREF-IP mirror Ny-Ålesund streams. No NRTK/VRS. CPOS (Kartverket) mainland-only; Kartverket Ny-Ålesund observatory raw RTCM = paid commercial agreement.
 
 | Field | Value |
 |---|---|
-| **Active public NTRIP RTK caster** | No public caster; one Centipede volunteer node only |
-| **Volunteer (Centipede)** | 1 node — `NYAWIPEV` at 78.923°N, 11.923°E (Ny-Ålesund, Spitsbergen) — `caster.centipede.fr:2101`; operated by / associated with the AWIPEV Franco-German Arctic research station. Confirmed in local `data/stations.json` (Centipede tag SJM) 2026-05-13 |
-| **Volunteer (rtk2go)** | 0 SJ bases confirmed (no SJ/SJM tag in rtk2go data) |
-| **CPOS (Kartverket, Norway)** | Explicitly covers **mainland Norway only** — Kartverket "Guide to CPOS" states "The service covers mainland Norway", so Svalbard and Jan Mayen are excluded; `159.162.103.14:2101` |
-| **Kartverket geodetic observatory** | Ny-Ålesund observatory operates permanent GNSS stations; raw RTCM 3.2 MSM5 data available to purchase by agreement; contact post@kartverket.no; **not a public NTRIP RTK caster** |
-| **hobbyist_eligibility** | Centipede NYAWIPEV: yes — free, open; Kartverket raw data: commercial agreement only |
-| **legal_residency_required** | Centipede: no; Kartverket data purchase: no explicit residency requirement, but requires commercial/research agreement |
-| **last_confirmed_alive** | Centipede NYAWIPEV node present in local Centipede archive 2026-05-13 (`py scripts/stations_by_radius.py 78.22 15.65 200` returns NYAWIPEV at 113.3 km from Longyearbyen); Kartverket Ny-Ålesund observatory continuously operational |
-| **tariff** | Centipede: free; Kartverket raw station data: price on application |
+| **Active public NTRIP RTK caster** | No SJ-operated public caster; mountpoints exist on global casters (IGS-IP, EUREF-IP, EarthScope, Centipede) covering Svalbard physical stations |
+| **IGS-IP (BKG)** | `www.igs-ip.net:2101` — `LYR100NOR0` at 78.23°N, 15.40°E = Longyearbyen, 5.8 km from town centre; raw 1 Hz RTCM single-base; BKG account required. Also NABG00NOR0 + WUTH00NOR0 in Ny-Ålesund region |
+| **EUREF-IP (BKG/ROB/ASI)** | `euref-ip.net:2101` — `NABG00NOR0` + `WUTH00NOR0` at Ny-Ålesund region; same BKG account; no LYR1 (LYR1 = IGS, not EUREF) |
+| **AUSCORS rebroadcast** | `ntrip.data.gnss.ga.gov.au:2101` carries `NYA200NOR0` (Ny-Ålesund) — selected international rebroadcast; gnss.ga.gov.au registration |
+| **Volunteer (Centipede)** | 1 node — `NYAWIPEV` at 78.923°N, 11.923°E (Ny-Ålesund) — `caster.centipede.fr:2101`; operated at AWIPEV Franco-German Arctic research station. Local Centipede archive tag SJM, confirmed 2026-05-17 |
+| **Volunteer (rtk2go)** | 0 SJ bases |
+| **CPOS (Kartverket, Norway)** | Excludes Svalbard — Kartverket Guide to CPOS: "The service covers mainland Norway." `159.162.103.14:2101` |
+| **Kartverket geodetic observatory** | Ny-Ålesund Brandal observatory operates permanent GNSS; raw RTCM 3.2 MSM5 available via paid data agreement (post@kartverket.no); not a public caster |
+| **hobbyist_eligibility** | Yes — IGS-IP/EUREF-IP free with BKG registration; AUSCORS free CC BY 4.0; Centipede free open; Kartverket commercial only |
+| **legal_residency_required** | No (all the free options) |
+| **last_confirmed_alive** | 2026-05-17 — `py scripts/stations_by_radius.py 78.22 15.65 200` returns LYR100NOR0 (igs_ip 5.8 km), NYAWIPEV (centipede 113 km), NABG00NOR0 (euref_ip 116 km), NYA200NOR0 (auscors 115 km) |
+| **tariff** | IGS-IP/EUREF-IP/AUSCORS/Centipede: free; Kartverket data: price on application |
 
 ## CPOS Does Not Cover Svalbard
 
@@ -27,11 +30,15 @@ The Norwegian Mapping Authority operates a geodetic earth observatory at Ny-Åle
 
 The Satref control center (`satref.geodesi.no`) monitors Kartverket's positioning infrastructure including Svalbard stations.
 
-## NYAWIPEV Centipede Node
+## LYR1 — Longyearbyen IGS-IP stream (primary Svalbard option)
 
-The single Centipede node `NYAWIPEV` at approximately 78.9°N in Ny-Ålesund is the only free public RTK correction option for Svalbard. Its practical RTK coverage radius is ~20–40 km — sufficient for operations in the Kongsfjorden area (Ny-Ålesund, Kings Bay). Longyearbyen (~120 km SE) is outside reliable RTK range from this single node.
+The IGS station `LYR1` at 78.23°N, 15.40°E sits ~5.8 km from Longyearbyen town centre. It streams real-time raw 1 Hz RTCM via the BKG IGS broadcaster `www.igs-ip.net:2101` as mountpoint `LYR100NOR0`. Single-base RTK from a rover anywhere in Longyearbyen, Adventdalen, Bjørndalen, etc. (<10 km) is well within ideal single-base baseline. Free with BKG registration; same account as EUREF-IP.
 
-The AWIPEV Arctic Research Station is jointly operated by the Alfred Wegener Institute (AWI, Germany) and the Institut polaire français Paul-Émile Victor (IPEV, France). The Centipede node at this station provides real-time GNSS corrections in the Ny-Ålesund research village.
+## NYAWIPEV Centipede Node + Ny-Ålesund EUREF-IP stations
+
+For Kongsfjorden / Ny-Ålesund users: Centipede `NYAWIPEV` (free, open), plus EUREF-IP / EarthScope mirrors of `NABG` / `NYA1` / `NYA2`. Practical single-base coverage radius ~20–40 km — sufficient for Ny-Ålesund and Kings Bay operations. Longyearbyen is too far (113 km) from NYAWIPEV — use LYR1 instead.
+
+The AWIPEV Arctic Research Station is jointly operated by the Alfred Wegener Institute (AWI, Germany) and the Institut polaire français Paul-Émile Victor (IPEV, France).
 
 ## Most Recent Project Announcement
 
@@ -41,11 +48,17 @@ No additional Centipede or rtk2go nodes for Svalbard have been announced.
 
 ## Context Notes
 
-- **Practical RTK for Longyearbyen**: No free public RTK option. Hobbyists and researchers in Longyearbyen must deploy their own local base station or rely on PPP (Galileo HAS, ~40 cm) or commercial global correction services.
-- **EUREF/IGS stations**: The Ny-Ålesund area hosts several IGS/EPN reference stations (e.g., `NYA1`, `NYAL`). These stream raw GNSS data via the EarthScope NTRIP caster (`ntrip.earthscope.org:2101`) and the BKG/ROB euref-ip broadcasters — free with registration. These are raw observation streams, not network RTK VRS corrections; they are usable as a single-base NTRIP stream for RTK within ~30–40 km.
-- **EarthScope NTRIP**: `ntrip.earthscope.org:2101` carries real-time streams from IGS global network stations including Svalbard. Free with EarthScope account (no residency restriction). Single-base coverage only.
-- **GEODNET**: No confirmed GEODNET node in Svalbard. Unlikely given the infrastructure constraints of the archipelago.
-- **Hobbyist RTK summary**: For Ny-Ålesund area — Centipede NYAWIPEV (free) or EarthScope/euref-ip IGS stream (free, single-base). For Longyearbyen and the rest of Svalbard — no free public RTK; deploy own base or use PPP.
+- **Practical RTK for Longyearbyen**: LYR1 IGS-IP stream is the answer — 5.8 km baseline, single-base RTK quality, free BKG account.
+- **EUREF / IGS / EarthScope** all mirror Ny-Ålesund stations. EarthScope `ntrip.earthscope.org:2101` requires NULA non-commercial click-through; BKG/ROB euref-ip require BKG account. Raw 1 Hz RTCM single-base — no VRS/NRTK.
+- **GEODNET / ONOCOY**: No node in Svalbard.
+- **Datum of broadcast streams**: LYR1 / NABG / WUTH / NYA1 are IGS-realisation stations — IGS20 / ITRF2020 global frame (rover position lands in global frame; for ETRS89/EUREF89 Norway grid, transform downstream).
+- **Hobbyist RTK summary**: Longyearbyen → LYR1 IGS-IP. Ny-Ålesund / Kongsfjorden → Centipede NYAWIPEV (no signup) or BKG EUREF-IP `NABG` / IGS-IP `NYA1`. Rest of Svalbard (Sveagruva, Pyramiden, Barentsburg) → outside single-base range from all options; deploy own base or use PPP.
+
+## Datum / Epoch
+
+- **LYR1, NABG, WUTH, NYA1 (IGS / EUREF-IP / EarthScope mirrors)**: IGS stations broadcast in the current IGS realisation of ITRF. No SJ-specific operator declaration; the streams adopt IGS conventions (currently IGS20 ≈ ITRF2020). `omitted -- no SJ operator declaration` per primer [datum-epoch] citation rule (IGS-IP / EUREF-IP are themselves the operator; declaration depends on which broadcaster you use).
+- **Centipede NYAWIPEV**: Centipede docs note "ITRF for positioning outside Europe" (https://docs.centipede.fr/docs/centipede/4_Systeme2reference.html) — citable for outside-Europe nodes; Svalbard is on Eurasian plate but operator does not name an epoch for non-FR nodes.
+- **CPOS (mainland NO only, does NOT cover SJ)**: declared EUREF89 (NN1954/NN2000 vertical), per https://www.kartverket.no/en/on-land/posisjon/guide-to-cpos — epoch not stated.
 
 ## Post-Processing (RINEX) Fallback
 
@@ -55,7 +68,10 @@ No additional Centipede or rtk2go nodes for Svalbard have been announced.
 | **Kartverket ETPOS** (mainland-only, NOT Svalbard) | https://www.kartverket.no/en/on-land/posisjon/guide-to-etpos | NOK 8,000 + VAT/yr (or free with CPOS subscription) |
 
 ## Sources Consulted
-- Kartverket Guide to CPOS: https://www.kartverket.no/en/on-land/posisjon/guide-to-cpos
+- IGS-IP / EUREF-IP BKG broadcaster: https://igs.bkg.bund.de/ntrip/ — LYR1 mountpoint LYR100NOR0 (Longyearbyen, 5.8 km from town); NABG / WUTH / NYA1 / NYA2 in Ny-Ålesund region
+- Local: `py scripts/stations_by_radius.py 78.22 15.65 200` 2026-05-17 → 8 stations across igs_ip + euref_ip + centipede + auscors + mirai
+- Centipede reference systems: https://docs.centipede.fr/docs/centipede/4_Systeme2reference.html — ITRF outside Europe; no epoch declared for non-FR nodes
+- Kartverket Guide to CPOS: https://www.kartverket.no/en/on-land/posisjon/guide-to-cpos — confirms "mainland Norway" + EUREF89 reference frame (no epoch)
 - Kartverket User Guide Positioning Services: https://www.kartverket.no/en/on-land/posisjon/user-guide-positioning-services
 - Kartverket Geodetic Earth Observatory: https://www.kartverket.no/en/about-kartverket/geodetic-earth-observatory
 - Kartverket Observatory information: https://www.kartverket.no/en/about-kartverket/geodetic-earth-observatory/information-about-the-observatory

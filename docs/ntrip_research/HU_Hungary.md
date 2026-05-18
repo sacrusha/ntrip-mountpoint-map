@@ -1,7 +1,7 @@
 # Hungary [HU] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-07 (updated 2026-05-12: re-verified `ntrip.gnssnet.hu:2101` returns same 10 SGO_* streams; Centipede-RTK HU node count is 216 in current data/stations.json fetch, slight drop from 224)
+**Date researched:** 2026-05-17 (refresh of 2026-05-12 entry; re-verified `ntrip.gnssnet.hu:2101` live `SOURCETABLE 200 OK` `GNSMART_Caster 2.0/1.0`, identical 10 SGO_* mounts, Content-Length 2131; Centipede-RTK HU node count is 223 in current data/stations.json fetch, net +7 vs 2026-05-12 / -1 vs 2026-05-06 peak 224)
 
-## Status: YES — national NTRIP caster operating (GNSSnet.hu, paid). Centipede-RTK volunteer network gives effective free national coverage (~216 nodes — single largest non-French Centipede cluster).
+## Status: YES — national NTRIP caster operating (GNSSnet.hu, paid). Centipede-RTK volunteer network gives effective free national coverage (~223 nodes — single largest non-French Centipede cluster).
 
 | Field | Value |
 |---|---|
@@ -28,7 +28,8 @@
 | **Schedule effective date** | Current schedule reflects price *reduction* effective 2023-02-01 (per Lechner news article); PDF served 2026-05-07 matches the 2023 schedule |
 | **hobbyist_eligibility — GNSSnet.hu** | Unclear — leans no for the annual flat (~€375 + 27 % ÁFA → ~€476 / ~$540, over the $200/yr cutoff). The 30-day 50-km local pass (~€38 net + ÁFA = ~€48 / ~$54) is feasible for a single project. The 365-day per-minute fallback (~€1.20/hr RTK) suits ad-hoc users up to ~150 hours/year. Pricing PDF footnote 3 phrases the registration fee as paid *"by a company"* (`egy cég`), suggesting the contract template assumes a business counterparty; no separate natural-person tier is documented in the public FAQ |
 | **legal_residency_required — GNSSnet.hu** | Unclear — no explicit residency clause; English registration form not published; invoicing in HUF assumes a Hungarian-tax-number-bearing counterparty. Foreign EU users probably accommodated under reverse-charge VAT but procedure not documented online |
-| **last_confirmed_alive — GNSSnet.hu** | 2026-05-12 — `ntrip.gnssnet.hu:2101` re-verified, `SOURCETABLE 200 OK Server: NTRIP GNSMART_Caster 2.0/1.0`, identical 10 SGO_* mount catalogue (Content-Length 2131); pricing schedule unchanged from 2023-02-01 Feb-2023 reduction |
+| **last_confirmed_alive — GNSSnet.hu** | 2026-05-17 — `ntrip.gnssnet.hu:2101` re-verified, `SOURCETABLE 200 OK Server: NTRIP GNSMART_Caster 2.0/1.0`, identical 10 SGO_* mount catalogue (Content-Length 2131) |
+| **datum_epoch — GNSSnet.hu** | omitted — no citable operator declaration. Operator pages (gnssnet.hu/realtime, lechnerkozpont.hu/oldal/gnss) describe service without specifying datum/epoch. National-mandate frame is ETRS89 / EOV (HD72 horizontal projection), but inference from national mandate is not citable per primer [datum-epoch] |
 | **Network 2 — name** | Centipede-RTK |
 | **Operator — Centipede-RTK** | Open community project (INRAE-originated, France); Hungarian nodes operated by individual volunteers and farmers |
 | **host:port — Centipede-RTK** | `caster.centipede.fr:2101` |
@@ -57,9 +58,9 @@ All streams are single-coordinate VRS-style entries from the caster's central po
 
 ## Volunteer Free Coverage
 
-- **Centipede-RTK**: 216 HU nodes in `data/stations.json` 2026-05-12 fetch (down from peak 224 a week earlier — minor churn). Densest in the Great Hungarian Plain (Alföld) and northern Hungary (Borsod-Abaúj-Zemplén, Heves). Free, no auth on raw streams. Hungary has the densest non-French Centipede footprint, with ~130 nodes documented by INRAE in the 2024 expansion narrative growing to ~220 by 2026-05.
+- **Centipede-RTK**: 223 HU nodes in `data/stations.json` 2026-05-17 fetch (net +7 vs 2026-05-12 fetch of 216; peak 224 in 2026-05-06 — stable cluster). Densest in Great Hungarian Plain (Alföld) and northern Hungary (Borsod-Abaúj-Zemplén, Heves). Free, no auth on raw streams. Hungary = densest non-French Centipede footprint; ~130 nodes documented by INRAE in 2024 expansion narrative → ~223 by 2026-05.
 - **rtk2go**: 5 HU bases in current snapshot (`BALO`, `FMPT`, `SanyiGazda`, `Szarka`, `SzentkiralySZLA`) — small-shop hobbyist deployments under the rtk2go "Free Open NTRIP Streams" model.
-- Combined ~221 HU bases give effective national free RTK coverage for hobbyists in most populated regions, without sign-up. No formal nationwide free government tier exists.
+- Combined ~228 HU bases give effective national free RTK coverage for hobbyists in most populated regions, without sign-up. No formal nationwide free government tier exists.
 
 ## Context Notes
 
@@ -90,11 +91,11 @@ All streams are single-coordinate VRS-style entries from the caster's central po
 - Lechner Tudásközpont GNSS service overview (HU): https://lechnerkozpont.hu/oldal/gnss
 - Lechner Tudásközpont services (EN): https://lechnerkozpont.hu/en/oldal/services
 - Lechner price-reduction announcement (HU, 2023-02-01): https://lechnerkozpont.hu/cikk/arcsokkenes-a-gnssnet-hu-atalanydijas-szolgaltatasaiban
-- Live caster sourcetable: `curl http://ntrip.gnssnet.hu:2101/` → `SOURCETABLE 200 OK Server: NTRIP GNSMART_Caster 2.0/1.0` (10 STR rows, 2026-05-07; caster IP `37.220.132.38:2101`)
+- Live caster sourcetable: `curl --http0.9 http://ntrip.gnssnet.hu:2101/` → `SOURCETABLE 200 OK Server: NTRIP GNSMART_Caster 2.0/1.0` (10 STR rows, re-verified 2026-05-17; caster IP `37.220.132.38:2101`)
 - HTE InfoKommunikáció Fogalomtár — GNSSnet.hu: https://www.fogalomtar.hte.hu/en/wiki/-/wiki/HTE+Infokommunikacios+Fogalomtar/GNSSnet.hu
 - GIS Open 2025 conference paper on GNSSnet.hu (HU): https://www.gisopen.hu/data/pdf/2025/f2.pdf
 - Centipede-RTK home: https://www.centipede-rtk.org/
 - Centipede-RTK Hungary article (INRAE 2024): https://www.inrae.fr/en/news/democratising-precision-guided-agriculture-ever-expanding-centipede-rtk-network
-- Centipede HU node count: `data/stations.json` 2026-05-06 fetch (224 HUN entries in `centipede` source)
-- rtk2go HU node count: `data/stations.json` 2026-05-06 fetch (6 HUN entries in `rtk2go` source)
+- Centipede HU node count: `data/stations.json` 2026-05-17 fetch (223 HUN entries in `centipede` source — net +7 vs 2026-05-12 fetch of 216; peak 224 in 2026-05-06)
+- rtk2go HU node count: `data/stations.json` 2026-05-17 fetch (5 HUN entries in `rtk2go` source)
 - ArduSimple Hungary: https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-hungary/

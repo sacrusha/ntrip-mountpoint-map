@@ -23,11 +23,11 @@ The **Instituto de la Propiedad (IP)**, through its sub-directorate the **Direcc
 |---|---|
 | **Portal** | `https://cors.ip.gob.hn/` (self-signed certificate — connection works on the open Internet but the certificate verification fails on common Windows TLS stacks) |
 | **Archive endpoint** | `ftp://ceiba.ip.gob.hn` — anonymous FTP for RINEX download; the portal explicitly tells users to enable FTP in Chrome (`chrome://flags/#enable-ftp`) or Edge (`edge://flags/#enable-ftp`) before clicking "Descargar Archivos" |
-| **Stations** | 5 — Tegucigalpa, San Pedro Sula, Juticalpa, Siguatepeque, La Ceiba (per prior research; portal HTML lists no station-by-station metadata) |
+| **num_stations** | unverified — prior research; operator page does not enumerate stations. Prior research lists 5 (Tegucigalpa, San Pedro Sula, Juticalpa, Siguatepeque, La Ceiba); cors.ip.gob.hn HTML carries no per-station metadata to confirm. |
 | **Service type** | RINEX data download (post-processing) via FTP only; no real-time NTRIP streaming |
 | **host:port** | None found — no NTRIP caster endpoint is publicly documented |
 | **Access** | Free RINEX download via FTP; no account registration evidenced in current portal HTML (FTP is openly reachable per portal instructions) |
-| **Datum** | WGS 84 (legislated since 2000 cartographic conventions) |
+| **datum_epoch** | omitted — no citable declaration. Honduras adopted WGS 84 as the national reference at legislative level (cartographic conventions, 2000), but neither the cors.ip.gob.hn portal nor any IP/DGCG page declares the frame+epoch the CORS coordinates are realised in; legislative reference ≠ operator-portal frame declaration for the caster. |
 
 The IP/DGCG portal explicitly lists RINEX file download as the service; no self-service NTRIP registration, caster hostname, or credentials were found on the IP, DGCG, or IGN Honduras websites. The IP FAQ for Cartography and Geography (`ip.gob.hn/preguntas_frecuente_catastro`) describes geodetic inquiry procedures but makes no mention of real-time RTK corrections.
 

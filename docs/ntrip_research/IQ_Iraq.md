@@ -1,5 +1,5 @@
 # Iraq [IQ] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12 (refresh of 2026-05-06 entry — findings unchanged)
+**Date researched:** 2026-05-17 (refresh of 2026-05-12 entry — findings unchanged; no IQ-tagged stations in any ingested source per `stations_by_country.py IRQ`; no operator announcement located)
 
 ## Status: NO confirmed public NTRIP caster (CORS network exists; no public stream found)
 
@@ -11,6 +11,7 @@
 | **hobbyist_eligibility** | null — no public service confirmed |
 | **legal_residency_required** | null — no public service confirmed |
 | **last_confirmed_alive** | null — no public NTRIP stream confirmed at any date |
+| **datum_epoch** | omitted — no citable operator declaration. IGRS national frame design references ITRF2000 in academic descriptions but State Commission on Survey publishes no operator portal w/ real-time-service datum statement |
 
 ## Most Recent Project Announcement
 
@@ -21,7 +22,7 @@
 ## Context Notes
 
 - The IGRS CORS network is managed by the State Commission on Survey under the Ministry of Water Resources. Some stations were documented as having VRS (Virtual Reference Station) capability for RTK data collection, but no public NTRIP endpoint has been published.
-- NOAA's national CORS database (per ELT RTK Base reference, 2025) records the Baghdad CORS station (ISBA) as **non-operational** since its 2008 establishment, while Erbil (ISER) and Najaf (ISNA) are listed as operational. The Journal of Engineering 2024 evaluation cross-checks data from ZAXO, ISER, ISBA, ISKU, ISNA over 2015–2022.
+- NOAA's NCN per-station page for Baghdad ISBA (https://geodesy.noaa.gov/CORS/ncn_station_pages/index.html?stationID=ISBA) lists ISBA as **non-operational** (operator IRAGDS); Erbil (ISER) and Najaf (ISNA) appear as operational on their NCN station pages. The Journal of Engineering 2024 evaluation cross-checks data from ZAXO, ISER, ISBA, ISKU, ISNA over 2015–2022 (operational data sourced from IGS/NGS archives, not a real-time NTRIP service).
 - Security and infrastructure conditions (post-2003 reconstruction context) historically limited public geodetic services; conditions have improved but no public RTK service announcement has emerged.
 - The Iraq Survey Board and State Commission on Survey have primary authority over geodetic infrastructure; their websites do not publish external NTRIP endpoints.
 - No commercial CORS/RTK network for Iraq was found in any surveying industry or hobbyist source.
@@ -42,6 +43,7 @@
 - Iraq Surveying (commercial company): https://iraqsurveying.com/
 - ArduSimple country RTK list (Iraq not listed): https://www.ardusimple.com/rtk-correction-services-in-your-country/
 - mvarga1989 GitHub GNSS CORS networks list (Iraq not listed): https://github.com/mvarga1989/The-list-of-GNSS-CORS-RTK-networks
-- RTK2go monitor (no Iraq stations observed; confirmed 2026-05-12 via `scripts/stations_by_country.py IRQ` — no IRQ tag in any source)
-- ELT RTK Base / NOAA CORS reference notes (ISBA non-operational since 2008): https://gnss.store/blogs/elt-rtk-base/2-types-of-cors-stations
-- NOAA CORS network: https://geodesy.noaa.gov/CORS/
+- RTK2go monitor (no Iraq stations observed; re-confirmed 2026-05-17 via `scripts/stations_by_country.py IRQ` — no IRQ tag in any of rtk2go/centipede/earthscope/euref_ip/igs_ip/auscors/mirai sources)
+- NOAA NCN per-station page — ISBA Baghdad (non-operational, operator IRAGDS): https://geodesy.noaa.gov/CORS/ncn_station_pages/index.html?stationID=ISBA
+- NOAA NCN per-station page — ISER Erbil: https://geodesy.noaa.gov/CORS/ncn_station_pages/index.html?stationID=ISER
+- NOAA NCN per-station page — ISNA Najaf: https://geodesy.noaa.gov/CORS/ncn_station_pages/index.html?stationID=ISNA

@@ -1,5 +1,5 @@
 # Georgia [GE] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12 (refresh of 2026-05-06 entry)
+**Date researched:** 2026-05-17 (refresh of 2026-05-12 entry; geocors.napr.gov.ge ECONNREFUSED from this sandbox 2026-05-17 — earlier 2026-05-12 HTTP 200 probe retained as last_confirmed_alive)
 
 ## Status: ACTIVE — national NTRIP caster (GEO-CORS / NAPR); Spider Business Center registration required; endpoint not publicly advertised
 
@@ -11,7 +11,10 @@
 | **landing_url** | `http://geocors.napr.gov.ge/SBC/spider-business-center` — operator-owned SBC service description page (live 2026-05-12). Alternative: NAPR agency landing `https://www.napr.gov.ge/en/`. |
 | **access_url** | Skip — landing_url describes the SBC service and registration path; `geocors.napr.gov.ge/SBC/Account/Register` is the bare registration form, not a service description page. |
 | **host:port — GEO-CORS** | Not publicly documented; delivered with SBC credentials post-registration; SBC portal at http://geocors.napr.gov.ge/SBC |
+| **num_stations** | 26 (continuously operating; coverage excludes Abkhazia / South Ossetia; expanded from 16 stations cited in NAPR's 2012 UNOOSA presentation) |
+| **tariff** | Unknown — pricing not disclosed publicly; governed by NAPR subscription terms; contact ghahubia@napr.gov.ge or +995 577 62 03 33 |
 | **tariff — GEO-CORS** | Not publicly listed; governed by NAPR subscription terms; contact ghahubia@napr.gov.ge or +995 577 62 03 33 |
+| **datum_epoch** | omitted — no citable declaration. NAPR's 2012 UNOOSA presentation (slides only, not fetched this pass) is the strongest candidate operator-authored source, but a direct datum/epoch declaration (e.g. Georgian Coordinate System / ETRS89 realization) has not been verified on a NAPR portal page reachable this pass. Defer rather than infer. |
 | **hobbyist_eligibility** | Registration is open to applicants; no explicit hobbyist restriction found; terms not publicly disclosed |
 | **legal_residency_required** | No explicit overseas-user restriction found; NAPR is a Georgian state agency |
 | **last_confirmed_alive** | `geocors.napr.gov.ge/SBC` Spider Business Center login page HTTP 200 confirmed 2026-05-12; curl probe of `geocors.napr.gov.ge:2101` — connection timed out 2026-05-12 21:00 UTC (consistent with closed/credential-gated caster) |

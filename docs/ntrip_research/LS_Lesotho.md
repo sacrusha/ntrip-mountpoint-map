@@ -1,5 +1,5 @@
 # Lesotho [LS] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12
+**Date researched:** 2026-05-17 (re-verified; still no LS caster; TrigNet ZA remains nearest practical fallback)
 
 ## Status: NO — no public NTRIP RTK caster operating within Lesotho
 

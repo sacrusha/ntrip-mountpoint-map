@@ -1,5 +1,5 @@
 # Switzerland [CH] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-15
+**Date researched:** 2026-05-15 (live caster, Centipede, rtk2go probes + swisstopo doc fetches). networks.md `last_researched_date: 2026-05-12` is stale relative to this file — the 2026-05-15 probe response `Date: Fri, 15 May 2026 21:04:56 UTC` (and Centipede `crtk.net:2101` probe same day) are the most-recent reliable evidence; networks.md should be bumped on next pipeline pass.
 
 ## Status: YES — paid national NTRIP/VRS (swipos / swisstopo); no free government tier; ~30 Centipede CHZ nodes + ~20 rtk2go CHE volunteer nodes deliver partial free Plateau / Jura coverage
 
@@ -9,9 +9,9 @@
 | **Operator** | swisstopo — Federal Office of Topography (Bundesamt für Landestopografie) |
 | **Service name** | swipos (Swiss Positioning Service) — product tier swipos-GIS/GEO |
 | **landing_url** | https://www.swisstopo.admin.ch/en/swipos-the-swiss-positioning-service |
-| **access_url** | https://www.swisstopo.admin.ch/en/swipos-services-prices-and-ordering |
+| **access_url** | https://shop.swipos.ch/ (signup / order endpoint; live HTTP 200 2026-05-17, Microsoft-IIS/10.0 ASP.NET portal — per networks.md). Pricing-and-ordering descriptor page at https://www.swisstopo.admin.ch/en/swipos-services-prices-and-ordering. |
 | **host:port** | `www.swipos.ch:2101` (plain TCP; live 2026-05-15 — `SOURCETABLE 200 OK`, `Server: NTRIP Trimble Ntrip Caster 5.2`) · `www.swipos.ch:2102` (encrypted NTRIP-2 over TLS — swisstopo's recommended endpoint since Sep 2025) |
-| **num_stations** | 31 AGNES permanent CORS (network VRS uses these plus neighbouring country stations) |
+| **num_stations** | **31** physical AGNES CORS (operator-core, swisstopo-owned, all on Swiss territory). The swipos VRS network solution additionally incorporates **neighbouring-country CORS** (FR RGP, IT, AT APOS, DE SAPOS) per swisstopo technical documentation to improve hull coverage near the border, but those are not Swiss stations and are not counted in AGNES. |
 | **vrs** | Yes — single VRS product, 4 mountpoints differing only by RTCM version + height frame |
 | **tariff — pay-per-use** | CHF 0.50 / minute (VRS or RINEX); all fees net of VAT (currently 8.1% Swiss VAT). Unchanged since 2023-04-01. |
 | **tariff — annual flatrate** | CHF 1,500 / yr (1st licence) · CHF 600 / yr (2nd & 3rd licences via same reseller) · CHF 200 / yr (each additional licence). Net of VAT. |
@@ -19,7 +19,7 @@
 | **tariff — swipos-NAV** | Free — but DGNSS-class (RTCM 2.3 GSM/GPRS, sub-metre), **out of project scope** |
 | **hobbyist_eligibility** | Yes — order form open to individuals; no professional licence required |
 | **legal_residency_required** | No — FAQ does not impose residency; order form open to international applicants. Coverage is "acceptable within 5–10 km of the border" so rover must be inside or near CH. |
-| **last_confirmed_alive** | 2026-05-15 — `curl http://www.swipos.ch:2101/` returned `SOURCETABLE 200 OK` and full 4-mountpoint sourcetable (`Date: Fri, 15 May 2026 21:04:56 UTC`) |
+| **last_confirmed_alive** | 2026-05-15 — `curl http://www.swipos.ch:2101/` returned `SOURCETABLE 200 OK` and full 4-mountpoint sourcetable; response carried `Date: Fri, 15 May 2026 21:04:56 UTC` (real probe, not a file-edit timestamp). networks.md `last_researched_date: 2026-05-12` lags this file by 3 days. |
 | **datum_epoch** | CHTRS95 ≡ ETRS89 @ epoch 1993.0 (horizontal); LHN95 or LN02 (height, mountpoint-selectable). Source: https://www.swisstopo.admin.ch/en/swipos-frequently-asked-questions ("swipos-GIS/GEO VRS corrections are transmitted in the CHTRS95 global system. CHTRS95 corresponds with ETRS89 for epoch 1993.0.") |
 
 ## Mountpoints (verified live 2026-05-15)

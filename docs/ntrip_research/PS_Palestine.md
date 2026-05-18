@@ -1,5 +1,5 @@
 # Palestine [PS] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12 (prior version: 2026-05-06)
+**Date researched:** 2026-05-17 (prior: 2026-05-12)
 
 ## Status: NO active public NTRIP caster
 
@@ -10,6 +10,7 @@
 | **tariff** | null |
 | **hobbyist_eligibility** | null — no service exists |
 | **legal_residency_required** | null — no service exists |
+| **datum_epoch** | omitted -- no citable operator declaration (no operating service to cite) |
 | **last_confirmed_alive** | null — no caster has ever been confirmed alive |
 
 ## Most Recent Project Announcement
@@ -35,6 +36,12 @@ No JICA, USAID, World Bank, or EU (PEGASE-framework) funded public CORS/NTRIP pr
 | **IGS/CDDIS** (NASA) — Israeli IGS stations TELA (Tel Aviv), RAMO (Ramon), DRAG (Dead Sea), JSLM (Jerusalem); nearest reference data for West Bank post-processing | https://cddis.nasa.gov/Data_and_Derived_Products/GNSS/daily_30second_data.html | Free (NASA Earthdata account required) |
 
 Note: GNSS spoofing active in the region since Oct 2023 — may affect post-processed data quality as well as real-time.
+
+## 2026-05-17 Re-Check Notes
+
+- Local `py scripts/stations_by_country.py PSE` (2026-05-17) → "No stations for 'PSE'". Confirms zero ingested-globals coverage.
+- `py scripts/stations_by_radius.py 31.9 35.2 50` (50 km Ramallah) → 1 rtk2go station `misgav_dov` at 31.81, 34.74 (44.6 km, ISR — Israel volunteer base, not Palestinian-operated).
+- No new PA/PLA/An-Najah/donor-funded CORS or NTRIP announcement located in WebSearch 2026-05-17.
 
 ## 2026-05-12 Re-Check Notes
 

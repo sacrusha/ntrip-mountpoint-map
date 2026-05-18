@@ -1,56 +1,63 @@
-# Uruguay [UY] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06 (re-verified 2026-05-13: SOURCETABLE 200 OK with 96 STR entries; 35 unique physical stations after deduplicating per-format variants; 15 VRS streams (VRS-A through VRS-Z plus `RTCM3-VRS` / `RTCM3-iMAX`); multi-constellation MSM4 mountpoints (`UY**_MSM4`) confirm GPS+GLO+GAL+BDS support on the 2025 SinoGNSS M300 Pro stations)
+# Uruguay [UY] — NTRIP RTK
+**Date:** 2026-05-17 re-verify: IGM landing HTTP 200; "libre y sin costo" re-quoted; registration `rtk.igm.gub.uy/sbc/`. No new operator-page datum declaration — datum_epoch stays omitted. New radius probe surfaces RAMSAC (Argentina) cross-border + Uruguay-coast stations within practical range of Montevideo — previously not listed.
 
-## Status: YES — free national government caster (REGNA-ROU) with VRS; no commercial alternatives found
+## Status
+YES — free national caster REGNA-ROU (IGM) with single-base + VRS + iMAX. No commercial alt.
+
+## REGNA-ROU — sole caster
 
 | Field | Value |
 |---|---|
-| **Active public NTRIP RTK caster** | Yes |
-| **landing_url** | `https://igm.gub.uy/2016/05/20/servicios-regna-rou/` — operator-owned (IGM) REGNA-ROU service page describing the network, free policy, registration path. |
-| **access_url** | `https://igm.gub.uy/geoportal/instructivos-2/` — operator-owned geoportal "instructivos" hub with the use/configure guides for REGNA-ROU. More useful than landing for someone about to register and connect. `rtk.igm.gub.uy/SBC/Account/Register` is the bare SBC registration form, not a service description page. |
-| **host:port** | `rtk.igm.gub.uy:2101` (IP 201.217.132.178; `GNSS Spider 7.11.1.109/1.0` caster) |
-| **tariff** | Free — "El Servicio no tiene costo" (IGM official statement) |
-| **type** | Single-base + VRS (Virtual Reference Station) + iMAX (`RTCM3-iMAX` mountpoint) |
-| **registration** | Required — web form at `rtk.igm.gub.uy/SBC/Account/Register` |
-| **hobbyist_eligibility** | Yes — open registration; no professional licence requirement stated |
-| **legal_residency_required** | Unclear — registration portal is in Spanish; no explicit residency requirement found; foreign users not explicitly excluded |
-| **last_confirmed_alive** | 2026-05-13 — `rtk.igm.gub.uy:2101` SOURCETABLE 200 OK (curl probe; 96 STR entries returned: ~62 physical-station mountpoints + 15 VRS + iMAX + multi-constellation MSM4 variants). IGM REGNA-ROU service page HTTP 200. |
+| landing_url | https://igm.gub.uy/2016/05/20/servicios-regna-rou/ (operator post: "libre y sin costo para los usuarios") |
+| access_url | https://igm.gub.uy/geoportal/instructivos-2/ (geoportal "instructivos" — guides for use/configure). Bare registration: https://rtk.igm.gub.uy/sbc/ |
+| operator | Instituto Geográfico Militar (IGM), Uruguay |
+| host:port | `rtk.igm.gub.uy:2101` (IP 201.217.132.178; `GNSS Spider 7.11.1.109/1.0`) |
+| Type | Single-base + VRS + iMAX (`RTCM3-VRS`, `RTCM3-iMAX`, `VRS-A` … `VRS-Z`) |
+| num_stations | 35 unique physical CORS (deduped from 96 STR entries: per-format `-V2` legacy + `_MSM4` / `_GNSS_MSM3` variants). Reflects Dec 2025 +8 expansion. |
+| Mountpoints | RTCM3, GPS+GLO (legacy stations `UYMO`, `UYTD`, `UYAR`, …) + GPS+GLO+GAL+BDS multi-constellation MSM4 (`UYBU_MSM4`, `UYFS_MSM4`, `UYLA_MSM4`, `UYLM_MSM4`, `UYMA_MSM4`, `UYPT_MSM4`, `UYRB_MSM4`, `UYSC_MSM4`, `UYSJ_MSM4`, …); 15 VRS zone-keyed mountpoints A-Z. |
+| vrs | yes (VRS + iMAX) |
+| tariff | Free — "El Servicio no tiene costo" / "libre y sin costo para los usuarios" (IGM 2016 post). |
+| hobbyist_eligibility | yes — open registration; no licence req stated. |
+| legal_residency_required | unclear — Spanish-only portal; no explicit residency req; foreign users not excluded. |
+| last_confirmed_alive | 2026-05-13 — `rtk.igm.gub.uy:2101` SOURCETABLE 200 OK, 96 STR entries. 2026-05-17 — IGM landing HTTP 200 (operator cost statement re-quoted), geoportal HTTP 200. |
+| datum_epoch | omitted — no citable operator-portal declaration. (SIRGAS bulletins state SIRGAS-ROU98 @ 1995.4 but those are not IGM operator pages; primer rule disallows.) |
 
-## Network Coverage
+## Dec 2025 expansion
 
-REGNA-ROU (Red Geodésica Nacional Activa de la República Oriental del Uruguay) is operated by the Instituto Geográfico Militar (IGM) of Uruguay. As of 2026-05-13 the live sourcetable advertises 35 unique physical stations (after deduplicating `-V2` legacy and `_MSM4`/`_GNSS_MSM3` format-variant entries) covering Uruguay's 176,215 km² territory. VRS and iMAX are available (15 VRS mountpoints regional-zone keyed A–Z, plus `RTCM3-VRS` and `RTCM3-iMAX`); 1–2 cm horizontal precision claimed with dual-frequency equipment. Reference frame: SIRGAS-ROU (ITRF-compatible). 1,000+ registered users as of 2025.
+IGM added 8 multi-constellation CORS, COMNAV SinoGNSS M300 Pro receivers + SinoGNSS AT600 antennas, delivered via KPN METIOR. Densifies interior (Tacuarembó, Rivera, Artigas, Durazno, Flores). Older stations still RTCM3 GPS+GLO. Source: https://igm.gub.uy/2025/12/16/el-igm-incorpora-ocho-nuevas-estaciones-cors-para-fortalecer-la-regna-rou/
 
-**December 2025 expansion**: IGM incorporated 8 new multiconstellation CORS stations equipped with SinoGNSS (COMNAV) M300 Pro receivers and SinoGNSS AT600 antennas, delivered via KPN METIOR. The MSM4 mountpoints visible in the live sourcetable (`UYBU_MSM4`, `UYFS_MSM4`, `UYLA_MSM4`, `UYLM_MSM4`, `UYMA_MSM4`, `UYPT_MSM4`, `UYRB_MSM4`, `UYSC_MSM4`, `UYSJ_MSM4`, etc., all RTCM 3 declaring `GPS+GLO+GAL+BDS`) align with the December 2025 multi-constellation roll-out and improve coverage density across interior departments (Tacuarembó, Rivera, Artigas, Durazno, Flores areas). Older stations still stream RTCM 3 GPS+GLO only (`UYMO`, `UYTD`, `UYAR`, etc.).
+## Coverage / alternatives
 
-## Commercial Alternatives
+- Free VRS = rare in S. America at no cost.
+- Friction: Spanish-only portal.
+- Commercial intl (RTKdata, geoRTK, TopNET Live): may claim UY via AR/BR-hosted stations; not UY-specific.
+- Centipede / GEODNET: no UY nodes confirmed. 0 UY-tagged volunteer streams in stations.json 2026-05-17.
 
-No commercial NTRIP RTK caster specific to Uruguay was identified as of 2026-05-13. The free REGNA-ROU service covers the entire country and appears to meet hobbyist needs without a paid alternative.
+### RAMSAC (AR) cross-border + IGS — `stations_by_radius.py -34.9 -56.2 400` (2026-05-17)
 
-- **rtk2go**: 1 station within 400 km of Montevideo per project pipeline (`MPBSAS001` in Argentina, 238 km NW — Buenos Aires region); no UY-tagged volunteer streams in `data/stations.json` as of 2026-05-13.
-- **Centipede**: No UY stations.
-- **GEODNET**: No confirmed UY GEODNET nodes.
-- **International commercial services** (RTKdata, geoRTK, TopNET Live): May claim Uruguay coverage via Argentina- or Brazil-hosted stations but Uruguay-specific nodes unconfirmed; REGNA-ROU is the practical free option.
+22 RAMSAC stations within 400 km of Montevideo. RAMSAC = AR national CORS via IGN-AR; CC-licensed, free w/ registration. Nearest:
+- `UYCO-v3.0` -34.46, -57.84 @ 158 km (Colonia, UY territory — coords tagged ARG by sourcetable but station IS in Uruguay; RAMSAC distributes for UY cross-border)
+- `LPGS-v3.0` -34.90, -57.93 @ 158 km (La Plata, AR)
+- `AGGO-v3.0` -34.87, -58.14 @ 177 km (AGGO Geodetic Obs, AR)
+- `IGM1-v3.3` -34.57, -58.44 @ 208 km (IGN-AR HQ, Buenos Aires)
+- `UYSO-v3.0` -33.26, -58.01 @ 247 km (Soriano, UY territory)
+- `UYPA-v3.0` -32.29, -58.07 @ 338 km (Paysandú, UY territory)
 
-## Context Notes
+Plus IGS-IP `AGGO00ARG0` and AUSCORS `LPGS00ARG0` within 160-180 km. RAMSAC `UYCO/UYSO/UYPA` are IGN-AR-hosted streams of UY-soil stations — usable cross-border but operator = AR, not REGNA-ROU.
 
-- **Free VRS availability**: REGNA-ROU is notable in South America for offering VRS (network RTK) at no cost — most national free casters in the region are single-base only. VRS eliminates the need to manually select the nearest mountpoint and provides corrections synthesised for the rover's actual location.
-- **Friction**: Spanish-language portal is the main access barrier for non-Spanish speakers; registration is self-service online. No documented case of foreign-resident registration being rejected.
-- **RAMSAC cross-border reach**: Several RAMSAC (Argentina) stations near the Uruguayan border (e.g., Colón, Concordia, Monte Caseros) appear in the rtk2go sourcetable. These are not dedicated UY casters but may provide single-base corrections for border-region users at baselines under 50 km.
-- **Service mandate**: REGNA-ROU is operated under the IGM's statutory geodetic mandate; there is no published sunset date or access restriction. Service continuity risk is low given institutional backing.
-
-## Post-Processing (RINEX) Fallback
+## Post-processing (RINEX)
 
 | Service | URL | Cost |
 |---|---|---|
-| **IGM CORS RINEX** — REGNA-ROU station data | https://igm.gub.uy/geoportal/instructivos-2/ | Free (same account as NTRIP) |
-| **EarthScope NOTA** — selected UY stations | https://www.earthscope.org/data/gnss-realtime/ | Free non-commercial (NULA) |
+| IGM CORS RINEX | https://igm.gub.uy/geoportal/instructivos-2/ | Free (same account) |
+| NOTA selected UY | https://www.earthscope.org/data/gnss-realtime/ | Free non-comm |
 
-## Sources Consulted
-- IGM REGNA-ROU service page: https://igm.gub.uy/2016/05/20/servicios-regna-rou/
-- IGM real-time service instructivos / geoportal: https://igm.gub.uy/geoportal/instructivos-2/
-- IGM Dec 2025 CORS expansion announcement: https://igm.gub.uy/2025/12/16/el-igm-incorpora-ocho-nuevas-estaciones-cors-para-fortalecer-la-regna-rou/
-- REGNA-ROU SIRGAS bulletin (2022): https://sirgas.ipgh.org/docs/Boletines/Bol22/02-ServicioUruguayo-REGNA-ROU_RTK.pdf
-- REGNA-ROU SIRGAS bulletin (2013): https://www.sirgas.org/fileadmin/docs/Boletines/Bol18/35f_Yelicich_et_al_2013_Posicionamiento_GNSS_y_NTRIP-RTK.pdf
-- GPS Uruguay NTRIP/RTK explainer: https://www.gpsuruguay.com/pages/como-funciona-el-sistema-rtk
-- Live sourcetable (2026-05-13): `curl http://rtk.igm.gub.uy:2101/` → SOURCETABLE 200 OK, 96 STR entries (35 unique physical stations + 15 VRS + multi-constellation MSM4)
-- Pipeline CI sourcetable probe — UY stations confirmed 2026-05-13
+## Sources
+- IGM REGNA-ROU service page: https://igm.gub.uy/2016/05/20/servicios-regna-rou/ (200 2026-05-17, "libre y sin costo")
+- IGM geoportal instructivos: https://igm.gub.uy/geoportal/instructivos-2/ (200 2026-05-17)
+- IGM Dec 2025 expansion: https://igm.gub.uy/2025/12/16/el-igm-incorpora-ocho-nuevas-estaciones-cors-para-fortalecer-la-regna-rou/
+- SIRGAS bulletin (2022, Pampillon REGNA-ROU): https://sirgas.ipgh.org/docs/Boletines/Bol22/02-ServicioUruguayo-REGNA-ROU_RTK.pdf
+- SIRGAS bulletin (2013, Yelicich et al.): https://www.sirgas.org/fileadmin/docs/Boletines/Bol18/35f_Yelicich_et_al_2013_Posicionamiento_GNSS_y_NTRIP-RTK.pdf
+- GPS Uruguay primer: https://www.gpsuruguay.com/pages/como-funciona-el-sistema-rtk
+- Live sourcetable probe 2026-05-13: `curl http://rtk.igm.gub.uy:2101/` → 200 OK, 96 STR entries.
+- Radius probe 2026-05-17: `stations_by_radius.py -34.9 -56.2 400` (RAMSAC AR cross-border + IGS LPGS/AGGO visible).

@@ -1,5 +1,5 @@
 # Lithuania [LT] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12
+**Date researched:** 2026-05-17 (re-verified via WebSearch; 35 LT stations, dual-IP caster, EUPOS cross-border setup unchanged since 2026-05-12)
 
 ## Status: YES — free national NTRIP RTK caster operating (LitPOS, VRS-network); free of charge for any registered user; primary IP `193.219.10.2:2101` and secondary IP `195.182.72.152:2101` both serve identical sourcetables.
 
@@ -18,6 +18,7 @@
 | **hobbyist_eligibility** | Yes — usage rules §6 explicitly admits **both natural and legal persons** (fiziniai ir juridiniai asmenys); no professional surveying licence required. Registration form publicly accessible at `https://www.geoportal.lt/geoportal/web/litpos-en/registration` |
 | **legal_residency_required** | No formal residency clause found. Registration form is bilingual (Lithuanian + English); foreign-user policy is permissive but not loudly advertised. Cross-border data sharing with Poland and Latvia is documented in the usage rules. **Non-Lithuanian registration not explicitly confirmed but also not excluded** |
 | **last_confirmed_alive** | 2026-05-12 — `193.219.10.2:2101` and `195.182.72.152:2101` both returned `SOURCETABLE 200 OK` (NTRIP Trimble Ntrip Caster 5.2), 12 STR rows each (identical mountpoint list to 2026-05-07 sourcetable); geoportal.lt LitPOS-EN portal accessible |
+| **datum_epoch** | omitted — no citable declaration (no operator-cited reference frame/epoch found on geoportal.lt LitPOS-EN or litpos-paslauga pages) |
 
 ## Mountpoint Catalogue — both servers (sourcetable 2026-05-12)
 

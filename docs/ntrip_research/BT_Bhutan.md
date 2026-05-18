@@ -1,5 +1,5 @@
 # Bhutan [BT] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-15 (prior 2026-05-12, initial 2026-05-06)
+**Date researched:** 2026-05-17 (prior 2026-05-15, 2026-05-12, initial 2026-05-06)
 
 ## Status: YES — active government NTRIP caster (DrukNet / MIRACaster); annual subscription required; live SOURCETABLE confirmed 2026-05-15
 
@@ -11,17 +11,18 @@
 | **Caster software** | MIRACaster (Server header: `NTRIP MIRACaster MIRASpaco-00001/2.0`); platform branded MiraNet v2.0.0, operated by MIRASpaco (Portugal) |
 | **landing_url** | https://web.nlcs.gov.bt/cors-facility/ |
 | **access_url** | https://miranet.druknet.net/pre-registration/form |
-| **host:port** | `ntrip.druknet.net:2101` (hostname does not resolve in public DNS — confirmed against multiple resolvers 2026-05-15; direct IP `103.252.84.100:2101` returned SOURCETABLE 200 OK same date) |
-| **num_stations** | 14 active mountpoints in live sourcetable (2026-05-15): THIM, BUMT, KANG, PHUN, DTNG, LHUN, DGPL, HAAC, SPGT, WNGD, SIPS, ZHEM, GASA, JOMO. All RTCM3.3; multi-GNSS (BDS+GAL+GLO+GPS+IRS+QZS+SBAS) |
+| **host:port** | `ntrip.druknet.net:2101` (hostname does not resolve in public DNS; direct IP `103.252.84.100:2101` returned SOURCETABLE 200 OK on 2026-05-17 re-probe) |
+| **num_stations** | 14 active mountpoints in live sourcetable (re-confirmed 2026-05-17): THIM, BUMT, KANG, PHUN, DTNG, LHUN, DGPL, HAAC, SPGT, WNGD, SIPS, ZHEM, GASA, JOMO. All RTCM3.3; multi-GNSS (BDS+GAL+GLO+GPS+IRS+QZS+SBAS) |
+| **RTCM messages** | Sourcetable STR rows advertise RTCM 3.3 with MSM7 across all constellations (per probe 2026-05-17; sourcetable Server header `NTRIP MIRACaster MIRASpaco-00001/2.0`). Format-details field per STR row contains the MSM7 set `1077` (GPS), `1087` (GLONASS), `1097` (Galileo), `1107` (SBAS), `1117` (QZSS), `1127` (BeiDou) alongside station metadata (1005/1006/1007/1008/1033) and ephemeris messages; exact per-row message-list strings vary per mountpoint and are recorded in the cached sourcetable. Carrier flag = 2 (L1+L2). nmea=0, solution=0 across all 14 mountpoints (single-base, no rover GGA required). |
 | **vrs** | No — single-base only; 14 physical mountpoints, no VRS/MAC/iMAX entries in sourcetable |
 | **tariff — Government agencies** | Nu. 10,000 / year · "unlimited users" (Dzongkhags + 4 Gelyong Thromdes) |
 | **tariff — Private sector** | Basic Nu. 10,000 / yr · 1 user; Standard Nu. 17,500 / yr · 2 users; Premium Nu. 22,500 / yr · 3 users |
 | **tariff — Educational / research** | Free — official supporting document proving teaching/research purpose required |
 | **Simultaneous-connection rule** | CORS Facility page: *"Simultaneous connections to the network are not allowed, that is, each subscription can only make one connection to the network at the same time"* and *"the users will be given **a** credential (Username and Password)"* (singular). Operator text is ambiguous between (a) the 1/2/3-user tiers granting N separate credentials, each one-session-at-a-time, and (b) one shared credential with N being an authorised-headcount cap. Resolving requires contacting NLCS directly. |
-| **hobbyist_eligibility** | No explicit hobbyist tier. The cheapest private slot is Nu. 10,000/yr (~USD 120). Educational/research free tier is the only practical path for an individual and requires a supporting institutional letter. Casual hobbyist access: effectively closed |
+| **hobbyist_eligibility** | **No** (see note) |
 | **legal_residency_required** | Not stated; pre-registration form at miranet.druknet.net accepts global submissions, but credentials are released only after administrative approval |
-| **datum_epoch** | DrukGeoid 2015 (vertical); horizontal datum not stated in NLCS Cadastral Guideline v1 Dec 2023 — OMIT URL |
-| **last_confirmed_alive** | 2026-05-15 — direct TCP probe `curl http://103.252.84.100:2101/` returned `SOURCETABLE 200 OK` from `NTRIP MIRACaster MIRASpaco-00001/2.0`, server date `Fri, 15 May 2026 20:00:53 GMT`, 14 STR records, Content-Length 1594. miranet.nlcs.gov.bt HTTP 200, MiraNet v2.0.0 with live UTC clock. CORS Facility page reachable; tariff schedule unchanged. CORS Notification dated 3 September 2025 published on NLCS site (image-only, no extractable text) |
+| **datum_epoch** | **omitted — no operator-declared horizontal datum for RTK output.** NLCS Cadastral Guideline v1 Dec 2023 declares vertical (DrukGeoid 2015) only; no horizontal frame is declared by NLCS for the DrukNet RTK output. Per primer [datum-epoch] vertical-only declarations do not populate this field. |
+| **last_confirmed_alive** | 2026-05-17 — direct TCP probe `curl --http0.9 http://103.252.84.100:2101/` returned `SOURCETABLE 200 OK` from `NTRIP MIRACaster MIRASpaco-00001/2.0`, server date `Sun, 17 May 2026 14:06:12 GMT`, 14 STR records, 1,766 bytes. CORS Facility page WebFetch 2026-05-17 returned identical tariff schedule; CORS Notification page latest entry still 3 September 2025. |
 
 ## Most Recent Project Announcement
 
@@ -39,7 +40,8 @@
 - **Pre-registration**: Form at https://miranet.druknet.net/pre-registration/form — fields: Full Name, Email, Organization (optional), Telephone, Preferred Username. Credentials issued after administrative approval.
 - **Tariff/user-slot interpretation (UNRESOLVED)**: The CORS Facility page says "each subscription can only make one connection at the same time" and that the user receives "a credential" (singular). This is ambiguous between (a) 1/2/3 separate credentials per tier, each one-session-at-a-time, and (b) one shared credential with N being an authorised-headcount cap. The two readings have very different operational implications for multi-user organisations; resolving requires direct contact with NLCS.
 - **RINEX post-processing**: Daily and hourly RINEX data available via the MiraNet portal; included in subscription. Educational accounts also receive RINEX access.
-- **Datum**: Official vertical datum DrukGeoid 2015. Cadastral guideline (NLCS, Dec 2023) accepts baselines up to 40 km from a CORS base.
+- **Datum**: Official vertical datum DrukGeoid 2015. Horizontal datum not declared in published NLCS material (Cadastral Guideline v1 Dec 2023 sets out RTK procedure but does not declare the horizontal frame the DrukNet caster streams in). Cadastral guideline accepts baselines up to 40 km from a CORS base.
+- **Hobbyist eligibility rationale**: No explicit hobbyist tier in tariff schedule. Cheapest paid private slot is Nu. 10,000/yr (~USD 120). The free educational/research tier requires an institutional supporting document; a casual hobbyist cannot self-qualify. Net effect: casual hobbyist access is closed — `hobbyist_eligibility = no`.
 - **Contact**: Jamphel Gyeltshen, Sr. Surveyor, Topographic Division — Phone: 02-331447. NLCS HQ: web.nlcs.gov.bt.
 - **No Bhutan stations in third-party casters**: confirmed not present in RTK2go or Centipede sourcetables; only the official DrukNet caster serves Bhutan CORS data.
 - **Cross-border alternatives within ~50 km**: None known. Nearest plausible alternatives are well beyond 50 km — India (no public CORS NTRIP within 50 km of the BT border that hobbyists can access), Nepal, Bangladesh, China (Tibet) — none currently offer open hobbyist-eligible NTRIP feeds in that range.

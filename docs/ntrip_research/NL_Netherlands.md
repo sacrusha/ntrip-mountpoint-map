@@ -1,5 +1,5 @@
 # Netherlands [NL] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12 (re-verified; no material change since 2026-05-01)
+**Date researched:** 2026-05-17 (re-verified; added EUREF-IP / IGS-IP / AUSCORS mirror counts from local sourcetables)
 
 ## Status: YES — free public NTRIP caster (AGRS.NL + AGRS.BES) and paid professional raw-stream tier (NETPOS); no public VRS product
 
@@ -7,6 +7,11 @@
 |---|---|
 | **Active public NTRIP RTK caster** | Yes |
 | **Operator** | NSGI (Nationaal Samenwerkingsverband voor de Geo-informatie-infrastructuur) / Kadaster |
+| **landing_url** | https://www.nsgi.nl/referentiepunten-en-gnss-data/gnss-data/real-time-streams (operator-owned NSGI real-time streams description page) |
+| **access_url** | https://ntrip.kadaster.nl/streamtable (live operator sourcetable; free tier is anonymous, no signup portal). For the paid NETPOS tier: https://www.nsgi.nl/referentiepunten-en-gnss-data/gnss-data/real-time-streams/netpos (operator-owned NETPOS description + manual application route) |
+| **num_stations — AGRS.NL (free)** | ~26 physical mainland CORS (per NSGI station list; 52 mountpoints in sourcetable are base + RTCM3.1-legacy pairings of the same physical stations); 7 additional BES-island stations (AGRS.BES, free tier). Snapshot 2026-05-17 via `py scripts/stations_by_country.py NLD`. |
+| **num_stations — NETPOS (paid)** | unknown — NSGI does not publish a NETPOS physical-station count; the tariff is per-station, implying a defined pool, but the operator pages list no public count |
+| **datum_epoch** | omitted — no citable operator declaration. NSGI's `real-time-streams` and `agrs` pages do not state datum/epoch in machine-citable form; the `Coördinaten AGRS.NL-stations` PDF is referenced but not in the accessible text. Per primer, do NOT infer ETRS89 / RD New from Kadaster's general CRS pages. |
 | **host:port — free tier** | `ntrip.kadaster.nl:2101` (plain TCP) · `ntrip.kadaster.nl:443` (TLS) |
 | **host:port — paid tier** | `ntrip.cloud.kadaster.nl:443` (TLS only; credentials required) |
 | **host:port — TU Delft mirror** | `gnss1.tudelft.nl:2101` (independent relay, same anonymous access, confirmed 2026-05-01) |
@@ -31,12 +36,18 @@
 - BES island streams (AGRS.BES) are part of the free tier and are covered in detail in the Dutch Caribbean entry (BQ).
 - No public NTRIP caster exists for the autonomous countries Curaçao (CW), Aruba (AW), or Sint Maarten (SX); see `CW_Dutch_Caribbean.md`.
 
-## Volunteer Coverage
+## Volunteer & International Coverage
 
-Substantial volunteer coverage exists alongside the official services:
+Substantial volunteer + global-caster coverage alongside the official AGRS.NL service:
 - **Centipede**: 26 NLD-tagged stations (Belgian/Dutch border area, Friesland, Twente, etc.); dense coverage of southern/eastern NL, sparse north of Amsterdam.
-- **rtk2go**: 22 NLD-tagged stations spread across the country (Limburg, Brabant, Friesland, Drenthe, Groningen). Free with no auth, but per-station coverage radius ≈30 km and quality varies.
-Combined: a hobbyist anywhere on the Dutch mainland has free real-time RTK options at multiple tiers (AGRS.NL official + Centipede + rtk2go + TU Delft mirror).
+- **rtk2go**: 24 NLD-tagged stations spread across the country (Limburg, Brabant, Friesland, Drenthe, Groningen). Free with no auth, but per-station coverage radius ≈30 km and quality varies.
+- **EUREF-IP** (BKG): 8 NLD physical stations mirrored on `euref-ip.net:2101` (DELF, DLF1, EIJS, ...) — single-base 1 Hz raw RTCM, BKG registration required.
+- **IGS-IP** (BKG): KOSG/DLF1 NLD streams present on `www.igs-ip.net:2101`.
+- **AUSCORS** rebroadcast: DLF100NLD0 mirrored on `ntrip.data.gnss.ga.gov.au:2101` (AUSCORS rebroadcasts select IGS sites).
+
+Local `py scripts/stations_by_country.py NLD` totals 114 MPs across 6 sources (2026-05-17 snapshot); AGRS.NL contributes 52 of those (mostly base + RTCM3.1-legacy pairings of the ~26 physical mainland stations).
+
+Combined: a hobbyist anywhere on the Dutch mainland has free real-time RTK options at multiple tiers (AGRS.NL official + EUREF-IP / IGS-IP mirrors + Centipede + rtk2go + TU Delft mirror).
 
 ## Sources Consulted
 - NSGI real-time streams page: https://www.nsgi.nl/referentiepunten-en-gnss-data/gnss-data/real-time-streams (observed 2026-05-12)
@@ -45,4 +56,4 @@ Combined: a hobbyist anywhere on the Dutch mainland has free real-time RTK optio
 - Live sourcetable: https://ntrip.kadaster.nl/streamtable (fetched 2026-05-01; re-confirmed 2026-05-12 via search)
 - TU Delft DPGA GNSS mirror: gnss1.tudelft.nl:2101 (confirmed 2026-05-01)
 - NSGI FAQ on BTW / foreign users (observed 2026-05-01)
-- Local data: `py scripts/stations_by_country.py NLD` — 22 rtk2go + 26 Centipede NLD stations (snapshot 2026-05-12)
+- Local data: `py scripts/stations_by_country.py NLD` — 52 agrs_nl + 26 Centipede + 24 rtk2go + 8 euref_ip + 2 igs_ip + 1 auscors-mirror = 114 MPs across 6 sources (snapshot 2026-05-17)

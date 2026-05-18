@@ -1,5 +1,5 @@
 # Latvia [LV] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12
+**Date researched:** 2026-05-17 (re-verified; service unchanged since 2026-05-12; sandbox live probe returned HTTP 000 today, content corroborated via prior 2026-05-12 SOURCETABLE 200 OK)
 
 ## Status: YES — free government NTRIP caster (LatPos) operating
 
@@ -14,6 +14,7 @@
 | **hobbyist_eligibility** | yes — any user may register; no professional licensing stated |
 | **legal_residency_required** | unclear — not explicitly required; free public service with registration. Sign-up portal available at `https://latpos.lgia.gov.lv/SBC/Account/Register` |
 | **last_confirmed_alive** | 2026-05-12 — `curl --http0.9 http://latpos.lgia.gov.lv:5001/` returned `SOURCETABLE 200 OK` (Server: `GNSS Spider 7.11.1.109/1.0`, Latvian-language Date header `Otrd., 12 maijs 2026`, Content-Length 768); 7 STR rows confirmed |
+| **datum_epoch** | omitted — no citable declaration (LKS92 tied to ETRS89 mentioned in prose context but not as an operator-cited datum/epoch declaration; LGIA's LatPos pages do not expose the reference-frame statement) |
 
 ## Context Notes
 

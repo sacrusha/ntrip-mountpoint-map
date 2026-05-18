@@ -1,11 +1,15 @@
 # Malaysia [MY] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12 (re-verified; MyRTKnet portals reachable, tariff structure unchanged from 2026-05-06 observation)
+**Date researched:** 2026-05-17 (re-verified; MyRTKnet tariff structure + portal URLs unchanged from 2026-05-12 observation; `gogainet` rtk2go MYS still present)
 
 ## Status: YES — MyRTKnet operational; paid only; expensive for hobbyists; no free alternative
 
 | Field | Value |
 |---|---|
 | **Active public NTRIP RTK caster** | Yes (paid) |
+| **landing_url** | https://myrtknet.jupem.gov.my/ (operator-owned MyRTKnet portal — JUPEM Department of Survey and Mapping Malaysia) |
+| **access_url** | https://mytransformasinet.jupem.gov.my/ (operator-owned MyRTKnet 2.0 registration / subscription / credential management portal; same JUPEM credentials) |
+| **num_stations** | ~78 physical CORS (65 Peninsular + ~13 Sabah & Sarawak; spaced 30–150 km). Cited by JUPEM via the MyRTKnet history pages and FIG 2010 + Coordinates magazine articles; precise current count not exposed on the public portal as live sourcetable is creds-gated. |
+| **datum_epoch** | omitted — MyRTKnet portal not reachable from this sandbox (HTTPS TLS verification failure 2026-05-17; ECONNREFUSED on alternate endpoints); no citable GDM2000 declaration confirmed on `myrtknet.jupem.gov.my` or `mytransformasinet.jupem.gov.my`. Per primer, do NOT infer from JUPEM's national datum (GDM2000) declared elsewhere; only operator portal/spec is citable. |
 | **host:port — VRS/MAC/iMAX/DGPS** | `pxy.myrtknet.gov.my:2101` |
 | **host:port — SB Sabah & Sarawak** | `pxy.myrtknet.gov.my:2102` |
 | **host:port — SB Peninsular** | `pxy.myrtknet.gov.my:2103` |

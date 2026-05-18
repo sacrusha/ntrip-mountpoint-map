@@ -1,16 +1,21 @@
 # Kuwait [KW] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06; reverified 2026-05-12 (no new public endpoint surfaced)
+**Date researched:** 2026-05-06; reverified 2026-05-17 (no new public endpoint surfaced; stations_by_country.py KWT = 0; paci.gov.kw/en ECONNREFUSED on WebFetch attempt, fetched 2026-05-17 -- may be sandbox-only; no open-access policy change)
 
 ## Status: NO confirmed public NTRIP caster; government CORS exists (14 stations, joint PACI / Kuwait Municipality); access restricted to licensed firms; no policy change found in 2025–2026
 
 | Field | Value |
 |---|---|
 | **Active public NTRIP RTK caster** | No confirmed public endpoint |
+| **landing_url** | https://www.paci.gov.kw/en (PACI — Public Authority for Civil Information, joint CORS operator with Kuwait Municipality; sandbox WebFetch ECONNREFUSED 2026-05-17, may be IP-restricted) |
+| **access_url** | Skip — no public self-serve registration; access is restricted to licensed surveying firms under municipal/government contract; no signup surface published. |
+| **num_stations** | 14 physical CORS — secondary citation via Mahdi & Ahmed 2024 academic study (processed 14 days of GNSS data for these 14 Kuwait CORS integrated with 27 IGS stations using Bernese). Not declared on a first-party operator portal in sandbox-reachable form; treat as secondary-source. |
+| **vrs** | ? — no operator technical declaration; 14 stations across 17,818 km² supports a network solution but mode (VRS/MAC/FKP/single-base) unverified. |
 | **host:port** | null — not published |
 | **tariff** | null — not applicable (licensed firms only) |
 | **hobbyist_eligibility** | No — access confirmed restricted to licensed surveying firms under municipal/government contract |
 | **legal_residency_required** | Unclear — no individual registration path at any price found |
 | **last_confirmed_alive** | null — no public NTRIP stream confirmed at any date |
+| **datum_epoch** | omitted -- no operator NTRIP caster; no operator-portal declaration to cite. (Academic literature references "KW-FWGM2022" geoid + WGS84-aligned national frame, but per primer rule these are not operator-portal citations.) |
 
 ---
 
@@ -52,15 +57,15 @@ No public RINEX download portal for the Kuwait CORS network was found.
 
 ---
 
-## Negative Findings (reconfirmed 2026-05-12)
+## Negative Findings (reconfirmed 2026-05-17)
 
 - PACI / Kuwait Municipality CORS: no public host:port published
-- rtk2go: zero KW mountpoints (stations.json 2026-05-12)
-- Centipede: zero KW nodes (stations.json 2026-05-12)
+- rtk2go: zero KW mountpoints (`py scripts/stations_by_country.py KWT` → no stations, 2026-05-17)
+- Centipede + EarthScope: zero KW nodes (same probe, 2026-05-17)
 - ArduSimple: no Kuwait-specific NTRIP page indexed
 - GEODNET, PointOne, HxGN SmartNet: no Kuwait coverage confirmed in public documentation
 - No open-access mandate or policy change toward individual access found in 2024–2026 sources
-- No stations within 200 km of Kuwait City (29.3 N / 47.9 E) in any tracked source (rtk2go / centipede / earthscope)
+- paci.gov.kw/en: WebFetch ECONNREFUSED 2026-05-17 (sandbox-side; site may be IP-restricted) -- no further public detail extractable from sandbox
 
 ---
 

@@ -1,15 +1,20 @@
 # Belize [BZ] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-15
+**Date researched:** 2026-05-17 (prior 2026-05-15)
 
 ## Status: PARTIAL — one EarthScope NOTA station live in central Belize (CN23_RTCM3P3, free non-commercial NULA). No national CORS, no Belize-operated public caster.
 
 | Field | Value |
 |---|---|
 | **Active public NTRIP RTK caster (Belize-operated)** | No |
-| **Active public NTRIP RTK mountpoint physically in Belize** | Yes — `ntrip.earthscope.org:2101/CN23_RTCM3P3` (single NOTA station, 17.26°N, -88.78°E, Belmopan area) |
+| **Active public NTRIP RTK mountpoint physically in Belize** | Yes — `ntrip.earthscope.org:2101/CN23_RTCM3P3` (single NOTA station, 17.26°N, 88.78°W, Belmopan area) |
+| **landing_url** | N/A for Belize-operated caster (none exists). EarthScope NOTA: https://www.earthscope.org/data/gnss-realtime/ |
+| **access_url** | N/A for Belize-operated caster. EarthScope NOTA: https://data.earthscope.org/ |
+| **host:port** | N/A for Belize-operated caster. EarthScope NOTA: `ntrip.earthscope.org:2101` |
+| **num_stations** | 0 Belize-operated. 1 EarthScope NOTA mountpoint in BLZ territory (CN23). |
+| **vrs** | EarthScope NOTA CN23: **No** — single-base raw RTCM 3.3 MSM7 |
 | **hobbyist_eligibility (EarthScope NOTA)** | Yes for non-commercial use — requires EarthScope account + signed NULA (Non-commercial User License Agreement) |
 | **legal_residency_required** | No |
-| **last_confirmed_alive (EarthScope CN23)** | 2026-05-15 — curl probe of `ntrip.earthscope.org:2101` returned the sourcetable with STR row: `STR;CN23_RTCM3P3;CN23_RTCM3P3;RTCM 3.3;1005(60),1007(60),1013(1),1029(60),1033(60),1077(1),1087(1),1097(1),1107(1),1117(1);2;GPS+GLO+BDS+GAL+SBAS+QZS;EARTHSCOPE;BLZ;17.26;-88.78;0;0;SEPT POLARX5;None;N;Y;0;SEAT_REQUIRED;` |
+| **last_confirmed_alive (EarthScope CN23)** | 2026-05-17 — EarthScope realtime portal HTTP 200 (ITRF2014 / NOTA epoch 2026-03-30 declared); local pipeline cache (`scripts/stations_by_country.py BLZ`) still shows `CN23_RTCM3P3` 17.26°N / -88.78°W as the sole BLZ station. Direct sandbox curl of `ntrip.earthscope.org:2101` timed out 2026-05-17 (sandbox-side network path; same condition observed 2026-05-15); EarthScope landing page is current and no NOTA decommissioning of CN23 has been announced. Prior 2026-05-15 sourcetable curl captured STR row: `STR;CN23_RTCM3P3;CN23_RTCM3P3;RTCM 3.3;1005(60),1007(60),1013(1),1029(60),1033(60),1077(1),1087(1),1097(1),1107(1),1117(1);2;GPS+GLO+BDS+GAL+SBAS+QZS;EARTHSCOPE;BLZ;17.26;-88.78;0;0;SEPT POLARX5;None;N;Y;0;SEAT_REQUIRED;` (sourcetable longitude field is signed decimal degrees, -88.78 = 88.78°W). |
 
 ## EarthScope NOTA — CN23
 
@@ -21,12 +26,13 @@
 | **messages** | 1005(60), 1007(60), 1013(1), 1029(60), 1033(60), 1077(1), 1087(1), 1097(1), 1107(1), 1117(1) — full multi-system MSM7 |
 | **constellations** | GPS + GLONASS + BeiDou + Galileo + SBAS + QZSS |
 | **receiver** | Septentrio POLARX5 |
-| **position** | 17.26°N, -88.78°E (central Belize, near Belmopan / Cayo District) |
+| **position** | 17.26°N, 88.78°W (central Belize, near Belmopan / Cayo District; sourcetable signed-decimal -88.78 → 88.78°W) |
 | **carrier (Y/N)** | Y (carrier-phase available) |
 | **fee (sourcetable field)** | `SEAT_REQUIRED` — requires an EarthScope seat (non-commercial NULA account is the standard free path) |
+| **tariff** | **Noncommercial: Free (USD $0.00)** — account + annual NULA acceptance required (NULA v. 2025-05-30, https://www.earthscope.org/user/NoncommercialLicenseAgreement.pdf, observed 2026-05-17). **Commercial: USD $1,000 per seat per year, 5-seat minimum** for direct billing; 2-week 5-seat trial free. EarthScope is a US 501(c)(3) — no VAT. No local Belize currency tier (EarthScope bills in USD). Sources: https://www.earthscope.org/data/gnss-realtime/ + https://www.earthscope.org/news/new-gnss-offering-and-licensing-details-for-commercial-use/ (both HTTP 200, 2026-05-17). |
 | **single-base usable radius** | ~30–50 km L1+L2 RTK; reaches most of Belize population centres (Belmopan, Belize City, San Ignacio, parts of Cayo / Belize / Orange Walk districts) |
 | **access_url** | https://data.earthscope.org/ — create account, accept NULA, request real-time GNSS data access |
-| **datum_epoch** | OMIT (not stated on STR row; EarthScope NOTA stations are typically referenced to IGS14 / current ITRF — confirm per-station via station log) |
+| **datum_epoch** | **ITRF2014, epoch 2026-03-30** (NOTA stations); declared on https://www.earthscope.org/data/gnss-realtime/ ("All raw data streams use the ITRF2014 reference frame. For NOTA stations, the epoch date is 2026-03-30"). |
 
 CN23 first appeared in pipeline data on 2026-05-12; it was absent from the 2026-05-06 EarthScope sourcetable observation. Re-confirmed 2026-05-15.
 

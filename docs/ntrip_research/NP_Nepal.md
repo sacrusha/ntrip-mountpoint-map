@@ -1,5 +1,5 @@
 # Nepal [NP] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12 (refresh; prior pass 2026-05-06)
+**Date researched:** 2026-05-17 (refresh; prior pass 2026-05-12; no change in caster status — re-verified)
 
 ## Status: NO national public NTRIP caster — EarthScope/NOTA streams one Nepal CORS (KUGE) over its global caster as the only real-time path
 
@@ -48,4 +48,4 @@
 - UNAVCO/EarthScope real-time data: https://www.unavco.org/data/gps-gnss/real-time/real-time.html
 - ArduSimple country RTK list (Nepal not listed): https://www.ardusimple.com/rtk-correction-services-in-your-country/
 - RTK2go monitor (no Nepal stations observed; confirmed via `scripts/stations_by_country.py NPL` 2026-05-12)
-- Local pipeline check `scripts/stations_by_country.py NPL` (2026-05-12) — earthscope source returns 1 station (KUGE_RTCM3P3 at 27.62°N, 85.54°E)
+- Local pipeline check `scripts/stations_by_country.py NPL` (2026-05-17) — earthscope source still returns exactly 1 station (KUGE_RTCM3P3 at 27.62°N, 85.54°E); no other ingested source carries Nepal

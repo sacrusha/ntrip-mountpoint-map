@@ -1,7 +1,7 @@
 # Burkina Faso [BF] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-15
+**Date researched:** 2026-05-17 (refresh of 2026-05-15)
 
-## Status: BF-CORS NTRIP caster confirmed live — 13 BFA single-base mountpoints + 1 VRS + 1 DGNSS-multi all enumerated 2026-05-15; web Register page returns maintenance error; hobbyist eligibility unconfirmed (gate is registration approval, not network availability)
+## Status: BF-CORS NTRIP caster confirmed live — 13 BFA single-base RTK mountpoints + 1 VRS (`MultiStation_RTCM31`, in scope) all enumerated 2026-05-15; 1 DGNSS-multi (`BurkinaDGNSSMulti`, carrier=0, out-of-scope per primer [scope], dropped by pipeline) also present; web Register page returns maintenance error; hobbyist eligibility unconfirmed (gate is registration approval, not network availability)
 
 | Field | Value |
 |---|---|
@@ -9,11 +9,11 @@
 | **access_url** | http://www.bfcors.net/ (Trimble Pivot Web portal; `RegisterAccount.aspx` returns "service is temporarily not available due to maintenance or technical problems" — 2026-05-15) |
 | **host:port** | `www.bfcors.net:2101` — live NTRIP caster, `SOURCETABLE 200 OK`, `Server: NTRIP Trimble Ntrip Caster 4.1`, 2026-05-15. Probe must pass `--http0.9` flag (caster speaks HTTP/0.9); a probe without that flag will appear to fail. |
 | **tariff** | Not published. IGB page does not state cost; no tariff page on the Pivot Web portal pre-login. |
-| **num_stations** | 13 physical BFA single-base mountpoints in live sourcetable (DORI, DIAP, FADA, BF01, BOBO, DEDG, GAOA, MANG, OHGY, DPGO, IGB0, KBRI, TGDA), plus `MultiStation_RTCM31` (BFA, solution=1, network VRS) and `BurkinaDGNSSMulti` (BFA, DGNSS multi-station, solution=1), plus 1 cross-reference `VRSRTCM32` tagged DEU. Matches IGB-reported 9 (2011) + 4 (2018) = 13 physical CORS. |
-| **vrs** | yes — `MultiStation_RTCM31` (BFA, solution=1) and `BurkinaDGNSSMulti` (BFA, DGNSS multi-station, solution=1) present alongside the 13 single-base streams. |
+| **num_stations** | 13 physical BFA single-base mountpoints in live sourcetable (DORI, DIAP, FADA, BF01, BOBO, DEDG, GAOA, MANG, OHGY, DPGO, IGB0, KBRI, TGDA), plus `MultiStation_RTCM31` (BFA, solution=1, network VRS — in scope) and `BurkinaDGNSSMulti` (BFA, DGNSS multi-station, solution=1, **carrier=0 → out-of-scope per primer [scope]; dropped by pipeline**), plus 1 cross-reference `VRSRTCM32` tagged DEU. Matches IGB-reported 9 (2011) + 4 (2018) = 13 physical CORS. |
+| **vrs** | yes — `MultiStation_RTCM31` (BFA, RTCM 3.1, solution=1) is the in-scope VRS mountpoint. `BurkinaDGNSSMulti` is also present but is DGNSS (carrier=0, code-only multi-metre) → out-of-scope for RTK per primer [scope]; pipeline drops carrier=0 streams. |
 | **hobbyist_eligibility** | ? — IGB's stated audience is "géomètres, cadastreurs, cartographes". No explicit exclusion of hobbyists, but `RegisterAccount.aspx` non-functional today and Login form expects an "organization" field (multi-tenant Pivot). Sourcetable is anonymously enumerable; rover access still requires approved credentials. |
 | **legal_residency_required** | ? — not stated; in practice expect IGB to favour locally established professional users. |
-| **last_confirmed_alive** | 2026-05-15 — `curl --http0.9 http://www.bfcors.net:2101/` returned `SOURCETABLE 200 OK`, `Server: NTRIP Trimble Ntrip Caster 4.1`, Content-Length 2754, all 13 BFA + 1 VRS + 1 DGNSS-multi STR rows enumerated. Web portal also live: `www.bfcors.net/` HTTP 200, IIS/8.0, footer "© Copyright 2026, Trimble Inc."; `Login.aspx` HTTP 200; `RegisterAccount.aspx` HTTP 302 → DefaultErrorPage with maintenance message. |
+| **last_confirmed_alive** | 2026-05-15 — `curl --http0.9 http://www.bfcors.net:2101/` returned `SOURCETABLE 200 OK`, `Server: NTRIP Trimble Ntrip Caster 4.1`, Content-Length 2754, all 13 BFA + 1 VRS + 1 DGNSS-multi STR rows enumerated. Web portal also live: `www.bfcors.net/` HTTP 200, IIS/8.0; `Login.aspx` HTTP 200; `RegisterAccount.aspx` HTTP 302 → DefaultErrorPage maintenance message. **2026-05-17 follow-up:** both `http://www.bfcors.net/` (web) and `http://www.bfcors.net:2101/` (caster) ECONNREFUSED / timed out from this sandbox. Real status (caster down vs. sandbox egress glitch) unconfirmed — only 2 days apart, no operator announcement of outage, but the prior probe used `--http0.9` and the 2026-05-17 probe could not pass that flag through WebFetch. Treat the network as "live as of 2026-05-15, status uncertain 2026-05-17"; revisit on next research pass. |
 | **datum_epoch** | Omitted — no citable official declaration found. IGB references a "système de référence national" without specifying datum/epoch in any public document located. |
 
 ## Probes (2026-05-15, from this sandbox)
@@ -24,7 +24,7 @@
 | `http://www.bfcors.net/Login.aspx` | HTTP 200; form fields: Organization, User Name, Password |
 | `http://www.bfcors.net/Map/SensorMap.aspx` | HTTP 200; OpenLayers map shell; server-side `NumSensors=0` (sensors loaded by authenticated JS) |
 | `http://www.bfcors.net/RegisterAccount.aspx` | HTTP 302 → `/DefaultErrorPage.aspx` displaying "The requested service is temporarily not available due to maintenance or technical problems. Please try again later." |
-| `http://www.bfcors.net:2101/` (with `--http0.9`) | `SOURCETABLE 200 OK`, `Server: NTRIP Trimble Ntrip Caster 4.1`, Content-Length 2754, 15 STR rows (13 BFA single-base + 1 BFA VRS + 1 BFA DGNSS-multi + 1 DEU passthrough). A probe without `--http0.9` returns "Received HTTP/0.9 when not allowed" and looks like a failure — this was the prior-research artefact. |
+| `http://www.bfcors.net:2101/` (with `--http0.9`) | `SOURCETABLE 200 OK`, `Server: NTRIP Trimble Ntrip Caster 4.1`, Content-Length 2754, 15 STR rows (13 BFA single-base RTK + 1 BFA VRS `MultiStation_RTCM31` (in scope) + 1 BFA DGNSS-multi `BurkinaDGNSSMulti` (**carrier=0, out-of-scope per primer [scope] — pipeline drops**) + 1 DEU passthrough). A probe without `--http0.9` returns "Received HTTP/0.9 when not allowed" and looks like a failure — this was the prior-research artefact. |
 | `http://www.bfcors.net:2102/`, `:2103/`, `:8080/` | TCP refused |
 
 Implication: the operator's caster is publicly enumerable — sourcetable contents (mountpoint names, formats, lat/lon=0/0 obfuscated by Trimble Pivot) are visible without credentials. New-account self-registration via `RegisterAccount.aspx` is currently broken (maintenance error), but the caster itself is live and a target user with valid credentials can connect a rover from outside Burkina Faso. The bottleneck is the registration approval path, not the network.
@@ -53,10 +53,11 @@ Implication: the operator's caster is publicly enumerable — sourcetable conten
 
 - IGB GNSS-CORS page — https://www.igb.bf/?page_id=47 (verified live)
 - IGB home page — https://www.igb.bf/ (verified live; latest visible news March 2026, GDZHIAO workshop closure)
-- BF-CORS Trimble Pivot Web — http://www.bfcors.net/ (verified live, HTTP 200, IIS/8.0, "© Copyright 2026, Trimble Inc.")
-- BF-CORS Login — http://www.bfcors.net/Login.aspx (verified live)
-- BF-CORS Sensor Map — http://www.bfcors.net/Map/SensorMap.aspx (verified live, no public sensor data)
-- BF-CORS Register — http://www.bfcors.net/RegisterAccount.aspx (302 → DefaultErrorPage maintenance message)
+- BF-CORS Trimble Pivot Web — http://www.bfcors.net/ (2026-05-15 live HTTP 200, IIS/8.0; 2026-05-17 ECONNREFUSED from sandbox — status uncertain)
+- BF-CORS Login — http://www.bfcors.net/Login.aspx (2026-05-15 live)
+- BF-CORS Sensor Map — http://www.bfcors.net/Map/SensorMap.aspx (2026-05-15 live, no public sensor data)
+- BF-CORS Register — http://www.bfcors.net/RegisterAccount.aspx (2026-05-15: 302 → DefaultErrorPage maintenance message; 2026-05-17 ECONNREFUSED)
+- BF-CORS NTRIP caster — http://www.bfcors.net:2101/ (2026-05-15: SOURCETABLE 200 OK via `--http0.9`; 2026-05-17: WebFetch timeout — could be sandbox-side egress, not necessarily caster-side)
 - IGB contact email observed on igb.bf: infogeo.bf@gmail.com
 - 2024 ionospheric VTEC paper on BF01 — https://www.researchgate.net/publication/379545036
 - SONEL OUAG station — https://www.sonel.org/spip.php?page=gps&idStation=2561

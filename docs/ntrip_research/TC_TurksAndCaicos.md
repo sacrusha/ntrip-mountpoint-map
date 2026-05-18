@@ -1,5 +1,5 @@
 # Turks and Caicos Islands [TC] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-13 (revised from 2026-05-06 — Survey & Mapping Department and EarthScope coverage rechecked, no operational change)
+**Date researched:** 2026-05-17 (re-verified from 2026-05-13 — no operational change; Survey & Mapping Department and EarthScope coverage unchanged)
 
 ## Status: No caster — no EarthScope / COCONet station in TCI territory; nearest scientific stations are ~200+ km away, well beyond single-base RTK range
 

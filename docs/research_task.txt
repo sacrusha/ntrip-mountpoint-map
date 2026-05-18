@@ -1,25 +1,27 @@
-Research public NTRIP RTK casters for [entry]. Unknown > guess. Output: docs/ntrip_research/ only. File = deliverable; don't pollute caller context until valuable.
+Task *research* public NTRIP RTK casters for [entry]. Anything that's relevant to RTK hobbyists - ex: that a network exists but is inaccessible is relevant.
 
 NTRIP primer: docs/research_task.primer.txt 
 
+Existing research unverified, read as starting point, must not trust: docs/ntrip_research/[entry], docs/ardusimple/[entry], grep [entry] in docs/networks.md + data/country_markers.json 
+
+Use tools to fully verify, correct, expand, fill gaps. Look for national/regional mapping agency in local admin languages, operator portal in primary language, fill gaps with press releases, research papers, RTK hobbyist + professional communities, local survey associations, etc. resolve conflicts via multiple sources, consider date & estimated current reliability of source. WebFetch (Haiku) non-deterministic + prompt-dependent, retry with directed prompt.
+
+Clean refactor of target file. Research file, not a research log. No requirement to preserve previous style. Logs, non-caveman prose, overreliance on sourcetables, **Date researched:**, etc  are likely artifacts of broken research runs that ignored instructions. Instruction to do research *is* the task, cleanup a side effect.
+
+no active caster -> most recent project/announcement (date + URL) 
+no free/cheap caster -> free/cheap RINEX, if available
+Unknown > guess. 
+
 [tools]
-WebSearch, WebFetch (incl. PDF URLs), Read, Grep, Glob, Write, Edit, pdftotext.
-Bash(curl:*), Bash(nslookup:*), Bash(py scripts/<name>.py:*) ex: Bash(py scripts/stations_by_country.py ZAF)
-Different paths, PowerShell, and compound commands will likely be rejected. Try parent domain on failed webfetch, http 0.9 on failed curl.
+Primary: WebSearch, WebFetch (incl. PDF URLs), Read, Grep, Glob, Write, Edit, pdftotext, Bash(py scripts/<name>.py:*) ex: Bash(py scripts/stations_by_country.py ZAF).
+Secondary: Bash(curl:*), Bash(nslookup:*). If you want to do loads of curl calls and call it research, stop and re-read the task.
+Different paths, PowerShell, and compound commands will likely be rejected.
 do NOT author new scripts/*.py to bypass.
-other narrow tools (awk, pdftotext, etc.) per-approval when WebFetch result is questionable or conflicts.
-
-[method]
-read docs/ntrip_research/[entry], docs/ardusimple/[entry], grep [entry] in docs/networks.md + data/country_markers.json as starting point, don't trust. Use tools to verify, correct, expand, fill gaps. 
-Look for national/regional mapping agency in local admin languages, operator portal in primary language, fill gaps with press releases, research papers, RTK hobbyist + professional communities, local survey associations, etc. 
-conflicting information -> resolve via multiple sources, date, estimated current reliability of source. WebFetch (Haiku) non-deterministic + prompt-dependent -> retry with directed prompt.
-refactor target file, not add. it's a research file, not a research log. There is no requirement to preserve previous style.
-no active caster -> most recent project/announcement (date + URL).
-
+other narrow tools (awk, etc.) per-approval when WebFetch result is questionable or conflicts.
 
 [fields] per caster:
 - landing_url            operator-owned where available; most-official otherwise
-- access_url             best page for user to learn network + signup + conditions
+- access_url             best page for user to learn network + signup + conditions. Url, not email, not phone
 - host:port              curl ST; note date
 - tariff                 all tiers; local currency; VAT stated; date observed; source URL
 - num_stations           physical CORS count per caster (primer [stations-vs-mps])
@@ -30,14 +32,22 @@ no active caster -> most recent project/announcement (date + URL).
 - datum_epoch            Datum & Epoch + operator-declaration URL. omit if not citable. citation rule + concepts: primer [datum-epoch].
 
 [reachability]
-URL unreachable from sandbox acceptable iff: extraordinary evidence target user CAN reach + evidence-backed reason this sandbox cannot.
+Try parent domain on failed webfetch, http 0.9 on failed curl. URL unreachable from sandbox acceptable iff: extraordinary evidence target user CAN reach + evidence-backed reason this sandbox cannot. 
 
 [ingested-globals]
-access rtk2go, centipede, earthscope, euref_ip, igs_ip from local date only, unless those are the networks you are investigating
+access rtk2go, centipede, earthscope, euref_ip, igs_ip from local data only, unless those are the networks you are investigating
   py scripts/stations_by_radius.py <lat> <lon> <km>   # use first; reveals country tags per source
   py scripts/stations_by_country.py <code>            # bare = list codes
 Don't use for num_stations, sanity check only.
-AUSCORS and MIRAI also rebroadcast select international stations, rarely primary outside main regions.  
+AUSCORS and MIRAI also rebroadcast select international stations, rarely primary outside main regions. 
 
-[changelog]
-registration removed; landing_url+access_url added; datum_epoch added; 
+[output]
+deliverable: Refactored docs/ntrip_research/[entry] file
+Output per file:
+\`\`\`
+## CC_Name
+tag: MAJOR | MINOR 
+delta: <1-3 lines>
+unresolved: <skip if empty, ≤100 words>
+\`\`\`
+Don't pollute caller context with fluff

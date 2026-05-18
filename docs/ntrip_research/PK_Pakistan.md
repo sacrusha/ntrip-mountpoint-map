@@ -1,14 +1,17 @@
 # Pakistan [PK] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12 (refresh; prior pass 2026-05-06)
+**Date researched:** 2026-05-17 (refresh; prior pass 2026-05-12; no caster-status change)
 
 ## Status: NO national public NTRIP caster — single rtk2go community station (Karachi) is the only known free real-time path
 
 | Field | Value |
 |---|---|
 | **Active public NTRIP RTK caster (national)** | No — no publicly documented government NTRIP endpoint |
+| **landing_url** | http://www.surveyofpakistan.gov.pk/ (Survey of Pakistan — national mapping agency; no positioning service published). For the rtk2go community path: http://rtk2go.com/ |
+| **access_url** | n/a — no national service. rtk2go community caster: http://rtk2go.com/ (operator-set credentials; reservation message required per rtk2go terms) |
 | **Community real-time stream** | 1 rtk2go mountpoint: `Stingray_tech` (24.89°N, 67.09°E, Karachi area) — confirmed in `data/stations.json` via `scripts/stations_by_country.py PAK` 2026-05-12 |
 | **host:port — national** | null |
 | **host:port — rtk2go** | `rtk2go.com:2101` (mountpoint `Stingray_tech`) |
+| **vrs** | no — `Stingray_tech` is a single-base rtk2go mountpoint; no NRTK/VRS infrastructure published for Pakistan |
 | **tariff — national** | null |
 | **tariff — rtk2go** | Free (community-hosted; operator-set; rtk2go terms apply — reservation message required) |
 | **hobbyist_eligibility** | rtk2go: yes (open community caster). No national service to evaluate. |
@@ -50,4 +53,5 @@
 - mvarga1989 GitHub GNSS CORS networks list (Pakistan not listed): https://github.com/mvarga1989/The-list-of-GNSS-CORS-RTK-networks
 - RTK2go monitor (1 Pakistan mountpoint `Stingray_tech` near Karachi, confirmed via `scripts/stations_by_country.py PAK` 2026-05-12)
 - GEODNET (no Pakistan coverage confirmed)
-- Local pipeline check `scripts/stations_by_country.py PAK` (2026-05-12): rtk2go = 1 (Stingray_tech), centipede = 0, earthscope = 0
+- Local pipeline check `scripts/stations_by_country.py PAK` (2026-05-17): rtk2go = 1 (Stingray_tech), centipede = 0, earthscope = 0, euref_ip = 0, igs_ip = 0, auscors = 0, mirai = 0
+- curl probe `suparco.biz/pak-rehber/` 2026-05-17 — HTTP 403 (page exists but blocks unauth scraping; "authorized users only" gate stands)

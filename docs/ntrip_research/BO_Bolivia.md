@@ -15,7 +15,7 @@ Bolivia has an active commercial + institutional NTRIP ecosystem (RED-GEO, GEOEQ
 | **host:port** | hostname not publicly disclosed; **port 6060**; credentials issued post-subscription |
 | **tariff** | not published — direct-contact only (Bolivianos, undisclosed amount and VAT treatment) |
 | **num_stations** | **12+ confirmed** as of 2026-05-15: original 7 (GEO1 La Paz, GEO2 Cochabamba, GEO3 Oruro, GEO4 Sacaba, GEO5 Tarija, GEO6 Santa Cruz, GEO7 Ivirgarzama) **plus** 2026 Santa Cruz metro expansion GEO20, GEO26, GEO28, GEO29 (Cotoca) — alliance signed 2026-04-20 with COTOBOL-SCZ, BESSEL, SITCO; full operational coverage of Santa Cruz metro area announced for 2026-05-15 (source: cotobolscz.blogspot.com) |
-| **vrs** | ? (no public mountpoint list; per-station mountpoints inferred from naming `GEO1`..`GEO29`, suggests single-base, not network solution) |
+| **vrs** | ? |
 | **hobbyist_eligibility** | **no (effective)** — governed by COTOBOL under Ley 2997 del Topógrafo (2005-03-14); credentials issued via professional surveyor channels |
 | **legal_residency_required** | ? — not stated; surveyor licensing is the practical gate, not residency |
 | **last_confirmed_alive** | 2026-05-15 — `https://www.geoboliviasrl.info/redgeo` HTTP 200, footer © 2026 GEOBOLIVIA SRL; partner blog (cotobolscz.blogspot.com) posted 2026-04 and 2026-05 expansion news |
@@ -30,10 +30,10 @@ Bolivia has an active commercial + institutional NTRIP ecosystem (RED-GEO, GEOEQ
 | **tariff** | not published; payment via QR-code mobile transfer in Bolivianos, capped at 500 Bs per transaction; no annual price posted |
 | **num_stations** | not disclosed — landing counter shows placeholder "0 +" |
 | **vrs** | ? |
-| **hobbyist_eligibility** | ? — no professional-licence wording on landing page; mobile-payment friendly suggests broader walk-in access than RED-GEO, but unverified |
+| **hobbyist_eligibility** | ? |
 | **legal_residency_required** | ? |
 | **last_confirmed_alive** | 2026-05-15 — HTTP 200; contact: +591 78866188, info@geoequipossrl.com, Calle Pinilla 2588, La Paz |
-| **datum_epoch** | not declared on site; presumed MARGEN-SIRGAS (Bolivia's only legal national frame) — OMIT until citable from operator |
+| **datum_epoch** | omitted — no operator declaration |
 
 ### 3. MARGEN-ROC NTRIP — IGM Bolivia / CEPAG (institutional)
 | Field | Value |

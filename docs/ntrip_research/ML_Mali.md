@@ -1,5 +1,5 @@
 # Mali [ML] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06 (refreshed 2026-05-12)
+**Date researched:** 2026-05-06 (refreshed 2026-05-17 — still no national caster; conflict + AES governance unchanged)
 
 ## Status: NO active public NTRIP caster
 

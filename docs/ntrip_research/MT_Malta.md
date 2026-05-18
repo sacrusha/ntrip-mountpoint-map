@@ -1,5 +1,5 @@
 # Malta [MT] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06 (refreshed 2026-05-12)
+**Date researched:** 2026-05-06 (refreshed 2026-05-17 — EneGIS rtk2go base still only free RTK on Malta; ArduSimple confirms no national network)
 
 ## Status: NO government caster — one rtk2go volunteer base (EneGIS, Naxxar) is the only free RTK option on the islands; Italian commercial networks do not extend to Malta
 

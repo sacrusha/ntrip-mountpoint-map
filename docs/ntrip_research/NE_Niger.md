@@ -1,5 +1,5 @@
 # Niger [NE] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12 (re-verified; status unchanged from 2026-05-06)
+**Date researched:** 2026-05-17 (re-verified; status unchanged from 2026-05-12. Nearest Centipede base is `BJDJ` Benin 426 km — far beyond RTK range; nearest IGS-IP/EarthScope NIAM is RINEX-archive only)
 
 ## Status: NO active public NTRIP caster
 
@@ -21,7 +21,7 @@ No formal project announcement for a Niger national NTRIP/RTK caster was found i
 - **Only known GNSS station**: NIAM (Niamey International Airport, 13.4793°N / 2.1832°E), installed 2005–2006 by IGN France under the AMMA (African Monsoon Multidisciplinary Analysis) project. Purpose is atmospheric water-vapor monitoring (3 years of data 2006–2008 cited as most complete). Per AMMA documentation, data is hosted at http://amma-gps.ign.fr and the station is **not an RTK/NTRIP corrections source**. Station also archived at EarthScope/UNAVCO Spotlight (https://spotlight.unavco.org/station-pages/niam/niam.html) and SONEL (https://www.sonel.org/spip.php?page=gps&idStation=2570).
 - **IGNN** (Institut Géographique National du Niger, ignn.ne): Website was defaced/unreachable at time of research (2026-05-06; 2026-05-12 re-check confirms no published GNSS or RTK service).
 - **AFREF**: Niger noted in older literature as having at least one CORS that "could be available for AFREF purposes" — no real-time NTRIP stream from Niger appears in any AFREF or BKG sourcetable.
-- **Cross-border alternatives within ~50 km**: None. Nearest rtk2go base is `fssoyo` (Oyo, Nigeria) ~661 km south of Niamey — far beyond any RTK baseline.
+- **Cross-border alternatives within ~50 km**: None. Nearest rtk2go base is `fssoyo` (Oyo, Nigeria) ~661 km south of Niamey; nearest Centipede base is `BJDJ` (Djougou, Benin, 9.69 N 1.66 E) ~426 km south — both far beyond any RTK baseline.
 - Global commercial networks (GEODNET, ONOCOY, PointOne, Centipede-RTK): No Niger coverage confirmed.
 - Practical workaround: Deploy a local base station for single-base RTK, or use satellite-based PPP (Trimble RTX, Fugro StarFix) or free Galileo HAS (~40 cm).
 
@@ -45,4 +45,4 @@ No formal project announcement for a Niger national NTRIP/RTK caster was found i
 - ArduSimple country selector
 - CORSstations.com, GitHub mvarga1989 list
 - GEODNET, ONOCOY
-- Local data: `py scripts/stations_by_radius.py 13.5 2.1 800` — nearest result is fssoyo (NGA) at 661 km, no NE station present (2026-05-12)
+- Local data: `py scripts/stations_by_radius.py 13.5 2.1 1500` — 1 result: Centipede `BJDJ` (Benin) at 426 km; 0 NE stations present (2026-05-17 snapshot)

@@ -1,5 +1,5 @@
 # Libya [LY] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12
+**Date researched:** 2026-05-17 (re-verified via WebSearch; still no LY caster; conflict-driven CORS gap unchanged)
 
 ## Status: NO active public NTRIP caster
 

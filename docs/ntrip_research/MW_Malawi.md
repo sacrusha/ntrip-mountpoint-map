@@ -1,5 +1,5 @@
 # Malawi [MW] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12 (re-verified; status unchanged from 2026-05-06)
+**Date researched:** 2026-05-17 (re-verified; status unchanged from 2026-05-12. `py scripts/stations_by_country.py MWI` confirms 0 MW stations across all 6 ingested sources)
 
 ## Status: NO confirmed public NTRIP caster; AFREF archive station in Lilongwe (RINEX only)
 

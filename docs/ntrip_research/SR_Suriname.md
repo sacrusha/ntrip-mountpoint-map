@@ -1,5 +1,5 @@
 # Suriname [SR] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-13 (revised from 2026-05-06 — prior conclusion "no caster" was incorrect; MI-GLIS operates an 8-station national CORS with NTRIP that has been a paid service since 2024-07-01)
+**Date researched:** 2026-05-17 (re-probed; `miglis.sr/cors-data-stations/` HTTP 200, "Datum: ITRF00" still inline, 8-station table + NTRIP workflow unchanged)
 
 ## Status: YES — MI-GLIS national CORS network with NTRIP subscription; paid since 2024-07-01; quote-based pricing, no published tariff; eligibility appears professional/institutional
 
@@ -14,13 +14,14 @@
 | **num_stations** | 8 physical CORS (see table below) |
 | **constellations** | Trimble Zephyr Geodetic antennas; mix of Trimble receivers (mainly NetR9/NetR5 class hardware on station photos) — multi-GNSS hardware, exact constellation list not published |
 | **datum** | ITRF00 |
+| **datum_epoch** | cited https://miglis.sr/cors-data-stations/ — ITRF00; epoch not declared by operator (operator portal lists "Datum: ITRF00" inline next to the 8-station table; no epoch shown) |
 | **tariff — published** | No public tariff. Subscription requested by emailing `corsserver@miglis.sr` with: completed CORS-services application form (`AANVRAAGFORMULIER CORS DIENSTEN MI-GLIS`) and an N-formulier (instrument-registration form). After approval the customer signs a contract with a chosen package and receives NTRIP credentials |
 | **tariff — known fragments** | Re-opening a closed account: **USD 25.00**. Invoicing is in Surinamese Dollar (SRD) at the weekly Central Bank of Suriname exchange rate, valid 14 business days from invoice issue. Specific monthly / annual / per-station rates were not visible on the public web on 2026-05-13 |
 | **VAT** | Suriname BTW (VAT) currently 10 % on most services (rate confirmed in Belastingdienst SR schedule) — not separately broken out in the price fragments seen |
 | **hobbyist_eligibility** | Unclear — application form is `TBV OVERIGE INSTANTIES` (For Other Institutions). The form, the contract requirement, and the N-formulier (instrument registration) all point to a professional/institutional flow. No public hobbyist tier; nothing explicitly bars an individual from applying, but the workflow is not designed for one-off use |
 | **legal_residency_required** | Unclear — Suriname-based contract law applies (SRD invoicing, Surinamese banking). No explicit residency rule on the public site, but in practice an SRD-billed contract requires a local point of payment |
 | **registration** | Email `corsserver@miglis.sr`. Application form (PDF): `https://miglis.sr/wp-content/uploads/2023/08/AANVRAAGFORMULIER-CORS-DIENSTEN-MI-GLIS-TBV-OVERIGE-INSTANTIES.pdf` |
-| **last_confirmed_alive** | 2026-05-13 — `miglis.sr/cors-data-stations/` HTTP 200 with full 8-station table and live NTRIP application instructions; `corsruwedata.miglis.sr` TCP-connect refused from this sandbox (consistent with login gating, not a service outage) |
+| **last_confirmed_alive** | 2026-05-17 — `miglis.sr/cors-data-stations/` HTTP 200 (Server: Apache); 8-station table + Datum: ITRF00 + NTRIP application instructions all unchanged from 2026-05-13; `corsruwedata.miglis.sr` remains login-gated |
 
 ## MI-GLIS CORS Stations (8)
 

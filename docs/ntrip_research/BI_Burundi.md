@@ -15,7 +15,7 @@
 | **vrs** | n/a |
 | **hobbyist_eligibility** | null — no service exists |
 | **legal_residency_required** | null — no service exists |
-| **last_confirmed_alive** | null — no caster has ever been confirmed alive |
+| **last_confirmed_alive** | IGEBU portal probe 2026-05-15 HTTP 200 — no caster URL exposed; no caster has been published/operational, so no caster-alive probe possible. |
 | **datum_epoch** | not citable — Burundi has no published modern GNSS datum/epoch (legacy datum Arc 1960 / Clarke 1880 in continued use per 2016 academic source; no official modernisation declaration found) |
 
 ## Most Recent Project Announcement / Activity
@@ -36,7 +36,7 @@ Established 1980 (Decree 100/146). Three departments: Cartography & Topography, 
 ## Context Notes
 
 - **No BI GNSS station in any public registry**: IGS Network (0 results for BI), AFREF Operational Data Centre (afrefdata.org refused TCP connection from sandbox 2026-05-15), SONEL, EarthScope/GAGE, mvarga1989 community CORS list (BI not listed). Local `data/stations.json`: 0 BDI mountpoints.
-- **Geodetic status**: Active datum still Arc 1960 (Clarke 1880 ellipsoid) — not yet modernised to a GNSS-based national reference frame; ground control marks largely no longer visible in field (per SCIRP 2016 geodetic datum transformation paper for Burundi). No 2024–2026 official declaration of a modernised datum found.
+- **Geodetic status**: Active datum still Arc 1960 (Clarke 1880 ellipsoid) — not yet modernised to a GNSS-based national reference frame; ground control marks largely no longer visible in field (per Nibigira et al., "Transformation of Geodetic Datum from Arc 1960 to WGS 84 for Burundi using Helmert Method," *Positioning* 7(4), 2016 — DOI 10.4236/pos.2016.74012, https://www.scirp.org/journal/paperinformation?paperid=71725). No 2024–2026 official declaration of a modernised datum found.
 - **RCMRD**: Burundi is one of 20 RCMRD member states. The Leica SBC portal (corsdata.rcmrd.org) requires login; no Burundi-specific content accessible.
 - **AFREF/EAFREF**: Burundi is in the EAFREF (East African) regional sub-set but is NOT among AFREF countries listed with operational CORS stations.
 - **Global commercial/community networks**: GEODNET, ONOCOY, Centipede-RTK, RTKdata, RTK2GO — zero BI coverage.
@@ -73,5 +73,5 @@ Established 1980 (Decree 100/146). Three departments: Cartography & Topography, 
 - IGNFI PRRPB https://ignfi.fr/en/references/burundi-landscape-restoration-and-resilience-project-prrpb/
 - mvarga1989 GNSS CORS list (BI absent) https://github.com/mvarga1989/The-list-of-GNSS-CORS-RTK-networks
 - RTK2GO http://rtk2go.com/, Centipede-RTK https://www.centipede-rtk.org/, RTKdata https://rtkdata.online/network — 0 BI
-- SCIRP 2016 geodetic datum transformation paper for Burundi
+- Nibigira et al. 2016 (SCIRP *Positioning*), Burundi Arc 1960 → WGS 84 datum transformation, DOI 10.4236/pos.2016.74012 — https://www.scirp.org/journal/paperinformation?paperid=71725
 - Local: `data/stations.json` (0 BDI), `scripts/stations_by_radius.py` (RW EarthScope cluster >170 km)

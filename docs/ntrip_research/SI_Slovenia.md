@@ -1,5 +1,5 @@
 # Slovenia [SI] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-13
+**Date researched:** 2026-05-17 (prior: 2026-05-13)
 
 ## Status: YES — paid national NTRIP (SIGNAL); free for public bodies; individuals can subscribe; port 8080
 
@@ -22,7 +22,8 @@
 | **VAT** | Slovenian standard rate 22%; prices above are excl. VAT |
 | **hobbyist_eligibility** | Yes — individuals (fizična oseba) can register; no professional licence required |
 | **legal_residency_required** | Unclear — no explicit restriction for non-Slovenian EU users; registration requires postal mail of signed contract (4 copies) to Geodetski inštitut Slovenije, Jamova cesta 2, 1000 Ljubljana |
-| **last_confirmed_alive** | `178.172.26.131:8080` returned `SOURCETABLE 200 OK` on 2026-05-13 (TCP probe); Trimble Ntrip Caster 5.2; 113 STR mountpoints visible (VRS, MAC/MAX, single-station, multi-format) |
+| **last_confirmed_alive** | `178.172.26.131:8080` `SOURCETABLE 200 OK` on 2026-05-13 (TCP probe, Trimble Ntrip Caster 5.2, 113 STR). Pricing page `gu-signal.si/postopek-registracije/` re-fetched 2026-05-17: same headline €829.44/yr excl. VAT, billing 2025-04-01 → 2026-03-31 (page not yet refreshed for 2026-04 → 2027-03 billing year — confirm with gps@gis.si) |
+| **datum / epoch** | D96/TM (national projection over ETRS89) is Slovenia's official survey CRS; SIGNAL operator portal does not republish a frame/epoch declaration in the registration or services pages reachable from this sandbox — `omitted -- no citable operator declaration`. Cross-border products tie to ETRS89 via Slovenian state survey (GURS), but no SIGNAL operator page states epoch. |
 
 ## Context Notes
 
@@ -32,7 +33,7 @@
 - Non-commercial eligibility (public administration, students, civil societies) requires supporting documentation submitted to gps@gis.si within one week of application.
 - The SIGNAL portal (gu-signal.si) is in Slovenian; English support available via phone 01 200 29 29 or email gps@gis.si.
 - **Volunteer supplement (verified 2026-05-13)**: `py scripts/stations_by_country.py SVN` → rtk2go 4 SI volunteer bases (FRELIH, Kmetija-Budic, Lukez, MarkovciRTK), Centipede 4 SI nodes (MAKO, OUCE, PRIME, SIPOS). Useful coverage but SIGNAL is the primary RTK source.
-- Tariff observed on gu-signal.si/postopek-registracije/ on 2026-05-13.
+- Tariff re-verified on gu-signal.si/postopek-registracije/ on 2026-05-17: "Cena takega paketa znaša 829,44 € brez DDV, z možnostjo dodatnega 25% popusta…" — wording unchanged from 2025-04 schedule; new 2026-04 → 2027-03 billing schedule had not propagated to public page at fetch time.
 
 ## Post-Processing (RINEX) Fallback
 

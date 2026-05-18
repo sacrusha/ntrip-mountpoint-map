@@ -1,12 +1,19 @@
 # Nicaragua [NI] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12
+**Date researched:** 2026-05-17 (added IGS-IP MANA station Managua; re-verified EarthScope NIC streams unchanged)
 
-## Status: No domestic public NTRIP caster — INETER CORS is RINEX-only. However, EarthScope (NOTA) operates two NIC-tagged real-time NTRIP streams that are usable inside Nicaragua with an EarthScope NULA seat.
+## Status: No domestic public NTRIP caster — INETER CORS is RINEX-only. EarthScope (NOTA) operates two NIC-tagged real-time NTRIP streams (CNG2, JAPO) usable inside Nicaragua with an EarthScope NULA seat. The IGS station MANA (Managua, on the INETER campus) is additionally rebroadcast by BKG's global IGS-IP caster (free, registration via BKG).
 
 | Field | Value |
 |---|---|
 | **Domestic public NTRIP RTK caster** | No |
-| **Foreign-operated NTRIP streams covering NI** | Yes — EarthScope NOTA: `CNG2_RTCM3P3` (12.50 N, -86.70 — near Chinandega), `JAPO_RTCM3P3` (11.53 N, -85.68 — near Juigalpa/San Carlos area). Both RTCM 3.3, GPS+GLO+BDS+GAL+SBAS+QZS, TRIMBLE NETR9, single-base. Auth required (Y), no NMEA, fee flagged `SEAT_REQUIRED` |
+| **Foreign-operated NTRIP streams covering NI** | Yes — EarthScope NOTA: `CNG2_RTCM3P3` (12.50 N, -86.70 — near Chinandega), `JAPO_RTCM3P3` (11.53 N, -85.68 — near Juigalpa/San Carlos area). Both RTCM 3.3, GPS+GLO+BDS+GAL+SBAS+QZS, TRIMBLE NETR9, single-base. Auth required (Y), no NMEA, fee flagged `SEAT_REQUIRED`. **Plus BKG IGS-IP**: `MANA00NIC0` (Managua, 12.15 N, -86.25, INETER campus IGS site) on `www.igs-ip.net:2101` — single-base raw RTCM 3, BKG registration required (free) |
+| **landing_url — EarthScope NOTA** | https://www.earthscope.org/data/gnss-data/ (operator description of GNSS / NTRIP services) |
+| **access_url — EarthScope NOTA** | https://www.earthscope.org/user/ (NULA acceptance + seat assignment portal) |
+| **landing_url — BKG IGS-IP** | https://igs.bkg.bund.de/ntrip/ (BKG NTRIP service description) |
+| **access_url — BKG IGS-IP** | https://igs.bkg.bund.de/ntrip/register (BKG NTRIP account registration) |
+| **num_stations covering NI** | 3 physical CORS visible to NI users: 2 EarthScope NOTA (CNG2, JAPO) + 1 IGS-IP (MANA Managua). Snapshot 2026-05-17 via `py scripts/stations_by_country.py NIC`. INETER's domestic RGNA station count is undeclared on public-facing INETER pages. |
+| **datum_epoch — EarthScope NOTA / IGS-IP rebroadcasts** | omitted — no citable per-stream operator declaration. EarthScope and BKG do not publish per-mountpoint datum on the NIC streams; per primer, do NOT infer ITRF/IGS from caster identity. |
+| **datum_epoch — INETER RGNA** | omitted — no citable declaration on `ineter.gob.ni` geodesy or catastro pages (RINEX-only service, datum not stated in machine-citable form on the indexed portal) |
 | **Domestic government CORS network** | Yes — INETER CORS (Dirección General de Geodesia y Cartografía); RINEX post-processing only |
 | **INETER access portal** | https://consultacf.ineter.gob.ni (Catastro Físico) — RINEX downloads on request |
 | **EarthScope sourcetable** | `ntrip.earthscope.org:2101` (RTCM 3 streams listed for NIC, MEX, HND, CRI, etc.). EarthScope's user/licensing portal lives at `earthscope.org/user/` (NULA acceptance, seat assignment); there is no separate `gnss.earthscope.org` hostname — caster, portal and archive (`gage-data.earthscope.org`) are distinct names on the `earthscope.org` tree. |
@@ -25,6 +32,10 @@ Two NIC stations are streamed live via EarthScope's NTRIP caster as of 2026-05-1
 | `JAPO_RTCM3P3` | 11.53 | -85.68 | Trimble NETR9 | RTCM 3.3 (MSM7) | GPS GLO BDS GAL SBAS QZS |
 
 These are single-base streams — operate effectively within ~30–50 km of each station for full RTK. CNG2 covers the Chinandega / León area (≈64 km from Managua). JAPO covers the central Cocibolca / Río San Juan corridor. Managua city centre (12.13 N, -86.25 W) sits between them; CNG2 is the closer base.
+
+## BKG IGS-IP — MANA (Managua) live single-base
+
+The IGS station `MANA00NIC0` (12.15 N, -86.25, on INETER's Managua campus) is republished live on BKG's IGS-IP caster (`www.igs-ip.net:2101`). Free; requires a BKG NTRIP account (`igs.bkg.bund.de/ntrip/register`). Single-base raw 1 Hz RTCM 3; effective RTK within ~30 km of Managua. Operator authority is IGS (data feed contributed by INETER); see https://network.igs.org/MANA00NIC for site metadata.
 
 To use: register a free EarthScope account → submit/accept NULA → request a seat → use issued credentials against `ntrip.earthscope.org:2101`. See https://www.earthscope.org/data/gnss-data/.
 
@@ -75,5 +86,5 @@ No announcement of a planned Nicaragua public NTRIP caster found as of 2026-05-1
 - EarthScope GNSS Data Services: https://www.earthscope.org/data/gnss-data/
 - NTRIP-list.com North America: https://ntrip-list.com/north-america/
 - ArduSimple country directory: https://www.ardusimple.com/rtk-correction-services-in-your-country/
-- Local data: `py scripts/stations_by_country.py NIC` — 0 rtk2go, 0 Centipede, 2 EarthScope (CNG2_RTCM3P3, JAPO_RTCM3P3) (2026-05-12)
-- Local file: data/earthscope.sourcetable lines 150 (CNG2), 239 (JAPO) (snapshot 2026-05-12)
+- Local data: `py scripts/stations_by_country.py NIC` — 2 EarthScope (CNG2_RTCM3P3, JAPO_RTCM3P3) + 1 IGS-IP (MANA00NIC0) = 3 MPs across 2 sources (snapshot 2026-05-17); 0 rtk2go, 0 Centipede
+- IGS station page MANA00NIC: https://network.igs.org/MANA00NIC

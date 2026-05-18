@@ -57,7 +57,8 @@ When done, re-read your file; if any half-sentence contains numbers, station cou
 #### research
 
 ```
-Process NTRIP research entries per docs/research_task.txt + docs/research_task.primer.txt
+Task in research_task.txt
+Fix NTRIP research entries per docs/research_task.txt + docs/research_task.primer.txt; Plan your approach immediately *after* reading both files.
 
 Entries:
 - docs/ntrip_research/<CC_X>.md
@@ -65,22 +66,13 @@ Entries:
 
 URL list: .tmp/preresearch/<batch_id>.md - Reachable starting points, not a ceiling.
 
-Output per file:
-\`\`\`
-## CC_Name
-tag: MAJOR | MINOR | NO-CHANGE
-delta: <1-3 lines>
-unresolved: <or "none">
-\`\`\`
-Total ≤900 words.
-
-When done, self review whether you faithfully executed research_task, fix when not.
+When done, self review whether you truly followed research_task, fix when not.
 ```
 
 #### review A — spec
 
 ```
-Spec-compliance review of <N> refreshed NTRIP research files. Read-only.
+Spec-compliance review of <N> NTRIP research files. Read-only.
 Research spec + context: docs/research_task.txt + docs/research_task.primer.txt
 
 Files: [list]
@@ -100,7 +92,7 @@ When done, for each FLAG re-read the rule cited; downgrade if flag is only style
 #### review B — factual
 
 ```
-Factual probe of <N> refreshed NTRIP research files. Spot-verify 1-3 high-value new/modified claims per file via direct fetch. Read-only.
+Factual probe of <N> NTRIP research files. Spot-verify 1-3 high-value new/modified claims per file via direct fetch. Read-only.
 Research spec + context: docs/research_task.txt + docs/research_task.primer.txt
 
 Files: [list]

@@ -11,7 +11,7 @@ Three commercial nationwide RTK services dominate (Qianxun · CMCC OneNet · Ten
 | Active commercial NTRIP | Yes — Qianxun, CMCC, Tencent — three operator endpoints curl-verified `SOURCETABLE 200 OK` on 2026-05-15 |
 | National licensed CORS | Yes — Ministry of Natural Resources / NGCC, 2,700+ stations, no public endpoint |
 | Foreign hobbyist eligibility | None — real-name verification + Chinese mobile gate at every commercial service; 测绘资质 gate at every government service |
-| datum_epoch | CGCS2000 = ITRF97 @ epoch 2000.0, ellipsoid GRS80 (a=6378137 m, 1/f=298.257222101); adopted 2008-07-01 by NASG. Cited https://epsg.io/4490 and https://link.springer.com/article/10.1186/s43020-020-00032-w |
+| datum_epoch | omitted — no citable operator declaration; CGCS2000 = ITRF97 @ epoch 2000.0 widely documented in EPSG/literature but not via operator portal. Reviewer B confirmed the underlying fact; the missing artefact is an MNR/NASG-hosted page declaring the adoption. Qianxun publishes frame-per-port (`:8001` ITRF2008, `:8002` WGS84, `:8003` CGCS2000) but no epoch declaration on operator pages probed 2026-05-15. |
 
 ---
 
@@ -188,9 +188,9 @@ National datum is **CGCS2000** (China Geodetic Coordinate System 2000):
 - Ellipsoid: GRS80 (semi-major axis a = 6378137 m, inverse flattening 1/f = 298.257222101)
 - Officially adopted 2008-07-01 by NASG (now Ministry of Natural Resources / 自然资源部)
 - Origin: Earth centre of mass; orientation: BIH 1984.0
-- Sources: https://epsg.io/4490 (EPSG:4490) · https://link.springer.com/article/10.1186/s43020-020-00032-w (Cheng et al., Satellite Navigation 2020 — quotes "CGCS2000 is referred to ITRF97 at the reference epoch 2000.0")
+- Operator-portal citation: **omitted** per primer rule (declared-only, operator portal / spec / decree). EPSG:4490 (epsg.io) and the Cheng et al. Satellite Navigation 2020 paper (Springer) document the fact but are neither MNR/NASG portal nor decree text. Reviewer B confirmed the fact is correct; the spec-conformance issue is the citation source. A direct MNR/NASG operator-portal URL declaring CGCS2000 = ITRF97 @ 2000.0 adoption 2008-07-01 was not findable on 2026-05-15.
 
-Qianxun explicitly publishes one NTRIP port per reference frame: `:8001` = ITRF2008 · `:8002` = WGS84 · `:8003` = CGCS2000. Receiver workflows in mainland China typically request `:8003` to keep coordinates in the national CGCS2000 frame.
+Qianxun explicitly publishes one NTRIP port per reference frame: `:8001` = ITRF2008 · `:8002` = WGS84 · `:8003` = CGCS2000 (no epoch declared on Qianxun pages). Receiver workflows in mainland China typically request `:8003` to keep coordinates in the national CGCS2000 frame.
 
 ---
 

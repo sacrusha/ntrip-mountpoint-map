@@ -1,21 +1,23 @@
 # Portugal [PT] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12 (prior version: 2026-05-06)
+**Date researched:** 2026-05-17 (prior: 2026-05-12)
 
-## Status: YES — free government NTRIP caster (ReNEP, DGT) operating; new Funchal station added 2026-05-01
+## Status: YES — free gov NTRIP caster (ReNEP, DGT) operating; Funchal station live since 2026-05-01
 
 | Field | Value |
 |---|---|
 | **Active public NTRIP RTK caster** | Yes (ReNEP — free) |
 | **Operator** | Direção-Geral do Território (DGT), Ministry of Territorial Cohesion |
-| **host:port — ReNEP** | `193.137.94.71` (FQDN behind the public portal `renep.dgterritorio.gov.pt`); port 2101 (physical/single-base RTCM3), port 2102 (MSM5), port 2106 (nearest-station VRS), port 2108 (network corrections). Source: project's networks.md entry `renep` (DGT-confirmed), and Leica/ArduSimple guides citing 2101/2106/2108. |
-| **Number of stations** | 47 (national territory: mainland + Azores + Madeira); Funchal added 2026-05-01 |
-| **VRS** | Yes — port 2106 (nearest-station VRS) and port 2108 (network corrections) per the DGT real-time products PDF and networks.md |
-| **Datum / Reference frame** | ETRS89 (mainland) · ITRF93 (Azores, Madeira) |
-| **Accuracy** | < 10 cm minimum (DGT); RTK technique delivers 2–5 cm horizontal |
-| **tariff** | Free — "standard products and services are at no cost" (DGT); registration required |
-| **hobbyist_eligibility** | yes — registration open to all GNSS equipment users; no professional licensing stated |
-| **legal_residency_required** | no explicit residency requirement stated |
-| **last_confirmed_alive** | ReNEP portal HTTP 200 on 2026-05-12; most recent operator news item dated 2026-05-01 ("Funchal — nova estação"); RTK service page states "operacional" |
+| **landing_url** | `https://renep.dgterritorio.gov.pt/` |
+| **access_url** | `https://renep.dgterritorio.gov.pt/node/add/registo` (registration form) |
+| **host:port — ReNEP** | `193.137.94.71:2101` (FQDN `renep.dgterritorio.gov.pt`). Ports per DGT "Produtos tempo real" PDF (Fev.2025): 2101 single-base RTCM3 GPS+GLO; 2102 single-base RTCM3 MSM5 (GPS+GLO+GAL, some + BDS); 2106 Nearest-Station (NSRT23, NSRT, NSR5); 2108 Network Corrections (ACRT, ACR5). |
+| **num_stations** | 46 advertised on :2101 ST 2026-05-17 (incl. FUN1 Funchal new). PDT lists ~50 mountpoints across 2101+2102 incl. MELR Melriça, SCA1 S. Manços, ODEM new. ReNEP portal prose still cites "47 CORS" in places — current observed = 46 on live ST 2026-05-17. |
+| **VRS** | Yes — port 2106 (Nearest-Station VRS) + port 2108 (Automatic Cells Network Correction). |
+| **datum_epoch** | ETRS89 mainland · ITRF93 Azores + Madeira (DGT-declared on ReNEP portal: "Sistemas de Referência ETRS89 (continente) e ITRF93 (regiões autónomas)" — confirmed 2026-05-17 via renep.dgterritorio.gov.pt). No public epoch declaration in operator docs. |
+| **Accuracy** | < 10 cm minimum (DGT); RTK 2–5 cm horizontal |
+| **tariff** | Free; registration required |
+| **hobbyist_eligibility** | yes — open to all GNSS users; no professional licence required |
+| **legal_residency_required** | no explicit residency requirement |
+| **last_confirmed_alive** | `193.137.94.71:2101` SOURCETABLE 200 OK 2026-05-17 (Leica GNSS Spider 7.8.0.9445); 46 STR records advertised; FUN1 Funchal present (32.65, -16.89). |
 
 ## Service Details
 
@@ -23,22 +25,25 @@
 
 Portugal's national GNSS CORS network providing free real-time RTK and post-processing data in ETRS89 (mainland) and ITRF93 (Azores/Madeira). Operated by Direção-Geral do Território (DGT), Ministry of Territorial Cohesion.
 
-### Real-time Products / Ports
+### Real-time Products / Ports (DGT PDF "Produtos tempo real", Fev.2025)
 
-Per the DGT "ReNEP produtos tempo real" PDF and the project's networks.md entry:
+| Port | Product | Constellations |
+|---|---|---|
+| 2101 | Single-base (manual) RTCM3 | GPS+GLO |
+| 2102 | Single-base RTCM3 MSM5 | GPS+GLO+GAL (some stations +BDS) |
+| 2106 | Nearest-station: NSRT23 (RTCM2.3), NSRT (RTCM3), NSR5 (MSM5 4-constel) | varies |
+| 2108 | Network Corrections: ACRT (RTCM3), ACR5 (MSM5) | varies, ACR5 = 4-constel |
 
-| Port | Product |
-|---|---|
-| 2101 | Physical / single-base, RTCM 3 |
-| 2102 | MSM5 (multi-signal message) |
-| 2106 | Nearest-station VRS |
-| 2108 | Network corrections |
+Host: `193.137.94.71` (FQDN `renep.dgterritorio.gov.pt`). 4-constellation (GPS+GLO+GAL+BDS) confirmed via PDF MSM5 tables — significant upgrade vs. prior project notes that suggested GPS-only.
 
-Host: `193.137.94.71` — also reachable behind the DGT portal `renep.dgterritorio.gov.pt`.
+### Coverage + Recent Operational Changes
 
-### Coverage and 2026-05-12 Update
-
-47 stations across mainland Portugal, Azores and Madeira. The 2026-05-01 news item "Funchal — nova estação" announces the addition of a new station at Funchal (Madeira), increasing the Madeira sub-network coverage. Recent operational changes also reported at Leiria, Fajão and Melriça.
+46 stations on live ST 2026-05-17 (mainland Portugal + Azores: FRNS Furnas, PDEL Ponta Delgada, TERC Terceira, FLRS Flores; + Madeira: FUNC + FUN1 Funchal). News timeline 2026:
+- 2026-05-01 FUN1 Funchal new station live
+- 2026-03-10 Melriça inactive (again)
+- 2026-02-24 Melriça resumed
+- 2026-02-06 Leiria + Fajão operational
+- 2026-02-02 Fajão + Melriça offline
 
 ### Access Procedure
 
@@ -70,21 +75,21 @@ CIGeoE (Centro de Informação Geoespacial do Exército, Army) also operates GNS
 
 | Service | URL | Cost |
 |---|---|---|
-| **ReNEP RINEX FTP** — hourly/daily RINEX files from all 47 CORS | ftp://ftp.dgterritorio.pt/ReNEP/ | Free (no login required) |
+| **ReNEP RINEX FTP** — hourly/daily RINEX files from all CORS (46 on live ST 2026-05-17; portal prose says 47) | ftp://ftp.dgterritorio.pt/ReNEP/ | Free (no login required) |
 | **EUREF Permanent Network** — selected Portuguese stations | https://epncb.oma.be/ | Free |
 
 ## Sources Consulted
 - ReNEP portal: https://renep.dgterritorio.gov.pt/ (HTTP 200, 2026-05-12; news item Funchal nova estação dated 2026-05-01)
 - ReNEP stations list: https://renep.dgterritorio.gov.pt/estacoes
 - ReNEP stations table: https://renep.dgterritorio.gov.pt/estacoes-lista
-- ReNEP real-time products PDF: https://renep.dgterritorio.gov.pt/sites/default/files/ReNEP-produtos-tempo-real.pdf
+- ReNEP real-time products PDF: https://renep.dgterritorio.gov.pt/sites/default/files/ReNEP-produtos-tempo-real.pdf (Fev.2025 ed., GPS+GLO+GAL+BDS MSM5 confirmed)
 - DGT "How to use ReNEP" (EN): https://www.dgterritorio.gov.pt/node/803?language=en
-- DGT geodesic infrastructure: https://www.dgterritorio.gov.pt/geodesia/infraestrutura-geodesica
+- DGT geodesia PDF (ITRF93 Azores+Madeira declaration): https://www.dgterritorio.gov.pt/sites/default/files/ficheiros-geodesia/1-InfraestuturaGeodesica-DGeod.pdf
+- DGT geodesia URL `https://www.dgterritorio.gov.pt/geodesia/infraestrutura-geodesica` → HTTP 404 on 2026-05-17 (page moved/removed)
 - ReNEP RTK operational status: https://renep.dgterritorio.gov.pt/node/1142
 - ReNEP RTK access limitations notice (2019): http://renep.dgterritorio.gov.pt/node/1132
 - ANACOM ReNEP description PDF: https://www.anacom.pt/streaming/rede_nacional_estacoes_permanentesGNSS.pdf?contentId=992948&field=ATTACHED_FILE
 - ArduSimple Portugal RTK page: https://pt.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-portugal/
 - gov.pt ReNEP service page: https://www2.gov.pt/servicos/consultar-a-informacao-da-rede-nacional-de-estacoes-permanentes-gnss-renep-
 - Project networks.md entry `renep` (host 193.137.94.71, port mapping)
-- Project country-survey.md entry `PT — Portugal` (date_added 2026-04-29)
-- Local: `py scripts/stations_by_country.py PRT` (2026-05-12) — 1 rtk2go base (H_Moita_NTRIP at 38.44, -8.46)
+- Local `scripts/stations_by_country.py PRT` (2026-05-17): renep=46, EUREF-IP=8, IGS-IP=5, AUSCORS=1 (PDEL mirror), MIRAI=1 (ENAO mirror), rtk2go=2 (H_Moita_NTRIP, R4F_RTK_ENV2).

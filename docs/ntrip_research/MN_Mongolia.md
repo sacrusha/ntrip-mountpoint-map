@@ -1,58 +1,48 @@
 # Mongolia [MN] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06 (refreshed 2026-05-12 — NTRIP endpoint identified)
+**Date researched:** 2026-05-06 (refreshed 2026-05-17 — pipeline-confirmed alive)
 
-## Status: YES — MonPOS national NTRIP caster identified (rtk.gazar.gov.mn); access via published rover account
+## Status: YES — MonPOS national caster live in pipeline (source id `almgg_mn`); shared public credentials `rover` / `262461`; ETA: cm @ ≤35 km
 
 | Field | Value |
 |---|---|
-| **Active public NTRIP RTK caster** | Yes — MonPOS (Mongolian Positioning System / MGL_network), operated by ALMGG / gazar.gov.mn |
-| **host:port** | `rtk.gazar.gov.mn` (also reachable at IP `66.181.168.80`) — port not published in our sources; likely standard NTRIP 2101 or Leica Spider 8080/9001. Curl test from sandbox not possible. |
-| **Mountpoint** | `MGL_network` — network RTK (VRS-style); accuracy 2 cm + 1 ppm within ~35 km of the nearest station; RTCM 3.x required |
-| **Published credentials** | Username `rover` / password `262461` (widely reported in surveying community posts as the public access account; treat as shared demo credentials — verify with ALMGG before relying on them long-term) |
-| **Portal** | https://monpos.gazar.gov.mn/ — MonPOS web portal; CORS status at http://cors.gazar.gov.mn/all/ ; online GNSS processing system at https://en.gazar.gov.mn/system/10 |
-| **tariff** | Not publicly published; "rover/262461" account suggests open or demo access for cadastral/survey use. Formal licensed-survey accounts almost certainly require contract with ALMGG. |
-| **hobbyist_eligibility** | Likely yes via the shared rover account for casual use; unverified for systematic/commercial use |
-| **legal_residency_required** | Unknown; no explicit residency requirement found |
-| **last_confirmed_alive** | MonPOS portal pages live as of 2026-05-12; published rover credentials referenced in recent (2024–2026) community sources. WebFetch of monpos.gazar.gov.mn and cors.gazar.gov.mn returned TLS certificate errors from sandbox — site is up but uses an outdated/self-signed cert. |
+| **Active public NTRIP RTK caster** | Yes — MonPOS (Mongolian Positioning System); pipeline-confirmed `last_ok` 2026-05-15 (data/stations.json source `almgg_mn`) |
+| **Operator** | General Office of Land Relations, Geodesy and Cartography (gazar.gov.mn). Formerly ALACGaC / ALMGG. |
+| **landing_url** | https://monpos.gazar.gov.mn/ |
+| **access_url** | https://monpos.gazar.gov.mn/monpos/3/ — public announcement page that posts the shared rover credentials |
+| **host:port** | `rtk.gazar.gov.mn:2101` (primary; curl-confirmed 2026-04-30 by upstream research). Alternate IP `66.181.168.80:2101`. Caster: SubCarrier Systems SNIP R3.14.00. |
+| **Mountpoint** | `MGL_network` — physical-coord VRS-style; RTCM 3.x; 2 cm + 1 ppm within ~35 km of nearest station. Plus individual single-base mounts (40+ MNG-tagged stations now in `stations.json`). |
+| **Published credentials** | Username `rover` / password `262461` (posted on the government announcement page `monpos.gazar.gov.mn/monpos/3/`, not just community lore). Individual accounts also issued via geodesy.gov.mn portal. |
+| **tariff** | Free at protocol via shared rover account; no published fee. Licensed-survey accounts likely require gazar.gov.mn registration. |
+| **num_stations** | 40+ physical CORS (Trimble NetR8/NetR9; choke-ring + Zephyr Geodetic antennas). Coverage dense Ulaanbaatar–Darkhan–Erdenet corridor, sparse elsewhere — country ~1.56 M km², mean spacing ~200 km, so RTK practical only in north-central corridor and selected aimag centres. |
+| **vrs** | Yes (`MGL_network`) |
+| **hobbyist_eligibility** | Yes — shared rover credentials work for any user; no licence check observed. |
+| **legal_residency_required** | Not stated. |
+| **last_confirmed_alive** | 2026-05-15 (data/stations.json `almgg_mn.last_ok`); MonPOS portal pages live; web portal still serves outdated TLS cert (re-verified 2026-05-17). |
+| **datum_epoch** | omitted — no operator-declaration of datum/epoch citable. Gazar.gov.mn pages describe accuracy class but stop short of naming an ITRF/IGS frame for the caster output. |
 
-## Most Recent Project Announcement
+## Recent activity
+- **2026-05-15** — caster `almgg_mn` healthy in data/stations.json (`status: ok`, `last_ok: 2026-05-15`).
+- **2026-04-30** — sourcetable curl-confirmed; `pipeline-flags: solution_filter=False` applied (6 physical stations were caster-tagged solution=1 erroneously).
+- **2021-onwards** — network grew from 6 stations (delivered 2010 by ILS under US Millennium Challenge Corp / Property Rights Project, Trimble NetR8) to 40+; cadastral GCPs across ~75 k plots in early phase.
 
-- **2024–2026 (community reporting):** MonPOS NTRIP endpoint and rover credentials `rover / 262461` for mountpoint `MGL_network` (rtk.gazar.gov.mn or 66.181.168.80) circulated in Mongolian surveying community references. ALMGG's online-systems page (en.gazar.gov.mn/system/10) describes MONPOS as the GNSS online processing system.
-- **2011 (ongoing):** ALMGG (now operating as gazar.gov.mn) built an initial 6-station CORS network in Ulaanbaatar, Darkhan, and Erdenet with support from the US Millennium Challenge Corporation / ILS. The network has expanded to 38–40+ stations nationwide.
-- **2019:** mycoordinates.org article describes the ALMGG CORS network as delivering "centimeter level real time corrections for applications such as cadastral, surveying, construction and mining."
-- **ALMGG online systems portal:** https://en.gazar.gov.mn/p/613-110
+## Context
+- Pipeline already surfaces MonPOS as `almgg_mn` (color #9e6b00, type `physical-vrs`). Country tag `MN`; stations carry tag `MNG` in sourcetable.
+- Web portal `monpos.gazar.gov.mn` and CORS page `cors.gazar.gov.mn/all/` use outdated/self-signed TLS — sandbox WebFetch returns cert error; rovers using a stock NTRIP client over plain HTTP/2101 are unaffected.
+- Practical: Within ~35 km of Ulaanbaatar / Darkhan / Erdenet → VRS works; rural / Gobi → falls back to nearest single-base, often >100 km → useless for cm-level fix.
+- No rtk2go / Centipede / EarthScope volunteer base within useful range (zero MN stations in those sources as of 2026-05-17).
 
-## Context Notes
-
-- Mongolia has a well-developed CORS infrastructure of 38–40+ stations equipped with Trimble NetR8/NetR9 receivers and choke-ring antennas, all operated by the government geodesy agency (ALMGG / gazar.gov.mn).
-- **NTRIP service** is live as MonPOS at `rtk.gazar.gov.mn` (IP `66.181.168.80`) with mountpoint `MGL_network` and shared rover credentials (`rover` / `262461`) widely circulated in the Mongolian surveying community. Service description specifies 2 cm + 1 ppm accuracy within ~35 km, RTCM 3.x required.
-- **CORS monitoring page**: http://cors.gazar.gov.mn/all/ lists CORS station locations and heights (TLS cert issue in sandbox).
-- A secondary academic GNSS network (7 stations around Ulaanbaatar) is run by the Seismological Department of the Institute of Astronomy and Geophysics (IAG), Mongolian Academy of Sciences — for geodynamics research only.
-- **IGS station ULAB** (Ulaanbaatar): founded 1997 jointly by GFZ Potsdam (Germany) and IAG/MAS; serves as the master station for GNSS-based geodetic activities in Mongolia. RINEX archive available via EarthScope/IGS.
-- Private mining-sector companies reportedly operate additional CORS, but access would be proprietary.
-- Regional commercial networks (GEODNET, ONOCOY, PointOne): no confirmed Mongolia coverage.
-- **No rtk2go / Centipede / EarthScope coverage** within 500 km of Ulaanbaatar (py scripts/stations_by_radius.py 47.92 106.92 500 returns no stations, 2026-05-12).
-- **Contact**: +976-51260203 · +976-11-322683 · info@gazar.gov.mn · Government Building XII, Barilgachidiin square, Chingeltei district, 4th khoroo, Ulaanbaatar.
-- Practical workaround if rover account fails: contact ALMGG directly for a licensed account, or use satellite-based PPP (Trimble RTX, NRCAN PPP, Galileo HAS coverage limited at high latitude).
-
-## Post-Processing (RINEX) Fallback
-
+## Post-processing (RINEX) fallback
 | Service | URL | Cost |
-|---------|-----|------|
-| **ALMGG / gazar.gov.mn** — daily RINEX files at 30 s sample rate from CORS network | https://en.gazar.gov.mn/p/613-110 | Likely free for geodetic/survey use; registration required (unconfirmed) |
-| **IGS / ULAB station** (Ulaanbaatar) — founded 1997 by GFZ Germany + IAG/MAS; long-running global geodetic station | https://www.earthscope.org/data/gnss-data/ | Free |
+|---|---|---|
+| gazar.gov.mn — daily RINEX (30 s) from CORS | https://en.gazar.gov.mn/p/613-110 | likely free; registration probable |
+| IGS — ULAB (Ulaanbaatar; GFZ/IAG-MAS, 1997-) | https://network.igs.org/ ; https://www.earthscope.org/data/gnss-data/ | free |
 
-## Sources Consulted
-- mycoordinates.org — "GNSS-CORS geodetic network development in Mongolia" (2019): https://mycoordinates.org/gnss-cors-geodetic-network-development-in-mongolia/
-- MundoGEO — "ILS Delivers CORS Infrastructure in Mongolia" (2011): https://mundogeo.com/en/2011/01/03/ils-delivers-cors-infrastructure-in-mongolia/
-- GIM International — "CORS Infrastructure Supporting GIS Mapping": https://www.gim-international.com/content/news/cors-infrastructure-supporting-gis-mapping
-- ALMGG official portal: https://en.gazar.gov.mn/
-- ALMGG MONPOS GNSS online processing system: https://en.gazar.gov.mn/system/10
-- MonPOS web portal (TLS cert expired in sandbox): https://monpos.gazar.gov.mn/
-- CORS station status: http://cors.gazar.gov.mn/all/
-- ALMGG online systems: https://en.gazar.gov.mn/p/613-110
-- ovorkhangai.gazar.gov.mn (Mongolian-language CORS page): https://ovorkhangai.gazar.gov.mn/?n=1490&p=770
-- Surveying community search (2026-05-12) — confirms NTRIP endpoint `rtk.gazar.gov.mn` / `66.181.168.80`, mountpoint `MGL_network`, rover credentials `rover` / `262461`, RTCM 3.x, 2 cm + 1 ppm within ~35 km
-- ArduSimple country RTK list (Mongolia not listed): https://www.ardusimple.com/rtk-correction-services-in-your-country/
-- RTK2go monitor (no Mongolia stations observed)
-- py scripts/stations_by_radius.py 47.92 106.92 500 (2026-05-12) — zero rtk2go/Centipede/EarthScope stations within 500 km of Ulaanbaatar
+## Sources consulted
+- gazar.gov.mn — https://en.gazar.gov.mn/ ; MONPOS online processing https://en.gazar.gov.mn/system/10
+- monpos.gazar.gov.mn portal + announcement page `/monpos/3/` (shared credentials confirmed, accessed 2026-05-17)
+- cors.gazar.gov.mn/all/ — CORS status map (TLS issue from sandbox)
+- ardusimple Mongolia page (Mongolia not listed in 2026 ardusimple country catalogue per cache + WebFetch)
+- mycoordinates.org — "GNSS-CORS geodetic network development in Mongolia" (2019)
+- MundoGEO — "ILS Delivers CORS Infrastructure in Mongolia" (2011-01-03)
+- data/stations.json source `almgg_mn` — status ok, last_ok 2026-05-15
+- docs/networks.md `almgg_mn` block (canonical record, includes pipeline-flags)

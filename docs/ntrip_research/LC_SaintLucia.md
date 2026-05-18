@@ -1,5 +1,5 @@
 # Saint Lucia [LC] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12
+**Date researched:** 2026-05-17 (re-verified EarthScope live page; ITRF2014 datum cite added; no national-caster change)
 
 ## Status: No national caster — EarthScope scientific streams available (two stations, co-located)
 
@@ -7,9 +7,14 @@
 |---|---|
 | **National NTRIP RTK caster** | No |
 | **Scientific GNSS streams in LC territory** | Yes — EarthScope NOTA (former COCONet) CN04 and CN47, both on roof of NEMO building, Castries area; `ntrip.earthscope.org:2101` |
+| **landing_url — EarthScope NOTA** | https://www.earthscope.org/data/gnss-realtime/ (operator-owned EarthScope realtime data page) |
+| **access_url — EarthScope NOTA** | https://www.earthscope.org/user/NoncommercialLicenseAgreement.pdf (NULA registration document — distinct from landing page) |
+| **num_stations — EarthScope NOTA (LC territory)** | 2 — CN04 (14.02 N / -60.97 E) + CN47 (13.71 N / -60.94 E), both co-located on NEMO building roof, Castries |
+| **vrs — EarthScope NOTA** | no — raw 1 Hz single-base RTCM 3.3 MSM7 streams, not VRS/Network-RTK |
 | **hobbyist_eligibility** | **Yes** (noncommercial tier — no surveying licence required, individual account accepted) |
 | **legal_residency_required** | **No** — no nationality or residency restriction in NULA |
-| **last_confirmed_alive** | 2026-05-12 — `ntrip.earthscope.org:2101` sourcetable returned 200 OK; `CN04_RTCM3P3` and `CN47_RTCM3P3` entries present with `LCA` country code (curl verified). EarthScope NULA v. 2025-05-30 |
+| **last_confirmed_alive** | 2026-05-17 — `py scripts/stations_by_country.py LCA` returns CN04 (14.02 N / -60.97 E) + CN47 (13.71 N / -60.94 E) tagged `earthscope`; EarthScope GNSS realtime landing page WebFetch HTTP 200 (2026-05-17) confirms `ntrip.earthscope.org:2101` + ITRF2014 frame. EarthScope NULA v. 2025-05-30 |
+| **datum_epoch** | ITRF2014; NOTA station coordinate epoch 2026-03-30 -- operator-declared on EarthScope realtime page (cited 2026-05-17). Citation: https://www.earthscope.org/data/gnss-realtime/ ("All raw data streams use the ITRF2014 reference frame"; "epoch date is 2026-03-30" for NOTA stations) |
 
 ---
 
@@ -26,8 +31,8 @@ Both CN04 and CN47 appear to be at or near the same site (NEMO headquarters, Cas
 |---|---|
 | **host:port** | `ntrip.earthscope.org:2101` (RTCM 3.3); port 2105 (BINEX); port 2108 (PPP) |
 | **Stream type** | Raw 1 Hz multi-constellation RTCM 3.3 MSM7 (single-base reference, NOT VRS/Network-RTK) |
-| **Tariff — noncommercial** | **Free (USD $0.00)** — account + annual NULA acceptance required. Date observed: 2026-05-06. Source: https://www.earthscope.org/data/gnss-realtime/ |
-| **Tariff — commercial** | **USD $1,000 per seat per year** (EarthScope 501(c)(3); no VAT). Date observed: 2026-05-06. Source: https://www.earthscope.org/news/new-gnss-offering-and-licensing-details-for-commercial-use/ |
+| **Tariff — noncommercial** | **Free (USD $0.00)** — account + annual NULA acceptance required. Date observed: 2026-05-17. Source: https://www.earthscope.org/data/gnss-realtime/ |
+| **Tariff — commercial** | Annual subscription "based on the number of simultaneous connections"; specific seat figure (previously reported $1,000/seat/year) no longer disclosed on the 2024-03-07 announcement page (WebFetch 2026-05-17). Source: https://www.earthscope.org/news/new-gnss-offering-and-licensing-details-for-commercial-use/ |
 | **NULA version** | v. 2025-05-30 — https://www.earthscope.org/user/NoncommercialLicenseAgreement.pdf |
 
 **Note on legacy platform**: Old UNAVCO caster (`rtgpsout.unavco.org`) retired 2025-07-29; all streams now at `ntrip.earthscope.org`.
@@ -63,5 +68,5 @@ None found for a dedicated Saint Lucia national CORS/NTRIP service.
 - World Bank OECS Data for Decision Making Project: https://documents.worldbank.org/en/publication/documents-reports/documentdetail/520151651261033077/
 - NTRIP-list.com North America — no LC entry found
 - RTK2go / Centipede sourcetables — no LC stations found
-- Local pipeline verification (2026-05-12): `py scripts/stations_by_country.py LCA` returns the two EarthScope `LCA` entries (CN04 14.02,−60.97 and CN47 13.71,−60.94); rtk2go/centipede return zero LC stations
-- Live caster probe (2026-05-12): `curl --http0.9 http://ntrip.earthscope.org:2101/` returned 200 OK and both `CN04_RTCM3P3` and `CN47_RTCM3P3` STR rows tagged country `LCA`
+- Local pipeline verification (2026-05-17): `py scripts/stations_by_country.py LCA` returns the two EarthScope `LCA` entries (CN04 14.02,-60.97 and CN47 13.71,-60.94); rtk2go/centipede return zero LC stations
+- EarthScope realtime landing page (2026-05-17): WebFetch HTTP 200, declares `ntrip.earthscope.org:2101` + ITRF2014 + NOTA epoch 2026-03-30

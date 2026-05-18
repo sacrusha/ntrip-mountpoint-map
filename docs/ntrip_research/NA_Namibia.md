@@ -1,17 +1,27 @@
 # Namibia [NA] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12 (re-verified; status unchanged from 2026-05-06)
+**Date researched:** 2026-05-17 (re-verified; single physical CORS WIND00NAM0 is now confirmed live on BKG IGS-IP and AUSCORS as a real-time NTRIP stream — previous "RINEX-only" framing corrected)
 
-## Status: NO confirmed public NTRIP caster; geodetic first-order network expanding; IGS archive only
+## Status: NO Namibia-operated public NTRIP caster, BUT the IGS station WIND (Windhoek) is republished live on the BKG IGS-IP global caster and mirrored on AUSCORS — usable for free single-base RTK within ~30 km of Windhoek with a BKG NTRIP account (or AUSCORS registration).
 
 | Field | Value |
 |---|---|
-| **Active public NTRIP RTK caster** | No — no public host:port found in any directory, sourcetable, or academic reference |
-| **Operator** | Surveyor General's Department (SGDN), Ministry of Agriculture, Water and Land Reform, Windhoek |
-| **host:port** | Not publicly listed |
-| **tariff** | n/a (no public service) |
-| **hobbyist_eligibility** | n/a |
-| **legal_residency_required** | n/a |
-| **last_confirmed_alive** | n/a — no NTRIP service confirmed; radius probe `py scripts/stations_by_radius.py -22.5 17.1 800` returns no rtk2go/Centipede/EarthScope NTRIP stations within 800 km of Windhoek (2026-05-12) |
+| **Namibia-operated public NTRIP caster** | No — no NA-government host:port found in any directory, sourcetable, or academic reference |
+| **Foreign-operated NTRIP streams covering NA** | Yes — `WIND00NAM0` (-22.57, 17.09, Windhoek IGS site; HartRAO contributes data) republished on `www.igs-ip.net:2101` (BKG IGS-IP) and `ntrip.data.gnss.ga.gov.au:2101` (AUSCORS rebroadcast). Single-base raw 1 Hz RTCM 3; full RTK effective ~30 km of Windhoek |
+| **landing_url — BKG IGS-IP** | https://igs.bkg.bund.de/ntrip/ (BKG NTRIP service description) |
+| **access_url — BKG IGS-IP** | https://igs.bkg.bund.de/ntrip/register (BKG NTRIP account registration) |
+| **landing_url — AUSCORS** | https://gnss.ga.gov.au/stream (Geoscience Australia AUSCORS landing) |
+| **access_url — AUSCORS** | https://gnss.ga.gov.au/registration (GA self-service registration, CC BY 4.0) |
+| **num_stations** | 1 physical CORS visible to NA users (WIND00NAM0 in Windhoek) on both IGS-IP and AUSCORS; same physical station — count once. Snapshot 2026-05-17 via `py scripts/stations_by_country.py NAM`. |
+| **datum_epoch** | omitted — IGS-IP / AUSCORS rebroadcast carries no Namibia-operator-side datum declaration; the Namibian Surveyor-General publishes no NTRIP caster and no citable real-time-stream datum/epoch statement. Per primer, do NOT infer ITRF/IGS from caster identity. |
+| **Operator (national)** | Surveyor General's Department (SGDN), Ministry of Agriculture, Water and Land Reform, Windhoek |
+| **Operator (data feed)** | HartRAO (Hartebeesthoek Radio Astronomy Observatory, ZAF) hosts WIND00NAM site; IGS rebroadcasts via BKG |
+| **host:port — IGS-IP** | `www.igs-ip.net:2101` (mountpoint `WIND00NAM0`) |
+| **host:port — AUSCORS mirror** | `ntrip.data.gnss.ga.gov.au:2101` (mountpoint `WIND00NAM0`) |
+| **tariff (IGS-IP)** | Free; requires BKG NTRIP account (`igs.bkg.bund.de/ntrip/register`) |
+| **tariff (AUSCORS)** | Free; CC BY 4.0; Geoscience Australia self-service registration (`gnss.ga.gov.au/registration`) |
+| **hobbyist_eligibility** | Yes for both IGS-IP and AUSCORS (no surveyor licence required) |
+| **legal_residency_required** | No |
+| **last_confirmed_alive** | 2026-05-17 — WIND00NAM0 present in local data/igs_ip.sourcetable and data/auscors.sourcetable snapshots (see source_health.json). Radius probe `py scripts/stations_by_radius.py -22.5 17.1 1500` returns 55 stations across 6 sources, with WIND00NAM0 the only one inside Namibia |
 
 ## Operator
 
@@ -24,20 +34,19 @@ Windhoek, Namibia
 ## Geodetic Infrastructure Context
 
 - **First-order network:** Namibia divided into 15 project zones; first-order control stations in zones 1–10 constructed by 2010–2020 (zones 1–8 by 2012; zones 9–10 by 2020). African Geomatics (Windhoek) has been primary contractor.
-- **IGS station:** WIND00NAM (Windhoek) — scientific archive station, data held at HartRAO data centre; not an RTK streaming caster.
-- **SGDN GNSS RTK capability:** SGDN and private firms (e.g., African Geomatics with 4 RTK GNSS receivers) use base-and-rover setups for fieldwork; no networked VRS or CORS streaming service found.
-- **CORS Map / GIM International:** Namibia appears as unmapped on GIM International's Africa CORS map — no catalogued public CORS caster.
-- **AFREF:** WIND00NAM is the sole AFREF-affiliated station for Namibia; RINEX archive only, no real-time stream.
-- **Country size:** ~824,000 km², sparse population — full national CORS coverage is a long-term infrastructure project.
+- **IGS station WIND00NAM:** Windhoek IGS site, hosted/maintained by HartRAO. **Confirmed real-time NTRIP stream** on both BKG IGS-IP (`www.igs-ip.net:2101`) and AUSCORS rebroadcast (`ntrip.data.gnss.ga.gov.au:2101`) as of 2026-05-17. This corrects prior "RINEX archive only" framing — the station has both archive RINEX and live RTCM 3 streaming.
+- **SGDN GNSS RTK capability:** SGDN and private firms (e.g., African Geomatics with 4 RTK GNSS receivers) use base-and-rover setups for fieldwork; no Namibia-operated networked VRS or CORS caster service found.
+- **CORS Map / GIM International:** Namibia appears as unmapped on GIM International's Africa CORS map — no Namibia-operated public CORS caster.
+- **AFREF:** WIND00NAM is the sole AFREF-affiliated station for Namibia; real-time stream available via IGS-IP/AUSCORS.
+- **Country size:** ~824,000 km², sparse population — WIND covers only Windhoek metro (~30 km); full national CORS coverage remains a long-term infrastructure project.
 
 ## Negative Findings
 
-- RTK2GO / Centipede: Zero NA mountpoints in any public sourcetable
-- NTRIP-list.com Africa: Namibia not listed
-- ArduSimple country directory: Namibia not listed with any NTRIP service
-- mvarga1989 GNSS CORS list (GitHub): No Namibia NTRIP endpoint
-- HartRAO data centre: WIND00NAM is archiving only; no NTRIP stream
-- No public caster address found in any indexed source as of 2026-05-12
+- RTK2GO / Centipede: Zero NA mountpoints in any public sourcetable (2026-05-17)
+- NTRIP-list.com Africa: Namibia not listed as a national network
+- ArduSimple country directory: Namibia not listed with any national NTRIP service
+- mvarga1989 GNSS CORS list (GitHub): No Namibia-operated NTRIP endpoint
+- No SGDN/Surveyor-General-operated public caster address found in any indexed source as of 2026-05-17
 
 ## Most Recent Project Reference
 
@@ -59,4 +68,6 @@ No public NTRIP launch announcement found. The most recent traceable public-doma
 - RTK2GO monitor (monitor.use-snip.com) — no NA mountpoints visible
 - NTRIP-list.com/africa — Namibia not listed
 - ArduSimple RTK correction services directory — Namibia not listed
-- HartRAO geodesy pages — WIND00NAM archive confirmed, no NTRIP stream
+- HartRAO geodesy pages — WIND00NAM site information
+- IGS network page: https://network.igs.org/WIND00NAM
+- Local data: `py scripts/stations_by_country.py NAM` — WIND00NAM0 on igs_ip and auscors (2026-05-17 snapshot); `py scripts/stations_by_radius.py -22.5 17.1 1500` — 55 stations within 1500 km across 6 sources, WIND00NAM0 the only NA station

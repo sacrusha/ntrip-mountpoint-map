@@ -1,5 +1,5 @@
 # Azerbaijan [AZ] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-15
+**Date researched:** 2026-05-17 (re-probe; 2026-05-15 deep research unchanged)
 
 ## Status: RESTRICTED — one national NTRIP caster (AzPOS); contract-gated, no anonymous endpoint; 1 free rtk2go volunteer base in greater Baku.
 
@@ -9,13 +9,13 @@
 |---|---|
 | **landing_url** | https://www.emlak.gov.az/en/page/view/96 (operator-owned; "About AzPOS") |
 | **access_url** | https://www.emlak.gov.az/en/page/view/96 — same operator page describes the service, eligibility ("legal entities and individuals"), and routes applicants to AzPOS staff for the bilateral agreement. Direct contact: azpos@emlak.gov.az, tel. (012) 562-82-70, mobile (050) 759-11-44 / (050) 229-25-23 (Baku, Yasamal district) |
-| **host:port** | Provisional: `azpos.az:2101`. DNS resolves to 185.161.226.29 (probe 2026-05-15, this sandbox); TCP 2101/80/443 all timed out from this sandbox. ArduSimple's country page confirms users receive NTRIP credentials only after applying via the operator portal — the actual delivered host/port is contract-dependent. No public sourcetable is published. |
-| **tariff** | Not publicly listed. Service is governed by a bilateral agreement signed at the State Service on Property Issues office in Baku; AZN pricing has never been posted on emlak.gov.az or in operator press releases. No tier table to record. Date observed: 2026-05-15. |
+| **host:port** | Provisional: `azpos.az:2101`. DNS still resolves to 185.161.226.29 (re-checked 2026-05-17, this sandbox); TCP 2101/80/443 all timed out from this sandbox. ArduSimple's country page confirms users receive NTRIP credentials only after applying via the operator portal — the actual delivered host/port is contract-dependent. No public sourcetable is published. |
+| **tariff** | Not publicly listed. Service is governed by a bilateral agreement signed at the State Service on Property Issues office in Baku; AZN pricing has never been posted on emlak.gov.az or in operator press releases. No tier table to record. VAT status unknown — not declared on any public operator material. Date observed: 2026-05-15. |
 | **num_stations** | ~45 physical CORS: 37 from the 2014 commissioning + 8 added in Karabakh in 2024 (Fuzuli, Jebrail, Zangilan, Kəlbəcər ×2, Ağdam, Şuşa, Laçın). |
 | **vrs** | yes — backend documented in recent operator project material as Leica GNSS Spider (VRS-capable). |
 | **hobbyist_eligibility** | no (effectively) — eligibility text accepts "legal entities and individuals", but the contract is bilateral, Azerbaijani-language, requires in-person/email engagement with the Baku office, and excludes anonymous or self-service signup. No hobbyist tariff exists. |
 | **legal_residency_required** | ? — not stated explicitly. The contract-based access model and Azerbaijani-language process in practice favour residents or local agents; non-residents have no documented path. |
-| **last_confirmed_alive** | 2026-05-15 — operator page https://www.emlak.gov.az/en/page/view/96 reachable via WebFetch (HTTP 200). Caster itself not probable from this sandbox (TCP filtered); no public sourcetable to verify. Most recent public evidence of operational continuity: 2024 Karabakh expansion. |
+| **last_confirmed_alive** | 2026-05-15 — operator page https://www.emlak.gov.az/en/page/view/96 reachable via WebFetch (HTTP 200). Caster itself not probeable from this sandbox (TCP filtered); no public sourcetable to verify. Most recent public evidence of operational continuity: 2024 Karabakh expansion. |
 | **datum_epoch** | Omitted — 2014 operator documentation states "WGS-84, UTM zones 38/39" but provides no epoch realization or official declaration document. Per tightened spec, no citable URL → omit. |
 
 ### Signals & Backend

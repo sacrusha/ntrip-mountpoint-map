@@ -1,7 +1,7 @@
 # Puerto Rico [PR] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12 (prior version: 2026-05-06)
+**Date researched:** 2026-05-17 (prior: 2026-05-12)
 
-## Status: PARTIAL — real-time GNSS data via EarthScope NOTA (geodetic, non-commercial); one commercial VRS network (VRS Systems PR / HLCM); no free public RTK-VRS caster
+## Status: PARTIAL — real-time GNSS data via EarthScope NOTA (geodetic, non-commercial); 1 commercial VRS net (VRS Systems PR / HLCM); no free public RTK-VRS caster
 
 | Field | Value |
 |---|---|
@@ -14,7 +14,8 @@
 | **VRS Systems PR — tariff** | Not publicly disclosed (commercial subscription only) |
 | **VRS Systems PR — eligibility** | Commercial subscription — hobbyist tier not confirmed |
 | **PRSN CORS** | NTRIP page on prsn.uprm.edu / redsismica.uprm.edu was previously referenced (country-survey.md); the project page link returns HTTP 404 / ECONNREFUSED on 2026-05-12; cannot confirm an active public NTRIP endpoint |
-| **last_confirmed_alive** | EarthScope NOTA operational; PR-specific PBO stations (PRMI, PRGY, P780) streaming as of 2026-05-12 (P780 confirmed in earthscope sourcetable at 18.08, -66.58 — local stations index) |
+| **datum_epoch** | EarthScope NOTA → IGS20 (global, ITRF2020 realization). NGS PRMI station page declares NAD83(2011) for NCN-archived coords. RTK-VRS service (HLCM) does not publish a service-side datum. Citation: EarthScope at https://www.earthscope.org/data/gnss-realtime/. For HLCM commercial VRS: `omitted -- no citable operator declaration`. |
+| **last_confirmed_alive** | EarthScope NOTA operational; PR-specific PBO stations (PRMI, PRGY, P780) streaming 2026-05-17 (P780 in earthscope ST at 18.08, -66.58 — local index). |
 
 ## Service Details
 
@@ -42,7 +43,7 @@ The Puerto Rico Seismic Network (UPRM Mayagüez) operates 18 permanent GPS stati
 
 - **Puerto Rico is a US territory** — geodetic infrastructure falls under NOAA/NGS federal programs. NOAA NCN itself does not operate a public NTRIP caster; it releases RINEX within ~1 hr for post-processing.
 - **No free public RTK/VRS caster** equivalent to US state RTN networks (InCORS, NC RTN, etc.). NGS encourages state DOTs / commercial partners to fill this gap; none free confirmed as of 2026-05-12. The only commercial RTN identified is VRS Systems PR (HLCM Group).
-- **Local project data** — `py scripts/stations_by_country.py PRI` returns 1 rtk2go station (PR-YAUCO1 at 18.02, -66.84) and 1 earthscope station (P780 at 18.08, -66.58). Volunteer (rtk2go) presence in PR is minimal — one base.
+- **Local project data** — `py scripts/stations_by_country.py PRI` (2026-05-17) returns 1 rtk2go (PR-YAUCO1 at 18.02, -66.84) + 1 earthscope (P780 at 18.08, -66.58). Unchanged from prior. Volunteer presence minimal.
 - **Commercial roaming networks** (Trimble VRS Now, Hexagon SmartNet): not extended to Puerto Rico per public coverage maps.
 - **Practical option for hobbyists**: set up own base station; use EarthScope NOTA single-base on a nearby NOTA station; Galileo HAS (~40 cm, no internet); GEODNET coverage unconfirmed.
 
@@ -68,4 +69,4 @@ The Puerto Rico Seismic Network (UPRM Mayagüez) operates 18 permanent GPS stati
 - PRSN instrumentation page: https://redsismica.uprm.edu/english/our_work/instrumentation.php
 - ArduSimple USA page: https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-the-united-states-of-america-usa/
 - RTK2go monitor: http://monitor.use-snip.com/?hostUrl=rtk2go.com&port=2101
-- Local: `py scripts/stations_by_country.py PRI` (2026-05-12) — 1 rtk2go (PR-YAUCO1), 1 earthscope (P780)
+- Local `py scripts/stations_by_country.py PRI` (2026-05-17) — 1 rtk2go (PR-YAUCO1), 1 earthscope (P780)

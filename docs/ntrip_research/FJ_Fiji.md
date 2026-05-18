@@ -1,7 +1,7 @@
 # Fiji [FJ] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12 (re-verified; original 2026-05-06)
+**Date researched:** 2026-05-17 (re-verified; original 2026-05-06)
 
-## Status: NO confirmed public NTRIP caster (infrastructure present, no access policy). Re-verified 2026-05-12: no DLSS NTRIP endpoint, registration portal, or access policy has been published since the 2022 SPC milestone; FIG 2025 proceedings discuss "data handling and compilation" but do not reference a public real-time NTRIP service.
+## Status: NO confirmed public NTRIP caster (infrastructure present, no access policy). Re-verified 2026-05-17: no DLSS NTRIP endpoint, registration portal, or access policy has been published since the 2022 SPC milestone; FIG 2025 proceedings discuss "data handling and compilation" but do not reference a public real-time NTRIP service.
 
 | Field | Value |
 |---|---|
@@ -11,6 +11,7 @@
 | **hobbyist_eligibility** | null — no service exists |
 | **legal_residency_required** | null — no service exists |
 | **last_confirmed_alive** | null — no caster confirmed alive |
+| **datum_epoch** | omitted -- no citable operator declaration (no public DLSS portal) |
 
 ## Most Recent Project Announcement
 
@@ -19,7 +20,7 @@
 ## Context Notes
 
 - **DLSS (Department of Lands & Survey Services) CORS network**: 10 stations including long-standing Suva and Lautoka plus 8 added 2019–2022 under the Fiji Geodetic Datum project with SPC (Pacific Community).
-- **No access policy/regulation** in place: the SPC 2022 milestone article states explicitly "there is no regulation at the moment for accessing data from the COR stations"; once the geodetic datum is finalised, policy/legislation will be reviewed. No update to access policy has been publicly announced as of 2026-05-06.
+- **No access policy/regulation** in place: the SPC 2022 milestone article states explicitly "there is no regulation at the moment for accessing data from the COR stations"; once the geodetic datum is finalised, policy/legislation will be reviewed. No update to access policy has been publicly announced as of 2026-05-17.
 - **No public NTRIP endpoint** has been published.
 - **Global commercial networks** (GEODNET, ONOCOY, Centipede-RTK): no Fiji coverage confirmed.
 - Practical workaround for hobbyists: deploy a local base station for single-base RTK, or use satellite-based PPP services.

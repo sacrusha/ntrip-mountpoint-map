@@ -1,5 +1,5 @@
 # Myanmar [MM] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06 (refreshed 2026-05-12)
+**Date researched:** 2026-05-06 (refreshed 2026-05-17 — no external NTRIP endpoint published; post-2021 status unchanged)
 
 ## Status: 10-station CORS built 2019 (Survey Department); no public NTRIP endpoint published externally
 
@@ -33,7 +33,7 @@
 
 | Service | URL | Cost |
 |---------|-----|------|
-| **EarthScope/GAGE archive** — regional IGS-affiliated stations (limited in Myanmar) | https://www.unavco.org/data/gps-gnss/ | Free non-commercial |
+| **EarthScope/GAGE archive** — regional IGS-affiliated stations (limited in Myanmar) | https://www.earthscope.org/data/gnss-data/ | Free non-commercial |
 
 ## Sources Consulted
 - Myanmar Survey Department: http://www.surveydepartment.gov.mm/eng/

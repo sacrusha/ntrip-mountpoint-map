@@ -12,13 +12,13 @@ No NTRIP host:port, sourcetable, or self-service portal has ever been published 
 | **landing_url** | https://survey.gov.bn/ (301 → https://geoportal.survey.gov.bn/start) |
 | **access_url** | None — no self-service portal exists |
 | **host:port** | Not published |
-| **num_stations** | 8 internal CORS documented in 2009/2011 (KBEL, LABI, MURA, LAMU, LIAN, TEMB, TUTO, UKUR); not exposed publicly |
+| **num_stations** | last documented 2009/2011 as 8 internal CORS (KBEL, LABI, MURA, LAMU, LIAN, TEMB, TUTO, UKUR); not exposed publicly; current count unverified (15–17 year currency gap, no later Survey Department disclosure located 2026-05-15) |
 | **vrs** | ? — internal-only network; no public confirmation |
 | **tariff** | n/a — service does not exist publicly |
 | **hobbyist_eligibility** | n/a — no service to subscribe to |
 | **legal_residency_required** | n/a |
 | **last_confirmed_alive** | 2026-05-15 — survey.gov.bn returns 301 to geoportal.survey.gov.bn/start; geoportal returns a Leaflet/web-map shell ("Web Map" only) with no RTK/CORS/RINEX/subscription surface. Operator portal alive; RTK service absent. |
-| **datum_epoch** | Omitted — no official Survey Department URL currently citable. Datum is GDBD2009 with realisation epoch **2009.45** (25 May 2009), per the GDBD2009 Technical Manual v1.0 (2009); the only accessible secondary citation is `mycoordinates.org/the-realization-of-geocentric-datum-for-brunei-darussalam-2009/` (Sep 2011). Primary Survey Department PDF and the UNOOSA UN-GNSS/18 PDF both 404 as of 2026-05-15. |
+| **datum_epoch** | omitted — no operator declaration currently citable. Secondary source (`mycoordinates.org/the-realization-of-geocentric-datum-for-brunei-darussalam-2009/`, Sep 2011) reports GDBD2009 with realisation epoch 2009.45 (25 May 2009) per the GDBD2009 Technical Manual v1.0 (2009); the primary Survey Department PDF and UNOOSA UN-GNSS/18 PDF both 404 as of 2026-05-15 — primary source unverifiable. |
 
 ---
 
@@ -33,7 +33,7 @@ No NTRIP host:port, sourcetable, or self-service portal has ever been published 
 ## Context Notes
 
 - **Survey Department portal** (`survey.gov.bn`): 301 → `geoportal.survey.gov.bn/start`. Geoportal Ukur is a Leaflet-based web map only — no RTK/CORS/RINEX/subscription pages exposed. Mobile companion: `bn.gov.survey.geoportal` on Google Play (web-map viewer, no positioning service).
-- **GDBD2009 datum**: realisation epoch 2009.45 (25 May 2009), GPS campaign 17 May – 2 Jun 2009. 8 Zero Order CORS (KBEL, LABI, MURA, LAMU, LIAN, TEMB, TUTO, UKUR). EPSG codes: 5247 (GDBD2009 / Brunei BRSO projected), 5244 (GDBD2009 geographic 2D). Datum is for internal cadastral/topographic use; not exposed via any public NTRIP service.
+- **GDBD2009 datum**: secondary source (mycoordinates.org Sep 2011) reports realisation epoch 2009.45 (25 May 2009), GPS campaign 17 May – 2 Jun 2009, 8 Zero Order CORS (KBEL, LABI, MURA, LAMU, LIAN, TEMB, TUTO, UKUR); primary Survey Department PDF + UNOOSA UN-GNSS/18 PDF both 404 — primary unverifiable. EPSG codes: 5247 (GDBD2009 / Brunei BRSO projected), 5244 (GDBD2009 geographic 2D). Datum is for internal cadastral/topographic use; not exposed via any public NTRIP service.
 - **Volunteer / global networks** (verified against `data/stations.json` 2026-05-15):
   - `stations_by_country.py BRN` → no stations.
   - `stations_by_radius.py 4.90 114.94 200` → zero stations within 200 km of Bandar Seri Begawan across all 84 sources.

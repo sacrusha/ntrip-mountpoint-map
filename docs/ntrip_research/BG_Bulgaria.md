@@ -1,5 +1,5 @@
 # Bulgaria [BG] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-15
+**Date researched:** 2026-05-17 (refresh of 2026-05-15; geonet.bg/help.html re-verified — host `gnss.geonet.bg` / IP `95.43.249.1` / port `2101` / contract-based credentials unchanged; FLEPOS-style hobbyist exclusion does NOT apply here, see notes; tariff PDF URL still serves the 04.2026 edition)
 
 ## Status: YES — one commercial network-RTK caster (GeoNet / GEO-RTK, ~30 CORS, VRS). No free state-run service. 6 rtk2go + 2 Centipede BGR volunteer single-base streams provide partial free coverage; SOFI EUREF/IGS station available for RINEX post-processing.
 

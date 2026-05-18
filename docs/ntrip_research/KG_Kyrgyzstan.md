@@ -1,5 +1,5 @@
 # Kyrgyzstan [KG] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06; verified 2026-05-12
+**Date researched:** 2026-05-06; verified 2026-05-12; portal + tariff re-confirmed 2026-05-17
 
 ## Status: YES — KyrPOS national CORS/RTK network active; contract registration required
 
@@ -10,7 +10,8 @@
 | **tariff — KyrPOS** | 170 KGS / day per receiver · 3 180 KGS / month per receiver (minimum subscription: 1 month; weekends and public holidays not counted). Source: gosreg.gov.kg/ky/?page_id=3029, reconfirmed 2026-05-12. VAT inclusion not confirmed. At May 2026 rates 3 180 KGS ≈ USD 36–37. |
 | **hobbyist_eligibility** | Unclear — registration requires a signed contract with the receiver's make, model, and serial number; no individual/hobbyist category is listed. Bureaucratic friction is high, but non-professionals are not explicitly excluded. |
 | **legal_residency_required** | Unclear in policy but practically yes — workflow requires a postal address for contract delivery (signed copies are physically mailed back) and an in-country bank transfer; no explicit residency bar in the published text. |
-| **last_confirmed_alive** | gosreg.gov.kg/ky/?page_id=3029 returned HTTP 200 with a May 2026 calendar / "12.05.2026" date stamp on 2026-05-12 (re-fetched). WebFetch of `cors.gosreg.gov.kg:8085` returned ECONNREFUSED on 2026-05-06 — port not reachable from outside (firewall or geo-block likely; caster appears to filter to credentialed / KG-IP clients). |
+| **last_confirmed_alive** | 2026-05-17 — gosreg.gov.kg/ky/?page_id=3029 re-fetched: host:port `cors.gosreg.gov.kg:8085` + tariff (170 KGS/day, 3180 KGS/month) re-confirmed in page content. WebFetch of `cors.gosreg.gov.kg:8085` returned ECONNREFUSED on 2026-05-06 — port not reachable from outside (firewall or geo-block likely; caster appears to filter to credentialed / KG-IP clients). |
+| **datum_epoch** | omitted -- no citable declaration (gosreg.gov.kg/ky/?page_id=3029 lists procedure + tariff + contact only; no reference-frame statement; agency contact `kyrposgnss@gosreg.gov.kg` would be required to obtain the operator's frame declaration) |
 
 ## Most Recent Project Announcement
 

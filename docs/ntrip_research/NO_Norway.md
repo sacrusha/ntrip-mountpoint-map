@@ -1,41 +1,48 @@
 # Norway [NO] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12 (refresh; prior pass 2026-05-06)
+**Date researched:** 2026-05-17 (refresh; prior pass 2026-05-12)
 
 ## Status: YES — paid government NTRIP caster (CPOS, Kartverket) operating; no free hobbyist tier
 
 | Field | Value |
 |---|---|
 | **Active public NTRIP RTK caster** | Yes (CPOS — paid) |
+| **landing_url** | https://www.kartverket.no/en/on-land/posisjon/guide-to-cpos (operator service guide) |
+| **access_url** | https://www.kartverket.no/en/on-land/posisjon/ordering-positioning-services (subscription ordering page) |
 | **host:port — CPOS** | `159.162.103.14:2101` |
-| **VRS** | Yes — VRS is the primary delivery method; system calculates a virtual reference station near the user's position from 280+ permanent geodetic stations nationwide |
+| **num_stations** | ~280 physical CORS — operator declaration on Kartverket CPOS guide page (mainland Norway; Svalbard/Jan Mayen excluded). Sourcetable lists only ~10 network products, not individual stations (primer [stations-vs-mps]). |
+| **vrs** | yes — VRS is the primary delivery method; system calculates a virtual reference station near the user's position from 280+ permanent geodetic stations nationwide |
 | **tariff — CPOS Standard (Surveying)** | NOK 11,000 /yr excl. VAT (1–3 subscriptions); NOK 8,000 /yr excl. VAT (4th+ subscription) · price list last updated 2024-04-12, current 2026-05-12 |
 | **tariff — Norge Digitalt partner (Standard)** | NOK 10,500 /yr (1–2 subs); NOK 7,000 /yr (3–5); NOK 5,500 /yr (6th+) — discounted partner pricing (`Norge Digitalt` cooperating public bodies) |
 | **tariff — CPOS Fast (Fixed Installation)** | NOK 8,000 /yr excl. VAT |
 | **tariff — CPOS Landbruk (Agriculture)** | NOK 5,000 /yr excl. VAT |
 | **tariff — CPOS Utland (Abroad)** | NOK 5,000 /yr excl. VAT — listed on the current price page; intended for use outside Norway via Nordic interoperability (SWEPOS, etc.) |
-| **tariff — CPOS Undervisning (Teaching)** | Free (for accredited educational institutions) |
-| **tariff — CPOS Forskning (Research)** | Free for approved research organisations (Research Council-approved); max 2-year term |
-| **tariff — CPOS Innovasjon (Innovation)** | Free for startups in pre-commercial phase; max 1-year term |
-| **tariff — CPOS test** | Free 1-month trial for new customers |
+| **tariff — CPOS Undervisning (Teaching)** | Free — listed as a subscription type on the ordering form (price page does not enumerate it); confirm scope with kundesenter@kartverket.no |
+| **tariff — CPOS Forskning (Research)** | Free — ordering-form subscription type; max-term + Research Council prerequisite not on the public ordering page |
+| **tariff — CPOS Innovasjon (Innovation)** | Free — ordering-form subscription type; aimed at pre-commercial startups |
+| **tariff — CPOS test** | Free 1-month trial; auto-converts to paid subscription unless cancelled before expiry (per ordering page) |
+| **tariff — DPOS (legacy DGNSS, RTCM 2.3)** | NOK 2,500 /yr excl. VAT — listed separately on the price page (out of project scope: DGNSS, msg 1/3) |
+| **tariff — ETPOS (post-processing)** | NOK 8,000 /yr excl. VAT — listed as its own line on the 2024-04-12 price page; the "included with CPOS" assertion in older drafts is NOT supported by the current price page wording |
 | **hobbyist_eligibility** | unclear — no explicit hobbyist tier; subscriptions appear business/organisation-oriented; no explicit block on individuals; 1-month free trial available |
 | **legal_residency_required** | unclear — not explicitly stated; billing address required; no residency restriction found in public terms |
-| **last_confirmed_alive** | `159.162.103.14:2101` SOURCETABLE 200 OK confirmed 2026-05-12 (curl, HTTP/0.9 response) |
+| **last_confirmed_alive** | `159.162.103.14:2101` SOURCETABLE 200 OK confirmed 2026-05-17 (curl --http0.9, Trimble Ntrip Caster 4.1; 10 STR rows: CPOSGLONASS, CPOSHREF, CPOSCMR, CPOSFAST, SVALBARD, HREFNN1954, HREFNN2000, CPOSRTCM32, DPOS, CPOSGPS) |
+| **datum_epoch** | EUREF89 (horizontal) + NN1954/NN2000 (height) — operator declaration: "Correction data is given in RTCM format in official reference frame EUREF89/NN1954/NN2000" (Kartverket CPOS guide, https://www.kartverket.no/en/on-land/posisjon/guide-to-cpos). No published epoch on the public page. |
 
 ## Context Notes
 
 - **CPOS** (Continuously Operating Positioning Service): Operated by Kartverket (Norwegian Mapping Authority). ~280 permanent geodetic stations covering mainland Norway. ~5,000 active users. 24/7 operation with weekday monitoring. Coverage is mainland Norway only — Svalbard and Jan Mayen are explicitly excluded (see SJ_Svalbard entry for details).
 - **Subscription types**: CPOS Standard is the main commercial offering. CPOS Fast is for fixed/mobile installations (excavators, drones). CPOS Landbruk targets precision agriculture at a lower price point. Drone operators sourced this at ~NOK 7,980 /yr via resellers (e.g., Scandinavian Drone).
-- **ETPOS included**: All CPOS subscriptions include ETPOS (post-processing correction service).
+- **ETPOS billed separately on the current price page**: NOK 8,000 /yr ex-VAT. Earlier drafts asserting "ETPOS included with any CPOS subscription" do not match the 2024-04-12 price page, which lists ETPOS as its own line item alongside CPOS Standard/Fast/Landbruk/Utland. Treat as separate purchase unless Kartverket confirms otherwise in writing.
 - **Nordic interoperability**: Existing CPOS subscribers can add SWEPOS (Sweden) access for NOK 5,000/yr on the same username.
 - **No free public tier**: Hobbyists must pay at minimum CPOS Landbruk (NOK 5,000/yr) or use the 1-month free trial. No ongoing free access for private individuals.
-- **Volunteer coverage**: rtk2go hosts ~29 Norwegian bases; Centipede has minimal Norwegian presence. Volunteer coverage is adequate south of ~63°N but sparse further north.
+- **Volunteer coverage** (`scripts/stations_by_country.py NOR` 2026-05-17): rtk2go = 28 NOR-tagged bases; **Centipede = 22 NOR-tagged bases** (earlier "minimal" wording is wrong — Centipede has built out densely in Norway since 2025); EUREF-IP = 5 stations (NABG/OSLS/STAS/TRDS/VARS); IGS-IP = 3 (LYR1, NABG, OSL1); AUSCORS rebroadcasts NYA2 (Svalbard); MIRAI rebroadcasts NYA2 + QTRP. Volunteer coverage is now adequate over most populated Norway south of ~64°N; sparser further north but a handful of high-latitude rtk2go nodes exist (e.g. Fauske, SANDNESS, ROMA1).
+- **Sourcetable products vs physical CORS**: the CPOS caster exposes ~10 network-broadcast mountpoints (CPOSGLONASS, CPOSHREF, CPOSCMR, CPOSFAST, SVALBARD, HREFNN1954, HREFNN2000, CPOSRTCM32, DPOS, CPOSGPS) — each is a NRTK product, not a single physical station. The ~280 physical reference stations are not enumerated in the public sourcetable (primer [stations-vs-mps] — num_stations from operator, not ST row count).
 - **Operator contact**: kundesenter@kartverket.no / +47 32 11 80 00
 
 ## Post-Processing (RINEX) Fallback
 
 | Service | URL | Cost |
 |---|---|---|
-| **ETPOS** — post-processing; included with any CPOS subscription | https://www.kartverket.no/en/on-land/posisjon/guide-to-etpos | With CPOS subscription |
+| **ETPOS** — post-processing; billed separately per the 2024-04-12 price page | https://www.kartverket.no/en/on-land/posisjon/guide-to-etpos | NOK 8,000 /yr ex-VAT (separate line on Kartverket price page; earlier "included with CPOS" wording is unsupported) |
 | **EUREF Permanent Network** — selected Norwegian CORS (ETRF89) | https://epncb.oma.be/ | Free |
 
 ## Sources Consulted
@@ -46,4 +53,5 @@
 - Kartverket terms of agreement: https://www.kartverket.no/en/on-land/posisjon/terms-of-agreement-regarding-positioning-services
 - Scandinavian Drone CPOS subscription listing (~NOK 7,980): https://www.scandinaviandrone.no/produkt/kartverket-cpos-abonnement-for-droner/
 - ArduSimple Norway RTK page: https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-norway/
-- curl probe of `159.162.103.14:2101` — SOURCETABLE 200 OK confirmed 2026-05-12 (HTTP/0.9 response — caster fully reachable)
+- curl probe of `159.162.103.14:2101` — SOURCETABLE 200 OK confirmed 2026-05-17 (curl --http0.9; 10 STR rows; Trimble Ntrip Caster 4.1)
+- Local pipeline `scripts/stations_by_country.py NOR` (2026-05-17): 61 NOR-tagged real stations total — rtk2go 28, centipede 22, euref_ip 5, igs_ip 3, auscors 1 (NYA2 Ny-Ålesund), mirai 2 (NYA2 + QTRP)

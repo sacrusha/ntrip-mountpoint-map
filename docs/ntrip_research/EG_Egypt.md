@@ -1,13 +1,16 @@
 # Egypt [EG] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12 (re-verified; original 2026-05-06)
+**Date researched:** 2026-05-17 (re-verified; original 2026-05-06)
 
-## Status: NO confirmed public NTRIP caster (national CORS exists; stream not publicly available). Re-verified 2026-05-12 — no public ESA NTRIP endpoint, registration portal, or tariff has been announced since the original research; ArduSimple country page still reports no national RTK network.
+## Status: NO confirmed public NTRIP caster (national CORS exists; stream not publicly available). Re-verified 2026-05-17 — no public ESA NTRIP endpoint, registration portal, or tariff has been announced since the original research; ArduSimple country page still reports "as far as we know Egypt is not among" countries with a National RTK Network.
 
 | Field | Value |
 |---|---|
-| **Active public NTRIP RTK caster** | No — no publicly documented NTRIP endpoint found |
+| **caster_status** | No publicly documented NTRIP endpoint found |
+| **landing_url** | null — no operator-owned public NTRIP page; ESA homepage (https://www.esa.gov.eg/) does not publish RTK/NTRIP service info |
+| **access_url** | null — no signup/conditions page exists |
 | **host:port** | null |
 | **tariff** | null |
+| **num_stations** | 33 per ESA official network description (operational since 2012); academic literature (Saad et al. 2017; subsequent MDPI Remote Sensing 2023 ref) cites 40 stations. Both figures appear in non-operator sources; ESA portal does not publish a current authoritative count. Discrepancy unresolved as of 2026-05-17. |
 | **hobbyist_eligibility** | null — no service confirmed |
 | **legal_residency_required** | null — no service confirmed |
 | **last_confirmed_alive** | null — no public caster confirmed at any date |
@@ -21,7 +24,7 @@
 
 ## Context Notes
 
-- Egypt's national CORS network (33 stations as of 2019, operated by ESA) is used internally for cadastral surveying and geodetic reference frame maintenance — no public NTRIP stream has been confirmed.
+- Egypt's national CORS network (operated by ESA since 2012) is used internally for cadastral surveying and geodetic reference frame maintenance — no public NTRIP stream has been confirmed. Station count cited as 33 in early ESA-linked descriptions, 40 in later academic literature; ESA does not publish a current authoritative figure.
 - The ESA website (esa.gov.eg) is the official portal; no RTK or NTRIP service information is published there in English or Arabic web-accessible documentation.
 - A research-focused CORS network (NACN — National Active Control Network) is operated for geodetic research; data is not publicly streamed via NTRIP.
 - Global commercial networks: GEODNET and ONOCOY coverage in Egypt has not been confirmed in public station maps as of research date.
@@ -37,8 +40,7 @@
 ## Sources Consulted
 - ArduSimple — RTK correction services in Egypt: https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-egypt/
 - Egyptian Survey Authority: https://www.esa.gov.eg/
-- ResearchGate — "Consistency between CORS and NACN Egyptian Networks" (2017): https://www.researchgate.net/publication/317182787_Consistency_between_CORS_and_NACN_Egyptian_Networks_in_Cairo_and_Nile_Delta
-- MDPI Remote Sensing — Egypt ionosphere model paper (references ESA-CORS, 2023): https://www.mdpi.com/2072-4292/15/12/3147
+- MDPI Remote Sensing — Egypt ionosphere model paper (references ESA-CORS, 40-station figure, 2023): https://www.mdpi.com/2072-4292/15/12/3147
 - mvarga1989 GitHub GNSS CORS networks list (Egypt not listed): https://github.com/mvarga1989/The-list-of-GNSS-CORS-RTK-networks
 - RTK2go monitor (no Egypt stations observed)
 - NTRIP-list.com (no Egyptian NTRIP service listed)

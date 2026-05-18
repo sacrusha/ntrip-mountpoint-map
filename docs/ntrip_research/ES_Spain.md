@@ -1,7 +1,7 @@
 # Spain [ES] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12 (revision; original 2026-05-06)
+**Date researched:** 2026-05-17 (revision; original 2026-05-06)
 
-## Status: YES — free national NTRIP (ERGNSS/SPTR) + multiple free regional casters; VRS; one of the densest free RTK ecosystems in Europe. ERGNSS/SPTR and CATNET sourcetables live-confirmed via direct NTRIP probe 2026-05-12.
+## Status: YES — free national NTRIP (ERGNSS/SPTR) + multiple free regional casters; VRS; one of the densest free RTK ecosystems in Europe. ERGNSS/SPTR and CATNET sourcetables live-confirmed via direct NTRIP probe 2026-05-17.
 
 **Note on Canary Islands:** The Canary Islands (ES-Canarias) are covered in a separate file (`ES-Canarias.md`) which details SPTR and GRAFCAN REPCAN. The national ERGNSS/SPTR service described below also covers the Canary Islands via its CERCANA3M mountpoint; refer to ES-Canarias.md for archipelago-specific caveats.
 
@@ -17,10 +17,11 @@
 | **host:port — data-only caster** | `ergnss-ip.ign.es:2101` (also IP 193.144.251.13) |
 | **VRS** | Yes — VRS3M, MAC3M, FKP3M, CERCANA3M (MSM); legacy: VRS3, MAC3, FKP3, CERCANA3 |
 | **Best mountpoints** | `CERCANA3M` (auto-routes to nearest station, RTCM 3.2 MSM4, automatic failover); `VRS3M` (VRS, full network, MSM) |
-| **tariff** | **Free — €0.00 / $0.00** (no VAT). Date observed: 2026-05-06. Source: https://www.ign.es/web/gds-gnss-tiempo-real |
+| **tariff** | **Free — €0.00 / $0.00** (no VAT). Date observed: 2026-05-17. Source: https://www.ign.es/web/gds-gnss-tiempo-real |
 | **hobbyist_eligibility** | **Yes** — open self-registration; no professional licence required; ~12,000 registered users as of Jan 2024 (~60% agricultural sector) |
 | **legal_residency_required** | **No** — no residency restriction published |
-| **last_confirmed_alive** | **2026-05-12** — sourcetable retrieved live from `ergnss-tr.ign.es:2101` (1 917 bytes; 8 STR rows: CERCANA3, CERCANA3M, FKP3, FKP3M, MAC3, MAC3M, VRS3, VRS3M; Server: NTRIP GNSMART_Caster 2.0/1.0; IP 192.148.213.42) |
+| **last_confirmed_alive** | **2026-05-17** — sourcetable retrieved live from `ergnss-tr.ign.es:2101` (1 733 bytes; 8 STR rows: CERCANA3, CERCANA3M, FKP3, FKP3M, MAC3, MAC3M, VRS3, VRS3M; Server: NTRIP GNSMART_Caster 2.0/1.0; IP 192.148.213.42) |
+| **datum_epoch** | Canary stations: REGCAN95 (operator-declared, 2024-02-01 coordinate update notice). Mainland: ETRS89 implied but **not** explicitly stated by IGN on the SPTR/ERGNSS page — `omitted -- no citable declaration for mainland`. Source: https://www.ign.es/web/gds-gnss-tiempo-real |
 
 ### ERGNSS/SPTR Network Details
 - **Stations:** 272 GNSS reference stations (IGN permanent stations + stations from 13 regional autonomous community networks + Puertos del Estado tide gauge stations). Latest expansion (Jun 2025 transportes.gob.es presentation) adds PNAV, ARAJ, HOND
@@ -43,6 +44,7 @@
 | **tariff** | **Free — €0.00** (gratuito). Date observed: 2026-05-06. Source: https://www.juntadeandalucia.es/institutodeestadisticaycartografia/rap |
 | **hobbyist_eligibility** | **Yes** — open registration |
 | **last_confirmed_alive** | RAP portal accessible 2026-05-06 |
+| **datum_epoch** | omitted -- no citable operator declaration |
 
 ---
 
@@ -53,9 +55,10 @@
 | **Operator** | Institut Cartogràfic i Geològic de Catalunya (ICGC; formerly ICC) |
 | **host:port** | `catnet-ip.icgc.cat:2101` (previous host: `catnet-ip.icc.es:8080`; updated March 2019) |
 | **VRS** | Yes — RTKAT virtual station service (RTCM 2.3 / 3.0 + centimetre precision) |
-| **tariff** | **Free** — account registration required via ICGC. Date observed: 2026-05-12. Source: https://catnet-ip.icgc.cat/ |
+| **tariff** | **Free** — account registration required via ICGC. Date observed: 2026-05-17. Source: https://catnet-ip.icgc.cat/ |
 | **hobbyist_eligibility** | **Yes** |
-| **last_confirmed_alive** | **2026-05-12** — sourcetable retrieved live from `catnet-ip.icgc.cat:2101` (3 566 bytes; primary mountpoint `VRS3M` multi-GNSS GPS+GLO+GAL+BDS RTCM 3 MSM, plus ~25 single-station `<CODE>2_DGNSS` legacy RTCM 2 mountpoints; Server: NTRIP Spider/7.11.1.109) |
+| **last_confirmed_alive** | **2026-05-17** — sourcetable retrieved live from `catnet-ip.icgc.cat:2101` (3 288 bytes; primary mountpoint `VRS3M` multi-GNSS GPS+GLO+GAL+BDS RTCM 3 MSM, plus ~25 single-station `<CODE>2_DGNSS` legacy RTCM 2 mountpoints; Server: GNSS Spider 7.11.1.109) |
+| **datum_epoch** | omitted -- no citable operator declaration on the public portal |
 - Service operational since January 2006; uses NTRIP protocol
 
 ---
@@ -98,8 +101,8 @@ HxGN SmartNet (Hexagon/Leica) operates in Spain but has no published public pric
 | **RAP Andalucía RINEX** | https://www.juntadeandalucia.es/institutodeestadisticaycartografia/rap | Free |
 
 ## Sources Consulted
-- Live NTRIP probe of `ergnss-tr.ign.es:2101` — 2026-05-12 (sourcetable retrieved)
-- Live NTRIP probe of `catnet-ip.icgc.cat:2101` — 2026-05-12 (sourcetable retrieved)
+- Live NTRIP probe of `ergnss-tr.ign.es:2101` — 2026-05-17 (sourcetable retrieved, 8 STR; curl --http0.9)
+- Live NTRIP probe of `catnet-ip.icgc.cat:2101` — 2026-05-17 (sourcetable retrieved, ~26 STR; curl --http0.9)
 - IGN España ERGNSS/SPTR: https://www.ign.es/web/gds-gnss-tiempo-real
 - ERGNSS registration: http://ergnss.ign.es/gnuserportal/
 - GNSS Visor (REPGNSS casteres): http://ntrip.rep-gnss.es/casteres.php

@@ -1,5 +1,5 @@
 # Sri Lanka [LK] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12
+**Date researched:** 2026-05-17 (re-verified via WebSearch; SLCORSnet LKR pricing + CORSnet 21-station claim unchanged since 2026-05-12; no new announcement)
 
 ## Status: TWO active NTRIP RTK casters in Sri Lanka — **SLCORSnet** (government, Survey Department, public pricing in LKR, registration open online, Western Province phase-1 coverage) and **CORSnet** (private commercial, islandwide, 21 stations, pricing on request)
 
@@ -10,12 +10,13 @@
 | **host:port** | `222.165.190.67:2101` — confirmed live 2026-05-12 (`SOURCETABLE 200 OK`, Server: `GNSMART_Caster/1.0`, 7 STR rows; CAS row also published) | `corsnet.lk:2101` (IPv4 104.198.14.52); TCP probe **timed out 2026-05-12** from this sandbox. WebFetch of `corsnet.lk` HTML returned 200; caster endpoint unconfirmed on this date. Marketing site live |
 | **VRS** | Yes — `VRS`, `VRS_BDS`, `VRS_MSM4`, `FKP`, `MAC`, `MSM`, plus `SBASE_MSM4` single-base mountpoint | Yes — DGNSS, single-base RTK, Network RTK / VRS, RINEX post-processing |
 | **GNSS systems** | RTCM 3.0 / 3.1 / 3.2; mountpoints labelled `gnss`; `VRS_BDS` and `VRS_MSM4`/`SBASE_MSM4` include BDS via MSM4 messages; `MSM` advertises MSM5 for GPS+GLONASS+Galileo+BDS | GPS+GLONASS+Galileo+BeiDou per CORSnet product page |
-| **Number of stations** | Phase-1: Western Province + surrounding areas (exact count not published on `slcorsnet.survey.gov.lk`; "About" page shows placeholder counters). Full-island coverage and offshore hydrographic coverage planned for completion phases | 21 CORS stations islandwide (per corsnet.lk homepage 2026-05-12) — 17 stations cited on older SULECO page |
+| **Number of stations** | ? — sourcetable "About" page counters show `0+` placeholder values (`Stations 0+`, `Years in Service 0+`, `Stations Yet to Come 0+`), no physical station count cited by operator. Coverage prose names Phase-1 = Western Province + surrounding areas (Colombo, Gampaha, Kalutara districts); full-island + offshore hydrographic coverage planned, date unannounced | 21 CORS stations islandwide (per corsnet.lk homepage 2026-05-12) — 17 stations cited on older SULECO page |
 | **tariff** | **Public LKR pricing (incl. all taxes), source: slcorsnet.survey.gov.lk/how-to-use/pricing/, fetched 2026-05-12:** 1 day = **2,000 LKR**; 7 days = **10,000 LKR**; 30 days = **30,000 LKR**; 365 days = **360,000 LKR**. 30-day and 1-year subscribers also receive free GNWEB (RINEX delivery) and SSRPOST (post-processing) access for the same period. **Payment**: cash deposit to People's Bank Narahenpita branch, account `119-1-001-0-9027253` (Surveyor General); deposit slip emailed/faxed (011 2055971) to SLCORSnet admin; account activation within ~28 h | Not publicly disclosed; "multiple packages" cited; rates on inquiry (`info@corsnet.lk` / phone). Customer testimonials describe "affordable pricing"; no LKR figure published 2026-05-12 |
 | **hobbyist_eligibility** | Open — anyone needing cm-level real-time positioning is named explicitly ("Anyone who needs real-time cm level GNSS positioning"). Registration is online; no professional licence requirement on the public pages | Open — registration form at `corsnet.lk/user/register/` requires only name, company, email, password, phone, address; no professional credential check |
 | **legal_residency_required** | No explicit requirement; payment method (in-country LKR bank deposit at People's Bank Narahenpita) is the practical residency-bias factor — a foreign hobbyist would need a Sri Lankan bank account or a local proxy to pay | No explicit residency clause stated |
 | **registration** | `http://www.slcorsnet.survey.gov.lk/` → Login / Register link; account creation free; service activation requires payment | `https://corsnet.lk/user/register/` |
 | **last_confirmed_alive** | 2026-05-12 — caster sourcetable 200 OK; pricing page reachable | 2026-05-12 — `corsnet.lk` HTTPS site live (homepage, register, FAQ pages all reachable); TCP probe of port 2101 timed out from this sandbox |
+| **datum_epoch** | omitted — no citable declaration (no operator-cited reference frame/epoch on slcorsnet.survey.gov.lk or survey.gov.lk Geodetic Survey pages) | omitted — no citable declaration (no operator-cited reference frame/epoch on corsnet.lk or sulecoltd.com pages) |
 
 ---
 

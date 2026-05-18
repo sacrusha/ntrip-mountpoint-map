@@ -1,5 +1,5 @@
 # Lebanon [LB] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06; reverified 2026-05-12 (no new public endpoint surfaced)
+**Date researched:** 2026-05-06; reverified 2026-05-17 (no new public endpoint surfaced; radius probe at Beirut 33.89 N / 35.5 E within 200 km confirms only ISR-side `ARKG` (centipede, 140 km) + `BSHM00ISR0` (IGS-IP, 131 km) — neither cross-border-usable)
 
 ## Status: NO confirmed public NTRIP caster in Lebanon. Centipede station ARKG operates 140 km away in northern Israel — outside the project's ~50 km cross-border useful-coverage threshold.
 
@@ -22,10 +22,11 @@ No formal project announcement for a Lebanese national NTRIP/RTK caster or CORS 
 
 ## Context Notes
 
-- No Lebanese government or commercial NTRIP RTK service was found in any surveying-industry directory, ArduSimple country pages, mvarga1989 GNSS list, NTRIP-list.com, or RTK2go monitor (reverified 2026-05-12).
+- No Lebanese government or commercial NTRIP RTK service was found in any surveying-industry directory, ArduSimple country pages, mvarga1989 GNSS list, NTRIP-list.com, or RTK2go monitor (reverified 2026-05-17).
+- `datum_epoch`: omitted -- no Lebanese operator caster exists; no operator declaration to cite.
 - IGS reference station data: GNSS data from BEYS (Beirut, via European EPN or SONEL networks) may exist for post-processing, but is not confirmed as a real-time NTRIP stream.
 - The Lebanon-adjacent Israeli CORS network (MABAT, operated by the Survey of Israel) offers dense coverage reaching near the border, but is not accessible from Lebanon.
-- **Cross-border alternative (out of project ~50 km threshold)**: `centipede` station **`ARKG`** at 32.65 N / 35.29 E (Israel) is the closest tracked NTRIP source at ~140 km from Beirut — too far for single-base RTK and the network membership is Israeli. Not a viable cross-border option.
+- **Cross-border alternative (out of project ~50 km threshold)**: `centipede` station **`ARKG`** at 32.65 N / 35.29 E (Israel) ~140 km from Beirut and `igs_ip` station **`BSHM00ISR0`** at 32.78 N / 35.02 E ~131 km are the closest tracked NTRIP sources (stations_by_radius.py 33.89 35.5 200 → 2 hits, 2026-05-17). Both far beyond useful single-base RTK range; both Israeli network membership — not viable cross-border options for Lebanon.
 - Global commercial networks (GEODNET, ONOCOY, PointOne): no Lebanon coverage confirmed.
 - Practical workaround: Deploy a local base station, or use satellite-based PPP (Trimble RTX, Galileo HAS, NRCAN PPP).
 

@@ -1,87 +1,93 @@
 # South Africa [ZA] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-13 (re-verification of 2026-05-06 baseline; new sourcetable probe) | USD/ZAR rate: 1 USD = 16.589 ZAR
+**Date researched:** 2026-05-17 (re-verification of 2026-05-16 baseline) | USD/ZAR ref: 1 USD ≈ 16.589 ZAR (2026-05-06)
 
-## Status: ACTIVE — TrigNet (free government network); sourcetable retrieved live 2026-05-12
+## Status: ACTIVE — TrigNet (CD:NGI, free). FIG 2026 paper (Parker, NGI) confirms "over 70" CORS + 3 NRTK/VRS clusters + TrigNet 2030 modernisation strategy.
+
+> 2026-05-17 caveat: TCP probe `trignet.co.za:2101` timed out from sandbox (DNS resolves 196.15.132.2; HTTP 80 portal 200). 2026-05-16 probe successful with 77 STR; treat sandbox-side blockage as transient. FIG abstract independently states "over 70 operational CORS" as of Oct 2025.
 
 ---
 
-## Service 1: TrigNet (CONFIRMED ACTIVE)
+## Caster 1: TrigNet (CD:NGI) — CONFIRMED ACTIVE
 
 | Field | Value |
 |---|---|
-| **Active public NTRIP RTK caster** | **Yes** |
-| **landing_url** | `https://ngi.dalrrd.gov.za/index.php/what-we-do/geodetic-and-control-survey-services/37-trignet-continuously-operating-gnss-network` — operator-owned (CD:NGI under DALRRD) TrigNet description page. States the R 0.00 free-of-charge policy. Alternative: `http://www.trignet.co.za/` (the operator-owned portal/Spider home). |
-| **access_url** | Skip — landing_url describes the registration path; no operator-owned non-form access doc identified beyond the portal welcome. `http://www.trignet.co.za/RegisterAccount.aspx` is the bare registration form, not a service description page. |
-| **host:port** | `trignet.co.za:2101` — direct TCP/sourcetable probe 2026-05-12 returned SOURCETABLE 200 OK, server `NTRIP Trimble Ntrip Caster 5.2`, Content-Length 11487 |
-| **Caster software** | Trimble Ntrip Caster 5.2 (observed 2026-05-12 — upgraded from older Trimble Pivot platform; mountpoint entries still tagged "Trimble Pivot Platform" as the back-end CORS engine) |
-| **num_stations** | ~83 STR entries in 2026-05-12 sourcetable, covering single-base RTCM 3.4 mounts (e.g. `Pret-SB` at -25.73, 28.28) and three Network RTK clusters (`RTKNetWCape`, plus Gauteng/KZN equivalents) |
-| **vrs** | Yes — Network RTK (VRS-equivalent) in Gauteng, Western Cape, KZN clusters; single-base RTK elsewhere; DGPS countrywide |
-| **tariff** | **R 0.00 (free)** — all NGI products and services are free of charge per official NGI policy. No VAT on zero-price government service. USD equivalent: $0.00. Date observed: perennial policy, confirmed 2024–2026. Source: https://ngi.dalrrd.gov.za/index.php/what-we-do/geodetic-and-control-survey-services/37-trignet-continuously-operating-gnss-network |
-| **hobbyist_eligibility** | **Yes** — no surveying licence required; registration is open self-service at trignet.co.za/RegisterAccount.aspx; forum posts confirm individual/developer registrations |
-| **legal_residency_required** | Unclear — no stated residency restriction, but no confirmed non-resident registrations found |
-| **registration** | http://www.trignet.co.za/RegisterAccount.aspx |
-| **last_confirmed_alive** | 2026-05-12 — direct TCP probe of `trignet.co.za:2101` returned SOURCETABLE 200 OK with ~83 mountpoints, Content-Length 11487, Date header `Tue, 12 May 2026 22:00:44 UTC`; HEAD probe of `http://www.trignet.co.za/` HTTP 200 on 2026-05-13 |
+| landing_url | https://ngi.dalrrd.gov.za/index.php/what-we-do/geodetic-and-control-survey-services/37-trignet-continuously-operating-gnss-network (operator-owned, states R 0.00 policy) |
+| access_url | http://www.trignet.co.za/ (portal home; registration at `/RegisterAccount.aspx`) |
+| host:port | `trignet.co.za:2101` — SOURCETABLE 200 OK 2026-05-16, server `NTRIP Trimble Ntrip Caster 5.2`, Content-Length 11783 |
+| tariff | **R 0.00 (free)** — all NGI products/services free per public mandate; no VAT on zero-price gov service; USD equivalent $0.00. Perennial policy, re-confirmed 2026-05-16. Source: landing_url. |
+| num_stations | **77** STR entries in sourcetable 2026-05-16 (down from 83 on 2026-05-12). Mix: ~70 single-base `*-SB` mounts (e.g. `Pret-SB` -25.73/28.28, `Ctwn-SB` -33.95/18.46) + 3 Network RTK clusters (`RTKNetWCape`, `RTKNetGauteng`, `RTKNetKZN` equivalents) + a few legacy/DGPS mounts. Per-station country tag: ZAF for all. |
+| vrs | yes — Network RTK clusters in Gauteng, Western Cape, KwaZulu-Natal; single-base RTK elsewhere; DGPS countrywide |
+| hobbyist_eligibility | yes — no surveying-licence requirement; open self-service registration; community forum posts confirm individual/developer signups |
+| legal_residency_required | ? — no published residency restriction; no confirmed non-resident registration |
+| last_confirmed_alive | 2026-05-17 — `http://www.trignet.co.za/` HTTP 200; TCP `trignet.co.za:2101` timed out from sandbox (intermittent; 2026-05-16 probe succeeded with 77 STR, Trimble Caster 5.2). FIG 2026 paper (NGI-authored, May 2026) independently states "over 70 operational CORS stations" as of Oct 2025. |
+| datum_epoch | **ITRF2005 @ epoch 2010.02** — cited operator-owned: NGI page states "co-ordinates of TrigNet stations ... are based on ITRF 2005 (epoch 2010.02)" at https://ngi.dalrrd.gov.za/index.php/technical-information/geodesy-and-gps/world-geodetic-system-1984-wgs84-and-the-international-terrestrial-reference-frame-itrf. Note: passive control framework = Hartebeesthoek94 (ITRF91 @ 1994.0); active GNSS framework = ITRF2005 @ 2010.02. |
 
 ### TrigNet Details
 
-**Operator:** Chief Directorate: National Geo-spatial Information (CD:NGI), Dept. of Agriculture, Land Reform and Rural Development (DALRRD)
-**Portal:** http://www.trignet.co.za | Register: http://www.trignet.co.za/RegisterAccount.aspx
-**Authentication:** Username + password (Basic Auth, Base64) — obtained after registration
-**Example mountpoint:** `Ctwn-SB` (Cape Town single-base)
-**Protocol:** NTRIP v1/v2 — requires proper NTRIP client (RTKLIB, Lefebure, u-blox); standard HTTP libraries fail
-
-### Service Tiers
+- **Mandate:** Section 3A, Land Survey Act 8 of 1997 (per FIG 2026 paper, NGI-authored).
+- **TrigNet 2030 strategy:** NGI developing modernisation roadmap — "resilient, user-centric, interoperable CORS infrastructure integrated with regional and global geodetic frameworks" (FIG 2026 paper). No published tariff change; free-policy reiterated.
+- **Operator:** Chief Directorate: National Geo-spatial Information (CD:NGI), Dept. of Agriculture, Land Reform and Rural Development (DALRRD)
+- **Auth:** Basic (username + password, Base64) post-registration
+- **Caster software:** Trimble Ntrip Caster 5.2 (front-end, observed 2026-05-12 + -16); back-end "Trimble Pivot Platform" tag still on STR records
+- **Protocol:** NTRIP v1/v2; needs real NTRIP client (RTKLIB, Lefebure, u-blox) — plain HTTP libraries fail
+- **Service tiers:**
 
 | Tier | Accuracy | Coverage |
-|------|----------|----------|
-| DGPS | ~0.35 m | Countrywide |
-| Single-base RTK | ~0.05 m | Within 30–40 km of each station |
-| Network RTK (VRS) | ~0.03 m | Gauteng, Western Cape, KwaZulu-Natal clusters |
+|---|---|---|
+| DGPS | ~0.35 m | countrywide |
+| Single-base RTK | ~0.05 m | within 30–40 km of each station |
+| Network RTK (VRS) | ~0.03 m | Gauteng, Western Cape, KZN clusters only |
 
 ---
 
-## Service 2: HxGN SmartNet South Africa (UNCONFIRMED)
+## Caster 2: HxGN SmartNet South Africa — UNCONFIRMED
 
 | Field | Value |
 |---|---|
-| **Status** | Unconfirmed — Leica Geosystems has ZA commercial presence; SmartNet coverage map returned 403 Forbidden; no ZA-specific mountpoints publicly listed |
-| **host:port** | Not publicly disclosed |
-| **tariff** | Not published (US plans cited as "upwards of $5,000/year"; ZAR pricing not found) |
-| **hobbyist_eligibility** | Unclear |
-| **legal_residency_required** | Unclear |
+| landing_url | https://hxgnsmartnet.com/coverage-map (403 Forbidden in probes) |
+| access_url | — no ZA-specific signup page identified |
+| host:port | not publicly disclosed |
+| tariff | not published; US tier benchmark "upwards of $5,000/year"; ZAR pricing absent |
+| num_stations | ? |
+| vrs | ? |
+| hobbyist_eligibility | ? — no free tier identified |
+| legal_residency_required | ? |
+| last_confirmed_alive | unconfirmed; Leica has ZA commercial presence but no ZA-specific MP list found 2026-05-16 |
+| datum_epoch | omitted — no citable declaration |
+
+Not a hobbyist option until pricing + endpoint disclosed.
 
 ---
 
-## Service 3: RTK2GO Community Caster (informational)
+## Volunteer / Global Supplements (informational; ingested-globals)
 
-- **host:port:** `rtk2go.com:2101` | Free
-- 2026-05-13 sourcetable scan: one ZAF entry — `LouwNPP` (Paulpietersburg, KZN/MP border, -27.34, 30.90), RTCM 3.3 MSM, NMEA filter requires a real mount. Quality/uptime not guaranteed.
-
-## Service 4: Centipede-RTK (informational)
-
-- **host:port:** `caster.centipede.fr:2101` | Free
-- 2026-05-13 sourcetable scan: one ZAF entry — `PIER` (-32.431, 25.743, Eastern Cape, near Pearston), u-blox ZED-F9P, RTCM3 GPS+GLO+GAL+BDS. Single hobbyist node; not a national network.
-
----
+- **rtk2go (rtk2go.com:2101):** 1 ZAF — `LouwNPP` (Paulpietersburg, KZN/MP border, -27.34/30.90), RTCM 3.3 MSM (project sourcetable scan 2026-05-13).
+- **Centipede (crtk.net:2101):** 1 ZAF — `PIER` (-32.43/25.74, Eastern Cape near Pearston), u-blox ZED-F9P, RTCM3 GPS+GLO+GAL+BDS.
+- **IGS-IP (BKG):** 7 ZAF stations within 1500 km of Pretoria (HARB, HRAG, HRAO, HRAG (multi-MP), RBAY, SUT1, SUTM, CTWN) — single-base raw 1 Hz. Also carries HARB00ZAF0, SUTM00ZAF0, WIND00NAM0 (IGS observation streams reaching southern Africa); AUSCORS sourcetable re-exposes these as an IGS-partner pass-through artefact, but canonical attribution is IGS-IP.
+- Verification: `py scripts/stations_by_radius.py -25.7 28.2 1500` 2026-05-16 = 53 stations on trignet alone + supplements.
 
 ## Post-Processing (RINEX) Fallback
 
 | Service | URL | Cost |
-|---------|-----|------|
-| **TrigNet RINEX download** — same free service; daily/hourly RINEX files from all TrigNet stations | http://www.trignet.co.za/ | **Free** (same NGI policy — R 0.00) |
+|---|---|---|
+| TrigNet RINEX (daily/hourly all stations) | http://www.trignet.co.za/ | free (R 0.00; same NGI public mandate) |
 
 ## Negative Findings
 
-- **Trimble VRS Now**: No South Africa coverage confirmed.
-- **Topcon Topnet Live**: No ZA coverage confirmed.
-- No private commercial RTK NTRIP network with published tariff and confirmed endpoint found beyond TrigNet.
+- Trimble VRS Now: no ZA coverage confirmed.
+- Topcon Topnet Live: no ZA coverage confirmed.
+- No commercial private NTRIP network with published ZAR tariff + endpoint beyond TrigNet.
 
 ## Sources
-- https://ngi.dalrrd.gov.za/index.php/what-we-do/geodetic-and-control-survey-services/37-trignet-continuously-operating-gnss-network
-- https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-south-africa/
-- https://www.b4x.com/android/forum/threads/ntrip-mount-points.163904/ (Nov 2024 live connection)
-- https://hxgnsmartnet.com/coverage-map
-- https://ntrip-list.com/africa/
-- x-rates.com (ZAR/USD 2026-05-06)
-- Direct TCP sourcetable probe `trignet.co.za:2101` 2026-05-12 — SOURCETABLE 200 OK, Trimble Ntrip Caster 5.2, ~83 STR entries (Content-Length 11487)
-- Project sourcetables `data/rtk2go.sourcetable` and `data/centipede.sourcetable` 2026-05-13 — LouwNPP (rtk2go) and PIER (Centipede) tagged ZAF
+- TrigNet operator landing: https://ngi.dalrrd.gov.za/index.php/what-we-do/geodetic-and-control-survey-services/37-trignet-continuously-operating-gnss-network
+- TrigNet datum citation (operator-owned): https://ngi.dalrrd.gov.za/index.php/technical-information/geodesy-and-gps/world-geodetic-system-1984-wgs84-and-the-international-terrestrial-reference-frame-itrf — "TrigNet ... based on ITRF 2005 (epoch 2010.02)"
+- NGI datums + coordinate systems page: https://ngi.dalrrd.gov.za/index.php/technical-information/geodesy-and-gps/datum-s-and-coordinate-systems
+- TrigNet portal: http://www.trignet.co.za/
+- Direct TCP sourcetable probe `trignet.co.za:2101` 2026-05-16 — SOURCETABLE 200 OK, Trimble Caster 5.2, 77 STR entries, Content-Length 11783
+- TCP probe 2026-05-17 — timed out from sandbox (DNS 196.15.132.2 ok; HTTP 80 portal returns 200); not a service outage
+- FIG 2026 paper (Parker, NGI) "Status and Future of TrigNet" — https://fig.net/resources/proceedings/fig_proceedings/fig2026/papers/ts01h/TS01H_parker_14083_abs.pdf (presented FIG Congress 2026, Cape Town, 24-29 May 2026; states "over 70 operational CORS" Oct 2025, 3 NRTK/VRS clusters, TrigNet 2030 strategy, ITRF alignment)
+- `py scripts/stations_by_radius.py -25.7 28.2 1500` 2026-05-16 — 53 trignet stations + rtk2go LouwNPP + centipede PIER + igs_ip ZA cluster
+- ardusimple ZA: https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-south-africa/ (also: docs/ardusimple/ZA_SouthAfrica.md)
+- b4x.com NTRIP forum thread (Nov 2024 live TrigNet connections): https://www.b4x.com/android/forum/threads/ntrip-mount-points.163904/
+- HxGN SmartNet (403): https://hxgnsmartnet.com/coverage-map
+- ntrip-list.com Africa: https://ntrip-list.com/africa/

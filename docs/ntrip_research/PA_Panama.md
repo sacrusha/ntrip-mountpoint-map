@@ -1,18 +1,24 @@
 # Panama [PA] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12 (refresh; prior pass 2026-05-06)
+**Date researched:** 2026-05-17 (refresh; prior pass 2026-05-12)
 
 ## Status: One private commercial NTRIP caster (TOPORED, equipment-tied) + government IGNTG CORS being modernised (no public NTRIP exposed yet) + 5 EarthScope/NOTA streams in country
 
 | Field | Value |
 |---|---|
 | **Active public NTRIP RTK caster** | Yes (commercial — TOPORED, equipment-gated; see notes) |
+| **landing_url** | https://panama.casadeltopografo.com/topored/ (TOPORED operator page) |
+| **access_url** | https://panama.casadeltopografo.com/topored/ (same page; standalone subscription not published — access bundled with Casa del Topógrafo equipment purchase) |
+| **num_stations** | 6 Panama-located CORS within the 28-station TOPORED Panama+Colombia network (operator declaration on TOPORED page); control centre in Bogotá. Plus 5 EarthScope/NOTA streams (ACHO, CN20, CN55, CN60, PTPP) accessible via global EarthScope caster. |
+| **vrs** | ? — TOPORED sourcetable not retrievable from sandbox; operator page describes "RTK with a single rover" without explicit NRTK/VRS product language. EarthScope NOTA streams are single-base (nmea=0). |
 | **EarthScope (NOTA) real-time streams in Panama** | 5 stations served by the EarthScope caster (`ntrip.earthscope.org:2101`; legacy `rtgpsout.unavco.org:2101` retired 2025-07-29): `ACHO_RTCM3P3` (7.41°N, −80.17°W), `CN20_RTCM3P3` (9.35°N, −82.26°W, near Bocas del Toro), `CN55_RTCM3P3` (8.24°N, −80.54°W), `CN60_RTCM3P3` (8.63°N, −79.03°W, near Panama City), `PTPP_RTCM3P3` (8.20°N, −82.88°W, near David). RTCM 3 MSM5. Free non-commercial via NULA. |
 | **host:port — TOPORED** | Not publicly disclosed (port 2101 refused connection on 2026-05-12); website `panama.casadeltopografo.com` was unresponsive to direct curl from the research sandbox 2026-05-12 (timeouts; may be IP-geofenced or Cloudflare-blocking). Per ArduSimple and Casa del Topógrafo Facebook page, credentials are issued to equipment purchasers. |
 | **tariff — TOPORED** | Not published; access bundled with GNSS equipment purchase from Casa del Topógrafo; standalone subscription pricing not found as of 2026-05-12 |
 | **tariff — EarthScope** | Free non-commercial after NULA; USD 1,000/seat/yr commercial |
 | **hobbyist_eligibility** | TOPORED: unclear — exclusive to customers who purchase GNSS equipment from Casa del Topógrafo. EarthScope: yes (non-commercial). |
 | **legal_residency_required** | TOPORED: unclear — equipment-purchase gate applies. EarthScope: no. |
-| **last_confirmed_alive** | TOPORED web page reported live 2026-05-06; 2026-05-12 fetch from sandbox timed out (inconclusive — not necessarily down). EarthScope NOTA streams in `data/stations.json` (5 PAN stations) as of 2026-05-12. |
+| **last_confirmed_alive** | TOPORED web page reported live 2026-05-06; 2026-05-12 + 2026-05-17 fetches from sandbox timed out (Cloudflare / geofence — inconclusive, not necessarily down). EarthScope NOTA streams + 1 MIRAI rebroadcast (QPNP) still in `data/stations.json` as of 2026-05-17. |
+| **MIRAI rebroadcast** | `QPNP00PAN` (Panama City area ~8.95°N, −79.56°W) — single PAN-tagged station on MIRAI caster. Per primer [ingested-globals], MIRAI rebroadcasts select international stations; primary CORS hosting still EarthScope NOTA. |
+| **datum_epoch** | omitted — no citable operator declaration. TOPORED operator page is not retrievable from sandbox; IGNTG public pages do not publish a datum/epoch decree for any real-time NTRIP product. |
 
 ## Active Caster: TOPORED (Casa del Topógrafo Panama)
 
@@ -43,7 +49,8 @@ The Instituto Geográfico Nacional "Tommy Guardia" (IGNTG), a division of ANATI,
 - **ArduSimple** (July 2024 page) explicitly states Panama has no established National RTK Network — consistent with IGNTG not operating a publicly accessible NTRIP service.
 - **IGNTG CORS**: Useful for post-processing geodetic work via SIRGAS-CON data archives; RINEX data retrievable via EarthScope / UNAVCO for stations in the SIRGAS-CON tier.
 - **GEODNET / ONOCOY / Centipede-RTK**: No confirmed coverage in Panama found.
-- **RTK2go**: No Panama-registered mountpoints (confirmed via `scripts/stations_by_country.py PAN` 2026-05-12 — no PAN tag under rtk2go).
+- **RTK2go**: No Panama-registered mountpoints (re-confirmed via `scripts/stations_by_country.py PAN` 2026-05-17 — no PAN tag under rtk2go).
+- **Cross-border IGAC (Colombia)**: `scripts/stations_by_radius.py 9 -80 800` 2026-05-17 returns ~64 IGAC stations within 800 km of central Panama; the nearest (ACAN, APTO) sit 300-400 km from Panama City — too far for single-base RTK, but post-processing RINEX from IGAC is publicly available. Bocas del Toro is only ~250 km from the closest IGAC stations (PLCO, MOTE) and ~150 km from CN20 (EarthScope), so far western Panama has the densest cross-border coverage.
 - **EarthScope/NOTA real-time**: 5 streams in country (ACHO, CN20, CN55, CN60, PTPP — RTCM 3 MSM5 on `ntrip.earthscope.org:2101`). With baselines mostly ≤80 km between them, single-base RTK fixes are realistic for much of central/western Panama. This is the **only free real-time path for hobbyists in Panama**.
 - Practical workaround for hobbyists outside EarthScope baseline: Deploy a local base station for single-base RTK, or use satellite-based PPP services (Trimble RTX, u-blox PointPerfect where available, Galileo HAS).
 
@@ -71,5 +78,5 @@ The Instituto Geográfico Nacional "Tommy Guardia" (IGNTG), a division of ANATI,
 - EarthScope/UNAVCO GNSS Data Archive
 - Destino Panamá (Sept 2025) — IGNTG 6 new CORS antennas: https://destinopanama.com.pa/2025/09/instituto-tommy-guardia-refuerza-red-geodesica-de-cara-a-megaproyecto-ferroviario/
 - ANATI press release (Apr 2025) — IGNTG capacity strengthening: https://www.anati.gob.pa/index.php/noticias/801-instituto-geografico-nacional-tommy-guardia-fortalece-sus-capacidades-tecnicas-para-la-generacion-de-informacion-geoespacial
-- curl probe `panama.casadeltopografo.com:443` 2026-05-12 — connection established but no HTTP response within 10s (inconclusive; likely Cloudflare-/geofence-related, not necessarily caster downtime)
-- Local pipeline check `scripts/stations_by_country.py PAN` (2026-05-12) — earthscope source returns 5 stations: ACHO, CN20, CN55, CN60, PTPP
+- curl probe `panama.casadeltopografo.com:443` 2026-05-12 + 2026-05-17 — connection established but no HTTP body returned (likely Cloudflare/geofence; inconclusive, not proof of downtime)
+- Local pipeline `scripts/stations_by_country.py PAN` (2026-05-17) — earthscope = 5 (ACHO, CN20, CN55, CN60, PTPP), mirai = 1 (QPNP00PAN, ~Panama City)

@@ -1,5 +1,5 @@
 # Morocco [MA] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12
+**Date researched:** 2026-05-17 (re-verified via WebSearch; no service / station-count / pricing change since 2026-05-12; ANCFCC + itri sites still NXDOMAIN from sandbox)
 
 ## Status: TWO active NTRIP casters — ANCFCC (government, 60 stations, registration required) and itri (private commercial, 231 stations, registration required)
 

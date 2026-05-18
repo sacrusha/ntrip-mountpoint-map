@@ -1,29 +1,31 @@
 # Serbia [RS] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12 (prior version: 2026-05-06)
+**Date researched:** 2026-05-17 (prior: 2026-05-12)
 
-## Status: YES — paid government NTRIP caster (AGROS, RGZ) operating
+## Status: YES — paid gov NTRIP caster (AGROS, RGZ) operating
 
 | Field | Value |
 |---|---|
 | **Active public NTRIP RTK caster** | Yes (AGROS — paid) |
-| **host:port — AGROS** | `agros.rgz.gov.rs:2101` (IP: 93.87.56.181) |
-| **VRS** | Yes — Trimble VRS Now backbone; network RTK solution |
-| **tariff — RTK flat-rate** | 1,125 RSD/month (~€10/month) or 8,688 RSD/year (~€74/yr at ~117 RSD/EUR) |
-| **tariff — DGPS flat-rate** | 703 RSD/month or 5,379 RSD/year (~€46/yr) |
-| **tariff — per-minute / hourly** | Available; see rgz.gov.rs for current schedule |
-| **hobbyist_eligibility** | yes — registration open via rgz.gov.rs; no professional licensing stated; affordable annual rate |
-| **legal_residency_required** | unclear — registration portal is Serbian-language; payment methods not fully described in English sources |
-| **last_confirmed_alive** | agros.rgz.gov.rs port 2101 resolved (93.87.56.181) but timed out from this research environment on 2026-05-06 (suspected external egress firewall; RGZ AGROS portal web HTTP 200 confirmed); website https://www.rgz.gov.rs/agros HTTP 200 on 2026-05-06 |
+| **landing_url** | `https://www.rgz.gov.rs/agros` |
+| **access_url** | `https://www.rgz.gov.rs/agros` (Serbian-language; subscription via RGZ) |
+| **host:port — AGROS** | `agros.rgz.gov.rs:2101` (IP 93.87.56.181) |
+| **VRS** | Yes — Trimble VRS Now; network RTK solution |
+| **tariff — RTK flat-rate** | 1,125 RSD/month (~€10) or 8,688 RSD/year (~€74 @ ~117 RSD/EUR) |
+| **tariff — DGPS flat-rate** | 703 RSD/mo · 5,379 RSD/yr — **out of scope** per primer [scope] (DGNSS-only pseudorange; carrier-phase RTK only is in scope). Listed for completeness, not recommended. |
+| **datum_epoch** | omitted -- no citable operator declaration on rgz.gov.rs. |
+| **hobbyist_eligibility** | yes — registration open via rgz.gov.rs; no professional licence stated; affordable annual rate |
+| **legal_residency_required** | unclear — registration portal Serbian-language; payment methods not fully documented in English |
+| **last_confirmed_alive** | `agros.rgz.gov.rs:2101` connection TIMEOUT 2026-05-17 (12 s) — DNS resolves (93.87.56.181) but sandbox egress blocked; RGZ web portal `www.rgz.gov.rs/agros` redirect-looped on WebFetch 2026-05-17 (page exists but returns >10 redirects). |
 
 ## Context Notes
 
 - **AGROS** (Active Geodetic Reference Frame of Serbia): Operated by the Republički geodetski zavod (RGZ — Republic Geodetic Authority of Serbia). Network established 2002–2005; economic use since December 2005. Trimble Pivot Platform backbone with VRS Now network correction.
 - **Infrastructure**: ~30 permanent CORS stations covering Serbian territory. Dense cluster in Vojvodina (north); sparser in southern Serbia.
-- **Reference system**: ETRS89.
-- **Pricing source**: Uredba (regulation) published by RGZ; Serbian-language portal at rgz.gov.rs. Confirmed in country-survey.md from networks.md entry (sourced April 2026).
-- **Volunteer complement**: rtk2go hosts ~35 Serbian volunteer bases (SRB/SER label); Centipede hosts ~20 SER + ~3 SRB nodes. One of the denser volunteer clusters in the Western Balkans, concentrated in Vojvodina. Combined with AGROS, coverage is good for most of Serbia.
-- **Operator contact**: Republički geodetski zavod (RGZ), Bulevar vojvode Mišića 39, Beograd; https://www.rgz.gov.rs/ · info center 0700/500 500 · info.centar@rgz.gov.rs
-- **Local volunteer data**: `py scripts/stations_by_country.py SER` returns 11 Centipede SER stations (all in Vojvodina cluster: ADAM, BRTK, DANE, DETK, KAMA, MIRO, OSZA, RTKM, SURD, TOMA, VRTK); `SRB` rtk2go returns 26 SRB volunteer bases (BOBASL, BPACA, DJUKA …). One of the densest volunteer footprints in the Western Balkans.
+- **Reference system**: not declared on rgz.gov.rs / agros.rgz.gov.rs in English-language pages checked 2026-05-17; omitted per citation rule.
+- **Pricing source**: Uredba (regulation) published by RGZ; Serbian-language portal at rgz.gov.rs. Confirmed in country-survey.md from networks.md entry (sourced April 2026). DGPS tier listed in the Uredba is out of project scope (carrier-phase RTK only).
+- **Volunteer complement**: rtk2go = 27 SRB bases (BOBASL, BPACA, DJUKA, DJURIC55, DUCA14, Drim, FARMASAK, FFHV, ISKRAML, JANKO93, JOVAID, KARMXT, LUKASU, MAJKIC, MARKMB, MIKIDOL, MRJNSI, OBRVESA, PEJIC, PERO, ROBIBNS, SILODANIK, SOKACBB, ZIKARU, livibns, prahovo, viktor); Centipede = 13 SER stations (ADAM, BRTK, DADO, DANE, DETK, KAMA, KDCS, LEMI, MIRO, RTKM, SURD, TOMA, VRTK; new since prior: DADO, KDCS, LEMI). Total 40 volunteer bases. Dense Vojvodina cluster.
+- **Operator contact**: RGZ, Bulevar vojvode Mišića 39, Beograd; https://www.rgz.gov.rs/ · info.centar@rgz.gov.rs
+- **Local `scripts/stations_by_country.py SRB`** (2026-05-17): centipede=13 (alias SRB→SER), rtk2go=27.
 
 ## Post-Processing (RINEX) Fallback
 

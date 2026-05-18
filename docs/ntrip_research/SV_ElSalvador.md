@@ -1,5 +1,5 @@
 # El Salvador [SV] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-13 (revised from 2026-05-06 — pricing reconfirmed, EarthScope SSIA scientific stream verified inside SV territory)
+**Date researched:** 2026-05-17 (re-probed; survey3g.com/servicios-de-ntrip/ HTTP 200, 2026 tariff schedule unchanged: $15/7d, $30/15d, $45/30d, $135/3mo, $450/12mo; March 2026 coverage imagery LA-UNION / SAN-SALVADOR / PERKIN still posted)
 
 ## Status: YES — active private NTRIP caster (Survey3G); no government caster; one free scientific EarthScope NOTA stream (SSIA, near San Salvador) is also available with a noncommercial-use account
 
@@ -12,7 +12,8 @@
 | **tariff — Survey3G (2026, USD)** | USD 15 / 7 days · USD 30 / 15 days · USD 45 / 30 days (monthly) · USD 135 / 3 months · USD 450 / 12 months (source: survey3g.com/servicios-de-ntrip/, reconfirmed 2026-05-13 — page header explicitly labels schedule "2026"); El Salvador uses USD as official currency; no VAT (IVA) line-itemed on the published schedule |
 | **hobbyist_eligibility** | Yes — subscription open to individuals; no surveyor licence or professional registration required |
 | **legal_residency_required** | No explicit requirement stated; appears to target El Salvador-based users but no residency gate on sign-up |
-| **last_confirmed_alive** | 2026-05-13 — `survey3g.com/servicios-de-ntrip/` HTTP 200 with 2026 price schedule; curl-probe of an undisclosed Survey3G IP:port not possible from sandbox (no public host:port) |
+| **last_confirmed_alive** | 2026-05-17 — `survey3g.com/servicios-de-ntrip/` HTTP 200; 2026 price schedule re-read inline ($15/$30/$45/$135/$450); March-2026-dated coverage images still on page; no public host:port to TCP-probe |
+| **datum_epoch** | omitted -- no citable declaration (Survey3G NTRIP service page describes RTCM corrections + national CORS but does not state frame/epoch; El Salvador uses SIRGAS-tied national frame in cadastral practice, but no operator-page declaration found) |
 
 ## EarthScope NOTA — SSIA (scientific real-time stream inside El Salvador)
 
@@ -28,11 +29,11 @@ A single EarthScope NOTA / COCONet station is located inside Salvadoran territor
 | **hobbyist_eligibility** | Yes — open to noncommercial users worldwide; NULA acceptance required |
 | **legal_residency_required** | No |
 
-A second NOTA station, CN21 (Honduras side, ~194 km east of San Salvador) is too far for single-base RTK but useful for PPK / post-processing in eastern El Salvador. (Verified 2026-05-13 via `py scripts/stations_by_radius.py 13.7 -89.2 200`.)
+A second NOTA station, CN21 (Honduras side, ~194 km east of San Salvador) is too far for single-base RTK but useful for PPK / post-processing in eastern El Salvador. (Verified 2026-05-17 via `py scripts/stations_by_country.py SLV` -- igs_ip 1 station SSIA00SLV0 at 13.70°N -89.12°W.)
 
 ## Most Recent Project Announcement
 
-No formal government announcement. Survey3G describes itself as "pioneer in El Salvador" for NTRIP, operating continuously since launch. The price schedule on `survey3g.com/servicios-de-ntrip/` is dated 2026 (page reconfirmed 2026-05-13). The legacy `survey3g.com/ntrip/` slug remains 404; current pricing is at `servicios-de-ntrip/`.
+No formal government announcement. Survey3G describes itself as "pioneer in El Salvador" for NTRIP, operating continuously since launch. Price schedule on `survey3g.com/servicios-de-ntrip/` dated 2026 (page reconfirmed 2026-05-17). Page now embeds March-2026-dated coverage maps for LA UNION, SAN SALVADOR, PERKIN stations. Legacy `survey3g.com/ntrip/` slug remains 404.
 
 ## Context Notes
 

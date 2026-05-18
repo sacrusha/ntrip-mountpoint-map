@@ -1,5 +1,5 @@
 # Aruba [AW] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-15
+**Date researched:** 2026-05-17 (re-check; 2026-05-15 deep research unchanged)
 
 ## Status: NO national NTRIP caster. Free coverage = 1 EarthScope NOTA station (CN19) + 1 rtk2go volunteer base (PINOST1)
 
@@ -17,7 +17,7 @@
 | **vrs** | no (single-base RTCM 3.3) |
 | **hobbyist_eligibility** | yes — hobbyist/educational/humanitarian use qualifies under NULA |
 | **legal_residency_required** | no |
-| **last_confirmed_alive** | 2026-05-15 — `CN19_RTCM3P3` present in `data/stations.json` earthscope snapshot at 12.61°N -70.05°W |
+| **last_confirmed_alive** | 2026-05-17 — `CN19_RTCM3P3` present in `data/stations.json` earthscope snapshot at 12.61°N -70.05°W (per `scripts/stations_by_country.py ABW`); ingested-global, not re-probed directly per research_task.txt rules |
 | **datum_epoch** | ITRF2014, epoch 2026-03-30 (NOTA stations) — https://www.earthscope.org/data/gnss-realtime/ |
 
 ### rtk2go — PINOST1
@@ -32,7 +32,7 @@
 | **vrs** | no |
 | **hobbyist_eligibility** | yes |
 | **legal_residency_required** | no |
-| **last_confirmed_alive** | 2026-05-15 — `PINOST1` present in `data/stations.json` rtk2go snapshot at 12.50°N -69.98°W |
+| **last_confirmed_alive** | 2026-05-17 — `PINOST1` present in `data/stations.json` rtk2go snapshot at 12.50°N -69.98°W (per `scripts/stations_by_country.py ABW`); ingested-global, not re-probed directly per research_task.txt rules |
 | **datum_epoch** | not citable — rtk2go does not declare a global frame; output equals whatever the host base broadcasts |
 
 ## Coverage Geometry

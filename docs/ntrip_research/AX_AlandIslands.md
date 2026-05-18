@@ -1,5 +1,5 @@
 # Åland Islands [AX] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-15
+**Date researched:** 2026-05-17 (re-probe; 2026-05-15 deep research unchanged)
 
 ## Status: YES (limited) — 2 Centipede volunteer nodes on Fasta Åland (free, open). No dedicated Åland CORS programme. FINPOS (NLS Finland) RTK is restricted to research/test use only. SWEPOS (Sweden) covers Åland only via a paid Inter-Nordic add-on; baseline geometry is marginal.
 
@@ -15,7 +15,7 @@
 | **tariff** | Free of charge, no tier list, no VAT applicable (associative project funded by INRAE / French research institutions) |
 | **hobbyist_eligibility** | yes — open to anyone; users are also encouraged to host their own base |
 | **legal_residency_required** | no |
-| **last_confirmed_alive** | 2026-05-15 — `HTTP/1.1 200 OK` from `http://caster.centipede.fr:2101/`; STR rows for MAR1 and FOG2 both present with ALA country code |
+| **last_confirmed_alive** | 2026-05-17 — re-probed `http://caster.centipede.fr:2101/` HTTP/1.1 200 OK, NTRIP Millipede Server 0.8.1, sourcetable served (260 kB); MAR1 + FOG2 stations also confirmed live in `data/stations.json` snapshot (ALA country code) |
 | **datum_epoch** | not citably declared on Centipede pages — stations stream RTCM3 with broadcast antenna position; rover obtains coordinates in whatever frame the base was set up in (typically ITRF/IGS) |
 
 ## Cross-border alternatives
@@ -47,7 +47,7 @@
 | **tariff** | Free of charge when granted, but **RTK access is granted only for fixed-term research and testing, 3-month renewable, application must justify the research/test purpose** — explicitly *not* for production or routine survey/drone use. DGNSS and RINEX are unrestricted free with registration. |
 | **hobbyist_eligibility** | no — RTK service explicitly excludes production use. A hobbyist may qualify only by framing usage as bona-fide R&D and submitting feedback. DGNSS sub-metre is fully open. |
 | **legal_residency_required** | no |
-| **last_confirmed_alive** | 2026-05-15 — `opencaster.nls.fi:2101` HTTP 200, streamtable reachable |
+| **last_confirmed_alive** | 2026-05-17 — `opencaster.nls.fi:2101` re-probed HTTP/1.1 200, `Server: GNSMART_Caster/2.0` (HTML index served at `/`; `/sourcetable.txt` returns STR list) |
 | **datum_epoch** | EUREF-FIN (Finnish ETRS89 realisation), anchor epoch 1997.0. Official declaration: JHS196 recommendation http://docs.jhs-suositukset.fi/jhs-suositukset/JHS196/JHS196.html ; also registered in EPSG (e.g. EPSG:10690 / EPSG:3067). |
 
 ## No Åland-specific government CORS programme

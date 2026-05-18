@@ -8,7 +8,12 @@
 | **Active public NTRIP RTK caster** | Yes |
 | **Network name** | CROPOS (CROatian POsitioning System) |
 | **Operator** | Državna geodetska uprava (DGU) — State Geodetic Administration of Croatia |
+| **landing_url** | https://www.cropos.hr/ (operator-owned) |
+| **access_url** | https://www.cropos.hr/o-sustavu/naknade-za-koristenje-podataka-cropos-sustava (fees + registration procedure; no self-service signup form — registration is by email to cropos@dgu.hr) |
 | **host:port** | `195.29.198.194:2101` (live `SOURCETABLE 200 OK` from `NTRIP Trimble Ntrip Caster 5.2` confirmed 2026-05-12; alt portal `gnss.cropos.hr:2101` also returns same sourcetable) |
+| **num_stations** | ~35 physical CORS (per DGU CROPOS overview after Feb-2023 + Apr-2025 densification; not enumerated as STR rows since caster exposes only network VRS streams) |
+| **vrs** | yes — VPPS (Network RTK / VRS) confirmed; ≤2 cm horizontal, ≤4 cm vertical |
+| **datum_epoch** | omitted — no citable operator declaration of frame+epoch on cropos.hr or DGU pages. HTRS96 (Croatian Terrestrial Reference System 1996) ≡ ETRS89 is the network's national frame per geodetic literature, and `CROPOS_VRS_HTRS96` / `CROPOS_VRS_GGG_HTRS96` mountpoints are exposed, but no operator URL declares epoch. |
 | **VRS** | Yes — High-Precision Positioning Service (VPPS) provides Network RTK / VRS corrections; ≤2 cm horizontal, ≤4 cm vertical |
 | **tariff — DPS (Differential Positioning Service)** | Free (no charge since April 2022 law amendment; ~0.5 m accuracy) |
 | **tariff — VPPS (Network RTK / VRS)** | Free (no charge since April 2022 law amendment; ≤2 cm accuracy) — confirmed free in 2026 per CROPOS pricing page; only registration + GPPS now have a fee |

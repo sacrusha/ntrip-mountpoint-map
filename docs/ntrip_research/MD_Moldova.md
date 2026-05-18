@@ -1,5 +1,5 @@
 # Moldova [MD] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06 (refreshed 2026-05-12)
+**Date researched:** 2026-05-06 (refreshed 2026-05-17 — no tariff schedule change; caster + creds unchanged)
 
 ## Status: YES — MOLDPOS national RTK network active; registration required; open to any GPS receiver owner
 
@@ -7,9 +7,10 @@
 |---|---|
 | **Active public NTRIP RTK caster** | Yes — MOLDPOS (Moldova Positioning System), operated by S.E. INGEOCAD under the Agency for Geodesy, Cartography and Cadastre (AGCC / agcc.gov.md) |
 | **landing_url — MOLDPOS** | `https://moldpos.md/` — operator-owned MOLDPOS service site (RO/RU); describes the network, mountpoints (VRS/MAX/MSM, FreeZone), test credentials. Alternative: `https://agcc.gov.md/content/moldpos` (AGCC agency-level MOLDPOS page). |
-| **access_url — MOLDPOS** | Skip — the MDL tariff schedule is not published in open web (`moldpos.md/tarife` and `/preturi` returned HTTP 404 on 2026-05-12); pricing is contact-only via `moldpos@ingeocad.md`. The SBC entry at `http://moldpos.ingeocad.md/SBC/Account/Register` is a bare registration form, not a service description page. |
+| **access_url — MOLDPOS** | http://moldpos.ingeocad.md/SBC/Account/Register — Leica Spider Business Center registration (bare sign-up form). MDL tariff schedule not published in open web (`moldpos.md/tarife` and `/preturi` returned HTTP 404 on 2026-05-12); pricing is contact-only via `moldpos@ingeocad.md`. |
 | **host:port — MOLDPOS** | `185.108.183.29 : 8080` (updated from former IP 188.237.130.50:8080). SBC portal: `moldpos.ingeocad.md`. Source: moldpos.md official pages, observed 2026-05-06. |
 | **tariff — MOLDPOS** | Paid service (became paid per AGCC Order No. 04 of 06.01.2012). Current MDL tariff schedule not published in open sources — contact INGEOCAD at moldpos@ingeocad.md or +373 22 881200 for current rates. Free test credentials for trial zones: login `moldpos` / password `moldpos`. |
+| **datum_epoch** | omitted — no citable operator declaration. INGEOCAD/AGCC prose mentions ETRS89 alignment (EuroGeographics context) but no operator-side stream/RINEX/portal cite states the caster output frame. |
 | **hobbyist_eligibility** | Open — INGEOCAD explicitly states "MOLDPOS is an open network; any GPS receiver owner can join" (MOLDPOS – ОТКРЫТАЯ СЕТЬ: ЛЮБОЙ ОБЛАДАТЕЛЬ GPS ПРИЕМНИКА МОЖЕТ ПРИСОЕДИНИТЬСЯ К НАМ). Registration via SBC portal appears sufficient; no licensed-surveyor restriction found. |
 | **legal_residency_required** | Not stated; no explicit residency requirement found. |
 | **last_confirmed_alive** | WebFetch of `185.108.183.29:8080` returned socket closed unexpectedly (connection established then closed — consistent with an NTRIP caster responding to HTTP probe with non-HTTP data) on 2026-05-06. moldpos.ingeocad.md SBC portal (login page) HTTP 200 confirmed 2026-05-06. |
@@ -59,4 +60,5 @@
 - WebFetch probe of `moldpos.md:8080` — ECONNREFUSED 2026-05-06 (hostname-based access on port 8080 not responding; use IP directly)
 - RTK2go monitor — no Moldova NTRIP streams confirmed
 - py scripts/stations_by_radius.py 47.0 28.5 200 (2026-05-12) — only nearest free RTK stations are POPINCIUC (rtk2go, Romania, 125 km) and VASLUI (Centipede, Romania, 108 km) — both outside reliable single-base range (~35 km) from Chișinău
-- moldpos.md/tarife and moldpos.md/preturi return HTTP 404 (2026-05-12) — current tariff schedule still not published in open web
+- moldpos.md/tarife and moldpos.md/preturi return HTTP 404 (re-verified 2026-05-17) — tariff schedule still not published in open web; pricing remains contact-only via moldpos@ingeocad.md
+- 2026-05-17 WebFetch of moldpos.md returned only the general overview (GNSS basics, no host/port/tariff); SBC portal at moldpos.ingeocad.md still the operational entry point

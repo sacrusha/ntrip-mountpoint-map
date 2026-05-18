@@ -1,5 +1,5 @@
 # Barbados [BB] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-15
+**Date researched:** 2026-05-17 (refresh of 2026-05-15 — no caster to re-probe; status unchanged: BDOS decommissioned 2013-12-12, no successor, no announced project)
 
 ## Status: NO public NTRIP RTK caster — no national or volunteer station; nearest free streams ~158 km away on Saint Lucia (EarthScope NOTA), beyond usable RTK baseline
 

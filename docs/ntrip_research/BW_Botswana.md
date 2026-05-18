@@ -1,5 +1,5 @@
 # Botswana [BW] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-15 (previous 2026-05-12)
+**Date researched:** 2026-05-17 (prior 2026-05-15, 2026-05-12)
 
 ## Status: National CORS network exists (DSM, ~55 stations); no public NTRIP endpoint disclosed
 
@@ -16,8 +16,8 @@
 | **vrs** | unknown — no sourcetable available |
 | **hobbyist_eligibility** | not advertised; DSM materials frame CORS use around cadastral surveying |
 | **legal_residency_required** | unknown — no published terms |
-| **last_confirmed_alive** | 2026-05-15 — `gov.bw/land-management/maps-and-geospatial-data` reachable; page describes maps/orthophotos/DEMs only, no NTRIP/RTK service exposed; no BW mountpoints on rtk2go, Centipede, or ntrip-list.com Africa |
-| **datum_epoch** | OMIT — no public caster to attach datum to; institutional frame is BNGRS02 (legacy BTRS / Cape Datum / Modified Clarke 1880) |
+| **last_confirmed_alive** | 2026-05-17 — `gov.bw/land-management/maps-and-geospatial-data` WebFetch HTTP 200, page describes maps/orthophotos/DEMs only, no CORS/NTRIP/GNSS/real-time/reference-station terms anywhere; no BW mountpoints on rtk2go, Centipede, ntrip-list.com Africa; no 2025–2026 announcement of public NTRIP rollout |
+| **datum_epoch** | omitted — no public caster (per primer [datum-epoch], no operator-declared RTK output frame to cite). Institutional frame context moved to Network Details below. |
 
 ## Operator
 
@@ -58,8 +58,15 @@ South Africa's **TrigNet** (gov't, free for South-African users) does not extend
 ## Most Recent Project Reference
 
 - **2017 academic thesis (Högskolan i Gävle / DiVA portal)** — station-by-station status map, ~28 of installed stations operational. Still the most detailed public snapshot.
-- **2024 LinkedIn post** — DSM joined SURPAC regional surveying-software user community; describes cadastral-workflow modernisation, not a public NTRIP rollout.
+- **2024 LinkedIn post** — DSM Botswana joins SURPAC regional surveying-software *user community* (about the SURPAC surveying-software users group, not a CORS or NTRIP announcement). Mentioned here only to disambiguate prior research; not evidence of public NTRIP rollout.
 - No 2025–2026 announcement of public NTRIP service surfaced through WebSearch (queries against `gov.bw`, "DSM Botswana", "Botswana CORS NTRIP 2025/2026", Onocoy/GeodNet/SwiftNav coverage).
+
+## GEODNET / Onocoy / SwiftNav probe (2026-05-17)
+
+- **GEODNET** (geodnet.com, HYFIX.AI): paid service ($40/month, excluded from project SOURCES per `scripts/fetch_stations.py` 2026-04-20). Public miner map (https://app.geodnet.com/) inspected — 0 BW-located triangle nodes; coverage clusters in ZAF/EU/US, none across the BW border. count=0.
+- **Onocoy** (onocoy.com): public coverage map (https://www.onocoy.com/) inspected — 0 BW-located miner sites. count=0.
+- **SwiftNav Skylark** (swiftnav.com/skylark): coverage map (https://www.swiftnav.com/skylark/coverage) — Skylark does not list Africa coverage; BW is outside published coverage zones. count=0.
+- All three commercial / third-party RTK overlays have zero BW presence as of 2026-05-17.
 
 ## Post-Processing (RINEX) Fallback
 

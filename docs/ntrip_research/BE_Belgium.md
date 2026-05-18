@@ -1,5 +1,5 @@
 # Belgium [BE] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-15
+**Date researched:** 2026-05-17 (refresh of 2026-05-15)
 
 ## Status: MIXED — three regional government NTRIP RTK casters covering all Belgium (FLEPOS / Flanders, WALCORS / Wallonia, GPSBru / Brussels). FLEPOS is **professional-organization-only — hobbyists CANNOT register.** WALCORS allows individuals via SURVEY/GIS categories. GPSBru registration accepts individuals. Geographic / IP restrictions apply on WALCORS. Volunteer Centipede (17 BEL nodes) and rtk2go (3 BEL bases) provide hobbyist fallback.
 
@@ -39,15 +39,17 @@ Subscription categories: Survey, Agriculture, Machine Control (Machinebesturing)
 | **access_url** | `https://www.wallonie.be/fr/demarches/acceder-au-reseau-permanent-de-stations-gnss-de-reference-walcors` — official SPW démarche page describing how to request access. Backup: `https://gnss.wallonie.be/walcors/acces-au-reseau/acces-au-reseau-1.html` (technical access description). Both observed 2026-05-15. |
 | **host:port** | `gnss.wallonie.be:8081` (IP 157.164.253.36) |
 | **VRS** | Yes — three correction types: VRS (virtual reference station), IMAX (Leica MAX-cell), NEAR (single nearest physical). |
-| **num_stations** | **23** stations across Wallonia (operator confirms 2026-05-15) + 13 exchanged with neighbouring networks (LU/NL/FR/DE) for edge-effect mitigation. Modernisation in progress will progressively reduce to 14 receivers (new GPS+GLONASS+GALILEO+BEIDOU hardware, same quality of service). |
+| **num_stations** | **14** active stations across Wallonia (operator actualite.html refreshed 2026-05-17 — modernisation now states "14 active" rather than "23 transitioning to 14"; 2025-11-09 OLLN/MARI coordinate adjustment is the most recent news item) + 13 stations exchanged with neighbouring networks (LU/NL/FR/DE) for edge-effect mitigation. All 14 receivers are GPS+GLONASS+GALILEO+BEIDOU. Prior project research recorded "23, decreasing to 14"; the reduction is now reported as complete. |
 | **Key mountpoints** | `VRS32GREC` (VRS, RTCM 3.2, GPS+GLO+GAL+BDS) · `IMAX32GREC` (iMAX) · `NEAR32GREC` (nearest). Naming suffix: G=GPS, GR=+GLO, GRE=+GAL, GREC=+BDS. |
 | **tariff** | Free for positioning (SURVEY, GIS); user pays only mobile-data. Auto-guidage (machine-guidance) tier paid since 2013-01-01, billed via commercial resellers (no public WALCORS price list; routed through Leica reseller channel). VAT not stated. Observed 2026-05-15 on `gnss.wallonie.be/walcors/acces-au-reseau/acces-au-reseau-4.html`. |
 | **hobbyist_eligibility** | Yes — registration form has three user categories (SURVEY, GIS, GUIDAGE); SURVEY/GIS are free and accept individuals. 5 MB/hr per-user data cap. |
-| **legal_residency_required** | Unclear / **geographic restriction in effect**: software polygon limits delivery of corrections to Belgian territory ("L'accès n'est pas autorisé en dehors du territoire belge" — *not authorised outside Belgian territory* — except SURVEY-category surveyors who may connect from anywhere in Belgium since 2017-09). No explicit residency requirement, but corrections will not be served outside Belgium. |
-| **last_confirmed_alive** | `gnss.wallonie.be:8081` timed out (15s) from this sandbox 2026-05-15 — expected due to geographic firewall. Web portal `gnss.wallonie.be` is reachable and active (operator status page updated 2026-05-14 announcing 2026-05-13 WERB outage and 2026-05-18..2026-06-04 maintenance windows for GHIS/ONHA/FLOR/OSTI/CHAR/MAFA/TILM). Live service-monitoring activity from operator is the strongest evidence of an active caster despite external-IP block. |
+| **legal_residency_required** | No — no legal residency requirement stated by SPW. Geo-firewall (Belgian-IP only) is a distinct technical access control; see context note below. |
+| **last_confirmed_alive** | `gnss.wallonie.be:8081` timed out from this sandbox 2026-05-17 — expected due to geographic firewall (same outcome 2026-05-15). Web portal `gnss.wallonie.be` reachable and active: status page (`etat-du-reseau-walcors.html`, refreshed 2026-05-17) shows WERB still down since 2026-05-13 22:10, FOVA restored, BERL/MAFA back since 2026-04-22, and planned-maintenance windows 2026-05-18..2026-05-21 (GHIS/ONHA/FLOR) and 2026-06-01..2026-06-04 (OSTI/CHAR/MAFA/TILM). Live operator status activity = strongest evidence caster is up despite external-IP block. |
 | **datum_epoch** | Omitted — no citable per-network declaration. (See FLEPOS note re: BEREF2002.) |
 
 Contact: `gnss@spw.wallonie.be` · administration +32 81 71 59 22 · technical helpdesk +32 2 209 07 08 · 24/7 emergency +32 81 71 59 30. Coordinates for stations VITH (2025-07-11), MARI and OLLN (2025-11-09) were adjusted as part of the modernisation programme; users with stored base coordinates must refresh.
+
+**Context note — geo-firewall (technical access control, distinct from legal residency):** WALCORS applies an IP-based geographic filter that limits correction delivery to Belgian IP space (operator wording: *"L'accès n'est pas autorisé en dehors du territoire belge"*). Since 2017-09, registered SURVEY-category users may connect from anywhere within Belgium. The polygon is enforced at the caster, not by registration or law: a registered user with a non-Belgian IP will be silently refused corrections. This is a technical access rule, not a residency or nationality requirement — `legal_residency_required` is recorded `no` and this geo-firewall is the actual hobbyist-blocking constraint for users outside Belgium.
 
 ---
 
@@ -58,7 +60,7 @@ Contact: `gnss@spw.wallonie.be` · administration +32 81 71 59 22 · technical h
 | **Operator** | Nationaal Geografisch Instituut / Institut Géographique National (NGI/IGN) — Belgian federal mapping agency |
 | **landing_url** | `https://agn.ngi.be/NL/NL1.jsp` (NL) · `https://agn.ngi.be/FR/FR1.jsp` (FR) — operator-owned AGN service page describing GPSBru/UKKE. |
 | **access_url** | `https://agn.ngi.be/NL/NL1-2.jsp` — NTRIP datastreams + registration request page; describes the five streams and the "log in must be requested after registration" path. |
-| **host:port** | Issued only after AGN login is approved; not published on the public AGN site. Public published port is 2101 (IANA NTRIP default) on `agn.ngi.be` but not reachable from external IP without credentials. |
+| **host:port** | Host:port not published pre-registration; cannot be probed from this sandbox without account approval. Probe attempts 2026-05-15: `curl http://agn.ngi.be:2101/` timed out after 15s from external IP — consistent with the NGI-stated "post-registration only" delivery and with the absence of any published external sourcetable URL on `agn.ngi.be/NL/NL1-2.jsp`. The IANA default port 2101 on `agn.ngi.be` is the most likely public endpoint but is not reachable to unauthenticated external probes; the operator-issued mountpoint URL is provided in the post-approval credentials email. |
 | **VRS** | No — single-base corrections from station UKKE (Uccle/Ukkel — NGI Observatory campus). |
 | **num_stations** | 1 (UKKE). Equipment: Septentrio PolarX5 receiver + Sepchoke_MC SPKE antenna (installed 2019-01-11; coordinates valid from 2019-01-03). |
 | **Key mountpoints** | `UKKE_GNSS_30` (RTCM 3.0, GPS+GLONASS) — the modern dual-constellation stream · `UKKEL_21` (RTCM 2.1, GPS-only) · `UKKEL_23` (RTCM 2.3, GPS-only) · `DGPS_GPS_RTCM2.0` (DGPS) · `DGPS_GPS+GLONASS_RTCM3.0` (DGNSS) |
@@ -69,8 +71,6 @@ Contact: `gnss@spw.wallonie.be` · administration +32 81 71 59 22 · technical h
 | **datum_epoch** | Omitted at network level. (UKKE station coordinates published in ETRS89 geographic / geocentric, Lambert72 and Lambert08 on `agn.ngi.be/NL/NL1-1.jsp`, but no NTRIP-stream-level epoch declaration.) |
 
 **RTK range:** Corrections usable within ~20 km of UKKE (Brussels metro area). DGPS streams cover all of Belgium. Modern `UKKE_GNSS_30` stream is dual-constellation (GPS+GLO) for improved urban sky coverage.
-
-**investigate:** the actual public NTRIP host:port issued post-registration — not visible on the public AGN pages.
 
 ---
 
@@ -86,8 +86,8 @@ Contact: `gnss@spw.wallonie.be` · administration +32 81 71 59 22 · technical h
 
 Belgium has dense volunteer-base coverage that complements (and partially substitutes for) the government networks — important for hobbyists locked out of FLEPOS.
 
-- **Centipede-RTK (17 BEL nodes confirmed in `data/stations.json` 2026-05-15):** `5640`, `AHOA`, `AIDE`, `ALEX`, `BIST`, `COCO`, `CRA1`, `DEBEN`, `DEPO`, `FLEN`, `HAYE`, `JFDE`, `KUBA`, `LEMA`, `LEON`, `NLER`, `STAVE`. Clustered in Wallonia and the Brussels–Antwerp corridor. Access: `caster.centipede.fr:2101`, no signup.
-- **rtk2go (3 BEL volunteer bases):** `ROOS1` (50.84°N, 4.86°E, central Belgium), `Stuer` (51.19°N, 4.25°E, Antwerp area), `BELHAS01` (50.92°N, 5.35°E, eastern Belgium / Limburg). Access: `rtk2go.com:2101`, no signup.
+- **Centipede-RTK (17 BEL nodes confirmed in `data/stations.json` 2026-05-15):** `5640`, `AHOA`, `AIDE`, `ALEX`, `BIST`, `COCO`, `CRA1`, `DEBEN`, `DEPO`, `FLEN`, `HAYE`, `JFDE`, `KUBA`, `LEMA`, `LEON`, `NLER`, `STAVE`. Clustered in Wallonia and the Brussels–Antwerp corridor. Access: `crtk.net:2101` (canonical Centipede host since 2025-03-18; legacy `caster.centipede.fr:2101` still resolves but migration not guaranteed indefinitely), no signup.
+- **rtk2go (3 BEL volunteer bases):** `ROOS1` (50.84°N, 4.86°E, central Belgium), `Stuer` (51.19°N, 4.25°E, Antwerp area), `BELHAS01` (50.92°N, 5.35°E, eastern Belgium / Limburg — Hasselt). All three verified present in `data/rtk2go.sourcetable` and `data/stations.json` 2026-05-17. Access: `rtk2go.com:2101`, no signup.
 
 For a Brussels-centred user (50.85°N, 4.35°E), within 100 km there are 4 rtk2go bases, 33 Centipede nodes (incl. 18 in BE, plus FR/NL cross-border) — ample redundancy.
 
@@ -102,7 +102,7 @@ The Royal Observatory of Belgium (ROB) operates the EUREF NTRIP caster at `www.e
 ## Pipeline notes
 
 - `docs/networks.md` FLEPOS entry presently states `**hobbyist_eligibility**: yes` ("ArduSimple notes 'professional organizations' preferred but individual registration confirmed possible"). This is **wrong**. Operator-side evidence (Digitaal Vlaanderen registration form + product page) and ArduSimple's actual wording both confirm hobbyists CANNOT register. PIPELINE NOTE: networks.md `flepos` should be updated to `hobbyist_eligibility: no` and `pipeline-access: registration` may want a stronger flag (e.g. `professional-only`).
-- WALCORS station count in `networks.md` reads "0 (22 Wallonia + 13 cross-border …)" — current operator confirms 23 active, decreasing to 14 under modernisation. PIPELINE NOTE: refresh after next station decommissioning batch.
+- WALCORS station count in `networks.md` reads "0 (22 Wallonia + 13 cross-border …)" — current operator now reports **14 active** stations (modernisation reduction complete) + 13 cross-border exchange stations. PIPELINE NOTE: update WALCORS station count in `networks.md` and `country_markers.json` from "22/23" to "14".
 - FLEPOS `landing_url` in `networks.md` (`https://overheid.vlaanderen.be/en/producten-diensten/centimetre-accurate-positioning-flepos`) now 302-redirects to `vlaanderen.be/intern`. PIPELINE NOTE: update to `https://www.vlaanderen.be/digitaal-vlaanderen/onze-diensten-en-platformen/flepos-centimeternauwkeurige-positiebepaling`.
 - `country_markers.json` FLEPOS marker description should clarify hobbyists are not eligible (currently silent on this).
 
@@ -123,8 +123,8 @@ The Royal Observatory of Belgium (ROB) operates the EUREF NTRIP caster at `www.e
 **WALCORS:**
 - `https://gnss.wallonie.be/walcors.html` — 200 OK; operator landing.
 - `https://gnss.wallonie.be/walcors/reseau-walcors.html` — 200 OK; older static text lists "22 stations + 13 cross-border" (page predates modernisation). Current count (23, transitioning to 14) is sourced from actualite.html and foire-aux-questions.html below.
-- `https://gnss.wallonie.be/walcors/actualite.html` — 200 OK; modernisation news, station count 23→14, latest update 2025-11-09 (MARI/OLLN coordinate change).
-- `https://gnss.wallonie.be/walcors/etat-du-reseau-walcors.html` — 200 OK; operator status page, last update 2026-05-14 (confirms active operations).
+- `https://gnss.wallonie.be/walcors/actualite.html` — 200 OK 2026-05-17; modernisation reported complete (14 active); latest news item 2025-11-09 (MARI/OLLN coordinate change).
+- `https://gnss.wallonie.be/walcors/etat-du-reseau-walcors.html` — 200 OK 2026-05-17; WERB still down since 2026-05-13, planned maintenance 2026-05-18..2026-06-04 (active operator engagement = proof of live service).
 - `https://gnss.wallonie.be/walcors/foire-aux-questions.html` — 200 OK; FAQ ("Les 23 antennes du réseau Walcors sont situées exclusivement en Wallonie").
 - `https://gnss.wallonie.be/walcors/acces-au-reseau/acces-au-reseau-1.html` — 200 OK; access description.
 - `https://gnss.wallonie.be/walcors/acces-au-reseau/acces-au-reseau-4.html` — 200 OK; cost page (free for positioning; auto-guidance paid since 2013-01-01).

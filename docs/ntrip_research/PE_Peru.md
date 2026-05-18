@@ -1,5 +1,5 @@
 # Peru [PE] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12 (refresh; prior pass 2026-05-06)
+**Date researched:** 2026-05-17 (refresh; prior pass 2026-05-12)
 
 ## Status: YES — active government NTRIP caster (REGPMOC / IGN-Peru); license required; **public-internet TCP reach unconfirmed from outside Peru**
 
@@ -8,11 +8,16 @@
 | **Active public NTRIP RTK caster** | Yes (government-operated; license + payment required) |
 | **Operator** | Instituto Geográfico Nacional (IGN) del Perú — Ministerio de Defensa |
 | **Network name** | REGPMOC (Red Geodésica Peruana de Monitoreo Continuo) |
+| **landing_url** | http://regpmoc.ign.gob.pe/rastreo_permanente/index.php (REGPMOC station portal) |
+| **access_url** | https://www.idep.gob.pe/ (IDEP / IGN geospatial portal — license + credential request via IGN Subdirección de Geodesia) |
 | **host:port** | `190.12.71.75:2101` (documented in IGN NTRIP license PDF; subdomain `regpmoc.ign.gob.pe` resolves to 209.45.65.186 — note different IP, possibly behind a WAF or only routable inside PE) |
+| **num_stations** | 70 registered ERP stations per IGN portal (doc 2634, late 2024); ~35 active + 1 in maintenance; MQ04 (Mariscal Nieto) most recent addition (2026-03-17). |
+| **vrs** | yes — operator-declared VRS mountpoints in the Lima/Callao area: LI02 (Ancón), LI03 (Chaclacayo), LI06 (Callao), Surquillo, LI04 (Pucusana) per IGN NTRIP license document. |
 | **tariff** | Fee required; amount not published publicly. Credentials (IP, port, username, password) issued by email after payment and license approval. Contact IGN Subdirección de Geodesia. |
 | **hobbyist_eligibility** | Possible in principle — license does not explicitly restrict to professionals; requires payment, attribution to "Instituto Geográfico Nacional, IGN-NTRIP," and formal acceptance of terms. Process is bureaucratic. |
 | **legal_residency_required** | Not stated in public license document |
-| **last_confirmed_alive** | Operationally active per IGN public docs (REGPMOC station MQ04 added 2026-03-17). Direct TCP probe **failed from research sandbox** on 2026-05-12: `190.12.71.75:2101` → connection timeout (15s); `regpmoc.ign.gob.pe:2101` (209.45.65.186) → connection timeout. Consistent with port being firewalled outside PE or to authorised IPs only. This matches a license-gated access model. |
+| **last_confirmed_alive** | Operationally active per IGN public docs (REGPMOC station MQ04 added 2026-03-17). Direct TCP probe **fails from research sandbox**: `190.12.71.75:2101` → connection timeout 15 s on both 2026-05-12 and 2026-05-17; `regpmoc.ign.gob.pe:2101` (209.45.65.186) → connection timeout. Consistent with port being firewalled outside PE / to authorised IPs only — matches the license-gated access model. |
+| **datum_epoch** | omitted — no citable operator declaration. The Resolución Jefatural 149-2022 + REGPMOC station list reference national coordinates, but the IGN NTRIP license document does not explicitly publish a datum/epoch for the broadcast (caster is geofenced and license PDF is not authoritative for datum declaration). Per primer [datum-epoch], do not infer the broadcast frame from Peru's SIRGAS membership. |
 
 ## Most Recent Project Announcement
 
@@ -30,7 +35,7 @@
 - **Network size**: 70 registered ERP stations across Peru; 35+ active as of late 2024; MQ04 the most recently confirmed addition (March 2026).
 - **SIRGAS-RT**: Peru does not appear as a SIRGAS-RT real-time caster node; IGN operates its own national caster independently. Selected IGN stations participate in the global IGS network.
 - **ArduSimple assessment** (ardusimple.es, 2026): States Peru has no national RTK network — reflects the limited public visibility of the licensed REGPMOC service, not an actual absence of a caster.
-- **Hobbyist alternatives**: rtk2go now hosts 2 Peruvian volunteer mountpoints (confirmed via `scripts/stations_by_country.py PER` 2026-05-12): `ALMAR` (−17.99°N, −70.24°W, Tacna region) and `LIMA1_RTCM3` (−12.03°N, −76.98°W, Lima). Centipede-RTK: no Peru stations; GEODNET: partial coverage; Galileo HAS free PPP-AR (~20 cm) covers the whole country.
+- **Hobbyist alternatives** (`scripts/stations_by_country.py PER` 2026-05-17): rtk2go hosts **1** Peruvian volunteer mountpoint — `LIMA1_RTCM3` (−12.03°N, −76.98°W, Lima). The earlier `ALMAR` (Tacna) station is **no longer broadcasting** as of 2026-05-17 (not present in the latest pipeline fetch). Other in-country sources: AUSCORS rebroadcasts AREG (Arequipa), IGS-IP carries AREG + PIUR (Piura), MIRAI carries AREG. Centipede-RTK: no Peru stations. GEODNET: partial coverage. Galileo HAS free PPP-AR (~20 cm) covers the whole country.
 - **Contact**: IGN OEINFO / IDEP — idep@ign.gob.pe; transparency contact: lmaurip@ign.gob.pe. Main office: Av. Andrés Aramburú 1184, Surquillo, Lima. Technical support Mon–Fri 08:00–16:00 (Lima, PET = UTC−5).
 
 ## Post-Processing (RINEX) Fallback
@@ -52,4 +57,5 @@
 - ArduSimple.es Peru page: https://www.ardusimple.es/rtk-correction-services-and-ntrip-casters-in-peru/
 - IGN / Plataforma del Estado Peruano: https://www.gob.pe/ign
 - IDEP / IGN geospatial portal: https://www.idep.gob.pe/
-- curl probe of `190.12.71.75:2101` — Connection timed out after 15 s (2026-05-12). curl probe of `regpmoc.ign.gob.pe:2101` (DNS → 209.45.65.186) — Connection timed out after 15 s (2026-05-12). The caster is either firewalled to authorised IPs only or geofenced to Peru. Earlier WebFetch attempt (2026-05-06) likewise returned ECONNREFUSED. Reachability for unauthenticated users outside PE is NOT confirmed; service status is inferred from IGN's own current documentation (MQ04 added March 2026).
+- curl probes of `190.12.71.75:2101` and `regpmoc.ign.gob.pe:2101` (DNS → 209.45.65.186) — Connection timed out after 15 s on both 2026-05-12 and 2026-05-17. Caster is either firewalled to authorised IPs only or geofenced to Peru. Earlier WebFetch attempt (2026-05-06) likewise returned ECONNREFUSED. Reachability for unauthenticated users outside PE is NOT confirmed; service status inferred from IGN's own current documentation (MQ04 added March 2026).
+- Local pipeline `scripts/stations_by_country.py PER` 2026-05-17 — auscors 1 (AREG), igs_ip 2 (AREG, PIUR), mirai 1 (AREG), rtk2go 1 (LIMA1_RTCM3 only — ALMAR no longer listed)

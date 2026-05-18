@@ -1,5 +1,5 @@
 # Nigeria [NG] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12
+**Date researched:** 2026-05-17 (re-verified; MIRAnet/MIRACaster status unchanged from 2026-05-12; ArduSimple NG page lists no national network as of 2026-05-16 cache fetch)
 
 ## Status: YES — NIGNET operates a live NTRIP caster ("MIRACaster") at `ntrip.nignet.net:21011` via the MIRAnet portal `miranet.nignet.net` (operator MIRASpaco under contract to OSGOF). Pricing/registration policy not published publicly — account approval is manual.
 
@@ -9,6 +9,10 @@
 | **Network name** | NIGNET (Nigerian GNSS Reference Network) |
 | **Operator** | Office of the Surveyor-General of the Federation (OSGOF) — osgof.gov.ng — service hosted and operated by MIRASpaco (miraspaco.com) |
 | **Caster portal** | https://miranet.nignet.net/ (MIRAnet — "GNSS Data Management Platform") |
+| **landing_url** | https://miranet.nignet.net/ (operator-fronted MIRAnet portal; OSGOF homepage menu links to this as "osgof-cors station") |
+| **access_url** | https://miranet.nignet.net/pre-registration/form (operator pre-registration form — manual approval workflow, no self-service signup) |
+| **num_stations** | unknown — sourcetable not anonymously probable (creds-only). Operator publicly cites 15 stations at NIGNET launch (2008) and a 165-station expansion target (2021 announcement); current live count is not published on miranet.nignet.net or osgof.gov.ng. |
+| **datum_epoch** | omitted — no citable operator declaration on osgof.gov.ng or miranet.nignet.net. Per primer, do NOT infer from AFREF / ITRF / NIGNET academic literature. |
 | **host:port** | `ntrip.nignet.net:21011` (MIRACaster). Authentication: username + auto-generated password issued by OSGOF/MIRASpaco after manual approval |
 | **mountpoints** | Sourcetable not publicly browsable without credentials. Historical academic test used mountpoint CLBR (Calabar). Other documented NIGNET stations: ABUZ (Zaria), BKFP (Birnin Kebbi), CGGT (Toro), FUTY (Yola), GEMB (Gembu), HUKP (Kano), MDGR (Maiduguri), OSGF (Abuja), RUST (Port Harcourt), ULAG (Lagos), UNEC (Enugu), UNIPORT, UYAK, etc. — assumed represented as caster mountpoints when stations are live |
 | **tariff** | Not publicly published. OSGOF's own communications state "after payment of subscription fees"; specific NGN amounts and tier structure are not on the public MIRAnet/OSGOF pages |

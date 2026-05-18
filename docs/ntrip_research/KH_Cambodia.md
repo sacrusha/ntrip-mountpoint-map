@@ -1,5 +1,5 @@
 # Cambodia [KH] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06; verified + endpoint discovered 2026-05-12
+**Date researched:** 2026-05-06; verified + endpoint discovered 2026-05-12; trial-extension wording + Trimble Pivot URL re-confirmed 2026-05-17
 
 ## Status: ACTIVE — Khmer GEONET Trimble Pivot server live at `167.179.14.66:8080`; free trial extended to 2026-07-01
 
@@ -11,7 +11,8 @@
 | **tariff** | **Free (trial)** until 2026-07-01 (per "free trial extended another 12 months till 1st July 2026" notice on khmergeonet.xyz). Post-trial pricing not announced. Source: https://khmergeonet.xyz/about (observed 2026-05-12). |
 | **hobbyist_eligibility** | Unclear — `RegisterAccount.aspx` form was not reachable from sandbox (ECONNREFUSED on the web port at probe time); no public statement on khmergeonet.xyz excludes hobbyists. JICA project framing is professional surveying, but the free-trial wording is permissive ("registered GNSS users"). |
 | **legal_residency_required** | Unclear — no explicit Cambodian-residency requirement on the public site; registration form fields not observable from sandbox. |
-| **last_confirmed_alive** | **2026-05-12** — khmergeonet.xyz home and `/about` and `/pnh` pages all HTTPS 200; Phnom Penh station coordinates and registration URL `http://167.179.14.66:8080/TrimblePivotWeb/RegisterAccount.aspx` re-observed. Direct sourcetable probe of `167.179.14.66:8080` ECONNREFUSED on 2026-05-12 (transient / firewall; the page is being actively edited as recently as the 2026-05 trial-extension notice). |
+| **last_confirmed_alive** | **2026-05-17** — khmergeonet.xyz/about HTTPS 200 with free-trial-to-2026-07-01 wording re-observed; Trimble Pivot Web URL `http://167.179.14.66:8080/TrimblePivotWeb/` re-confirmed on operator page. Direct sourcetable probe of `167.179.14.66:8080` not re-attempted this round. |
+| **datum_epoch** | omitted -- no citable declaration (khmergeonet.xyz /about + /pnh make no datum / epoch / reference-frame statement as of 2026-05-17; PNH100KHM page lists ellipsoid + ortho heights and UTM 48N grid values, but does not declare the underlying frame; per primer rule, neighbouring-country / EPSG inference not citable) |
 
 ## Most Recent Project Announcement
 

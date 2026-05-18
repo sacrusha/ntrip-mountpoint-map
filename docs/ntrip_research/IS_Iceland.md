@@ -1,5 +1,5 @@
 # Iceland [IS] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12 (refresh of 2026-05-07 entry — caster re-probed and confirmed live)
+**Date researched:** 2026-05-12 (refresh of 2026-05-07 entry — caster re-probed and confirmed live); datum + portal re-confirmed 2026-05-17 directly on natt.is service page
 
 ## Status: YES — free national NTRIP RTK caster operating (IceCORS); registration required (no fee); operated by national mapping authority transferred to Náttúrufræðistofnun (Natural Science Institute of Iceland)
 
@@ -17,7 +17,8 @@
 | **tariff** | Free of charge — `natt.is` IceCORS service description states the data is free for users (per ardusimple.com and pre-existing networks.md confirmation citing natt.is). No published commercial tariff |
 | **hobbyist_eligibility** | Yes — registration form/email contact accepts any user. No professional-licence requirement documented |
 | **legal_residency_required** | Unclear — no public restriction on foreign users; in practice, registration appears to require contacting `icecors@natt.is` with company name (or individual name), contact name, and email; no Icelandic kennitala (national ID) or local address is publicly required, but the email-based vetting allows the operator discretion. ArduSimple's Iceland guide (2026-04-30 observation) lists IceCORS as a "free national service" requiring registration on the website without limiting eligibility to Icelandic residents |
-| **last_confirmed_alive** | 2026-05-12 — `178.19.53.126:2101` returned `SOURCETABLE 200 OK` (`GNSMART_Caster 2.0/1.0`, 12 STR rows including `VRS3`, `VRS3_MSM`, `RTCM30`, `RTCM30_MSM`, plus 8 single-base mounts for AUSV/GEVK/SENG/VOGC). `https://ggn01.lmi.is/` portal HTTP 200. Caster, portal (ggn01.lmi.is), and contact path (icecors@natt.is) all operational. IceCORS service page: `https://www.natt.is/is/landmaelingar/jardstodvakerfi`. |
+| **last_confirmed_alive** | 2026-05-17 — `178.19.53.126:2101` `SOURCETABLE 200 OK` (`GNSMART_Caster 2.0/1.0`) re-confirmed; `https://ggn01.lmi.is/` portal HTTP 200. Caster, portal (ggn01.lmi.is), contact path (icecors@natt.is) all operational. IceCORS service page: `https://www.natt.is/is/landmaelingar/jardstodvakerfi`. |
+| **datum_epoch** | **ISN2016** (ITRF2014, epoch 2016.0) — declared by operator on service page: *"Hafa ber í huga að leiðréttingar og leiðréttingagögn eru í viðmiðun ISN2016"* (corrections + correction data use ISN2016 reference frame). Citation: https://www.natt.is/is/landmaelingar/jardstodvakerfi (2026-05-17). |
 
 ## Mountpoint Catalogue (sourcetable 2026-05-07)
 

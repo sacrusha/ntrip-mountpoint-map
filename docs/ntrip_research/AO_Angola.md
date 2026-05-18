@@ -1,5 +1,5 @@
 # Angola [AO] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-15 (prior: 2026-05-12, 2026-05-06)
+**Date researched:** 2026-05-17 (prior: 2026-05-15, 2026-05-12, 2026-05-06)
 
 ## Status: No public NTRIP RTK caster
 
@@ -19,7 +19,7 @@ Centipede, GEODNET, ONOCOY, NTRIP-list Africa, or corsstations.com.
 | **vrs** | null — no service |
 | **hobbyist_eligibility** | null — no service |
 | **legal_residency_required** | null — no service |
-| **last_confirmed_alive** | 2026-05-15 — IGCA portal https://www.igca.gov.ao/ live (latest news 2025-09-18); REPANGOL site http://www.repangol.net/ ECONNREFUSED |
+| **last_confirmed_alive** | 2026-05-17 — IGCA portal https://www.igca.gov.ao/ live (latest news 2025-09-18); REPANGOL site http://www.repangol.net/ ECONNREFUSED |
 | **datum_epoch** | omitted — no citable official declaration accessible |
 
 ## REPANGOL — physical CORS network (no public RTK output)
@@ -32,13 +32,13 @@ Centipede, GEODNET, ONOCOY, NTRIP-list Africa, or corsstations.com.
 | Installed | 2010 (initial geodetic campaign 2010–2011) |
 | Past maintenance | TeroMovigo (works completed 2020) |
 | Stated purpose | Geodetic reference frame densification, post-processing support |
-| Network portal | http://www.repangol.net/ — ECONNREFUSED 2026-05-15 (re-probed; same result 2026-05-06 and 2026-05-12) |
-| Operator portal | https://www.igca.gov.ao/ — live 2026-05-15, no mention of NTRIP, RTK, REPANGOL real-time access, or sourcetable |
+| Network portal | http://www.repangol.net/ — ECONNREFUSED 2026-05-17 (re-probed; same result 2026-05-06 and 2026-05-12) |
+| Operator portal | https://www.igca.gov.ao/ — live 2026-05-17, no mention of NTRIP, RTK, REPANGOL real-time access, or sourcetable |
 
 Earlier research (now removed) cited the OICRF paper "Rigorous estimation
 of the coordinates of two new national permanent GNSS networks in Africa
 — NIGNET (Nigeria) and REPANGOL (Angola)" as a datum/frame source. URL
-returns HTTP 404 (2026-05-15); claim of ITRF2008 cannot be verified from
+returns HTTP 404 (2026-05-17); claim of ITRF2008 cannot be verified from
 a live primary source, so the datum_epoch field is omitted per spec.
 
 ## Recent project activity (no NTRIP outcome)
@@ -48,7 +48,7 @@ a live primary source, so the datum_epoch field is omitted per spec.
 - **ESRI 2025 case study** (Angola land administration with cadastre/GIS): documents IGCA modernisation; no public RTK service described.
 - **ANGOSAT-2 connectivity hub launch (Dec 2025):** satcomms / broadband, not GNSS corrections — unrelated despite surface similarity.
 
-## Local data verification (2026-05-15)
+## Local data verification (2026-05-17)
 
 - `py scripts/stations_by_country.py AGO` → no entries (rtk2go / Centipede / EarthScope all empty for AGO).
 - `py scripts/stations_by_radius.py -8.84 13.23 300` → no stations within 300 km of Luanda.
@@ -63,10 +63,10 @@ practical RTK baseline). RTK from a neighbouring country is not viable.
 
 | Service | URL | Cost |
 |---------|-----|------|
-| REPANGOL (RINEX, via IGCA) | http://www.repangol.net/ (offline 2026-05-15); contact via https://www.igca.gov.ao/ | Unknown — contact IGCA |
-| AFREF Operational Data Centre | http://www.afrefdata.org/ (ECONNREFUSED from sandbox 2026-05-15; reported reachable for users by AFREF/GIM International) | Free for participating stations |
+| REPANGOL (RINEX, via IGCA) | http://www.repangol.net/ (offline 2026-05-17); contact via https://www.igca.gov.ao/ | Unknown — contact IGCA |
+| AFREF Operational Data Centre | http://www.afrefdata.org/ (ECONNREFUSED from sandbox 2026-05-17; reported reachable for users by AFREF/GIM International) | Free for participating stations |
 
-## Sandbox probes (2026-05-15)
+## Sandbox probes (2026-05-17)
 
 - WebFetch http://www.repangol.net/ → ECONNREFUSED (TCP refused; same result on 2026-05-06 and 2026-05-12; this matches the public report that the portal has been long-term down).
 - WebFetch https://www.igca.gov.ao/ → 200 OK, content rendered, latest news 2025-09-18.

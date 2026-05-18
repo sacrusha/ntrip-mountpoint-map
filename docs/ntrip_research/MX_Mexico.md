@@ -1,5 +1,5 @@
 # Mexico [MX] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12
+**Date researched:** 2026-05-17 (re-verified; commercial tariffs unchanged from 2026-05-12/14 snapshot. rtk2go now shows 6 MEX-tagged streams including one spurious `BASE_PAB` at lat 89.87 — misconfigured base, exclude from coverage)
 
 ## Status: PARTIAL — no free national NTRIP RTK; INEGI RGNA is RINEX-only; commercial NTRIP RTK is available via several private national resellers (Red CORS México, Survey+, La Casa del Topógrafo, Aeros)
 
@@ -7,6 +7,23 @@
 |---|---|
 | **Public free NTRIP RTK caster** | No — INEGI's national network (RGNA) provides RINEX/PPK only, no real-time RTK stream |
 | **Commercial NTRIP RTK (paid)** | Yes — multiple private resellers run nationwide NTRIP networks covering 60–85+ Mexican cities |
+| **landing_url — INEGI RGNA** | https://en.www.inegi.org.mx/temas/geodesia_activa/ (operator-owned RGNA description; RINEX-only — out of RTK scope) |
+| **access_url — INEGI RGNA** | Skip — RINEX-only; access is anonymous SFTP (`sftp://rgnaftp:rgnaftp@geodesia.inegi.org.mx`), no NTRIP signup portal exists |
+| **landing_url — Red CORS México (DTM Topografía)** | https://dtmtopografia.com/cors-mexico/ (reseller landing) |
+| **access_url — Red CORS México (Aeros, monthly)** | https://aeros.com.mx/product/servicio-red-cors-mensual/ |
+| **landing_url — Survey+ MX** | https://en.surveyplusmx.com/corsmexico (reseller landing; current canonical slug uses é) |
+| **access_url — Survey+ MX** | Skip — credentials delivered after purchase via the same product URL; no separate access portal |
+| **landing_url — TopNET Live MX** | https://topografiaguadalajara.com/estacion-de-referencia-topnet-live-guadalajara/ (Topcon reseller landing) |
+| **access_url — TopNET Live MX** | Skip — credentials issued post-purchase, no separate signup page |
+| **landing_url — Punto Visado / Hi-Target Red CORS** | https://www.puntovisado.com/producto/licencia-red-cors-1-mes/ (reseller product page) |
+| **access_url — Punto Visado / Hi-Target Red CORS** | Skip — credentials issued post-purchase |
+| **num_stations — INEGI RGNA** | ~30 RGNA reference stations + denser RGN integration covering all 32 entidades federativas (RINEX-only, not NTRIP) |
+| **num_stations — Red CORS México** | unknown — reseller pages cite coverage of "60–85+ Mexican cities" without a citable physical-station count |
+| **num_stations — Survey+ MX** | unknown — reseller cites "31 states, expanding to ~60 cities"; no citable physical-station count |
+| **num_stations — TopNET Live MX** | unknown — Topcon's global TopNET Live network publishes no Mexico-specific physical count on the reseller page |
+| **num_stations — Hi-Target Red CORS (Punto Visado)** | unknown — reseller publishes no physical-station count |
+| **datum_epoch — INEGI RGNA** | omitted — no citable declaration on the indexed INEGI RGNA / geodesia pages; RGNA is RINEX-only and out of RTK scope. Per primer, do NOT infer from SIRGAS or ITRF. |
+| **datum_epoch — commercial casters (Red CORS México / Survey+ MX / TopNET Live MX / Hi-Target)** | omitted — no reseller publishes a datum/epoch declaration on its product page; the underlying physical network and datum tie is undocumented in public sources as of 2026-05-17 |
 | **host:port — RGNA** | n/a (no NTRIP). Data: SFTP `geodesia.inegi.org.mx` (RINEX), credentials `rgnaftp` / `rgnaftp` (migrated from FTP to SFTP in October 2024) |
 | **host:port — commercial** | Not published on product pages; delivered after subscription purchase via the reseller |
 | **VRS** | Commercial: not explicitly advertised as VRS — described as "correcciones NTRIP desde estaciones de referencia" with up to ~40 km baseline from nearest station (some operators report acceptable results out to 80–250 km) |
@@ -43,7 +60,7 @@
 
 ## Volunteer & Open Coverage
 
-- **rtk2go**: 6 MEX-tagged stations as of 2026-05-14 — BASE2_SG_ST1 (Tampico area 22.27 N -97.85), Casantrip305 + mp1854021 (Monterrey/Coahuila area 25.82 N -100.60, twin entries), HelgenTestStation (Querétaro area 20.59 N -100.35), RTK_BASE_IBERO (Puebla 19.03 N -98.24), ZEFE (Tijuana area 31.79 N -116.59). Coverage is sparse; useful only within ~30 km of each base. (palmitasrtk in Sinaloa, observed 2026-05-12, has since dropped off the sourcetable.)
+- **rtk2go**: 6 MEX-tagged streams as of 2026-05-17 — BASE2_SG_ST1 (Tampico area 22.27 N -97.85), Casantrip305 + mp1854021 (Monterrey/Coahuila area 25.82 N -100.60, twin entries), HelgenTestStation (Querétaro area 20.59 N -100.35), RTK_BASE_IBERO (Puebla 19.03 N -98.24), and a spurious `BASE_PAB` at lat 89.87 N (mis-tagged MEX in caster metadata; physically near North Pole, not usable). ZEFE (Tijuana area 31.79 N -116.59) observed earlier has dropped off the sourcetable. Coverage is sparse; useful only within ~30 km of each legitimate base. (palmitasrtk in Sinaloa, observed 2026-05-12, has since dropped off.)
 - **EarthScope (NOTA)**: 18 stations tagged MEX in EarthScope's NTRIP sourcetable (e.g. BDLA/CN24/CN25/GUAX/PALX/QUEX/TNMT etc.), free with EarthScope NULA seat for non-commercial; $1,000/seat/yr for commercial. NOTA Mexico stations cluster along the northern border and a research line in the south.
 - **Centipede**: No MEX stations.
 - **Galileo HAS**: Free PPP-RTK globally (decimetre-class, ~5 min convergence) — not RTK, but a viable hobbyist alternative.
@@ -70,4 +87,4 @@ No announced project to deploy a free national NTRIP RTK caster in Mexico was fo
 - TopNET Live México (topografiaguadalajara.com): https://topografiaguadalajara.com/estacion-de-referencia-topnet-live-guadalajara/ (observed 2026-05-12)
 - ArduSimple Mexico: https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-mexico/
 - SIRGAS 2013 bulletin on INEGI NTRIP aspirations: sirgas.ipgh.org
-- Local data: `py scripts/stations_by_country.py MEX` — 6 rtk2go, 18 EarthScope MEX-tagged streams (2026-05-14)
+- Local data: `py scripts/stations_by_country.py MEX` — 6 rtk2go (one spurious lat 89.87) + 18 EarthScope MEX-tagged streams = 24 MPs across 2 sources (2026-05-17 snapshot)

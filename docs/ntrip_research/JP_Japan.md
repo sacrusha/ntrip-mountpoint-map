@@ -1,5 +1,5 @@
 # Japan [JP] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12 (refresh of 2026-05-07 entry; both casters re-probed)
+**Date researched:** 2026-05-12 (refresh of 2026-05-07 entry; both casters re-probed); operator pages re-fetched 2026-05-17 (caster status + datum unchanged)
 
 ## Status: YES — multiple free public NTRIP RTK casters: MIRAI (Cabinet Office SPAC, free, registration required, 16 JP stations + ~300 worldwide partners, single-base raw observations), GeoRTK (Geosense, free, ~500+ JP volunteer/private mountpoints), GEONET (post-processing only, no public NTRIP). Commercial alternatives: SoftBank ichimill, Nippon GPS Data Service. QZSS CLAS available via L6 satellite for hardware-supporting receivers.
 
@@ -14,15 +14,18 @@
 | **hobbyist_eligibility — MIRAI** | Yes — disclaimer text reads *"The MIRAI data are shared openly for the benefit of all scientific, educational, and commercial users for peaceful purposes only."* No nationality / hobbyist / commercial distinction. Account is `Go!GNSS account → NtripCaster authorization` (separate two-step) |
 | **legal_residency_required — MIRAI** | No — Go!GNSS Terms of Use make no nationality or residency restriction; the disclaimer simply requires "peaceful purposes" and attribution. Account email-verified within 24 h, NtripCaster authorization application within 24 h |
 | **MIRAI account validity** | Accounts expire after 365 days inactivity (per existing networks.md note); attribution required: *"Source: GO!GNSS GO!JAPAN website (URL)"* etc. |
-| **last_confirmed_alive — MIRAI** | 2026-05-12 — `ntrip.go.gnss.go.jp:2101` returned `SOURCETABLE` with 325 streams (16 JPN + 309 worldwide partners); site `go.gnss.go.jp` reachable; sign-up and authorization pages active |
+| **last_confirmed_alive — MIRAI** | 2026-05-17 — operator page `go.gnss.go.jp/mirai/realtime/` re-fetched: `ntrip.go.gnss.go.jp:2101` (plain) + `:443` (TLS) re-confirmed; RTCM 3.x list intact; sourcetable not re-probed this round (last full pull 2026-05-12: 325 STR, 16 JPN + 309 worldwide partners) |
+| **datum_epoch — MIRAI** | omitted -- no citable declaration on operator pages (`go.gnss.go.jp/mirai/realtime/`, qzss.go.jp/en/overview/notices/mirai_220401.html — both 2026-05-17 fetches). A separate QZSS PNT-reference notice (Feb 2021) describes a system-wide ITRF2014 alignment for QZSS PNT, but that notice does not bind MIRAI raw observation streams and is not citable per primer rule |
 | **Network 2 — name** | GeoRTK |
 | **Operator — GeoRTK** | 株式会社ジオセンス (Geosense Co., Ltd.), Kobe |
 | **host:port — GeoRTK** | `geortk.jp:2101` — re-confirmed live 2026-05-12: `SOURCETABLE 200 OK` (CAS line: `geortk.jp;2101;GeoRTKCaster;Geosense;1;JPN;34.65;135.00`), **68 STR rows visible** in the public sourcetable (vs 69 on 2026-05-07); `https://geortk.jp/mountpoint` page enumerates the wider ~500+ registered mountpoint roster across Japan + 1 in Thailand. Live mounts visible include `geosense_f9p_rtcm` (Miki), `tamtam` (Yokohama), `n-survey` (Obihiro), with quad-constellation RTCM 3.2/3.3 streams |
+| **num_stations — GeoRTK** | unknown — the ~500+ figure on geortk.jp/mountpoint counts **mountpoints**, not physical CORS (per primer [stations-vs-mps]). Operator does not publish a deduplicated physical-station count, and many entries are volunteer-operated low-cost bases with multi-format streams per site. Live public sourcetable shows 68 STR rows (2026-05-12) as a *lower bound* on visible streams; physical station count is not separately stated by Geosense |
 | **VRS — GeoRTK** | No — individual base-station streams; nearest selection by user |
 | **tariff — GeoRTK** | Free — *"利用料は当面無料ですが、有料になる場合は１年以上前にご連絡します"* ("usage is free for the time being; if a fee is introduced we will notify users at least 1 year in advance"). No payment infrastructure on the site |
 | **hobbyist_eligibility — GeoRTK** | Yes — open access; registration is required only for **operators of reference stations** (uploading), not for **rover users** (downloading). Mountpoint list at `geortk.jp/mountpoint` is publicly accessible without auth |
 | **legal_residency_required — GeoRTK** | No formal residency requirement for download; the operator restricts new *reference station* registrations to physical stations within Japan |
-| **last_confirmed_alive — GeoRTK** | 2026-05-12 — `geortk.jp:2101` `SOURCETABLE 200 OK` with 68 STR rows; full mountpoint catalog still served at `https://geortk.jp/mountpoint` |
+| **last_confirmed_alive — GeoRTK** | 2026-05-17 — geortk.jp homepage re-fetched: caster + mountpoint catalog page still served; site advertises NtripCaster operation. Sourcetable not re-probed this round (last full pull 2026-05-12: 68 STR rows) |
+| **datum_epoch — GeoRTK** | omitted -- no citable declaration on geortk.jp; reference-station operators self-host hardware nationwide and the central caster makes no frame statement |
 | **Network 3 — GEONET (post-processing)** | GSI (Geospatial Information Authority of Japan) — ~1,300 stations at ~20 km spacing. **No public NTRIP caster**; raw 1-second / 30-second RINEX is open via `terras.gsi.go.jp` (registration required). Real-time GEONET data is *internally* relayed to MIRAI and to licensed private operators. |
 
 ## QZSS CLAS — Free Satellite-Broadcast Alternative (out of scope but relevant)

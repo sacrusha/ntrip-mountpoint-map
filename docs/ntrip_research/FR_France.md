@@ -1,5 +1,5 @@
 # France [FR] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12 (refresh of 2026-05-07 entry)
+**Date researched:** 2026-05-17 (refresh of 2026-05-12 entry)
 
 ## Status: YES — Centipede RTK (community) provides de-facto national free coverage; three commercial competitors (Orphéon, Teria, HxGN SmartNet); no free government caster
 
@@ -25,11 +25,12 @@ There is no free government NTRIP RTK service in France. IGN's RGP (Réseau GNSS
 | **hobbyist_eligibility** | **Yes** — fully open, no registration required |
 | **legal_residency_required** | **No** |
 | **Simultaneous connection limit** | 1 device per IP address |
-| **last_confirmed_alive** | crtk.net:2101 — SOURCETABLE 200 OK on 2026-05-12 (curl probe). 1,205 STR entries globally; 709 FRA-coded. |
+| **last_confirmed_alive** | crtk.net:2101 — SOURCETABLE 200 OK on 2026-05-17 (curl --http0.9 probe). 1,202 STR entries globally; 701 FRA-coded. |
+| **datum_epoch** | RGF93 (tridimensional geocentric, GRS80, tied to ITRS); operator references France's legal reference frame. Centipede docs do not declare a separate per-station epoch. Source: https://docs.centipede.fr/docs/centipede/4_Systeme2reference.html |
 
 ### Centipede Network Scale and Coverage (2025–2026)
-- **French metropolitan stations:** 709 FRA-coded mountpoints on the live sourcetable (2026-05-12); ~625 bases installed in mainland France since launch (2019), with ongoing growth.
-- **Global network:** ~860+ bases in 30 countries; France is dominant, then Hungary (217 `HUN`-coded on 2026-05-12 sourcetable), United Kingdom (45 `ENG`-coded — Centipede's `ENG` covers the whole UK including Scotland/Wales/Northern Ireland, *not* just England), Switzerland (30 `CHZ`-coded — Centipede's `CHZ` is Switzerland, *not* Czech Republic; Czech stations carry `CZE` separately, 3 nodes), with Belgium, Netherlands, Norway and others contributing 17–30 each. See `_centipede_country_codes.md` for the full Centipede non-ISO country-code legend.
+- **French metropolitan stations:** 701 FRA-coded mountpoints on the live sourcetable (2026-05-17); ~625 bases installed in mainland France since launch (2019), with ongoing growth.
+- **Global network:** 1,202 STR entries; France dominant, then Hungary, United Kingdom (`ENG` = whole UK), Switzerland (`CHZ` = Switzerland, not Czech), Belgium, Netherlands, Norway. See `_centipede_country_codes.md` for the full non-ISO country-code legend.
 - **Coverage zone per base:** ~50 km radius; very dense in grain-belt agricultural regions (Occitanie, Grand Est, Bretagne) and sparser in mountainous areas (Alps, Pyrenees).
 - **RENAG integration:** Since June 2023, ~30 RENAG (Réseau National GNSS Permanent) scientific stations are re-distributed through Centipede, particularly strengthening southeastern France coverage.
 
@@ -57,7 +58,8 @@ There is no free government NTRIP RTK service in France. IGN's RGP (Réseau GNSS
 | **VAT** | Prices quoted TTC (VAT inclusive); French standard VAT 20% |
 | **hobbyist_eligibility** | **Yes** — annual subscriptions and hourly packages available for individuals; no licence requirement stated |
 | **legal_residency_required** | **Unclear** — French company; international users may subscribe via web shop |
-| **last_confirmed_alive** | reseau-orpheon.fr portal accessible 2026-05-12; `ntrip.reseau-orpheon.fr:8500` SOURCETABLE 200 OK 2026-05-12 (curl) |
+| **last_confirmed_alive** | `ntrip.reseau-orpheon.fr:8500` SOURCETABLE 200 OK 2026-05-17 (curl --http0.9; Leica GNSS Spider 7.11.1.105/1.0, ~22 STR) |
+| **datum_epoch** | omitted -- no citable operator declaration |
 
 - **Stations:** **220 permanent Full GNSS stations** across mainland France and French West Indies/Guadeloupe (operator's own homepage 2026-05-12); ~60 km average inter-station spacing; described as "the first 100% Full GNSS network in France"
 - **Constellations:** GPS, GLONASS, Galileo, BeiDou (Full GNSS)
@@ -79,7 +81,8 @@ There is no free government NTRIP RTK service in France. IGN's RGP (Réseau GNSS
 | **VAT** | French standard VAT 20% (typical reseller listings quote HT) |
 | **hobbyist_eligibility** | **Yes** — annual and short-period subscriptions available; no licence requirement; sold via several public web shops |
 | **legal_residency_required** | **Unclear** — French entity; resellers ship internationally |
-| **last_confirmed_alive** | `teriartk.eu:2101` SOURCETABLE 200 OK 2026-05-12 (curl probe) |
+| **last_confirmed_alive** | `teriartk.eu:2101` SOURCETABLE 200 OK 2026-05-17 (curl --http0.9; Geo++ GNSMART_Caster 2.0, 30+ STR) |
+| **datum_epoch** | omitted -- no citable operator declaration |
 
 - **Variants:** TERIA (NTRIP RTK), TERIAsat (L-band PPP-style augmentation, no internet required), TERIArinex (post-processing).
 
@@ -149,9 +152,9 @@ Centipede has handfuls of bases in Martinique, Guadeloupe, Réunion, French Guia
 
 | Service | host:port | Free? | VRS? | Hobbyist | Last alive |
 |---|---|---|---|---|---|
-| Centipede | `crtk.net:2101` | Yes | No (single-base + NEAR auto-nearest) | Yes | 2026-05-12 ✓ |
-| Orphéon | `ntrip.reseau-orpheon.fr:8500/7500` | No (€756–3,456 TTC/yr) | Yes | Yes | 2026-05-12 ✓ |
-| Teria | `teriartk.eu:2101` | No (from €895 HT/yr) | Yes | Yes | 2026-05-12 ✓ |
+| Centipede | `crtk.net:2101` | Yes | No (single-base + NEAR auto-nearest) | Yes | 2026-05-17 ✓ |
+| Orphéon | `ntrip.reseau-orpheon.fr:8500/7500` | No (€756–3,456 TTC/yr) | Yes | Yes | 2026-05-17 ✓ |
+| Teria | `teriartk.eu:2101` | No (from €895 HT/yr) | Yes | Yes | 2026-05-17 ✓ |
 | HxGN SmartNet | not public | No (not published) | Yes | Unclear | n/a |
 | RENAG | renag.resif.fr | Free + registration | No | Unclear | 2026-05-12 (portal) |
 
@@ -182,7 +185,8 @@ Centipede has handfuls of bases in Martinique, Guadeloupe, Réunion, French Guia
 - RENAG via Centipede (June 2023): https://www.epos-france.fr/en/blog/2022/07/12/renag-distributes-its-data-in-real-time/
 - ArduSimple France: https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-france/
 - NTRIP-list.com Europe: https://ntrip-list.com/europe/
-- curl probe of `crtk.net:2101` — SOURCETABLE 200 OK 2026-05-12 (1,205 STR records; 709 FRA, 217 HUN, 45 ENG [= entire UK, not just England], 30 CHZ [= Switzerland, not Czech], 26 NLD, 21 NOR, 19 CAN, 18 FIN, 17 BEL — top countries by field-9 country code). For the full Centipede non-ISO country-code legend (including the `DAN`/`DNK`, `ROM`/`ROU`, `SER`/`SRB` parallel-code quirks) see `_centipede_country_codes.md`.
-- curl probe of `teriartk.eu:2101` — SOURCETABLE 200 OK 2026-05-12 (Geo++ GNSMART, 30+ mountpoints)
-- curl probe of `ntrip.reseau-orpheon.fr:8500` — SOURCETABLE 200 OK 2026-05-12 (Leica GNSS Spider 7.11.1.105/1.0, ~22 mountpoints)
+- curl --http0.9 probe of `crtk.net:2101` — SOURCETABLE 200 OK 2026-05-17 (1,202 STR records; 701 FRA-coded). See `_centipede_country_codes.md` for non-ISO code quirks (`DAN`/`DNK`, `ROM`/`ROU`, `SER`/`SRB`, `ENG`=whole UK, `CHZ`=Switzerland).
+- curl --http0.9 probe of `teriartk.eu:2101` — SOURCETABLE 200 OK 2026-05-17 (Geo++ GNSMART, 30+ STR)
+- curl --http0.9 probe of `ntrip.reseau-orpheon.fr:8500` — SOURCETABLE 200 OK 2026-05-17 (Leica GNSS Spider 7.11.1.105/1.0, ~22 STR)
 - Orphéon homepage station count 2026-05-12: 220 Full GNSS stations (mainland + Antilles)
+- Centipede reference-system page (datum_epoch citation): https://docs.centipede.fr/docs/centipede/4_Systeme2reference.html

@@ -1,5 +1,5 @@
 # Greece [GR] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06 (updated 2026-05-07: separated URANUS from HEPOS — URANUS is a private commercial network, not a HEPOS alias; re-verified 2026-05-12: HEPOS pricing unchanged on hepos.gr product pages, URANUS portal loads HTTP 200 with Greek content)
+**Date researched:** 2026-05-06 (updated 2026-05-07: separated URANUS from HEPOS — URANUS is a private commercial network, not a HEPOS alias; re-verified 2026-05-12: HEPOS pricing unchanged on hepos.gr product pages, URANUS portal loads HTTP 200 with Greek content) (refresh 2026-05-17: hepos.gr product/about pages return HTTP 403 to anonymous WebFetch via Akamai — pricing assumed unchanged since 2026-05-12 reseller/search confirmations; no operator-citable HTRS07/ETRS89 datum declaration retrievable from this sandbox)
 
 ## Status: YES — national NTRIP RTK caster operating (HEPOS, paid); two private commercial networks (URANUS / TopNET, JGC-Net) also available; no free national NTRIP RTK in Greece
 
@@ -9,10 +9,12 @@
 | **Network name — primary** | HEPOS (Hellenic POsitioning System) |
 | **Operator — HEPOS** | KTIMATOLOGIO S.A. (Ελληνικό Κτηματολόγιο / Hellenic Cadastre) |
 | **host:port — HEPOS** | Issued after registration. Public-facing site `www.hepos.gr`; the actual caster hostname is delivered with credentials. Earlier documentation cites `ntrip.hepos.gr:2101` but no public sourcetable is reachable anonymously. Akamai CDN on hepos.gr returns HTTP 403 to anonymous curl, so the pipeline cannot scrape a sourcetable directly. |
+| **access_url — HEPOS** | https://www.hepos.gr/en/subscriptions-en/ (operator signup / subscriptions landing) |
 | **VRS — HEPOS** | Yes — Network RTK / VRS corrections; RTCM 3.1 (GPS+GLONASS) and RTCM 3.2 MSM (full GNSS); 98 permanent reference stations covering all Greece including islands |
-| **tariff — 3 months flat-rate RTK** | €160.00 excl. VAT (source: hepos.gr/en/product/real-time-services-flat-rate-3-months-rtk/, observed 2026-05-06) |
-| **tariff — 1 year flat-rate RTK** | €480.00 excl. VAT (source: hepos.gr/en/product/real-time-services-flat-rate-1-year-rtk/, observed 2026-05-06) |
-| **tariff — per-minute RTK bundle** | €90.00 excl. VAT one-time bundle (per-minute rate not separately published; source: hepos.gr/en/product/real-time-services-per-minute/, observed 2026-05-06) |
+| **datum_epoch — HEPOS** | omitted — no citable declaration retrievable from this sandbox (hepos.gr Akamai 403 to anonymous WebFetch). HTRS07 (Hellenic Terrestrial Reference System 2007, Greek realization of ETRS89) is named in context but the operator URL declaring it is not directly fetchable this pass; defer rather than infer. |
+| **tariff — 3 months flat-rate RTK** | €160.00 excl. VAT (source: hepos.gr/en/product/real-time-services-flat-rate-3-months-rtk/, observed 2026-05-06; carried forward, unverified at 2026-05-17 refresh — hepos.gr returns Akamai HTTP 403 to anonymous WebFetch) |
+| **tariff — 1 year flat-rate RTK** | €480.00 excl. VAT (source: hepos.gr/en/product/real-time-services-flat-rate-1-year-rtk/, observed 2026-05-06; carried forward, unverified at 2026-05-17 refresh — Akamai 403) |
+| **tariff — per-minute RTK bundle** | €90.00 excl. VAT one-time bundle (per-minute rate not separately published; source: hepos.gr/en/product/real-time-services-per-minute/, observed 2026-05-06; carried forward, unverified at 2026-05-17 refresh — Akamai 403) |
 | **VAT** | Greek standard VAT is 24%; prices listed above are net |
 | **hobbyist_eligibility — HEPOS** | Yes — individual registration accepted; no licensed-surveyor requirement stated |
 | **legal_residency_required — HEPOS** | Unclear — subscription/payment is online; no explicit residency restriction; Greek VAT registration may be required to receive an invoice |
@@ -28,6 +30,7 @@
 | **host:port — JGC-Net** | Not publicly listed; credentials issued after commercial registration with JGC |
 | **tariff — JGC-Net** | Not publicly listed; contact jgc.gr |
 | **VRS — JGC-Net** | Yes — fixed to HTRS07 reference system; ~2 cm accuracy within 50 km of each station |
+| **last_confirmed_alive — JGC-Net** | 2026-05-12 (jgc.gr/jgc-net page reachable; no anonymous host:port or sourcetable advertised — endpoint gated behind commercial registration) |
 
 ## Context Notes
 

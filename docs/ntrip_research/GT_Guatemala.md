@@ -1,5 +1,5 @@
 # Guatemala [GT] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06 (updated 2026-05-12: official IGN site `www.ign.gob.gt` is now reachable on port 80; Red Geodésica Activa CORS interactive map confirms 16 named stations; still no public NTRIP caster)
+**Date researched:** 2026-05-06 (updated 2026-05-12: official IGN site `www.ign.gob.gt` is now reachable on port 80; Red Geodésica Activa CORS interactive map confirms 16 named stations; still no public NTRIP caster) (refresh 2026-05-17: ign.gob.gt now ECONNREFUSED from this sandbox; no change to NTRIP status — still no public caster published)
 
 ## Status: UNKNOWN — CORS network exists (16+ named stations); public NTRIP streaming unconfirmed
 
@@ -14,6 +14,7 @@
 | **hobbyist_eligibility** | Unknown — data access requires contacting IGN Marketing & Sales; no individual/hobbyist process described |
 | **legal_residency_required** | Unknown |
 | **last_confirmed_alive** | 2026-05-12 — `http://www.ign.gob.gt/` returned HTTP 200 (Apache/2.4.41 Ubuntu, Last-Modified 2026-02-19); Red Geodésica page (`redgeodesica.html`) loads and embeds an active CORS map via WMS layer `cartografia_basica:Red Geodesica Activa CORS` served from `ign.gob.gt/geoserver/wms`. The site has clearly been redeveloped since the 2026-05-06 check (was ECONNREFUSED then). No NTRIP caster endpoint advertised. |
+| **datum_epoch** | omitted — no citable declaration. IGN's `redgeodesica.html` and the geoportal CORS map describe national reference frame conversion ("conversión al sistema de referencia nacional") for cadastral surveys but do not publish a datum/epoch declaration; GTM / GTRS is known informally but not directly declared by IGN on the portal pages reachable 2026-05-12. |
 
 ## Most Recent Project Announcement
 
@@ -39,6 +40,7 @@ Sources:
 |---------|-----|------|
 | **IGN Guatemala CORS RINEX** — contact Marketing & Sales: info@ign.gob.gt · +502 2248-8100 | http://www.ign.gob.gt (ECONNREFUSED 2026-05-06) | Unknown (institutional purchase) |
 | **NOAA NGS CORS — GUAT station** (Guatemala City) | https://geodesy.noaa.gov/CORS/ | Free |
+| **EarthScope GNSS Data Archive** (post-UNAVCO retirement 2025-07-29; regional Caribbean/Central American IGS sites) | https://www.earthscope.org/data/gnss-data/ | Free non-commercial (NULA) |
 | **SIRGAS station data** | https://sirgas.ipgh.org/en/gnss-network/stations/station-list/ | Free |
 
 ## Sources Consulted

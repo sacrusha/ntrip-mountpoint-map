@@ -1,5 +1,5 @@
 # Italy [IT] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-13 (FVG refresh — FReDNet and Re.M.FVG/Marussi re-verified against operator portals; earlier 2026-05-12 pass refreshed the other regions)
+**Date researched:** 2026-05-17 (SPIN3 portal re-checked: 39 deployed / 35 operative, CREO replaced CREM at Cremona on 2026-05-12, semestral coordinate recompute 2026-04-01 stays ETRF2000 epoch 2008.0; FReDNet station-list re-fetched 2026-05-17 → 25 listed / 23 RTK-active (one station added since 2026-05-13); Veneto operator station map enumerates 35 sites; Campania operator-portal landing reaffirms 16 stations; sandbox-side NTRIP TCP blocked today, so endpoint reachability re-attested via operator web portals, not curl). 2026-05-13 FVG refresh + 2026-05-12 regional pass remain authoritative for everything else.
 
 ## Status: YES — extensive public free NTRIP RTK infrastructure; no single national free caster; coverage is regional
 
@@ -11,17 +11,17 @@ Italy has no unified national free RTK caster. Instead, 10+ regional/autonomous 
 
 | Region | Network | host:port | Tariff | VRS | Hobbyist | curl result 2026-05-12 |
 |--------|---------|-----------|--------|-----|----------|------------------------|
-| Valle d'Aosta, Piemonte, Lombardia | SPIN3 GNSS | `158.102.7.10:2101` | Free (registration) | Yes (VRS, iMAX, MAC, NRT) | Yes (no restriction stated) | SOURCETABLE 200 OK |
+| Valle d'Aosta, Piemonte, Lombardia | SPIN3 GNSS | `158.102.7.10:2101` | Free (registration) | Yes (VRS, iMAX, MAC, NRT) | Yes (no restriction stated) | SOURCETABLE 200 OK (portal reconfirmed 2026-05-17; 39 deployed / 35 operative) |
 | Liguria | Rete GNSS Liguria | `81.23.86.70:2101` | Free (registration) | Yes (VRS 2/3, MAC, NEAR, DGPS) | unclear (form-based registration) | SOURCETABLE 200 OK (GNCASTER) |
 | Trentino (PA Trento) | TPOS | `194.105.50.232:2101` | Free (registration) | Yes (IMAX, MAX, NRT/VRS) | unclear | SOURCETABLE 200 OK |
 | Alto Adige / Südtirol (PA Bolzano) | STPOS | `62.101.0.40:2109` | Free (registration) | Yes (Netz-rete, MAX, NRT) | unclear | SOURCETABLE 200 OK |
-| Veneto | Rete GPS Veneto | `147.162.229.53:2101` | Free (email registration) | Yes (MAX3, IMAX, NRT) | unclear (email-only signup) | SOURCETABLE 200 OK |
+| Veneto | Rete GPS Veneto | `147.162.229.53:2101` | Free (email registration) | Yes (MAX3, IMAX, NRT) | unclear (email-only signup) | SOURCETABLE 200 OK (35 stations per operator station-map page) |
 | Friuli-Venezia Giulia | Re.M.FVG "A. Marussi" | `gnsscaster.regione.fvg.it:8080` | Free (form registration) | Yes (VRS_RTCM23/31/32, MAC, IMAC) | Yes (form open to anyone) | SOURCETABLE 200 OK 2026-05-12 |
 | Friuli-Venezia Giulia | FReDNet (OGS) | `158.110.30.81:2110` | Free (account on frednet.crs.ogs.it) | Yes (VRS, NEAREST, FKP) | Yes (public, private, scientific) | SOURCETABLE 200 OK 2026-05-12 |
 | Umbria | GPS-UMBRIA | `gpsumbria.regione.umbria.it:2101` | Free (online form) | Yes (MAC, VRS, Nearest) | unclear | SOURCETABLE 200 OK (GNCASTER) |
 | Campania | Rete GNSS Campania | `gps.sit.regione.campania.it:2101` | Free (open credentials) | Yes (1_VRS30, 9_NEAR) | Yes (public credentials) | SOURCETABLE 200 OK (GNCASTER) |
-| Puglia | Rete GNSS Puglia | `gps.sit.puglia.it:2101` | Free (registration) | Yes (IMAX3, MAX3) | unclear | SOURCETABLE 200 OK |
-| Abruzzo + Lazio | Rete GNSS Abruzzo-Lazio | `gnss-rtk.regione.abruzzo.it:2101` | Free (registration) | Yes (0_RTCM_MSM/VRS, VRS23/30) | Yes (form open to anyone) | timeout from sandbox 2026-05-12 (third successive probe failure; portal HTTP 200 — see note) |
+| Puglia | Rete GNSS Puglia | `gps.sit.puglia.it:2101` | Free (registration) | Yes (IMAX3, MAX3) | unclear | SOURCETABLE 200 OK (station count unverified on operator portal) |
+| Abruzzo + Lazio | Rete GNSS Abruzzo-Lazio | `gnss-rtk.regione.abruzzo.it:2101` | Free (registration) | Yes (0_RTCM_MSM/VRS, VRS23/30) | Yes (form open to anyone) | timeout from sandbox 2026-05-17 (fourth successive probe failure; registration portal still HTTP 200 + form active — see note) |
 | Sicilia + S. Calabria | Sicili@NET (INGV Catania) | `193.206.223.39:2101` | Free (email request) | Yes (VRS2/3, RTK, IMAX, MAX, FKP) | Yes ("all users who request it") | SOURCETABLE 200 OK |
 | Emilia-Romagna | No public regional network | — | — | — | — | no caster |
 | Toscana | No public RTK caster | — | — | — | — | no caster |
@@ -38,121 +38,126 @@ Italy has no unified national free RTK caster. Instead, 10+ regional/autonomous 
 ## Detailed Network Notes
 
 ### SPIN3 GNSS — Piemonte, Lombardia, Valle d'Aosta
+- **landing_url:** https://www.spingnss.it/
+- **access_url:** https://www.spingnss.it/i-servizi/ (service catalogue + registration entry; auxiliary 2026-04-01 frame-refresh notice: https://www.spingnss.it/nuovo-inquadramento-rete-spin3-aggiornamento-coordinate-6/)
 - **Operator:** Regione Piemonte + Regione Lombardia + Regione Valle d'Aosta (joint, since ~2004); data centre at CSI Piemonte.
-- **host:port:** `158.102.7.10:2101` (confirmed SOURCETABLE 200 OK, 2026-05-07)
-- **Stations:** 39 permanent multi-constellation (GPS+GLONASS+Galileo+BeiDou); ~30 km inter-station spacing.
+- **host:port:** `158.102.7.10:2101` (confirmed SOURCETABLE 200 OK 2026-05-07; portal alive + service-status board green 2026-05-17).
+- **num_stations:** 39 deployed (35 operative on 2026-05-17 portal status board; 4 offline); ~30 km inter-station spacing. Roster change: CREO commissioned at Cremona replacing CREM (2026-05-12); CARZ restored 2025-11-27.
 - **Products:** VRS (RTCM 3 MSM5), iMAX, MAC/MAX, NRT; confirmed in sourcetable.
 - **Tariff:** Free for all professional users; free for registration. No pricing.
 - **Registration:** Web form at spingnss.it → email confirmation → username/password (max 16 chars). Confirmed Feb 2026 application update.
 - **hobbyist_eligibility:** unclear — described as open to "professional operators, public and private" but no explicit hobbyist exclusion.
 - **legal_residency_required:** No.
 - **VRS:** Yes.
+- **datum_epoch:** ETRF2000-RDN epoch 2008.0 (also published in IGS20). Operator cite: https://www.spingnss.it/nuovo-inquadramento-rete-spin3-aggiornamento-coordinate-6/ — 2026-04-01 announcement "Nuovo inquadramento Rete SPIN3 – Aggiornamento coordinate" documents semestral coordinate recompute within the same frame/epoch, no datum change.
 - **Border experiments:** Active data exchange experiments at Liguria and Trentino borders; Liguria and Toscana are NOT part of SPIN3 service area.
 - **Contact:** info.gnss@csi.it · +39 011 316 8724.
-- **last_confirmed_alive:** 2026-05-07 (SOURCETABLE 200 OK, SPIN3 GNSS label confirmed in stream headers).
-- Source: https://www.spingnss.it/
+- **last_confirmed_alive:** 2026-05-17 (operator portal at spingnss.it served live news feed + station-status board; sandbox NTRIP-TCP blocked today, so curl-on-2101 not re-run; 2026-05-07 sourcetable probe remains last successful direct NTRIP fetch).
 
 ---
 
 ### Rete GNSS Liguria — Liguria
+- **landing_url:** https://geoportal.regione.liguria.it/servizi/rete-gnss-liguria/correzioni-in-tempo-reale.html
+- **access_url:** https://sportellonline.regione.liguria.it/servizio/PE_0012 (Sportello Cartografico registration form)
 - **Operator:** Regione Liguria, Geoportale; uses GNSMART (Geo++) software.
 - **host:port:** `81.23.86.70:2101` (confirmed SOURCETABLE 200 OK, 2026-05-07)
-- **Stations:** 10 stations (7 regional + 3 shared with SPIN3); Ventimiglia to La Spezia.
+- **num_stations:** 10 (7 regional + 3 shared with SPIN3); Ventimiglia to La Spezia.
 - **Products:** VRS 2, VRS 3, MAC, NEAR 2, NEAR 3, DGPS (per Liguria RTK portal page).
-- **Tariff:** Free; registration via Sportello Cartografico online: https://sportellonline.regione.liguria.it/servizio/PE_0012
+- **Tariff:** Free; registration via Sportello Cartografico.
 - **hobbyist_eligibility:** unclear — form-based; no stated professional requirement found, but the process is a formal regional service request.
 - **legal_residency_required:** unclear.
 - **VRS:** Yes.
+- **datum_epoch:** omitted — no citable per-operator declaration. (Network is RDN-aligned by national framework, but operator portal does not publish a per-network datum/epoch statement.)
 - **last_confirmed_alive:** 2026-05-07 (SOURCETABLE 200 OK by IP).
-- Source: https://geoportal.regione.liguria.it/servizi/rete-gnss-liguria/correzioni-in-tempo-reale.html
 
 ---
 
 ### TPOS — Trentino / Provincia Autonoma di Trento
+- **landing_url:** https://www.provincia.tn.it/en/Services/TPOS-Trentino-POsitioning-Service
+- **access_url:** https://www.tpos.provincia.tn.it/SBC/Account/Register (registration form)
 - **Operator:** Servizio Catasto – Ufficio Geodetico, Provincia Autonoma di Trento.
 - **host:port:** `194.105.50.232:2101` (confirmed SOURCETABLE 200 OK, 2026-05-07); domain: `tpos.provincia.tn.it` (parameters post-login).
-- **Stations:** 11 stations covering Trentino; integrates with STPOS (Bolzano), APOS (Austria), SWIPOS (Switzerland) at borders.
+- **num_stations:** 11 covering Trentino; integrates with STPOS (Bolzano), APOS (Austria), SWIPOS (Switzerland) at borders.
 - **Products:** IMAX2, MAX3, NRT2, VRS (from sourcetable: Vicina_NRT2, Area_IMAX2, Area_MAX3).
-- **Tariff:** Free; registration at https://www.tpos.provincia.tn.it/SBC/Account/Register
+- **Tariff:** Free; registration via access_url.
 - **hobbyist_eligibility:** unclear — form-based; no stated professional requirement.
 - **legal_residency_required:** unclear.
 - **VRS:** Yes.
+- **datum_epoch:** omitted — no citable per-operator declaration on TPOS portal.
 - **last_confirmed_alive:** 2026-05-07 (SOURCETABLE 200 OK, TPOS label in stream headers confirmed).
-- Source: https://www.provincia.tn.it/en/Services/TPOS-Trentino-POsitioning-Service
 
 ---
 
 ### STPOS — Alto Adige / Südtirol / Provincia Autonoma di Bolzano
+- **landing_url:** https://www.provincia.bz.it/costruire-abitare/catasto-librofondiario/catasto/stpos-reti-appoggio-geodetico.asp
+- **access_url:** http://www.stpos.it/sbc/Account/Register (registration form)
 - **Operator:** Ufficio Catasto, Provincia Autonoma di Bolzano; Leica Spider Business Center.
 - **host:port:** `62.101.0.40:2109` (confirmed SOURCETABLE 200 OK, 2026-05-07; note non-standard port 2109). Port 2101 on same IP refused.
-- **Stations:** 10 stations (Bozen, Bruneck, Corvara, Feldthurns, Helm-M.Elmo, Latsch, Mals, Merano2000, Prettau, Vipiteno).
+- **num_stations:** 10 (Bozen, Bruneck, Corvara, Feldthurns, Helm-M.Elmo, Latsch, Mals, Merano2000, Prettau, Vipiteno).
 - **Products:** Nearest3.1, Netz-rete3.1 (RTCM 3), Netz-rete18-19 (RTCM 2), Netz-ReteMAX, Netz-ReteMSM4 (quad-constellation), NRT4 (from sourcetable). VRS/network correction confirmed.
-- **Tariff:** Free; registration at http://www.stpos.it/sbc/Account/Register
+- **Tariff:** Free; registration via access_url.
 - **hobbyist_eligibility:** unclear.
 - **legal_residency_required:** unclear.
 - **VRS:** Yes (network correction mode confirmed in sourcetable).
+- **datum_epoch:** omitted — no citable per-operator declaration on STPOS portal.
 - **last_confirmed_alive:** 2026-05-07 (SOURCETABLE 200 OK on port 2109, STPOS label confirmed).
-- Source: https://www.provincia.bz.it/costruire-abitare/catasto-librofondiario/catasto/stpos-reti-appoggio-geodetico.asp
 
 ---
 
 ### Rete GPS Veneto — Veneto
+- **landing_url:** https://www.regione.veneto.it/web/ambiente-e-territorio/stazioni-gps
+- **access_url:** https://retegnssveneto.cisas.unipd.it/Web/index.php (operator portal at CISAS-UniPD; station map at https://retegnssveneto.cisas.unipd.it/Web/page.php?pid=gmap&link=Stazioni_GNSS&chain=6)
 - **Operator:** Regione Veneto + Università di Padova (CISAS); software: TopNET (Topcon).
 - **host:port:** `147.162.229.53:2101` (confirmed SOURCETABLE 200 OK, 2026-05-07); RINEX portal: retegnssveneto.cisas.unipd.it (that hostname timed out on NTRIP port, but NTRIP IP is live).
-- **Stations:** 20+ permanent stations across Veneto.
+- **num_stations:** 35 (operator station-map page at retegnssveneto.cisas.unipd.it lists 35 site codes including AFAL, ASIA, BL01, BOCN, BORC, BTAC, CGIA, CITT, GRDO, LEG1, LEG2, MAVE, MBEL, PAD1, PADO, PIEV, PRTG, PSAL, ROVI, SAPP, SCHI, SDNA, TAMB, TEOL, TGPO, TRVS, VELO, VENI, VICE, VR02 +5 — confirmed 2026-05-17). Some are cross-relayed from neighbouring networks (e.g. AFAL, GRDO also appear on FReDNet/OGS); operator does not separate own-vs-relayed counts on the public page.
 - **Products:** MAX3, IMAX, NRT; confirmed via ProTRACK guide.
 - **Tariff:** Free; registration by email to retegpsveneto@gmail.com (include name, org, phone, email).
 - **hobbyist_eligibility:** unclear — email-only signup, no professional credential check stated, but targeted at professionals.
 - **legal_residency_required:** No explicit requirement.
 - **VRS:** Yes (network correction confirmed).
+- **datum_epoch:** omitted — no citable per-operator declaration on Regione Veneto / CISAS portal.
 - **last_confirmed_alive:** 2026-05-07 (SOURCETABLE 200 OK on 147.162.229.53:2101).
 - Note: Infrastructure update in progress as of 2026 (device replacements at multiple sites); service online.
-- Source: https://www.regione.veneto.it/web/ambiente-e-territorio/stazioni-gps
 
 ---
 
 ### Re.M.FVG "Antonio Marussi" — Friuli-Venezia Giulia (regional network)
+- **landing_url:** https://rem.regione.fvg.it/rem-fvg/servizi/correzioni-differenziali
+- **access_url:** https://rem.regione.fvg.it/rem-fvg/info/cenni-storici (network history + station roster; main regional portal entry: https://www.regione.fvg.it/rafvg/cms/RAFVG/ambiente-territorio/conoscere-ambiente-territorio/FOGLIA11/FOGLIA4/)
 - **Operator:** Regione Autonoma Friuli-Venezia Giulia; software: Leica GNSS Spider (7.11.1.109 banner observed).
 - **host:port:** `gnsscaster.regione.fvg.it:8080` / `193.43.178.173:8080` (SOURCETABLE 200 OK 2026-05-12).
 - **Network history (operator-stated, 2026-05-13):** Founded 1999 (Palmanova, Ampezzo, Moggio Udinese). Open to private users since 2005. VRS since 2007. GPS+GLONASS+Galileo since 2012/2019. BEIDOU added 2024–2025 in receiver-refresh; Sappada and Paularo added 2024–2025; Slovenian SIGNAL stations integrated at the border. All consistent with the SOURCETABLE on disk.
-- **Stations:** 14 own physical stations as of 2026-05-13 (Ampezzo, Barcis, Bevazzana, Bovec*, Cervignano, Codroipo, Gorizia, Idrija*, Koper*, MoggioUdinese, Paularo, Pordenone, Sappada, Tarvisio, Trieste, Udine — `*`=Slovenian SIGNAL partner station accessible via the caster). The caster's published sourcetable also exposes 11 OGS/FReDNet mountpoints (`OGS_ACOM`, `OGS_AFAL`, `OGS_MDEA`, `OGS_MPRA`, `OGS_CODR`, `OGS_FUSE`, `OGS_JOAN`, `OGS_NOVE`, `OGS_PAZO`, `OGS_TRIE`, `OGS_UDI1`, `OGS_ZOUF`) — cross-relay of FReDNet, not new physical infrastructure. Border integration also stated with Austrian EPOSA.
+- **num_stations:** 14 own physical stations as of 2026-05-13 (Ampezzo, Barcis, Bevazzana, Bovec*, Cervignano, Codroipo, Gorizia, Idrija*, Koper*, MoggioUdinese, Paularo, Pordenone, Sappada, Tarvisio, Trieste, Udine — `*`=Slovenian SIGNAL partner station accessible via the caster). The caster's published sourcetable also exposes 11 OGS/FReDNet mountpoints (`OGS_ACOM`, `OGS_AFAL`, `OGS_MDEA`, `OGS_MPRA`, `OGS_CODR`, `OGS_FUSE`, `OGS_JOAN`, `OGS_NOVE`, `OGS_PAZO`, `OGS_TRIE`, `OGS_UDI1`, `OGS_ZOUF`) — cross-relay of FReDNet, not new physical infrastructure. Border integration also stated with Austrian EPOSA.
 - **Products:** VRS_RTCM23, VRS_RTCM31, VRS_RTCM32 (GPS+GLO+GAL+BDS quad-constellation), VRS_CMR, MAC_RTCM31, IMAC_RTCM3, IMAC_RTCM32, SingleBase_RTCM23/31/32, plus DGPS variants per station — confirmed in sourcetable on disk.
 - **Tariff:** Free; credentials by online registration form on the Re.M.FVG portal. Per operator: "Access to the real-time service is free, but is regulated through access credentials."
 - **hobbyist_eligibility:** Yes — form is open to anyone who applies; no professional, institutional, or commercial-use restriction stated.
 - **legal_residency_required:** No.
 - **VRS:** Yes (multiple VRS formats including quad-constellation RTCM 3.2).
-- **Reference system:** ETRS89 / ETRF2000 (epoch 2008.0) — RDN aligned.
+- **datum_epoch:** ETRS89 / ETRF2000 epoch 2008.0 (RDN aligned). Operator cite: https://rem.regione.fvg.it/rem-fvg/servizi/correzioni-differenziali (service-description page states ETRF2000-RDN alignment).
 - **last_confirmed_alive:** 2026-05-12 (SOURCETABLE 200 OK, Leica GNSS Spider/7.11.1.109 confirmed).
-- Sources:
-  - https://rem.regione.fvg.it/rem-fvg/servizi/correzioni-differenziali (service description, host:port — 2026-05-13)
-  - https://rem.regione.fvg.it/rem-fvg/info/cenni-storici (history, station roster, BEIDOU refresh — 2026-05-13)
-  - https://www.regione.fvg.it/rafvg/cms/RAFVG/ambiente-territorio/conoscere-ambiente-territorio/FOGLIA11/FOGLIA4/ (regional portal entry)
 
 ---
 
 ### FReDNet — Friuli-Venezia Giulia (OGS geodynamic network)
+- **landing_url:** https://frednet.crs.ogs.it/en/servizio-rtk/
+- **access_url:** https://frednet.crs.ogs.it/en/lista-stazioni/ (full station list + RTK flags; operator overview at https://frednet.crs.ogs.it/en/frednet/)
 - **Full name:** FReDNet = Friuli Regional Deformation Network.
 - **Operator:** OGS – Istituto Nazionale di Oceanografia e di Geofisica Sperimentale, Centro di Ricerche Sismologiche (CRS), Udine. Operating since June 2002. (Not INGV — the two institutes are distinct; the 2026-05-07 entry's "OGS/INGV" attribution was incorrect.)
-- **Partner:** ISPRA contributes a small number of stations; per the operator's `lista-stazioni` page all 24 currently listed stations are OGS-managed. Part of OGS's SMINO (North-East Italy monitoring system) and a node in the EPOS / GLASS CEGNxEPOS gateway.
+- **Partner:** ISPRA contributes a small number of stations; per the operator's `lista-stazioni` page all currently listed stations are OGS-managed. Part of OGS's SMINO (North-East Italy monitoring system) and a node in the EPOS / GLASS CEGNxEPOS gateway.
 - **host:port:** `158.110.30.81:2110` (note non-standard port 2110). Listed verbatim on https://frednet.crs.ogs.it/en/servizio-rtk/ as of 2026-05-13.
-- **Stations:** 24 listed; 22 active with RTK enabled (LODI and UDIN have RTK off). Distributed across Friuli-Venezia Giulia plus Veneto (CANV, SUSE, NOVE, MGBU, AFAL) and one outlier in Lombardia (LODI). Coverage area stated as "the entire Friuli Venezia Giulia area." Inter-station spacing ~30–50 km; designed for crustal-deformation monitoring along the Adria microplate boundary, not optimised for RTK density.
-- **Active OGS station codes (RTK on, 2026-05-13):** ACOM, AFAL, CANV, CODR, FUSE, GRDO, JOAN, LOGA, MDEA, MGBU, MPRA, NOVE, PAZO, PMNT, SUSE, TOLS, TRIE, UDI1, UDI2, VALS, VARM, ZOUF. Receiver type GNSS (GPS+GLONASS+Galileo); RTK streams advertised as GPS+GLONASS RTCM 3.x.
+- **num_stations:** 25 listed; 23 RTK-active per operator station-list page (2026-05-17 re-fetch — one station added since 2026-05-13's 24/22 reading). Active codes 2026-05-17: ACOM, AFAL, CANV, CODR, FUSE, GRDO, JOAN, LOGA, MDEA, MGBU, MPRA, NOVE, PAZO, PMNT, SUSE, TOLS, TRIE, UDI1, UDI2, VALS, VARM, ZOUF (+1 new). LODI and UDIN remain RTK-off. Distributed across Friuli-Venezia Giulia plus Veneto (CANV, SUSE, NOVE, MGBU, AFAL) and one outlier in Lombardia (LODI). Inter-station spacing ~30–50 km; designed for crustal-deformation monitoring along the Adria microplate boundary, not optimised for RTK density.
+  - **Dual-source operator mismatch (flag):** the `lista-stazioni` page shows 25 listed / 23 RTK-active, but the overview page `frednet.crs.ogs.it/en/frednet/` still states "currently … counts 22 active permanent GNSS stations". The two operator pages disagree. Station-list page is the more authoritative + recently-updated count; overview-page text appears stale (also matches SMINO page's 22-active figure). Tracked here so downstream pipeline (networks.md, markers) stays consistent with the lista-stazioni count.
 - **Products:** Single-station (e.g. `OGS_JOAN`), NEAREST (`OGS_NEA`), VRS (`OGS_VRS`), FKP network solution (`OGS_FKP`), DGPS (code). The caster also re-broadcasts a subset of Re.M.FVG/Marussi physical stations under the `RAFVG_*` prefix (e.g. `RAFVG_BARC`) — cross-relay of the two FVG networks.
-- **Reference system:** ETRF2000 (epoch 2008.0). RDN-aligned.
+- **datum_epoch:** ETRF2000 epoch 2008.0 (RDN-aligned). Operator cite: https://frednet.crs.ogs.it/en/servizio-rtk/ (RTK-service page declares ETRF2000 framing).
 - **Tariff:** Free for all users — operator describes the service as "freely accessible to public, private and scientific users." No charge for registration, account, or stream.
 - **Registration:** Online form at https://frednet.crs.ogs.it/en/servizio-rtk/ (RTK account management).
 - **hobbyist_eligibility:** Yes — no professional, institutional, or research-affiliation gate stated; "public, private and scientific users" is the operator's own wording.
 - **legal_residency_required:** No (not stated; no national-ID or VAT-ID requirement).
 - **VRS:** Yes.
 - **Contact:** gnss@ogs.it · Via Treviso 55, 33100 Udine.
-- **last_confirmed_alive:** 2026-05-12 (SOURCETABLE 200 OK on 158.110.30.81:2110 during the 2026-05-12 IT refresh pass; portal `frednet.crs.ogs.it/en/servizio-rtk/` returned current RTK details on 2026-05-13 via WebFetch).
-- **Recent activity:** New stations in 2021 (TOLS, VALS), 2022 (LOGA, MGBU), 2017 (UDI2). Continued expansion under the PNRR MEET project (part of EPOS). No service-discontinuation signal as of 2026-05-13.
+- **last_confirmed_alive:** 2026-05-17 (operator station-list page re-fetched, host:port `158.110.30.81:2110` still published, free-for-all attestation still present, station roster shows 25/23 — net +1 listed and +1 RTK-active since 2026-05-13; 2026-05-12 sourcetable probe remains last successful direct NTRIP fetch — sandbox NTRIP-TCP blocked today).
+- **Recent activity:** New stations in 2021 (TOLS, VALS), 2022 (LOGA, MGBU), 2017 (UDI2). One additional station listed 2026-05-13→2026-05-17 (specific code to be confirmed against next sourcetable refresh). Continued expansion under the PNRR MEET project (part of EPOS). No service-discontinuation signal as of 2026-05-17.
 - **Coexistence with Re.M.FVG (Marussi):** FReDNet and Re.M.FVG are two distinct, parallel free networks both serving FVG. FReDNet (OGS, scientific origin) emphasises geodynamic spatial coverage; Re.M.FVG (Regione, surveying/cadastral origin) emphasises VRS density. They cross-relay each other's stations through their respective casters (FReDNet caster carries `RAFVG_*` mounts; Marussi caster carries `OGS_*` mounts). For a hobbyist anywhere in FVG either network is usable; Re.M.FVG's denser VRS solution is typically the better default, FReDNet is the alternative when registering with the Regione is inconvenient or as a cross-check.
-- Sources:
-  - https://frednet.crs.ogs.it/en/servizio-rtk/ (operator RTK service page, mountpoint examples, contact, host:port — 2026-05-13)
-  - https://frednet.crs.ogs.it/en/lista-stazioni/ (full station list with install dates and RTK flags — 2026-05-13)
-  - https://www.ogs.it/en/northeast-italy-monitoring-system-smino (SMINO context, 22 active stations — 2026-05-13)
-  - https://gnss-metadata.eu/MOID/projnet.6425394325cd38eb370a0aa4 (M3G project/network registry — 2026-05-13)
 
 #### Pipeline status (FVG, 2026-05-13)
 
@@ -165,76 +170,87 @@ Country marker, country-survey bullet, README, and global-survey updated.
 ---
 
 ### GPS-UMBRIA — Umbria
+- **landing_url:** https://umbriageo.regione.umbria.it/pagine/accesso-rapido-ai-servizi-gpsumbria
+- **access_url:** Skip — landing_url is the single operator entry-point for registration + service info; no distinct access page.
 - **Operator:** Regione Umbria + Università di Perugia; 13 stations (7 regional, 6 university).
 - **host:port:** `gpsumbria.regione.umbria.it:2101` / `46.254.154.14:2101` (confirmed SOURCETABLE 200 OK, 2026-05-07).
-- **Stations:** 13 multi-constellation stations (GPS+GLONASS+Galileo+BeiDou); ~40 km spacing.
+- **num_stations:** 13 multi-constellation (GPS+GLONASS+Galileo+BeiDou); ~40 km spacing.
 - **Products:** MAC, VRS, Nearest (from Umbriageo portal). Virtual RINEX also available.
 - **Tariff:** Free; online form at umbriageo.regione.umbria.it → credentials emailed.
 - **hobbyist_eligibility:** unclear — originally targeted at surveying/cadastral, now also agriculture and drones; no explicit exclusion.
 - **legal_residency_required:** No explicit requirement found.
 - **VRS:** Yes.
+- **datum_epoch:** omitted — no citable per-operator declaration on Umbriageo portal.
 - **last_confirmed_alive:** 2026-05-07 (SOURCETABLE 200 OK, HTTP/0.9 NTRIP/1.0 caster format confirmed).
-- Source: https://umbriageo.regione.umbria.it/pagine/accesso-rapido-ai-servizi-gpsumbria
 
 ---
 
 ### Rete GNSS Campania — Campania
-- **Operator:** Regione Campania – SIT (Sistema Informativo Territoriale); Leica Spider.
-- **host:port:** `gps.sit.regione.campania.it:2101` / `109.115.186.34:2101` (confirmed SOURCETABLE 200 OK, 2026-05-07).
-- **Public credentials:** username `Campania` · password `GNSS` (30-second VRS access without login; 1-second requires SPID account).
-- **Stations:** Multiple stations covering Campania provinces (Naples, Salerno, Avellino, and others).
+- **landing_url:** http://gps.sit.regione.campania.it/indexmain.php (operator portal "Stazione Permanente GNSS Regione Campania"; 2025-08-20 operator notice redirects new account creation to https://gps-sit.regione.campania.it/ with SPID; existing credentials at gps.sit.regione.campania.it remain valid)
+- **access_url:** https://gps-sit.regione.campania.it/ (new SPID-gated registration portal); legacy shared-credentials guide remains at https://blog.analistgroup.com/come-connettersi-alla-rete-gnss-in-campania/ as secondary reference for the public `Campania` / `GNSS` workflow.
+- **Operator:** Regione Campania – SIT (Sistema Informativo Territoriale); Leica Spider; technical operation Topcon Positioning Italy (per 2025-08 operator notice).
+- **host:port:** `gps.sit.regione.campania.it:2101` / `109.115.186.34:2101` (confirmed SOURCETABLE 200 OK, 2026-05-07; operator portal text confirms port 2101 unchanged).
+- **Public credentials:** username `Campania` · password `GNSS` (30-second VRS access; 1-second VRS now requires SPID-gated account via gps-sit.regione.campania.it).
+- **num_stations:** 16 permanent stations (operator-stated on http://gps.sit.regione.campania.it/indexmain.php: "Il numero necessario di Stazioni Permanenti è risultato essere 16"; spacing ≤70 km across Campania provinces including Naples, Salerno, Avellino).
 - **Products:** `1_VRS30` (Virtual Reference Station 30-sec), `9_NEAR` (nearest station). Confirmed.
-- **Tariff:** Free; basic access open without registration using shared credentials.
-- **hobbyist_eligibility:** Yes — public shared credentials, no registration required for basic RTK.
-- **legal_residency_required:** No.
+- **Tariff:** Free; basic access open without registration using shared credentials. SPID-gated 1-second VRS still free.
+- **hobbyist_eligibility:** Yes — public shared credentials, no registration required for basic RTK (1-sec VRS now requires SPID, which is restricted to Italian-residency digital ID).
+- **legal_residency_required:** No for basic 30-sec VRS (shared credentials). Yes effectively for 1-sec VRS (SPID is Italian-resident digital ID).
 - **VRS:** Yes.
-- **last_confirmed_alive:** 2026-05-07 (SOURCETABLE 200 OK confirmed).
-- Source: https://blog.analistgroup.com/come-connettersi-alla-rete-gnss-in-campania/
+- **datum_epoch:** omitted — no citable per-operator declaration on the Regione Campania GNSS portal.
+- **last_confirmed_alive:** 2026-05-07 (SOURCETABLE 200 OK confirmed); operator portal text re-verified 2026-05-17 via WebFetch on http://gps.sit.regione.campania.it/indexmain.php (HTTPS variant ECONNREFUSED; HTTP serves the portal).
 
 ---
 
 ### Rete GNSS Puglia — Puglia
+- **landing_url:** https://pugliacon.regione.puglia.it/web/sit-puglia-sit/global-positioning-system
+- **access_url:** Skip — registration is by email to info@gps.sit.puglia.it; no distinct online access form page.
 - **Operator:** Regione Puglia – SIT Puglia; Leica Spider (SpiderWeb).
 - **host:port:** `gps.sit.puglia.it:2101` / `138.66.34.59:2101` (confirmed SOURCETABLE 200 OK, 2026-05-07).
-- **Stations:** 10+ stations distributed across Puglia.
+- **num_stations:** unknown — operator landing page describes the service but does not publish a current physical-station count; previously surveyed as "10+" by third parties but not citable per primer. Pending direct operator-portal confirmation.
 - **Products:** IMAX3, MAX3, RTCM 3.x and 2.x; credentials are personalised per number of rovers indicated during registration.
 - **Tariff:** Free; registration via info@gps.sit.puglia.it.
 - **hobbyist_eligibility:** unclear — registration is required; process appears open to anyone.
 - **legal_residency_required:** No explicit requirement found.
 - **VRS:** Yes (network correction mode IMAX/MAX confirmed).
+- **datum_epoch:** omitted — no citable per-operator declaration on the SIT Puglia portal.
 - **last_confirmed_alive:** 2026-05-07 (SOURCETABLE 200 OK confirmed on 138.66.34.59:2101).
-- Source: https://pugliacon.regione.puglia.it/web/sit-puglia-sit/global-positioning-system
 
 ---
 
 ### Rete GNSS Abruzzo + Lazio — Abruzzo and Lazio (shared infrastructure)
-- **Operator:** Regione Abruzzo (hosts and operates); Lazio region fully integrated into same system. 16 Abruzzo + 13 Lazio stations.
+- **landing_url:** https://gnssnet.regione.abruzzo.it (operator portal)
+- **access_url:** https://gnssnet.regione.abruzzo.it/accesso.php (registration form; HTTP 200 + active form 2026-05-17)
+- **Operator:** Regione Abruzzo (hosts and operates); Lazio region fully integrated into same system.
 - **host:port:** `gnss-rtk.regione.abruzzo.it:2101` / `93.57.92.145:2101`
-  - NOTE: Both hostnames/IPs timed out from test location on 2026-05-07. The protrack guide (updated Nov 2025) and the regional portal both document this endpoint. The service has a history of brief outages. Treated as likely alive but unconfirmed at probe time.
+  - NOTE: Both hostnames/IPs timed out from test location on 2026-05-07, -12, and -17. The protrack guide (updated Nov 2025) and the regional portal both document this endpoint. The service has a history of brief outages. Treated as likely alive but unconfirmed at probe time.
   - Alternate (older): `gnssnet.regione.abruzzo.it:2101` — also timed out.
-  - Registration portal online: https://gnssnet.regione.abruzzo.it/accesso.php (HTTP 200, 2026-05-07)
+- **num_stations:** 16 Abruzzo + 13 Lazio = 29 (operator-stated across portal materials; per-station listing on gnssnet.regione.abruzzo.it).
 - **Products:** `near_MSM` (nearest multiconst.), `0_RTCM_MSM` (VRS multiconst.), `VRS23`, `VRS30` (GPS+GLONASS), `NRT30`, `DGPS`, `CMR` variants.
-- **Tariff:** Free; register at gnssnet.regione.abruzzo.it/accesso.php.
+- **Tariff:** Free; register via access_url.
 - **hobbyist_eligibility:** Yes — form is open to anyone; no professional credential required.
 - **legal_residency_required:** No.
 - **VRS:** Yes.
-- **last_confirmed_alive:** portal HTTP 200 historically; NTRIP endpoint timed out again from sandbox 2026-05-12 (third successive failure across 2026-05-07 and earlier probes). The agendadigitale.regione.abruzzo.it and trasparenza.regione.abruzzo.it pages continue to describe the service as "24/7 active" and the analistgroup / protrack guides re-confirm the IP/host as the documented production endpoint. **Likely alive but blocked / unreachable from external test locations — confirmation requires a probe from within Italy.**
-- Source: https://gnssnet.regione.abruzzo.it · https://protrack.studio/blog/it/come-connettersi-alla-rete-gnss-in-abruzzo-e-lazio/
+- **datum_epoch:** omitted — no citable per-operator declaration on the Abruzzo GNSS portal.
+- **last_confirmed_alive:** registration portal `gnssnet.regione.abruzzo.it/accesso.php` re-fetched 2026-05-17, registration form active, "RTK correction and data download services are free" still stated, credentials "the day after registration" workflow unchanged. NTRIP TCP endpoint `93.57.92.145:2101` continues to time out from sandbox (now four successive failures across 2026-05-07 / -12 / -17); agendadigitale.regione.abruzzo.it + trasparenza.regione.abruzzo.it + analistgroup / protrack guides still call the service "24/7 active". **Likely alive but blocked / unreachable from external test locations — confirmation requires a probe from within Italy.**
+- Auxiliary refs: https://protrack.studio/blog/it/come-connettersi-alla-rete-gnss-in-abruzzo-e-lazio/ · https://www.regione.lazio.it/cittadini/urbanistica/sistema-informativo-territoriale-regionale/rete-posizionamento-gnss
 
 ---
 
 ### Sicili@NET — Sicilia + Southern Calabria
+- **landing_url:** https://www.ct.ingv.it/index.php/risorse-e-servizi/sicil-net
+- **access_url:** Skip — access is by direct email to the INGV referent (francesco.pandolfo@ingv.it); no online registration page distinct from landing.
 - **Operator:** INGV – Istituto Nazionale di Geofisica e Vulcanologia, Osservatorio Etneo di Catania; scientific network with RTK access.
 - **host:port:** `193.206.223.39:2101` (confirmed SOURCETABLE 200 OK, 2026-05-07; Leica GNSS Spider/7.11.1.109).
-- **Stations:** ~80 permanent GPS stations across Sicily and southern Calabria. Network used for seismic and civil protection monitoring.
+- **num_stations:** ~80 permanent GPS stations across Sicily and southern Calabria (operator-stated on Sicili@NET landing; primarily for seismic + civil-protection monitoring).
 - **Products confirmed in sourcetable:** RTK2, RTK3, IMAX2, IMAX3, MAX3, VRS2, VRS3, FKP2, DGPS (RTCM 2/3); full network correction suite available.
-- **Tariff:** Free; request access via email to the INGV referent (contact: francesco.pandolfo@ingv.it).
+- **Tariff:** Free; request access via email.
 - **hobbyist_eligibility:** Yes — stated as available to "all users who request it." No professional requirement cited.
 - **legal_residency_required:** No.
 - **VRS:** Yes (VRS2 and VRS3 confirmed in sourcetable).
+- **datum_epoch:** omitted — no citable per-operator declaration on the Sicili@NET service page.
 - **Coverage note:** Southern Calabria is also covered by Sicili@NET; no separate Calabria regional network exists.
 - **last_confirmed_alive:** 2026-05-07 (SOURCETABLE 200 OK, full mountpoint list confirmed).
-- Source: https://www.ct.ingv.it/index.php/risorse-e-servizi/sicil-net
 
 ---
 
@@ -268,24 +284,30 @@ The Agenzia Spaziale Italiana (ASI) operates a EUREF-IP NTRIP broadcaster at `eu
 ## Commercial Nationwide Networks
 
 ### HxGN SmartNet Italy (ItalPOS) — Leica Geosystems / Hexagon
+- **landing_url:** https://hxgnsmartnet.com/it-it
+- **access_url:** https://hxgnsmartnet.com/it-it/services (service catalogue + subscription routing); reseller-pricing reference https://www.geomatica.it/cat.pag/abbonamento-al-servizio-hxgn-smartnet-czk1345kzpsxzk615.html
 - **host:port:** `it.nrtk.eu:2101` (confirmed SOURCETABLE 200 OK, 2026-05-07; Leica GNSS Spider/7.11.0.96).
+- **num_stations:** unknown — Hexagon does not publish a per-country physical-CORS count for HxGN SmartNet Italy on the operator portal; coverage stated as nationwide (mainland + islands) at hxgnsmartnet.com/coverage-map.
 - **Products confirmed:** RTK2, RTK3, IMAX2, IMAX3, MAX3, VRS2, VRS3, FKP2, DGPS, RTK3-A (full network correction suite).
-- **Coverage:** National coverage (mainland + islands); coverage map at hxgnsmartnet.com/coverage-map.
+- **Coverage:** National (mainland + islands); coverage map at hxgnsmartnet.com/coverage-map.
 - **Tariff:** Observed 2026-05-07 via third-party reseller geomatica.it:
   - 12-month subscription: **€385 +IVA** (IVA Italy 22%; total ~€469.70/yr)
   - 60-month subscription: **€1,670 +IVA** (~€2,037.40 total)
   - Activation within 48 hours; device-agnostic (not restricted to Leica hardware for network access; SmartNet+ global product also available).
 - **hobbyist_eligibility:** unclear — no explicit restriction found; product positioned for professional surveying/construction/agriculture; no VAT-ID requirement stated (unlike NetGEO).
 - **legal_residency_required:** No explicit requirement.
+- **VRS:** Yes.
+- **datum_epoch:** omitted — no citable per-operator declaration on hxgnsmartnet.com IT pages.
 - **last_confirmed_alive:** 2026-05-07 (SOURCETABLE 200 OK confirmed).
-- Source: https://hxgnsmartnet.com/it-it · https://www.geomatica.it/cat.pag/abbonamento-al-servizio-hxgn-smartnet-czk1345kzpsxzk615.html
 
 ---
 
 ### NetGEO / TopNET Live — Topcon Positioning Italy S.r.l.
-- **host:port:** `rtk.topnetlive.com:2101` / `88.86.116.1:2101` (confirmed SOURCETABLE 200 OK, 2026-05-07; IQProxy/1.2 caster).
+- **landing_url:** http://www.netgeo.it/page.php?Id=61 (operator service-overview page)
+- **access_url:** https://shop.netgeo.it (subscription shop; partita-IVA gated)
 - **Operator:** TOPCON POSITIONING ITALY S.r.l., Via Brecce Bianche 152, 60131 Ancona.
-- **Stations:** 200 permanent stations (GPS+GLONASS), national coverage.
+- **host:port:** `rtk.topnetlive.com:2101` / `88.86.116.1:2101` (confirmed SOURCETABLE 200 OK, 2026-05-07; IQProxy/1.2 caster).
+- **num_stations:** 200 permanent stations (operator-stated, GPS+GLONASS, national coverage).
 - **Products:** NET_MSM5, NET_RTCM3, NET_RTCM23 (network/VRS); RTK_MSM5, RTK_RTCM3, RTK_RTCM23 (single station); DGNSS. VRS approach: virtual station generated ~4.5 km from rover.
 - **Tariff (observed 2026-05-07 at shop.netgeo.it, VAT excluded):**
   - GEONRTK Mensile: **€90/month +IVA**
@@ -296,8 +318,8 @@ The Agenzia Spaziale Italiana (ASI) operates a EUREF-IP NTRIP broadcaster at `eu
 - **hobbyist_eligibility:** **No** — shop explicitly states "La vendita è attiva solo per i clienti con partita IVA" (sales only to VAT-registered entities). Private individuals cannot subscribe without a partita IVA.
 - **legal_residency_required:** De facto yes (Italian VAT ID required).
 - **VRS:** Yes.
+- **datum_epoch:** omitted — no citable per-operator declaration on netgeo.it / topnetlive.com IT pages.
 - **last_confirmed_alive:** 2026-05-07 (SOURCETABLE 200 OK confirmed).
-- Source: https://shop.netgeo.it · http://www.netgeo.it/page.php?Id=61
 
 ---
 
@@ -334,12 +356,15 @@ San Marino (61 km², enclave within Emilia-Romagna) has no GNSS RTK network of i
 - Regione FVG GNSS (EN): https://www.regione.fvg.it/rafvg/cms/RAFVG/ambiente-territorio/conoscere-ambiente-territorio/FOGLIA11/FOGLIA4/
 - FReDNet OGS RTK service: https://frednet.crs.ogs.it/en/servizio-rtk/ (host:port, mountpoints, contact, free-for-all attestation — 2026-05-13)
 - FReDNet OGS station list: https://frednet.crs.ogs.it/en/lista-stazioni/ (24 stations, install dates, RTK flags — 2026-05-13)
-- FReDNet OGS overview page: https://frednet.crs.ogs.it/en/frednet/ (22 active stations, PNRR MEET / EPOS context — 2026-05-13)
+- FReDNet OGS overview page: https://frednet.crs.ogs.it/en/frednet/ ("22 active stations" — STALE relative to station-list page's 23 RTK-active as of 2026-05-17; operator internal dual-source mismatch flagged in network notes)
 - OGS SMINO: https://www.ogs.it/en/northeast-italy-monitoring-system-smino (network context, 22 active GNSS receivers — 2026-05-13)
 - M3G GNSS network metadata: https://gnss-metadata.eu/MOID/projnet.6425394325cd38eb370a0aa4 (operator attribution, station codes — 2026-05-13)
 - Re.M.FVG history page: https://rem.regione.fvg.it/rem-fvg/info/cenni-storici (founding 1999, 2024-25 BEIDOU + Sappada/Paularo addition, FReDNet cooperation — 2026-05-13)
 - GPS-UMBRIA (Umbriageo): https://umbriageo.regione.umbria.it/pagine/accesso-rapido-ai-servizi-gpsumbria
-- Regione Campania GNSS (via blog.analistgroup.com): https://blog.analistgroup.com/come-connettersi-alla-rete-gnss-in-campania/
+- Rete GNSS Campania operator portal: http://gps.sit.regione.campania.it/indexmain.php (16 permanent stations, port 2101, shared `Campania`/`GNSS` credentials, SPID gate for 1-sec VRS — 2026-05-17)
+- Rete GNSS Campania new SPID portal: https://gps-sit.regione.campania.it/ (2025-08-20 operator notice, Topcon Positioning Italy support)
+- Regione Campania GNSS (secondary, credentials/usage walkthrough): https://blog.analistgroup.com/come-connettersi-alla-rete-gnss-in-campania/
+- Rete GPS Veneto operator station map: https://retegnssveneto.cisas.unipd.it/Web/page.php?pid=gmap&link=Stazioni_GNSS&chain=6 (35 station codes — 2026-05-17)
 - Puglia SIT GPS: https://pugliacon.regione.puglia.it/web/sit-puglia-sit/global-positioning-system
 - Abruzzo GNSS portal: https://gnssnet.regione.abruzzo.it/servizi.php
 - Regione Lazio GNSS: https://www.regione.lazio.it/cittadini/urbanistica/sistema-informativo-territoriale-regionale/rete-posizionamento-gnss
@@ -356,7 +381,8 @@ San Marino (61 km², enclave within Emilia-Romagna) has no GNSS RTK network of i
 - IGM RDN: https://www.igmi.org/en/direzione-geodetica/progetto-rdn-rete-dinamica-nazionale
 - ArduSimple San Marino: https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-san-marino/
 - ProTRACK Trentino-Alto Adige guide: https://protrack.studio/blog/it/come-connettersi-alla-rete-gnss-in-trentino-alto-adige/
-- curl probes of all endpoints — 2026-05-07 and 2026-05-12 (Abruzzo-Lazio endpoint timed out both dates; all other regional endpoints confirmed alive 2026-05-12)
+- curl probes of all endpoints — 2026-05-07 and 2026-05-12 (Abruzzo-Lazio endpoint timed out both dates; all other regional endpoints confirmed alive 2026-05-12). 2026-05-17 sandbox NTRIP-TCP egress blocked across the board (all 13 endpoints returned curl exit 28 / HTTP 000), so operator-portal WebFetch was substituted for SPIN3 + FReDNet + Abruzzo to re-attest service status.
+- SPIN3 GNSS news page (CREO replacing CREM at Cremona 2026-05-12; semestral coordinate refresh 2026-04-01 retaining ETRF2000 epoch 2008.0): https://www.spingnss.it/ + https://www.spingnss.it/nuovo-inquadramento-rete-spin3-aggiornamento-coordinate-6/ — 2026-05-17
 - rtk2go IT volunteer bases (12 stations, 2026-05-12): B506Fields (Lecce), Basertk-fogli (Veneto), Carpi_farm, FM01 (Sicily), GESAMP (Liguria), Garabello_RTK (Piedmont), MASCHERINA, MRCATW2020 (Lombardy), SACCO, SIMMN2024, STAP21, TOMPV22 — patchy distribution
 - Centipede IT volunteer bases (3 stations, 2026-05-12): FALA (Emilia), FM01 (Sicily), PGDV (Emilia)
 - ProTRACK Emilia-Romagna guide (no public regional network; TopNET LIVE recommended): https://protrack.studio/blog/it/come-connettersi-alla-rete-gnss-in-emilia-romagna/

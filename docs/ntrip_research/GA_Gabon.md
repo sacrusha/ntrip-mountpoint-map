@@ -1,5 +1,5 @@
 # Gabon [GA] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12 (refresh of 2026-05-06 entry; no new CORS/NTRIP activity surfaced)
+**Date researched:** 2026-05-17 (refresh of 2026-05-12 entry; WebSearch 2026-05-17 surfaced no new ANUTTC CORS/NTRIP activity). NKLG IGS station (Libreville, 0.35/9.67) is on AUSCORS+IGS-IP+MIRAI rebroadcast per local stations.json — IGS post-processing site, not a Gabonese caster.
 
 ## Status: NO active public NTRIP caster
 
@@ -33,6 +33,7 @@ URL: https://ric2024.rcmrd.org/afref
 - **ANINF**: The national digital infrastructure agency co-signed the geomatic plan with IGN FI, suggesting future connectivity infrastructure could support CORS hosting — but no station or caster has materialised in public sources.
 - **No CORS confirmed**: Gabon does not appear in the IGS network, ITRF2020, SONEL, AFREF confirmed-CORS country list, or any NTRIP listing as of 2026-05-12.
 - **RTK2go / Centipede / EarthScope**: Zero GA / GAB stations in any sourcetable as of 2026-05-12 (verified via local `data/stations.json`).
+- **IGS rebroadcast**: NKLG (Libreville, 0.35/9.67) appears on AUSCORS, IGS-IP, and MIRAI rebroadcasts of select IGS stations (local `data/stations.json`, 2026-05-12). Not a Gabonese caster; raw 1 Hz single-base IGS site streamed by BKG/GA/JAXA infrastructure. Useful as a regional anchor for hobbyists with a long-baseline-tolerant setup but does not constitute a national NTRIP service.
 - **Global commercial networks** (GEODNET, ONOCOY, Centipede, RTKdata): No GA coverage identified.
 - **Infrastructure context**: Gabon has relatively high GDP per capita for the region and concentrated urban population in Libreville — better enabling conditions than many sub-Saharan peers, but no CORS has been publicly announced or confirmed as of the research date.
 

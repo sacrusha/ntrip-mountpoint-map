@@ -1,7 +1,7 @@
 # Armenia [AM] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-15 (prior: 2026-05-12, 2026-05-06)
+**Date researched:** 2026-05-17 (prior: 2026-05-15, 2026-05-12, 2026-05-06)
 
-## Status: ARMPOS exists on paper (12 physical CORS commissioned 2013) but no public NTRIP host:port has ever been published; EuroGeographics lists Armenia's national positioning service as "No"
+## Status: ARMPOS exists on paper (12 physical CORS commissioned 2013) but no public NTRIP host:port has ever been published; EuroGeographics still lists Armenia's national positioning service as "No". One IGS station (ARUC00ARM, Aruch) is broadcast in real time via IGS-IP — single-base, scientific use only.
 
 | Field | Value |
 |---|---|
@@ -13,10 +13,10 @@
 | **host:port** | Not publicly listed |
 | **tariff** | Not publicly listed |
 | **num_stations** | 12 physical single-base CORS (per 2013 Norwegian-funded buildout; ~50 km spacing across ~30,000 km²) |
-| **vrs** | no (single-base design per the 2013 tender) |
-| **hobbyist_eligibility** | no |
+| **vrs** | n/a — no public service exists (2013 tender described single-base design; never exposed publicly) |
+| **hobbyist_eligibility** | n/a — no public service exists |
 | **legal_residency_required** | ? (no open registration form to inspect) |
-| **last_confirmed_alive** | 2026-05-15 — cadastre.am operator portal reachable; no NTRIP endpoint to probe; EuroGeographics member page lists "Positioning Service: No" for Armenia |
+| **last_confirmed_alive** | 2026-05-17 — cadastre.am operator portal reachable (latest news 2025-11-07, no GNSS mention); no NTRIP endpoint to probe; EuroGeographics member page still lists "Positioning Service: No" for Armenia (re-fetched 2026-05-17) |
 
 (datum_epoch omitted — ARMREF02 is widely referenced in third-party sources but no official Armenian government declaration URL was locatable in 2026-05-15 research.)
 
@@ -31,24 +31,25 @@
 ## Public access — current state
 
 - **No public NTRIP host:port has been published.** Verified absent from rtk2go (monitor.use-snip.com), ntrip-list.com (no AM entries in Europe section), IGS station-resources, GitHub mvarga1989/The-list-of-GNSS-CORS-RTK-networks, and ArduSimple's country selector (Armenia not listed).
-- **EuroGeographics member page** for the Cadastre Committee (2026-05-15) explicitly enumerates "Positioning Service: No" in the National Services table. This is the most authoritative current evidence that Armenia does not run an open positioning service.
-- **cadastre.am and e-cadastre.am** portals (probed 2026-05-15, HTTP 200 via WebFetch) describe cadastre, registration, topographic mapping, and e-Government services. Neither surfaces RTK, NTRIP, ARMPOS, or any GNSS correction product.
+- **EuroGeographics member page** for the Cadastre Committee (re-fetched 2026-05-17) explicitly enumerates "Positioning Service: No" in the National Services table. This is the most authoritative current evidence that Armenia does not run an open positioning service.
+- **cadastre.am and e-cadastre.am** portals (re-probed 2026-05-17, HTTP 200 via WebFetch) describe cadastre, registration, topographic mapping, and e-Government services. Neither surfaces RTK, NTRIP, ARMPOS, or any GNSS correction product. Latest news 2025-11-07 (cadastre service-office visit; reverse-mortgage law) — no GNSS content.
 - **No active user community presence**: no Armenian-language surveyor forum threads, no rtk2go submissions, no Centipede submissions surfaced.
 
-## IGS / EPN footprint (post-processing only)
+## IGS / EPN footprint
 
-- **NSSP (NSSP00ARM)** — Nor-Spitak (Spitak region) — was an EPN station operated by JPL. Per EPN Central Bureau, **former EPN station since 2010-07-11**; not part of the active EUREF network. Historical RINEX may still be available via the IGS / CDDIS archives.
-- **ARTU is NOT in Armenia** — prior research conflated this. ARTU is the IGS station at Arti, Russia (Sverdlovsk Oblast). Removed.
-- **No active IGS station in Armenia is currently listed** in the IGS network resources (2026-05-15).
-- A Russian GLONASS ground complex exists on the Byurakan Astrophysical Observatory campus (announced 2018, news.am). It is a military/state station, not a civilian NTRIP service.
+- **ARUC00ARM** — Aruch-Yerevan (40.286 N, 44.086 E, 1222 m). Active IGS station: Septentrio POLARX5 receiver, Ashtech ASH701945C_M / SCIS antenna, multi-constellation (GPS+GLO+GAL+BDS+QZS+IRNSS) in RINEX, GPS-only in real time. Real-time stream rebroadcast on `products.igs-ip.net:2101` (mountpoint `ARUC00ARM0` present in `data/igs_ip.sourcetable`, 39 km from Yerevan, verified 2026-05-17 via `py scripts/stations_by_country.py ARM`). **NOT on EUREF-IP** — local `data/euref_ip.sourcetable` grep for `ARUC` returns no matches (2026-05-17); IGS-IP is the only NTRIP rebroadcast path. IGS-IP registration required (BKG / `register.rtcm-ntrip.org`); use governed by IGS data-use policy — research/non-commercial. Datum: IGS20 (IGS realisation of ITRF2020) — declared by IGS, not by an Armenian authority, so it does **not** satisfy the operator-declaration rule for the AM datum_epoch field.
+- **NSSP (NSSP00ARM)** — Nor-Spitak — former EPN station since 2010-07-11; historical RINEX in IGS / CDDIS archives only.
+- **ARTU is NOT in Armenia** — ARTU is at Arti, Russia (Sverdlovsk Oblast).
+- A Russian GLONASS ground complex exists on the Byurakan Astrophysical Observatory campus (announced 2018, news.am). Military/state, not a civilian NTRIP service.
 
 ## Volunteer / community / commercial casters
 
-- **rtk2go**: zero AM stations (`scripts/stations_by_country.py ARM` → "No stations for 'ARM'", 2026-05-15).
-- **Centipede-RTK**: zero AM stations (same script; Centipede coverage in this repo's data is empty for Armenia).
-- **EarthScope / GAGE**: no AM stations (same script). The legacy NSSP RINEX is held in IGS/CDDIS, not EarthScope's user-facing GNSS Archive.
-- **Radius probe**: `scripts/stations_by_radius.py 40.18 44.51 100` (Yerevan, 100 km) → "No stations within 100 km" on 2026-05-15.
-- **GEODNET / ONOCOY / RTKdata / Skylark**: no Armenia ground stations confirmed in 2026-05-15 searches. Swift Navigation's Skylark is a satellite-PPP product and is unrelated to a local NTRIP caster.
+- **rtk2go**: zero AM stations (`scripts/stations_by_country.py ARM`, 2026-05-17 — only IGS-IP ARUC returned).
+- **Centipede-RTK**: zero AM stations.
+- **EarthScope / GAGE**: no AM stations (out of geography). Legacy NSSP RINEX held in IGS/CDDIS, not EarthScope.
+- **IGS-IP**: 1 AM station — ARUC00ARM0 (Aruch, 39 km from Yerevan); single-base, scientific use; see preceding section.
+- **Radius probe**: `scripts/stations_by_radius.py 40.18 44.51 100` (Yerevan, 100 km) → ARUC at 39.1 km on 2026-05-17 (was empty 2026-05-15 before IGS-IP sourcetable refresh added this row).
+- **GEODNET / ONOCOY / RTKdata / Skylark**: no Armenia ground stations confirmed. Skylark is satellite-PPP, unrelated.
 
 ## Nearest viable cross-border alternatives (context, not within ~50 km of any major Armenian city)
 
@@ -64,17 +65,15 @@
 - Use satellite-delivered PPP/SSR: Galileo HAS (free, ~20–40 cm horizontal after convergence), or paid services (Trimble RTX, Fugro StarFix). These do not require a local NTRIP caster.
 - For post-processing-grade work, IGS/CDDIS holds historical NSSP RINEX (2002–2010); modern coverage is sparse.
 
-## Live-probe results (2026-05-15)
+## Live-probe results (2026-05-17)
 
 | URL | Method | Result |
 |---|---|---|
-| https://www.cadastre.am/en | WebFetch | 200 — no RTK content |
+| https://www.cadastre.am/en | WebFetch | 200 — latest news 2025-11-07; no RTK content |
 | https://www.e-cadastre.am/en | WebFetch | 200 — no RTK content |
-| https://eurogeographics.org/member/state-committee-real-property-cadastre-government-ra/ | WebFetch | 200 — "Positioning Service: No" |
-| https://www.ardusimple.com/rtk-correction-services-in-your-country/ | WebFetch | 200 — Armenia not in list (page is JS-rendered; visible portion shows no AM) |
-| http://www.epncb.oma.be/_networkdata/siteinfo4onestation.php?station=NSSP00ARM | WebFetch | 403 from sandbox; WebSearch snippet confirms NSSP is a former EPN station as of 2010-07-11 |
-| http://www.igs.org/igsnetwork/network_by_site.php?site=artu | WebFetch | 404 (URL deprecated) |
-| https://monitor.use-snip.com/ | WebFetch | TLS cert SAN mismatch from sandbox; no AM streams expected (no AM submissions in any community list) |
+| https://eurogeographics.org/member/state-committee-real-property-cadastre-government-ra/ | WebFetch | 200 — "Positioning Service: No" (verbatim) |
+| https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-armenia/ | WebFetch | 200 — page explicitly states "Armenia is not among them" (no national RTK), lists rtk2go/IGS/Earthscope/Galileo-HAS as fallbacks |
+| https://network.igs.org/ARUC00ARM | WebFetch | 200 — station info, Septentrio POLARX5, last RINEX 2026-05-13 |
 
 ## Sources
 
@@ -91,5 +90,7 @@
 - GitHub mvarga1989 / GNSS CORS list: https://github.com/mvarga1989/The-list-of-GNSS-CORS-RTK-networks
 - ArduSimple country selector: https://www.ardusimple.com/rtk-correction-services-in-your-country/
 - NTRIP-list.com Europe: https://ntrip-list.com/europe/
-- Local data verification (2026-05-15): `scripts/stations_by_country.py ARM` (no entries), `scripts/stations_by_radius.py 40.18 44.51 100` (no stations within 100 km of Yerevan)
+- IGS station page (ARUC00ARM): https://network.igs.org/ARUC00ARM
+- Ardusimple Armenia page: https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-armenia/
+- Local data verification (2026-05-17): `scripts/stations_by_country.py ARM` → 1 IGS-IP station (ARUC00ARM0); `scripts/stations_by_radius.py 40.18 44.51 100` → ARUC at 39.1 km
 - news.am on Byurakan GLONASS station (context only, military): https://news.am/eng/news/486296.html

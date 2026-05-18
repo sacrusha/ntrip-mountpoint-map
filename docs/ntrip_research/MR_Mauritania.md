@@ -1,5 +1,5 @@
 # Mauritania [MR] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06 (refreshed 2026-05-12)
+**Date researched:** 2026-05-06 (refreshed 2026-05-17 — still no public caster)
 
 ## Status: NO active public NTRIP caster
 

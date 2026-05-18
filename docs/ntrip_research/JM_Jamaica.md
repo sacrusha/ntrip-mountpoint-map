@@ -1,5 +1,5 @@
 # Jamaica [JM] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12 (refresh of 2026-05-06 entry)
+**Date researched:** 2026-05-12 (refresh of 2026-05-06 entry); EarthScope datum + caster re-confirmed 2026-05-17
 
 ## Status: No confirmed public NTRIP caster — EarthScope scientific streams available; NLA VRS network status unknown
 
@@ -26,10 +26,13 @@ CN10 and CN11 are isolated islets 80+ miles offshore and are outside practical s
 | Field | Value |
 |---|---|
 | **host:port** | `ntrip.earthscope.org:2101` (RTCM 3.3); port 2105 (BINEX); port 2108 (PPP) |
+| **num_stations (JM territory)** | 2–3 — CN11 (Pedro Cay) + CN12 (Kingston / UWI Mona) currently visible in live sourcetable 2026-05-12; CN10 (Morant Cay) historically operational but absent from the current pipeline snapshot (likely temporarily down). CN12 is the only station in single-base RTK range from any populated part of the main island |
+| **vrs** | No — single-base raw RTCM 3.3 streams; EarthScope NOTA does not operate a VRS / Network-RTK service over JM territory |
 | **Stream type** | Raw 1 Hz multi-constellation RTCM 3.3 MSM7 (single-base reference, NOT VRS/Network-RTK) |
 | **Tariff — noncommercial** | **Free (USD $0.00)** — account + annual NULA acceptance required. Date observed: 2026-05-06. Source: https://www.earthscope.org/data/gnss-realtime/ |
 | **Tariff — commercial** | **USD $1,000 per seat per year** (EarthScope 501(c)(3); no VAT). Date observed: 2026-05-06. Source: https://www.earthscope.org/news/new-gnss-offering-and-licensing-details-for-commercial-use/ |
 | **NULA version** | v. 2025-05-30 — https://www.earthscope.org/user/NoncommercialLicenseAgreement.pdf |
+| **datum_epoch** | **ITRF2014 (epoch 2026-03-30)** — all raw NOTA RTCM streams. Citation: https://www.earthscope.org/data/gnss-realtime/ (2026-05-17). |
 
 **Note on legacy platform**: Old UNAVCO caster (`rtgpsout.unavco.org`) retired 2025-07-29; all streams now at `ntrip.earthscope.org`.
 

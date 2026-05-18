@@ -1,5 +1,5 @@
 # Grenada [GD] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12 (refresh of 2026-05-06 entry) | XCD/USD: fixed peg 1 USD = 2.70 XCD
+**Date researched:** 2026-05-17 (refresh of 2026-05-12 entry; EarthScope reference frame ITRF2014 confirmed via gnss-realtime page) | XCD/USD: fixed peg 1 USD = 2.70 XCD
 
 ## Status: No national caster — EarthScope scientific stream available on dependency island
 
@@ -10,6 +10,7 @@
 | **hobbyist_eligibility** | **Yes** (noncommercial tier — no surveying licence required, individual account accepted) |
 | **legal_residency_required** | **No** — no nationality or residency restriction in NULA |
 | **last_confirmed_alive** | 2026-05-12 — `ntrip.earthscope.org:2101` SOURCETABLE 200 OK (curl probe); CN46_RTCM3P3 mountpoint present, station country code GRD, lat/lon 12.49/-61.43, SEAT_REQUIRED |
+| **datum_epoch** | ITRF2014 — operator declaration: "All raw data streams use the ITRF2014 reference frame." (https://www.earthscope.org/data/gnss-realtime/, observed 2026-05-17). Per-station epoch not declared on stream metadata. |
 
 ---
 
@@ -57,4 +58,5 @@ No OECS or CARICOM geodetic CORS/NTRIP project for Grenada identified.
 - ArduSimple country directory
 - World Bank OECS project
 - curl probe of `ntrip.earthscope.org:2101` 2026-05-12 — SOURCETABLE 200 OK; CN46_RTCM3P3 entry verified (country=GRD, 12.49/-61.43, SEAT_REQUIRED)
+- WebFetch earthscope.org/data/gnss-realtime/ 2026-05-17 — confirms ITRF2014 reference frame; commercial seat $1,000/yr unchanged
 - WebSearch 2026-05-12 ("Grenada CORS GNSS RTK NTRIP service Caribbean 2025 2026") — no new national CORS announcement

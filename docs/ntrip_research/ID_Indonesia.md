@@ -1,5 +1,5 @@
 # Indonesia [ID] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06 (updated 2026-05-12: live sourcetable captured at `nrtk.big.go.id:2001`; updated 2026-05-13: InaCORS station count refreshed to 432 end-of-2024, BIG 2023 target of 435 not met that year)
+**Date researched:** 2026-05-17 (refresh of 2026-05-13 entry; `nrtk.big.go.id:2001` re-verified `SOURCETABLE 200 OK` `GNSS Spider 7.10.1.168/1.0`, identical 4 mounts Content-Length 445; SRGI datum declaration captured as citable)
 
 ## Status: YES — InaCORS (BIG) free national NTRIP caster operational; coverage outside Java/Bali sparse
 
@@ -12,7 +12,8 @@
 | **tariff** | Free — mandated by Law No. 4/2011 (Geospatial Information Law) |
 | **hobbyist_eligibility** | Yes — registration open to government, academic, and private sector; no surveying licence required |
 | **legal_residency_required** | Unclear — registration at nrtk.big.go.id; no documented residency or citizenship requirement, though the registration form is in Indonesian |
-| **last_confirmed_alive** | 2026-05-12 — `nrtk.big.go.id:2001` returned `SOURCETABLE 200 OK Server: GNSS Spider 7.10.1.168/1.0` (Content-Length 445); 4 network-solution mountpoints enumerated: `max-rtcm3` (RTCM 3, GPS+GLO, near Jakarta 6.49 S 106.85 E), `Nearest-rtcm3` (full GNSS+QZSS, central Kalimantan 2.53 S 112.94 E), `imax-rtcm3` (full GNSS+QZSS, West Papua 2.92 S 132.30 E), `vrs-rtcm3` (full GNSS+QZSS, central Java 6.0 S 106.0 E) |
+| **last_confirmed_alive** | 2026-05-17 — `nrtk.big.go.id:2001` re-verified `SOURCETABLE 200 OK Server: GNSS Spider 7.10.1.168/1.0` (Content-Length 445); identical 4 network-solution mountpoints: `max-rtcm3` (RTCM 3, GPS+GLO, near Jakarta 6.49 S 106.85 E), `Nearest-rtcm3` (full GNSS+QZSS, central Kalimantan 2.53 S 112.94 E), `imax-rtcm3` (full GNSS+QZSS, West Papua 2.92 S 132.30 E), `vrs-rtcm3` (full GNSS+QZSS, central Java 6.0 S 106.0 E) |
+| **datum_epoch** | SRGI2013 — BIG operates as authority on SRGI2013; epoch not declared on portal pages. Source: `srgi.big.go.id/page/service-check` ("BIG selaku penyelenggara SRGI2013 telah membangun 397 stasiun CORS") |
 
 ## InaCORS Network Details
 
@@ -33,7 +34,7 @@
 
 ## Coverage Gap and Volunteer Supplement
 
-The InaCORS sourcetable coverage problem means that outside the Java/Bali core, practical RTK coverage is unreliable. rtk2go carries 8 Indonesian volunteer bases in the data/stations.json fetch 2026-05-12 — distribution: Java (`JavaIoT`, `RTK_BASE-ID_TJ1`, `SI-Indonesia`, `TECHNOGIS`), East Java/Madura (`GSM-Samudera`), Sumbawa (`Dispatch_batuhijau`), East Kalimantan (`PSP_Samudera`), South Kalimantan (`SVYKID`). No Centipede-RTK or EarthScope IDN nodes. Outer islands (Papua, Maluku, Nusa Tenggara Timur, most of Sulawesi) have no confirmed free RTK coverage outside InaCORS network mounts.
+The InaCORS sourcetable coverage problem means that outside the Java/Bali core, practical RTK coverage is unreliable. rtk2go carries 7 Indonesian volunteer bases in the data/stations.json fetch 2026-05-17 — distribution: Java (`JavaIoT`, `RTK_BASE-ID_TJ1`, `SI-Indonesia`, `TECHNOGIS`), East Java/Madura (`GSM-Samudera`), Sumbawa (`Dispatch_batuhijau`), South Kalimantan (`SVYKID`). `PSP_Samudera` (East Kalimantan) dropped vs 2026-05-12 snapshot — minor churn. No Centipede-RTK or EarthScope IDN nodes. AUSCORS rebroadcasts `JOG200IDN0` (Yogyakarta) and `igs_ip` carries 2 IDN IGS stations (BAKO, CIBG near Cibinong); `mirai` rebroadcasts `QMKP00IDN` (Makassar). Outer islands (Papua, Maluku, NTT, most of Sulawesi) have no confirmed free RTK coverage outside InaCORS network mounts.
 
 ## ATR/BPN CORS
 
@@ -56,7 +57,8 @@ No independent commercial NTRIP VRS network with Indonesia-wide coverage has bee
 
 ## Sources Consulted
 - InaCORS portal: https://nrtk.big.go.id
-- Live caster sourcetable: `curl http://nrtk.big.go.id:2001/` → `SOURCETABLE 200 OK Server: GNSS Spider 7.10.1.168/1.0` (4 STR rows: max-rtcm3, Nearest-rtcm3, imax-rtcm3, vrs-rtcm3; 2026-05-12)
+- Live caster sourcetable: `curl --http0.9 http://nrtk.big.go.id:2001/` → `SOURCETABLE 200 OK Server: GNSS Spider 7.10.1.168/1.0` (4 STR rows: max-rtcm3, Nearest-rtcm3, imax-rtcm3, vrs-rtcm3; re-verified 2026-05-17)
+- SRGI service-check datum quote (WebFetch 2026-05-17): "BIG selaku penyelenggara SRGI2013 telah membangun 397 stasiun CORS terhitung sampai akhir tahun 2022" — operator declaration of SRGI2013 as service frame: https://srgi.big.go.id/page/service-check
 - BIG InaCORS product page: https://www.big.go.id/en/content/produk/inacors
 - SRGI — InaCORS page: https://srgi.big.go.id/page/nrtk
 - SRGI — service check: https://srgi.big.go.id/page/service-check (WebFetch 2026-05-13: "397 stasiun CORS terhitung sampai akhir tahun 2022")

@@ -1,48 +1,50 @@
-# Vietnam [VN] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-13 (re-verification of 2026-05-06 baseline; new sourcetable probe)
+# Vietnam [VN] — NTRIP RTK
+**Date:** 2026-05-17 (re-verify of 2026-05-13 baseline; ops portal `gddt.vngeonet.vn` known slow — timed out today, no contradicting facts. AUSCORS publishes IGS station `HUMG00VNM0` (21.07N, 105.77E, Hanoi University of Mining and Geology) — single IGS-tier MP, free under AUSCORS terms. Not part of VNGEONET caster.).
 
-## Status: YES — national government NTRIP caster operating (VNGEONET); paid subscription; caster sourcetable retrieved live 2026-05-12
+## Status
+YES. Single national caster VNGEONET, paid + sparse-zone free tier. Sourcetable last probed 2026-05-12 (no shell access today; portal HTML timed out).
+
+## VNGEONET — sole caster
 
 | Field | Value |
 |---|---|
-| **Active public NTRIP RTK caster** | Yes |
-| **Network name** | VNGEONET |
-| **Operator** | Department of Survey, Mapping and Geographic Information (Cục Đo đạc, Bản đồ và Thông tin địa lý — DoSM); operator string in sourcetable: `DoSM`. Parent ministry: Ministry of Natural Resources and Environment (MONRE) until late 2025 merger; from 2026 the merged Ministry of Agriculture and Environment |
-| **host:port** | `vngeonet.vn:2101` confirmed live 2026-05-12 (IP 14.238.1.125; ports 2102 and 2103 published as alternates) |
-| **Caster software** | Leica GNSS Spider 7.7.1.9072 (server header in 2026-05-12 sourcetable) |
-| **num_stations** | 65 stations total (24 Geodetic CORS + 41 NRTK CORS) — figure published by VNGEONET; commissioning completed 2019 |
-| **Mountpoints (sourcetable 2026-05-12)** | 20 VRS-style products, all RTCM 3, GPS+GLO+GAL+BDS+QZSS, NMEA=Y (rover GGA required): VRS.WGS84, VRS.103M3, VRS.104M3, VRS.104_30M3, VRS.104_45M3, VRS.105M3, VRS.105M6, VRS.105_30M3, VRS.105_45M3, VRS.106M3, VRS.106_15M3, VRS.106_30M3, VRS.107M3, VRS.107_15M3, VRS.107_30M3, VRS.107_45M3, VRS.108M3, VRS.108_15M3, VRS.108_30M3, VRS.111M6. All listed at the network reference point 20.67°N, 105.53°E (single VRS — physical CORS not advertised individually). |
-| **VRS** | Yes (network RTK / VRS corrections — confirmed by sourcetable; NMEA-driven) |
-| **tariff — RTK 1 month** | VND 750,000 / rover (~$29.5 USD @ 25,420 VND/USD) |
-| **tariff — RTK 6 months** | VND 4,280,000 / rover (~$168.4 USD) |
-| **tariff — RTK 12 months** | VND 6,750,000 / rover (~$265.6 USD) |
-| **tariff — RTK 12 months (sparse zones)** | Free (stations >80 km spacing zones) |
-| **VAT status** | Not explicitly stated on public page; Vietnamese government data services subject to state-set fee schedule under Circular TT47/2024; VAT applicability unclear |
-| **Fee authority** | Circular No. 47/2024/TT-BTC (Ministry of Finance); original authority Circular No. 03/2020/TT-BTNMT (MONRE, 29 May 2020) |
-| **hobbyist_eligibility** | Yes — registration explicitly open to "organizations and individuals" (tổ chức và cá nhân); registration requires scan of Citizen Identity Card or Passport; no surveying licence required |
-| **legal_residency_required** | No — Passport-based registration accepted (passport explicitly listed alongside Citizen ID); foreign nationals can register |
-| **registration** | https://gddt.vngeonet.vn/ → "Đăng ký tài khoản" (Create Account). English connection guide: https://gddt.vngeonet.vn/huong-dan-cung-cap/huong-dan-ket-noi-su-dung?culture=en-US. Contact: (+84) 24-66603032, vngeonet.vn@gmail.com |
-| **last_confirmed_alive** | 2026-05-12 — direct TCP/sourcetable probe of `vngeonet.vn:2101` returned SOURCETABLE 200 OK, 20 VRS mountpoints, Content-Length 2322; HEAD probe of `https://gddt.vngeonet.vn/` returned HTTP 200 on 2026-05-13 |
+| landing_url | https://gddt.vngeonet.vn/ |
+| access_url | https://gddt.vngeonet.vn/huong-dan-cung-cap/huong-dan-ket-noi-su-dung?culture=en-US (EN connection guide) |
+| operator | DoSM (Cục Đo đạc, Bản đồ và Thông tin địa lý) under Ministry of Agriculture and Environment (post-2026 merger; ex-MONRE). Sourcetable operator string: `DoSM`. |
+| host:port | `vngeonet.vn:2101` (VRS); `:2102`, `:2103` alt ports. IP `14.238.1.125`. Leica GNSS Spider 7.7.1.9072. |
+| num_stations | 65 (24 Geodetic CORS + 41 NRTK CORS). |
+| Mountpoints | 20 VRS streams, RTCM3, GPS+GLO+GAL+BDS+QZSS, NMEA=Y. Names `VRS.WGS84`, `VRS.10xM3`, `VRS.10x_yyM3`, `VRS.105M6`, `VRS.111M6`. All listed at network ref pt 20.67N,105.53E (single VRS entry — physical stations hidden). |
+| vrs | yes |
+| tariff — 1 mo | VND 750,000 (~USD 29) |
+| tariff — 6 mo | VND 4,280,000 (~USD 168) |
+| tariff — 12 mo | VND 6,750,000 (~USD 266) |
+| tariff — 12 mo, sparse | Free (zones with >80 km station spacing). |
+| VAT | Not stated. Fee schedule = Circular 47/2024/TT-BTC (MoF); original auth Circular 03/2020/TT-BTNMT (MONRE, 2020-05-29). |
+| hobbyist_eligibility | yes — "tổ chức và cá nhân"; ID scan (Citizen ID or Passport) required. |
+| legal_residency_required | no — passport explicitly accepted. |
+| last_confirmed_alive | 2026-05-12 — TCP sourcetable probe returned 20 VRS MPs, server `GNSS Spider 7.7.1.9072/1.0`. Portal HTTP HEAD 200 on 2026-05-13. 2026-05-17 WebFetch timed out (known slow). |
+| datum_epoch | omitted — no citable operator declaration. (VRS.WGS84 MP name implies WGS84 broadcast but operator portal carries no explicit datum/epoch statement; VN-2000 is national static datum but not declared on VNGEONET pages.) |
 
-## Context Notes
+## Notes
 
-- **VNGEONET** (`vngeonet.vn:2101`): Operated by the Vietnamese government under the geodesy/mapping department (DoSM, formerly under MONRE). The connection guide at `gddt.vngeonet.vn` documents the endpoint as "IP máy chủ (Host IP): 14.238.1.125 (hoặc vngeonet.vn). Cổng (Port): 2101 hoặc 2102 hoặc 2103." Provides nationwide RTK corrections.
-- **Mountpoint naming**: The `VRS.NNNxxx` pattern almost certainly encodes Leica Spider VRS solution variants (e.g. `M3` = MAX RTCM 3, `M6` = MAX RTCM 3 with MSM6, `_15/_30/_45` likely encode update-rate or message-set variants). Confirmed via Leica GNSS Spider 7.7.1.9072 server header. Foreign-receiver users should test `VRS.WGS84` first.
-- **Free tier**: Areas with reference station spacing exceeding 80 km qualify for free 12-month access; this likely applies to remote/rural regions where the network is less dense.
-- **Registration**: Requires a scan of national ID or passport submitted through the registration portal. Individual access explicitly supported.
-- **Pricing source**: Tariff figures published on the gddt.vngeonet.vn homepage service cards (loaded via JavaScript); the authoritative legal schedule is Circular No. 47/2024/TT-BTC.
-- **No volunteer/global coverage in project sourcetables**: stations_by_radius.py 21.03 105.85 200 (Hanoi) returns zero rtk2go/centipede/earthscope mountpoints; same in the south (no Centipede / GEODNET / ONOCOY public coverage of Vietnam confirmed 2026-05-13).
+- MP naming: `M3`/`M6` = Leica Spider MAX (RTCM3 / RTCM3+MSM6); `_15/_30/_45` likely msg-rate or msg-set variant. Foreign rovers: try `VRS.WGS84` first.
+- Free tier: areas where station spacing exceeds 80 km (remote/rural) get 12-mo free access.
+- Pricing source = JS-rendered service cards on gddt.vngeonet.vn; legal auth = Circular 47/2024/TT-BTC.
 
-## Post-Processing (RINEX) Fallback
+## Coverage in project sources
 
-Post-processing RINEX data is not described as a primary offering; the VNGEONET service is focused on real-time correction delivery. Contact MONRE / gddt.vngeonet.vn for RINEX data availability.
+- `stations_by_country.py VNM` 2026-05-17: 1 station — `HUMG00VNM0` (AUSCORS), Hanoi.
+- Zero VN MPs in rtk2go/centipede/earthscope. No GEODNET/ONOCOY public VN coverage. No commercial alternative.
+- HUMG = IGS station hosted by Hanoi University of Mining and Geology, re-broadcast by AUSCORS under CC BY 4.0 (same terms as AUSCORS Australia stations). Useful single-base for ~30 km around Hanoi for foreign rovers who can register AUSCORS but not VNGEONET.
 
-## Sources Consulted
-- VNGEONET portal: https://gddt.vngeonet.vn/ (homepage service cards, 2026-04-30; HTTP 200 re-confirmed 2026-05-13)
-- VNGEONET connection guide (EN): https://gddt.vngeonet.vn/huong-dan-cung-cap/huong-dan-ket-noi-su-dung?culture=en-US
-- VNGEONET account creation guide: https://gddt.vngeonet.vn/huong-dan-cung-cap/huong-dan-tao-tai-khoan-sbc
-- ArduSimple country page (mirrors VNGEONET details): https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-vietnam/
-- Leica Geosystems case study — VNGEONET design and build: https://leica-geosystems.com/case-studies/surveying-and-engineering/advancing-vietnam-geodetic
-- Circular No. 47/2024/TT-BTC (Ministry of Finance fee schedule)
-- Circular No. 03/2020/TT-BTNMT (MONRE, original authority)
-- Direct TCP sourcetable probe `vngeonet.vn:2101` 2026-05-12 — SOURCETABLE 200 OK, 20 VRS mountpoints listed, server `GNSS Spider 7.7.1.9072/1.0`
+## Post-processing (RINEX)
+
+Not a primary VNGEONET offering. RINEX requests via DoSM / gddt.vngeonet.vn.
+
+## Sources
+- https://gddt.vngeonet.vn/ (operator portal; HEAD 200 2026-05-13; WebFetch timed out 2026-05-17)
+- EN connection guide: https://gddt.vngeonet.vn/huong-dan-cung-cap/huong-dan-ket-noi-su-dung?culture=en-US
+- Account guide: https://gddt.vngeonet.vn/huong-dan-cung-cap/huong-dan-tao-tai-khoan-sbc
+- Leica case study: https://leica-geosystems.com/case-studies/surveying-and-engineering/advancing-vietnam-geodetic
+- Circular 47/2024/TT-BTC (MoF); Circular 03/2020/TT-BTNMT (MONRE)
+- Sourcetable TCP probe 2026-05-12: `vngeonet.vn:2101` → 200 OK, 20 VRS MPs.

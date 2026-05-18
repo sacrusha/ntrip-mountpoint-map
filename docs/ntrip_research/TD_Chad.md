@@ -1,5 +1,5 @@
 # Chad [TD] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-13 (rechecked from 2026-05-06 — no operational change) | Currency: XAF (Central African CFA franc, CEMAC zone) — 1 USD ≈ 560.59 XAF (fixed peg: €1 = 655.957 XAF)
+**Date researched:** 2026-05-17 (re-verified from 2026-05-13 — no operational change) | Currency: XAF (Central African CFA franc, CEMAC zone) — 1 USD ≈ 560.59 XAF (fixed peg: €1 = 655.957 XAF)
 
 ## Status: NO active public NTRIP caster
 

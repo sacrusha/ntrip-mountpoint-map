@@ -1,46 +1,50 @@
-# US Virgin Islands [VI] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-13 (re-verification of 2026-05-06 baseline)
+# US Virgin Islands [VI] — NTRIP RTK
+**Date:** 2026-05-17 (delta vs 2026-05-13: NOTA realtime page declares `ITRF2014 @ 2026-03-30` — datum citable; project-source probe surfaces `VIIS_RTCM3` St. John on NPS_CORS @ 19 km, and IGS-IP `CRO100VIR0` St. Croix @ 76 km, both not previously noted).
 
-## Status: NO territory-operated NTRIP — EarthScope NOTA streams one station on St. Thomas (STVI); NOAA NCN has two USVI CORS stations (RINEX only); no VRS service; distances impractical for RTK on St. Croix
+## Status
+NO territory caster. EarthScope NOTA streams 1 USVI MP `STVI_RTCM3P3` (St. Thomas). NPS_CORS publishes `VIIS_RTCM3` Virgin Islands National Park (St. John, ~19 km from STVI). IGS-IP publishes `CRO100VIR0` (Christiansted, St. Croix). NOAA NCN holds 4 USVI CORS (RINEX only). No VRS.
+
+## EarthScope NOTA — STVI (St. Thomas)
 
 | Field | Value |
 |---|---|
-| **Active public NTRIP RTK caster** | No — territory-operated; no VRS |
-| **EarthScope NOTA NTRIP** | `ntrip.earthscope.org:2101` — mountpoint `STVI_RTCM3P3` (St. Thomas, 18.34°N/−64.97°W); RTCM 3.3 MSM7 message set 1005(60),1007(60),1013(1),1029(60),1033(60),1077(1),1087(1),1097(1),1107(1),1117(1); GPS+GLO+BDS+GAL+SBAS+QZS at 1 Hz; Trimble NETR9; confirmed in sourcetable 2026-05-12 (direct TCP probe) and stations.json 2026-05-13 (country code USA in EarthScope feed) |
-| **EarthScope NOTA tariff** | Free for non-commercial scientific/educational/humanitarian use; USD $1,000/seat/year commercial (one concurrent stream per seat); two-week trial (5 seats) available |
-| **VRS** | No — single-base 1 Hz RTCM 3.3 streams only; no network RTK engine |
-| **hobbyist_eligibility — NOTA** | Yes — non-commercial account required; EarthScope account registration free |
-| **legal_residency_required** | No |
-| **registration** | https://data.earthscope.org/ (account + NULA acceptance) |
-| **last_confirmed_alive** | `ntrip.earthscope.org:2101` — direct TCP sourcetable probe 2026-05-12 returned `STVI_RTCM3P3;…;EARTHSCOPE;USA;18.34;-64.97;…;TRIMBLE NETR9;…`. Project sourcetable in stations.json shows STVI listed under USA country code 2026-05-13 |
-| **NOAA NCN CORS in USVI** | STVI (St. Thomas, VQ state code, Operational, UNAVPS); VITH (St. Thomas, NGSSTA, Operational); CRO1 (St. Croix VLBA, JPL, Operational); VIKH (Kingshill St. Croix, NGSSTA, Operational) — all RINEX download only, no public NTRIP caster |
-| **PRSN/UPRM** | Puerto Rico Seismic Network (UPRM) operates ~18 permanent GNSS stations covering PR + USVI + BVI; NTRIP endpoint restricted to academic/government users; contact redsismica.uprm.edu |
+| landing_url | https://www.earthscope.org/data/gnss-realtime/ |
+| access_url | https://data.earthscope.org/ (NULA acceptance) |
+| host:port | `ntrip.earthscope.org:2101` |
+| Mountpoint | `STVI_RTCM3P3` — 18.34N, -64.97W. Trimble NETR9. RTCM 3.3 MSM7 (GPS+GLO+BDS+GAL+SBAS+QZS), 1 Hz, single-base. |
+| num_stations | 1 (STVI). |
+| vrs | no |
+| tariff | Free non-commercial (NULA acceptance, annual renewal). Commercial USD 1,000/seat/yr (min 5 seats direct billing). 5-seat × 2-week trial available. |
+| hobbyist_eligibility | yes (NULA personal use). |
+| legal_residency_required | no |
+| last_confirmed_alive | 2026-05-12 — TCP probe `STVI_RTCM3P3` line present (TRIMBLE NETR9, USA, 18.34/-64.97). NOTA realtime page HTTP 200 2026-05-17. |
+| datum_epoch | ITRF2014 @ 2026-03-30 — cited via operator page https://www.earthscope.org/data/gnss-realtime/ ("For NOTA stations, the epoch date is 2026-03-30"). |
 
-## Context Notes
+## Other USVI GNSS infra (not NTRIP)
 
-- **STVI (St. Thomas, VI)** is the only confirmed EarthScope NOTA mountpoint with an on-island USVI location. It is part of the Puerto Rico GPS Network (PRGPS) sub-network, with data archived since 2008-10-27 (DOI: 10.7283/T5VD6WTH, GAGE Facility). At 18.34°N / −64.97°W it is approximately 5 km south-west of Charlotte Amalie.
-- **Practical RTK limitation**: NOTA streams raw 1 Hz GNSS data (science/geodetic grade). A rover must compute its own baseline to STVI; this is real-time RTK only if the rover NTRIP client can use single-station RTCM 3.3. Useful for short-baseline RTK within ~30–50 km (St. Thomas, St. John, BVI area) but requires GNSS receiver capable of accepting raw RTCM3 from a remote reference. No VRS or FKP service exists.
-- **NOAA NCN CORS in USVI**: Four stations confirmed in NCN station list (VQ state code) — STVI (Operational, UNAVPS operator), VITH (Operational, NGSSTA), CRO1 St. Croix VLBA (Operational, JPL), and VIKH Kingshill (Operational, NGSSTA). NCN provides RINEX download only; no public NTRIP stream is offered by NOAA/NGS.
-- **CN03 on Tortola (BVI)**: EarthScope NOTA also streams CN03_RTCM3P3 (18.49°N / −64.40°W, country code VGB) — approximately 30 km north-east of St. Thomas; this gives a useful second reference point for northern VI waters.
-- **PRSN/UPRM**: The Puerto Rico Seismic Network operates ~18 GNSS stations across PR, USVI, and BVI; their NTRIP service (formerly at prsn.uprm.edu) is academic/government-restricted; the public NTRIP info page (http://www.prsn.uprm.edu/English/research/geodesy/NTRIP_info.php) returns ECONNREFUSED (2026-05-06).
-- **rtk2go / Centipede**: Zero USVI bases in either caster sourcetable as of 2026-05-06.
-- **No commercial RTK network** (Trimble VRS Now, Hexagon SmartNet, GEODNET) confirmed to cover USVI.
+- NOAA NCN CORS in VQ state code: STVI (UNAVPS, Operational), VITH (NGSSTA, Op), CRO1 St. Croix VLBA (JPL, Op), VIKH Kingshill (NGSSTA, Op). RINEX only; no NOAA public caster.
+- PRSN/UPRM: ~18 GNSS stations across PR+USVI+BVI; NTRIP academic/gov restricted; public info page ECONNREFUSED 2026-05-06.
+- CN03 on Tortola (BVI) ~62 km NE of STVI = useful secondary ref for northern VI waters.
 
-## Post-Processing (RINEX) Fallback
+## Coverage in project sources
 
-| Service | URL | Cost |
-|---|---|---|
-| **NOAA NCN RINEX** — STVI, VITH, CRO1, VIKH (all USVI stations) | https://geodesy.noaa.gov/CORS/ | Free |
-| **EarthScope / GAGE GNSS archive** — STVI via PRGPS DOI | https://www.earthscope.org/data/gnss-data/ | Free non-commercial |
+`stations_by_radius.py 18.34 -64.97 200` (2026-05-17):
+- earthscope: STVI_RTCM3P3 [USA] @ 0 km, CUPR_RTCM3P3 [USA, PR] @ 33 km, CN03_RTCM3P3 [VGB] @ 62 km, CN58_RTCM3P3 [AIA] @ 165 km, P780_RTCM3P3 [PRI] @ 173 km, AOPR_RTCM3P3 [USA] @ 188 km.
+- nps_cors: VIIS_RTCM3 [USA] @ 19 km (St. John, Virgin Islands NP), SAJU_RTCM3 [USA, PR] @ 122 km.
+- igs_ip: CRO100VIR0 [VIR] @ 76 km (St. Croix, RTCM3 raw 1 Hz, BKG creds).
 
-## Sources Consulted
-- EarthScope GNSS real-time data (NTRIP access, licensing): https://www.earthscope.org/data/gnss-realtime/
-- EarthScope NOTA network overview: https://www.earthscope.org/nota/
-- GAGE Facility STVI dataset DOI 10.7283/T5VD6WTH: https://www.unavco.org/data/doi/10.7283/T5VD6WTH (data collected from 2008-10-27; active as of 2026-05-05)
-- SONEL sea-level / GNSS station VITH00VIR (St. Thomas, UVI operator): https://www.sonel.org/spip.php?page=gps&idStation=1899
-- NOAA NCN station list (sort_sites.shtml) — VQ state code entries STVI, VITH, CRO1, VIKH confirmed: https://geodesy.noaa.gov/CORS/sort_sites.shtml
-- PRSN GNSS network overview: https://redsismica.uprm.edu/english/our_work/instrumentation.php
-- St Thomas Source / PRSN USVI monitoring article (Jan 2024): https://stthomassource.com/content/2024/01/30/puerto-rico-seismic-network-monitoring-the-u-s-virgin-islands-for-earthquakes/
-- curl probe of `ntrip.earthscope.org:2101` — SOURCETABLE 200 OK, STVI_RTCM3P3 confirmed present 2026-05-06; re-confirmed via TCP probe 2026-05-12 (line still shows TRIMBLE NETR9, country code USA, lat/lon 18.34/-64.97)
-- curl probe of CN03_RTCM3P3 (VGB/Tortola BVI, 18.49°N/−64.40°W) — confirmed in sourcetable 2026-05-12 (SEPT POLARX5; ~62 km NE of STVI, useful as a second reference for northern USVI waters)
-- stations_by_radius.py 18.34 -64.97 100 (run 2026-05-13) — returned STVI_RTCM3P3 [USA] @ 0 km, CUPR_RTCM3P3 [USA] (Puerto Rico) @ 33 km, CN03_RTCM3P3 [VGB] @ 62 km. Confirms only one mountpoint physically on USVI territory; St. Croix (50–80 km south of these) is outside reliable single-base RTK range
+St. Croix (50-80 km S of St. Thomas) covered single-base by CRO1 IGS-IP — outside cm-fix range but workable decimetre/sub-m. Zero VI volunteer (rtk2go/centipede) bases.
+
+## Post-processing (RINEX)
+
+- NOAA NCN: STVI, VITH, CRO1, VIKH — free. https://geodesy.noaa.gov/CORS/
+- EarthScope/GAGE: STVI via PRGPS DOI 10.7283/T5VD6WTH — free non-commercial.
+
+## Sources
+- EarthScope NOTA realtime: https://www.earthscope.org/data/gnss-realtime/ (page load 200 2026-05-17; ITRF2014 @ 2026-03-30 declared)
+- NOTA overview: https://www.earthscope.org/nota/
+- STVI DOI: 10.7283/T5VD6WTH
+- NOAA NCN station list (VQ): https://geodesy.noaa.gov/CORS/sort_sites.shtml
+- PRSN: https://redsismica.uprm.edu/english/our_work/instrumentation.php
+- TCP probe `ntrip.earthscope.org:2101` 2026-05-12 (STVI present)
+- stations_by_radius.py 18.34 -64.97 200 — 2026-05-17 (STVI, VIIS, CRO1, CUPR, CN03 visible)

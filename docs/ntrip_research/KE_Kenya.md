@@ -1,5 +1,5 @@
 # Kenya [KE] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06; verified 2026-05-12 | USD/KES: 1 USD ≈ 129–130 KES (CBK / xe.com, May 2026)
+**Date researched:** 2026-05-06; verified 2026-05-12; datum + caster re-confirmed 2026-05-17 | USD/KES: 1 USD ≈ 129–130 KES (CBK / xe.com, May 2026)
 
 ## Status: ONE ACTIVE private NTRIP caster (Muya CORS) — PAYG tariff now confirmed
 
@@ -14,7 +14,9 @@
 | **tariff** | **KES 400 / 2 hours (Pay As You Go), valid 30 days** (≈ USD 3.10 PAYG). Subscriber chooses hourly / daily / monthly duration at checkout; longer-term rates not publicly itemised. Payment by M-Pesa mobile money. Source: https://measurementsystems.org/service/cors-corrections-services/ (Pay-As-You-Go price quoted by Measurement Systems; reconfirmed via web search snippet 2026-05-12). Contact: support@muya-cors.com / +254 798 519 942 / +254 111 433 499. VAT inclusion not stated. |
 | **hobbyist_eligibility** | Unclear (likely yes) — T&C permit "surveying and related activities" and "automated GNSS control of farming and agricultural machinery and construction engineering machinery"; recreational/hobbyist use is not explicitly mentioned but not excluded. "Safety-of-Life use" is explicitly prohibited. |
 | **legal_residency_required** | **No** — no geographic restriction in T&C; governing law is Kenyan courts (dispute clause only). M-Pesa payment is, however, easiest from a Kenyan mobile wallet. |
-| **last_confirmed_alive** | **2026-05-12** — muya-cors.com and Measurement Systems product page reachable; pricing snippet (KES 400 / 2 h PAYG) re-observed in search index. Field-use case study Feb 2025 (Orbital Africa, Kitisuru Nairobi). |
+| **last_confirmed_alive** | **2026-05-17** — muya-cors.com reachable; pricing snippet (KES 400 / 2 h PAYG) re-observed via Measurement Systems product page. Field-use case study Feb 2025 (Orbital Africa, Kitisuru Nairobi). |
+| **vrs** | ? — operator pages do not describe network-RTK / VRS / MAC / FKP; "25+ reference stations" + RINEX/NTRIP wording is consistent with single-base raw streams but no explicit statement either way. Sourcetable not publicly probed (host:port issued per account). |
+| **datum_epoch** | omitted -- no citable network-frame declaration. muya-cors.com (2026-05-17) only states that **base coordinates are computed** in ITRF2014 (current observation epoch) via OPUS-NGS + Trimble RTX online processing; verbatim: *"Muya CORS base stations coordinates are computed regularly using ... OPUS-National Geodetic Survey of USA, Trimble RTX online processing services based on ITRF2014 and current observation epoch."* User-selectable output datums offered are WGS84 and Kenya Arc 1960 (UTM / Cassini-Soldner projections). No on-page text declares ITRF2014 as the network's broadcast/output frame, so per primer [datum-epoch] citation rule this is downgraded from a declaration to `omitted`. |
 
 **Operator:** Measurement Systems Limited, Nairobi
 **Website:** https://muya-cors.com/
@@ -73,7 +75,7 @@ Third-party CORS require gazettement by Director of Surveys before cadastral use
 ---
 
 ## Sources Consulted
-- https://muya-cors.com/ and T&C (muya-cors.com/terms_and_conditions — observed 2026-05-12)
+- https://muya-cors.com/ and T&C (muya-cors.com/terms_and_conditions — observed 2026-05-12; reconfirmed 2026-05-17 incl. datum declaration "WGS84 / Kenya Arc 1960 / ITRF2014 (current epoch)" via OPUS-NGS + Trimble RTX)
 - https://measurementsystems.org/service/cors-corrections-services/ — KES 400 / 2 h PAYG quote (observed via WebSearch snippet 2026-05-12)
 - https://kenya.measurementsystems.org/knowledge_base/ntrip-cors-explained
 - ArduSimple Kenya page (ardusimple.com/rtk-correction-services-and-ntrip-casters-in-kenya/)

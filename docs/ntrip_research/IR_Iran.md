@@ -1,7 +1,7 @@
 # Iran [IR] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12 (refresh of 2026-05-06 entry; SHAMIM station count re-verified 2026-05-13)
+**Date researched:** 2026-05-17 (refresh of 2026-05-13 entry; geo-block status unchanged — Iranian caster IPs continue to refuse external probes; no Persian-language source-of-truth updates published since 2026-05-13; no IR-tagged stations in any ingested source per `stations_by_country.py IRN`)
 
-## Status: YES — two active government NTRIP RTK casters (SHAMIM / SHAMIM Plus + Hoda Pro); both restricted to Iranian nationals; endpoint IPs geo-blocked from outside Iran
+## Status: YES — three government NTRIP RTK services (SHAMIM / SHAMIM Plus, Hoda Pro, SEMT Tehran); all restricted to Iranian nationals; endpoint IPs geo-blocked from outside Iran
 
 | Field | Value |
 |---|---|
@@ -16,14 +16,15 @@
 | **hobbyist_eligibility — SHAMIM** | No — requires licensed cadastral surveyor status or SSAA-authorised outsourcing role; receiver serial number must be pre-registered; single concurrent connection per account |
 | **hobbyist_eligibility — Hoda Pro** | Unclear — individual surveyors and engineers appear to register without company licence; Iranian national ID (شماره ملی) required; no explicit prohibition on unlicensed individuals found |
 | **legal_residency_required** | Yes (both) — Iranian national ID + Iranian banking required for Hoda Pro; Iranian national ID + Iranian mobile number for SHAMIM |
-| **last_confirmed_alive** | SHAMIM: TCP probe of `178.252.173.15:2101` timed out from this sandbox 2026-05-12 (consistent with prior geo-blocking observations; service remains referenced in practitioner content through 2024–2025). Hoda Pro: Google index confirms `hodapro.ncc.gov.ir` active; Raymand article 2024-04-30 describes live service; practitioner content through 2024–2025 confirms active use |
+| **last_confirmed_alive** | SHAMIM: TCP probe of `178.252.173.15:2101` timed out from sandbox 2026-05-12 (geo-block); 2026-05-17 sandbox vantage unchanged. Service remains referenced in practitioner content through 2024–2025. Hoda Pro: Google index confirms `hodapro.ncc.gov.ir` active; Raymand article 2024-04-30 describes live service; practitioner content through 2024–2025 confirms active use |
+| **datum_epoch** | omitted — no citable operator declaration. Operator portals (`shamim.ssaa.ir`, `hodapro.ncc.gov.ir`) geo-blocked from sandbox; no Persian-language operator pricing/spec document with datum statement located. Iranian national geodetic frame is IRENET2000 (ITRF-aligned) but no operator real-time-service declaration obtained |
 
 ## Context Notes
 
 - **SHAMIM** (شبکه ملی یکپارچه مالکیت‌ها) is operated by the State Land Registration Organization of Iran (سازمان ثبت اسناد و املاک کشور — SSAA, `ssaa.ir`). It uses GEO++ GNSMART software and provides Network-RTK / VRS corrections. **SHAMIM Plus** (`178.252.173.75:2101`) is an expanded-coverage tier of the same system. Both are free to qualified users under the national Cadastre programme (طرح کاداستر). The "تعرفه نقشه‌برداری شمیم" referred to in some practitioner articles is the tariff *surveyors charge clients* for SHAMIM-based fieldwork — not a subscription fee for caster access.
 - **Station count — 144 permanent CORS** verified 2026-05-13 against two independent Persian primary sources. hadnegar.com (refresh dated 1405 / 2026): "تعداد ۱۴۴ ایستگاه دائم بر روی ساختمان واحدهای ثبتی در کل کشور نصب شده است". heyvalaw.com: "144 ایستگاه دائم بر روی ساختمان واحدهای ثبتی این سازمان در سرتاسر کشور نصب گردید". The same 144 figure appears as the project-completion milestone — initial network commissioning in winter 1395 (Dec 2016 – Feb 2017). No expansion is documented in Persian-language secondary sources through 1404/2025. Inter-station spacing reported as 60–90 km. Apsis.ir confirms ongoing operation with an IP-change notice for the SHAMIM caster (date undated but post-2022).
 - **Hoda Pro** (سامانه ملی هدی پرو) is the RTK-capable tier of the NCC's (National Cartographic Center / سازمان نقشه‌برداری کشور) national GNSS correction service, built on IPGN infrastructure. The legacy **Hoda** tier (`hoda.ncc.gov.ir:2101`) is DGPS-only (out of scope). Subscriptions are managed via `eshop.ncc.gov.ir`. The IPGN network itself is a post-processing / geodynamics archive, not a direct NTRIP service.
-- **SEMT (سمت)** is a third Iranian RTK correction network mentioned in some practitioner material alongside SHAMIM and Hoda; it is not covered here.
+- **SEMT (سمت)** — *سامانه موقعیت‌یابی آنی تهران* (Tehran Real-Time Positioning System), operated by **Tehran Municipality ICT Organization**. Service portal `rtk.tehran.ir` with user/services subdomain `rtkservices.tehran.ir` (IIS Windows Server banner observable in search snippets). Offered services per apsis.ir SEMT registration guide and FAQ: RTK / virtual RTK / Rinex download / virtual Rinex / post-processing — i.e. an NTRIP RTK caster is in scope. Both `rtk.tehran.ir` and `rtkservices.tehran.ir` returned `ECONNREFUSED` from sandbox 2026-05-17 (geo-block consistent with SHAMIM / Hoda Pro). Registration requires Iranian national ID; account activation is email-confirmed and gated on Tehran Municipality–approved user packages. No NTRIP host:port, no IRR tariff figures, and no datum/epoch declaration were recoverable without an Iranian-IP vantage point. Coverage is Tehran metropolitan scope (municipal mandate), not national. Recorded here as a third Iranian government NTRIP RTK service distinct from SHAMIM (SSAA, national cadastre) and Hoda Pro (NCC, national mapping) — same residency/geoblock pattern; treated as out-of-reach for non-Iranian hobbyists.
 - All Iranian NTRIP casters (`shamim.ssaa.ir`, SHAMIM/SHAMIM Plus IPs, `hodapro.ncc.gov.ir`) appear to restrict TCP access to Iranian IP ranges consistent with broader Iranian internet controls. Direct sourcetable queries from outside Iran time out or return connection errors.
 - `ipgn.ncc.gov.ir:2101` returned connection-refused on 2026-05-01 — no public NTRIP caster is reachable at that address.
 - No Iranian NTRIP operator appears in the BKG/RTCM-NTRIP public caster registry.
@@ -47,6 +48,11 @@
 - Raymand Hoda Pro article (2024-04-30): https://raymand.net
 - orbitgeo.ir Instagram posts confirming SHAMIM / SHAMIM Plus IPs (2022–2023)
 - `ipgn.ncc.gov.ir:2101` — connection refused 2026-05-01
+- SEMT (سمت) Tehran Municipality service portal: http://rtk.tehran.ir/ (ECONNREFUSED from sandbox 2026-05-17; geo-block)
+- SEMT services subdomain: https://rtkservices.tehran.ir/ (IIS Windows Server banner per search index; ECONNREFUSED from sandbox)
+- Apsis SEMT registration guide (HU/FA): https://apsis.ir/مراحل-ثبت-نام-در-سامانه-سمت/ (ECONNREFUSED from sandbox 2026-05-17; consulted via search snippet)
+- Apsis SEMT FAQ: https://apsis.ir/سوالات-متداول-faq-ارتباط-با-سمت/ (consulted via search snippet)
+- Tehran Municipality ICT Organization (AS56547 operator of `tehran.ir` subdomains): https://ipinfo.io/AS56547
 - GPS World NCC domestic GNSS software article (2026-01-26): https://www.gpsworld.com
-- TCP probe 178.252.173.15:2101 timed out from sandbox 2026-05-12 (geo-block consistent with prior observations)
-- No IR-tagged stations in rtk2go / Centipede / EarthScope (confirmed 2026-05-12 via `scripts/stations_by_country.py IRN`)
+- TCP probe 178.252.173.15:2101 timed out from sandbox 2026-05-12 (geo-block consistent with prior); sandbox vantage unchanged 2026-05-17
+- No IR-tagged stations in rtk2go / Centipede / EarthScope / AUSCORS / MIRAI (re-confirmed 2026-05-17 via `scripts/stations_by_country.py IRN`)

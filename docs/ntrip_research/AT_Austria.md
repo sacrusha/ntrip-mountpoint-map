@@ -1,5 +1,5 @@
 # Austria [AT] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-15
+**Date researched:** 2026-05-17 (re-probe; 2026-05-15 deep research unchanged)
 
 ## Status: YES — two nationwide NTRIP RTK casters
 
@@ -23,7 +23,7 @@ Plus 14 rtk2go volunteer bases + 1 Centipede node supplementing coverage (mostly
 | **hobbyist_eligibility** | yes — paid standard tier open to any individual; eAMA free tier needs Austrian agricultural registration |
 | **legal_residency_required** | no for paid tier; eAMA free tier requires Austrian agricultural enterprise (LFBIS-Nr.) |
 | **datum_epoch** | ETRS89 / ETRF2000, epoch 2002.56 — source: https://www.bev.gv.at/en/Services/Products/Austrian-POsitioning-Service.html |
-| **last_confirmed_alive** | 2026-05-15 — `aposrtk.bev.gv.at:2101` returned `SOURCETABLE 200 OK` (curl); 7 mountpoints advertised |
+| **last_confirmed_alive** | 2026-05-17 — `aposrtk.bev.gv.at:2101` re-probed via curl --http0.9: SOURCETABLE 200 OK, Trimble Caster 4.3, 7 STR rows present (`APOS_DGPS`, `APOS_NET3`, `APOS_VRS`, `APOS_VRS3`, `APOS_VRS32_MSM`, `APOS_VRS32_MSM_3D`, `APOS_VRS32_GRID2021`) |
 
 ### Tariff (observed 2026-05-15, source: https://www.bev.gv.at/en/Services/Products/Austrian-POsitioning-Service.html)
 - **APOS-RTK** (cm): €50 one-time setup + €0.0015/s OR €20/day OR €200/month. Net; VAT not stated; standard Austrian 20% VAT presumed for commercial users.
@@ -68,7 +68,7 @@ Email `kundenservice@bev.gv.at` or +43 1 21110-822160. **Fixed IPv4 must be regi
 | **hobbyist_eligibility** | ? — no explicit hobbyist exclusion in T&Cs found; service marketed to commercial/surveying users. Signup is application-based (info@eposa.at) so case-by-case. Pricing model favours short-term/seconds tariff for small jobs. |
 | **legal_residency_required** | ? — Austrian invoicing implied; not explicitly stated |
 | **datum_epoch** | ETRS89 / ETRF (transformation to MGI Austria 2021 grid available via `-TR`/`-ETRF` mountpoints) — official declaration page not found in public materials; **omitted from authoritative claim per spec.** |
-| **last_confirmed_alive** | 2026-05-15 — `ntrip.eposa.at:2101` returned `SOURCETABLE 200 OK` (curl); 51 mountpoints incl. 39 physical |
+| **last_confirmed_alive** | 2026-05-17 — `ntrip.eposa.at:2101/sourcetable.txt` re-probed: 51 STR rows incl. 39 `*-RAW-4G` physical stations; GNSMART_Caster/2.0; HTML index also serves at `/` |
 
 ### Tariff (observed 2026-05-15, source: https://www.eposa.at/abrechnung)
 Three billing models; **no public price list** — EUR amounts not disclosed on operator pages, only billing-model descriptions:
@@ -142,7 +142,7 @@ Prior research listed 15 rtk2go bases; one has dropped off (current count 14). N
 - EPOSA FAQ (mountpoint names, signup): https://www.eposa.at/en/faq (WebFetch OK)
 - EPOSA Infrastruktur: https://www.eposa.at/en/infrastruktur (WebFetch OK — "more than 40 + 9 external")
 - ArduSimple Austria caster overview: https://www.ardusimple.de/rtk-correction-services-and-ntrip-casters-in-austria/ (WebFetch OK)
-- Live curl probes 2026-05-15:
-  - `aposrtk.bev.gv.at:2101/sourcetable.txt` → SOURCETABLE 200 OK, Trimble Caster 4.3, 7 mountpoints, 1439 bytes
-  - `ntrip.eposa.at:2101/sourcetable.txt` → SOURCETABLE 200 OK, GNSMART 2.0, 51 mountpoints (39 physical + 12 VRS), 6902 bytes
-- Local pipeline data (`scripts/stations_by_country.py AUT`, 2026-05-15): 14 rtk2go + 1 Centipede.
+- Live curl probes 2026-05-17 (re-confirm; 2026-05-15 deep-probe unchanged):
+  - `aposrtk.bev.gv.at:2101/` → HTTP/0.9 200, Trimble Ntrip Caster 4.3, 7 STR rows (`APOS_DGPS`, `APOS_NET3`, `APOS_VRS`, `APOS_VRS3`, `APOS_VRS32_MSM`, `APOS_VRS32_MSM_3D`, `APOS_VRS32_GRID2021`)
+  - `ntrip.eposa.at:2101/sourcetable.txt` → 51 STR rows incl. 39 `*-RAW-4G` physical stations (set unchanged from 2026-05-15)
+- Local pipeline data (`scripts/stations_by_country.py AUT`, 2026-05-17): 14 rtk2go + 1 Centipede (BOKU) + 4 EUREF-IP (GRAZ, PFA3, SBG2, TRF2) + 2 IGS-IP (GRAZ, GRZ2).

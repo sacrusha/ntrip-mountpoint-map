@@ -1,11 +1,20 @@
 # Gambia [GM] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12 (refresh of 2026-05-06 entry; no new CORS / NTRIP activity surfaced)
+**Date researched:** 2026-05-17 (refresh of 2026-05-12 entry; WebSearch 2026-05-17 surfaced no new Gambia CORS/NTRIP project)
 
 ## Status: NO — no public NTRIP RTK caster found; no national CORS network identified
 
 | Field | Value |
 |---|---|
 | **Active public NTRIP RTK caster** | No |
+| **landing_url** | null — no national operator portal identified |
+| **access_url** | null — no service exists |
+| **host:port** | null |
+| **num_stations** | null — no national CORS network identified |
+| **vrs** | null — no service exists |
+| **tariff** | null |
+| **hobbyist_eligibility** | null — no service exists |
+| **legal_residency_required** | null — no service exists |
+| **datum_epoch** | null — no operator declaration to cite |
 | **National CORS / GNSS reference network** | None identified |
 | **Post-processing RINEX** | None publicly available from national agency |
 | **last_confirmed_alive** | N/A |
@@ -29,7 +38,7 @@ No project announcement for a Gambian RTK or CORS network was found. The most re
 | Service | URL | Cost |
 |---|---|---|
 | **IGS / EarthScope** — DAKAR (DAKA) station, Senegal (~160 km) | https://www.earthscope.org/data/gnss-data/ | Free non-commercial |
-| **UNAVCO / IGS** — global archive | https://www.unavco.org/ | Free non-commercial |
+| **EarthScope GNSS Data Archive** — global archive (UNAVCO URLs retired 2025-07-29; superseded by EarthScope) | https://www.earthscope.org/data/gnss-data/ | Free non-commercial (NULA) |
 
 ## Sources Consulted
 - NTRIP-list.com Africa: https://ntrip-list.com/africa/ (no Gambia entry)

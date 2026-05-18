@@ -1,5 +1,5 @@
 # Guinea [GN] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12 (refresh of 2026-05-06 entry)
+**Date researched:** 2026-05-17 (refresh of 2026-05-12 entry; WebSearch 2026-05-17 surfaced no new INC CORS/NTRIP initiative)
 
 ## Status: NO national NTRIP caster — single rtk2go volunteer base "Gine-Albrk" present near Conakry
 

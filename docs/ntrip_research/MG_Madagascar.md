@@ -1,5 +1,5 @@
 # Madagascar [MG] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06 (refreshed 2026-05-12)
+**Date researched:** 2026-05-06 (refreshed 2026-05-17 — no national caster; Centipede MAHA + MIRACAD still the only free RTK)
 
 ## Status: NO national caster; 2 Centipede-RTK volunteer bases active (caster.centipede.fr:2101)
 

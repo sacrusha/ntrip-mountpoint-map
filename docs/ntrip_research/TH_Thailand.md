@@ -1,5 +1,5 @@
 # Thailand [TH] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-13 (revised from 2026-05-04 — registration form re-inspected, Thai-ID-only requirement reconfirmed; three rtk2go volunteer bases inside TH now noted)
+**Date researched:** 2026-05-17 (re-verified from 2026-05-13 — dol-rtknetwork.com homepage HTTP 200; Thai-ID-only registration unchanged; trial / no published fee unchanged)
 
 ## Status: YES — DOL LandGNSS / RTK GNSS Network operational; currently free trial ("ทดลองใช้งาน"); Thai national ID required to register, no foreigner path
 
@@ -14,7 +14,7 @@
 | **tariff** | Currently free trial ("ทดลองใช้งาน") — no published fee schedule. A DOL procurement document (dol.go.th/media/2026/03, 403 Forbidden) references a future credit / billing system; whether a paid tier has activated as of 2026-05-13 is still unknown |
 | **hobbyist_eligibility** | Yes — "ประชาชนทั่วไป" (general public) is an explicit registration category in the form; no surveying licence required |
 | **legal_residency_required** | Yes in practice — the registration form **explicitly requires a 13-digit Thai national ID** ("หมายเลขบัตรประจำตัวประชาชน"); no alternative identifier (passport, work-permit number) is accepted. Reconfirmed 2026-05-13 from `dol-rtknetwork.com/index.php/register_gnss_beta` |
-| **last_confirmed_alive** | 2026-05-13 — `dol-rtknetwork.com` (home + login + registration) HTTP 200; portal returned full Thai-language UI |
+| **last_confirmed_alive** | 2026-05-17 — `dol-rtknetwork.com` home HTTP 200; portal returned LandGNSS Thai-language header (login + registration not re-probed this pass; last full registration form inspection 2026-05-13) |
 
 ## Registration Requirements (reconfirmed 2026-05-13)
 

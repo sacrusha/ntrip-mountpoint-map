@@ -1,5 +1,5 @@
 # Liberia [LR] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12
+**Date researched:** 2026-05-17 (re-verified via WebSearch; DSS June-2024 announcement remains most recent public CORS milestone; no 2025-2026 LR caster launch found)
 
 ## Status: NO — no public NTRIP RTK caster operating; national geodetic reference frame (LGR) under development; one private CORS announcement (Derks Surveying Solutions, June 2024) not yet deployed
 
@@ -27,6 +27,7 @@ The LLA concluded a training programme on drone technology for land surveying ca
 - **National authority:** Liberia Land Authority (LLA) — `lla.gov.lr` / info@lla.gov.lr. Website is live and operational as of 2026-05-06. No geodetic data download or NTRIP service section found.
 - **Liberia Geodetic Reference Frame (LGR):** The LGR is the stated national datum target; its realisation through CORS is implied but no station coordinates, baselines, or operational CORS installations have been published externally.
 - **AFREF participation:** Liberia is within the AFREF geographic scope for West Africa. Liberia does not appear in the published lists of countries with at least one AFREF-contributing CORS (approximately 22 countries as of the 2024 AFREF workshop). No GNSS station with country code LR has been found in HartRAO, EarthScope/IGS, or RCMRD archives.
+- **Historical CORS procurement (pre-LLA):** A Ministry of Lands, Mines and Energy concept paper (Department of Lands, Surveys and Cartography) describes earlier work under the MCC Liberia Threshold Program: "some monuments have been planted and a set of CORS station[s] procured" toward re-establishing the National Geodetic Control Network. No public sourcetable or NTRIP endpoint emerged from that procurement; the hardware appears never to have come online as a public real-time service. Source: https://www.studocu.com/row/document/university-of-liberia/geomatics-engineering/concept-paper/5446378 (secondary; original LLA / MLME concept paper).
 - **ILAMP project:** The World Bank-funded Inclusive Land Administration and Management Project is supporting LLA capacity; project documentation focuses on parcel registration and land governance, not geodetic CORS infrastructure.
 - **No entries on rtk2go, Centipede or EarthScope:** Zero LR mountpoints in any of the project's pipelines as of 2026-05-12. `py scripts/stations_by_radius.py 6.5 -9.5 500` returns no stations within 500 km of Monrovia — the West African coast is a documented coverage gap.
 - **No entry on ntrip-list.com:** Liberia absent from ntrip-list.com Africa listing.

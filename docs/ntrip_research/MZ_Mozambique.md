@@ -1,11 +1,15 @@
 # Mozambique [MZ] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-14 (re-verified; status unchanged from 2026-05-06)
+**Date researched:** 2026-05-17 (re-verified; status unchanged from 2026-05-14. `py scripts/stations_by_country.py MOZ` confirms 0 MZ stations across all 6 ingested sources)
 
 ## Status: Physical CORS exists but NO confirmed public NTRIP endpoint
 
 | Field | Value |
 |---|---|
 | **Active public NTRIP RTK caster** | No (CORS hardware exists; no public NTRIP endpoint found) |
+| **landing_url** | null — no operator-owned NTRIP landing exists; CENACARTA web properties currently unreachable (`cenacarta.gov.mz` ECONNREFUSED; `cenacarta.com` repurposed to content-farm). National SDI `www.mozgis.gov.mz` exists but lists no NTRIP product. |
+| **access_url** | Skip — no NTRIP service to access; nearest functional access channel is direct contact with CENACARTA (phone numbers in `## Contact for Access Enquiries` section) |
+| **num_stations** | 8 physical CORS reported by CENACARTA (SOFL Beira, MPTB Maputo, CHMO Chimoio, LCNG Lichinga, XXAI Xai-Xai, MTND Tete, QLMN Quelimane, NACL Nacala) — none exposed via any public NTRIP caster as of 2026-05-17 (`py scripts/stations_by_country.py MOZ` returns 0 streams) |
+| **datum_epoch** | omitted — no citable operator declaration; CENACARTA web properties are offline or repurposed (see Context Notes). Per primer, do NOT infer from SIRGAS / AFREF / regional framework membership. |
 | **host:port** | null — no NTRIP caster endpoint published publicly |
 | **tariff** | null |
 | **hobbyist_eligibility** | Unclear — no public registration portal or access policy found |

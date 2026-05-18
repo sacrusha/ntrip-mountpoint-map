@@ -1,5 +1,5 @@
 # Togo [TG] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-13 (revised from 2026-05-06 — operator identified as IGNTOGO / DGIGC; CORS deployment confirmed as part of multi-year reform validated April 2025 and mandated for all professional work from March 2026; NTRIP endpoint still not publicly discoverable)
+**Date researched:** 2026-05-17 (re-verified from 2026-05-13 — `urbanisme.gouv.tg` HTTP 200 but ministry homepage carries no NTRIP / IGNTOGO portal pointer; `igntogo.tg` still not surfacing; 3-month professional compliance window (~2026-06-09) still ahead)
 
 ## Status: CORS network deployed under the IGNTOGO / DGIGC national geodetic reform; mandatory reference for all professional topographic / cadastral / urbanism / infrastructure work as of 2026-03-09 (3-month compliance window); NTRIP host:port not publicly listed — credentials issued by the operator on request
 
@@ -13,7 +13,7 @@
 | **tariff** | Not published. The March 2026 communiqué frames the network as part of public-service geodetic infrastructure; whether access will be free or fee-based has not been announced |
 | **hobbyist_eligibility** | Unclear — no published tier. The compliance mandate addresses professional topographers / cadastral surveyors / urbanists and gives them three months to align equipment to the new reference; nothing on hobbyist access |
 | **legal_residency_required** | Unclear — no published rule |
-| **last_confirmed_alive** | 2026-05-13 — `urbanisme.gouv.tg` HTTP 200, April 2025 DGIGC workshop report and the March 2026 inter-ministerial communiqué both reachable; `igntogo.tg` not yet a live portal as of 2026-05-13 |
+| **last_confirmed_alive** | 2026-05-17 — `urbanisme.gouv.tg` HTTP 200; ministry homepage contains no IGNTOGO / CORS / NTRIP pointer (WebFetch 2026-05-17); April 2025 + March 2026 communiqués still the only authoritative public references; `igntogo.tg` still not a live portal |
 
 ## Project & Operator Timeline
 
@@ -22,6 +22,7 @@
 - **2025–2026** — DGIGC rebranded to **IGNTOGO** (Institut National de l'Information Géographique du Togo) under the territorial-planning ministry.
 - **2026-03-09** — Joint inter-ministerial communiqué from the Minister of Finance and Budget (Georges Barcola) and the Minister of Territorial Planning and Development (Kodjo Adedze) makes the new national geodetic reference system **mandatory** for all spatial data in cartography, land management, urban planning, topography, and infrastructure. The communiqué names the CORS network as the real-time backbone alongside the levelling benchmarks. Professional users were granted a **three-month transitional window** (i.e. until ~2026-06-09) to align their equipment and workflows.
 - **2026-05-13** — IGNTOGO public NTRIP portal still not surfacing on the open web (`igntogo.tg` not resolving). Access remains via IGNTOGO / `urbanisme.gouv.tg`.
+- **2026-05-17** — Re-verified: `urbanisme.gouv.tg` ministry homepage carries no IGNTOGO / CORS / NTRIP pointer; the 3-month professional compliance window mandated by the 2026-03-09 communiqué (deadline ~2026-06-09) is still in effect with no public endpoint disclosure.
 
 ## Most Recent Project Announcements
 

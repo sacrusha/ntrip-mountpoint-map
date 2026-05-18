@@ -11,13 +11,13 @@
 | **landing_url** | https://www.slrb.gov.bh/en/permanent-reference-networkprn |
 | **access_url** | https://www.slrb.gov.bh/en/permanent-reference-networkprn |
 | **host:port** | Not publicly advertised; issued in credentials email after application approval |
-| **num_stations** | Not disclosed by SLRB. Bahrain's territory is ~765 km²; a single well-sited reference station can cover the kingdom within a typical ~30 km RTK baseline. SLRB states the PRN "provides the geodetic basis for all surveying operations in Bahrain" but does not publish station count or locations. |
-| **vrs** | ? — SLRB describes the service as "Real-Time Correction Service for Surveying through GPS Network"; network-RTK / VRS is implied but not explicitly confirmed in any public material |
+| **num_stations** | not disclosed by SLRB |
+| **vrs** | ? |
 | **tariff** | Free of charge (observed 2026-05-15 at SLRB PRN subscription page). Exact site text: "*Kindly note that this service may incur charges in the future." No tier structure; no VAT applicable. |
 | **hobbyist_eligibility** | yes — application form accepts both "Individual" and "Agent" applicant types; no licensed-surveyor requirement stated in public terms |
 | **legal_residency_required** | ? — not stated as a hard requirement in the public terms; mailing address on the application form supports both local and foreign applicants in principle. Practical screening at SLRB's discretion. |
-| **last_confirmed_alive** | 2026-05-15 — SLRB PRN subscription page (slrb.gov.bh/en/permanent-reference-networkprn) returned the live PRN page; application form PDF (dated 15062025…) downloadable; processing time stated as 1–2 working days |
-| **datum_epoch** | Omitted — no citable URL with an explicit PRN datum+epoch declaration. Bahrain historically uses *Ain el Abd 1970* (EPSG:4204; Hayford 1909 ellipsoid) for cadastral work; modern PRN realisation is presumed ITRF-aligned but SLRB does not publish this on accessible pages. |
+| **last_confirmed_alive** | 2026-05-15 — SLRB PRN subscription page (slrb.gov.bh/en/permanent-reference-networkprn) returned the live PRN page; application form PDF (filename-dated 15062025, i.e. 15 June 2025, DDMMYYYY) downloadable; processing time stated as 1–2 working days |
+| **datum_epoch** | omitted — no citable URL with an explicit PRN datum+epoch declaration. Bahrain historically uses *Ain el Abd 1970* (EPSG:4204; Hayford 1909 ellipsoid) for cadastral work; PRN realisation frame is a documented research gap — not declared on any accessible SLRB page (2026-05-15). |
 
 ---
 

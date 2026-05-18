@@ -1,49 +1,56 @@
 # USA National Park Service CORS [US-NPS] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-02 (re-verified 2026-05-13; SOURCETABLE 200 OK with 141 STR entries; all 7 stations previously flagged offline are back in the live sourcetable)
 
-## Status: YES — NPS CORS operational and free; manual account provisioning; hobbyist eligibility unclear
+## Status: YES — operational, free, manual account provisioning; hobbyist eligibility unclear
 
 | Field | Value |
 |---|---|
-| **Active public NTRIP RTK caster** | Yes |
-| **operator** | U.S. Department of the Interior, National Park Service (NPS) |
-| **host:port** | `rtk.nps.gov:2101` (current; portal still accessible at ntrip.nps.gov) |
-| **software** | Trimble Pivot Platform (`NTRIP Trimble Ntrip Caster 5.2`); Trimble NetR9 receivers in the field |
-| **tariff** | null — no fee schedule published; federal government service provided at no cost to authorized users |
-| **account provisioning** | Manual — contact gnss_posnav@nps.gov; no self-service registration |
-| **hobbyist_eligibility** | Unclear — login form requires only email + password; accounts provisioned by NPS staff; no published eligibility policy for external/hobbyist users; contacting gnss_posnav@nps.gov required to confirm |
-| **legal_residency_required** | Unclear — no residency or citizenship requirement stated publicly; access is at NPS staff discretion |
-| **last_confirmed_alive** | 2026-05-13 — `rtk.nps.gov:2101` SOURCETABLE 200 OK with 141 STR mountpoints (curl probe). Portal at https://ntrip.nps.gov/ HTTP 200 (© 2026 Trimble footer). |
+| Active public NTRIP RTK caster | Yes |
+| Operator | US DOI / National Park Service (NPS) |
+| landing_url | https://ntrip.nps.gov/ — operator portal; declares rover endpoint `rtk.nps.gov:2101` |
+| access_url | Skip — portal describes manual provisioning + RINEX downloads; no separate signup page. Contact `neil_winn@ios.doi.gov` for accounts (portal page text 2026-05-18) |
+| host:port | `rtk.nps.gov:2101` (rover NTRIP). Portal/management on `ntrip.nps.gov` HTTPS |
+| software | NTRIP Trimble Caster 5.2; Trimble Pivot Platform; Trimble NetR9 receivers in field |
+| tariff | Free — no fee schedule; federal service, manual/discretionary provisioning |
+| account_provisioning | Manual — contact `neil_winn@ios.doi.gov` (portal text 2026-05-18); no self-service form |
+| vrs | No — all 142 mountpoints single-base (nmea=0). No NRTK mountpoint advertised |
+| num_stations | 142 active mountpoints (live ST 2026-05-18). 1:1 with physical stations; no NEAR/AUTO/VRS routing aliases |
+| hobbyist_eligibility | Unclear — login = email + password; accounts provisioned by NPS staff; no published eligibility policy. Confirm via portal contact |
+| legal_residency_required | Unclear — no residency/citizenship requirement stated; access at NPS staff discretion |
+| last_confirmed_alive | 2026-05-18 — `SOURCETABLE 200 OK`, 142 STR; portal HTTP 200 |
+| datum_epoch | NAD83(2011) Epoch 2010.0 — declared in 2022 NPS Alaska Regional Office slide deck (Cusick, "Centimeter Precision Mapping via GNSS Base Stations", DGGS-hosted): "DATUM NAD83 (2011) 2010.0". `ntrip.nps.gov` portal landing pages checked 2026-05-18 (home + Login.aspx + Map/SensorMap.aspx — Trimble Pivot defaults; no inline datum text); contact `neil_winn@ios.doi.gov` provided as pointer for binding current statement, not yet contacted in this research. MYCS2→MYCS3 transition status (post-NGS June 2025 model release) unresolved for NPS — re-confirm with operator before citing for survey-grade work |
 
-## Stream Characteristics
+## Stream characteristics
 
 | Parameter | Value |
 |---|---|
-| Solution type | Single Base RTK |
+| Solution | Single-base RTK (no VRS/MAC/FKP/iMAX in ST) |
 | Update rate | 1 second |
-| Message format | RTCM 3.2 (most stations) / RTCM 3.4 (newest stations, e.g. DESO_RTCM3); declared message set `1004(1),1005/1007(5),PBS(10)` |
-| Constellations | GPS + GLONASS + Galileo + BeiDou (live sourcetable) — upgrade from the earlier MSM4 GPS-only configuration documented in 2022 |
-| Datum | NAD 1983 (2011) 2010.0; MYCS3 (NGS Multi-Year CORS Solution 3, released by NGS 2025-06-10 in ITRF2020 epoch 2020.00) applied to ntrip.nps.gov system on 2026-02-13 using August 2025 data |
-| Coverage | CONUS, Alaska, Pacific (Hawaii, American Samoa), Marianas |
+| Format | RTCM 3.2 (most stations); RTCM 3.4 (newer, e.g. `DESO_RTCM3`). Declared message set `1004(1),1005/1007(5),PBS(10)` |
+| Constellations | GPS+GLO+GAL+BDS on current streams (2026-05-18 ST advertises multi-const formats). Historical Cusick 2022 slide deck explicitly "GPS only — old school" using RTCM 3 MSM 4 messages (MSM message family supports multi-GNSS but individual NPS streams carried GPS only at that time); current sourcetable shows the constellation upgrade has propagated network-wide |
+| Coverage | CONUS, Alaska, Caribbean (Puerto Rico via `SAJU_RTCM3`), Pacific (Hawaii, American Samoa), Marianas |
+| Sourcetable structure | Per-stream `NET` = `NPSNet` on most rows (some blank, e.g. `YOSE_RTCM3`); no `CAS;`/`NET;` summary line (normal for this Trimble Pivot deployment) |
 
-## Station Count (live sourcetable, 2026-05-13)
+## Coverage spot-check (live ST 2026-05-18)
 
-141 active mountpoints total (was ~128 active on 2026-05-02). The 7 stations previously flagged offline (DESO, GAA2, GAA3, HALE, HAVO, PAAL, SAJU) are all back in the live sourcetable as of 2026-05-13. Spot-confirmed Pacific stations include HAVO_RTCM3 (Hawaii Volcanoes), HALE_RTCM3 (Haleakalā, Maui), KAHO_RTCM3, KEF1_RTCM3, PUHE_RTCM3 (all Hawaii). Spot-confirmed Alaska stations include DENA_RTCM3 (Denali), GAA2_RTCM3, GAA3_RTCM3 (Gates of the Arctic), GLAC_RTCM3 (Glacier Bay), KEF1_RTCM3, KNAI_RTCM3, LACL_RTCM3.
+- Pacific: `HALE_RTCM3` (Haleakala, Maui), `HAVO_RTCM3` (Hawaii Volcanoes), `KAHO`, `KEF1`, `PUHE`
+- Alaska: `DENA_RTCM3` (Denali), `GAA2_RTCM3`/`GAA3_RTCM3` (Gates of Arctic), `GLAC_RTCM3` (Glacier Bay), `KNAI_RTCM3`, `LACL_RTCM3`
+- CONUS/Caribbean: `DESO_RTCM3` (De Soto, FL — RTCM 3.4), `PAAL_RTCM3`, `SAJU_RTCM3` (San Juan, PR)
 
-## Hostname Note
+## Hostname
 
-The portal page at https://ntrip.nps.gov states: "Real-Time Correction Configuration — NTRIP Address: **rtk.nps.gov** Port: **2101**." The portal-level domain `ntrip.nps.gov` remains accessible but the active NTRIP caster endpoint for rover connections is `rtk.nps.gov:2101`. Earlier documentation (Nov 2022 DGGS PDF) listed `ntrip.nps.gov:2101`; the live portal now explicitly directs to `rtk.nps.gov:2101`.
+Portal: "NTRIP Address: **rtk.nps.gov** Port: **2101**". `ntrip.nps.gov` = portal/management; `rtk.nps.gov:2101` = rover NTRIP. Earlier 2022 DGGS slide deck cited `ntrip.nps.gov:2101`; live portal now explicitly directs to `rtk.nps.gov:2101`.
 
-## Context Notes
+## Notes
 
-- NPS CORS is a federal government survey infrastructure network, not a public community service. Primary purpose is supporting NPS internal GIS and field survey operations; however, NPS partners with ACORN (Alaska), EarthScope/UNAVCO, and external contractors, indicating non-NPS access has been granted historically.
-- No pricing, subscription tiers, or external-access policy is published on any NPS GNSS public page.
-- The datum transition to MYCS3 (Multi-Year CORS Solution 3, released by NGS 2025-06-10 in ITRF2020 epoch 2020.00) was applied in the ntrip.nps.gov system on 2026-02-13 using August 2025 data.
-- 2026-05-13 sourcetable shows no `NET;` line — the caster currently advertises only `CAS;`; this is normal for the Trimble Pivot deployment. The `NPSNet` identifier is in the per-stream NET column (`STR;…;NPSNet;…`).
+- Federal-government survey infrastructure, not public community service. Primary purpose: NPS internal GIS and field survey.
+- 2022 Cusick slide deck (Alaska Regional Office) explicit external-access language: "DOI partners preferred" for planned site expansion; "Using our stations is good practice for tying into ACORN" (CT–AK collaborative framing); contact for credentials shown as `joel_cusick@nps.gov` (AK regional) in 2022, now `neil_winn@ios.doi.gov` network-wide. **External access precedent in 2022 slide: scoped to DOI / federal partners and ACORN-style collaboration — NOT a broad hobbyist/public invitation.** No subsequent public-access policy document identified.
+- No published external-access policy, pricing, or subscription tier.
+- Pipeline ingestion: 142 physical CORS = 142 mountpoints (1:1, nmea=0). Sourcetable publicly listable (no auth); credentials required only for stream subscription.
 
-## Sources Consulted
-- Live NPS GNSS portal: https://ntrip.nps.gov/ (HTTP 200 observed 2026-05-13)
-- Live sourcetable (2026-05-13): `curl http://rtk.nps.gov:2101/` → SOURCETABLE 200 OK, 141 STR entries
-- NGS MYCS3 release page: https://geodesy.noaa.gov/CORS/news/mycs3/mycs3.shtml (MYCS3 released 2025-06-10 in ITRF2020 epoch 2020.00)
-- Nov 2022 DGGS/NPS slide deck (host, port, solution type, MSM4, datum): https://dggs.alaska.gov/webpubs/dggs/ago/documents/2022AGC_GISDay/Day_1-4_Joel_Cusick_Hi_Precision_BaseStations.pdf
-- Contact: gnss_posnav@nps.gov
+## Sources
+
+- NPS GNSS portal: https://ntrip.nps.gov/ (HTTP 200; contact `neil_winn@ios.doi.gov` shown)
+- Live ST: `curl --http0.9 -A 'NTRIP/1.0' http://rtk.nps.gov:2101/` → 142 STR
+- NGS MYCS3 release page (context only, NOT citable for datum_epoch): https://geodesy.noaa.gov/CORS/news/mycs3/mycs3.shtml
+- 2022 DGGS slide deck (Cusick, historical context): https://dggs.alaska.gov/webpubs/dggs/ago/documents/2022AGC_GISDay/Day_1-4_Joel_Cusick_Hi_Precision_BaseStations.pdf
+- NPS ArcGIS layer: https://www.arcgis.com/home/item.html?id=c7490365d71a4cdb8da245b11c28c99f

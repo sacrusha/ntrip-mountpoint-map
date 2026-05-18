@@ -1,5 +1,5 @@
 # Montenegro [ME] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06 (refreshed 2026-05-12)
+**Date researched:** 2026-05-06 (refreshed 2026-05-17 — no EUR tariff in open web; 2024-04-11 PDF still latest)
 
 ## Status: YES — government NTRIP caster operating (MONTEPOS); endpoint not public; paid subscription
 
@@ -9,9 +9,10 @@
 | **Network name** | MontePos — Mreža Stalnih GNSS Stanica Crne Gore |
 | **Operator** | Uprava za nekretnine (Real Estate Administration), Vlada Crne Gore (Government of Montenegro) |
 | **Admin contact** | Goran Popović, dipl.inž.geod., Načelnik odsjeka za geodetske radove i državnu granicu — Tel: +382 67 641 119 — Email: uznmontepos@gmail.com |
-| **Network size** | 9 CORS stations across Montenegro |
+| **access_url** | https://www.gov.me/clanak/montepos — MontePos operator signup/info page (application form + giro-account payment instructions; endpoint disclosed after sign-up) |
+| **num_stations** | 9 |
 | **host:port** | Null — not published on any public-facing page. NTRIP endpoint is disclosed after submitting signed application form and payment. |
-| **VRS** | Not confirmed from public sources |
+| **vrs** | ? |
 | **tariff** | Null — tariff figures exist in PDF at `https://wapi.gov.me/download/8f6d09ed-f1d2-4650-9e87-d8d91d2526b0?version=1.0` (published 2024-04-11, "MontePos- tehnički detalji", 382 KB) but domain wapi.gov.me was not accessible from research environment. Subscription periods confirmed: 24h, 48h, 1 month, 3 months, 6 months, 1 year, 2 years. Currency: EUR (Montenegro uses EUR). |
 | **Payment process** | Payment to giro account 832-1081-58, purpose field "Montepos - RTK"; submit signed application form to uznmontepos@gmail.com or at Uprava za nekretnine counter offices |
 | **Application form** | https://wapi.gov.me/download/3647961e-34ab-41e7-9bf6-282a116f72ff?version=1.0 (394 KB, published 2024-04-11) |
@@ -42,3 +43,4 @@
 - Community summary (2026-05-12 search): MontePos established 2005; offers RTK + PPK modules; 2–3 cm accuracy
 - Contact: uznmontepos@gmail.com / +382 67 641 119
 - py scripts/stations_by_radius.py 42.5 19.3 250 (2026-05-12) — zero rtk2go/Centipede/EarthScope volunteer stations within 250 km of Podgorica (no cross-border free alternative)
+- 2026-05-17 WebFetch of gov.me/clanak/montepos — page still dated 2024-04-11; no EUR figures inline; subscription periods still 24h / 48h / 1m / 3m / 6m / 1y / 2y; tariff numbers remain in the wapi.gov.me PDF (not parsed from sandbox)

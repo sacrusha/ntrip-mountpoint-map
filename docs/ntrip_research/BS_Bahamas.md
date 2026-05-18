@@ -1,5 +1,5 @@
 # Bahamas [BS] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-15
+**Date researched:** 2026-05-17 (prior 2026-05-15)
 
 ## Status: National 23-station Trimble Pivot CORS exists (deployed ~2020 for Dept. of Lands & Surveys); no public NTRIP endpoint disclosed — EarthScope scientific streams available on two outer islands
 
@@ -7,9 +7,14 @@
 |---|---|
 | **National NTRIP RTK caster** | Physical infrastructure exists (23 Trimble CORS + 3 tide gauges, Bahamas Department of Lands & Surveys, Spatial Dimension/Trimble deployment ~2020) — but no public host:port, sourcetable, or self-service registration portal has been published. Platform is Trimble Pivot (RTK/VRS-capable); if operational it is gated for licensed Bahamian surveyors via Lands & Surveys. |
 | **Scientific GNSS streams in BS territory** | Yes — EarthScope NOTA (former COCONet) CN13 (San Salvador Island) and CN14 (Mathew Town, Great Inagua); both on `ntrip.earthscope.org:2101` |
+| **landing_url** | N/A for national caster (no public landing page). EarthScope NOTA: https://www.earthscope.org/data/gnss-realtime/ |
+| **access_url** | N/A for national caster (no public access portal). EarthScope NOTA: https://data.earthscope.org/ |
+| **host:port** | N/A for national caster (not published). EarthScope NOTA: `ntrip.earthscope.org:2101` |
+| **num_stations** | National caster: 23 Trimble CORS + 3 tide-gauges (physical; not publicly streamed). EarthScope NOTA in BHS territory: 2 (CN13, CN14) |
+| **vrs** | National caster: unknown (Trimble Pivot platform is VRS-capable, no confirmation it is enabled or exposed). EarthScope NOTA: **No** — single-base raw RTCM 3.3 MSM7 |
 | **hobbyist_eligibility** | EarthScope: **Yes** (noncommercial tier — no surveying licence required, individual account accepted). Bahamian national CORS: **unclear** — no published policy, likely restricted to licensed Bahamian surveyors. |
 | **legal_residency_required** | EarthScope: **No** — no nationality or residency restriction in NULA. Bahamian national CORS: unclear. |
-| **last_confirmed_alive** | 2026-05-15 — EarthScope sourcetable fetched (CN13_RTCM3P3, CN14_RTCM3P3 both present, country BHS, SEPT POLARX5, GPS+GLO+BDS+GAL+SBAS+QZS, RTCM 3.3 MSM7); Spatial Dimension project page HTTP 200; Trimble Land Administration project page HTTP 404 (page removed since prior pass); bahamas.gov.bs Lands & Surveys page HTTP 403 to automated fetch. No live Bahamian government NTRIP endpoint has ever been probed; none surfaces in any public sourcetable directory. |
+| **last_confirmed_alive** | 2026-05-17 — Spatial Dimension project page HTTP 200 (re-confirmed CN13/CN14 NOTA presence in BHS territory via EarthScope realtime page; sandbox direct probe of `ntrip.earthscope.org:2101` timed out 2026-05-17 but EarthScope page is current and prior 2026-05-15 sourcetable fetch confirmed both BHS streams). Trimble Land Administration project page remains HTTP 404. bahamas.gov.bs Lands & Surveys page HTTP 403 to automated fetch. No live Bahamian government NTRIP endpoint has ever been probed; none surfaces in any public sourcetable directory. |
 
 ---
 
@@ -24,10 +29,10 @@
 |---|---|
 | **host:port** | `ntrip.earthscope.org:2101` (RTCM 3.3); port 2105 (BINEX); port 2108 (PPP). Sourcetable fetch 2026-05-15: HTTP 200, 239,923 bytes; CN13/CN14 confirmed present. |
 | **Stream type** | Raw 1 Hz multi-constellation RTCM 3.3 MSM7 (single-base reference, NOT VRS/Network-RTK) |
-| **Tariff — noncommercial** | **Free (USD $0.00)** — account + annual NULA acceptance required. Source: https://www.earthscope.org/data/gnss-realtime/ (HTTP 200, 2026-05-15) |
-| **Tariff — commercial** | **USD $1,000 per seat per year** (EarthScope 501(c)(3); no VAT). Source: https://www.earthscope.org/news/new-gnss-offering-and-licensing-details-for-commercial-use/ (HTTP 200, 2026-05-15) |
-| **NULA version** | v. 2025-05-30 — https://www.earthscope.org/user/NoncommercialLicenseAgreement.pdf (HTTP 200, 2026-05-15) |
-| **datum_epoch** | OMIT — EarthScope distributes raw RTCM 3.3 single-base streams referenced to per-station ITRF coordinates published in the station log; no single national datum_epoch applies. |
+| **Tariff — noncommercial** | **Free (USD $0.00)** — account + annual NULA acceptance required. Source: https://www.earthscope.org/data/gnss-realtime/ (HTTP 200, 2026-05-17) |
+| **Tariff — commercial** | **USD $1,000 per seat per year**, 5-seat minimum for direct billing; 2-week 5-seat trial free (EarthScope 501(c)(3); no VAT). Sources: https://www.earthscope.org/data/gnss-realtime/ + https://www.earthscope.org/news/new-gnss-offering-and-licensing-details-for-commercial-use/ |
+| **NULA version** | v. 2025-05-30 — https://www.earthscope.org/user/NoncommercialLicenseAgreement.pdf |
+| **datum_epoch** | **ITRF2014, epoch 2026-03-30** (NOTA stations); declared on operator portal https://www.earthscope.org/data/gnss-realtime/ ("All raw data streams use the ITRF2014 reference frame. For NOTA stations, the epoch date is 2026-03-30"). Applies to CN13/CN14 as NOTA/COCONet stations. |
 
 **Practical caveat**: CN13 and CN14 are both located on outer islands far from Nassau (New Providence) and Grand Bahama, where most commercial and survey activity occurs. Nassau is ~460 km from the nearest COCONet station; single-base RTK is not viable at that distance. Users in Nassau and the northern Bahamas have no practical COCONet coverage for RTK.
 

@@ -1,5 +1,5 @@
 # Sint Maarten [SX] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-13 (revised from 2026-05-07 — Kadaster SX price line and EarthScope NOTA CN59 reconfirmed)
+**Date researched:** 2026-05-17 (re-probed; `kadaster.sx/services/` HTTP 200 still serves "Use of CORS station" lines XCG 360.00/mo + XCG 3,600.00/yr, USD equivalents 202.30 / 2,022.50; EarthScope CN59 on Anguilla remains nearest free option)
 
 ## Status: YES (revised) — Kadaster St. Maarten now offers a paid CORS reference-station subscription (XCG-priced); host:port not on public web; nearest free fallback is EarthScope CN59 on Anguilla (~20 km); Kadaster NL AGRS does NOT cover SX
 
@@ -15,7 +15,8 @@
 | **VAT/TOT status** | Sint Maarten levies TOT (Turnover Tax / Belasting op Bedrijfsomzetten / BBO) at 5 % on services. The price list does not flag whether TOT is included; verify on invoice |
 | **hobbyist_eligibility** | Unclear — service catalogue describes professional cadastral / surveying clients (boundary staking out, certificates of admeasurement). No explicit individual / non-professional tier; no explicit exclusion either. Pricing is uniform per receiver |
 | **legal_residency_required** | Unclear — Kadaster St. Maarten customer flow has traditionally invoiced licensed surveyors operating in SX. No published residency rule for the CORS product |
-| **last_confirmed_alive** | 2026-05-13 — `kadaster.sx/services` HTTP 200 with same CORS price lines (XCG 360.00 / month, XCG 3,600.00 / year, both with USD equivalents 202.30 / 2,022.50); "Kadaster St. Maarten Now Officially GIS Ready" 2025-07-25 press release still online |
+| **last_confirmed_alive** | 2026-05-17 — `kadaster.sx/services/` HTTP 200 (Server: cloudflare); CORS price lines XCG 360.00/mo + XCG 3,600.00/yr (USD 202.30 / 2,022.50) re-read inline at table rows for "Use of CORS station per month" / "per year" |
+| **datum_epoch** | omitted -- no citable declaration (Kadaster SX service catalogue lists the CORS subscription line item but no frame/epoch; the historic Caribbean Datum 92 / WGS84(Gxxxx) used in SX cadastral practice is not declared on the operator service page) |
 
 ## Kadaster NL AGRS — Does NOT Cover SX
 
@@ -29,7 +30,7 @@ EarthScope's Network of the Americas (NOTA) inherited the COCONet Caribbean GNSS
 
 | Field | Value |
 |---|---|
-| **host:port** | `ntrip.earthscope.org:2101` (TCP) / `:443` (TLS) |
+| **host:port** | `ntrip.earthscope.org:2101` (TCP). A `:443` TLS endpoint is a generic NTRIP convention but not separately confirmed on EarthScope's public docs — verify in the EarthScope portal before relying on it |
 | **Mountpoint** | `CN59_RTCM3P3` (and similar single-base streams; sourcetable lookup at the EarthScope NOTA portal) |
 | **Stream type** | Single-base RTCM 3 — not VRS. Suitable for short-baseline RTK at ~20 km |
 | **Constellations** | Multi-GNSS (GPS / GLONASS / Galileo / BeiDou) on dual-frequency choke-ring class hardware |

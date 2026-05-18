@@ -1,5 +1,5 @@
 # Sudan [SD] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-13
+**Date researched:** 2026-05-17 (prior: 2026-05-13)
 
 ## Status: NO — no operational public NTRIP RTK caster; conflict severely disrupts civil infrastructure
 
@@ -30,7 +30,8 @@
 - AFREF's Africa-wide analysis identified Sudan as one of the most underserved regions for GNSS reference station coverage.
 - The situation mirrors Libya (LY): structural absence of functioning central geodetic administration compounded by active conflict makes near-term public RTK service implausible.
 - **Practical advice**: Deploy a local base station. Port Sudan (currently the de-facto administrative seat) may offer better physical security but no geodetic infrastructure.
-- **Local data check (2026-05-13)**: `py scripts/stations_by_radius.py 15.6 32.5 800` returns no rtk2go / Centipede / EarthScope stations within 800 km of Khartoum — nearest stations are in Egypt, Ethiopia, and Kenya, all well outside RTK range. No SD/SDN country tag exists in any source.
+- **Local data check (re-verified 2026-05-17)**: `py scripts/stations_by_radius.py 15.6 32.5 800` → "No stations within 800 km of (15.6, 32.5)" — no rtk2go / Centipede / EarthScope / IGS-IP / EUREF-IP nodes within 800 km of Khartoum. `py scripts/stations_by_country.py SDN` → "No stations for 'SDN'". Nearest reachable streams in Egypt, Ethiopia, Kenya — all well outside any RTK baseline.
+- **Datum / epoch**: Sudan SRS = ITRF2008 per UNGGIM 2024 country report (https://ggim.un.org/country-reports/documents/Sudan-2024-Country-Report.pdf) — official national frame declared but **no operational NTRIP caster declares it** → marker as `omitted -- no citable operator declaration` (no operator portal exists). For research context only: SSA declared ITRF2008.
 - **SSA Facebook presence**: Sudan Survey Authority SSA maintains a Facebook page (facebook.com/people/Sudan-Survey-Authority-SSA/100069140112993/) but it is not a functional GNSS service channel.
 
 ## Post-Processing (RINEX) Fallback

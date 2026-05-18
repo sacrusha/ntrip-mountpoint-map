@@ -1,23 +1,26 @@
 # Romania [RO] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-12 (prior version: 2026-05-06)
+**Date researched:** 2026-05-17 (prior: 2026-05-12)
 
-## Status: YES — paid government NTRIP caster (ROMPOS, ANCPI) operating
+## Status: YES — paid gov NTRIP caster (ROMPOS, ANCPI) operating
 
 | Field | Value |
 |---|---|
 | **Active public NTRIP RTK caster** | Yes (ROMPOS — paid) |
-| **host:port — ROMPOS** | `rtk.rompos.ro:2101` (network RTK and nearest-station products) · `rtk.rompos.ro:2105` (single-base product) · IP: 94.177.36.200 |
-| **VRS** | Yes — `RO_VRS_3.1` mountpoint (RTCM 3.1, GPS+GLONASS); network RTK solution available |
-| **tariff** | 100 RON /month/device or 1,000 RON /year/device (VAT included) · GNSS recordings from reference stations: 15 RON/hour (VAT included) · (source: ANCPI Order 16/2019 tariff table, confirmed via epay.ancpi.ro 2026-05-06) |
-| **hobbyist_eligibility** | yes — any user may create an ANCPI account and register a rover; no professional licensing stated |
-| **legal_residency_required** | unclear — not explicitly required; payment via Romanian bank transfer or epay.ancpi.ro e-payment portal |
-| **last_confirmed_alive** | `rtk.rompos.ro:2101` returned `SOURCETABLE 200 OK` on 2026-05-06 (curl verified) |
+| **landing_url** | `https://rompos.ro/index.php/en/` |
+| **access_url** | `https://app.rompos.ro` (subscription portal + NTRIP creds issued per rover) |
+| **host:port — ROMPOS** | `rtk.rompos.ro:2101` (network RTK + nearest-station products) · `rtk.rompos.ro:2105` (single-base) · IP 94.177.36.200 |
+| **VRS** | Yes — `RO_VRS_3.1`, `RO_VRS_MSM5` (GPS+GLO+GAL+BDS multi-constellation), `RO_MAX_3.1`, `RO_iMAX_3.1`, `i-MAX_MSM5`, `RO_FKP_3.1`, plus Nearest_3.1, Nearest_2.3, Nearest_4G, Nearest_CMR+, VRS_CMR+. NRTK (VRS+MAX+MAC+iMAX+FKP) all present per :2101 ST 2026-05-17. |
+| **tariff** | 100 RON/month/device or 1,000 RON/year/device (VAT incl.) · GNSS recordings: 15 RON/hour (VAT incl.) · source: ANCPI Order 16/2019, confirmed epay.ancpi.ro prodId=312100 2026-05-17 |
+| **datum_epoch** | ETRS89 (mainland) — operator-declared on rompos.ro FAQ (en/f-a-q/rompos-f-a-q): "Coordinates obtained via ROMPOS are expressed in ETRS89". Epoch not stated. Citable. |
+| **hobbyist_eligibility** | yes — any user may create ANCPI account + register rover; no professional licence stated |
+| **legal_residency_required** | unclear — not explicit; payment via Romanian bank transfer or epay.ancpi.ro |
+| **last_confirmed_alive** | `rtk.rompos.ro:2101` SOURCETABLE 200 OK 2026-05-17 (Leica GNSS Spider 7.11.1.109; 13 STR records incl. 4G/MSM5 multi-constellation streams). |
 
 ## Context Notes
 
 - **ROMPOS** (ROmanian MOnitoring and POsitioning System): Operated by ANCPI (Agenția Națională de Cadastru și Publicitate Imobiliară / National Agency for Cadastre and Land Registration). 86 CORS reference stations in ETRS89; covers all Romanian territory.
-- **Reference system**: ETRS89 (European Terrestrial Reference System 1989).
-- **Constellations**: GPS, GLONASS, Galileo processed.
+- **Reference system**: ETRS89 (Stereographic 1970 transform via free TransDatRo). For cadastre, Stereographic 1970 required.
+- **Constellations**: GPS+GLO on RTCM3.1 streams; GPS+GLO+GAL+BDS on MSM5/4G streams (RO_VRS_MSM5, Nearest_4G, i-MAX_MSM5).
 - **Accuracy**: ±3 cm positional accuracy stated for RTK products.
 - **Subscription management**: Activate rover subscriptions at app.rompos.ro; select activation date and number of months; NTRIP credentials issued per device.
 - **Payment**:
@@ -40,8 +43,6 @@
 - ROMPOS communications/NTRIP page: https://rompos.ro/index.php/informatii-tehnice/comunicatii
 - ROMPOS payment/tariff page: https://rompos.ro/index.php/acasa/modalitati-de-plata
 - ANCPI e-payment portal (100 RON/month observed): https://epay.ancpi.ro/epay/SelectProd.action?prodId=312100
-- Wikipedia ROMPOS: https://ro.wikipedia.org/wiki/ROMPOS
 - ArduSimple Romania RTK page: https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-romania/
-- curl probe of `rtk.rompos.ro:2101` — SOURCETABLE 200 OK confirmed 2026-05-06
-- 2026-05-12 re-check: ANCPI epay portal still lists 100 RON / month for ROMPOS RTK (prodId=312100). VAT inclusion not explicitly stated on the epay product page itself; the ROMPOS Romanian-language "modalitati-de-plata" page describes the tariff schedule under ANCPI Order 16/2019 where TVA is included.
-- Local: `py scripts/stations_by_country.py ROM` → 7 Centipede ROM stations (2026-05-12); `py scripts/stations_by_country.py ROU` → 2 Centipede ROU stations (ROMS1, ROMS2) + 6 rtk2go ROU bases (2026-05-13). **Centipede uses both ROM (non-ISO) and ROU (ISO) for Romania in parallel; both must be summed = 9 Centipede Romania stations.** See `_centipede_country_codes.md`.
+- curl probe `rtk.rompos.ro:2101` — SOURCETABLE 200 OK 2026-05-17 (13 STR; multi-constellation streams confirmed)
+- Local `scripts/stations_by_country.py` (2026-05-17): ROM → 7 Centipede (MAVERICK, MRTN, ROBU1, ROCL1, SIAG, VASLUI, ZSZ1); ROU → 9 Centipede total via alias (incl. ROMS1, ROMS2) + 6 rtk2go + 1 EUREF-IP (BUCU) + 1 IGS-IP (BUCU) + 1 AUSCORS (BUCU mirror). **Centipede uses ROM (non-ISO) + ROU (ISO) in parallel = 9 Centipede stations.**
