@@ -1794,6 +1794,32 @@
       "stations_declared": 35
     },
     {
+      "id": "regme_ec",
+      "name": "REGME-IP",
+      "region": "Ecuador",
+      "country": "EC",
+      "lat": -1.5,
+      "lon": -78.5,
+      "tier": "free",
+      "access": "registration",
+      "registration": "https://www.geoportaligm.gob.ec/ntrip/public/register",
+      "stations_declared": 26,
+      "note": "Free since IGM's unified national caster launched in February 2024."
+    },
+    {
+      "id": "ign_cr_cors",
+      "name": "IGN-CR / SNIT",
+      "region": "Costa Rica",
+      "country": "CR",
+      "lat": 9.75,
+      "lon": -83.75,
+      "tier": "free",
+      "access": "registration",
+      "registration": "https://www.snitcr.go.cr/",
+      "stations_declared": 14,
+      "note": "SNIT account required; credentials activate at noon and midnight CR time, so first access can take up to 12 hours."
+    },
+    {
       "id": "mirai",
       "name": "MIRAI / Go!GNSS",
       "region": "Japan",
