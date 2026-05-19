@@ -122,11 +122,9 @@ SOURCES = [
      "type": "vrs-only", "country": ["DE"],
      "region": "Baden-Württemberg", "group": "sapos",
      "access": "registration", "registration": "https://www.sapos.de", "openNote": 'Free registration required — select your federal state'},
-    {"id": "sapos_BY",    "url": "http://www.sapos-by-ntrip.de:2101/",          # free agri; €20/yr otherwise
-     "color": "#2d6e6e", "label": "sapos BY",
-     "type": "vrs-only", "country": ["DE"],
-     "region": "Bayern", "group": "sapos",
-     "access": "conditions",   "registration": "https://sapos.bayern.de/", "openNote": 'Free registration required — Bayern €20/yr'},
+    # sapos_BY removed 2026-05-20: reclassified status:paid per networks.proc.md
+    # (€20/yr non-agricultural since June 2024, free for registered Bavarian
+    # farms). Surfaced as paid-affordable marker in data/country_markers.json.
     {"id": "sapos_SN",    "url": "http://www.ntrip.sachsen.de:2101/",
      "color": "#2d6e6e", "label": "sapos SN",
      "type": "physical-vrs", "country": ["DE"],
