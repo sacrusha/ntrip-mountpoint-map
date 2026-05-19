@@ -154,11 +154,13 @@
       "country": "DE",
       "lat": 48.14,
       "lon": 11.58,
-      "tier": "free",
+      "tier": "paid",
       "vrs": true,
-      "access": "conditions",
+      "yearly_cost": "€20/yr",
+      "yearly_cost_normalized": 22,
       "registration": "https://sapos.bayern.de/",
-      "stations_declared": null
+      "stations_declared": 50,
+      "note": "Flat €20 per account per year since June 2024, covering both real-time corrections and post-processing data. Free for registered Bavarian farms through the agricultural tier."
     },
     {
       "id": "sapos_BE",
@@ -276,7 +278,8 @@
       "vrs": true,
       "access": "conditions",
       "registration": "https://www.modot.org/gps-utility-mapping-system",
-      "stations_declared": 78
+      "stations_declared": 80,
+      "note": "Free, but a signed and notarised user agreement must be returned to MoDOT before credentials are issued. Registering under an organisation name (your own counts) keeps the account portable across personnel changes."
     },
     {
       "id": "wvrtn",
@@ -1604,8 +1607,9 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
-      "registration": "http://ergnss.ign.es/gnuserportal/",
-      "stations_declared": 272
+      "registration": "https://www.ign.es/web/gds-gnss-tiempo-real",
+      "stations_declared": 272,
+      "note": "One IGN account covers the mainland, Balearics and Canaries. Mountpoint CERCANA3M auto-routes to the nearest station and is the easiest default; VRS3M is the multi-station network solution."
     },
     {
       "id": "catnet",
@@ -1765,8 +1769,9 @@
       "lon": 133.8,
       "tier": "free",
       "access": "registration",
-      "registration": "https://gnss.ga.gov.au/registration",
-      "stations_declared": 914
+      "registration": "https://gnss.ga.gov.au/stream",
+      "stations_declared": 922,
+      "note": "Single-base only — pick the nearest station, no network solution. Coverage is dense along the populated coasts and sparse through the interior; baselines beyond ~30 km degrade."
     },
     {
       "id": "positionz",
@@ -1803,8 +1808,9 @@
       "lon": -53.2,
       "tier": "free",
       "access": "registration",
-      "registration": "https://www.gov.br/pt-br/servicos/obter-acesso-a-rbmc-ip",
-      "stations_declared": 150
+      "registration": "https://www.ibge.gov.br/geociencias/informacoes-sobre-posicionamento-geodesico/servicos-para-posicionamento-geodesico/16332-rbmc-ip-rede-brasileira-de-monitoramento-continuo-dos-sistemas-gnss-em-tempo-real.html",
+      "stations_declared": 153,
+      "note": "Single-base only; each gov.br account is capped at five concurrent stream connections. Dense in the south and south-east; sparse through the Amazon basin and the north-east interior."
     },
     {
       "id": "ramsac",
@@ -1998,7 +2004,9 @@
       "lon": 14.5,
       "tier": "free",
       "vrs": true,
-      "access": "open"
+      "access": "open",
+      "registration": "http://gps.sit.regione.campania.it/indexmain.php",
+      "stations_declared": 16
     },
     {
       "id": "wiscors",
@@ -2943,7 +2951,8 @@
       "country": "americas",
       "tier": "free",
       "access": "conditions",
-      "registration": "https://www.earthscope.org/data/gnss-realtime/"
+      "registration": "https://www.earthscope.org/nota/",
+      "note": "Free under a non-commercial licence renewed yearly. Charging any fee for work that uses these corrections — paid surveying, contract mowing, drone-mapping clients — pushes you onto the commercial licence at USD 1,000 per seat per year, 5-seat minimum."
     },
     {
       "id": "euref_ip",
@@ -2951,7 +2960,8 @@
       "country": "europe",
       "tier": "free",
       "access": "registration",
-      "registration": "http://register.rtcm-ntrip.org/cgi-bin/registration.cgi"
+      "registration": "https://www.epncb.oma.be/_networkdata/data_access/real_time/broadcasters.php",
+      "note": "Three mirrors — Germany (BKG), Belgium (Royal Observatory) and Italy (ASI) — each needs its own account; there is no shared sign-on. Raw single-base streams from European permanent reference stations; the Belgian operator warns the streams are not aimed at moving-rover RTK."
     },
     {
       "id": "igs_ip",

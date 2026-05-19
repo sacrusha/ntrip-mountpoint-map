@@ -235,20 +235,22 @@ operator-volunteer uptime.
 **date_added**: 2026-05-13
 **country**:   AU — Australia
 **operator**:  Geoscience Australia
+**landing_url**: https://gnss.ga.gov.au/stream
 **host:port**: `ntrip.data.gnss.ga.gov.au:443` (TLS, primary); `:2101` plain TCP fallback
 **type**:      single-base
 **access**:    free; register at gnss.ga.gov.au/registration; CC BY 4.0
 **pipeline-access**: registration
 **access_url**: https://gnss.ga.gov.au/registration
-**stations**:  914 (sourcetable 2026-05-06)
+**stations**:  922 (sourcetable 2026-05-15)
 **vrs**:       no
 **signals**:   RTCM 3.3 MSM; GPS+GLO+GAL+BDS+QZS on most stations
 **licence**:   CC BY 4.0
+**reference_frame**: GDA2020 (ITRF2014 @ epoch 2020.0); RTCM 1006 broadcasts GDA2020 coordinates certified under Regulation 13 of the National Measurement Act 1960
 **pipeline-flags**: `solution_filter=False` (~42 IGS/international partner stations
                     re-streamed by AUSCORS are tagged solution=1 in the sourcetable
                     despite being physical receivers with fixed coordinates, e.g.
                     KIRU00SWE0 in Sweden, ENAO00PRT0 in the Azores)
-**last_researched_date**: 2026-05-12
+**last_researched_date**: 2026-05-15
 
 Geoscience Australia's national NTRIP service. Port 443 (TLS / NTRIP v2.0)
 is the primary endpoint; port 2101 (plain NTRIP v1.0) remains live as a
@@ -260,12 +262,18 @@ in the interior, dense (~100+ stations) along populated coasts. Old host
 Australia (Geoscience Australia)".
 
 State/territory VRS networks are paid via commercial resellers and do not
-expose a hobbyist tier: NSW CORSnet-NSW (Spatial NSW), VIC Vicmap Position
-/ GPSnet (VAR-only since Jan 2019), WA Landgate CORS (2024-25 ~3% fee
-increase), SA CORS (DHUD) — some free single-base via AUSCORS, paid VRS
-via commercial — and QLD/TAS/NT/ACT through HxGN SmartNet Aus, Topnet,
-AllDayRTK, Positioned RTK. AUSCORS is the practical zero-cost path for
-hobbyists.
+expose a hobbyist tier: NSW CORSnet-NSW (Spatial NSW; ~200 CORS, Trimble
+VRS, reseller-only since 2019), VIC Vicmap Position / GPSnet (DEECA;
+VAR-only since Jan 2019). Former Landgate WA CORS (~26 sites) transferred
+to GA under the WA Geodetic Strategy 2021-25 and now stream via AUSCORS
+itself (e.g. `ALBY00AUS0` Albany, `ARUB00AUS0` Arubiddy); SA Office of
+Surveyor-General CORS likewise expose their stations through AUSCORS
+(`ANDA00AUS0` Andamooka, `APYL00AUS0` Umuwa Kaltjiti) and the SA DHUD page
+directs free single-base users to AUSCORS. QLD/TAS/NT/ACT have no free
+state caster — AllDayRTK (Aptella, AUD 440/yr inc. GST, annual contract,
+30-day trial), HxGN SmartNet Aus, Topnet Live, Positioned RTK, and
+RTKdata (USD 40/mo) provide commercial VRS coverage. AUSCORS is the
+practical zero-cost path for hobbyists nationwide.
 
 Volunteer supplement: 24 AUS-coded rtk2go bases + 3 Centipede nodes (CADA
 in QLD, FARM48 NSW/VIC border, plus one more) per `stations_by_country.py
@@ -362,16 +370,21 @@ mountpoints publicly listed and no ZAR tariff published — not a hobbyist optio
 **date_added**: 2026-05-13
 **country**:   BR — Brazil
 **operator**:  IBGE — Instituto Brasileiro de Geografia e Estatística
+**landing_url**: https://www.ibge.gov.br/geociencias/informacoes-sobre-posicionamento-geodesico/servicos-para-posicionamento-geodesico/16332-rbmc-ip-rede-brasileira-de-monitoramento-continuo-dos-sistemas-gnss-em-tempo-real.html
 **host:port**: `gps-ntrip.ibge.gov.br:2101` (alt IP `170.84.40.52:2101`)
 **type**:      single-base
 **access**:    free; gov.br signup; 5-station limit per user; 1,000 concurrent max
 **pipeline-access**: registration
 **access_url**: https://www.gov.br/pt-br/servicos/obter-acesso-a-rbmc-ip
-**stations**:  ~150 (149 STR in sourcetable 2026-05-12); 5 stations inaugurated
+**stations**:  153 declared operational by IBGE (Dec 2025 announcement: +3 stations
+               Caruaru PE, Colorado do Oeste RO, Santa Helena PR); 142 BR-coded STR
+               rows in live sourcetable 2026-05-17 (gap = stations offline / RINEX-only
+               / announced-but-not-streaming, e.g. Caruaru). 5 stations inaugurated
                Dec 2024 (Governador Valadares MG, Maceió AL, Januária MG, Pinhais PR,
-               Nova Friburgo RJ); IBGE planned 2 more in 2025 (Lins/SP, Rosana/SP)
-**reference_frame**: SIRGAS2000 (ITRF-compatible)
-**last_researched_date**: 2026-05-12
+               Nova Friburgo RJ). Lins/SP, Rosana/SP confirmed streaming 2026-05-17.
+**vrs**:       no — single-base; mountpoints 1:1 with physical sites
+**reference_frame**: SIRGAS2000, epoch 2000.4 (per IBGE Resolução RPR 01/2015)
+**last_researched_date**: 2026-05-17
 
 National caster from IBGE; coverage spans all 26 states + DF, densest in
 south/south-east (SP, MG, RJ, PR, RS); sparse in Amazon basin and
@@ -486,19 +499,47 @@ or Centipede.
 ## earthscope — EarthScope NOTA (Americas)
 
 **status**:    free
-**host:port**: `ntrip.earthscope.org:2101`
-**type**:      single-base
-**access**:    free non-commercial (annual NULA renewal); commercial use per-seat licensed
+**date_added**: 2026-05-13
+**country**:   americas (federation: US incl. AK + HI, MX, Caribbean, scattered Pacific)
+**operator**:  EarthScope Consortium (NSF GAGE awardee; UNAVCO + IRIS merger Jan 2023)
+**landing_url**: https://www.earthscope.org/nota/
+**access_url**: https://www.earthscope.org/data/gnss-realtime/
+**host:port**: `ntrip.earthscope.org:2101` (RTCM 3.3 raw); `:2105` (BINEX raw); `:2108` (GGK/GSOF position)
+**type**:      single-base (no VRS / NRTK product)
+**vrs**:       no
+**access**:    free non-commercial (NULA, annual auto-renew); paid commercial (CULA, USD 1,000/seat/yr, 5-seat min)
 **pipeline-access**: conditions
-**stations**:  ~1096
-**source**:    earthscope.org/data/gnss-realtime/
-**operator**:  EarthScope Consortium
-**licence**:   NULA (non-commercial; annual renewal)
+**stations**:  ~1,097 STR (live 2026-05-18); federates PBO (US/AK/PR), TLALOCNet (~40 MX), COCONet (~85 Caribbean)
+**signals**:   RTCM 3.3 MSM; multi-GNSS (GPS+GLO+GAL+BDS+QZS+SBAS) since 2024-05-01 service launch
+**licence**:   NULA — non-commercial only; charging *any* fee for derived positions/products triggers CULA
+**reference_frame**: ITRF2014; NOTA station coord epoch 2026-03-30 (operator-declared, updated periodically)
+**last_researched_date**: 2026-05-18
 
-Americas-wide. Also `:2105` (BINEX), `:2108` (PPP solutions). RTCM 3.3 MSM.
-Legacy UNAVCO platform retired 2025-07-29; all users must use ntrip.earthscope.org.
-Hobbyist and small-shop use confirmed in scope. Metadata/station-list display
-permitted per NULA.
+Single-operator Americas-wide caster. New platform `ntrip.earthscope.org`
+live 2025-04-29; legacy UNAVCO `rtgpsout.earthscope.org` retired 2025-07-29
+(re-registration required for legacy-only users). Mountpoint convention
+`{FCID}_RTCM3P3` since the retirement (legacy `{FCID}_RTCM3` dropped).
+NULA covers academic, research, educational, humanitarian or "other public
+benefit" use; **landscaper-for-pay, paid survey work, or any fee-bearing
+output triggers CULA** — no free-tier carve-out for incidental commercial
+use. Sister caster `:2108` carries GGK/GSOF position solutions (not raw
+observations); `:2105` carries BINEX.
+
+Densest coverage in seismically active regions inherited from PBO (Cordillera
+WA/OR/CA/NV/UT/AZ/MT/WY/ID/CO/NM ~600 stations; Alaska ~140 incl. Aleutians;
+southern California, Pacific NW). Sparse in plate-stable interior (eastern/
+central US, northern MX). Caribbean coverage via the legacy COCONet station
+set — for most Caribbean islands NOTA is the only free real-time RTK source.
+Mexico via TLALOCNet (~40 stations Mexico City + central plateau + Gulf +
+Pacific coastal seismic zones). ITRF2014 frame; survey-grade users working in
+NAD83(2011) or GDA2020 jurisdictions need operator station velocities to
+transform — for plan-grade work inside a US state with free NRTK
+(FL/WI/VT/etc.) state network is the better RTK source, NOTA the fallback.
+
+Aggregator marker: rendered without lat/lon; per-station pins surface via
+the ingested sourcetable. Hosts paid pilot launched 2023; current CULA tier
+USD 1,000/seat/yr (5-seat minimum direct billing, USD 5,000/yr floor) plus
+5-seat 2-week trial. Metadata / station-list display permitted under NULA.
 
 ---
 
@@ -588,6 +629,7 @@ Map shows physical station pins.
 **date_added**: 2026-05-13
 **country**:   ES — Spain (mainland + Balearics + Canaries via SPTR sub-service)
 **operator**:  IGN España — Instituto Geográfico Nacional
+**landing_url**: https://www.ign.es/web/gds-gnss-tiempo-real
 **host:port**: `ergnss-ip.ign.es:2101` (data-only caster, mainland + Balearics; IP 193.144.251.13);
                `ergnss-tr.ign.es:2101` (network solutions VRS/MAC/FKP, IP 192.148.213.42);
                `ergnss-tr.ign.es:2102` (single-station)
@@ -602,15 +644,17 @@ Map shows physical station pins.
 **vrs**:       yes — VRS3M, MAC3M, FKP3M, CERCANA3M (RTCM 3.2 MSM); legacy VRS3, MAC3, FKP3, CERCANA3
 **signals**:   GPS+GLO+GAL+BDS
 **licence**:   Attribution required per Orden FOM/2807/2015
-**last_researched_date**: 2026-05-12
+**reference_frame**: REGCAN95 for Canaries stations (operator-declared 2024-02-01 coordinate update); mainland ETRS89 implied but not operator-declared on SPTR/ERGNSS page
+**last_researched_date**: 2026-05-17
 
-National free service operated by IGN España. Canary Islands served by SPTR
-sub-system at `ergnss-tr.ign.es`; recommended mountpoint `CERCANA3M`
-(nearest-station mode, RTCM 3.2 MSM4, automatic failover) — VRS network-RTK
-solutions less reliable over archipelago geometry. REGCAN95 coordinate
-update for all Canaries stations: 2024-02-01. Sourcetable retrieved live
-from `ergnss-tr.ign.es:2101` 2026-05-12: 8 STR rows (CERCANA3, CERCANA3M,
-FKP3, FKP3M, MAC3, MAC3M, VRS3, VRS3M; `Server: NTRIP GNSMART_Caster 2.0/1.0`).
+National free service operated by IGN España. Recommended mountpoint
+`CERCANA3M` (nearest-station mode, RTCM 3.2 MSM4, automatic failover) —
+works mainland-wide and across the Canaries via the SPTR sub-system on
+`ergnss-tr.ign.es`. VRS network-RTK (`VRS3M`) covers mainland + Balearics
+well; archipelago geometry makes it less reliable in the Canaries (use
+`CERCANA3M` there). Sourcetable retrieved live from `ergnss-tr.ign.es:2101`
+2026-05-17: 8 STR rows (CERCANA3, CERCANA3M, FKP3, FKP3M, MAC3, MAC3M,
+VRS3, VRS3M; `Server: NTRIP GNSMART_Caster 2.0/1.0`).
 **Pipeline note**: the SPTR `:2101` sourcetable is VRS-only (all mounts at
 0.00/0.00); physical Canary Islands stations come via the data-only caster
 `ergnss-ip.ign.es:2101` (id: `ergnss`). The `ergnss_sptr` SOURCES entry is
@@ -922,7 +966,7 @@ rtk2go ~31 DE volunteer bases — negligible alongside SAPOS but useful for test
 | `sapos_HE` | Hessen | `www.sapos-he-ntrip.de:2101` | physical-coord VRS | ~4 stations (3 unique coords) |
 | _Rheinland-Pfalz_ | _RP_ | _`www.sapos-ntrip.rlp.de:2101`_ | _not ingested_ | paid €120/yr/credential (HEPS/GPPS) + €100 one-time setup, most restrictive state — surfaced as a paid country marker in `data/country_markers.json`, not in the pipeline |
 | `sapos_BW` | Baden-Württemberg | `www.sapos-bw-ntrip.de:2101` | single-coord VRS | 0 stations |
-| `sapos_BY` | Bayern | `www.sapos-by-ntrip.de:2101` | single-coord VRS | €20/yr non-agri flat rate; free for agriculture |
+| `sapos_BY` | Bayern | `www.sapos-by-ntrip.de:2101` | single-coord VRS | €20/yr non-agri flat rate; free for agriculture via LFPS tier; ~50 stations |
 | `sapos_SN` | Sachsen (GeoSN) | `www.ntrip.sachsen.de:2101` | populates on fetch | `www.` prefix required (DE_Germany research 2026-05-07); was DNS-failing without it |
 | `sapos_SL` | Saarland | `www.sapos-sl-ntrip.de:2101` | physical-coord VRS | ~14 stations (9 unique coords) |
 | `sapos_BE` | Berlin | `www.sapos-be-ntrip.de:2101` | single-coord VRS | 52.48, 13.3 |
@@ -938,8 +982,18 @@ SSR-capable receiver or Geo++ SSR2OBS converter. Out of scope for this pipeline.
 Per-state operator landing URLs (for downstream marker URL fields where the marker
 is for a specific Bundesland rather than the federal aggregate):
 
-- `sapos_BY` (Bayern, LDBV) — landing `https://sapos.bayern.de/`. The €20 flat-rate
-  conversion (effective 01.06.2024) is documented in `https://sapos.bayern.de/download.php?file=SAPOS-Nachrichten-2024_01.pdf`.
+- `sapos_BY` (Bayern, LDBV — Landesamt für Digitalisierung, Breitband und Vermessung) —
+  landing `https://sapos.bayern.de/`. €20/yr flat per customer account (incl. HEPS
+  real-time + GPPS post-processing), no VAT, no monthly base fee, annual billing,
+  1-year contract, 1-month cancellation notice — effective 01.06.2024, replacing
+  the previous per-minute model. The same date extended free access to the
+  agricultural Landwirtschaftsfahrzeug-Positionierungs-Service (LFPS) tier for
+  registered farms. ~50 reference stations (LDBV-stated). Conversion details:
+  `https://sapos.bayern.de/download.php?file=SAPOS-Nachrichten-2024_01.pdf`;
+  Bayern press release: `https://www.bayern.de/fueracker-vereinfachtes-preismodell-fuer-den-satellitenpositionierungsdienst-sapos-neuer-flatrate-tarif-fuer-sapos-kunden-ab-1-juni-2024-nur-20-euro-jaehrlich-pro-kundenkonto/`.
+  Non-DE residents must prepay invoice before credentials are issued (per
+  ArduSimple SAPOS-access guide, re-verified 2026-05-17) — operational hurdle,
+  not a residency ban.
 
 ---
 
@@ -1073,18 +1127,25 @@ Puglia regional GNSS network. 12 physical reference stations. Free registration.
 **status**:    free
 **date_added**: 2026-05-06
 **country**:   IT — Italy (Campania)
-**host:port**: `gps.sit.regione.campania.it:2101`
+**operator**:  Regione Campania — SIT (Sistema Informativo Territoriale); Leica Spider; technical operation Topcon Positioning Italy (per 2025-08 operator notice)
+**landing_url**: http://gps.sit.regione.campania.it/indexmain.php
+**access_url**: https://gps-sit.regione.campania.it/
+**host:port**: `gps.sit.regione.campania.it:2101` (IP 109.115.186.34)
 **type**:      physical-coord-vrs
-**access**:    open; public shared credentials: username `Campania`, password `GNSS` for
-               30-second VRS (`1_VRS30`); 1-second RTK requires SPID (Italian national
-               digital identity)
+**vrs**:       yes — `1_VRS30` (30-sec VRS), `9_NEAR` (nearest station)
+**access**:    open shared credentials `Campania` / `GNSS` for 30-sec VRS; 1-sec VRS now
+               gated behind SPID (Italian national digital ID) via the new portal
 **pipeline-access**: open (public credentials)
-**stations**:  multiple stations covering Campania provinces
-**source**:    regione.campania.it GNSS section (Regione Campania)
-**operator**:  Regione Campania — SIT (Sistema Informativo Territoriale)
+**stations**:  16 permanent (operator-stated; ≤70 km spacing across Naples, Salerno,
+               Avellino, Benevento, Caserta provinces)
+**last_researched_date**: 2026-05-17
 
-Campania regional GNSS network. Public credentials (`Campania`/`GNSS`) provide
-30-sec VRS without registration. 1-sec RTK requires SPID. Leica Spider caster.
+Campania regional GNSS network. Public shared credentials remain valid on the
+legacy host for 30-sec VRS; the 2025-08-20 operator notice migrates new account
+creation for the 1-sec VRS to `https://gps-sit.regione.campania.it/`, which is
+SPID-gated and therefore not practically reachable for non-residents. SPID
+limitation aside, the 30-sec VRS path stays open to anyone with no registration.
+Secondary walkthrough for the shared-credentials workflow: `https://blog.analistgroup.com/come-connettersi-alla-rete-gnss-in-campania/`.
 
 ---
 
@@ -1751,26 +1812,30 @@ page; no professional licence field identified. Trimble Pivot Web login at
 ## modot_rtn — MoDOT RTN (US-MO)
 
 **status**:    free
-**host:port**: `rtk3.modot.mo.gov:2101` (= `gpsweb3.modot.mo.gov:2101`; IP 168.166.125.30)
+**country**:   US — Missouri
+**operator**:  Missouri Department of Transportation (MoDOT); Trimble Pivot
+**landing_url**: https://www.modot.org/gps-utility-mapping-system
+**access_url**: https://gpsweb3.modot.mo.gov/MODOT_RTK_GPS_USER_AGREEMENT.pdf
+**host:port**: `gpsweb3.modot.mo.gov:2101` (alias `rtk3.modot.mo.gov`; IP 168.166.125.30)
 **type**:      single-coord-vrs
-**access**:    conditions; requires signed and notarized MoDOT CORS access agreement;
+**vrs**:       yes — VRS-only sourcetable
+**access**:    conditions; signed + notarised MoDOT CORS user agreement returned to
+               MoDOT before credentials are issued; free once approved
 **pipeline-access**: conditions
-               free once approved — contact via modot.mo.gov
-**access_url**: https://www.modot.org/gps-utility-mapping-system (notarised User Agreement; SBC at gpsweb3.modot.mo.gov)
-**stations**:  VRS only (underlying 78 NetR5 CORS, max 70 km spacing)
-**source**:    modot.mo.gov (Missouri Department of Transportation)
-**operator**:  Missouri DOT
-**last_researched_date**: 2026-05-13
+**stations**:  80+ underlying NetR5 CORS (MoDOT FAQ; ≤70 km spacing covers all 114
+               counties; sourcetable advertises 8 VRS streams only)
+**reference_frame**: NAD83(2011) epoch 2010.00 (per MoDOT FAQ)
+**last_researched_date**: 2026-05-18
 
-Missouri DOT Real-Time Network (Trimble Pivot). VRS-only sourcetable; mountpoints:
-`VRS_RTCM31` (GPS+GLO, recommended), `VRS_CMRplus`, `VRS_CMRx`, `VRS_RTCM21`,
-`VRS_RTCM23`, `RTCM3Net_Autocell`. A multi-constellation `RTX_CMRx` mountpoint was
-added in 2024 for Trimble receivers. Underlying network is 78 CORS stations (NetR5
-receivers with Zephyr Geodetic II antennas) covering all 114 Missouri counties.
-Requires notarized access agreement
-(`gpsweb3.modot.mo.gov/MODOT_RTK_GPS_USER_AGREEMENT.pdf`) submitted to MoDOT before
-credentials are issued; FAQ suggests registering under an organisation name to survive
-personnel changes, but individuals can sign as their own entity.
+Missouri DOT Real-Time Network (Trimble Pivot). VRS-only sourcetable;
+mountpoints: `VRS_RTCM31` (GPS+GLO, recommended), `VRS_CMRplus`, `VRS_CMRx`,
+`VRS_RTCM21`, `VRS_RTCM23`, `RTCM3Net_Autocell`, plus multi-constellation
+`RTX_CMRx` added 2024 for Trimble receivers. Underlying physical network ~80
+CORS (NetR5 receivers, Zephyr Geodetic II antennas). The notarised user
+agreement is the practical gating step — FAQ recommends registering under an
+organisation name to survive personnel changes; individuals can sign as their
+own entity. No professional licence stated; residency status not addressed in
+public docs.
 
 ---
 
