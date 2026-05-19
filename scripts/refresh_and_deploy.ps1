@@ -53,7 +53,7 @@ try {
     Get-ChildItem (Join-Path $repoRoot '.tmp') -Directory -Filter 'scheduler-run-*' -ErrorAction SilentlyContinue | ForEach-Object {
         $stale = $_.FullName
         Write-Output "Removing stale worktree: $stale"
-        git worktree remove --force $stale 2>&1 | Out-Null
+        git worktree remove --force $stale *> $null
         if (Test-Path $stale) { Remove-Item -Recurse -Force $stale -ErrorAction SilentlyContinue }
     }
 
@@ -88,7 +88,7 @@ try {
     # plus the inner script's own output; the worktree itself holds nothing
     # we need to inspect.
     Set-Location $repoRoot  # inner script changes CWD into the worktree; reset before removal
-    git worktree remove --force $worktreePath 2>&1 | Out-Null
+    git worktree remove --force $worktreePath *> $null
     if (Test-Path $worktreePath) { Remove-Item -Recurse -Force $worktreePath -ErrorAction SilentlyContinue }
     Stop-Transcript | Out-Null
     exit 1
@@ -96,7 +96,7 @@ try {
 
 # --- Cleanup ---------------------------------------------------------------
 Set-Location $repoRoot  # inner script changes CWD into the worktree; reset before removal
-git worktree remove --force $worktreePath 2>&1 | Out-Null
+git worktree remove --force $worktreePath *> $null
 if (Test-Path $worktreePath) { Remove-Item -Recurse -Force $worktreePath -ErrorAction SilentlyContinue }
 
 Stop-Transcript | Out-Null
