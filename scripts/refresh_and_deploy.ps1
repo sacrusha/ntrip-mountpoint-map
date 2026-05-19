@@ -45,16 +45,18 @@ try {
 
     # --- Stale-worktree cleanup --------------------------------------------
     # If a previous run was killed (Task Scheduler timeout, reboot, etc.) its
-    # worktree dir is still on disk. Force-remove any leftover scheduler-run
-    # worktrees before creating a new one. `git worktree prune` clears entries
-    # whose dir is gone; we then nuke any dirs that survived.
+    # worktree dir is still on disk. Pass 1: walk `git worktree list` and
+    # de-register any scheduler-run-* entries. Pass 2: rmdir any leftover dirs
+    # whether git knew about them or not.
     Write-Output "--- Cleanup: prune stale worktrees ---"
-    git worktree prune
+    $registered = @(git worktree list --porcelain) -join "`n" -split "`n" | Where-Object { $_ -match '^worktree (.+scheduler-run-.+)$' } | ForEach-Object { $matches[1] }
+    foreach ($wt in $registered) {
+        Write-Output "Deregistering stale worktree: $wt"
+        try { git worktree remove --force $wt } catch {}
+    }
     Get-ChildItem (Join-Path $repoRoot '.tmp') -Directory -Filter 'scheduler-run-*' -ErrorAction SilentlyContinue | ForEach-Object {
-        $stale = $_.FullName
-        Write-Output "Removing stale worktree: $stale"
-        git worktree remove --force $stale *> $null
-        if (Test-Path $stale) { Remove-Item -Recurse -Force $stale -ErrorAction SilentlyContinue }
+        Write-Output "Removing stale dir: $($_.FullName)"
+        Remove-Item -Recurse -Force $_.FullName -ErrorAction SilentlyContinue
     }
 
     # --- Create ephemeral worktree -----------------------------------------
@@ -88,7 +90,7 @@ try {
     # plus the inner script's own output; the worktree itself holds nothing
     # we need to inspect.
     Set-Location $repoRoot  # inner script changes CWD into the worktree; reset before removal
-    git worktree remove --force $worktreePath *> $null
+    try { git worktree remove --force $worktreePath } catch {}
     if (Test-Path $worktreePath) { Remove-Item -Recurse -Force $worktreePath -ErrorAction SilentlyContinue }
     Stop-Transcript | Out-Null
     exit 1
@@ -96,7 +98,7 @@ try {
 
 # --- Cleanup ---------------------------------------------------------------
 Set-Location $repoRoot  # inner script changes CWD into the worktree; reset before removal
-git worktree remove --force $worktreePath *> $null
+try { git worktree remove --force $worktreePath } catch {}
 if (Test-Path $worktreePath) { Remove-Item -Recurse -Force $worktreePath -ErrorAction SilentlyContinue }
 
 Stop-Transcript | Out-Null
