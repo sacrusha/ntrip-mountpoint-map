@@ -33,6 +33,16 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT / "data"
 
 
+def _atomic_write_text(path: Path, content: str) -> None:
+    """Write content to path via tmp+replace. os.replace is atomic on
+    POSIX and on Windows (NTFS); leaves the target either intact (on
+    crash mid-write) or fully replaced. Tmp file lives in the same dir
+    so the rename stays on one filesystem."""
+    tmp = path.with_name(path.name + ".tmp")
+    tmp.write_text(content)
+    os.replace(tmp, path)
+
+
 def _dec_places(s: str) -> int:
     """Decimal places in a coordinate string, used for accuracy-rectangle sizing."""
     dot = s.find('.')
@@ -827,7 +837,7 @@ def main() -> int:
             for sid in payload_sources
         },
     }
-    health_path.write_text(json.dumps(health, indent=2) + "\n")
+    _atomic_write_text(health_path, json.dumps(health, indent=2) + "\n")
     print(f"Wrote {health_path}.")
 
     if not write_stations:
@@ -836,7 +846,7 @@ def main() -> int:
     # Data changed — write raw copies (only for sources we fetched fresh) and JSON.
     for sid, data in fetched.items():
         if data["text"] is not None and data["status"] == "ok":
-            data["raw_path"].write_text(data["text"])
+            _atomic_write_text(data["raw_path"], data["text"])
 
     payload = {
         "updated": datetime.now(timezone.utc).isoformat(timespec="seconds"),
@@ -844,7 +854,7 @@ def main() -> int:
         "sources": payload_sources,
         "networks": existing.get("networks", []) if existing else [],
     }
-    out_path.write_text(json.dumps(payload, indent=2) + "\n")
+    _atomic_write_text(out_path, json.dumps(payload, indent=2) + "\n")
     total = sum(len(s["stations"]) for s in payload_sources.values())
     print(f"Wrote {out_path} with {total} stations total.")
     return 0

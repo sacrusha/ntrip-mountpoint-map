@@ -6,8 +6,8 @@
 #   2. Ensure wrangler is on PATH (`npm i -g wrangler`).
 #
 # Usage (from repo root):
-#   pwsh -File scripts/deploy_pages.ps1
-#   pwsh -File scripts/deploy_pages.ps1 -Branch preview   # deploy to a preview branch
+#   powershell.exe -File scripts/deploy_pages.ps1
+#   powershell.exe -File scripts/deploy_pages.ps1 -Branch preview   # deploy to a preview branch
 
 [CmdletBinding()]
 param(
@@ -18,7 +18,11 @@ param(
 $ErrorActionPreference = 'Stop'
 
 $repoRoot = Split-Path -Parent $PSScriptRoot
-Set-Location $repoRoot
+# Push-Location + Pop-Location keeps the CWD change scoped to this script so
+# the caller (e.g. run_in_worktree.ps1) doesn't end up with a dangling CWD
+# inside the worktree after we return.
+Push-Location $repoRoot
+try {
 
 # --- Load .env/cloudflare.conf -----------------------------------------------
 $envFile = Join-Path $repoRoot '.env/cloudflare.conf'
@@ -66,6 +70,10 @@ Write-Output "Staged site to $siteDir"
 
 # --- Deploy ------------------------------------------------------------------
 & wrangler pages deploy $siteDir --project-name=$ProjectName --branch=$Branch
-if ($LASTEXITCODE -ne 0) { throw "wrangler exited with code $LASTEXITCODE" }
+if (-not $? -or $LASTEXITCODE -ne 0) { throw "wrangler failed (exit code: $LASTEXITCODE)" }
 
 Write-Output "Deploy complete."
+
+} finally {
+    Pop-Location
+}

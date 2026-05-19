@@ -28,15 +28,26 @@ $ErrorActionPreference = 'Stop'
 $repoRoot = Split-Path -Parent $PSScriptRoot
 Set-Location $repoRoot
 
-# --- Logging -----------------------------------------------------------------
-$logDir = Join-Path $repoRoot '.tmp/refresh_and_deploy'
-if (-not (Test-Path $logDir)) { New-Item -ItemType Directory -Path $logDir -Force | Out-Null }
-$stamp = (Get-Date).ToUniversalTime().ToString('yyyyMMddTHHmmssZ')
-$logFile = Join-Path $logDir "$stamp.log"
-Start-Transcript -Path $logFile | Out-Null
+# Fractional-second precision avoids same-stamp collisions on rapid retries
+# (RestartCount) and on DST fall-back when one UTC second repeats.
+$stamp = (Get-Date).ToUniversalTime().ToString('yyyyMMddTHHmmssfffZ')
 
-# Prune logs older than 30 days so .tmp/ doesn't grow unbounded.
-Get-ChildItem $logDir -Filter '*.log' | Where-Object { $_.LastWriteTimeUtc -lt (Get-Date).ToUniversalTime().AddDays(-30) } | Remove-Item -Force -ErrorAction SilentlyContinue
+# --- Logging -----------------------------------------------------------------
+# Log setup is guarded — if .tmp/ is unwritable (disk full, perms) we fall
+# back to host stderr so the failure is at least visible in Task Scheduler's
+# Last-Run-Result. Without this guard, the throw escapes uncaught and there
+# is no log file at all.
+$logDir = Join-Path $repoRoot '.tmp/refresh_and_deploy'
+try {
+    if (-not (Test-Path $logDir)) { New-Item -ItemType Directory -Path $logDir -Force | Out-Null }
+    $logFile = Join-Path $logDir "$stamp.log"
+    Start-Transcript -Path $logFile | Out-Null
+    # Prune logs older than 30 days so .tmp/ doesn't grow unbounded.
+    Get-ChildItem $logDir -Filter '*.log' | Where-Object { $_.LastWriteTimeUtc -lt (Get-Date).ToUniversalTime().AddDays(-30) } | Remove-Item -Force -ErrorAction SilentlyContinue
+} catch {
+    [Console]::Error.WriteLine("refresh_and_deploy.ps1: log setup failed at ${logDir}: $($_.Exception.Message)")
+    exit 2
+}
 
 $worktreePath = Join-Path $repoRoot ".tmp/scheduler-run-$stamp"
 $failed = $false
@@ -51,12 +62,16 @@ try {
     # whether git knew about them or not. The regex anchors to a path-segment
     # boundary so unrelated names containing 'scheduler-run-' don't match.
     Write-Output "--- Cleanup: prune stale worktrees ---"
-    $registered = git worktree list --porcelain | Where-Object { $_ -match '^worktree (.+[\\/]scheduler-run-[^\\/]+)$' } | ForEach-Object { $matches[1] }
+    # Capture each match locally in ForEach-Object so $matches isn't shared
+    # across pipeline stages (any intervening -match would clobber it).
+    $registered = git worktree list --porcelain | ForEach-Object {
+        if ($_ -match '^worktree (.+[\\/]scheduler-run-[^\\/]+)$') { $matches[1] }
+    }
     foreach ($wt in $registered) {
         Write-Output "Deregistering stale worktree: $wt"
         try { git worktree remove --force $wt } catch {}
     }
-    Get-ChildItem (Join-Path $repoRoot '.tmp') -Directory -Filter 'scheduler-run-*' -ErrorAction SilentlyContinue | ForEach-Object {
+    Get-ChildItem (Join-Path $repoRoot '.tmp') -Directory -Filter 'scheduler-run-*' -Force -ErrorAction SilentlyContinue | ForEach-Object {
         Write-Output "Removing stale dir: $($_.FullName)"
         Remove-Item -Recurse -Force $_.FullName -ErrorAction SilentlyContinue -ErrorVariable rmErr
         if ($rmErr) { Write-Output "WARN: rmdir failed for $($_.FullName): $($rmErr[0].Exception.Message)" }

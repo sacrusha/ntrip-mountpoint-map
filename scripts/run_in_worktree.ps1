@@ -25,13 +25,16 @@ try {
     # --- Fetch stations ----------------------------------------------------
     Write-Output "--- Step 1: fetch_stations.py ---"
     & py -X utf8 scripts/fetch_stations.py
-    if ($LASTEXITCODE -ne 0) { throw "fetch_stations.py exited with code $LASTEXITCODE" }
+    # Belt-and-braces: `& py` with py-launcher missing raises CommandNotFound
+    # under EAP=Stop, but if EAP changes elsewhere, a `$null` $LASTEXITCODE
+    # would slip past a bare `-ne 0` check. Test both.
+    if (-not $? -or $LASTEXITCODE -ne 0) { throw "fetch_stations.py failed (exit code: $LASTEXITCODE)" }
 
     # --- Deploy ------------------------------------------------------------
     if (-not $SkipDeploy) {
         Write-Output "--- Step 2: deploy_pages.ps1 ---"
         & (Join-Path $PSScriptRoot 'deploy_pages.ps1')
-        if ($LASTEXITCODE -ne 0) { throw "deploy_pages.ps1 exited with code $LASTEXITCODE" }
+        if (-not $? -or $LASTEXITCODE -ne 0) { throw "deploy_pages.ps1 failed (exit code: $LASTEXITCODE)" }
     } else {
         Write-Output "--- Step 2: deploy skipped (-SkipDeploy) ---"
     }
