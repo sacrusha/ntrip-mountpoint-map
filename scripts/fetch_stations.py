@@ -748,6 +748,10 @@ def fetch_source(src: dict) -> tuple[str, dict, bool]:
 def main() -> int:
     DATA_DIR.mkdir(exist_ok=True)
 
+    # Downstream coupling: stations.json + source_health.json filenames are
+    # also listed verbatim in scripts/deploy_pages.ps1's $dataFiles. Adding a
+    # new visitor-facing output here requires editing that list too, or the
+    # file won't ship to Cloudflare Pages.
     out_path = DATA_DIR / "stations.json"
     existing = load_existing(out_path)
     existing_sources: dict = (existing or {}).get("sources", {})
