@@ -48,20 +48,4 @@ Trust rule: read `<usage>`; if `tool_uses=0` and outputs reported, hallucinated.
 
 ## Prompting haiku
 
-WebFetch is haiku-backed; `Agent(..., model="haiku")` runs haiku. Patterns below derived from WebFetch's actual prompt (current Haiku class) + Anthropic prompt-engineering docs — generalize across haiku-class versions but re-verify if the haiku model family changes substantially.
-
-**Triage**: need tool calls → use sonnet. Haiku for introspection or constrained generation only.
-
-Patterns that suppress haiku fabrication:
-
-- **Explicit scope** — tell haiku what to ground on. WebFetch uses `Provide a concise response based only on the content above`.
-- **Quote cap** — force paraphrase (WebFetch caps verbatim at 125 chars).
-- **Constraints in user turn, not system** — haiku's instruction-following degrades at depth.
-- **Labeled sections or XML delimiters** — `[Context] [Policy] [Task] [Output]`. Helps prompt-injection resistance.
-- **Explicit token budget** — stops padding.
-- **Step-bounded reasoning** — 3-5 steps; prevents runaway chain-of-thought.
-- **One-hop instructions only** — split multi-hop to numbered steps.
-- **Permitted uncertainty** — `If not in content, say 'not found' — do not infer`. Cuts fabrication.
-- **Query at end, content first** — Anthropic prompt-engineering guidance; matters most for small models.
-- **Force grounding** — quote-then-conclude two-step structure.
-- **Anti-loop** — terminate by `stop_reason == "end_turn"`, not content-type check.
+For haiku prompt-writing patterns (suppress fabrication, structure, structured output, verify silent failure, #10029 mitigation), see the `haiku-prompts` skill. Scope here is limited to how haiku surfaces in agent mechanics — under `Operator unreliability` above.
