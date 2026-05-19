@@ -59,14 +59,14 @@ SOURCES = [
     # credentials: {user, pass} for open-access casters with default creds (optional).
     # near / user / pass / userNote: popup-credential hints (optional).
     # nmea_filter / solution_filter: parse-time override flags (default True).
-    {"id": "rtk2go", "url": "http://rtk2go.com:2101/", "color": "#d00000", "credentials": {"user": "(any email address)", "pass": "none"}, "near": True, "pass": "none", "userNote": "your email address", "nmea_filter": False},                                                       # caster tags all physical stations nmea=1; NEAR-xxx caught by solution_filter
-    {"id": "centipede", "url": "http://crtk.net:2101/", "color": "#e87500", "credentials": {"user": "centipede", "pass": "centipede"}, "near": True, "user": "centipede", "pass": "centipede"},  # migrated from caster.centipede.fr 2025-03-18
+    {"id": "rtk2go", "url": "http://rtk2go.com:2101/", "color": "#d00000", "credentials": {"user": "(any email address)", "pass": "none"}, "near": True, "pass": "none", "userNote": "your email address", "nmea_filter": False},  # caster tags all physical stations nmea=1; NEAR-xxx caught by solution_filter
+    {"id": "centipede", "url": "http://crtk.net:2101/", "color": "#e87500", "credentials": {"user": "centipede", "pass": "centipede"}, "near": True, "user": "centipede", "pass": "centipede"},
     # Re.M.FVG (Marussi) — Regione Autonoma FVG positioning service. Caster is the Marussi
     # caster, not FReDNet. Renamed from id 'frednet' 2026-05-13 — the previous label
     # mis-attributed Marussi infrastructure to OGS FReDNet. Sourcetable cross-relays
     # 11 OGS_* mounts from the real FReDNet caster at 158.110.30.81:2110.
     {"id": "rem_fvg", "url": "http://gnsscaster.regione.fvg.it:8080/", "color": "#2e6fb0"},
-    {"id": "geortk", "url": "http://geortk.jp:2101/", "color": "#1a7a4a", "nmea_filter": False, "solution_filter": False},  # caster tags physical stations nmea=1                                                   # caster tags physical stations solution=1
+    {"id": "geortk", "url": "http://geortk.jp:2101/", "color": "#1a7a4a", "nmea_filter": False, "solution_filter": False},  # caster tags physical stations nmea=1 and solution=1
     # SAPOS — German federal-state RTK networks. Sourcetables publicly readable;
     # RTCM streams require per-Länder registration. Most Länder free; BY €20/yr
     # flat rate for non-agricultural use. Raw TCP (NTRIP 1.0) fallback required.
@@ -90,75 +90,75 @@ SOURCES = [
     {"id": "sapos_TH", "url": "http://www.sapos-th-ntrip.de:2101/", "color": "#2d6e6e"},
     # APOS (AT) removed from pipeline — paid for hobbyists; represented by a country_markers.json paid-tier marker.
     {"id": "ergnss", "url": "http://ergnss-ip.ign.es:2101/", "color": "#b05000"},
-    {"id": "catnet", "url": "http://catnet-ip.icgc.cat:2101/", "color": "#a00020"},  # CATNET — ICGC Catalonia; separate caster and registration from ERGNSS
-    {"id": "ergnss_sptr", "url": "http://ergnss-tr.ign.es:2101/", "color": "#b05000"},  # ERGNSS SPTR — Canary Islands VRS sub-service (CERCANA3M/VRS3M/FKP3M); physical Canary pins on ergnss (ergnss-ip:2101)
-    {"id": "renep", "url": "http://193.137.94.71:2101/", "color": "#006b3c", "nmea_filter": False},  # port 2101 = physical single-base RTCM3; 2102 = same + MSM5; 2106/2108 = VRS                                                       # caster tags 39 of 47 physical stations nmea=1; VRS mounts are on separate ports (2106/2108)
-    {"id": "auscors", "url": "http://ntrip.data.gnss.ga.gov.au:2101/", "color": "#b8860b", "solution_filter": False},                                                   # caster tags 42 IGS partner stations solution=1; all are physical with fixed coords
+    {"id": "catnet", "url": "http://catnet-ip.icgc.cat:2101/", "color": "#a00020"},
+    {"id": "ergnss_sptr", "url": "http://ergnss-tr.ign.es:2101/", "color": "#b05000"},
+    {"id": "renep", "url": "http://193.137.94.71:2101/", "color": "#006b3c", "nmea_filter": False},  # caster tags 39 of 47 physical stations nmea=1
+    {"id": "auscors", "url": "http://ntrip.data.gnss.ga.gov.au:2101/", "color": "#b8860b", "solution_filter": False},  # caster tags 42 IGS partner stations solution=1; all are physical
     {"id": "positionz", "url": "http://positionz-rt.linz.govt.nz:2101/", "color": "#2e8b57"},
     {"id": "satref", "url": "http://ntrip.geodetic.gov.hk:2101/", "color": "#8b008b"},
     {"id": "mosref", "url": "http://mosref.dscc.gov.mo:2101/", "color": "#8b0057"},
-    {"id": "inacors", "url": "http://nrtk.big.go.id:2001/", "color": "#1a5fa0"},  # port 2001, not 2101
-    {"id": "thailand_dol", "url": "http://122.155.131.34:2101/", "color": "#cc6600"},  # Central zone IP; other-zone ports unpublished; sourcetable not yet parseable from CI as of 2026-05-13
-    {"id": "trignet", "url": "http://trignet.co.za:2101/", "color": "#556b2f"},  # Trimble Ntrip Caster 5.2; ~83 STR entries in 2026-05-12 sourcetable mix single-base (Pret-SB, Ctwn-SB...) with Network RTK clusters (RTKNetWCape, Gauteng, KZN) — migrated single-base → physical-vrs 2026-05-14
-    {"id": "ugrf", "url": "http://ugrf.mlhud.go.ug:2101/", "color": "#b07000", "near": True, "userNote": "your registered username"},  # Leica GNSS Spider 7.10.1.168; 38 physical single-base + 6 network mounts; SOURCETABLE 200 OK 2026-05-13
+    {"id": "inacors", "url": "http://nrtk.big.go.id:2001/", "color": "#1a5fa0"},
+    {"id": "thailand_dol", "url": "http://122.155.131.34:2101/", "color": "#cc6600"},
+    {"id": "trignet", "url": "http://trignet.co.za:2101/", "color": "#556b2f"},
+    {"id": "ugrf", "url": "http://ugrf.mlhud.go.ug:2101/", "color": "#b07000", "near": True, "userNote": "your registered username"},
     {"id": "rbmc_ip", "url": "http://gps-ntrip.ibge.gov.br:2101/", "color": "#008b8b"},
     {"id": "ramsac", "url": "http://ntrip.ign.gob.ar:2101/", "color": "#7b3f9e"},
     {"id": "regna_rou", "url": "http://rtk.igm.gub.uy:2101/", "color": "#1a9e5c"},
-    {"id": "flepos", "url": "http://flepos.vlaanderen.be:2101/", "color": "#3a7ca5"},  # ntrip.flepos.be NXDOMAIN as of 2026-04
-    {"id": "walcors", "url": "http://gnss.wallonie.be:8081/", "color": "#1e88c7"},  # port 8081 confirmed 2026-05-06; port 2101 not used
-    {"id": "spslux", "url": "http://stream.spslux.lu:5005/", "color": "#5c6bc0"},  # port 5005, not 2101
+    {"id": "flepos", "url": "http://flepos.vlaanderen.be:2101/", "color": "#3a7ca5"},
+    {"id": "walcors", "url": "http://gnss.wallonie.be:8081/", "color": "#1e88c7"},
+    {"id": "spslux", "url": "http://stream.spslux.lu:5005/", "color": "#5c6bc0"},
     {"id": "asg_eupos", "url": "http://system.asgeupos.pl:2101/", "color": "#7b5ea7"},
     {"id": "cropos", "url": "http://gnss.cropos.hr:2101/", "color": "#c0392b"},
-{"id": "latpos", "url": "http://latpos.lgia.gov.lv:5001/", "color": "#1a6b3c"},  # port 5001 confirmed SOURCETABLE 200 OK 2026-05-06; may timeout on blocked egress firewalls
-    {"id": "litpos", "url": "http://193.219.10.2:2101/", "color": "#0d47a1"},  # bare IP — no DNS hostname published; VilniusTech/GIS-Centras primary
-    {"id": "estpos", "url": "http://gnss-rtk.maaamet.ee:8083/", "color": "#003580"},  # free until 31 Aug 2026 per Maa- ja Ruumiamet directive; possible geo-IP filter — monitor
-    {"id": "igac", "url": "http://sbc.igac.gov.co:2102/", "color": "#d4a017", "nmea_filter": False},  # :2101 is VRS-only; :2102 has physical stations (nmea=1 mislabelled)
+{"id": "latpos", "url": "http://latpos.lgia.gov.lv:5001/", "color": "#1a6b3c"},
+    {"id": "litpos", "url": "http://193.219.10.2:2101/", "color": "#0d47a1"},
+    {"id": "estpos", "url": "http://gnss-rtk.maaamet.ee:8083/", "color": "#003580"},
+    {"id": "igac", "url": "http://sbc.igac.gov.co:2102/", "color": "#d4a017", "nmea_filter": False},  # nmea=1 mislabelled on :2102 physical stations
     {"id": "earthscope", "url": "http://ntrip.earthscope.org:2101/", "color": "#8b4513"},
-    {"id": "euref_ip", "url": "http://euref-ip.net:2101/", "color": "#1f4e79"},  # BKG broadcaster (primary of the 3-member EUREF-IP federation; ROB + ASI mirror); ~218 STR, ~206 physical EPN stations after solution_filter; all rows NMEA=0; raw 1 Hz RTCM single-base
-    {"id": "igs_ip", "url": "http://www.igs-ip.net:2101/", "color": "#7d3c98"},  # BKG-operated global IGS observation caster; same BKG account as EUREF-IP; raw 1 Hz RTCM single-base
+    {"id": "euref_ip", "url": "http://euref-ip.net:2101/", "color": "#1f4e79"},
+    {"id": "igs_ip", "url": "http://www.igs-ip.net:2101/", "color": "#7d3c98"},
     {"id": "mirai", "url": "http://ntrip.go.gnss.go.jp:2101/", "color": "#2471a3"},
-    {"id": "cors_korea", "url": "http://www.gnssdata.or.kr:2101/", "color": "#a93226"},  # Network 1 — GNSS Data Center; aggregates 8 KR agencies (NGII, KASI, SMG, etc.); email reg only; no Korean ID; NTRIP password literal "gnss"; 167 unique base codes / 546 STR rows / 493 parsed mountpoints (2026-05-08)
-    {"id": "almgg_mn", "url": "http://rtk.gazar.gov.mn:2101/", "color": "#9e6b00", "credentials": {"user": "rover", "pass": "262461"}, "solution_filter": False},  # MonPOS; SNIP R3.14; alt IP 66.181.168.80:2101; curl-confirmed 2026-04-30                                                   # caster tags 6 physical stations solution=1
-    {"id": "icecors", "url": "http://178.19.53.126:2101/", "color": "#1e6b8c", "nmea_filter": False},                                                   # GNSMART tags 4 physical Reykjanes mounts (AUSV/GEVK/SENG/VOGC) nmea=1, solution=0
+    {"id": "cors_korea", "url": "http://www.gnssdata.or.kr:2101/", "color": "#a93226"},
+    {"id": "almgg_mn", "url": "http://rtk.gazar.gov.mn:2101/", "color": "#9e6b00", "credentials": {"user": "rover", "pass": "262461"}, "solution_filter": False},  # caster tags 6 physical stations solution=1
+    {"id": "icecors", "url": "http://178.19.53.126:2101/", "color": "#1e6b8c", "nmea_filter": False},  # GNSMART tags 4 physical Reykjanes mounts nmea=1
     {"id": "ksa_cors", "url": "http://ksacors.geoportal.sa:2101/", "color": "#a0522d"},
     # Italy — regional networks
-    {"id": "spin3", "url": "http://158.102.7.10:2101/", "color": "#1565c0"},  # bare IP; spingnss.it hostname times out; IP confirmed SOURCETABLE 200 OK 2026-05-07
+    {"id": "spin3", "url": "http://158.102.7.10:2101/", "color": "#1565c0"},
     {"id": "gpsumbria", "url": "http://gpsumbria.regione.umbria.it:2101/", "color": "#2e7d32"},
     {"id": "sit_puglia", "url": "http://gps.sit.puglia.it:2101/", "color": "#0288d1"},
-    {"id": "gnss_campania", "url": "http://gps.sit.regione.campania.it:2101/", "color": "#6a1b9a", "credentials": {"user": "Campania", "pass": "GNSS"}},  # public creds: user=Campania pass=GNSS (30-sec VRS); 1-sec requires SPID
-    {"id": "tpos", "url": "http://194.105.50.232:2101/", "color": "#00695c"},  # bare IP; tpos.provincia.tn.it is portal domain, does not resolve as NTRIP caster
-    {"id": "stpos", "url": "http://62.101.0.40:2109/", "color": "#ad1457"},  # SOURCETABLE 200 OK on port 2109; port 2101 refused; domain www.stpos.it
+    {"id": "gnss_campania", "url": "http://gps.sit.regione.campania.it:2101/", "color": "#6a1b9a", "credentials": {"user": "Campania", "pass": "GNSS"}},
+    {"id": "tpos", "url": "http://194.105.50.232:2101/", "color": "#00695c"},
+    {"id": "stpos", "url": "http://62.101.0.40:2109/", "color": "#ad1457"},
     {"id": "gnss_veneto", "url": "http://147.162.229.53:2101/", "color": "#4527a0"},
     {"id": "gnss_liguria", "url": "http://81.23.86.70:2101/", "color": "#0277bd"},
     {"id": "sicilianet", "url": "http://193.206.223.39:2101/", "color": "#e65100"},
-    {"id": "gnss_abruzzo_lazio", "url": "http://gnss-rtk.regione.abruzzo.it:2101/", "color": "#c62828"},  # times out from external IPs (firewalled); service confirmed operational via portal HTTP 200; add 2026-05-13
+    {"id": "gnss_abruzzo_lazio", "url": "http://gnss-rtk.regione.abruzzo.it:2101/", "color": "#c62828"},
     # US state DOT / CORS networks — physical-coordinate stations
-    {"id": "acorn", "url": "http://www.acorn-gnss.net:2101/", "color": "#2e5b8a"},  # Trimble Pivot Web; anonymous sourcetable exposes VRS + MS_RTCM3 (nearest single-base) + named VRS solutions
+    {"id": "acorn", "url": "http://www.acorn-gnss.net:2101/", "color": "#2e5b8a"},
     {"id": "nps_cors", "url": "http://rtk.nps.gov:2101/", "color": "#4a7c59", "nmea_filter": False},  # Trimble Pivot tags all 141 physical stations nmea=1
     {"id": "wiscors", "url": "http://wiscors.dot.wi.gov:2101/", "color": "#bf360c"},
-    {"id": "fprn", "url": "http://www.myfloridagps.com:10000/", "color": "#f57f17"},  # port 10000 (Leica); standard 2101 not used
+    {"id": "fprn", "url": "http://www.myfloridagps.com:10000/", "color": "#f57f17"},
     {"id": "ardot_rtn", "url": "http://gps.ardot.gov:2101/", "color": "#827717"},
-{"id": "vector", "url": "http://vector.vermont.gov:2101/", "color": "#1b5e20"},  # VTrans Geodetic Survey; canonical hostname (resolves to 20.185.11.35)
+{"id": "vector", "url": "http://vector.vermont.gov:2101/", "color": "#1b5e20"},
 {"id": "gcgc_rtn", "url": "http://rtn.usm.edu:2101/", "color": "#01579b"},
-{"id": "orgn", "url": "http://orgn.odot.state.or.us:9881/", "color": "#004d40"},  # hostname; port 9881 (Leica); SOURCETABLE 200 OK 2026-05-13 (6 STR)
-    {"id": "msrn", "url": "http://mdotcors.michigan.gov:10010/", "color": "#006064"},  # port 10010 free RTCM3 MSM4 (per MSRN Port Scheme); 10011 = CMRx
-{"id": "ct_acorn", "url": "http://acorn.uconn.edu:2101/", "color": "#1a237e"},  # SOURCETABLE 200 OK 2026-05-13 (48 STR)
-    {"id": "macors", "url": "http://macorsrtk.massdot.state.ma.us:2101/", "color": "#283593"},  # MassDOT Leica SpiderNet; port 2101 firewalled from external probes — account-gated; add 2026-05-13
-    {"id": "nysnet", "url": "http://rtn.dot.ny.gov:8080/", "color": "#0d47a1"},  # NYSDOT Leica SpiderNet; port 8080 confirmed SOURCETABLE 200 OK 2026-05-13 (18 STR); port 2101 firewalled; add 2026-05-13
-    {"id": "alcors", "url": "http://aldotcors.dot.state.al.us:10099/", "color": "#1565c0"},  # ALDOT Leica SBC; port 10099 = physical single-base (158 STR confirmed 2026-05-13); port 10011 = network mounts; port 2101 firewalled; add 2026-05-13
-    {"id": "iartn", "url": "http://165.206.203.10:10000/", "color": "#37474f"},  # bare IP:port; iartnsbc.iowadot.gov:2101 dead 2026-05-07; sourcetable open, per-station streams require credentials (Emlid/DJI flow documented at e38surveysolutions.com)
+{"id": "orgn", "url": "http://orgn.odot.state.or.us:9881/", "color": "#004d40"},
+    {"id": "msrn", "url": "http://mdotcors.michigan.gov:10010/", "color": "#006064"},
+{"id": "ct_acorn", "url": "http://acorn.uconn.edu:2101/", "color": "#1a237e"},
+    {"id": "macors", "url": "http://macorsrtk.massdot.state.ma.us:2101/", "color": "#283593"},
+    {"id": "nysnet", "url": "http://rtn.dot.ny.gov:8080/", "color": "#0d47a1"},
+    {"id": "alcors", "url": "http://aldotcors.dot.state.al.us:10099/", "color": "#1565c0"},
+    {"id": "iartn", "url": "http://165.206.203.10:10000/", "color": "#37474f"},
     # US state DOT — VRS-only (filter_vrs drops all pins; shown as stopgap circles)
     {"id": "kycors", "url": "http://kycors.ky.gov:2101/", "color": "#546e7a"},
-    {"id": "mncors", "url": "http://mncors.dot.state.mn.us:9000/", "color": "#455a64"},  # port 9000; VRS-only
-    {"id": "odot_rtn", "url": "http://156.63.133.115:2101/", "color": "#607d8b"},  # bare IP; VRS-only
-    {"id": "modot_rtn", "url": "http://rtk3.modot.mo.gov:2101/", "color": "#78909c"},  # VRS-only; notarized agreement
-    {"id": "wvrtn", "url": "http://wvrtn.cors.us:2101/", "color": "#90a4ae"},  # VRS-only
-    {"id": "mainedot", "url": "http://medotrtn.maine.gov:2101/", "color": "#b0bec5"},  # VRS-only; migrated from mdotcors.maine.gov Oct 2025
-    {"id": "azcors", "url": "http://azcors.azwater.gov:2101/", "color": "#c2692e"},  # Arizona CORS; ADWR (Arizona Dept of Water Resources); pipeline-access: registration
-    {"id": "mesa_rtvrn", "url": "http://rtvrn.mesacounty.us:2101/", "color": "#8d6e63"},  # VRS-only; western Colorado
-    {"id": "agrs_nl", "url": "http://ntrip.kadaster.nl:2101/", "color": "#0288d1"},                            # free, anonymous; covers NL mainland + BES islands
+    {"id": "mncors", "url": "http://mncors.dot.state.mn.us:9000/", "color": "#455a64"},
+    {"id": "odot_rtn", "url": "http://156.63.133.115:2101/", "color": "#607d8b"},
+    {"id": "modot_rtn", "url": "http://rtk3.modot.mo.gov:2101/", "color": "#78909c"},
+    {"id": "wvrtn", "url": "http://wvrtn.cors.us:2101/", "color": "#90a4ae"},
+    {"id": "mainedot", "url": "http://medotrtn.maine.gov:2101/", "color": "#b0bec5"},
+    {"id": "azcors", "url": "http://azcors.azwater.gov:2101/", "color": "#c2692e"},
+    {"id": "mesa_rtvrn", "url": "http://rtvrn.mesacounty.us:2101/", "color": "#8d6e63"},
+    {"id": "agrs_nl", "url": "http://ntrip.kadaster.nl:2101/", "color": "#0288d1"},
     {"id": "regme_ec", "url": "http://ntrip.igm.gob.ec:2101/", "color": "#558b2f"},
-    {"id": "ign_cr_cors", "url": "http://igncaster.snitcr.go.cr:2101/", "color": "#1b7837"},  # BKG NtripCaster 2.0.44; SOURCETABLE 200 OK 2026-05-12; 14 physical stations; SNIT account required
+    {"id": "ign_cr_cors", "url": "http://igncaster.snitcr.go.cr:2101/", "color": "#1b7837"},
 ]
 # RTKdata.online removed 2026-04-20: server unreachable since launch (RemoteDisconnected);
 # 0 stations ever collected. Operated by Kansi Solutions GmbH (same parent as paid
