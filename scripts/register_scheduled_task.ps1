@@ -34,10 +34,15 @@ if ($SkipDeploy) { $extraArgs += ' -SkipDeploy' }
 if (-not (Test-Path $scriptPath)) { throw "Orchestrator not found at $scriptPath" }
 
 # Sanity check: the target must be a git worktree (the orchestrator uses
-# `git worktree add` from it).
+# `git worktree add` from it) and must have a local `main` ref (the
+# orchestrator always builds from main).
 $inRepo = & git -C $RepoRoot rev-parse --is-inside-work-tree 2>$null
 if ($LASTEXITCODE -ne 0 -or $inRepo.Trim() -ne 'true') {
     throw "Not a git worktree: $RepoRoot"
+}
+& git -C $RepoRoot rev-parse --verify --quiet refs/heads/main *> $null
+if ($LASTEXITCODE -ne 0) {
+    throw "Local branch 'main' not found at $RepoRoot. The orchestrator builds from main."
 }
 
 # Remove existing task with the same name (idempotent).

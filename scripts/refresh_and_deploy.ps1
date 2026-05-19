@@ -33,12 +33,13 @@ $logDir = Join-Path $repoRoot '.tmp/refresh_and_deploy'
 if (-not (Test-Path $logDir)) { New-Item -ItemType Directory -Path $logDir -Force | Out-Null }
 $stamp = (Get-Date).ToUniversalTime().ToString('yyyyMMddTHHmmssZ')
 $logFile = Join-Path $logDir "$stamp.log"
-Start-Transcript -Path $logFile -Append | Out-Null
+Start-Transcript -Path $logFile | Out-Null
 
 # Prune logs older than 30 days so .tmp/ doesn't grow unbounded.
 Get-ChildItem $logDir -Filter '*.log' | Where-Object { $_.LastWriteTimeUtc -lt (Get-Date).ToUniversalTime().AddDays(-30) } | Remove-Item -Force -ErrorAction SilentlyContinue
 
 $worktreePath = Join-Path $repoRoot ".tmp/scheduler-run-$stamp"
+$failed = $false
 
 try {
     Write-Output "=== refresh_and_deploy.ps1 run at $stamp UTC ==="
@@ -47,16 +48,18 @@ try {
     # If a previous run was killed (Task Scheduler timeout, reboot, etc.) its
     # worktree dir is still on disk. Pass 1: walk `git worktree list` and
     # de-register any scheduler-run-* entries. Pass 2: rmdir any leftover dirs
-    # whether git knew about them or not.
+    # whether git knew about them or not. The regex anchors to a path-segment
+    # boundary so unrelated names containing 'scheduler-run-' don't match.
     Write-Output "--- Cleanup: prune stale worktrees ---"
-    $registered = @(git worktree list --porcelain) -join "`n" -split "`n" | Where-Object { $_ -match '^worktree (.+scheduler-run-.+)$' } | ForEach-Object { $matches[1] }
+    $registered = git worktree list --porcelain | Where-Object { $_ -match '^worktree (.+[\\/]scheduler-run-[^\\/]+)$' } | ForEach-Object { $matches[1] }
     foreach ($wt in $registered) {
         Write-Output "Deregistering stale worktree: $wt"
         try { git worktree remove --force $wt } catch {}
     }
     Get-ChildItem (Join-Path $repoRoot '.tmp') -Directory -Filter 'scheduler-run-*' -ErrorAction SilentlyContinue | ForEach-Object {
         Write-Output "Removing stale dir: $($_.FullName)"
-        Remove-Item -Recurse -Force $_.FullName -ErrorAction SilentlyContinue
+        Remove-Item -Recurse -Force $_.FullName -ErrorAction SilentlyContinue -ErrorVariable rmErr
+        if ($rmErr) { Write-Output "WARN: rmdir failed for $($_.FullName): $($rmErr[0].Exception.Message)" }
     }
 
     # --- Create ephemeral worktree -----------------------------------------
@@ -85,20 +88,17 @@ try {
 
     Write-Output "=== refresh_and_deploy.ps1 succeeded ==="
 } catch {
+    $failed = $true
     Write-Output "=== refresh_and_deploy.ps1 FAILED: $($_.Exception.Message) ==="
-    # Best-effort cleanup even on failure. Postmortem state lives in the log
-    # plus the inner script's own output; the worktree itself holds nothing
-    # we need to inspect.
-    Set-Location $repoRoot  # inner script changes CWD into the worktree; reset before removal
+} finally {
+    # Best-effort cleanup on every exit path. Inner uses Push/Pop-Location so
+    # CWD is already back to $repoRoot — no Set-Location needed here.
     try { git worktree remove --force $worktreePath } catch {}
-    if (Test-Path $worktreePath) { Remove-Item -Recurse -Force $worktreePath -ErrorAction SilentlyContinue }
+    if (Test-Path $worktreePath) {
+        Remove-Item -Recurse -Force $worktreePath -ErrorAction SilentlyContinue -ErrorVariable rmErr
+        if ($rmErr) { Write-Output "WARN: rmdir failed for $worktreePath`: $($rmErr[0].Exception.Message)" }
+    }
     Stop-Transcript | Out-Null
-    exit 1
 }
 
-# --- Cleanup ---------------------------------------------------------------
-Set-Location $repoRoot  # inner script changes CWD into the worktree; reset before removal
-try { git worktree remove --force $worktreePath } catch {}
-if (Test-Path $worktreePath) { Remove-Item -Recurse -Force $worktreePath -ErrorAction SilentlyContinue }
-
-Stop-Transcript | Out-Null
+if ($failed) { exit 1 }
