@@ -47,7 +47,7 @@
 - Using `exit 1` in PreToolUse hooks expecting a block (only exit 2 blocks).
 - Spawning isolation worktrees while hook scripts are in gitignored paths — `git worktree add` skips untracked, hooks then error and block all tool calls.
 - Propagating tool names mentioned in tool returns without verifying own schema enum — Agent return's `SendMessage` hint is SDK-layer leakage.
-- Wiring `WorktreeCreate` / `WorktreeRemove` to a logging-only hook expecting observation semantics — these are REPLACEMENT hooks. The command must return the worktree path; a no-op silently breaks `Agent(isolation: "worktree")`. Confirmed by `WorktreeCreate hook failed: hook succeeded but returned no worktree path`.
+- Wiring `WorktreeCreate` to a logging-only hook expecting observation semantics — `WorktreeCreate` is REPLACEMENT. The command must return the worktree path; a no-op silently breaks `Agent(isolation: "worktree")` with `WorktreeCreate hook failed: hook succeeded but returned no worktree path`. (`WorktreeRemove` IS observation-only — wiring a logger to it is safe; don't generalize from one to the other.)
 - Expecting `settings.json permissions.allow` to re-expose a frontmatter-stripped tool — allow grants permission to existing schemas; strip removes the schema entirely.
 - Trying to widen subagent tool pool beyond parent's via frontmatter `tools:` — only `mcpServers:` adds scope (MCP-only).
 
