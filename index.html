@@ -927,8 +927,8 @@
       h+=`<div class="row"><span class="lbl">Username</span><span style="font-size:11px;color:var(--muted);font-style:italic">${esc(source.userNote)}</span></div>`;
     if(source.pass)
       h+=cpRow('Password',source.pass);
-    if(source.openNote)
-      h+=`<div class="anote">${esc(source.openNote)}</div>`;
+    if(source.note)
+      h+=`<div class="anote">${esc(source.note)}</div>`;
     if(source.registration)
       h+=`<div class="anote"><a href="${esc(source.registration)}" target="_blank" rel="noopener noreferrer">${esc(visUrl(source.registration))} ↗</a></div>`;
     return h+'</div>';
@@ -1120,8 +1120,7 @@
       var isLive=net.staleness==='live';
       var hasStations=net.stationCount>0;
       if(!isLive){
-        var note=net.note||net.openNote||'';
-        var greyPopup=buildGreyPopup(net.label,net.region||'',note,net.registration,net.stationsDeclared);
+        var greyPopup=buildGreyPopup(net.label,net.region||'',net.note||'',net.registration,net.stationsDeclared);
         var greyRing=addRingMarker(group,net.lat,net.lon,renderer,GREY_MARKER_COLOR,0.18);
         var greyMk=addAntennaMarker(group,net.lat,net.lon,GREY_MARKER_COLOR,net.label,greyPopup);
         greyById[net.id]={visual:greyRing,marker:greyMk};
@@ -1140,7 +1139,7 @@
         var vrsPopup='<div class="popup-plain"><h3>'+esc(net.label)+'</h3>'
           +'<div class="acc" style="color:'+VRS_COLOR+'">'+vrsAcc+vrsChip()+'</div>'
           +'<div style="margin:4px 0 6px;font-size:12px">'+vrsBody+'</div>'
-          +(net.openNote?'<div class="anote">'+esc(net.openNote)+'</div>':'')
+          +(net.note?'<div class="anote">'+esc(net.note)+'</div>':'')
           +(net.registration?'<div class="anote"><a href="'+esc(net.registration)
             +'" target="_blank" rel="noopener noreferrer">'+esc(visUrl(net.registration))+' ↗</a></div>':'')
           +'</div>';
@@ -1153,7 +1152,7 @@
         var livePopup='<div class="popup-plain"><h3>'+esc(net.label)+'</h3>'
           +'<div class="acc" style="color:'+LIVE_NET_COLOR+'">RS network — connect to one reference station at a time'+rsChip()+'</div>'
           +'<div style="margin:4px 0 6px;font-size:12px">'+liveBody+'</div>'
-          +(net.openNote?'<div class="anote">'+esc(net.openNote)+'</div>':'')
+          +(net.note?'<div class="anote">'+esc(net.note)+'</div>':'')
           +(net.registration?'<div class="anote"><a href="'+esc(net.registration)
             +'" target="_blank" rel="noopener noreferrer">'+esc(visUrl(net.registration))+' ↗</a></div>':'')
           +'</div>';
@@ -1756,9 +1755,13 @@
   function buildDataModel(stationsJson, healthJson, countryMarkersJson){
     var rawSources=(stationsJson&&stationsJson.sources)||{};
     var healthSources=(healthJson&&healthJson.sources)||{};
+    var markers=(countryMarkersJson&&countryMarkersJson.markers)||[];
+    var markersById={};
+    markers.forEach(function(m){ markersById[m.id]=m; });
     var now=Date.now();
     Object.keys(rawSources).forEach(function(sid){
       var rs=rawSources[sid];
+      var mk=markersById[sid]||{};
       var host='', port='';
       try{
         var p=new URL(rs.url||'');
@@ -1772,10 +1775,10 @@
       SOURCES[sid]={
         id:           sid,
         color:        rs.color||UNKNOWN_SOURCE_COLOR,
-        label:        rs.label||sid,
-        registration: validUrl(rs.registration||''),
-        access:       rs.access||'registration',
-        openNote:     rs.openNote||null,
+        label:        mk.name||sid,
+        registration: validUrl(mk.registration||''),
+        access:       mk.access||'registration',
+        note:         mk.note||null,
         near:         rs.near||false,
         user:         rs.user||(rs.credentials&&rs.credentials.user&&!rs.userNote?rs.credentials.user:null),
         pass:         rs.pass||(rs.credentials&&rs.credentials.pass)||null,
@@ -1783,10 +1786,10 @@
         host:         host||null,
         port:         port||null,
         staleness:    days>=STALE_HIDE_DAYS?'dead':days>=STALE_GREY_DAYS?'stale':'live',
-        // editorial fields — augmented below from country_markers (free tier)
+        // tier-specific fields filled in the markers loop below
         stationCount: 0,
         lat: null, lon: null, region: null, vrs: false,
-        stationsDeclared: null, note: null,
+        stationsDeclared: null,
       };
     });
     var bySource={};
@@ -1812,18 +1815,19 @@
       // so toggling a network updates dot colour and slice composition.
     });
     var affordableNetworks=[], paidNetworks=[], restrictedNetworks=[], info=[];
-    (countryMarkersJson&&countryMarkersJson.markers||[]).forEach(function(m){
+    markers.forEach(function(m){
       if(m.tier==='free'){
         if(!SOURCES[m.id]){
-          // Not in pipeline — synthetic dead entry so buildNetworkOverlays renders a grey ring.
+          // Free marker without a pipeline SOURCES entry — synthetic dead.
           if(!m.lat) return;
           SOURCES[m.id]={
             id:m.id, color:UNKNOWN_SOURCE_COLOR, label:m.name||m.id,
             registration:validUrl(m.registration||''), access:m.access||'registration',
-            openNote:null, near:false, user:null, pass:null, userNote:null,
+            note:m.note||null,
+            near:false, user:null, pass:null, userNote:null,
             host:null, port:null, staleness:'dead', stationCount:0,
             lat:m.lat, lon:m.lon, region:m.region||null, vrs:!!m.vrs,
-            stationsDeclared:m.stations_declared||null, note:m.note||null,
+            stationsDeclared:m.stations_declared||null,
           };
           return;
         }
@@ -1832,8 +1836,7 @@
         net.region=m.region||null;
         net.vrs=!!m.vrs;
         net.stationsDeclared=m.stations_declared||null;
-        net.note=m.note||null;
-        net.registration=net.registration||validUrl(m.registration||'');
+        // label/access/registration/note populated in the initial pass.
       } else {
         var rec={id:m.id, name:m.name||m.id, lat:m.lat, lon:m.lon,
           region:m.region||'', tier:m.tier, access:m.access||m.tier,

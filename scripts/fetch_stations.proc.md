@@ -61,45 +61,35 @@ file usually records the verification. That's enough evidence.
 
 ## SOURCES entry shape
 
+SOURCES carries operational fetch + parse config only. Editorial fields
+(`label`/`name`, `region`, `access`, `registration`, `note`, `tier`, `vrs`,
+`country`) live in `../data/country_markers.json` — joined by `id`.
+
 ```python
 {
-  "id":         "almgg_mn",                    # stable; matches networks.md block id; used as
-                                               # `data/<id>.sourcetable` filename and stations.json key
+  "id":         "almgg_mn",                    # stable; matches networks.md block id and country_markers
+                                               # entry id; used as `data/<id>.sourcetable` filename and
+                                               # stations.json key
   "url":        "http://rtk.gazar.gov.mn:2101/", # full NTRIP URL; trailing slash; http:// even if host
                                                # serves https — script falls back to raw NTRIP/1.0 TCP
                                                # if the HTTP GET returns BadStatusLine
   "color":      "#9e6b00",                     # marker colour — pick a country-distinctive hex; avoid
                                                # collisions with neighbouring networks at the same zoom
-  "label":      "MonPOS",                      # short UI string in popups + filter panel
-  "type":       "physical-vrs",                # see "type field" below
-  "country":    ["MN"],                        # list; ISO 3166-1 alpha-2. ["global"] for aggregators
-                                               # (rtk2go, Centipede). ["americas"] etc. for regional
-                                               # multi-country casters (EarthScope)
-  "region":     "Friuli-Venezia Giulia",       # optional; sub-national qualifier
   "group":      "italy-regional",              # optional; clusters related sources in the UI filter
   "credentials":{"user":"rover","pass":"262461"}, # optional; shared/public creds shown in popup
-  "access":     "open",                        # "open" | "registration" | "conditions" — see below
-  "registration": "https://monpos.gazar.gov.mn", # signup URL; None for fully open casters
   "near":       True,                          # optional; surfaces NEAR hint in popup
-  "user":       "centipede",                   # optional; only on free servces iff it's public knowledge. literal username for copy-to-rover popup
-  "pass":       "centipede",                   # optional; only on free servces iff it's public knowledge. literal password
+  "user":       "centipede",                   # optional; only on free services iff public knowledge. literal username for copy-to-rover popup
+  "pass":       "centipede",                   # optional; only on free services iff public knowledge. literal password
   "userNote":   "your registered username",    # optional; popup hint when user is variable
-  "openNote":   "Free registration required",  # optional; popup access blurb
   "nmea_filter":    False,                     # optional; default True — see filter flags
   "solution_filter": False,                    # optional; default True — see filter flags
 }
 ```
 
-### `access` values
-- `open` — connect immediately, no account.
-- `registration` — free for everyone; signup required.
-- `conditions` — free but may not apply to you (national ID, non-commercial only, fee for some uses, expiring trial).
-
-### `type` values
-- `single-base` — physical antennas, each with a distinct coordinate.
-- `physical-vrs` (and legacy `physical-coord-vrs`) — sourcetable carries physical mounts plus VRS/NRTK overlays.
-- `vrs-only` — sourcetable exposes only virtual / single-coord mountpoints. Yields 0 physical pins after `filter_vrs` collapses identical-coord rows; renders as a country-level VRS ring driven by `country_markers.json`.
-- `unknown` — cannot determine from the sourcetable.
+The editorial fields previously held here are now in
+`../data/country_markers.json`. Adding a new SOURCES entry presumes a
+corresponding markers entry already exists; if it doesn't, the country-zoom
+marker will silently not render and the popup will fall back to `id` as label.
 
 ## Filter flags — `nmea_filter`, `solution_filter`
 
