@@ -67,7 +67,7 @@ Most relevant for subagent work:
 
 - `PreToolUse` / `PostToolUse` — before / after each tool call. PreToolUse fires INSIDE subagents.
 - `SubagentStart` / `SubagentStop` — spawn / return; payload includes agent_id + agent_type.
-- `WorktreeCreate` / `WorktreeRemove` (L) — fire on `--worktree` CLI flag or `Agent(isolation: "worktree")` spawn. No matchers. Replace default git logic for non-git VCS.
+- `WorktreeCreate` / `WorktreeRemove` (K) — **REPLACEMENT hooks**, not pure observation. They are effectively the arguments API for `Agent(isolation: "worktree")`, which itself takes no caller knobs (just the binary flag). When wired, the hook command takes over worktree creation/removal entirely; the built-in git logic is bypassed. `WorktreeCreate` fires BEFORE the subagent runs, and its command MUST return the worktree path via stdout (or `hookSpecificOutput.worktreePath` for http/callback variants). A no-op logging hook returns no path → `WorktreeCreate hook failed: hook succeeded but returned no worktree path` → worktree creation aborts. Use cases: custom base ref / path / branch naming, non-git VCS (svn/hg/perforce), shared worktrees across calls, fenced-off untrusted-code isolation outside the repo. Default (no hook wired) = built-in git logic with the project's `worktree.baseRef` setting. No matchers.
 - `InstructionsLoaded` — CLAUDE.md / rules loaded.
 - `UserPromptSubmit` — user submits a prompt.
 
@@ -87,18 +87,24 @@ Other lifecycle events: `SessionStart`, `SessionEnd`, `Stop`, `Notification`, `P
 
 A hook can also emit `hookSpecificOutput.additionalContext` — that string is injected into Claude's own context. Useful for surfacing lifecycle markers visible to the model.
 
-## Load order at session start
+## Session-start sequence
 
-1. System prompt (internal)
-2. Settings (managed > CLI flags > `.local.json` > `.json` > user `~/.claude/`) — includes hook definitions
-3. CLAUDE.md (concatenation across project + user + enterprise)
-4. Skills catalog (frontmatter at start; body lazy on invocation)
-5. Agents catalog
-6. MCP servers
-7. Hook activation
-8. Tool schemas
+Hook lifecycle interleaves with static config loading. Approximate observed order:
 
-Subagent variant: same sequence in worktree's cwd; layers #3 + gitStatus stripped for Explore/Plan; agent body composes onto #1.
+1. Settings layers merged (managed > CLI flags > `.local.json` > `.json` > user `~/.claude/`) — hook definitions registered, permissions evaluated.
+2. `SessionStart` hook fires (observed before CLAUDE.md per hook log); its `additionalContext` if emitted is appended to Claude's context.
+3. Static config snapshot — all loaded into Claude's context before first inference:
+   - CLAUDE.md concatenation (project + user + enterprise)
+   - Skills catalog (frontmatter only; body lazy on invocation)
+   - Agents catalog (`.claude/agents/` + parents + user)
+   - MCP servers
+   - Tool schemas (gated by frontmatter `tools:`)
+4. `InstructionsLoaded` hook fires once CLAUDE.md / rules are loaded.
+5. `UserPromptSubmit` fires per prompt thereafter.
+
+Per-event hooks (`PreToolUse`, `PostToolUse`, `SubagentStart` / `Stop`, etc.) fire at their respective lifecycle moments — not as part of startup.
+
+Subagent variant: same snapshot at the subagent's cwd; CLAUDE.md + gitStatus stripped for Explore/Plan; agent body composes onto the base identity layer.
 
 ## Hot-reload
 
