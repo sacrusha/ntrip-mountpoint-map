@@ -744,18 +744,17 @@ of end-2024.
 **operator**:  IGAC — Instituto Geográfico Agustín Codazzi (Centro de Control Geodésico Nacional)
 **landing_url**: https://redgeodesica.igac.gov.co/
 **access_url**: https://redgeodesica.igac.gov.co/herramientas/servicios.html
-**host:port**: `sbc.igac.gov.co:2102` (143 single-base mountpoints); `sbc.igac.gov.co:2101` (20 VRS/network mounts)
+**host:port**: `sbc.igac.gov.co:2102` (144 single-base mountpoints, 2026-05-17); `sbc.igac.gov.co:2101` (20 VRS/network mounts)
 **type**:      physical-coord-vrs
 **access**:    free; register at redgeodesica-sbc.igac.gov.co/sbc; Law 1955/2019 (PND Art. 281) mandates public access; Resolución IGAC 1771 de 2024 officialized the portal
 **pipeline-access**: registration
-**stations**:  143 STR / 137 unique exact lat/lon pairs on port 2102. Sourcetable byte-identical 2026-05-07 → 2026-05-13 (Content-Length 15621); no station additions or removals in that window. IGAC declares ~260 CORS in total (IGAC + SGC); the gap reflects post-processing-only stations and SGC GeoRED stations not piped into the RTK service.
+**stations**:  144 STR on port 2102 (2026-05-17; Content-Length 15869). Up from 143 / 15621 on 2026-05-07 + 2026-05-13 → one station added 2026-05-13 → 2026-05-17. IGAC declares ~260 CORS in total (IGAC + SGC); the gap reflects post-processing-only stations and SGC GeoRED stations not piped into the RTK service.
 **signals**:   GPS+GLO+GAL+BDS on MSM; GPS+GLO on most legacy RTCM3; GPS-only on RTCM2/DGPS
 **licence**:   Law 1955/2019 (public access mandated)
-**last_researched_date**: 2026-05-13
+**last_researched_date**: 2026-05-17
 
-Port 2102 mountpoint pattern: 143 `<CODE>_RTCM3` single-base mountpoints, 137 unique
-exact lat/lon pairs (canonical dedup; six coord-collisions where one site exposes 2–3
-mountpoints). Port 2101 mountpoints: MSM_VIRS, MSM_IMAX, MSM_NEAR, legacy
+Port 2102 mountpoint pattern: 144 `<CODE>_RTCM3` single-base mountpoints
+(2026-05-17). Port 2101 mountpoints: MSM_VIRS, MSM_IMAX, MSM_NEAR, legacy
 RTCM3/RTCM2/CMR variants, regional cells LLANOS_RTCM3 / SUR_OESTE_RTCM3 /
 NOROESTE_RTCM3.
 
@@ -957,31 +956,38 @@ is for a specific Bundesland rather than the federal aggregate):
 **yearly_cost**: €200/mo RTK (~$220/mo); no annual plan — per-second, per-day, per-month only
 **yearly_cost_normalized**: 2640
 **access_url**: https://www.bev.gv.at
-**stations**:  37 physical AT stations in sourcetable; BEV brochure cites 75 including
-               cross-border partner stations (SAPOS Bavaria, FReDNet, swipos AGNES)
+**stations**:  ~40 physical AT CORS; BEV brochure cites 75 including cross-border partner
+               stations (SAPOS Bavaria, FReDNet, swipos AGNES). Sourcetable advertises only
+               VRS/MAC mountpoints (7), not raw bases.
 **vrs**:       yes (nationwide VRS, no baseline-distance degradation)
-**last_researched_date**: 2026-05-12
+**last_researched_date**: 2026-05-17
 
 Austria's national VRS network operated by BEV. Sourcetable is publicly
 readable; RTCM stream authentication requires valid credentials. Standard
 tier pricing: RTK €0.0015/sec, €20/day, €200/month; DGPS €0.00015/sec,
-€2/day, €20/month; one-time €50 setup fee; €50,000/yr for APOS RAW (full
-raw-station access). A fixed IPv4 must be registered per device — dynamic
-IPs not accepted for the paid tier.
+€2/day, €20/month; one-time €50 setup fee. APOS RAW (full raw-station access)
+is a paid professional/institutional subscription; the previously cited
+€50,000/yr figure is no longer on the public BEV pricing page — treat as
+unverified. A fixed IPv4 must be registered per device — dynamic IPs not
+accepted for the paid tier.
 
 **eAMA free tier** (since 1 Feb 2021): free APOS RTK for agricultural /
 forestry businesses, contract operators, machinery rings, and publicly
 funded agri-research institutions. Registration via the eAMA portal
 (services.ama.at) with Betriebsnummer + PIN; BEV credentials issued within
-~48 business hours. Stated subsidy equivalence ~€400/yr per enrolled
-operation.
+~48 business hours. LKO documents subsidy equivalence as ~€150/yr per enrolled
+operation (counted under de-minimis aid; declaration requirement ends
+2027-01-01). The prior ~€400/yr figure is no longer corroborated.
 
-Mountpoints: APOS_VRS (legacy RTCM 2.3), APOS_VRS3 (RTCM 3.1), APOS_VRS32_MSM
-(RTCM 3.2 MSM GPS+GLO+GAL), APOS_VRS32_MSM_3D (3D interpolation), APOS_DGPS,
-plus APOS_NET3 / APOS_Extended / APOS_Extended_plus (2025: RTCM 3.2 MSM4 +
-BeiDou). 15 AUT-coded rtk2go bases + 1 Centipede node (BOKU) supplement
-coverage, mostly eastern Austria; western Alps weaker. Liechtenstein has no
-independent caster and depends on APOS (via eAMA) or Swiss swipos.
+Live mountpoints (2026-05-17): `APOS_DGPS` (RTCM 2.3 DGNSS), `APOS_VRS` (RTCM
+2.3 GPS+GLO), `APOS_VRS3` (RTCM 3.1 GPS+GLO), `APOS_NET3` (RTCM 3.1 MAC),
+`APOS_VRS32_MSM` (RTCM 3.2 MSM5 GPS+GLO+GAL), `APOS_VRS32_MSM_3D` (3D
+interpolation), `APOS_VRS32_GRID2021` (VRS + MGI Grid 2021 transform). Prior
+research mentioned a speculative `APOS_Extended` / `APOS_Extended_plus` with
+BeiDou — not present in the current sourcetable. 14 AUT-coded rtk2go bases +
+1 Centipede node (BOKU) supplement coverage, mostly eastern Austria; western
+Alps weaker. Liechtenstein has no independent caster and depends on APOS
+(via eAMA) or Swiss swipos.
 
 ---
 
@@ -1211,17 +1217,18 @@ same IP.
 **access**:    registration; free via azwater.gov (Arizona Dept. of Water Resources)
 **pipeline-access**: registration
 **access_url**: https://www.azwater.gov/hydrology/azcors (SBC at azcors.azwater.gov)
-**stations**:  52 (37 ADWR-managed + 15 EarthScope/NPS CORS sites; per ADWR March 2025 update reflected in AZCORS_InformationAndMountpoints20260406.pdf)
+**stations**:  71 (56 ADWR-managed + 15 EarthScope/NPS CORS sites; per ADWR 2026-04-14 page update and AZGeo hub)
 **source**:    azwater.gov (Arizona Department of Water Resources)
 **operator**:  Arizona Dept. of Water Resources (ADWR)
-**last_researched_date**: 2026-05-13
+**last_researched_date**: 2026-05-18
 
-Arizona CORS Network operated by ADWR. 52 total sites (37 ADWR + 15 EarthScope/NPS);
-ADWR consolidated and decommissioned several sites during the 2024–2025 modernisation,
-superseding the earlier 71-site figure. Free registration at azcors.azwater.gov/sbc.
-Moderate overlap with EarthScope NOTA expected. Port 2101 is the Leica SBC default;
-external probes timeout (Cloudflare CDN in front of the portal) — actual port confirmed
-post-registration only.
+Arizona CORS Network operated by ADWR. 71 total sites (56 ADWR + 15 EarthScope/NPS) per
+the azwater.gov AZCORS page (last update banner 2026/04/14) and the AZGeo data hub.
+Free registration at azcors.azwater.gov/sbc. Moderate overlap with EarthScope NOTA
+expected. Port 2101 is the Leica SBC default; external probes timeout (Cloudflare CDN
+in front of the portal) — actual port confirmed post-registration only. Mountpoints PDF
+azwater.gov/.../AZCORS_InformationAndMountpoints20260406.pdf returns HTTP 403 to
+scripted GET (anti-bot) but is accessible in browser.
 
 ---
 
@@ -2319,13 +2326,13 @@ SARNET is the only Sardinia-specific correction service if operational; HxGN Sma
 **type**:      physical-vrs (VRS solutions + MS_RTCM3 nearest-station single-base; anonymous sourcetable)
 **access**:    free; self-service registration at acorn-gnss.net (no professional licence field)
 **pipeline-access**: registration
-**stations**:  39 physical reference stations underlying 4 regional VRS solutions + 1 experimental
+**stations**:  physical CORS count not declared on operator-facing pages; 8 mountpoints live (5 regional VRS + 1 NorthWest VRS + 1 experimental NortonSound VRS + MS_RTCM3 nearest-station)
 **source**:    acorn-gnss.net (Alaska DNR — Division of Mining, Land & Water, Survey Section)
 **operator**:  Alaska DNR, in partnership with DOTPF, NPS, and EarthScope
-**last_researched_date**: 2026-05-13
+**last_researched_date**: 2026-05-18
 
 Trimble Pivot Web (NTRIP Trimble Ntrip Caster 5.2). Caster serves both VRS network-RTK
-and a nearest-station single-base stream. Live sourcetable (2026-05-13) lists 8 STR
+and a nearest-station single-base stream. Live sourcetable (2026-05-18) lists 8 STR
 mountpoints: `MS_RTCM3` (connects to nearest station), `VRS_SouthCentral_RTCM3` (+CMRx),
 `VRS_Interior_RTCM3`, `VRS_SouthEast_RTCM3` (+CMRx), `VRS_NorthWest_RTCM3`, and
 `VRS_NortonSound_RTCM3_EXPERIMENTAL` (Seward Peninsula / Norton Sound). All eight
@@ -2334,7 +2341,8 @@ Anonymous sourcetable exposes only VRS and MS_RTCM3 mountpoints; individual phys
 station streams visible only after login. Raw single-base streams from named physical
 stations also accessible via the NPS caster at `rtk.nps.gov:2101`. Registration is
 self-service; the "Organisation" field on the login page is present but its requirement
-is not clarified in public documentation.
+is not clarified in public documentation. Datum: NAD83(2011) Epoch 2010.0 per Alaska
+DNR 2025 DGGS AKGeoSummit ACORN workshop PDF.
 
 ---
 
@@ -2345,23 +2353,25 @@ is not clarified in public documentation.
 **type**:      single-base
 **access**:    conditions — credentials provisioned manually by NPS staff via the ntrip.nps.gov contact address; restriction scope unclear
 **pipeline-access**: conditions
-**stations**:  141 active mountpoints (live sourcetable 2026-05-13; the seven stations previously offline — DESO, GAA2, GAA3, HALE, HAVO, PAAL, SAJU — are all back)
+**stations**:  142 active mountpoints (live sourcetable 2026-05-18; 1:1 with physical stations, no routing aliases)
 **source**:    ntrip.nps.gov (portal) / rtk.nps.gov (NTRIP caster), National Park Service
 **operator**:  National Park Service (NPS)
-**last_researched_date**: 2026-05-13
+**last_researched_date**: 2026-05-18
 
 RTCM 3.2 (most stations) / RTCM 3.4 (newest), 1-second single-base streams; declared
-message set `1004(1),1005/1007(5),PBS(10)`. 141 active mountpoints spanning CONUS,
+message set `1004(1),1005/1007(5),PBS(10)`. 142 active mountpoints spanning CONUS,
 Alaska, Pacific (Hawaii, American Samoa), Marianas; includes ACORN physical stations in
 Alaska. Constellations: GPS+GLO+GAL+BDS network-wide per live sourcetable — upgrade from
 the earlier MSM4 GPS-only configuration documented in 2022. Portal at ntrip.nps.gov;
-NTRIP caster endpoint is rtk.nps.gov:2101. Datum: NAD 1983 (2011) 2010.0; MYCS3 (NGS
-Multi-Year CORS Solution 3, ITRF2020 epoch 2020.00) applied 2026-02-13 using August 2025
-data. Accounts provisioned manually by NPS staff via the contact address on the
-ntrip.nps.gov portal; no public eligibility policy — described internally as supporting
-NPS mapping and survey projects, but access has been extended to ACORN partners and
-external contractors. Sourcetable is publicly listable (SOURCETABLE 200 OK without auth)
-and is ingested in the pipeline; credentials are only required for stream subscription.
+NTRIP caster endpoint is rtk.nps.gov:2101. Datum: omitted — no citable operator
+declaration on the ntrip.nps.gov portal as of 2026-05-18 (NGS material describes MYCS3
+as ITRF2020 epoch 2020.00 but is not an NPS declaration; contact gnss_posnav@nps.gov for
+binding statement). Accounts provisioned manually by NPS staff via the contact address
+on the ntrip.nps.gov portal; no public eligibility policy — described internally as
+supporting NPS mapping and survey projects, but access has been extended to ACORN
+partners and external contractors. Sourcetable is publicly listable (SOURCETABLE 200 OK
+without auth) and is ingested in the pipeline; credentials are only required for stream
+subscription.
 
 ---
 
@@ -3616,8 +3626,8 @@ the service delivers VRS/network solutions or only nearest-base RTK.
 **status**:    paid
 **date_added**: 2026-05-13
 **country**:   BA — Bosnia and Herzegovina (Republika Srpska entity)
-**last_researched_date**: 2026-05-12
-**type**:      VRS + iMAX + MAX + FKP + nearest-station single base
+**last_researched_date**: 2026-05-17
+**type**:      VRS + iVRS + MAX + iMAX + nearest-station single base (FKP retired)
 **host:port**: `srpos.rgurs.org:2101` (web portal `http://srpos.rgurs.org/sbc`);
                legacy `81.93.74.247:8080` also documented in user-access guide
 **access**:    Paid. Tariff schedule established by Decision in Sl. glasnik RS
@@ -3644,9 +3654,12 @@ the service delivers VRS/network solutions or only nearest-base RTK.
                (0.20 KM/min ≈ $7/hr), the 1-month tier (~$145), and the annual
                (~$578) are all above the cutoff.
 **yearly_cost_normalized**: 578
-**mountpoints**: MAX-AUTO (RTCM 3.1, GPS+GLO), iMAX-AUTO (3.1), VRS-AUTO (3.1),
-               FKP-AUTO (RTCM 2.3 msg 18/19, GPS only), NEAREST (3.1, single
-               base), iMAX-AUTO-2.3 (RTCM 2.3)
+**mountpoints**: (live 2026-05-17, 18 STR rows): VRS.GK6, iVRS.GK6, MAX.GK6_3s,
+               MAXGK6_3s/_3sR, iMAX.GK6_3s/_3sR, iMAXGK6_3s/_3sR,
+               iMAX-AUTO_Galileo, VRS-AUTO-1819 (RTCM 2), NearestGK5/6/7_3s and
+               _3sR, iNearestGK5/6/7_3s. Legacy MAX-AUTO / iMAX-AUTO /
+               FKP-AUTO / iMAX-AUTO_2.3 names from the RGURS user-access PDF
+               are no longer published.
 **stations**:  ~17 (RS portion of the 34-station BiHPOS network)
 **source**:    rgurs.org/stranica/srpos; rgurs.org/en/stranica/srpos;
                rgurs.org/uploads/pages/SRPOS_Korisnicki_pristup.pdf;
@@ -3669,7 +3682,7 @@ the nearest free rtk2go cluster is on the Serbian side.
 **status**:    paid
 **date_added**: 2026-05-13
 **country**:   BA — Bosnia and Herzegovina (Federation entity)
-**last_researched_date**: 2026-05-12
+**last_researched_date**: 2026-05-17
 **type**:      VRS + iMAX + MAX + nearest-station single base; combined H+V
                correction stream
 **host:port**: `fbihpos.katastar.ba:8080` — note port 8080, not the
@@ -3705,7 +3718,11 @@ the nearest free rtk2go cluster is on the Serbian side.
                $203 and the annual at $580) annualise above the project's
                ~$200/yr cutoff for sustained use.
 **yearly_cost_normalized**: 597
-**mountpoints**: MAX-AUTO, iMAX-3G, VRS-AUTO, VRS-3G, NEAREST, FBiH_H+V
+**mountpoints**: (live 2026-05-17, 15 STR rows): MAX-AUTO, MAX-AUTO_CSCS,
+               MAX-AUTO_SRJV1000, iMAX-AUTO, iMAX-3G, VRS-AUTO, VRS-3G,
+               NEAREST, NEAREST-3G, FBiH_H+V, SRJV1000_H+V, DKS_H+V,
+               FKP-AUTO-1819 (RTCM 2), FBIHPOS_DGNSS (RTCM 2 DGNSS),
+               `diplomski` (test stream).
 **stations**:  ~17 (FBiH portion of the 34-station BiHPOS network)
 **source**:    fgu.com.ba/bs/servisi.html;
                fgu.com.ba/files/Novosti/2024/PDF/FBiHPOS - novo/Pristup FBiHPOS servisima.pdf;
@@ -3956,7 +3973,7 @@ instead by the application-gated LVVWD network).
 ## mtsrn — MTSRN (US-MT)
 
 **status**:    paid
-**host:port**: `mtsrn.org:2101` (SOURCETABLE 200 OK 2026-05-13, 336 STR — per-station × per-format combinations across the five subnets)
+**host:port**: `mtsrn.org:2101` (SOURCETABLE 200 OK 2026-05-18, 340 STR — per-station × per-format combinations across the five subnets)
 **type**:      vrs-only
 **access**:    paid; subscribe at mtsrn.org; no professional-licence requirement stated
 **yearly_cost**: $1,500/yr per login (rate effective July 2024; PayZang portal)
@@ -3964,7 +3981,7 @@ instead by the application-gated LVVWD network).
 **operator**:  Montana State Library (MSL), with MDT, tribal nations, counties, universities
 **source**:    msl.mt.gov/mtsrn
 **date_added**: 2026-05-07
-**last_researched_date**: 2026-05-13
+**last_researched_date**: 2026-05-18
 
 Launched March 2022; five geographic VRS subnets (NE, NC, NW, SW, SC Montana). 50+
 CORS stations. Partner agencies receive access in exchange for station hosting.
