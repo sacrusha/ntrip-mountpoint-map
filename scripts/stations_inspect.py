@@ -86,7 +86,7 @@ def main():
 
     s = sources[sid]
     print(f"source:      {sid}")
-    for key in ("label", "url", "type", "country", "region", "group",
+    for key in ("label", "url", "type", "country", "region",
                 "credentials", "registration", "access", "user", "pass",
                 "status", "fetched_at", "last_ok", "openNote", "userNote", "near"):
         if key in s and s[key] not in (None, "", []):

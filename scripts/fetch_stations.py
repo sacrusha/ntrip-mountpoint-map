@@ -70,24 +70,24 @@ SOURCES = [
     # SAPOS — German federal-state RTK networks. Sourcetables publicly readable;
     # RTCM streams require per-Länder registration. Most Länder free; BY €20/yr
     # flat rate for non-agricultural use. Raw TCP (NTRIP 1.0) fallback required.
-    {"id": "sapos_SH_HH", "url": "http://www.sapos.geonord.de:2101/", "color": "#2d6e6e", "group": "sapos"},
-    {"id": "sapos_NI", "url": "http://www.sapos-ni-ntrip.de:2101/", "color": "#2d6e6e", "group": "sapos"},
-    {"id": "sapos_NW", "url": "http://www.sapos-nw-ntrip.de:2101/", "color": "#2d6e6e", "group": "sapos"},
-    {"id": "sapos_HE", "url": "http://www.sapos-he-ntrip.de:2101/", "color": "#2d6e6e", "group": "sapos"},
+    {"id": "sapos_SH_HH", "url": "http://www.sapos.geonord.de:2101/", "color": "#2d6e6e"},
+    {"id": "sapos_NI", "url": "http://www.sapos-ni-ntrip.de:2101/", "color": "#2d6e6e"},
+    {"id": "sapos_NW", "url": "http://www.sapos-nw-ntrip.de:2101/", "color": "#2d6e6e"},
+    {"id": "sapos_HE", "url": "http://www.sapos-he-ntrip.de:2101/", "color": "#2d6e6e"},
     # sapos_RP removed 2026-05-07: paid-only state (€120/yr/credential HEPS/GPPS
     # + €100 setup), most restrictive in DE. Surfaced via the paid country
     # marker in data/country_markers.json instead.
-    {"id": "sapos_BW", "url": "http://www.sapos-bw-ntrip.de:2101/", "color": "#2d6e6e", "group": "sapos"},
+    {"id": "sapos_BW", "url": "http://www.sapos-bw-ntrip.de:2101/", "color": "#2d6e6e"},
     # sapos_BY removed 2026-05-20: reclassified status:paid per networks.proc.md
     # (€20/yr non-agricultural since June 2024, free for registered Bavarian
     # farms). Surfaced as paid-affordable marker in data/country_markers.json.
-    {"id": "sapos_SN", "url": "http://www.ntrip.sachsen.de:2101/", "color": "#2d6e6e", "group": "sapos"},
-    {"id": "sapos_SL", "url": "http://www.sapos-sl-ntrip.de:2101/", "color": "#2d6e6e", "group": "sapos"},
-    {"id": "sapos_BE", "url": "http://www.sapos-be-ntrip.de:2101/", "color": "#2d6e6e", "group": "sapos"},
-    {"id": "sapos_BB", "url": "http://www.sapos-bb-ntrip.de:2101/", "color": "#2d6e6e", "group": "sapos"},
-    {"id": "sapos_MV", "url": "http://www.sapos-mv-ntrip.de:2101/", "color": "#2d6e6e", "group": "sapos"},
-    {"id": "sapos_LSA", "url": "http://www.sapos-lsa-ntrip.de:2101/", "color": "#2d6e6e", "group": "sapos"},
-    {"id": "sapos_TH", "url": "http://www.sapos-th-ntrip.de:2101/", "color": "#2d6e6e", "group": "sapos"},
+    {"id": "sapos_SN", "url": "http://www.ntrip.sachsen.de:2101/", "color": "#2d6e6e"},
+    {"id": "sapos_SL", "url": "http://www.sapos-sl-ntrip.de:2101/", "color": "#2d6e6e"},
+    {"id": "sapos_BE", "url": "http://www.sapos-be-ntrip.de:2101/", "color": "#2d6e6e"},
+    {"id": "sapos_BB", "url": "http://www.sapos-bb-ntrip.de:2101/", "color": "#2d6e6e"},
+    {"id": "sapos_MV", "url": "http://www.sapos-mv-ntrip.de:2101/", "color": "#2d6e6e"},
+    {"id": "sapos_LSA", "url": "http://www.sapos-lsa-ntrip.de:2101/", "color": "#2d6e6e"},
+    {"id": "sapos_TH", "url": "http://www.sapos-th-ntrip.de:2101/", "color": "#2d6e6e"},
     # APOS (AT) removed from pipeline — paid for hobbyists; represented by a country_markers.json paid-tier marker.
     {"id": "ergnss", "url": "http://ergnss-ip.ign.es:2101/", "color": "#b05000"},
     {"id": "catnet", "url": "http://catnet-ip.icgc.cat:2101/", "color": "#a00020"},  # CATNET — ICGC Catalonia; separate caster and registration from ERGNSS
@@ -122,39 +122,39 @@ SOURCES = [
     {"id": "icecors", "url": "http://178.19.53.126:2101/", "color": "#1e6b8c", "nmea_filter": False},                                                   # GNSMART tags 4 physical Reykjanes mounts (AUSV/GEVK/SENG/VOGC) nmea=1, solution=0
     {"id": "ksa_cors", "url": "http://ksacors.geoportal.sa:2101/", "color": "#a0522d"},
     # Italy — regional networks
-    {"id": "spin3", "url": "http://158.102.7.10:2101/", "color": "#1565c0", "group": "italy-regional"},  # bare IP; spingnss.it hostname times out; IP confirmed SOURCETABLE 200 OK 2026-05-07
-    {"id": "gpsumbria", "url": "http://gpsumbria.regione.umbria.it:2101/", "color": "#2e7d32", "group": "italy-regional"},
-    {"id": "sit_puglia", "url": "http://gps.sit.puglia.it:2101/", "color": "#0288d1", "group": "italy-regional"},
-    {"id": "gnss_campania", "url": "http://gps.sit.regione.campania.it:2101/", "color": "#6a1b9a", "group": "italy-regional", "credentials": {"user": "Campania", "pass": "GNSS"}},  # public creds: user=Campania pass=GNSS (30-sec VRS); 1-sec requires SPID
-    {"id": "tpos", "url": "http://194.105.50.232:2101/", "color": "#00695c", "group": "italy-regional"},  # bare IP; tpos.provincia.tn.it is portal domain, does not resolve as NTRIP caster
-    {"id": "stpos", "url": "http://62.101.0.40:2109/", "color": "#ad1457", "group": "italy-regional"},  # SOURCETABLE 200 OK on port 2109; port 2101 refused; domain www.stpos.it
-    {"id": "gnss_veneto", "url": "http://147.162.229.53:2101/", "color": "#4527a0", "group": "italy-regional"},
-    {"id": "gnss_liguria", "url": "http://81.23.86.70:2101/", "color": "#0277bd", "group": "italy-regional"},
-    {"id": "sicilianet", "url": "http://193.206.223.39:2101/", "color": "#e65100", "group": "italy-regional"},
-    {"id": "gnss_abruzzo_lazio", "url": "http://gnss-rtk.regione.abruzzo.it:2101/", "color": "#c62828", "group": "italy-regional"},  # times out from external IPs (firewalled); service confirmed operational via portal HTTP 200; add 2026-05-13
+    {"id": "spin3", "url": "http://158.102.7.10:2101/", "color": "#1565c0"},  # bare IP; spingnss.it hostname times out; IP confirmed SOURCETABLE 200 OK 2026-05-07
+    {"id": "gpsumbria", "url": "http://gpsumbria.regione.umbria.it:2101/", "color": "#2e7d32"},
+    {"id": "sit_puglia", "url": "http://gps.sit.puglia.it:2101/", "color": "#0288d1"},
+    {"id": "gnss_campania", "url": "http://gps.sit.regione.campania.it:2101/", "color": "#6a1b9a", "credentials": {"user": "Campania", "pass": "GNSS"}},  # public creds: user=Campania pass=GNSS (30-sec VRS); 1-sec requires SPID
+    {"id": "tpos", "url": "http://194.105.50.232:2101/", "color": "#00695c"},  # bare IP; tpos.provincia.tn.it is portal domain, does not resolve as NTRIP caster
+    {"id": "stpos", "url": "http://62.101.0.40:2109/", "color": "#ad1457"},  # SOURCETABLE 200 OK on port 2109; port 2101 refused; domain www.stpos.it
+    {"id": "gnss_veneto", "url": "http://147.162.229.53:2101/", "color": "#4527a0"},
+    {"id": "gnss_liguria", "url": "http://81.23.86.70:2101/", "color": "#0277bd"},
+    {"id": "sicilianet", "url": "http://193.206.223.39:2101/", "color": "#e65100"},
+    {"id": "gnss_abruzzo_lazio", "url": "http://gnss-rtk.regione.abruzzo.it:2101/", "color": "#c62828"},  # times out from external IPs (firewalled); service confirmed operational via portal HTTP 200; add 2026-05-13
     # US state DOT / CORS networks — physical-coordinate stations
-    {"id": "acorn", "url": "http://www.acorn-gnss.net:2101/", "color": "#2e5b8a", "group": "us-state-dot"},  # Trimble Pivot Web; anonymous sourcetable exposes VRS + MS_RTCM3 (nearest single-base) + named VRS solutions
+    {"id": "acorn", "url": "http://www.acorn-gnss.net:2101/", "color": "#2e5b8a"},  # Trimble Pivot Web; anonymous sourcetable exposes VRS + MS_RTCM3 (nearest single-base) + named VRS solutions
     {"id": "nps_cors", "url": "http://rtk.nps.gov:2101/", "color": "#4a7c59", "nmea_filter": False},  # Trimble Pivot tags all 141 physical stations nmea=1
-    {"id": "wiscors", "url": "http://wiscors.dot.wi.gov:2101/", "color": "#bf360c", "group": "us-state-dot"},
-    {"id": "fprn", "url": "http://www.myfloridagps.com:10000/", "color": "#f57f17", "group": "us-state-dot"},  # port 10000 (Leica); standard 2101 not used
-    {"id": "ardot_rtn", "url": "http://gps.ardot.gov:2101/", "color": "#827717", "group": "us-state-dot"},
-{"id": "vector", "url": "http://vector.vermont.gov:2101/", "color": "#1b5e20", "group": "us-state-dot"},  # VTrans Geodetic Survey; canonical hostname (resolves to 20.185.11.35)
-{"id": "gcgc_rtn", "url": "http://rtn.usm.edu:2101/", "color": "#01579b", "group": "us-state-dot"},
-{"id": "orgn", "url": "http://orgn.odot.state.or.us:9881/", "color": "#004d40", "group": "us-state-dot"},  # hostname; port 9881 (Leica); SOURCETABLE 200 OK 2026-05-13 (6 STR)
-    {"id": "msrn", "url": "http://mdotcors.michigan.gov:10010/", "color": "#006064", "group": "us-state-dot"},  # port 10010 free RTCM3 MSM4 (per MSRN Port Scheme); 10011 = CMRx
-{"id": "ct_acorn", "url": "http://acorn.uconn.edu:2101/", "color": "#1a237e", "group": "us-state-dot"},  # SOURCETABLE 200 OK 2026-05-13 (48 STR)
-    {"id": "macors", "url": "http://macorsrtk.massdot.state.ma.us:2101/", "color": "#283593", "group": "us-state-dot"},  # MassDOT Leica SpiderNet; port 2101 firewalled from external probes — account-gated; add 2026-05-13
-    {"id": "nysnet", "url": "http://rtn.dot.ny.gov:8080/", "color": "#0d47a1", "group": "us-state-dot"},  # NYSDOT Leica SpiderNet; port 8080 confirmed SOURCETABLE 200 OK 2026-05-13 (18 STR); port 2101 firewalled; add 2026-05-13
-    {"id": "alcors", "url": "http://aldotcors.dot.state.al.us:10099/", "color": "#1565c0", "group": "us-state-dot"},  # ALDOT Leica SBC; port 10099 = physical single-base (158 STR confirmed 2026-05-13); port 10011 = network mounts; port 2101 firewalled; add 2026-05-13
-    {"id": "iartn", "url": "http://165.206.203.10:10000/", "color": "#37474f", "group": "us-state-dot"},  # bare IP:port; iartnsbc.iowadot.gov:2101 dead 2026-05-07; sourcetable open, per-station streams require credentials (Emlid/DJI flow documented at e38surveysolutions.com)
+    {"id": "wiscors", "url": "http://wiscors.dot.wi.gov:2101/", "color": "#bf360c"},
+    {"id": "fprn", "url": "http://www.myfloridagps.com:10000/", "color": "#f57f17"},  # port 10000 (Leica); standard 2101 not used
+    {"id": "ardot_rtn", "url": "http://gps.ardot.gov:2101/", "color": "#827717"},
+{"id": "vector", "url": "http://vector.vermont.gov:2101/", "color": "#1b5e20"},  # VTrans Geodetic Survey; canonical hostname (resolves to 20.185.11.35)
+{"id": "gcgc_rtn", "url": "http://rtn.usm.edu:2101/", "color": "#01579b"},
+{"id": "orgn", "url": "http://orgn.odot.state.or.us:9881/", "color": "#004d40"},  # hostname; port 9881 (Leica); SOURCETABLE 200 OK 2026-05-13 (6 STR)
+    {"id": "msrn", "url": "http://mdotcors.michigan.gov:10010/", "color": "#006064"},  # port 10010 free RTCM3 MSM4 (per MSRN Port Scheme); 10011 = CMRx
+{"id": "ct_acorn", "url": "http://acorn.uconn.edu:2101/", "color": "#1a237e"},  # SOURCETABLE 200 OK 2026-05-13 (48 STR)
+    {"id": "macors", "url": "http://macorsrtk.massdot.state.ma.us:2101/", "color": "#283593"},  # MassDOT Leica SpiderNet; port 2101 firewalled from external probes — account-gated; add 2026-05-13
+    {"id": "nysnet", "url": "http://rtn.dot.ny.gov:8080/", "color": "#0d47a1"},  # NYSDOT Leica SpiderNet; port 8080 confirmed SOURCETABLE 200 OK 2026-05-13 (18 STR); port 2101 firewalled; add 2026-05-13
+    {"id": "alcors", "url": "http://aldotcors.dot.state.al.us:10099/", "color": "#1565c0"},  # ALDOT Leica SBC; port 10099 = physical single-base (158 STR confirmed 2026-05-13); port 10011 = network mounts; port 2101 firewalled; add 2026-05-13
+    {"id": "iartn", "url": "http://165.206.203.10:10000/", "color": "#37474f"},  # bare IP:port; iartnsbc.iowadot.gov:2101 dead 2026-05-07; sourcetable open, per-station streams require credentials (Emlid/DJI flow documented at e38surveysolutions.com)
     # US state DOT — VRS-only (filter_vrs drops all pins; shown as stopgap circles)
-    {"id": "kycors", "url": "http://kycors.ky.gov:2101/", "color": "#546e7a", "group": "us-state-dot"},
-    {"id": "mncors", "url": "http://mncors.dot.state.mn.us:9000/", "color": "#455a64", "group": "us-state-dot"},  # port 9000; VRS-only
-    {"id": "odot_rtn", "url": "http://156.63.133.115:2101/", "color": "#607d8b", "group": "us-state-dot"},  # bare IP; VRS-only
-    {"id": "modot_rtn", "url": "http://rtk3.modot.mo.gov:2101/", "color": "#78909c", "group": "us-state-dot"},  # VRS-only; notarized agreement
-    {"id": "wvrtn", "url": "http://wvrtn.cors.us:2101/", "color": "#90a4ae", "group": "us-state-dot"},  # VRS-only
-    {"id": "mainedot", "url": "http://medotrtn.maine.gov:2101/", "color": "#b0bec5", "group": "us-state-dot"},  # VRS-only; migrated from mdotcors.maine.gov Oct 2025
-    {"id": "azcors", "url": "http://azcors.azwater.gov:2101/", "color": "#c2692e", "group": "us-state-dot"},  # Arizona CORS; ADWR (Arizona Dept of Water Resources); pipeline-access: registration
+    {"id": "kycors", "url": "http://kycors.ky.gov:2101/", "color": "#546e7a"},
+    {"id": "mncors", "url": "http://mncors.dot.state.mn.us:9000/", "color": "#455a64"},  # port 9000; VRS-only
+    {"id": "odot_rtn", "url": "http://156.63.133.115:2101/", "color": "#607d8b"},  # bare IP; VRS-only
+    {"id": "modot_rtn", "url": "http://rtk3.modot.mo.gov:2101/", "color": "#78909c"},  # VRS-only; notarized agreement
+    {"id": "wvrtn", "url": "http://wvrtn.cors.us:2101/", "color": "#90a4ae"},  # VRS-only
+    {"id": "mainedot", "url": "http://medotrtn.maine.gov:2101/", "color": "#b0bec5"},  # VRS-only; migrated from mdotcors.maine.gov Oct 2025
+    {"id": "azcors", "url": "http://azcors.azwater.gov:2101/", "color": "#c2692e"},  # Arizona CORS; ADWR (Arizona Dept of Water Resources); pipeline-access: registration
     {"id": "mesa_rtvrn", "url": "http://rtvrn.mesacounty.us:2101/", "color": "#8d6e63"},  # VRS-only; western Colorado
     {"id": "agrs_nl", "url": "http://ntrip.kadaster.nl:2101/", "color": "#0288d1"},                            # free, anonymous; covers NL mainland + BES islands
     {"id": "regme_ec", "url": "http://ntrip.igm.gob.ec:2101/", "color": "#558b2f"},
@@ -350,7 +350,6 @@ def fetch_source(src: dict) -> tuple[str, dict, bool]:
     """Fetch and parse a single NTRIP source. Returns (sid, result, was_fresh)."""
     sid, url = src["id"], src["url"]
     color = src.get("color", "")
-    src_group = src.get("group")
     src_credentials = src.get("credentials")
     prev_last_ok = src.get("_prev_last_ok")
     nmea_filter = src.get("nmea_filter", True)
@@ -358,7 +357,7 @@ def fetch_source(src: dict) -> tuple[str, dict, bool]:
     raw_path = DATA_DIR / f"{sid}.sourcetable"
     _meta = {
         "url": url, "color": color,
-        "group": src_group, "credentials": src_credentials,
+        "credentials": src_credentials,
         "near": src.get("near", False),
         "user": src.get("user"),
         "pass": src.get("pass"),
@@ -450,7 +449,6 @@ def main() -> int:
         payload_sources[sid] = {
             "url": data["url"],
             "color": data.get("color", ""),
-            "group": data.get("group"),
             "credentials": data.get("credentials"),
             "near": data.get("near", False),
             "user": data.get("user"),

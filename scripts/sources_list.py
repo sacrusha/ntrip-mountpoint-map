@@ -10,8 +10,7 @@ Usage:
     py scripts/sources_list.py                       # one-line summary per source
     py scripts/sources_list.py <substring>           # filter by id substring (case-insensitive)
     py scripts/sources_list.py --country FRA         # filter by source.country
-    py scripts/sources_list.py --group europe        # filter by source.group
-    py scripts/sources_list.py --field id,url,group  # pick columns
+    py scripts/sources_list.py --field id,url        # pick columns
     py scripts/sources_list.py --json                # dump matching entries as JSON
 
 Examples:
@@ -56,10 +55,9 @@ def main():
     ap.add_argument("substring", nargs="?", default=None,
                     help="case-insensitive substring match on source id or label")
     ap.add_argument("--country", default=None)
-    ap.add_argument("--group", default=None)
     ap.add_argument("--region", default=None)
     ap.add_argument("--field", default=None,
-                    help="comma-separated list of fields to print (default: id,country,group,url)")
+                    help="comma-separated list of fields to print (default: id,url)")
     ap.add_argument("--json", action="store_true", help="dump matching entries as JSON")
     args = ap.parse_args()
 
@@ -77,10 +75,6 @@ def main():
         if args.country:
             wanted = args.country.upper()
             if not any(str(c).upper() == wanted for c in _as_list(s.get("country"))):
-                return False
-        if args.group:
-            wanted = args.group.lower()
-            if not any(str(g).lower() == wanted for g in _as_list(s.get("group"))):
                 return False
         if args.region:
             wanted = args.region.lower()
@@ -100,7 +94,7 @@ def main():
               f"run without args to see all.")
         return 1
 
-    fields = (args.field or "id,country,group,url").split(",")
+    fields = (args.field or "id,url").split(",")
     widths = {f: max(len(f), max((len(str(s.get(f, ""))) for s in hits), default=0))
               for f in fields}
     print("  ".join(f.ljust(widths[f]) for f in fields))

@@ -75,7 +75,6 @@ SOURCES carries operational fetch + parse config only. Editorial fields
                                                # if the HTTP GET returns BadStatusLine
   "color":      "#9e6b00",                     # marker colour — pick a country-distinctive hex; avoid
                                                # collisions with neighbouring networks at the same zoom
-  "group":      "italy-regional",              # optional; clusters related sources in the UI filter
   "credentials":{"user":"rover","pass":"262461"}, # optional; shared/public creds shown in popup
   "near":       True,                          # optional; surfaces NEAR hint in popup
   "user":       "centipede",                   # optional; only on free services iff public knowledge. literal username for copy-to-rover popup
