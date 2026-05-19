@@ -4,14 +4,17 @@
 # Expects to run inside a git worktree on the `data-refresh` branch. The dev
 # checkout sits on `main` in a sibling worktree sharing the same .git.
 #
+# data-refresh is NOT a long-lived branch with merge history. It is a rolling
+# pointer that gets reset to main at the start of every run, then advanced by
+# exactly one fresh data commit. Previous run's data commit is discarded — main
+# is the source of truth for data (dev also commits data/ refreshes directly).
+#
 # Steps:
-#   1. Rebase data-refresh onto main, so this run picks up the latest scripts
-#      (including any updates to fetch_stations.py itself) and any tree
-#      changes from dev.
+#   1. Reset data-refresh hard to main. Picks up any scripts/ updates and any
+#      data/ commits dev landed on main since the last run. No rebase, no
+#      merge — guarantees a conflict-free start.
 #   2. Run scripts/fetch_stations.py (refreshes data/stations.json + sourcetables).
 #   3. Commit data/ changes locally. Never pushes (GitHub auth blocked).
-#      Result: data-refresh sits exactly one commit ahead of main. Dev brings
-#      data in via: git merge --ff-only data-refresh
 #   4. Run scripts/deploy_pages.ps1 to publish to Cloudflare Pages.
 #
 # Logs every run to .tmp/refresh_and_deploy/<UTC-timestamp>.log.
@@ -39,29 +42,31 @@ Get-ChildItem $logDir -Filter '*.log' | Where-Object { $_.LastWriteTimeUtc -lt (
 try {
     Write-Output "=== refresh_and_deploy.ps1 run at $stamp UTC ==="
 
-    # --- Step 1: rebase data-refresh onto main ------------------------------
-    # Picks up any updates to scripts/ (including fetch_stations.py itself)
-    # and any other tree changes from dev before we run the fetcher.
+    # --- Step 1: reset data-refresh hard to main ----------------------------
+    # Discards any previous run's data commit. Picks up the latest scripts/
+    # (including fetch_stations.py itself) and any data/ commits dev landed
+    # on main. No rebase, no merge: data-refresh is a single-commit-ahead
+    # rolling pointer, not a branch with its own history.
     if (-not $SkipGit) {
-        Write-Output "--- Step 1: rebase data-refresh onto main ---"
+        Write-Output "--- Step 1: reset data-refresh hard to main ---"
 
         $branch = (git rev-parse --abbrev-ref HEAD).Trim()
         if ($branch -ne 'data-refresh') {
             throw "Expected worktree on 'data-refresh' branch, found '$branch'. Refusing to run."
         }
 
+        # Dirty check guards against silently nuking in-flight work in this
+        # worktree. The scheduler is expected to leave a clean tree between
+        # runs; anything dirty here means manual intervention left state.
         $dirty = git status --porcelain
         if (-not [string]::IsNullOrWhiteSpace($dirty)) {
-            throw "Worktree is dirty at rebase time; aborting. Investigate $repoRoot."
+            throw "Worktree is dirty at reset time; aborting. Investigate $repoRoot."
         }
 
-        git rebase main
-        if ($LASTEXITCODE -ne 0) {
-            git rebase --abort 2>$null
-            throw "git rebase main failed; resolve manually in $repoRoot"
-        }
+        git reset --hard main
+        if ($LASTEXITCODE -ne 0) { throw "git reset --hard main failed in $repoRoot" }
     } else {
-        Write-Output "--- Step 1: rebase skipped (-SkipGit) ---"
+        Write-Output "--- Step 1: reset skipped (-SkipGit) ---"
     }
 
     # --- Step 2: fetch stations ---------------------------------------------

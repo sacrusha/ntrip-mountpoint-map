@@ -29,7 +29,7 @@ scripts/fetch_stations.py        # updates .sourcetable + source_health.json + s
 scripts/fetch_stations.proc.md   # edit rules for fetch_stations.py SOURCES. Read BEFORE editing .py.
 scripts/inject_seo_help.py       # splices hidden SEO mirror of help_topics.json into index.html. Run after editing help_topics.json; commit index.html diff same commit.
 scripts/deploy_pages.ps1         # local Cloudflare Pages deploy. Runs on worktree ntrip-mountpoint-map.scheduler/; dev on worktree ntrip-mountpoint-map/.
-scripts/refresh_and_deploy.ps1   # Task Scheduler -> fetch_stations.py -> rebase data-refresh onto main -> commit data/ -> deploy_pages.ps1. Logs: .tmp/refresh_and_deploy/. Flags: -SkipGit, -SkipDeploy.
+scripts/refresh_and_deploy.ps1   # Task Scheduler -> reset data-refresh hard to main -> fetch_stations.py -> commit data/ -> deploy_pages.ps1. data-refresh is a rolling pointer, not a branch with history; dev commits data/ to main directly. Logs: .tmp/refresh_and_deploy/. Flags: -SkipGit, -SkipDeploy.
 scripts/register_scheduled_task.ps1 # (re-)register Task Scheduler job.
 scripts/                         # investigation toolset, each takes -h for purpose + examples.
   stations_by_country.py, stations_by_radius.py # station lookup
