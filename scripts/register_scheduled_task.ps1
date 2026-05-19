@@ -8,17 +8,18 @@
 # Usage:
 #   .\scripts\register_scheduled_task.ps1
 #   .\scripts\register_scheduled_task.ps1 -Times '08:00','14:00','20:00','02:00'
-#   .\scripts\register_scheduled_task.ps1 -RepoRoot 'D:\Projects\ntrip-mountpoint-map.scheduler'
+#   .\scripts\register_scheduled_task.ps1 -RepoRoot 'D:\Projects\ntrip-mountpoint-map'
 #
-# The scheduler should point at a dedicated clone of this repo so it can
-# commit data/ refreshes without colliding with in-flight dev work.
+# The orchestrator creates an ephemeral worktree from main each run, so this
+# can point at any worktree of the repo (dev's main checkout is the obvious
+# choice). The host worktree's branch does not matter — refresh_and_deploy.ps1
+# always builds from main.
 
 [CmdletBinding()]
 param(
     [string[]]$Times = @('07:00', '13:00', '19:00', '23:00'),
     [string]$TaskName = 'ntrip-mountpoint-map refresh + deploy',
     [string]$RepoRoot,
-    [switch]$SkipGit,
     [switch]$SkipDeploy
 )
 
@@ -26,26 +27,17 @@ $ErrorActionPreference = 'Stop'
 if (-not $RepoRoot) { $RepoRoot = Split-Path -Parent $PSScriptRoot }
 $RepoRoot = (Resolve-Path $RepoRoot).Path
 $scriptPath = Join-Path $RepoRoot 'scripts/refresh_and_deploy.ps1'
-$repoRoot = $RepoRoot
 
 $extraArgs = ''
-if ($SkipGit)    { $extraArgs += ' -SkipGit' }
 if ($SkipDeploy) { $extraArgs += ' -SkipDeploy' }
 
 if (-not (Test-Path $scriptPath)) { throw "Orchestrator not found at $scriptPath" }
 
-# Sanity check: the target should be the data-refresh worktree, not the dev
-# checkout. Refuse to register against any other branch unless -SkipGit is set
-# (in which case the orchestrator won't touch git anyway).
-if (-not $SkipGit) {
-    $branch = (& git -C $RepoRoot rev-parse --abbrev-ref HEAD 2>$null)
-    if ($LASTEXITCODE -ne 0) {
-        throw "Could not read git branch at $RepoRoot (not a git repo?)."
-    }
-    $branch = $branch.Trim()
-    if ($branch -ne 'data-refresh') {
-        throw "Refusing to register: $RepoRoot is on branch '$branch', expected 'data-refresh'. Pass -SkipGit to override."
-    }
+# Sanity check: the target must be a git worktree (the orchestrator uses
+# `git worktree add` from it).
+$inRepo = & git -C $RepoRoot rev-parse --is-inside-work-tree 2>$null
+if ($LASTEXITCODE -ne 0 -or $inRepo.Trim() -ne 'true') {
+    throw "Not a git worktree: $RepoRoot"
 }
 
 # Remove existing task with the same name (idempotent).
@@ -58,7 +50,7 @@ if ($existing) {
 $action = New-ScheduledTaskAction `
     -Execute 'powershell.exe' `
     -Argument "-NoProfile -ExecutionPolicy Bypass -File `"$scriptPath`"$extraArgs" `
-    -WorkingDirectory $repoRoot
+    -WorkingDirectory $RepoRoot
 
 $triggers = foreach ($t in $Times) {
     New-ScheduledTaskTrigger -Daily -At $t
@@ -84,12 +76,12 @@ Register-ScheduledTask `
     -Trigger $triggers `
     -Principal $principal `
     -Settings $settings `
-    -Description "Runs scripts/refresh_and_deploy.ps1 in $repoRoot. Local replacement for former GitHub Actions workflows." | Out-Null
+    -Description "Runs scripts/refresh_and_deploy.ps1 in $RepoRoot. Local replacement for former GitHub Actions workflows." | Out-Null
 
 Write-Output "Registered task '$TaskName' with triggers: $($Times -join ', ') (local time)."
-Write-Output "Working dir:  $repoRoot"
+Write-Output "Working dir:  $RepoRoot"
 Write-Output "Orchestrator: $scriptPath$extraArgs"
-Write-Output "Logs:         $repoRoot\.tmp\refresh_and_deploy\"
+Write-Output "Logs:         $RepoRoot\.tmp\refresh_and_deploy\"
 Write-Output ""
 Write-Output "To run now:        Start-ScheduledTask -TaskName '$TaskName'"
 Write-Output "To view next run:  Get-ScheduledTaskInfo -TaskName '$TaskName'"
