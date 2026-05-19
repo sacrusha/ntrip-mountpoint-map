@@ -24,6 +24,7 @@
       "lon": 15.5,
       "tier": "free",
       "vrs": true,
+      "access": "registration",
       "registration": "https://www.cropos.hr/",
       "stations_declared": 35,
       "note": "Free since April 2022. One-time 40 EUR registration fee."
@@ -37,6 +38,7 @@
       "lon": 4.5,
       "tier": "free",
       "vrs": true,
+      "access": "registration",
       "registration": "https://overheid.vlaanderen.be/en/producten-diensten/centimetre-accurate-positioning-flepos",
       "stations_declared": 45
     },
@@ -49,6 +51,7 @@
       "lon": 4.8,
       "tier": "free",
       "vrs": true,
+      "access": "registration",
       "registration": "https://gnss.wallonie.be/walcors.html",
       "stations_declared": 22
     },
@@ -61,6 +64,7 @@
       "lon": 24.1,
       "tier": "free",
       "vrs": true,
+      "access": "registration",
       "registration": "https://www.lgia.gov.lv/en/latpos",
       "stations_declared": 27
     },
@@ -73,6 +77,7 @@
       "lon": 25.0,
       "tier": "free",
       "vrs": true,
+      "access": "conditions",
       "stations_declared": 40,
       "registration": "https://geoportaal.maaamet.ee/eng/Spatial-Data/ESTPOS-national-GNSS-satellite-data-center-p839.html",
       "note": "Currently free through 31 Aug 2026; pricing afterwards not announced. A signed service agreement via the portal is required."
@@ -86,6 +91,7 @@
       "lon": 45.0,
       "tier": "free",
       "vrs": true,
+      "access": "conditions",
       "registration": "https://www.geosa.gov.sa/en/products/geodesy/pages/ksa-cors.aspx",
       "stations_declared": 209
     },
@@ -98,6 +104,7 @@
       "lon": 9.9,
       "tier": "free",
       "vrs": true,
+      "access": "registration",
       "registration": "https://www.sapos.de",
       "stations_declared": null
     },
@@ -110,6 +117,7 @@
       "lon": 9.0,
       "tier": "free",
       "vrs": true,
+      "access": "registration",
       "registration": "https://www.sapos.de",
       "stations_declared": null
     },
@@ -122,6 +130,7 @@
       "lon": 7.66,
       "tier": "free",
       "vrs": true,
+      "access": "registration",
       "registration": "https://www.sapos.de",
       "stations_declared": null
     },
@@ -134,6 +143,7 @@
       "lon": 9.06,
       "tier": "free",
       "vrs": true,
+      "access": "registration",
       "registration": "https://www.sapos.de",
       "stations_declared": null
     },
@@ -146,6 +156,7 @@
       "lon": 11.58,
       "tier": "free",
       "vrs": true,
+      "access": "conditions",
       "registration": "https://sapos.bayern.de/",
       "stations_declared": null
     },
@@ -158,6 +169,7 @@
       "lon": 13.3,
       "tier": "free",
       "vrs": true,
+      "access": "registration",
       "registration": "https://www.sapos.de",
       "stations_declared": null
     },
@@ -170,6 +182,7 @@
       "lon": 13.05,
       "tier": "free",
       "vrs": true,
+      "access": "registration",
       "registration": "https://www.sapos.de",
       "stations_declared": null
     },
@@ -182,6 +195,7 @@
       "lon": 12.43,
       "tier": "free",
       "vrs": true,
+      "access": "registration",
       "registration": "https://www.sapos.de",
       "stations_declared": null
     },
@@ -194,6 +208,7 @@
       "lon": 11.7,
       "tier": "free",
       "vrs": true,
+      "access": "registration",
       "registration": "https://www.sapos.de",
       "stations_declared": null
     },
@@ -206,6 +221,7 @@
       "lon": 11.03,
       "tier": "free",
       "vrs": true,
+      "access": "registration",
       "registration": "https://www.sapos.de",
       "stations_declared": null
     },
@@ -218,6 +234,7 @@
       "lon": -84.9,
       "tier": "free",
       "vrs": true,
+      "access": "registration",
       "registration": "https://kycors.ky.gov/",
       "stations_declared": null,
       "note": "Registration is approved manually by a KYTC admin and the portal warns not to click submit twice. Expect a wait before credentials arrive."
@@ -231,6 +248,7 @@
       "lon": -94.0,
       "tier": "free",
       "vrs": true,
+      "access": "registration",
       "registration": "https://www.dot.state.mn.us/surveying/cors/index.html",
       "stations_declared": 140
     },
@@ -243,6 +261,7 @@
       "lon": -82.8,
       "tier": "free",
       "vrs": true,
+      "access": "registration",
       "registration": "https://transportation.ohio.gov/working/engineering/cadd-mapping/survey/cors-rtn",
       "stations_declared": null
     },
@@ -255,6 +274,7 @@
       "lon": -92.5,
       "tier": "free",
       "vrs": true,
+      "access": "conditions",
       "registration": "https://www.modot.org/gps-utility-mapping-system",
       "stations_declared": 78
     },
@@ -267,6 +287,7 @@
       "lon": -80.5,
       "tier": "free",
       "vrs": true,
+      "access": "registration",
       "registration": "https://wvrtn.cors.us/",
       "stations_declared": 34
     },
@@ -279,6 +300,7 @@
       "lon": -69.0,
       "tier": "free",
       "vrs": true,
+      "access": "registration",
       "registration": "https://www.maine.gov/dot/doing-business/permitting-policy/survey-and-right-of-way-information",
       "stations_declared": null,
       "note": "MaineDOT migrated to a new caster (medotrtn.maine.gov) in October 2025. Old credentials from mdotcors.maine.gov no longer work; existing users must re-register."
@@ -292,6 +314,7 @@
       "lon": -108.55,
       "tier": "free",
       "vrs": true,
+      "access": "registration",
       "registration": "https://www.mesacounty.us/departments-and-services/public-works/gps-survey",
       "stations_declared": 33
     },
@@ -318,6 +341,7 @@
       "lon": 23.9,
       "tier": "free",
       "vrs": true,
+      "access": "registration",
       "registration": "https://www.geoportal.lt/geoportal/web/litpos-en/registration",
       "stations_declared": 35
     },
@@ -648,6 +672,7 @@
       "lat": 39.5,
       "lon": -98.5,
       "tier": "free",
+      "access": "conditions",
       "registration": "https://ntrip.nps.gov",
       "stations_declared": 141,
       "note": "Single-base streams across the continental US, Alaska, Hawaii, American Samoa, and the Marianas. Operated by the National Park Service; credentials are issued manually and access outside NPS partner organisations is not guaranteed."
@@ -1565,6 +1590,7 @@
       "lon": 13.5,
       "tier": "free",
       "vrs": true,
+      "access": "registration",
       "registration": "https://rem.regione.fvg.it/rem-fvg/servizi/correzioni-differenziali",
       "stations_declared": 17
     },
@@ -1577,6 +1603,7 @@
       "lon": -3.7,
       "tier": "free",
       "vrs": true,
+      "access": "registration",
       "registration": "http://ergnss.ign.es/gnuserportal/",
       "stations_declared": 272
     },
@@ -1615,6 +1642,7 @@
       "lat": 22.3,
       "lon": 114.2,
       "tier": "free",
+      "access": "registration",
       "registration": "https://www.geodetic.gov.hk/en/satref/ntrip.htm",
       "stations_declared": 19,
       "note": "Application is a downloadable PDF form returned by email or fax to the Survey and Mapping Office; no web self-service. Accounts inactive for 12 months are terminated."
@@ -1628,6 +1656,7 @@
       "lon": 118.0,
       "tier": "free",
       "vrs": true,
+      "access": "registration",
       "registration": "https://nrtk.big.go.id",
       "stations_declared": 432,
       "note": "The caster exposes 4 network-solution mounts rather than individual stations, so the map shows few pins. Coverage is dense on Java and Bali; outer islands (Papua, Kalimantan) have gaps."
@@ -1641,6 +1670,7 @@
       "lon": -74.1,
       "tier": "free",
       "vrs": true,
+      "access": "registration",
       "registration": "https://redgeodesica.igac.gov.co/",
       "stations_declared": 260,
       "note": "Physical single-base streams on port 2102; VRS / network-RTK on port 2101."
@@ -1654,6 +1684,7 @@
       "lon": 6.1,
       "tier": "free",
       "vrs": true,
+      "access": "registration",
       "registration": "https://act.public.lu/fr/gps-reseaux/spslux1.html",
       "stations_declared": 13,
       "note": "No professional licence required."
@@ -1680,6 +1711,7 @@
       "lat": 36.5,
       "lon": 127.8,
       "tier": "free",
+      "access": "registration",
       "registration": "https://www.gnssdata.or.kr/user/agree.do",
       "stations_declared": 167,
       "note": "Federated single-base feed from 8 Korean agencies. Email-only registration; no Korean ID required. The NTRIP password is the literal string 'gnss', not the portal login password. Accounts are auto-deleted after 50 days of inactivity. The separate NGII network-solution service does require Korean mobile-ID verification."
@@ -1706,6 +1738,7 @@
       "lon": 106.92,
       "tier": "free",
       "vrs": true,
+      "access": "open",
       "registration": "https://monpos.gazar.gov.mn",
       "stations_declared": 40
     },
@@ -1731,6 +1764,7 @@
       "lat": -25.3,
       "lon": 133.8,
       "tier": "free",
+      "access": "registration",
       "registration": "https://gnss.ga.gov.au/registration",
       "stations_declared": 914
     },
@@ -1742,6 +1776,7 @@
       "lat": -41.3,
       "lon": 174.8,
       "tier": "free",
+      "access": "registration",
       "registration": "https://www.linz.govt.nz/products-services/geodetic/positionz/positionz-real-time-service/connect-positionz-real-time-service",
       "stations_declared": 62,
       "note": "Single-base only — no VRS or network solution. LINZ recommends staying within 15 km of the connected station for centimetre accuracy."
@@ -1755,6 +1790,7 @@
       "lon": 25.0,
       "tier": "free",
       "vrs": true,
+      "access": "registration",
       "registration": "https://ngi.dalrrd.gov.za/index.php/what-we-do/geodetic-and-control-survey-services/37-trignet-continuously-operating-gnss-network",
       "stations_declared": 83
     },
@@ -1766,6 +1802,7 @@
       "lat": -14.2,
       "lon": -53.2,
       "tier": "free",
+      "access": "registration",
       "registration": "https://www.gov.br/pt-br/servicos/obter-acesso-a-rbmc-ip",
       "stations_declared": 150
     },
@@ -1777,6 +1814,7 @@
       "lat": -34.0,
       "lon": -64.0,
       "tier": "free",
+      "access": "registration",
       "registration": "https://www.ign.gob.ar/NuestrasActividades/Geodesia/RamsacNtrip/Registro",
       "stations_declared": 203,
       "note": "Single-base only — no VRS, pick the nearest mountpoint. Sessions cap at 8 hours and require reconnection. Patagonia coverage is sparse."
@@ -1790,6 +1828,7 @@
       "lon": -56.0,
       "tier": "free",
       "vrs": true,
+      "access": "registration",
       "registration": "https://igm.gub.uy/2016/05/20/servicios-regna-rou/",
       "stations_declared": 35
     },
@@ -1827,6 +1866,7 @@
       "lat": 36.2,
       "lon": 138.3,
       "tier": "free",
+      "access": "registration",
       "registration": "https://go.gnss.go.jp",
       "stations_declared": 16,
       "note": "16 stations in Japan; the caster also re-streams ~309 partner stations from Australia, New Zealand, the US, Canada, and others. Free registration plus a separate caster authorisation step. Accounts auto-expire after 365 days of inactivity."
@@ -1839,6 +1879,7 @@
       "lat": 36.2,
       "lon": 138.3,
       "tier": "free",
+      "access": "open",
       "stations_declared": 44,
       "note": "Rovers connect without registration — only volunteers running reference stations need to sign up. Bases are operator-volunteered so quality varies by station."
     },
@@ -1851,6 +1892,7 @@
       "lon": 9.1,
       "tier": "free",
       "vrs": true,
+      "access": "registration",
       "registration": "https://www.sapos.de",
       "stations_declared": 4
     },
@@ -1878,6 +1920,7 @@
       "lon": 7.0,
       "tier": "free",
       "vrs": true,
+      "access": "registration",
       "registration": "https://www.sapos.de",
       "stations_declared": 14
     },
@@ -1890,6 +1933,7 @@
       "lon": 13.2,
       "tier": "free",
       "vrs": true,
+      "access": "registration",
       "registration": "https://www.sapos.de",
       "stations_declared": null
     },
@@ -1902,6 +1946,7 @@
       "lon": 8.65,
       "tier": "free",
       "vrs": true,
+      "access": "registration",
       "registration": "https://www.spingnss.it/",
       "stations_declared": 39
     },
@@ -1914,6 +1959,7 @@
       "lon": 12.5,
       "tier": "free",
       "vrs": true,
+      "access": "registration",
       "registration": "https://umbriageo.regione.umbria.it/pagine/accesso-rapido-ai-servizi-gpsumbria",
       "stations_declared": 13
     },
@@ -1939,6 +1985,7 @@
       "lon": 17.0,
       "tier": "free",
       "vrs": true,
+      "access": "registration",
       "registration": "https://pugliacon.regione.puglia.it/web/sit-puglia-sit/global-positioning-system",
       "stations_declared": 12
     },
@@ -1950,7 +1997,8 @@
       "lat": 40.8,
       "lon": 14.5,
       "tier": "free",
-      "vrs": true
+      "vrs": true,
+      "access": "open"
     },
     {
       "id": "wiscors",
@@ -1961,6 +2009,7 @@
       "lon": -90.0,
       "tier": "free",
       "vrs": true,
+      "access": "registration",
       "registration": "https://wisconsindot.gov/Pages/doing-bus/eng-consultants/cnslt-rsrces/tools/wiscors/default.aspx",
       "stations_declared": 115
     },
@@ -1973,6 +2022,7 @@
       "lon": -82.5,
       "tier": "free",
       "vrs": true,
+      "access": "registration",
       "registration": "https://www.fdot.gov/geospatial/fprn.shtm",
       "stations_declared": 100
     },
@@ -1985,6 +2035,7 @@
       "lon": -92.3,
       "tier": "free",
       "vrs": true,
+      "access": "registration",
       "registration": "https://ardot.gov/divisions/surveys/control-surveys/",
       "stations_declared": 50
     },
@@ -1997,6 +2048,7 @@
       "lon": -71.5,
       "tier": "free",
       "vrs": true,
+      "access": "registration",
       "registration": "https://www.mass.gov/how-to/the-massachusetts-continuously-operating-reference-station-network-macors",
       "stations_declared": 22
     },
@@ -2009,6 +2061,7 @@
       "lon": -72.7,
       "tier": "free",
       "vrs": true,
+      "access": "registration",
       "registration": "https://vtrans.vermont.gov/highway/geodetic/cors/real-time",
       "stations_declared": 18
     },
@@ -2021,6 +2074,7 @@
       "lon": -72.7,
       "tier": "free",
       "vrs": true,
+      "access": "registration",
       "registration": "https://ctsurveyors.org/acorn-real-time-positioning-for-connecticut/",
       "stations_declared": 13,
       "note": "Network also includes 1 station in Rhode Island, 2 in southern Massachusetts, and 1 on Long Island, NY — a useful fallback for Rhode Island where no state caster exists."
@@ -2061,6 +2115,7 @@
       "lon": -86.7,
       "tier": "free",
       "vrs": true,
+      "access": "registration",
       "registration": "https://aldotcors.dot.state.al.us/",
       "stations_declared": 158
     },
@@ -2073,6 +2128,7 @@
       "lon": -120.5,
       "tier": "free",
       "vrs": true,
+      "access": "registration",
       "registration": "https://www.oregon.gov/odot/orgn/pages/rover-requests.aspx",
       "stations_declared": 100
     },
@@ -2085,6 +2141,7 @@
       "lon": -84.7,
       "tier": "free",
       "vrs": true,
+      "access": "registration",
       "registration": "https://mdotcors.michigan.gov/sbc",
       "stations_declared": 95
     },
@@ -2097,6 +2154,7 @@
       "lon": -75.6,
       "tier": "free",
       "vrs": true,
+      "access": "registration",
       "registration": "https://www.dot.ny.gov/divisions/engineering/design/design-services/land-survey/cors",
       "note": "NTRIP runs on the non-standard port 8080 at rtn.dot.ny.gov; the usual port 2101 is firewalled. Configure receivers accordingly."
     },
@@ -2121,6 +2179,7 @@
       "lon": -93.5,
       "tier": "free",
       "vrs": true,
+      "access": "registration",
       "registration": "https://iowadot.gov/consultants-contractors/design/iowa-real-time-network",
       "stations_declared": 83
     },
@@ -2161,6 +2220,7 @@
       "lat": 52.3,
       "lon": 5.3,
       "tier": "free",
+      "access": "open",
       "registration": "https://www.nsgi.nl/referentiepunten-en-gnss-data/gnss-data/real-time-streams",
       "stations_declared": 30,
       "note": "Also covers the BES Islands (Bonaire, Saba, Sint Eustatius). Anonymous access at ntrip.kadaster.nl:2101 (or :443 over TLS). Single-base, not VRS. TU Delft runs a mirror at gnss1.tudelft.nl:2101 with a Netherlands subset."
@@ -2862,6 +2922,44 @@
       "lon": 9.52,
       "tier": "weird",
       "note": "No Liechtenstein caster. Swiss swipos (paid; CHF 1,500/yr or CHF 0.50/min pay-per-use) covers the country directly. Austrian APOS reaches the eastern half and is free for Austrian farmers via eAMA. Volunteer bases sit 20–60 km away."
+    },
+    {
+      "id": "rtk2go",
+      "name": "rtk2go",
+      "country": "global",
+      "tier": "free",
+      "access": "open"
+    },
+    {
+      "id": "centipede",
+      "name": "Centipede",
+      "country": "global",
+      "tier": "free",
+      "access": "open"
+    },
+    {
+      "id": "earthscope",
+      "name": "EarthScope",
+      "country": "americas",
+      "tier": "free",
+      "access": "conditions",
+      "registration": "https://www.earthscope.org/data/gnss-realtime/"
+    },
+    {
+      "id": "euref_ip",
+      "name": "EUREF-IP",
+      "country": "europe",
+      "tier": "free",
+      "access": "registration",
+      "registration": "http://register.rtcm-ntrip.org/cgi-bin/registration.cgi"
+    },
+    {
+      "id": "igs_ip",
+      "name": "IGS-IP",
+      "country": "global",
+      "tier": "free",
+      "access": "registration",
+      "registration": "http://register.rtcm-ntrip.org/cgi-bin/registration.cgi"
     }
   ]
 }

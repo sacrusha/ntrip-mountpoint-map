@@ -17,9 +17,9 @@ editorial user-facing extract of `networks.md` - "what the user on a network mar
 |---|---|---|
 | `id` | yes | Matches `networks.md` block id when one exists. Stable — used as React-style key downstream. |
 | `name` | yes | What appears in the popup header. UI label, not the legal entity. |
-| `region` | yes | What appears after "Covers". Country name + clarifier ("Spain", "China (nationwide)", "Belgium (Flanders)"). Hidden for `tier:weird`. |
-| `country` | yes | ISO 3166-1 alpha-2. |
-| `lat`,`lon` | yes | marker map placement |
+| `region` | yes for single-country | What appears after "Covers". Country name + clarifier ("Spain", "China (nationwide)", "Belgium (Flanders)"). Hidden for `tier:weird`. Omitted on aggregator stubs. |
+| `country` | yes | ISO 3166-1 alpha-2 for single-country networks; pseudo-code (`global`, `americas`, `europe`) for aggregator stubs spanning multiple countries. |
+| `lat`,`lon` | yes for single-country | Marker map placement. Omitted on aggregator stubs (rtk2go, Centipede, EarthScope, EUREF-IP, IGS-IP) — they render no country-zoom marker; the entry exists only to carry editorial data for the future per-pin mountpoint card. |
 | `tier` | yes | `free`, `paid`, `restricted`, `weird` |
 | `access` | for free | `open`, `registration`, `conditions` |
 | `vrs` | when true | boolean, "true" if network delivers VRS/NRTK streams
