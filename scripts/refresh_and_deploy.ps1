@@ -84,16 +84,18 @@ try {
     Write-Output "=== refresh_and_deploy.ps1 succeeded ==="
 } catch {
     Write-Output "=== refresh_and_deploy.ps1 FAILED: $($_.Exception.Message) ==="
-    Stop-Transcript | Out-Null
     # Best-effort cleanup even on failure. Postmortem state lives in the log
     # plus the inner script's own output; the worktree itself holds nothing
     # we need to inspect.
+    Set-Location $repoRoot  # inner script changes CWD into the worktree; reset before removal
     git worktree remove --force $worktreePath 2>&1 | Out-Null
     if (Test-Path $worktreePath) { Remove-Item -Recurse -Force $worktreePath -ErrorAction SilentlyContinue }
+    Stop-Transcript | Out-Null
     exit 1
 }
 
 # --- Cleanup ---------------------------------------------------------------
+Set-Location $repoRoot  # inner script changes CWD into the worktree; reset before removal
 git worktree remove --force $worktreePath 2>&1 | Out-Null
 if (Test-Path $worktreePath) { Remove-Item -Recurse -Force $worktreePath -ErrorAction SilentlyContinue }
 
