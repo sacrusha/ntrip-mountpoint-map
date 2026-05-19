@@ -76,8 +76,8 @@ try {
     # --- Invoke inner script -----------------------------------------------
     $innerScript = Join-Path $worktreePath 'scripts/run_in_worktree.ps1'
     if (-not (Test-Path $innerScript)) { throw "Inner script not found at $innerScript" }
-    $innerArgs = @()
-    if ($SkipDeploy) { $innerArgs += '-SkipDeploy' }
+    $innerArgs = @{}
+    if ($SkipDeploy) { $innerArgs['SkipDeploy'] = $true }
     & $innerScript @innerArgs
     if ($LASTEXITCODE -ne 0) { throw "inner script exited with code $LASTEXITCODE" }
 
