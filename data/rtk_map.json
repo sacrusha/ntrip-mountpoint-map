@@ -111,7 +111,7 @@
       "color": "#003580",
       "registration": "https://geoportaal.maaamet.ee/eng/Spatial-Data/ESTPOS-national-GNSS-satellite-data-center-p839.html",
       "stations_declared": 40,
-      "note": "Currently free through 31 Aug 2026; pricing afterwards not announced. A signed service agreement via the portal is required.",
+      "note": "Free through 31 Aug 2026; pricing afterwards not announced. A signed service agreement via the portal is required.",
       "endpoints": [
         {
           "url": "http://gnss-rtk.maaamet.ee:8083/"
@@ -582,7 +582,6 @@
       "color": "#b07000",
       "registration": "https://ugrf.mlhud.go.ug/SBC",
       "stations_declared": 78,
-      "note": "Single-base, VRS, MAC (including iMAX), and FKP mountpoints offered.",
       "endpoints": [
         {
           "url": "http://ugrf.mlhud.go.ug:2101/",
@@ -970,7 +969,7 @@
       "yearly_cost": "€756/yr (~$820/yr)",
       "yearly_cost_normalized": 820,
       "registration": "https://www.reseau-orpheon.fr",
-      "note": "Commercial VRS network; individual subscriptions available. France also has the volunteer Centipede network (crtk.net:2101), free and nationwide."
+      "note": "Commercial VRS network; individual subscriptions available."
     },
     {
       "id": "teria",
@@ -984,7 +983,7 @@
       "yearly_cost": "€895/yr (~$975/yr) excl. VAT",
       "yearly_cost_normalized": 975,
       "registration": "https://www.reseau-teria.com",
-      "note": "Operated by Exagone SAS for the Ordre des Géomètres-Experts. France also has the volunteer Centipede network (crtk.net:2101), free and nationwide."
+      "note": "Operated by Exagone SAS for the Ordre des Géomètres-Experts."
     },
     {
       "id": "swipos",
@@ -2644,7 +2643,8 @@
       "tier": "free",
       "vrs": true,
       "registration": "https://incors.in.gov/",
-      "stations_declared": 60
+      "stations_declared": 60,
+      "access": "conditions"
     },
     {
       "id": "iartn",
@@ -2742,7 +2742,7 @@
       "lon": -2.0,
       "tier": "weird",
       "registration": "https://www.ordnancesurvey.co.uk/business-government/products/os-net",
-      "stations_declared": 120,
+      "stations_declared": 110,
       "note": "Corrections are distributed only through 7 licensed commercial resellers — Leica HxGN SmartNet, Trimble VRS Now, Topcon TopNet Live, FarmRTK, and others. No direct Ordnance Survey caster."
     },
     {
@@ -2959,7 +2959,7 @@
       "vrs": true,
       "stations_declared": 21,
       "registration": "https://geodesie.sn/",
-      "note": "PROCASEF + JICA stations delivering VRS / iMAX corrections; restored March 2026 after a disk failure. Subscription required; tariff not published."
+      "note": "PROCASEF + JICA stations delivering VRS / nearest-station corrections; restored March 2026 after a disk failure. Subscription required; tariff not published."
     },
     {
       "id": "cnigs_ht",
@@ -3083,7 +3083,7 @@
       "country": "BJ",
       "lat": 9.3,
       "lon": 2.3,
-      "tier": "restricted",
+      "tier": "weird",
       "registration": "https://service-public.bj",
       "stations_declared": 7,
       "note": "Caster address is disclosed only after registration via IGN Bénin / CatIS. The service is oriented to cadastral use."
@@ -3328,6 +3328,7 @@
     {
       "id": "gas_ye",
       "name": "Yemen GAS",
+      "region": "Yemen",
       "country": "YE",
       "lat": 15.36,
       "lon": 44.19,
@@ -3385,7 +3386,7 @@
       "yearly_cost_normalized": 840,
       "stations_declared": 111,
       "registration": "https://rtkconnect.dk/products/rtk-netvaerk",
-      "note": "FKP and VRS streams; ~10 km average baseline. Approved by Klimadatastyrelsen."
+      "note": "VRS and raw single-base streams; ~10 km average baseline. Approved by the Danish geodetic authority."
     },
     {
       "id": "ngd_laos_cors",

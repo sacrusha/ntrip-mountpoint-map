@@ -1821,7 +1821,7 @@
           // Free marker without a pipeline SOURCES entry — synthetic dead.
           if(!m.lat) return;
           SOURCES[m.id]={
-            id:m.id, color:UNKNOWN_SOURCE_COLOR, label:m.name||m.id,
+            id:m.id, color:m.color||UNKNOWN_SOURCE_COLOR, label:m.name||m.id,
             registration:validUrl(m.registration||''), access:m.access||'registration',
             note:m.note||null,
             near:false, user:null, pass:null, userNote:null,

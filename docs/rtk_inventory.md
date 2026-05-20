@@ -48,16 +48,17 @@ candidates whose endpoint is withheld).
 **investigate**: what to verify or find before this can be ingested or before the next pipeline change
 ```
 
-**Popup notes (`SOURCE_AUTH.openNote` in `index.html`)** are derived from the
-`**access**:` field here. When access is `conditions`, the restricting condition
-must survive into the note — do not flatten to "Free registration required".
-Conditions that must be preserved verbatim: paid tiers for certain use cases
-(walcors), national identity requirements (gnss_campania: SPID), non-commercial
-licence (earthscope), access deadlines (estpos), per-user limits (rbmc_ip).
+**Popup notes (`note` field in `data/rtk_map.json` markers)** are derived from
+the `**access**:` field here. When access is `conditions`, the restricting
+condition must survive into the note — do not flatten to "Free registration
+required". Conditions that must be preserved verbatim: paid tiers for certain
+use cases (walcors), national identity requirements (gnss_campania: SPID),
+non-commercial licence (earthscope), access deadlines (estpos), per-user
+limits (rbmc_ip).
 
 Status glossary (describes the network's nature, not whether it's ingested —
-ingestion is derivable from `SOURCES` in `scripts/fetch_stations.py` and from
-`data/stations.json`):
+ingestion is derivable from the marker's `endpoints[]` in `data/rtk_map.json`
+and from `data/stations.json`):
 - **free** — no fee to use. Includes both networks already wired into the
   pipeline and free networks whose host:port is still missing or only
   disclosable after registration. The entry text says which.

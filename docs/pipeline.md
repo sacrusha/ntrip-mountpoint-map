@@ -34,10 +34,12 @@ A `rtk_map.json` marker exists only when the marker tier rules apply
 (see `../data/rtk_map.proc.md`). Misplaced markers are worse than
 missing ones.
 
-A `fetch_stations.py` SOURCES entry exists only when `rtk_inventory.md` shows a
-free / candidate endpoint that lists a host:port and supplies physical
-mountpoints. Sweep SOURCES whenever a block's `status:` changes — see
-`../scripts/fetch_stations.proc.md` for the status→action table.
+An `endpoints[]` entry in `data/rtk_map.json` exists only when
+`rtk_inventory.md` shows a free / candidate endpoint that lists a host:port
+and supplies physical mountpoints. Sweep endpoints whenever a block's
+`status:` changes — see `../data/rtk_map.proc.md` §Endpoints for the
+status→action table. `fetch_stations.py` reads the endpoints directly;
+its own rules are about the script's code, not pipeline operations.
 
 ## Upstream is the source of truth
 
