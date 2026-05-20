@@ -395,7 +395,6 @@ Galileo E1 and E5b sit on those same bands.
   IBGE RBMC-IP, AUSCORS, PositioNZ) — need credentials as Actions
   secrets.
 - Real NRTK polygon data (concave-hull computation in the workflow).
-- Colourblind-friendly palette tuning.
 - `precLabel` hardcoded at `cos(47°)`; fix to use station latitude.
 - Pseudo / dynamic mountpoints like Centipede's `NEAR` — auto-route to
   nearest base from rover's NMEA-GGA. Not fixed geographic points; need

@@ -26,7 +26,7 @@
 - **2021-onwards** — network grew from 6 stations (delivered 2010 by ILS under US Millennium Challenge Corp / Property Rights Project, Trimble NetR8) to 40+; cadastral GCPs across ~75 k plots in early phase.
 
 ## Context
-- Pipeline already surfaces MonPOS as `almgg_mn` (color #9e6b00, type `physical-vrs`). Country tag `MN`; stations carry tag `MNG` in sourcetable.
+- Pipeline already surfaces MonPOS as `almgg_mn`. Country tag `MN`; stations carry tag `MNG` in sourcetable.
 - Web portal `monpos.gazar.gov.mn` and CORS page `cors.gazar.gov.mn/all/` use outdated/self-signed TLS — sandbox WebFetch returns cert error; rovers using a stock NTRIP client over plain HTTP/2101 are unaffected.
 - Practical: Within ~35 km of Ulaanbaatar / Darkhan / Erdenet → VRS works; rural / Gobi → falls back to nearest single-base, often >100 km → useless for cm-level fix.
 - No rtk2go / Centipede / EarthScope volunteer base within useful range (zero MN stations in those sources as of 2026-05-17).
