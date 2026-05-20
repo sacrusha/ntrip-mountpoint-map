@@ -1184,7 +1184,7 @@
     ['affordable','paid','restricted','info'].forEach(function(tier){
       var ic=PAID_TIER_ICONS[tier];
       (paidTiers[tier]||[]).forEach(function(net){
-        var mk=addInfoMarker(group,net.lat,net.lon,buildPaidNetworkPopup(net),net.name,ic.glyph,net.color||ic.color);
+        var mk=addInfoMarker(group,net.lat,net.lon,buildPaidNetworkPopup(net),net.name,ic.glyph,ic.color);
         paidLayers[tier][net.id]={marker:mk};
       });
     });
@@ -1805,38 +1805,51 @@
     var markersById={};
     markers.forEach(function(m){ markersById[m.id]=m; });
     var now=Date.now();
-    Object.keys(rawSources).forEach(function(sid){
-      var rs=rawSources[sid];
-      var mk=markersById[sid]||{};
+    // Factory for SOURCES[sid]. Either `rs` (pipeline-fetched record from
+    // stations.json) or `mk` (marker from rtk_map.json) may be null/empty:
+    //   - rs present, mk present  → fetched + editorial: full record.
+    //   - rs present, mk missing  → fetched without editorial metadata (rare).
+    //   - rs missing, mk present  → free-tier marker without pipeline data
+    //     (caster unreachable or no endpoints[]); synthetic 'dead' entry.
+    function buildSourceRecord(sid, rs, mk){
+      rs=rs||null; mk=mk||{};
       var host='', port='';
-      try{
-        var p=new URL(rs.url||'');
-        host=p.hostname;
-        port=p.port||(p.protocol==='https:'?'443':'80');
-      }catch(e){}
+      if(rs){
+        try{
+          var p=new URL(rs.url||'');
+          host=p.hostname;
+          port=p.port||(p.protocol==='https:'?'443':'80');
+        }catch(e){}
+      }
       // Prefer source_health.json last_ok (always current) over stations.json
-      // (only updated when station data changes).
-      var lo=(healthSources[sid]&&healthSources[sid].last_ok)||rs.last_ok;
+      // (only updated when station data changes). Synthetic entries: always dead.
+      var lo=rs?((healthSources[sid]&&healthSources[sid].last_ok)||rs.last_ok):null;
       var days=lo?(now-new Date(lo).getTime())/86400000:0;
-      SOURCES[sid]={
+      var staleness=!rs?'dead':days>=STALE_HIDE_DAYS?'dead':days>=STALE_GREY_DAYS?'stale':'live';
+      return {
         id:           sid,
-        color:        paletteColor(sid)||mk.color||rs.color||UNKNOWN_SOURCE_COLOR,
+        color:        paletteColor(sid)||UNKNOWN_SOURCE_COLOR,
         label:        mk.name||sid,
         registration: validUrl(mk.registration||''),
         access:       mk.access||'registration',
         note:         mk.note||null,
-        near:         rs.near||false,
-        user:         rs.user||(rs.credentials&&rs.credentials.user&&!rs.userNote?rs.credentials.user:null),
-        pass:         rs.pass||(rs.credentials&&rs.credentials.pass)||null,
-        userNote:     rs.userNote||null,
+        near:         (rs&&rs.near)||false,
+        user:         rs?(rs.user||(rs.credentials&&rs.credentials.user&&!rs.userNote?rs.credentials.user:null)):null,
+        pass:         rs?(rs.pass||(rs.credentials&&rs.credentials.pass)||null):null,
+        userNote:     (rs&&rs.userNote)||null,
         host:         host||null,
         port:         port||null,
-        staleness:    days>=STALE_HIDE_DAYS?'dead':days>=STALE_GREY_DAYS?'stale':'live',
-        // tier-specific fields filled in the markers loop below
+        staleness:    staleness,
         stationCount: 0,
-        lat: null, lon: null, region: null, vrs: false,
-        stationsDeclared: null,
+        lat:          mk.lat||null,
+        lon:          mk.lon||null,
+        region:       mk.region||null,
+        vrs:          !!mk.vrs,
+        stationsDeclared: mk.stations_declared||null,
       };
+    }
+    Object.keys(rawSources).forEach(function(sid){
+      SOURCES[sid]=buildSourceRecord(sid, rawSources[sid], markersById[sid]);
     });
     var bySource={};
     Object.keys(rawSources).forEach(function(sid){
@@ -1863,26 +1876,12 @@
     var affordableNetworks=[], paidNetworks=[], restrictedNetworks=[], info=[];
     markers.forEach(function(m){
       if(m.tier==='free'){
-        if(!SOURCES[m.id]){
-          // Free marker without a pipeline SOURCES entry — synthetic dead.
-          if(!m.lat) return;
-          SOURCES[m.id]={
-            id:m.id, color:paletteColor(m.id)||m.color||UNKNOWN_SOURCE_COLOR, label:m.name||m.id,
-            registration:validUrl(m.registration||''), access:m.access||'registration',
-            note:m.note||null,
-            near:false, user:null, pass:null, userNote:null,
-            host:null, port:null, staleness:'dead', stationCount:0,
-            lat:m.lat, lon:m.lon, region:m.region||null, vrs:!!m.vrs,
-            stationsDeclared:m.stations_declared||null,
-          };
-          return;
+        // Free marker without a pipeline SOURCES entry → synthetic 'dead'.
+        // (Pass 1 already merged marker fields for sources WITH a pipeline
+        // entry; nothing to do here in that case.)
+        if(!SOURCES[m.id] && m.lat){
+          SOURCES[m.id]=buildSourceRecord(m.id, null, m);
         }
-        var net=SOURCES[m.id];
-        net.lat=m.lat; net.lon=m.lon;
-        net.region=m.region||null;
-        net.vrs=!!m.vrs;
-        net.stationsDeclared=m.stations_declared||null;
-        // label/access/registration/note populated in the initial pass.
       } else {
         var rec={id:m.id, name:m.name||m.id, lat:m.lat, lon:m.lon,
           region:m.region||'', tier:m.tier, access:m.access||m.tier,

@@ -106,6 +106,14 @@ def quantile(xs, q):
     return s[lo] + (s[hi] - s[lo]) * (idx - lo)
 
 
+def _stable_hash(s: str) -> int:
+    """djb2 hash; deterministic across Python runs (unlike built-in hash())."""
+    h = 5381
+    for c in s:
+        h = ((h << 5) + h + ord(c)) & 0xFFFFFFFF
+    return h
+
+
 def union_find(n, edges):
     parent = list(range(n))
 
@@ -309,7 +317,12 @@ def assign_locals(stations_data, cache):
     if cached_buckets:
         pref = {s: cached_buckets[s] for s in sources if s in cached_buckets}
     else:
-        pref = {s: i % TARGET_K for i, s in enumerate(sources)}
+        # First run / lost cache: spread sources across buckets by a stable
+        # hash of the id rather than alphabetical index. Alphabetical
+        # rotation clusters alike-prefix sources (sapos_*, gnss_*) into
+        # adjacent buckets, biasing conflicts; a hash randomises the seed
+        # without losing determinism.
+        pref = {s: _stable_hash(s) % TARGET_K for s in sources}
 
     for k in range(TARGET_K, MAX_K + 1):
         res = color_search(sources, conflicts, pref, k)

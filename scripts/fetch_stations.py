@@ -59,12 +59,12 @@ def load_networks() -> list[dict]:
     """Read operational network config from data/rtk_map.json.
 
     Returns the subset of marker entries with a non-empty endpoints[] array.
-    Each network entry: {id, color, endpoints: [{url, id?, credentials?,
-    near?, nmea_filter?, solution_filter?}, ...]}.
+    Each network entry: {id, endpoints: [{url, id?, credentials?, near?,
+    nmea_filter?, solution_filter?}, ...]}.
     """
     data = json.loads((DATA_DIR / "rtk_map.json").read_text(encoding="utf-8"))
     return [
-        {"id": m["id"], "color": m.get("color", ""), "endpoints": m["endpoints"]}
+        {"id": m["id"], "endpoints": m["endpoints"]}
         for m in data["markers"] if m.get("endpoints")
     ]
 
@@ -95,7 +95,6 @@ def _flatten_endpoints(networks: list[dict]) -> list[dict]:
                 "network_id":      net["id"],
                 "endpoint_idx":    idx,
                 "url":             ep["url"],
-                "color":           net["color"],
                 "credentials":     ep.get("credentials"),
                 "near":            ep.get("near", False),
                 "user":            creds.get("user"),
@@ -294,14 +293,13 @@ def station_fingerprint(source: dict) -> list[list]:
 def fetch_source(src: dict) -> tuple[str, dict, bool]:
     """Fetch and parse a single NTRIP source. Returns (sid, result, was_fresh)."""
     sid, url = src["id"], src["url"]
-    color = src.get("color", "")
     src_credentials = src.get("credentials")
     prev_last_ok = src.get("_prev_last_ok")
     nmea_filter = src.get("nmea_filter", True)
     solution_filter = src.get("solution_filter", True)
     raw_path = DATA_DIR / f"{sid}.sourcetable"
     _meta = {
-        "url": url, "color": color,
+        "url": url,
         "credentials": src_credentials,
         "near": src.get("near", False),
         "user": src.get("user"),
@@ -430,8 +428,10 @@ def main() -> int:
 
     # Compare against previous JSON, ignoring the "updated" wall clock so an
     # unchanged station list produces no diff (and therefore no commit).
-    # Editorial fields (label/region/access/registration/note/color) live in
-    # data/rtk_map.json and don't drive stations.json regeneration.
+    # Editorial fields (label/region/access/registration/note) live in
+    # data/rtk_map.json and don't drive stations.json regeneration; marker
+    # colour is computed downstream from data/color_assignments.json + the
+    # PALETTE const in index.html.
     if existing is not None:
         ex_sources = existing.get("sources", {})
         unchanged = (

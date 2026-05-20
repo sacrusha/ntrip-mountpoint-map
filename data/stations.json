@@ -4,7 +4,6 @@
   "sources": {
     "sapos_SN": {
       "url": "http://www.ntrip.sachsen.de:2101/",
-      "color": "#2d6e6e",
       "label": "sapos SN",
       "type": "physical-vrs",
       "country": [
@@ -27,7 +26,6 @@
     },
     "sapos_BY": {
       "url": "http://www.sapos-by-ntrip.de:2101/",
-      "color": "#2d6e6e",
       "label": "sapos BY",
       "type": "vrs-only",
       "country": [
@@ -50,7 +48,6 @@
     },
     "spslux": {
       "url": "http://stream.spslux.lu:5005/",
-      "color": "#5c6bc0",
       "label": "SPSLux",
       "type": "physical-vrs",
       "country": [
@@ -73,7 +70,6 @@
     },
     "sapos_TH": {
       "url": "http://www.sapos-th-ntrip.de:2101/",
-      "color": "#2d6e6e",
       "label": "sapos TH",
       "type": "vrs-only",
       "country": [
@@ -96,7 +92,6 @@
     },
     "sapos_BB": {
       "url": "http://www.sapos-bb-ntrip.de:2101/",
-      "color": "#2d6e6e",
       "label": "sapos BB",
       "type": "vrs-only",
       "country": [
@@ -119,7 +114,6 @@
     },
     "cropos": {
       "url": "http://gnss.cropos.hr:2101/",
-      "color": "#c0392b",
       "label": "CROPOS",
       "type": "vrs-only",
       "country": [
@@ -142,7 +136,6 @@
     },
     "asg_eupos": {
       "url": "http://system.asgeupos.pl:2101/",
-      "color": "#7b5ea7",
       "label": "ASG-EUPOS",
       "type": "vrs-only",
       "country": [
@@ -165,7 +158,6 @@
     },
     "sapos_NW": {
       "url": "http://www.sapos-nw-ntrip.de:2101/",
-      "color": "#2d6e6e",
       "label": "sapos NW",
       "type": "vrs-only",
       "country": [
@@ -188,7 +180,6 @@
     },
     "litpos": {
       "url": "http://193.219.10.2:2101/",
-      "color": "#0d47a1",
       "label": "LitPOS",
       "type": "vrs-only",
       "country": [
@@ -211,7 +202,6 @@
     },
     "rem_fvg": {
       "url": "http://gnsscaster.regione.fvg.it:8080/",
-      "color": "#2e6fb0",
       "label": "Re.M.FVG",
       "type": "physical-vrs",
       "country": [
@@ -571,7 +561,6 @@
     },
     "renep": {
       "url": "http://193.137.94.71:2101/",
-      "color": "#006b3c",
       "label": "ReNEP",
       "type": "single-base",
       "country": [
@@ -1147,7 +1136,6 @@
     },
     "euref_ip": {
       "url": "http://euref-ip.net:2101/",
-      "color": "#1f4e79",
       "label": "EUREF-IP",
       "type": "single-base",
       "country": [
@@ -3691,7 +3679,6 @@
     },
     "spin3": {
       "url": "http://158.102.7.10:2101/",
-      "color": "#1565c0",
       "label": "SPIN3 GNSS",
       "type": "physical-vrs",
       "country": [
@@ -3714,7 +3701,6 @@
     },
     "igs_ip": {
       "url": "http://www.igs-ip.net:2101/",
-      "color": "#7d3c98",
       "label": "IGS-IP",
       "type": "single-base",
       "country": [
@@ -7914,7 +7900,6 @@
     },
     "tpos": {
       "url": "http://194.105.50.232:2101/",
-      "color": "#00695c",
       "label": "TPOS",
       "type": "physical-vrs",
       "country": [
@@ -8250,7 +8235,6 @@
     },
     "ergnss": {
       "url": "http://ergnss-ip.ign.es:2101/",
-      "color": "#b05000",
       "label": "ERGNSS",
       "type": "physical-vrs",
       "country": [
@@ -9858,7 +9842,6 @@
     },
     "stpos": {
       "url": "http://62.101.0.40:2109/",
-      "color": "#ad1457",
       "label": "STPOS",
       "type": "physical-vrs",
       "country": [
@@ -9942,7 +9925,6 @@
     },
     "sapos_HE": {
       "url": "http://www.sapos-he-ntrip.de:2101/",
-      "color": "#2d6e6e",
       "label": "sapos HE",
       "type": "physical-vrs",
       "country": [
@@ -9965,7 +9947,6 @@
     },
     "centipede": {
       "url": "http://crtk.net:2101/",
-      "color": "#e87500",
       "label": "Centipede",
       "type": "single-base",
       "country": [
@@ -24524,7 +24505,6 @@
     },
     "sapos_BW": {
       "url": "http://www.sapos-bw-ntrip.de:2101/",
-      "color": "#2d6e6e",
       "label": "sapos BW",
       "type": "vrs-only",
       "country": [
@@ -24547,7 +24527,6 @@
     },
     "ct_acorn": {
       "url": "http://acorn.uconn.edu:2101/",
-      "color": "#1a237e",
       "label": "ACORN CT",
       "type": "physical-vrs",
       "country": [
@@ -24570,7 +24549,6 @@
     },
     "vector": {
       "url": "http://vector.vermont.gov:2101/",
-      "color": "#1b5e20",
       "label": "VECTOR VT",
       "type": "physical-vrs",
       "country": [
@@ -24593,7 +24571,6 @@
     },
     "iartn": {
       "url": "http://165.206.203.10:10000/",
-      "color": "#37474f",
       "label": "IARTN",
       "type": "physical-coord-vrs",
       "country": [
@@ -24616,7 +24593,6 @@
     },
     "trignet": {
       "url": "http://trignet.co.za:2101/",
-      "color": "#556b2f",
       "label": "TrigNet",
       "type": "physical-vrs",
       "country": [
@@ -25516,7 +25492,6 @@
     },
     "wvrtn": {
       "url": "http://wvrtn.cors.us:2101/",
-      "color": "#90a4ae",
       "label": "WVRTN",
       "type": "vrs-only",
       "country": [
@@ -25539,7 +25514,6 @@
     },
     "catnet": {
       "url": "http://catnet-ip.icgc.cat:2101/",
-      "color": "#a00020",
       "label": "CATNET",
       "type": "physical-vrs",
       "country": [
@@ -25562,7 +25536,6 @@
     },
     "orgn": {
       "url": "http://orgn.odot.state.or.us:9881/",
-      "color": "#004d40",
       "label": "ORGN",
       "type": "physical-vrs",
       "country": [
@@ -25585,7 +25558,6 @@
     },
     "sapos_LSA": {
       "url": "http://www.sapos-lsa-ntrip.de:2101/",
-      "color": "#2d6e6e",
       "label": "sapos LSA",
       "type": "vrs-only",
       "country": [
@@ -25608,7 +25580,6 @@
     },
     "sapos_MV": {
       "url": "http://www.sapos-mv-ntrip.de:2101/",
-      "color": "#2d6e6e",
       "label": "sapos MV",
       "type": "vrs-only",
       "country": [
@@ -25631,7 +25602,6 @@
     },
     "agrs_nl": {
       "url": "http://ntrip.kadaster.nl:2101/",
-      "color": "#0288d1",
       "label": "AGRS.NL / AGRS.BES",
       "type": "single-base",
       "country": [
@@ -26364,7 +26334,6 @@
     },
     "flepos": {
       "url": "http://flepos.vlaanderen.be:2101/",
-      "color": "#3a7ca5",
       "label": "FLEPOS",
       "type": "vrs-only",
       "country": [
@@ -26387,7 +26356,6 @@
     },
     "regna_rou": {
       "url": "http://rtk.igm.gub.uy:2101/",
-      "color": "#1a9e5c",
       "label": "REGNA-ROU",
       "type": "physical-vrs",
       "country": [
@@ -27335,7 +27303,6 @@
     },
     "sapos_SH_HH": {
       "url": "http://www.sapos.geonord.de:2101/",
-      "color": "#2d6e6e",
       "label": "sapos SH HH",
       "type": "vrs-only",
       "country": [
@@ -27358,7 +27325,6 @@
     },
     "gcgc_rtn": {
       "url": "http://rtn.usm.edu:2101/",
-      "color": "#01579b",
       "label": "GCGC RTN",
       "type": "single-base",
       "country": [
@@ -27381,7 +27347,6 @@
     },
     "gnss_liguria": {
       "url": "http://81.23.86.70:2101/",
-      "color": "#0277bd",
       "label": "Rete GNSS Liguria",
       "type": "physical-vrs",
       "country": [
@@ -27477,7 +27442,6 @@
     },
     "sit_puglia": {
       "url": "http://gps.sit.puglia.it:2101/",
-      "color": "#0288d1",
       "label": "SIT Puglia",
       "type": "physical-vrs",
       "country": [
@@ -27500,7 +27464,6 @@
     },
     "gnss_veneto": {
       "url": "http://147.162.229.53:2101/",
-      "color": "#4527a0",
       "label": "Rete GNSS Veneto",
       "type": "physical-vrs",
       "country": [
@@ -27728,7 +27691,6 @@
     },
     "mainedot": {
       "url": "http://medotrtn.maine.gov:2101/",
-      "color": "#b0bec5",
       "label": "MaineDOT",
       "type": "vrs-only",
       "country": [
@@ -27751,7 +27713,6 @@
     },
     "latpos": {
       "url": "http://latpos.lgia.gov.lv:5001/",
-      "color": "#1a6b3c",
       "label": "LatPos",
       "type": "vrs-only",
       "country": [
@@ -27774,7 +27735,6 @@
     },
     "icecors": {
       "url": "http://178.19.53.126:2101/",
-      "color": "#1e6b8c",
       "label": "IceCORS",
       "type": "physical-vrs",
       "country": [
@@ -27894,7 +27854,6 @@
     },
     "acorn": {
       "url": "http://www.acorn-gnss.net:2101/",
-      "color": "#2e5b8a",
       "label": "ACORN",
       "type": "physical-vrs",
       "country": [
@@ -27917,7 +27876,6 @@
     },
     "ergnss_sptr": {
       "url": "http://ergnss-tr.ign.es:2101/",
-      "color": "#b05000",
       "label": "ERGNSS",
       "type": "vrs-only",
       "country": [
@@ -27940,7 +27898,6 @@
     },
     "geortk": {
       "url": "http://geortk.jp:2101/",
-      "color": "#1a7a4a",
       "label": "GeoRTK",
       "type": "single-base",
       "country": [
@@ -28492,7 +28449,6 @@
     },
     "modot_rtn": {
       "url": "http://rtk3.modot.mo.gov:2101/",
-      "color": "#78909c",
       "label": "MoDOT RTN",
       "type": "vrs-only",
       "country": [
@@ -28515,7 +28471,6 @@
     },
     "sapos_SL": {
       "url": "http://www.sapos-sl-ntrip.de:2101/",
-      "color": "#2d6e6e",
       "label": "sapos SL",
       "type": "physical-vrs",
       "country": [
@@ -28635,7 +28590,6 @@
     },
     "sapos_BE": {
       "url": "http://www.sapos-be-ntrip.de:2101/",
-      "color": "#2d6e6e",
       "label": "sapos BE",
       "type": "vrs-only",
       "country": [
@@ -28658,7 +28612,6 @@
     },
     "ardot_rtn": {
       "url": "http://gps.ardot.gov:2101/",
-      "color": "#827717",
       "label": "ARDOT RTN",
       "type": "physical-vrs",
       "country": [
@@ -28681,7 +28634,6 @@
     },
     "sapos_NI": {
       "url": "http://www.sapos-ni-ntrip.de:2101/",
-      "color": "#2d6e6e",
       "label": "sapos NI",
       "type": "vrs-only",
       "country": [
@@ -28704,7 +28656,6 @@
     },
     "wiscors": {
       "url": "http://wiscors.dot.wi.gov:2101/",
-      "color": "#bf360c",
       "label": "WISCORS",
       "type": "physical-vrs",
       "country": [
@@ -28727,7 +28678,6 @@
     },
     "nps_cors": {
       "url": "http://rtk.nps.gov:2101/",
-      "color": "#4a7c59",
       "label": "NPS CORS",
       "type": "single-base",
       "country": [
@@ -30443,7 +30393,6 @@
     },
     "regme_ec": {
       "url": "http://ntrip.igm.gob.ec:2101/",
-      "color": "#558b2f",
       "label": "REGME-IP",
       "type": "single-base",
       "country": [
@@ -30466,7 +30415,6 @@
     },
     "nysnet": {
       "url": "http://rtn.dot.ny.gov:8080/",
-      "color": "#0d47a1",
       "label": "NYSNet",
       "type": "physical-vrs",
       "country": [
@@ -30502,7 +30450,6 @@
     },
     "mesa_rtvrn": {
       "url": "http://rtvrn.mesacounty.us:2101/",
-      "color": "#8d6e63",
       "label": "Mesa County RTVRN",
       "type": "vrs-only",
       "country": [
@@ -30525,7 +30472,6 @@
     },
     "inacors": {
       "url": "http://nrtk.big.go.id:2001/",
-      "color": "#1a5fa0",
       "label": "InaCORS",
       "type": "physical-vrs",
       "country": [
@@ -30548,7 +30494,6 @@
     },
     "sicilianet": {
       "url": "http://193.206.223.39:2101/",
-      "color": "#e65100",
       "label": "Sicili@net",
       "type": "physical-vrs",
       "country": [
@@ -30656,7 +30601,6 @@
     },
     "gpsumbria": {
       "url": "http://gpsumbria.regione.umbria.it:2101/",
-      "color": "#2e7d32",
       "label": "GPS-UMBRIA",
       "type": "physical-vrs",
       "country": [
@@ -30679,7 +30623,6 @@
     },
     "gnss_campania": {
       "url": "http://gps.sit.regione.campania.it:2101/",
-      "color": "#6a1b9a",
       "label": "GNSS Campania",
       "type": "physical-vrs",
       "country": [
@@ -30705,7 +30648,6 @@
     },
     "igac": {
       "url": "http://sbc.igac.gov.co:2102/",
-      "color": "#d4a017",
       "label": "IGAC",
       "type": "physical-coord-vrs",
       "country": [
@@ -32457,7 +32399,6 @@
     },
     "ugrf": {
       "url": "http://ugrf.mlhud.go.ug:2101/",
-      "color": "#b07000",
       "label": "UGRF CORS",
       "type": "physical-vrs",
       "country": [
@@ -32829,7 +32770,6 @@
     },
     "kycors": {
       "url": "http://kycors.ky.gov:2101/",
-      "color": "#546e7a",
       "label": "KyCORS",
       "type": "vrs-only",
       "country": [
@@ -32852,7 +32792,6 @@
     },
     "ign_cr_cors": {
       "url": "http://igncaster.snitcr.go.cr:2101/",
-      "color": "#1b7837",
       "label": "IGN-CR / SNIT",
       "type": "single-base",
       "country": [
@@ -33032,7 +32971,6 @@
     },
     "satref": {
       "url": "http://ntrip.geodetic.gov.hk:2101/",
-      "color": "#8b008b",
       "label": "SatRef",
       "type": "single-base",
       "country": [
@@ -33320,7 +33258,6 @@
     },
     "rbmc_ip": {
       "url": "http://gps-ntrip.ibge.gov.br:2101/",
-      "color": "#008b8b",
       "label": "RBMC-IP",
       "type": "single-base",
       "country": [
@@ -35036,7 +34973,6 @@
     },
     "cors_korea": {
       "url": "http://www.gnssdata.or.kr:2101/",
-      "color": "#a93226",
       "label": "CORS-KOREA",
       "type": "single-base",
       "country": [
@@ -40976,7 +40912,6 @@
     },
     "mosref": {
       "url": "http://mosref.dscc.gov.mo:2101/",
-      "color": "#8b0057",
       "label": "MoSRef",
       "type": "physical-vrs",
       "country": [
@@ -40999,7 +40934,6 @@
     },
     "positionz": {
       "url": "http://positionz-rt.linz.govt.nz:2101/",
-      "color": "#2e8b57",
       "label": "PositioNZ",
       "type": "single-base",
       "country": [
@@ -41767,7 +41701,6 @@
     },
     "rtk2go": {
       "url": "http://rtk2go.com:2101/",
-      "color": "#d00000",
       "label": "rtk2go",
       "type": "single-base",
       "country": [
@@ -52198,7 +52131,6 @@
     },
     "mirai": {
       "url": "http://ntrip.go.gnss.go.jp:2101/",
-      "color": "#2471a3",
       "label": "MIRAI",
       "type": "single-base",
       "country": [
@@ -56110,7 +56042,6 @@
     },
     "ramsac": {
       "url": "http://ntrip.ign.gob.ar:2101/",
-      "color": "#7b3f9e",
       "label": "RAMSAC",
       "type": "single-base",
       "country": [
@@ -58462,7 +58393,6 @@
     },
     "auscors": {
       "url": "http://ntrip.data.gnss.ga.gov.au:2101/",
-      "color": "#b8860b",
       "label": "AUSCORS",
       "type": "single-base",
       "country": [
@@ -68170,7 +68100,6 @@
     },
     "almgg_mn": {
       "url": "http://rtk.gazar.gov.mn:2101/",
-      "color": "#9e6b00",
       "label": "MonPOS",
       "type": "physical-vrs",
       "country": [
@@ -68725,7 +68654,6 @@
     },
     "earthscope": {
       "url": "http://ntrip.earthscope.org:2101/",
-      "color": "#8b4513",
       "label": "EarthScope",
       "type": "single-base",
       "country": [
@@ -81841,7 +81769,6 @@
     },
     "alcors": {
       "url": "http://aldotcors.dot.state.al.us:10099/",
-      "color": "#1565c0",
       "label": "AlCORS",
       "type": "physical-vrs",
       "country": [
@@ -81864,7 +81791,6 @@
     },
     "ksa_cors": {
       "url": "http://ksacors.geoportal.sa:2101/",
-      "color": "#a0522d",
       "label": "KSA-CORS",
       "type": "vrs-only",
       "country": [
@@ -81887,7 +81813,6 @@
     },
     "walcors": {
       "url": "http://gnss.wallonie.be:8081/",
-      "color": "#1e88c7",
       "label": "WALCORS",
       "type": "vrs-only",
       "country": [
@@ -81910,7 +81835,6 @@
     },
     "estpos": {
       "url": "http://gnss-rtk.maaamet.ee:8083/",
-      "color": "#003580",
       "label": "ESTPOS",
       "type": "vrs-only",
       "country": [
@@ -81933,7 +81857,6 @@
     },
     "thailand_dol": {
       "url": "http://122.155.131.34:2101/",
-      "color": "#cc6600",
       "label": "DOL LandGNSS",
       "type": "physical-vrs",
       "country": [
@@ -81956,7 +81879,6 @@
     },
     "mncors": {
       "url": "http://mncors.dot.state.mn.us:9000/",
-      "color": "#455a64",
       "label": "MnCORS",
       "type": "vrs-only",
       "country": [
@@ -81979,7 +81901,6 @@
     },
     "odot_rtn": {
       "url": "http://156.63.133.115:2101/",
-      "color": "#607d8b",
       "label": "ODOT RTN",
       "type": "vrs-only",
       "country": [
@@ -82002,7 +81923,6 @@
     },
     "fprn": {
       "url": "http://www.myfloridagps.com:10000/",
-      "color": "#f57f17",
       "label": "FPRN",
       "type": "physical-vrs",
       "country": [
@@ -82025,7 +81945,6 @@
     },
     "gnss_abruzzo_lazio": {
       "url": "http://gnss-rtk.regione.abruzzo.it:2101/",
-      "color": "#c62828",
       "label": "GNSS Abruzzo+Lazio",
       "type": "physical-vrs",
       "country": [
@@ -82048,7 +81967,6 @@
     },
     "macors": {
       "url": "http://macorsrtk.massdot.state.ma.us:2101/",
-      "color": "#283593",
       "label": "MaCORS",
       "type": "physical-vrs",
       "country": [
@@ -82071,7 +81989,6 @@
     },
     "msrn": {
       "url": "http://mdotcors.michigan.gov:10010/",
-      "color": "#006064",
       "label": "MSRN",
       "type": "physical-vrs",
       "country": [
@@ -82094,7 +82011,6 @@
     },
     "azcors": {
       "url": "http://azcors.azwater.gov:2101/",
-      "color": "#c2692e",
       "label": "AZ CORS",
       "type": "physical-coord-vrs",
       "country": [

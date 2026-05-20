@@ -27,10 +27,11 @@ index.html                    # map - Leaflet SPA, all UI.
 guide.html                    # visitor primer, linked from map. Keep aligned w/ help_topics.json.
 scripts/fetch_stations.py        # reads endpoints from rtk_map.json; updates .sourcetable + source_health.json + stations.json.
 scripts/fetch_stations.proc.md   # edit rules for the fetch script + rtk_map.json endpoints[]. Read BEFORE editing either.
+scripts/assign_colors.py         # reads stations.json + previous color_assignments.json (cache); writes color_assignments.json with palette slot per source (globalN/communityN/localN). Density-aware clustering + Delaunay conflict graph + k=4 coloring. Cache stickiness only persists when run manually on main; scheduler runs in ephemeral worktree and any update is discarded.
 scripts/inject_seo_help.py       # splices hidden SEO mirror of help_topics.json into index.html. Run after editing help_topics.json; commit index.html diff same commit.
 scripts/deploy_pages.ps1         # local Cloudflare Pages deploy. Invoked by run_in_worktree.ps1 inside the ephemeral worktree.
 scripts/refresh_and_deploy.ps1   # OUTER orchestrator. Task Scheduler entry: create ephemeral worktree at .tmp/scheduler-run-<stamp> from main -> copy .env/ in -> invoke run_in_worktree.ps1 -> remove worktree. No commits, no persistent state. Logs: .tmp/refresh_and_deploy/. Flags: -SkipDeploy.
-scripts/run_in_worktree.ps1      # INNER. Runs inside the ephemeral worktree: fetch_stations.py -> deploy_pages.ps1. No git ops.
+scripts/run_in_worktree.ps1      # INNER. Runs inside the ephemeral worktree: fetch_stations.py -> assign_colors.py -> deploy_pages.ps1. No git ops.
 scripts/register_scheduled_task.ps1 # (re-)register Task Scheduler job. Points at any worktree of the repo; orchestrator always builds from main.
 scripts/                         # investigation toolset, each takes -h for purpose + examples.
   stations_by_country.py, stations_by_radius.py # station lookup
@@ -44,6 +45,7 @@ data/
   help_topics.json               # searchable user-facing help. Surfaced via Help button on map; aligned w/ guide.html.
   <source>.sourcetable           # cached raw NTRIP response per fetched caster.
   stations.json                  # fetched mountpoint data, consumed by index
+  color_assignments.json         # {source_id: palette_slot}, produced by assign_colors.py, consumed by index.html via PALETTE const.
 docs/
   gnss-ai-guide.md               # deep GNSS primer. Read before changing guide or help.
   requirements.md                # product spec, possibly outdated
