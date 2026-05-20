@@ -73,4 +73,4 @@ No independent commercial NTRIP VRS network with Indonesia-wide coverage has bee
 - ATR/BPN official site: https://www.atrbpn.go.id/
 - GeoKKP documentation: https://geokkp-gis.github.io/docs/
 - country-survey.md ID stub (2026-04-29)
-- networks.md `inacors` entry
+- rtk_inventory.md `inacors` entry

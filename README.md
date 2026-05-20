@@ -30,7 +30,7 @@ NTRIP, RTK hardware, antenna placement, and DIY base stations.
   bright-green antenna markers for per-station (RS) networks, grey rings or
   grey antennas for stale or not-yet-ingested networks, circled $ / ✕ / ?
   for affordable / restricted / info networks. All driven by
-  `data/country_markers.json`.
+  `data/rtk_map.json`.
 - Marker clicks surface the three strings you need for your NTRIP client —
   server host, port, mountpoint name — each with a one-click copy button,
   plus a direct link to the registration page where one is needed.
@@ -140,7 +140,7 @@ VRS-only networks expose virtual mountpoints only — no physical station
 coordinates — so they appear as stopgap circles in the toggle panel with 0
 pins on the map. Coverage polygons are deferred.
 
-A companion file `data/country_markers.json` (static, not pipeline-generated)
+A companion file `data/rtk_map.json` (static, not pipeline-generated)
 records country-level knowledge for the 66 in-pipeline networks plus known
 networks not yet ingested. **221 markers** as of 2026-04-29. Three tiers appear
 on the map for regions with no physical pins: coloured VRS circles (virtual
@@ -153,7 +153,7 @@ REGPMOC, Quebec MERN, Israel APN, etc.).
 
 Per-country research lives in `docs/ntrip_research/CC_*.md` (citation-grade
 primary research, ~190 country/territory entries), distilled into per-network
-blocks in [`docs/networks.md`](docs/networks.md) (endpoints, credentials,
+blocks in [`docs/rtk_inventory.md`](docs/rtk_inventory.md) (endpoints, credentials,
 deferred candidates).
 
 ## Contributing / Next-session handover
@@ -212,7 +212,7 @@ Yes. Every source on the map is free, in one of three access tiers:
 registration** (most national networks: SAPOS, AUSCORS, ERGNSS, RBMC-IP,
 …), and **free with conditions** (EarthScope's non-commercial NULA,
 APOS Austria's agriculture-only tier, …). Commercial / paid networks
-are deliberately excluded — see [`docs/networks.md`](docs/networks.md)
+are deliberately excluded — see [`docs/rtk_inventory.md`](docs/rtk_inventory.md)
 for what was investigated and rejected.
 
 ### What hardware do I need to use these corrections?
@@ -249,7 +249,7 @@ A GitHub Actions workflow fetches sourcetables from every configured
 caster four times a day (01/07/13/19 UTC), parses STR lines, drops
 DGNSS-only and VRS streams, and commits the result to
 [`data/stations.json`](data/stations.json) on `main`. See
-[`docs/networks.md`](docs/networks.md) for every endpoint, credentials,
+[`docs/rtk_inventory.md`](docs/rtk_inventory.md) for every endpoint, credentials,
 and audit trail of what was investigated.
 
 ## Data attributions
@@ -279,7 +279,7 @@ Briefly:
 
 Other operators ingested by this project publish their sourcetables
 without an attribution clause; each network is still credited by name in
-the map's station card and in [`docs/networks.md`](docs/networks.md).
+the map's station card and in [`docs/rtk_inventory.md`](docs/rtk_inventory.md).
 
 ## License
 

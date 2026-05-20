@@ -120,7 +120,7 @@ Chinese GNSS receiver manufacturers operate their own CORS networks, primarily a
 - All require organisational credentials + valid 测绘资质
 - Not accessible to individuals or foreigners
 
-Pipeline note: tracked in `docs/networks.md` under `bgas_china` (national) and `chinese_provincial_cors` (provincial bundle); both rejected from the public map pipeline as licensed-only.
+Pipeline note: tracked in `docs/rtk_inventory.md` under `bgas_china` (national) and `chinese_provincial_cors` (provincial bundle); both rejected from the public map pipeline as licensed-only.
 
 ---
 

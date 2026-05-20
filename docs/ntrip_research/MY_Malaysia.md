@@ -70,4 +70,4 @@ Galileo High Accuracy Service (HAS) provides a free PPP-RTK correction globally 
 - ArduSimple — RTK correction services Malaysia: https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-malaysia/
 - NTRIP-list.com Asia: https://ntrip-list.com/asia/
 - country-survey.md MY stub (2026-04-29)
-- networks.md `myrtk` entry
+- rtk_inventory.md `myrtk` entry

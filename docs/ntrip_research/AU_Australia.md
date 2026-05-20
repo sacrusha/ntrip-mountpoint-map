@@ -118,7 +118,7 @@ No state-funded free hobbyist caster operates in QLD, TAS, NT, or ACT as of 2026
 | **HxGN SmartNet Aus** | National (~620+ CORS aggregated incl. Spatial NSW data) | Pricing on request via C.R.Kennedy / Map Gear dealers; not publicly listed. | https://hxgnsmartnet.com/en-au (HTTP 403 from this sandbox), https://survey.crkennedy.com.au/_brands/hxgn-smartnet |
 | **Positioned RTK** | National (leverages GA CORS + extras) | Pricing on request. Solutions: NEAR (single-base) + VRS. | https://positioned.com.au/products/positioned-rtk-ntrip-subscription |
 | **RTKdata.com** | 1,500+ AU stations via aggregator | USD 40/mo (~AUD 62/mo) self-service; 30-day free trial. | https://rtkdata.com/aus/ |
-| **GEODNET Australia** | Crowd-sourced AU pod stations | USD 40/mo paid (after 30-day trial); host `aus.geodnet.com:2101`. | https://geodnet.com — see networks.md `geodnet_aus` |
+| **GEODNET Australia** | Crowd-sourced AU pod stations | USD 40/mo paid (after 30-day trial); host `aus.geodnet.com:2101`. | https://geodnet.com — see rtk_inventory.md `geodnet_aus` |
 
 All commercial networks require a paid subscription; none offer a public hobbyist tier free of charge.
 

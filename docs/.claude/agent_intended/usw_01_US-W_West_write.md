@@ -43,11 +43,11 @@
 
 #### Caltrans CVSRN
 
-Restricted: access limited to vetted state/county agency partners under data-sharing agreements. CVSRN data are mirrored into CRTN, so the Caltrans antennae are reachable through CRTN with the $100 fee. Not a hobbyist option directly. (See networks.md `calrtns`.)
+Restricted: access limited to vetted state/county agency partners under data-sharing agreements. CVSRN data are mirrored into CRTN, so the Caltrans antennae are reachable through CRTN with the $100 fee. Not a hobbyist option directly. (See rtk_inventory.md `calrtns`.)
 
 #### BARD (Bay Area Regional Deformation network)
 
-Research array — ~40 stations around the SF Bay / Northern California, operated by UC Berkeley BSL + USGS Menlo Park. No independent public caster: streams are exposed via SOPAC CRTN and EarthScope NOTA. Same physical antennae, two access paths. (See networks.md `bard`.)
+Research array — ~40 stations around the SF Bay / Northern California, operated by UC Berkeley BSL + USGS Menlo Park. No independent public caster: streams are exposed via SOPAC CRTN and EarthScope NOTA. Same physical antennae, two access paths. (See rtk_inventory.md `bard`.)
 
 #### Local agency networks (CA)
 
@@ -280,7 +280,7 @@ Per `data/stations.json` summary in country-survey § US (date 2026-05-02): rtk2
 ## Sources Consulted
 
 ### Federal / supra-state
-- EarthScope NOTA: `ntrip.earthscope.org:2101` (in country-survey.md and networks.md `earthscope`)
+- EarthScope NOTA: `ntrip.earthscope.org:2101` (in country-survey.md and rtk_inventory.md `earthscope`)
 - NPS CORS: https://ntrip.nps.gov/ (see `US-NPS_NationalParkService.md`)
 - NDGPS decommissioning: federalregister.gov/documents/2018/03/21/2018-05684/ + USCG NavCen + DOT/PNT pages
 

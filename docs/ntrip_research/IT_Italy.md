@@ -146,7 +146,7 @@ Italy has no unified national free RTK caster. Instead, 10+ regional/autonomous 
 - **Partner:** ISPRA contributes a small number of stations; per the operator's `lista-stazioni` page all currently listed stations are OGS-managed. Part of OGS's SMINO (North-East Italy monitoring system) and a node in the EPOS / GLASS CEGNxEPOS gateway.
 - **host:port:** `158.110.30.81:2110` (note non-standard port 2110). Listed verbatim on https://frednet.crs.ogs.it/en/servizio-rtk/ as of 2026-05-13.
 - **num_stations:** 25 listed; 23 RTK-active per operator station-list page (2026-05-17 re-fetch — one station added since 2026-05-13's 24/22 reading). Active codes 2026-05-17: ACOM, AFAL, CANV, CODR, FUSE, GRDO, JOAN, LOGA, MDEA, MGBU, MPRA, NOVE, PAZO, PMNT, SUSE, TOLS, TRIE, UDI1, UDI2, VALS, VARM, ZOUF (+1 new). LODI and UDIN remain RTK-off. Distributed across Friuli-Venezia Giulia plus Veneto (CANV, SUSE, NOVE, MGBU, AFAL) and one outlier in Lombardia (LODI). Inter-station spacing ~30–50 km; designed for crustal-deformation monitoring along the Adria microplate boundary, not optimised for RTK density.
-  - **Dual-source operator mismatch (flag):** the `lista-stazioni` page shows 25 listed / 23 RTK-active, but the overview page `frednet.crs.ogs.it/en/frednet/` still states "currently … counts 22 active permanent GNSS stations". The two operator pages disagree. Station-list page is the more authoritative + recently-updated count; overview-page text appears stale (also matches SMINO page's 22-active figure). Tracked here so downstream pipeline (networks.md, markers) stays consistent with the lista-stazioni count.
+  - **Dual-source operator mismatch (flag):** the `lista-stazioni` page shows 25 listed / 23 RTK-active, but the overview page `frednet.crs.ogs.it/en/frednet/` still states "currently … counts 22 active permanent GNSS stations". The two operator pages disagree. Station-list page is the more authoritative + recently-updated count; overview-page text appears stale (also matches SMINO page's 22-active figure). Tracked here so downstream pipeline (rtk_inventory.md, markers) stays consistent with the lista-stazioni count.
 - **Products:** Single-station (e.g. `OGS_JOAN`), NEAREST (`OGS_NEA`), VRS (`OGS_VRS`), FKP network solution (`OGS_FKP`), DGPS (code). The caster also re-broadcasts a subset of Re.M.FVG/Marussi physical stations under the `RAFVG_*` prefix (e.g. `RAFVG_BARC`) — cross-relay of the two FVG networks.
 - **datum_epoch:** ETRF2000 epoch 2008.0 (RDN-aligned). Operator cite: https://frednet.crs.ogs.it/en/servizio-rtk/ (RTK-service page declares ETRF2000 framing).
 - **Tariff:** Free for all users — operator describes the service as "freely accessible to public, private and scientific users." No charge for registration, account, or stream.
@@ -163,7 +163,7 @@ Italy has no unified national free RTK caster. Instead, 10+ regional/autonomous 
 
 Resolved: SOURCES id `frednet` renamed to `rem_fvg` and re-pointed at the
 Marussi caster it always served; `data/frednet.sourcetable` → `data/rem_fvg.sourcetable`;
-`networks.md` split into a `rem_fvg` block (in pipeline, Marussi) and a
+`rtk_inventory.md` split into a `rem_fvg` block (in pipeline, Marussi) and a
 `frednet` block (OGS, not in pipeline — cross-relayed via the Marussi caster).
 Country marker, country-survey bullet, README, and global-survey updated.
 

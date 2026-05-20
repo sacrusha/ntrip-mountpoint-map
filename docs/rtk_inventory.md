@@ -1,4 +1,4 @@
-<!-- Process / rules: networks.proc.md (pipeline: pipeline.md) -->
+<!-- Process / rules: rtk_inventory.proc.md (pipeline: pipeline.md) -->
 # Free RTK NTRIP networks — technical record
 
 _Authoritative reference for every network investigated, whether in pipeline or not._
@@ -14,7 +14,7 @@ Think of it as the working bench between two ends:
 
 - Research + global survey feed candidates in (broad, completeness-focused).
 - This file refines them into structured records we can act on.
-- `data/country_markers.json` then translates the subset that warrants a
+- `data/rtk_map.json` then translates the subset that warrants a
   map marker into user-facing copy.
 
 It is internal/developer-facing — acronyms and audit phrasing are fine here
@@ -964,7 +964,7 @@ rtk2go ~31 DE volunteer bases — negligible alongside SAPOS but useful for test
 | `sapos_NI` | Niedersachsen + Bremen | `www.sapos-ni-ntrip.de:2101` | single-coord VRS | 0 stations |
 | `sapos_NW` | Nordrhein-Westfalen | `www.sapos-nw-ntrip.de:2101` | single-coord VRS | 0 stations |
 | `sapos_HE` | Hessen | `www.sapos-he-ntrip.de:2101` | physical-coord VRS | ~4 stations (3 unique coords) |
-| _Rheinland-Pfalz_ | _RP_ | _`www.sapos-ntrip.rlp.de:2101`_ | _not ingested_ | paid €120/yr/credential (HEPS/GPPS) + €100 one-time setup, most restrictive state — surfaced as a paid country marker in `data/country_markers.json`, not in the pipeline |
+| _Rheinland-Pfalz_ | _RP_ | _`www.sapos-ntrip.rlp.de:2101`_ | _not ingested_ | paid €120/yr/credential (HEPS/GPPS) + €100 one-time setup, most restrictive state — surfaced as a paid country marker in `data/rtk_map.json`, not in the pipeline |
 | `sapos_BW` | Baden-Württemberg | `www.sapos-bw-ntrip.de:2101` | single-coord VRS | 0 stations |
 | `sapos_BY` | Bayern | `www.sapos-by-ntrip.de:2101` | single-coord VRS | €20/yr non-agri flat rate; free for agriculture via LFPS tier; ~50 stations |
 | `sapos_SN` | Sachsen (GeoSN) | `www.ntrip.sachsen.de:2101` | populates on fetch | `www.` prefix required (DE_Germany research 2026-05-07); was DNS-failing without it |

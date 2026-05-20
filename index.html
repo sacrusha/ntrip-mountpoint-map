@@ -428,7 +428,7 @@
     <ul>
       <li><a href="data/stations.json">data/stations.json</a> — about 5,400 stations across 66 networks (rtk2go, Centipede, EarthScope NOTA, SAPOS, ERGNSS, AUSCORS, RBMC-IP, RAMSAC, TrigNet, and more), refreshed four times daily.</li>
       <li><a href="guide.html">Hobbyist's guide</a> — what NTRIP and RTK are, hardware compatibility, antenna placement, and step-by-step setup.</li>
-      <li><a href="https://github.com/sacrusha/ntrip-mountpoint-map">github.com/sacrusha/ntrip-mountpoint-map</a> — source, documentation, and the network catalogue at <code>docs/networks.md</code>.</li>
+      <li><a href="https://github.com/sacrusha/ntrip-mountpoint-map">github.com/sacrusha/ntrip-mountpoint-map</a> — source, documentation, and the network catalogue at <code>docs/rtk_inventory.md</code>.</li>
     </ul>
     <p>Free centimetre-accurate GPS for hobbyists and small shops who need better than 5–10 m positioning without a paid subscription.</p>
   </div>
@@ -1113,7 +1113,7 @@
       if(!net.lat) return;
       // Grey is reserved for "we couldn't reach the caster recently": the
       // most recent fetch failed (staleness !== 'live') OR the source isn't
-      // even in the pipeline (synthetic dead entry from country_markers).
+      // even in the pipeline (synthetic dead entry from rtk_map).
       // A successful recent fetch with zero ingested stations is still a
       // live network — typical for VRS-only casters that publish virtual
       // mountpoints without exposing a fixed reference-station list.
@@ -1907,7 +1907,7 @@
       var results=await Promise.allSettled([
         fetchWithTimeout('./data/stations.json?ts='+ts,10000,{cache:'no-cache'}),
         fetchWithTimeout('./data/source_health.json?ts='+ts,5000,{cache:'no-cache'}),
-        fetchWithTimeout('./data/country_markers.json?ts='+ts,5000,{cache:'no-cache'}),
+        fetchWithTimeout('./data/rtk_map.json?ts='+ts,5000,{cache:'no-cache'}),
         fetchWithTimeout('./data/help_topics.json?ts='+ts,5000,{cache:'no-cache'})
       ]);
       if(results[0].status==='fulfilled'&&results[0].value.ok)

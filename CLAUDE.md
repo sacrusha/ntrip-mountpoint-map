@@ -4,7 +4,7 @@ Scope: NTRIP map. Webpage visual map + written guide, public RTK correction netw
 
 All of these rules are rules, none of these rules are optional guidance.  
  
-/caveman skill -> prompt generation, thinking, internal docs. Default level: full. visitor-facing excluded: README.md, guide.html index.html (UI strings) data/help_topics.json data/country_markers.json, everything else included, do not defer to existing style
+/caveman skill -> prompt generation, thinking, internal docs. Default level: full. visitor-facing excluded: README.md, guide.html index.html (UI strings) data/help_topics.json data/rtk_map.json, everything else included, do not defer to existing style
 Must read caveman skill at start of first turn.
 
 *Never* change user stated order of instructions when multiple instructions arrive in one set.
@@ -37,10 +37,10 @@ scripts/                         # investigation toolset, each takes -h for purp
   stations_inspect.py # data/stations.json schema + per-source detail
   sources_list.py # filter SOURCES list in fetch_stations.py
   source_health.py # data/source_health.json summary + per-id lookup
-  network_lookup.py # find network across networks.md, surveys, research, markers, stations.json, SOURCES
+  network_lookup.py # find network across rtk_inventory.md, surveys, research, markers, stations.json, SOURCES
 data/
-  country_markers.json           # static; network/country-level markers, visitor-facing
-  country_markers.proc.md        # edit rules for country_markers.json. Read BEFORE editing .json.
+  rtk_map.json           # static; network/country-level markers, visitor-facing
+  rtk_map.proc.md        # edit rules for rtk_map.json. Read BEFORE editing .json.
   help_topics.json               # searchable user-facing help. Surfaced via Help button on map; aligned w/ guide.html.
   <source>.sourcetable           # cached raw NTRIP response per fetched caster.
   stations.json                  # fetched mountpoint data, consumed by index
@@ -48,8 +48,8 @@ docs/
   gnss-ai-guide.md               # deep GNSS primer. Read before changing guide or help.
   requirements.md                # product spec, possibly outdated
   global-survey.md               # Greppable RTK landscape, global networks.
-  networks.md                    # Greppable, researched NTRIP networks
-  networks.proc.md               # edit rules for networks.md.
+  rtk_inventory.md                    # Greppable, researched NTRIP networks
+  rtk_inventory.proc.md               # edit rules for rtk_inventory.md.
   pipeline.md                    # pipeline: ntrip_research -> networks -> (markers + fetch).
   ntrip_research/*               # primary research (CC_Name.md), feeds pipeline, 
   ardusimple/*                   # dealer cache (CC_*.md), side input research_task phase-1

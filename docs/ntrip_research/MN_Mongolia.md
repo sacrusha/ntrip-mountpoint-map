@@ -45,4 +45,4 @@
 - mycoordinates.org — "GNSS-CORS geodetic network development in Mongolia" (2019)
 - MundoGEO — "ILS Delivers CORS Infrastructure in Mongolia" (2011-01-03)
 - data/stations.json source `almgg_mn` — status ok, last_ok 2026-05-15
-- docs/networks.md `almgg_mn` block (canonical record, includes pipeline-flags)
+- docs/rtk_inventory.md `almgg_mn` block (canonical record, includes pipeline-flags)

@@ -92,8 +92,8 @@ Source-tag breakdown across the 546 rows (2026-05-08 fresh fetch): 433 `Single B
 
 These are real Korean RTK services, but none offer a hobbyist NTRIP path under the project's normal definition. Documented here so the country-survey can record the negative.
 
-- **MBC RTK** (`rtk.mbc.co.kr`) — broadcast+NTRIP integrated B-RTK, 140+ base stations, RTCM 3.4, GPS+GLO+BDS+GAL+QZSS. Operated by MBC (terrestrial broadcaster) since ~2017; partnership with US BitPath announced May 2024 for ATSC 3.0 broadcast precise positioning. Public site lists no consumer pricing or self-serve NTRIP signup; all access is via custom hardware product family (SMC-3000, MRD-1000, MRP-2000, TDR-3000, MGI-2000) sold to fleet/automotive integrators. **No hobbyist path** — country-survey treatment, no networks.md block.
-- **Point One Polaris** — global VRS/RTK network expanded into South Korea (announced 2023); 14-day free trial then paid. Generic global commercial — does not need a KR-specific networks.md entry.
+- **MBC RTK** (`rtk.mbc.co.kr`) — broadcast+NTRIP integrated B-RTK, 140+ base stations, RTCM 3.4, GPS+GLO+BDS+GAL+QZSS. Operated by MBC (terrestrial broadcaster) since ~2017; partnership with US BitPath announced May 2024 for ATSC 3.0 broadcast precise positioning. Public site lists no consumer pricing or self-serve NTRIP signup; all access is via custom hardware product family (SMC-3000, MRD-1000, MRP-2000, TDR-3000, MGI-2000) sold to fleet/automotive integrators. **No hobbyist path** — country-survey treatment, no rtk_inventory.md block.
+- **Point One Polaris** — global VRS/RTK network expanded into South Korea (announced 2023); 14-day free trial then paid. Generic global commercial — does not need a KR-specific rtk_inventory.md entry.
 - **Hexagon TerraStar-X Enterprise** — PPP-RTK satellite-delivered service for autonomous-driving customers in KR (announced 2023). PPP/SSR — out of scope per project rule.
 - **Swift Navigation Skylark, u-blox PointPerfect** — global commercial RTK-SSR with KR coverage. Generic — no country block.
 

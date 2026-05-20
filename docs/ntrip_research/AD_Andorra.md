@@ -35,9 +35,9 @@
 | **legal_residency_required** | no |
 | **last_confirmed_alive** | 2026-05-17 — `185.194.59.113:2101` returned `SOURCETABLE 200 OK` via direct TCP probe |
 
-PCAR is also an EPN station (`PCAR00AND0`) and is **separately** redistributed by the EUREF-IP federation (BKG `euref-ip.net:2101`, ROB `www.euref-ip.be:2101`, ASI `euref-ip.asi.it:2101`) under standard EUREF registration. EPN status page returned HTTP 403 on 2026-05-17. Pipeline file `docs/networks.md` (last updated 2026-05-13) records PCAR00AND0 as live on all three EUREF-IP broadcasters.
+PCAR is also an EPN station (`PCAR00AND0`) and is **separately** redistributed by the EUREF-IP federation (BKG `euref-ip.net:2101`, ROB `www.euref-ip.be:2101`, ASI `euref-ip.asi.it:2101`) under standard EUREF registration. EPN status page returned HTTP 403 on 2026-05-17. Pipeline file `docs/rtk_inventory.md` (last updated 2026-05-13) records PCAR00AND0 as live on all three EUREF-IP broadcasters.
 
-RULL is listed as an EPN member but `docs/networks.md` notes it has historically been **RINEX-only on EUREF-IP** (not exposed as a real-time stream by BKG/ROB/ASI). The cartografia.ad caster is the only real-time path to RULL.
+RULL is listed as an EPN member but `docs/rtk_inventory.md` notes it has historically been **RINEX-only on EUREF-IP** (not exposed as a real-time stream by BKG/ROB/ASI). The cartografia.ad caster is the only real-time path to RULL.
 
 ## Datum / Epoch
 

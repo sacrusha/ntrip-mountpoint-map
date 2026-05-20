@@ -43,7 +43,7 @@ No public announcement of a planned national NTRIP caster or operational CORS ne
 
 ## Nearest Cross-border Free RTK (within ~50 km of a DRC border)
 
-- **EarthScope NOTA — western Rwanda / Lake Kivu shore** (within ~50 km of the Goma / Bukavu / Rubavu border): `KMBR_RTCM3P3` (-1.83, 29.29), `NYBA_RTCM3P3` (-1.76, 29.35), `RUBO_RTCM3P3` (-1.73, 29.26) on `ntrip.earthscope.org:2101`. Free under EarthScope NULA (non-commercial), no residency requirement, account registration required. Useful for short-baseline RTK or post-processing in the Kivu corridor on the DRC side; documented in `docs/networks.md` under `rgn_rw`.
+- **EarthScope NOTA — western Rwanda / Lake Kivu shore** (within ~50 km of the Goma / Bukavu / Rubavu border): `KMBR_RTCM3P3` (-1.83, 29.29), `NYBA_RTCM3P3` (-1.76, 29.35), `RUBO_RTCM3P3` (-1.73, 29.26) on `ntrip.earthscope.org:2101`. Free under EarthScope NULA (non-commercial), no residency requirement, account registration required. Useful for short-baseline RTK or post-processing in the Kivu corridor on the DRC side; documented in `docs/rtk_inventory.md` under `rgn_rw`.
 - No comparable free cross-border casters identified near the western (Angola, Republic of Congo), northern (CAR, South Sudan), eastern (Uganda, Tanzania) or southern (Zambia) borders within ~50 km as of 2026-05-17.
 
 ## Post-Processing (RINEX) Fallback

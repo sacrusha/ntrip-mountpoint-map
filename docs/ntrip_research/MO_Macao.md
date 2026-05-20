@@ -49,5 +49,5 @@
 - EIN Presswire — BeiDou upgrade 2021: https://www.einnews.com/pr_news/558530491/dscc-has-upgraded-macao-satellite-positioning-reference-station-service-to-support-beidou-navigation-satellite-system
 - DSCC user guide Part 2 (PDF, 2012): http://mosref.dscc.gov.mo/Help/ref/20121121-Part2.pdf
 - data/stations.json source `mosref` — status ok, last_ok 2026-05-15
-- docs/networks.md `mosref` block
+- docs/rtk_inventory.md `mosref` block
 - TCP curl probe `mosref.dscc.gov.mo:2101` — NOT executed from sandbox; verifier = pipeline cron job

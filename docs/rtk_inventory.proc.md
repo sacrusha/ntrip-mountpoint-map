@@ -1,6 +1,6 @@
-# networks.md — process
+# rtk_inventory.md — process
 
-Per-file rules for `docs/networks.md`. Pipeline context:
+Per-file rules for `docs/rtk_inventory.md`. Pipeline context:
 `pipeline.md` (same dir).
 
 **Refactoring is in scope; consider the entire entry on every edit.** See

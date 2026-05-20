@@ -11,7 +11,7 @@ Research public NTRIP RTK casters for the entry passed in. Research not optional
 
 NTRIP primer: `docs/research_task.primer.txt`
 
-Existing research unverified — read as starting point, must not trust: `docs/ntrip_research/[entry]`, `docs/ardusimple/[entry]`, grep `[entry]` in `docs/networks.md` + `data/country_markers.json`.
+Existing research unverified — read as starting point, must not trust: `docs/ntrip_research/[entry]`, `docs/ardusimple/[entry]`, grep `[entry]` in `docs/rtk_inventory.md` + `data/rtk_map.json`.
 
 Use tools to fully verify, correct, expand, fill gaps. Look for national/regional mapping agency in local admin languages, operator portal in primary language, fill gaps with press releases, research papers, RTK hobbyist + professional communities, local survey associations, etc. Resolve conflicts via multiple sources, consider date + estimated current reliability of source. WebFetch (Haiku) non-deterministic + prompt-dependent — retry with directed prompt.
 

@@ -101,10 +101,10 @@ The Royal Observatory of Belgium (ROB) operates the EUREF NTRIP caster at `www.e
 
 ## Pipeline notes
 
-- `docs/networks.md` FLEPOS entry presently states `**hobbyist_eligibility**: yes` ("ArduSimple notes 'professional organizations' preferred but individual registration confirmed possible"). This is **wrong**. Operator-side evidence (Digitaal Vlaanderen registration form + product page) and ArduSimple's actual wording both confirm hobbyists CANNOT register. PIPELINE NOTE: networks.md `flepos` should be updated to `hobbyist_eligibility: no` and `pipeline-access: registration` may want a stronger flag (e.g. `professional-only`).
-- WALCORS station count in `networks.md` reads "0 (22 Wallonia + 13 cross-border …)" — current operator now reports **14 active** stations (modernisation reduction complete) + 13 cross-border exchange stations. PIPELINE NOTE: update WALCORS station count in `networks.md` and `country_markers.json` from "22/23" to "14".
-- FLEPOS `landing_url` in `networks.md` (`https://overheid.vlaanderen.be/en/producten-diensten/centimetre-accurate-positioning-flepos`) now 302-redirects to `vlaanderen.be/intern`. PIPELINE NOTE: update to `https://www.vlaanderen.be/digitaal-vlaanderen/onze-diensten-en-platformen/flepos-centimeternauwkeurige-positiebepaling`.
-- `country_markers.json` FLEPOS marker description should clarify hobbyists are not eligible (currently silent on this).
+- `docs/rtk_inventory.md` FLEPOS entry presently states `**hobbyist_eligibility**: yes` ("ArduSimple notes 'professional organizations' preferred but individual registration confirmed possible"). This is **wrong**. Operator-side evidence (Digitaal Vlaanderen registration form + product page) and ArduSimple's actual wording both confirm hobbyists CANNOT register. PIPELINE NOTE: rtk_inventory.md `flepos` should be updated to `hobbyist_eligibility: no` and `pipeline-access: registration` may want a stronger flag (e.g. `professional-only`).
+- WALCORS station count in `rtk_inventory.md` reads "0 (22 Wallonia + 13 cross-border …)" — current operator now reports **14 active** stations (modernisation reduction complete) + 13 cross-border exchange stations. PIPELINE NOTE: update WALCORS station count in `rtk_inventory.md` and `rtk_map.json` from "22/23" to "14".
+- FLEPOS `landing_url` in `rtk_inventory.md` (`https://overheid.vlaanderen.be/en/producten-diensten/centimetre-accurate-positioning-flepos`) now 302-redirects to `vlaanderen.be/intern`. PIPELINE NOTE: update to `https://www.vlaanderen.be/digitaal-vlaanderen/onze-diensten-en-platformen/flepos-centimeternauwkeurige-positiebepaling`.
+- `rtk_map.json` FLEPOS marker description should clarify hobbyists are not eligible (currently silent on this).
 
 ---
 

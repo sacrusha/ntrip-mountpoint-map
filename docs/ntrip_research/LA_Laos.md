@@ -20,8 +20,8 @@
 ## Context Notes
 
 - **Lao PDR** has very limited publicly documented GNSS infrastructure. The 2013 ComNav single-station installation appears to have been a government pilot; no follow-up national network announcement was found until the IGN FI project (~2024).
-- IGN FI's portfolio page (now 404) did not disclose any public NTRIP stream or non-government access path; with the page gone, even the project's external-confirmation footprint has shrunk. networks.md `ngd_laos_cors` entry should be flagged for re-investigation.
-- `datum_epoch`: omitted -- no operator caster, no operator declaration. networks.md notes "Lao National Datum 1997, origin Vientiane Nongteng Astro Pillar" historically but no operator NTRIP declaration to cite.
+- IGN FI's portfolio page (now 404) did not disclose any public NTRIP stream or non-government access path; with the page gone, even the project's external-confirmation footprint has shrunk. rtk_inventory.md `ngd_laos_cors` entry should be flagged for re-investigation.
+- `datum_epoch`: omitted -- no operator caster, no operator declaration. rtk_inventory.md notes "Lao National Datum 1997, origin Vientiane Nongteng Astro Pillar" historically but no operator NTRIP declaration to cite.
 - The DOL-RTK network at dol-rtknetwork.com is **Thailand's** Department of Lands RTK network (Thai-language interface, 114 CORS covering Thailand), not Laos. Confusion possible due to similar naming.
 - Land administration in Laos: as of recent ADB reports, only ~1.5 million of 3–3.5 million land plots registered — highlighting need for RTK-grade positioning, but institutional capacity is still developing.
 - Regional context: neighboring Vietnam has a mature national CORS/NTRIP network; Thailand has the DOL-RTK network. Laos is several years behind both.

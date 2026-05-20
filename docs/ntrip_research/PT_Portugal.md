@@ -91,5 +91,5 @@ CIGeoE (Centro de Informação Geoespacial do Exército, Army) also operates GNS
 - ANACOM ReNEP description PDF: https://www.anacom.pt/streaming/rede_nacional_estacoes_permanentesGNSS.pdf?contentId=992948&field=ATTACHED_FILE
 - ArduSimple Portugal RTK page: https://pt.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-portugal/
 - gov.pt ReNEP service page: https://www2.gov.pt/servicos/consultar-a-informacao-da-rede-nacional-de-estacoes-permanentes-gnss-renep-
-- Project networks.md entry `renep` (host 193.137.94.71, port mapping)
+- Project rtk_inventory.md entry `renep` (host 193.137.94.71, port mapping)
 - Local `scripts/stations_by_country.py PRT` (2026-05-17): renep=46, EUREF-IP=8, IGS-IP=5, AUSCORS=1 (PDEL mirror), MIRAI=1 (ENAO mirror), rtk2go=2 (H_Moita_NTRIP, R4F_RTK_ENV2).

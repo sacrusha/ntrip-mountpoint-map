@@ -7,9 +7,9 @@ docs/research_task.txt          ← prompt template; research is run externally
         ↓ produces (out-of-band, web-enabled environment)
 docs/ntrip_research/CC_*.md     ← per-country primary research, citation-grade
         ↓ distil
-docs/networks.md                ← refined operator catalogue, per-network blocks
+docs/rtk_inventory.md                ← refined operator catalogue, per-network blocks
         ↓ surface (parallel, sibling consumers)
-data/country_markers.json       user-facing markers
+data/rtk_map.json       user-facing markers
 scripts/fetch_stations.py       ingestion of free endpoints
 ```
 
@@ -23,18 +23,18 @@ material to be **distilled**, not authored.
 ## Direction of work
 
 For pipeline-side edits, new facts live in `ntrip_research/` and distil down
-into `networks.md`. `ntrip_research/` records what was investigated and what
+into `rtk_inventory.md`. `ntrip_research/` records what was investigated and what
 wasn't found — it carries the negatives.
 
-A `networks.md` block exists only when the operator is **substantial**:
+A `rtk_inventory.md` block exists only when the operator is **substantial**:
 nationwide, regional cadastre, or a recognised commercial operator relevant
 to users described in target-users.md. 
 
-A `country_markers.json` marker exists only when the marker tier rules apply
-(see `../data/country_markers.proc.md`). Misplaced markers are worse than
+A `rtk_map.json` marker exists only when the marker tier rules apply
+(see `../data/rtk_map.proc.md`). Misplaced markers are worse than
 missing ones.
 
-A `fetch_stations.py` SOURCES entry exists only when `networks.md` shows a
+A `fetch_stations.py` SOURCES entry exists only when `rtk_inventory.md` shows a
 free / candidate endpoint that lists a host:port and supplies physical
 mountpoints. Sweep SOURCES whenever a block's `status:` changes — see
 `../scripts/fetch_stations.proc.md` for the status→action table.
@@ -46,15 +46,15 @@ mountpoints. Sweep SOURCES whenever a block's `status:` changes — see
   have no SOURCES entry — empty space downstream is a feature, not a gap.
 - **Don't patch a leaf without fixing the source.** Settle the question at
   the highest source in the chain, then sweep downstream. A status mismatch
-  in `networks.md` invalidates the marker; a mislabelled access in country
+  in `rtk_inventory.md` invalidates the marker; a mislabelled access in country
   prose creates a wrong marker tier.
 
 ## Per-file rules
 
 Each target file has a co-located `.proc.md` sidecar:
 
-- `networks.proc.md` (same dir)
-- `../data/country_markers.proc.md`
+- `rtk_inventory.proc.md` (same dir)
+- `../data/rtk_map.proc.md`
 - `../scripts/fetch_stations.proc.md`
 
 ## Edit discipline

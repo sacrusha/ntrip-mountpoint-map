@@ -31,12 +31,12 @@ Safe by design (see module docstring):
 
 The safest file in the pipeline to edit. Treat it that way.
 
-## Trigger — `networks.md` status drives SOURCES membership
+## Trigger — `rtk_inventory.md` status drives SOURCES membership
 
-The decision lives upstream in `docs/networks.md`. When a block's
+The decision lives upstream in `docs/rtk_inventory.md`. When a block's
 `status:` changes, sweep `SOURCES`:
 
-| networks.md status | SOURCES action | Rationale |
+| rtk_inventory.md status | SOURCES action | Rationale |
 |---|---|---|
 | `free` with host:port | **add** | Free endpoint, must ingest. |
 | `candidate` | **add** | Endpoint known, ready to verify in production. The next cron run is the test. |
@@ -50,7 +50,7 @@ The decision lives upstream in `docs/networks.md`. When a block's
 The sandbox has no outbound network access to NTRIP casters. **Do not
 refuse to add an entry because the host hasn't been verified from this
 environment** — that is not a precondition this file imposes. Trust the
-upstream `networks.md` fields (`host`, `port`, `status`, `type`).
+upstream `rtk_inventory.md` fields (`host`, `port`, `status`, `type`).
 
 The next cron run is the live verifier. If the host is wrong, the run
 logs surface it and the entry can be tuned in a follow-up commit.
@@ -63,11 +63,11 @@ file usually records the verification. That's enough evidence.
 
 SOURCES carries operational fetch + parse config only. Editorial fields
 (`label`/`name`, `region`, `access`, `registration`, `note`, `tier`, `vrs`,
-`country`) live in `../data/country_markers.json` — joined by `id`.
+`country`) live in `../data/rtk_map.json` — joined by `id`.
 
 ```python
 {
-  "id":         "almgg_mn",                    # stable; matches networks.md block id and country_markers
+  "id":         "almgg_mn",                    # stable; matches rtk_inventory.md block id and rtk_map
                                                # entry id; used as `data/<id>.sourcetable` filename and
                                                # stations.json key
   "url":        "http://rtk.gazar.gov.mn:2101/", # full NTRIP URL; trailing slash; http:// even if host
@@ -86,7 +86,7 @@ SOURCES carries operational fetch + parse config only. Editorial fields
 ```
 
 The editorial fields previously held here are now in
-`../data/country_markers.json`. Adding a new SOURCES entry presumes a
+`../data/rtk_map.json`. Adding a new SOURCES entry presumes a
 corresponding markers entry already exists; if it doesn't, the country-zoom
 marker will silently not render and the popup will fall back to `id` as label.
 
@@ -131,7 +131,7 @@ Concrete cases in tree (good calibration):
 | `almgg_mn` | `solution_filter=False` | SNIP caster tags 6 physical stations solution=1 |
 | `nps_cors` | `nmea_filter=False` | Trimble Pivot tags all 141 physical stations nmea=1 |
 
-## Picking ports when networks.md offers several
+## Picking ports when rtk_inventory.md offers several
 
 Many operators expose multiple ports. Pick the one yielding **physical
 single-base mounts** in raw form:
@@ -181,5 +181,5 @@ Watch for:
   institutional memory.
 - When removing an entry, leave a one-line tombstone comment with the
   reason and date (e.g. `# APOS (AT) removed 2025-XX-XX — paid for
-  hobbyists; surfaced as country_markers.json paid marker.`). Make
+  hobbyists; surfaced as rtk_map.json paid marker.`). Make
   re-discovery trivial.

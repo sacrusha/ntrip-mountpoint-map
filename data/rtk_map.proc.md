@@ -1,6 +1,6 @@
-# country_markers.json — process
+# rtk_map.json — process
 
-Per-file rules for `data/country_markers.json`. Pipeline context:
+Per-file rules for `data/rtk_map.json`. Pipeline context:
 `../docs/pipeline.md`. Target users: `../docs/target-users.md` — every
 `note` is read by a hobbyist on the map, not a developer.
 
@@ -9,13 +9,13 @@ Per-file rules for `data/country_markers.json`. Pipeline context:
 
 ## Role
 
-editorial user-facing extract of `networks.md` - "what the user on a network marker&popup needs to know." 
+editorial user-facing extract of `rtk_inventory.md` - "what the user on a network marker&popup needs to know." 
 
 ## markers Field reference
 
 | Field | Required | Notes |
 |---|---|---|
-| `id` | yes | Matches `networks.md` block id when one exists. Stable — used as React-style key downstream. |
+| `id` | yes | Matches `rtk_inventory.md` block id when one exists. Stable — used as React-style key downstream. |
 | `name` | yes | What appears in the popup header. UI label, not the legal entity. |
 | `region` | yes for single-country | What appears after "Covers". Country name + clarifier ("Spain", "China (nationwide)", "Belgium (Flanders)"). Hidden for `tier:weird`. Omitted on aggregator stubs. |
 | `country` | yes | ISO 3166-1 alpha-2 for single-country networks; pseudo-code (`global`, `americas`, `europe`) for aggregator stubs spanning multiple countries. |

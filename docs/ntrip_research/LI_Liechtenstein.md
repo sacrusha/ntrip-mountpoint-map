@@ -11,7 +11,7 @@
 | **landing_url — swipos** | https://www.swisstopo.admin.ch/en/swipos-gisgeo-for-rtk-and-postprocessing-applications (operator-owned swisstopo service page) |
 | **access_url — swipos** | https://www.swisstopo.admin.ch/en/swipos-services-prices-and-ordering (distinct page covering tariffs + ordering/registration workflow) |
 | **num_stations — swipos** | ~130 physical CORS across Switzerland (operator figure, swisstopo). 0 stations physically inside LI territory; nearest Swiss stations in Graubünden / St. Gallen 5–25 km from LI. |
-| **host:port — swipos** | `www.swipos.ch:2101` (plain TCP) / `:2102` (TLS NTRIP-2) per swisstopo technical docs + networks.md `swipos` block. Older alias `swipos.swisstopo.admin.ch:2101` still referenced in some operator material. Credentials issued post-subscription |
+| **host:port — swipos** | `www.swipos.ch:2101` (plain TCP) / `:2102` (TLS NTRIP-2) per swisstopo technical docs + rtk_inventory.md `swipos` block. Older alias `swipos.swisstopo.admin.ch:2101` still referenced in some operator material. Credentials issued post-subscription |
 | **tariff — swipos flat-rate** | CHF 1,500/year first licence; multi-licence discounts ("from same provider"); all fees net of VAT/MWST. Source: swisstopo.admin.ch/en/swipos-services-prices-and-ordering (WebFetch 200, 2026-05-17) |
 | **tariff — swipos pay-per-use** | CHF 0.50/minute VRS corrections; CHF 0.50/minute RINEX (same source, 2026-05-17) |
 | **vrs — swipos** | yes — confirmed by CHF 0.50/min VRS pay-per-use tariff line on swisstopo pricing page (2026-05-17) |

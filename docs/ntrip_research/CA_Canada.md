@@ -44,7 +44,7 @@ CACS = federal post-processing backbone (~20 sites), CSRS-PPP web service, RTK c
 | **datum_epoch** | omitted — national standard, no per-network operator declaration (no public caster). |
 | **last_confirmed_alive** | 2026-05-17 (BCACS info page WebFetch 200; no public caster to probe) |
 
-Pipeline: tracked in `networks.md` as `bc_rtn` (status: paid).
+Pipeline: tracked in `rtk_inventory.md` as `bc_rtn` (status: paid).
 
 ---
 
@@ -131,7 +131,7 @@ Pipeline: tracked in `networks.md` as `bc_rtn` (status: paid).
 | **datum_epoch** | NAD83(CSRS) epoch 1997.0 — operator declaration https://mrnf.gouv.qc.ca/repertoire-geographique/reseau-geodesique-donnees-gnss/ ("NAD 83 (SCRS) (époque 1997,0)"). |
 | **last_confirmed_alive** | 2026-05-17 (MRNF page reachable; Stations_GNSS.pdf HEAD 200, 264 KB, Last-Modified 2026-01-15 via DNS 142.41.245.97). |
 
-Pipeline note: tracked in `networks.md` as `qc_mern` (status: other) — direct-TCP not NTRIP-aggregable. Block kept inline; not split to CA-QC file (under split-threshold; one block; flagged under unresolved).
+Pipeline note: tracked in `rtk_inventory.md` as `qc_mern` (status: other) — direct-TCP not NTRIP-aggregable. Block kept inline; not split to CA-QC file (under split-threshold; one block; flagged under unresolved).
 
 ---
 
@@ -167,7 +167,7 @@ Pipeline note: tracked in `networks.md` as `qc_mern` (status: other) — direct-
 | **datum_epoch** | omitted — national standard, no per-network operator declaration (province does not stream; commercial-reseller stream not provincial). |
 | **last_confirmed_alive** | 2026-05-17 (geonova page + NSACS reseller doc) |
 
-Pipeline: tracked in `networks.md` as `nsacs` (status: paid).
+Pipeline: tracked in `rtk_inventory.md` as `nsacs` (status: paid).
 
 ---
 
@@ -324,7 +324,7 @@ Pipeline: tracked in `networks.md` as `nsacs` (status: paid).
 | **datum_epoch** | NAD83(CSRS) (CGG2013 / HTv2.0 geoid; NATRF2022 adoption planned 2027) — operator declaration https://rtkdata.com/ca/ (epoch not separately published by operator). |
 | **last_confirmed_alive** | 2026-05-17 (rtkdata.com/ca/ WebFetch 200; pricing + station-count + datum confirmed) |
 
-Note: rtkdata.com is paid commercial sibling of free `rtkdata.online` (same parent Kansi Solutions GmbH); cross-ref `networks.md` `rtkdata_online` entry.
+Note: rtkdata.com is paid commercial sibling of free `rtkdata.online` (same parent Kansi Solutions GmbH); cross-ref `rtk_inventory.md` `rtkdata_online` entry.
 
 ---
 
@@ -351,7 +351,7 @@ Note: rtkdata.com is paid commercial sibling of free `rtkdata.online` (same pare
 |---|---|
 | **landing_url** | https://geodnet.com/ |
 | **access_url** | https://store.geodnet.com (paid subscription); 30-day trial via https://geodnet.com/free. Listed on NRCan rtk.php data catalog (provider key `GEODNET`). |
-| **host:port** | `rtk.geodnet.com:2101` (operator-published, canonical per networks.md `geodnet_usa` + cached sourcetable) |
+| **host:port** | `rtk.geodnet.com:2101` (operator-published, canonical per rtk_inventory.md `geodnet_usa` + cached sourcetable) |
 | **num_stations** | Decentralized; Canadian-side count not separately published. |
 | **vrs** | Yes (`AUTO` mountpoint nearest-station synthesis). |
 | **tariff** | USD 40/mo or USD 400/yr (store.geodnet.com 2026-05-17). 30-day free trial only; no permanent free tier. Networks.md `geodnet_usa` removed from free-source pipeline 2026-04-20. |

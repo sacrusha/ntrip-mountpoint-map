@@ -37,7 +37,7 @@
 | `RTX_RTCM34` | RTCM 3.4 with MSM7 | Trimble RTX-style | GPS+GLO+GAL+BDS |
 | `RTX_RTCM34_GPS_GALILEO` | RTCM 3.4 with MSM7 | Trimble RTX-style | GPS + GAL |
 
-All mountpoints carry coordinates `54, 23` (Lithuania centroid) and `solution=1` (network solution) — no per-station entries are exposed in the public sourcetable, consistent with the "vrs-only" map type assigned in the existing networks.md entry.
+All mountpoints carry coordinates `54, 23` (Lithuania centroid) and `solution=1` (network solution) — no per-station entries are exposed in the public sourcetable, consistent with the "vrs-only" map type assigned in the existing rtk_inventory.md entry.
 
 ## Service Details
 
@@ -65,7 +65,7 @@ All mountpoints carry coordinates `54, 23` (Lithuania centroid) and `solution=1`
 - **EUPOS membership**: LitPOS is a member of EUPOS (European Position Determination System), the consortium of 17+ Central and Eastern European national CORS networks. EUPOS reciprocal access provides 3 PL + 6 LV reference stations for free use by LitPOS account holders.
 - **Caster software**: Trimble Pivot Platform (sourcetable banner). Same platform used by ZAKPOS (UA), NRTK Suomi (FI), several SAPOS Bundesländer (DE) and others — facilitates standard MSM5/7 streams and mature DGPS variants.
 - **Live status / sessions**: `https://www.geoportal.lt/app/litpos` shows real-time session monitoring, sourcetable, and station status. Useful for both the operator and end-users.
-- **Pipeline status**: Existing pipeline status is `candidate` in networks.md; sourcetable contains only 12 VRS-style entries (all coordinates 54,23 / `solution=1`), so map type is `vrs-only` and pipeline yields 0 physical pins. No NRTK polygon implementation yet means LitPOS does not surface visible pins on the map; it is announced via documentation and data only.
+- **Pipeline status**: Existing pipeline status is `candidate` in rtk_inventory.md; sourcetable contains only 12 VRS-style entries (all coordinates 54,23 / `solution=1`), so map type is `vrs-only` and pipeline yields 0 physical pins. No NRTK polygon implementation yet means LitPOS does not surface visible pins on the map; it is announced via documentation and data only.
 - **Stations.json 2026-05-12 fetch**: LT (LTU) returns 1 Centipede pin only — `AKIS` (54.85, 24.345) near Kaunas — via `py scripts/stations_by_country.py LTU`. LitPOS itself contributes 0 mappable pins given the VRS-only sourcetable. rtk2go has zero LT entries.
 - **English-language portal**: `https://www.geoportal.lt/geoportal/web/litpos-en/` provides full English-language pages: About, Status, Application, Registration, Contacts. The Lithuanian-language equivalents (`litpos-paslauga`) carry the formal usage rules and FAQ (DUK).
 
@@ -88,5 +88,5 @@ All mountpoints carry coordinates `54, 23` (Lithuania centroid) and `solution=1`
 - M3G LitPOS GNSS metadata: https://gnss-metadata.eu/MOID/projnet.5f366a387e27d32c1b218ac2
 - LitPOS performance analysis (Vilnius Tech, 2017): https://etalpykla.vilniustech.lt/bitstream/handle/123456789/155251/10th_ICEE_2017-161.pdf
 - ArduSimple Lithuania: https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-lithuania/
-- Existing networks.md `litpos` entry (candidate status, two-IP setup, EUPOS context, pipeline VRS-only)
+- Existing rtk_inventory.md `litpos` entry (candidate status, two-IP setup, EUPOS context, pipeline VRS-only)
 - Stations.json 2026-05-12 fetch: LT (LTU) = 1 Centipede entry (AKIS); LitPOS contributes 0 mappable pins (vrs-only)

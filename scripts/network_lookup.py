@@ -6,13 +6,13 @@ Today's session logs show agents running multi-alternation grep like
 across the repo (with manual exclusions for data/*.sourcetable) when renaming
 or auditing a network. This tool consolidates that into one call: it picks the
 right scopes automatically, skips the noisy bulk-data files, and pulls the
-matching section of docs/networks.md (instead of paging by line offset).
+matching section of docs/rtk_inventory.md (instead of paging by line offset).
 
 Searched locations:
-    docs/networks.md                      (prints the matching ## section)
+    docs/rtk_inventory.md                      (prints the matching ## section)
     docs/global-survey.md
     docs/ntrip_research/*.md
-    data/country_markers.json             (by substring)
+    data/rtk_map.json             (by substring)
     data/stations.json                    (source record + station name match)
     scripts/fetch_stations.py             (SOURCES entry)
 
@@ -20,7 +20,7 @@ Skipped: data/*.sourcetable (raw caster archives, too noisy to be useful).
 
 Usage:
     py scripts/network_lookup.py <term> [<alias> ...]
-    py scripts/network_lookup.py --section-only <id>     # only the networks.md section
+    py scripts/network_lookup.py --section-only <id>     # only the rtk_inventory.md section
 
 Examples:
     py scripts/network_lookup.py rem_fvg frednet FReDNet Marussi
@@ -54,8 +54,8 @@ def grep_file(path: Path, patterns):
 
 
 def networks_md_section(network_id: str):
-    """Return (line_no, lines) for the ## <id> section in docs/networks.md, or None."""
-    p = ROOT / "docs" / "networks.md"
+    """Return (line_no, lines) for the ## <id> section in docs/rtk_inventory.md, or None."""
+    p = ROOT / "docs" / "rtk_inventory.md"
     if not p.exists():
         return None
     lines = p.read_text(encoding="utf-8").splitlines()
@@ -95,18 +95,18 @@ def main():
     if section_only:
         res = networks_md_section(terms[0])
         if res is None:
-            print(f"no ## {terms[0]} section in docs/networks.md")
+            print(f"no ## {terms[0]} section in docs/rtk_inventory.md")
             return 1
         start, lines = res
-        print(f"--- docs/networks.md (section starts at line {start}) ---")
+        print(f"--- docs/rtk_inventory.md (section starts at line {start}) ---")
         for ln in lines:
             print(ln)
         return 0
 
     print(f"searching for: {' | '.join(terms)}\n")
 
-    # docs/networks.md - section + scattered mentions
-    print("=== docs/networks.md ===")
+    # docs/rtk_inventory.md - section + scattered mentions
+    print("=== docs/rtk_inventory.md ===")
     res = networks_md_section(terms[0])
     if res:
         start, lines = res
@@ -114,7 +114,7 @@ def main():
         for ln in lines:
             print(f"  {ln}")
     else:
-        hits = grep_file(ROOT / "docs" / "networks.md", patterns)
+        hits = grep_file(ROOT / "docs" / "rtk_inventory.md", patterns)
         if hits:
             print(f"(no ## section; {len(hits)} line match(es))")
             for ln, txt in hits[:50]:
@@ -144,13 +144,13 @@ def main():
             for ln, txt in hits[:3]:
                 print(f"    {ln}: {txt}")
 
-    # data/country_markers.json
+    # data/rtk_map.json
     rx = re.compile("|".join(patterns), re.IGNORECASE)
-    cm = ROOT / "data" / "country_markers.json"
+    cm = ROOT / "data" / "rtk_map.json"
     if cm.exists():
         text = cm.read_text(encoding="utf-8")
         if rx.search(text):
-            print("\n=== data/country_markers.json ===")
+            print("\n=== data/rtk_map.json ===")
             for i, line in enumerate(text.splitlines(), 1):
                 if rx.search(line):
                     print(f"  {i}: {line.strip()}")

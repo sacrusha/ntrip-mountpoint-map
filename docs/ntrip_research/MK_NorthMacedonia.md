@@ -48,4 +48,4 @@
 - ArduSimple North Macedonia page: https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-macedonia/
 - EuroGeographics — AREC profile: https://eurogeographics.org/member/agency-for-real-estate-cadastre/
 - GitHub sctg-development RtkGps issue #14 (mentions `iMAX-GNSS` mountpoint)
-- docs/networks.md `makpos` block
+- docs/rtk_inventory.md `makpos` block

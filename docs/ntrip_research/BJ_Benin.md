@@ -43,7 +43,7 @@
 - **BJCO IGS station** (Cotonou, IGN Bénin operated, DOMES 32701M001, installed 2008-10-01): SONEL reports "No data for 30 days" as of 2026-05-15 — currently inactive for archival GNSS. Was post-process only; never an RTK NTRIP stream.
 - **AFREF**: Benin CORS stations were intended to contribute to the African Geodetic Reference Frame; no real-time AFREF NTRIP stream from BJ in BKG or IGS-IP.
 - **Global commercial networks**: GEODNET, ONOCOY, PointOne — no BJ coverage as of 2026-05-15.
-- **Cross-border RTK within ~50 km of major BJ population centres**: none. Nigerian, Togolese, and Burkinabè borders are all >50 km from a confirmed live RTK base; Togo's IGNTOGO portal has been unreachable since May 2026 (per `data/country_markers.json` note on `dgigc_tg`).
+- **Cross-border RTK within ~50 km of major BJ population centres**: none. Nigerian, Togolese, and Burkinabè borders are all >50 km from a confirmed live RTK base; Togo's IGNTOGO portal has been unreachable since May 2026 (per `data/rtk_map.json` note on `dgigc_tg`).
 
 ## Probe results (2026-05-15)
 

@@ -5,11 +5,11 @@ a global service. Answers: what is it, who runs it, where does it cover, what
 is the access model, and is it in scope?_
 
 _Technical detail (endpoints, credentials, pipeline status) lives in
-`docs/networks.md`. Per-country primary research lives in
+`docs/rtk_inventory.md`. Per-country primary research lives in
 `docs/ntrip_research/CC_*.md`. Network references use the pattern
-`→ networks.md: \`id\`` at the end of the relevant bullet — preserving this
+`→ rtk_inventory.md: \`id\`` at the end of the relevant bullet — preserving this
 exact form lets you audit coverage with
-`grep "networks.md:" docs/global-survey.md`._
+`grep "rtk_inventory.md:" docs/global-survey.md`._
 
 _Last updated: 2026-04-20._
 
@@ -26,7 +26,7 @@ western Europe, Japan, and Australia; sparse in Africa, Central Asia, and Latin
 America. Quality and uptime vary widely — hardware ranges from survey-grade to
 hobbyist DIY. `NEAR` mountpoint auto-routes to nearest base from rover's NMEA
 GGA. Regional country-filtered views (Poland `:2103`, Japan `:2104`) are the
-same server — not separate endpoints. → networks.md: `rtk2go`
+same server — not separate endpoints. → rtk_inventory.md: `rtk2go`
 
 ### CentipedeRTK (global, France-centric)
 
@@ -37,7 +37,7 @@ in France (~719 mainland volunteer bases), but significant presence in Hungary
 (~223 nodes — single largest non-France country), UK (~43), Finland (~14), and
 many other countries. All known nodes, including DOM-TOM territories, feed through
 `crtk.net` via Millipede federation — no separate country-specific instances.
-Fully open; no commercial restriction. → networks.md: `centipede`
+Fully open; no commercial restriction. → rtk_inventory.md: `centipede`
 
 ---
 
@@ -51,7 +51,7 @@ thinner in Mexico, Caribbean, and South America. Free for non-commercial,
 scientific, educational, or humanitarian use under annual NULA. Commercial use
 requires per-seat licensing. Hobbyist and small-shop use confirmed in scope.
 Legacy UNAVCO platform retired 2025-07-29; all users must migrate to
-`ntrip.earthscope.org`. → networks.md: `earthscope`
+`ntrip.earthscope.org`. → rtk_inventory.md: `earthscope`
 
 ### FReDNet (IT + cross-border partnerships)
 
@@ -64,7 +64,7 @@ Included here for its cross-relay relationships: FReDNet stations appear in
 the sibling Re.M.FVG (Marussi) caster under `OGS_*` mounts, and FReDNet's
 own caster re-broadcasts Marussi stations as `RAFVG_*`; Austrian BEV/APOS
 also integrates FReDNet stations as cross-border partners for VRS edge
-coverage. → networks.md: `frednet`
+coverage. → rtk_inventory.md: `frednet`
 
 ---
 
@@ -101,7 +101,7 @@ Paid after 30-day free trial ($40/month). Seasonal use (4 months = $160) is
 under the $200/yr affordability cutoff. Four regional AWS servers (USA, EU,
 Australia, S. America) all on port 2101. Added to pipeline to test whether
 the sourcetable is publicly accessible without auth — if so, stations can be
-displayed as a paid-service layer. → networks.md: `geodnet_*`
+displayed as a paid-service layer. → rtk_inventory.md: `geodnet_*`
 
 ### Emlid Caster
 
@@ -113,4 +113,4 @@ Not a shared public network; no sourcetable to parse. Not applicable.
 RTKdata.com is a paid aggregator (Kansi Solutions GmbH). RTKdata.online was
 presented as a free companion but visually reused rtk2go/Centipede data with
 no independent value. Removed from pipeline 2026-04-20: server unreachable
-since launch, 0 stations ever collected. → networks.md: `rtkdata_online` (rejected)
+since launch, 0 stations ever collected. → rtk_inventory.md: `rtkdata_online` (rejected)

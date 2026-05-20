@@ -40,6 +40,6 @@ Personal / civic:
 
 ## Audience tone (writers)
 
-- guide.html, help_topics.json, country_markers.json `note` field: plain language, no acronyms unexpanded, no internal jargon (`$200/yr cutoff`, audit phrasing). UK spelling. "GPS" colloquially; "GNSS" only when hardware/signal-structurally correct (L1/L2 ≠ "GPS bands" — Galileo E1/E5b share them).
+- guide.html, help_topics.json, rtk_map.json `note` field: plain language, no acronyms unexpanded, no internal jargon (`$200/yr cutoff`, audit phrasing). UK spelling. "GPS" colloquially; "GNSS" only when hardware/signal-structurally correct (L1/L2 ≠ "GPS bands" — Galileo E1/E5b share them).
 - gnss-ai-guide.md: hobbyist NTRIP user, decimetre target; sub-decimetre + survey-grade = explicitly not the audience (§13.7).
 - README + map UI: hobbyist + small shop assumed; no enterprise framing.

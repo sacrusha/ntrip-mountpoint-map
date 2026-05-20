@@ -24,7 +24,7 @@ Larger batches might work fine. Optimization: batch files by region / culture.
 
 ### Scope boundary
 
-Research and reconcile agents edit `docs/ntrip_research/*.md` only. Pipeline edits (`networks.md`, `country_markers.json`, `fetch_stations.py` SOURCES) are a separate task with `.proc.md`-aware agents — they have rules the research agents don't readre.
+Research and reconcile agents edit `docs/ntrip_research/*.md` only. Pipeline edits (`rtk_inventory.md`, `rtk_map.json`, `fetch_stations.py` SOURCES) are a separate task with `.proc.md`-aware agents — they have rules the research agents don't readre.
 
 ### Task examples
 
@@ -147,7 +147,7 @@ Files:
 
 Per docs/research_task.txt + docs/research_task.primer.txt + CLAUDE.md.
 
-Scope: edits to docs/ntrip_research/*.md only. Do NOT edit networks.md, country_markers.json, fetch_stations.py.
+Scope: edits to docs/ntrip_research/*.md only. Do NOT edit rtk_inventory.md, rtk_map.json, fetch_stations.py.
 
 ### Fixes
 

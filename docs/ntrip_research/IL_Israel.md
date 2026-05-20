@@ -63,7 +63,7 @@ No commercial or volunteer NTRIP network with confirmed Israel coverage and fore
 - CNN — GPS jamming and the Iran war (2026-03-06): https://www.cnn.com/2026/03/06/science/gps-jamming-ships-planes-iran-war
 - GPSJAM interference map: https://gpsjam.org/
 - country-survey.md IL stub (2026-04-29)
-- networks.md `apn` entry (status: weird)
+- rtk_inventory.md `apn` entry (status: weird)
 - Centipede IL stations: 1 (ARKG, Golan area) — 2026-05-17 pipeline snapshot via `scripts/stations_by_country.py ISR`
 - rtk2go IL stations: 1 (misgav_dov, Shfela area) — 2026-05-17 pipeline snapshot
 - igs_ip IL stations: 1 (BSHM00ISR0, Haifa Technion) — 2026-05-17 pipeline snapshot

@@ -48,7 +48,7 @@
 **Notes:**
 - AD-GRS replaced the legacy Nahrwan 1967 datum as the official Abu Dhabi geodetic reference.
 - The two CORS most commonly cited in academic literature are ADCN (Abu Dhabi city, coastal) and MDZN (Madinat Zayed, inland) — confirmed in a 2025 ISPRS Annals paper on UAE GNSS error variations.
-- This entry is missing from prior project research (networks.md has no AD-GRS row; country_markers.json only has DVRS). PIPELINE NOTE downstream.
+- This entry is missing from prior project research (rtk_inventory.md has no AD-GRS row; rtk_map.json only has DVRS). PIPELINE NOTE downstream.
 
 ---
 

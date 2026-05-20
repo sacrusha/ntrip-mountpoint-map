@@ -51,8 +51,8 @@ def _dec_places(s: str) -> int:
 
 SOURCES = [
     # Operational-only SOURCES schema. Editorial fields (label, region, access,
-    # registration, note, tier, vrs, country) live in data/country_markers.json
-    # — joined by id. See docs/networks.md for per-network research detail.
+    # registration, note, tier, vrs, country) live in data/rtk_map.json
+    # — joined by id. See docs/rtk_inventory.md for per-network research detail.
     #
     # color: per-source dot/marker hex; single source of truth here.
     # group: logical key for multi-source families, e.g. "sapos" (optional).
@@ -76,11 +76,11 @@ SOURCES = [
     {"id": "sapos_HE", "url": "http://www.sapos-he-ntrip.de:2101/", "color": "#2d6e6e"},
     # sapos_RP removed 2026-05-07: paid-only state (€120/yr/credential HEPS/GPPS
     # + €100 setup), most restrictive in DE. Surfaced via the paid country
-    # marker in data/country_markers.json instead.
+    # marker in data/rtk_map.json instead.
     {"id": "sapos_BW", "url": "http://www.sapos-bw-ntrip.de:2101/", "color": "#2d6e6e"},
-    # sapos_BY removed 2026-05-20: reclassified status:paid per networks.proc.md
+    # sapos_BY removed 2026-05-20: reclassified status:paid per rtk_inventory.proc.md
     # (€20/yr non-agricultural since June 2024, free for registered Bavarian
-    # farms). Surfaced as paid-affordable marker in data/country_markers.json.
+    # farms). Surfaced as paid-affordable marker in data/rtk_map.json.
     {"id": "sapos_SN", "url": "http://www.ntrip.sachsen.de:2101/", "color": "#2d6e6e"},
     {"id": "sapos_SL", "url": "http://www.sapos-sl-ntrip.de:2101/", "color": "#2d6e6e"},
     {"id": "sapos_BE", "url": "http://www.sapos-be-ntrip.de:2101/", "color": "#2d6e6e"},
@@ -88,7 +88,7 @@ SOURCES = [
     {"id": "sapos_MV", "url": "http://www.sapos-mv-ntrip.de:2101/", "color": "#2d6e6e"},
     {"id": "sapos_LSA", "url": "http://www.sapos-lsa-ntrip.de:2101/", "color": "#2d6e6e"},
     {"id": "sapos_TH", "url": "http://www.sapos-th-ntrip.de:2101/", "color": "#2d6e6e"},
-    # APOS (AT) removed from pipeline — paid for hobbyists; represented by a country_markers.json paid-tier marker.
+    # APOS (AT) removed from pipeline — paid for hobbyists; represented by a rtk_map.json paid-tier marker.
     {"id": "ergnss", "url": "http://ergnss-ip.ign.es:2101/", "color": "#b05000"},
     {"id": "catnet", "url": "http://catnet-ip.icgc.cat:2101/", "color": "#a00020"},
     {"id": "ergnss_sptr", "url": "http://ergnss-tr.ign.es:2101/", "color": "#b05000"},
@@ -465,7 +465,7 @@ def main() -> int:
     # Source-level color is included so that editing SOURCES in this file
     # triggers a re-write on the next pipeline run without requiring a station
     # change. Editorial fields (label/region/access/registration/note) live in
-    # data/country_markers.json and don't drive stations.json regeneration.
+    # data/rtk_map.json and don't drive stations.json regeneration.
     if existing is not None:
         ex_sources = existing.get("sources", {})
         unchanged = (
