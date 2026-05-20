@@ -31,6 +31,16 @@ adjusting:
 - stations.json schema gains an operational field (e.g. per-endpoint
   status detail), or the merge rules across endpoints change.
 
+## stations.json source-record schema
+
+Operational fields only — fetched / runtime state. Editorial fields
+(`label`, `region`, `access`, `registration`, `note`, `country`, ...)
+live in `../data/rtk_map.json` and are read by `index.html` via
+`markersById[sid]` at render time. Do not re-introduce them here; the
+dual write was cleaned out to eliminate drift. Current source-record
+keys: `url`, `credentials`, `near`, `user`, `pass`, `userNote`,
+`status`, `fetched_at`, `last_ok`, `stations`.
+
 ## After-edit checks
 
 ```sh

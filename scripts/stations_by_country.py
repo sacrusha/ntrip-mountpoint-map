@@ -33,7 +33,9 @@ Related tools (in this directory):
 import json, sys
 from pathlib import Path
 
-STATIONS = Path(__file__).parent.parent / "data" / "stations.json"
+DATA = Path(__file__).parent.parent / "data"
+STATIONS = DATA / "stations.json"
+RTK_MAP = DATA / "rtk_map.json"
 
 # Centipede tags Czech/UK/Serbia/Denmark/Romania stations under non-ISO codes.
 # Map ISO alpha-3 -> centipede's internal code so cross-source queries hit them.
@@ -62,6 +64,12 @@ _A2_TO_A3 = {
 
 data = json.loads(STATIONS.read_text())["sources"]
 SOURCES = sorted(data.keys())
+
+# Source-level country lookup. stations.json no longer duplicates editorial
+# fields from rtk_map.json; the source-record fallback used below for
+# stations that lack per-station country tags now reads rtk_map.json directly.
+_rtk_markers = json.loads(RTK_MAP.read_text(encoding="utf-8"))["markers"]
+SOURCE_COUNTRY = {m["id"]: m["country"] for m in _rtk_markers if m.get("country")}
 
 if len(sys.argv) < 2:
     untagged = []
@@ -104,7 +112,7 @@ for src in SOURCES:
             notes.append(f"alias: {tag}->{alias} ({n_via_alias})")
     if not hits:
         # Source-record country fallback: per-station tag is empty but source covers this country.
-        src_cc = data[src].get("country") or []
+        src_cc = SOURCE_COUNTRY.get(src) or []
         if isinstance(src_cc, str):
             src_cc = [src_cc]
         src_a3 = {_A2_TO_A3.get(c.upper(), c.upper()) for c in src_cc}

@@ -412,6 +412,13 @@ def main() -> int:
                 merged_stations.append(s)
         # Primary endpoint provides popup-display fields (host:port shown for
         # any station card; multi-endpoint cases default to endpoint[0]).
+        #
+        # Schema rule: this dict is the COMPLETE source-record shape in
+        # stations.json. Do not add editorial fields (label, region, access,
+        # registration, note, country, ...) here — those live in rtk_map.json
+        # and are read by index.html via markersById[sid] at render time.
+        # Adding them re-introduces dual-write drift the schema was cleaned
+        # to eliminate.
         primary = ep_results[0]
         payload_sources[net["id"]] = {
             "url":         primary["url"],

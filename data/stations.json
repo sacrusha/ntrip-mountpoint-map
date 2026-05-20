@@ -4,17 +4,7 @@
   "sources": {
     "sapos_SN": {
       "url": "http://www.ntrip.sachsen.de:2101/",
-      "label": "sapos SN",
-      "type": "physical-vrs",
-      "country": [
-        "DE"
-      ],
-      "region": "Sachsen",
-      "group": "sapos",
       "credentials": null,
-      "registration": "https://www.sapos.de",
-      "access": "registration",
-      "openNote": "Free registration required \u2014 select your federal state",
       "near": false,
       "user": null,
       "pass": null,
@@ -26,17 +16,7 @@
     },
     "sapos_BY": {
       "url": "http://www.sapos-by-ntrip.de:2101/",
-      "label": "sapos BY",
-      "type": "vrs-only",
-      "country": [
-        "DE"
-      ],
-      "region": "Bayern",
-      "group": "sapos",
       "credentials": null,
-      "registration": "https://sapos.bayern.de/",
-      "access": "conditions",
-      "openNote": "Free registration required \u2014 Bayern \u20ac20/yr",
       "near": false,
       "user": null,
       "pass": null,
@@ -48,17 +28,7 @@
     },
     "spslux": {
       "url": "http://stream.spslux.lu:5005/",
-      "label": "SPSLux",
-      "type": "physical-vrs",
-      "country": [
-        "LU"
-      ],
-      "region": null,
-      "group": null,
       "credentials": null,
-      "registration": "https://act.public.lu/fr/gps-reseaux/spslux1.html",
-      "access": "registration",
-      "openNote": "Free registration required",
       "near": false,
       "user": null,
       "pass": null,
@@ -70,17 +40,7 @@
     },
     "sapos_TH": {
       "url": "http://www.sapos-th-ntrip.de:2101/",
-      "label": "sapos TH",
-      "type": "vrs-only",
-      "country": [
-        "DE"
-      ],
-      "region": "Th\u00fcringen",
-      "group": "sapos",
       "credentials": null,
-      "registration": "https://www.sapos.de",
-      "access": "registration",
-      "openNote": "Free registration required \u2014 select your federal state",
       "near": false,
       "user": null,
       "pass": null,
@@ -92,17 +52,7 @@
     },
     "sapos_BB": {
       "url": "http://www.sapos-bb-ntrip.de:2101/",
-      "label": "sapos BB",
-      "type": "vrs-only",
-      "country": [
-        "DE"
-      ],
-      "region": "Brandenburg",
-      "group": "sapos",
       "credentials": null,
-      "registration": "https://www.sapos.de",
-      "access": "registration",
-      "openNote": "Free registration required \u2014 select your federal state",
       "near": false,
       "user": null,
       "pass": null,
@@ -114,17 +64,7 @@
     },
     "cropos": {
       "url": "http://gnss.cropos.hr:2101/",
-      "label": "CROPOS",
-      "type": "vrs-only",
-      "country": [
-        "HR"
-      ],
-      "region": null,
-      "group": null,
       "credentials": null,
-      "registration": "https://www.cropos.hr",
-      "access": "registration",
-      "openNote": "Free registration required",
       "near": false,
       "user": null,
       "pass": null,
@@ -136,17 +76,7 @@
     },
     "asg_eupos": {
       "url": "http://system.asgeupos.pl:2101/",
-      "label": "ASG-EUPOS",
-      "type": "vrs-only",
-      "country": [
-        "PL"
-      ],
-      "region": null,
-      "group": null,
       "credentials": null,
-      "registration": "https://system.asgeupos.pl",
-      "access": "registration",
-      "openNote": "Free registration required (approval 1\u20132 working days)",
       "near": false,
       "user": null,
       "pass": null,
@@ -158,17 +88,7 @@
     },
     "sapos_NW": {
       "url": "http://www.sapos-nw-ntrip.de:2101/",
-      "label": "sapos NW",
-      "type": "vrs-only",
-      "country": [
-        "DE"
-      ],
-      "region": "Nordrhein-Westfalen",
-      "group": "sapos",
       "credentials": null,
-      "registration": "https://www.sapos.de",
-      "access": "registration",
-      "openNote": "Free registration required \u2014 select your federal state",
       "near": false,
       "user": null,
       "pass": null,
@@ -180,17 +100,7 @@
     },
     "litpos": {
       "url": "http://193.219.10.2:2101/",
-      "label": "LitPOS",
-      "type": "vrs-only",
-      "country": [
-        "LT"
-      ],
-      "region": null,
-      "group": null,
       "credentials": null,
-      "registration": "https://www.geoportal.lt/geoportal/web/litpos-en/registration",
-      "access": "registration",
-      "openNote": "Free registration required",
       "near": false,
       "user": null,
       "pass": null,
@@ -202,17 +112,7 @@
     },
     "rem_fvg": {
       "url": "http://gnsscaster.regione.fvg.it:8080/",
-      "label": "Re.M.FVG",
-      "type": "physical-vrs",
-      "country": [
-        "IT"
-      ],
-      "region": "Friuli-Venezia Giulia",
-      "group": null,
       "credentials": null,
-      "registration": "https://rem.regione.fvg.it/rem-fvg/servizi/correzioni-differenziali",
-      "access": "registration",
-      "openNote": "Free registration form required",
       "near": false,
       "user": null,
       "pass": null,
@@ -561,17 +461,7 @@
     },
     "renep": {
       "url": "http://193.137.94.71:2101/",
-      "label": "ReNEP",
-      "type": "single-base",
-      "country": [
-        "PT"
-      ],
-      "region": null,
-      "group": null,
       "credentials": null,
-      "registration": "https://renep.dgterritorio.gov.pt",
-      "access": "registration",
-      "openNote": "Free registration required (DGT \u2014 Dire\u00e7\u00e3o-Geral do Territ\u00f3rio)",
       "near": false,
       "user": null,
       "pass": null,
@@ -1136,17 +1026,7 @@
     },
     "euref_ip": {
       "url": "http://euref-ip.net:2101/",
-      "label": "EUREF-IP",
-      "type": "single-base",
-      "country": [
-        "europe"
-      ],
-      "region": null,
-      "group": null,
       "credentials": null,
-      "registration": "http://register.rtcm-ntrip.org/cgi-bin/registration.cgi",
-      "access": "registration",
-      "openNote": "Free with BKG registration (per-broadcaster account; no SSO across BKG/ROB/ASI)",
       "near": false,
       "user": null,
       "pass": null,
@@ -3679,17 +3559,7 @@
     },
     "spin3": {
       "url": "http://158.102.7.10:2101/",
-      "label": "SPIN3 GNSS",
-      "type": "physical-vrs",
-      "country": [
-        "IT"
-      ],
-      "region": "Piemonte, Lombardia, Valle d'Aosta",
-      "group": "italy-regional",
       "credentials": null,
-      "registration": "https://www.spingnss.it",
-      "access": "registration",
-      "openNote": "Free registration required (CSI Piemonte portal)",
       "near": false,
       "user": null,
       "pass": null,
@@ -3701,17 +3571,7 @@
     },
     "igs_ip": {
       "url": "http://www.igs-ip.net:2101/",
-      "label": "IGS-IP",
-      "type": "single-base",
-      "country": [
-        "global"
-      ],
-      "region": null,
-      "group": null,
       "credentials": null,
-      "registration": "http://register.rtcm-ntrip.org/cgi-bin/registration.cgi",
-      "access": "registration",
-      "openNote": "Free with BKG registration (shared with EUREF-IP)",
       "near": false,
       "user": null,
       "pass": null,
@@ -7900,17 +7760,7 @@
     },
     "tpos": {
       "url": "http://194.105.50.232:2101/",
-      "label": "TPOS",
-      "type": "physical-vrs",
-      "country": [
-        "IT"
-      ],
-      "region": "Trentino",
-      "group": "italy-regional",
       "credentials": null,
-      "registration": "https://www.tpos.provincia.tn.it",
-      "access": "registration",
-      "openNote": null,
       "near": false,
       "user": null,
       "pass": null,
@@ -8235,17 +8085,7 @@
     },
     "ergnss": {
       "url": "http://ergnss-ip.ign.es:2101/",
-      "label": "ERGNSS",
-      "type": "physical-vrs",
-      "country": [
-        "ES"
-      ],
-      "region": null,
-      "group": null,
       "credentials": null,
-      "registration": "https://ergnss.ign.es/gnuserportal/",
-      "access": "registration",
-      "openNote": "Free registration, approved immediately",
       "near": false,
       "user": null,
       "pass": null,
@@ -9842,17 +9682,7 @@
     },
     "stpos": {
       "url": "http://62.101.0.40:2109/",
-      "label": "STPOS",
-      "type": "physical-vrs",
-      "country": [
-        "IT"
-      ],
-      "region": "South Tyrol",
-      "group": "italy-regional",
       "credentials": null,
-      "registration": "https://www.stpos.it",
-      "access": "registration",
-      "openNote": null,
       "near": false,
       "user": null,
       "pass": null,
@@ -9925,17 +9755,7 @@
     },
     "sapos_HE": {
       "url": "http://www.sapos-he-ntrip.de:2101/",
-      "label": "sapos HE",
-      "type": "physical-vrs",
-      "country": [
-        "DE"
-      ],
-      "region": "Hessen",
-      "group": "sapos",
       "credentials": null,
-      "registration": "https://www.sapos.de",
-      "access": "registration",
-      "openNote": "Free registration required \u2014 select your federal state",
       "near": false,
       "user": null,
       "pass": null,
@@ -9947,20 +9767,10 @@
     },
     "centipede": {
       "url": "http://crtk.net:2101/",
-      "label": "Centipede",
-      "type": "single-base",
-      "country": [
-        "global"
-      ],
-      "region": null,
-      "group": null,
       "credentials": {
         "user": "centipede",
         "pass": "centipede"
       },
-      "registration": null,
-      "access": "open",
-      "openNote": null,
       "near": true,
       "user": "centipede",
       "pass": "centipede",
@@ -24505,17 +24315,7 @@
     },
     "sapos_BW": {
       "url": "http://www.sapos-bw-ntrip.de:2101/",
-      "label": "sapos BW",
-      "type": "vrs-only",
-      "country": [
-        "DE"
-      ],
-      "region": "Baden-W\u00fcrttemberg",
-      "group": "sapos",
       "credentials": null,
-      "registration": "https://www.sapos.de",
-      "access": "registration",
-      "openNote": "Free registration required \u2014 select your federal state",
       "near": false,
       "user": null,
       "pass": null,
@@ -24527,17 +24327,7 @@
     },
     "ct_acorn": {
       "url": "http://acorn.uconn.edu:2101/",
-      "label": "ACORN CT",
-      "type": "physical-vrs",
-      "country": [
-        "US"
-      ],
-      "region": "Connecticut",
-      "group": "us-state-dot",
       "credentials": null,
-      "registration": "https://acorn.uconn.edu",
-      "access": "registration",
-      "openNote": "Free registration required (CTDOT + UConn)",
       "near": false,
       "user": null,
       "pass": null,
@@ -24549,17 +24339,7 @@
     },
     "vector": {
       "url": "http://vector.vermont.gov:2101/",
-      "label": "VECTOR VT",
-      "type": "physical-vrs",
-      "country": [
-        "US"
-      ],
-      "region": "Vermont",
-      "group": "us-state-dot",
       "credentials": null,
-      "registration": "https://vector.vermont.gov",
-      "access": "registration",
-      "openNote": "Free registration required (VTrans Geodetic Survey)",
       "near": false,
       "user": null,
       "pass": null,
@@ -24571,17 +24351,7 @@
     },
     "iartn": {
       "url": "http://165.206.203.10:10000/",
-      "label": "IARTN",
-      "type": "physical-coord-vrs",
-      "country": [
-        "US"
-      ],
-      "region": "Iowa",
-      "group": "us-state-dot",
       "credentials": null,
-      "registration": "https://iowadot.gov",
-      "access": "registration",
-      "openNote": "Free registration required (Iowa DOT)",
       "near": false,
       "user": null,
       "pass": null,
@@ -24593,17 +24363,7 @@
     },
     "trignet": {
       "url": "http://trignet.co.za:2101/",
-      "label": "TrigNet",
-      "type": "physical-vrs",
-      "country": [
-        "ZA"
-      ],
-      "region": null,
-      "group": null,
       "credentials": null,
-      "registration": "https://ngi.dalrrd.gov.za/index.php/what-we-do/geodetic-and-control-survey-services/37-trignet-continuously-operating-gnss-network",
-      "access": "registration",
-      "openNote": "Free registration required",
       "near": false,
       "user": null,
       "pass": null,
@@ -25492,17 +25252,7 @@
     },
     "wvrtn": {
       "url": "http://wvrtn.cors.us:2101/",
-      "label": "WVRTN",
-      "type": "vrs-only",
-      "country": [
-        "US"
-      ],
-      "region": "West Virginia",
-      "group": "us-state-dot",
       "credentials": null,
-      "registration": "https://transportation.wv.gov",
-      "access": "registration",
-      "openNote": "Free registration required (WVDOT \u2014 IT Division)",
       "near": false,
       "user": null,
       "pass": null,
@@ -25514,17 +25264,7 @@
     },
     "catnet": {
       "url": "http://catnet-ip.icgc.cat:2101/",
-      "label": "CATNET",
-      "type": "physical-vrs",
-      "country": [
-        "ES"
-      ],
-      "region": "Catalonia",
-      "group": null,
       "credentials": null,
-      "registration": "https://catnet-ip.icgc.cat/",
-      "access": "registration",
-      "openNote": "Free ICGC account required",
       "near": false,
       "user": null,
       "pass": null,
@@ -25536,17 +25276,7 @@
     },
     "orgn": {
       "url": "http://orgn.odot.state.or.us:9881/",
-      "label": "ORGN",
-      "type": "physical-vrs",
-      "country": [
-        "US"
-      ],
-      "region": "Oregon",
-      "group": "us-state-dot",
       "credentials": null,
-      "registration": "https://www.oregon.gov/odot/orgn",
-      "access": "registration",
-      "openNote": "Free registration required (Oregon DOT)",
       "near": false,
       "user": null,
       "pass": null,
@@ -25558,17 +25288,7 @@
     },
     "sapos_LSA": {
       "url": "http://www.sapos-lsa-ntrip.de:2101/",
-      "label": "sapos LSA",
-      "type": "vrs-only",
-      "country": [
-        "DE"
-      ],
-      "region": "Sachsen-Anhalt",
-      "group": "sapos",
       "credentials": null,
-      "registration": "https://www.sapos.de",
-      "access": "registration",
-      "openNote": "Free registration required \u2014 select your federal state",
       "near": false,
       "user": null,
       "pass": null,
@@ -25580,17 +25300,7 @@
     },
     "sapos_MV": {
       "url": "http://www.sapos-mv-ntrip.de:2101/",
-      "label": "sapos MV",
-      "type": "vrs-only",
-      "country": [
-        "DE"
-      ],
-      "region": "Mecklenburg-Vorpommern",
-      "group": "sapos",
       "credentials": null,
-      "registration": "https://www.sapos.de",
-      "access": "registration",
-      "openNote": "Free registration required \u2014 select your federal state",
       "near": false,
       "user": null,
       "pass": null,
@@ -25602,18 +25312,7 @@
     },
     "agrs_nl": {
       "url": "http://ntrip.kadaster.nl:2101/",
-      "label": "AGRS.NL / AGRS.BES",
-      "type": "single-base",
-      "country": [
-        "NL",
-        "BQ"
-      ],
-      "region": null,
-      "group": null,
       "credentials": null,
-      "registration": null,
-      "access": "open",
-      "openNote": null,
       "near": false,
       "user": null,
       "pass": null,
@@ -26334,17 +26033,7 @@
     },
     "flepos": {
       "url": "http://flepos.vlaanderen.be:2101/",
-      "label": "FLEPOS",
-      "type": "vrs-only",
-      "country": [
-        "BE"
-      ],
-      "region": "Flanders",
-      "group": null,
       "credentials": null,
-      "registration": "https://overheid.vlaanderen.be/en/producten-diensten/centimetre-accurate-positioning-flepos",
-      "access": "registration",
-      "openNote": "Free registration required",
       "near": false,
       "user": null,
       "pass": null,
@@ -26356,17 +26045,7 @@
     },
     "regna_rou": {
       "url": "http://rtk.igm.gub.uy:2101/",
-      "label": "REGNA-ROU",
-      "type": "physical-vrs",
-      "country": [
-        "UY"
-      ],
-      "region": null,
-      "group": null,
       "credentials": null,
-      "registration": "https://igm.gub.uy/2016/05/20/servicios-regna-rou/",
-      "access": "registration",
-      "openNote": "Free registration required",
       "near": false,
       "user": null,
       "pass": null,
@@ -27303,17 +26982,7 @@
     },
     "sapos_SH_HH": {
       "url": "http://www.sapos.geonord.de:2101/",
-      "label": "sapos SH HH",
-      "type": "vrs-only",
-      "country": [
-        "DE"
-      ],
-      "region": "Schleswig-Holstein + Hamburg",
-      "group": "sapos",
       "credentials": null,
-      "registration": "https://www.sapos.de",
-      "access": "registration",
-      "openNote": "Free registration required \u2014 select your federal state",
       "near": false,
       "user": null,
       "pass": null,
@@ -27325,17 +26994,7 @@
     },
     "gcgc_rtn": {
       "url": "http://rtn.usm.edu:2101/",
-      "label": "GCGC RTN",
-      "type": "single-base",
-      "country": [
-        "US"
-      ],
-      "region": "Mississippi (Gulf Coast)",
-      "group": "us-state-dot",
       "credentials": null,
-      "registration": "https://rtn.usm.edu",
-      "access": "registration",
-      "openNote": "Free registration required (Gulf Coast Geospatial Center / USM)",
       "near": false,
       "user": null,
       "pass": null,
@@ -27347,17 +27006,7 @@
     },
     "gnss_liguria": {
       "url": "http://81.23.86.70:2101/",
-      "label": "Rete GNSS Liguria",
-      "type": "physical-vrs",
-      "country": [
-        "IT"
-      ],
-      "region": "Liguria",
-      "group": "italy-regional",
       "credentials": null,
-      "registration": "https://geoportal.regione.liguria.it/servizi/rete-gnss-liguria",
-      "access": "registration",
-      "openNote": null,
       "near": false,
       "user": null,
       "pass": null,
@@ -27442,17 +27091,7 @@
     },
     "sit_puglia": {
       "url": "http://gps.sit.puglia.it:2101/",
-      "label": "SIT Puglia",
-      "type": "physical-vrs",
-      "country": [
-        "IT"
-      ],
-      "region": "Puglia",
-      "group": "italy-regional",
       "credentials": null,
-      "registration": "https://sit.puglia.it",
-      "access": "registration",
-      "openNote": "Free registration required (SIT Puglia geoportal)",
       "near": false,
       "user": null,
       "pass": null,
@@ -27464,17 +27103,7 @@
     },
     "gnss_veneto": {
       "url": "http://147.162.229.53:2101/",
-      "label": "Rete GNSS Veneto",
-      "type": "physical-vrs",
-      "country": [
-        "IT"
-      ],
-      "region": "Veneto",
-      "group": "italy-regional",
       "credentials": null,
-      "registration": "https://retegnssveneto.cisas.unipd.it",
-      "access": "registration",
-      "openNote": null,
       "near": false,
       "user": null,
       "pass": null,
@@ -27691,17 +27320,7 @@
     },
     "mainedot": {
       "url": "http://medotrtn.maine.gov:2101/",
-      "label": "MaineDOT",
-      "type": "vrs-only",
-      "country": [
-        "US"
-      ],
-      "region": "Maine",
-      "group": "us-state-dot",
       "credentials": null,
-      "registration": "https://medotrtn.maine.gov",
-      "access": "registration",
-      "openNote": "Free registration required (Maine DOT)",
       "near": false,
       "user": null,
       "pass": null,
@@ -27713,17 +27332,7 @@
     },
     "latpos": {
       "url": "http://latpos.lgia.gov.lv:5001/",
-      "label": "LatPos",
-      "type": "vrs-only",
-      "country": [
-        "LV"
-      ],
-      "region": null,
-      "group": null,
       "credentials": null,
-      "registration": "https://www.lgia.gov.lv/en/latpos",
-      "access": "registration",
-      "openNote": "Free registration required",
       "near": false,
       "user": null,
       "pass": null,
@@ -27735,17 +27344,7 @@
     },
     "icecors": {
       "url": "http://178.19.53.126:2101/",
-      "label": "IceCORS",
-      "type": "physical-vrs",
-      "country": [
-        "IS"
-      ],
-      "region": null,
-      "group": null,
       "credentials": null,
-      "registration": "https://ggn01.lmi.is/",
-      "access": "registration",
-      "openNote": "Free registration required",
       "near": false,
       "user": null,
       "pass": null,
@@ -27854,17 +27453,7 @@
     },
     "acorn": {
       "url": "http://www.acorn-gnss.net:2101/",
-      "label": "ACORN",
-      "type": "physical-vrs",
-      "country": [
-        "US"
-      ],
-      "region": "Alaska",
-      "group": "us-state-dot",
       "credentials": null,
-      "registration": "https://www.acorn-gnss.net",
-      "access": "registration",
-      "openNote": "Free registration required (Alaska DNR / DOTPF)",
       "near": false,
       "user": null,
       "pass": null,
@@ -27876,17 +27465,7 @@
     },
     "ergnss_sptr": {
       "url": "http://ergnss-tr.ign.es:2101/",
-      "label": "ERGNSS",
-      "type": "vrs-only",
-      "country": [
-        "ES"
-      ],
-      "region": null,
-      "group": null,
       "credentials": null,
-      "registration": "https://ergnss.ign.es/gnuserportal/",
-      "access": "registration",
-      "openNote": "Free registration, approved immediately (Canary Islands VRS service)",
       "near": false,
       "user": null,
       "pass": null,
@@ -27898,17 +27477,7 @@
     },
     "geortk": {
       "url": "http://geortk.jp:2101/",
-      "label": "GeoRTK",
-      "type": "single-base",
-      "country": [
-        "JP"
-      ],
-      "region": null,
-      "group": null,
       "credentials": null,
-      "registration": null,
-      "access": "open",
-      "openNote": "No authentication required",
       "near": false,
       "user": null,
       "pass": null,
@@ -28449,17 +28018,7 @@
     },
     "modot_rtn": {
       "url": "http://rtk3.modot.mo.gov:2101/",
-      "label": "MoDOT RTN",
-      "type": "vrs-only",
-      "country": [
-        "US"
-      ],
-      "region": "Missouri",
-      "group": "us-state-dot",
       "credentials": null,
-      "registration": "https://modot.mo.gov",
-      "access": "conditions",
-      "openNote": "Notarized access agreement required (Missouri DOT); free once approved",
       "near": false,
       "user": null,
       "pass": null,
@@ -28471,17 +28030,7 @@
     },
     "sapos_SL": {
       "url": "http://www.sapos-sl-ntrip.de:2101/",
-      "label": "sapos SL",
-      "type": "physical-vrs",
-      "country": [
-        "DE"
-      ],
-      "region": "Saarland",
-      "group": "sapos",
       "credentials": null,
-      "registration": "https://www.sapos.de",
-      "access": "registration",
-      "openNote": "Free registration required \u2014 select your federal state",
       "near": false,
       "user": null,
       "pass": null,
@@ -28590,17 +28139,7 @@
     },
     "sapos_BE": {
       "url": "http://www.sapos-be-ntrip.de:2101/",
-      "label": "sapos BE",
-      "type": "vrs-only",
-      "country": [
-        "DE"
-      ],
-      "region": "Berlin",
-      "group": "sapos",
       "credentials": null,
-      "registration": "https://www.sapos.de",
-      "access": "registration",
-      "openNote": "Free registration required \u2014 select your federal state",
       "near": false,
       "user": null,
       "pass": null,
@@ -28612,17 +28151,7 @@
     },
     "ardot_rtn": {
       "url": "http://gps.ardot.gov:2101/",
-      "label": "ARDOT RTN",
-      "type": "physical-vrs",
-      "country": [
-        "US"
-      ],
-      "region": "Arkansas",
-      "group": "us-state-dot",
       "credentials": null,
-      "registration": "https://gps.ardot.gov",
-      "access": "registration",
-      "openNote": "Free registration required (Arkansas DOT)",
       "near": false,
       "user": null,
       "pass": null,
@@ -28634,17 +28163,7 @@
     },
     "sapos_NI": {
       "url": "http://www.sapos-ni-ntrip.de:2101/",
-      "label": "sapos NI",
-      "type": "vrs-only",
-      "country": [
-        "DE"
-      ],
-      "region": "Niedersachsen + Bremen",
-      "group": "sapos",
       "credentials": null,
-      "registration": "https://www.sapos.de",
-      "access": "registration",
-      "openNote": "Free registration required \u2014 select your federal state",
       "near": false,
       "user": null,
       "pass": null,
@@ -28656,17 +28175,7 @@
     },
     "wiscors": {
       "url": "http://wiscors.dot.wi.gov:2101/",
-      "label": "WISCORS",
-      "type": "physical-vrs",
-      "country": [
-        "US"
-      ],
-      "region": "Wisconsin",
-      "group": "us-state-dot",
       "credentials": null,
-      "registration": "https://wiscors.dot.wi.gov",
-      "access": "registration",
-      "openNote": "Free registration required (Wisconsin DOT)",
       "near": false,
       "user": null,
       "pass": null,
@@ -28678,17 +28187,7 @@
     },
     "nps_cors": {
       "url": "http://rtk.nps.gov:2101/",
-      "label": "NPS CORS",
-      "type": "single-base",
-      "country": [
-        "US"
-      ],
-      "region": null,
-      "group": null,
       "credentials": null,
-      "registration": "https://ntrip.nps.gov",
-      "access": "conditions",
-      "openNote": "Free*; credentials via gnss_posnav@nps.gov \u2014 access scope unclear",
       "near": false,
       "user": null,
       "pass": null,
@@ -30393,17 +29892,7 @@
     },
     "regme_ec": {
       "url": "http://ntrip.igm.gob.ec:2101/",
-      "label": "REGME-IP",
-      "type": "single-base",
-      "country": [
-        "EC"
-      ],
-      "region": null,
-      "group": null,
       "credentials": null,
-      "registration": "https://www.geoportaligm.gob.ec/ntrip/",
-      "access": "registration",
-      "openNote": null,
       "near": false,
       "user": null,
       "pass": null,
@@ -30415,17 +29904,7 @@
     },
     "nysnet": {
       "url": "http://rtn.dot.ny.gov:8080/",
-      "label": "NYSNet",
-      "type": "physical-vrs",
-      "country": [
-        "US"
-      ],
-      "region": "New York",
-      "group": "us-state-dot",
       "credentials": null,
-      "registration": "https://cors.dot.ny.gov",
-      "access": "registration",
-      "openNote": "Free registration required (NYSDOT)",
       "near": false,
       "user": null,
       "pass": null,
@@ -30450,17 +29929,7 @@
     },
     "mesa_rtvrn": {
       "url": "http://rtvrn.mesacounty.us:2101/",
-      "label": "Mesa County RTVRN",
-      "type": "vrs-only",
-      "country": [
-        "US"
-      ],
-      "region": "Colorado (western)",
-      "group": null,
       "credentials": null,
-      "registration": "https://rtvrn.mesacounty.us/RegisterAccount.aspx",
-      "access": "registration",
-      "openNote": null,
       "near": false,
       "user": null,
       "pass": null,
@@ -30472,17 +29941,7 @@
     },
     "inacors": {
       "url": "http://nrtk.big.go.id:2001/",
-      "label": "InaCORS",
-      "type": "physical-vrs",
-      "country": [
-        "ID"
-      ],
-      "region": null,
-      "group": null,
       "credentials": null,
-      "registration": "https://nrtk.big.go.id",
-      "access": "registration",
-      "openNote": "Free registration required",
       "near": false,
       "user": null,
       "pass": null,
@@ -30494,17 +29953,7 @@
     },
     "sicilianet": {
       "url": "http://193.206.223.39:2101/",
-      "label": "Sicili@net",
-      "type": "physical-vrs",
-      "country": [
-        "IT"
-      ],
-      "region": "Sicily",
-      "group": "italy-regional",
       "credentials": null,
-      "registration": "https://www.ct.ingv.it/index.php/risorse-e-servizi/sicil-net",
-      "access": "registration",
-      "openNote": null,
       "near": false,
       "user": null,
       "pass": null,
@@ -30601,17 +30050,7 @@
     },
     "gpsumbria": {
       "url": "http://gpsumbria.regione.umbria.it:2101/",
-      "label": "GPS-UMBRIA",
-      "type": "physical-vrs",
-      "country": [
-        "IT"
-      ],
-      "region": "Umbria",
-      "group": "italy-regional",
       "credentials": null,
-      "registration": "https://gpsumbria.regione.umbria.it",
-      "access": "registration",
-      "openNote": "Free registration required",
       "near": false,
       "user": null,
       "pass": null,
@@ -30623,20 +30062,10 @@
     },
     "gnss_campania": {
       "url": "http://gps.sit.regione.campania.it:2101/",
-      "label": "GNSS Campania",
-      "type": "physical-vrs",
-      "country": [
-        "IT"
-      ],
-      "region": "Campania",
-      "group": "italy-regional",
       "credentials": {
         "user": "Campania",
         "pass": "GNSS"
       },
-      "registration": null,
-      "access": "open",
-      "openNote": "Free; public credentials (user: Campania, pass: GNSS) for 30-sec VRS; 1-sec requires SPID",
       "near": false,
       "user": null,
       "pass": null,
@@ -30648,17 +30077,7 @@
     },
     "igac": {
       "url": "http://sbc.igac.gov.co:2102/",
-      "label": "IGAC",
-      "type": "physical-coord-vrs",
-      "country": [
-        "CO"
-      ],
-      "region": null,
-      "group": null,
       "credentials": null,
-      "registration": "https://redgeodesica.igac.gov.co/",
-      "access": "registration",
-      "openNote": "Free registration required",
       "near": false,
       "user": null,
       "pass": null,
@@ -32399,17 +31818,7 @@
     },
     "ugrf": {
       "url": "http://ugrf.mlhud.go.ug:2101/",
-      "label": "UGRF CORS",
-      "type": "physical-vrs",
-      "country": [
-        "UG"
-      ],
-      "region": null,
-      "group": null,
       "credentials": null,
-      "registration": "https://ugrf.mlhud.go.ug/SBC",
-      "access": "registration",
-      "openNote": "Free registration required (UGRF portal \u2014 MLHUD)",
       "near": true,
       "user": null,
       "pass": null,
@@ -32770,17 +32179,7 @@
     },
     "kycors": {
       "url": "http://kycors.ky.gov:2101/",
-      "label": "KyCORS",
-      "type": "vrs-only",
-      "country": [
-        "US"
-      ],
-      "region": "Kentucky",
-      "group": "us-state-dot",
       "credentials": null,
-      "registration": "https://kycors.ky.gov/",
-      "access": "registration",
-      "openNote": "Free registration required (Kentucky Transportation Cabinet)",
       "near": false,
       "user": null,
       "pass": null,
@@ -32792,17 +32191,7 @@
     },
     "ign_cr_cors": {
       "url": "http://igncaster.snitcr.go.cr:2101/",
-      "label": "IGN-CR / SNIT",
-      "type": "single-base",
-      "country": [
-        "CR"
-      ],
-      "region": null,
-      "group": null,
       "credentials": null,
-      "registration": "https://www.snitcr.go.cr/",
-      "access": "registration",
-      "openNote": "Free SNIT account required; credentials activated at noon and midnight CR time",
       "near": false,
       "user": null,
       "pass": null,
@@ -32971,17 +32360,7 @@
     },
     "satref": {
       "url": "http://ntrip.geodetic.gov.hk:2101/",
-      "label": "SatRef",
-      "type": "single-base",
-      "country": [
-        "HK"
-      ],
-      "region": null,
-      "group": null,
       "credentials": null,
-      "registration": "https://www.geodetic.gov.hk/en/satref/ntrip.htm",
-      "access": "registration",
-      "openNote": "Free registration required (Survey and Mapping Office application form)",
       "near": false,
       "user": null,
       "pass": null,
@@ -33258,17 +32637,7 @@
     },
     "rbmc_ip": {
       "url": "http://gps-ntrip.ibge.gov.br:2101/",
-      "label": "RBMC-IP",
-      "type": "single-base",
-      "country": [
-        "BR"
-      ],
-      "region": null,
-      "group": null,
       "credentials": null,
-      "registration": "https://gps-ntrip.ibge.gov.br",
-      "access": "registration",
-      "openNote": "Free registration required (5-station limit per user)",
       "near": false,
       "user": null,
       "pass": null,
@@ -34973,17 +34342,7 @@
     },
     "cors_korea": {
       "url": "http://www.gnssdata.or.kr:2101/",
-      "label": "CORS-KOREA",
-      "type": "single-base",
-      "country": [
-        "KR"
-      ],
-      "region": null,
-      "group": null,
       "credentials": null,
-      "registration": "https://www.gnssdata.or.kr/user/agree.do",
-      "access": "registration",
-      "openNote": "Free registration required",
       "near": false,
       "user": null,
       "pass": null,
@@ -40912,17 +40271,7 @@
     },
     "mosref": {
       "url": "http://mosref.dscc.gov.mo:2101/",
-      "label": "MoSRef",
-      "type": "physical-vrs",
-      "country": [
-        "MO"
-      ],
-      "region": null,
-      "group": null,
       "credentials": null,
-      "registration": "https://mosref.dscc.gov.mo",
-      "access": "registration",
-      "openNote": "Free registration required \u2014 GPS+GLONASS+BeiDou; single-base and VRS available",
       "near": false,
       "user": null,
       "pass": null,
@@ -40934,17 +40283,7 @@
     },
     "positionz": {
       "url": "http://positionz-rt.linz.govt.nz:2101/",
-      "label": "PositioNZ",
-      "type": "single-base",
-      "country": [
-        "NZ"
-      ],
-      "region": null,
-      "group": null,
       "credentials": null,
-      "registration": "https://www.linz.govt.nz/",
-      "access": "registration",
-      "openNote": "LINZ account required \u2014 CC BY 4.0 NZ",
       "near": false,
       "user": null,
       "pass": null,
@@ -41701,20 +41040,10 @@
     },
     "rtk2go": {
       "url": "http://rtk2go.com:2101/",
-      "label": "rtk2go",
-      "type": "single-base",
-      "country": [
-        "global"
-      ],
-      "region": null,
-      "group": null,
       "credentials": {
         "user": "(any email address)",
         "pass": "none"
       },
-      "registration": null,
-      "access": "open",
-      "openNote": null,
       "near": true,
       "user": null,
       "pass": "none",
@@ -52131,17 +51460,7 @@
     },
     "mirai": {
       "url": "http://ntrip.go.gnss.go.jp:2101/",
-      "label": "MIRAI",
-      "type": "single-base",
-      "country": [
-        "JP"
-      ],
-      "region": null,
-      "group": null,
       "credentials": null,
-      "registration": "https://go.gnss.go.jp",
-      "access": "registration",
-      "openNote": "Free registration required (+ NtripCaster auth form)",
       "near": false,
       "user": null,
       "pass": null,
@@ -56042,17 +55361,7 @@
     },
     "ramsac": {
       "url": "http://ntrip.ign.gob.ar:2101/",
-      "label": "RAMSAC",
-      "type": "single-base",
-      "country": [
-        "AR"
-      ],
-      "region": null,
-      "group": null,
       "credentials": null,
-      "registration": "https://www.ign.gob.ar",
-      "access": "registration",
-      "openNote": "Free registration required (8-hr session cap)",
       "near": false,
       "user": null,
       "pass": null,
@@ -58393,17 +57702,7 @@
     },
     "auscors": {
       "url": "http://ntrip.data.gnss.ga.gov.au:2101/",
-      "label": "AUSCORS",
-      "type": "single-base",
-      "country": [
-        "AU"
-      ],
-      "region": null,
-      "group": null,
       "credentials": null,
-      "registration": "https://gnss.ga.gov.au/registration",
-      "access": "registration",
-      "openNote": "Free registration required \u2014 CC BY 4.0",
       "near": false,
       "user": null,
       "pass": null,
@@ -68100,20 +67399,10 @@
     },
     "almgg_mn": {
       "url": "http://rtk.gazar.gov.mn:2101/",
-      "label": "MonPOS",
-      "type": "physical-vrs",
-      "country": [
-        "MN"
-      ],
-      "region": null,
-      "group": null,
       "credentials": {
         "user": "rover",
         "pass": "262461"
       },
-      "registration": null,
-      "access": "open",
-      "openNote": "Free; shared public credentials: username rover, password 262461",
       "near": false,
       "user": null,
       "pass": null,
@@ -68654,17 +67943,7 @@
     },
     "earthscope": {
       "url": "http://ntrip.earthscope.org:2101/",
-      "label": "EarthScope",
-      "type": "single-base",
-      "country": [
-        "americas"
-      ],
-      "region": null,
-      "group": null,
       "credentials": null,
-      "registration": "https://www.earthscope.org/data/gnss-realtime/",
-      "access": "conditions",
-      "openNote": "Non-commercial annual license (NULA) required",
       "near": false,
       "user": null,
       "pass": null,
@@ -81769,17 +81048,7 @@
     },
     "alcors": {
       "url": "http://aldotcors.dot.state.al.us:10099/",
-      "label": "AlCORS",
-      "type": "physical-vrs",
-      "country": [
-        "US"
-      ],
-      "region": "Alabama",
-      "group": "us-state-dot",
       "credentials": null,
-      "registration": "https://aldotcors.dot.state.al.us/",
-      "access": "registration",
-      "openNote": "Free registration required (Alabama DOT)",
       "near": false,
       "user": null,
       "pass": null,
@@ -81791,17 +81060,7 @@
     },
     "ksa_cors": {
       "url": "http://ksacors.geoportal.sa:2101/",
-      "label": "KSA-CORS",
-      "type": "vrs-only",
-      "country": [
-        "SA"
-      ],
-      "region": null,
-      "group": null,
       "credentials": null,
-      "registration": "https://www.geosa.gov.sa/en/products/geodesy/pages/ksa-cors.aspx",
-      "access": "conditions",
-      "openNote": "Free registration required",
       "near": false,
       "user": null,
       "pass": null,
@@ -81813,17 +81072,7 @@
     },
     "walcors": {
       "url": "http://gnss.wallonie.be:8081/",
-      "label": "WALCORS",
-      "type": "vrs-only",
-      "country": [
-        "BE"
-      ],
-      "region": "Wallonia",
-      "group": null,
       "credentials": null,
-      "registration": "https://gnss.wallonie.be/walcors.html",
-      "access": "registration",
-      "openNote": "Free registration required",
       "near": false,
       "user": null,
       "pass": null,
@@ -81835,17 +81084,7 @@
     },
     "estpos": {
       "url": "http://gnss-rtk.maaamet.ee:8083/",
-      "label": "ESTPOS",
-      "type": "vrs-only",
-      "country": [
-        "EE"
-      ],
-      "region": null,
-      "group": null,
       "credentials": null,
-      "registration": "https://geoportaal.maaamet.ee/eng/Spatial-Data/ESTPOS-national-GNSS-satellite-data-center-p839.html",
-      "access": "conditions",
-      "openNote": "Free until 31 Aug 2026; portal account + service agreement required",
       "near": false,
       "user": null,
       "pass": null,
@@ -81857,17 +81096,7 @@
     },
     "thailand_dol": {
       "url": "http://122.155.131.34:2101/",
-      "label": "DOL LandGNSS",
-      "type": "physical-vrs",
-      "country": [
-        "TH"
-      ],
-      "region": null,
-      "group": null,
       "credentials": null,
-      "registration": "https://dol-rtknetwork.com/index.php/register_gnss_beta",
-      "access": "conditions",
-      "openNote": "Free trial; Thai national ID required to self-register \u2014 foreign users blocked at registration form",
       "near": false,
       "user": null,
       "pass": null,
@@ -81879,17 +81108,7 @@
     },
     "mncors": {
       "url": "http://mncors.dot.state.mn.us:9000/",
-      "label": "MnCORS",
-      "type": "vrs-only",
-      "country": [
-        "US"
-      ],
-      "region": "Minnesota",
-      "group": "us-state-dot",
       "credentials": null,
-      "registration": "https://www.mndot.gov",
-      "access": "registration",
-      "openNote": "Free registration required (Minnesota DOT)",
       "near": false,
       "user": null,
       "pass": null,
@@ -81901,17 +81120,7 @@
     },
     "odot_rtn": {
       "url": "http://156.63.133.115:2101/",
-      "label": "ODOT RTN",
-      "type": "vrs-only",
-      "country": [
-        "US"
-      ],
-      "region": "Ohio",
-      "group": "us-state-dot",
       "credentials": null,
-      "registration": "https://transportation.ohio.gov",
-      "access": "registration",
-      "openNote": "Free registration required (Ohio DOT)",
       "near": false,
       "user": null,
       "pass": null,
@@ -81923,17 +81132,7 @@
     },
     "fprn": {
       "url": "http://www.myfloridagps.com:10000/",
-      "label": "FPRN",
-      "type": "physical-vrs",
-      "country": [
-        "US"
-      ],
-      "region": "Florida",
-      "group": "us-state-dot",
       "credentials": null,
-      "registration": "https://myfloridagps.com",
-      "access": "registration",
-      "openNote": "Free registration required (Florida DOT)",
       "near": false,
       "user": null,
       "pass": null,
@@ -81945,17 +81144,7 @@
     },
     "gnss_abruzzo_lazio": {
       "url": "http://gnss-rtk.regione.abruzzo.it:2101/",
-      "label": "GNSS Abruzzo+Lazio",
-      "type": "physical-vrs",
-      "country": [
-        "IT"
-      ],
-      "region": "Abruzzo + Lazio",
-      "group": "italy-regional",
       "credentials": null,
-      "registration": "https://gnssnet.regione.abruzzo.it/accesso.php",
-      "access": "registration",
-      "openNote": "Free registration required (Regione Abruzzo)",
       "near": false,
       "user": null,
       "pass": null,
@@ -81967,17 +81156,7 @@
     },
     "macors": {
       "url": "http://macorsrtk.massdot.state.ma.us:2101/",
-      "label": "MaCORS",
-      "type": "physical-vrs",
-      "country": [
-        "US"
-      ],
-      "region": "Massachusetts",
-      "group": "us-state-dot",
       "credentials": null,
-      "registration": "https://macors.massdot.state.ma.us",
-      "access": "registration",
-      "openNote": "Free registration required (MassDOT)",
       "near": false,
       "user": null,
       "pass": null,
@@ -81989,17 +81168,7 @@
     },
     "msrn": {
       "url": "http://mdotcors.michigan.gov:10010/",
-      "label": "MSRN",
-      "type": "physical-vrs",
-      "country": [
-        "US"
-      ],
-      "region": "Michigan",
-      "group": "us-state-dot",
       "credentials": null,
-      "registration": "https://mdotcors.michigan.gov/sbc",
-      "access": "registration",
-      "openNote": "Free registration required (Michigan DOT)",
       "near": false,
       "user": null,
       "pass": null,
@@ -82011,17 +81180,7 @@
     },
     "azcors": {
       "url": "http://azcors.azwater.gov:2101/",
-      "label": "AZ CORS",
-      "type": "physical-coord-vrs",
-      "country": [
-        "US"
-      ],
-      "region": "Arizona",
-      "group": "us-state-dot",
       "credentials": null,
-      "registration": "https://azcors.azwater.gov",
-      "access": "registration",
-      "openNote": "Free registration required (ADWR \u2014 Arizona Dept of Water Resources)",
       "near": false,
       "user": null,
       "pass": null,
