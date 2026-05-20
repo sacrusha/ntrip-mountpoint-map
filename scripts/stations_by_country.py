@@ -1,12 +1,16 @@
 #!/usr/bin/env python3
 """List stations for a country code across ALL ingested sources.
 
-Usage:  py scripts/stations_by_country.py <country_code>
+Usage:  py scripts/stations_by_country.py <country_code> [full]
         py scripts/stations_by_country.py          # list all codes per source
 
 Examples:
         py scripts/stations_by_country.py FRA
+        py scripts/stations_by_country.py FRA full
         py scripts/stations_by_country.py JAM
+
+Default output: count per network. Caller context stays small.
+`full` flag: per-station dump (name, lat, lon) per source.
 
 Country tagging follows each source's own convention (no normalization here).
   rtk2go / centipede / earthscope use ISO 3166-1 alpha-3 (FRA, USA, DEU ...).
@@ -74,7 +78,12 @@ if len(sys.argv) < 2:
         print(f"# no per-station country tag (source-record fallback used): {', '.join(untagged)}")
     sys.exit(0)
 
+if len(sys.argv) > 3 or (len(sys.argv) == 3 and sys.argv[2].lower() != "full"):
+    print(__doc__)
+    sys.exit(1)
+
 tag = sys.argv[1].upper()
+full = len(sys.argv) == 3
 alias = _CENTIPEDE_ALIASES.get(tag)
 total = 0
 matched_sources = 0
@@ -109,13 +118,18 @@ for src in SOURCES:
         if status != "ok":
             notes.append(f"status: {status}")
         note_str = "".join(f"  [{n}]" for n in notes)
-        print(f"\n{src} -- {len(hits)} station(s):{note_str}")
-        for s in hits:
-            print(f"  {s['name']:<21} {s['lat']:>9.4f}  {s['lon']:>10.4f}")
+        if full:
+            print(f"\n{src} -- {len(hits)} station(s):{note_str}")
+            for s in hits:
+                print(f"  {s['name']:<21} {s['lat']:>9.4f}  {s['lon']:>10.4f}")
+        else:
+            print(f"{src:<24} {len(hits):>5}{note_str}")
         total += len(hits)
         matched_sources += 1
 
 if total:
     print(f"\n# total: {total} station(s) across {matched_sources} source(s)")
+    if not full:
+        print("# add `full` for per-station dump.")
 else:
     print(f"No stations for '{tag}'. Run without arguments to list available codes.")
