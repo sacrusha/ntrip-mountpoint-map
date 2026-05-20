@@ -59,7 +59,7 @@ foreach ($f in $rootFiles) {
     Copy-Item $src -Destination $siteDir
 }
 
-$dataFiles = @('stations.json', 'source_health.json', 'rtk_map.json', 'help_topics.json')
+$dataFiles = @('stations.json', 'source_health.json', 'rtk_map.json', 'help_topics.json', 'color_assignments.json')
 foreach ($f in $dataFiles) {
     $src = Join-Path $repoRoot "data/$f"
     if (-not (Test-Path $src)) { throw "Missing data file: data/$f" }
