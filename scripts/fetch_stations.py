@@ -1,13 +1,19 @@
 #!/usr/bin/env python3
 """Fetch NTRIP sourcetables, parse them, and write data/stations.json.
 
-Skips the write (and thereby any commit) when the set of parsed stations
-is byte-identical to the previous run. If a source fails to fetch, its
-previous raw sourcetable on disk is reused so a transient outage does
-not wipe known-good data.
+Operational config (which networks to fetch, their endpoints, credentials,
+filter overrides) lives in `data/rtk_map.json` — each marker entry with a
+non-empty `endpoints[]` is a fetch target. Multi-endpoint networks (e.g.
+`ergnss` mainland + Canary SPTR) merge into one stations.json record.
 
-Process / SOURCES editing rules: see fetch_stations.proc.md (same dir).
-Pipeline context: ../docs/pipeline.md.
+Skips the write (and thereby any commit) when the set of parsed stations
+is byte-identical to the previous run. If an endpoint fails to fetch, its
+previous raw sourcetable on disk is reused so a transient outage does not
+wipe known-good data.
+
+Process / network-config editing rules: see fetch_stations.proc.md
+(same dir) and `../data/rtk_map.proc.md`. Pipeline context:
+`../docs/pipeline.md`.
 """
 from __future__ import annotations
 
@@ -49,122 +55,61 @@ def _dec_places(s: str) -> int:
     return 0 if dot == -1 else len(s) - dot - 1
 
 
-SOURCES = [
-    # Operational-only SOURCES schema. Editorial fields (label, region, access,
-    # registration, note, tier, vrs, country) live in data/rtk_map.json
-    # — joined by id. See docs/rtk_inventory.md for per-network research detail.
-    #
-    # color: per-source dot/marker hex; single source of truth here.
-    # group: logical key for multi-source families, e.g. "sapos" (optional).
-    # credentials: {user, pass} for open-access casters with default creds (optional).
-    # near / user / pass / userNote: popup-credential hints (optional).
-    # nmea_filter / solution_filter: parse-time override flags (default True).
-    {"id": "rtk2go", "url": "http://rtk2go.com:2101/", "color": "#d00000", "credentials": {"user": "(any email address)", "pass": "none"}, "near": True, "pass": "none", "userNote": "your email address", "nmea_filter": False},  # caster tags all physical stations nmea=1; NEAR-xxx caught by solution_filter
-    {"id": "centipede", "url": "http://crtk.net:2101/", "color": "#e87500", "credentials": {"user": "centipede", "pass": "centipede"}, "near": True, "user": "centipede", "pass": "centipede"},
-    # Re.M.FVG (Marussi) — Regione Autonoma FVG positioning service. Caster is the Marussi
-    # caster, not FReDNet. Renamed from id 'frednet' 2026-05-13 — the previous label
-    # mis-attributed Marussi infrastructure to OGS FReDNet. Sourcetable cross-relays
-    # 11 OGS_* mounts from the real FReDNet caster at 158.110.30.81:2110.
-    {"id": "rem_fvg", "url": "http://gnsscaster.regione.fvg.it:8080/", "color": "#2e6fb0"},
-    {"id": "geortk", "url": "http://geortk.jp:2101/", "color": "#1a7a4a", "nmea_filter": False, "solution_filter": False},  # caster tags physical stations nmea=1 and solution=1
-    # SAPOS — German federal-state RTK networks. Sourcetables publicly readable;
-    # RTCM streams require per-Länder registration. Most Länder free; BY €20/yr
-    # flat rate for non-agricultural use. Raw TCP (NTRIP 1.0) fallback required.
-    {"id": "sapos_SH_HH", "url": "http://www.sapos.geonord.de:2101/", "color": "#2d6e6e"},
-    {"id": "sapos_NI", "url": "http://www.sapos-ni-ntrip.de:2101/", "color": "#2d6e6e"},
-    {"id": "sapos_NW", "url": "http://www.sapos-nw-ntrip.de:2101/", "color": "#2d6e6e"},
-    {"id": "sapos_HE", "url": "http://www.sapos-he-ntrip.de:2101/", "color": "#2d6e6e"},
-    # sapos_RP removed 2026-05-07: paid-only state (€120/yr/credential HEPS/GPPS
-    # + €100 setup), most restrictive in DE. Surfaced via the paid country
-    # marker in data/rtk_map.json instead.
-    {"id": "sapos_BW", "url": "http://www.sapos-bw-ntrip.de:2101/", "color": "#2d6e6e"},
-    # sapos_BY removed 2026-05-20: reclassified status:paid per rtk_inventory.proc.md
-    # (€20/yr non-agricultural since June 2024, free for registered Bavarian
-    # farms). Surfaced as paid-affordable marker in data/rtk_map.json.
-    {"id": "sapos_SN", "url": "http://www.ntrip.sachsen.de:2101/", "color": "#2d6e6e"},
-    {"id": "sapos_SL", "url": "http://www.sapos-sl-ntrip.de:2101/", "color": "#2d6e6e"},
-    {"id": "sapos_BE", "url": "http://www.sapos-be-ntrip.de:2101/", "color": "#2d6e6e"},
-    {"id": "sapos_BB", "url": "http://www.sapos-bb-ntrip.de:2101/", "color": "#2d6e6e"},
-    {"id": "sapos_MV", "url": "http://www.sapos-mv-ntrip.de:2101/", "color": "#2d6e6e"},
-    {"id": "sapos_LSA", "url": "http://www.sapos-lsa-ntrip.de:2101/", "color": "#2d6e6e"},
-    {"id": "sapos_TH", "url": "http://www.sapos-th-ntrip.de:2101/", "color": "#2d6e6e"},
-    # APOS (AT) removed from pipeline — paid for hobbyists; represented by a rtk_map.json paid-tier marker.
-    {"id": "ergnss", "url": "http://ergnss-ip.ign.es:2101/", "color": "#b05000"},
-    {"id": "catnet", "url": "http://catnet-ip.icgc.cat:2101/", "color": "#a00020"},
-    {"id": "ergnss_sptr", "url": "http://ergnss-tr.ign.es:2101/", "color": "#b05000"},
-    {"id": "renep", "url": "http://193.137.94.71:2101/", "color": "#006b3c", "nmea_filter": False},  # caster tags 39 of 47 physical stations nmea=1
-    {"id": "auscors", "url": "http://ntrip.data.gnss.ga.gov.au:2101/", "color": "#b8860b", "solution_filter": False},  # caster tags 42 IGS partner stations solution=1; all are physical
-    {"id": "positionz", "url": "http://positionz-rt.linz.govt.nz:2101/", "color": "#2e8b57"},
-    {"id": "satref", "url": "http://ntrip.geodetic.gov.hk:2101/", "color": "#8b008b"},
-    {"id": "mosref", "url": "http://mosref.dscc.gov.mo:2101/", "color": "#8b0057"},
-    {"id": "inacors", "url": "http://nrtk.big.go.id:2001/", "color": "#1a5fa0"},
-    {"id": "thailand_dol", "url": "http://122.155.131.34:2101/", "color": "#cc6600"},
-    {"id": "trignet", "url": "http://trignet.co.za:2101/", "color": "#556b2f"},
-    {"id": "ugrf", "url": "http://ugrf.mlhud.go.ug:2101/", "color": "#b07000", "near": True, "userNote": "your registered username"},
-    {"id": "rbmc_ip", "url": "http://gps-ntrip.ibge.gov.br:2101/", "color": "#008b8b"},
-    {"id": "ramsac", "url": "http://ntrip.ign.gob.ar:2101/", "color": "#7b3f9e"},
-    {"id": "regna_rou", "url": "http://rtk.igm.gub.uy:2101/", "color": "#1a9e5c"},
-    {"id": "flepos", "url": "http://flepos.vlaanderen.be:2101/", "color": "#3a7ca5"},
-    {"id": "walcors", "url": "http://gnss.wallonie.be:8081/", "color": "#1e88c7"},
-    {"id": "spslux", "url": "http://stream.spslux.lu:5005/", "color": "#5c6bc0"},
-    {"id": "asg_eupos", "url": "http://system.asgeupos.pl:2101/", "color": "#7b5ea7"},
-    {"id": "cropos", "url": "http://gnss.cropos.hr:2101/", "color": "#c0392b"},
-{"id": "latpos", "url": "http://latpos.lgia.gov.lv:5001/", "color": "#1a6b3c"},
-    {"id": "litpos", "url": "http://193.219.10.2:2101/", "color": "#0d47a1"},
-    {"id": "estpos", "url": "http://gnss-rtk.maaamet.ee:8083/", "color": "#003580"},
-    {"id": "igac", "url": "http://sbc.igac.gov.co:2102/", "color": "#d4a017", "nmea_filter": False},  # nmea=1 mislabelled on :2102 physical stations
-    {"id": "earthscope", "url": "http://ntrip.earthscope.org:2101/", "color": "#8b4513"},
-    {"id": "euref_ip", "url": "http://euref-ip.net:2101/", "color": "#1f4e79"},
-    {"id": "igs_ip", "url": "http://www.igs-ip.net:2101/", "color": "#7d3c98"},
-    {"id": "mirai", "url": "http://ntrip.go.gnss.go.jp:2101/", "color": "#2471a3"},
-    {"id": "cors_korea", "url": "http://www.gnssdata.or.kr:2101/", "color": "#a93226"},
-    {"id": "almgg_mn", "url": "http://rtk.gazar.gov.mn:2101/", "color": "#9e6b00", "credentials": {"user": "rover", "pass": "262461"}, "solution_filter": False},  # caster tags 6 physical stations solution=1
-    {"id": "icecors", "url": "http://178.19.53.126:2101/", "color": "#1e6b8c", "nmea_filter": False},  # GNSMART tags 4 physical Reykjanes mounts nmea=1
-    {"id": "ksa_cors", "url": "http://ksacors.geoportal.sa:2101/", "color": "#a0522d"},
-    # Italy — regional networks
-    {"id": "spin3", "url": "http://158.102.7.10:2101/", "color": "#1565c0"},
-    {"id": "gpsumbria", "url": "http://gpsumbria.regione.umbria.it:2101/", "color": "#2e7d32"},
-    {"id": "sit_puglia", "url": "http://gps.sit.puglia.it:2101/", "color": "#0288d1"},
-    {"id": "gnss_campania", "url": "http://gps.sit.regione.campania.it:2101/", "color": "#6a1b9a", "credentials": {"user": "Campania", "pass": "GNSS"}},
-    {"id": "tpos", "url": "http://194.105.50.232:2101/", "color": "#00695c"},
-    {"id": "stpos", "url": "http://62.101.0.40:2109/", "color": "#ad1457"},
-    {"id": "gnss_veneto", "url": "http://147.162.229.53:2101/", "color": "#4527a0"},
-    {"id": "gnss_liguria", "url": "http://81.23.86.70:2101/", "color": "#0277bd"},
-    {"id": "sicilianet", "url": "http://193.206.223.39:2101/", "color": "#e65100"},
-    {"id": "gnss_abruzzo_lazio", "url": "http://gnss-rtk.regione.abruzzo.it:2101/", "color": "#c62828"},
-    # US state DOT / CORS networks — physical-coordinate stations
-    {"id": "acorn", "url": "http://www.acorn-gnss.net:2101/", "color": "#2e5b8a"},
-    {"id": "nps_cors", "url": "http://rtk.nps.gov:2101/", "color": "#4a7c59", "nmea_filter": False},  # Trimble Pivot tags all 141 physical stations nmea=1
-    {"id": "wiscors", "url": "http://wiscors.dot.wi.gov:2101/", "color": "#bf360c"},
-    {"id": "fprn", "url": "http://www.myfloridagps.com:10000/", "color": "#f57f17"},
-    {"id": "ardot_rtn", "url": "http://gps.ardot.gov:2101/", "color": "#827717"},
-{"id": "vector", "url": "http://vector.vermont.gov:2101/", "color": "#1b5e20"},
-{"id": "gcgc_rtn", "url": "http://rtn.usm.edu:2101/", "color": "#01579b"},
-{"id": "orgn", "url": "http://orgn.odot.state.or.us:9881/", "color": "#004d40"},
-    {"id": "msrn", "url": "http://mdotcors.michigan.gov:10010/", "color": "#006064"},
-{"id": "ct_acorn", "url": "http://acorn.uconn.edu:2101/", "color": "#1a237e"},
-    {"id": "macors", "url": "http://macorsrtk.massdot.state.ma.us:2101/", "color": "#283593"},
-    {"id": "nysnet", "url": "http://rtn.dot.ny.gov:8080/", "color": "#0d47a1"},
-    {"id": "alcors", "url": "http://aldotcors.dot.state.al.us:10099/", "color": "#1565c0"},
-    {"id": "iartn", "url": "http://165.206.203.10:10000/", "color": "#37474f"},
-    # US state DOT — VRS-only (filter_vrs drops all pins; shown as stopgap circles)
-    {"id": "kycors", "url": "http://kycors.ky.gov:2101/", "color": "#546e7a"},
-    {"id": "mncors", "url": "http://mncors.dot.state.mn.us:9000/", "color": "#455a64"},
-    {"id": "odot_rtn", "url": "http://156.63.133.115:2101/", "color": "#607d8b"},
-    {"id": "modot_rtn", "url": "http://rtk3.modot.mo.gov:2101/", "color": "#78909c"},
-    {"id": "wvrtn", "url": "http://wvrtn.cors.us:2101/", "color": "#90a4ae"},
-    {"id": "mainedot", "url": "http://medotrtn.maine.gov:2101/", "color": "#b0bec5"},
-    {"id": "azcors", "url": "http://azcors.azwater.gov:2101/", "color": "#c2692e"},
-    {"id": "mesa_rtvrn", "url": "http://rtvrn.mesacounty.us:2101/", "color": "#8d6e63"},
-    {"id": "agrs_nl", "url": "http://ntrip.kadaster.nl:2101/", "color": "#0288d1"},
-    {"id": "regme_ec", "url": "http://ntrip.igm.gob.ec:2101/", "color": "#558b2f"},
-    {"id": "ign_cr_cors", "url": "http://igncaster.snitcr.go.cr:2101/", "color": "#1b7837"},
-]
-# RTKdata.online removed 2026-04-20: server unreachable since launch (RemoteDisconnected);
-# 0 stations ever collected. Operated by Kansi Solutions GmbH (same parent as paid
-# rtkdata.com); aggregates rtk2go/Centipede visually — no independent value.
-# GEODNET (HYFIX.AI) removed 2026-04-20: paid service ($40/month); sourcetable is
-# publicly readable but returns 0 free stations after filter. Not in scope.
+def load_networks() -> list[dict]:
+    """Read operational network config from data/rtk_map.json.
+
+    Returns the subset of marker entries with a non-empty endpoints[] array.
+    Each network entry: {id, color, endpoints: [{url, id?, credentials?,
+    near?, nmea_filter?, solution_filter?}, ...]}.
+    """
+    data = json.loads((DATA_DIR / "rtk_map.json").read_text(encoding="utf-8"))
+    return [
+        {"id": m["id"], "color": m.get("color", ""), "endpoints": m["endpoints"]}
+        for m in data["markers"] if m.get("endpoints")
+    ]
+
+
+def _endpoint_id(net: dict, idx: int) -> str:
+    """Cache-file basename for the endpoint at idx within a network.
+    Explicit endpoint.id wins; otherwise network.id for the first endpoint
+    and "{network.id}_{idx}" for subsequent ones."""
+    ep = net["endpoints"][idx]
+    if ep.get("id"):
+        return ep["id"]
+    return net["id"] if idx == 0 else f"{net['id']}_{idx}"
+
+
+def _flatten_endpoints(networks: list[dict]) -> list[dict]:
+    """Flatten networks into per-endpoint fetch configs.
+
+    Each entry carries the parent network_id + endpoint_idx so main() can
+    merge fetched results back per-network. Legacy fields user/pass/userNote
+    are surfaced from endpoint.credentials for backward compat with
+    sources_list.py / popup-credential rendering."""
+    out = []
+    for net in networks:
+        for idx, ep in enumerate(net["endpoints"]):
+            creds = ep.get("credentials") or {}
+            out.append({
+                "id":              _endpoint_id(net, idx),
+                "network_id":      net["id"],
+                "endpoint_idx":    idx,
+                "url":             ep["url"],
+                "color":           net["color"],
+                "credentials":     ep.get("credentials"),
+                "near":            ep.get("near", False),
+                "user":            creds.get("user"),
+                "pass":            creds.get("pass"),
+                "userNote":        creds.get("userNote"),
+                "nmea_filter":     ep.get("nmea_filter", True),
+                "solution_filter": ep.get("solution_filter", True),
+            })
+    return out
+
+
+NETWORKS = load_networks()
+SOURCES = _flatten_endpoints(NETWORKS)  # legacy flat per-endpoint view
+
 
 FETCH_TIMEOUT = 5
 STALE_GREY_DAYS = 3   # sources offline this long shown as grey dots, excluded from coverage raster
@@ -426,9 +371,12 @@ def main() -> int:
     fetched: dict[str, dict] = {}
     any_fresh = False
 
-    # Inject prev_last_ok so fetch_source can propagate staleness across runs.
+    # Inject prev_last_ok per-endpoint so fetch_source can fall back to the
+    # previous run's cache. last_ok is tracked per-network (one stations.json
+    # record per network), so all endpoints of a network share one prev value.
     sources_with_meta = [
-        {**src, "_prev_last_ok": existing_sources.get(src["id"], {}).get("last_ok")}
+        {**src,
+         "_prev_last_ok": existing_sources.get(src["network_id"], {}).get("last_ok")}
         for src in SOURCES
     ]
 
@@ -441,30 +389,48 @@ def main() -> int:
                 any_fresh = True
 
     if not any_fresh:
-        print("All sources failed and no cached data was refreshed; exiting without changes.")
+        print("All endpoints failed and no cached data was refreshed; exiting without changes.")
         return 0
 
+    # Merge per-endpoint results into one record per network. Status precedence
+    # ok > stale > error: if any endpoint succeeded fresh the network is ok.
     payload_sources = {}
-    for sid, data in fetched.items():
-        payload_sources[sid] = {
-            "url": data["url"],
-            "color": data.get("color", ""),
-            "credentials": data.get("credentials"),
-            "near": data.get("near", False),
-            "user": data.get("user"),
-            "pass": data.get("pass"),
-            "userNote": data.get("userNote"),
-            "status": data["status"],
-            "fetched_at": data["fetched_at"],
-            "last_ok": data.get("last_ok"),
-            "stations": data["stations"],
+    for net in NETWORKS:
+        ep_results = [fetched[_endpoint_id(net, i)]
+                      for i in range(len(net["endpoints"]))]
+        statuses = [r["status"] for r in ep_results]
+        status = "ok" if "ok" in statuses else "stale" if "stale" in statuses else "error"
+        fetched_ats = [r["fetched_at"] for r in ep_results if r.get("fetched_at")]
+        last_oks = [r["last_ok"] for r in ep_results if r.get("last_ok")]
+        # Stations: dedupe by (name, lat, lon) across endpoints.
+        seen = set()
+        merged_stations = []
+        for r in ep_results:
+            for s in r["stations"]:
+                k = (s["name"], s["lat"], s["lon"])
+                if k in seen:
+                    continue
+                seen.add(k)
+                merged_stations.append(s)
+        # Primary endpoint provides popup-display fields (host:port shown for
+        # any station card; multi-endpoint cases default to endpoint[0]).
+        primary = ep_results[0]
+        payload_sources[net["id"]] = {
+            "url":         primary["url"],
+            "credentials": primary.get("credentials"),
+            "near":        primary.get("near", False),
+            "user":        primary.get("user"),
+            "pass":        primary.get("pass"),
+            "userNote":    primary.get("userNote"),
+            "status":      status,
+            "fetched_at":  max(fetched_ats) if fetched_ats else None,
+            "last_ok":     max(last_oks) if last_oks else None,
+            "stations":    merged_stations,
         }
 
     # Compare against previous JSON, ignoring the "updated" wall clock so an
     # unchanged station list produces no diff (and therefore no commit).
-    # Source-level color is included so that editing SOURCES in this file
-    # triggers a re-write on the next pipeline run without requiring a station
-    # change. Editorial fields (label/region/access/registration/note) live in
+    # Editorial fields (label/region/access/registration/note/color) live in
     # data/rtk_map.json and don't drive stations.json regeneration.
     if existing is not None:
         ex_sources = existing.get("sources", {})
@@ -472,7 +438,6 @@ def main() -> int:
             all(
                 station_fingerprint(ex_sources.get(sid, {}))
                 == station_fingerprint(payload_sources[sid])
-                and ex_sources.get(sid, {}).get("color") == payload_sources[sid].get("color")
                 for sid in payload_sources
             )
             and set(ex_sources.keys()) == set(payload_sources.keys())

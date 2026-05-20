@@ -1832,6 +1832,7 @@
           "url": "http://ergnss-ip.ign.es:2101/"
         },
         {
+          "id": "ergnss_sptr",
           "url": "http://ergnss-tr.ign.es:2101/"
         }
       ]

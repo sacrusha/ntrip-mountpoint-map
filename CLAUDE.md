@@ -25,8 +25,8 @@ AskUserQuestion tool banned.
 
 index.html                    # map - Leaflet SPA, all UI.
 guide.html                    # visitor primer, linked from map. Keep aligned w/ help_topics.json.
-scripts/fetch_stations.py        # updates .sourcetable + source_health.json + stations.json.
-scripts/fetch_stations.proc.md   # edit rules for fetch_stations.py SOURCES. Read BEFORE editing .py.
+scripts/fetch_stations.py        # reads endpoints from rtk_map.json; updates .sourcetable + source_health.json + stations.json.
+scripts/fetch_stations.proc.md   # edit rules for the fetch script + rtk_map.json endpoints[]. Read BEFORE editing either.
 scripts/inject_seo_help.py       # splices hidden SEO mirror of help_topics.json into index.html. Run after editing help_topics.json; commit index.html diff same commit.
 scripts/deploy_pages.ps1         # local Cloudflare Pages deploy. Invoked by run_in_worktree.ps1 inside the ephemeral worktree.
 scripts/refresh_and_deploy.ps1   # OUTER orchestrator. Task Scheduler entry: create ephemeral worktree at .tmp/scheduler-run-<stamp> from main -> copy .env/ in -> invoke run_in_worktree.ps1 -> remove worktree. No commits, no persistent state. Logs: .tmp/refresh_and_deploy/. Flags: -SkipDeploy.
@@ -35,7 +35,7 @@ scripts/register_scheduled_task.ps1 # (re-)register Task Scheduler job. Points a
 scripts/                         # investigation toolset, each takes -h for purpose + examples.
   stations_by_country.py, stations_by_radius.py # station lookup
   stations_inspect.py # data/stations.json schema + per-source detail
-  sources_list.py # filter SOURCES list in fetch_stations.py
+  sources_list.py # flat per-endpoint view of rtk_map.json (legacy SOURCES symbol)
   source_health.py # data/source_health.json summary + per-id lookup
   network_lookup.py # find network across rtk_inventory.md, surveys, research, markers, stations.json, SOURCES
 data/
