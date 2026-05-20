@@ -31,7 +31,7 @@ scripts/assign_colors.py         # reads stations.json + previous color_assignme
 scripts/refresh_data.py          # Python orchestrator: imports fetch_stations + assign_colors and runs both in one process. Single entry point invoked by run_in_worktree.ps1.
 scripts/inject_seo_help.py       # splices hidden SEO mirror of help_topics.json into index.html. Run after editing help_topics.json; commit index.html diff same commit.
 scripts/deploy_pages.ps1         # local Cloudflare Pages deploy. Invoked by run_in_worktree.ps1 inside the ephemeral worktree.
-scripts/refresh_and_deploy.ps1   # OUTER orchestrator. Task Scheduler entry: create ephemeral worktree at .tmp/scheduler-run-<stamp> from main -> copy .env/ in -> invoke run_in_worktree.ps1 -> remove worktree. No commits, no persistent state. Logs: .tmp/refresh_and_deploy/. Flags: -SkipDeploy.
+scripts/refresh_and_deploy.ps1   # OUTER orchestrator. Task Scheduler entry: create ephemeral worktree at .scheduler-state/scheduler-run-<stamp> from main -> copy .env/ in -> invoke run_in_worktree.ps1 -> remove worktree. No commits, no persistent state. Logs: .scheduler-state/refresh_and_deploy/. Flags: -SkipDeploy.
 scripts/run_in_worktree.ps1      # INNER. Runs inside the ephemeral worktree: refresh_data.py -> deploy_pages.ps1. No git ops.
 scripts/register_scheduled_task.ps1 # (re-)register Task Scheduler job. Points at any worktree of the repo; orchestrator always builds from main.
 scripts/                         # investigation toolset, each takes -h for purpose + examples.
@@ -40,6 +40,7 @@ scripts/                         # investigation toolset, each takes -h for purp
   sources_list.py # flat per-endpoint view of rtk_map.json (legacy SOURCES symbol)
   source_health.py # data/source_health.json summary + per-id lookup
   network_lookup.py # find network across rtk_inventory.md, surveys, research, markers, stations.json, SOURCES
+  palette_check.py # cross-file contract: every slot in color_assignments.json has a PALETTE entry in index.html. Not pipeline-wired; run manually.
 data/
   rtk_map.json           # static; network/country-level markers, visitor-facing
   rtk_map.proc.md        # edit rules for rtk_map.json. Read BEFORE editing .json.
@@ -59,7 +60,8 @@ docs/
   research_task.txt              # produces ntrip_research/ entries
   research_task.primer.txt	# short NTRIP ai-primer for research tasks.
   target-users.md	             # defines target users
-.tmp/ # all temp files
+.tmp/ # all temp files (probes, one-shots, debug scratch)
+.scheduler-state/ # scheduler logs + ephemeral worktrees, gitignored. Operational, not temp.
 
 
 ## Gotchas

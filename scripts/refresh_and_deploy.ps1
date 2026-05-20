@@ -15,9 +15,10 @@
 # (the one on branch `main`), NOT from `.scheduler` (which is obsolete and
 # should be removed).
 #
-# Logs every run to .tmp/refresh_and_deploy/<UTC-timestamp>.log in the
-# orchestrator's repo root (NOT inside the ephemeral worktree, which would
-# disappear with it).
+# Logs every run to .scheduler-state/refresh_and_deploy/<UTC-timestamp>.log
+# in the orchestrator's repo root (NOT inside the ephemeral worktree,
+# which would disappear with it). .scheduler-state/ is gitignored and
+# holds both these logs and the per-run ephemeral worktrees.
 
 [CmdletBinding()]
 param(
@@ -33,23 +34,23 @@ Set-Location $repoRoot
 $stamp = (Get-Date).ToUniversalTime().ToString('yyyyMMddTHHmmssfffZ')
 
 # --- Logging -----------------------------------------------------------------
-# Log setup is guarded — if .tmp/ is unwritable (disk full, perms) we fall
-# back to host stderr so the failure is at least visible in Task Scheduler's
-# Last-Run-Result. Without this guard, the throw escapes uncaught and there
-# is no log file at all.
-$logDir = Join-Path $repoRoot '.tmp/refresh_and_deploy'
+# Log setup is guarded — if .scheduler-state/ is unwritable (disk full, perms)
+# we fall back to host stderr so the failure is at least visible in Task
+# Scheduler's Last-Run-Result. Without this guard, the throw escapes uncaught
+# and there is no log file at all.
+$logDir = Join-Path $repoRoot '.scheduler-state/refresh_and_deploy'
 try {
     if (-not (Test-Path $logDir)) { New-Item -ItemType Directory -Path $logDir -Force | Out-Null }
     $logFile = Join-Path $logDir "$stamp.log"
     Start-Transcript -Path $logFile | Out-Null
-    # Prune logs older than 30 days so .tmp/ doesn't grow unbounded.
+    # Prune logs older than 30 days so .scheduler-state/ doesn't grow unbounded.
     Get-ChildItem $logDir -Filter '*.log' | Where-Object { $_.LastWriteTimeUtc -lt (Get-Date).ToUniversalTime().AddDays(-30) } | Remove-Item -Force -ErrorAction SilentlyContinue
 } catch {
     [Console]::Error.WriteLine("refresh_and_deploy.ps1: log setup failed at ${logDir}: $($_.Exception.Message)")
     exit 2
 }
 
-$worktreePath = Join-Path $repoRoot ".tmp/scheduler-run-$stamp"
+$worktreePath = Join-Path $repoRoot ".scheduler-state/scheduler-run-$stamp"
 $failed = $false
 
 try {
@@ -71,7 +72,7 @@ try {
         Write-Output "Deregistering stale worktree: $wt"
         try { git worktree remove --force $wt } catch {}
     }
-    Get-ChildItem (Join-Path $repoRoot '.tmp') -Directory -Filter 'scheduler-run-*' -Force -ErrorAction SilentlyContinue | ForEach-Object {
+    Get-ChildItem (Join-Path $repoRoot '.scheduler-state') -Directory -Filter 'scheduler-run-*' -Force -ErrorAction SilentlyContinue | ForEach-Object {
         Write-Output "Removing stale dir: $($_.FullName)"
         Remove-Item -Recurse -Force $_.FullName -ErrorAction SilentlyContinue -ErrorVariable rmErr
         if ($rmErr) { Write-Output "WARN: rmdir failed for $($_.FullName): $($rmErr[0].Exception.Message)" }
