@@ -1,6 +1,6 @@
-NTRIP RTK research primer. Audience: agents running docs/research_task.txt. Self-contained operational knowledge. Deeper material: docs/gnss-ai-guide.md (load section only if primer insufficient). AI-only file; compression per /caveman skill at level full (see CLAUDE.md).
+NTRIP RTK research primer.
 
-abbrev: NRTK=Network RTK, VRS=Virtual Ref Station, MAC=Master-Aux Concept, FKP=Flachen-Korrektur-Parameter, SSR=State-Space Repr, OSR=Observation-Space Repr, CORS=Continuously Operating Ref Station, IAR=Integer Ambiguity Resolution, ITRF=Internat Terr Ref Frame, IGS=Internat GNSS Service.
+NRTK=Network RTK, VRS=Virtual Ref Station, MAC=Master-Aux Concept, FKP=Flächen-Korrektur-Parameter, SSR=State-Space Representation, OSR=Observation-Space Representation, CORS=Continuously Operating Ref Station, IAR=Integer Ambiguity Resolution, ITRF=International Terr Ref Frame, IGS=Internat GNSS Service.
 
 [ntrip]
 RTCM corrections over TCP. v2 = HTTP/1.1; v1 = raw TCP, HTTP-shaped request but no Host header, response starts "SOURCETABLE 200 OK" not "HTTP/1.1 200". Many national casters (SAPOS, several others in SOURCES) are v1-only — HTTP clients fail with BadStatusLine; fetch_stations.py falls back to raw socket.
@@ -25,12 +25,18 @@ operator misconfig common: physical stations mis-tagged nmea=1 or solution=1. fe
 [nrtk-detection]
 operator docs strongly preferred.
 sourcetable inspection can confirm nrtk by mountpoint name (ex: *_VRS, *_MAC, *_FKP, *_iMAX, *_NEAR) but NRTK mounts may live invisibly on a second sourcetable on an unknown port. nmea=1 alone is unreliable: misconfigured by operator both directions.
+`vrs` field covers MAC/FKP/iMAX too (all NRTK modes).
 
 [stations-vs-mps]
 mountpoints do not map clean to physical stations:
   multiple streams from one station (RTCM3 + CMR + legacy + MSM-only)
   some casters publish routing aliases (NEAR/AUTO/VRS + variants) in addition to, or instead of, individual stations
   DGNSS mountpoints are not RTK in our sense.
+don't count toward `num_stations`:
+  VRS mounts: unique-per-rover synth, no physical station.
+  MAC aux streams: deltas vs master; master alone = 1 station.
+  FKP mounts: broadcast polynomial, master alone = 1 station.
+  NEAR / AUTO / auto-select / *_VRS / *_MAC / *_FKP / *_iMAX / *_NEAR = routing aliases.
 
 [base-roles]
 CORS = continuously operating reference station. real physical RTK base, real-time RTCM via NTRIP.
@@ -45,18 +51,22 @@ why: cross-epoch conversion cm offset per year, cross-datum conversion metre-off
 plate-fixed national frames (ETRS89, NAD83(CSRS), CGCS2000, SIRGAS2000): tied to continental plate; drift only across plate boundaries.
 global realizations (ITRFyyyy, IGSyy, WGS84(Gxxxx)): used by international casters (EarthScope NOTA, IGS, BKG).
 semi-dynamic (AU GDA2020 @ 2020.0, NZ NZGD2000 @ 2000.0): publish velocity model; cm-accurate transform needs coord + per-station velocity.
-operational citation rule (also in research_task.txt): only operator portal/spec/decree citable. declared only, not inferred. no operator declaration -> omit.
+operational citation rule: only operator portal/spec/decree citable. declared only, not inferred. no operator declaration -> omit.
 some networks have a few stations running on their own datum & epoch, usually older or geographically distinct — don't stop datum-epoch research early.
+network-tier reality (operational hierarchy):
+  [gov-network] declared frame+epoch, monitored uptime: AUSCORS GDA2020@2020.0, NOTA ITRF current refreshed ep, SAPOS ETRS89/ETRF2000 per Land, ERGNSS, FReDNet, RBMC-IP, RAMSAC, TrigNet.
+  [centipede-FR] strict: 24h+ RINEX -> IGN online -> RGF93 v2b (= ETRF2000 ep 2019.0) -> RTKBase fixed. "2000" = realisation year not epoch.
+  [centipede-intl] recipe-only: docs say EU=ETRF2000, ROW=ITRF current. no central post-proc, no enforcement; some operators inherit local infra frame.
+  [rtk2go] no enforcement: many bases TMODE3 SVIN -> autonomous fix (~1-3m absolute, frozen at survey-in instant, drifts at plate speed); some operators do PPP install. sourcetable doesn't distinguish.
+where frame is declared (own grep ~66 networks in data/*.sourcetable): only 3 expose to sourcetable parser:
+  RAMSAC: misc field "Marco POSGAR07-ITRF2005(2006.632)".
+  REM_FVG: misc field "Reference System ETRS89".
+  MnCORS: encodes in MP name (CMR_Plus_NAD83(1996) / NAD83(2011)).
+  rest: website-only or absent. RTCM 1005/1006 DF021 ITRF-year field exists but never specified -> receivers ignore.
+RTCM 3.1 datum-transformation msgs 1021-1027 (Helmert/Molodensky/grid) rarely transmitted (some Trimble/Leica + few SAPOS Länder); F9P does not generate; rtk2go + Centipede do not transmit.
 
 [national-portals]
 national casters AUSCORS and MIRAI also rebroadcast select international stations, rarely primary outside main regions.
-
-[licensing]
-known types:
-  CC BY / national-survey-free  AU, NZ, most EU national CORS, BR, CO     yes; citation on publications
-  NULA-style non-commercial     EarthScope NOTA                            yes for personal; no for paid work (landscaper-for-pay -> not free)
-  volunteer-pool implicit       rtk2go, community Centipede                yes; "use freely don't abuse"
-  restricted / paid             Gulf-state networks, some DE Lander tiers  no
 
 [accuracy]
 RTK acc = fixed_mm + (ppm * baseline_km). typical hobbyist hardware (Emlid RS2+, ZED-F9P + survey antenna): 7mm + 1ppm.

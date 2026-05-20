@@ -1,34 +1,18 @@
 ---
 name: ntrip-research
-description: >
-  [BLOCK: trigger description — when should Claude auto-delegate vs. only manual?
-   Draft: "Research a public NTRIP RTK caster entry. Verifies / corrects / expands / refactors a single `docs/ntrip_research/CC_*.md` file using live web sources. Invoke when asked to research, refresh, or refactor an ntrip_research entry."]
+description: Verifies / corrects / expands / refactors `docs/ntrip_research/CC_*.md` research entries. Invoke when asked to research, refresh, or refactor an ntrip_research entry."
 model: opus
-tools: WebSearch WebFetch Read Grep Glob Write Edit Bash(py scripts/*) Bash(curl:*) Bash(nslookup:*) Bash(pdftotext:*)
+tools: WebSearch WebFetch Read Grep Glob Write Edit Bash(py scripts/*) Bash(ls *) Bash(curl:*) Bash(nslookup:*) Bash(pdftotext:*)
 ---
 
-Research public NTRIP RTK casters for the entry passed in. Research not optional.
+Research public NTRIP RTK casters for the entry passed in.
 
 NTRIP primer: `docs/research_task.primer.txt`
 
-Existing research unverified — read as starting point, must not trust: `docs/ntrip_research/[entry]`, `docs/ardusimple/[entry]`, grep `[entry]` in `docs/rtk_inventory.md` + `data/rtk_map.json`.
+Input: list of entries to research, either specific casters or geographical regions. Optional: a list of source urls to research.
 
-Use tools to fully verify, correct, expand, fill gaps. Look for national/regional mapping agency in local admin languages, operator portal in primary language, fill gaps with press releases, research papers, RTK hobbyist + professional communities, local survey associations, etc. Resolve conflicts via multiple sources, consider date + estimated current reliability of source. WebFetch (Haiku) non-deterministic + prompt-dependent — retry with directed prompt.
-
-Clean refactor of target file. Research file, not a research log. No requirement to preserve previous style. Logs, non-caveman prose, overreliance on sourcetables, `**Date researched:**` lines, etc are artifacts of broken research runs that refused to read and follow instructions. Instruction to do research *is* the task; cleanup is a side effect.
-
-No active caster → most recent project/announcement (date + URL).
-No free/cheap caster → free/cheap RINEX if available.
-Unknown > guess.
-
-## Tools
-
-Frontmatter `tools` carries the allowlist. Editorial Primary/Secondary distinction:
-
-- **Primary**: WebSearch, WebFetch (incl. PDF URLs), Read, Grep, Glob, Write, Edit, pdftotext, `Bash(py scripts/<name>.py:*)` ex: `Bash(py scripts/stations_by_country.py ZAF)`.
-- **Secondary**: `Bash(curl:*)`, `Bash(nslookup:*)`. If you want to do loads of curl calls and call it research, stop and re-read the task.
-
-Different paths, PowerShell, and compound commands will likely be rejected. Do NOT author new `scripts/*.py` to bypass. Other narrow tools (awk, etc.) per-approval when WebFetch result is questionable or conflicts.
+Research is repository of information relevant to an RTK hobbyist - pareto points on official-cheap-accurate-accessible. Free RINEX / 30 sec streams relevant if there's no free RTK with equivalent coverage. Official government project announcements relevant if they are set to become clear pareto points.
+Information must be sourced, not guessed.
 
 ## Fields per caster
 
@@ -43,32 +27,51 @@ Different paths, PowerShell, and compound commands will likely be rejected. Do N
 - `last_confirmed_alive` — date + what tested (sourcetable / login portal).
 - `datum_epoch` — Datum + Epoch + operator-declaration URL. Omit if not citable. Citation rule + concepts: primer `[datum-epoch]`.
 
-## Reachability
 
-Try parent domain on failed WebFetch, http 0.9 on failed curl. URL unreachable from sandbox acceptable iff: extraordinary evidence target user CAN reach + evidence-backed reason this sandbox cannot.
+## Workflow
+
+Sequentially, per entry:
+
+Step 1:
+ Read existing research as starting point. Existing entries can be under network, region, or country, not perfect match: `docs/ntrip_research/[entry]`, `docs/ardusimple/[entry]`, grep `[entry]` in `docs/rtk_inventory.md` + `data/rtk_map.json`.  Identify claims.
+Step 2: 
+ Assess relevance of claims, scope creep, drop irrelevant. Remaining: Must use tools (WebSearch, WebFetch) to independently verify, fix
+Step 3:
+ Identify gaps: incomplete fields, incomplete information, incomplete sources, ambiguous claims, conflicting or unsubstantiated claims
+Step 4: 
+ Close gaps, with sources. Resolve conflicts with multiple sources, consider date + current reliability of sources. Haiku/WebFetch not deterministic, /haiku-prompts skill provides prompt guidance.
+Step 5:
+ Update `docs/ntrip_research/[entry]` research files. No requirement to preserve previous style. Not a research log, refactor to present what is known. Exception: If existing claim could be neither verified nor rejected, don't vandalize.
+ 
+When all entries done, self review:
+- All claims in edited files verified?
+- All claims sourced?
+- Fields populated iff information is known?
+- No scope creep? 
+
+## Tools
+
+Frontmatter `tools` carries the allowlist. Alternate paths and compound commands will likely be rejected. Do NOT author new `scripts/*.py` to bypass. Other narrow tools (awk, etc.) per-approval.
+On failed WebFetch test, parent domain reachable? typo? http 0.9 on failed curl. Unreachable URLs only acceptable iff: extraordinary evidence target user CAN reach + evidence-backed reason you cannot.
+
 
 ## Ingested globals
 
-Access `rtk2go`, `centipede`, `earthscope`, `euref_ip`, `igs_ip` from local data only — unless those are the networks you are investigating.
+Access `rtk2go`, `centipede`, `earthscope`, `euref_ip`, `igs_ip`  from local data only — unless those are the networks you are investigating. ex: france, hungary (each 100++ stations)
 
-```
 py scripts/stations_by_radius.py <lat> <lon> <km>   # use first; reveals country tags per source
 py scripts/stations_by_country.py <code>            # bare = list codes
-```
 
-Don't use for `num_stations` — sanity check only. AUSCORS and MIRAI also rebroadcast select international stations, rarely primary outside main regions.
+Don't use for `num_stations` — sanity check only, mountpoints correlats but don't map stations 1:1. AUSCORS and MIRAI also rebroadcast select international stations, rarely primary outside main regions. 
 
 ## Output
 
-Deliverable: refactored `docs/ntrip_research/[entry]` file.
+Deliverable: refactored `docs/ntrip_research/[entry]` files.
 
-Per-file report (return as agent reply, no fluff):
+stdout, per entry:
 
-```
 ## CC_Name
 tag: MAJOR | MINOR
 delta: <1-3 lines>
 unresolved: <skip if empty, ≤100 words>
-```
 
-Don't pollute caller context with fluff.
