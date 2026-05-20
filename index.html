@@ -1774,7 +1774,7 @@
       var days=lo?(now-new Date(lo).getTime())/86400000:0;
       SOURCES[sid]={
         id:           sid,
-        color:        rs.color||UNKNOWN_SOURCE_COLOR,
+        color:        mk.color||rs.color||UNKNOWN_SOURCE_COLOR,
         label:        mk.name||sid,
         registration: validUrl(mk.registration||''),
         access:       mk.access||'registration',

@@ -28,6 +28,8 @@ editorial user-facing extract of `rtk_inventory.md` - "what the user on a networ
 | `stations_declared` | when known | Integer
 | `registration` | when useful | URL describing the network (operator, what it is, how to register/gain access); prefer the most official source. Skip rather than link a bare login or form page. |
 | `note` | conditional | If helpful to target user |
+| `color` | when fetchable | Hex marker/pin colour. Pick a country-distinctive value; avoid collisions with neighbouring networks at the same zoom. Free-tier markers with endpoints carry it; paid/restricted/weird tiers derive colour from tier rules at runtime. |
+| `endpoints` | when fetchable | Array of operational fetch endpoints. Most networks have one; some have multiple (e.g. `ergnss` mainland + Canary VRS sub-service). Each endpoint: `{url, credentials?: {user, pass, userNote}, near?: bool, nmea_filter?: false, solution_filter?: false}`. Defaults: filters true, near false. Empty/missing for paid/restricted/weird networks (no pipeline fetch). |
 
 ## How markers render
 

@@ -11,9 +11,15 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#7b5ea7",
       "registration": "https://system.asgeupos.pl",
       "stations_declared": 190,
-      "note": "Free since 2 Oct 2022. Account approval takes 1–2 working days."
+      "note": "Free since 2 Oct 2022. Account approval takes 1–2 working days.",
+      "endpoints": [
+        {
+          "url": "http://system.asgeupos.pl:2101/"
+        }
+      ]
     },
     {
       "id": "cropos",
@@ -25,9 +31,15 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#c0392b",
       "registration": "https://www.cropos.hr/",
       "stations_declared": 35,
-      "note": "Free since April 2022. One-time 40 EUR registration fee."
+      "note": "Free since April 2022. One-time 40 EUR registration fee.",
+      "endpoints": [
+        {
+          "url": "http://gnss.cropos.hr:2101/"
+        }
+      ]
     },
     {
       "id": "flepos",
@@ -39,8 +51,14 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#3a7ca5",
       "registration": "https://overheid.vlaanderen.be/en/producten-diensten/centimetre-accurate-positioning-flepos",
-      "stations_declared": 45
+      "stations_declared": 45,
+      "endpoints": [
+        {
+          "url": "http://flepos.vlaanderen.be:2101/"
+        }
+      ]
     },
     {
       "id": "walcors",
@@ -52,8 +70,14 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#1e88c7",
       "registration": "https://gnss.wallonie.be/walcors.html",
-      "stations_declared": 22
+      "stations_declared": 22,
+      "endpoints": [
+        {
+          "url": "http://gnss.wallonie.be:8081/"
+        }
+      ]
     },
     {
       "id": "latpos",
@@ -65,8 +89,14 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#1a6b3c",
       "registration": "https://www.lgia.gov.lv/en/latpos",
-      "stations_declared": 27
+      "stations_declared": 27,
+      "endpoints": [
+        {
+          "url": "http://latpos.lgia.gov.lv:5001/"
+        }
+      ]
     },
     {
       "id": "estpos",
@@ -78,9 +108,15 @@
       "tier": "free",
       "vrs": true,
       "access": "conditions",
-      "stations_declared": 40,
+      "color": "#003580",
       "registration": "https://geoportaal.maaamet.ee/eng/Spatial-Data/ESTPOS-national-GNSS-satellite-data-center-p839.html",
-      "note": "Currently free through 31 Aug 2026; pricing afterwards not announced. A signed service agreement via the portal is required."
+      "stations_declared": 40,
+      "note": "Currently free through 31 Aug 2026; pricing afterwards not announced. A signed service agreement via the portal is required.",
+      "endpoints": [
+        {
+          "url": "http://gnss-rtk.maaamet.ee:8083/"
+        }
+      ]
     },
     {
       "id": "ksa_cors",
@@ -92,8 +128,14 @@
       "tier": "free",
       "vrs": true,
       "access": "conditions",
+      "color": "#a0522d",
       "registration": "https://www.geosa.gov.sa/en/products/geodesy/pages/ksa-cors.aspx",
-      "stations_declared": 209
+      "stations_declared": 209,
+      "endpoints": [
+        {
+          "url": "http://ksacors.geoportal.sa:2101/"
+        }
+      ]
     },
     {
       "id": "sapos_SH_HH",
@@ -105,8 +147,14 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#2d6e6e",
       "registration": "https://www.sapos.de",
-      "stations_declared": null
+      "stations_declared": null,
+      "endpoints": [
+        {
+          "url": "http://www.sapos.geonord.de:2101/"
+        }
+      ]
     },
     {
       "id": "sapos_NI",
@@ -118,8 +166,14 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#2d6e6e",
       "registration": "https://www.sapos.de",
-      "stations_declared": null
+      "stations_declared": null,
+      "endpoints": [
+        {
+          "url": "http://www.sapos-ni-ntrip.de:2101/"
+        }
+      ]
     },
     {
       "id": "sapos_NW",
@@ -131,8 +185,14 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#2d6e6e",
       "registration": "https://www.sapos.de",
-      "stations_declared": null
+      "stations_declared": null,
+      "endpoints": [
+        {
+          "url": "http://www.sapos-nw-ntrip.de:2101/"
+        }
+      ]
     },
     {
       "id": "sapos_BW",
@@ -144,8 +204,14 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#2d6e6e",
       "registration": "https://www.sapos.de",
-      "stations_declared": null
+      "stations_declared": null,
+      "endpoints": [
+        {
+          "url": "http://www.sapos-bw-ntrip.de:2101/"
+        }
+      ]
     },
     {
       "id": "sapos_BY",
@@ -172,8 +238,14 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#2d6e6e",
       "registration": "https://www.sapos.de",
-      "stations_declared": null
+      "stations_declared": null,
+      "endpoints": [
+        {
+          "url": "http://www.sapos-be-ntrip.de:2101/"
+        }
+      ]
     },
     {
       "id": "sapos_BB",
@@ -185,8 +257,14 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#2d6e6e",
       "registration": "https://www.sapos.de",
-      "stations_declared": null
+      "stations_declared": null,
+      "endpoints": [
+        {
+          "url": "http://www.sapos-bb-ntrip.de:2101/"
+        }
+      ]
     },
     {
       "id": "sapos_MV",
@@ -198,8 +276,14 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#2d6e6e",
       "registration": "https://www.sapos.de",
-      "stations_declared": null
+      "stations_declared": null,
+      "endpoints": [
+        {
+          "url": "http://www.sapos-mv-ntrip.de:2101/"
+        }
+      ]
     },
     {
       "id": "sapos_LSA",
@@ -211,8 +295,14 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#2d6e6e",
       "registration": "https://www.sapos.de",
-      "stations_declared": null
+      "stations_declared": null,
+      "endpoints": [
+        {
+          "url": "http://www.sapos-lsa-ntrip.de:2101/"
+        }
+      ]
     },
     {
       "id": "sapos_TH",
@@ -224,8 +314,14 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#2d6e6e",
       "registration": "https://www.sapos.de",
-      "stations_declared": null
+      "stations_declared": null,
+      "endpoints": [
+        {
+          "url": "http://www.sapos-th-ntrip.de:2101/"
+        }
+      ]
     },
     {
       "id": "kycors",
@@ -237,9 +333,15 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#546e7a",
       "registration": "https://kycors.ky.gov/",
       "stations_declared": null,
-      "note": "Registration is approved manually by a KYTC admin and the portal warns not to click submit twice. Expect a wait before credentials arrive."
+      "note": "Registration is approved manually by a KYTC admin and the portal warns not to click submit twice. Expect a wait before credentials arrive.",
+      "endpoints": [
+        {
+          "url": "http://kycors.ky.gov:2101/"
+        }
+      ]
     },
     {
       "id": "mncors",
@@ -251,8 +353,14 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#455a64",
       "registration": "https://www.dot.state.mn.us/surveying/cors/index.html",
-      "stations_declared": 140
+      "stations_declared": 140,
+      "endpoints": [
+        {
+          "url": "http://mncors.dot.state.mn.us:9000/"
+        }
+      ]
     },
     {
       "id": "odot_rtn",
@@ -264,8 +372,14 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#607d8b",
       "registration": "https://transportation.ohio.gov/working/engineering/cadd-mapping/survey/cors-rtn",
-      "stations_declared": null
+      "stations_declared": null,
+      "endpoints": [
+        {
+          "url": "http://156.63.133.115:2101/"
+        }
+      ]
     },
     {
       "id": "modot_rtn",
@@ -277,9 +391,15 @@
       "tier": "free",
       "vrs": true,
       "access": "conditions",
+      "color": "#78909c",
       "registration": "https://www.modot.org/gps-utility-mapping-system",
       "stations_declared": 80,
-      "note": "Free, but a signed and notarised user agreement must be returned to MoDOT before credentials are issued. Registering under an organisation name (your own counts) keeps the account portable across personnel changes."
+      "note": "Free, but a signed and notarised user agreement must be returned to MoDOT before credentials are issued. Registering under an organisation name (your own counts) keeps the account portable across personnel changes.",
+      "endpoints": [
+        {
+          "url": "http://rtk3.modot.mo.gov:2101/"
+        }
+      ]
     },
     {
       "id": "wvrtn",
@@ -291,8 +411,14 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#90a4ae",
       "registration": "https://wvrtn.cors.us/",
-      "stations_declared": 34
+      "stations_declared": 34,
+      "endpoints": [
+        {
+          "url": "http://wvrtn.cors.us:2101/"
+        }
+      ]
     },
     {
       "id": "mainedot",
@@ -304,9 +430,15 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#b0bec5",
       "registration": "https://www.maine.gov/dot/doing-business/permitting-policy/survey-and-right-of-way-information",
       "stations_declared": null,
-      "note": "MaineDOT migrated to a new caster (medotrtn.maine.gov) in October 2025. Old credentials from mdotcors.maine.gov no longer work; existing users must re-register."
+      "note": "MaineDOT migrated to a new caster (medotrtn.maine.gov) in October 2025. Old credentials from mdotcors.maine.gov no longer work; existing users must re-register.",
+      "endpoints": [
+        {
+          "url": "http://medotrtn.maine.gov:2101/"
+        }
+      ]
     },
     {
       "id": "mesa_rtvrn",
@@ -318,8 +450,14 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#8d6e63",
       "registration": "https://www.mesacounty.us/departments-and-services/public-works/gps-survey",
-      "stations_declared": 33
+      "stations_declared": 33,
+      "endpoints": [
+        {
+          "url": "http://rtvrn.mesacounty.us:2101/"
+        }
+      ]
     },
     {
       "id": "renep",
@@ -331,9 +469,16 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#006b3c",
       "registration": "https://renep.dgterritorio.gov.pt",
       "stations_declared": 47,
-      "note": "Coverage includes mainland Portugal, the Azores, and Madeira."
+      "note": "Coverage includes mainland Portugal, the Azores, and Madeira.",
+      "endpoints": [
+        {
+          "url": "http://193.137.94.71:2101/",
+          "nmea_filter": false
+        }
+      ]
     },
     {
       "id": "litpos",
@@ -345,8 +490,14 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#0d47a1",
       "registration": "https://www.geoportal.lt/geoportal/web/litpos-en/registration",
-      "stations_declared": 35
+      "stations_declared": 35,
+      "endpoints": [
+        {
+          "url": "http://193.219.10.2:2101/"
+        }
+      ]
     },
     {
       "id": "zakpos",
@@ -428,9 +579,19 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#b07000",
       "registration": "https://ugrf.mlhud.go.ug/SBC",
       "stations_declared": 78,
-      "note": "Single-base, VRS, MAC (including iMAX), and FKP mountpoints offered."
+      "note": "Single-base, VRS, MAC (including iMAX), and FKP mountpoints offered.",
+      "endpoints": [
+        {
+          "url": "http://ugrf.mlhud.go.ug:2101/",
+          "credentials": {
+            "userNote": "your registered username"
+          },
+          "near": true
+        }
+      ]
     },
     {
       "id": "etcors",
@@ -551,9 +712,15 @@
       "tier": "free",
       "vrs": true,
       "access": "conditions",
+      "color": "#cc6600",
       "registration": "https://dol-rtknetwork.com/index.php/register_gnss_beta",
       "stations_declared": 114,
-      "note": "Currently a free trial. Registration requires a 13-digit Thai national ID card number; foreign visitors without one cannot self-register. A handful of volunteer rtk2go bases inside Thailand are open to anyone."
+      "note": "Currently a free trial. Registration requires a 13-digit Thai national ID card number; foreign visitors without one cannot self-register. A handful of volunteer rtk2go bases inside Thailand are open to anyone.",
+      "endpoints": [
+        {
+          "url": "http://122.155.131.34:2101/"
+        }
+      ]
     },
     {
       "id": "tpos",
@@ -565,9 +732,15 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#00695c",
       "registration": "https://www.tpos.provincia.tn.it",
       "stations_declared": 11,
-      "note": "Self-service registration; no professional licence required."
+      "note": "Self-service registration; no professional licence required.",
+      "endpoints": [
+        {
+          "url": "http://194.105.50.232:2101/"
+        }
+      ]
     },
     {
       "id": "stpos",
@@ -579,9 +752,15 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#ad1457",
       "registration": "https://www.stpos.it",
       "stations_declared": 10,
-      "note": "Online registration; no professional licence required."
+      "note": "Online registration; no professional licence required.",
+      "endpoints": [
+        {
+          "url": "http://62.101.0.40:2109/"
+        }
+      ]
     },
     {
       "id": "gnss_veneto",
@@ -593,9 +772,15 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#4527a0",
       "registration": "https://retegnssveneto.cisas.unipd.it",
       "stations_declared": 20,
-      "note": "Open to any user; credentials emailed after registration. Multiple stream formats available."
+      "note": "Open to any user; credentials emailed after registration. Multiple stream formats available.",
+      "endpoints": [
+        {
+          "url": "http://147.162.229.53:2101/"
+        }
+      ]
     },
     {
       "id": "gnss_liguria",
@@ -607,9 +792,15 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#0277bd",
       "registration": "https://geoportal.regione.liguria.it/servizi/rete-gnss-liguria",
       "stations_declared": 10,
-      "note": "7 stations in Liguria plus 3 shared with SPIN3 GNSS along the northern border."
+      "note": "7 stations in Liguria plus 3 shared with SPIN3 GNSS along the northern border.",
+      "endpoints": [
+        {
+          "url": "http://81.23.86.70:2101/"
+        }
+      ]
     },
     {
       "id": "sicilianet",
@@ -621,9 +812,15 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#e65100",
       "registration": "https://www.ct.ingv.it/index.php/risorse-e-servizi/sicil-net",
       "stations_declared": 80,
-      "note": "INGV Catania seismic network; credentials emailed after registration. Single-base and VRS streams available."
+      "note": "INGV Catania seismic network; credentials emailed after registration. Single-base and VRS streams available.",
+      "endpoints": [
+        {
+          "url": "http://193.206.223.39:2101/"
+        }
+      ]
     },
     {
       "id": "sarnet",
@@ -664,8 +861,14 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#2e5b8a",
+      "registration": "https://www.acorn-gnss.net",
       "note": "Four regional VRS solutions (South Central, Interior, Southeast, Northwest), a Norton Sound experimental VRS, and a nearest-station single-base stream. Self-service registration, no licence required.",
-      "registration": "https://www.acorn-gnss.net"
+      "endpoints": [
+        {
+          "url": "http://www.acorn-gnss.net:2101/"
+        }
+      ]
     },
     {
       "id": "nps_cors",
@@ -676,9 +879,16 @@
       "lon": -98.5,
       "tier": "free",
       "access": "conditions",
+      "color": "#4a7c59",
       "registration": "https://ntrip.nps.gov",
       "stations_declared": 141,
-      "note": "Single-base streams across the continental US, Alaska, Hawaii, American Samoa, and the Marianas. Operated by the National Park Service; credentials are issued manually and access outside NPS partner organisations is not guaranteed."
+      "note": "Single-base streams across the continental US, Alaska, Hawaii, American Samoa, and the Marianas. Operated by the National Park Service; credentials are issued manually and access outside NPS partner organisations is not guaranteed.",
+      "endpoints": [
+        {
+          "url": "http://rtk.nps.gov:2101/",
+          "nmea_filter": false
+        }
+      ]
     },
     {
       "id": "remos_ven",
@@ -1594,8 +1804,14 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#2e6fb0",
       "registration": "https://rem.regione.fvg.it/rem-fvg/servizi/correzioni-differenziali",
-      "stations_declared": 17
+      "stations_declared": 17,
+      "endpoints": [
+        {
+          "url": "http://gnsscaster.regione.fvg.it:8080/"
+        }
+      ]
     },
     {
       "id": "ergnss",
@@ -1607,9 +1823,18 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#b05000",
       "registration": "https://www.ign.es/web/gds-gnss-tiempo-real",
       "stations_declared": 272,
-      "note": "One IGN account covers the mainland, Balearics and Canaries. Mountpoint CERCANA3M auto-routes to the nearest station and is the easiest default; VRS3M is the multi-station network solution."
+      "note": "One IGN account covers the mainland, Balearics and Canaries. Mountpoint CERCANA3M auto-routes to the nearest station and is the easiest default; VRS3M is the multi-station network solution.",
+      "endpoints": [
+        {
+          "url": "http://ergnss-ip.ign.es:2101/"
+        },
+        {
+          "url": "http://ergnss-tr.ign.es:2101/"
+        }
+      ]
     },
     {
       "id": "catnet",
@@ -1621,9 +1846,15 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#a00020",
       "registration": "https://catnet-ip.icgc.cat/",
       "stations_declared": 25,
-      "note": "Run by ICGC, separate from the national ERGNSS network. A single ICGC account is enough; no professional licence required."
+      "note": "Run by ICGC, separate from the national ERGNSS network. A single ICGC account is enough; no professional licence required.",
+      "endpoints": [
+        {
+          "url": "http://catnet-ip.icgc.cat:2101/"
+        }
+      ]
     },
     {
       "id": "grafcan_repcan",
@@ -1647,9 +1878,15 @@
       "lon": 114.2,
       "tier": "free",
       "access": "registration",
+      "color": "#8b008b",
       "registration": "https://www.geodetic.gov.hk/en/satref/ntrip.htm",
       "stations_declared": 19,
-      "note": "Application is a downloadable PDF form returned by email or fax to the Survey and Mapping Office; no web self-service. Accounts inactive for 12 months are terminated."
+      "note": "Application is a downloadable PDF form returned by email or fax to the Survey and Mapping Office; no web self-service. Accounts inactive for 12 months are terminated.",
+      "endpoints": [
+        {
+          "url": "http://ntrip.geodetic.gov.hk:2101/"
+        }
+      ]
     },
     {
       "id": "inacors",
@@ -1661,9 +1898,15 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#1a5fa0",
       "registration": "https://nrtk.big.go.id",
       "stations_declared": 432,
-      "note": "The caster exposes 4 network-solution mounts rather than individual stations, so the map shows few pins. Coverage is dense on Java and Bali; outer islands (Papua, Kalimantan) have gaps."
+      "note": "The caster exposes 4 network-solution mounts rather than individual stations, so the map shows few pins. Coverage is dense on Java and Bali; outer islands (Papua, Kalimantan) have gaps.",
+      "endpoints": [
+        {
+          "url": "http://nrtk.big.go.id:2001/"
+        }
+      ]
     },
     {
       "id": "igac",
@@ -1675,9 +1918,16 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#d4a017",
       "registration": "https://redgeodesica.igac.gov.co/",
       "stations_declared": 260,
-      "note": "Physical single-base streams on port 2102; VRS / network-RTK on port 2101."
+      "note": "Physical single-base streams on port 2102; VRS / network-RTK on port 2101.",
+      "endpoints": [
+        {
+          "url": "http://sbc.igac.gov.co:2102/",
+          "nmea_filter": false
+        }
+      ]
     },
     {
       "id": "spslux",
@@ -1689,9 +1939,15 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#5c6bc0",
       "registration": "https://act.public.lu/fr/gps-reseaux/spslux1.html",
       "stations_declared": 13,
-      "note": "No professional licence required."
+      "note": "No professional licence required.",
+      "endpoints": [
+        {
+          "url": "http://stream.spslux.lu:5005/"
+        }
+      ]
     },
     {
       "id": "icecors",
@@ -1703,9 +1959,16 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#1e6b8c",
       "registration": "https://www.natt.is/is/landmaelingar/jardstodvakerfi",
       "stations_declared": 33,
-      "note": "Nearest-station selector and VRS3 network-RTK available."
+      "note": "Nearest-station selector and VRS3 network-RTK available.",
+      "endpoints": [
+        {
+          "url": "http://178.19.53.126:2101/",
+          "nmea_filter": false
+        }
+      ]
     },
     {
       "id": "cors_korea",
@@ -1716,9 +1979,15 @@
       "lon": 127.8,
       "tier": "free",
       "access": "registration",
+      "color": "#a93226",
       "registration": "https://www.gnssdata.or.kr/user/agree.do",
       "stations_declared": 167,
-      "note": "Federated single-base feed from 8 Korean agencies. Email-only registration; no Korean ID required. The NTRIP password is the literal string 'gnss', not the portal login password. Accounts are auto-deleted after 50 days of inactivity. The separate NGII network-solution service does require Korean mobile-ID verification."
+      "note": "Federated single-base feed from 8 Korean agencies. Email-only registration; no Korean ID required. The NTRIP password is the literal string 'gnss', not the portal login password. Accounts are auto-deleted after 50 days of inactivity. The separate NGII network-solution service does require Korean mobile-ID verification.",
+      "endpoints": [
+        {
+          "url": "http://www.gnssdata.or.kr:2101/"
+        }
+      ]
     },
     {
       "id": "mbcrtk",
@@ -1743,8 +2012,19 @@
       "tier": "free",
       "vrs": true,
       "access": "open",
+      "color": "#9e6b00",
       "registration": "https://monpos.gazar.gov.mn",
-      "stations_declared": 40
+      "stations_declared": 40,
+      "endpoints": [
+        {
+          "url": "http://rtk.gazar.gov.mn:2101/",
+          "credentials": {
+            "user": "rover",
+            "pass": "262461"
+          },
+          "solution_filter": false
+        }
+      ]
     },
     {
       "id": "apos",
@@ -1769,9 +2049,16 @@
       "lon": 133.8,
       "tier": "free",
       "access": "registration",
+      "color": "#b8860b",
       "registration": "https://gnss.ga.gov.au/stream",
       "stations_declared": 922,
-      "note": "Single-base only — pick the nearest station, no network solution. Coverage is dense along the populated coasts and sparse through the interior; baselines beyond ~30 km degrade."
+      "note": "Single-base only — pick the nearest station, no network solution. Coverage is dense along the populated coasts and sparse through the interior; baselines beyond ~30 km degrade.",
+      "endpoints": [
+        {
+          "url": "http://ntrip.data.gnss.ga.gov.au:2101/",
+          "solution_filter": false
+        }
+      ]
     },
     {
       "id": "positionz",
@@ -1782,9 +2069,15 @@
       "lon": 174.8,
       "tier": "free",
       "access": "registration",
+      "color": "#2e8b57",
       "registration": "https://www.linz.govt.nz/products-services/geodetic/positionz/positionz-real-time-service/connect-positionz-real-time-service",
       "stations_declared": 62,
-      "note": "Single-base only — no VRS or network solution. LINZ recommends staying within 15 km of the connected station for centimetre accuracy."
+      "note": "Single-base only — no VRS or network solution. LINZ recommends staying within 15 km of the connected station for centimetre accuracy.",
+      "endpoints": [
+        {
+          "url": "http://positionz-rt.linz.govt.nz:2101/"
+        }
+      ]
     },
     {
       "id": "trignet",
@@ -1796,8 +2089,14 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#556b2f",
       "registration": "https://ngi.dalrrd.gov.za/index.php/what-we-do/geodetic-and-control-survey-services/37-trignet-continuously-operating-gnss-network",
-      "stations_declared": 83
+      "stations_declared": 83,
+      "endpoints": [
+        {
+          "url": "http://trignet.co.za:2101/"
+        }
+      ]
     },
     {
       "id": "rbmc_ip",
@@ -1808,9 +2107,15 @@
       "lon": -53.2,
       "tier": "free",
       "access": "registration",
+      "color": "#008b8b",
       "registration": "https://www.ibge.gov.br/geociencias/informacoes-sobre-posicionamento-geodesico/servicos-para-posicionamento-geodesico/16332-rbmc-ip-rede-brasileira-de-monitoramento-continuo-dos-sistemas-gnss-em-tempo-real.html",
       "stations_declared": 153,
-      "note": "Single-base only; each gov.br account is capped at five concurrent stream connections. Dense in the south and south-east; sparse through the Amazon basin and the north-east interior."
+      "note": "Single-base only; each gov.br account is capped at five concurrent stream connections. Dense in the south and south-east; sparse through the Amazon basin and the north-east interior.",
+      "endpoints": [
+        {
+          "url": "http://gps-ntrip.ibge.gov.br:2101/"
+        }
+      ]
     },
     {
       "id": "ramsac",
@@ -1821,9 +2126,15 @@
       "lon": -64.0,
       "tier": "free",
       "access": "registration",
+      "color": "#7b3f9e",
       "registration": "https://www.ign.gob.ar/NuestrasActividades/Geodesia/RamsacNtrip/Registro",
       "stations_declared": 203,
-      "note": "Single-base only — no VRS, pick the nearest mountpoint. Sessions cap at 8 hours and require reconnection. Patagonia coverage is sparse."
+      "note": "Single-base only — no VRS, pick the nearest mountpoint. Sessions cap at 8 hours and require reconnection. Patagonia coverage is sparse.",
+      "endpoints": [
+        {
+          "url": "http://ntrip.ign.gob.ar:2101/"
+        }
+      ]
     },
     {
       "id": "regna_rou",
@@ -1835,8 +2146,14 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#1a9e5c",
       "registration": "https://igm.gub.uy/2016/05/20/servicios-regna-rou/",
-      "stations_declared": 35
+      "stations_declared": 35,
+      "endpoints": [
+        {
+          "url": "http://rtk.igm.gub.uy:2101/"
+        }
+      ]
     },
     {
       "id": "regme_ec",
@@ -1847,9 +2164,15 @@
       "lon": -78.5,
       "tier": "free",
       "access": "registration",
+      "color": "#558b2f",
       "registration": "https://www.geoportaligm.gob.ec/ntrip/public/register",
       "stations_declared": 26,
-      "note": "Free since IGM's unified national caster launched in February 2024."
+      "note": "Free since IGM's unified national caster launched in February 2024.",
+      "endpoints": [
+        {
+          "url": "http://ntrip.igm.gob.ec:2101/"
+        }
+      ]
     },
     {
       "id": "ign_cr_cors",
@@ -1860,9 +2183,15 @@
       "lon": -83.75,
       "tier": "free",
       "access": "registration",
+      "color": "#1b7837",
       "registration": "https://www.snitcr.go.cr/",
       "stations_declared": 14,
-      "note": "SNIT account required; credentials activate at noon and midnight CR time, so first access can take up to 12 hours."
+      "note": "SNIT account required; credentials activate at noon and midnight CR time, so first access can take up to 12 hours.",
+      "endpoints": [
+        {
+          "url": "http://igncaster.snitcr.go.cr:2101/"
+        }
+      ]
     },
     {
       "id": "mirai",
@@ -1873,9 +2202,15 @@
       "lon": 138.3,
       "tier": "free",
       "access": "registration",
+      "color": "#2471a3",
       "registration": "https://go.gnss.go.jp",
       "stations_declared": 16,
-      "note": "16 stations in Japan; the caster also re-streams ~309 partner stations from Australia, New Zealand, the US, Canada, and others. Free registration plus a separate caster authorisation step. Accounts auto-expire after 365 days of inactivity."
+      "note": "16 stations in Japan; the caster also re-streams ~309 partner stations from Australia, New Zealand, the US, Canada, and others. Free registration plus a separate caster authorisation step. Accounts auto-expire after 365 days of inactivity.",
+      "endpoints": [
+        {
+          "url": "http://ntrip.go.gnss.go.jp:2101/"
+        }
+      ]
     },
     {
       "id": "geortk",
@@ -1886,8 +2221,16 @@
       "lon": 138.3,
       "tier": "free",
       "access": "open",
+      "color": "#1a7a4a",
       "stations_declared": 44,
-      "note": "Rovers connect without registration — only volunteers running reference stations need to sign up. Bases are operator-volunteered so quality varies by station."
+      "note": "Rovers connect without registration — only volunteers running reference stations need to sign up. Bases are operator-volunteered so quality varies by station.",
+      "endpoints": [
+        {
+          "url": "http://geortk.jp:2101/",
+          "nmea_filter": false,
+          "solution_filter": false
+        }
+      ]
     },
     {
       "id": "sapos_HE",
@@ -1899,8 +2242,14 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#2d6e6e",
       "registration": "https://www.sapos.de",
-      "stations_declared": 4
+      "stations_declared": 4,
+      "endpoints": [
+        {
+          "url": "http://www.sapos-he-ntrip.de:2101/"
+        }
+      ]
     },
     {
       "id": "sapos_RP",
@@ -1927,8 +2276,14 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#2d6e6e",
       "registration": "https://www.sapos.de",
-      "stations_declared": 14
+      "stations_declared": 14,
+      "endpoints": [
+        {
+          "url": "http://www.sapos-sl-ntrip.de:2101/"
+        }
+      ]
     },
     {
       "id": "sapos_SN",
@@ -1940,8 +2295,14 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#2d6e6e",
       "registration": "https://www.sapos.de",
-      "stations_declared": null
+      "stations_declared": null,
+      "endpoints": [
+        {
+          "url": "http://www.ntrip.sachsen.de:2101/"
+        }
+      ]
     },
     {
       "id": "spin3",
@@ -1953,8 +2314,14 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#1565c0",
       "registration": "https://www.spingnss.it/",
-      "stations_declared": 39
+      "stations_declared": 39,
+      "endpoints": [
+        {
+          "url": "http://158.102.7.10:2101/"
+        }
+      ]
     },
     {
       "id": "gpsumbria",
@@ -1966,8 +2333,14 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#2e7d32",
       "registration": "https://umbriageo.regione.umbria.it/pagine/accesso-rapido-ai-servizi-gpsumbria",
-      "stations_declared": 13
+      "stations_declared": 13,
+      "endpoints": [
+        {
+          "url": "http://gpsumbria.regione.umbria.it:2101/"
+        }
+      ]
     },
     {
       "id": "gnss_abruzzo_lazio",
@@ -1979,8 +2352,14 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#c62828",
       "registration": "https://gnssnet.regione.abruzzo.it/accesso.php",
-      "stations_declared": 29
+      "stations_declared": 29,
+      "endpoints": [
+        {
+          "url": "http://gnss-rtk.regione.abruzzo.it:2101/"
+        }
+      ]
     },
     {
       "id": "sit_puglia",
@@ -1992,8 +2371,14 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#0288d1",
       "registration": "https://pugliacon.regione.puglia.it/web/sit-puglia-sit/global-positioning-system",
-      "stations_declared": 12
+      "stations_declared": 12,
+      "endpoints": [
+        {
+          "url": "http://gps.sit.puglia.it:2101/"
+        }
+      ]
     },
     {
       "id": "gnss_campania",
@@ -2005,8 +2390,18 @@
       "tier": "free",
       "vrs": true,
       "access": "open",
+      "color": "#6a1b9a",
       "registration": "http://gps.sit.regione.campania.it/indexmain.php",
-      "stations_declared": 16
+      "stations_declared": 16,
+      "endpoints": [
+        {
+          "url": "http://gps.sit.regione.campania.it:2101/",
+          "credentials": {
+            "user": "Campania",
+            "pass": "GNSS"
+          }
+        }
+      ]
     },
     {
       "id": "wiscors",
@@ -2018,8 +2413,14 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#bf360c",
       "registration": "https://wisconsindot.gov/Pages/doing-bus/eng-consultants/cnslt-rsrces/tools/wiscors/default.aspx",
-      "stations_declared": 115
+      "stations_declared": 115,
+      "endpoints": [
+        {
+          "url": "http://wiscors.dot.wi.gov:2101/"
+        }
+      ]
     },
     {
       "id": "fprn",
@@ -2031,8 +2432,14 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#f57f17",
       "registration": "https://www.fdot.gov/geospatial/fprn.shtm",
-      "stations_declared": 100
+      "stations_declared": 100,
+      "endpoints": [
+        {
+          "url": "http://www.myfloridagps.com:10000/"
+        }
+      ]
     },
     {
       "id": "ardot_rtn",
@@ -2044,8 +2451,14 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#827717",
       "registration": "https://ardot.gov/divisions/surveys/control-surveys/",
-      "stations_declared": 50
+      "stations_declared": 50,
+      "endpoints": [
+        {
+          "url": "http://gps.ardot.gov:2101/"
+        }
+      ]
     },
     {
       "id": "macors",
@@ -2057,8 +2470,14 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#283593",
       "registration": "https://www.mass.gov/how-to/the-massachusetts-continuously-operating-reference-station-network-macors",
-      "stations_declared": 22
+      "stations_declared": 22,
+      "endpoints": [
+        {
+          "url": "http://macorsrtk.massdot.state.ma.us:2101/"
+        }
+      ]
     },
     {
       "id": "vector",
@@ -2070,8 +2489,14 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#1b5e20",
       "registration": "https://vtrans.vermont.gov/highway/geodetic/cors/real-time",
-      "stations_declared": 18
+      "stations_declared": 18,
+      "endpoints": [
+        {
+          "url": "http://vector.vermont.gov:2101/"
+        }
+      ]
     },
     {
       "id": "ct_acorn",
@@ -2083,9 +2508,15 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#1a237e",
       "registration": "https://ctsurveyors.org/acorn-real-time-positioning-for-connecticut/",
       "stations_declared": 13,
-      "note": "Network also includes 1 station in Rhode Island, 2 in southern Massachusetts, and 1 on Long Island, NY — a useful fallback for Rhode Island where no state caster exists."
+      "note": "Network also includes 1 station in Rhode Island, 2 in southern Massachusetts, and 1 on Long Island, NY — a useful fallback for Rhode Island where no state caster exists.",
+      "endpoints": [
+        {
+          "url": "http://acorn.uconn.edu:2101/"
+        }
+      ]
     },
     {
       "id": "azcors",
@@ -2097,9 +2528,15 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#c2692e",
       "registration": "https://www.azwater.gov/hydrology/azcors",
       "stations_declared": 52,
-      "note": "37 ADWR stations plus 15 EarthScope/NPS streams. Free registration via ADWR; caster port confirmed after registration."
+      "note": "37 ADWR stations plus 15 EarthScope/NPS streams. Free registration via ADWR; caster port confirmed after registration.",
+      "endpoints": [
+        {
+          "url": "http://azcors.azwater.gov:2101/"
+        }
+      ]
     },
     {
       "id": "gcgc_rtn",
@@ -2110,9 +2547,15 @@
       "lon": -89.5,
       "tier": "free",
       "access": "registration",
+      "color": "#01579b",
       "registration": "https://www.usm.edu/gulf-coast-geospatial-center/real_time_network.php",
       "stations_declared": 52,
-      "note": "Operated by the University of Southern Mississippi Gulf Coast Geospatial Center. No professional licence required for registration."
+      "note": "Operated by the University of Southern Mississippi Gulf Coast Geospatial Center. No professional licence required for registration.",
+      "endpoints": [
+        {
+          "url": "http://rtn.usm.edu:2101/"
+        }
+      ]
     },
     {
       "id": "alcors",
@@ -2124,8 +2567,14 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#1565c0",
       "registration": "https://aldotcors.dot.state.al.us/",
-      "stations_declared": 158
+      "stations_declared": 158,
+      "endpoints": [
+        {
+          "url": "http://aldotcors.dot.state.al.us:10099/"
+        }
+      ]
     },
     {
       "id": "orgn",
@@ -2137,8 +2586,14 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#004d40",
       "registration": "https://www.oregon.gov/odot/orgn/pages/rover-requests.aspx",
-      "stations_declared": 100
+      "stations_declared": 100,
+      "endpoints": [
+        {
+          "url": "http://orgn.odot.state.or.us:9881/"
+        }
+      ]
     },
     {
       "id": "msrn",
@@ -2150,8 +2605,14 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#006064",
       "registration": "https://mdotcors.michigan.gov/sbc",
-      "stations_declared": 95
+      "stations_declared": 95,
+      "endpoints": [
+        {
+          "url": "http://mdotcors.michigan.gov:10010/"
+        }
+      ]
     },
     {
       "id": "nysnet",
@@ -2163,8 +2624,14 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#0d47a1",
       "registration": "https://www.dot.ny.gov/divisions/engineering/design/design-services/land-survey/cors",
-      "note": "NTRIP runs on the non-standard port 8080 at rtn.dot.ny.gov; the usual port 2101 is firewalled. Configure receivers accordingly."
+      "note": "NTRIP runs on the non-standard port 8080 at rtn.dot.ny.gov; the usual port 2101 is firewalled. Configure receivers accordingly.",
+      "endpoints": [
+        {
+          "url": "http://rtn.dot.ny.gov:8080/"
+        }
+      ]
     },
     {
       "id": "incors",
@@ -2188,8 +2655,14 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#37474f",
       "registration": "https://iowadot.gov/consultants-contractors/design/iowa-real-time-network",
-      "stations_declared": 83
+      "stations_declared": 83,
+      "endpoints": [
+        {
+          "url": "http://165.206.203.10:10000/"
+        }
+      ]
     },
     {
       "id": "kopos",
@@ -2229,9 +2702,15 @@
       "lon": 5.3,
       "tier": "free",
       "access": "open",
+      "color": "#0288d1",
       "registration": "https://www.nsgi.nl/referentiepunten-en-gnss-data/gnss-data/real-time-streams",
       "stations_declared": 30,
-      "note": "Also covers the BES Islands (Bonaire, Saba, Sint Eustatius). Anonymous access at ntrip.kadaster.nl:2101 (or :443 over TLS). Single-base, not VRS. TU Delft runs a mirror at gnss1.tudelft.nl:2101 with a Netherlands subset."
+      "note": "Also covers the BES Islands (Bonaire, Saba, Sint Eustatius). Anonymous access at ntrip.kadaster.nl:2101 (or :443 over TLS). Single-base, not VRS. TU Delft runs a mirror at gnss1.tudelft.nl:2101 with a Netherlands subset.",
+      "endpoints": [
+        {
+          "url": "http://ntrip.kadaster.nl:2101/"
+        }
+      ]
     },
     {
       "id": "finpos",
@@ -2683,9 +3162,15 @@
       "tier": "free",
       "vrs": true,
       "access": "registration",
+      "color": "#8b0057",
       "registration": "https://mosref.dscc.gov.mo",
       "stations_declared": 4,
-      "note": "Free registration. GPS + GLONASS + BeiDou since 2021. Single-base and VRS; four Hong Kong partner stations extend coverage across the Pearl River Delta."
+      "note": "Free registration. GPS + GLONASS + BeiDou since 2021. Single-base and VRS; four Hong Kong partner stations extend coverage across the Pearl River Delta.",
+      "endpoints": [
+        {
+          "url": "http://mosref.dscc.gov.mo:2101/"
+        }
+      ]
     },
     {
       "id": "omancorsnet",
@@ -2936,14 +3421,38 @@
       "name": "rtk2go",
       "country": "global",
       "tier": "free",
-      "access": "open"
+      "access": "open",
+      "color": "#d00000",
+      "endpoints": [
+        {
+          "url": "http://rtk2go.com:2101/",
+          "credentials": {
+            "user": "(any email address)",
+            "pass": "none",
+            "userNote": "your email address"
+          },
+          "near": true,
+          "nmea_filter": false
+        }
+      ]
     },
     {
       "id": "centipede",
       "name": "Centipede",
       "country": "global",
       "tier": "free",
-      "access": "open"
+      "access": "open",
+      "color": "#e87500",
+      "endpoints": [
+        {
+          "url": "http://crtk.net:2101/",
+          "credentials": {
+            "user": "centipede",
+            "pass": "centipede"
+          },
+          "near": true
+        }
+      ]
     },
     {
       "id": "earthscope",
@@ -2951,8 +3460,14 @@
       "country": "americas",
       "tier": "free",
       "access": "conditions",
+      "color": "#8b4513",
       "registration": "https://www.earthscope.org/nota/",
-      "note": "Free under a non-commercial licence renewed yearly. Charging any fee for work that uses these corrections — paid surveying, contract mowing, drone-mapping clients — pushes you onto the commercial licence at USD 1,000 per seat per year, 5-seat minimum."
+      "note": "Free under a non-commercial licence renewed yearly. Charging any fee for work that uses these corrections — paid surveying, contract mowing, drone-mapping clients — pushes you onto the commercial licence at USD 1,000 per seat per year, 5-seat minimum.",
+      "endpoints": [
+        {
+          "url": "http://ntrip.earthscope.org:2101/"
+        }
+      ]
     },
     {
       "id": "euref_ip",
@@ -2960,8 +3475,14 @@
       "country": "europe",
       "tier": "free",
       "access": "registration",
+      "color": "#1f4e79",
       "registration": "https://www.epncb.oma.be/_networkdata/data_access/real_time/broadcasters.php",
-      "note": "Three mirrors — Germany (BKG), Belgium (Royal Observatory) and Italy (ASI) — each needs its own account; there is no shared sign-on. Raw single-base streams from European permanent reference stations; the Belgian operator warns the streams are not aimed at moving-rover RTK."
+      "note": "Three mirrors — Germany (BKG), Belgium (Royal Observatory) and Italy (ASI) — each needs its own account; there is no shared sign-on. Raw single-base streams from European permanent reference stations; the Belgian operator warns the streams are not aimed at moving-rover RTK.",
+      "endpoints": [
+        {
+          "url": "http://euref-ip.net:2101/"
+        }
+      ]
     },
     {
       "id": "igs_ip",
@@ -2969,7 +3490,13 @@
       "country": "global",
       "tier": "free",
       "access": "registration",
-      "registration": "http://register.rtcm-ntrip.org/cgi-bin/registration.cgi"
+      "color": "#7d3c98",
+      "registration": "http://register.rtcm-ntrip.org/cgi-bin/registration.cgi",
+      "endpoints": [
+        {
+          "url": "http://www.igs-ip.net:2101/"
+        }
+      ]
     }
   ]
 }
