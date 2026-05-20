@@ -554,6 +554,27 @@
   var GREY_MARKER_COLOR='#666';   // matches stale-pin colour
   var INFO_MARKER_COLOR='#888';   // circled-? fallback / info markers
   var LIVE_NET_COLOR='rgb(0,170,0)'; // free non-VRS network markers — matches <10 km coverage band
+
+  // Source-color palette keyed by slot name from data/color_assignments.json.
+  //   global1..global5  — scientific tier-1 networks (IGS scientific gold = black;
+  //                       AUSCORS / MIRAI / EUREF-IP / EarthScope dark hues).
+  //   community1..2     — community-run networks, brighter accents (centipede / rtk2go).
+  //   local1..localN    — country/region locals; computed by scripts/assign_colors.py.
+  //                       Adjacent locals are guaranteed distinct slots; palette spans
+  //                       a CVD-safe blue/purple/green/amber mid-tone set.
+  var PALETTE={
+    "global1":    "#000000",  // IGS-IP
+    "global2":    "#074485",  // AUSCORS  (HLS L preserved, S=0.90)
+    "global3":    "#078d8d",  // MIRAI    (HLS L preserved, S=0.90)
+    "global4":    "#61089c",  // EUREF-IP + NPS dual slot (HLS L preserved, S=0.90)
+    "global5":    "#078d29",  // EarthScope (HLS L preserved, S=0.90)
+    "community1": "#00d4ff",  // centipede
+    "community2": "#ff66cc",  // rtk2go
+    "local1":     "#2e8bcc",  // saturated mid-blue
+    "local2":     "#f0a830",  // saturated amber
+    "local3":     "#9a5fd4",  // saturated mid-purple
+    "local4":     "#3ab270",  // saturated mid-green
+  };
   var PAID_TIER_ICONS={
     affordable:{glyph:'$',color:'#22a722'},
     paid:      {glyph:'$',color:'#b02828'},
@@ -1752,10 +1773,35 @@
     return {control:ctrl, dom:d, applyDeclutter:applyDeclutter};
   }
 
-  function buildDataModel(stationsJson, healthJson, countryMarkersJson){
+  function buildDataModel(stationsJson, healthJson, countryMarkersJson, colorAssignmentsJson){
     var rawSources=(stationsJson&&stationsJson.sources)||{};
     var healthSources=(healthJson&&healthJson.sources)||{};
     var markers=(countryMarkersJson&&countryMarkersJson.markers)||[];
+    var assignments=(colorAssignmentsJson&&colorAssignmentsJson.assignments)||{};
+    // Cheap deterministic id-hash → red-green jitter. Two sources sharing a
+    // slot (e.g. EUREF + NPS on global4, or sources sharing a local bucket)
+    // get visually-distinct tints for full-vision viewers; CVD viewers see
+    // (almost) identical colors because the a*-axis shift is invisible to
+    // protan/deutan. Range capped at ±38 (≈30% of full R-G axis) to keep
+    // the slot identity readable.
+    function rgJitter(hex, sid){
+      var h=5381;
+      for(var i=0;i<sid.length;i++) h=((h<<5)+h+sid.charCodeAt(i))|0;
+      var t=(((h>>>0)%1001)/500.0)-1.0;  // [-1, +1]
+      var amt=t*38;
+      function cl(x){return Math.max(0,Math.min(255,Math.round(x)));}
+      function px(n){return ('00'+n.toString(16)).slice(-2);}
+      var r=cl(parseInt(hex.substr(1,2),16)+amt);
+      var g=cl(parseInt(hex.substr(3,2),16)-amt);
+      var b=parseInt(hex.substr(5,2),16);
+      return '#'+px(r)+px(g)+px(b);
+    }
+    function paletteColor(sid){
+      var slot=assignments[sid];
+      if(!slot) return null;
+      var base=PALETTE[slot];
+      return base?rgJitter(base,sid):null;
+    }
     var markersById={};
     markers.forEach(function(m){ markersById[m.id]=m; });
     var now=Date.now();
@@ -1774,7 +1820,7 @@
       var days=lo?(now-new Date(lo).getTime())/86400000:0;
       SOURCES[sid]={
         id:           sid,
-        color:        mk.color||rs.color||UNKNOWN_SOURCE_COLOR,
+        color:        paletteColor(sid)||mk.color||rs.color||UNKNOWN_SOURCE_COLOR,
         label:        mk.name||sid,
         registration: validUrl(mk.registration||''),
         access:       mk.access||'registration',
@@ -1821,7 +1867,7 @@
           // Free marker without a pipeline SOURCES entry — synthetic dead.
           if(!m.lat) return;
           SOURCES[m.id]={
-            id:m.id, color:m.color||UNKNOWN_SOURCE_COLOR, label:m.name||m.id,
+            id:m.id, color:paletteColor(m.id)||m.color||UNKNOWN_SOURCE_COLOR, label:m.name||m.id,
             registration:validUrl(m.registration||''), access:m.access||'registration',
             note:m.note||null,
             near:false, user:null, pass:null, userNote:null,
@@ -1908,7 +1954,8 @@
         fetchWithTimeout('./data/stations.json?ts='+ts,10000,{cache:'no-cache'}),
         fetchWithTimeout('./data/source_health.json?ts='+ts,5000,{cache:'no-cache'}),
         fetchWithTimeout('./data/rtk_map.json?ts='+ts,5000,{cache:'no-cache'}),
-        fetchWithTimeout('./data/help_topics.json?ts='+ts,5000,{cache:'no-cache'})
+        fetchWithTimeout('./data/help_topics.json?ts='+ts,5000,{cache:'no-cache'}),
+        fetchWithTimeout('./data/color_assignments.json?ts='+ts,5000,{cache:'no-cache'})
       ]);
       if(results[0].status==='fulfilled'&&results[0].value.ok)
         data=await results[0].value.json();
@@ -1922,8 +1969,11 @@
         var _hd=document.getElementById('help-drawer');
         if(_hd&&_hd.classList.contains('on')) renderHelp('');
       }
+      var colorRaw=null;
+      if(results[4].status==='fulfilled'&&results[4].value.ok)
+        colorRaw=await results[4].value.json();
     }catch(e){}
-    var model=buildDataModel(data,health,cmRaw);
+    var model=buildDataModel(data,health,cmRaw,colorRaw);
     var updated=model.updated, networks=model.networks;
     var stations=model.stations;
 
