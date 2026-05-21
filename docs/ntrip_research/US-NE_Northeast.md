@@ -39,7 +39,7 @@ See `US-NOTA_NetworkOfTheAmericas.md` for operator-scope detail. NE sub-coverage
 | host:port | `medotrtn.maine.gov:2101` (52.165.92.197) |
 | tariff | Free |
 | vrs | Yes (VRS) — confirmed by live ST 2026-05-18 |
-| num_stations | unknown — sourcetable contains only routing aliases (4 `VRS_*` + 4 `SingleStation_Nearest_*`); operator pages do not enumerate. Per primer [stations-vs-mps], ST count ≠ CORS count. Escalation: `rtnsupport.medot@maine.gov` |
+| num_stations | unknown — sourcetable contains only routing aliases (4 `VRS_*` + 4 `SingleStation_Nearest_*`); operator pages do not enumerate. A 2009 MaineDOT CORS locations PDF exists at https://digitalmaine.com/mdot_docs/1192/ (2.0 MB, Digital Maine archive) but predates 2025 Trimble Pivot migration and may not reflect current station roster. Escalation: `rtnsupport.medot@maine.gov` |
 | hobbyist_eligibility | Unclear — self-service registration (own Org/Username/Password); no professional-licence field; no explicit restriction |
 | legal_residency_required | Unclear — no stated requirement |
 | last_confirmed_alive | 2026-05-18 — `SOURCETABLE 200 OK` (8 STR; Trimble Caster 5.3) |
@@ -71,8 +71,33 @@ EarthScope NOTA has one NH station (P776 central NH) as single-base fallback. Co
 | hobbyist_eligibility | Yes — VTrans explicit: "free service utilized by State and Federal Agencies, Surveyors, GIS users, Engineers, Scientists, and the public at large" |
 | legal_residency_required | No |
 | last_confirmed_alive | 2026-05-18 — `SOURCETABLE 200 OK` (36 STR; Trimble Caster 5.3) |
-| station_count | 18 reference stations statewide; live ST 34-36 STR (single-base + VRS combos across RTCM3/CMR+/CMRx); all except VJSC and VTWR NOAA NCN-accredited |
+| station_count | 19 stations per VTrans CORS FeatureServer 2026-05-21 (one more than the "18 reference stations" figure on earlier VTrans landing — VCAP Vermont Capital added). All except VJSC and VTWR NOAA NCN-accredited |
 | datum_epoch | NAD83(2011) Epoch 2010.00 — VTrans declaration: "the Vermont CORS are referenced to NAD 83(2011) epoch 2010.00" via vtrans.vermont.gov / outside.vermont.gov VTrans-hosted document |
+| station_coords_source | VTrans ArcGIS FeatureServer — https://maps.vtrans.vermont.gov/arcgis/rest/services/Geodetic/CORS/FeatureServer/0 (queried 2026-05-21; GeoJSON layer 0 = VTCORS) |
+
+**Station coordinates** (NAD83; source: VTrans FeatureServer 2026-05-21):
+
+| ID | Name | Lat | Lon |
+|---|---|---|---|
+| VTBE | Bennington | 42.882510 | -73.199901 |
+| VTOX | Bradford | 44.007820 | -72.114341 |
+| VTDA | Danby | 43.349950 | -72.995242 |
+| VTD9 | Derby | 44.950980 | -72.160201 |
+| VTD2 | Dummerston | 42.918369 | -72.535121 |
+| VTEB | Enosburg | 44.914209 | -72.798901 |
+| VTHA | Hardwick | 44.508539 | -72.365881 |
+| VTIP | Island Pond | 44.820059 | -71.890511 |
+| VTMI | Middlebury | 43.998629 | -73.152611 |
+| VTC1 | Randolph | 43.939239 | -72.603491 |
+| VTRI | Richmond | 44.413269 | -72.994831 |
+| VTRU | Rutland | 43.607129 | -72.979421 |
+| VTD7 | Saint Johnsbury | 44.397869 | -72.025661 |
+| VTSP | Springfield | 43.281469 | -72.477571 |
+| VTSA | St Albans | 44.809079 | -73.082581 |
+| VTWR | White River Junction | 43.649059 | -72.317411 |
+| VJSC | Johnson State College | 44.640429 | -72.671061 |
+| VTUV | UVM Coolidge | 44.469239 | -73.197881 |
+| VCAP | Vermont Capital (Montpelier) | 44.261979 | -72.582381 |
 
 NetR9 → current-generation receiver upgrades completed 2025.
 
@@ -119,7 +144,7 @@ Commercial fallback: KeyNetGPS (see multi-state section).
 | hobbyist_eligibility | Yes — explicit "free and open to the public". Self-service registration. Account does not expire; subscriptions auto-renew annually. Default policy disallows simultaneous logins from one account (RTK-pair logins by admin request) |
 | legal_residency_required | No |
 | last_confirmed_alive | 2026-05-18 — `SOURCETABLE 200 OK` (47 STR; Trimble Caster 5.2) |
-| station_count | 13 physical sensors: 9 CT (CTBK Brookfield, CTDA Darien, CTEG East Granby, CTGR Groton, CTGU Guilford, CTMA Mansfield, CTNE Newington, CTPN Putnam, CTWI Winchester); 1 RI (URIL Kingston, URI campus); 2 southern MA (MASB Sturbridge, MASH Sheffield); 1 Long Island NY (NYRH Riverhead) |
+| station_count | 13 physical sensors: 9 CT (CTBK Brookfield, CTDA Darien, CTEG East Granby, CTGR Groton, CTGU Guilford, CTMA Mansfield, CTNE Newington, CTPN Putnam, CTWI Winchester); 1 RI (URIL Kingston, URI campus); 2 southern MA (MASB Sturbridge, MASH Sheffield); 1 Long Island NY (NYRH Riverhead). NGS CORS coordinates (NAD83(2011); source: geodesy.noaa.gov/corsdata/coord/coord_20/ 2026-05-21): CTDA 41.0658°N 73.5071°W; CTEG 41.9234°N 72.6986°W; CTGR 41.3353°N 72.0497°W; CTGU 41.2893°N 72.6678°W; CTMA 41.7314°N 72.2108°W; CTNE 41.6735°N 72.7145°W; CTWI 41.8975°N 73.0697°W. CTBK/CTPN/URIL/MASB/MASH/NYRH not in NGS CORS coordinate file (non-NGS stations; coordinates not publicly available outside Trimble Pivot sensor map) |
 | constellations | GPS+GLO+GAL+BDS — Galileo + BeiDou added July 2025. Multi-const requires `VRS3_RTX` (Trimble: `VRSX_RTX`). Mountpoints ending in `P` = CMR+ = GPS+GLO only |
 | datum_epoch | NAD83(2011) Epoch 2010.0 — ACORN FAQ (CTDOT-hosted): "ACORN's Default Reference Frame: NAD 83 (2011) ... NAD 83 (2011) Position (Epoch 2010.0)". Per-station ITRF velocity table in same document. Citation: https://portal.ct.gov/dot/-/media/dot/aec/const_inspection/acorn_faq.pdf |
 
@@ -230,6 +255,7 @@ Resellers: Laser Industries 412-510-3089; Duncan-Parnell 833-916-0557. Primary p
 - MaineDOT NAD83(2011) datasheets (HTTP 404 2026-05-18; previously published, no longer): https://www.maine.gov/mdot/surveyinfo/docs/NAD832011Epoch2010Datasheets.pdf
 - VTrans VECTOR real-time: https://vtrans.vermont.gov/highway/geodetic/cors/real-time
 - VECTOR portal: https://vector.vermont.gov/
+- VTrans CORS ArcGIS FeatureServer (station coordinates, queried 2026-05-21): https://maps.vtrans.vermont.gov/arcgis/rest/services/Geodetic/CORS/FeatureServer/0/query?where=1%3D1&outFields=*&f=geojson&outSR=4326
 - ACORN welcome: http://acorn.uconn.edu/
 - ACORN FAQ (operator, datum citation): https://portal.ct.gov/dot/-/media/dot/aec/const_inspection/acorn_faq.pdf
 - CT Surveyors ACORN: https://ctsurveyors.org/acorn-real-time-positioning-for-connecticut/

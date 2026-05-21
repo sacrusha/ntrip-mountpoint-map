@@ -50,6 +50,8 @@ Hobbyist `?` = no explicit eligibility statement; no professional-licence field;
 
 Contact: `cors@dot.state.oh.us`. Reseller (training/support): Laser Instruments / Precision Laser & Instrument.
 
+Station coordinates not publicly enumerated. ODOT TIMS ArcGIS MapServer at `gis.dot.state.oh.us/arcgis/rest/services/TIMS/Assets/MapServer/17` contains CORS layer but ECONNREFUSED from sandbox 2026-05-21; no response from any gis.dot.state.oh.us endpoint. Sensor map (`ortn.dot.state.oh.us/TrimblePivotWeb/SensorMap.aspx`) is login-gated.
+
 ## IN — Indiana: InCORS
 
 | Field | Value |
@@ -107,6 +109,8 @@ GGA every 30s required. Alt domain `mdotcors.org` redirects to Michigan portal (
 
 Contact: `wiscors@dot.wi.gov`. FAQ PDF: https://wiscorsweb.dot.wi.gov/TrimblePivotWeb/documents/wiscors-faq.pdf
 
+Station coordinates not publicly enumerated. WisDOT station names page (https://wiscors.dot.wi.gov/TrimblePivotWeb/StationNames.aspx) lists mountpoint names only (lat/lon stripped). Sensor map (`wiscors.dot.wi.gov/TrimblePivotWeb/SensorMap.aspx`) is login-gated. No public GIS API located 2026-05-21.
+
 ## MN — Minnesota: MnCORS
 
 | Field | Value |
@@ -137,7 +141,7 @@ Contact: `CORSVRS.DOT@state.mn.us`. 2026 northern densification covers Boundary 
 | host:port | `165.206.203.10:10000` (Leica SBC). Web portal `iartnsbc.iowadot.gov` (HTTPS account-gated) |
 | tariff | Free — "no current plans to charge users to access the network" |
 | vrs | Yes — iMAX. Recommended `MSM_IMAX` (RTCM3 MSM4 full constellation) |
-| num_stations | 83 IaRTN + cross-state (10 MnDOT, 4 WisDOT, 7 MoDOT). Iowa DOT PDF station-list HTTP 403 from sandbox; values from earlier research |
+| num_stations | 85 Iowa-prefix CORS + cross-state contributions (5 MnDOT, 7 MoDOT, 3 WisDOT/SD cross-border = 17 additional per IaRTN GIS FeatureServer). Iowa DOT GIS FeatureServer `gis.iowadot.gov/agshost/rest/services/Survey/RTN_Base_Stations/FeatureServer/0` queried 2026-05-21: returned 105 features total (85 IA-prefix NGS IDs + 20 cross-state MN/MO/WI/SD). All Leica GR50 receivers, LEIAR10 antennas. Station coordinates (NAD83 decimal degrees; all IA-prefix): IAA1 Adair2 41.496/-94.641; IAAB Albia2 41.014/-92.813; IAAG Algona 43.080/-94.267; IAAK Akron2 42.811/-96.548; IAAL Allison 42.747/-92.787; IAAM Ames 42.010/-93.560; IAAN Anamosa 42.104/-91.257; IAAS Ashton 43.306/-95.779; IAAT Atlantic 41.405/-94.988; IAAV Avoca 41.487/-95.338; IABL Bloomfield 40.741/-92.431; IABN Boone 42.050/-93.855; IAC1 Centerville2 40.740/-93.003; IACA Carroll 42.078/-94.911; IACB Council Bluffs 41.224/-95.853; IACH Chariton 40.983/-93.307; IACI Coralville 41.711/-91.609; IACK Cherokee 42.768/-95.542; IACL Clarion 42.731/-93.751; IACN Clarinda 40.743/-95.022; IACO Corning2 41.014/-94.738; IACR Creston 41.053/-94.351; IACV Correctionville 42.481/-95.774; IAD2 Dubuque2 42.432/-90.679; IADA Davenport 41.610/-90.630; IADE Decorah 43.271/-91.832; IADM Des Moines2 41.658/-93.597; IADN Denison 41.997/-95.376; IADO Donnellson 40.647/-91.566; IADS De Soto 41.552/-94.008; IAEL Elkader 42.878/-91.362; IAEM Emmetsburg 43.107/-94.695; IAFA Fairfield2 40.982/-91.959; IAFD Fort Dodge 42.455/-94.187; IAGA Garner 43.107/-93.600; IAGC Grundy Center 42.369/-92.779; IAHT Hanlontown 43.284/-93.369; IAIN Independence 42.444/-91.884; IAJE Jefferson2 42.021/-94.382; IAKN Knoxville 41.300/-93.101; IALA Latimer 42.799/-93.359; IALM Le Mars 42.798/-96.149; IALN Leon 40.729/-93.762; IAMA Mount Ayr 40.708/-94.252; IAMD Martensdale 41.371/-93.744; IAML Malcom 41.687/-92.550; IAMN Marion 42.030/-91.549; IAMQ Maquoketa 42.074/-90.645; IAMR Manchester 42.485/-91.473; IAMS Morning Sun 41.089/-91.183; IAMT Marshalltown 42.006/-92.933; IAMU Muscatine 41.434/-91.087; IAMV Missouri Valley 41.571/-95.858; IANA New Albin 43.497/-91.291; IANH New Hampton 43.029/-92.315; IANT Newton 41.684/-93.082; IANW Newhall 41.962/-91.969; IAOA Onawa 42.028/-96.108; IAOE Osage 43.285/-92.842; IAOK Oskaloosa 41.293/-92.685; IAOS Osceola 41.028/-93.786; IAPS Pocahontas 42.738/-94.679; IARO Red Oak 41.022/-95.233; IARR Rock Rapids 43.433/-96.149; IARV Rock Valley2 43.201/-96.432; IASA Sabula 42.083/-90.199; IASC Sac City 42.421/-95.018; IASD Sidney 40.750/-95.636; IASI Sigourney 41.318/-92.207; IASL Spirit Lake 43.421/-95.136; IASM Storm Lake 42.648/-95.216; IASN Sloan 42.239/-96.231; IASP Spencer 43.128/-95.162; IASU Sioux City2 42.478/-96.317; IASW Swea City2 43.383/-94.296; IASX Sioux City 42.550/-96.348; IATA Tama 41.967/-92.551; IATI Tipton 41.642/-91.110; IAWA Waterloo 42.468/-92.391; IAWB West Burlington 40.833/-91.209; IAWK Waukon2 43.255/-91.486; IAWM Williamsburg 41.703/-92.006; IAWN Washington 41.309/-91.679; IAWS Williams 42.484/-93.548; IAWU West Union 42.936/-91.816. Source: Iowa DOT GIS FeatureServer, queried 2026-05-21 |
 | hobbyist_eligibility | ? — self-service registration; activation within 2 business days; no professional-licence field |
 | legal_residency_required | ? |
 | last_confirmed_alive | 2026-05-18 — `SOURCETABLE 200 OK` (9 STR; GNSS Spider 7.11.1.109) |
@@ -174,6 +178,8 @@ No public NTRIP caster as of 2026-05-18. IDOT kickoff Nov 2024; first 3 monument
 
 Contact via modot.org/gps-utility-mapping-system.
 
+Station coordinates not publicly enumerated. Sensor map (`gpsweb3.modot.mo.gov/Map/SensorMap.aspx`) is Trimble Pivot login-gated. No public MoDOT GIS API for RTN station locations located 2026-05-21.
+
 ## ND, SD, NE, KS — no public state caster
 
 Confirmed (GPS World Dec 2024 lists explicitly "No public service"; E38 Survey Solutions; Point One state pages; 2026-05-18 re-search):
@@ -205,7 +211,7 @@ NOAA NCN CORS RINEX (free, no account); EarthScope NOTA RINEX (free non-commerci
 - InCORS: https://incors.in.gov/ ; https://incors.in.gov/useragreement.pdf ; https://incors.in.gov/Station%20Updates.html ; https://ftp.incors.in.gov/
 - MDOT CORS: https://mdotcors.michigan.gov/sbc ; https://mdotcors.michigan.gov/sbc/Account/Register ; MSRN Port Scheme XLSX
 - MnCORS: https://www.dot.state.mn.us/surveying/cors/index.html ; FAQ https://www.dot.state.mn.us/surveying/cors/mncors_faq.html ; https://mncors.dot.state.mn.us/ ; Feb 2025 MnDOT bulletin content.govdelivery.com/accounts/MNDOT/bulletins/3d3904c
-- IaRTN: https://iowadot.gov/consultants-contractors/design/iowa-real-time-network ; portal https://iartnsbc.iowadot.gov/ ; reference station list https://iowadot.gov/media/1387/download?inline= ; NATRF2022 announcement https://iowadot.gov/announcement/2025-12-02/new-reference-frame-2026
+- IaRTN: https://iowadot.gov/consultants-contractors/design/iowa-real-time-network ; portal https://iartnsbc.iowadot.gov/ ; reference station list https://iowadot.gov/media/1387/download?inline= ; NATRF2022 announcement https://iowadot.gov/announcement/2025-12-02/new-reference-frame-2026 ; station coords GIS FeatureServer: https://gis.iowadot.gov/agshost/rest/services/Survey/RTN_Base_Stations/FeatureServer/0/query?where=1%3D1&outFields=*&f=json&outSR=4326&resultRecordCount=200 (queried 2026-05-21)
 - ODOT RTN: https://ortn.dot.state.oh.us/TrimblePivotWeb/Login.aspx (operator Trimble Pivot Web) ; prior `https://transportation.ohio.gov/working/engineering/cadd-mapping/survey/cors-rtn` is HTTP 404 2026-05-18 (site reorg, full `/working/engineering/` tree removed) ; multi-const 2021-02-02 announcement https://ohiosurveyor.org/aws/osps/pt/sd/news_article/350530/_PARENT/layout_details/false
 - MoDOT RTN: https://gpsweb3.modot.mo.gov/ ; FAQ https://gpsweb3.modot.mo.gov/faq.html ; UA PDF https://gpsweb3.modot.mo.gov/MODOT_RTK_GPS_USER_AGREEMENT.pdf ; multi-const update www.seilergeo.com/update-to-wiscors-and-modot-rtk-networks/
 - IDOT CORS: https://idot.illinois.gov/about-idot/stay-connected/idot-blog/cors-network-installation-kicks-off.html ; meritalkslg.com/articles/illinois-kicks-off-cors-network-installation/ ; clearinghouse.isgs.illinois.edu/webdocs/ilhmp/reference.html ; ReIL-NET karaco.com/pages/reil-net-rtk-network

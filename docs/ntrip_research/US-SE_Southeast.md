@@ -57,6 +57,8 @@ VDOT Survey Manual (Chapter 5, last updated 2023) acknowledges commercial RTK/VR
 
 Recent Trimble Alloy receiver upgrades. Support: `WVRTNHelpDesk@wv.gov`. Backup hostname: `cors.us` (same IP).
 
+Station coordinates — WVU ArcGIS MapServer `services.wvgis.wvu.edu/arcgis/rest/services/Location/wv_CORS/MapServer/0` returned 24 stations 2026-05-21 (portal states 32; GIS layer may be a subset or outdated). All IDs are NGS-style WV-prefix. Decimal degrees NAD83: WVAT 37.428451/-81.067660; WVBR 39.308019/-80.277372; WVBU 39.338006/-78.913497; WVCH 38.312789/-81.570003; WVCL 38.487391/-81.011465; WVCV 39.015292/-79.456975; WVEL 39.062954/-81.392665; WVFL 38.696428/-80.666604; WVFR 38.671866/-79.283104; WVGB 38.430760/-79.819030; WVHA 39.247694/-81.044211; WVHU 38.422923/-82.424434; WVKE 39.336909/-77.915329; WVLE 37.822108/-80.421928; WVMF 39.075324/-78.932535; WVMZ 38.838895/-81.108446; WVNR 38.894984/-79.858996; WVOH 37.998211/-81.132122; WVRA 38.941351/-81.751345; WVRH 38.546000/-81.883229; WVSA 37.640000/-81.454800; WVSH 39.996972/-80.679545; WVSW 37.805520/-82.095657; WVTA 39.438610/-79.514440. Source: WVU GIS MapServer queried 2026-05-21.
+
 ## NC — NC RTN
 
 | Field | Value |
@@ -165,6 +167,8 @@ ALDOT transitioned from legacy TCP to Leica SBC web portal ~2022 (YouTube "NEW A
 
 Serves: surveying, engineering, transportation, precision ag, emergency management, scientific research. Contact: `debra.armstead@usm.edu` / 228.276.1733. Coverage MS-focused; does not extend into GA.
 
+Station coordinates not publicly enumerated. Sensor map (`rtn.usm.edu/Map/SensorMap.aspx`) is Trimble Pivot login-gated (0 sensors returned without credentials). USM operator landing page confirms 52 CORS but provides no coordinates. No public GIS API for GCGC station locations located 2026-05-21.
+
 ## TN — TDOT GNSS RTN
 
 | Field | Value |
@@ -206,6 +210,7 @@ Manual registration process — portal warns "DO NOT click REGISTER button more 
 ## Sources
 
 - WVRTN portal: https://wvrtn.cors.us/
+- WVRTN station coordinates — WVU ArcGIS MapServer: https://services.wvgis.wvu.edu/arcgis/rest/services/Location/wv_CORS/MapServer/0/query?where=1%3D1&outFields=*&f=geojson&outSR=4326 (queried 2026-05-21)
 - WVRTN laserinst.com WVDOH VRS: https://www.laserinst.com/wvdohvrs
 - E38 Survey Solutions — WV Emlid guide: https://e38surveysolutions.com/blogs/news/emlid-reach-rx-or-rs2-and-dji-rtk-connection-to-west-virginia-ntrip-wvrtn
 - NC RTN portal: https://rtn.nc.gov/

@@ -1,5 +1,5 @@
 # Italy [IT] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-17 (SPIN3 portal re-checked: 39 deployed / 35 operative, CREO replaced CREM at Cremona on 2026-05-12, semestral coordinate recompute 2026-04-01 stays ETRF2000 epoch 2008.0; FReDNet station-list re-fetched 2026-05-17 → 25 listed / 23 RTK-active (one station added since 2026-05-13); Veneto operator station map enumerates 35 sites; Campania operator-portal landing reaffirms 16 stations; sandbox-side NTRIP TCP blocked today, so endpoint reachability re-attested via operator web portals, not curl). 2026-05-13 FVG refresh + 2026-05-12 regional pass remain authoritative for everything else.
+**Date researched:** 2026-05-21 (station coordinate tables added for Campania, Puglia, GPS-UMBRIA, Abruzzo+Lazio; pipeline obstruction notes added per-network). Prior versions: 2026-05-17, 2026-05-13, 2026-05-12.
 
 ## Status: YES — extensive public free NTRIP RTK infrastructure; no single national free caster; coverage is regional
 
@@ -9,8 +9,8 @@ Italy has no unified national free RTK caster. Instead, 10+ regional/autonomous 
 
 ## Per-Region Summary Table
 
-| Region | Network | host:port | Tariff | VRS | Hobbyist | curl result 2026-05-12 |
-|--------|---------|-----------|--------|-----|----------|------------------------|
+| Region | Network | host:port | Tariff | VRS | Hobbyist | curl result |
+|--------|---------|-----------|--------|-----|----------|-------------|
 | Valle d'Aosta, Piemonte, Lombardia | SPIN3 GNSS | `158.102.7.10:2101` | Free (registration) | Yes (VRS, iMAX, MAC, NRT) | Yes (no restriction stated) | SOURCETABLE 200 OK (portal reconfirmed 2026-05-17; 39 deployed / 35 operative) |
 | Liguria | Rete GNSS Liguria | `81.23.86.70:2101` | Free (registration) | Yes (VRS 2/3, MAC, NEAR, DGPS) | unclear (form-based registration) | SOURCETABLE 200 OK (GNCASTER) |
 | Trentino (PA Trento) | TPOS | `194.105.50.232:2101` | Free (registration) | Yes (IMAX, MAX, NRT/VRS) | unclear | SOURCETABLE 200 OK |
@@ -21,7 +21,7 @@ Italy has no unified national free RTK caster. Instead, 10+ regional/autonomous 
 | Umbria | GPS-UMBRIA | `gpsumbria.regione.umbria.it:2101` | Free (online form) | Yes (MAC, VRS, Nearest) | unclear | SOURCETABLE 200 OK (GNCASTER) |
 | Campania | Rete GNSS Campania | `gps.sit.regione.campania.it:2101` | Free (open credentials) | Yes (1_VRS30, 9_NEAR) | Yes (public credentials) | SOURCETABLE 200 OK (GNCASTER) |
 | Puglia | Rete GNSS Puglia | `gps.sit.puglia.it:2101` | Free (registration) | Yes (IMAX3, MAX3) | unclear | SOURCETABLE 200 OK (station count unverified on operator portal) |
-| Abruzzo + Lazio | Rete GNSS Abruzzo-Lazio | `gnss-rtk.regione.abruzzo.it:2101` | Free (registration) | Yes (0_RTCM_MSM/VRS, VRS23/30) | Yes (form open to anyone) | timeout from sandbox 2026-05-17 (fourth successive probe failure; registration portal still HTTP 200 + form active — see note) |
+| Abruzzo + Lazio | Rete GNSS Abruzzo-Lazio | `gnss-rtk.regione.abruzzo.it:2101` | Free (registration) | Yes (0_RTCM_MSM/VRS, VRS23/30) | Yes (form open to anyone) | timeout from sandbox — 5 consecutive failures (2026-05-07 through 2026-05-21); registration portal HTTP 200; likely IP-restricted |
 | Sicilia + S. Calabria | Sicili@NET (INGV Catania) | `193.206.223.39:2101` | Free (email request) | Yes (VRS2/3, RTK, IMAX, MAX, FKP) | Yes ("all users who request it") | SOURCETABLE 200 OK |
 | Emilia-Romagna | No public regional network | — | — | — | — | no caster |
 | Toscana | No public RTK caster | — | — | — | — | no caster |
@@ -171,17 +171,40 @@ Country marker, country-survey bullet, README, and global-survey updated.
 
 ### GPS-UMBRIA — Umbria
 - **landing_url:** https://umbriageo.regione.umbria.it/pagine/accesso-rapido-ai-servizi-gpsumbria
-- **access_url:** Skip — landing_url is the single operator entry-point for registration + service info; no distinct access page.
+- **access_url:** Skip — landing_url is the single operator entry-point for registration + service info; no distinct access page. Station monographs: http://www.umbriageo.regione.umbria.it/CatalogoStazioni/StazioniMonografie.aspx (SSL cert error from sandbox; content not fetched 2026-05-21).
 - **Operator:** Regione Umbria + Università di Perugia; 13 stations (7 regional, 6 university).
-- **host:port:** `gpsumbria.regione.umbria.it:2101` / `46.254.154.14:2101` (confirmed SOURCETABLE 200 OK, 2026-05-07).
-- **num_stations:** 13 multi-constellation (GPS+GLONASS+Galileo+BeiDou); ~40 km spacing.
+- **host:port:** `gpsumbria.regione.umbria.it:2101` / `46.254.154.14:2101` (confirmed SOURCETABLE 200 OK, 2026-05-07 and 2026-05-21).
+- **num_stations:** 13 multi-constellation (GPS+GLONASS+Galileo+BeiDou); ~40 km spacing. 12 of 13 stations have been sourced with coords (see table below); 1 unidentified.
 - **Products:** MAC, VRS, Nearest (from Umbriageo portal). Virtual RINEX also available.
 - **Tariff:** Free; online form at umbriageo.regione.umbria.it → credentials emailed.
 - **hobbyist_eligibility:** unclear — originally targeted at surveying/cadastral, now also agriculture and drones; no explicit exclusion.
 - **legal_residency_required:** No explicit requirement found.
 - **VRS:** Yes.
 - **datum_epoch:** omitted — no citable per-operator declaration on Umbriageo portal.
-- **last_confirmed_alive:** 2026-05-07 (SOURCETABLE 200 OK, HTTP/0.9 NTRIP/1.0 caster format confirmed).
+- **last_confirmed_alive:** 2026-05-21 (SOURCETABLE 200 OK, GNSMART_Caster 2.0/1.0 confirmed; 4 STR rows all at 43.00, 12.50 placeholder — no per-station mounts in public sourcetable).
+
+#### Station Coordinate Table (GPS-UMBRIA, 12 of 13 stations)
+Source: https://blog.analistgroup.com/come-connettersi-alla-rete-gnss-in-umbria/ (2026-05-21). Network ownership: RE* = Regione Umbria (7); UN*/ITGT = Università di Perugia (5 confirmed, 6 stated). Coordinates in ETRF2000. 13th station not identified in any public source consulted.
+
+| Code | Name | Owner | Lat (N) | Lon (E) |
+|------|------|-------|---------|---------|
+| REAM | Amelia | RE | 42.5587° | 12.4118° |
+| REPI | Città della Pieve | RE | 42.9521° | 12.0024° |
+| REFO | Foligno | RE | 42.9557° | 12.7035° |
+| ITGT | Gualdo Tadino | UniPG | 43.2337° | 12.7820° |
+| REGU | Gubbio | RE | 43.3520° | 12.5780° |
+| RENO | Norcia | RE | 42.7964° | 13.0948° |
+| UNOV | Orvieto | UniPG | 42.7217° | 12.1165° |
+| UNPG | Perugia | UniPG | 43.1194° | 12.3557° |
+| UNSG | San Giustino | UniPG | 43.5484° | 12.1765° |
+| UNTR | Terni | UniPG | 42.5587° | 12.6738° |
+| RETO | Todi | RE | 42.7823° | 12.4069° |
+| RETU | Tuoro sul Trasimeno | RE | 43.2088° | 12.0724° |
+
+Note: The operator page https://umbriageo.regione.umbria.it/pagine/gpsumbria-001 explicitly states 7 regional + 6 university = 13 stations. The blog lists 12; one station (likely a 6th university station, possibly Città di Castello or Spoleto) is not found in any source consulted. The ITGT code prefix deviates from the expected "RE" or "UN" convention.
+
+#### Pipeline note (GPS-UMBRIA, 2026-05-21)
+The public sourcetable exposes only 4 network-solution mounts (CODE at carrier=0, MAC, NRT30, VRS30) all at placeholder `43.00, 12.50`. No individual physical station mounts are exposed. coord_overrides cannot help without per-station mountpoints. Physical station streams may be available post-login via GNSMART portal. The `physical-coord-vrs` type in rtk_inventory.md is aspirational.
 
 ---
 
@@ -200,21 +223,67 @@ Country marker, country-survey bullet, README, and global-survey updated.
 - **datum_epoch:** omitted — no citable per-operator declaration on the Regione Campania GNSS portal.
 - **last_confirmed_alive:** 2026-05-07 (SOURCETABLE 200 OK confirmed); operator portal text re-verified 2026-05-17 via WebFetch on http://gps.sit.regione.campania.it/indexmain.php (HTTPS variant ECONNREFUSED; HTTP serves the portal).
 
+#### Station Coordinate Table (Campania, all 16 stations)
+Source: https://blog.analistgroup.com/come-connettersi-alla-rete-gnss-in-campania/ (2026-05-21); coordinates in ETRF2000.
+
+| Code | Name | Lat (N) | Lon (E) |
+|------|------|---------|---------|
+| AGRO | Agropoli | 40.3464° | 14.9968° |
+| ALIF | Alife | 41.3270° | 14.3346° |
+| AVEL | Avellino | 40.9119° | 14.7833° |
+| ISCH | Barano (Ischia) | 40.7120° | 13.9246° |
+| BENE | Benevento | 41.1215° | 14.7780° |
+| CARI | Carinola | 41.1947° | 13.9742° |
+| EBOL | Eboli | 40.5466° | 14.9870° |
+| NAPO | Napoli | 40.8700° | 14.2760° |
+| CITR | Oliveto Citra | 40.6886° | 15.2307° |
+| SALA | Sala Consilina | 40.4172° | 15.5566° |
+| ANGE | S. Angelo dei Lombardi | 40.9309° | 15.1839° |
+| BAR2 | S. Bartolomeo in Galdo | 41.4099° | 15.0151° |
+| NICO | S. Nicola La Strada | 41.0469° | 14.3274° |
+| SAPR | Sapri | 40.0737° | 15.6301° |
+| TRGR | Torre del Greco | 40.7790° | 14.4100° |
+| VALL | Vallo della Lucania | 40.2352° | 15.2799° |
+
+#### Pipeline note (Campania, 2026-05-21)
+The live sourcetable exposes 6 individual station mounts (`11_NAPO_4C`, `12_CARI_4C`, `13_BENE_4C`, `14_TRGR_4C`, `15_AGRO_4C`, `16_NICO_4C`) all at placeholder `40.00, 14.00` with `solution=1`. The pipeline drops `solution=1` entries unless `solution_filter: false` is set on the endpoint. The VRS mounts (`1_VRS30`, `9_NEAR3`) are also all at `40.00, 14.00`. No per-station physical coords are exposed in the sourcetable; all 16 stations need coord_overrides if the 6 mounts are to be surfaced. The 10 stations not exposed as individual mounts (ALIF, AVEL, ISCH, EBOL, CITR, SALA, ANGE, BAR2, SAPR, VALL) would require the operator to expose them in the sourcetable. Operator software: GNSMART (Geo++ version 2.0).
+
 ---
 
 ### Rete GNSS Puglia — Puglia
 - **landing_url:** https://pugliacon.regione.puglia.it/web/sit-puglia-sit/global-positioning-system
-- **access_url:** Skip — registration is by email to info@gps.sit.puglia.it; no distinct online access form page.
-- **Operator:** Regione Puglia – SIT Puglia; Leica Spider (SpiderWeb).
-- **host:port:** `gps.sit.puglia.it:2101` / `138.66.34.59:2101` (confirmed SOURCETABLE 200 OK, 2026-05-07).
-- **num_stations:** unknown — operator landing page describes the service but does not publish a current physical-station count; previously surveyed as "10+" by third parties but not citable per primer. Pending direct operator-portal confirmation.
-- **Products:** IMAX3, MAX3, RTCM 3.x and 2.x; credentials are personalised per number of rovers indicated during registration.
+- **access_url:** Skip — registration is by email to info@gps.sit.puglia.it; no distinct online access form page. SpiderWeb portal: http://gps.sit.puglia.it/SpiderWeb/frmIndex.aspx (ECONNREFUSED from sandbox; registered-user content).
+- **Operator:** Regione Puglia – SIT Puglia; Leica Spider (SpiderWeb 4.3.0.4633 per sourcetable banner).
+- **host:port:** `gps.sit.puglia.it:2101` / `138.66.34.59:2101` (confirmed SOURCETABLE 200 OK, 2026-05-07 and 2026-05-21).
+- **num_stations:** 12 (confirmed 2026-05-21 via multiple sources: analistgroup blog + geodati.gov.it metadata + INSPIRE geoportal; ETRF2000-RDN frame declared).
+- **Products:** IMAX3, MAX3, IMAX2, CMR, CMR+, NRT2; credentials are personalised per number of rovers indicated during registration. No per-station mounts in the public sourcetable.
 - **Tariff:** Free; registration via info@gps.sit.puglia.it.
 - **hobbyist_eligibility:** unclear — registration is required; process appears open to anyone.
 - **legal_residency_required:** No explicit requirement found.
 - **VRS:** Yes (network correction mode IMAX/MAX confirmed).
-- **datum_epoch:** omitted — no citable per-operator declaration on the SIT Puglia portal.
-- **last_confirmed_alive:** 2026-05-07 (SOURCETABLE 200 OK confirmed on 138.66.34.59:2101).
+- **datum_epoch:** ETRF2000-RDN — operator-declared on geodati.gov.it metadata record (https://geodati.gov.it/resource/id/r_puglia:3f7f19dd-cb9d-44fc-a07a-9e0d04fe42d4). No epoch stated.
+- **last_confirmed_alive:** 2026-05-21 (SOURCETABLE 200 OK confirmed: `GNSS Spider 4.3.0.4633/1.0`, 6 STR rows, date header `gio, 21 mag 2026`).
+
+#### Station Coordinate Table (Puglia, all 12 stations)
+Source: https://blog.analistgroup.com/come-connettersi-alla-rete-gnss-in-puglia/ (2026-05-21); coordinates in ETRF2000-RDN. Note: MARGH longitude shown as 116°08'56" in that source is a transcription error — correct value is 16°08'56" (consistent with city of Margherita di Savoia at ~41.37°N, 16.15°E).
+
+| Code | Name | Lat (N) | Lon (E) |
+|------|------|---------|---------|
+| ACCA | Accadia | 41.1586° | 15.3312° |
+| FASA | Fasano | 40.8348° | 17.3590° |
+| FOGG | Foggia | 41.4522° | 15.5321° |
+| GINO | Ginosa | 40.5780° | 16.7578° |
+| GIUR | Giurdignano | 40.1244° | 18.4300° |
+| ISCH | Ischitella | 41.9043° | 15.8965° |
+| MARGH | Margherita di Savoia | 41.3733° | 16.1489° |
+| POGG | Poggiorsini | 40.9166° | 16.2538° |
+| SASA | Salice Salentino | 40.3852° | 17.9646° |
+| SPCI | S. Paolo di Civitate | 41.7404° | 15.2595° |
+| UGEN | Ugento | 39.9277° | 18.1620° |
+| VALE | Valenzano | 41.0164° | 16.9045° |
+
+#### Pipeline note (Puglia, 2026-05-21)
+The public sourcetable exposes only network-solution mounts (IMAX3, MAX3, IMAX2, CMR, CMR+) at `41.02, 16.90` with `solution=1`, plus NRT2 at `0.00, 0.00` with `solution=0`. No per-station individual mounts are exposed. Physical station coords cannot be surfaced via coord_overrides without per-station mountpoints in the sourcetable. Accessing individual station streams requires authentication via the SpiderWeb portal (registered users only). The network type in rtk_inventory.md (`physical-coord-vrs`) is aspirational; the actual pipeline output is VRS-only until individual station streams are exposed or a separate physical-coord endpoint is added.
 
 ---
 
@@ -223,17 +292,59 @@ Country marker, country-survey bullet, README, and global-survey updated.
 - **access_url:** https://gnssnet.regione.abruzzo.it/accesso.php (registration form; HTTP 200 + active form 2026-05-17)
 - **Operator:** Regione Abruzzo (hosts and operates); Lazio region fully integrated into same system.
 - **host:port:** `gnss-rtk.regione.abruzzo.it:2101` / `93.57.92.145:2101`
-  - NOTE: Both hostnames/IPs timed out from test location on 2026-05-07, -12, and -17. The protrack guide (updated Nov 2025) and the regional portal both document this endpoint. The service has a history of brief outages. Treated as likely alive but unconfirmed at probe time.
+  - NOTE: Both hostnames/IPs timed out from test location on 2026-05-07, -12, -17, and -21. The protrack guide (updated Nov 2025) and the regional portal both document this endpoint. The service has a history of brief outages. Treated as likely alive but unreachable from external test locations.
   - Alternate (older): `gnssnet.regione.abruzzo.it:2101` — also timed out.
-- **num_stations:** 16 Abruzzo + 13 Lazio = 29 (operator-stated across portal materials; per-station listing on gnssnet.regione.abruzzo.it).
-- **Products:** `near_MSM` (nearest multiconst.), `0_RTCM_MSM` (VRS multiconst.), `VRS23`, `VRS30` (GPS+GLONASS), `NRT30`, `DGPS`, `CMR` variants.
+- **num_stations:** Abruzzo: 20 per analistgroup station list (2026-05-21; 20 codes with Abruzzo-geography coords). Note: older sources cite 16 (original deployment) and 18 (geoportale.regione.abruzzo.it). The network has expanded over time; 20 likely reflects the current state. Lazio: 18 total / 13 currently active (per Regione Lazio portal 2026-05-21). Combined total: up to 33 active stations.
+- **Products:** `near_MSM` (nearest multiconst.), `0_RTCM_MSM` (VRS multiconst.), `VRS23`, `VRS30` (GPS+GLONASS), `NRT30`, `DGPS`, `CMR` variants. Products confirmed from portal description and analistgroup guide; direct sourcetable unverifiable due to persistent timeout.
 - **Tariff:** Free; register via access_url.
 - **hobbyist_eligibility:** Yes — form is open to anyone; no professional credential required.
 - **legal_residency_required:** No.
 - **VRS:** Yes.
-- **datum_epoch:** omitted — no citable per-operator declaration on the Abruzzo GNSS portal.
-- **last_confirmed_alive:** registration portal `gnssnet.regione.abruzzo.it/accesso.php` re-fetched 2026-05-17, registration form active, "RTK correction and data download services are free" still stated, credentials "the day after registration" workflow unchanged. NTRIP TCP endpoint `93.57.92.145:2101` continues to time out from sandbox (now four successive failures across 2026-05-07 / -12 / -17); agendadigitale.regione.abruzzo.it + trasparenza.regione.abruzzo.it + analistgroup / protrack guides still call the service "24/7 active". **Likely alive but blocked / unreachable from external test locations — confirmation requires a probe from within Italy.**
+- **datum_epoch:** ETRF2000, epoch 2022.6 — confirmed from station monographs served at gnssnet.regione.abruzzo.it/[CODE]mono.php (e.g. VTRA monograph: "ETRF2000 (2022.6)", ROUN monograph: "ETRF2000 (2022.6)"; accessed 2026-05-21).
+- **last_confirmed_alive:** registration portal `gnssnet.regione.abruzzo.it/accesso.php` re-fetched 2026-05-17, registration form active, "RTK correction and data download services are free" still stated. Individual station monographs (e.g. `gnssnet.regione.abruzzo.it/VTRAmono.php?nome=VTRA`) confirmed serving live coordinate data 2026-05-21. NTRIP TCP endpoint `93.57.92.145:2101` timed out on 2026-05-21 (consistent with prior failures); agendadigitale.regione.abruzzo.it + analistgroup / protrack guides still call the service "24/7 active". **Likely alive but IP-restricted from external test locations.**
 - Auxiliary refs: https://protrack.studio/blog/it/come-connettersi-alla-rete-gnss-in-abruzzo-e-lazio/ · https://www.regione.lazio.it/cittadini/urbanistica/sistema-informativo-territoriale-regionale/rete-posizionamento-gnss
+
+#### Station Coordinate Table — Abruzzo (20 stations)
+Source: https://blog.analistgroup.com/come-connettersi-alla-rete-gnss-in-abruzzo/ (2026-05-21); coordinates in ETRF2000. Cross-verified against monograph at gnssnet.regione.abruzzo.it (VTRA matches to arc-second precision).
+
+| Code | Name | Lat (N) | Lon (E) |
+|------|------|---------|---------|
+| ALRA | Alfedena | 41.7339° | 14.0344° |
+| ATRA | Atri | 42.5760° | 13.9910° |
+| AZRA | Avezzano | 42.0431° | 13.4238° |
+| BLRA | Balsorano | 41.8095° | 13.5617° |
+| CDRA | Castel Del Monte | 42.3675° | 13.7201° |
+| FRRA | Francavilla | 42.4177° | 14.2922° |
+| AQRA | L'Aquila | 42.3659° | 13.3744° |
+| MRRA | Martinsicuro | 42.8853° | 13.9159° |
+| MZRA | Montazzoli | 41.9466° | 14.4284° |
+| MTRA | Montereale | 42.5278° | 13.2400° |
+| OCRA | Oricola | 42.0495° | 13.0390° |
+| OTRA | Ortucchio | 41.9549° | 13.6459° |
+| PBRA | Palombaro | 42.1242° | 14.2285° |
+| RMRA | Rocca di Mezzo | 42.2035° | 13.5202° |
+| MIRA | Santa Maria Imbaro | 42.2204° | 14.4453° |
+| SCRA | Scafa | 42.2681° | 14.0021° |
+| SMRA | Sulmona | 42.0499° | 13.9314° |
+| TERA | Teramo | 42.6621° | 13.7004° |
+| VCRA | Valle Castellana | 42.7354° | 13.4975° |
+| VTRA | Vasto | 42.1104° | 14.7079° |
+
+#### Station Coordinate Table — Lazio (18 total, 13 currently active)
+Source: https://blog.analistgroup.com/come-connettersi-alla-rete-gnss-nel-lazio/ (station names/codes, 2026-05-21); ROUN and MOCA coordinates confirmed from monograph at gnssnet.regione.abruzzo.it (ETRF2000, epoch 2022.6). Remaining Lazio coordinates NOT independently verified — coordinates not yet sourced. Lazio has 18 total stations; as of 2026-05-21 only 13 are active per Regione Lazio portal (https://www.regione.lazio.it/cittadini/urbanistica/sistema-informativo-territoriale-regionale/rete-posizionamento-gnss). Station LTNA (Latina) was permanently decommissioned after 2024-03-21 communication failure.
+
+Active stations: ACQU (Acquapendente), AMAP (Amatrice), ARDE (Ardea), CASS (Cassino), FIUM (Fiumicino), FOND (Fondi), FROS (Frosinone), MOCA (Montalto di Castro), RITI (Rieti), RIFL (Rignano Flaminio), ROUN (Roma), VALM (Valmontone), VIRB (Viterbo).
+
+Inactive / decommissioned: CVTV (Civitavecchia), LTNA (Latina — permanently offline), PONZ (Ponza), VTEN (Ventotene), VIVA (Vicovaro).
+
+Coordinates confirmed for:
+- MOCA (Montalto di Castro): 42.3536°N, 11.6039°E (ETRF2000 ep. 2022.6)
+- ROUN (Roma): 41.8932°N, 12.4937°E (ETRF2000 ep. 2022.6)
+
+Monograph URL pattern: `https://gnssnet.regione.abruzzo.it/[CODE]mono.php?nome=[CODE]&type=2L` (Lazio) or `&type=2` (Abruzzo).
+
+#### Pipeline note (Abruzzo+Lazio, 2026-05-21)
+The NTRIP endpoint `gnss-rtk.regione.abruzzo.it:2101` / `93.57.92.145:2101` has timed out on every probe from external IPs (2026-05-07, -12, -17, -21). The rtk_map.json entry should be retained; the portal and monograph pages are live. Sourcetable structure is unknown (never fetched from sandbox); likely includes individual station mounts given the station-specific monograph architecture. If/when reachable, coord_overrides or nmea_filter override may be needed depending on how GNSMART exposes stations. The ETRF2000 ep. 2022.6 datum declaration from monographs is citable and should be noted in rtk_inventory.md.
 
 ---
 
@@ -381,7 +492,17 @@ San Marino (61 km², enclave within Emilia-Romagna) has no GNSS RTK network of i
 - IGM RDN: https://www.igmi.org/en/direzione-geodetica/progetto-rdn-rete-dinamica-nazionale
 - ArduSimple San Marino: https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-san-marino/
 - ProTRACK Trentino-Alto Adige guide: https://protrack.studio/blog/it/come-connettersi-alla-rete-gnss-in-trentino-alto-adige/
-- curl probes of all endpoints — 2026-05-07 and 2026-05-12 (Abruzzo-Lazio endpoint timed out both dates; all other regional endpoints confirmed alive 2026-05-12). 2026-05-17 sandbox NTRIP-TCP egress blocked across the board (all 13 endpoints returned curl exit 28 / HTTP 000), so operator-portal WebFetch was substituted for SPIN3 + FReDNet + Abruzzo to re-attest service status.
+- curl probes of all endpoints — 2026-05-07 and 2026-05-12 (Abruzzo-Lazio endpoint timed out both dates; all other regional endpoints confirmed alive 2026-05-12). 2026-05-17 sandbox NTRIP-TCP egress blocked across the board (all 13 endpoints returned curl exit 28 / HTTP 000), so operator-portal WebFetch was substituted for SPIN3 + FReDNet + Abruzzo to re-attest service status. 2026-05-21: Campania + Puglia + Umbria sourcetables re-confirmed live; Abruzzo endpoint timed out (5th successive failure from external sandbox).
+- Puglia station list (12 stations with codes + coords): https://blog.analistgroup.com/come-connettersi-alla-rete-gnss-in-puglia/ (2026-05-21)
+- Puglia GNSS metadata (ETRF2000-RDN frame, INSPIRE): https://geodati.gov.it/resource/id/r_puglia:3f7f19dd-cb9d-44fc-a07a-9e0d04fe42d4 (2026-05-21)
+- Campania station list (16 stations with codes + coords): https://blog.analistgroup.com/come-connettersi-alla-rete-gnss-in-campania/ (2026-05-21)
+- Campania permanent stations page: https://gps-sit.regione.campania.it/permanenti.php (2026-05-21 — page exists but does not expose coords directly)
+- GPS-UMBRIA station list (12 of 13 stations): https://blog.analistgroup.com/come-connettersi-alla-rete-gnss-in-umbria/ (2026-05-21)
+- GPS-UMBRIA operator station count: https://umbriageo.regione.umbria.it/pagine/gpsumbria-001 (7 regional + 6 university = 13)
+- Abruzzo station list (20 stations with codes + coords): https://blog.analistgroup.com/come-connettersi-alla-rete-gnss-in-abruzzo/ (2026-05-21)
+- Lazio station list (18 names/codes): https://blog.analistgroup.com/come-connettersi-alla-rete-gnss-nel-lazio/ (2026-05-21)
+- Lazio active station status (13/18 active): https://www.regione.lazio.it/cittadini/urbanistica/sistema-informativo-territoriale-regionale/rete-posizionamento-gnss (2026-05-21)
+- Abruzzo+Lazio station monographs (ETRF2000 ep. 2022.6 datum, individual station coords): https://gnssnet.regione.abruzzo.it/VTRAmono.php?nome=VTRA · https://gnssnet.regione.abruzzo.it/ROUNmono.php?nome=ROUN&type=2L · https://gnssnet.regione.abruzzo.it/MOCAmono.php?nome=MOCA&type=2L (2026-05-21)
 - SPIN3 GNSS news page (CREO replacing CREM at Cremona 2026-05-12; semestral coordinate refresh 2026-04-01 retaining ETRF2000 epoch 2008.0): https://www.spingnss.it/ + https://www.spingnss.it/nuovo-inquadramento-rete-spin3-aggiornamento-coordinate-6/ — 2026-05-17
 - rtk2go IT volunteer bases (12 stations, 2026-05-12): B506Fields (Lecce), Basertk-fogli (Veneto), Carpi_farm, FM01 (Sicily), GESAMP (Liguria), Garabello_RTK (Piedmont), MASCHERINA, MRCATW2020 (Lombardy), SACCO, SIMMN2024, STAP21, TOMPV22 — patchy distribution
 - Centipede IT volunteer bases (3 stations, 2026-05-12): FALA (Emilia), FM01 (Sicily), PGDV (Emilia)

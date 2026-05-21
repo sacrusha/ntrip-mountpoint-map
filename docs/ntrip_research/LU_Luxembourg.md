@@ -1,5 +1,5 @@
 # Luxembourg [LU] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-17 (re-verified via WebSearch; SPSLux + Centipede coverage unchanged since 2026-05-12; datum_epoch citation retained)
+**Date researched:** 2026-05-21 (station list research added; prior: 2026-05-17)
 
 ## Status: YES — free government NTRIP caster (SPSLux) operating
 
@@ -19,7 +19,8 @@
 ## Context Notes
 
 - **SPSLux** (Satellite Positioning System Luxembourg): National GNSS positioning network operated by the Administration du Cadastre et de la Topographie (ACT), Geodetic Department. Provides Network RTK (iMAX and VRS correction types) and DGNSS corrections in real time.
-- **Infrastructure**: 13 continuously operating reference stations (some on international territory managed by partner networks). Provides horizontal accuracy of ~2–3 cm and vertical ~3–5 cm under good conditions.
+- **Infrastructure**: 13 continuously operating reference stations (some on international territory managed by partner networks: 3 SAPOS Germany, 2 WALCORS Belgium, 1 ORPHEON France, 1 SAT-INFO France; 6 Luxembourg-owned). Station names partially known from a 2011 document: Beyren, Machtum, Tarchamps among LU stations. Provides horizontal accuracy of ~2–3 cm and vertical ~3–5 cm under good conditions.
+- **Physical station coordinates**: A coordinate list PDF (ITRS + ETRS89 + LUREF coords, ~491 KB) and location map PDF are published at `https://act.public.lu/fr/gps-reseaux/spslux1/spslux_sites_coord.html` — page returned HTTP 403 from this sandbox (2026-05-21); confirmed reachable and referenced in multiple search results. Direct PDF link on that page for download.
 - **Correction types / mountpoints**: iMAX (network corrections optimised for Leica equipment) and VRS (standard; compatible with all major receiver brands); DGNSS stream also available. Full mountpoint list downloadable from the ACT portal. Signals from GPS, GLONASS, Galileo, BeiDou processed.
 - **Access**: Registration required via the ACT cadastre portal shop on first login (subscribe to "SPSLUX (N)RTK" package — zero cost). Mobile data (GSM/4G) required for real-time access.
 - **Reference system / datum_epoch**: SPSLux station coordinates managed in **ETRS89 (ETRF2000 @ 2020.82)** + ITRS; national LUREF realised through SPSLux. Source (operator): `https://act.public.lu/fr/gps-reseaux/spslux1/spsluxgeodeticdatum.html`. Datum re-computed by Uni.lu / ACT in 2014, 2019, 2020 tracking ITRF2008/2014/2020 + ETRF2008/2014/2020 evolution.
@@ -39,6 +40,7 @@ RINEX data available via the same ACT portal at no cost after registration. FTP 
 
 ## Sources Consulted
 
+- SPSLux station coordinates page (PDF linked, 403 from sandbox): https://act.public.lu/fr/gps-reseaux/spslux1/spslux_sites_coord.html (confirmed reachable per search results 2026-05-21; PDF ~491 KB contains ITRS + ETRS89 + LUREF coords for all 13 network stations)
 - SPSLux service overview: https://act.public.lu/fr/gps-reseaux/spslux1.html
 - SPSLux geodetic datum (operator-declared ETRS89 ETRF2000 @ 2020.82): https://act.public.lu/fr/gps-reseaux/spslux1/spsluxgeodeticdatum.html
 - Uni.lu SPSLux-LUREF coordinate-monitoring project (2014/2019/2020 ITRF/ETRF transitions): https://www.uni.lu/fstm-en/research-projects/spslux-luref/

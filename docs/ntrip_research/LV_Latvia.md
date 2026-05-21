@@ -17,6 +17,16 @@
 | **last_confirmed_alive** | 2026-05-21 — `curl --http0.9 http://latpos.lgia.gov.lv:5001/` returned `SOURCETABLE 200 OK` (Server `GNSS Spider 7.11.1.109/1.0`, Latvian-language Date header `Ceturtd., 21 maijs 2026 09:46:53 GMT`, Content-Length 768); 7 STR rows confirmed |
 | **datum_epoch** | omitted — LGIA's LatPos page states only "base station coordinates are calculated in the currently valid Latvian geodetic coordinate system" (LV, 2026-05-21); no epoch is declared. The 1992.75 anchor for LKS-92 appears in the EPSG registry (EPSG:3059) but EPSG is not an operator declaration; primer citation rule excludes EPSG-derived epochs. The LKS-92 → LKS-2020 frame change (2026-10-01) is LGIA-announced at the agency level (EPSG:10306 replacement CRS, LGIA-supplied) but the LatPos operator page does not declare the epoch for the network output frame. |
 
+## Physical Station Information
+
+### Station names (27 LV stations, partial list from public sources)
+No comprehensive public coordinate table for the 27 Latvian LatPos stations has been found without registration. Known station names from various academic sources (Balodis 2019, EUPOS 2023 presentation, LGIA landing page documentation ZIP filenames): Aizpute, Alūksne, Bauska1, Cēsis, Daugavpils G0, Dobele, EUPOS_Riga, Gulbene, Jēkabpils, Jēkabs, Jelgava, Kuldiga2, Lielvarde1, Liepāja2 / Liepāja3, Ludza, Mazsalaca1, Ogre, Preiļi, Rēzekne, Saldus2, Sigulda1, Talsi, Ugāle2, Vaiņode, Valka, Valmiera2, and Ventspils. These names appear in documents and download zip filenames on the LGIA landing page but without explicit coordinates. Coordinate values are accessible only through the LatPos SBC portal after registration.
+
+The 5 Estonian partner stations (EUPOS cooperation) and 4 Lithuanian partner stations (LitPOS cooperation) round out the 36-station declared total.
+
+### Pipeline note (LatPos, 2026-05-21)
+The live sourcetable (7 STR rows) has coordinates `0.00, 0.00` for 4 mounts (SITE, NETW-MAX, NETW-iMAX, VIRTUAL-RS) and `56.93, 24.08` for 3 mounts (SITE-BeiDOU, NETW-iMAX-BeiDOU, VRS-BeiDOU). The 56.93, 24.08 position is roughly central Latvia (near Riga). The pipeline accepts `SITE-BeiDOU` and the BeiDou-enabled mounts as `solution=0` or `nmea=0` entries (SITE-BeiDOU has `solution=0`). However, 56.93, 24.08 is a placeholder for all BeiDou mounts — this is not a physical station coord. No individual station mountpoints are in the public sourcetable; no coord_overrides path to physical pins exists from this sourcetable configuration.
+
 ## Context Notes
 
 - **LatPos**: Permanent GNSS reference station network operated by the Latvian Geospatial Information Agency (LGIA / Latvijas Ģeotelpiskās informācijas aģentūra). Made free to all registered users in 2018.
@@ -46,3 +56,6 @@ RINEX data available via the LatPos SBC portal after registration at no cost. EU
 - LKS-2020 / Latvia TM (EPSG:10306, LGIA-supplied parameters): https://epsg.io/10306 — effective from 2026-10-01; LGIA-announced frame change but LatPos output epoch not declared
 - Live caster probe (2026-05-21): `curl --http0.9 http://latpos.lgia.gov.lv:5001/` → SOURCETABLE 200 OK, 7 STR, Server `GNSS Spider 7.11.1.109/1.0`
 - Local pipeline check: `py scripts/stations_by_country.py LVA` returns 1 Centipede + 1 EUREF/IGS + 3 rtk2go LV pins; LatPos itself contributes 0 mappable pins (sourcetable rows carry `0.00, 0.00` placeholders for most VRS streams)
+- EUPOS 2023 Latvia presentation (station names, network status): http://eupos.org/sites/default/files/Meetings/EUPOS_2023_Latvia.pdf (binary PDF, not text-extractable from sandbox; station names inferred from public documents)
+- Balodis 2019 (CORS coordinate analysis, station name references): https://www.bjmc.lu.lv/fileadmin/user_upload/lu_portal/projekti/bjmc/Contents/7_4_05_Balodis.pdf (binary PDF)
+- Inside GNSS LatPos free-access article: https://insidegnss.com/latvias-latpos-network-consolidates-free-access-and-operational-resilience/ (station name context, 2026-05-21)

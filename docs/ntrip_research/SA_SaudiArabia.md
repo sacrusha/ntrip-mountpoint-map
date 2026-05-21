@@ -1,5 +1,5 @@
 # Saudi Arabia [SA] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-17 (prior versions: 2026-05-12, 2026-05-06)
+**Date researched:** 2026-05-21 (station map confirmed login-gated; sourcetable mount count added; prior versions: 2026-05-17, 2026-05-12, 2026-05-06)
 
 ## Status: YES — KSA-CORS (free government network, 209 stations, VRS); endpoint reachability from non-SA IPs UNCONFIRMED
 
@@ -37,12 +37,12 @@
 
 | Attribute | Value |
 |-----------|-------|
-| Physical CORS stations | 209 declared (KSA-wide, high-density national grid) |
+| Physical CORS stations | 209 declared (KSA-wide, high-density national grid); 333 CORS stations involved in the KSA-GRF17 determination process per FIG 2023 abstract |
 | Coverage area | All of Saudi Arabia (~2.15 million km²) |
 | Datum | KSA-GRF17 (Saudi national spatial reference system, SANSRS) |
 | Signals | GPS + GLONASS + Galileo + BeiDou (quad-constellation) |
 | Corrections | VRS (Virtual Reference Station) — single-coordinate rover input; RTCM streamed back |
-| Mountpoints visible externally | 0 (VRS-only; single-coord model returns no physical station list) |
+| Mountpoints visible externally | 4 (NRTK_VRS, NEAREST_RTK, NDGPS_VRS, NRTK_RTX — all at 24.4, 46.41; VRS-only sourcetable; no physical station list) |
 
 ### Access Method (per v2.1 Getting Started Guide)
 
@@ -113,6 +113,7 @@ Global commercial networks (GEODNET, ONOCOY, PointOne, HxGN SmartNet) do not lis
 ## Sources Consulted
 - GEOSA KSA-CORS product page: https://www.geosa.gov.sa/en/products/geodesy/pages/ksa-cors.aspx
 - KSA-CORS portal (ksacors.geoportal.sa): https://ksacors.geoportal.sa/
+- KSA-CORS Getting Started v2.0 (PDF): https://ksacors.geoportal.sa/WelcomePage/Getting%20Started%20with%20KSA-CORS%20Network_v.2.0.pdf
 - KSA-CORS Getting Started v2.1 (PDF): https://ksacors.geoportal.sa/WelcomePage/Getting%20Started%20with%20KSA-CORS%20Network_v.2.1.pdf
 - KSA-CORS Getting Started v1.0 (geoportal.sa): https://www.geoportal.sa/pdf/Getting_Started_with_KSA-CORS_Network_v1.0.pdf
 - How to Register v1.0 (PDF): https://www.geoportal.sa/pdf/How_to_Register_to_KSA-CORS_Network_v.1.0.pdf
@@ -121,6 +122,9 @@ Global commercial networks (GEODNET, ONOCOY, PointOne, HxGN SmartNet) do not lis
 - Saudipedia KSA-CORS article: https://saudipedia.com/en/article/4075/government-and-politics/communication-and-information-technology/saudi-arabia-continuously-operating-reference-station-ksa-cors-network
 - SANSRS v2.0 implementation guidelines (PDF, Dec 2022): https://www.geoportal.sa/pdf/SANSRS_Implementation_Guidelines_V_2_0.pdf
 - KSA-CORS and unification of CORS networks in KSA (EGU/IAG-Comm4 2022 abstract): https://meetingorganizer.copernicus.org/iag-comm4-2022/iag-comm4-2022-33.html
+- Establishment of KSA-CORS Network, FIG 2023 (333 CORS in KSA-GRF17; station map login-gated): https://www.fig.net/resources/proceedings/fig_proceedings/fig2023/papers/ts04g/TS04G_al-qahtani_salawu_et_al_12208.pdf (2026-05-21 — binary PDF not text-extractable from sandbox)
+- GEOSA National Geospatial Platform KSA-CORS page: https://www.geoportal.sa/Geoportal/Geodesy/KSACors (2026-05-21 — access rejected from external IP; station map confirmed login-gated per Getting Started guide)
+- KSA-CORS apps portal: https://apps.geoportal.sa/KSA-CORS/ (2026-05-21 — minimal public content visible; station data requires authentication)
 - Evaluation of KSACORS for hydrographic surveys (Taylor & Francis, 2020): https://www.tandfonline.com/doi/full/10.1080/19475705.2020.1799081
 - ArduSimple Saudi Arabia RTK/NTRIP page: https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-saudi-arabia/
 - ntrip-list.com (Middle East / Asia): https://ntrip-list.com/

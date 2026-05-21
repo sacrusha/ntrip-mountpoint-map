@@ -1,5 +1,5 @@
 # Belgium [BE] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-17 (refresh of 2026-05-15)
+**Date researched:** 2026-05-21 (station list research added; prior: 2026-05-17)
 
 ## Status: MIXED — three regional government NTRIP RTK casters covering all Belgium (FLEPOS / Flanders, WALCORS / Wallonia, GPSBru / Brussels). FLEPOS is **professional-organization-only — hobbyists CANNOT register.** WALCORS allows individuals via SURVEY/GIS categories. GPSBru registration accepts individuals. Geographic / IP restrictions apply on WALCORS. Volunteer Centipede (17 BEL nodes) and rtk2go (3 BEL bases) provide hobbyist fallback.
 
@@ -18,8 +18,9 @@
 | **access_url** | `https://www.vlaanderen.be/digitaal-vlaanderen/onze-diensten-en-platformen/flepos-centimeternauwkeurige-positiebepaling/registratie` — registration page; states the two-step process and explicitly excludes individuals. Verified 2026-05-15 (200 OK). |
 | **host:port** | `flepos.vlaanderen.be:2101` (IP 3.64.78.173 since 2024-06-17) |
 | **VRS** | Yes |
-| **num_stations** | 45 declared GNSS reference stations; 33 operated directly by Informatie Vlaanderen, remainder cross-border partners |
+| **num_stations** | 45 declared GNSS reference stations; 33 operated directly by Informatie Vlaanderen / Digitaal Vlaanderen, 12 cross-border partner receivers |
 | **Key mountpoints** | `FLEPOSVRS32GREC` (RTCM 3.2; GPS+GLO+GAL+BDS) · `FLEPOSVRS31GR` (RTCM 3.1; GPS+GLO) — both observed in live sourcetable 2026-05-15 |
+| **Physical station coords** | 48 station IDs confirmed via EPOS GNSS Quality Portal (FLEPOS network): AARS, ANTW, ATWR, BERT, BEZA, BGGN, BLIG, BRCT, BRGG, BUGG, DIES, DIKS, EEKL, ERPE, GBGN, GENT, GILL, HERE, HOEG, HOUT, IEPE, KALL, LEEU, MAAS, MAME, MECH, MENE, MOL1, NEER, NIK1, NIKL, OOST, OSTE, OSTN, OUDE, OUDN, PITM, PTTM, RUIS, TGRN, TIEN, TRUI, TURN, VEUR, VOER, ZEEB, ZEL1, ZELZ, ZWEV. ETRS89 lat/lon for each via M3G API: `https://gnss-metadata.eu/v1/sitelog/exportlog?id=[ID]00BEL` (DMS in Section 2; verified for AARS, GENT, ANTW, BRGG, IEPE, TURN on 2026-05-21). Note: IDs include some cross-border stations (LEEU=Leeuwarden NL, MAAS=Maastricht NL, MAME=Mamelis NL, HOUT=Houten NL) and may reflect the broader network pool, not only Flanders-owned 33. |
 | **tariff** | Free; user pays only mobile-data costs. No VAT mentioned (gratis service). Observed 2026-05-15 on `vlaanderen.be/digitaal-vlaanderen` product page. |
 | **hobbyist_eligibility** | **No.** Operator product page `vlaanderen.be/.../flepos-.../registratie` states the policy directly: *"Enkel professionele organisaties kunnen zich registreren en een abonnement aanvragen (niet voor particulieren)"* — only professional organisations can register and request a subscription (not for private individuals). The dynamic form repeats this scoped to itself: *"Dit online registratieformulier is uitsluitend bedoeld voor professionele organisaties. Particulieren kunnen hiermee geen FLEPOS-abonnement aanvragen"* (note: `hiermee` = "with this form", so taken alone the form quote is form-scoped — the policy-level statement is on the parent product page). Belgian organisations must supply a KBO enterprise number; foreign organisations supply an equivalent government identifier. ArduSimple page (probed 2026-05-15, displayed update date 2026-05-15) corroborates: "available only to professional organizations." **Conflict with prior research** (2026-05-06 / 2026-05-12, which read ArduSimple as "professional preferred but individuals possible"): either ArduSimple's wording changed recently or the prior agent over-read "preferred" as "non-exclusive". The operator's own product page now closes the question. |
 | **legal_residency_required** | No — foreign professional organisations may register (form has explicit "buitenlands" / foreign-org branch supplying alternate identifier in lieu of KBO). |
@@ -141,6 +142,13 @@ The Royal Observatory of Belgium (ROB) operates the EUREF NTRIP caster at `www.e
 
 **EUREF / cross-check:**
 - `curl http://www.euref-ip.be:2101/` — SOURCETABLE 200 OK; ROBcaster (Royal Observatory of Belgium) live 2026-05-15.
+
+**FLEPOS physical station coordinates:**
+- `https://gnssquality-epos.oma.be/station_data_per_network.php?network=FLEPOS` — 200 OK 2026-05-21; lists 48 FLEPOS station IDs (hourly refresh; includes cross-border pool).
+- M3G GNSS Metadata network page: `https://gnss-metadata.eu/MOID/projnet.5dd3c389b6ae0c2475558fa2` — 200 OK 2026-05-21; 61 entries including duplicates/variants.
+- M3G sitelog API (confirmed working for FLEPOS stations 2026-05-21): `https://gnss-metadata.eu/v1/sitelog/exportlog?id=AARS00BEL` · `...GENT00BEL` · `...ANTW00BEL` · `...BRGG00BEL` · `...IEPE00BEL` · `...TURN00BEL` — DMS coordinates in Section 2 "Site Location Information".
+- Selected verified coordinates (DMS → decimal, 2026-05-21): AARS Aarschot +50°57'47.92"N +4°50'10.03"E · GENT Ghent +51°00'31.66"N +3°42'32.97"E · ANTW Antwerpen +51°12'12.74"N +4°26'51.47"E · BRGG Bruges +51°11'26.37"N +3°12'00.79"E · IEPE Ieper +50°50'56.28"N +2°51'32.55"E · TURN Turnhout +51°18'46.37"N +4°56'56.76"E
+- GIM International FLEPOS 3.0 article (45 CORS = 33 Flanders-owned + 12 partner): `https://www.gim-international.com/content/article/the-evolution-of-flepos-3-0`
 
 **Third-party / corroboration:**
 - `https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-belgium/` — 200 OK; corroborates FLEPOS "available only to professional organizations".

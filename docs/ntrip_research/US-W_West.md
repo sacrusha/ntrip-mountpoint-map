@@ -70,7 +70,7 @@ Commercial: SmartNet Oklahoma (Leica; OKC + Tulsa), RTKdata (USD 40/mo, claimed 
 | host:port | `gps.ardot.gov:2101` (199.48.3.12) |
 | tariff | Free |
 | vrs | Yes — Trimble Pivot VRS; `ARDOT_RTX_CMRp/CMRx/RTCM31/RTCM34` (network solutions) + `MS_CMRp/CMRx/RTCM31/RTCM34` (Nearest Single Base) |
-| num_stations | Unknown — physical CORS count not publicly enumerated; ARDOT cites "GNSS CORS stations aligned with NGS NSRS" without count. Mountpoints: 8 STR (multi-format variants over fewer physical bases — 4 NSB + 4 VRS combinations) |
+| num_stations | 16 AR-prefix NGS CORS identified in NGS NAD83(2011) bulk coordinate file (queried 2026-05-21). ARDOT sensor map login-gated; operator does not enumerate stations publicly. Sourcetable: 8 STR (4 NSB + 4 VRS format variants over fewer physical bases). Station coordinates (NAD83(2011) decimal degrees) from NGS CORS coordinate file: ARBT 35.7099/-91.6285; ARCM 33.5424/-92.8827; ARDQ 34.0801/-94.3237; ARFY 36.1158/-94.1800; ARGS 34.0682/-93.1162; ARHP 33.6960/-93.6005; ARHR 36.1842/-93.0302; ARJB 35.8479/-90.7472; ARLR 34.6726/-92.3825; ARM3 36.3692/-92.3731; ARMH 36.3528/-92.3823; ARMO 33.5945/-91.8132; ARPB 34.1936/-91.9142; ARPG 36.0591/-90.5188; ARRV 35.3063/-93.1309; ARWY 35.2532/-90.8014. Source: https://geodesy.noaa.gov/corsdata/coord/coord_20/nad83_2011_geo.comp.txt queried 2026-05-21. Note: NGS file lists AR-prefix stations on NSRS; ARDOT may operate additional CORS not in NGS CORS network (not separately enumerated) |
 | hobbyist_eligibility | Likely yes — self-service portal; no professional licence; no published restriction |
 | legal_residency_required | Unclear — no stated requirement |
 | last_confirmed_alive | 2026-05-18 — `SOURCETABLE 200 OK` (8 STR; Trimble Caster 5.2) |
@@ -141,7 +141,7 @@ Commercial alternative: AZGPS (azgps.net) — paid VRS network covering AZ + sou
 | host:port | `rtvrn.mesacounty.us:2101` (35.131.54.14) |
 | tariff | Free — "a free service to the public" |
 | vrs | Yes — 6 VRS mountpoints: `VRS_CMR`, `VRS_CMRx`, `VRS_RTCMv3`, `VRS_CMR_RTX`, `VRS_CMRx_RTX`, `VRS_RTCMv3_RTX`. RTX_* variants = GPS+GLO+GAL+BDS; legacy = GPS+GLO (operator PDF, 2025-05) |
-| num_stations | 6 STR (all VRS variants); 33 base stations contribute, 17 of those are NGS CORS (per "RTVRN Login Instructions and NTRIP Mountpoints" PDF, 2025-05) |
+| num_stations | 6 STR (all VRS variants); 33 base stations contribute, 17 of those are NGS CORS (per "RTVRN Login Instructions and NTRIP Mountpoints" PDF, 2025-05). Station index at mesacounty.us/departments-and-services/public-works/gps-survey/gnss-cors-index/ lists 7 Mesa County (MC) sites + 20 other Western CO cooperating sites (1 decommissioned MC10). All active sites have individual pages with NAD83(2011) coordinates. Mesa County CORS coordinates (decimal degrees; L1/L2 APC, NAD83(2011); queried 2026-05-21): MC01 Grand Junction 39.091220/-108.528131; MC02 Landfill 39.014694/-108.490031; MC03 Fruita 39.189941/-108.730606; MC04 Gateway 38.683604/-108.973840; MC05 Delta 38.739566/-108.072968; MC06 Mack 39.222525/-108.851640; MC07 Debeque 39.317772/-108.212864; MC08 Collbran 39.235710/-107.977642; MC09 Nucla 38.243226/-108.558134; MC11 Montrose 38.455627/-107.878494. Western CO cooperating CORS: COAL Alamosa 37.459786/-105.876019; COA1 Aspen 39.195945/-106.854562; SE01 Carbondale 39.400345/-107.212089; COCO Cortez 37.296846/-108.617376; EPP1 Craig 40.512907/-107.567502; R301 Crawford 38.656594/-107.590935; TOCB Crested Butte 38.870914/-106.982033; CT14 Durango 37.152914/-107.756077; EC01 Eagle 39.651820/-106.847703; GSC1 Glenwood Springs 39.547014/-107.327521; GC01 Gunnison 38.545121/-106.928386; RBC1 Meeker 40.040863/-107.891686; CNC1 Rangely 40.076546/-108.789562; RC01 Rifle 39.533260/-107.768235; SA01 Salida 38.552163/-106.019305; STBT Steamboat 40.512716/-106.864941; TC01 Telluride 37.937751/-107.813318. Source: mesacounty.us/gnss-cors-index individual station pages, queried 2026-05-21 |
 | hobbyist_eligibility | Likely yes — public service; no stated restriction; serves "surveying, construction, agriculture, mapping, and science industries" |
 | legal_residency_required | No — no stated restriction |
 | last_confirmed_alive | 2026-05-18 — `SOURCETABLE 200 OK` (6 STR; Trimble Caster 5.3) |
@@ -360,6 +360,7 @@ Topcon announced Topnet Live expansion to include HI in October 2024 (commercial
 - ARDOT GPS Control / Arkansas GIS Office: https://gis.arkansas.gov/product/ardot-gps-control/
 - ARDOT Control Surveys (datum citation): https://ardot.gov/divisions/surveys/control-surveys/
 - ARDOT Trimble config PDF: http://gps.ardot.gov/Configuring%20Trimble%20Receiver%20on%20ARDOT%20RTN.pdf
+- ARDOT CORS station coordinates (AR-prefix NGS NAD83(2011)): https://geodesy.noaa.gov/corsdata/coord/coord_20/nad83_2011_geo.comp.txt (queried 2026-05-21)
 - PAGIS GPS Reference: https://www.pagis.org/index.php/data-resources/gps-reference-station-access/
 - TxDOT RTN portal: https://txrtn.txdot.gov/
 - TxDOT GPS page: https://www.txdot.gov/data-maps/global-positioning-system-gps.html
@@ -371,6 +372,7 @@ Topcon announced Topnet Live expansion to include HI in October 2024 (commercial
 - Mesa County RTVRN: https://www.mesacounty.us/departments-and-services/public-works/gps-survey/real-time-virtual-reference-network-rtvrn
 - Mesa County RTVRN docs (mountpoints + datum citation): https://www.mesacounty.us/sites/default/files/2025-05/RTVRN%20Mountpoint%20Names.pdf, https://www.mesacounty.us/sites/default/files/2025-05/RTVRN%20Login%20Instructions%20and%20NTRIP%20Mountpoints.pdf
 - Mesa County RTVRN portal: https://rtvrn.mesacounty.us/
+- Mesa County GNSS CORS index (individual station pages with NAD83(2011) coords, queried 2026-05-21): https://www.mesacounty.us/departments-and-services/public-works/gps-survey/gnss-cors-index/
 - TURN GPS UGRC: https://gis.utah.gov/products/turn/
 - TURN GPS connecting (datum + tariff citation): https://gis.utah.gov/documentation/turn/connecting/
 - TURN GPS bill pay: https://turngps-billpay.ugrc.utah.gov

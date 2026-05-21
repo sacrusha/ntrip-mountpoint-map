@@ -1,5 +1,5 @@
 # Ecuador [EC] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-17 (re-verified; original 2026-05-01)
+**Date researched:** 2026-05-21 (pipeline coord note added; prior versions: 2026-05-17, 2026-05-01)
 
 ## Status: YES — free public NTRIP RTK caster operating (REGME-IP / IGM Ecuador), live-confirmed
 
@@ -18,6 +18,9 @@
 | **registration** | https://www.geoportaligm.gob.ec/ntrip/public/register |
 | **last_confirmed_alive** | **2026-05-17** (NTRIP sourcetable retrieved live with 26 STR rows; SNIP build of 2025-12-19 confirms recent maintenance) |
 | **datum_epoch** | omitted -- no citable operator declaration. IGM REGME has historically been aligned with SIRGAS2000/ITRF2000 @ epoch 2000.4 per SIRGAS bulletins (e.g. https://sirgas.ipgh.org/docs/Boletines/Cisneros_2013_RedPasiva_y_REGME_Ecuador.pdf), but per [datum-epoch] rule SIRGAS regional documentation is not the operator portal/spec; IGM's NTRIP portal does not publish the datum on a freely-fetched page. |
+
+## Pipeline status (2026-05-21)
+The REGME-IP sourcetable exposes 26 individual station mounts, each with a distinct city name, 4-char code, and physical coordinates confirmed in the live sourcetable (2026-05-17). This is NOT a VRS-only network. The mounts carry `solution=0` and `nmea=1` (SNIP caster marks them as requiring GGA back-channel). However, the primer notes that `nmea=1` is unreliable as a VRS indicator and can represent misconfiguration. These are individual physical stations, not network solutions. The pipeline needs `nmea_filter: false` on the regme_ec endpoint to surface the 26 station pins. The coords in the sourcetable are physical station positions (e.g. Alausi at -2.20, -78.85; Quito at -0.22, -78.49) — verified against map.
 
 ## Context Notes
 

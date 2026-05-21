@@ -1,5 +1,5 @@
 # Indonesia [ID] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-17 (refresh of 2026-05-13 entry; `nrtk.big.go.id:2001` re-verified `SOURCETABLE 200 OK` `GNSS Spider 7.10.1.168/1.0`, identical 4 mounts Content-Length 445; SRGI datum declaration captured as citable)
+**Date researched:** 2026-05-21 (SRGI visual GNSS station monitor noted; prior versions: 2026-05-17, 2026-05-13)
 
 ## Status: YES — InaCORS (BIG) free national NTRIP caster operational; coverage outside Java/Bali sparse
 
@@ -25,7 +25,8 @@
   - SRGI `jaring-kontrol-geodesi` page (observed 2026-05-13): still cites 397 as of 2023
   - End of 2024: 432 stations operational with 41 additional stations under construction (≈473 total planned by end-2025); 81.62% of Indonesia's urban+rural area within 50 km of an InaCORS station; Java and Bali fully served, Sumatra/Nusa Tenggara/Maluku/Sulawesi almost completely served, Papua and Kalimantan still gap regions
   - BPN (National Land Agency / ATR-BPN) separately operates ~186 CORS stations; integration of BPN stations into InaCORS is in progress
-- **Station count (sourcetable)**: only 4 mountpoints appear in the live NTRIP sourcetable (confirmed 2026-05-12) — these are network solution products (`max`, `Nearest`, `imax`, `vrs`), not individual physical stations. The gap between declared (~400+ physical CORS) and exposed (4 network mounts) is by design: BIG runs Leica GNSS Spider in network-RTK mode where physical stations feed the network solution internally and individual single-base RTK mountpoints are not exposed publicly. This means the on-map "station count" derived from the sourcetable will always be 4 — actual physical coverage is much wider
+- **Station count (sourcetable)**: only 4 mountpoints appear in the live NTRIP sourcetable (confirmed 2026-05-17) — these are network solution products (`max`, `Nearest`, `imax`, `vrs`), not individual physical stations. The gap between declared (~400+ physical CORS) and exposed (4 network mounts) is by design: BIG runs Leica GNSS Spider in network-RTK mode where physical stations feed the network solution internally and individual single-base RTK mountpoints are not exposed publicly. This means the on-map "station count" derived from the sourcetable will always be 4 — actual physical coverage is much wider.
+- **Station map (SRGI visual GNSS)**: The SRGI real-time GNSS monitor at `https://srgi.big.go.id/visual_gnss` exposes a dropdown listing all ~250 real-time InaCORS stations by code and administrative location (e.g. "CRPN - Rancapinang - Pandeglang - Banten"), confirming live station identity. No bulk coordinate download is available without login. The station monitoring page `https://srgi.big.go.id/visual_gnss/detail/[CODE]/nr` provides per-station displacement data (confirming the station exists and is active) but coordinates are not exposed without a registered BIG account.
 - **Coverage**: physically denser on Java, Bali, Sumatra, and Sulawesi; Papua, Kalimantan, and eastern islands have documented gaps. BIG's 2022 development planning paper identified Papua, Kalimantan, and parts of Sulawesi/Sumatra as priority expansion areas
 - **Registered users**: 16,800+ as of last published report (BIG)
 - **Correction format**: RTCM; RINEX post-processing also offered via the same portal
@@ -64,7 +65,8 @@ No independent commercial NTRIP VRS network with Indonesia-wide coverage has bee
 - SRGI — service check: https://srgi.big.go.id/page/service-check (WebFetch 2026-05-13: "397 stasiun CORS terhitung sampai akhir tahun 2022")
 - SRGI — Jaring Kontrol Geodesi: https://srgi.big.go.id/page/jaring-kontrol-geodesi (WebFetch 2026-05-13: "Sampai tahun 2023, BIG mengelola 397 Ina-CORS")
 - BIG news 2023-09-04 "PJKGG Terus Lakukan Perawatan Stasiun InaCORS" (WebFetch 2026-05-13: 396 stations Aug 2023, target 435 by end-2023): https://big.go.id/en/news/2023/09/04/pjkgg-terus-lakukan-perawatan-stasiun-inacors
-- SRGI — dataset (InaCORS station distribution): https://data.go.id/dataset/dataset/srgi-inacors-wilayah-indonesia
+- SRGI visual GNSS station monitor: https://srgi.big.go.id/visual_gnss (250 real-time stations in dropdown; no bulk coord download without login — 2026-05-21)
+- SRGI — dataset (InaCORS station distribution): https://data.go.id/dataset/dataset/srgi-inacors-wilayah-indonesia (URL returns 404 as of 2026-05-21; archived reference only)
 - ResearchGate — InaCORS distribution figure: https://www.researchgate.net/figure/Distribution-of-InaCORS-source-https-nrtkbiggoid_fig2_355391562
 - "The Development Planning of the InaCORS BIG for Disaster Climate Environment and Hazard Mitigation" (2022): https://www.researchgate.net/publication/364394916_The_Development_Planning_of_the_InaCORS_BIG_for_Disaster_Climate_Environment_and_Hazard_Mitigation
 - "InaCORS BIG Satu Referensi Pemetaan Indonesia": https://www.researchgate.net/publication/337705971_InaCORS_BIG_Satu_Referensi_Pemetaan_Indonesia

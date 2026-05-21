@@ -11,7 +11,7 @@
 | access_url | https://www.acorn-gnss.net — self-service registration via same portal; non-self-service questions: ACORN@ALASKA.GOV |
 | host:port | `www.acorn-gnss.net:2101` (IP 18.216.199.86) |
 | software | Trimble Pivot / VRS3Net (NTRIP Trimble Caster 5.2) |
-| num_stations | Physical CORS count not declared on operator pages. 8 mountpoints live: 1 nearest-station alias (`MS_RTCM3`) + 5 regional VRS + 1 NorthWest VRS + 1 experimental NortonSound VRS. Trimble Pivot single-tenant convention hides per-station ST entries |
+| num_stations | Physical CORS count not declared on operator pages. 8 mountpoints live: 1 nearest-station alias (`MS_RTCM3`) + 5 regional VRS + 1 NorthWest VRS + 1 experimental NortonSound VRS. Trimble Pivot single-tenant convention hides per-station ST entries. Station coordinates not publicly accessible: ArcGIS dataset at gis.data.alaska.gov/datasets/alaskas-continuously-operating-reference-network-acorn-1/about returns item-not-found (2026-05-21); Trimble Pivot sensor map login-gated |
 | tariff | Free — explicit per 2025 DGGS workshop ("data products will be shared freely"). No rate card |
 | vrs | Yes — 5 regional VRS + experimental NortonSound VRS; `MS_RTCM3` = nearest-station alias |
 | hobbyist_eligibility | Unclear — self-service registration; no professional licence field; portal requires "Organization" field (purpose ambiguous); 2023 Flint DGGS deck says partners receive "free or paid access" (paid = inter-agency cost-sharing, not end-user fee) but no confirmed hobbyist case located. Confirm: ACORN@ALASKA.GOV |
@@ -54,5 +54,5 @@ See `US-NOTA_NetworkOfTheAmericas.md` for operator-scope detail. AK sub-coverage
 - 2025 DGGS workshop (datum, mountpoints, host, registration): https://dggs.alaska.gov/webpubs/dggs/ago/documents/2025AKGeoSummit/Workshop_Gervelis_State_of_Alaska_ACORN.pdf
 - 2023 DGGS (Flint) free-service statement: https://dggs.alaska.gov/webpubs/dggs/ago/documents/2023AKGeoSummit/2023AKGeoSummit_Session5_Flint.pdf
 - ACORN StoryMap: https://storymaps.arcgis.com/stories/72e4d646b51a4c56bddcc0ecc9f16ecd
-- ACORN ArcGIS dataset: https://gis.data.alaska.gov/datasets/alaskas-continuously-operating-reference-network-acorn-1/about
+- ACORN ArcGIS dataset: https://gis.data.alaska.gov/datasets/alaskas-continuously-operating-reference-network-acorn-1/about (item b2bcef1f97a64aaf9c833a228a0b517c returns "Item does not exist or is inaccessible" 2026-05-21; station coordinates not publicly accessible via this API; Trimble Pivot sensor map is login-gated)
 - Contact: ACORN@ALASKA.GOV

@@ -20,6 +20,51 @@
 | **last_confirmed_alive** | 2026-05-21 — `193.219.10.2:2101` and `195.182.72.152:2101` both returned `SOURCETABLE 200 OK` (NTRIP Trimble Ntrip Caster 5.2), 12 STR rows each (identical mountpoint list to prior sourcetables); geoportal.lt LitPOS-EN portal accessible |
 | **datum_epoch** | omitted — no citable operator declaration on geoportal.lt LitPOS-EN / litpos-paslauga pages. Primer citation rule: operator-only, declared only, not inferred; EPSG-registry values are excluded. |
 
+## Physical Station Coordinates (LitPOS, 31 of 35 LT stations)
+
+Source: https://zinynas.geonovus.lt/node/39 (GeoNovus knowledge base, LitPOS ellipsoidal coordinates; data sourced from LitPOS FTP server, as of 2016 publication date — 31 LT stations listed; 4 additional LT stations added to the network post-2016 are not yet in this table). Cross-check: GeoNovus node/40 confirms same 31 station codes in LKS-94 projection. Source confirmed 2026-05-21.
+
+Decimal degrees converted from DMS. GeoNovus describes these as "elipsoidinės koordinatės" (ellipsoidal coordinates) from the LitPOS FTP server; datum not stated on the page. LKS-94 (Lithuania's national frame, based on GRS80 ellipsoid, aligned to ETRS89 at 1994.0) is the expected datum for LitPOS stations. Treat as LKS-94 / ETRS89-aligned — do not use without confirmation for cm-level work.
+
+| Code | Name | Lat (N) | Lon (E) |
+|------|------|---------|---------|
+| ALYT | Alytus | 54.3933° | 24.0397° |
+| BIRZ | Biržai | 56.2009° | 24.7582° |
+| DIDZ | Didžiasalis | 55.3167° | 26.6730° |
+| DKST | Dūkštas | 55.5204° | 26.3189° |
+| ELKT | Elektrėnai | 54.7767° | 24.6445° |
+| JNSK | Joniškis | 56.2421° | 23.6176° |
+| KAUN | Kaunas | 54.9061° | 23.9796° |
+| KEDN | Kėdainiai | 55.2575° | 23.9942° |
+| KELM | Kelmė | 55.6284° | 22.9307° |
+| KLAI | Klaipėda | 55.6993° | 21.1460° |
+| KRTN | Kretinga | 55.8881° | 21.2456° |
+| MAZK | Mažeikiai | 56.3145° | 22.3086° |
+| MRJM | Marijampolė | 54.5729° | 23.3693° |
+| NIDA | Nida | 55.3089° | 21.0050° |
+| PNVZ | Panevėžys | 55.7368° | 24.3064° |
+| RIET | Rietavas | 55.7300° | 21.9290° |
+| RKSK | Rokiškis | 55.9579° | 25.5864° |
+| SAKI | Šakiai | 54.9531° | 23.0488° |
+| SAUL | Šiauliai | 55.9565° | 23.3144° |
+| SILT | Šilutė | 55.3419° | 21.4721° |
+| SLCN | Šalčininkai | 54.3150° | 25.3848° |
+| SVNL | Švenčionėliai | 55.1627° | 25.9960° |
+| TAUR | Tauragė | 55.2534° | 22.2836° |
+| TELS | Telšiai | 55.9852° | 22.2408° |
+| UKMG | Ukmergė | 55.2387° | 24.7318° |
+| UTEN | Utena | 55.5062° | 25.6039° |
+| VARN | Varėna | 54.2159° | 24.5954° |
+| VEIS | Veisiejai | 54.0939° | 23.7072° |
+| VGTU | Vilnius (VGTU) | 54.7227° | 25.3374° |
+| VLNS | Vilnius 2 | 54.6531° | 25.2987° |
+| VSTT | Vištytis | 54.4538° | 22.7117° |
+
+Note: The GeoNovus table also lists 2 ASG-EUPOS (PL) partner stations (SOKL, GIZY) and 6 LATPOS (LV) partner stations (BAUS, DAUG, LIEP, DOB1, SLD1, JEK1) — accessible to LitPOS account holders but not LitPOS physical infrastructure. The 4 missing LT stations (to reach 35 total) were likely added after 2016; their codes are not confirmed in any public source consulted as of 2026-05-21. One candidate: AKIS (54.85, 24.35, near Kaunas) appears in the Centipede sourcetable with LTU country tag — may be a community station rather than LitPOS.
+
+## Pipeline note (LitPOS, 2026-05-21)
+All 12 sourcetable mounts carry `lat=54, lon=23` (Lithuania centroid) and `solution=1`. The pipeline drops all entries. Physical station coords found via GeoNovus cannot be injected without either: (a) a second endpoint that exposes per-station mounts, or (b) coord_overrides if per-station mounts were exposed with wrong coords. Currently no path to map pins from this sourcetable.
+
 ## Mountpoint Catalogue — both servers (sourcetable 2026-05-12)
 
 | Mountpoint | Format | Type | Constellations |
@@ -88,5 +133,7 @@ All mountpoints carry coordinates `54, 23` (Lithuania centroid) and `solution=1`
 - M3G LitPOS GNSS metadata: https://gnss-metadata.eu/MOID/projnet.5f366a387e27d32c1b218ac2
 - LitPOS performance analysis (Vilnius Tech, 2017): https://etalpykla.vilniustech.lt/bitstream/handle/123456789/155251/10th_ICEE_2017-161.pdf
 - ArduSimple Lithuania: https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-lithuania/
+- GeoNovus — LitPOS ellipsoidal coordinates (31 stations, from LitPOS FTP): https://zinynas.geonovus.lt/node/39 (2026-05-21)
+- GeoNovus — LitPOS LKS-94 plane coordinates (31 stations): https://zinynas.geonovus.lt/node/40 (2026-05-21)
 - Existing rtk_inventory.md `litpos` entry (candidate status, two-IP setup, EUPOS context, pipeline VRS-only)
 - Stations.json 2026-05-12 fetch: LT (LTU) = 1 Centipede entry (AKIS); LitPOS contributes 0 mappable pins (vrs-only)
