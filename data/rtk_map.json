@@ -2320,6 +2320,11 @@
       "endpoints": [
         {
           "url": "http://gpsumbria.regione.umbria.it:2101/"
+        },
+        {
+          "type": "file",
+          "id": "gpsumbria_ext",
+          "path": "data/external_gpsumbria.json"
         }
       ]
     },
@@ -2338,6 +2343,11 @@
       "endpoints": [
         {
           "url": "http://gnss-rtk.regione.abruzzo.it:2101/"
+        },
+        {
+          "type": "file",
+          "id": "gnss_abruzzo_lazio_ext",
+          "path": "data/external_gnss_abruzzo_lazio.json"
         }
       ]
     },
@@ -2383,6 +2393,11 @@
             "user": "Campania",
             "pass": "GNSS"
           }
+        },
+        {
+          "type": "file",
+          "id": "gnss_campania_ext",
+          "path": "data/external_gnss_campania.json"
         }
       ]
     },

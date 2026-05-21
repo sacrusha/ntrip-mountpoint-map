@@ -1,15 +1,19 @@
 {
-  "_comment": "MOCK SEED for architecture validation. Replace with real Puglia station coords once curated from the operator inventory + Analist blog (see docs/ntrip_research/IT_Italy.md). All 5 entries below are made-up positions.",
   "last_reviewed": "2026-05-21",
   "source_url": "https://blog.analistgroup.com/come-connettersi-alla-rete-gnss-in-puglia/",
   "pin_origin": "forum",
   "stations": [
-    {"name": "MOCK_BARI",   "lat": 41.13, "lon": 16.86, "country": "ITA"},
-    {"name": "MOCK_LECCE",  "lat": 40.35, "lon": 18.17, "country": "ITA"},
-    {"name": "MOCK_TARANTO","lat": 40.47, "lon": 17.24, "country": "ITA"},
-    {"name": "MOCK_FOGGIA", "lat": 41.46, "lon": 15.55, "country": "ITA",
-     "format": "RTCM 3", "carrier": 2, "constellations": "GPS+GLO+GAL"},
-    {"name": "MOCK_BRINDISI","lat": 40.64, "lon": 17.94, "country": "ITA",
-     "format": "RTCM 3", "carrier": 3, "constellations": "GPS+GLO+GAL+BDS"}
+    {"name": "ACCA", "lat": 41.1586, "lon": 15.3312, "country": "ITA"},
+    {"name": "FASA", "lat": 40.8348, "lon": 17.3590, "country": "ITA"},
+    {"name": "FOGG", "lat": 41.4522, "lon": 15.5321, "country": "ITA"},
+    {"name": "GINO", "lat": 40.5780, "lon": 16.7578, "country": "ITA"},
+    {"name": "GIUR", "lat": 40.1244, "lon": 18.4300, "country": "ITA"},
+    {"name": "ISCH", "lat": 41.9043, "lon": 15.8965, "country": "ITA"},
+    {"name": "MARGH", "lat": 41.3733, "lon": 16.1489, "country": "ITA"},
+    {"name": "POGG", "lat": 40.9166, "lon": 16.2538, "country": "ITA"},
+    {"name": "SASA", "lat": 40.3852, "lon": 17.9646, "country": "ITA"},
+    {"name": "SPCI", "lat": 41.7404, "lon": 15.2595, "country": "ITA"},
+    {"name": "UGEN", "lat": 39.9277, "lon": 18.1620, "country": "ITA"},
+    {"name": "VALE", "lat": 41.0164, "lon": 16.9045, "country": "ITA"}
   ]
 }

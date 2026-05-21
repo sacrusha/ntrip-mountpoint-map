@@ -1,0 +1,29 @@
+{
+  "last_reviewed": "2026-05-21",
+  "source_url": "https://blog.analistgroup.com/come-connettersi-alla-rete-gnss-in-abruzzo/",
+  "pin_origin": "forum",
+  "stations": [
+    {"name": "ALRA", "lat": 41.7339, "lon": 14.0344, "country": "ITA"},
+    {"name": "ATRA", "lat": 42.5760, "lon": 13.9910, "country": "ITA"},
+    {"name": "AZRA", "lat": 42.0431, "lon": 13.4238, "country": "ITA"},
+    {"name": "BLRA", "lat": 41.8095, "lon": 13.5617, "country": "ITA"},
+    {"name": "CDRA", "lat": 42.3675, "lon": 13.7201, "country": "ITA"},
+    {"name": "FRRA", "lat": 42.4177, "lon": 14.2922, "country": "ITA"},
+    {"name": "AQRA", "lat": 42.3659, "lon": 13.3744, "country": "ITA"},
+    {"name": "MRRA", "lat": 42.8853, "lon": 13.9159, "country": "ITA"},
+    {"name": "MZRA", "lat": 41.9466, "lon": 14.4284, "country": "ITA"},
+    {"name": "MTRA", "lat": 42.5278, "lon": 13.2400, "country": "ITA"},
+    {"name": "OCRA", "lat": 42.0495, "lon": 13.0390, "country": "ITA"},
+    {"name": "OTRA", "lat": 41.9549, "lon": 13.6459, "country": "ITA"},
+    {"name": "PBRA", "lat": 42.1242, "lon": 14.2285, "country": "ITA"},
+    {"name": "RMRA", "lat": 42.2035, "lon": 13.5202, "country": "ITA"},
+    {"name": "MIRA", "lat": 42.2204, "lon": 14.4453, "country": "ITA"},
+    {"name": "SCRA", "lat": 42.2681, "lon": 14.0021, "country": "ITA"},
+    {"name": "SMRA", "lat": 42.0499, "lon": 13.9314, "country": "ITA"},
+    {"name": "TERA", "lat": 42.6621, "lon": 13.7004, "country": "ITA"},
+    {"name": "VCRA", "lat": 42.7354, "lon": 13.4975, "country": "ITA"},
+    {"name": "VTRA", "lat": 42.1104, "lon": 14.7079, "country": "ITA"},
+    {"name": "MOCA", "lat": 42.3536, "lon": 11.6039, "country": "ITA"},
+    {"name": "ROUN", "lat": 41.8932, "lon": 12.4937, "country": "ITA"}
+  ]
+}

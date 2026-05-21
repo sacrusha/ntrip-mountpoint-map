@@ -1,0 +1,19 @@
+{
+  "last_reviewed": "2026-05-21",
+  "source_url": "https://blog.analistgroup.com/come-connettersi-alla-rete-gnss-in-umbria/",
+  "pin_origin": "forum",
+  "stations": [
+    {"name": "REAM", "lat": 42.5587, "lon": 12.4118, "country": "ITA"},
+    {"name": "REPI", "lat": 42.9521, "lon": 12.0024, "country": "ITA"},
+    {"name": "REFO", "lat": 42.9557, "lon": 12.7035, "country": "ITA"},
+    {"name": "ITGT", "lat": 43.2337, "lon": 12.7820, "country": "ITA"},
+    {"name": "REGU", "lat": 43.3520, "lon": 12.5780, "country": "ITA"},
+    {"name": "RENO", "lat": 42.7964, "lon": 13.0948, "country": "ITA"},
+    {"name": "UNOV", "lat": 42.7217, "lon": 12.1165, "country": "ITA"},
+    {"name": "UNPG", "lat": 43.1194, "lon": 12.3557, "country": "ITA"},
+    {"name": "UNSG", "lat": 43.5484, "lon": 12.1765, "country": "ITA"},
+    {"name": "UNTR", "lat": 42.5587, "lon": 12.6738, "country": "ITA"},
+    {"name": "RETO", "lat": 42.7823, "lon": 12.4069, "country": "ITA"},
+    {"name": "RETU", "lat": 43.2088, "lon": 12.0724, "country": "ITA"}
+  ]
+}

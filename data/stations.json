@@ -1,5 +1,5 @@
 {
-  "updated": "2026-05-21T17:07:33+00:00",
+  "updated": "2026-05-21T17:27:02+00:00",
   "scope": "free NTRIP sources delivering better than ~50 cm",
   "sources": {
     "asg_eupos": {
@@ -10,8 +10,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:23+00:00",
-      "last_ok": "2026-05-21T17:07:23+00:00",
+      "fetched_at": "2026-05-21T17:26:52+00:00",
+      "last_ok": "2026-05-21T17:26:52+00:00",
       "stations": []
     },
     "cropos": {
@@ -22,8 +22,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:23+00:00",
-      "last_ok": "2026-05-21T17:07:23+00:00",
+      "fetched_at": "2026-05-21T17:26:52+00:00",
+      "last_ok": "2026-05-21T17:26:52+00:00",
       "stations": [
         {
           "name": "BJEL_31",
@@ -945,8 +945,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:23+00:00",
-      "last_ok": "2026-05-21T17:07:23+00:00",
+      "fetched_at": "2026-05-21T17:26:52+00:00",
+      "last_ok": "2026-05-21T17:26:52+00:00",
       "stations": []
     },
     "walcors": {
@@ -969,8 +969,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:23+00:00",
-      "last_ok": "2026-05-21T17:07:23+00:00",
+      "fetched_at": "2026-05-21T17:26:53+00:00",
+      "last_ok": "2026-05-21T17:26:53+00:00",
       "stations": []
     },
     "estpos": {
@@ -1005,8 +1005,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:24+00:00",
-      "last_ok": "2026-05-21T17:07:24+00:00",
+      "fetched_at": "2026-05-21T17:26:53+00:00",
+      "last_ok": "2026-05-21T17:26:53+00:00",
       "stations": [
         {
           "name": "0704-RTCM3",
@@ -1291,8 +1291,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:24+00:00",
-      "last_ok": "2026-05-21T17:07:24+00:00",
+      "fetched_at": "2026-05-21T17:26:53+00:00",
+      "last_ok": "2026-05-21T17:26:53+00:00",
       "stations": []
     },
     "sapos_NW": {
@@ -1303,8 +1303,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:23+00:00",
-      "last_ok": "2026-05-21T17:07:23+00:00",
+      "fetched_at": "2026-05-21T17:26:52+00:00",
+      "last_ok": "2026-05-21T17:26:52+00:00",
       "stations": []
     },
     "sapos_BW": {
@@ -1315,8 +1315,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:23+00:00",
-      "last_ok": "2026-05-21T17:07:23+00:00",
+      "fetched_at": "2026-05-21T17:26:52+00:00",
+      "last_ok": "2026-05-21T17:26:52+00:00",
       "stations": []
     },
     "sapos_BE": {
@@ -1327,8 +1327,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:24+00:00",
-      "last_ok": "2026-05-21T17:07:24+00:00",
+      "fetched_at": "2026-05-21T17:26:53+00:00",
+      "last_ok": "2026-05-21T17:26:53+00:00",
       "stations": []
     },
     "sapos_BB": {
@@ -1339,8 +1339,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:23+00:00",
-      "last_ok": "2026-05-21T17:07:23+00:00",
+      "fetched_at": "2026-05-21T17:26:52+00:00",
+      "last_ok": "2026-05-21T17:26:52+00:00",
       "stations": []
     },
     "sapos_MV": {
@@ -1351,8 +1351,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:23+00:00",
-      "last_ok": "2026-05-21T17:07:23+00:00",
+      "fetched_at": "2026-05-21T17:26:52+00:00",
+      "last_ok": "2026-05-21T17:26:52+00:00",
       "stations": []
     },
     "sapos_LSA": {
@@ -1363,8 +1363,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:24+00:00",
-      "last_ok": "2026-05-21T17:07:24+00:00",
+      "fetched_at": "2026-05-21T17:26:53+00:00",
+      "last_ok": "2026-05-21T17:26:53+00:00",
       "stations": [
         {
           "name": "0077-MSM",
@@ -1623,8 +1623,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:23+00:00",
-      "last_ok": "2026-05-21T17:07:23+00:00",
+      "fetched_at": "2026-05-21T17:26:52+00:00",
+      "last_ok": "2026-05-21T17:26:52+00:00",
       "stations": [
         {
           "name": "0198R3M",
@@ -1844,8 +1844,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:23+00:00",
-      "last_ok": "2026-05-21T17:07:23+00:00",
+      "fetched_at": "2026-05-21T17:26:53+00:00",
+      "last_ok": "2026-05-21T17:26:53+00:00",
       "stations": [
         {
           "name": "K_B",
@@ -2102,8 +2102,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:24+00:00",
-      "last_ok": "2026-05-21T17:07:24+00:00",
+      "fetched_at": "2026-05-21T17:26:53+00:00",
+      "last_ok": "2026-05-21T17:26:53+00:00",
       "stations": []
     },
     "wvrtn": {
@@ -2114,8 +2114,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:23+00:00",
-      "last_ok": "2026-05-21T17:07:23+00:00",
+      "fetched_at": "2026-05-21T17:26:52+00:00",
+      "last_ok": "2026-05-21T17:26:52+00:00",
       "stations": []
     },
     "mainedot": {
@@ -2126,8 +2126,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:24+00:00",
-      "last_ok": "2026-05-21T17:07:24+00:00",
+      "fetched_at": "2026-05-21T17:26:53+00:00",
+      "last_ok": "2026-05-21T17:26:53+00:00",
       "stations": []
     },
     "mesa_rtvrn": {
@@ -2138,8 +2138,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:24+00:00",
-      "last_ok": "2026-05-21T17:07:24+00:00",
+      "fetched_at": "2026-05-21T17:26:53+00:00",
+      "last_ok": "2026-05-21T17:26:53+00:00",
       "stations": []
     },
     "renep": {
@@ -2150,8 +2150,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:23+00:00",
-      "last_ok": "2026-05-21T17:07:23+00:00",
+      "fetched_at": "2026-05-21T17:26:53+00:00",
+      "last_ok": "2026-05-21T17:26:53+00:00",
       "stations": [
         {
           "name": "AGU1",
@@ -2715,8 +2715,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:23+00:00",
-      "last_ok": "2026-05-21T17:07:23+00:00",
+      "fetched_at": "2026-05-21T17:26:52+00:00",
+      "last_ok": "2026-05-21T17:26:52+00:00",
       "stations": []
     },
     "ugrf": {
@@ -2729,8 +2729,8 @@
       "pass": null,
       "userNote": "your registered username",
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:24+00:00",
-      "last_ok": "2026-05-21T17:07:24+00:00",
+      "fetched_at": "2026-05-21T17:26:53+00:00",
+      "last_ok": "2026-05-21T17:26:53+00:00",
       "stations": [
         {
           "name": "Abim",
@@ -3102,8 +3102,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:23+00:00",
-      "last_ok": "2026-05-21T17:07:23+00:00",
+      "fetched_at": "2026-05-21T17:26:52+00:00",
+      "last_ok": "2026-05-21T17:26:52+00:00",
       "stations": [
         {
           "name": "MOCA04",
@@ -3295,8 +3295,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:23+00:00",
-      "last_ok": "2026-05-21T17:07:23+00:00",
+      "fetched_at": "2026-05-21T17:26:52+00:00",
+      "last_ok": "2026-05-21T17:26:52+00:00",
       "stations": [
         {
           "name": "BZR2_4",
@@ -3368,8 +3368,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:24+00:00",
-      "last_ok": "2026-05-21T17:07:24+00:00",
+      "fetched_at": "2026-05-21T17:26:53+00:00",
+      "last_ok": "2026-05-21T17:26:53+00:00",
       "stations": [
         {
           "name": "ASIA",
@@ -3585,8 +3585,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:24+00:00",
-      "last_ok": "2026-05-21T17:07:24+00:00",
+      "fetched_at": "2026-05-21T17:26:53+00:00",
+      "last_ok": "2026-05-21T17:26:53+00:00",
       "stations": [
         {
           "name": "BAJA3",
@@ -3670,8 +3670,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:23+00:00",
-      "last_ok": "2026-05-21T17:07:23+00:00",
+      "fetched_at": "2026-05-21T17:26:52+00:00",
+      "last_ok": "2026-05-21T17:26:52+00:00",
       "stations": [
         {
           "name": "EDJ2",
@@ -3767,8 +3767,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:24+00:00",
-      "last_ok": "2026-05-21T17:07:24+00:00",
+      "fetched_at": "2026-05-21T17:26:53+00:00",
+      "last_ok": "2026-05-21T17:26:53+00:00",
       "stations": []
     },
     "nps_cors": {
@@ -3779,8 +3779,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:24+00:00",
-      "last_ok": "2026-05-21T17:07:24+00:00",
+      "fetched_at": "2026-05-21T17:26:53+00:00",
+      "last_ok": "2026-05-21T17:26:53+00:00",
       "stations": [
         {
           "name": "ACAD_RTCM3",
@@ -5484,8 +5484,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:23+00:00",
-      "last_ok": "2026-05-21T17:07:23+00:00",
+      "fetched_at": "2026-05-21T17:26:52+00:00",
+      "last_ok": "2026-05-21T17:26:52+00:00",
       "stations": [
         {
           "name": "Ampezzo_RTK",
@@ -5761,8 +5761,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:24+00:00",
-      "last_ok": "2026-05-21T17:07:24+00:00",
+      "fetched_at": "2026-05-21T17:26:53+00:00",
+      "last_ok": "2026-05-21T17:26:53+00:00",
       "stations": [
         {
           "name": "ACNS0",
@@ -7298,8 +7298,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:23+00:00",
-      "last_ok": "2026-05-21T17:07:23+00:00",
+      "fetched_at": "2026-05-21T17:26:52+00:00",
+      "last_ok": "2026-05-21T17:26:52+00:00",
       "stations": [
         {
           "name": "ARES_RTCM31",
@@ -7831,8 +7831,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:25+00:00",
-      "last_ok": "2026-05-21T17:07:25+00:00",
+      "fetched_at": "2026-05-21T17:26:54+00:00",
+      "last_ok": "2026-05-21T17:26:54+00:00",
       "stations": [
         {
           "name": "HKCL_32",
@@ -8108,8 +8108,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:24+00:00",
-      "last_ok": "2026-05-21T17:07:24+00:00",
+      "fetched_at": "2026-05-21T17:26:53+00:00",
+      "last_ok": "2026-05-21T17:26:53+00:00",
       "stations": []
     },
     "igac": {
@@ -8120,8 +8120,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:24+00:00",
-      "last_ok": "2026-05-21T17:07:24+00:00",
+      "fetched_at": "2026-05-21T17:26:53+00:00",
+      "last_ok": "2026-05-21T17:26:53+00:00",
       "stations": [
         {
           "name": "3MAT_RTCM3",
@@ -9861,8 +9861,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:23+00:00",
-      "last_ok": "2026-05-21T17:07:23+00:00",
+      "fetched_at": "2026-05-21T17:26:52+00:00",
+      "last_ok": "2026-05-21T17:26:52+00:00",
       "stations": []
     },
     "icecors": {
@@ -9873,8 +9873,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:24+00:00",
-      "last_ok": "2026-05-21T17:07:24+00:00",
+      "fetched_at": "2026-05-21T17:26:53+00:00",
+      "last_ok": "2026-05-21T17:26:53+00:00",
       "stations": [
         {
           "name": "AUSV_RTK",
@@ -10006,8 +10006,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:25+00:00",
-      "last_ok": "2026-05-21T17:07:25+00:00",
+      "fetched_at": "2026-05-21T17:26:53+00:00",
+      "last_ok": "2026-05-21T17:26:53+00:00",
       "stations": [
         {
           "name": "ANHN-RTCM23",
@@ -15938,8 +15938,8 @@
       "pass": "262461",
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:24+00:00",
-      "last_ok": "2026-05-21T17:07:24+00:00",
+      "fetched_at": "2026-05-21T17:26:53+00:00",
+      "last_ok": "2026-05-21T17:26:53+00:00",
       "stations": [
         {
           "name": "UGOT",
@@ -16009,7 +16009,7 @@
           "lonPrec": 2,
           "dualFreq": true,
           "tripleFreq": false,
-          "format": "RTCM 3",
+          "format": "RTCM 3.0",
           "constellations": "GPS+GLONASS",
           "country": "MGL"
         },
@@ -16206,6 +16206,18 @@
           "country": "MNG"
         },
         {
+          "name": "hoa2",
+          "lat": 46.94,
+          "lon": 93.62,
+          "latPrec": 2,
+          "lonPrec": 2,
+          "dualFreq": true,
+          "tripleFreq": false,
+          "format": "RTCM 3.2",
+          "constellations": "",
+          "country": "MNG"
+        },
+        {
           "name": "huv1_mgl",
           "lat": 49.64,
           "lon": 100.17,
@@ -16311,18 +16323,6 @@
           "tripleFreq": false,
           "format": "RTCM 3.2",
           "constellations": "GNSS",
-          "country": "MNG"
-        },
-        {
-          "name": "sua2",
-          "lat": 45.3,
-          "lon": 113.85,
-          "latPrec": 2,
-          "lonPrec": 2,
-          "dualFreq": true,
-          "tripleFreq": false,
-          "format": "RTCM 3.2",
-          "constellations": "GPS+GLO",
           "country": "MNG"
         },
         {
@@ -16443,9 +16443,21 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:25+00:00",
-      "last_ok": "2026-05-21T17:07:25+00:00",
+      "fetched_at": "2026-05-21T17:26:54+00:00",
+      "last_ok": "2026-05-21T17:26:54+00:00",
       "stations": [
+        {
+          "name": "177000AUS0",
+          "lat": -24.159,
+          "lon": 151.887,
+          "latPrec": 4,
+          "lonPrec": 4,
+          "dualFreq": true,
+          "tripleFreq": false,
+          "format": "RTCM 3",
+          "constellations": "GPS+GLO+GAL+BDS+QZS",
+          "country": "AUS"
+        },
         {
           "name": "240600NZL0",
           "lat": -38.69,
@@ -21583,6 +21595,18 @@
           "country": "AUS"
         },
         {
+          "name": "LORD00AUS0",
+          "lat": -31.5199,
+          "lon": 159.0612,
+          "latPrec": 4,
+          "lonPrec": 4,
+          "dualFreq": true,
+          "tripleFreq": false,
+          "format": "RTCM 3.3",
+          "constellations": "GPS+GLO+GAL+BDS+QZS",
+          "country": "AUS"
+        },
+        {
           "name": "LOTH00AUS0",
           "lat": -30.5335,
           "lon": 145.1168,
@@ -25567,18 +25591,6 @@
           "country": "AUS"
         },
         {
-          "name": "WIND00NAM0",
-          "lat": -22.57,
-          "lon": 17.09,
-          "latPrec": 4,
-          "lonPrec": 4,
-          "dualFreq": true,
-          "tripleFreq": false,
-          "format": "RTCM 3.3",
-          "constellations": "GPS+GLO+GAL",
-          "country": "NAM"
-        },
-        {
           "name": "WLAL00AUS0",
           "lat": -19.7786,
           "lon": 120.6435,
@@ -26200,8 +26212,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:24+00:00",
-      "last_ok": "2026-05-21T17:07:24+00:00",
+      "fetched_at": "2026-05-21T17:26:54+00:00",
+      "last_ok": "2026-05-21T17:26:54+00:00",
       "stations": [
         {
           "name": "240600NZL0",
@@ -26957,8 +26969,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:24+00:00",
-      "last_ok": "2026-05-21T17:07:24+00:00",
+      "fetched_at": "2026-05-21T17:26:53+00:00",
+      "last_ok": "2026-05-21T17:26:53+00:00",
       "stations": [
         {
           "name": "Anth-SB",
@@ -27810,8 +27822,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:25+00:00",
-      "last_ok": "2026-05-21T17:07:25+00:00",
+      "fetched_at": "2026-05-21T17:26:53+00:00",
+      "last_ok": "2026-05-21T17:26:53+00:00",
       "stations": [
         {
           "name": "ALAR0",
@@ -29290,6 +29302,18 @@
           "country": "BRA"
         },
         {
+          "name": "SJSP0",
+          "lat": -23.21,
+          "lon": -45.86,
+          "latPrec": 2,
+          "lonPrec": 2,
+          "dualFreq": true,
+          "tripleFreq": false,
+          "format": "RTCM 3.3",
+          "constellations": "GPS+GLO+GAL+BDS+SBAS",
+          "country": "BRA"
+        },
+        {
           "name": "SMAR0",
           "lat": -29.72,
           "lon": -53.72,
@@ -29551,8 +29575,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:25+00:00",
-      "last_ok": "2026-05-21T17:07:25+00:00",
+      "fetched_at": "2026-05-21T17:26:54+00:00",
+      "last_ok": "2026-05-21T17:26:54+00:00",
       "stations": [
         {
           "name": "25MA-v3.0",
@@ -29780,6 +29804,30 @@
           "tripleFreq": false,
           "format": "RTCM 3.2",
           "constellations": "GPS+GLO+GAL+BDS",
+          "country": "ARG"
+        },
+        {
+          "name": "CAEP-v3.0",
+          "lat": -25.95,
+          "lon": -60.62,
+          "latPrec": 2,
+          "lonPrec": 2,
+          "dualFreq": true,
+          "tripleFreq": false,
+          "format": "RTCM 3.0",
+          "constellations": "GPS+GLO",
+          "country": "ARG"
+        },
+        {
+          "name": "CAEP-v3.2",
+          "lat": -25.95,
+          "lon": -60.62,
+          "latPrec": 2,
+          "lonPrec": 2,
+          "dualFreq": true,
+          "tripleFreq": false,
+          "format": "RTCM 3.2",
+          "constellations": "GPS+GLO",
           "country": "ARG"
         },
         {
@@ -30239,6 +30287,18 @@
           "country": "ARG"
         },
         {
+          "name": "ITAI-v3.2",
+          "lat": -25.42,
+          "lon": -54.59,
+          "latPrec": 2,
+          "lonPrec": 2,
+          "dualFreq": true,
+          "tripleFreq": false,
+          "format": "RTCM 3.2",
+          "constellations": "GPS+GLO+GAL+BDS",
+          "country": "ARG"
+        },
+        {
           "name": "JBAL-v3.0",
           "lat": -27.58,
           "lon": -65.62,
@@ -30296,18 +30356,6 @@
           "tripleFreq": false,
           "format": "RTCM 3.2",
           "constellations": "GPS+GLO",
-          "country": "ARG"
-        },
-        {
-          "name": "JVCH-v3.0",
-          "lat": -27.0,
-          "lon": -64.68,
-          "latPrec": 2,
-          "lonPrec": 2,
-          "dualFreq": true,
-          "tripleFreq": false,
-          "format": "RTCM 3.0",
-          "constellations": "GPS+GLO+GAL+BDS",
           "country": "ARG"
         },
         {
@@ -30383,18 +30431,6 @@
           "country": "ARG"
         },
         {
-          "name": "LPGS-v3.0",
-          "lat": -34.9,
-          "lon": -57.93,
-          "latPrec": 2,
-          "lonPrec": 2,
-          "dualFreq": true,
-          "tripleFreq": false,
-          "format": "RTCM 3.0",
-          "constellations": "GPS+GLO",
-          "country": "ARG"
-        },
-        {
           "name": "LPGS-v3.2",
           "lat": -34.9,
           "lon": -57.93,
@@ -30458,6 +30494,30 @@
           "name": "MGNO-v3.2",
           "lat": -31.45,
           "lon": -64.35,
+          "latPrec": 2,
+          "lonPrec": 2,
+          "dualFreq": true,
+          "tripleFreq": false,
+          "format": "RTCM 3.2",
+          "constellations": "GPS+GLO+GAL+BDS",
+          "country": "ARG"
+        },
+        {
+          "name": "MGUE-v3.0",
+          "lat": -35.78,
+          "lon": -69.4,
+          "latPrec": 2,
+          "lonPrec": 2,
+          "dualFreq": true,
+          "tripleFreq": false,
+          "format": "RTCM 3.0",
+          "constellations": "GPS+GLO",
+          "country": "ARG"
+        },
+        {
+          "name": "MGUE-v3.2",
+          "lat": -35.78,
+          "lon": -69.4,
           "latPrec": 2,
           "lonPrec": 2,
           "dualFreq": true,
@@ -31079,21 +31139,9 @@
           "country": "ARG"
         },
         {
-          "name": "RIO2-v3.2",
+          "name": "RIO2-v3.0",
           "lat": -53.79,
           "lon": -67.75,
-          "latPrec": 2,
-          "lonPrec": 2,
-          "dualFreq": true,
-          "tripleFreq": false,
-          "format": "RTCM 3.2",
-          "constellations": "GPS+GLO+GAL+BDS",
-          "country": "ARG"
-        },
-        {
-          "name": "RSAL-v3.0",
-          "lat": -29.79,
-          "lon": -55.77,
           "latPrec": 2,
           "lonPrec": 2,
           "dualFreq": true,
@@ -31124,6 +31172,18 @@
           "tripleFreq": false,
           "format": "RTCM 3.0",
           "constellations": "GPS+GLO",
+          "country": "ARG"
+        },
+        {
+          "name": "RSCL-v3.2",
+          "lat": -28.14,
+          "lon": -54.75,
+          "latPrec": 2,
+          "lonPrec": 2,
+          "dualFreq": true,
+          "tripleFreq": false,
+          "format": "RTCM 3.2",
+          "constellations": "GPS+GLO+GAL+BDS",
           "country": "ARG"
         },
         {
@@ -31655,6 +31715,18 @@
           "country": "ARG"
         },
         {
+          "name": "UNSA-v3.0",
+          "lat": -24.73,
+          "lon": -65.41,
+          "latPrec": 2,
+          "lonPrec": 2,
+          "dualFreq": true,
+          "tripleFreq": false,
+          "format": "RTCM 3.0",
+          "constellations": "GPS+GLO",
+          "country": "ARG"
+        },
+        {
           "name": "UNSA-v3.2",
           "lat": -24.73,
           "lon": -65.41,
@@ -31868,8 +31940,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:24+00:00",
-      "last_ok": "2026-05-21T17:07:24+00:00",
+      "fetched_at": "2026-05-21T17:26:53+00:00",
+      "last_ok": "2026-05-21T17:26:53+00:00",
       "stations": [
         {
           "name": "GUAY",
@@ -32805,8 +32877,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:24+00:00",
-      "last_ok": "2026-05-21T17:07:24+00:00",
+      "fetched_at": "2026-05-21T17:26:53+00:00",
+      "last_ok": "2026-05-21T17:26:53+00:00",
       "stations": []
     },
     "ign_cr_cors": {
@@ -32817,8 +32889,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:25+00:00",
-      "last_ok": "2026-05-21T17:07:25+00:00",
+      "fetched_at": "2026-05-21T17:26:53+00:00",
+      "last_ok": "2026-05-21T17:26:53+00:00",
       "stations": [
         {
           "name": "BRBR3",
@@ -32998,8 +33070,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:25+00:00",
-      "last_ok": "2026-05-21T17:07:25+00:00",
+      "fetched_at": "2026-05-21T17:26:54+00:00",
+      "last_ok": "2026-05-21T17:26:54+00:00",
       "stations": [
         {
           "name": "240600NZL",
@@ -36911,8 +36983,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:24+00:00",
-      "last_ok": "2026-05-21T17:07:24+00:00",
+      "fetched_at": "2026-05-21T17:26:53+00:00",
+      "last_ok": "2026-05-21T17:26:53+00:00",
       "stations": [
         {
           "name": "989Shibata",
@@ -37428,8 +37500,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:24+00:00",
-      "last_ok": "2026-05-21T17:07:24+00:00",
+      "fetched_at": "2026-05-21T17:26:53+00:00",
+      "last_ok": "2026-05-21T17:26:53+00:00",
       "stations": []
     },
     "sapos_SL": {
@@ -37440,8 +37512,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:24+00:00",
-      "last_ok": "2026-05-21T17:07:24+00:00",
+      "fetched_at": "2026-05-21T17:26:53+00:00",
+      "last_ok": "2026-05-21T17:26:53+00:00",
       "stations": [
         {
           "name": "0928",
@@ -37549,8 +37621,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:23+00:00",
-      "last_ok": "2026-05-21T17:07:23+00:00",
+      "fetched_at": "2026-05-21T17:26:52+00:00",
+      "last_ok": "2026-05-21T17:26:52+00:00",
       "stations": []
     },
     "spin3": {
@@ -37561,8 +37633,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:23+00:00",
-      "last_ok": "2026-05-21T17:07:23+00:00",
+      "fetched_at": "2026-05-21T17:26:52+00:00",
+      "last_ok": "2026-05-21T17:26:52+00:00",
       "stations": [
         {
           "name": "ACCE",
@@ -38055,9 +38127,118 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:24+00:00",
-      "last_ok": "2026-05-21T17:07:24+00:00",
-      "stations": []
+      "fetched_at": "2026-05-21T17:26:53+00:00",
+      "last_ok": "2026-05-21T17:26:53+00:00",
+      "stations": [
+        {
+          "name": "ITGT",
+          "lat": 43.2337,
+          "lon": 12.782,
+          "latPrec": 4,
+          "lonPrec": 3,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "REAM",
+          "lat": 42.5587,
+          "lon": 12.4118,
+          "latPrec": 4,
+          "lonPrec": 4,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "REFO",
+          "lat": 42.9557,
+          "lon": 12.7035,
+          "latPrec": 4,
+          "lonPrec": 4,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "REGU",
+          "lat": 43.352,
+          "lon": 12.578,
+          "latPrec": 3,
+          "lonPrec": 3,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "RENO",
+          "lat": 42.7964,
+          "lon": 13.0948,
+          "latPrec": 4,
+          "lonPrec": 4,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "REPI",
+          "lat": 42.9521,
+          "lon": 12.0024,
+          "latPrec": 4,
+          "lonPrec": 4,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "RETO",
+          "lat": 42.7823,
+          "lon": 12.4069,
+          "latPrec": 4,
+          "lonPrec": 4,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "RETU",
+          "lat": 43.2088,
+          "lon": 12.0724,
+          "latPrec": 4,
+          "lonPrec": 4,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "UNOV",
+          "lat": 42.7217,
+          "lon": 12.1165,
+          "latPrec": 4,
+          "lonPrec": 4,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "UNPG",
+          "lat": 43.1194,
+          "lon": 12.3557,
+          "latPrec": 4,
+          "lonPrec": 4,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "UNSG",
+          "lat": 43.5484,
+          "lon": 12.1765,
+          "latPrec": 4,
+          "lonPrec": 4,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "UNTR",
+          "lat": 42.5587,
+          "lon": 12.6738,
+          "latPrec": 4,
+          "lonPrec": 4,
+          "country": "ITA",
+          "pin_origin": "forum"
+        }
+      ]
     },
     "gnss_abruzzo_lazio": {
       "url": "http://gnss-rtk.regione.abruzzo.it:2101/",
@@ -38066,10 +38247,209 @@
       "user": null,
       "pass": null,
       "userNote": null,
-      "status": "error",
-      "fetched_at": null,
-      "last_ok": null,
-      "stations": []
+      "status": "ok",
+      "fetched_at": "2026-05-21T17:26:52+00:00",
+      "last_ok": "2026-05-21T00:00:00+00:00",
+      "stations": [
+        {
+          "name": "ALRA",
+          "lat": 41.7339,
+          "lon": 14.0344,
+          "latPrec": 4,
+          "lonPrec": 4,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "AQRA",
+          "lat": 42.3659,
+          "lon": 13.3744,
+          "latPrec": 4,
+          "lonPrec": 4,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "ATRA",
+          "lat": 42.576,
+          "lon": 13.991,
+          "latPrec": 3,
+          "lonPrec": 3,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "AZRA",
+          "lat": 42.0431,
+          "lon": 13.4238,
+          "latPrec": 4,
+          "lonPrec": 4,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "BLRA",
+          "lat": 41.8095,
+          "lon": 13.5617,
+          "latPrec": 4,
+          "lonPrec": 4,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "CDRA",
+          "lat": 42.3675,
+          "lon": 13.7201,
+          "latPrec": 4,
+          "lonPrec": 4,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "FRRA",
+          "lat": 42.4177,
+          "lon": 14.2922,
+          "latPrec": 4,
+          "lonPrec": 4,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "MIRA",
+          "lat": 42.2204,
+          "lon": 14.4453,
+          "latPrec": 4,
+          "lonPrec": 4,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "MOCA",
+          "lat": 42.3536,
+          "lon": 11.6039,
+          "latPrec": 4,
+          "lonPrec": 4,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "MRRA",
+          "lat": 42.8853,
+          "lon": 13.9159,
+          "latPrec": 4,
+          "lonPrec": 4,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "MTRA",
+          "lat": 42.5278,
+          "lon": 13.24,
+          "latPrec": 4,
+          "lonPrec": 2,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "MZRA",
+          "lat": 41.9466,
+          "lon": 14.4284,
+          "latPrec": 4,
+          "lonPrec": 4,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "OCRA",
+          "lat": 42.0495,
+          "lon": 13.039,
+          "latPrec": 4,
+          "lonPrec": 3,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "OTRA",
+          "lat": 41.9549,
+          "lon": 13.6459,
+          "latPrec": 4,
+          "lonPrec": 4,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "PBRA",
+          "lat": 42.1242,
+          "lon": 14.2285,
+          "latPrec": 4,
+          "lonPrec": 4,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "RMRA",
+          "lat": 42.2035,
+          "lon": 13.5202,
+          "latPrec": 4,
+          "lonPrec": 4,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "ROUN",
+          "lat": 41.8932,
+          "lon": 12.4937,
+          "latPrec": 4,
+          "lonPrec": 4,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "SCRA",
+          "lat": 42.2681,
+          "lon": 14.0021,
+          "latPrec": 4,
+          "lonPrec": 4,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "SMRA",
+          "lat": 42.0499,
+          "lon": 13.9314,
+          "latPrec": 4,
+          "lonPrec": 4,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "TERA",
+          "lat": 42.6621,
+          "lon": 13.7004,
+          "latPrec": 4,
+          "lonPrec": 4,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "VCRA",
+          "lat": 42.7354,
+          "lon": 13.4975,
+          "latPrec": 4,
+          "lonPrec": 4,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "VTRA",
+          "lat": 42.1104,
+          "lon": 14.7079,
+          "latPrec": 4,
+          "lonPrec": 4,
+          "country": "ITA",
+          "pin_origin": "forum"
+        }
+      ]
     },
     "sit_puglia": {
       "url": "http://gps.sit.puglia.it:2101/",
@@ -38079,59 +38459,114 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:24+00:00",
-      "last_ok": "2026-05-21T17:07:24+00:00",
+      "fetched_at": "2026-05-21T17:26:53+00:00",
+      "last_ok": "2026-05-21T17:26:53+00:00",
       "stations": [
         {
-          "name": "MOCK_BARI",
-          "lat": 41.13,
-          "lon": 16.86,
-          "latPrec": 2,
+          "name": "ACCA",
+          "lat": 41.1586,
+          "lon": 15.3312,
+          "latPrec": 4,
+          "lonPrec": 4,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "FASA",
+          "lat": 40.8348,
+          "lon": 17.359,
+          "latPrec": 4,
+          "lonPrec": 3,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "FOGG",
+          "lat": 41.4522,
+          "lon": 15.5321,
+          "latPrec": 4,
+          "lonPrec": 4,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "GINO",
+          "lat": 40.578,
+          "lon": 16.7578,
+          "latPrec": 3,
+          "lonPrec": 4,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "GIUR",
+          "lat": 40.1244,
+          "lon": 18.43,
+          "latPrec": 4,
           "lonPrec": 2,
           "country": "ITA",
           "pin_origin": "forum"
         },
         {
-          "name": "MOCK_BRINDISI",
-          "lat": 40.64,
-          "lon": 17.94,
-          "latPrec": 2,
-          "lonPrec": 2,
-          "country": "ITA",
-          "pin_origin": "forum",
-          "format": "RTCM 3",
-          "constellations": "GPS+GLO+GAL+BDS",
-          "dualFreq": true,
-          "tripleFreq": true
-        },
-        {
-          "name": "MOCK_FOGGIA",
-          "lat": 41.46,
-          "lon": 15.55,
-          "latPrec": 2,
-          "lonPrec": 2,
-          "country": "ITA",
-          "pin_origin": "forum",
-          "format": "RTCM 3",
-          "constellations": "GPS+GLO+GAL",
-          "dualFreq": true,
-          "tripleFreq": false
-        },
-        {
-          "name": "MOCK_LECCE",
-          "lat": 40.35,
-          "lon": 18.17,
-          "latPrec": 2,
-          "lonPrec": 2,
+          "name": "ISCH",
+          "lat": 41.9043,
+          "lon": 15.8965,
+          "latPrec": 4,
+          "lonPrec": 4,
           "country": "ITA",
           "pin_origin": "forum"
         },
         {
-          "name": "MOCK_TARANTO",
-          "lat": 40.47,
-          "lon": 17.24,
-          "latPrec": 2,
-          "lonPrec": 2,
+          "name": "MARGH",
+          "lat": 41.3733,
+          "lon": 16.1489,
+          "latPrec": 4,
+          "lonPrec": 4,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "POGG",
+          "lat": 40.9166,
+          "lon": 16.2538,
+          "latPrec": 4,
+          "lonPrec": 4,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "SASA",
+          "lat": 40.3852,
+          "lon": 17.9646,
+          "latPrec": 4,
+          "lonPrec": 4,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "SPCI",
+          "lat": 41.7404,
+          "lon": 15.2595,
+          "latPrec": 4,
+          "lonPrec": 4,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "UGEN",
+          "lat": 39.9277,
+          "lon": 18.162,
+          "latPrec": 4,
+          "lonPrec": 3,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "VALE",
+          "lat": 41.0164,
+          "lon": 16.9045,
+          "latPrec": 4,
+          "lonPrec": 4,
           "country": "ITA",
           "pin_origin": "forum"
         }
@@ -38148,9 +38583,154 @@
       "pass": "GNSS",
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:24+00:00",
-      "last_ok": "2026-05-21T17:07:24+00:00",
-      "stations": []
+      "fetched_at": "2026-05-21T17:26:53+00:00",
+      "last_ok": "2026-05-21T17:26:53+00:00",
+      "stations": [
+        {
+          "name": "AGRO",
+          "lat": 40.3464,
+          "lon": 14.9968,
+          "latPrec": 4,
+          "lonPrec": 4,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "ALIF",
+          "lat": 41.327,
+          "lon": 14.3346,
+          "latPrec": 3,
+          "lonPrec": 4,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "ANGE",
+          "lat": 40.9309,
+          "lon": 15.1839,
+          "latPrec": 4,
+          "lonPrec": 4,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "AVEL",
+          "lat": 40.9119,
+          "lon": 14.7833,
+          "latPrec": 4,
+          "lonPrec": 4,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "BAR2",
+          "lat": 41.4099,
+          "lon": 15.0151,
+          "latPrec": 4,
+          "lonPrec": 4,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "BENE",
+          "lat": 41.1215,
+          "lon": 14.778,
+          "latPrec": 4,
+          "lonPrec": 3,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "CARI",
+          "lat": 41.1947,
+          "lon": 13.9742,
+          "latPrec": 4,
+          "lonPrec": 4,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "CITR",
+          "lat": 40.6886,
+          "lon": 15.2307,
+          "latPrec": 4,
+          "lonPrec": 4,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "EBOL",
+          "lat": 40.5466,
+          "lon": 14.987,
+          "latPrec": 4,
+          "lonPrec": 3,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "ISCH",
+          "lat": 40.712,
+          "lon": 13.9246,
+          "latPrec": 3,
+          "lonPrec": 4,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "NAPO",
+          "lat": 40.87,
+          "lon": 14.276,
+          "latPrec": 2,
+          "lonPrec": 3,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "NICO",
+          "lat": 41.0469,
+          "lon": 14.3274,
+          "latPrec": 4,
+          "lonPrec": 4,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "SALA",
+          "lat": 40.4172,
+          "lon": 15.5566,
+          "latPrec": 4,
+          "lonPrec": 4,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "SAPR",
+          "lat": 40.0737,
+          "lon": 15.6301,
+          "latPrec": 4,
+          "lonPrec": 4,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "TRGR",
+          "lat": 40.779,
+          "lon": 14.41,
+          "latPrec": 3,
+          "lonPrec": 2,
+          "country": "ITA",
+          "pin_origin": "forum"
+        },
+        {
+          "name": "VALL",
+          "lat": 40.2352,
+          "lon": 15.2799,
+          "latPrec": 4,
+          "lonPrec": 4,
+          "country": "ITA",
+          "pin_origin": "forum"
+        }
+      ]
     },
     "wiscors": {
       "url": "http://wiscors.dot.wi.gov:2101/",
@@ -38160,8 +38740,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:24+00:00",
-      "last_ok": "2026-05-21T17:07:24+00:00",
+      "fetched_at": "2026-05-21T17:26:53+00:00",
+      "last_ok": "2026-05-21T17:26:53+00:00",
       "stations": []
     },
     "fprn": {
@@ -38184,8 +38764,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:24+00:00",
-      "last_ok": "2026-05-21T17:07:24+00:00",
+      "fetched_at": "2026-05-21T17:26:53+00:00",
+      "last_ok": "2026-05-21T17:26:53+00:00",
       "stations": []
     },
     "macors": {
@@ -38208,8 +38788,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:23+00:00",
-      "last_ok": "2026-05-21T17:07:23+00:00",
+      "fetched_at": "2026-05-21T17:26:53+00:00",
+      "last_ok": "2026-05-21T17:26:53+00:00",
       "stations": []
     },
     "ct_acorn": {
@@ -38220,8 +38800,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:23+00:00",
-      "last_ok": "2026-05-21T17:07:23+00:00",
+      "fetched_at": "2026-05-21T17:26:52+00:00",
+      "last_ok": "2026-05-21T17:26:52+00:00",
       "stations": []
     },
     "azcors": {
@@ -38244,8 +38824,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:24+00:00",
-      "last_ok": "2026-05-21T17:07:24+00:00",
+      "fetched_at": "2026-05-21T17:26:53+00:00",
+      "last_ok": "2026-05-21T17:26:53+00:00",
       "stations": []
     },
     "alcors": {
@@ -38268,8 +38848,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:24+00:00",
-      "last_ok": "2026-05-21T17:07:24+00:00",
+      "fetched_at": "2026-05-21T17:26:53+00:00",
+      "last_ok": "2026-05-21T17:26:53+00:00",
       "stations": [
         {
           "name": "ADEL_Raw3x",
@@ -39125,8 +39705,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:24+00:00",
-      "last_ok": "2026-05-21T17:07:24+00:00",
+      "fetched_at": "2026-05-21T17:26:53+00:00",
+      "last_ok": "2026-05-21T17:26:53+00:00",
       "stations": [
         {
           "name": "NYAB_GIS_RTCM12",
@@ -39150,8 +39730,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:24+00:00",
-      "last_ok": "2026-05-21T17:07:24+00:00",
+      "fetched_at": "2026-05-21T17:26:53+00:00",
+      "last_ok": "2026-05-21T17:26:53+00:00",
       "stations": []
     },
     "agrs_nl": {
@@ -39162,8 +39742,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:24+00:00",
-      "last_ok": "2026-05-21T17:07:24+00:00",
+      "fetched_at": "2026-05-21T17:26:53+00:00",
+      "last_ok": "2026-05-21T17:26:53+00:00",
       "stations": [
         {
           "name": "AMEL00NLD0",
@@ -39583,8 +40163,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:25+00:00",
-      "last_ok": "2026-05-21T17:07:25+00:00",
+      "fetched_at": "2026-05-21T17:26:54+00:00",
+      "last_ok": "2026-05-21T17:26:54+00:00",
       "stations": []
     },
     "rtk2go": {
@@ -39599,8 +40179,8 @@
       "pass": "none",
       "userNote": "your email address",
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:27+00:00",
-      "last_ok": "2026-05-21T17:07:27+00:00",
+      "fetched_at": "2026-05-21T17:26:57+00:00",
+      "last_ok": "2026-05-21T17:26:57+00:00",
       "stations": [
         {
           "name": "AGROORSOLIC",
@@ -39649,6 +40229,18 @@
           "format": "RTCM 3.2",
           "constellations": "",
           "country": "USA"
+        },
+        {
+          "name": "AUT00OBDA0",
+          "lat": 47.97,
+          "lon": 14.41,
+          "latPrec": 2,
+          "lonPrec": 2,
+          "dualFreq": true,
+          "tripleFreq": false,
+          "format": "RTCM 3.3",
+          "constellations": "",
+          "country": "AUT"
         },
         {
           "name": "AUT_A-GLAS",
@@ -40095,18 +40687,6 @@
           "country": "AUS"
         },
         {
-          "name": "BirdsLandingMHF",
-          "lat": 38.08,
-          "lon": -121.85,
-          "latPrec": 2,
-          "lonPrec": 2,
-          "dualFreq": true,
-          "tripleFreq": false,
-          "format": "RTCM 3.2",
-          "constellations": "",
-          "country": "USA"
-        },
-        {
           "name": "Bobcat58504",
           "lat": 46.79,
           "lon": -100.73,
@@ -40333,18 +40913,6 @@
           "format": "RTCM 3.3",
           "constellations": "",
           "country": "CAN"
-        },
-        {
-          "name": "COMPCONTRACT",
-          "lat": 51.99,
-          "lon": 0.09,
-          "latPrec": 2,
-          "lonPrec": 2,
-          "dualFreq": true,
-          "tripleFreq": false,
-          "format": "RTCM 3.3",
-          "constellations": "",
-          "country": "GBR"
         },
         {
           "name": "CORNFIELD123",
@@ -40966,7 +41534,7 @@
           "lonPrec": 2,
           "dualFreq": true,
           "tripleFreq": false,
-          "format": "RTCM 3",
+          "format": "RTCM 3.2",
           "constellations": "",
           "country": "TUR"
         },
@@ -41355,6 +41923,18 @@
           "country": "CHE"
         },
         {
+          "name": "FPELY",
+          "lat": 45.7,
+          "lon": -72.4,
+          "latPrec": 2,
+          "lonPrec": 2,
+          "dualFreq": true,
+          "tripleFreq": false,
+          "format": "RTCM 3.2",
+          "constellations": "",
+          "country": "CAN"
+        },
+        {
           "name": "FR10433-1",
           "lat": 48.21,
           "lon": 4.42,
@@ -41662,7 +42242,7 @@
           "lonPrec": 2,
           "dualFreq": true,
           "tripleFreq": false,
-          "format": "RTCM 3.2",
+          "format": "RTCM 3",
           "constellations": "",
           "country": "AUS"
         },
@@ -42385,6 +42965,18 @@
           "format": "RTCM 3.2",
           "constellations": "",
           "country": "DNK"
+        },
+        {
+          "name": "IBACHO01",
+          "lat": 36.39,
+          "lon": 140.37,
+          "latPrec": 2,
+          "lonPrec": 2,
+          "dualFreq": true,
+          "tripleFreq": false,
+          "format": "RTCM 3.2",
+          "constellations": "",
+          "country": "JPN"
         },
         {
           "name": "IBRK_RyGSK-TJ00",
@@ -43138,7 +43730,7 @@
           "lonPrec": 2,
           "dualFreq": true,
           "tripleFreq": false,
-          "format": "RTCM 3",
+          "format": "RTCM 3.2",
           "constellations": "",
           "country": "POL"
         },
@@ -43366,7 +43958,7 @@
           "lonPrec": 2,
           "dualFreq": true,
           "tripleFreq": false,
-          "format": "RTCM 3.3",
+          "format": "RTCM 3",
           "constellations": "",
           "country": "USA"
         },
@@ -43530,6 +44122,18 @@
           "name": "Leminen",
           "lat": 62.93,
           "lon": 22.82,
+          "latPrec": 2,
+          "lonPrec": 2,
+          "dualFreq": true,
+          "tripleFreq": false,
+          "format": "RTCM 3.3",
+          "constellations": "",
+          "country": "FIN"
+        },
+        {
+          "name": "Lempo",
+          "lat": 60.55,
+          "lon": 22.23,
           "latPrec": 2,
           "lonPrec": 2,
           "dualFreq": true,
@@ -44170,7 +44774,7 @@
           "lonPrec": 2,
           "dualFreq": true,
           "tripleFreq": false,
-          "format": "RTCM 3",
+          "format": "RTCM 3.2",
           "constellations": "",
           "country": "AUS"
         },
@@ -44895,6 +45499,18 @@
           "country": "SRB"
         },
         {
+          "name": "OCF-RH55LS-Capel",
+          "lat": 51.15,
+          "lon": -0.35,
+          "latPrec": 2,
+          "lonPrec": 2,
+          "dualFreq": true,
+          "tripleFreq": false,
+          "format": "RTCM 3.2",
+          "constellations": "",
+          "country": "GBR"
+        },
+        {
           "name": "OCLB",
           "lat": 52.85,
           "lon": -8.95,
@@ -44974,7 +45590,7 @@
           "lonPrec": 2,
           "dualFreq": true,
           "tripleFreq": false,
-          "format": "RTCM 3.2",
+          "format": "RTCM 3",
           "constellations": "",
           "country": "CAN"
         },
@@ -45550,7 +46166,7 @@
           "lonPrec": 2,
           "dualFreq": true,
           "tripleFreq": false,
-          "format": "RTCM 3.2",
+          "format": "RTCM 3",
           "constellations": "",
           "country": "CAN"
         },
@@ -45874,7 +46490,7 @@
           "lonPrec": 2,
           "dualFreq": true,
           "tripleFreq": false,
-          "format": "RTCM 3",
+          "format": "RTCM 3.2",
           "constellations": "",
           "country": "CAN"
         },
@@ -45922,7 +46538,7 @@
           "lonPrec": 2,
           "dualFreq": true,
           "tripleFreq": false,
-          "format": "RTCM 3",
+          "format": "RTCM 3.2",
           "constellations": "",
           "country": "ROU"
         },
@@ -46270,7 +46886,7 @@
           "lonPrec": 2,
           "dualFreq": true,
           "tripleFreq": false,
-          "format": "RTCM 3.2",
+          "format": "RTCM 3",
           "constellations": "",
           "country": "USA"
         },
@@ -46642,7 +47258,7 @@
           "lonPrec": 2,
           "dualFreq": true,
           "tripleFreq": false,
-          "format": "RTCM 3",
+          "format": "RTCM 3.2",
           "constellations": "",
           "country": "DNK"
         },
@@ -47110,7 +47726,7 @@
           "lonPrec": 2,
           "dualFreq": true,
           "tripleFreq": false,
-          "format": "RTCM 3.2",
+          "format": "RTCM 3",
           "constellations": "",
           "country": "JPN"
         },
@@ -47125,6 +47741,18 @@
           "format": "RTCM 3.3",
           "constellations": "",
           "country": "IDN"
+        },
+        {
+          "name": "TETRATECHHWY3",
+          "lat": 49.82,
+          "lon": -111.72,
+          "latPrec": 2,
+          "lonPrec": 2,
+          "dualFreq": true,
+          "tripleFreq": false,
+          "format": "RTCM 3.2",
+          "constellations": "",
+          "country": "CAN"
         },
         {
           "name": "TH-Kukot",
@@ -47194,7 +47822,7 @@
           "lonPrec": 2,
           "dualFreq": true,
           "tripleFreq": false,
-          "format": "RTCM 3",
+          "format": "RTCM 3.2",
           "constellations": "",
           "country": "ITA"
         },
@@ -47854,7 +48482,7 @@
           "lonPrec": 2,
           "dualFreq": true,
           "tripleFreq": false,
-          "format": "RTCM 3",
+          "format": "RTCM 3.2",
           "constellations": "",
           "country": "AUS"
         },
@@ -48687,6 +49315,18 @@
           "country": "CAN"
         },
         {
+          "name": "geofis_mbase",
+          "lat": 18.46,
+          "lon": -69.92,
+          "latPrec": 2,
+          "lonPrec": 2,
+          "dualFreq": true,
+          "tripleFreq": false,
+          "format": "RTCM 3.3",
+          "constellations": "",
+          "country": "DOM"
+        },
+        {
           "name": "geofis_ovni",
           "lat": 18.47,
           "lon": -69.91,
@@ -48802,7 +49442,7 @@
           "lonPrec": 2,
           "dualFreq": true,
           "tripleFreq": false,
-          "format": "RTCM 3.2",
+          "format": "RTCM 3",
           "constellations": "",
           "country": "CAN"
         },
@@ -49407,18 +50047,6 @@
           "country": "FIN"
         },
         {
-          "name": "ntripbg",
-          "lat": -29.16,
-          "lon": -51.52,
-          "latPrec": 2,
-          "lonPrec": 2,
-          "dualFreq": true,
-          "tripleFreq": false,
-          "format": "RTCM 3.3",
-          "constellations": "",
-          "country": "BRA"
-        },
-        {
           "name": "ntripcx",
           "lat": -29.17,
           "lon": -51.16,
@@ -50007,8 +50635,8 @@
       "pass": "centipede",
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:24+00:00",
-      "last_ok": "2026-05-21T17:07:24+00:00",
+      "fetched_at": "2026-05-21T17:26:53+00:00",
+      "last_ok": "2026-05-21T17:26:53+00:00",
       "stations": [
         {
           "name": "1234",
@@ -55027,18 +55655,6 @@
           "country": "FRA"
         },
         {
-          "name": "FLGY",
-          "lat": 47.04,
-          "lon": 6.13,
-          "latPrec": 2,
-          "lonPrec": 2,
-          "dualFreq": true,
-          "tripleFreq": false,
-          "format": "RTCM 3.2 MSM7",
-          "constellations": "GPS+GLO+GAL",
-          "country": "FRA"
-        },
-        {
           "name": "FLO18",
           "lat": 46.983,
           "lon": 2.24,
@@ -57835,18 +58451,6 @@
           "country": "ENG"
         },
         {
-          "name": "LEGTA",
-          "lat": 43.66,
-          "lon": -1.069,
-          "latPrec": 3,
-          "lonPrec": 3,
-          "dualFreq": true,
-          "tripleFreq": false,
-          "format": "RTCM3",
-          "constellations": "GLO+GAL+SBS+BDS+GPS",
-          "country": "FRA"
-        },
-        {
           "name": "LELEU",
           "lat": 48.76,
           "lon": 6.727,
@@ -60403,18 +61007,6 @@
           "country": "FRA"
         },
         {
-          "name": "PALI",
-          "lat": 43.38,
-          "lon": 4.81,
-          "latPrec": 2,
-          "lonPrec": 2,
-          "dualFreq": true,
-          "tripleFreq": false,
-          "format": "RTCM 3.2 MSM7",
-          "constellations": "GPS+GLO+GAL",
-          "country": "FRA"
-        },
-        {
           "name": "PALLU",
           "lat": 45.685,
           "lon": 6.394,
@@ -62261,6 +62853,18 @@
           "format": "RTCM3",
           "constellations": "GLO+GAL+SBS+BDS+GPS",
           "country": "HUN"
+        },
+        {
+          "name": "SLM27",
+          "lat": 48.91,
+          "lon": 1.115,
+          "latPrec": 3,
+          "lonPrec": 3,
+          "dualFreq": true,
+          "tripleFreq": false,
+          "format": "RTCM3",
+          "constellations": "",
+          "country": "FRA"
         },
         {
           "name": "SLP",
@@ -64600,8 +65204,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:26+00:00",
-      "last_ok": "2026-05-21T17:07:26+00:00",
+      "fetched_at": "2026-05-21T17:26:55+00:00",
+      "last_ok": "2026-05-21T17:26:55+00:00",
       "stations": [
         {
           "name": "AB02_RTCM3P3",
@@ -64916,6 +65520,18 @@
           "country": "USA"
         },
         {
+          "name": "AC17_RTCM3P3",
+          "lat": 60.66,
+          "lon": -152.4,
+          "latPrec": 2,
+          "lonPrec": 2,
+          "dualFreq": true,
+          "tripleFreq": false,
+          "format": "RTCM 3.3",
+          "constellations": "GPS",
+          "country": "USA"
+        },
+        {
           "name": "AC20_RTCM3P3",
           "lat": 60.93,
           "lon": -149.35,
@@ -64979,18 +65595,6 @@
           "name": "AC31_RTCM3P3",
           "lat": 64.64,
           "lon": -162.24,
-          "latPrec": 2,
-          "lonPrec": 2,
-          "dualFreq": true,
-          "tripleFreq": false,
-          "format": "RTCM 3.3",
-          "constellations": "GPS+GLO+BDS+GAL+SBAS+QZS",
-          "country": "USA"
-        },
-        {
-          "name": "AC32_RTCM3P3",
-          "lat": 61.47,
-          "lon": -150.74,
           "latPrec": 2,
           "lonPrec": 2,
           "dualFreq": true,
@@ -67556,18 +68160,6 @@
           "country": "USA"
         },
         {
-          "name": "KMBR_RTCM3P3",
-          "lat": -1.83,
-          "lon": 29.29,
-          "latPrec": 2,
-          "lonPrec": 2,
-          "dualFreq": true,
-          "tripleFreq": false,
-          "format": "RTCM 3.3",
-          "constellations": "GPS+GLO+BDS+GAL+SBAS+QZS",
-          "country": "RWA"
-        },
-        {
           "name": "KSU1_RTCM3P3",
           "lat": 39.1,
           "lon": -96.61,
@@ -68033,18 +68625,6 @@
           "tripleFreq": false,
           "format": "RTCM 3.3",
           "constellations": "GPS+GLO+BDS+GAL+SBAS+QZS",
-          "country": "USA"
-        },
-        {
-          "name": "MILP_RTCM3P3",
-          "lat": 37.0,
-          "lon": -121.0,
-          "latPrec": 2,
-          "lonPrec": 2,
-          "dualFreq": true,
-          "tripleFreq": false,
-          "format": "RTCM 3.3",
-          "constellations": "GPS+GLO",
           "country": "USA"
         },
         {
@@ -68576,18 +69156,6 @@
           "country": "USA"
         },
         {
-          "name": "P011_RTCM3P3",
-          "lat": 36.15,
-          "lon": -109.52,
-          "latPrec": 2,
-          "lonPrec": 2,
-          "dualFreq": true,
-          "tripleFreq": false,
-          "format": "RTCM 3.3",
-          "constellations": "GPS+GLO+BDS+GAL+SBAS+QZS",
-          "country": "USA"
-        },
-        {
           "name": "P012_RTCM3P3",
           "lat": 38.1,
           "lon": -109.33,
@@ -69035,18 +69603,6 @@
           "name": "P051_RTCM3P3",
           "lat": 45.81,
           "lon": -108.55,
-          "latPrec": 2,
-          "lonPrec": 2,
-          "dualFreq": true,
-          "tripleFreq": false,
-          "format": "RTCM 3.3",
-          "constellations": "GPS+GLO+BDS+GAL+SBAS+QZS",
-          "country": "USA"
-        },
-        {
-          "name": "P052_RTCM3P3",
-          "lat": 47.37,
-          "lon": -107.02,
           "latPrec": 2,
           "lonPrec": 2,
           "dualFreq": true,
@@ -71036,6 +71592,18 @@
           "country": "USA"
         },
         {
+          "name": "P254_RTCM3P3",
+          "lat": 37.49,
+          "lon": -121.47,
+          "latPrec": 2,
+          "lonPrec": 2,
+          "dualFreq": true,
+          "tripleFreq": false,
+          "format": "RTCM 3.3",
+          "constellations": "GPS",
+          "country": "USA"
+        },
+        {
           "name": "P255_RTCM3P3",
           "lat": 37.58,
           "lon": -121.32,
@@ -71273,18 +71841,6 @@
           "tripleFreq": false,
           "format": "RTCM 3.3",
           "constellations": "GPS+GLO+BDS+GAL+SBAS+QZS",
-          "country": "USA"
-        },
-        {
-          "name": "P281_RTCM3P3",
-          "lat": 35.84,
-          "lon": -120.39,
-          "latPrec": 2,
-          "lonPrec": 2,
-          "dualFreq": true,
-          "tripleFreq": false,
-          "format": "RTCM 3.3",
-          "constellations": "GPS",
           "country": "USA"
         },
         {
@@ -71780,9 +72336,33 @@
           "country": "USA"
         },
         {
+          "name": "P339_RTCM3P3",
+          "lat": 40.03,
+          "lon": -122.67,
+          "latPrec": 2,
+          "lonPrec": 2,
+          "dualFreq": true,
+          "tripleFreq": false,
+          "format": "RTCM 3.3",
+          "constellations": "GPS+GLO+BDS+GAL+SBAS+QZS",
+          "country": "USA"
+        },
+        {
           "name": "P343_RTCM3P3",
           "lat": 40.89,
           "lon": -123.33,
+          "latPrec": 2,
+          "lonPrec": 2,
+          "dualFreq": true,
+          "tripleFreq": false,
+          "format": "RTCM 3.3",
+          "constellations": "GPS+GLO+BDS+GAL+SBAS+QZS",
+          "country": "USA"
+        },
+        {
+          "name": "P344_RTCM3P3",
+          "lat": 39.93,
+          "lon": -122.03,
           "latPrec": 2,
           "lonPrec": 2,
           "dualFreq": true,
@@ -72428,6 +73008,18 @@
           "country": "USA"
         },
         {
+          "name": "P403_RTCM3P3",
+          "lat": 48.06,
+          "lon": -124.14,
+          "latPrec": 2,
+          "lonPrec": 2,
+          "dualFreq": true,
+          "tripleFreq": false,
+          "format": "RTCM 3.3",
+          "constellations": "GPS+GLO+BDS+GAL+SBAS+QZS",
+          "country": "USA"
+        },
+        {
           "name": "P404_RTCM3P3",
           "lat": 45.16,
           "lon": -123.39,
@@ -72551,18 +73143,6 @@
           "name": "P417_RTCM3P3",
           "lat": 46.57,
           "lon": -123.3,
-          "latPrec": 2,
-          "lonPrec": 2,
-          "dualFreq": true,
-          "tripleFreq": false,
-          "format": "RTCM 3.3",
-          "constellations": "GPS+GLO+BDS+GAL+SBAS+QZS",
-          "country": "USA"
-        },
-        {
-          "name": "P418_RTCM3P3",
-          "lat": 47.24,
-          "lon": -123.41,
           "latPrec": 2,
           "lonPrec": 2,
           "dualFreq": true,
@@ -73640,18 +74220,6 @@
           "country": "USA"
         },
         {
-          "name": "P528_RTCM3P3",
-          "lat": 35.33,
-          "lon": -120.55,
-          "latPrec": 2,
-          "lonPrec": 2,
-          "dualFreq": true,
-          "tripleFreq": false,
-          "format": "RTCM 3.3",
-          "constellations": "GPS+GLO+BDS+GAL+SBAS+QZS",
-          "country": "USA"
-        },
-        {
           "name": "P529_RTCM3P3",
           "lat": 35.44,
           "lon": -120.35,
@@ -73703,18 +74271,6 @@
           "name": "P533_RTCM3P3",
           "lat": 35.75,
           "lon": -120.37,
-          "latPrec": 2,
-          "lonPrec": 2,
-          "dualFreq": true,
-          "tripleFreq": false,
-          "format": "RTCM 3.3",
-          "constellations": "GPS+GLO+BDS+GAL+SBAS+QZS",
-          "country": "USA"
-        },
-        {
-          "name": "P534_RTCM3P3",
-          "lat": 37.06,
-          "lon": -122.24,
           "latPrec": 2,
           "lonPrec": 2,
           "dualFreq": true,
@@ -76388,18 +76944,6 @@
           "country": "USA"
         },
         {
-          "name": "RHCG_RTCM3P3",
-          "lat": 34.0,
-          "lon": -118.01,
-          "latPrec": 2,
-          "lonPrec": 2,
-          "dualFreq": true,
-          "tripleFreq": false,
-          "format": "RTCM 3.3",
-          "constellations": "GPS+GLO+BDS+GAL+SBAS+QZS",
-          "country": "USA"
-        },
-        {
           "name": "RHCL_RTCM3P3",
           "lat": 34.02,
           "lon": -118.03,
@@ -76460,18 +77004,6 @@
           "country": "USA"
         },
         {
-          "name": "ROCP_RTCM3P3",
-          "lat": 37.0,
-          "lon": -122.0,
-          "latPrec": 2,
-          "lonPrec": 2,
-          "dualFreq": true,
-          "tripleFreq": false,
-          "format": "RTCM 3.3",
-          "constellations": "GPS+GLO+BDS+GAL+SBAS+QZS",
-          "country": "USA"
-        },
-        {
           "name": "RSTP_RTCM3P3",
           "lat": 34.88,
           "lon": -118.19,
@@ -76506,18 +77038,6 @@
           "format": "RTCM 3.3",
           "constellations": "GPS+GLO+BDS+GAL+SBAS+QZS",
           "country": "RWA"
-        },
-        {
-          "name": "RUBY_RTCM3P3",
-          "lat": 40.62,
-          "lon": -115.12,
-          "latPrec": 2,
-          "lonPrec": 2,
-          "dualFreq": true,
-          "tripleFreq": false,
-          "format": "RTCM 3.3",
-          "constellations": "GPS+GLO+BDS+GAL+SBAS+QZS",
-          "country": "USA"
         },
         {
           "name": "RUNG_RTCM3P3",
@@ -76796,6 +77316,18 @@
           "country": "USA"
         },
         {
+          "name": "SLMS_RTCM3P3",
+          "lat": 33.29,
+          "lon": -115.98,
+          "latPrec": 2,
+          "lonPrec": 2,
+          "dualFreq": true,
+          "tripleFreq": false,
+          "format": "RTCM 3.3",
+          "constellations": "GPS+GLO+BDS+GAL+SBAS+QZS",
+          "country": "USA"
+        },
+        {
           "name": "SMEL_RTCM3P3",
           "lat": 39.43,
           "lon": -112.84,
@@ -76931,18 +77463,6 @@
           "name": "TABL_RTCM3P3",
           "lat": 34.38,
           "lon": -117.68,
-          "latPrec": 2,
-          "lonPrec": 2,
-          "dualFreq": true,
-          "tripleFreq": false,
-          "format": "RTCM 3.3",
-          "constellations": "GPS+GLO+BDS+GAL+SBAS+QZS",
-          "country": "USA"
-        },
-        {
-          "name": "TBLP_RTCM3P3",
-          "lat": 35.92,
-          "lon": -120.36,
           "latPrec": 2,
           "lonPrec": 2,
           "dualFreq": true,
@@ -77147,18 +77667,6 @@
           "name": "TPOG_RTCM3P3",
           "lat": 34.88,
           "lon": -118.23,
-          "latPrec": 2,
-          "lonPrec": 2,
-          "dualFreq": true,
-          "tripleFreq": false,
-          "format": "RTCM 3.3",
-          "constellations": "GPS+GLO",
-          "country": "USA"
-        },
-        {
-          "name": "TRCP_RTCM3P3",
-          "lat": 37.0,
-          "lon": -122.0,
           "latPrec": 2,
           "lonPrec": 2,
           "dualFreq": true,
@@ -77705,8 +78213,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:24+00:00",
-      "last_ok": "2026-05-21T17:07:24+00:00",
+      "fetched_at": "2026-05-21T17:26:53+00:00",
+      "last_ok": "2026-05-21T17:26:53+00:00",
       "stations": [
         {
           "name": "AGRN00ITA0",
@@ -80226,8 +80734,8 @@
       "pass": null,
       "userNote": null,
       "status": "ok",
-      "fetched_at": "2026-05-21T17:07:25+00:00",
-      "last_ok": "2026-05-21T17:07:25+00:00",
+      "fetched_at": "2026-05-21T17:26:52+00:00",
+      "last_ok": "2026-05-21T17:26:52+00:00",
       "stations": [
         {
           "name": "ABMF00GLP0",

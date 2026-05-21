@@ -1,0 +1,23 @@
+{
+  "last_reviewed": "2026-05-21",
+  "source_url": "https://blog.analistgroup.com/come-connettersi-alla-rete-gnss-in-campania/",
+  "pin_origin": "forum",
+  "stations": [
+    {"name": "AGRO", "lat": 40.3464, "lon": 14.9968, "country": "ITA"},
+    {"name": "ALIF", "lat": 41.3270, "lon": 14.3346, "country": "ITA"},
+    {"name": "AVEL", "lat": 40.9119, "lon": 14.7833, "country": "ITA"},
+    {"name": "ISCH", "lat": 40.7120, "lon": 13.9246, "country": "ITA"},
+    {"name": "BENE", "lat": 41.1215, "lon": 14.7780, "country": "ITA"},
+    {"name": "CARI", "lat": 41.1947, "lon": 13.9742, "country": "ITA"},
+    {"name": "EBOL", "lat": 40.5466, "lon": 14.9870, "country": "ITA"},
+    {"name": "NAPO", "lat": 40.8700, "lon": 14.2760, "country": "ITA"},
+    {"name": "CITR", "lat": 40.6886, "lon": 15.2307, "country": "ITA"},
+    {"name": "SALA", "lat": 40.4172, "lon": 15.5566, "country": "ITA"},
+    {"name": "ANGE", "lat": 40.9309, "lon": 15.1839, "country": "ITA"},
+    {"name": "BAR2", "lat": 41.4099, "lon": 15.0151, "country": "ITA"},
+    {"name": "NICO", "lat": 41.0469, "lon": 14.3274, "country": "ITA"},
+    {"name": "SAPR", "lat": 40.0737, "lon": 15.6301, "country": "ITA"},
+    {"name": "TRGR", "lat": 40.7790, "lon": 14.4100, "country": "ITA"},
+    {"name": "VALL", "lat": 40.2352, "lon": 15.2799, "country": "ITA"}
+  ]
+}
