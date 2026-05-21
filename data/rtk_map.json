@@ -639,7 +639,8 @@
           "credentials": {
             "userNote": "your registered username"
           },
-          "near": true
+          "near": true,
+          "nmea_filter": false
         }
       ]
     },
@@ -2568,7 +2569,8 @@
       "note": "Network also includes 1 station in Rhode Island, 2 in southern Massachusetts, and 1 on Long Island, NY — a useful fallback for Rhode Island where no state caster exists.",
       "endpoints": [
         {
-          "url": "http://acorn.uconn.edu:2101/"
+          "url": "http://acorn.uconn.edu:2101/",
+          "nmea_filter": false
         },
         {
           "type": "scraped",
