@@ -101,7 +101,8 @@ network — **not** a `fetch_stations.py` change.
   "credentials": {"user": "rover", "pass": "262461", "userNote": "your registered username"},
   "near": true,
   "nmea_filter": false,
-  "solution_filter": false
+  "solution_filter": false,
+  "vrs_required": true
 }
 ```
 
@@ -113,6 +114,7 @@ network — **not** a `fetch_stations.py` change.
 | `near` | optional, default `false` | True surfaces the `NEAR` auto-select hint in popup. |
 | `nmea_filter` | optional, default `true` | Set `false` only when the caster mislabels real physical stations with `nmea=1`. See filter-flag rules below. |
 | `solution_filter` | optional, default `true` | Set `false` only when the caster mislabels physical stations with `solution=1`. Rarer than `nmea_filter` overrides. |
+| `vrs_required` | optional, default `false` | Set `true` when the endpoint exposes physical-station mountpoints that the operator does not allow rovers to connect to directly — rover must use the network's VRS service (typically a sibling endpoint on `:2101`). Surviving stations get `vrsRequired: true` in stations.json; the UI renders smaller pins and replaces the connect block with a "feeds into VRS" hint pointing at the network's VRS endpoint URL. |
 
 ### Trigger — `rtk_inventory.md` status drives endpoint membership
 

@@ -770,6 +770,7 @@
           :s.tripleFreq?'L1L2L5'
           :s.dualFreq?'L1L2'
           :'L1',
+        vrsRequired:!!s.vrsRequired,
       });
     });
     return out;
@@ -797,11 +798,11 @@
         var k=posKey(st);
         var e=byKey[k];
         if(e){
-          e.mountpoints.push({name:st.name,carrier:st.carrier,source:src});
+          e.mountpoints.push({name:st.name,carrier:st.carrier,source:src,vrsRequired:st.vrsRequired});
           if(st.dLat<e.dLat){ e.lat=st.lat; e.lon=st.lon; e.dLat=st.dLat; e.dLon=st.dLon; }
         } else {
           byKey[k]={lat:st.lat,lon:st.lon,dLat:st.dLat,dLon:st.dLon,
-            mountpoints:[{name:st.name,carrier:st.carrier,source:src}]};
+            mountpoints:[{name:st.name,carrier:st.carrier,source:src,vrsRequired:st.vrsRequired}]};
         }
       });
     });
@@ -968,7 +969,7 @@
   function buildCopyAllPayload(s){
     var blocks=[];
     s.mountpoints.forEach(function(mp){
-      if(!mp.source.host) return;
+      if(!mp.source.host||mp.vrsRequired) return;
       var lines=['Server: '+mp.source.host,'Port: '+mp.source.port,'Mountpoint: '+mp.name];
       if(mp.source.user) lines.push('Username: '+mp.source.user);
       else if(mp.source.userNote) lines.push('Username: '+mp.source.userNote);
@@ -977,6 +978,23 @@
     });
     return blocks.join('\n\n');
   }
+  // VRS-required mountpoints are physical-station broadcasts that the
+  // operator does not allow rovers to connect to directly — the rover
+  // must use the network's VRS service instead. Show the station name +
+  // network's VRS endpoint URL; suppress the usual Server/Port/Mount
+  // copy block because connecting to that mountpoint name won't work.
+  function vrsRequiredBlock(source,name){
+    var dot=source.color
+      ?`<span style="display:inline-block;width:8px;height:8px;background:${source.color};border-radius:50%;margin-right:4px"></span>`
+      :'';
+    var url=source.host?('http://'+source.host+':'+source.port+'/'):'';
+    var urlLine=url?`<div class="anote">VRS service: <code>${esc(url)}</code></div>`:'';
+    return `<div class="srv"><div style="font-weight:600;font-size:11px;margin-bottom:2px">${dot}${esc(source.label)}</div>`
+      +`<div class="anote">Physical station <code>${esc(name)}</code> — feeds into the network's VRS. Connect via the VRS service, not this mountpoint name.</div>`
+      +urlLine
+      +(source.registration?`<div class="anote"><a href="${esc(source.registration)}" target="_blank" rel="noopener noreferrer">${esc(visUrl(source.registration))} ↗</a></div>`:'')
+      +'</div>';
+  }
   function buildPopup(s){
     var names=[], blocks='';
     s.mountpoints.forEach(function(mp){
@@ -984,11 +1002,14 @@
       var acc=mp.carrier==='legacy'
         ? '<div class="warn">Legacy RTCM 2.x — many modern receivers can\'t use this.</div>'
         : `<div class="acc">${accuracySummary(mp.carrier)}${carrierChip(mp.carrier)}</div>`;
-      blocks+=acc+serverBlock(mp.source,mp.name,mp.source.color);
+      blocks+=acc+(mp.vrsRequired
+        ? vrsRequiredBlock(mp.source,mp.name)
+        : serverBlock(mp.source,mp.name,mp.source.color));
     });
     var payload=esc(buildCopyAllPayload(s).replace(/\n/g,'\\n'));
+    var hasCopyable=s.mountpoints.some(function(mp){ return !mp.vrsRequired&&mp.source.host; });
     var footer=`<div class="popup-actions">`
-      +`<button class="b-primary" onclick="__ntripCopyAll(this,'${payload}')">Copy all</button>`
+      +(hasCopyable?`<button class="b-primary" onclick="__ntripCopyAll(this,'${payload}')">Copy all</button>`:'')
       +`<button class="b-secondary" onclick="__ntripOpenHelp('how-to-connect-emlid')">How to connect ↗</button>`
       +`</div>`;
     return `<div class="popup-plain"><h3>${esc(names.join(' / '))}</h3>${blocks}${footer}</div>`;
@@ -1868,6 +1889,7 @@
       });
       s.staleness=staleness;
       s.precLabel=precLabel(s.dLat,s.dLon,s.lat);
+      s.vrsRequired=s.mountpoints.every(function(mp){ return mp.vrsRequired; });
       // s.color / s.colors are derived per rebuild in rebuildStationLayers
       // so toggling a network updates dot colour and slice composition.
     });

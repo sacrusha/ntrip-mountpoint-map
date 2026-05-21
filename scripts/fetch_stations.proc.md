@@ -67,6 +67,45 @@ dual write was cleaned out to eliminate drift. Current source-record
 keys: `url`, `credentials`, `near`, `user`, `pass`, `userNote`,
 `status`, `fetched_at`, `last_ok`, `stations`.
 
+## Post-process / DGPS filter
+
+`parse_sourcetable` drops two non-RTK stream classes that some Trimble
+Pivot casters publish alongside real-time RTK streams:
+
+- **`format == "RAW"`** — raw observation broadcast for RINEX-style
+  post-processing. No standard rover consumes RAW in real time.
+  Trimble Pivot casters publish `*_RAW` mountpoints next to every
+  `*_RTCM3.x` variant (CROPOS does this for all 35 physical stations).
+- **`format == "RTCM 2.x"` AND `format-details` contains `PBS`** —
+  Trimble Pivot's DGPS-targeted variant. Real RTCM 2.x RTK uses
+  messages 18/19/22/23/24/59; the PBS (Position Broadcast Service)
+  auxiliary message is RTCM 3 territory and signals the operator
+  intends this stream for DGPS rovers, not RTK. CROPOS `*_DPS_23`
+  matches. PBS *alongside* `RTCM 3.x` is the normal Trimble Pivot
+  RTK config (nps_cors, kycors, sapos_*) — those are kept.
+
+Counted as `dropped_postproc` in per-source log: `, N post-process`.
+
+## Per-station `vrsRequired`
+
+Stations parsed from an endpoint with `"vrs_required": true` in
+`../data/rtk_map.json` carry `"vrsRequired": true` in their per-station
+record. `index.html` renders them with a smaller pin and a popup that
+suppresses the usual Server/Port/Mountpoint copy block (the mountpoint
+name is not a valid connect string — the operator only allows VRS),
+replacing it with the network's VRS endpoint URL and a "feeds into
+VRS" line. Omitted when false to keep diffs small.
+
+The flag rides on the per-endpoint config so a future case where one
+network mixes connectable stations on one endpoint with VRS-required
+stations on another endpoint Just Works without further plumbing.
+Per-station overrides are not implemented yet but the per-station
+shape leaves room.
+
+`station_fingerprint` includes `vrsRequired` so toggling the flag on
+an existing endpoint triggers a stations.json rewrite (without it the
+"unchanged data" short-circuit would keep the old un-flagged record).
+
 ## After-edit checks
 
 ```sh

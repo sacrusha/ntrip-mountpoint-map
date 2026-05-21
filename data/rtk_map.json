@@ -36,6 +36,11 @@
       "endpoints": [
         {
           "url": "http://gnss.cropos.hr:2101/"
+        },
+        {
+          "url": "http://gnss.cropos.hr:2102/",
+          "id": "cropos_phy",
+          "vrs_required": true
         }
       ]
     },
@@ -145,6 +150,11 @@
       "endpoints": [
         {
           "url": "http://www.sapos.geonord.de:2101/"
+        },
+        {
+          "url": "http://www.sapos.geonord.de:2102/",
+          "id": "sapos_SH_HH_phy",
+          "vrs_required": true
         }
       ]
     },
@@ -268,6 +278,11 @@
       "endpoints": [
         {
           "url": "http://www.sapos-mv-ntrip.de:2101/"
+        },
+        {
+          "url": "http://www.sapos-mv-ntrip.de:2102/",
+          "id": "sapos_MV_phy",
+          "vrs_required": true
         }
       ]
     },
@@ -286,6 +301,11 @@
       "endpoints": [
         {
           "url": "http://www.sapos-lsa-ntrip.de:2101/"
+        },
+        {
+          "url": "http://www.sapos-lsa-ntrip.de:2102/",
+          "id": "sapos_LSA_phy",
+          "vrs_required": true
         }
       ]
     },
@@ -304,6 +324,11 @@
       "endpoints": [
         {
           "url": "http://www.sapos-th-ntrip.de:2101/"
+        },
+        {
+          "url": "http://www.sapos-th-ntrip.de:2102/",
+          "id": "sapos_TH_phy",
+          "vrs_required": true
         }
       ]
     },
@@ -323,6 +348,11 @@
       "endpoints": [
         {
           "url": "http://kycors.ky.gov:2101/"
+        },
+        {
+          "url": "http://kycors.ky.gov:2102/",
+          "id": "kycors_phy",
+          "vrs_required": true
         }
       ]
     },
@@ -1816,6 +1846,11 @@
       "endpoints": [
         {
           "url": "http://catnet-ip.icgc.cat:2101/"
+        },
+        {
+          "url": "http://catnet-ip.icgc.cat:2100/",
+          "id": "catnet_phy",
+          "vrs_required": true
         }
       ]
     },
@@ -2262,6 +2297,11 @@
       "endpoints": [
         {
           "url": "http://158.102.7.10:2101/"
+        },
+        {
+          "url": "http://158.102.7.10:2102/",
+          "id": "spin3_phy",
+          "vrs_required": true
         }
       ]
     },
@@ -2520,6 +2560,12 @@
       "endpoints": [
         {
           "url": "http://orgn.odot.state.or.us:9881/"
+        },
+        {
+          "url": "http://orgn.odot.state.or.us:9883/",
+          "id": "orgn_phy",
+          "vrs_required": true,
+          "solution_filter": false
         }
       ]
     },

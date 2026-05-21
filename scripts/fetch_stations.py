@@ -129,6 +129,7 @@ def _flatten_endpoints(networks: list[dict]) -> list[dict]:
                 "userNote":        creds.get("userNote"),
                 "nmea_filter":     ep.get("nmea_filter", True),
                 "solution_filter": ep.get("solution_filter", True),
+                "vrs_required":    ep.get("vrs_required", False),
             })
     return out
 
@@ -177,7 +178,8 @@ def fetch(url: str) -> str:
 
 
 def parse_sourcetable(text: str, nmea_filter: bool = True,
-                      solution_filter: bool = True) -> tuple[list[dict], dict]:
+                      solution_filter: bool = True,
+                      vrs_required: bool = False) -> tuple[list[dict], dict]:
     """Parse an NTRIP sourcetable.
 
     NTRIP STR line fields (0-based after splitting on ';'):
@@ -208,6 +210,7 @@ def parse_sourcetable(text: str, nmea_filter: bool = True,
     dropped_dgnss = 0
     dropped_net = 0
     dropped_bad = 0
+    dropped_postproc = 0
     corrected = 0
     for line in text.splitlines():
         if not line.startswith("STR;"):
@@ -218,6 +221,7 @@ def parse_sourcetable(text: str, nmea_filter: bool = True,
             continue
         name = fields[1].strip()
         fmt = fields[3].strip() if len(fields) > 3 else ""
+        fmt_details = fields[4].strip() if len(fields) > 4 else ""
         carrier_raw = fields[5].strip() if len(fields) > 5 else ""
         nav_sys = fields[6].strip() if len(fields) > 6 else ""
         country = fields[8].strip() if len(fields) > 8 else ""
@@ -243,6 +247,21 @@ def parse_sourcetable(text: str, nmea_filter: bool = True,
             continue
         if carrier not in (1, 2, 3):
             dropped_bad += 1
+            continue
+        # RAW = post-process-only raw observation stream (RINEX-equivalent),
+        # no standard rover can consume it for real-time RTK. Trimble Pivot
+        # casters routinely publish *_RAW variants alongside RTCM 3.x.
+        # Trimble's DGPS-targeted variant declares format as RTCM 2.x but
+        # carries the Position Broadcast Service (PBS) auxiliary message,
+        # which contradicts the RTCM 2.x convention (real RTCM 2.x RTK uses
+        # messages 18/19/22/23/24/59, never PBS). CROPOS *_DPS_23 fits this
+        # pattern. PBS *alongside* RTCM 3.x is the normal Trimble Pivot
+        # config (nps_cors, kycors, sapos_*) — keep those.
+        if fmt == "RAW":
+            dropped_postproc += 1
+            continue
+        if fmt.startswith("RTCM 2") and "PBS" in fmt_details:
+            dropped_postproc += 1
             continue
         if nmea_filter and nmea == "1":
             dropped_net += 1
@@ -277,7 +296,7 @@ def parse_sourcetable(text: str, nmea_filter: bool = True,
             lat_prec = fix.get("latPrec", lat_prec)
             lon_prec = fix.get("lonPrec", lon_prec)
             corrected += 1
-        stations.append({
+        rec = {
             "name": name,
             "lat": lat,
             "lon": lon,
@@ -288,11 +307,14 @@ def parse_sourcetable(text: str, nmea_filter: bool = True,
             "format": fmt,
             "constellations": nav_sys,
             "country": country,
-        })
+        }
+        if vrs_required:
+            rec["vrsRequired"] = True
+        stations.append(rec)
     stations.sort(key=lambda s: (s["name"], s["lat"], s["lon"]))
     stats = {"kept": len(stations), "dropped_dgnss": dropped_dgnss,
              "dropped_net": dropped_net, "dropped_bad": dropped_bad,
-             "corrected": corrected}
+             "dropped_postproc": dropped_postproc, "corrected": corrected}
     return stations, stats
 
 
@@ -323,7 +345,8 @@ def load_existing(path: Path) -> dict | None:
 def station_fingerprint(source: dict) -> list[list]:
     return [
         [s["name"], s["lat"], s.get("latPrec"), s["lon"], s.get("lonPrec"),
-         s.get("dualFreq"), s.get("tripleFreq"), s.get("format", ""), s.get("constellations", "")]
+         s.get("dualFreq"), s.get("tripleFreq"), s.get("format", ""), s.get("constellations", ""),
+         s.get("vrsRequired", False)]
         for s in source.get("stations", [])
     ]
 
@@ -335,6 +358,7 @@ def fetch_source(src: dict) -> tuple[str, dict, bool]:
     prev_last_ok = src.get("_prev_last_ok")
     nmea_filter = src.get("nmea_filter", True)
     solution_filter = src.get("solution_filter", True)
+    vrs_required = src.get("vrs_required", False)
     raw_path = DATA_DIR / f"{sid}.sourcetable"
     _meta = {
         "url": url,
@@ -346,14 +370,15 @@ def fetch_source(src: dict) -> tuple[str, dict, bool]:
     }
     try:
         text = fetch(url)
-        stations, stats = parse_sourcetable(text, nmea_filter=nmea_filter, solution_filter=solution_filter)
+        stations, stats = parse_sourcetable(text, nmea_filter=nmea_filter, solution_filter=solution_filter, vrs_required=vrs_required)
         stations, dropped_vrs = filter_vrs(stations)
         net_note = f", {stats['dropped_net']} net-sol" if stats["dropped_net"] else ""
         vrs_note = f", {dropped_vrs} VRS" if dropped_vrs else ""
+        pp_note = f", {stats['dropped_postproc']} post-process" if stats.get("dropped_postproc") else ""
         fix_note = f", {stats['corrected']} corrected" if stats.get("corrected") else ""
         now_iso = datetime.now(timezone.utc).isoformat(timespec="seconds")
         print(f"[{sid}] fetched {len(stations)} stations "
-              f"(dropped {stats['dropped_dgnss']} DGNSS, {stats['dropped_bad']} invalid{net_note}{vrs_note}{fix_note})")
+              f"(dropped {stats['dropped_dgnss']} DGNSS, {stats['dropped_bad']} invalid{net_note}{vrs_note}{pp_note}{fix_note})")
         return sid, {**_meta,
             "status": "ok",
             "fetched_at": now_iso,
@@ -368,12 +393,13 @@ def fetch_source(src: dict) -> tuple[str, dict, bool]:
         if raw_path.exists():
             try:
                 text = raw_path.read_text()
-                stations, stats = parse_sourcetable(text, nmea_filter=nmea_filter, solution_filter=solution_filter)
+                stations, stats = parse_sourcetable(text, nmea_filter=nmea_filter, solution_filter=solution_filter, vrs_required=vrs_required)
                 stations, dropped_vrs = filter_vrs(stations)
                 net_note = f", {stats['dropped_net']} net-sol" if stats["dropped_net"] else ""
                 vrs_note = f", {dropped_vrs} VRS" if dropped_vrs else ""
+                pp_note = f", {stats['dropped_postproc']} post-process" if stats.get("dropped_postproc") else ""
                 fix_note = f", {stats['corrected']} corrected" if stats.get("corrected") else ""
-                print(f"[{sid}] reusing cached sourcetable ({len(stations)} stations{net_note}{vrs_note}{fix_note})")
+                print(f"[{sid}] reusing cached sourcetable ({len(stations)} stations{net_note}{vrs_note}{pp_note}{fix_note})")
                 return sid, {**_meta,
                     "status": "stale",
                     "fetched_at": None,

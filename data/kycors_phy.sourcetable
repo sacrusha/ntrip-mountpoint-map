@@ -1,0 +1,18 @@
+STR;K_PD;K_PD;RTCM 3.1;1004(1),1005/1007(5),PBS(10);2;GPS+GLO;KYCORS;USA;37.02;271.47;0;0;Trimble Pivot Platform;none;B;N;0;UserID Required;
+STR;K_B;K_B;RTCM 3.1;1004(1),1005/1007(5),PBS(10);2;GPS+GLO;KYCORS;USA;37.35;272.5;0;0;Trimble Pivot Platform;none;B;N;0;UserID Required;
+STR;K_BU;Carrollton;RTCM 3.2;1004(1),1005/1007(5),PBS(10);2;GPS+GLO+GAL+BDS+QZS;KYCORS;USA;38.67;274.85;0;0;Trimble Pivot Platform;none;B;N;0;UserID Required;
+STR;K_E;Louisville;RTCM 3.2;1004(1),1005/1007(5),PBS(10);2;GPS+GLO+GAL+BDS+QZS;KYCORS;USA;38.28;274.4;0;0;Trimble Pivot Platform;none;B;N;0;UserID Required;
+STR;K_CG;K_CG;RTCM 3.1;1004(1),1005/1007(5),PBS(10);2;GPS+GLO;KYCORS;USA;36.6;276.31;0;0;Trimble Pivot Platform;none;B;N;0;UserID Required;
+STR;K_RR;RoughRiver;RTCM 3.2;1004(1),1005/1007(5),PBS(10);2;GPS+GLO+GAL+BDS+QZS;KYCORS;USA;37.61;273.5;0;0;Trimble Pivot Platform;none;B;N;0;UserID Required;
+STR;K_HK;K_HK;RTCM 3.1;1004(1),1005/1007(5),PBS(10);2;GPS+GLO;KYCORS;USA;36.86;272.51;0;0;Trimble Pivot Platform;none;B;N;0;UserID Required;
+STR;K_MY;K_MY;RTCM 3.1;1004(1),1005/1007(5),PBS(10);2;GPS+GLO;KYCORS;USA;36.72;271.37;0;0;Trimble Pivot Platform;none;B;N;0;UserID Required;
+STR;K_OW;Owensboro;RTCM 3.1;1004(1),1005/1007(5),PBS(10);2;GPS+GLO;KYCORS;USA;37.74;272.82;0;0;Trimble Pivot Platform;none;B;N;0;UserID Required;
+STR;K_MF;MorganField;RTCM 3.2;1004(1),1005/1007(5),PBS(10);2;GPS+GLO+GAL+BDS+QZS;KYCORS;USA;37.68;272.11;0;0;Trimble Pivot Platform;none;B;N;0;UserID Required;
+STR;K_C;K_C;RTCM 3.1;1004(1),1005/1007(5),PBS(10);2;GPS+GLO;KYCORS;USA;36.99;273.52;0;0;Trimble Pivot Platform;none;B;N;0;UserID Required;
+STR;K_DH;K_DH;RTCM 3.1;1004(1),1005/1007(5),PBS(10);2;GPS+GLO;KYCORS;USA;36.64;274.7;0;0;Trimble Pivot Platform;none;B;N;0;UserID Required;
+STR;K_HM;K_HM;RTCM 3.1;1004(1),1005/1007(5),PBS(10);2;GPS+GLO;KYCORS;USA;36.55;270.82;0;0;Trimble Pivot Platform;none;B;N;0;UserID Required;
+STR;K_HL;K_HL;RTCM 3.1;1004(1),1005/1007(5),PBS(10);2;GPS+GLO;KYCORS;USA;36.82;276.67;0;0;Trimble Pivot Platform;none;B;N;0;UserID Required;
+STR;K_MU;K_MU;RTCM 3.1;1004(1),1005/1007(5),PBS(10);2;GPS+GLO;KYCORS;USA;36.61;271.7;0;0;Trimble Pivot Platform;none;B;N;0;UserID Required;
+STR;K_SV;K_SV;RTCM 3.1;1004(1),1005/1007(5),PBS(10);2;GPS+GLO;KYCORS;USA;36.75;273.78;0;0;Trimble Pivot Platform;none;B;N;0;UserID Required;
+STR;K_WC;K_WC;RTCM 3.1;1004(1),1005/1007(5),PBS(10);2;GPS+GLO;KYCORS;USA;36.72;275.52;0;0;Trimble Pivot Platform;none;B;N;0;UserID Required;
+ENDSOURCETABLE
