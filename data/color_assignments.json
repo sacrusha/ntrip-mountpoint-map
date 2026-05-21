@@ -29,6 +29,7 @@
     "positionz": "local1",
     "ramsac": "local2",
     "rbmc_ip": "local3",
+    "regme_ec": "local1",
     "regna_rou": "local4",
     "rem_fvg": "local2",
     "renep": "local2",

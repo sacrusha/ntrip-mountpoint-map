@@ -191,6 +191,11 @@
       "endpoints": [
         {
           "url": "http://www.sapos-nw-ntrip.de:2101/"
+        },
+        {
+          "type": "file",
+          "id": "sapos_NW_ext",
+          "path": "data/external_sapos_NW.json"
         }
       ]
     },
@@ -260,6 +265,11 @@
       "endpoints": [
         {
           "url": "http://www.sapos-bb-ntrip.de:2101/"
+        },
+        {
+          "type": "file",
+          "id": "sapos_BB_ext",
+          "path": "data/external_sapos_BB.json"
         }
       ]
     },
