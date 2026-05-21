@@ -13,7 +13,7 @@ Input: list of entries to research, either specific casters or geographical regi
 
 ## Scope
 
-Research is repository of information relevant to an RTK hobbyist - pareto points on official-cheap-accurate-accessible. Free RINEX / 30 sec streams relevant if there's no free RTK with equivalent coverage. Official government project announcements relevant if they are set to become clear pareto points.
+Research is repository of information relevant to a local RTK hobbyist - pareto points on official-cheap-accurate-accessible. Free RINEX / 30 sec streams relevant if there's no free RTK with equivalent coverage. Official government project announcements relevant if they are set to become clear pareto points.
 Information must be sourced, not guessed.
 International casters and other countries all have their own dedicated research entries - focus on your own entry. "3 centipede stations" is not relevant, unless your entry is 3 tiny islands.
 
@@ -37,7 +37,7 @@ Sequentially, per entry. When it feels like a step can be omitted due to circums
 
 Step 1: Read existing research as starting point. Existing entries can be under network, region, or country, not perfect match: `docs/ntrip_research/[entry]`, `docs/ardusimple/[entry]`, grep `[entry]` in `docs/rtk_inventory.md` + `data/rtk_map.json`.  Identify claims.
 Step 2: a) Assess relevance of claims, scope creep, drop irrelevant. b) Remaining claims: Must use tools (WebSearch, WebFetch) to independently verify, fix. 
-Step 3:Identify gaps: incomplete fields, incomplete information, incomplete sources, ambiguous claims, conflicting or unsubstantiated claims
+Step 3: Identify gaps: incomplete fields, incomplete information, incomplete sources, ambiguous claims, conflicting or unsubstantiated claims
 Step 4: Close gaps, with sources. Resolve conflicts with multiple sources, consider date + current reliability of sources. Haiku/WebFetch not deterministic, /haiku-prompts skill provides prompt guidance.
 Step 5: Explore availability of alternate casters using local sources, not aggregator lists. Press releases, research projects, RTK hobbyist + professional communities, local survey associations. Use local languages.
 Step 6: Update `docs/ntrip_research/[entry]` research files. No requirement to preserve previous style. Not a log, refactor to present what is known. Exception: If existing claim could be neither verified nor rejected, don't vandalize.
