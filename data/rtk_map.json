@@ -193,9 +193,11 @@
           "url": "http://www.sapos-nw-ntrip.de:2101/"
         },
         {
-          "type": "file",
+          "type": "scraped",
           "id": "sapos_NW_ext",
-          "path": "data/external_sapos_NW.json"
+          "scraper": "sapos_nw",
+          "interval_days": 7,
+          "pin_origin": "register"
         }
       ]
     },
@@ -267,9 +269,11 @@
           "url": "http://www.sapos-bb-ntrip.de:2101/"
         },
         {
-          "type": "file",
+          "type": "scraped",
           "id": "sapos_BB_ext",
-          "path": "data/external_sapos_BB.json"
+          "scraper": "sapos_bb",
+          "interval_days": 7,
+          "pin_origin": "register"
         }
       ]
     },

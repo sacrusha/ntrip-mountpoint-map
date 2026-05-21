@@ -10,6 +10,85 @@ from `../data/rtk_map.json` endpoints; writes `data/stations.json` +
 `data/source_health.json` + cached `data/<endpoint_id>.sourcetable`
 files. Run by GitHub Actions cron 4×/day.
 
+## Source types
+
+Each `endpoints[]` entry in `../data/rtk_map.json` carries a `type`
+field; default is `"ntrip"` for back-compat. The `HANDLERS` dict in
+`fetch_stations.py` dispatches on this field. Add a new type by writing
+an `_fetch_<type>_source(src) -> (sid, result, was_fresh)` handler and
+registering it in `HANDLERS`.
+
+| type | When to use | Cache file |
+|---|---|---|
+| `ntrip` | Live NTRIP caster sourcetable (`GET / HTTP/1.0`). Default. | `data/<id>.sourcetable` |
+| `file` | One-shot input that never updates upstream: forum-transcribed station lists, manually-curated PDFs, blog-extracted coords. Editor commits the JSON; pipeline re-reads it every run. | none — file IS the input |
+| `scraped` | Operator portal that DOES update but is not an NTRIP sourcetable: HTML refmaps, IGS sitelog directories, KMLs. Refreshed on a per-source interval (default 7 d). | `data/<id>.scraped.json` |
+
+### `scraped` source type
+
+Use when the upstream operator publishes station data on a portal that
+keeps changing (new stations added, antennas re-surveyed, IDs renamed)
+but the format is not an NTRIP sourcetable. The handler imports a
+per-source scraper module from `../scripts/scrapers/<name>.py`,
+serialises the result to a JSON cache, and serves the cache for up to
+`interval_days` before re-running the scraper.
+
+**Endpoint shape** in `../data/rtk_map.json`:
+```json
+{
+  "type": "scraped",
+  "id": "sapos_BB_ext",
+  "scraper": "sapos_bb",
+  "interval_days": 7,
+  "pin_origin": "register"
+}
+```
+
+| field | required | notes |
+|---|---|---|
+| `type` | yes | Must be `"scraped"`. |
+| `id` | yes | Cache-file basename: `data/<id>.scraped.json`. Set explicitly so the cache is stable across endpoint reorderings. |
+| `scraper` | yes | Module name under `scripts/scrapers/`. `"sapos_bb"` -> `scripts/scrapers/sapos_bb.py`. |
+| `interval_days` | optional, default `7` | Minimum gap between scrapes. Cache served unchanged when fresh; re-scraped only when the cache's `last_scraped` timestamp is older than this. |
+| `pin_origin` | optional | Written into every station record (`register` for operator-published station registers, `forum` for community lists, etc.). Defaults to `"external"`. |
+
+**Cache format** (`data/<id>.scraped.json`):
+```json
+{
+  "last_scraped": "2026-05-21T12:34:56+00:00",
+  "source_url":   "https://example.org/stations/",
+  "pin_origin":   "register",
+  "stations": [
+    {"name": "AAAA", "lat": 12.34, "lon": 56.78, "country": "DEU"}
+  ]
+}
+```
+
+**Cadence rationale**: NTRIP sourcetables refresh 4×/day because the
+fetch is one HTTP round-trip per caster. A scraped portal typically
+needs N+1 round-trips (index + per-station detail page); hammering it
+4×/day is rude to the operator and surfaces no new data — operator
+registers churn on the order of weeks, not hours. Default 7 days; bump
+shorter only when the operator demonstrably updates more often.
+
+**Failure mode**: if the scrape raises any exception (network blip,
+HTML restructure, parser bug), the handler falls back to the existing
+cache and tags the source `stale` — the cron-driven NTRIP retry loop
+will hit it again on the next run. If no cache exists either, status
+is `error` and 0 stations ship. Behaviour parallels how
+`_fetch_ntrip_source` reuses the `.sourcetable` cache on caster outage.
+
+**Scraper module shape** (`scripts/scrapers/<name>.py`):
+- Exposes a single `scrape() -> dict` callable.
+- Returns `{"source_url": str, "stations": [{"name", "lat", "lon",
+  "country"?}, ...]}`.
+- Raises any exception on failure — the handler catches and falls back.
+- Should be self-contained (stdlib + urllib only; no project-internal
+  imports beyond stdlib). Treat it like a thin adapter.
+- One module per upstream source; do not coalesce two different
+  operator portals into one module — separate failure surfaces matter
+  for the cache-fallback contract.
+
 ## When to edit this file
 
 Adding, removing, or retuning a network is **not** a `.py` edit any

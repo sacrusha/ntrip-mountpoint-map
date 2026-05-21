@@ -18,13 +18,14 @@ Process / network-config editing rules: see fetch_stations.proc.md
 from __future__ import annotations
 
 import http.client
+import importlib
 import json
 import os
 import math
 import socket
 import sys
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from urllib.error import URLError
 from urllib.parse import urlparse
@@ -137,6 +138,10 @@ def _flatten_endpoints(networks: list[dict]) -> list[dict]:
                 entry["path"] = ep["path"]
             if "pin_origin" in ep:
                 entry["pin_origin"] = ep["pin_origin"]
+            if "scraper" in ep:
+                entry["scraper"] = ep["scraper"]
+            if "interval_days" in ep:
+                entry["interval_days"] = ep["interval_days"]
             out.append(entry)
     return out
 
@@ -544,11 +549,204 @@ def _fetch_file_source(src: dict) -> tuple[str, dict, bool]:
     }, True
 
 
+DEFAULT_SCRAPE_INTERVAL_DAYS = 7
+
+
+def _fetch_scraped_source(src: dict) -> tuple[str, dict, bool]:
+    """Refresh a per-source operator-portal scrape, with disk cache fallback.
+
+    Cache layout: `data/<endpoint_id>.scraped.json`, same schema as
+    file-source inputs (`source_url`, `pin_origin`, `stations[]`) plus a
+    `last_scraped` ISO-8601 timestamp tracking when the scraper last ran
+    successfully. The cache is the on-disk equivalent of the
+    `.sourcetable` files NTRIP sources keep — it's the "last known good"
+    output that survives a transient operator-portal outage.
+
+    Lifecycle per run:
+      1. Load existing cache if present (read once, used for both
+         freshness gating and failure fallback).
+      2. If cache is fresh (last_scraped within `interval_days`), serve
+         from cache without re-scraping. Stations come from cache;
+         status is 'ok'.
+      3. Otherwise, import the scraper module (`scripts.scrapers.<name>`)
+         and call `scrape()`. On success, write a new cache and serve
+         the freshly scraped stations.
+      4. On any scrape exception, fall back to the existing cache and
+         tag the source 'stale'. If no cache exists either, status is
+         'error' (0 stations) — the next NTRIP-pipeline run will retry.
+
+    `interval_days` is per-endpoint (`data/rtk_map.json`); default 7 — a
+    weekly refresh keeps the scrape light on the operator and avoids
+    surfacing transient maintenance-window noise.
+    """
+    sid = src["id"]
+    scraper_name = src.get("scraper")
+    if not scraper_name:
+        raise ValueError(f"[{sid}] scraped source missing 'scraper' field")
+    interval_days = src.get("interval_days", DEFAULT_SCRAPE_INTERVAL_DAYS)
+    pin_origin_default = src.get("pin_origin")
+    prev_last_ok = src.get("_prev_last_ok")
+    cache_path = DATA_DIR / f"{sid}.scraped.json"
+    _meta = {
+        "url": src.get("url"),
+        "credentials": src.get("credentials"),
+        "near": src.get("near", False),
+        "user": src.get("user"),
+        "pass": src.get("pass"),
+        "userNote": src.get("userNote"),
+    }
+
+    def _load_cache() -> dict | None:
+        if not cache_path.exists():
+            return None
+        try:
+            return json.loads(cache_path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError) as e:
+            print(f"[{sid}] cache unreadable ({cache_path}): {e!r}", file=sys.stderr)
+            return None
+
+    def _build_stations(cached: dict, pin_origin: str) -> list[dict]:
+        out = []
+        for entry in cached.get("stations", []):
+            try:
+                lat = float(entry["lat"])
+                lon = float(entry["lon"])
+            except (KeyError, TypeError, ValueError):
+                continue
+            rec = {
+                "name": entry["name"],
+                "lat": lat,
+                "lon": lon,
+                "latPrec": entry.get("latPrec", _dec_places(str(lat))),
+                "lonPrec": entry.get("lonPrec", _dec_places(str(lon))),
+                "country": entry.get("country", ""),
+                "pin_origin": pin_origin,
+            }
+            if "format" in entry:
+                rec["format"] = entry["format"]
+            if "constellations" in entry:
+                rec["constellations"] = entry["constellations"]
+            carrier = entry.get("carrier")
+            if isinstance(carrier, int):
+                rec["dualFreq"] = carrier >= 2
+                rec["tripleFreq"] = carrier >= 3
+            out.append(rec)
+        out.sort(key=lambda s: (s["name"], s["lat"], s["lon"]))
+        return out
+
+    def _last_ok_iso(cached: dict) -> str | None:
+        ts = cached.get("last_scraped")
+        if not ts:
+            return None
+        try:
+            # Accept either an ISO instant (preferred) or a bare date.
+            if "T" in ts:
+                return datetime.fromisoformat(ts.replace("Z", "+00:00"))\
+                    .astimezone(timezone.utc).isoformat(timespec="seconds")
+            return datetime.strptime(ts, "%Y-%m-%d")\
+                .replace(tzinfo=timezone.utc).isoformat(timespec="seconds")
+        except ValueError:
+            return None
+
+    cached = _load_cache()
+    now = datetime.now(timezone.utc)
+
+    # Step 1: serve from cache if fresh enough — cheap path, no scrape.
+    if cached is not None:
+        last_iso = _last_ok_iso(cached)
+        if last_iso is not None:
+            try:
+                age = now - datetime.fromisoformat(last_iso)
+                if age < timedelta(days=interval_days):
+                    pin_origin = cached.get("pin_origin") or pin_origin_default or "external"
+                    stations = _build_stations(cached, pin_origin)
+                    print(f"[{sid}] scraped cache fresh "
+                          f"({len(stations)} stations, scraped {last_iso}, "
+                          f"age {age.days}d < {interval_days}d)")
+                    return sid, {**_meta,
+                        "url": cached.get("source_url") or _meta["url"],
+                        "status": "ok",
+                        "fetched_at": now.isoformat(timespec="seconds"),
+                        "last_ok": last_iso,
+                        "raw_path": cache_path,
+                        "text": None,
+                        "stations": stations,
+                    }, False
+            except ValueError:
+                pass  # malformed timestamp; treat as needing re-scrape
+
+    # Step 2: re-scrape. Import lazily so unused scrapers don't pay.
+    # Module path follows the rest of the codebase: scripts/ is on sys.path
+    # (refresh_data.py inserts it; direct `python scripts/fetch_stations.py`
+    # adds it as sys.path[0]), so `scrapers.<name>` resolves either way.
+    try:
+        module = importlib.import_module(f"scrapers.{scraper_name}")
+        scrape_fn = getattr(module, "scrape")
+    except (ImportError, AttributeError) as e:
+        print(f"[{sid}] scraper module 'scrapers.{scraper_name}' "
+              f"unavailable: {e!r}", file=sys.stderr)
+        scrape_fn = None
+
+    if scrape_fn is not None:
+        try:
+            result = scrape_fn()
+            pin_origin = pin_origin_default or "external"
+            new_cache = {
+                "last_scraped": now.isoformat(timespec="seconds"),
+                "source_url":   result.get("source_url"),
+                "pin_origin":   pin_origin,
+                "stations":     result.get("stations", []),
+            }
+            _atomic_write_text(cache_path, json.dumps(new_cache, indent=2) + "\n")
+            stations = _build_stations(new_cache, pin_origin)
+            print(f"[{sid}] scraped {len(stations)} stations via {scraper_name} "
+                  f"(cache -> {cache_path.name})")
+            return sid, {**_meta,
+                "url": new_cache["source_url"] or _meta["url"],
+                "status": "ok",
+                "fetched_at": now.isoformat(timespec="seconds"),
+                "last_ok": now.isoformat(timespec="seconds"),
+                "raw_path": cache_path,
+                "text": None,
+                "stations": stations,
+            }, True
+        except Exception as e:
+            print(f"[{sid}] scrape failed via {scraper_name}: {e!r}", file=sys.stderr)
+
+    # Step 3: scrape failed (or scraper missing) — fall back to cache if any.
+    if cached is not None:
+        pin_origin = cached.get("pin_origin") or pin_origin_default or "external"
+        stations = _build_stations(cached, pin_origin)
+        last_iso = _last_ok_iso(cached) or prev_last_ok
+        print(f"[{sid}] reusing cached scrape ({len(stations)} stations, "
+              f"scraped {last_iso or '?'})", file=sys.stderr)
+        return sid, {**_meta,
+            "url": cached.get("source_url") or _meta["url"],
+            "status": "stale",
+            "fetched_at": None,
+            "last_ok": last_iso,
+            "raw_path": cache_path,
+            "text": None,
+            "stations": stations,
+        }, False
+
+    # Step 4: no scrape, no cache, nothing to serve.
+    return sid, {**_meta,
+        "status": "error",
+        "fetched_at": None,
+        "last_ok": prev_last_ok,
+        "raw_path": cache_path,
+        "text": None,
+        "stations": [],
+    }, False
+
+
 # Source-type dispatch. Add a new type by writing a handler returning the
 # (sid, result, was_fresh) shape and registering it here.
 HANDLERS = {
-    "ntrip": _fetch_ntrip_source,
-    "file":  _fetch_file_source,
+    "ntrip":   _fetch_ntrip_source,
+    "file":    _fetch_file_source,
+    "scraped": _fetch_scraped_source,
 }
 
 

@@ -106,6 +106,23 @@ network — **not** a `fetch_stations.py` change.
 }
 ```
 
+A network can mix endpoint types — e.g. a SAPOS state caster (live
+NTRIP VRS endpoint) plus a portal scrape that pins the physical
+reference stations the NTRIP endpoint hides behind VRS-only mounts.
+The fetcher iterates each endpoint with its type-specific handler and
+merges all per-endpoint stations into one network record by
+`(name, lat, lon)`.
+
+| `type` (endpoint field) | When to use | Required fields |
+|---|---|---|
+| `ntrip` (default) | Live NTRIP caster | `url` |
+| `file` | One-shot transcribed input — forum lists, blog extractions, PDFs the operator does not republish. | `path`, `id` |
+| `scraped` | Operator portal that updates: HTML refmaps, IGS sitelog directories. Refreshed at `interval_days` cadence (default 7). | `scraper`, `id`; optional `interval_days`, `pin_origin` |
+
+Type-specific details: see `../scripts/fetch_stations.proc.md` §Source
+types. NTRIP-only fields below (`credentials`, `near`, filter flags)
+apply to `type: "ntrip"` endpoints; the other types ignore them.
+
 | field | required | notes |
 |---|---|---|
 | `url` | yes | Full NTRIP URL with trailing slash; `http://` even if the host serves https — the fetcher falls back to raw NTRIP/1.0 TCP if HTTP GET returns `BadStatusLine`. |
