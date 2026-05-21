@@ -450,6 +450,45 @@ def _fetch_ntrip_source(src: dict) -> tuple[str, dict, bool]:
         }, False
 
 
+def _build_external_records(entries: list[dict], pin_origin: str) -> list[dict]:
+    """Build per-station records from a curated/scraped entry list.
+
+    Shared by `_fetch_file_source` and `_fetch_scraped_source` — both
+    consume the same `{name, lat, lon, format?, carrier?, constellations?,
+    country?}` dict shape. Entries that can't parse lat/lon are dropped
+    silently (file is editor-controlled; scrape modules pre-validate)."""
+    out = []
+    for entry in entries:
+        try:
+            lat = float(entry["lat"])
+            lon = float(entry["lon"])
+        except (KeyError, TypeError, ValueError):
+            continue
+        rec = {
+            "name": entry["name"],
+            "lat": lat,
+            "lon": lon,
+            "latPrec": entry.get("latPrec", _dec_places(str(lat))),
+            "lonPrec": entry.get("lonPrec", _dec_places(str(lon))),
+            "country": entry.get("country", ""),
+            "pin_origin": pin_origin,
+        }
+        # Format / carrier are optional. Omitting them signals "frequency
+        # capability unknown" to the UI (vs the L1-default fallthrough that
+        # would mislabel as a confirmed single-frequency station).
+        if "format" in entry:
+            rec["format"] = entry["format"]
+        if "constellations" in entry:
+            rec["constellations"] = entry["constellations"]
+        carrier = entry.get("carrier")
+        if isinstance(carrier, int):
+            rec["dualFreq"] = carrier >= 2
+            rec["tripleFreq"] = carrier >= 3
+        out.append(rec)
+    out.sort(key=lambda s: (s["name"], s["lat"], s["lon"]))
+    return out
+
+
 def _fetch_file_source(src: dict) -> tuple[str, dict, bool]:
     """Read a curated station list from a JSON file on disk.
 
@@ -504,36 +543,7 @@ def _fetch_file_source(src: dict) -> tuple[str, dict, bool]:
         except ValueError:
             print(f"[{sid}] last_reviewed not YYYY-MM-DD ({last_reviewed!r}); "
                   f"staleness will read as unknown", file=sys.stderr)
-    stations = []
-    for entry in raw.get("stations", []):
-        try:
-            lat = float(entry["lat"])
-            lon = float(entry["lon"])
-        except (KeyError, TypeError, ValueError):
-            continue
-        rec = {
-            "name": entry["name"],
-            "lat": lat,
-            "lon": lon,
-            "latPrec": entry.get("latPrec", _dec_places(str(lat))),
-            "lonPrec": entry.get("lonPrec", _dec_places(str(lon))),
-            "country": entry.get("country", ""),
-            "pin_origin": pin_origin,
-        }
-        # Format / carrier are optional on file sources. Omitting them signals
-        # "frequency capability unknown" to the UI (vs the L1-default fallthrough
-        # that previously made unknown look like a confirmed single-frequency
-        # station). If declared, propagate verbatim.
-        if "format" in entry:
-            rec["format"] = entry["format"]
-        if "constellations" in entry:
-            rec["constellations"] = entry["constellations"]
-        carrier = entry.get("carrier")
-        if isinstance(carrier, int):
-            rec["dualFreq"] = carrier >= 2
-            rec["tripleFreq"] = carrier >= 3
-        stations.append(rec)
-    stations.sort(key=lambda s: (s["name"], s["lat"], s["lon"]))
+    stations = _build_external_records(raw.get("stations", []), pin_origin)
     src_url = raw.get("source_url")
     print(f"[{sid}] file source: {len(stations)} stations from {path.name} "
           f"(reviewed {last_reviewed or '?'}, origin={pin_origin})")
@@ -605,35 +615,6 @@ def _fetch_scraped_source(src: dict) -> tuple[str, dict, bool]:
             print(f"[{sid}] cache unreadable ({cache_path}): {e!r}", file=sys.stderr)
             return None
 
-    def _build_stations(cached: dict, pin_origin: str) -> list[dict]:
-        out = []
-        for entry in cached.get("stations", []):
-            try:
-                lat = float(entry["lat"])
-                lon = float(entry["lon"])
-            except (KeyError, TypeError, ValueError):
-                continue
-            rec = {
-                "name": entry["name"],
-                "lat": lat,
-                "lon": lon,
-                "latPrec": entry.get("latPrec", _dec_places(str(lat))),
-                "lonPrec": entry.get("lonPrec", _dec_places(str(lon))),
-                "country": entry.get("country", ""),
-                "pin_origin": pin_origin,
-            }
-            if "format" in entry:
-                rec["format"] = entry["format"]
-            if "constellations" in entry:
-                rec["constellations"] = entry["constellations"]
-            carrier = entry.get("carrier")
-            if isinstance(carrier, int):
-                rec["dualFreq"] = carrier >= 2
-                rec["tripleFreq"] = carrier >= 3
-            out.append(rec)
-        out.sort(key=lambda s: (s["name"], s["lat"], s["lon"]))
-        return out
-
     def _last_ok_iso(cached: dict) -> str | None:
         ts = cached.get("last_scraped")
         if not ts:
@@ -659,14 +640,16 @@ def _fetch_scraped_source(src: dict) -> tuple[str, dict, bool]:
                 age = now - datetime.fromisoformat(last_iso)
                 if age < timedelta(days=interval_days):
                     pin_origin = cached.get("pin_origin") or pin_origin_default or "external"
-                    stations = _build_stations(cached, pin_origin)
+                    stations = _build_external_records(cached.get("stations", []), pin_origin)
                     print(f"[{sid}] scraped cache fresh "
                           f"({len(stations)} stations, scraped {last_iso}, "
                           f"age {age.days}d < {interval_days}d)")
                     return sid, {**_meta,
                         "url": cached.get("source_url") or _meta["url"],
                         "status": "ok",
-                        "fetched_at": now.isoformat(timespec="seconds"),
+                        # fetched_at = when we touched the upstream. Cache served = we didn't.
+                        # Matches _fetch_ntrip_source's stale-cache convention.
+                        "fetched_at": None,
                         "last_ok": last_iso,
                         "raw_path": cache_path,
                         "text": None,
@@ -698,7 +681,7 @@ def _fetch_scraped_source(src: dict) -> tuple[str, dict, bool]:
                 "stations":     result.get("stations", []),
             }
             _atomic_write_text(cache_path, json.dumps(new_cache, indent=2) + "\n")
-            stations = _build_stations(new_cache, pin_origin)
+            stations = _build_external_records(new_cache["stations"], pin_origin)
             print(f"[{sid}] scraped {len(stations)} stations via {scraper_name} "
                   f"(cache -> {cache_path.name})")
             return sid, {**_meta,
@@ -716,7 +699,7 @@ def _fetch_scraped_source(src: dict) -> tuple[str, dict, bool]:
     # Step 3: scrape failed (or scraper missing) — fall back to cache if any.
     if cached is not None:
         pin_origin = cached.get("pin_origin") or pin_origin_default or "external"
-        stations = _build_stations(cached, pin_origin)
+        stations = _build_external_records(cached.get("stations", []), pin_origin)
         last_iso = _last_ok_iso(cached) or prev_last_ok
         print(f"[{sid}] reusing cached scrape ({len(stations)} stations, "
               f"scraped {last_iso or '?'})", file=sys.stderr)

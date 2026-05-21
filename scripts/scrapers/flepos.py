@@ -15,8 +15,9 @@ the country tag follows what the M3G sitelog actually carries.
 """
 from __future__ import annotations
 
-import re
 import urllib.request
+
+from . import _sitelog
 
 API_BASE = "https://gnss-metadata.eu/v1/sitelog/exportlog?id="
 TIMEOUT = 20
@@ -35,30 +36,10 @@ STATION_IDS = sorted([
     "ZWEV",
 ])
 
-# IGS sitelog DMS shape, identical to the SAPOS-BB form. The country
-# tag on the sitelog (`X.XX Country` in Section 2) carries through to
-# the pin record so cross-border stations are honestly labelled.
-_SITE_NAME_RE = re.compile(r"^\s*Site Name\s*:\s*(\S.*?)\s*$", re.MULTILINE)
-_FOURCHAR_RE = re.compile(r"Four Character ID\s*:\s*(\S{4})")
-_NINECHAR_RE = re.compile(r"Nine Character ID\s*:\s*(\S{9})")
-_LAT_RE = re.compile(r"Latitude\s*\(N is \+\)\s*:\s*([+-]\d+\.\d+)")
-_LON_RE = re.compile(r"Longitude\s*\(E is \+\)\s*:\s*([+-]\d+\.\d+)")
-_COUNTRY_RE = re.compile(r"Country or Region\s*:\s*([A-Za-z][A-Za-z ]+)")
-
-
 def _http_get(url: str) -> str:
     req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
     with urllib.request.urlopen(req, timeout=TIMEOUT) as resp:
         return resp.read().decode("utf-8", errors="replace")
-
-
-def _dms_decimal(s: str, deg_digits: int) -> float:
-    sign = -1 if s.startswith("-") else 1
-    body = s.lstrip("+-")
-    dd = int(body[:deg_digits])
-    mm = int(body[deg_digits:deg_digits + 2])
-    ss = float(body[deg_digits + 2:])
-    return sign * round(dd + mm / 60.0 + ss / 3600.0, 6)
 
 
 _COUNTRY_ISO3 = {
@@ -71,22 +52,22 @@ _COUNTRY_ISO3 = {
 
 
 def _parse_sitelog(text: str, fallback_id: str) -> tuple[str, float, float, str] | None:
-    lat = _LAT_RE.search(text)
-    lon = _LON_RE.search(text)
+    lat = _sitelog.LAT_RE.search(text)
+    lon = _sitelog.LON_RE.search(text)
     if not (lat and lon):
         return None
-    name_match = (_FOURCHAR_RE.search(text)
-                  or _SITE_NAME_RE.search(text)
-                  or _NINECHAR_RE.search(text))
+    name_match = (_sitelog.FOURCHAR_RE.search(text)
+                  or _sitelog.SITE_NAME_RE.search(text)
+                  or _sitelog.NINECHAR_RE.search(text))
     name = name_match.group(1).strip()[:4] if name_match else fallback_id
-    country_match = _COUNTRY_RE.search(text)
+    country_match = _sitelog.COUNTRY_RE.search(text)
     country_str = (country_match.group(1).strip()
                    if country_match else "Belgium")
     country = _COUNTRY_ISO3.get(country_str, "BEL")
     return (
         name,
-        _dms_decimal(lat.group(1), 2),
-        _dms_decimal(lon.group(1), 3),
+        _sitelog.dms_to_decimal(lat.group(1), 2),
+        _sitelog.dms_to_decimal(lon.group(1), 3),
         country,
     )
 

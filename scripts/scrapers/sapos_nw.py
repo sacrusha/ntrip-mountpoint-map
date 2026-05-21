@@ -18,6 +18,8 @@ import re
 import urllib.request
 from urllib.parse import urljoin
 
+from . import _sitelog
+
 INDEX_URL = "https://gppspro.saposnrw.de/refmap.php"
 TIMEOUT = 15
 USER_AGENT = "NTRIP ntrip-mountpoint-map/1.0 (scraper sapos_nw)"
@@ -27,25 +29,10 @@ USER_AGENT = "NTRIP ntrip-mountpoint-map/1.0 (scraper sapos_nw)"
 # stations to 4-letter IDs in 2025).
 _DETAIL_RE = re.compile(r'detail=([0-9A-Z]{4})\b')
 
-_FOURCHAR_RE = re.compile(r'Four[- ]Character ID\s*:\s*([0-9A-Z]{4})', re.IGNORECASE)
-_SITE_NAME_RE = re.compile(r'^\s*Site Name\s*:\s*(\S.*?)\s*$', re.MULTILINE)
-_LAT_RE = re.compile(r"Latitude\s*\(N is \+\)\s*:\s*([+-]\d+\.\d+)")
-_LON_RE = re.compile(r"Longitude\s*\(E is \+\)\s*:\s*([+-]\d+\.\d+)")
-
-
 def _http_get(url: str) -> str:
     req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
     with urllib.request.urlopen(req, timeout=TIMEOUT) as resp:
         return resp.read().decode("utf-8", errors="replace")
-
-
-def _dms_to_decimal(s: str, deg_digits: int) -> float:
-    sign = -1 if s.startswith("-") else 1
-    body = s.lstrip("+-")
-    dd = int(body[:deg_digits])
-    mm = int(body[deg_digits:deg_digits + 2])
-    ss = float(body[deg_digits + 2:])
-    return sign * round(dd + mm / 60.0 + ss / 3600.0, 6)
 
 
 def _parse_detail(text: str, fallback_name: str) -> tuple[str, float, float]:
@@ -53,14 +40,14 @@ def _parse_detail(text: str, fallback_name: str) -> tuple[str, float, float]:
 
     Prefers Site Name from the embedded sitelog; falls back to the
     `detail=XXXX` parameter when the page only embeds the 4-char ID."""
-    lat_match = _LAT_RE.search(text)
-    lon_match = _LON_RE.search(text)
+    lat_match = _sitelog.LAT_RE.search(text)
+    lon_match = _sitelog.LON_RE.search(text)
     if not (lat_match and lon_match):
         raise ValueError("detail page missing DMS coordinates")
-    name_match = _SITE_NAME_RE.search(text) or _FOURCHAR_RE.search(text)
+    name_match = _sitelog.SITE_NAME_RE.search(text) or _sitelog.FOURCHAR_RE.search(text)
     name = name_match.group(1).strip() if name_match else fallback_name
-    lat = _dms_to_decimal(lat_match.group(1), 2)
-    lon = _dms_to_decimal(lon_match.group(1), 3)
+    lat = _sitelog.dms_to_decimal(lat_match.group(1), 2)
+    lon = _sitelog.dms_to_decimal(lon_match.group(1), 3)
     return name, lat, lon
 
 

@@ -91,16 +91,21 @@ is `error` and 0 stations ship. Behaviour parallels how
 
 **Shared helpers** (`scripts/scrapers/_<name>.py`, underscore-prefixed):
 - A module-naming convention for internal helpers that several
-  per-source scrapers share. Two patterns are in tree:
+  per-source scrapers share. Three patterns are in tree:
   - `_arcgis.py` — parameterised ArcGIS REST query/paging helper.
     Per-source scrapers (`iartn`, `vector`, `wvrtn`) pass their layer
     URL + name-field; the helper is not itself a data source.
   - `_ngs_bulk.py` — one upstream file (`nad83_2011_geo.comp.txt`)
     consumed by two per-state filters (`ardot_rtn`, `ct_acorn`). The
-    file fetches once per pipeline run (in-process memoisation); each
-    state-filter scraper writes its own `.scraped.json` cache. This is
-    the legitimate exception to "one module per source" — the source
-    is genuinely one file, not two portals coalesced.
+    file fetches once per pipeline run (double-checked locking around
+    an in-process cache so concurrent stale-cache scrapers don't each
+    download); each state-filter scraper writes its own `.scraped.json`
+    cache. This is the legitimate exception to "one module per source"
+    — the source is genuinely one file, not two portals coalesced.
+  - `_sitelog.py` — IGS-format sitelog regex + DMS-string-to-decimal
+    conversion. Consumed by `sapos_bb`, `sapos_nw`, `flepos` (all three
+    parse IGS sitelogs from different operator portals but the
+    line-format inside is identical).
 - Helpers MUST NOT register themselves in `data/rtk_map.json`; only
   the per-source thin scrapers do. Importing a helper from a scraper
   module uses package-relative `from . import _name` syntax.

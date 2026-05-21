@@ -6,7 +6,8 @@ contribute to the IaRTN solution). We keep them all — cross-border
 stations are real receivers that show up in the IaRTN sourcetable.
 
 Station identifier: NGS-style 4-letter code in the `NGS_ID` attribute
-(e.g. `IAAM` for Ames). Falls back to `NAME` if `NGS_ID` is blank.
+(e.g. `IAAM` for Ames). Features with a blank `NGS_ID` are dropped by
+the ArcGIS helper — Iowa DOT's data consistently populates the field.
 """
 from __future__ import annotations
 

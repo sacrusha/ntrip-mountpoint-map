@@ -18,6 +18,8 @@ import re
 import urllib.request
 from urllib.parse import urljoin
 
+from . import _sitelog
+
 INDEX_URL = "https://monitor.sapos-bb.de/station/sitelogs/"
 TIMEOUT = 15
 USER_AGENT = "NTRIP ntrip-mountpoint-map/1.0 (scraper sapos_bb)"
@@ -27,12 +29,6 @@ USER_AGENT = "NTRIP ntrip-mountpoint-map/1.0 (scraper sapos_bb)"
 # directory-listing rewrite doesn't break the scraper.
 _LOG_RE = re.compile(r"\b(\d{6}DEU_\d{8}\.log)\b")
 
-# Section 1 - Site Identification: "Site Name : <NAME>"
-_SITE_NAME_RE = re.compile(r"^\s*Site Name\s*:\s*(\S.*?)\s*$", re.MULTILINE)
-# Section 2 - Approximate Position (ITRF): "+DDMMSS.ss" / "+DDDMMSS.ss"
-_LAT_RE = re.compile(r"Latitude\s*\(N is \+\)\s*:\s*([+-]\d+\.\d+)")
-_LON_RE = re.compile(r"Longitude\s*\(E is \+\)\s*:\s*([+-]\d+\.\d+)")
-
 
 def _http_get(url: str) -> str:
     req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
@@ -40,29 +36,16 @@ def _http_get(url: str) -> str:
         return resp.read().decode("utf-8", errors="replace")
 
 
-def _dms_to_decimal(s: str, deg_digits: int) -> float:
-    """Convert IGS sitelog "+DDMMSS.ss" / "+DDDMMSS.ss" to signed decimal.
-
-    `deg_digits` is 2 for latitude (DDMMSS.ss) and 3 for longitude
-    (DDDMMSS.ss). The leading sign carries hemisphere (+N, +E)."""
-    sign = -1 if s.startswith("-") else 1
-    body = s.lstrip("+-")
-    dd = int(body[:deg_digits])
-    mm = int(body[deg_digits:deg_digits + 2])
-    ss = float(body[deg_digits + 2:])
-    return sign * round(dd + mm / 60.0 + ss / 3600.0, 6)
-
-
 def _parse_sitelog(text: str) -> tuple[str, float, float]:
     """Return (site_name, lat, lon) from a single IGS sitelog."""
-    name_match = _SITE_NAME_RE.search(text)
-    lat_match = _LAT_RE.search(text)
-    lon_match = _LON_RE.search(text)
+    name_match = _sitelog.SITE_NAME_RE.search(text)
+    lat_match = _sitelog.LAT_RE.search(text)
+    lon_match = _sitelog.LON_RE.search(text)
     if not (name_match and lat_match and lon_match):
         raise ValueError("sitelog missing Site Name or DMS coordinates")
     name = name_match.group(1).strip()
-    lat = _dms_to_decimal(lat_match.group(1), 2)
-    lon = _dms_to_decimal(lon_match.group(1), 3)
+    lat = _sitelog.dms_to_decimal(lat_match.group(1), 2)
+    lon = _sitelog.dms_to_decimal(lon_match.group(1), 3)
     return name, lat, lon
 
 

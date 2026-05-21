@@ -20,6 +20,7 @@ result inside the calling scraper's `.scraped.json`, and rely on the
 from __future__ import annotations
 
 import re
+import threading
 import urllib.request
 
 NGS_BULK_URL = (
@@ -49,15 +50,19 @@ _LINE_RE = re.compile(
 # process lifetime — the per-source `.scraped.json` files on disk are
 # the durable cache.
 _cached_text: str | None = None
+_fetch_lock = threading.Lock()
 
 
 def _fetch_text() -> str:
     global _cached_text
     if _cached_text is not None:
         return _cached_text
-    req = urllib.request.Request(NGS_BULK_URL, headers={"User-Agent": USER_AGENT})
-    with urllib.request.urlopen(req, timeout=TIMEOUT) as resp:
-        _cached_text = resp.read().decode("utf-8", errors="replace")
+    with _fetch_lock:
+        if _cached_text is not None:  # re-check after acquiring
+            return _cached_text
+        req = urllib.request.Request(NGS_BULK_URL, headers={"User-Agent": USER_AGENT})
+        with urllib.request.urlopen(req, timeout=TIMEOUT) as resp:
+            _cached_text = resp.read().decode("utf-8", errors="replace")
     return _cached_text
 
 
