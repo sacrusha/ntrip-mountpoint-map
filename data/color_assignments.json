@@ -21,6 +21,7 @@
     "ign_cr_cors": "local2",
     "igs_ip": "global1",
     "kycors": "local1",
+    "litpos": "local3",
     "mirai": "global3",
     "nps_cors": "global4",
     "nysnet": "local4",

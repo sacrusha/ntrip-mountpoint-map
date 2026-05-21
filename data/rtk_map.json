@@ -2159,7 +2159,8 @@
       "note": "Free since IGM's unified national caster launched in February 2024.",
       "endpoints": [
         {
-          "url": "http://ntrip.igm.gob.ec:2101/"
+          "url": "http://ntrip.igm.gob.ec:2101/",
+          "nmea_filter": false
         }
       ]
     },
