@@ -948,8 +948,6 @@
       h+=`<div class="row"><span class="lbl">Username</span><span style="font-size:11px;color:var(--muted);font-style:italic">${esc(source.userNote)}</span></div>`;
     if(source.pass)
       h+=cpRow('Password',source.pass);
-    if(source.note)
-      h+=`<div class="anote">${esc(source.note)}</div>`;
     if(source.registration)
       h+=`<div class="anote"><a href="${esc(source.registration)}" target="_blank" rel="noopener noreferrer">${esc(visUrl(source.registration))} ↗</a></div>`;
     return h+'</div>';
