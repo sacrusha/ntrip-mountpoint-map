@@ -2,11 +2,17 @@
 
 ## Definition
 
-**Location**: `.claude/agents/<file>.md` (project), `~/.claude/agents/` (user), plus managed (`.claude/agents/` in [managed settings dir](https://code.claude.com/docs/en/settings#settings-files)) and plugin (`<plugin>/agents/`). Filename does NOT need to match `name`; identity comes from the frontmatter `name` field. Subfolders allowed (recursive scan).
+**Location**: `.claude/agents/<file>.md` (project), `~/.claude/agents/` (user), managed (`.claude/agents/` in [managed settings dir](https://code.claude.com/docs/en/settings#settings-files)), plugin (`<plugin>/agents/`). Identity = frontmatter `name`; filename is cosmetic. Project/user agents must sit at the top level — files in subfolders do not load (probed Windows; docs claim recursive scan, but our test agent at `.claude/agents/sub/q-subfolder.md` was absent from the registry).
 
-**Scope precedence** when `name` collides: managed > project > user > plugin. Collisions WITHIN one scope: Claude Code keeps one and discards the other without warning.
+Plugin subfolders become part of the scoped name: `agents/review/security.md` in plugin `my-plugin` → identifier `my-plugin:review:security`. Project/user subfolders stay cosmetic.
 
-Loaded at session start only — hot-edit on disk returns `Agent type 'X' not found` until restart. Exception: `/agents` interactive panel creates/edits take effect immediately.
+`--add-dir <path>` grants file access for that path only; not scanned for subagents.
+
+**Programmatic (single-session)**: `claude --agents '{"name": {...}}'` accepts JSON with the same frontmatter fields as file-based agents. Use `prompt` for the system prompt (equivalent to the markdown body).
+
+**Scope precedence** when `name` collides: managed > `--agents` flag > project > user > plugin. Collisions WITHIN one scope: Claude Code keeps one and discards the other without warning.
+
+Loaded at session start. Disk edits ignored until restart (`Agent type 'X' not found`). The `/agents` panel applies immediately.
 
 **Frontmatter** (only `name` + `description` required):
 
@@ -14,24 +20,24 @@ Loaded at session start only — hot-edit on disk returns `Agent type 'X' not fo
 | :---------------- | :-- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `name`            | Yes | Lowercase + hyphens. Used as `agent_type` in Agent calls and `agent_type` in SubagentStart/Stop hook payloads.                                                                                                          |
 | `description`     | Yes | Auto-delegation cue. Quality directly affects whether main session picks this agent.                                                                                                                                    |
-| `tools`           | No  | Tool-NAME allowlist (comma- or space-separated). Two forms: explicit (`tools: Read, Edit`) or "All tools except X, Y". Bash arg-globs are documentation only — real arg gate is `settings.json permissions`.            |
-| `disallowedTools` | No  | Subtracts from inherited pool. Same syntax. Applied before `tools` resolves; tool in both = removed.                                                                                                                    |
+| `tools`           | No  | Tool-NAME allowlist, comma- or space-separated: `tools: Read, Edit, Grep`.                                                                                                                                              |
+| `disallowedTools` | No  | Removes named tools from inherited pool. Same syntax as `tools:`. Tool in both = removed. Cannot widen.                                                                                                                |
 | `model`           | No  | `sonnet` \| `opus` \| `haiku` \| full ID (e.g. `claude-opus-4-7`) \| `inherit`. **Default: `inherit`**. Per-call `model` param overrides.                                                                              |
-| `isolation`       | No  | `worktree` runs subagent in ephemeral git worktree. Same mechanism as `Agent(..., isolation: "worktree")` per-call param — frontmatter makes it the default for that agent.                                             |
-| `skills`          | No  | List of skill names whose **full body** preloads into context at startup (NOT just description — the body). Subagent can still invoke unlisted skills via the Skill tool.                                                |
-| `mcpServers`      | No  | Adds MCP servers scoped to this subagent. **Only documented widening mechanism** — `tools:` and `disallowedTools:` can only restrict the inherited pool.                                                                |
+| `isolation`       | No  | `worktree` runs subagent in ephemeral git worktree. Per-call `isolation` param overrides.                                                                                                                              |
+| `skills`          | No  | Full body of each named skill preloads into context at startup. Subagent can still invoke unlisted skills via the Skill tool.                                                                                            |
+| `mcpServers`      | No  | Adds MCP servers scoped to this subagent. Only field that can widen the inherited pool.                                                                                                                                |
 | `memory`          | No  | `user` \| `project` \| `local`. Enables cross-session persistent memory for this agent.                                                                                                                                |
 | `hooks`           | No  | Lifecycle hooks scoped to this agent's runs. Frontmatter `Stop` auto-converts to `SubagentStop` when invoked as a subagent.                                                                                             |
-| `maxTurns`        | No  | Hard cap on agentic turns. Safety + cost knob.                                                                                                                                                                          |
-| `background`      | No  | `true` = always run as background task. Default `false`. Foreground/background can also be toggled per-call (Agent `run_in_background`) or interactively (Ctrl+B).                                                     |
+| `maxTurns`        | No  | Hard cap on agentic turns. On hit: subagent terminates silently; parent sees `(Subagent completed but returned no output.)`.                                                                                            |
+| `background`      | No  | `true` = always run as background task (default `false`). Background subagents run with current session permissions and auto-deny any tool call that would otherwise prompt. Per-call `run_in_background` or Ctrl+B override per spawn. |
 | `effort`          | No  | `low`/`medium`/`high`/`xhigh`/`max`. Overrides session effort. Model-dependent availability.                                                                                                                            |
-| `permissionMode`  | No  | `default`/`acceptEdits`/`auto`/`dontAsk`/`bypassPermissions`/`plan`. **Overridden whenever parent uses `acceptEdits`, `bypassPermissions`, or `auto`** — those propagate with the same force and ignore this field.    |
+| `permissionMode`  | No  | `default`/`acceptEdits`/`auto`/`dontAsk`/`bypassPermissions`/`plan`. `dontAsk` auto-denies prompts while still honoring explicitly allowed tools. Parent `acceptEdits`/`bypassPermissions`/`auto` propagate to subagent and override this field. |
 | `color`           | No  | `red` / `blue` / `green` / `yellow` / `purple` / `orange` / `pink` / `cyan`. Display color in task list / transcript. Cosmetic.                                                                                          |
 | `initialPrompt`   | No  | Auto-submitted as first user turn when this agent runs as **main session** (via `claude --agent X`, see "Main-session mode" below). Prepended to any user prompt. Commands + skills processed.                          |
 
 **Plugin agents** lose `hooks`, `mcpServers`, `permissionMode` — those fields are ignored when the agent comes from a plugin. To use them, copy the agent into `.claude/agents/` or `~/.claude/agents/`.
 
-**Body** appended verbatim as the agent-specific role text (layer #2 in composition.md).
+**Body** is appended verbatim as the agent's role text.
 
 ## Main-session mode (`claude --agent <name>`)
 
@@ -41,7 +47,11 @@ Differences vs subagent mode:
 
 - `initialPrompt` fires as the first user turn (ignored in subagent mode).
 - `mcpServers` inline definitions connect at startup, alongside `.mcp.json` and settings-file servers.
-- `tools: Agent(worker, researcher)` syntax actually gates which subagent_types the main thread can spawn. In subagent mode, `Agent(...)` allowlist has no effect since subagents cannot spawn nested subagents anyway.
+- `tools:` Agent semantics for what the main thread can spawn:
+  - `Agent` alone in `tools:` → can spawn any subagent type.
+  - `Agent(a, b)` → allowlist of subagent types only.
+  - `Agent` absent from `tools:` → cannot spawn any subagent.
+  - In a subagent definition the syntax is inert: subagents never spawn nested subagents.
 - Frontmatter `Stop` hooks fire as `Stop` (in subagent mode they convert to `SubagentStop`).
 - The system prompt is the agent body, replacing the default Claude Code prompt (same as `--system-prompt`). CLAUDE.md and memory still load through the normal flow.
 
@@ -55,12 +65,12 @@ The agent name appears as `@<name>` in the startup header so you can confirm the
 | `description` | telemetry; user-visible |
 | `prompt` | user-turn-equivalent input; no memory of parent convo |
 | `model` | REPLACES frontmatter `model:`. Resolution order: env `CLAUDE_CODE_SUBAGENT_MODEL` (session-scoped) > call-site param > frontmatter > main convo |
-| `isolation` | `"worktree"` spawns subagent in temporary git worktree. Same effect as frontmatter `isolation: worktree` — per-call is the override path. |
-| `run_in_background` | Detaches subagent; parent notified on completion. Foreground/background also settable via `background:` frontmatter (always) or Ctrl+B (interactively). |
+| `isolation` | `"worktree"` spawns subagent in temporary git worktree. Equivalent to frontmatter `isolation: worktree`, overrides it. |
+| `run_in_background` | Detaches subagent; parent notified on completion. Also settable via `background:` frontmatter or Ctrl+B. |
 
-Each Agent call is one-shot — no built-in continuation. (Trailing `agentId: ... (use SendMessage with to: ...)` hints in Agent output are Claude Agent SDK leakage; `SendMessage` is not a main-session tool.)
+Each Agent call is one-shot by default. With `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` set (see "Experimental flags" below), the trailing `agentId: ...` hint in every Agent return becomes actionable: `SendMessage(to=<agentId>, message=...)` resumes the subagent with its full prior conversation context (K — verified via T1 probe; mechanism reported as "resumed from transcript in the background"). Without the flag, the hint dangles.
 
-**Subagents cannot spawn nested subagents.** `Agent` is absent from subagent schemas. `tools: Agent(worker, researcher)` syntax in a frontmatter only matters for `claude --agent` main-session mode (see above) — in subagent mode it's a no-op.
+**Subagents cannot spawn nested subagents.** `Agent` is absent from subagent schemas. The `tools: Agent(...)` allowlist syntax only matters in main-session mode.
 
 ## Worktree mechanics
 
@@ -72,7 +82,7 @@ Three entry points that all create worktrees under `.claude/worktrees/`:
 | `claude --worktree <name>` CLI flag      | MAIN session starts in worktree                  |
 | `EnterWorktree` / `ExitWorktree` tools   | MAIN session switches into a worktree mid-flight |
 
-All three share the same git logic, settings (`worktree.baseRef`, `cleanupPeriodDays`), `.worktreeinclude` copy step, and `WorktreeCreate` / `WorktreeRemove` hook surface. Differences are scope (who's in the worktree) and lifecycle (when it's torn down).
+All three share the same git logic, settings (`worktree.baseRef`, `worktree.symlinkDirectories`, `worktree.sparsePaths`, `worktree.bgIsolation`, `cleanupPeriodDays`), `.worktreeinclude` copy step, and `WorktreeCreate` / `WorktreeRemove` hook surface. Differences are scope (who's in the worktree) and lifecycle (when it's torn down).
 
 ### Base ref
 
@@ -81,17 +91,17 @@ All three share the same git logic, settings (`worktree.baseRef`, `cleanupPeriod
 - `"fresh"` (default) — branch from `origin/<default-branch>` so the worktree starts on a clean tree matching remote. Falls back to local HEAD if no remote or fetch fails.
 - `"head"` — branch from local HEAD. Carries unpushed commits + feature-branch state into the worktree. Useful when subagent must operate on in-progress work.
 
-Only `"fresh"` or `"head"` — no arbitrary refs via this setting. For arbitrary base (specific branch, tag, SHA), use the `WorktreeCreate` hook (see Hooks below).
+Only `"fresh"` and `"head"`. For arbitrary refs (branch / tag / SHA), use a `WorktreeCreate` hook.
 
-CLI special form: `claude --worktree "#1234"` checks out `pull/1234/head` from origin into `.claude/worktrees/pr-1234`. Subagent isolation has no equivalent shortcut — use the hook.
+CLI special form: `claude --worktree "#1234"` checks out `pull/1234/head` from origin into `.claude/worktrees/pr-1234`. Subagent isolation has no equivalent shortcut; use a hook.
 
 ### Worktree paths
 
-Default path: `.claude/worktrees/<value>/`. `<value>` depends on entry point:
+Default path: `.claude/worktrees/<value>/`. Default branch: `worktree-<value>`. `<value>` depends on entry point:
 
 - CLI `--worktree foo` → `<value>` = `foo` (or generated like `bright-running-fox` if omitted).
 - CLI `--worktree "#1234"` → `<value>` = `pr-1234`.
-- Subagent `isolation: worktree` → `<value>` per implementation; not specified in docs. Treat as opaque, read from `WorktreeCreate` stdin or `SubagentStart` hook payload if you need it.
+- Subagent `isolation: worktree` → `<value>` = `agent-<agentId>` (path `.claude/worktrees/agent-<agentId>/`, branch `worktree-agent-<agentId>`).
 
 ### Copying gitignored files: `.worktreeinclude`
 
@@ -107,7 +117,7 @@ config/secrets.json
 .claude/hooks/
 ```
 
-Applies to all three entry points. NOT processed when a `WorktreeCreate` hook replaces the default git logic — the hook must copy files itself.
+Applies to all three entry points. A custom `WorktreeCreate` hook bypasses this step; copy files inside the hook instead.
 
 Fallback fixes when `.worktreeinclude` insufficient: commit hook scripts (best long-term), use absolute paths in hook commands, guard hook commands with path-existence checks.
 
@@ -119,36 +129,16 @@ Fallback fixes when `.worktreeinclude` insufficient: commit hook scripts (best l
 - Non-interactive runs (`-p` with `--worktree`): no automatic cleanup; remove with `git worktree remove`.
 - Orphan sweep: subagent worktrees orphaned by crash older than `cleanupPeriodDays` setting are swept at startup (only if clean — no uncommitted, no untracked, no unpushed).
 
-### Subagent isolation: decision tree
+### Subagent isolation: when to use
 
-Opt into `isolation: worktree` when:
-
-- Subagent edits files AND its edits could collide with the parent session (or with sibling subagents running in parallel).
-- Subagent needs a CLAUDE.md that differs from the project's (only way to swap CLAUDE.md per-agent — see "Custom CLAUDE.md per agent" recipe below).
-- Subagent must operate on a different ref (PR branch, feature branch, etc.) — needs `WorktreeCreate` hook.
-
-Skip isolation when:
-
-- Subagent is read-only (Read, Grep, Glob, no Edit/Write/Bash mutations).
-- Cost-sensitive: worktree creation adds setup time and re-reads CLAUDE.md from disk (no prompt-cache reuse with parent's CLAUDE.md).
-- Parent session needs to see subagent's file changes in-place (worktree changes stay in the worktree branch until merged).
+Use `isolation: worktree` when the subagent edits files that could collide (parent / sibling subagents), needs a custom CLAUDE.md (only path to swap per-agent — see recipe), or operates on a different ref (needs `WorktreeCreate` hook). Skip for read-only subagents, cost-sensitive flows (worktree setup + no prompt-cache reuse), or when the parent needs to see edits in-place.
 
 ### Recipe: custom CLAUDE.md per agent
 
-Goal: subagent sees a different CLAUDE.md than the project's, without polluting main checkout.
+Two paths:
 
-Approach A — separate branch:
-1. Create a branch (e.g. `agent-context/minimal`) with the desired CLAUDE.md committed.
-2. Set `worktree.baseRef: "head"` and check out that branch before spawning, OR use a `WorktreeCreate` hook that checks out the agent-context branch.
-3. Spawn agent with `isolation: worktree`.
-
-Approach B — `WorktreeCreate` hook overwrites CLAUDE.md after creation:
-1. Hook receives agent_type on stdin.
-2. Hook runs `git worktree add` (default behavior) into the target path.
-3. Hook copies/writes a custom CLAUDE.md into the worktree path.
-4. Hook prints the worktree path on stdout (replacement-hook contract).
-
-Caveat: `WorktreeCreate` has no matcher — the hook fires for every worktree creation path. Discriminate inside the hook by reading stdin for agent context.
+- **Branch-based**: commit the alternate CLAUDE.md to a branch, set `worktree.baseRef: "head"` (or use a `WorktreeCreate` hook to check out that branch), spawn with `isolation: worktree`.
+- **Hook-based**: a `WorktreeCreate` hook does the default `git worktree add`, overwrites CLAUDE.md in the worktree, prints the path on stdout (replacement contract). `WorktreeCreate` has no matcher — discriminate inside the hook from stdin.
 
 ### EnterWorktree / ExitWorktree (main session)
 
@@ -164,8 +154,8 @@ Most relevant for subagent work:
 
 - `PreToolUse` / `PostToolUse` — before / after each tool call. PreToolUse fires INSIDE subagents.
 - `SubagentStart` / `SubagentStop` — spawn / return; payload includes agent_id + agent_type.
-- `WorktreeCreate` (K) — **REPLACEMENT hook**, not observation. Effectively the arguments API for `Agent(isolation: "worktree")`, which itself takes no caller knobs (just the binary flag). When wired, the hook takes over worktree creation; built-in git logic is bypassed. Fires BEFORE the subagent runs. Hook MUST return the worktree path via stdout (or `hookSpecificOutput.worktreePath` for http/callback variants). A no-op logging hook returns no path → `WorktreeCreate hook failed: hook succeeded but returned no worktree path` → worktree creation aborts. Use cases: custom base ref / path / branch naming, non-git VCS (svn/hg/perforce), shared worktrees across calls, fenced-off out-of-repo isolation. Default (no hook) = built-in git logic with `worktree.baseRef` setting. No matchers.
-- `WorktreeRemove` (L per docs) — pure **OBSERVATION hook**. Cannot block removal; exit code + stderr ignored. Fires on subagent finish OR session exit, distinguished by `removal_reason` field (`"subagent_finish"` / `"session_exit"`). Receives `worktree_path` + `removal_reason` on stdin. Default (no hook) = built-in git removal. Pairing with `WorktreeCreate` advisory, not required. NOT symmetric to WorktreeCreate.
+- `WorktreeCreate` — **REPLACEMENT hook** (not observation). Fires BEFORE the subagent runs. When wired, takes over worktree creation; built-in git logic bypassed. Hook MUST return the worktree path on stdout (or `hookSpecificOutput.worktreePath`). A no-op hook → `WorktreeCreate hook failed: ... returned no worktree path` → creation aborts. Use for: custom base / path / branch, non-git VCS, shared worktrees, out-of-repo isolation. Effectively the args API for `Agent(isolation: "worktree")` (which has no caller knobs of its own). No matchers.
+- `WorktreeRemove` (L per docs) — pure **OBSERVATION hook**. Cannot block; exit code + stderr ignored. Fires on subagent finish OR session exit, distinguished by `removal_reason` (`"subagent_finish"` / `"session_exit"`). Receives `worktree_path` + `removal_reason` on stdin. Not symmetric to `WorktreeCreate`.
 - `InstructionsLoaded` — CLAUDE.md / rules loaded.
 - `UserPromptSubmit` — user submits a prompt.
 
@@ -199,30 +189,27 @@ Distinct from the three schema-strip error strings — different code path. Path
 **No prompt UI in subagent** — outcomes by case:
 - Call matches `allow` rule → silently runs (K).
 - Call hits `deny` rule → `tool_use_error` as above (K).
-- Call matches neither rule → behavior follows parent's permission mode. Permissive parent (`bypassPermissions` / `acceptEdits` / `auto`) → silently allows (K — observed for `Bash(date /T)`, `Bash(whoami)`, none in allow). Strict parent (`default`) → likely auto-denies since no prompt path exists (L, not tested).
+- Call matches neither rule → behavior depends on parent's permission mode AND whether the specific call would prompt:
+  - `bypassPermissions` / `acceptEdits` → call runs (K).
+  - `auto` → background classifier decides per-call. Classifier-passed calls run; classifier-rejected calls auto-deny with `Permission to use Bash has been denied` (K — observed: `whoami` and `python --version` passed; `py --version` rejected, presumably command-pattern specific).
+  - `default` (foreground subagent) → would prompt in main session; subagent has no UI → docs claim auto-deny but untested cleanly (no default-mode parent in this session).
+  - **Background subagent** (per docs + K-confirmed via `py --version`): auto-denies any call that would have prompted/classifier-rejected. Canonical error: `Permission to use Bash has been denied`.
 
 **Worktree subagent caveat**: settings.local.json typically untracked → absent in worktree → its allow/deny rules don't apply for the worktree subagent. Tracked settings.json still applies. Effective permission set is leaner than parent's. If settings.local.json carries critical denies, propagate via `.worktreeinclude` or commit them.
 
 **Settings allow does NOT re-expose stripped tools** (K, see composition.md "Tool surface"). Allow rules grant permission to existing schemas; they don't add schemas.
 
+**Disable a subagent type session-wide**: add `Agent(<name>)` to `permissions.deny` in settings.json, or use `--disallowedTools "Agent(<name>)"` on the CLI. Works for built-in and custom subagents.
+
 ## Session-start sequence
 
-Hook lifecycle interleaves with static config loading. Approximate observed order:
-
-1. Settings layers merged (managed > CLI flags > `.local.json` > `.json` > user `~/.claude/`) — hook definitions registered, permissions evaluated.
-2. `SessionStart` hook fires (observed before CLAUDE.md per hook log); its `additionalContext` if emitted is appended to Claude's context.
-3. Static config snapshot — all loaded into Claude's context before first inference:
-   - CLAUDE.md concatenation (project + user + enterprise)
-   - Skills catalog (frontmatter only; body lazy on invocation)
-   - Agents catalog (`.claude/agents/` + parents + user)
-   - MCP servers
-   - Tool schemas (gated by frontmatter `tools:`)
-4. `InstructionsLoaded` hook fires once CLAUDE.md / rules are loaded.
+1. Settings layers merged (managed > CLI flags > `.local.json` > `.json` > user) — hooks registered, permissions evaluated.
+2. `SessionStart` hook fires (before CLAUDE.md); its `additionalContext` is appended.
+3. Static config snapshot (loaded into context before first inference): CLAUDE.md hierarchy, skills catalog (frontmatter only — bodies lazy), agents catalog, MCP servers, tool schemas (gated by `tools:`).
+4. `InstructionsLoaded` fires.
 5. `UserPromptSubmit` fires per prompt thereafter.
 
-Per-event hooks (`PreToolUse`, `PostToolUse`, `SubagentStart` / `Stop`, etc.) fire at their respective lifecycle moments — not as part of startup.
-
-Subagent variant: same snapshot at the subagent's cwd; CLAUDE.md + gitStatus stripped for Explore/Plan; agent body composes onto the base identity layer.
+Per-event hooks (`PreToolUse`, `SubagentStart/Stop`, etc.) fire at their moments, not at startup. Subagent variant: same snapshot at the subagent's cwd; Explore/Plan strip CLAUDE.md + gitStatus.
 
 ## Persistence: what survives subagent exit
 
@@ -238,15 +225,52 @@ Each Agent call is one-shot — no built-in continuation, no shared state with t
 | `memory:` scope             | User / project / local memory file | Same agent (or whole session) on later runs          |
 | External (DB, MCP-stored)   | Wherever MCP writes                | Whoever has MCP access                               |
 
-**`memory: user|project|local` frontmatter**: enables cross-session persistent memory for this agent. `user` = `~/.claude/`, `project` = `.claude/`, `local` = `.claude/` but git-ignored path. Pattern: agent writes findings to memory file; next run of the SAME agent reads them. Cross-AGENT sharing requires same memory scope + path overlap, or going through files / MCP.
+**`memory: user|project|local` frontmatter**: enables cross-session persistent memory for this agent. Per-scope directory:
+
+- `user` → `~/.claude/agent-memory/<name>/` (shared across all your projects)
+- `project` → `.claude/agent-memory/<name>/` (project-scoped, check in)
+- `local` → `.claude/agent-memory-local/<name>/` (project-scoped, gitignored)
+
+When `memory:` is set, Read/Write/Edit are auto-enabled and the first 200 lines (or 25KB) of `MEMORY.md` are injected into the agent's system prompt. Cross-AGENT sharing requires path overlap or going through files / MCP.
 
 **Multi-step orchestration**: simulate continuation by sequential Agent calls from main session. Pattern: Agent #1 writes intermediate state to a file in cwd → Agent #2 starts from that file's content. Main session is the coordinator. `run_in_background: true` parallelizes independent legs; foreground is required when the next leg consumes the previous leg's output.
 
 **Worktree subagent edits**: stay in the ephemeral worktree branch. To bring them into main: read the path + branch from the Agent tool result, then `git merge` / `git cherry-pick` / manual copy. No automatic merge.
 
+**Subagent transcripts**: persisted at `~/.claude/projects/{project}/{sessionId}/subagents/agent-{agentId}.jsonl`, independent of main-conversation compaction. Cleaned up per `cleanupPeriodDays` (default 30 days). Allows resumption via `SendMessage` when Agent Teams is enabled.
+
+**Subagent auto-compaction**: triggers at ~95% context capacity. `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE=<n>` lowers the threshold (e.g., `50`). Compaction events are logged in the transcript as `compact_boundary` system entries.
+
 ## Hot-reload
 
 - `.claude/agents/*.md` edited on disk: NOT hot-loaded. Restart required for the new definition to be callable.
-- `.claude/agents/*.md` created/edited via the `/agents` interactive panel: takes effect immediately, no restart (per docs).
+- `.claude/agents/*.md` created/edited via the `/agents` interactive panel: takes effect immediately, no restart.
 - Settings: Claude detects external edit, prompts review via `/hooks`. Not silent.
 - CLAUDE.md, skills, MCP servers: snapshotted at session start.
+
+## Settings.json keys relevant to agents
+
+- `"agent": "<name>"` — sets the default main-session agent (equivalent to `claude --agent <name>`).
+- `"env": {<KEY>: <value>, ...}` — env vars applied to every session and to subprocesses Claude Code spawns. Persistence path for env-gated flags like fork mode and Agent Teams (see below).
+- `"permissions": {"allow": [...], "deny": [...]}` — runtime tool/arg gating. `"deny": ["Agent(<name>)"]` disables a subagent type session-wide.
+- `"worktree": {"baseRef": "fresh"|"head", "symlinkDirectories": ..., "sparsePaths": ..., "bgIsolation": ...}` — worktree creation behavior.
+- `"cleanupPeriodDays": <n>` — sweeps orphan subagent worktrees + transcripts older than `<n>` days (default 30).
+
+## Experimental flags
+
+Both env-var-gated. Set in `settings.json` `"env"` block for persistence.
+
+### `CLAUDE_CODE_FORK_SUBAGENT=1` — fork mode (≥ 2.1.117)
+
+- Every subagent spawn auto-backgrounds regardless of `background:` (K — probed).
+- `/fork <directive>` interactive command becomes available; spawns a real fork inheriting full conversation + tools + system prompt + prompt cache (verified path).
+- Per docs, organic delegation to `general-purpose` should substitute to a fork. Probe finding: explicit `Agent(subagent_type="general-purpose")` tool calls from main session do NOT fork — token count stays at baseline subagent size, conversation history absent. The substitution likely applies only to Claude's interactive routing, not Agent-tool calls.
+- A fork cannot spawn further forks.
+- To disable background tasks while fork mode is on: `CLAUDE_CODE_DISABLE_BACKGROUND_TASKS=1`.
+
+### `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` — Agent Teams
+
+- Loads deferred tools: `SendMessage`, `TeamCreate`, `TeamDelete`.
+- `SendMessage(to=<agentId>, message=...)` resumes a previously-spawned subagent with full prior conversation context (K — verified). If the target has no active task, it's "resumed from transcript in the background" and the reply comes via the standard async-notification path.
+- The trailing `agentId: ...` hint in every Agent return becomes the resumption handle.
+- Persistence layer: subagent transcripts at `~/.claude/projects/{project}/{sessionId}/subagents/agent-{agentId}.jsonl`.

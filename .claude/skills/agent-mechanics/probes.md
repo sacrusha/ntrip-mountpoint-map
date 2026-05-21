@@ -67,26 +67,30 @@
 ## Anti-patterns
 
 - Trusting Haiku subagent narration of tool returns it never made — `tool_uses=0` + reported outputs = fabricated.
-- Treating frontmatter `Bash(arg-glob)` as a sandbox — documentation only. Use `settings.json permissions` or PreToolUse hook for real gating.
+- Treating frontmatter `Bash(arg-glob)` as an arg gate — it isn't. Use `settings.json permissions` or a PreToolUse hook.
 - Confusing `Agent(isolation: "worktree")` (subagent spawn) with `EnterWorktree` (main session switch).
 - Relying on CLAUDE.md to reach all subagents — Explore + Plan strip.
 - Writing main-session behavioral rules and expecting subagent inheritance.
 - Hot-editing `.claude/agents/` mid-session and expecting pickup.
 - Asking subagent for "verbatim" quotes longer than a few tokens — sonnet paraphrases.
 - Using `exit 1` in PreToolUse hooks expecting a block (only exit 2 blocks).
-- Spawning isolation worktrees while hook scripts are in gitignored paths — `git worktree add` skips untracked, hooks then error and block all tool calls. Canonical fix: `.worktreeinclude` (see control.md "Copying gitignored files"). Workarounds: commit hook scripts, absolute paths in settings, or path-existence guard in the hook command.
-- Propagating tool names mentioned in tool returns without verifying own schema enum — Agent return's `SendMessage` hint is SDK-layer leakage.
-- Wiring `WorktreeCreate` to a logging-only hook expecting observation semantics — `WorktreeCreate` is REPLACEMENT. The command must return the worktree path; a no-op silently breaks `Agent(isolation: "worktree")` with `WorktreeCreate hook failed: hook succeeded but returned no worktree path`. (`WorktreeRemove` IS observation-only — wiring a logger to it is safe; don't generalize from one to the other.)
+- Spawning isolation worktrees with hook scripts in gitignored paths — `git worktree add` skips untracked → hook script missing → exit 2 blocks every tool call. Fix: `.worktreeinclude`, commit the scripts, or use absolute paths.
+- Treating the trailing `agentId: ... (use SendMessage ...)` hint as SDK leakage — it's real, but only callable when `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`. Without that flag, the hint dangles.
+- Wiring `WorktreeCreate` to a logging-only hook — it's a REPLACEMENT hook and must return the worktree path on stdout. A no-op silently breaks `Agent(isolation: "worktree")` with `WorktreeCreate hook failed: ... returned no worktree path`. `WorktreeRemove` IS observation-only; don't generalize the contracts.
 - Expecting `settings.json permissions.allow` to re-expose a frontmatter-stripped tool — allow grants permission to existing schemas; strip removes the schema entirely.
 - Trying to widen subagent tool pool beyond parent's via frontmatter `tools:` — only `mcpServers:` adds scope (MCP-only).
+- Placing project agent files in subfolders expecting they'll load — probed Windows, did not load. Keep agent files at the top level of `.claude/agents/`.
+- Expecting `Agent(subagent_type="general-purpose")` to become a fork when `CLAUDE_CODE_FORK_SUBAGENT=1` is set — it doesn't (token count stays at subagent baseline, history not inherited). Auto-background still fires. For an explicit fork, use the `/fork` interactive command.
+- Inferring that the docs' "background subagent auto-deny" claim is broken because a probed Bash call ran — under `auto` mode the classifier passes many commands. Probe with multiple commands; a classifier-rejected one (observed: `py --version`) does produce `Permission to use Bash has been denied`, confirming the auto-deny path.
 
 ## Open questions
 
 - Subagent skill auto-trigger reliability — Vercel measured 56% miss in main session; subagent unmeasured.
-- Does `Agent(isolation: "worktree")` honor the `worktree.baseRef` setting? Docs treat all worktree entry points uniformly but the setting's section in docs uses CLI examples only — probe by spawning isolation subagent with `baseRef: "head"` vs `"fresh"` and checking the worktree's commit.
 - Strict-mode parent (`permissionMode: default`) behavior for subagent tool calls matching neither allow nor deny — likely auto-denies since no UI to prompt, but untested in this session (parent was permissive).
-- Worktree path format for subagent isolation — docs document `--worktree <name>` → `.claude/worktrees/<name>/` but don't specify the subagent variant. Probe: spawn isolated subagent, dump cwd.
-- Does `skills:` frontmatter inject full skill body? Marker-probe a skill body string in the spawned subagent.
-- Are `Stop` hooks declared in frontmatter actually converted to `SubagentStop` when invoked as subagent? Hook-log probe.
 - Baseline token count of a minimal agent (only `name` + `description`, empty body, no tools restrictions) — measure via `<usage>` block from a single-message spawn.
 - Per-frontmatter-field token cost delta — toggle one field, re-measure, isolate contribution.
+- Recursive subfolder scan for project agents — docs claim it works; Windows probe failed (`.claude/agents/sub/q-subfolder.md` did not load). Re-probe on macOS / Linux to scope the discrepancy.
+- Background subagent auto-deny under `default`-mode parent specifically — confirmed K under `auto`-mode parent via classifier-rejected `py --version`. Default-mode parent path still untested directly; expected to use the same auto-deny mechanism since no UI exists.
+- `/fork` interactive command behavior — Agent-tool `general-purpose` doesn't fork even with `CLAUDE_CODE_FORK_SUBAGENT=1`. Verify `/fork <directive>` produces a real fork (high cached_read on first request, full conversation history visible to fork).
+- `Agent(isolation: "worktree")` second baseRef value — first run confirmed `"fresh"` default (HEAD = origin/HEAD). Re-run with `"worktree": {"baseRef": "head"}` set; expected HEAD = local HEAD, not origin/HEAD.
+- `settings.local.json` absence in worktree subagent — claimed but unprobed. Add a benign deny rule there, spawn isolated subagent attempting the denied call.
