@@ -1,5 +1,4 @@
 # Saint Vincent and the Grenadines [VC] — NTRIP RTK
-**Date:** 2026-05-17 re-verify: no national caster; no in-territory CORS; radius re-probed 2026-05-17 — nearest free single-base unchanged: NOTA CN47 (LCA) @ 58 km, CN46 (GRD) @ 88 km. AUSCORS + Centipede + MIRAI all carry Martinique LMMF/DEPZ @ ~150-170 km — useful sub-m only, beyond cm-fix range.
 
 ## Status
 NO national caster. NO COCONet/NOTA station on SVG soil. Nearest free realtime = EarthScope NOTA stations in St. Lucia (58 km) and Carriacou-Grenada (88 km).
@@ -19,7 +18,7 @@ Lands and Surveys Dept, Ministry of Transport/Works/Urban Dev/Local Gov (`transp
 
 ## Most recent project
 
-**Caribbean Digital Transformation Project (CARDTP, World Bank P171528, USD 28M across DM/GD/LC/VC) — Geodetic Network Modernisation TOR (2022–2026)**:
+**Caribbean Digital Transformation Project (CARDTP, World Bank P171528, USD 94M total; SVG component USD 30M) — Geodetic Network Modernisation TOR (2022–2026)**:
 - Densify SVG geodetic control net; reference monuments to ITRF via nearest IGS.
 - Static dual-freq GNSS, ≥30 min/point + reoccupation.
 - **No CORS / NTRIP component.** Deliverable = adjusted reference frame, not a live caster.
@@ -36,12 +35,12 @@ Sources:
 
 ## Nearest free NTRIP
 
-`stations_by_radius.py 13.25 -61.20 300` (2026-05-17):
+`stations_by_radius.py 13.25 -61.20 300` (2026-05-21): 9 stations — earthscope 5 [LCA:2, DMA:1, GRD:1, TTO:1], auscors 1 [MTQ], centipede 1 [MTQ], igs_ip 1 [MTQ], mirai 1 [MTQ]. Detail (per 2026-05-17 probe):
 - earthscope: `CN47_RTCM3P3` 13.71N, 60.94W — 58 km (LCA); `CN46_RTCM3P3` 12.49N, 61.43W — 88 km (GRD); `CN04_RTCM3P3` 14.02N, 60.97W — 89 km (LCA); `CN48_RTCM3P3` — 245 km (DMA); `CN57_RTCM3P3` — 270 km (TTO).
 - auscors / igs_ip / mirai: `LMMF00MTQ0` 14.59N, -61.00W — 151 km (Martinique).
 - centipede: `DEPZ` 14.76N, -61.17W — 168 km (Martinique).
 
-Practical RTK: CN47 @ 58 km = comfortable edge for dual-freq multi-constellation single-base; CN46 @ 88 km = degraded, workable for decimetre ag/GIS. cm-fix unlikely beyond ~60 km. NOTA = free non-commercial under NULA (annual renewal at earthscope.org/user/licenses). Datum for NOTA streams: ITRF2014 @ 2026-03-30 per operator page.
+Practical RTK: CN47 @ 58 km = comfortable edge for dual-freq multi-constellation single-base; CN46 @ 88 km = degraded, workable for decimetre ag/GIS. cm-fix unlikely beyond ~60 km. NOTA = free non-commercial under NULA (annual renewal at earthscope.org/user/licenses); commercial $1,000/seat/yr (5-seat min for direct billing; 5-seat 2-week trial). Datum for NOTA streams: ITRF2014 @ 2026-03-30 per operator page (WebFetch 200 2026-05-21).
 
 ## No alternatives
 
@@ -63,6 +62,7 @@ No SVG-specific archive at EarthScope/IGS/UNAVCO. World Bank TOR deliverable (if
 - SVG DTP: https://dtp.gov.vc/
 - EarthScope NOTA realtime: https://www.earthscope.org/data/gnss-realtime/
 - EarthScope NOTA: https://www.earthscope.org/nota/
-- Radius probe 2026-05-17: `stations_by_radius.py 13.25 -61.20 300`
+- Radius probe 2026-05-21: `stations_by_radius.py 13.25 -61.20 300` — 9 stations across 5 sources
+- `stations_by_country.py VC` / `VCT` 2026-05-21 — "No stations"
 - rtk2go / Centipede: no VC entries
 - NTRIP-list.com / ArduSimple: no VC entry

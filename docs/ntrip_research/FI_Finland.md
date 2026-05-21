@@ -1,52 +1,37 @@
 # Finland [FI] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-17 (revision; original 2026-05-06)
 
-## Status: MIXED — two free NLS casters (DGNSS free/open, live-confirmed; RTK research-only restricted); dense volunteer rtk2go coverage (~129 FIN bases); paid commercial options
+## Status: MIXED — NLS RTK caster (FINPOS RTK, research/test only, restricted); dense volunteer rtk2go coverage (133 FIN bases, sourcetable 2026-05-19); paid commercial options; NLS DGNSS caster free/open but submeter only (out of project scope)
 
-**NLS 2026 price update note:** The 2026-01-01 NLS price changes apply to property-owner/cadastral charges; the announcement explicitly notes that "the prices of the Land Information Service as well as interface services and data services will remain unchanged" — FINPOS DGNSS therefore remains free in 2026 (re-checked 2026-05-17).
+**NLS 2026 price update note:** The 2026-01-01 NLS price changes apply to property-owner/cadastral charges; the announcement explicitly excludes FINPOS DGNSS and RINEX from the price changes, stating "the prices of the Land Information Service as well as interface services and data services will remain unchanged" — FINPOS DGNSS therefore remains free in 2026 (re-verified 2026-05-21).
 
 ---
 
-## Service A: FINPOS DGNSS — National Land Survey of Finland (FREE, open)
+## Service A: FINPOS RTK — National Land Survey of Finland (RESTRICTED — research/testing only)
 
 | Field | Value |
 |---|---|
 | **Operator** | NLS — Maanmittauslaitos (National Land Survey of Finland) |
-| **host:port — unencrypted** | `opencaster.nls.fi:2102` |
-| **host:port — TLS encrypted** | `opencaster.nls.fi:2105` |
-| **VRS** | No — nearest physical station auto-selected |
-| **Mountpoints** | `DGNSS` (nearest station, RTCM 2.2); `DGNSS-12SAT` (up to 12 satellites, older receivers); `DGNSS-MSM1` (nearest station, RTCM 3.2) |
-| **Accuracy** | **~0.5 m** — this is a DGNSS service only (submeter, not RTK-grade centimetre) |
-| **tariff** | **Free — €0.00.** Open data. Credentials via free registration. Date observed: 2026-05-17. Source: https://www.maanmittauslaitos.fi/en/finpos/dgnss |
-| **hobbyist_eligibility** | **Yes** — open registration, no licence check |
-| **legal_residency_required** | **No** |
-| **last_confirmed_alive** | **2026-05-17** — sourcetable retrieved live from `opencaster.nls.fi:2102` (919 bytes; 4 STR rows: DGNSS, DGNSS-12SAT, DGNSS-MSM1, DGNSS-PIES; Server: NTRIP GNSMART_Caster 2.0/1.0) |
-| **datum_epoch** | EUREF-FIN (operator: "The corrections are accompanied by the EUREF-FIN coordinates for the reference stations"); epoch not stated by operator. Source: https://www.maanmittauslaitos.fi/en/finpos/dgnss |
-
-**Important:** This is a DGNSS (submeter) service, **not RTK** (centimetre). It is free and open but does not meet RTK-grade accuracy requirements.
-
----
-
-## Service B: FINPOS RTK — National Land Survey of Finland (RESTRICTED — research/testing only)
-
-| Field | Value |
-|---|---|
-| **Operator** | NLS — Maanmittauslaitos |
+| **landing_url** | https://www.maanmittauslaitos.fi/en/finpos |
+| **access_url** | https://www.maanmittauslaitos.fi/en/finpos/rtk |
 | **host:port** | `opencaster.nls.fi:2101` (unencrypted); `opencaster.nls.fi:2105` (TLS) |
+| **num_stations** | ~50 — FinnRef network; modernised 2012–2014 (20 stations), densified 2017–2018 to ~50 (operator source: https://www.maanmittauslaitos.fi/en/research/research/other-research-and-measuring-stations/finnref-gnss-stations) |
 | **VRS** | Yes — VRS-FKP (virtual reference station using network error modelling); also SINGLE (nearest station), LIIKKUVA-VRS, LIIKKUVA-SINGLE |
 | **Mountpoints** | `VRS-FKP`, `SINGLE`, `VRS-FKP-OLD` (RTCM3.1 legacy), `LIIKKUVA-VRS`, `LIIKKUVA-SINGLE` |
-| **tariff** | Not applicable — access is **not for sale**; granted on application for 3-month periods (renewable with feedback) |
-| **hobbyist_eligibility** | **No** — restricted to "research and testing purposes, for example, for the development of new positioning methods, devices and services." Justification for use required at registration. |
+| **tariff** | Not applicable — access is **not for sale**; granted on application for 3-month periods (renewable with feedback required) |
+| **hobbyist_eligibility** | **No** — explicitly "research and testing purposes only" (not for hobbyist production use); justification required at registration |
 | **legal_residency_required** | Unclear — Finnish research institution preferred |
-| **last_confirmed_alive** | maanmittauslaitos.fi/en/finpos/rtk accessible 2026-05-17 (registration gated) |
-| **datum_epoch** | EUREF-FIN (same NLS frame as FINPOS DGNSS). Source: https://www.maanmittauslaitos.fi/en/finpos/dgnss |
+| **last_confirmed_alive** | maanmittauslaitos.fi/en/finpos/rtk accessible 2026-05-21 (registration gated) |
+| **datum_epoch** | EUREF-FIN (operator declaration at https://www.maanmittauslaitos.fi/en/finpos/dgnss: "The corrections are accompanied by the EUREF-FIN coordinates for the reference stations"); epoch not stated |
 
-- **FinnRef network:** ~50 reference stations; modernised 2012–2014 (20 stations), further densified 2017–2018 to ~50
-- **Note (Dec 2024):** NLS stopped sending real-time GNSS data to the EUREF EPN on 1 December 2024 (Finnish Government announcement); this affects European geodetic data exchange but does not change the domestic FINPOS service availability.
+- **Note (Dec 2024):** NLS stopped sending real-time GNSS data to the EUREF EPN on 1 December 2024; this affects European geodetic data exchange but does not change the domestic FINPOS service availability.
+
+## FINPOS DGNSS — submeter only, out of project scope
+
+NLS also operates a free DGNSS caster at `opencaster.nls.fi:2102` (TLS: port 2105). Sourcetable carries 4 STR rows: `DGNSS` (nearest station, RTCM 2.2), `DGNSS-12SAT` (max 12 sats, older receivers), `DGNSS-MSM1` (nearest station, RTCM 3.2 MSM1), `DGNSS-PIES` (Pietarsaari fixed station, RTCM 2.2). Accuracy ~0.5 m — DGNSS, not RTK. Free open registration, no residency requirement; frame EUREF-FIN. Live-confirmed 2026-05-21 (GNSMART 2.0). Out of project scope (submeter only); mentioned here for completeness.
 
 ---
 
-## Service C: Trimnet VRS (Geotrim Oy) — commercial, paid
+## Service B: Trimnet VRS (Geotrim Oy) — commercial, paid
 
 | Field | Value |
 |---|---|
@@ -62,7 +47,7 @@
 
 ---
 
-## Service D: HxGN SmartNet Finland (Hexagon / Leica)
+## Service C: HxGN SmartNet Finland (Hexagon / Leica)
 
 | Field | Value |
 |---|---|
@@ -82,7 +67,7 @@ Finland has exceptionally dense volunteer RTK coverage — the best in the EU:
 
 | Network | Finland-coded stations | Notes |
 |---|---|---|
-| **RTK2go** | ~129 FIN-coded bases (data/stations.json, last verified 2026-05-12) | Concentrated in southern Finland and around Helsinki; no QoS guarantee |
+| **RTK2go** | 133 FIN-coded bases (sourcetable 2026-05-19) | Concentrated in southern Finland and around Helsinki; no QoS guarantee |
 | **Centipede** | 18 FIN-coded nodes (data/stations.json, last verified 2026-05-12) | Sparse but growing |
 
 This volunteer density makes Finland one of the best-covered countries for free hobbyist RTK in Europe despite the absence of a free government RTK caster.

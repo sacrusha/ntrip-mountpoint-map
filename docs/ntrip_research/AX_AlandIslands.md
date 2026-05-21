@@ -1,5 +1,4 @@
 # Åland Islands [AX] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-17 (re-probe; 2026-05-15 deep research unchanged)
 
 ## Status: YES (limited) — 2 Centipede volunteer nodes on Fasta Åland (free, open). No dedicated Åland CORS programme. FINPOS (NLS Finland) RTK is restricted to research/test use only. SWEPOS (Sweden) covers Åland only via a paid Inter-Nordic add-on; baseline geometry is marginal.
 
@@ -10,12 +9,12 @@
 | **landing_url** | https://www.centipede-rtk.org/ |
 | **access_url** | https://docs.centipede-rtk.org/ (registration not required for sourcetable; rovers connect with any username/password) |
 | **host:port** | `caster.centipede.fr:2101` |
-| **num_stations** | 2 physical CORS in AX: `MAR1` (Mariehamn, 60.126, 19.951) and `FOG2` (60.014, 20.409, ~28 km ESE of Mariehamn). Confirmed in live sourcetable 2026-05-15: both rows present with country code `ALA`, RTCM3 MSM5/legacy, GPS+GLO+GAL+BDS. |
+| **num_stations** | 2 physical CORS in AX: `MAR1` (Mariehamn, 60.126, 19.951) and `FOG2` (60.014, 20.409, ~28 km ESE of Mariehamn). Confirmed in live sourcetable 2026-05-19 (data/centipede.sourcetable): both rows present with country code `ALA`, RTCM3 MSM5/legacy, GPS+GLO+GAL+BDS. |
 | **vrs** | no — single-base stations only |
 | **tariff** | Free of charge, no tier list, no VAT applicable (associative project funded by INRAE / French research institutions) |
 | **hobbyist_eligibility** | yes — open to anyone; users are also encouraged to host their own base |
 | **legal_residency_required** | no |
-| **last_confirmed_alive** | 2026-05-17 — re-probed `http://caster.centipede.fr:2101/` HTTP/1.1 200 OK, NTRIP Millipede Server 0.8.1, sourcetable served (260 kB); MAR1 + FOG2 stations also confirmed live in `data/stations.json` snapshot (ALA country code) |
+| **last_confirmed_alive** | 2026-05-21 — `http://caster.centipede.fr:2101/` HTTP/1.1 200 OK; MAR1 + FOG2 confirmed in data/centipede.sourcetable 2026-05-19 (ALA country code) |
 | **datum_epoch** | not citably declared on Centipede pages — stations stream RTCM3 with broadcast antenna position; rover obtains coordinates in whatever frame the base was set up in (typically ITRF/IGS) |
 
 ## Cross-border alternatives
@@ -24,16 +23,16 @@
 | Field | Value |
 |---|---|
 | **landing_url** | https://www.lantmateriet.se/en/geodata/gps-geodesy-and-swepos/swepos/ |
-| **access_url** | https://swepos.lantmateriet.se/services/order.aspx |
-| **host:port** | `swepos.lantmateriet.se:2101` (port did not respond to TCP probe from this sandbox 2026-05-15 — confirmed reachable for paid subscribers per Lantmäteriet) |
-| **num_stations** | ~450 stations in Sweden; nearest to Åland are on the Stockholm archipelago east coast (≥150 km from Mariehamn). No SWEPOS station on Åland. |
+| **access_url** | https://www.lantmateriet.se/sv/geodata/gps-geodesi-och-swepos/swepos/swepos-tjanster/natverks-rtk/abonnemangsformer/ |
+| **host:port** | `nrtk-swepos.lm.se:80` or `nrtk-swepos.lm.se:8500` — canonical per Lantmäteriet connection page (https://www.lantmateriet.se/sv/geodata/gps-geodesi-och-swepos/swepos/swepos-tjanster/natverks-rtk/uppkopplingsinformation/, verified 2026-05-21); `swepos.lantmateriet.se:2101` does not respond |
+| **num_stations** | 480 stations in Sweden (per SWEPOS overview page, 2026-05-21); nearest to Åland are on the Stockholm archipelago east coast (≥150 km from Mariehamn). No SWEPOS station on Åland. |
 | **vrs** | yes (Network-RTK / MAC) |
 | **tariff** | Base Network-RTK in Sweden: 12,000 SEK/yr unlimited (1–3 subscriptions tier; bulk pricing drops to 2,500 SEK/yr at 300+); 90-day 5,000 SEK; 30-day 2,000 SEK; 10-day trial free. Statutory taxes (Swedish moms 25%) added separately — prices are ex-VAT. (Source: `swepos.lantmateriet.se/services/order.aspx`, observed 2026-05-15.) |
 | | Domestic page explicitly limits use to "Sveriges gränser" (Sweden's borders). |
-| | **Inter-Nordic Finland add-on**: +7,000 SEK/yr per connection (Norway: +5,000 SEK/yr). The Lantmäteriet SWEPOS overview cites these as effective from 2010-01-01 — figures may be stale, must order separately. Åland is not explicitly named but is Finnish territory and therefore falls under the Finland add-on. |
+| | **Inter-Nordic Finland add-on**: +7,000 SEK/yr per connection (Norway: +5,000 SEK/yr) — figures dated 2010-01-01 per Lantmäteriet SWEPOS overview; **likely stale, treat as indicative only**; confirm current rate when ordering. Åland is not explicitly named but is Finnish territory and falls under the Finland add-on. |
 | **hobbyist_eligibility** | not restricted to professionals, but pricing is professional-tier; SWEPOS markets to surveying / construction / agriculture. |
 | **legal_residency_required** | no — billing address only |
-| **last_confirmed_alive** | 2026-05-15 (web portal reachable; caster TCP probe timed out from this sandbox — public confirmation is via the order portal, not the live caster) |
+| **last_confirmed_alive** | `nrtk-swepos.lm.se:80` SOURCETABLE 200 OK 2026-05-21; order portal reachable 2026-05-21 |
 | **datum_epoch** | SWEREF 99 (Swedish ETRS89 realisation), epoch 1999.5. Declared on Lantmäteriet Referenssystem page: https://www.lantmateriet.se/en/geodata/gps-geodesy-and-swepos/Referenssystem/ |
 
 ### FINPOS / FinnRef (Finland, NLS Maanmittauslaitos) — RTK is research/test only, not for hobbyists
@@ -42,12 +41,12 @@
 | **landing_url** | https://www.maanmittauslaitos.fi/en/finpos |
 | **access_url** | https://www.maanmittauslaitos.fi/en/finpos/register |
 | **host:port** | `opencaster.nls.fi:2101` (unencrypted) / `opencaster.nls.fi:2105` (TLS). Live 2026-05-15: HTTP 200 OK, `Server: GNSMART_Caster/2.0`. Sourcetable advertises 3 mountpoints: `SINGLE` (nearest-station RTCM 3.2 MSM4), `VRS-FKP` (network solution from SSR-FKP), `VRS-FKP-OLD` (RTCM 3.1 legacy). Fee=Y(B), Auth=Y. |
-| **num_stations** | ~90 FinnRef/FINPOS stations across Finland; coverage area includes Åland geographically (no station on Åland but network-RTK interpolation reaches it). |
+| **num_stations** | ~50 FinnRef/FINPOS stations across Finland (operator source: NLS FinnRef page; ~90 figure incorrect — that reflects Trimnet commercial network); coverage area includes Åland geographically (no station on Åland but network-RTK interpolation reaches it) |
 | **vrs** | yes (`VRS-FKP` mountpoint) |
 | **tariff** | Free of charge when granted, but **RTK access is granted only for fixed-term research and testing, 3-month renewable, application must justify the research/test purpose** — explicitly *not* for production or routine survey/drone use. DGNSS and RINEX are unrestricted free with registration. |
 | **hobbyist_eligibility** | no — RTK service explicitly excludes production use. A hobbyist may qualify only by framing usage as bona-fide R&D and submitting feedback. DGNSS sub-metre is fully open. |
 | **legal_residency_required** | no |
-| **last_confirmed_alive** | 2026-05-17 — `opencaster.nls.fi:2101` re-probed HTTP/1.1 200, `Server: GNSMART_Caster/2.0` (HTML index served at `/`; `/sourcetable.txt` returns STR list) |
+| **last_confirmed_alive** | 2026-05-21 — `opencaster.nls.fi:2101` re-probed HTTP/1.1 200, `Server: GNSMART_Caster/2.0`; DGNSS free + open re-verified (maanmittauslaitos.fi/en/finpos/dgnss 2026-05-21) |
 | **datum_epoch** | EUREF-FIN (Finnish ETRS89 realisation), anchor epoch 1997.0. Official declaration: JHS196 recommendation http://docs.jhs-suositukset.fi/jhs-suositukset/JHS196/JHS196.html ; also registered in EPSG (e.g. EPSG:10690 / EPSG:3067). |
 
 ## No Åland-specific government CORS programme
@@ -94,9 +93,3 @@ The autonomous Government of Åland (Ålands landskapsregering) maintains GIS / 
 - Åland regional government GIS portal (no RTK service): https://www.regeringen.ax/kartor
 - EUREF EPN: https://epncb.oma.be/
 
-## Sandbox reachability notes
-
-- `caster.centipede.fr:2101` and `opencaster.nls.fi:2101` — both reachable via HTTP from this sandbox 2026-05-15.
-- `swepos.lantmateriet.se:2101` — TCP probe timed out from this sandbox. Service is publicly reachable for paid subscribers; the sandbox blocks NTRIP/authenticated-caster ports broadly. SWEPOS being live is evidenced by the publicly reachable order portal (`swepos.lantmateriet.se/services/order.aspx`, HTTPS 200) actively serving subscriptions; Lantmäteriet has not announced any caster outage in 2026.
-- `https://docs.centipede-rtk.org/docs/3.tutoriels/connect_caster` — returned 404 (page path likely changed). Root site `centipede-rtk.org` and `docs.centipede-rtk.org` reachable.
-- EPN per-station info pages (`epncb.oma.be/_networkdata/siteinfo4onestation.php`) — 403 from this sandbox; the station-list itself is reachable.

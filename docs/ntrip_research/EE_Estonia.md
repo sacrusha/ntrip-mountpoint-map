@@ -1,22 +1,23 @@
 # Estonia [EE] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-17 (re-verified; original 2026-05-06)
+**Date researched:** 2026-05-21 (prior: 2026-05-17, 2026-05-06)
 
-## Status: YES — free national NTRIP (ESTPOS); free until 31 August 2026 per director-general order 1-17/26/131; tariff TBD afterward (re-verified 2026-05-17: portal still describes service as "free to use for anyone until 31.08.2026"; 40 CORS confirmed; ESTPOS user manual reissued 12.03.2026)
+## Status: YES — free national NTRIP (ESTPOS); free until 31 August 2026 per director-general order 1-17/26/131; tariff TBD afterward (re-verified 2026-05-21: portal still describes the service as "free to use for anyone until 31.08.2026"; 40 CORS confirmed)
 
 | Field | Value |
 |---|---|
 | **Active public NTRIP RTK caster** | Yes |
 | **Operator** | Maa- ja Ruumiamet (Estonian Land and Spatial Development Board; formerly Maaamet / Estonian Land Board) |
-| **landing_url** | https://geoportaal.maaamet.ee/eng/Spatial-Data/ESTPOS-national-GNSS-satellite-data-center-p839.html (mirror: https://geoportaal.maaruum.ee/...) |
-| **access_url** | https://geoportaal.maaamet.ee/eng/Spatial-Data/ESTPOS-national-GNSS-satellite-data-center-p839.html (same page describes account creation + ordering flow; portal account at geoportaal.maaamet.ee) |
+| **landing_url** | https://geoportaal.maaamet.ee/eng/Spatial-Data/ESTPOS-national-GNSS-satellite-data-center-p839.html (mirror at geoportaal.maaruum.ee) |
+| **access_url** | https://geoportaal.maaamet.ee/eng/Spatial-Data/ESTPOS-national-GNSS-satellite-data-center-p839.html — same page documents the three-step access flow (portal account → order in shop → sign contract); contact `estpos@maaruum.ee` |
 | **host:port** | `gnss-rtk.maaamet.ee:8083` (IP 213.184.51.72; domain migrating to maaruum.ee — check geoportaal.maaruum.ee if maaamet.ee fails) |
-| **VRS** | Yes — iMAX, VRS, and nearest-station solutions available |
+| **num_stations** | 40 CORS — operator-stated "40 GNSS reference stations evenly covering Estonia"; all 40 in EPOS, 4 in EPN |
+| **vrs** | Yes — VRS, iMAX, and nearest-station solutions available |
 | **Mountpoints** | `DGNSS_iMAX`, `DGNSS_VRS`, `DGNSS_Nearest`; `RTCM2_iMAX`, `RTCM2_VRS`, `RTCM2_Nearest`; `RTCM3_iMAX`, `RTCM3_VRS`, `RTCM3_Nearest`; `MSM5_iMAX`, `MSM5_VRS`, `MSM5_Nearest` |
-| **tariff** | **Free until 31 August 2026** per Estonian Land and Spatial Development Board director-general directive; post-August 2026 tariff not yet announced. Date observed: 2026-05-06. Source: https://geoportaal.maaamet.ee/eng/Spatial-Data/ESTPOS-national-GNSS-satellite-data-center-p839.html |
-| **hobbyist_eligibility** | **Yes** — "free to use for anyone" (per directive); ESTPOS portal account required; no professional licence check |
-| **legal_residency_required** | ? — internationally accessible per current portal language; no geographic restriction explicitly published, but earlier ESTPOS versions had Estonia-only IP filter and current status with expanded network is not confirmed. Verify before relying on cross-border access. |
-| **last_confirmed_alive** | ESTPOS geoportal (geoportaal.maaamet.ee) HTTP 200 confirmed 2026-05-17; user manual reissued 2026-03-12; NTRIP port `gnss-rtk.maaamet.ee:8083` TCP-timed-out from this sandbox 2026-05-17 (likely geo/IP filter — not authoritative as a liveness signal) |
-| **datum_epoch** | **EUREF-EST97** — national realization of ETRS89 per operator-published Geodetic System page (https://geoportaal.maaamet.ee/eng/Spatial-Data/Geodetic-Data/Geodetic-System-p668.html). Epoch not stated as a citable value on that page; operator-declaration of an explicit epoch not located. Earlier inference that ETRS89 coincides with ITRS at 1989.0 is editorial and removed per [datum-epoch] citation rule. |
+| **tariff** | Free until 31 August 2026 per Maa- ja Ruumiamet director-general order 1-17/26/131; post-August 2026 tariff not announced. Source: https://geoportaal.maaamet.ee/eng/Spatial-Data/ESTPOS-national-GNSS-satellite-data-center-p839.html (observed 2026-05-21) |
+| **hobbyist_eligibility** | Yes — "free to use for anyone" (per directive); ESTPOS portal account required; no professional licence check |
+| **legal_residency_required** | ? — current portal language sets no explicit residency restriction ("free to use for anyone"); the access flow requires a portal account + signed ESTPOS contract, and earlier ESTPOS releases enforced an Estonia-only IP filter. Foreign access plausible but not explicitly confirmed; ask `estpos@maaruum.ee` before relying on it cross-border. |
+| **last_confirmed_alive** | 2026-05-21 — geoportal landing page returns ESTPOS narrative with the unchanged "free until 31.08.2026" clause; NTRIP port `gnss-rtk.maaamet.ee:8083` did not respond from this sandbox (consistent with prior probes — likely geo/IP filter, not authoritative as a liveness signal) |
+| **datum_epoch** | Datum ETRS89 (national realization EUREF-EST97); epoch 1989.0 declared by operator — "ETRS89 coincides with the International Terrestrial Reference System (ITRS) of the International Earth Rotation Service (IERS) on epoch 1989.0". Source: https://geoportaal.maaamet.ee/eng/Spatial-Data/Geodetic-Data/Geodetic-System-p668.html |
 
 ## Registration Process
 
@@ -48,10 +49,10 @@ The Land Board (Maaamet) has rebranded to Maa- ja Ruumiamet with domain maaruum.
 | **EUREF/EPN archive** — Estonian EPN stations | https://www.epncb.oma.be/ | Free |
 
 ## Sources Consulted
-- ESTPOS geoportal (Maaamet): https://geoportaal.maaamet.ee/eng/Spatial-Data/ESTPOS-national-GNSS-satellite-data-center-p839.html
+- ESTPOS geoportal (Maaamet): https://geoportaal.maaamet.ee/eng/Spatial-Data/ESTPOS-national-GNSS-satellite-data-center-p839.html (observed 2026-05-21; free-until-31.08.2026 clause + three-step access flow + contact `estpos@maaruum.ee` unchanged)
 - ESTPOS user manual 2026 PDF: https://geoportaal.maaamet.ee/docs/Geodeesia/ESTPOS_user_manual_2026.pdf
-- ESTPOS user manual (maaruum domain): https://geoportaal.maaruum.ee/docs/Geodeesia/ESTPOS_user_manual_2026.pdf
-- Estonian Permanent GNSS network article: https://geoportaal.maaamet.ee/eng/Spatial-Data/Geodetic-Data/Geodetic-Networks/Estonian-Permanent-GNSS-Reference-Station-Network-p671.html (40 stations; 4 in EPN; all 40 in EPOS)
-- Estonian Geodetic System (datum citation): https://geoportaal.maaamet.ee/eng/Spatial-Data/Geodetic-Data/Geodetic-System-p668.html
+- ESTPOS user manual (maaruum mirror): https://geoportaal.maaruum.ee/docs/Geodeesia/ESTPOS_user_manual_2026.pdf
+- Estonian Permanent GNSS network article: https://geoportaal.maaamet.ee/eng/Spatial-Data/Geodetic-Data/Geodetic-Networks/Estonian-Permanent-GNSS-Reference-Station-Network-p671.html (40 stations; 4 in EPN; all 40 in EPOS; 2024–2025 reconstruction funded by EU NextGenerationEU)
+- Estonian Geodetic System (datum + epoch citation): https://geoportaal.maaamet.ee/eng/Spatial-Data/Geodetic-Data/Geodetic-System-p668.html (ETRS89 / EUREF-EST97 / coincides with ITRS at epoch 1989.0)
 - Inside GNSS — "Estonia Expands ESTPOS": https://insidegnss.com/estonia-expands-estpos-to-strengthen-gnss-resilience/
-- ArduSimple Estonia page: https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-estonia/
+- ArduSimple Estonia: https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-estonia/

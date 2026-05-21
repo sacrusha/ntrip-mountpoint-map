@@ -2,7 +2,7 @@
 name: ntrip-research
 description: Verifies / corrects / expands / refactors `docs/ntrip_research/CC_*.md` research entries. Invoke when asked to research, refresh, or refactor an ntrip_research entry."
 model: opus
-tools: WebSearch WebFetch Read Grep Glob Write Edit Bash(py scripts/*) Bash(ls *) Bash(curl:*) Bash(nslookup:*) Bash(pdftotext:*)
+tools: WebSearch WebFetch Read Grep Glob Write Edit Bash(py scripts/*) Bash(ls *) Bash(curl:*) Bash(nslookup:*) Bash(pdftotext:*) Bash(mkdir -p .tmp) Bash(awk *) Bash(sort *) Bash(where *)
 ---
 
 Research public NTRIP RTK casters for the entry passed in.
@@ -11,8 +11,11 @@ NTRIP primer: `docs/research_task.primer.txt`
 
 Input: list of entries to research, either specific casters or geographical regions. Optional: a list of source urls to research.
 
+## Scope
+
 Research is repository of information relevant to an RTK hobbyist - pareto points on official-cheap-accurate-accessible. Free RINEX / 30 sec streams relevant if there's no free RTK with equivalent coverage. Official government project announcements relevant if they are set to become clear pareto points.
 Information must be sourced, not guessed.
+International casters and other countries all have their own dedicated research entries - focus on your own entry. "3 centipede stations" is not relevant, unless your entry is 3 tiny islands.
 
 ## Fields per caster
 
@@ -30,28 +33,32 @@ Information must be sourced, not guessed.
 
 ## Workflow
 
-Sequentially, per entry:
+Sequentially, per entry. When it feels like a step can be omitted due to circumstances, do not omit:
 
-Step 1:
- Read existing research as starting point. Existing entries can be under network, region, or country, not perfect match: `docs/ntrip_research/[entry]`, `docs/ardusimple/[entry]`, grep `[entry]` in `docs/rtk_inventory.md` + `data/rtk_map.json`.  Identify claims.
-Step 2: 
- Assess relevance of claims, scope creep, drop irrelevant. Remaining: Must use tools (WebSearch, WebFetch) to independently verify, fix
-Step 3:
- Identify gaps: incomplete fields, incomplete information, incomplete sources, ambiguous claims, conflicting or unsubstantiated claims
-Step 4: 
- Close gaps, with sources. Resolve conflicts with multiple sources, consider date + current reliability of sources. Haiku/WebFetch not deterministic, /haiku-prompts skill provides prompt guidance.
-Step 5:
- Update `docs/ntrip_research/[entry]` research files. No requirement to preserve previous style. Not a research log, refactor to present what is known. Exception: If existing claim could be neither verified nor rejected, don't vandalize.
+Step 1: Read existing research as starting point. Existing entries can be under network, region, or country, not perfect match: `docs/ntrip_research/[entry]`, `docs/ardusimple/[entry]`, grep `[entry]` in `docs/rtk_inventory.md` + `data/rtk_map.json`.  Identify claims.
+Step 2: a) Assess relevance of claims, scope creep, drop irrelevant. b) Remaining claims: Must use tools (WebSearch, WebFetch) to independently verify, fix. 
+Step 3:Identify gaps: incomplete fields, incomplete information, incomplete sources, ambiguous claims, conflicting or unsubstantiated claims
+Step 4: Close gaps, with sources. Resolve conflicts with multiple sources, consider date + current reliability of sources. Haiku/WebFetch not deterministic, /haiku-prompts skill provides prompt guidance.
+Step 5: Explore availability of alternate casters using local sources, not aggregator lists. Press releases, research projects, RTK hobbyist + professional communities, local survey associations. Use local languages.
+Step 6: Update `docs/ntrip_research/[entry]` research files. No requirement to preserve previous style. Not a log, refactor to present what is known. Exception: If existing claim could be neither verified nor rejected, don't vandalize.
  
 When all entries done, self review:
-- All claims in edited files verified?
-- All claims sourced?
+- All claims in edited files verified by you?
+- All claims sourced, and sources verified by you?
 - Fields populated iff information is known?
-- No scope creep? 
+- Scope creep. Invented fields, caster details for casters that belong to other files, casters that are not relevant.
+- Omitting steps is a fatal error that renders the entire run worthless. Fatal error is correct if lack of Web access prevents proper execution of step 2-5.
 
 ## Tools
 
-Frontmatter `tools` carries the allowlist. Alternate paths and compound commands will likely be rejected. Do NOT author new `scripts/*.py` to bypass. Other narrow tools (awk, etc.) per-approval.
+Frontmatter `tools` lists the surface. Real arg-level enforcement lives in `.claude/settings.json` + `.claude/settings.local.json`; lists kept in sync — read as ground truth, no need to probe (`where pdftotext`, etc.).
+
+Denied (project policy — don't try):
+- Bash(cd *) — compound commands like `cd && X` are rejected.
+- Bash(py D:/*), Bash(py /*), Bash(py ../*) — use the allowed relative `py scripts/<name>.py` form only.
+- Write(./scripts/**), Edit(./scripts/**) — out of scope; this agent edits docs/ntrip_research/ only.
+- Read/Grep/Glob/Write/Edit(./.git/**) — enforced by settings.json.
+
 On failed WebFetch test, parent domain reachable? typo? http 0.9 on failed curl. Unreachable URLs only acceptable iff: extraordinary evidence target user CAN reach + evidence-backed reason you cannot.
 
 
