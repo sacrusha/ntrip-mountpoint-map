@@ -1,0 +1,15 @@
+{
+  "_comment": "MOCK SEED for architecture validation. Replace with real Puglia station coords once curated from the operator inventory + Analist blog (see docs/ntrip_research/IT_Italy.md). All 5 entries below are made-up positions.",
+  "last_reviewed": "2026-05-21",
+  "source_url": "https://blog.analistgroup.com/come-connettersi-alla-rete-gnss-in-puglia/",
+  "pin_origin": "forum",
+  "stations": [
+    {"name": "MOCK_BARI",   "lat": 41.13, "lon": 16.86, "country": "ITA"},
+    {"name": "MOCK_LECCE",  "lat": 40.35, "lon": 18.17, "country": "ITA"},
+    {"name": "MOCK_TARANTO","lat": 40.47, "lon": 17.24, "country": "ITA"},
+    {"name": "MOCK_FOGGIA", "lat": 41.46, "lon": 15.55, "country": "ITA",
+     "format": "RTCM 3", "carrier": 2, "constellations": "GPS+GLO+GAL"},
+    {"name": "MOCK_BRINDISI","lat": 40.64, "lon": 17.94, "country": "ITA",
+     "format": "RTCM 3", "carrier": 3, "constellations": "GPS+GLO+GAL+BDS"}
+  ]
+}

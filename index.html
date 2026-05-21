@@ -611,7 +611,9 @@
   var R_EXCELLENT=10, R_GOOD=30, R_MARGINAL=50, R_FLOAT=100;
 
   // Staleness thresholds (days). Must match STALE_GREY_DAYS / STALE_HIDE_DAYS in fetch_stations.py.
-  var STALE_GREY_DAYS=3, STALE_HIDE_DAYS=7;
+  // Sized for weekly external-coord scrapes (8 = one week + a day of grace); NTRIP
+  // fetches at 4×/day rarely bump up against these thresholds anyway.
+  var STALE_GREY_DAYS=8, STALE_HIDE_DAYS=16;
 
   // Coverage-raster colour lookup. Entry i maps strength i/255 to RGBA,
   // where strength = 1 - dist_to_nearest_km / R_FLOAT:
@@ -762,15 +764,26 @@
     var out=[];
     (list||[]).forEach(function(s){
       if(!isFinite(s.lat)||!isFinite(s.lon)||(s.lat===0&&s.lon===0)) return;
+      // No declared format AND no carrier hint -> 'unknown' (typically a
+      // file-source station from an operator inventory that doesn't publish
+      // stream format). 'unknown' renders distinctly from 'L1' so a user
+      // doesn't mistake it for a confirmed single-frequency station.
+      var carrier;
+      if(s.format){
+        carrier=s.format.startsWith('RTCM 2')?'legacy'
+          :s.tripleFreq?'L1L2L5'
+          :s.dualFreq?'L1L2'
+          :'L1';
+      } else if(s.tripleFreq){ carrier='L1L2L5'; }
+      else if(s.dualFreq){ carrier='L1L2'; }
+      else { carrier='unknown'; }
       out.push({
         name:s.name, lat:s.lat, lon:s.lon,
         dLat:0.5*Math.pow(10,-s.latPrec),
         dLon:0.5*Math.pow(10,-s.lonPrec),
-        carrier:(s.format||'').startsWith('RTCM 2')?'legacy'
-          :s.tripleFreq?'L1L2L5'
-          :s.dualFreq?'L1L2'
-          :'L1',
+        carrier:carrier,
         vrsRequired:!!s.vrsRequired,
+        pinOrigin:s.pin_origin||'ntrip',
       });
     });
     return out;
@@ -798,11 +811,11 @@
         var k=posKey(st);
         var e=byKey[k];
         if(e){
-          e.mountpoints.push({name:st.name,carrier:st.carrier,source:src,vrsRequired:st.vrsRequired});
+          e.mountpoints.push({name:st.name,carrier:st.carrier,source:src,vrsRequired:st.vrsRequired,pinOrigin:st.pinOrigin});
           if(st.dLat<e.dLat){ e.lat=st.lat; e.lon=st.lon; e.dLat=st.dLat; e.dLon=st.dLon; }
         } else {
           byKey[k]={lat:st.lat,lon:st.lon,dLat:st.dLat,dLon:st.dLon,
-            mountpoints:[{name:st.name,carrier:st.carrier,source:src,vrsRequired:st.vrsRequired}]};
+            mountpoints:[{name:st.name,carrier:st.carrier,source:src,vrsRequired:st.vrsRequired,pinOrigin:st.pinOrigin}]};
         }
       });
     });
@@ -924,6 +937,7 @@
   function accuracySummary(carrier){
     if(carrier==='L1L2L5') return '~1–2 cm (triple-frequency L1+L2+L5 — faster fix, better multipath)';
     if(carrier==='L1L2')   return '~1–2 cm (dual-frequency L1+L2)';
+    if(carrier==='unknown') return 'Frequency capability not declared by the operator';
     return 'up to ~1 cm within 10 km (L1-only; more sensitive to ionosphere) · good to 20 km';
   }
 
@@ -961,6 +975,7 @@
     return `<button class="help-chip" onclick="event.stopPropagation();__ntripShowPopover(this,'rs','top-left')" aria-label="What is an RS network?"><span class="q">?</span></button>`;
   }
   function carrierChip(carrier){
+    if(carrier==='unknown') return '';   // no help topic — operator hasn't declared, nothing to explain
     var key=carrier==='L1'?'carrier-l1':'carrier';
     var label=carrier==='L1L2L5'?'What does triple-frequency mean?'
       :carrier==='L1L2'?'What does L1+L2 mean?':'What does L1-only mean?';

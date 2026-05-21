@@ -2356,6 +2356,11 @@
       "endpoints": [
         {
           "url": "http://gps.sit.puglia.it:2101/"
+        },
+        {
+          "type": "file",
+          "id": "sit_puglia_ext",
+          "path": "data/external_sit_puglia.json"
         }
       ]
     },

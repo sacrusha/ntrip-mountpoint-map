@@ -117,11 +117,12 @@ def _flatten_endpoints(networks: list[dict]) -> list[dict]:
     for net in networks:
         for idx, ep in enumerate(net["endpoints"]):
             creds = ep.get("credentials") or {}
-            out.append({
+            entry = {
                 "id":              _endpoint_id(net, idx),
                 "network_id":      net["id"],
                 "endpoint_idx":    idx,
-                "url":             ep["url"],
+                "type":            ep.get("type", "ntrip"),
+                "url":             ep.get("url"),
                 "credentials":     ep.get("credentials"),
                 "near":            ep.get("near", False),
                 "user":            creds.get("user"),
@@ -130,7 +131,13 @@ def _flatten_endpoints(networks: list[dict]) -> list[dict]:
                 "nmea_filter":     ep.get("nmea_filter", True),
                 "solution_filter": ep.get("solution_filter", True),
                 "vrs_required":    ep.get("vrs_required", False),
-            })
+            }
+            # Type-specific config carried verbatim so handlers can pick it up.
+            if "path" in ep:
+                entry["path"] = ep["path"]
+            if "pin_origin" in ep:
+                entry["pin_origin"] = ep["pin_origin"]
+            out.append(entry)
     return out
 
 
@@ -139,8 +146,10 @@ SOURCES = _flatten_endpoints(NETWORKS)  # legacy flat per-endpoint view
 
 
 FETCH_TIMEOUT = 5
-STALE_GREY_DAYS = 3   # sources offline this long shown as grey dots, excluded from coverage raster
-STALE_HIDE_DAYS = 7   # sources offline this long hidden entirely
+STALE_GREY_DAYS = 8   # sources offline this long shown as grey dots, excluded from coverage raster
+STALE_HIDE_DAYS = 16  # sources offline this long hidden entirely
+# Sized for weekly external-coord scrapes (8 = one week + a day of grace);
+# NTRIP fetches at 4×/day rarely bump up against these thresholds anyway.
 
 
 def _fetch_ntrip1(host: str, port: int) -> str:
@@ -346,13 +355,28 @@ def station_fingerprint(source: dict) -> list[list]:
     return [
         [s["name"], s["lat"], s.get("latPrec"), s["lon"], s.get("lonPrec"),
          s.get("dualFreq"), s.get("tripleFreq"), s.get("format", ""), s.get("constellations", ""),
-         s.get("vrsRequired", False)]
+         s.get("vrsRequired", False), s.get("pin_origin", "ntrip")]
         for s in source.get("stations", [])
     ]
 
 
 def fetch_source(src: dict) -> tuple[str, dict, bool]:
-    """Fetch and parse a single NTRIP source. Returns (sid, result, was_fresh)."""
+    """Dispatch a source to its type-specific handler.
+
+    Each handler returns the (sid, result, was_fresh) shape this function's
+    callers expect. Default type is 'ntrip' for back-compat with endpoints[]
+    entries that pre-date the 'type' field.
+    """
+    src_type = src.get("type", "ntrip")
+    handler = HANDLERS.get(src_type)
+    if handler is None:
+        raise ValueError(f"[{src['id']}] unknown source type {src_type!r}; "
+                         f"known: {sorted(HANDLERS)}")
+    return handler(src)
+
+
+def _fetch_ntrip_source(src: dict) -> tuple[str, dict, bool]:
+    """Fetch and parse an NTRIP sourcetable. Returns (sid, result, was_fresh)."""
     sid, url = src["id"], src["url"]
     src_credentials = src.get("credentials")
     prev_last_ok = src.get("_prev_last_ok")
@@ -419,6 +443,113 @@ def fetch_source(src: dict) -> tuple[str, dict, bool]:
             "text": None,
             "stations": [],
         }, False
+
+
+def _fetch_file_source(src: dict) -> tuple[str, dict, bool]:
+    """Read a curated station list from a JSON file on disk.
+
+    Schema (data/external_<id>.json):
+      {
+        "last_reviewed": "YYYY-MM-DD",        # drives staleness via last_ok
+        "source_url":    "...",                # provenance; displayed in popup
+        "pin_origin":    "forum" | "register", # routed to each station record
+        "stations": [
+          {"name": "X", "lat": 1.23, "lon": 4.56,
+           "format": "RTCM 3", "carrier": 2,  # optional; omit if unknown
+           "constellations": "GPS+GLO",       # optional
+           "country": "ITA"}                  # optional
+        ]
+      }
+
+    File sources are cheap to read so we don't cache: every run reads fresh.
+    Status is 'ok' on read success, 'error' on read/parse failure.
+    """
+    sid = src["id"]
+    path = ROOT / src["path"]
+    pin_origin_default = src.get("pin_origin")  # endpoint-level override permitted
+    _meta = {
+        "url": src.get("url"),  # populated by endpoint config (typically None for file sources)
+        "credentials": src.get("credentials"),
+        "near": src.get("near", False),
+        "user": src.get("user"),
+        "pass": src.get("pass"),
+        "userNote": src.get("userNote"),
+    }
+    try:
+        raw = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as e:
+        print(f"[{sid}] file source unreadable ({path}): {e!r}", file=sys.stderr)
+        return sid, {**_meta,
+            "status": "error",
+            "fetched_at": None,
+            "last_ok": None,
+            "raw_path": path,
+            "text": None,
+            "stations": [],
+        }, False
+    pin_origin = raw.get("pin_origin") or pin_origin_default or "external"
+    last_reviewed = raw.get("last_reviewed")
+    last_ok_iso = None
+    if last_reviewed:
+        # treat last_reviewed as midnight UTC of that date so the staleness clock
+        # is comparable to ntrip-source last_ok (an ISO-8601 instant).
+        try:
+            last_ok_iso = datetime.strptime(last_reviewed, "%Y-%m-%d")\
+                .replace(tzinfo=timezone.utc).isoformat(timespec="seconds")
+        except ValueError:
+            print(f"[{sid}] last_reviewed not YYYY-MM-DD ({last_reviewed!r}); "
+                  f"staleness will read as unknown", file=sys.stderr)
+    stations = []
+    for entry in raw.get("stations", []):
+        try:
+            lat = float(entry["lat"])
+            lon = float(entry["lon"])
+        except (KeyError, TypeError, ValueError):
+            continue
+        rec = {
+            "name": entry["name"],
+            "lat": lat,
+            "lon": lon,
+            "latPrec": entry.get("latPrec", _dec_places(str(lat))),
+            "lonPrec": entry.get("lonPrec", _dec_places(str(lon))),
+            "country": entry.get("country", ""),
+            "pin_origin": pin_origin,
+        }
+        # Format / carrier are optional on file sources. Omitting them signals
+        # "frequency capability unknown" to the UI (vs the L1-default fallthrough
+        # that previously made unknown look like a confirmed single-frequency
+        # station). If declared, propagate verbatim.
+        if "format" in entry:
+            rec["format"] = entry["format"]
+        if "constellations" in entry:
+            rec["constellations"] = entry["constellations"]
+        carrier = entry.get("carrier")
+        if isinstance(carrier, int):
+            rec["dualFreq"] = carrier >= 2
+            rec["tripleFreq"] = carrier >= 3
+        stations.append(rec)
+    stations.sort(key=lambda s: (s["name"], s["lat"], s["lon"]))
+    src_url = raw.get("source_url")
+    print(f"[{sid}] file source: {len(stations)} stations from {path.name} "
+          f"(reviewed {last_reviewed or '?'}, origin={pin_origin})")
+    fetched_at_iso = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    return sid, {**_meta,
+        "url": src_url or _meta["url"],
+        "status": "ok",
+        "fetched_at": fetched_at_iso,
+        "last_ok": last_ok_iso,
+        "raw_path": path,
+        "text": None,
+        "stations": stations,
+    }, True
+
+
+# Source-type dispatch. Add a new type by writing a handler returning the
+# (sid, result, was_fresh) shape and registering it here.
+HANDLERS = {
+    "ntrip": _fetch_ntrip_source,
+    "file":  _fetch_file_source,
+}
 
 
 def main() -> int:
