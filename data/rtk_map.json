@@ -501,6 +501,11 @@
       "endpoints": [
         {
           "url": "http://193.219.10.2:2101/"
+        },
+        {
+          "type": "file",
+          "id": "litpos_ext",
+          "path": "data/external_litpos.json"
         }
       ]
     },
