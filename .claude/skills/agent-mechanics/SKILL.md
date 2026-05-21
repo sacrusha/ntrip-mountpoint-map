@@ -38,7 +38,7 @@ Walk these questions in order. Each links into the relevant section.
 ## Headline facts (most actionable)
 
 - Frontmatter required: `name` + `description`. `model` defaults to `inherit`.
-- Subagents inherit CLAUDE.md + gitStatus. Explore + Plan strip both. Per-agent CLAUDE.md swap requires a worktree (see control.md "Recipe").
+- Subagents inherit CLAUDE.md + gitStatus + userEmail. Explore + Plan strip CLAUDE.md + gitStatus (still get userEmail). Per-agent CLAUDE.md swap requires a worktree (see control.md "Recipe").
 - `tools:` / `disallowedTools:` match exact tool names. Arg-glob syntax (`Bash(*)`) has no runtime meaning here; use `settings.json permissions` for arg gating.
 - MCP cloud tools propagate; the `Agent` tool does NOT — subagents cannot spawn nested subagents.
 - Hook exit codes: **exit 2 blocks, exit 1 only prints stderr**. The most common security-gate footgun.

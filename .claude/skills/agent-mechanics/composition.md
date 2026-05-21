@@ -2,7 +2,7 @@
 
 ## Prompt composition layers
 
-Order verified via trap-controlled neighbor-quote probes for #1-3 and #5-8; #4 emoji position (?) inferred from sonnet first-300-char dumps, not trap-controlled.
+Order trap-probed for #1-3, #5-8; #4 emoji position (?) inferred from sonnet dumps, untrapped.
 
 1. Base identity: `You are Claude Code, Anthropic's official CLI for Claude.`
 2. Agent-specific role text from the agent file body, verbatim.
@@ -23,10 +23,10 @@ Order verified via trap-controlled neighbor-quote probes for #1-3 and #5-8; #4 e
 **Designer-controlled**: agent body (#2, verbatim), tool schemas (#9 — Bash/Edit large, Read small; narrowing `tools:` is the cheapest knob), `skills:` preload (full body per listed skill), CLAUDE.md (swappable only via worktree, at cost of no prompt-cache reuse), gitStatus (`includeGitInstructions: false` strips session-wide), inline `mcpServers:`.
 
 **Amplifiers**:
-- Forks reuse parent's prompt cache; fresh subagents don't. Fork mode (`CLAUDE_CODE_FORK_SUBAGENT=1`, ≥2.1.117): every spawn auto-backgrounds. Per docs, organic `general-purpose` delegation substitutes to a fork — but `Agent(subagent_type="general-purpose")` tool calls do NOT (token count stays at subagent baseline, history absent). `/fork <directive>` is the verified path for a real fork.
+- Forks reuse parent's prompt cache; fresh subagents don't. Fork mode (`CLAUDE_CODE_FORK_SUBAGENT=1`, ≥2.1.117): every spawn auto-backgrounds. Explicit `Agent(subagent_type="general-purpose")` tool calls do NOT fork (K — token count at subagent baseline, history absent). Per docs, organic `general-purpose` delegation should substitute to a fork (unconfirmed via this path). `/fork <directive>` is the verified user-driven path.
 - Multi-turn subagents: output tokens drive cost after spawn; setup amortizes.
 
-**Minimal-setup rule of thumb**: `name` + `description` only, `tools:` ≤ 3, empty body, no `skills:` / `mcpServers:`. Catalog + baseline still load. For absolute minimum, use `Explore` / `Plan` (also strip CLAUDE.md + gitStatus) — at cost of fixed identity.
+**Minimum custom agent**: empty body, ≤ 3 tools, no `skills:` / `mcpServers:`. Catalog + baseline still load. Absolute minimum: `Explore` / `Plan` (also strip CLAUDE.md + gitStatus, fixed identity).
 
 ## What does NOT propagate from main session
 
@@ -51,7 +51,7 @@ Explore + Plan strip CLAUDE.md and gitStatus (hardcoded by name; no frontmatter 
 - **Settings allow does NOT re-expose stripped tools**: allow grants permission to existing schemas; strip removes the schema entirely.
 - **Tool pool restrict-only**: subagent inherits parent's pool. Frontmatter `tools:` and `disallowedTools:` can RESTRICT; only `mcpServers:` can ADD (MCP-only).
 - **Deferred pool per-agent narrower than parent's** (L — observed but not probe-quantified).
-- Subagents cannot spawn nested subagents. `Agent` is absent from subagent schemas. (See control.md "Spawn-time controls" for the `tools: Agent(...)` allowlist syntax that DOES matter in `claude --agent` main-session mode.)
+- `Agent` tool is absent from subagent schemas → no nested subagents. (`tools: Agent(...)` only matters in `claude --agent` main-session mode; see control.md.)
 
 ### Allowlist recipes
 
@@ -71,7 +71,7 @@ Explore + Plan strip CLAUDE.md and gitStatus (hardcoded by name; no frontmatter 
 
 **Haiku** is prompt-dependent. Fabricates when asked to call tools and report results (`tool_uses=0` + invented output). Introspects own context coherently when told NOT to call tools. Discriminator: ask for an enumeration that requires zero tool calls — fabrication if it narrates tool "outputs" anyway.
 
-**Sonnet** executes tools reliably. Self-enumeration of tools is incomplete (some tools that succeed on probe calls don't appear). Self-reports paraphrase past ~few tokens.
+**Sonnet** executes tools reliably. Self-enumeration is incomplete (probe-call success doesn't guarantee a tool appears in the listing). Self-reports paraphrase past ~few tokens.
 
 Trust rule: read `<usage>`; if `tool_uses=0` and outputs reported, hallucinated.
 

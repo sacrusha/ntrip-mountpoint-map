@@ -2,9 +2,11 @@
 
 ## Definition
 
-**Location**: `.claude/agents/<file>.md` (project), `~/.claude/agents/` (user), managed (`.claude/agents/` in [managed settings dir](https://code.claude.com/docs/en/settings#settings-files)), plugin (`<plugin>/agents/`). Identity = frontmatter `name`; filename is cosmetic. Project/user agents must sit at the top level — files in subfolders do not load (probed Windows; docs claim recursive scan, but our test agent at `.claude/agents/sub/q-subfolder.md` was absent from the registry).
+**Location**: `.claude/agents/<file>.md` (project), `~/.claude/agents/` (user), managed (`.claude/agents/` in [managed settings dir](https://code.claude.com/docs/en/settings#settings-files)), plugin (`<plugin>/agents/`). Identity = frontmatter `name`; filename is cosmetic.
 
-Plugin subfolders become part of the scoped name: `agents/review/security.md` in plugin `my-plugin` → identifier `my-plugin:review:security`. Project/user subfolders stay cosmetic.
+Subfolder behavior is per-scope:
+- **Plugin**: subfolder becomes part of the scoped name (`my-plugin/agents/review/security.md` → `my-plugin:review:security`).
+- **Project / user**: docs claim recursive scan; Windows probe showed `.claude/agents/sub/q-subfolder.md` did NOT load. Keep project/user agent files at the top level; re-probe on macOS/Linux to scope.
 
 `--add-dir <path>` grants file access for that path only; not scanned for subagents.
 
@@ -68,7 +70,7 @@ The agent name appears as `@<name>` in the startup header so you can confirm the
 | `isolation` | `"worktree"` spawns subagent in temporary git worktree. Equivalent to frontmatter `isolation: worktree`, overrides it. |
 | `run_in_background` | Detaches subagent; parent notified on completion. Also settable via `background:` frontmatter or Ctrl+B. |
 
-Each Agent call is one-shot by default. With `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` set (see "Experimental flags" below), the trailing `agentId: ...` hint in every Agent return becomes actionable: `SendMessage(to=<agentId>, message=...)` resumes the subagent with its full prior conversation context (K — verified via T1 probe; mechanism reported as "resumed from transcript in the background"). Without the flag, the hint dangles.
+Each Agent call is one-shot by default. With Agent Teams enabled (see "Experimental flags"), the trailing `agentId:` hint in every Agent return becomes a resumption handle via `SendMessage`. Without that flag, the hint dangles.
 
 **Subagents cannot spawn nested subagents.** `Agent` is absent from subagent schemas. The `tools: Agent(...)` allowlist syntax only matters in main-session mode.
 
@@ -146,7 +148,7 @@ Two paths:
 
 `ExitWorktree(action: keep|remove, discard_changes?)` leaves the worktree session. `remove` refuses dirty worktrees without `discard_changes: true`. Operates only on worktrees entered via `EnterWorktree` this session.
 
-Both honor `worktree.baseRef` and (L per docs) `WorktreeCreate` / `WorktreeRemove` hooks.
+Both honor `worktree.baseRef`. They also fire `WorktreeCreate` / `WorktreeRemove` hooks (L, per docs).
 
 ## Hooks
 
@@ -154,7 +156,7 @@ Most relevant for subagent work:
 
 - `PreToolUse` / `PostToolUse` — before / after each tool call. PreToolUse fires INSIDE subagents.
 - `SubagentStart` / `SubagentStop` — spawn / return; payload includes agent_id + agent_type.
-- `WorktreeCreate` — **REPLACEMENT hook** (not observation). Fires BEFORE the subagent runs. When wired, takes over worktree creation; built-in git logic bypassed. Hook MUST return the worktree path on stdout (or `hookSpecificOutput.worktreePath`). A no-op hook → `WorktreeCreate hook failed: ... returned no worktree path` → creation aborts. Use for: custom base / path / branch, non-git VCS, shared worktrees, out-of-repo isolation. Effectively the args API for `Agent(isolation: "worktree")` (which has no caller knobs of its own). No matchers.
+- `WorktreeCreate` — **REPLACEMENT hook** (not observation). Fires BEFORE the subagent runs. Takes over worktree creation; built-in git logic bypassed. MUST return the worktree path on stdout (or `hookSpecificOutput.worktreePath`). A no-op hook → `WorktreeCreate hook failed: ... returned no worktree path` → creation aborts. Use for: custom base / path / branch, non-git VCS, shared worktrees, out-of-repo isolation. No matchers.
 - `WorktreeRemove` (L per docs) — pure **OBSERVATION hook**. Cannot block; exit code + stderr ignored. Fires on subagent finish OR session exit, distinguished by `removal_reason` (`"subagent_finish"` / `"session_exit"`). Receives `worktree_path` + `removal_reason` on stdin. Not symmetric to `WorktreeCreate`.
 - `InstructionsLoaded` — CLAUDE.md / rules loaded.
 - `UserPromptSubmit` — user submits a prompt.
@@ -192,19 +194,19 @@ Distinct from the three schema-strip error strings — different code path. Path
 - Call matches neither rule → behavior depends on parent's permission mode AND whether the specific call would prompt:
   - `bypassPermissions` / `acceptEdits` → call runs (K).
   - `auto` → background classifier decides per-call. Classifier-passed calls run; classifier-rejected calls auto-deny with `Permission to use Bash has been denied` (K — observed: `whoami` and `python --version` passed; `py --version` rejected, presumably command-pattern specific).
-  - `default` (foreground subagent) → would prompt in main session; subagent has no UI → docs claim auto-deny but untested cleanly (no default-mode parent in this session).
+  - `default` (foreground subagent) → would prompt in main session; subagent has no UI → docs claim auto-deny (?, no default-mode parent in this session).
   - **Background subagent** (per docs + K-confirmed via `py --version`): auto-denies any call that would have prompted/classifier-rejected. Canonical error: `Permission to use Bash has been denied`.
 
 **Worktree subagent caveat**: settings.local.json typically untracked → absent in worktree → its allow/deny rules don't apply for the worktree subagent. Tracked settings.json still applies. Effective permission set is leaner than parent's. If settings.local.json carries critical denies, propagate via `.worktreeinclude` or commit them.
 
-**Settings allow does NOT re-expose stripped tools** (K, see composition.md "Tool surface"). Allow rules grant permission to existing schemas; they don't add schemas.
+**Settings allow does NOT re-expose stripped tools** — see composition.md "Tool surface".
 
 **Disable a subagent type session-wide**: add `Agent(<name>)` to `permissions.deny` in settings.json, or use `--disallowedTools "Agent(<name>)"` on the CLI. Works for built-in and custom subagents.
 
 ## Session-start sequence
 
 1. Settings layers merged (managed > CLI flags > `.local.json` > `.json` > user) — hooks registered, permissions evaluated.
-2. `SessionStart` hook fires (before CLAUDE.md); its `additionalContext` is appended.
+2. `SessionStart` hook fires; its `additionalContext` is appended to Claude's context before the first inference.
 3. Static config snapshot (loaded into context before first inference): CLAUDE.md hierarchy, skills catalog (frontmatter only — bodies lazy), agents catalog, MCP servers, tool schemas (gated by `tools:`).
 4. `InstructionsLoaded` fires.
 5. `UserPromptSubmit` fires per prompt thereafter.
@@ -248,13 +250,13 @@ When `memory:` is set, Read/Write/Edit are auto-enabled and the first 200 lines 
 - Settings: Claude detects external edit, prompts review via `/hooks`. Not silent.
 - CLAUDE.md, skills, MCP servers: snapshotted at session start.
 
-## Settings.json keys relevant to agents
+## Settings.json keys (agent-relevant)
 
-- `"agent": "<name>"` — sets the default main-session agent (equivalent to `claude --agent <name>`).
-- `"env": {<KEY>: <value>, ...}` — env vars applied to every session and to subprocesses Claude Code spawns. Persistence path for env-gated flags like fork mode and Agent Teams (see below).
-- `"permissions": {"allow": [...], "deny": [...]}` — runtime tool/arg gating. `"deny": ["Agent(<name>)"]` disables a subagent type session-wide.
-- `"worktree": {"baseRef": "fresh"|"head", "symlinkDirectories": ..., "sparsePaths": ..., "bgIsolation": ...}` — worktree creation behavior.
-- `"cleanupPeriodDays": <n>` — sweeps orphan subagent worktrees + transcripts older than `<n>` days (default 30).
+- `agent` — default main-session agent name (= `claude --agent <name>`).
+- `env` — propagated env vars; use for fork mode / Agent Teams flags (see Experimental flags).
+- `permissions.{allow,deny}` — runtime tool/arg gating; `deny: ["Agent(<name>)"]` disables a subagent type session-wide.
+- `worktree.{baseRef, symlinkDirectories, sparsePaths, bgIsolation}` — worktree creation behavior; see Worktree mechanics.
+- `cleanupPeriodDays` — orphan worktree + transcript sweep (default 30).
 
 ## Experimental flags
 
@@ -267,10 +269,12 @@ Both env-var-gated. Set in `settings.json` `"env"` block for persistence.
 - Per docs, organic delegation to `general-purpose` should substitute to a fork. Probe finding: explicit `Agent(subagent_type="general-purpose")` tool calls from main session do NOT fork — token count stays at baseline subagent size, conversation history absent. The substitution likely applies only to Claude's interactive routing, not Agent-tool calls.
 - A fork cannot spawn further forks.
 - To disable background tasks while fork mode is on: `CLAUDE_CODE_DISABLE_BACKGROUND_TASKS=1`.
+- Known issues (2026-05): forced-background path inherits open permission bugs (silent auto-deny, inconsistent prompts, `bypassPermissions` ineffective). See claude-code issues [#34095](https://github.com/anthropics/claude-code/issues/34095), [#21142](https://github.com/anthropics/claude-code/issues/21142), [#32402](https://github.com/anthropics/claude-code/issues/32402).
 
 ### `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` — Agent Teams
 
 - Loads deferred tools: `SendMessage`, `TeamCreate`, `TeamDelete`.
 - `SendMessage(to=<agentId>, message=...)` resumes a previously-spawned subagent with full prior conversation context (K — verified). If the target has no active task, it's "resumed from transcript in the background" and the reply comes via the standard async-notification path.
 - The trailing `agentId: ...` hint in every Agent return becomes the resumption handle.
-- Persistence layer: subagent transcripts at `~/.claude/projects/{project}/{sessionId}/subagents/agent-{agentId}.jsonl`.
+- Persistence layer: subagent transcripts (see Persistence section above).
+- Known issues (2026-05): tooling unstable — tools may fail to load despite flag, SendMessage by *name* silently drops (use agent ID), TeamCreate can spawn 10-150× duplicate teammates, in-process teammates don't survive `/resume`. See claude-code issues [#34750](https://github.com/anthropics/claude-code/issues/34750), [#42999](https://github.com/anthropics/claude-code/issues/42999), [#55586](https://github.com/anthropics/claude-code/issues/55586).
