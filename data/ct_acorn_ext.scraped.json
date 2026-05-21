@@ -1,0 +1,67 @@
+{
+  "last_scraped": "2026-05-21T18:44:59+00:00",
+  "source_url": "https://geodesy.noaa.gov/corsdata/coord/coord_20/nad83_2011_geo.comp.txt",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "CTBR",
+      "lat": 41.497184,
+      "lon": -73.418243,
+      "country": "USA"
+    },
+    {
+      "name": "CTDA",
+      "lat": 41.065853,
+      "lon": -73.507206,
+      "country": "USA"
+    },
+    {
+      "name": "CTEG",
+      "lat": 41.92343,
+      "lon": -72.698856,
+      "country": "USA"
+    },
+    {
+      "name": "CTGR",
+      "lat": 41.335288,
+      "lon": -72.049714,
+      "country": "USA"
+    },
+    {
+      "name": "CTGU",
+      "lat": 41.289373,
+      "lon": -72.667901,
+      "country": "USA"
+    },
+    {
+      "name": "CTMA",
+      "lat": 41.731366,
+      "lon": -72.210799,
+      "country": "USA"
+    },
+    {
+      "name": "CTNE",
+      "lat": 41.673533,
+      "lon": -72.714515,
+      "country": "USA"
+    },
+    {
+      "name": "CTPU",
+      "lat": 41.899691,
+      "lon": -71.889136,
+      "country": "USA"
+    },
+    {
+      "name": "CTWI",
+      "lat": 41.897752,
+      "lon": -73.069713,
+      "country": "USA"
+    },
+    {
+      "name": "RVDI",
+      "lat": 41.041985,
+      "lon": -73.581216,
+      "country": "USA"
+    }
+  ]
+}

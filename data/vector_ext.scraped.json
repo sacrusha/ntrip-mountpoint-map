@@ -1,0 +1,26 @@
+{
+  "last_scraped": "2026-05-21T00:00:00+00:00",
+  "source_url": "https://maps.vtrans.vermont.gov/arcgis/rest/services/Geodetic/CORS/FeatureServer/0",
+  "pin_origin": "register",
+  "stations": [
+    {"name": "VCAP", "lat": 44.261979, "lon": -72.582381, "country": "USA"},
+    {"name": "VJSC", "lat": 44.640429, "lon": -72.671061, "country": "USA"},
+    {"name": "VTBE", "lat": 42.882519, "lon": -73.199901, "country": "USA"},
+    {"name": "VTC1", "lat": 43.939239, "lon": -72.603491, "country": "USA"},
+    {"name": "VTD2", "lat": 42.918369, "lon": -72.535121, "country": "USA"},
+    {"name": "VTD7", "lat": 44.397869, "lon": -72.025661, "country": "USA"},
+    {"name": "VTD9", "lat": 44.950979, "lon": -72.160201, "country": "USA"},
+    {"name": "VTDA", "lat": 43.349959, "lon": -72.995241, "country": "USA"},
+    {"name": "VTEB", "lat": 44.914209, "lon": -72.798901, "country": "USA"},
+    {"name": "VTHA", "lat": 44.508539, "lon": -72.365881, "country": "USA"},
+    {"name": "VTIP", "lat": 44.820059, "lon": -71.890511, "country": "USA"},
+    {"name": "VTMI", "lat": 43.998629, "lon": -73.152611, "country": "USA"},
+    {"name": "VTOX", "lat": 44.007829, "lon": -72.114341, "country": "USA"},
+    {"name": "VTRI", "lat": 44.413269, "lon": -72.994831, "country": "USA"},
+    {"name": "VTRU", "lat": 43.607129, "lon": -72.979421, "country": "USA"},
+    {"name": "VTSA", "lat": 44.809079, "lon": -73.082581, "country": "USA"},
+    {"name": "VTSP", "lat": 43.281469, "lon": -72.477571, "country": "USA"},
+    {"name": "VTUV", "lat": 44.469239, "lon": -73.197881, "country": "USA"},
+    {"name": "VTWR", "lat": 43.649059, "lon": -72.317411, "country": "USA"}
+  ]
+}

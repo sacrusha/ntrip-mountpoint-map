@@ -1,0 +1,31 @@
+{
+  "last_scraped": "2026-05-21T00:00:00+00:00",
+  "source_url": "https://services.wvgis.wvu.edu/arcgis/rest/services/Location/wv_CORS/MapServer/0",
+  "pin_origin": "register",
+  "stations": [
+    {"name": "WVAT", "lat": 37.428451, "lon": -81.067660, "country": "USA"},
+    {"name": "WVBR", "lat": 39.308019, "lon": -80.277372, "country": "USA"},
+    {"name": "WVBU", "lat": 39.338006, "lon": -78.913497, "country": "USA"},
+    {"name": "WVCH", "lat": 38.312789, "lon": -81.570003, "country": "USA"},
+    {"name": "WVCL", "lat": 38.487391, "lon": -81.011465, "country": "USA"},
+    {"name": "WVCV", "lat": 39.015292, "lon": -79.456975, "country": "USA"},
+    {"name": "WVEL", "lat": 39.062954, "lon": -81.392665, "country": "USA"},
+    {"name": "WVFL", "lat": 38.696428, "lon": -80.666604, "country": "USA"},
+    {"name": "WVFR", "lat": 38.671866, "lon": -79.283104, "country": "USA"},
+    {"name": "WVGB", "lat": 38.430760, "lon": -79.819030, "country": "USA"},
+    {"name": "WVHA", "lat": 39.247694, "lon": -81.044211, "country": "USA"},
+    {"name": "WVHU", "lat": 38.422923, "lon": -82.424434, "country": "USA"},
+    {"name": "WVKE", "lat": 39.336909, "lon": -77.915329, "country": "USA"},
+    {"name": "WVLE", "lat": 37.822108, "lon": -80.421928, "country": "USA"},
+    {"name": "WVMF", "lat": 39.075324, "lon": -78.932535, "country": "USA"},
+    {"name": "WVMZ", "lat": 38.838895, "lon": -81.108446, "country": "USA"},
+    {"name": "WVNR", "lat": 38.894984, "lon": -79.858996, "country": "USA"},
+    {"name": "WVOH", "lat": 37.998211, "lon": -81.132122, "country": "USA"},
+    {"name": "WVRA", "lat": 38.941351, "lon": -81.751345, "country": "USA"},
+    {"name": "WVRH", "lat": 38.546000, "lon": -81.883229, "country": "USA"},
+    {"name": "WVSA", "lat": 37.640000, "lon": -81.454800, "country": "USA"},
+    {"name": "WVSH", "lat": 39.996972, "lon": -80.679545, "country": "USA"},
+    {"name": "WVSW", "lat": 37.805520, "lon": -82.095657, "country": "USA"},
+    {"name": "WVTA", "lat": 39.438610, "lon": -79.514440, "country": "USA"}
+  ]
+}

@@ -1,0 +1,301 @@
+{
+  "last_scraped": "2026-05-21T18:44:59+00:00",
+  "source_url": "https://gnss-metadata.eu/v1/sitelog/exportlog?id=...00BEL",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "AARS",
+      "lat": 50.963311,
+      "lon": 4.836119,
+      "country": "BEL"
+    },
+    {
+      "name": "ANTW",
+      "lat": 51.203539,
+      "lon": 4.447631,
+      "country": "BEL"
+    },
+    {
+      "name": "Antw",
+      "lat": 51.203539,
+      "lon": 4.447631,
+      "country": "BEL"
+    },
+    {
+      "name": "BERT",
+      "lat": 50.8623,
+      "lon": 4.612408,
+      "country": "BEL"
+    },
+    {
+      "name": "BEZA",
+      "lat": 51.306861,
+      "lon": 4.315583,
+      "country": "BEL"
+    },
+    {
+      "name": "BGGN",
+      "lat": 51.012778,
+      "lon": 4.191008,
+      "country": "BEL"
+    },
+    {
+      "name": "BREC",
+      "lat": 51.353475,
+      "lon": 4.628133,
+      "country": "BEL"
+    },
+    {
+      "name": "BRUG",
+      "lat": 51.190658,
+      "lon": 3.200219,
+      "country": "BEL"
+    },
+    {
+      "name": "BUGG",
+      "lat": 51.012956,
+      "lon": 4.190878,
+      "country": "BEL"
+    },
+    {
+      "name": "Blig",
+      "lat": 51.694711,
+      "lon": 2.817397,
+      "country": "BEL"
+    },
+    {
+      "name": "DIES",
+      "lat": 50.980717,
+      "lon": 5.049028,
+      "country": "BEL"
+    },
+    {
+      "name": "DIKS",
+      "lat": 51.024844,
+      "lon": 2.916728,
+      "country": "BEL"
+    },
+    {
+      "name": "EEKL",
+      "lat": 51.189908,
+      "lon": 3.5647,
+      "country": "BEL"
+    },
+    {
+      "name": "ERPE",
+      "lat": 50.922531,
+      "lon": 3.969233,
+      "country": "BEL"
+    },
+    {
+      "name": "GBGN",
+      "lat": 50.768603,
+      "lon": 3.869528,
+      "country": "BEL"
+    },
+    {
+      "name": "GENT",
+      "lat": 51.008794,
+      "lon": 3.709158,
+      "country": "BEL"
+    },
+    {
+      "name": "GILL",
+      "lat": 50.834317,
+      "lon": 4.352958,
+      "country": "BEL"
+    },
+    {
+      "name": "HERE",
+      "lat": 51.186303,
+      "lon": 4.840328,
+      "country": "BEL"
+    },
+    {
+      "name": "HOEG",
+      "lat": 50.778575,
+      "lon": 4.900444,
+      "country": "BEL"
+    },
+    {
+      "name": "HOUT",
+      "lat": 51.017689,
+      "lon": 5.374208,
+      "country": "BEL"
+    },
+    {
+      "name": "IEPE",
+      "lat": 50.848967,
+      "lon": 2.859042,
+      "country": "BEL"
+    },
+    {
+      "name": "LILL",
+      "lat": 51.306861,
+      "lon": 4.315583,
+      "country": "BEL"
+    },
+    {
+      "name": "MAAS",
+      "lat": 51.105806,
+      "lon": 5.750656,
+      "country": "BEL"
+    },
+    {
+      "name": "MAAS",
+      "lat": 50.963264,
+      "lon": 5.696439,
+      "country": "BEL"
+    },
+    {
+      "name": "MECH",
+      "lat": 51.003108,
+      "lon": 4.470239,
+      "country": "BEL"
+    },
+    {
+      "name": "MENE",
+      "lat": 50.780858,
+      "lon": 3.100697,
+      "country": "BEL"
+    },
+    {
+      "name": "MOL",
+      "lat": 51.182561,
+      "lon": 5.117056,
+      "country": "BEL"
+    },
+    {
+      "name": "NEER",
+      "lat": 51.210508,
+      "lon": 5.472694,
+      "country": "BEL"
+    },
+    {
+      "name": "OOST",
+      "lat": 51.225408,
+      "lon": 2.922292,
+      "country": "BEL"
+    },
+    {
+      "name": "OSTE",
+      "lat": 51.233803,
+      "lon": 2.929208,
+      "country": "BEL"
+    },
+    {
+      "name": "OSTN",
+      "lat": 51.233997,
+      "lon": 2.939478,
+      "country": "BEL"
+    },
+    {
+      "name": "OUDE",
+      "lat": 50.850458,
+      "lon": 3.617958,
+      "country": "BEL"
+    },
+    {
+      "name": "OUDN",
+      "lat": 50.871222,
+      "lon": 3.622928,
+      "country": "BEL"
+    },
+    {
+      "name": "PITT",
+      "lat": 50.992622,
+      "lon": 3.251106,
+      "country": "BEL"
+    },
+    {
+      "name": "PITT",
+      "lat": 50.992622,
+      "lon": 3.251106,
+      "country": "BEL"
+    },
+    {
+      "name": "RUIS",
+      "lat": 51.088839,
+      "lon": 3.341278,
+      "country": "BEL"
+    },
+    {
+      "name": "SINT",
+      "lat": 50.753914,
+      "lon": 4.254178,
+      "country": "BEL"
+    },
+    {
+      "name": "SINT",
+      "lat": 51.141017,
+      "lon": 4.150919,
+      "country": "BEL"
+    },
+    {
+      "name": "SINT",
+      "lat": 51.141017,
+      "lon": 4.150919,
+      "country": "BEL"
+    },
+    {
+      "name": "SINT",
+      "lat": 50.822428,
+      "lon": 5.209583,
+      "country": "BEL"
+    },
+    {
+      "name": "TIEN",
+      "lat": 50.793358,
+      "lon": 4.95685,
+      "country": "BEL"
+    },
+    {
+      "name": "TONG",
+      "lat": 50.77055,
+      "lon": 5.477858,
+      "country": "BEL"
+    },
+    {
+      "name": "TURN",
+      "lat": 51.312881,
+      "lon": 4.9491,
+      "country": "BEL"
+    },
+    {
+      "name": "VEUR",
+      "lat": 51.070744,
+      "lon": 2.667711,
+      "country": "BEL"
+    },
+    {
+      "name": "VOER",
+      "lat": 50.757467,
+      "lon": 5.710331,
+      "country": "BEL"
+    },
+    {
+      "name": "ZEEB",
+      "lat": 51.335861,
+      "lon": 3.208228,
+      "country": "BEL"
+    },
+    {
+      "name": "ZELZ",
+      "lat": 51.192517,
+      "lon": 3.798497,
+      "country": "BEL"
+    },
+    {
+      "name": "ZELZ",
+      "lat": 51.192456,
+      "lon": 3.805256,
+      "country": "BEL"
+    },
+    {
+      "name": "ZWEV",
+      "lat": 50.823067,
+      "lon": 3.345625,
+      "country": "BEL"
+    }
+  ]
+}

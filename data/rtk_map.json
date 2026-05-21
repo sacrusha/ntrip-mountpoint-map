@@ -17,6 +17,13 @@
       "endpoints": [
         {
           "url": "http://system.asgeupos.pl:2101/"
+        },
+        {
+          "type": "scraped",
+          "id": "asg_eupos_ext",
+          "scraper": "asg_eupos",
+          "interval_days": 7,
+          "pin_origin": "register"
         }
       ]
     },
@@ -59,6 +66,13 @@
       "endpoints": [
         {
           "url": "http://flepos.vlaanderen.be:2101/"
+        },
+        {
+          "type": "scraped",
+          "id": "flepos_ext",
+          "scraper": "flepos",
+          "interval_days": 7,
+          "pin_origin": "register"
         }
       ]
     },
@@ -440,6 +454,13 @@
       "endpoints": [
         {
           "url": "http://wvrtn.cors.us:2101/"
+        },
+        {
+          "type": "scraped",
+          "id": "wvrtn_ext",
+          "scraper": "wvrtn",
+          "interval_days": 7,
+          "pin_origin": "register"
         }
       ]
     },
@@ -477,6 +498,13 @@
       "endpoints": [
         {
           "url": "http://rtvrn.mesacounty.us:2101/"
+        },
+        {
+          "type": "scraped",
+          "id": "mesa_rtvrn_ext",
+          "scraper": "mesa_rtvrn",
+          "interval_days": 7,
+          "pin_origin": "register"
         }
       ]
     },
@@ -2472,6 +2500,13 @@
       "endpoints": [
         {
           "url": "http://gps.ardot.gov:2101/"
+        },
+        {
+          "type": "scraped",
+          "id": "ardot_rtn_ext",
+          "scraper": "ardot_rtn",
+          "interval_days": 7,
+          "pin_origin": "register"
         }
       ]
     },
@@ -2508,6 +2543,13 @@
       "endpoints": [
         {
           "url": "http://vector.vermont.gov:2101/"
+        },
+        {
+          "type": "scraped",
+          "id": "vector_ext",
+          "scraper": "vector",
+          "interval_days": 7,
+          "pin_origin": "register"
         }
       ]
     },
@@ -2527,6 +2569,13 @@
       "endpoints": [
         {
           "url": "http://acorn.uconn.edu:2101/"
+        },
+        {
+          "type": "scraped",
+          "id": "ct_acorn_ext",
+          "scraper": "ct_acorn",
+          "interval_days": 7,
+          "pin_origin": "register"
         }
       ]
     },
@@ -2673,6 +2722,13 @@
       "endpoints": [
         {
           "url": "http://165.206.203.10:10000/"
+        },
+        {
+          "type": "scraped",
+          "id": "iartn_ext",
+          "scraper": "iartn",
+          "interval_days": 7,
+          "pin_origin": "register"
         }
       ]
     },

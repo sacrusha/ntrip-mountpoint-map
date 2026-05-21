@@ -1,0 +1,145 @@
+{
+  "last_scraped": "2026-05-21T18:44:59+00:00",
+  "source_url": "https://geodesy.noaa.gov/corsdata/coord/coord_20/nad83_2011_geo.comp.txt",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "ARBT",
+      "lat": 35.709869,
+      "lon": -91.628538,
+      "country": "USA"
+    },
+    {
+      "name": "ARCM",
+      "lat": 33.542399,
+      "lon": -92.882723,
+      "country": "USA"
+    },
+    {
+      "name": "ARDQ",
+      "lat": 34.080082,
+      "lon": -94.323682,
+      "country": "USA"
+    },
+    {
+      "name": "ARFY",
+      "lat": 36.115792,
+      "lon": -94.180038,
+      "country": "USA"
+    },
+    {
+      "name": "ARGS",
+      "lat": 34.068193,
+      "lon": -93.116168,
+      "country": "USA"
+    },
+    {
+      "name": "ARHP",
+      "lat": 33.69605,
+      "lon": -93.600544,
+      "country": "USA"
+    },
+    {
+      "name": "ARHR",
+      "lat": 36.184232,
+      "lon": -93.030202,
+      "country": "USA"
+    },
+    {
+      "name": "ARJB",
+      "lat": 35.84792,
+      "lon": -90.747185,
+      "country": "USA"
+    },
+    {
+      "name": "ARLR",
+      "lat": 34.672623,
+      "lon": -92.38255,
+      "country": "USA"
+    },
+    {
+      "name": "ARM3",
+      "lat": 36.369235,
+      "lon": -92.373137,
+      "country": "USA"
+    },
+    {
+      "name": "ARMH",
+      "lat": 36.3528,
+      "lon": -92.382339,
+      "country": "USA"
+    },
+    {
+      "name": "ARMO",
+      "lat": 33.594555,
+      "lon": -91.813193,
+      "country": "USA"
+    },
+    {
+      "name": "ARPB",
+      "lat": 34.193624,
+      "lon": -91.914201,
+      "country": "USA"
+    },
+    {
+      "name": "ARPG",
+      "lat": 36.059108,
+      "lon": -90.518785,
+      "country": "USA"
+    },
+    {
+      "name": "ARRV",
+      "lat": 35.306282,
+      "lon": -93.13093,
+      "country": "USA"
+    },
+    {
+      "name": "ARWY",
+      "lat": 35.253193,
+      "lon": -90.801423,
+      "country": "USA"
+    },
+    {
+      "name": "CSAL",
+      "lat": 33.591982,
+      "lon": -91.814786,
+      "country": "USA"
+    },
+    {
+      "name": "CTA1",
+      "lat": 36.343707,
+      "lon": -94.180001,
+      "country": "USA"
+    },
+    {
+      "name": "DQUA",
+      "lat": 34.110651,
+      "lon": -94.28989,
+      "country": "USA"
+    },
+    {
+      "name": "EFAY",
+      "lat": 36.100241,
+      "lon": -94.101721,
+      "country": "USA"
+    },
+    {
+      "name": "MEM2",
+      "lat": 35.465701,
+      "lon": -90.206041,
+      "country": "USA"
+    },
+    {
+      "name": "P777",
+      "lat": 35.702654,
+      "lon": -92.545464,
+      "country": "USA"
+    },
+    {
+      "name": "WWED",
+      "lat": 36.091227,
+      "lon": -94.422845,
+      "country": "USA"
+    }
+  ]
+}

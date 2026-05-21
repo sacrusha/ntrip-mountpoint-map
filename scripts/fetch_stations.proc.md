@@ -89,6 +89,22 @@ is `error` and 0 stations ship. Behaviour parallels how
   operator portals into one module — separate failure surfaces matter
   for the cache-fallback contract.
 
+**Shared helpers** (`scripts/scrapers/_<name>.py`, underscore-prefixed):
+- A module-naming convention for internal helpers that several
+  per-source scrapers share. Two patterns are in tree:
+  - `_arcgis.py` — parameterised ArcGIS REST query/paging helper.
+    Per-source scrapers (`iartn`, `vector`, `wvrtn`) pass their layer
+    URL + name-field; the helper is not itself a data source.
+  - `_ngs_bulk.py` — one upstream file (`nad83_2011_geo.comp.txt`)
+    consumed by two per-state filters (`ardot_rtn`, `ct_acorn`). The
+    file fetches once per pipeline run (in-process memoisation); each
+    state-filter scraper writes its own `.scraped.json` cache. This is
+    the legitimate exception to "one module per source" — the source
+    is genuinely one file, not two portals coalesced.
+- Helpers MUST NOT register themselves in `data/rtk_map.json`; only
+  the per-source thin scrapers do. Importing a helper from a scraper
+  module uses package-relative `from . import _name` syntax.
+
 ## When to edit this file
 
 Adding, removing, or retuning a network is **not** a `.py` edit any
