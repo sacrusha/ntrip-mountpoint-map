@@ -39,6 +39,33 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT / "data"
 
 
+def _load_coord_overrides() -> dict[tuple[str, float, float], dict]:
+    """Read `data/coord_overrides.json` into a lookup keyed by
+    `(mountpoint_name, bad_lat, bad_lon)`. An override only fires when all
+    three match the parsed station record exactly; this guards against
+    stale entries silently rewriting good data after an operator fixes the
+    upstream sourcetable. Missing file -> empty dict (pipeline continues
+    untouched)."""
+    path = DATA_DIR / "coord_overrides.json"
+    if not path.exists():
+        return {}
+    try:
+        raw = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as e:
+        print(f"[coord_overrides] parse error: {e!r}", file=sys.stderr)
+        return {}
+    out = {}
+    for entry in raw.get("overrides", []):
+        key = (entry["mountpoint"], entry["bad"]["lat"], entry["bad"]["lon"])
+        out[key] = entry["fix"]
+    return out
+
+
+# Loaded once at import time. Add/edit entries in data/coord_overrides.json,
+# not here.
+COORD_OVERRIDES = _load_coord_overrides()
+
+
 def _atomic_write_text(path: Path, content: str) -> None:
     """Write content to path via tmp+replace. os.replace is atomic on
     POSIX and on Windows (NTFS); leaves the target either intact (on
@@ -181,6 +208,7 @@ def parse_sourcetable(text: str, nmea_filter: bool = True,
     dropped_dgnss = 0
     dropped_net = 0
     dropped_bad = 0
+    corrected = 0
     for line in text.splitlines():
         if not line.startswith("STR;"):
             continue
@@ -240,12 +268,21 @@ def parse_sourcetable(text: str, nmea_filter: bool = True,
         if not (math.isfinite(lat) and math.isfinite(lon)):
             dropped_bad += 1
             continue
+        lat_prec = _dec_places(lat_str)
+        lon_prec = _dec_places(lon_str)
+        fix = COORD_OVERRIDES.get((name, lat, lon))
+        if fix is not None:
+            lat = fix["lat"]
+            lon = fix["lon"]
+            lat_prec = fix.get("latPrec", lat_prec)
+            lon_prec = fix.get("lonPrec", lon_prec)
+            corrected += 1
         stations.append({
             "name": name,
             "lat": lat,
             "lon": lon,
-            "latPrec": _dec_places(lat_str),
-            "lonPrec": _dec_places(lon_str),
+            "latPrec": lat_prec,
+            "lonPrec": lon_prec,
             "dualFreq": carrier >= 2,
             "tripleFreq": carrier >= 3,
             "format": fmt,
@@ -254,7 +291,8 @@ def parse_sourcetable(text: str, nmea_filter: bool = True,
         })
     stations.sort(key=lambda s: (s["name"], s["lat"], s["lon"]))
     stats = {"kept": len(stations), "dropped_dgnss": dropped_dgnss,
-             "dropped_net": dropped_net, "dropped_bad": dropped_bad}
+             "dropped_net": dropped_net, "dropped_bad": dropped_bad,
+             "corrected": corrected}
     return stations, stats
 
 
@@ -312,9 +350,10 @@ def fetch_source(src: dict) -> tuple[str, dict, bool]:
         stations, dropped_vrs = filter_vrs(stations)
         net_note = f", {stats['dropped_net']} net-sol" if stats["dropped_net"] else ""
         vrs_note = f", {dropped_vrs} VRS" if dropped_vrs else ""
+        fix_note = f", {stats['corrected']} corrected" if stats.get("corrected") else ""
         now_iso = datetime.now(timezone.utc).isoformat(timespec="seconds")
         print(f"[{sid}] fetched {len(stations)} stations "
-              f"(dropped {stats['dropped_dgnss']} DGNSS, {stats['dropped_bad']} invalid{net_note}{vrs_note})")
+              f"(dropped {stats['dropped_dgnss']} DGNSS, {stats['dropped_bad']} invalid{net_note}{vrs_note}{fix_note})")
         return sid, {**_meta,
             "status": "ok",
             "fetched_at": now_iso,
@@ -333,7 +372,8 @@ def fetch_source(src: dict) -> tuple[str, dict, bool]:
                 stations, dropped_vrs = filter_vrs(stations)
                 net_note = f", {stats['dropped_net']} net-sol" if stats["dropped_net"] else ""
                 vrs_note = f", {dropped_vrs} VRS" if dropped_vrs else ""
-                print(f"[{sid}] reusing cached sourcetable ({len(stations)} stations{net_note}{vrs_note})")
+                fix_note = f", {stats['corrected']} corrected" if stats.get("corrected") else ""
+                print(f"[{sid}] reusing cached sourcetable ({len(stations)} stations{net_note}{vrs_note}{fix_note})")
                 return sid, {**_meta,
                     "status": "stale",
                     "fetched_at": None,

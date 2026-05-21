@@ -31,6 +31,32 @@ adjusting:
 - stations.json schema gains an operational field (e.g. per-endpoint
   status detail), or the merge rules across endpoints change.
 
+## Coord overrides (operator-published bad coords)
+
+Some casters publish wrong or placeholder antenna coords (Trimble Pivot
+Platform installs are repeat offenders; NPS had 22 sites off by 30–4700
+km, ERGNSS ICOL0 rounds 1-decimal sloppily so the truth falls outside
+the uncertainty rectangle). Per-station overrides live in
+`../data/coord_overrides.json`.
+
+Entry shape:
+```json
+{ "mountpoint": "NAME", "bad": {"lat": X, "lon": Y},
+  "fix": {"lat": X', "lon": Y'[, "latPrec": N, "lonPrec": N]},
+  "note": "why + provenance" }
+```
+
+`parse_sourcetable` loads the file once at import (`COORD_OVERRIDES`) and
+replaces coords (and optionally precision) whenever **all three** —
+mountpoint name, parsed lat, parsed lon — match an entry exactly. Float
+equality holds because the parser stores the same IEEE-754 value as the
+JSON loader for any short decimal the operator publishes; the `bad`
+field must match the post-`0..360 -> ±180` normalised lon.
+
+Triple-match guard means a stale override silently stops firing the
+moment the operator fixes their sourcetable — no quiet rewrite of good
+data. Per-source log gains a `, N corrected` suffix when any entries hit.
+
 ## stations.json source-record schema
 
 Operational fields only — fetched / runtime state. Editorial fields

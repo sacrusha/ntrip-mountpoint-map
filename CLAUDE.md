@@ -41,9 +41,11 @@ scripts/                         # investigation toolset, each takes -h for purp
   source_health.py # data/source_health.json summary + per-id lookup
   network_lookup.py # find network across rtk_inventory.md, surveys, research, markers, stations.json, SOURCES
   palette_check.py # cross-file contract: every slot in color_assignments.json has a PALETTE entry in index.html. Not pipeline-wired; run manually.
+  coord_check.py # per-station coord sanity via ISO3 bboxes. modes: `sign` (suggest coord_overrides entries) | `country` (operator-side tag mismatches) | both. Not pipeline-wired; run manually.
 data/
   rtk_map.json           # static; network/country-level markers, visitor-facing
   rtk_map.proc.md        # edit rules for rtk_map.json. Read BEFORE editing .json.
+  coord_overrides.json   # per-station coord patches applied during fetch when (name, bad_lat, bad_lon) match exactly. See fetch_stations.proc.md.
   help_topics.json               # searchable user-facing help. Surfaced via Help button on map; aligned w/ guide.html.
   <source>.sourcetable           # cached raw NTRIP response per fetched caster.
   stations.json                  # fetched mountpoint data, consumed by index

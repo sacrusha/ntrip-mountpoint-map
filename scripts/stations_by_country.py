@@ -14,8 +14,8 @@ Default output: count per network. Caller context stays small.
 
 Country tagging follows each source's own convention (no normalization here).
   rtk2go / centipede / earthscope use ISO 3166-1 alpha-3 (FRA, USA, DEU ...).
-  Centipede non-ISO tags: CHZ=CZ  ENG=GB  SER=RS  DAN=DK  ROM=RO  (NLD/BEL/BIH use ISO alpha-3).
-    Auto-aliased: querying CZE/GBR/SRB/DNK/ROU also pulls centipede CHZ/ENG/SER/DAN/ROM.
+  Centipede non-ISO tags: CHZ=CH (Switzerland)  ENG=GB  SER=RS  DAN=DK  ROM=RO  (NLD/BEL/BIH use ISO alpha-3).
+    Auto-aliased: querying CHE/GBR/SRB/DNK/ROU also pulls centipede CHZ/ENG/SER/DAN/ROM.
   EarthScope uses USA for US stations; other territories vary.
   EUREF-IP / IGS-IP also alpha-3.
   National casters often leave per-station country empty; this script falls back to the
@@ -37,10 +37,12 @@ DATA = Path(__file__).parent.parent / "data"
 STATIONS = DATA / "stations.json"
 RTK_MAP = DATA / "rtk_map.json"
 
-# Centipede tags Czech/UK/Serbia/Denmark/Romania stations under non-ISO codes.
+# Centipede tags Swiss/UK/Serbia/Denmark/Romania stations under non-ISO codes.
 # Map ISO alpha-3 -> centipede's internal code so cross-source queries hit them.
+# CHZ is centipede's code for Switzerland (CHE), NOT Czechia (CZE) -- confirmed
+# 30/30 CHZ-tagged stations sit in Swiss territory.
 _CENTIPEDE_ALIASES = {
-    "CZE": "CHZ", "GBR": "ENG", "SRB": "SER",
+    "CHE": "CHZ", "GBR": "ENG", "SRB": "SER",
     "DNK": "DAN", "ROU": "ROM",
 }
 
