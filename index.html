@@ -370,6 +370,9 @@
 
      New elements are display:none by default; the @media block opts them in. */
   #net-ramp, #net-fab, #net-scrim, #net-sheet{ display:none; }
+  /* When the card-sheet is open the bottom strip is covered; hide FAB + ramp
+     so they aren't visually buried and unreachable behind the card. */
+  body.card-open #net-ramp, body.card-open #net-fab{ display:none !important; }
 
   @media(max-width:768px){
     /* Hide the desktop control + its reopen handle on phones. */
@@ -1024,9 +1027,50 @@
     var s=document.getElementById('card-sheet'); if(!s) return;
     s.querySelector('.card-content').innerHTML=html;
     s.classList.add('on');
+    // `body.card-open` lets the mobile FAB + accuracy ramp hide themselves so
+    // they aren't visually buried under the card-sheet at bottom:0.
+    document.body.classList.add('card-open');
   }
   function closeCardSheet(){
     var s=document.getElementById('card-sheet'); if(s) s.classList.remove('on');
+    document.body.classList.remove('card-open');
+  }
+
+  // Mobile network sheet — module-scope so openHelp() + global Escape handler
+  // can dismiss it without crossing into the buildTogglePanel closure. The
+  // closure builds the content + wires per-row toggles; the open/close
+  // mechanics (focus capture, aria, scrim) live here.
+  var _netSheetPrevFocus=null;
+  function openNetSheet(){
+    var sheet=document.getElementById('net-sheet');
+    var scrim=document.getElementById('net-scrim');
+    var fab  =document.getElementById('net-fab');
+    if(!sheet||sheet.classList.contains('on')) return;
+    _netSheetPrevFocus=document.activeElement;
+    sheet.classList.add('on');
+    if(scrim) scrim.classList.add('on');
+    sheet.setAttribute('aria-hidden','false');
+    if(fab) fab.setAttribute('aria-expanded','true');
+    var firstFocus=sheet.querySelector('.sh-close');
+    if(firstFocus){ try{ firstFocus.focus(); }catch(e){} }
+  }
+  function closeNetSheet(){
+    var sheet=document.getElementById('net-sheet');
+    var scrim=document.getElementById('net-scrim');
+    var fab  =document.getElementById('net-fab');
+    if(!sheet||!sheet.classList.contains('on')) return;
+    sheet.classList.remove('on');
+    if(scrim) scrim.classList.remove('on');
+    sheet.setAttribute('aria-hidden','true');
+    if(fab) fab.setAttribute('aria-expanded','false');
+    if(_netSheetPrevFocus&&_netSheetPrevFocus.focus){
+      try{ _netSheetPrevFocus.focus(); }catch(e){}
+    }
+    _netSheetPrevFocus=null;
+  }
+  function isNetSheetOpen(){
+    var s=document.getElementById('net-sheet');
+    return !!(s&&s.classList.contains('on'));
   }
   function isCardOpen(){
     var s=document.getElementById('card-sheet');
@@ -1423,6 +1467,7 @@
   function openHelp(highlightId){
     hideHelpPopover();
     closeCardSheet();
+    closeNetSheet();
     if(_MAP) _MAP.closePopup();
     var drawer=document.getElementById('help-drawer');
     var scrim=document.getElementById('help-scrim');
@@ -1622,6 +1667,7 @@
       if(pop){ hideHelpPopover(); return; }
       var drawer=document.getElementById('help-drawer');
       if(drawer&&drawer.classList.contains('on')){ closeHelp(); return; }
+      if(isNetSheetOpen()){ closeNetSheet(); return; }
       if(isCardOpen()||isPopupOpen()){
         closeCardSheet();
         if(_MAP) _MAP.closePopup();
@@ -1660,6 +1706,8 @@
       var cc=card.querySelector('.card-close');
       if(cc) cc.onclick=closeCardSheet;
     }
+    var netSheet=document.getElementById('net-sheet');
+    if(netSheet) trapTabIn(netSheet);
   });
 
   function setupBanner(){
@@ -1849,7 +1897,9 @@
       cb.addEventListener('change',function(){
         JSON.parse(cb.dataset.m).forEach(function(sid){ state[sid]=cb.checked; });
         applyMarkers(); onChange(filterMountpoints);
-        // Mobile rows refresh on next applyDeclutter (zoom/move); no explicit sync.
+        // Refresh mobile list so its row checkboxes don't render stale state on
+        // viewports that resize across the 768px boundary mid-session.
+        if(_mobileRebuild) _mobileRebuild(_lastCounts);
       });
     });
     d.querySelectorAll('input[data-k]').forEach(function(cb){
@@ -1947,16 +1997,23 @@
       if(!fab||!sheet||!listEl||!symBody||!scrim||!declOv) return;
       var closeBtn  = sheet.querySelector('.sh-close');
 
-      // Symbols footer — VRS / RS / Stale + paid tiers. Mirrors desktop "Tags"
-      // section; same data-k state keys so both surfaces drive the same flags.
+      // Symbols footer — VRS / RS / Stale + paid tiers + access-tier filters.
+      // Same data-k state keys as the desktop legend so both surfaces drive
+      // identical flags.
       function symRow(stateKey, iconHtml, label, count){
         var checked=state[stateKey]!==false?'checked':'';
+        var cnt=(count==null)?'':'<span class="cnt">'+count+'</span>';
         return '<label class="sym-row">'
           +'<input type="checkbox" data-k="'+esc(stateKey)+'" '+checked+'>'
           +'<span class="ic">'+iconHtml+'</span>'
           +'<span class="lbl">'+esc(label)+'</span>'
-          +'<span class="cnt">'+count+'</span>'
+          +cnt
           +'</label>';
+      }
+      // Tiny inline tier pill — reuses .src-row .tier styling via inline class
+      // so the access section's "icon" is the same pill shape used in the list.
+      function tierPillHtml(cls){
+        return '<span class="tier '+cls+'" style="font-size:9px;padding:0 5px">'+cls+'</span>';
       }
       var symHtml='';
       if(hasFreeRows){
@@ -1966,6 +2023,13 @@
         if(greyCount) symHtml+=symRow('grey_global', antennaIconSvg(GREY_MARKER_COLOR,14),'Stale',       greyCount);
         symHtml+='</div>';
       }
+      // Access-tier filters — full parity with desktop "Access" section so a
+      // tier disabled on desktop can be restored from mobile.
+      symHtml+='<div class="sym-group"><h6>Access</h6>'
+        +symRow('tier_open',         tierPillHtml('open'),       'Free, no signup',    null)
+        +symRow('tier_registration', tierPillHtml('register'),   'Free (registration)',null)
+        +symRow('tier_conditions',   tierPillHtml('conditions'), 'Free (conditions)',  null)
+        +'</div>';
       if(hasPaidRows){
         symHtml+='<div class="sym-group"><h6>Paid tiers</h6>';
         ['affordable','paid','restricted','info'].forEach(function(t){
@@ -1987,10 +2051,13 @@
           applyMarkers(); onChange(filterMountpoints);
         });
       });
+      // Help link — close sheet first, then open help drawer after the 240ms
+      // sheet-close transition so the two animations don't overlap.
       var symHelp=symBody.querySelector('.sym-help');
       if(symHelp) symHelp.onclick=function(){
-        closeSheet();
-        if(typeof window.__ntripOpenHelp==='function') window.__ntripOpenHelp();
+        closeNetSheet();
+        if(typeof window.__ntripOpenHelp==='function')
+          setTimeout(function(){ window.__ntripOpenHelp(); }, 240);
       };
 
       // Source rows — rebuilt on each applyDeclutter so sort + declutter stay
@@ -2049,19 +2116,19 @@
         applyDeclutter(_lastCounts);
       });
 
-      function openSheet(){
-        sheet.classList.add('on'); scrim.classList.add('on');
-        sheet.setAttribute('aria-hidden','false');
-        fab.setAttribute('aria-expanded','true');
-      }
-      function closeSheet(){
-        sheet.classList.remove('on'); scrim.classList.remove('on');
-        sheet.setAttribute('aria-hidden','true');
-        fab.setAttribute('aria-expanded','false');
-      }
-      fab.addEventListener('click', openSheet);
-      scrim.addEventListener('click', closeSheet);
-      if(closeBtn) closeBtn.addEventListener('click', closeSheet);
+      // Open/close mechanics live at module scope (see openNetSheet / closeNetSheet
+       // near closeCardSheet) so the global Escape handler + openHelp() can dismiss
+       // the sheet without crossing into this closure.
+      fab.addEventListener('click', openNetSheet);
+      scrim.addEventListener('click', closeNetSheet);
+      if(closeBtn) closeBtn.addEventListener('click', closeNetSheet);
+
+      // Leaflet propagation guards — taps on the FAB or the open sheet must not
+      // bubble to the map canvas and fire the "nearest station / close card"
+      // logic registered on map click.
+      L.DomEvent.disableClickPropagation(fab);
+      L.DomEvent.disableClickPropagation(sheet);
+      L.DomEvent.disableScrollPropagation(sheet);
 
       rebuildList({});
     })();
