@@ -9,6 +9,8 @@ Endpoint config in `data/rtk_map.json` carries the per-network spec:
   "scraper": "m3g",
   "moid":    "6343d5c7870122027e7ee502",
   "country": "EST",
+  "affiliation_from": "estpos",         // optional; see below
+  "mountpoint_pattern": "^([A-Z0-9]{4})",// optional regex; default shown
   "interval_days": 7,
   "pin_origin": "register"
 }
@@ -22,14 +24,53 @@ Resolution order for the membership universe:
    projects. 4-char codes; the 9-char lookup key is
    `f"{sid}00{country}"`. No automatic add-discovery — edits manual.
 
-Coords come from `_m3g.fetch_features()` (single master fetch, shared
-across all M3G-backed endpoints). Retirement comes from
-`_m3g.fetch_station_attrs()` (per-station sitelog with `update_ts`
-incremental cache — near-zero steady-state cost).
+Optional **sourcetable affiliation**: when `affiliation_from` is set,
+the scraper additionally reads the sibling NTRIP endpoint's cached
+sourcetable (`data/<affiliation_from>.sourcetable`), extracts physical
+mountpoint names via `mountpoint_pattern` (capture group 1 = 4-char
+station ID), and intersects against the M3G universe. This catches
+**operator-side retirements that M3G hasn't reflected yet** — a station
+that stops broadcasting RTCM drops from the sourcetable immediately,
+while M3G project pages can lag the retirement by months. Soft fall-back:
+when the sourcetable file is missing or no mountpoints match the
+pattern (e.g. VRS-only response), the full M3G universe is used.
+
+Coords come from `_m3g.fetch_features()`. Retirement comes from
+`_m3g.fetch_station_attrs()` (per-station sitelog Date Removed,
+incrementally cached via the metadata-list update cursor).
 """
 from __future__ import annotations
 
+import re
+from pathlib import Path
+
 from . import _m3g
+
+_DEFAULT_MOUNTPOINT_PATTERN = r"^([A-Z0-9]{4})"
+DATA_DIR = Path(__file__).resolve().parents[2] / "data"
+
+
+def _read_sourcetable_mountpoints(sid: str, pattern: re.Pattern) -> set[str]:
+    """Extract 4-char station IDs from a cached sourcetable.
+
+    Returns the set of (regex group-1) captures from every STR row whose
+    mountpoint name matches `pattern`. Empty set when the cache file is
+    missing or no mountpoints match — caller decides fallback policy.
+    """
+    path = DATA_DIR / f"{sid}.sourcetable"
+    if not path.exists():
+        return set()
+    out: set[str] = set()
+    for line in path.read_text(encoding="utf-8", errors="replace").splitlines():
+        if not line.startswith("STR;"):
+            continue
+        cols = line.split(";", 3)
+        if len(cols) < 2:
+            continue
+        m = pattern.match(cols[1])
+        if m:
+            out.add(m.group(1))
+    return out
 
 
 def scrape(src: dict) -> dict:
@@ -50,10 +91,29 @@ def scrape(src: dict) -> dict:
     else:
         raise ValueError("m3g scraper requires 'moid' or 'ids'")
 
+    log_tag = f"m3g/{src.get('id')}"
+
+    # Optional sourcetable affiliation: liveness filter against the sibling
+    # NTRIP endpoint's cached sourcetable. Stations not currently broadcasting
+    # drop immediately; M3G project-page lag stops mattering.
+    affiliation_from = src.get("affiliation_from")
+    if affiliation_from:
+        pat = re.compile(src.get("mountpoint_pattern", _DEFAULT_MOUNTPOINT_PATTERN))
+        live_4char = _read_sourcetable_mountpoints(affiliation_from, pat)
+        if live_4char:
+            live_9char = {f"{m}00{country}" for m in live_4char}
+            before = len(universe)
+            universe = [sid for sid in universe if sid in live_9char]
+            print(f"[{log_tag}] sourcetable affiliation via {affiliation_from}: "
+                  f"{before} -> {len(universe)} ({len(live_4char)} live mountpoints)",
+                  flush=True)
+        else:
+            print(f"[{log_tag}] affiliation_from={affiliation_from!r}: "
+                  f"sourcetable missing or no mountpoints match pattern; "
+                  f"using full M3G universe", flush=True)
+
     attrs = _m3g.fetch_station_attrs(universe)
     feats = _m3g.fetch_features()
-
-    log_tag = f"m3g/{src.get('id')}"
     stations: list[dict] = []
     retired: list[str] = []
     no_coords: list[str] = []

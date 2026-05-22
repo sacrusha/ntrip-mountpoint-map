@@ -118,7 +118,7 @@ merges all per-endpoint stations into one network record by
 |---|---|---|
 | `ntrip` (default) | Live NTRIP caster | `url` |
 | `file` | One-shot transcribed input — forum lists, blog extractions, PDFs the operator does not republish. | `path`, `id` |
-| `scraped` | Operator portal that updates: HTML refmaps, IGS sitelog directories, M3G master GeoJSON. Refreshed at `interval_days` cadence (default 7). | `scraper`, `id`; optional `interval_days`, `pin_origin`. `scraper:"m3g"` additionally requires `country` (ISO3) plus either `moid` (M3G project ID; preferred, auto-discovers add/retire) or `ids` (4-char list; fallback for networks without an M3G project page). |
+| `scraped` | Operator portal that updates: HTML refmaps, IGS sitelog directories, M3G master GeoJSON. Refreshed at `interval_days` cadence (default 7). | `scraper`, `id`; optional `interval_days`, `pin_origin`. `scraper:"m3g"` additionally requires `country` (ISO3) plus either `moid` (M3G project ID; preferred, auto-discovers add/retire) or `ids` (4-char list; fallback for networks without an M3G project page). Optional `affiliation_from: "<ntrip_id>"` adds sourcetable-driven liveness filtering (drops stations no longer broadcasting); see fetch_stations.proc.md §Generic scrapers. |
 
 Type-specific details: see `../scripts/fetch_stations.proc.md` §Source
 types. NTRIP-only fields below (`credentials`, `near`, filter flags)

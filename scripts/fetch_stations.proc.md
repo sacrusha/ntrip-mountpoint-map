@@ -151,9 +151,25 @@ is `error` and 0 stations ship. Behaviour parallels how
     project exists). Retirement is auto-detected by reading each
     station's IGS sitelog (Section 3 last non-template receiver
     block's `Date Removed`). Retired IDs are filtered and logged.
+
+    **Optional sourcetable affiliation** (`affiliation_from: "<ntrip_id>"`,
+    optional `mountpoint_pattern` regex): intersects the M3G universe
+    against physical mountpoints currently in the sibling NTRIP
+    endpoint's cached sourcetable. Catches operator-side retirements
+    M3G hasn't reflected yet — sourcetable drops a station the moment
+    it stops broadcasting RTCM; M3G project pages can lag months. Soft
+    fall-back: missing sourcetable or no mountpoint matches → full
+    M3G universe. Default pattern `^([A-Z0-9]{4})` captures IGS-style
+    4-char prefixes from format-suffixed mountpoints
+    (`CAKO_RTCM3` → `CAKO`); operators using non-standard mountpoint
+    naming (SAPOS's 4-digit numerics) need a custom pattern or shouldn't
+    use this flag.
 - Adding a new M3G-backed network is a `rtk_map.json` data edit, not a
   scrapers/ code edit: add an endpoint of `type:"scraped"`,
-  `scraper:"m3g"`, with `country` + `moid`.
+  `scraper:"m3g"`, with `country` + `moid`. Add `affiliation_from`
+  pointing at the sibling NTRIP endpoint's id when the operator
+  publishes physical mountpoints (use the four-char `^([A-Z0-9]{4})`
+  default unless you verified the operator uses a different naming).
 
 ## When to edit this file
 
