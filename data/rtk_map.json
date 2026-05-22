@@ -128,6 +128,13 @@
       "endpoints": [
         {
           "url": "http://gnss-rtk.maaamet.ee:8083/"
+        },
+        {
+          "type": "scraped",
+          "id": "estpos_ext",
+          "scraper": "estpos",
+          "interval_days": 7,
+          "pin_origin": "register"
         }
       ]
     },

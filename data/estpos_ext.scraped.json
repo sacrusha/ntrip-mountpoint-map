@@ -1,0 +1,247 @@
+{
+  "last_scraped": "2026-05-22T00:42:20+00:00",
+  "source_url": "https://gnss-metadata.eu/v1/sitelog/exportlog?id=...00EST",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "AJOE",
+      "lat": 59.012081,
+      "lon": 27.423919,
+      "country": "EST"
+    },
+    {
+      "name": "ALAK",
+      "lat": 58.599919,
+      "lon": 27.135364,
+      "country": "EST"
+    },
+    {
+      "name": "AUDR",
+      "lat": 58.422464,
+      "lon": 24.313669,
+      "country": "EST"
+    },
+    {
+      "name": "AVNR",
+      "lat": 58.985208,
+      "lon": 26.868231,
+      "country": "EST"
+    },
+    {
+      "name": "EMM1",
+      "lat": 58.690739,
+      "lon": 22.553561,
+      "country": "EST"
+    },
+    {
+      "name": "HANI",
+      "lat": 58.62355,
+      "lon": 23.632808,
+      "country": "EST"
+    },
+    {
+      "name": "HRIS",
+      "lat": 59.227789,
+      "lon": 24.014206,
+      "country": "EST"
+    },
+    {
+      "name": "IKLA",
+      "lat": 57.875794,
+      "lon": 24.382875,
+      "country": "EST"
+    },
+    {
+      "name": "IMAV",
+      "lat": 58.731744,
+      "lon": 25.768431,
+      "country": "EST"
+    },
+    {
+      "name": "JOGE",
+      "lat": 58.761681,
+      "lon": 26.407681,
+      "country": "EST"
+    },
+    {
+      "name": "KALL",
+      "lat": 58.369411,
+      "lon": 22.880364,
+      "country": "EST"
+    },
+    {
+      "name": "KARD",
+      "lat": 58.994378,
+      "lon": 22.719567,
+      "country": "EST"
+    },
+    {
+      "name": "KIVI",
+      "lat": 59.357736,
+      "lon": 26.974039,
+      "country": "EST"
+    },
+    {
+      "name": "KLNA",
+      "lat": 58.920847,
+      "lon": 22.066253,
+      "country": "EST"
+    },
+    {
+      "name": "KOID",
+      "lat": 57.836772,
+      "lon": 27.595253,
+      "country": "EST"
+    },
+    {
+      "name": "KOSI",
+      "lat": 59.182956,
+      "lon": 25.160597,
+      "country": "EST"
+    },
+    {
+      "name": "KURE",
+      "lat": 58.255633,
+      "lon": 22.510053,
+      "country": "EST"
+    },
+    {
+      "name": "KUSA",
+      "lat": 59.451661,
+      "lon": 25.418942,
+      "country": "EST"
+    },
+    {
+      "name": "MEHI",
+      "lat": 58.235394,
+      "lon": 27.469694,
+      "country": "EST"
+    },
+    {
+      "name": "MOIS",
+      "lat": 58.092719,
+      "lon": 25.182758,
+      "country": "EST"
+    },
+    {
+      "name": "MRJA",
+      "lat": 58.895486,
+      "lon": 24.420194,
+      "country": "EST"
+    },
+    {
+      "name": "MUJA",
+      "lat": 58.463169,
+      "lon": 22.232531,
+      "country": "EST"
+    },
+    {
+      "name": "MUS2",
+      "lat": 59.42115,
+      "lon": 24.698039,
+      "country": "EST"
+    },
+    {
+      "name": "NJO1",
+      "lat": 59.461408,
+      "lon": 28.048917,
+      "country": "EST"
+    },
+    {
+      "name": "NTSL",
+      "lat": 57.832119,
+      "lon": 26.531503,
+      "country": "EST"
+    },
+    {
+      "name": "PYRK",
+      "lat": 59.006575,
+      "lon": 23.521283,
+      "country": "EST"
+    },
+    {
+      "name": "RALL",
+      "lat": 59.029875,
+      "lon": 25.708642,
+      "country": "EST"
+    },
+    {
+      "name": "RUH1",
+      "lat": 57.783022,
+      "lon": 23.260219,
+      "country": "EST"
+    },
+    {
+      "name": "SOVE",
+      "lat": 57.913436,
+      "lon": 22.057864,
+      "country": "EST"
+    },
+    {
+      "name": "SUR4",
+      "lat": 59.463572,
+      "lon": 24.380256,
+      "country": "EST"
+    },
+    {
+      "name": "TARV",
+      "lat": 59.348708,
+      "lon": 26.346408,
+      "country": "EST"
+    },
+    {
+      "name": "TOIL",
+      "lat": 59.422036,
+      "lon": 27.536631,
+      "country": "EST"
+    },
+    {
+      "name": "TOR3",
+      "lat": 58.264361,
+      "lon": 26.461458,
+      "country": "EST"
+    },
+    {
+      "name": "TORV",
+      "lat": 57.998914,
+      "lon": 25.923428,
+      "country": "EST"
+    },
+    {
+      "name": "TRTU",
+      "lat": 58.392581,
+      "lon": 26.693236,
+      "country": "EST"
+    },
+    {
+      "name": "UGA2",
+      "lat": 58.361814,
+      "lon": 25.587833,
+      "country": "EST"
+    },
+    {
+      "name": "UULU",
+      "lat": 58.280839,
+      "lon": 24.576908,
+      "country": "EST"
+    },
+    {
+      "name": "VAND",
+      "lat": 58.652361,
+      "lon": 25.029586,
+      "country": "EST"
+    },
+    {
+      "name": "VERG",
+      "lat": 59.601486,
+      "lon": 26.100789,
+      "country": "EST"
+    },
+    {
+      "name": "VOR2",
+      "lat": 57.840161,
+      "lon": 27.002681,
+      "country": "EST"
+    }
+  ]
+}
