@@ -1,16 +1,19 @@
 # Liberia [LR] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-17 (re-verified via WebSearch; DSS June-2024 announcement remains most recent public CORS milestone; no 2025-2026 LR caster launch found)
+**Date researched:** 2026-05-21 (re-verified; no 2025-2026 LR caster launch found. New finding: LibRef21 = Liberia Reference Frame 2021 is registered with EPSG as an active datum, EPSG revision date 2025-02-19; data source = Liberia Land Authority. Operator portal still does not publish CORS endpoints.)
 
-## Status: NO — no public NTRIP RTK caster operating; national geodetic reference frame (LGR) under development; one private CORS announcement (Derks Surveying Solutions, June 2024) not yet deployed
+## Status: NO — no public NTRIP RTK caster operating. National geodetic reference frame LibRef21 (LGR) is realised on paper; one private CORS announcement (Derks Surveying Solutions, June 2024) remains in planning.
 
 | Field | Value |
 |---|---|
+| **landing_url** | https://lla.gov.lr (Liberia Land Authority; no NTRIP section) |
+| **access_url** | n/a — no operational service |
 | **Active public NTRIP RTK caster** | No |
 | **host:port** | None found |
 | **tariff** | N/A |
 | **hobbyist_eligibility** | N/A |
 | **legal_residency_required** | N/A |
-| **last_confirmed_alive** | N/A — no caster identified 2026-05-12 |
+| **last_confirmed_alive** | N/A — no caster identified 2026-05-21 |
+| **datum_epoch** | LibRef21 (Liberia Reference Frame 2021), GRS 1980 ellipsoid, EPSG:10799 — registered by Liberia Land Authority (LLA); no operator-published station coordinates or NTRIP caster yet (declaration is for the national frame; no live CORS broadcasting it). Source: https://epsg.io/10799 |
 
 ## Most Recent Project Announcement
 
@@ -25,11 +28,11 @@ The LLA concluded a training programme on drone technology for land surveying ca
 ## Context Notes
 
 - **National authority:** Liberia Land Authority (LLA) — `lla.gov.lr` / info@lla.gov.lr. Website is live and operational as of 2026-05-06. No geodetic data download or NTRIP service section found.
-- **Liberia Geodetic Reference Frame (LGR):** The LGR is the stated national datum target; its realisation through CORS is implied but no station coordinates, baselines, or operational CORS installations have been published externally.
+- **Liberia Geodetic Reference Frame (LGR / LibRef21):** Registered with EPSG as **LibRef21 = EPSG:10799** (active, ellipsoidal 3D, GRS 1980 ellipsoid, Greenwich prime meridian; area of use Liberia onshore + offshore). Source attribution: Liberia Land Authority (LLA). EPSG entry does not publish epoch year or explicit ITRS alignment. An older Liberian Geodetic Datum 2005 (LGD2005) is referenced in MLME concept papers as ITRS / GRS80 based. No operational CORS network is yet known to broadcast in LibRef21. Source: https://epsg.io/10799
 - **AFREF participation:** Liberia is within the AFREF geographic scope for West Africa. Liberia does not appear in the published lists of countries with at least one AFREF-contributing CORS (approximately 22 countries as of the 2024 AFREF workshop). No GNSS station with country code LR has been found in HartRAO, EarthScope/IGS, or RCMRD archives.
 - **Historical CORS procurement (pre-LLA):** A Ministry of Lands, Mines and Energy concept paper (Department of Lands, Surveys and Cartography) describes earlier work under the MCC Liberia Threshold Program: "some monuments have been planted and a set of CORS station[s] procured" toward re-establishing the National Geodetic Control Network. No public sourcetable or NTRIP endpoint emerged from that procurement; the hardware appears never to have come online as a public real-time service. Source: https://www.studocu.com/row/document/university-of-liberia/geomatics-engineering/concept-paper/5446378 (secondary; original LLA / MLME concept paper).
 - **ILAMP project:** The World Bank-funded Inclusive Land Administration and Management Project is supporting LLA capacity; project documentation focuses on parcel registration and land governance, not geodetic CORS infrastructure.
-- **No entries on rtk2go, Centipede or EarthScope:** Zero LR mountpoints in any of the project's pipelines as of 2026-05-12. `py scripts/stations_by_radius.py 6.5 -9.5 500` returns no stations within 500 km of Monrovia — the West African coast is a documented coverage gap.
+- **No entries on rtk2go, Centipede or EarthScope:** Zero LR mountpoints in project pipelines (`py scripts/stations_by_country.py LBR` → empty 2026-05-21). Wider radius `py scripts/stations_by_radius.py 6.3 -10.8 800` returns 2 hits: Centipede `INP02` (Côte d'Ivoire, 6.873/-5.238) at 617.7 km and rtk2go `Gine-Albrk` (Guinea/Conakry) at 481.2 km — both far beyond RTK range (~30–40 km practical limit).
 - **No entry on ntrip-list.com:** Liberia absent from ntrip-list.com Africa listing.
 - **No commercial NTRIP providers found:** GEODNET, ONOCOY, PointOne, HxGN SmartNet — none list Liberia coverage.
 - **Regional context:** Neighbouring Sierra Leone and Guinea also have no confirmed public caster. Côte d'Ivoire (to the east) and Senegal (further north-west) have isolated IGS sites but no public RTK service usable in LR. No cross-border RTK coverage applicable.
@@ -64,4 +67,5 @@ The LLA concluded a training programme on drone technology for land surveying ca
 - AFREF background (UN-SPIDER): https://un-spider.org/space-application/space-application-matrix/african-geodetic-reference-frame-afref
 - ntrip-list.com Africa: https://ntrip-list.com/africa/
 - rtk2go monitor: http://monitor.use-snip.com/?hostUrl=rtk2go.com&port=2101
-- Local pipeline check (2026-05-12): `py scripts/stations_by_radius.py 6.5 -9.5 500` → no stations within 500 km
+- Local pipeline check (2026-05-21): `py scripts/stations_by_radius.py 6.3 -10.8 800` → 2 stations (Centipede INP02 CIV 617.7 km; rtk2go Gine-Albrk GIN 481.2 km, status stale)
+- EPSG LibRef21 entry: https://epsg.io/10799 (source: Liberia Land Authority)

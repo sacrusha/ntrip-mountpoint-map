@@ -1,64 +1,48 @@
 # Belize [BZ] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-17 (prior 2026-05-15)
+**Date researched:** 2026-05-22 (CN23_RTCM3P3 still the sole BLZ-tagged stream; EarthScope direct probe still timing out from sandbox, IGS-IP rebroadcast not present for CN23; no operator-side change since 2026-05-17)
 
-## Status: PARTIAL — one EarthScope NOTA station live in central Belize (CN23_RTCM3P3, free non-commercial NULA). No national CORS, no Belize-operated public caster.
-
-| Field | Value |
-|---|---|
-| **Active public NTRIP RTK caster (Belize-operated)** | No |
-| **Active public NTRIP RTK mountpoint physically in Belize** | Yes — `ntrip.earthscope.org:2101/CN23_RTCM3P3` (single NOTA station, 17.26°N, 88.78°W, Belmopan area) |
-| **landing_url** | N/A for Belize-operated caster (none exists). EarthScope NOTA: https://www.earthscope.org/data/gnss-realtime/ |
-| **access_url** | N/A for Belize-operated caster. EarthScope NOTA: https://data.earthscope.org/ |
-| **host:port** | N/A for Belize-operated caster. EarthScope NOTA: `ntrip.earthscope.org:2101` |
-| **num_stations** | 0 Belize-operated. 1 EarthScope NOTA mountpoint in BLZ territory (CN23). |
-| **vrs** | EarthScope NOTA CN23: **No** — single-base raw RTCM 3.3 MSM7 |
-| **hobbyist_eligibility (EarthScope NOTA)** | Yes for non-commercial use — requires EarthScope account + signed NULA (Non-commercial User License Agreement) |
-| **legal_residency_required** | No |
-| **last_confirmed_alive (EarthScope CN23)** | 2026-05-17 — EarthScope realtime portal HTTP 200 (ITRF2014 / NOTA epoch 2026-03-30 declared); local pipeline cache (`scripts/stations_by_country.py BLZ`) still shows `CN23_RTCM3P3` 17.26°N / -88.78°W as the sole BLZ station. Direct sandbox curl of `ntrip.earthscope.org:2101` timed out 2026-05-17 (sandbox-side network path; same condition observed 2026-05-15); EarthScope landing page is current and no NOTA decommissioning of CN23 has been announced. Prior 2026-05-15 sourcetable curl captured STR row: `STR;CN23_RTCM3P3;CN23_RTCM3P3;RTCM 3.3;1005(60),1007(60),1013(1),1029(60),1033(60),1077(1),1087(1),1097(1),1107(1),1117(1);2;GPS+GLO+BDS+GAL+SBAS+QZS;EARTHSCOPE;BLZ;17.26;-88.78;0;0;SEPT POLARX5;None;N;Y;0;SEAT_REQUIRED;` (sourcetable longitude field is signed decimal degrees, -88.78 = 88.78°W). |
-
-## EarthScope NOTA — CN23
+## Status: PARTIAL — single EarthScope NOTA station live in central Belize (CN23_RTCM3P3, free non-commercial via NULA). No Belize-operated national CORS or public caster.
 
 | Field | Value |
 |---|---|
-| **host:port** | `ntrip.earthscope.org:2101` |
-| **mountpoint** | `CN23_RTCM3P3` |
-| **format** | RTCM 3.3 |
-| **messages** | 1005(60), 1007(60), 1013(1), 1029(60), 1033(60), 1077(1), 1087(1), 1097(1), 1107(1), 1117(1) — full multi-system MSM7 |
-| **constellations** | GPS + GLONASS + BeiDou + Galileo + SBAS + QZSS |
-| **receiver** | Septentrio POLARX5 |
-| **position** | 17.26°N, 88.78°W (central Belize, near Belmopan / Cayo District; sourcetable signed-decimal -88.78 → 88.78°W) |
-| **carrier (Y/N)** | Y (carrier-phase available) |
-| **fee (sourcetable field)** | `SEAT_REQUIRED` — requires an EarthScope seat (non-commercial NULA account is the standard free path) |
-| **tariff** | **Noncommercial: Free (USD $0.00)** — account + annual NULA acceptance required (NULA v. 2025-05-30, https://www.earthscope.org/user/NoncommercialLicenseAgreement.pdf, observed 2026-05-17). **Commercial: USD $1,000 per seat per year, 5-seat minimum** for direct billing; 2-week 5-seat trial free. EarthScope is a US 501(c)(3) — no VAT. No local Belize currency tier (EarthScope bills in USD). Sources: https://www.earthscope.org/data/gnss-realtime/ + https://www.earthscope.org/news/new-gnss-offering-and-licensing-details-for-commercial-use/ (both HTTP 200, 2026-05-17). |
-| **single-base usable radius** | ~30–50 km L1+L2 RTK; reaches most of Belize population centres (Belmopan, Belize City, San Ignacio, parts of Cayo / Belize / Orange Walk districts) |
-| **access_url** | https://data.earthscope.org/ — create account, accept NULA, request real-time GNSS data access |
-| **datum_epoch** | **ITRF2014, epoch 2026-03-30** (NOTA stations); declared on https://www.earthscope.org/data/gnss-realtime/ ("All raw data streams use the ITRF2014 reference frame. For NOTA stations, the epoch date is 2026-03-30"). |
+| Belize-operated public NTRIP RTK caster | No |
+| Real-time NTRIP mountpoint physically in BLZ | Yes — `ntrip.earthscope.org:2101/CN23_RTCM3P3` (single NOTA station, 17.26°N -88.78°W, Cayo District near Belmopan) |
+| landing_url | https://www.earthscope.org/data/gnss-realtime/ (EarthScope NOTA service description) |
+| access_url | https://data.earthscope.org/ (account + NULA acceptance + seat request) |
+| host:port | `ntrip.earthscope.org:2101` (TCP) / `:443` (TLS); legacy `rtgpsout.unavco.org:2101` retired 2025-07-29 |
+| mountpoint | `CN23_RTCM3P3` |
+| format | RTCM 3.3, msg 1005(60)/1007(60)/1013(1)/1029(60)/1033(60) + MSM7 1077/1087/1097/1107/1117(1) |
+| constellations | GPS + GLONASS + BeiDou + Galileo + SBAS + QZSS |
+| receiver | Septentrio POLARX5 |
+| num_stations | 0 BLZ-operated; 1 EarthScope NOTA in BLZ territory (CN23) per `py scripts/stations_by_country.py BLZ` 2026-05-22 |
+| vrs | No — single-base raw RTCM 3.3 |
+| tariff | **Non-commercial: Free** (NULA acceptance required, account at https://data.earthscope.org/). **Commercial: USD 1,000/seat/yr**, 5-seat minimum for direct billing; 2-week 5-seat trial free. EarthScope is a US 501(c)(3) — no VAT. NULA terms: https://www.earthscope.org/user/NoncommercialLicenseAgreement.pdf |
+| hobbyist_eligibility | Yes (non-commercial use under NULA) |
+| legal_residency_required | No |
+| last_confirmed_alive | 2026-05-22 — EarthScope NOTA realtime page reachable; CN23_RTCM3P3 still the sole BLZ-tagged station in local pipeline cache (`py scripts/stations_by_country.py BLZ`); direct `curl ntrip.earthscope.org:2101` continues to time out from this sandbox (sandbox-side network path; same behaviour 2026-05-15 / 2026-05-17 / 2026-05-22, not an operator outage). EarthScope has not announced CN23 decommissioning. Prior 2026-05-15 sourcetable capture: `STR;CN23_RTCM3P3;CN23_RTCM3P3;RTCM 3.3;1005(60),1007(60),1013(1),1029(60),1033(60),1077(1),1087(1),1097(1),1107(1),1117(1);2;GPS+GLO+BDS+GAL+SBAS+QZS;EARTHSCOPE;BLZ;17.26;-88.78;0;0;SEPT POLARX5;None;N;Y;0;SEAT_REQUIRED;` |
+| datum_epoch | **ITRF2014, NOTA epoch 2026-03-30** — declared on https://www.earthscope.org/data/gnss-realtime/ ("All raw data streams use the ITRF2014 reference frame. For NOTA stations, the epoch date is 2026-03-30") |
 
-CN23 first appeared in pipeline data on 2026-05-12; it was absent from the 2026-05-06 EarthScope sourcetable observation. Re-confirmed 2026-05-15.
+CN23 first appeared in pipeline data on 2026-05-12; absent from the 2026-05-06 EarthScope sourcetable observation. The station sits ~17 km west of Belmopan, providing single-base RTK reach across Cayo, Belize and Orange Walk districts (Belmopan, Belize City, San Ignacio).
 
-## Other Status
+## Belize-side context
 
-No Belize-operated national NTRIP caster has been published as of 2026-05-15. The Surveys and Mapping Section (Ministry of Natural Resources, `naturalresources.gov.bz`) maintains horizontal and vertical control networks and supervises cadastral surveys but does not publish a CORS or NTRIP service. The Belize National Spatial Data Infrastructure portal (`portal.bnsdi.gov.bz`) provides only static map data.
-
-## Context Notes
-
-- **Surveys and Mapping Section** (Ministry of Natural Resources, `naturalresources.gov.bz/index.php/surveys-and-mappings-section/`): Responsible for all aspects of mapping including horizontal and vertical control. No CORS or NTRIP infrastructure is mentioned on the website or in indexed technical publications.
-- **BNSDI** (`portal.bnsdi.gov.bz`): Belize National Spatial Data Infrastructure portal — only static map data and cadastral layers.
-- **rtk2go / Centipede**: Zero BLZ-coded stations in either sourcetable as of 2026-05-15 (curl probes returned no Belize STR rows).
-- **Border proximity**: Mexico (INEGI CORS, `ntrip.inegi.org.mx:2101`) and Guatemala (IGN-Guatemala, `rtk.igntopo.gob.gt:2101`) are the nearest non-NOTA options; useful where CN23 baseline exceeds practical reach (deep south / far north of Belize). With CN23 in central Belize, cross-border baselines are secondary.
-- **IGS / AFREF**: No IGS core or AFREF-affiliated station in Belize.
-- **Gap assessment**: Belize is a small country (~23,000 km²) with a population of ~400,000. With CN23 operational, single-base RTK is achievable across most of populated central Belize. No evidence of a Belize-operated CORS programme; EarthScope NOTA is the de-facto free option.
+- **Surveys and Mapping Section** (Ministry of Natural Resources, https://naturalresources.gov.bz/index.php/surveys-and-mappings-section/): horizontal/vertical control + cadastral surveys; no CORS, no NTRIP mentioned.
+- **Belize NSDI** (https://portal.bnsdi.gov.bz/): static map data only.
+- **rtk2go / Centipede**: 0 BLZ-coded stations 2026-05-22.
+- **ArduSimple country directory**: no Belize entry.
+- **Cross-border**: Mexico (Quintana Roo) and Guatemala (Petén) — Mexico has only commercial NTRIP; Guatemala has no public caster (see `MX_Mexico.md` / `GT_Guatemala.md`). CN23 in central Belize is the primary practical option.
 
 ## Post-Processing (RINEX) Fallback
 
-EarthScope GNSS Data Archive — CN23 RINEX should be available alongside the real-time feed under the same NOTA account. No national Belize RINEX archive.
+EarthScope GNSS Data Archive — CN23 RINEX is available alongside the real-time feed under the same NOTA account at https://www.earthscope.org/data/gnss-data/. No Belize-operated national RINEX archive.
 
-## Sources Consulted
+## Sources
+
 - Surveys and Mapping Section, Ministry of Natural Resources: https://naturalresources.gov.bz/index.php/surveys-and-mappings-section/
-- BNSDI portal: https://portal.bnsdi.gov.bz/
-- EarthScope NOTA sourcetable: `ntrip.earthscope.org:2101` — STR record for `CN23_RTCM3P3` country `BLZ` confirmed 2026-05-15
-- EarthScope Network of the Americas: https://www.earthscope.org/nota/
-- EarthScope GNSS Realtime: https://www.earthscope.org/data/gnss-realtime/
-- Local pipeline data: `data/stations.json` (earthscope BLZ count = 1; verified via `scripts/stations_by_country.py BLZ` on 2026-05-15)
-- rtk2go / Centipede sourcetables — zero BLZ stations as of 2026-05-15
+- Belize NSDI: https://portal.bnsdi.gov.bz/
+- EarthScope NOTA service: https://www.earthscope.org/data/gnss-realtime/ (datum ITRF2014 / NOTA epoch 2026-03-30 declaration)
+- EarthScope account portal: https://data.earthscope.org/
+- EarthScope NULA: https://www.earthscope.org/user/NoncommercialLicenseAgreement.pdf
+- EarthScope commercial licence: https://www.earthscope.org/news/new-gnss-offering-and-licensing-details-for-commercial-use/
+- Local pipeline `py scripts/stations_by_country.py BLZ` 2026-05-22: 1 station (CN23_RTCM3P3) on `earthscope`
 - ArduSimple RTK correction services by country: https://www.ardusimple.com/rtk-correction-services-in-your-country/ (no Belize entry)

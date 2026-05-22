@@ -1,66 +1,64 @@
 # Burkina Faso [BF] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-17 (refresh of 2026-05-15)
+**Date researched:** 2026-05-21
 
-## Status: BF-CORS NTRIP caster confirmed live — 13 BFA single-base RTK mountpoints + 1 VRS (`MultiStation_RTCM31`, in scope) all enumerated 2026-05-15; 1 DGNSS-multi (`BurkinaDGNSSMulti`, carrier=0, out-of-scope per primer [scope], dropped by pipeline) also present; web Register page returns maintenance error; hobbyist eligibility unconfirmed (gate is registration approval, not network availability)
+## Status
+
+BF-CORS national NTRIP caster (IGB, Trimble Pivot, 13 single-base RTK mountpoints + 1 multi-station VRS) is live and anonymously enumerable. Web `RegisterAccount.aspx` redirects to a maintenance error page and has done so since at least 2026-05-15; new-account self-service is currently broken. No community / volunteer NTRIP coverage in country.
+
+## Caster — BF-CORS (IGB)
 
 | Field | Value |
 |---|---|
-| **landing_url** | https://www.igb.bf/?page_id=47 (IGB GNSS-CORS page, authoritative; instructs users to register at `www.bfcors.net`) |
-| **access_url** | http://www.bfcors.net/ (Trimble Pivot Web portal; `RegisterAccount.aspx` returns "service is temporarily not available due to maintenance or technical problems" — 2026-05-15) |
-| **host:port** | `www.bfcors.net:2101` — live NTRIP caster, `SOURCETABLE 200 OK`, `Server: NTRIP Trimble Ntrip Caster 4.1`, 2026-05-15. Probe must pass `--http0.9` flag (caster speaks HTTP/0.9); a probe without that flag will appear to fail. |
-| **tariff** | Not published. IGB page does not state cost; no tariff page on the Pivot Web portal pre-login. |
-| **num_stations** | 13 physical BFA single-base mountpoints in live sourcetable (DORI, DIAP, FADA, BF01, BOBO, DEDG, GAOA, MANG, OHGY, DPGO, IGB0, KBRI, TGDA), plus `MultiStation_RTCM31` (BFA, solution=1, network VRS — in scope) and `BurkinaDGNSSMulti` (BFA, DGNSS multi-station, solution=1, **carrier=0 → out-of-scope per primer [scope]; dropped by pipeline**), plus 1 cross-reference `VRSRTCM32` tagged DEU. Matches IGB-reported 9 (2011) + 4 (2018) = 13 physical CORS. |
-| **vrs** | yes — `MultiStation_RTCM31` (BFA, RTCM 3.1, solution=1) is the in-scope VRS mountpoint. `BurkinaDGNSSMulti` is also present but is DGNSS (carrier=0, code-only multi-metre) → out-of-scope for RTK per primer [scope]; pipeline drops carrier=0 streams. |
-| **hobbyist_eligibility** | ? — IGB's stated audience is "géomètres, cadastreurs, cartographes". No explicit exclusion of hobbyists, but `RegisterAccount.aspx` non-functional today and Login form expects an "organization" field (multi-tenant Pivot). Sourcetable is anonymously enumerable; rover access still requires approved credentials. |
-| **legal_residency_required** | ? — not stated; in practice expect IGB to favour locally established professional users. |
-| **last_confirmed_alive** | 2026-05-15 — `curl --http0.9 http://www.bfcors.net:2101/` returned `SOURCETABLE 200 OK`, `Server: NTRIP Trimble Ntrip Caster 4.1`, Content-Length 2754, all 13 BFA + 1 VRS + 1 DGNSS-multi STR rows enumerated. Web portal also live: `www.bfcors.net/` HTTP 200, IIS/8.0; `Login.aspx` HTTP 200; `RegisterAccount.aspx` HTTP 302 → DefaultErrorPage maintenance message. **2026-05-17 follow-up:** both `http://www.bfcors.net/` (web) and `http://www.bfcors.net:2101/` (caster) ECONNREFUSED / timed out from this sandbox. Real status (caster down vs. sandbox egress glitch) unconfirmed — only 2 days apart, no operator announcement of outage, but the prior probe used `--http0.9` and the 2026-05-17 probe could not pass that flag through WebFetch. Treat the network as "live as of 2026-05-15, status uncertain 2026-05-17"; revisit on next research pass. |
-| **datum_epoch** | Omitted — no citable official declaration found. IGB references a "système de référence national" without specifying datum/epoch in any public document located. |
+| **landing_url** | https://www.igb.bf/?page_id=47 (IGB GNSS-CORS page; instructs users to register at `www.bfcors.net`) |
+| **access_url** | http://www.bfcors.net/ (Trimble Pivot Web portal home; `RegisterAccount.aspx` redirects to `DefaultErrorPage.aspx` with "service is temporarily not available due to maintenance or technical problems" — observed 2026-05-21) |
+| **host:port** | `www.bfcors.net:2101` — confirmed `SOURCETABLE 200 OK` 2026-05-21 (`Server: NTRIP Trimble Ntrip Caster 4.1`, Content-Length 2754); probe requires `curl --http0.9` |
+| **num_stations** | 13 physical CORS (DORI, DIAP, FADA, BF01, BOBO, DEDG, GAOA, MANG, OHGY, DPGO, IGB0, KBRI, TGDA), matching IGB's reported 9-station 2011 deployment (Gampela, Manga, Fada, Diapaga, Dori, Ouahigouya, Dédougou, Bobo-Dioulasso, Gaoua) plus the 2018 4-station capital densification (Ouagadougou/IGB, Koubri, Dapélogo, Tanguen-Dassouri). Sourcetable also exposes `MultiStation_RTCM31` (BFA, solution=1 → network solution, not a physical station), `BurkinaDGNSSMulti` (BFA, format field blank, carrier=2, solution=1 — identifier names DGNSS but the sourcetable row itself is not the carrier=0 row our pipeline rule targets), and 1 `VRSRTCM32` row tagged country=DEU with blank format — likely an unconfigured Trimble Pivot template entry, not an actual German passthrough. |
+| **vrs** | yes — `MultiStation_RTCM31` BFA, RTCM 3.1, solution=1 |
+| **tariff** | not published; no public tariff page pre-login |
+| **hobbyist_eligibility** | ? — IGB's stated audience is "géomètres, cadastreurs, cartographes"; no explicit hobbyist tier; registration approval gates access |
+| **legal_residency_required** | ? — not stated |
+| **last_confirmed_alive** | 2026-05-22 — sourcetable returned `SOURCETABLE 200 OK` with 13 BFA single-base + 1 BFA `MultiStation_RTCM31` + 1 BFA `BurkinaDGNSSMulti` + 1 DEU-tagged `VRSRTCM32` template row; `http://www.bfcors.net/` returns HTTP 200 (Microsoft-IIS/8.0); `RegisterAccount.aspx` still redirects to `DefaultErrorPage.aspx` |
+| **datum_epoch** | omitted — no citable operator declaration. IGB references a "système de référence national" without specifying datum or epoch in any public document |
 
-## Probes (2026-05-15, from this sandbox)
+Sourcetable mountpoint rows publish `lat=0/lon=0` (Trimble Pivot default obfuscation) — the published station-city correspondence comes from IGB, not the sourcetable.
 
-| Endpoint | Result |
-|---|---|
-| `http://www.bfcors.net/` | HTTP 200, 10.4 KB, Microsoft-IIS/8.0, Trimble Pivot Web home page, footer "© Copyright 2026, Trimble Inc." |
-| `http://www.bfcors.net/Login.aspx` | HTTP 200; form fields: Organization, User Name, Password |
-| `http://www.bfcors.net/Map/SensorMap.aspx` | HTTP 200; OpenLayers map shell; server-side `NumSensors=0` (sensors loaded by authenticated JS) |
-| `http://www.bfcors.net/RegisterAccount.aspx` | HTTP 302 → `/DefaultErrorPage.aspx` displaying "The requested service is temporarily not available due to maintenance or technical problems. Please try again later." |
-| `http://www.bfcors.net:2101/` (with `--http0.9`) | `SOURCETABLE 200 OK`, `Server: NTRIP Trimble Ntrip Caster 4.1`, Content-Length 2754, 15 STR rows (13 BFA single-base RTK + 1 BFA VRS `MultiStation_RTCM31` (in scope) + 1 BFA DGNSS-multi `BurkinaDGNSSMulti` (**carrier=0, out-of-scope per primer [scope] — pipeline drops**) + 1 DEU passthrough). A probe without `--http0.9` returns "Received HTTP/0.9 when not allowed" and looks like a failure — this was the prior-research artefact. |
-| `http://www.bfcors.net:2102/`, `:2103/`, `:8080/` | TCP refused |
+**Pipeline note**: every BFA single-base row carries `nmea=1, solution=0`. Per `data/rtk_map.json` BF-CORS has no `endpoints[]` configured (tier `weird`, RINEX/contact-only), so the pipeline does not parse this caster. If BF-CORS is ever wired into endpoints[], an `nmea_filter=False` override would be required to retain the 13 single-base stations — the `nmea=1` flag is misset by the Trimble Pivot template, not a real VRS GGA requirement.
 
-Implication: the operator's caster is publicly enumerable — sourcetable contents (mountpoint names, formats, lat/lon=0/0 obfuscated by Trimble Pivot) are visible without credentials. New-account self-registration via `RegisterAccount.aspx` is currently broken (maintenance error), but the caster itself is live and a target user with valid credentials can connect a rover from outside Burkina Faso. The bottleneck is the registration approval path, not the network.
+## Context
 
-## Context Notes
+- IGB tutelle: Ministry of Infrastructure; technical management of the network since September 2012.
+- 2010 procurement: MCA-BF (Millennium Challenge Account Burkina Faso) signed a 48-month contract with Trimble Europe BV for the original 9-station deployment, ~700 MFCFA.
+- 2018: 4-station capital densification funded from state budget.
+- Academic confirmation of historical operation: BF01 (Ouagadougou) raw GNSS data 2013–2021 used in a 2024 ionospheric VTEC publication.
+- Security/political context: 2022 military coup; Burkina Faso, Mali and Niger withdrew from ECOWAS and formed the Alliance of Sahel States (January 2025); jihadist insurgency affects a large share of national territory. Operational continuity of remote stations is plausibly degraded; the persistent `RegisterAccount.aspx` maintenance error is consistent with reduced operator capacity.
 
-- **Stations (per IGB):** 13 total.
-  - 2011 (9, MCA-BF / Trimble contract May 2010, ~700 MFCFA): Gampela, Manga, Fada, Diapaga, Dori, Ouahigouya, Dédougou, Bobo-Dioulasso, Gaoua.
-  - 2018 (4, state budget, Ouagadougou metro densification): Ouagadougou (IGB HQ), Koubri, Dapélogo, Tanguen-Dassouri.
-- **IGB tutelle:** under the Ministry of Infrastructure; technical management of the network since September 2012.
-- **Academic confirmation of historical operation:** Station BF01 (Ouagadougou) raw GNSS-CORS data 2013-01-01 to 2021-12-31 used in 2024 ionospheric VTEC publication (ResearchGate 379545036). Post-2021 continuity unverified.
-- **Security/political context:** 2022 military coup; Burkina Faso, Mali, Niger withdrew from ECOWAS and formed the Alliance of Sahel States (AES) January 2025; jihadist insurgency affects a large share of national territory; reduced bilateral technical-cooperation with the West. Station operational continuity and IGB maintenance capacity uncertain — consistent with the observed bfcors.net `RegisterAccount.aspx` maintenance error.
-- **Volunteer / free coverage:** zero. Confirmed via `scripts/stations_by_country.py BFA` (no stations) and `scripts/stations_by_radius.py 12.37 -1.52 200` (no stations within 200 km of Ouagadougou) on 2026-05-15. No rtk2go BF mountpoints; no Centipede BFA nodes; no GEODNET/ONOCOY/Emlid coverage; EarthScope/NOTA scope is Americas-only.
-- **Cross-border alternatives within ~50 km:** none. Nearest CORS infrastructure of any kind sits well beyond 50 km (RECI in Côte d'Ivoire, IGN Bénin, IGN Niger, IGN Mali — all institutional, none public NTRIP).
-- **Practical workaround for a hobbyist in BF today:** deploy a local single base for RTK, or use PPP (Galileo HAS open service, Trimble RTX) for sub-metre positioning without subscription.
+## Volunteer / Free Coverage
+
+None inside the country. `scripts/stations_by_country.py BFA` returns no stations; `scripts/stations_by_radius.py 12.37 -1.52 200` returns nothing within 200 km of Ouagadougou. No rtk2go, no Centipede, no GEODNET/ONOCOY/Emlid bases in BF. EarthScope NOTA scope is Americas-only. Nearest cross-border CORS infrastructure of any kind (RECI in Côte d'Ivoire, IGN Bénin, IGN Niger, IGN Mali) is well beyond single-base RTK range and equally non-public.
 
 ## Post-Processing (RINEX) Fallback
 
 | Service | URL | Cost |
 |---|---|---|
-| IGB BF-CORS RINEX archive (13 stations; contact IGB directly; portal section gated) | https://www.igb.bf/?page_id=47 | Not published |
-| SONEL station OUAG (Ouagadougou, AMMA → IGS contribution since 2011) | https://www.sonel.org/spip.php?page=gps&idStation=2561 | Free |
-| IGS / CDDIS data archive (if/when BF stations federate) | https://cddis.nasa.gov/Techniques/GNSS/IGS_Summary.html | Free non-commercial |
+| IGB BF-CORS RINEX archive (13 stations; contact IGB; portal section gated) | https://www.igb.bf/?page_id=47 | not published |
+| SONEL station OUAG (Ouagadougou, AMMA → IGS contribution since 2011) | https://www.sonel.org/spip.php?page=gps&idStation=2561 | free |
+| IGS / CDDIS data archive (if/when BF stations federate) | https://cddis.nasa.gov/Techniques/GNSS/IGS_Summary.html | free non-commercial |
 
-## Sources Consulted (2026-05-15)
+## Probes (2026-05-21)
 
-- IGB GNSS-CORS page — https://www.igb.bf/?page_id=47 (verified live)
-- IGB home page — https://www.igb.bf/ (verified live; latest visible news March 2026, GDZHIAO workshop closure)
-- BF-CORS Trimble Pivot Web — http://www.bfcors.net/ (2026-05-15 live HTTP 200, IIS/8.0; 2026-05-17 ECONNREFUSED from sandbox — status uncertain)
-- BF-CORS Login — http://www.bfcors.net/Login.aspx (2026-05-15 live)
-- BF-CORS Sensor Map — http://www.bfcors.net/Map/SensorMap.aspx (2026-05-15 live, no public sensor data)
-- BF-CORS Register — http://www.bfcors.net/RegisterAccount.aspx (2026-05-15: 302 → DefaultErrorPage maintenance message; 2026-05-17 ECONNREFUSED)
-- BF-CORS NTRIP caster — http://www.bfcors.net:2101/ (2026-05-15: SOURCETABLE 200 OK via `--http0.9`; 2026-05-17: WebFetch timeout — could be sandbox-side egress, not necessarily caster-side)
+| Endpoint | Result |
+|---|---|
+| `http://www.bfcors.net/` | HTTP 200, Microsoft-IIS/8.0 |
+| `http://www.bfcors.net/RegisterAccount.aspx` | HTTP 200 after redirect to `DefaultErrorPage.aspx?aspxerrorpath=/RegisterAccount.aspx` ("service is temporarily not available") |
+| `http://www.bfcors.net:2101/` (with `--http0.9`) | `SOURCETABLE 200 OK`, `Server: NTRIP Trimble Ntrip Caster 4.1`, 16 STR rows (13 BFA single-base RTCM31 + 1 BFA `MultiStation_RTCM31` + 1 BFA `BurkinaDGNSSMulti` + 1 DEU-tagged `VRSRTCM32` template row). All single-base rows: `carrier=2; nmea=1; solution=0`. All single-base coords reported `lat=0/lon=0`. |
+
+## Sources
+
+- IGB GNSS-CORS page — https://www.igb.bf/?page_id=47
+- IGB home page — https://www.igb.bf/
+- BF-CORS Trimble Pivot Web — http://www.bfcors.net/
+- BF-CORS NTRIP caster — `http://www.bfcors.net:2101/` (probed 2026-05-21)
 - IGB contact email observed on igb.bf: infogeo.bf@gmail.com
 - 2024 ionospheric VTEC paper on BF01 — https://www.researchgate.net/publication/379545036
-- SONEL OUAG station — https://www.sonel.org/spip.php?page=gps&idStation=2561
-- RTK2GO monitor — http://monitor.use-snip.com/?hostUrl=rtk2go.com&port=2101 (no BF mountpoints)
-- Centipede-RTK map — https://map.centipede-rtk.org/ (no BFA nodes)
-- Local: `scripts/stations_by_country.py BFA` → no stations; `scripts/stations_by_radius.py 12.37 -1.52 200` → no stations
+- SONEL OUAG — https://www.sonel.org/spip.php?page=gps&idStation=2561
+- Local: `py scripts/stations_by_country.py BFA` → no stations; `py scripts/stations_by_radius.py 12.37 -1.52 200` → no stations

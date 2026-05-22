@@ -1,5 +1,5 @@
 # Mauritania [MR] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06 (refreshed 2026-05-17 — still no public caster)
+**Date researched:** 2026-05-21 (re-verified — still no public caster; `py scripts/stations_by_country.py MRT` → empty)
 
 ## Status: NO active public NTRIP caster
 
@@ -43,5 +43,5 @@ A 2018 case study (Spectra Geospatial) documented that a power-transmission infr
 - Spectra Geospatial — SP60 Mauritania survey case study
 - BRGM InfoTerre — SIGAfrique project (2005 reference only; no RTK)
 - General searches in Arabic (موريتانيا GNSS RTK) and French
-- py scripts/stations_by_radius.py 20.0 12.0 800 (2026-05-12) — zero rtk2go/Centipede/EarthScope volunteer stations within 800 km of central Mauritania; nearest free alternatives are in Morocco (ANCFCC, paid) and Senegal (planned JICA CORS, 2024 announcement)
-- Re-verified 2026-05-12 via WebSearch: no announcement of a Mauritanian national NTRIP/CORS network found
+- `py scripts/stations_by_radius.py 18.0 -15.95 800` (2026-05-21, Nouakchott) — 3 stations: 2 Centipede SEN (GORA, NKHR) + 1 IGS-IP DAKR. All in Senegal, all >350 km from Nouakchott — beyond RTK range. SENCORS (Senegal, paid) reaches northern border but no SENCORS station inside MR.
+- Re-verified 2026-05-21 via WebSearch: no announcement of a Mauritanian national NTRIP/CORS network found

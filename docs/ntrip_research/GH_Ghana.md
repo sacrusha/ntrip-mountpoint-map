@@ -1,81 +1,75 @@
 # Ghana [GH] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-17 (refresh of 2026-05-12 entry; news search surfaces "52 CORS already operational" figure superseding 60-station Aug-2025 framing; 100-station target slipped past end-2025 with no public caster endpoint disclosed)
+**Date researched:** 2026-05-21
 
-## Status: CORS network deployed (Aug 2025 nationwide launch); NTRIP caster endpoint NOT publicly disclosed
+## Status
+
+National CORS network deployed and partially operational under the Lands Commission / SMD with PPP partners GMX Systems Ghana and Geo-Tech Systems. 52 stations reported operational as of mid-2026 against a 100-station target. **No public NTRIP caster host:port has been disclosed** on any operator site, sourcetable, or press release. No volunteer / community NTRIP coverage either.
+
+## Network — Ghana National CORS (Lands Commission / SMD)
 
 | Field | Value |
 |---|---|
-| **Active public NTRIP RTK caster** | Unknown — physical network operational; no public host:port found |
-| **Network name** | Ghana National CORS Network (SMD / Lands Commission) |
-| **Operator** | Survey and Mapping Division (SMD), Lands Commission (`lc.gov.gh`), in PPP with GMX Systems Ghana Limited and Geo-Tech Systems Ltd |
-| **host:port** | Not publicly published — no caster endpoint found in any directory or sourcetable as of 2026-05-12 |
-| **tariff** | Not publicly listed; access expected through licensed-surveyor channel |
-| **hobbyist_eligibility** | Unclear — network promoted for cadastral and hydrospatial surveys; no published hobbyist policy |
-| **legal_residency_required** | Unclear — no published terms of service found |
-| **last_confirmed_alive** | `https://www.lc.gov.gh/` HTTP 200 confirmed 2026-05-12; no GH mountpoint in any public NTRIP sourcetable (rtk2go / Centipede / EarthScope local stations.json 2026-05-12) |
-| **Operator contact (technical partner)** | GMX Systems Ghana — `info@gmxsys.com`, +233 24 2133760 / +233 50 8988316; CORS page: https://www.gmxgh.com/index.php/cors-network/ (lists the network but publishes no host/port/tariff) |
+| **landing_url** | https://www.lc.gov.gh/ (Lands Commission; SMD is a division — page exists, no CORS portal exposed) |
+| **access_url** | https://www.gmxgh.com/index.php/cors-network/ — operator-adjacent CORS-Network page maintained by technical partner GMX Systems Ghana. Advertises the service, lists no host/port/mountpoint/tariff/registration form; only a "CONTACT US" button. Direct contact: info@gmxsys.com, +233 24 2133760 / +233 50 8988316. No self-service signup exists. |
+| **host:port** | not publicly published — no caster endpoint found in any directory, operator page, or sourcetable as of 2026-05-21 |
+| **num_stations** | 52 reported operational (Graphic Online + MyJoyOnline coverage of the Aug 2025 launch and subsequent Lands Commission communications, repeated in 2026 reporting); 100-station target (timeline slipped past end-2025); ~60 stations described as "newly established" at the Aug 19 2025 nationwide observation exercise; pre-2020 SMD pilot of 4 CORS (Greater Accra, Ashanti, Western, Brong-Ahafo) |
+| **vrs** | ? — no operator documentation found |
+| **tariff** | not publicly listed; expected through licensed-surveyor channel |
+| **hobbyist_eligibility** | ? — network framed for cadastral and hydrospatial surveys; no published hobbyist policy |
+| **legal_residency_required** | ? — no published terms of service |
+| **last_confirmed_alive** | `https://www.lc.gov.gh/` HTTP 200 confirmed 2026-05-21 (no CORS section); 0 GH mountpoints in any public sourcetable (rtk2go / Centipede / EarthScope, local `data/stations.json` 2026-05-21) |
+| **datum_epoch** | omitted — Ghana Grid Coordinate System referenced in launch press; no citable operator declaration of datum/epoch found on lc.gov.gh or gmxgh.com |
 
 ## Operator
 
-**Survey and Mapping Division (SMD) — Lands Commission**
-P.O. Box MB 237, Accra, Ghana
-Phone: 0302 429 760 / 0302 429 762 / 050 557 8100
-Email: info@lc.gov.gh
-Website: https://www.lc.gov.gh/
+**Survey and Mapping Division (SMD) — Lands Commission**, P.O. Box MB 237, Accra. Phone 0302 429 760 / 0302 429 762 / 050 557 8100. Email info@lc.gov.gh. https://www.lc.gov.gh/
 
-**GMX Systems Ghana Limited** — technical partner (subsidiary of GMX Systems Ltd., Israel)
-**Geo-Tech Systems Ltd., Ghana** — PPP partner; provides field integration
+**GMX Systems Ghana Limited** — technical partner; Israeli-Ghanaian joint venture launched April 2022, affiliated with the Israeli Etkes Group (Leica Geosystems representative in Israel); the parent Israeli GMX Systems Ltd. entered the Ghana CORS PPP with Geo-Tech Systems, Ghana Water Company and Lands Commission in 2021. Hosts the CORS network software on its virtual platform; CORS page https://www.gmxgh.com/index.php/cors-network/ advertises the service without publishing host, port, mountpoint, tariff or registration URL.
+
+**Geo-Tech Systems Ltd., Ghana** — PPP partner, field integration.
+
+**LiSAG** (Licensed Surveyors Association of Ghana) — co-launch partner of the August 2025 nationwide observation exercise.
 
 ## Timeline
 
 | Date | Event |
 |------|-------|
-| Pre-2020 | SMD deploys 4 pilot CORS in Greater Accra, Ashanti, Western, and Brong-Ahafo regions; supports static (≤100 km) and RTK (≤20 km) survey |
-| 2021 | Geo-Tech Systems / GMX Systems enter public-private partnership with Ghana Water Company and Lands Commission for a nationwide 85-station CORS network — described as the most extensive CORS network in West Africa at the time |
-| Aug 19, 2025 | Lands Commission officially unveils the CORS network; nationwide observation exercise launched to tie 60+ newly established stations into the national geodetic framework (Ghana Grid Coordinate System). Plan to expand to 100 stations by end of 2025 |
-| Aug 19, 2025 | Lands Commission simultaneously launches "digital geospatial data system" (DGDS) — a broader platform for 24/7 geospatial data access including CORS-derived corrections |
-| 2026-05-17 | Subsequent reporting (newsghana.com.gh, theoverseeronline.com) cites **52 CORS stations operational** under the LC–LiSAG–GMX partnership; 100-station target reaffirmed but no end-2025 completion announcement surfaced. No public NTRIP host:port disclosed. |
-
-## Network Details
-
-- **Stations:** ~60 physical CORS announced at Aug 2025 unveiling; 52 reported operational in subsequent reporting (2026); target 100 stations (timeline slipped past end-2025)
-- **Zoning:** Three geographic sectors — southern, middle belt, and upper
-- **Claimed precision:** Centimetre-level accuracy for RTK fieldwork
-- **Purpose stated:** Cadastral surveys, hydrospatial surveys, and other geospatial applications
-- **Caster software / host:port:** Not published; GMX Systems supplies CORS hardware and likely NTRIP back-end software; no public sourcetable or registration portal found
-- **WGIC case study:** Ghana network cited as an "exemplar geospatial PPP" in the World Geospatial Industry Council's Africa Geospatial PPPs report
+| Pre-2020 | SMD operates 4 pilot CORS in Greater Accra, Ashanti, Western, Brong-Ahafo; supports static (≤100 km) and RTK (≤20 km) |
+| 2021 | Geo-Tech / GMX enter PPP with Ghana Water Company and Lands Commission for an 85-station nationwide network |
+| 2025-08-19 | Lands Commission unveils CORS network; nationwide observation exercise launched to tie ~60 newly established stations into Ghana Grid Coordinate System. Target 100 stations by end-2025 |
+| 2025-08-19 | Lands Commission also launches Digital Geospatial Data System (DGDS) — broader 24/7 geospatial-access platform that includes CORS-derived corrections |
+| 2026-05-21 | Subsequent reporting cites 52 CORS operational; 100-station target reaffirmed but past end-2025 deadline. No public NTRIP host:port disclosed |
 
 ## Negative Findings
 
-- RTK2GO / Centipede / EarthScope: Zero GH mountpoints in any public sourcetable (verified via local `data/stations.json` 2026-05-12)
+- rtk2go / Centipede / EarthScope: 0 GH mountpoints (verified 2026-05-22 via local `data/stations.json` snapshot — this only covers the casters wired into our pipeline; rtk2go sourcetable was also probed directly)
+- GEODNET / ONOCOY / PointOne / Skylark: no GH coverage identified. These networks are not in `data/stations.json` (not wired into our pipeline); absence is inferred from each network's own coverage page (GEODNET map shows no GH pins; ONOCOY only lists their European core 2026-05-22), not from a sourcetable probe of each commercial caster
 - NTRIP-list.com Africa: Ghana not listed
 - ArduSimple country directory: Ghana not listed with a free or commercial NTRIP service
-- mvarga1989 GNSS CORS list (GitHub): No Ghana NTRIP endpoint
-- GMX Ghana CORS page (https://www.gmxgh.com/index.php/cors-network/, 2026-05-12) advertises the network but publishes no host, port, mountpoint, tariff or registration URL — access still gated to direct contact
-- No public caster address found in any indexed source, academic paper, or news article as of 2026-05-12
+- mvarga1989 GNSS CORS list (GitHub): no Ghana NTRIP endpoint
+- GMX Ghana CORS page: advertises network, publishes no host/port/tariff/registration URL (re-checked 2026-05-22)
+- No 2026 press release surfaces a public caster address; News Ghana parliamentary CORS coverage 2026-05 does not disclose one
 
 ## Post-Processing (RINEX) Fallback
 
 | Service | URL | Cost |
-|---------|-----|------|
-| **SMD / Lands Commission** — RINEX data availability not confirmed; contact SMD directly | https://www.lc.gov.gh/ | Unknown |
-| **IGS / EarthScope** — NSAS (Accra) station archive for post-processing | https://www.earthscope.org/data/gnss-data/ | Free non-commercial (account required) |
-| **GSSTI (Ghana Space Science and Technology Institute)** — hosts AFREF archive station in Accra; RINEX access via IGS network | https://www.gssti.gov.gh/ | Free non-commercial |
+|---|---|---|
+| SMD / Lands Commission RINEX availability (not confirmed; contact SMD directly) | https://www.lc.gov.gh/ | unknown |
+| IGS / EarthScope — Accra-area Nigerian/Ghanaian IGS holdings | https://www.earthscope.org/data/gnss-data/ | free non-commercial (account required) |
+| GSSTI (Ghana Space Science and Technology Institute) — Accra AFREF archive station | https://www.gssti.gov.gh/ | free non-commercial |
 
-## Sources Consulted
+## Sources
+
+- Israel Trade Mission to Ghana — "New Israel-Ghanaian Venture, GMX Systems, launched" (April 2022, confirms joint-venture structure, not subsidiary): https://itrade.gov.il/ghana/2022/04/13/new-israel-ghanaian-venture-gmx-systems-launched-with-festive-opening/
 - GPS World — Ghana nationwide CORS exercise: https://www.gpsworld.com/ghana-launches-nationwide-cors-network-exercise/
 - Ghana News Agency — DGDS launch Aug 2025: https://gna.org.gh/2025/08/lands-commission-launches-digital-geospatial-data-system/
 - Ghana Business News — DGDS launch: https://www.ghanabusinessnews.com/2025/08/20/lands-commission-launches-digital-geospatial-data-system/
 - MyJoyOnline — Lands Commission / LiSAG / GMX launch: https://www.myjoyonline.com/lands-commission-lisag-and-gmx-launch-nationwide-gps-cors-network-observation/
-- WGIC — Nationwide CORS Network Ghana PPP: https://wgicouncil.org/nationwide-cors-network-ghana-an-exemplar-geospatial-ppp/
+- WGIC — Nationwide CORS Network Ghana PPP exemplar: https://wgicouncil.org/nationwide-cors-network-ghana-an-exemplar-geospatial-ppp/
 - Graphic Online — CORS deployment: https://www.graphic.com.gh/news/general-news/ghana-news-lands-commission-deploys-effective-continuous-operating-reference-system.html
 - Springer — CORS usage Greater Accra Region: https://link.springer.com/article/10.1007/s41651-020-00061-8
-- SMD page on lc.gov.gh: https://www.lc.gov.gh/about-us/organizational-structure/survey-mapping-division-smd/
-- mycoordinates.org — GNSS software for Ghana SMD: https://mycoordinates.org/development-of-gnss-software-for-ghana-survey-and-mapping-division/
-- RTK2GO monitor (monitor.use-snip.com) — no GH mountpoints visible
-- NTRIP-list.com/africa — Ghana not listed
-- GMX Systems Ghana CORS network page: https://www.gmxgh.com/index.php/cors-network/ (2026-05-12, fetched via WebFetch — no caster credentials disclosed)
+- SMD page: https://www.lc.gov.gh/about-us/organizational-structure/survey-mapping-division-smd/
+- News Ghana — Parliament backs Lands Commission reform (2026-05): https://www.newsghana.com.gh/parliament-backs-lands-commission-reform-drive/
 - Coordinates magazine — Ghana DGDS launch: https://mycoordinates.org/ghana-launches-digital-geospatial-data-system/
-- curl probe of `https://www.lc.gov.gh/` 2026-05-12 — HTTP 200 OK
-- WebFetch lc.gov.gh 2026-05-17 — no CORS portal, no host:port, no datum/epoch text on Lands Commission landing page
-- News Ghana parliamentary CORS reform coverage 2026-05-17: https://www.newsghana.com.gh/parliament-backs-lands-commission-reform-drive/ (52 stations operational, 100-station target reaffirmed)
+- GMX Systems Ghana CORS page: https://www.gmxgh.com/index.php/cors-network/
+- Local: `py scripts/stations_by_country.py GHA` → no stations

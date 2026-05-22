@@ -1,56 +1,50 @@
 # Trinidad and Tobago [TT] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-17 (refresh of 2026-05-13 entry)
+**Date researched:** 2026-05-22
 
-## Status: TTAGN listed by ministry; gpscors.gov.tt DNS now resolves again from sandbox 2026-05-17 (NXDOMAIN of 2026-05-13 was transient); NTRIP port still not externally probed; EarthScope COCONet CN57 remains usable nearby alternative
+## Status: National caster (TTAGN) listed by ministry; portal externally unreachable; one EarthScope NOTA station nearby as free fallback
 
 | Field | Value |
 |---|---|
-| **Active public NTRIP RTK caster** | Yes per ministry listing (government-operated; 24/365 CORS; registration required) — but unreachable externally |
-| **Operator** | Surveys and Mapping Division, Ministry of Agriculture, Land and Fisheries |
-| **Network name** | Trinidad and Tobago Active Geodetic Network (TTAGN) |
-| **landing_url** | `https://agriculture.gov.tt/divisions-units/divisions/surveys-and-mapping/online-web-services/` — operator (Surveys and Mapping Division) Online Web Services page; lists TTAGN as an active service and gives the access URL. Most descriptive operator-owned page reachable from sandbox. |
-| **access_url** | `http://www.gpscors.gov.tt/gpscorstt` — ministry-listed access URL for TTAGN portal (registration / credential issuance path). DNS resolution intermittent (NXDOMAIN 2026-05-13, resolved 2026-05-17); contact `surmaptt@gmail.com` if portal unreachable. |
-| **host:port — TTAGN** | not published; ministry-listed access URL is `http://www.gpscors.gov.tt/gpscorstt`. DNS for `gpscors.gov.tt` failed to resolve from sandbox 2026-05-13 (NXDOMAIN); same lookup on 2026-05-17 succeeded (`nslookup gpscors.gov.tt` returned A record). Earlier NXDOMAIN was therefore transient. NTRIP port reachability not yet retested. |
-| **num_stations** | ? — current count not stated on operator pages reachable from sandbox. The 2013 academic design paper records an original 5-station deployment in 2007; no expansion or contraction announcement found through 2026-05-17. Confirm with `surmaptt@gmail.com` for current figure. |
-| **tariff** | not published publicly; contact Surveys and Mapping Division |
-| **hobbyist_eligibility** | Unclear — TTAGN primarily serves professional land surveyors and engineers; hobbyist access policy not documented |
-| **legal_residency_required** | Unclear — government network; no explicit residency requirement stated |
-| **last_confirmed_alive** | agriculture.gov.tt Online Web Services page HTTP 200 confirmed 2026-05-17 (TTAGN still listed as an active service); `gpscors.gov.tt` DNS resolved 2026-05-17 (transient NXDOMAIN of 2026-05-13 cleared). NTRIP port 2101 not yet re-probed in same session — service status remains **listed-active / NTRIP-port-unverified**. |
-| **datum_epoch** | omitted -- no citable operator declaration on agriculture.gov.tt online-web-services page; 2013 academic design paper referenced ITRF but operator portal silent. |
+| National NTRIP RTK caster | TTAGN — listed as active service by Ministry of Agriculture; portal externally unreachable (HTTP ECONNREFUSED 2026-05-22) |
+| Operator | Surveys and Mapping Division, Ministry of Agriculture, Land and Fisheries |
+| Network name | Trinidad and Tobago Active Geodetic Network (TTAGN) |
+| landing_url | https://agriculture.gov.tt/divisions-units/divisions/surveys-and-mapping/online-web-services/ (Surveys and Mapping Division operator page; lists TTAGN as an active service) |
+| access_url | http://www.gpscors.gov.tt/gpscorstt (ministry-listed access URL — portal HTTP ECONNREFUSED 2026-05-22; DNS resolved 2026-05-17 + 2026-05-22 → consistent with ministry-internal-network access or sustained service outage). Contact `surmaptt@gmail.com` if portal unreachable. |
+| host:port | not published; access URL is `http://www.gpscors.gov.tt/gpscorstt`. Service-routability for non-TT IPs unverified |
+| num_stations | ? — 2013 academic paper documents a 5-station tender/design (2007); whether all five were built, are operational as of 2026, or have been expanded/reduced is not publicly verifiable. Operator pages do not enumerate stations. Confirm with `surmaptt@gmail.com` for current figure. |
+| tariff | not published on any operator page (`agriculture.gov.tt` Online Web Services page lists TTAGN without pricing, 2026-05-22); contact Surveys and Mapping Division (`surmaptt@gmail.com`). Source: https://agriculture.gov.tt/divisions-units/divisions/surveys-and-mapping/online-web-services/ |
+| vrs | ? — not stated on operator pages |
+| hobbyist_eligibility | ? — service oriented to licensed land surveyors and engineers (Surveys and Mapping Division also acts as Land Survey Board registrar); hobbyist access policy not documented |
+| legal_residency_required | ? — government network; no explicit residency rule stated |
+| last_confirmed_alive | agriculture.gov.tt Online Web Services page HTTP 200 confirmed 2026-05-22 (TTAGN still listed as active service alongside CMIS/`surveys.gov.tt` and public map). DNS `gpscors.gov.tt` resolves (nslookup A record 2026-05-22); HTTP port responds ECONNREFUSED 2026-05-22. Service status: **listed-active / publicly-unreachable**. |
+| datum_epoch | omitted — no citable operator declaration on agriculture.gov.tt; 2013 academic design paper referenced ITRF but operator portal silent |
 
-## Most Recent Project Announcement
+## TTAGN background
 
-TTAGN was established as the Caribbean's first Active GPS Reference Network, originally comprising five stations, built with support from Fujitsu and Trimble Navigation. The network provides 24/365 GPS corrections. The Surveys and Mapping Division's Online Web Services page at agriculture.gov.tt lists TTAGN as an active service offering GPS corrections, with the access URL given as http://www.gpscors.gov.tt/gpscorstt. No new announcement or expansion news was found as of 2026-05-06.
+Established as the Caribbean's first Active GPS Reference Network — original deployment 5 reference stations (2007) with Fujitsu and Trimble Navigation support. Designed for 24/365 GPS correction delivery via cellular, MSK radio beacon (planned 2007 follow-on), and internet. Per the 2013 academic paper, baseline-comparison accuracy to international reference frames was sub-cm. The Surveys and Mapping Division's contact: 118 Frederick Street, Port of Spain; +1 868-627-9201 ext. 237; `surmaptt@gmail.com`.
 
-## Context Notes
+Portal-status timeline:
+- 2026-05-06: `gpscors.gov.tt/GPSCORSTT/default.aspx` → ECONNREFUSED
+- 2026-05-13: DNS for `gpscors.gov.tt` → NXDOMAIN (transient resolver issue)
+- 2026-05-17: DNS resolves again
+- 2026-05-22: DNS resolves (nslookup A record), HTTP ECONNREFUSED → portal not publicly reachable; ministry-only network access plausible. Ministry page still lists the URL as the access path.
 
-- **TTAGN**: A 24/365 CORS network covering both Trinidad and Tobago islands. Original deployment: 5 reference stations (2007, per 2013 academic paper). Current station count not confirmed in any source found during this research; the government's Online Web Services page does not list individual stations. No expansion announcement found.
-- **Portal status timeline:** gpscors.gov.tt/GPSCORSTT/default.aspx returned ECONNREFUSED 2026-05-06; DNS resolution for `gpscors.gov.tt` FAILED 2026-05-13 (NXDOMAIN from sandbox resolver); DNS resolution SUCCEEDED 2026-05-17 (A record returned). The 2026-05-13 NXDOMAIN appears to have been a transient resolver issue, not a domain takedown. The agriculture.gov.tt ministry page still references `http://www.gpscors.gov.tt/gpscorstt` (HTTP 200 confirmed 2026-05-17, TTAGN listed alongside CMIS at surveys.gov.tt and the CMIS public map at surveys.gov.tt/publicmap). NTRIP caster public-routability for non-TT IPs remains unverified — ministry-only network access still plausible.
-- **CMIS (Cadastre Management Information System) / surveys.gov.tt**: Listed alongside TTAGN as an Online Web Service. Public map at https://www.surveys.gov.tt/publicmap. Run by Surveys and Mapping Division but unrelated to NTRIP/RTK.
-- **DNS lookup of `gpscors.gov.tt`**: FAILED 2026-05-13 (transient); SUCCEEDED 2026-05-17. Port 2101 not yet re-probed in 2026-05-17 session.
-- **Nearest viable RTK alternative within ~50 km**: EarthScope COCONet station **CN57_RTCM3P3** (10.84°N -60.94°W, ~55 km off Tobago's east coast) reachable via the ingested EarthScope NOTA caster — coverage tracked via local helper script (`py scripts/stations_by_radius.py 10.5 -61.3 200`, source filter `earthscope`). EarthScope NULA + non-commercial use applies; see docs/ntrip_research notes on EarthScope (researched separately, not duplicated here).
-- **Surveys and Mapping Division** contact: 118 Frederick Street, Port of Spain; phone 868-627-9201 ext. 237; email surmaptt@gmail.com.
-- **Spatial Dimension** (UK GIS firm) supported the division's Cadastre Management Information System (CMIS / Landfolio); not related to NTRIP caster operations.
-- The Surveys and Mapping Division also operates as the Land Survey Board registrar — suggesting NTRIP access may be limited to licensed land surveyors.
-- **RTK2go / Centipede-RTK**: No Trinidad and Tobago base stations in public sourcetables per 2026-05-13 ingest; not re-checked 2026-05-17.
-- **EarthScope (NOTA)**: One Trinidad-region COCONet station available — **CN57_RTCM3P3** (10.84°N, -60.94°W, off the east coast between Trinidad and Tobago) — confirmed in local data 2026-05-13 with `[TTO]` country code. Free for non-commercial use with NULA. Full EarthScope NOTA detail lives outside this file (ingested-global; reference via helper scripts, not duplicated as caster entry).
-- **Global commercial fallbacks:** Galileo HAS (~40 cm, no internet) — out of project scope per primer [scope] (SSR/PPP-tier), mentioned for completeness only; GEODNET and Onocoy — RTK-tier, no confirmed TT coverage in public station maps.
+CMIS (Cadastre Management Information System) at `surveys.gov.tt` and the public map at `surveys.gov.tt/publicmap` are listed alongside TTAGN on the Online Web Services page — unrelated to NTRIP/RTK.
 
-## Post-Processing (RINEX) Fallback
+## EarthScope NOTA free stream in TT territory
 
-| Service | URL | Cost |
-|---|---|---|
-| **TTAGN RINEX data** — available via Surveys and Mapping Division | https://agriculture.gov.tt/divisions-units/divisions/surveys-and-mapping/online-web-services/ | Unknown — contact surmaptt@gmail.com |
-| **NOAA NGS CORS** (any shared TT stations in NCN) | https://geodesy.noaa.gov/CORS/ | Free |
+**EarthScope NOTA CN57_RTCM3P3** (10.84 N / 60.94 W, **Toco area, NE tip of Trinidad** — tagged TTO in `data/earthscope.sourcetable` line 146; location confirmed via EarthScope/COCONet station info). Reachable via `ntrip.earthscope.org:2101`. Free non-commercial under NULA, $1,000/seat/yr commercial, ITRF2014 / NOTA epoch 2026-03-30. Probed baselines 2026-05-22: ~66 km to Port of Spain, ~39 km to southern Tobago (Scarborough area), ~36 km to northern Grenada tip. All well outside cm-grade single-base range (~20–30 km dual-frequency), but the closest free public RTK source for NE Trinidad / southern Tobago coastal work. EarthScope NOTA detailed in its dedicated research file.
 
-## Sources Consulted
-- Surveys and Mapping Division — Online Web Services: https://agriculture.gov.tt/divisions-units/divisions/surveys-and-mapping/online-web-services/ — HTTP 200 confirmed 2026-05-17; TTAGN + CMIS (surveys.gov.tt) + CMIS public map (surveys.gov.tt/publicmap) all listed; gpscors.gov.tt/gpscorstt referenced as access URL
-- Surveys and Mapping Division — contact page: https://agriculture.gov.tt/divisions-units/divisions/surveys-and-mapping/ — address, phone, email confirmed 2026-05-06
-- TTAGN portal: http://www.gpscors.gov.tt/GPSCORSTT/default.aspx — ECONNREFUSED 2026-05-06; DNS NXDOMAIN 2026-05-13 (transient); DNS resolved 2026-05-17 (transient NXDOMAIN cleared; portal HTTP not re-probed)
-- nslookup `gpscors.gov.tt` 2026-05-17 — A record returned
-- Local data probe `py scripts/stations_by_radius.py 10.5 -61.3 200` — EarthScope CN57_RTCM3P3 confirmed 55 km from query point with [TTO] code 2026-05-13
-- Spatial Dimension project page: https://www.spatialdimension.com/projects/trinidad-and-tobago-survey-and-mapping-division/ — CMIS/Landfolio only; no NTRIP detail
-- Survey Trinidad and Tobago Ltd: https://www.surveytt.com/ — private surveying firm; no TTAGN/NTRIP detail
-- Academia.edu — "A new geodetic infrastructure for Trinidad and Tobago" (2013; original 5-station TTAGN design): https://www.academia.edu/5286063/A_new_geodetic_infrastructure_for_Trinidad_and_Tobago
-- RTK2go monitor (monitor.use-snip.com) — no TT stations 2026-05-13
-- ArduSimple country search — no TT-specific page found
+Confirmed 2026-05-22 via `py scripts/stations_by_radius.py 10.50 -61.30 250` → 2 EarthScope hits (CN57 + CN46 Carriacou GRD); zero non-EarthScope sources.
+
+## Volunteer / commercial overlay (2026-05-22)
+
+Zero TT mountpoints on rtk2go, Centipede, GEODNET, ONOCOY per local pipeline + WebSearch. Galileo HAS (~40 cm broadcast SSR) covers TT but is out-of-scope per project primer.
+
+## Sources
+- Surveys and Mapping Division — Online Web Services: https://agriculture.gov.tt/divisions-units/divisions/surveys-and-mapping/online-web-services/ (WebFetch 2026-05-22 → HTTP 200; TTAGN listed with access URL `http://www.gpscors.gov.tt/gpscorstt`; no host:port / station list / tariff on page)
+- Surveys and Mapping Division contact: https://agriculture.gov.tt/divisions-units/divisions/surveys-and-mapping/
+- TTAGN portal: http://www.gpscors.gov.tt/gpscorstt — WebFetch 2026-05-22 → ECONNREFUSED; nslookup gpscors.gov.tt 2026-05-22 → A record returned
+- Academia.edu — "A new geodetic infrastructure for Trinidad and Tobago" (2013, 5-station design): https://www.academia.edu/5286063/A_new_geodetic_infrastructure_for_Trinidad_and_Tobago
+- EarthScope GNSS realtime (CN57 fallback): https://www.earthscope.org/data/gnss-realtime/ (ITRF2014, NOTA epoch 2026-03-30)
+- Local pipeline 2026-05-22: `data/earthscope.sourcetable` line 146 (CN57 TTO); `stations_by_country.py TTO` returns CN57; `stations_by_radius.py 10.50 -61.30 250` → 2 EarthScope hits, zero others

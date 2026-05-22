@@ -1,60 +1,54 @@
 # Saint Kitts and Nevis [KN] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06; reverified 2026-05-17 (UWI SRC geodesy page HTTP 200 confirms 2007-era CORS network across Eastern Caribbean; station names STKN/BATH not enumerated on the page but consistent with prior research; EarthScope NOTA RDON 36.3 km from Charlestown, Nevis re-verified via `stations_by_radius.py 17.13 -62.62 100`; ITRF2014 datum cite added for the cross-border EarthScope option)
+**Date researched:** 2026-05-22
 
-## Status: No national caster — UWI SRC scientific CORS (STKN on St. Kitts, BATH on Nevis) present since 2007 but not publicly streamed via NTRIP. EarthScope NOTA stations on neighbouring Montserrat and Antigua provide RTK corrections within ~50 km of southern Nevis.
+## Status: No national caster — UWI SRC cGPS internal only; nearest free RTK is EarthScope NOTA RDON (Redonda, AG territory) at ~36 km from Charlestown (Nevis), ~58 km from Basseterre (St. Kitts)
 
 | Field | Value |
 |---|---|
-| **National NTRIP RTK caster** | No |
-| **Scientific GNSS stream in KN territory** | **STKN** (St. Kitts), **BATH** (Nevis) — UWI Seismic Research Centre cGPS stations operating since 2007 for volcano / seismic monitoring. Data are streamed to SRC Trinidad via internet and VSAT for internal scientific use. **No public NTRIP correction stream.** GPS data repository available "by online request" via uwiseismic.com/connect/data-request/. |
-| **COCONet / EarthScope NOTA station in KN itself** | None confirmed in KN territory. |
-| **Nearest cross-border RTK NTRIP** | **EarthScope NOTA** — `RDON_RTCM3P3` on Redonda (Antigua territory) at 16.93 N / -62.35 E is **~35 km** from southern Nevis (Charlestown) and ~62 km from Basseterre, St. Kitts. Six further EarthScope NOTA RTCM3 mountpoints on Montserrat (CN62, OLVN, AIRS, TRNT, RCHY) and Antigua (BGGY) are within 60–100 km of Nevis. Per project rule (~50 km), `RDON_RTCM3P3` is a viable single-base option for Nevis. Source: stations.json earthscope source, 2026-05-12. |
-| **landing_url — EarthScope NOTA (cross-border RDON)** | https://www.earthscope.org/data/gnss-realtime/ (operator-owned EarthScope realtime data page) |
-| **access_url — EarthScope NOTA (cross-border RDON)** | https://www.earthscope.org/user/NoncommercialLicenseAgreement.pdf (NULA registration document — distinct from landing page) |
-| **num_stations — EarthScope NOTA (KN coverage)** | 1 — `RDON_RTCM3P3` on Redonda (Antigua territory) provides cross-border single-base coverage to Nevis (~35 km). Zero EarthScope stations physically in KN territory. |
-| **vrs — EarthScope NOTA** | no — raw single-base RTCM 3.3 stream, not VRS/Network-RTK. |
-| **hobbyist_eligibility** | N/A for KN-territory casters. EarthScope NOTA RDON is free for non-commercial use with NULA account; $1 000/seat/yr commercial. |
-| **legal_residency_required** | N/A |
-| **last_confirmed_alive** | UWI SRC geodesy page WebFetch HTTP 200 (2026-05-17); EarthScope RDON live in stations.json (`stations_by_radius.py 17.13 -62.62 100` → RDON_RTCM3P3 at 36.3 km, ATG country tag, 2026-05-17). |
-| **datum_epoch (cross-border EarthScope option)** | ITRF2014; NOTA epoch 2026-03-30 -- operator-declared at https://www.earthscope.org/data/gnss-realtime/ (WebFetch 2026-05-17). No KN-territory operator caster, so no national datum citation. |
+| Active public NTRIP RTK caster in KN territory | No |
+| landing_url | n/a (no KN caster); nearest cross-border free stream is EarthScope NOTA — details in `EarthScope.md` |
+| access_url | n/a |
+| host:port | n/a |
+| num_stations | 0 in KN territory |
+| vrs | n/a |
+| tariff | n/a |
+| hobbyist_eligibility | n/a |
+| legal_residency_required | n/a |
+| last_confirmed_alive | 2026-05-22 — `data/earthscope.sourcetable` (refreshed 2026-05-21, source_health ok) contains no KN-tagged stations; UWI SRC geodesy page reachable, confirms "data repository is available by online request" |
+| datum_epoch | omitted — no KN-operator caster; no national datum declaration located |
 
----
+UWI Seismic Research Centre operates cGPS in the Eastern Caribbean (incl. St. Kitts and Nevis) for volcano/seismic monitoring, streamed to SRC Trinidad via internet/VSAT for internal use only. **No public NTRIP endpoint.** Archive data available "by online request" via uwiseismic.com/connect/data-request/.
 
-## UWI Seismic Research Centre (SRC) CORS
+## UWI Seismic Research Centre
 
-Since 2007 the UWI Seismic Research Centre (SRC), headquartered in Trinidad, has operated a network of Continuously Operating Reference Stations (CORS) across the Eastern Caribbean for volcano and seismic monitoring. The SRC geodesy page (re-fetched 2026-05-17) confirms CORS deployments "in several islands in the Eastern Caribbean (including Grenada, St. Vincent, Dominica, Saint Lucia, Antigua and St. Kitts)" since 2007 but does not enumerate individual station IDs on the public page. Station IDs **STKN** (St. Kitts) and **BATH** (Nevis) come from prior research material; SRC has not republished a station table publicly. Wider regional cGPS network: DOMP / DOMR / DOMI (Dominica), CN04 (Saint Lucia), SVGB / SVGK (St. Vincent), GRE0 (Grenada). Data are streamed to SRC in Trinidad via internet and VSAT for internal seismological use. **No public NTRIP endpoint, sourcetable URL, or data-sharing agreement for RTK corrections from these stations has been found.** GPS data repository: archived RINEX available "by online request" through uwiseismic.com/connect/data-request/. Processing toolchain: GAMIT/GLOBK (per SRC page 2026-05-17).
+The UWI Seismic Research Centre (Trinidad) has operated cGPS stations in St. Kitts and Nevis since 2007 as part of an Eastern Caribbean volcano-monitoring network. The SRC geodesy page (uwiseismic.com/volcanoes/volcano-monitoring/geodesy-gps-network/) describes the network without enumerating per-island station IDs publicly; SRC processing uses GAMIT/GLOBK and data are streamed to SRC Trinidad via internet and VSAT for internal seismological use. **No public NTRIP stream, sourcetable URL, or RTK data-sharing agreement.** Prior research material attributes station codes STKN (St. Kitts) and BATH (Nevis) to this network; these are not currently republished on the SRC public page.
 
-**Note on Soufrière Hills (Montserrat)**: The research note for this entry references "Soufrière Hills cGPS NTRIP status." Soufrière Hills volcano is on **Montserrat** (British Overseas Territory), not on St. Kitts or Nevis. The Montserrat Volcano Observatory (MVO) and UWI SRC jointly monitor it with cGPS, but this is in a different jurisdiction (MS, not KN) and no public NTRIP endpoint for MVO cGPS was found. The EarthScope NOTA RTCM3 mountpoints on Montserrat (CN62, OLVN, AIRS, TRNT, RCHY) are separately discoverable in stations.json under the earthscope source — see "Nearest cross-border RTK NTRIP" row above.
+The Soufrière Hills volcano network (referenced in older research notes) is on Montserrat, not KN — separate jurisdiction (Montserrat Volcano Observatory + UWI SRC). EarthScope NOTA Montserrat cluster (NWBL, OLVN, CN62, AIRS, TRNT, RCHY) sits 56–69 km from Nevis (see "cross-border alternates" below).
 
----
+## National surveying authority
 
-## Lands and Surveys Unit
+**Lands and Surveys Unit**, Government of St. Kitts and Nevis (`gov.kn/lands-and-surveys-unit/`). No NTRIP caster, CORS network, or real-time correction product on its public pages. No OECS / CARICOM regional GNSS project specific to KN identified.
 
-The **Lands and Surveys Unit** of the Government of St. Kitts and Nevis (gov.kn) is responsible for geodetic and cadastral work. The unit's official page (gov.kn/lands-and-surveys-unit/) contains no reference to an NTRIP caster, CORS network, or real-time GPS correction service as of 2026-05-06.
+## Cross-border free RTK alternates near KN
 
----
+Per `py scripts/stations_by_radius.py 17.13 -62.62 100` (Nevis-centric, 2026-05-22) — 15 total hits across earthscope (9) + agrs_nl (4) + igs_ip (2):
 
-## Most Recent Project Announcement
-
-No announcement of a national CORS or NTRIP service for Saint Kitts and Nevis was found in any source. No OECS or CARICOM regional GNSS project specific to KN was identified.
-
----
-
-## Post-Processing (RINEX) Fallback
-
-No confirmed public RINEX download service for KN-territory stations identified. The UWI SRC archives data internally; public access paths not documented.
-
-| Service | URL | Cost |
+| Mountpoint | Territory | ~km from Charlestown |
 |---|---|---|
-| **EarthScope GNSS Archive** — check for any KN-adjacent NOTA stations | https://www.earthscope.org/data/gnss-data/ | Free noncommercial; $1,000/seat/yr commercial |
+| RDON_RTCM3P3 | Antigua (Redonda) | 36 |
+| NWBL_RTCM3P3 | Montserrat | 56 |
+| OLVN_RTCM3P3, CN62_RTCM3P3, AIRS_RTCM3P3, TRNT_RTCM3P3, RCHY_RTCM3P3 | Montserrat | 59–69 |
+| BGGY_RTCM3P3 | Antigua (Barbuda) | 81 |
+| CN01_RTCM3P3 | Antigua main | 92 |
 
-## Sources Consulted
-- UWI Seismic Research Centre — Geodesy & GPS Network page: https://uwiseismic.com/volcanoes/volcano-monitoring/geodesy-gps-network/ (HTTPS 200 2026-05-12)
-- UWI SRC homepage: https://uwiseismic.com/
+Plus 4 AGRS-NL/IGS stations in Saba/Statia (SEUS/SABY, BES) at 56–86 km. RDON (Antigua's Redonda dependency, 16.93 N / -62.35 W) is ~36 km from Charlestown (Nevis) and ~58 km from Basseterre (St. Kitts) — the only one inside reliable single-base RTK range for Nevis; the Montserrat cluster (six EarthScope mounts including NWBL at 56 km) is at 56–69 km — useful for redundancy with degraded fix probability at those baselines.
+
+Operator details, tariffs, hobbyist eligibility, datum/epoch, and the NULA license workflow for these cross-border EarthScope and AGRS-NL/IGS streams are covered in their dedicated research files (`EarthScope.md`, `AGRS_NL.md`, `IGS_IP.md`).
+
+## Sources
+- UWI Seismic Research Centre — Geodesy & GPS Network: https://uwiseismic.com/volcanoes/volcano-monitoring/geodesy-gps-network/ (WebFetch 2026-05-22 — no public NTRIP host; "data repository is available by online request")
 - UWI SRC data request: https://uwiseismic.com/connect/data-request/
 - Government of St. Kitts and Nevis — Lands and Surveys Unit: https://www.gov.kn/lands-and-surveys-unit/
-- COCONet site info (UNAVCO/GAGE) — no KN station listed: https://coconet.unavco.org/site-info/site-info.html
-- EarthScope NOTA network overview: https://www.earthscope.org/nota/
-- NTRIP-list.com North America — no KN entry found
-- RTK2go / Centipede sourcetables — no KN stations found
-- stations.json earthscope source 2026-05-17: RDON_RTCM3P3 (16.93 N / -62.35 E, ATG) 36.3 km from Charlestown, Nevis; cluster of further NOTA stations on Montserrat (CN62/OLVN/AIRS/TRNT/RCHY) within 59-69 km and Antigua (BGGY 81 km, CN01 92 km). `scripts/stations_by_radius.py 17.13 -62.62 100` lists all 8 EarthScope hits + agrs_nl (BES) stations 56-86 km.
+- EarthScope GNSS realtime: https://www.earthscope.org/data/gnss-realtime/ (ITRF2014, NOTA epoch 2026-03-30; $1,000/seat/yr commercial)
+- EarthScope NOTA: https://www.earthscope.org/nota/
+- Local pipeline 2026-05-22: `stations_by_country.py KNA` → no stations; `stations_by_radius.py 17.13 -62.62 100` → 15 cross-border hits across earthscope (9) + agrs_nl (4) + igs_ip (2); RDON at 36 km

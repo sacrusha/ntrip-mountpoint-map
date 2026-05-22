@@ -1,5 +1,5 @@
 # Suriname [SR] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-17 (re-probed; `miglis.sr/cors-data-stations/` HTTP 200, "Datum: ITRF00" still inline, 8-station table + NTRIP workflow unchanged)
+**Date researched:** 2026-05-21 (re-probed; prior: 2026-05-17 / 2026-05-13)
 
 ## Status: YES — MI-GLIS national CORS network with NTRIP subscription; paid since 2024-07-01; quote-based pricing, no published tariff; eligibility appears professional/institutional
 
@@ -10,18 +10,19 @@
 | **Service name** | MI-GLIS CORS Services |
 | **host:port** | Not published on the public web. Issued by email after a subscription contract is signed. Raw-data portal at `corsruwedata.miglis.sr` (login-gated; TCP-connect refused from this sandbox 2026-05-13) |
 | **mountpoint(s)** | Not published; presumably one mountpoint per CORS station (8 stations) and/or a VRS mountpoint — unconfirmed |
-| **stream type** | RTK / single-base RTCM 3.x from each physical CORS (VRS yes/no: not stated publicly) |
+| **stream type** | RTK / single-base RTCM 3.x from each physical CORS |
+| **vrs** | ? — not stated publicly. With 8 CORS spread across the coastal strip and interior mines, a network-RTK / VRS product is geometrically possible (some inter-station baselines exceed 70 km in the interior, e.g. Brokopondo–Merian, which limits VRS quality), but no operator declaration of a VRS / NRTK mountpoint was found on `miglis.sr` or in the application material |
 | **num_stations** | 8 physical CORS (see table below) |
 | **constellations** | Trimble Zephyr Geodetic antennas; mix of Trimble receivers (mainly NetR9/NetR5 class hardware on station photos) — multi-GNSS hardware, exact constellation list not published |
-| **datum** | ITRF00 |
+| **datum** | ITRF00 (operator notation; standard reading is ITRF2000 — the 2000 realization is commonly written "ITRF00") |
 | **datum_epoch** | cited https://miglis.sr/cors-data-stations/ — ITRF00; epoch not declared by operator (operator portal lists "Datum: ITRF00" inline next to the 8-station table; no epoch shown) |
 | **tariff — published** | No public tariff. Subscription requested by emailing `corsserver@miglis.sr` with: completed CORS-services application form (`AANVRAAGFORMULIER CORS DIENSTEN MI-GLIS`) and an N-formulier (instrument-registration form). After approval the customer signs a contract with a chosen package and receives NTRIP credentials |
-| **tariff — known fragments** | Re-opening a closed account: **USD 25.00**. Invoicing is in Surinamese Dollar (SRD) at the weekly Central Bank of Suriname exchange rate, valid 14 business days from invoice issue. Specific monthly / annual / per-station rates were not visible on the public web on 2026-05-13 |
+| **tariff — known fragments** | Re-opening a closed account: **USD 25.00** (carried from prior research file; not re-located on `miglis.sr/cors-data-stations/`, `miglis.sr/diensten/`, `miglis.sr/tarieven/` (2021-04 PDF), or the application-form PDF on 2026-05-22 — likely sourced from an emailed quote, not public web). Invoicing reported in Surinamese Dollar (SRD) at the weekly Central Bank of Suriname exchange rate, valid 14 business days from invoice issue. Specific monthly / annual / per-station rates not on the public web on 2026-05-22 |
 | **VAT** | Suriname BTW (VAT) currently 10 % on most services (rate confirmed in Belastingdienst SR schedule) — not separately broken out in the price fragments seen |
-| **hobbyist_eligibility** | Unclear — application form is `TBV OVERIGE INSTANTIES` (For Other Institutions). The form, the contract requirement, and the N-formulier (instrument registration) all point to a professional/institutional flow. No public hobbyist tier; nothing explicitly bars an individual from applying, but the workflow is not designed for one-off use |
-| **legal_residency_required** | Unclear — Suriname-based contract law applies (SRD invoicing, Surinamese banking). No explicit residency rule on the public site, but in practice an SRD-billed contract requires a local point of payment |
+| **hobbyist_eligibility** | ? — application form is `TBV OVERIGE INSTANTIES` (For Other Institutions). The form, the contract requirement, and the N-formulier (instrument registration) all point to a professional/institutional flow. No public hobbyist tier; nothing explicitly bars an individual from applying, but the workflow is not designed for one-off use |
+| **legal_residency_required** | ? — Suriname-based contract law applies (SRD invoicing, Surinamese banking). No explicit residency rule on the public site, but in practice an SRD-billed contract requires a local point of payment |
 | **registration** | Email `corsserver@miglis.sr`. Application form (PDF): `https://miglis.sr/wp-content/uploads/2023/08/AANVRAAGFORMULIER-CORS-DIENSTEN-MI-GLIS-TBV-OVERIGE-INSTANTIES.pdf` |
-| **last_confirmed_alive** | 2026-05-17 — `miglis.sr/cors-data-stations/` HTTP 200 (Server: Apache); 8-station table + Datum: ITRF00 + NTRIP application instructions all unchanged from 2026-05-13; `corsruwedata.miglis.sr` remains login-gated |
+| **last_confirmed_alive** | 2026-05-21 — `miglis.sr/cors-data-stations/` HTTP 200; 8-station table + "Datum: ITRF00" + NTRIP application instructions (`corsserver@miglis.sr`) all unchanged from 2026-05-13. `corsruwedata.miglis.sr` remains login-gated |
 
 ## MI-GLIS CORS Stations (8)
 
@@ -49,8 +50,8 @@ Coordinates are in UTM Zone 21N on the local Suriname datum projection (per the 
 - **MI-GLIS** (Management Instituut voor Grondregistratie en Land Informatie Systeem, `miglis.sr`): public/private institute reporting to the Ministerie van Grond- en Bosbeheer, runs the land registration and the national CORS network. Contact: `info@miglis.sr` / `corsserver@miglis.sr` / `finance@miglis.sr`; phone +597-403783.
 - **NTRIP discovery**: the MI-GLIS service page explicitly mentions "NTRIP account" delivery after approval, confirming this is a real-time NTRIP caster — not RINEX-only as the previous research file stated.
 - **Application workflow**: completed CORS-services application form (PDF on `miglis.sr/wp-content/uploads/2023/08/AANVRAAGFORMULIER-CORS-DIENSTEN-MI-GLIS-TBV-OVERIGE-INSTANTIES.pdf`) + N-formulier (instrument registration); reply by MI-GLIS with contract and NTRIP credentials.
-- **rtk2go / Centipede / EarthScope**: 0 SR-coded stations on rtk2go, 0 on Centipede; 0 EarthScope NOTA station inside or within 600 km of Paramaribo (`py scripts/stations_by_radius.py 5.85 -55.2 600` returns no results 2026-05-13).
-- **Cross-border alternatives within ~50 km**: none. Brazilian RBMC-IP nearest stations ~700–900 km from Paramaribo; French Guiana GNSS coverage is on the eastern frontier near Saint-Laurent-du-Maroni but neither IGN-FR Guyane Référence nor TERIA publishes a free public NTRIP for Guyane.
+- **rtk2go / Centipede / EarthScope**: 0 SR-coded stations on rtk2go or Centipede; 0 EarthScope NOTA station within 600 km of Paramaribo. The nearest public-aggregator stations are in French Guiana — KOUG00GUF0 (AUSCORS rebroadcast, 295 km) and CYNE00GUF0 (BKG IGS-IP, 333 km) — both far beyond RTK baseline. (`py scripts/stations_by_radius.py 5.85 -55.2 600` 2026-05-21.)
+- **Cross-border alternatives within ~50 km**: none. Brazilian RBMC-IP nearest stations ~700–900 km from Paramaribo. French Guiana hosts KOUG (Kourou) and CYNE (Cayenne) physical CORS rebroadcast by AUSCORS / IGS-IP, but distances to Paramaribo are 295 / 333 km — far beyond RTK baseline.
 - **SIRGAS-CON**: Suriname has at least one static GNSS monument processed by IBGE's SIRGAS-CON analysis centre — **post-processing RINEX only**, not a public NTRIP RTK stream. The MI-GLIS CORS network is operationally separate from the SIRGAS-CON archived monument(s).
 - **GISsat NV** (Esri/Trimble distributor in Suriname): resells Trimble Catalyst (PPP/SSR) and is not the MI-GLIS caster operator.
 - **No commercial network** (GEODNET, ONOCOY, HxGN SmartNet, Topcon NetG5/TopNET, Trimble VRS Now, Centipede-RTK, RTKdata) has confirmed SR coverage.
@@ -68,15 +69,15 @@ Coordinates are in UTM Zone 21N on the local Suriname datum projection (per the 
 
 ## Sources Consulted
 
-- MI-GLIS CORS data & stations page (8-station table, NTRIP workflow): https://miglis.sr/cors-data-stations/ — HTTP 200 confirmed 2026-05-13
-- MI-GLIS CORS services application form (PDF): https://miglis.sr/wp-content/uploads/2023/08/AANVRAAGFORMULIER-CORS-DIENSTEN-MI-GLIS-TBV-OVERIGE-INSTANTIES.pdf — HTTP 200, finance contact `finance@miglis.sr` confirmed; tariff schedule not legible in extracted text
+- MI-GLIS CORS stations page (8-station table, NTRIP workflow, "Datum: ITRF00"): https://miglis.sr/cors-data-stations/ — HTTP 200 confirmed 2026-05-21
+- MI-GLIS CORS application form (PDF): https://miglis.sr/wp-content/uploads/2023/08/AANVRAAGFORMULIER-CORS-DIENSTEN-MI-GLIS-TBV-OVERIGE-INSTANTIES.pdf
+- MI-GLIS tariffs page (links 2021-04 tariff PDF; PDF downloaded and parsed with pdftotext 2026-05-22 — contents enumerate items 1–63 incl. GPS rover/operator rental but contain no NTRIP / CORS subscription line. PDF predates 2024-07-01 paid-NTRIP switch and has not been re-issued.): https://miglis.sr/tarieven/
 - MI-GLIS services overview: https://miglis.sr/diensten/
 - MI-GLIS homepage: https://miglis.sr/
 - MI-GLIS CORS map (ArcGIS Online): https://www.arcgis.com/apps/mapviewer/index.html?webmap=bcb159ff6cd545959df359d20d59fb84
 - MI-GLIS Twitter / X (`@MIGLISSURINAME`): https://x.com/miglissuriname
 - Ministerie van Grond- en Bosbeheer / MI-GLIS section: https://gov.sr/ministeries/ministerie-van-grond-en-bosbeheer/mi-glis/
-- `corsruwedata.miglis.sr` — TCP-connect refused from sandbox (login-gated portal; not a service outage signal)
-- rtk2go and Centipede coverage (cross-checked 2026-05-13 via `py scripts/stations_by_radius.py 5.85 -55.2 600`) — no stations within 600 km
+- Cross-aggregator coverage check 2026-05-21 (`py scripts/stations_by_country.py SUR` returns no stations; `py scripts/stations_by_radius.py 5.85 -55.2 600` returns 2 GUF-tagged stations 295 / 333 km away)
 - IDB projects SU-T1146 / SU-L1067 — no GNSS/CORS component
 - SIRGAS station list, IGS Real-Time Service, NTRIP-list.com South America — no additional Suriname caster
-- HxGN SmartNet, GEODNET, ONOCOY, Centipede-RTK, RTKdata, Trimble VRS Now, ArduSimple country directory — no Suriname coverage
+- HxGN SmartNet, GEODNET, ONOCOY, Centipede-RTK, RTKdata, Trimble VRS Now, ArduSimple country directory — no Suriname coverage (2026-05 searches)

@@ -1,5 +1,5 @@
 # Mali [ML] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06 (refreshed 2026-05-17 — still no national caster; conflict + AES governance unchanged)
+**Date researched:** 2026-05-21 (re-verified — still no national caster; conflict + AES governance unchanged. `py scripts/stations_by_country.py MLI` → empty; `py scripts/stations_by_radius.py 12.6 -8.0 1000` → 2 Centipede (CIV INP02, SEN GORA) + 1 rtk2go GIN Gine-Albrk — all far beyond RTK range.)
 
 ## Status: NO active public NTRIP caster
 
@@ -23,7 +23,7 @@ URL: https://anat.sn/actualites/modernisation-du-reseau-geodesique-le-senegal-va
 
 - **BAMK** (Bamako IGS candidate station): Referenced in older AFREF literature, but NOT present in current IGS network database (zero results for country=ML). No station log file in IGS archive. Likely decommissioned or lapsed. Never confirmed as a public RTK NTRIP stream.
 - **IGM** (Institut Géographique du Mali) and **Direction Nationale du Cadastre**: No publicly accessible GNSS/RTK/NTRIP service found.
-- **Burkina Faso BF-CORS** (bfcors.net): 13 stations operational since 2011, but does not extend coverage into Mali.
+- **Burkina Faso BF-CORS** (bfcors.net, Trimble Pivot Web): 9 stations deployed 2011 + 4 stations added 2018 = 13 stations, managed by Institut Géographique du Burkina (IGB) since Sep 2012. Network does not extend coverage into Mali. Source: https://www.igb.bf/?page_id=47 (re-fetched 2026-05-21).
 - Global commercial networks (GEODNET, ONOCOY, Trimble VRS Now, Swift Skylark, Centipede-RTK): No Mali coverage confirmed.
 - Note: Mali's ongoing security situation (Tuareg and jihadist conflicts as of May 2026) further limits infrastructure investment.
 
@@ -45,5 +45,5 @@ URL: https://anat.sn/actualites/modernisation-du-reseau-geodesique-le-senegal-va
 - BF-CORS (Burkina Faso)
 - CHCNAV Africa partner network
 - World Bank Mali road project May 2025
-- py scripts/stations_by_radius.py 12.6 -8.0 500 (2026-05-12) — zero rtk2go/Centipede/EarthScope stations within 500 km of Bamako; no cross-border free RTK alternative within useful distance
-- Re-verified 2026-05-12 via WebSearch: still no announcement of a Mali national NTRIP/CORS network
+- `py scripts/stations_by_radius.py 12.6 -8.0 1000` (2026-05-21) — 3 stations within 1000 km of Bamako: Centipede INP02 (CIV), Centipede GORA (SEN), rtk2go Gine-Albrk (GIN, stale); all >300 km from Bamako, far beyond RTK range
+- Re-verified 2026-05-21 via WebSearch: still no announcement of a Mali national NTRIP/CORS network

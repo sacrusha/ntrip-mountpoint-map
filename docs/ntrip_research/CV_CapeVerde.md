@@ -1,7 +1,8 @@
 # Cape Verde [CV] — NTRIP RTK Research
 
-**researched:** 2026-05-17 (prior: 2026-05-12)
+**researched:** 2026-05-21 (prior: 2026-05-17)
 **status:** NO active public NTRIP RTK caster. One IGS post-processing CORS (CPVG, Sal). No real-time RTK service for hobbyists.
+**context:** Cabo Verde hosted the SatNav Africa JPO Pre-event on 16–17 Jul 2025; the inaugural International Africa Satellite Navigation Conference moves to Dakar 2026 — no Cabo Verde CORS deliverable announced.
 
 | field | value |
 |---|---|
@@ -9,6 +10,8 @@
 | access_url | n/a |
 | Active NTRIP RTK caster | no |
 | host:port | n/a |
+| num_stations | null — no caster |
+| vrs | null — no caster |
 | tariff | n/a |
 | hobbyist_eligibility | n/a |
 | legal_residency_required | n/a |
@@ -17,7 +20,7 @@
 
 ## Most recent project announcement
 
-None. No formal national NTRIP/RTK project found in development-bank (World Bank, AfDB), UN, or trade-press sources as of 2026-05-17. Closest prior signal = Ministério das Finanças RFQ "Supply, Actualization and Densification of the Permanent GNSS Stations Network in Cabo Verde" (mf.gov.cv document, 2022) — procurement only, no operational service announced since.
+None. No formal national NTRIP/RTK project found in development-bank (World Bank, AfDB), UN, or trade-press sources as of 2026-05-21. Closest prior signal = Ministério das Finanças RFQ "Supply, Actualization and Densification of the Permanent GNSS Stations Network in Cabo Verde" (mf.gov.cv document, 2022) — procurement only; no contract-award or operational-service announcement found in open sources 2024–2026.
 
 OVCV (Observatório Vulcanológico de Cabo Verde, INMG / Uni-CV / ITER Tenerife) runs a GPS deformation network on Fogo for geophysical research; scientific, not public NTRIP.
 
@@ -42,14 +45,15 @@ Hobbyist needs cm RTK on a CV island → self-operated local base + rover (singl
 | SONEL — CPVG height series | https://www.sonel.org/spip.php?page=gps&idStation=3597 | free |
 
 ## Sources
-- INGT: https://ingt.gov.cv/ (2026-05-17; no NTRIP)
+- INGT: https://ingt.gov.cv/ (re-fetched 2026-05-21; no NTRIP / CORS section)
 - IDE-CV: https://idecv.gov.cv/
 - INMG geofísica: https://www.inmg.gov.cv/index.php/servicos/geofisica
 - SONEL CPVG: https://www.sonel.org/spip.php?page=gps&idStation=3597
 - IGS station log: https://files.igs.org/pub/station/oldlog/cpvg_20230309.log
 - IGS network: https://network.igs.org/
 - Min Finanças RFQ (2022 procurement): https://www.mf.gov.cv/documents/20126/0/RFQ+-+SUPPLY,+ACTUALIZATION+AND+DENSIFICATION+OF+THE+PERMANENT+GNSS+STATIONS+NETWORK+IN+CABO+VERDE..pdf/941433bb-85b7-037e-2f35-3fc927078bcb
-- `data/rtk2go.sourcetable` + `data/centipede.sourcetable` (project, 2026-05): 0 CPV STR
+- SatNav Africa JPO pre-event Cabo Verde (Jul 2025): https://spaceinafrica.com/2025/07/18/africa-satellite-navigation-conference-pre-event-excerpts/
+- Local data: `py scripts/stations_by_country.py CPV` (2026-05-21) → CPVG present in auscors / igs_ip / mirai mirrors (post-processing only; no real-time RTCM)
 
 ## Gaps
 - 2022 RFQ outcome unknown — whether contract awarded + densification executed not findable in open sources.

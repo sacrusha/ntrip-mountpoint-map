@@ -1,48 +1,41 @@
 # Cayman Islands [KY] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06; reverified 2026-05-17 (geodetic-system + pricing pages still HTTPS 200; CIGD11 / ITRF05(2011.0) datum-epoch operator-cited; KYD tier prices unchanged)
+**Date researched:** 2026-05-22
 
-## Status: YES — RTK subscription service exists; price not on public page (mapping-tier subscriptions are listed but do not include RTK)
+## Status: RTK subscription service exists (Lands & Survey Department); no published host:port, no published price, gated through Chief Surveyor
 
 | Field | Value |
 |---|---|
-| **Active public NTRIP RTK caster** | Yes (subscription-only via Lands & Survey Department; surveyor-oriented) |
-| **landing_url** | https://www.caymanlandinfo.ky/services/survey/geodetic-system (operator-owned Lands & Survey geodetic-system page; CORS + CIGD11 + RTK subscription) |
-| **access_url** | https://www.caymanlandinfo.ky/subscription/pricing (distinct subscription pricing page — though tiers listed are mapping-only; RTK terms still issued via Chief Surveyor contact) |
-| **num_stations** | 4 physical CORS — CBMD (Cayman Brac), LCSB (Little Cayman), GCFS + GCEA (two on Grand Cayman). Operator figure per caymanlandinfo.ky geodetic-system page. |
-| **vrs** | ? — Lands & Survey page describes "RTK surveying" but does not state VRS / single-base / network solution; unverified. With 4 stations across 3 islands the practical mode is likely single-base, but unconfirmed. |
-| **host:port** | not publicly published — contact Chief Surveyor: landsurv.info@gov.ky · +1 345-244-3420 |
-| **tariff** | RTK price not on public pages; subscription terms issued via Chief Surveyor. The four caymanlandinfo.ky data-portal tiers (**Bronze KYD 3 300 / yr, Silver KYD 4 950, Gold KYD 7 150, Platinum KYD 12 100**, observed 2026-05-12) are **mapping-only** (parcels, aerial imagery, Land Registers, etc.) and do not include CORS RTK access. |
-| **hobbyist_eligibility** | Unclear — geodetic-system page describes the service as for "RTK surveying" without specifying licensed-surveyor restriction; hobbyist access not addressed. |
-| **legal_residency_required** | Unclear; no restriction stated on public pages. RTK pricing tier presumably issued in KYD and payable via Cayman bank account. |
-| **last_confirmed_alive** | 2026-05-17 — caymanlandinfo.ky/services/survey/geodetic-system WebFetch HTTPS 200; pricing page HTTPS 200 with four tiers unchanged (Bronze 3,300 / Silver 4,950 / Gold 7,150 / Platinum 12,100 KYD per year). |
-| **datum_epoch** | CIGD11 -- "CIGD11 is based on ITRF05(2011.0) positions" -- operator-declared on caymanlandinfo.ky geodetic-system page (cited 2026-05-17). Citation: https://www.caymanlandinfo.ky/services/survey/geodetic-system |
+| Active public NTRIP RTK caster | Yes (subscription-only; surveyor-oriented; not self-service) |
+| Operator | Lands & Survey Department, Government of Cayman Islands |
+| landing_url | https://www.caymanlandinfo.ky/services/survey/geodetic-system (operator-owned page describing CORS + CIGD11 + RTK subscription) |
+| access_url | https://www.caymanlandinfo.ky/services/survey/geodetic-system — RTK access workflow is "contact the Chief Surveyor" (email `landsurv.info@gov.ky`, Grand Cayman +1 345-244-3420, Brac +1 345-244-3637/3639). The `subscription/pricing` page lists mapping-only tiers and does not cover RTK. |
+| num_stations | 4 physical CORS — **CBMD** (Cayman Brac), **LCSB** (Little Cayman), **GCFS** + **GCEA** (Grand Cayman). Operator figure on the geodetic-system page. |
+| vrs | ? — geodetic-system page describes "RTK surveying" without stating VRS / single-base / network solution. With 4 stations across 3 islands and inter-island gaps >100 km, the practical mode is likely single-base per-island, but unconfirmed. |
+| host:port | not publicly published — issued via Chief Surveyor |
+| tariff | RTK price not on public pages. The four `caymanlandinfo.ky/subscription/pricing` tiers (Bronze KYD 3,300 / Silver 4,950 / Gold 7,150 / Platinum 12,100 per year, observed 2026-05-22) are **mapping/registry-only** and do not include CORS RTK access. RTK tariff issued post-contact. |
+| hobbyist_eligibility | ? — geodetic-system page describes service for "RTK surveying" without specifying surveyor-licence restriction; hobbyist access not addressed |
+| legal_residency_required | ? — no restriction stated on public pages |
+| last_confirmed_alive | 2026-05-22 — caymanlandinfo.ky/services/survey/geodetic-system WebFetch HTTP 200 (4 stations + CIGD11 + RTK subscription text confirmed); pricing page HTTP 200 with 4 mapping tiers unchanged |
+| datum_epoch | **CIGD11 = ITRF05(2011.0)** — operator-declared on caymanlandinfo.ky geodetic-system page: "CIGD11 is based on ITRF05(2011.0) positions". Local datums vary by island (GCGD59 Grand Cayman; SIGD61 Sister Islands). Cited 2026-05-22. |
 
-## Most Recent Project Announcement
+## Lands & Survey CORS network
 
-No fresh CORS-specific announcement located. The 4-station CORS network (Cayman Brac **CBMD**, Little Cayman **LCSB**, Grand Cayman **GCFS** + **GCEA**) operates on **CIGD11** = ITRF05(2011.0) (operator declaration; each island also has a distinct local vertical reference); seven-parameter transformation + UTM Zone 17N projection parameters are published on caymanlandinfo.ky. Subscription RTK access is administered by the Lands & Survey Department.
+4 physical CORS:
+- **CBMD** (Cayman Brac)
+- **LCSB** (Little Cayman)
+- **GCFS**, **GCEA** (Grand Cayman, 2 stations)
 
-**Cayman Land Info digital upgrade** (caymanindependent.com 2024–2025) — the cayman​landinfo portal is undergoing a major refresh with new subscription tiers (Bronze / Silver / Gold / Platinum) at beta.caymanlandinfo.ky and new.caymanlandinfo.ky. These tiers are for digital mapping/registry access, not RTK corrections.
+Per the geodetic-system page: real-time RTK corrections are available "as a subscription package"; RINEX archive is free; subscription terms issued via the Chief Surveyor. No NTRIP mountpoint list, no host:port, and no RTK tariff are on public pages. Cayman Land Info portal upgrade 2024–2025 (beta.caymanlandinfo.ky, new.caymanlandinfo.ky) refreshed the mapping/registry tiers above — no RTK pricing added.
 
-## Context Notes
+Seven-parameter transformation + UTM Zone 17N projection parameters between CIGD11 and the legacy island datums (GCGD59 Grand Cayman; SIGD61 Sister Islands) are published on caymanlandinfo.ky.
 
-- **Lands & Survey Department CORS**: 4 stations — CBMD, LCSB, GCFS, GCEA — on the CIGD11 datum, realised as ITRF05(2011.0) per operator declaration on the geodetic-system page (WebFetch 2026-05-17).
-- **Real-time RTK**: Available as a subscription via the Chief Surveyor. Host:port and pricing not on public pages. Contact: landsurv.info@gov.ky · +1 345-244-3420. Page confirms service exists but gives no credentials, mount points, or tariff.
-- **RINEX post-processing**: Free for download from the Department.
-- **No public NTRIP endpoint** is published; access path runs through the Chief Surveyor's office.
-- **Global commercial networks** (GEODNET, ONOCOY, Centipede-RTK): no Cayman coverage confirmed.
+## Volunteer / commercial overlay (2026-05-22)
 
-## Post-Processing (RINEX) Fallback
+Zero KY mountpoints on rtk2go, Centipede, GEODNET, ONOCOY. `stations_by_country.py CYM` → no stations; `stations_by_radius.py 19.31 -81.25 250` → no stations within 250 km. The Lands & Survey CORS is the only known RTK option.
 
-| Service | URL | Cost |
-|---|---|---|
-| **L&S Department CORS RINEX** — confirmed free per geodetic-system page; no direct download link published; contact landsurv.info@gov.ky | https://www.caymanlandinfo.ky/services/survey/geodetic-system | Free |
-
-## Sources Consulted
+## Sources
+- Cayman Islands Lands & Survey — Geodetic System page: https://www.caymanlandinfo.ky/services/survey/geodetic-system (WebFetch 2026-05-22 — CBMD/LCSB/GCFS/GCEA listed; "CIGD11 is based on ITRF05(2011.0) positions"; "Real time corrections for RTK surveying are available as a subscription package"; "For more information on subscribing for real time corrections, please contact the Chief Surveyor")
+- Cayman Land Info subscription pricing: https://www.caymanlandinfo.ky/subscription/pricing (WebFetch 2026-05-22 — Bronze $3,300 / Silver $4,950 / Gold $7,150 / Platinum $12,100 per year; **no RTK/NTRIP/GNSS/CORS service in any tier**)
 - Cayman Islands Lands & Survey — Survey section: https://www.caymanlandinfo.ky/About-Us/Lands-and-Survey-Sections/Survey
-- Cayman Islands Lands & Survey — Geodetic System page (CORS, CIGD11, RTK subscription): https://www.caymanlandinfo.ky/services/survey/geodetic-system (HTTPS 200 2026-05-12)
-- caymanlandinfo.ky/subscription/pricing — four-tier mapping subscription pricing (HTTPS 200 2026-05-12; Bronze 3 300 / Silver 4 950 / Gold 7 150 / Platinum 12 100 KYD per year)
-- Cayman Independent — "Cayman Land Info to undergo major digital upgrade" (2024–2025)
-- Cayman Land Registry portal: https://www.caymanlandinfo.ky/
-- NTRIP-list.com Caribbean: https://ntrip-list.com/
-- GEODNET coverage map: https://geodnet.com/ (no KY coverage)
-- stations.json 2026-05-17: `py scripts/stations_by_country.py CYM` → no stations from any tracked source; `stations_by_radius.py 19.31 -81.25 200` → 0 hits
+- Cayman Independent — "Cayman Land Info to undergo major digital upgrade" (2024–2025): https://caymanindependent.com/cayman-land-info-to-undergo-major-digital-upgrade/
+- Local pipeline 2026-05-22: `stations_by_country.py CYM` → no stations; `stations_by_radius.py 19.31 -81.25 250` → 0 hits

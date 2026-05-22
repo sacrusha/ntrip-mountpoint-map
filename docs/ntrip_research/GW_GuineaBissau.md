@@ -1,5 +1,5 @@
 # Guinea-Bissau [GW] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06 (re-verified 2026-05-12: no GW/GNB entry in any source of data/stations.json; the only rtk2go station with GIN tag is `Gine-Albrk` in Guinea-Conakry, not Guinea-Bissau; no public NTRIP project announcement found; status unchanged)
+**Date researched:** 2026-05-21 (re-verified; `py scripts/stations_by_country.py GNB` → empty; status unchanged. Nearest hits within 500 km of Bissau: 2 SEN Centipede nodes (NKHR 304 km, GORA 375 km) + IGS-IP DAKR (376 km) + rtk2go Gine-Albrk in Guinea-Conakry 331 km — all beyond RTK range.)
 
 ## Status: NO active public NTRIP caster
 
@@ -46,3 +46,5 @@ URL: https://spatialdimension.com/projects/guinea-bissau-ministry-of-energy-indu
 - GIM International CORS Africa map
 - GitHub mvarga1989 CORS list
 - ESA/ASECNA EGNOS-Africa
+- Local data 2026-05-21: `py scripts/stations_by_country.py GNB` → 0; `py scripts/stations_by_radius.py 11.86 -15.59 500` → 4 stations all in SEN/GIN, none in GW
+- WebSearch 2026-05-21 (Bissau / Guinea-Bissau CORS GNSS NTRIP 2024–2026) — no project surfaced

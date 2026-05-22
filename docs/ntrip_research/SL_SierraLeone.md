@@ -1,5 +1,5 @@
 # Sierra Leone [SL] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-17 (re-confirmed; no SL caster; SENCORS Senegal live but ~700 km from Freetown; Guinea rtk2go Gine-Albrk still the only volunteer node within ~500 km)
+**Date researched:** 2026-05-21 (re-confirmed; no SL caster; SENCORS Senegal live but nearest SENCORS station (KEDO Kédougou) ~468 km from Freetown; Guinea rtk2go Gine-Albrk still the only volunteer node within ~500 km, ~127 km from Freetown)
 
 ## Status: NO — no public NTRIP RTK caster found
 
@@ -7,6 +7,8 @@
 |---|---|
 | **Active public NTRIP RTK caster** | No |
 | **host:port** | None found |
+| **num_stations** | null — no service exists |
+| **vrs** | null — no service exists |
 | **tariff** | N/A |
 | **hobbyist_eligibility** | N/A |
 | **legal_residency_required** | N/A |
@@ -18,7 +20,7 @@ No CORS programme or NTRIP project announcement found for Sierra Leone as of 202
 
 The Directorate of Surveys and Lands (DSL), under the Ministry of Lands, Housing and Country Planning (`molhcp.gov.sl`), is the national surveying authority. Its mandate includes implementing a standardised national coordinate system and improving geodetic infrastructure; however, no public documentation of a CORS installation or real-time GNSS service has been located on the ministry website or in any AFREF/regional geodetic publication.
 
-Re-checked 2026-05-17: stations_by_country.py SLE returns zero. WebSearch unchanged from 2026-05-13. East View Geospatial Sierra Leone country profile and Stats SL GIS division pages discuss mapping but not GNSS infrastructure. No domestic CORS/NTRIP service has emerged.
+Re-checked 2026-05-21: `py scripts/stations_by_country.py SLE` → empty. WebSearch unchanged. East View Geospatial Sierra Leone country profile and Stats SL GIS division pages discuss mapping but not GNSS infrastructure. No domestic CORS/NTRIP service has emerged.
 
 **datum_epoch**: omitted -- no citable declaration (no operator caster exists)
 
@@ -29,8 +31,8 @@ Re-checked 2026-05-17: stations_by_country.py SLE returns zero. WebSearch unchan
 - **No entries on rtk2go or Centipede:** Zero SL mountpoints in either public sourcetable.
 - **No entry on ntrip-list.com:** Sierra Leone absent from ntrip-list.com Africa listing.
 - **No commercial NTRIP providers found:** GEODNET, ONOCOY, PointOne, HxGN SmartNet — none list Sierra Leone coverage.
-- **Regional context:** Neighbouring Guinea and Guinea-Bissau also have no confirmed public caster. Nearest potentially reachable commercial NTRIP infrastructure is Senegal's SENCORS (`caster.geodesie.sn:2101` — operational, live-probed 2026-05-17, 22 physical stations) or Côte d'Ivoire (unconfirmed). No SENCORS Sierra Leone coverage; closest SENCORS station (SENCORS_KEDO Kédougou 12.56°N -12.18°E) ~700 km from Freetown — far outside RTK range.
-- **Local volunteer fallback (verified 2026-05-13)**: `py scripts/stations_by_radius.py 8.46 -11.78 500` returns **1 rtk2go station within 500 km** — `Gine-Albrk` at 9.52°N, -13.72°E (Guinea, 243.5 km from Freetown). Far outside RTK range (~30–40 km practical limit) but could provide DGNSS-grade single-base reference if a hobbyist accepts decimetre accuracy. No Centipede / EarthScope coverage in West Africa near Sierra Leone.
+- **Regional context:** Neighbouring Guinea and Guinea-Bissau also have no confirmed public caster. Nearest potentially reachable commercial NTRIP infrastructure is Senegal's SENCORS (`caster.geodesie.sn:2101` — operational, live-probed 2026-05-21, 22 physical stations) or Côte d'Ivoire (unconfirmed). No SENCORS Sierra Leone coverage; closest SENCORS station (SENCORS_KEDO Kédougou 12.56°N -12.18°E) ~468 km from Freetown — far outside RTK range.
+- **Local volunteer fallback (verified 2026-05-21)**: `py scripts/stations_by_radius.py 8.484 -13.234 800` returns Centipede `NKHR` (SEN, 14.479/-16.404) ~751 km and rtk2go `Gine-Albrk` (GIN, 9.52/-13.72) ~127 km from Freetown — Gine-Albrk is closest but still well beyond single-base RTK range (~30–40 km practical limit). No Centipede / EarthScope coverage in West Africa near Sierra Leone.
 - **Practical hobbyist guidance:** Deploy a local GNSS base station for single-base RTK; use Galileo HAS / PPP for sub-metre work without connectivity.
 
 ## Post-Processing (RINEX) Fallback

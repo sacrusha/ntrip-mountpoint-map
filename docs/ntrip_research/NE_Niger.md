@@ -1,5 +1,5 @@
 # Niger [NE] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-17 (re-verified; status unchanged from 2026-05-12. Nearest Centipede base is `BJDJ` Benin 426 km — far beyond RTK range; nearest IGS-IP/EarthScope NIAM is RINEX-archive only)
+**Date researched:** 2026-05-21 (re-verified; status unchanged. `py scripts/stations_by_country.py NER` → empty; nearest Centipede base is `BJDJ` Benin 426 km — far beyond RTK range. NIAM remains RINEX-archive only.)
 
 ## Status: NO active public NTRIP caster
 
@@ -18,10 +18,10 @@ No formal project announcement for a Niger national NTRIP/RTK caster was found i
 
 ## Context Notes
 
-- **Only known GNSS station**: NIAM (Niamey International Airport, 13.4793°N / 2.1832°E), installed 2005–2006 by IGN France under the AMMA (African Monsoon Multidisciplinary Analysis) project. Purpose is atmospheric water-vapor monitoring (3 years of data 2006–2008 cited as most complete). Per AMMA documentation, data is hosted at http://amma-gps.ign.fr and the station is **not an RTK/NTRIP corrections source**. Station also archived at EarthScope/UNAVCO Spotlight (https://spotlight.unavco.org/station-pages/niam/niam.html) and SONEL (https://www.sonel.org/spip.php?page=gps&idStation=2570).
-- **IGNN** (Institut Géographique National du Niger, ignn.ne): Website was defaced/unreachable at time of research (2026-05-06; 2026-05-12 re-check confirms no published GNSS or RTK service).
+- **Only known GNSS station**: NIAM (Niamey International Airport, 13.4793°N / 2.1832°E), installed 2005–2006 by IGN France under the AMMA (African Monsoon Multidisciplinary Analysis) project. Purpose is atmospheric water-vapor monitoring (3 years of data 2006–2008 cited as most complete). Historical AMMA host `http://amma-gps.ign.fr` returns no response on 2026-05-21 (`curl --max-time 10` → exit 6, no HTTP status). The station is **not an RTK/NTRIP corrections source**. Active RINEX archive mirrors: EarthScope/UNAVCO Spotlight (https://spotlight.unavco.org/station-pages/niam/niam.html) and SONEL (https://www.sonel.org/spip.php?page=gps&idStation=2570).
+- **IGNN** (Institut Géographique National du Niger, ignn.ne): Website was defaced/unreachable at prior research (2026-05; 2026-05-21 re-check still finds no published GNSS or RTK service).
 - **AFREF**: Niger noted in older literature as having at least one CORS that "could be available for AFREF purposes" — no real-time NTRIP stream from Niger appears in any AFREF or BKG sourcetable.
-- **Cross-border alternatives within ~50 km**: None. Nearest rtk2go base is `fssoyo` (Oyo, Nigeria) ~661 km south of Niamey; nearest Centipede base is `BJDJ` (Djougou, Benin, 9.69 N 1.66 E) ~426 km south — both far beyond any RTK baseline.
+- **Cross-border alternatives within ~50 km**: None. Nearest rtk2go base is `fssoyo` (Oyo, Nigeria, 7.84/3.95) ~661 km south of Niamey (project source-health `data/source_health.json` 2026-05-21: rtk2go caster status `ok`; per-station liveness not separately monitored); nearest Centipede base is `BJDJ` (Djougou, Benin, 9.69 N 1.66 E) ~426 km south — both far beyond any RTK baseline.
 - Global commercial networks (GEODNET, ONOCOY, PointOne, Centipede-RTK): No Niger coverage confirmed.
 - Practical workaround: Deploy a local base station for single-base RTK, or use satellite-based PPP (Trimble RTX, Fugro StarFix) or free Galileo HAS (~40 cm).
 
@@ -45,4 +45,4 @@ No formal project announcement for a Niger national NTRIP/RTK caster was found i
 - ArduSimple country selector
 - CORSstations.com, GitHub mvarga1989 list
 - GEODNET, ONOCOY
-- Local data: `py scripts/stations_by_radius.py 13.5 2.1 1500` — 1 result: Centipede `BJDJ` (Benin) at 426 km; 0 NE stations present (2026-05-17 snapshot)
+- Local data 2026-05-21: `py scripts/stations_by_radius.py 13.5 2.1 1500` — 3 results: Centipede BJDJ (BEN) 426 km, Centipede INP02 (CIV) 1089 km, rtk2go fssoyo (NGA, stale) 661 km; 0 NE-coded stations
