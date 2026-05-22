@@ -1,44 +1,84 @@
 # Libya [LY] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-17 (re-verified via WebSearch; still no LY caster; conflict-driven CORS gap unchanged)
 
-## Status: NO active public NTRIP caster
+last_verified_date: 2026-05-23
+last_gap_fill_date: 2026-05-23
+last_caster_search_date: 2026-05-23
+agent_version: 0.1
 
-| Field | Value |
-|---|---|
-| **Active public NTRIP RTK caster** | No |
-| **host:port** | null |
-| **tariff** | null |
-| **hobbyist_eligibility** | null — no service exists |
-| **legal_residency_required** | null — no service exists |
-| **last_confirmed_alive** | null — no caster confirmed alive |
+## Status
 
-## Most Recent Project Announcement
+No active public NTRIP RTK caster identified for Libya. Civil-conflict-induced
+institutional fragmentation since 2011 has prevented deployment of a national
+CORS network. No public, semi-public, or volunteer caster confirmed alive.
 
-No formal announcement for a Libyan national NTRIP/RTK caster was found in any development-bank, UN, or geospatial trade press source as of 2026-05-12. A private geospatial consultancy, **Geospatial Libya** (`geospatiallibya.ly`), advertises GIS, mapping and surveying services but no CORS / RTK / NTRIP network. Libya's ongoing civil conflict and institutional fragmentation have severely constrained geospatial infrastructure investment since 2011.
+## Disqualified / non-existent candidates
 
-## Context Notes
+### Libyan national CORS (nominal, not realised)
 
-- **Institutional landscape:** Libya's cadastral and geodetic functions are nominally under the General Authority for Information and Communication Technology (GAICT) and the National Centre for Remote Sensing and Space Sciences. Effective operations have been severely disrupted since the 2011 revolution and subsequent conflict.
-- **IGS stations:** No confirmed IGS reference station exists in Libya. Libya falls within a documented coverage gap in the North African IGS network; no station code or EarthScope archive entry for a Libyan site was found as of 2026-05-06.
-- **AFREF:** Libya is noted in AFREF literature as lacking functional CORS contributing to the African geodetic reference frame.
-- **Neighbouring networks:** Tunisia (OTC, 23 stations) to the northwest and Egypt (EgyptCORS) to the east could theoretically provide partial coverage near borders, but baselines would be far too long (hundreds of km) for reliable RTK.
-- **Global commercial networks:** No Libya coverage confirmed for GEODNET, ONOCOY, or PointOne.
-- **Security/access:** The security situation makes field installation of new CORS infrastructure practically difficult for international partners.
-- **No volunteer presence**: `py scripts/stations_by_radius.py 26.0 17.0 500` returns zero stations within 500 km of central Libya across rtk2go, Centipede and EarthScope. `py scripts/stations_by_country.py` lists no LBY / LY entries in any source as of 2026-05-12. Tunisian/Egyptian sub-net are >500 km from most of populated Libya.
-- Practical workaround: Deploy a local base station for single-base RTK, or use satellite-based PPP (Trimble RTX, Fugro StarFix, Galileo HAS ~20 cm).
+- operator: nominally the General Authority for Information and Communication
+  Technology (GAICT) and the National Centre for Remote Sensing and Space
+  Sciences (NCRSSS); no operational owner
+- landing_url: none (no operator-owned page advertises a CORS / NTRIP service)
+- access_url: n/a
+- access_type: n/a — service does not exist
+- coverage: none
+- num_stations: 0 confirmed
+- hobbyist_eligibility: no — no service exists
+- datum_epoch: omitted — no operator declaration to cite
 
-## Post-Processing (RINEX) Fallback
+No formal announcement of a Libyan national NTRIP / RTK caster has been located
+in development-bank, UN, or geospatial-press sources. Targeted web searches in
+English and Arabic (2026-05) return no announcement, sourcetable, or operator
+portal. Libya does not appear in the AFREF reference-frame station coverage
+maps maintained by the AFREF Technical Working Group (checked:
+afrefdata.org search 2026-05-23; UNECA AFREF status reports 2026-05-23 — no
+LY-coded permanent stations listed).
 
-No confirmed operational CORS station in Libya with public RINEX archive found.
+### Cross-border options (out of useful range)
+
+OTC GNSS (Tunisia, paid; covered in `TN_Tunisia.md`) and Egypt's ESA CORS
+(restricted; covered separately) are the closest national networks. Public
+international rebroadcasts (EUREF-IP, IGS-IP, sicilianet, rtk2go, Centipede)
+are accessible from Libyan IPs but their nearest stations sit on Lampedusa /
+Malta / Sicily / Crete. From Tripoli the closest pipeline entries are
+LAMP00ITA0 (Lampedusa, ~294 km) and EneGIS (Malta, ~355 km); from Benghazi the
+closest is GVDG00GRC0 (Crete, ~481 km). All exceed the ~30 km useful range of
+single-base RTK and sit well outside any NRTK hull, so they silently
+extrapolate to dm–m errors with no warning.
+
+### Volunteer / community casters
+
+- `py scripts/stations_by_country.py LBY` — no entries on rtk2go, Centipede,
+  EarthScope, igs_ip, or euref_ip (verified 2026-05-23).
+- `py scripts/stations_by_radius.py 26.0 17.0 500` returns zero stations
+  within 500 km of central Libya across the pipeline.
+- igs_ip / euref_ip sourcetable inspection: zero LBY-coded stations
+  (checked: `data/igs_ip.sourcetable` 2026-05-23;
+  `data/euref_ip.sourcetable` 2026-05-23).
+
+### Commercial global networks
+
+GEODNET, onocoy, Point One, Trimble VRS Now, and SmartNet publish no LY
+coverage as of 2026-05.
+
+## Practical recommendation
+
+Hobbyist options inside Libya today: deploy a private base station for
+single-base RTK over short baselines, or use Galileo HAS / Trimble RTX / Fugro
+StarFix PPP-class corrections for decimetre-to-sub-metre accuracy without a
+local caster.
 
 ## Sources Consulted
-- RTK2GO monitor (monitor.use-snip.com) — no Libya mount points
-- NTRIP-list.com Africa page — no Libya entries
-- ArduSimple country selector — Libya not listed as having national RTK network
-- AFREF literature (ResearchGate)
-- BKG NTRIP streams — no Libya entries
-- GEODNET, ONOCOY — no Libya coverage confirmed
-- English and Arabic web searches — no NTRIP caster found
-- Geospatial Libya (private consultancy, no CORS): https://geospatiallibya.ly/en/our-services/
-- IGN FI / Libya cartography references (no CORS context): https://en.wikipedia.org/wiki/IGN_FI
-- Local pipeline check (2026-05-12): `py scripts/stations_by_radius.py 26.0 17.0 500` → no stations within 500 km; `py scripts/stations_by_country.py` → no LBY/LY codes
+
+- ArduSimple country selector — Libya not listed
+  (https://www.ardusimple.com/rtk-correction-services-in-your-country/)
+- AFREF literature on African CORS coverage gaps
+- BKG NTRIP streams / EUREF — no LY entries
+- RTK2GO monitor (`monitor.use-snip.com`) — no LY mountpoints
+- ntrip-list.com Africa — no LY entries
+- GEODNET, onocoy, Point One — no LY coverage advertised
+- Geospatial Libya (private consultancy, no CORS):
+  https://geospatiallibya.ly/en/our-services/
+- Local pipeline check (2026-05-23):
+  `py scripts/stations_by_country.py LBY` → no entries;
+  `py scripts/stations_by_radius.py 26.0 17.0 500` → 0 stations

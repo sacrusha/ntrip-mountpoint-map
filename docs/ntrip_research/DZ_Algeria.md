@@ -1,52 +1,114 @@
 # Algeria [DZ] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-17 (re-verified; original 2026-05-06) | USD/DZD rate: 1 USD ≈ 132.23 DZD
 
-## Status: RESTRICTED — AL-CORS-Net operational but no public access (re-verified 2026-05-17: no new public endpoint, tariff, or registration portal has been announced; INCT remains the sole point of contact; inct.mdn.dz still SSL-broken / ECONNREFUSED; asjp.cerist.dz article URL returns TLS cert-verification failure)
+last_verified_date: 2026-05-23
+last_gap_fill_date: 2026-05-23
+last_caster_search_date: 2026-05-23
+agent_version: 0.1
 
-| Field | Value |
-|---|---|
-| **Active public NTRIP RTK caster** | Unknown — likely exists internally; not publicly accessible |
-| **landing_url** | http://inct.mdn.dz (INCT institutional portal; SSL broken / ECONNREFUSED 2026-05-17 — no other operator-owned NTRIP-service page located) |
-| **access_url** | null — no public signup/conditions page exists; access is granted only via direct contact (contact@inct.dz / inct@mdn.dz / +213 23 79 50 26) |
-| **host:port** | null — no published endpoint |
-| **tariff** | null — no pricing found |
-| **num_stations** | 189 (AL-CORS-Net; North + South subdivisions; cited in INCT documentation and Takka et al. 2023 performance paper) |
-| **hobbyist_eligibility** | no |
-| **legal_residency_required** | ? |
-| **last_confirmed_alive** | VRS sessions confirmed Oct 2021 – Jan 2022 (research paper published 2023); no newer public liveness signal |
-| **datum_epoch** | omitted — no citable operator declaration available (INCT portal unreachable; AL-CORS-Net documentation not published outside the asjp.cerist.dz paper, which is not the operator's portal/spec) |
+## Summary
 
-## AL-CORS-Net
+Algeria has one operational national CORS network (AL-CORS-Net / SAAP), but it
+is restricted: no public registration portal, no published tariff, no
+advertised NTRIP host:port. Operated by INCT under the Ministry of National
+Defence, with civilian access only through direct institutional contact. No
+free public alternative exists in-country; no commercial third-party RTK
+provider has confirmed Algeria coverage.
 
-**Operator:** INCT (Institut National de Cartographie et de Télédétection), Ministry of National Defense
-**Also known as:** SAAP — Système Algérien d'Aide au Positionnement
-**Portal:** http://inct.mdn.dz (SSL issues; ECONNREFUSED as of 2026-05-06)
-**Contact:** contact@inct.dz / inct@mdn.dz / +213 23 79 50 26
-**Backend:** Geo++ GNSMART — delivers Network RTK via VRS over NTRIP
-**Stations:** 189 permanent GNSS stations across Algeria (North and South subdivisions); original published network cited 6 anchor stations (Algiers DZAL, Oran DZOR, Constantine DZCO, Ouargla OGLA, Bechar BECH, Tindouf TIND)
-**Performance:** ~1.3 cm horizontal, ~2.2 cm vertical (1σ); 97.25% VRS availability; 98.8% horizontal integrity; 94.9% vertical integrity
+## Casters
 
-No public endpoint, registration portal, or tariff is advertised. Direct contact with INCT is required; no confirmed civilian or non-governmental access on record.
+### AL-CORS-Net / SAAP — restricted national NRTK
 
-**Hobbyist context:** the `no` in the field above is de-facto, not a published prohibition. INCT operates under the Ministry of National Defense; the network is reserved for institutional and professional users, and no hobbyist tier or civilian onboarding path is published.
+- operator: Institut National de Cartographie et de Télédétection (INCT),
+  Ministry of National Defence
+- landing_url: http://inct.mdn.dz/ (institutional portal; SSL warnings and
+  ECONNREFUSED reconfirmed 2026-05-23; INCT GPS sub-page
+  http://www.inct.mdn.dz/site_anglais/source/gps lists the original 6-station
+  anchor set but no public NTRIP endpoint)
+- access_url: no public signup / conditions page exists. Access negotiated by
+  direct contact only: contact@inct.dz / inct@mdn.dz / +213 23 79 50 26.
+- access_type: restricted — operated under the Ministry of National Defence;
+  no self-service civilian onboarding documented
+- coverage: nationwide, North + South subdivisions. Anchor stations: Algiers
+  (DZAL), Oran (DZOR), Constantine (DZCO), Ouargla (OGLA), Béchar (BECH),
+  Tindouf (TIND). Documented in INCT publications and Takka et al. 2023.
+- num_stations: 189 permanent stations (cited in Takka et al. 2023,
+  "Assessment of VRS performances of the Algerian-CORS-Network",
+  https://asjp.cerist.dz/en/article/216928, and in INCT documentation). The
+  same article confirms VRS sessions ran live Oct 2021 – Jan 2022 with ~1.3 cm
+  horizontal / ~2.2 cm vertical precision (1σ); 97.25 % VRS availability;
+  98.8 % horizontal, 94.9 % vertical integrity.
+- hobbyist_eligibility: no — operator is the national mapping institute of
+  the Defence Ministry; no hobbyist tier or civilian onboarding path
+  published. The "no" is de-facto, not a written prohibition.
+- residency_required: ? — undocumented; access is by negotiated institutional
+  request, residency may be implicit.
+- datum_epoch: omitted — INCT portal unreachable for direct citation; AL-CORS
+  paper is not an operator portal / spec / decree.
 
-## REGAT (secondary network — not RTK)
+Backend: Geo++ GNSMART (Network RTK / VRS over NTRIP), per Takka et al.
 
-53 stations operated by CRAAG (Centre de Recherche en Astronomie, Astrophysique et Géophysique) — seismotectonic monitoring only; no real-time RTK dispensed.
+### REGAT — disqualified, not RTK
 
-## Commercial Providers
+REGAT (*REseau Géodésique de l'ATlas*) — 53 continuously-recording GPS
+stations operated by CRAAG (Centre de Recherche en Astronomie, Astrophysique
+et Géophysique). Geographic scope is the Algerian Atlas (coastal margin
+spanning the country's width, reaching ~300 km inland, plus one Tamanrasset
+site in the deep south); inter-site spacing ~100 km. Built for crustal-
+deformation / seismotectonic monitoring of the Nubia-Eurasia plate boundary
+following the 2003 Boumerdes earthquake; no real-time RTK service dispensed.
+Sources: Yelles-Chaouche et al., "REGAT: A permanent GPS network in Algeria,
+configuration and first results" (https://pmc.ncbi.nlm.nih.gov/articles/PMC6460426/);
+CRAAG https://www.craag.dz/index.php/reseau-geodesique/.
 
-No commercial RTK provider (SmartNet, Trimble VRS Now, GEODNET, onocoy, Polaris) has confirmed Algeria coverage.
+### Commercial / global
+
+No commercial RTK provider (Trimble VRS Now, Leica SmartNet, Topcon TopNET
+Live, Hexagon, GEODNET, onocoy, Point One) has confirmed Algeria coverage as
+of 2026-05.
+
+### Volunteer / community
+
+`py scripts/stations_by_country.py DZA` → zero rtk2go, Centipede, or
+EarthScope entries (verified 2026-05-23). IGS-IP / EUREF-IP cached
+sourcetables likewise contain zero DZ-coded stations (checked:
+`data/igs_ip.sourcetable` 2026-05-23; `data/euref_ip.sourcetable` 2026-05-23 —
+Algiers / DZAL appears in historical IGS RINEX archives but is not exposed on
+the real-time IGS / EUREF NTRIP caster). ArduSimple Algeria page states
+explicitly there is no national RTK network it can recommend; it lists only
+rtk2go, IGS, EarthScope as generic global alternatives, but none has Algeria
+stations.
+
+## Practical recommendation
+
+Hobbyist options inside Algeria today: contact INCT directly to request
+AL-CORS-Net access (uncertain availability for individuals); deploy a private
+base for single-base RTK; or use Galileo HAS / Trimble RTX / PPP for
+decimetre-to-sub-metre accuracy without a national-caster account.
 
 ## Post-Processing (RINEX) Fallback
 
 | Service | URL | Cost |
-|---------|-----|------|
-| **IGS / CDDIS** — sparse scientific stations; nearest dense coverage is Tunisia/Morocco | https://cddis.nasa.gov/Data_and_Derived_Products/GNSS/ | Free (NASA Earthdata account required) |
+|---|---|---|
+| IGS / CDDIS — sparse scientific stations in DZ; nearest dense coverage in TN/MA | https://cddis.nasa.gov/Data_and_Derived_Products/GNSS/ | Free (NASA Earthdata account) |
 
 ## Sources Consulted
-- INCT/SAAP: http://www.inct.mdn.dz/source/act-saap.php
-- Research paper (VRS performance assessment): https://asjp.cerist.dz/en/article/216928 — Takka Elhadi, Touabet Touabet, Boudrassene Abdennour (survey Oct 2021 – Jan 2022; published 2023)
-- GIM International CORS Africa map: https://www.gim-international.com/content/article/developing-a-fully-fledged-cors-map-for-africa
-- RTK2GO, ntrip-list.com/africa/, corsstations.com — no DZ entries
-- GEODNET, onocoy, Trimble VRS Now, SmartNet — no DZ coverage confirmed
+
+- INCT institutional page (SSL broken; ECONNREFUSED 2026-05-23):
+  http://www.inct.mdn.dz/
+- INCT GPS sub-page (lists 6 anchor stations):
+  http://www.inct.mdn.dz/site_anglais/source/gps
+- INCT SAAP page (re-verified link 2026-05-23, TLS cert error returned by
+  asjp.cerist.dz mirror): http://www.inct.mdn.dz/source/act-saap.php
+- Takka Elhadi, Touabet Touabet, Boudrassene Abdennour, "Assessment of VRS
+  performances of the Algerian-CORS-Network" (survey Oct 2021 – Jan 2022;
+  published 2023): https://asjp.cerist.dz/en/article/216928
+- ArduSimple Algeria: no national RTK network listed —
+  https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-algeria/
+- GIM International CORS Africa map:
+  https://www.gim-international.com/content/article/developing-a-fully-fledged-cors-map-for-africa
+- RTK2GO, ntrip-list.com/africa/, corsstations.com — no DZ entries observed
+  2026-05-23
+- Local pipeline check 2026-05-23:
+  `py scripts/stations_by_country.py DZA` → no entries
+- GEODNET, onocoy, Trimble VRS Now, SmartNet, Topcon TopNET Live — no DZ
+  coverage confirmed
