@@ -1,333 +1,615 @@
 {
-  "checked_at": "2026-05-21T21:19:55+00:00",
+  "checked_at": "2026-05-22T22:11:58+00:00",
   "sources": {
     "asg_eupos": {
-      "last_ok": "2026-05-21T21:19:45+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:48+00:00",
+      "status": "ok",
+      "station_count": 97,
+      "station_count_prev": 97,
+      "station_count_declared": 190
     },
     "cropos": {
-      "last_ok": "2026-05-21T21:19:44+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:48+00:00",
+      "status": "ok",
+      "station_count": 70,
+      "station_count_prev": 70,
+      "station_count_declared": 35
     },
     "flepos": {
-      "last_ok": "2026-05-21T21:19:45+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:49+00:00",
+      "status": "ok",
+      "station_count": 47,
+      "station_count_prev": 47,
+      "station_count_declared": 45
     },
     "walcors": {
-      "last_ok": null,
-      "status": "error"
+      "last_ok": "2026-05-22T11:47:25+00:00",
+      "status": "ok",
+      "station_count": 22,
+      "station_count_prev": 22,
+      "station_count_declared": 23
     },
     "latpos": {
-      "last_ok": "2026-05-21T21:19:46+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:50+00:00",
+      "status": "ok",
+      "station_count": 0,
+      "station_count_prev": 0,
+      "station_count_declared": 27,
+      "flags": [
+        "incomplete"
+      ]
     },
     "estpos": {
-      "last_ok": null,
-      "status": "error"
+      "last_ok": "2026-05-22T11:47:25+00:00",
+      "status": "ok",
+      "station_count": 40,
+      "station_count_prev": 40,
+      "station_count_declared": 40
     },
     "ksa_cors": {
       "last_ok": "2026-05-06T20:16:20+00:00",
-      "status": "stale"
+      "status": "stale",
+      "station_count": 0,
+      "station_count_prev": 0,
+      "station_count_declared": 209
     },
     "sapos_SH_HH": {
-      "last_ok": "2026-05-21T21:19:46+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:49+00:00",
+      "status": "ok",
+      "station_count": 21,
+      "station_count_prev": 21,
+      "station_count_declared": null
     },
     "sapos_NI": {
-      "last_ok": "2026-05-21T21:19:46+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:49+00:00",
+      "status": "ok",
+      "station_count": 0,
+      "station_count_prev": 0,
+      "station_count_declared": null
     },
     "sapos_NW": {
-      "last_ok": "2026-05-21T21:19:45+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:48+00:00",
+      "status": "ok",
+      "station_count": 27,
+      "station_count_prev": 27,
+      "station_count_declared": null
     },
     "sapos_BW": {
-      "last_ok": "2026-05-21T21:19:45+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:49+00:00",
+      "status": "ok",
+      "station_count": 0,
+      "station_count_prev": 0,
+      "station_count_declared": null
     },
     "sapos_BE": {
-      "last_ok": "2026-05-21T21:19:54+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:49+00:00",
+      "status": "ok",
+      "station_count": 0,
+      "station_count_prev": 0,
+      "station_count_declared": null
     },
     "sapos_BB": {
-      "last_ok": "2026-05-21T21:19:44+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:49+00:00",
+      "status": "ok",
+      "station_count": 22,
+      "station_count_prev": 22,
+      "station_count_declared": null
     },
     "sapos_MV": {
-      "last_ok": "2026-05-21T21:19:45+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:49+00:00",
+      "status": "ok",
+      "station_count": 0,
+      "station_count_prev": 0,
+      "station_count_declared": null
     },
     "sapos_LSA": {
-      "last_ok": "2026-05-21T21:19:46+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:49+00:00",
+      "status": "ok",
+      "station_count": 32,
+      "station_count_prev": 19,
+      "station_count_declared": null
     },
     "sapos_TH": {
-      "last_ok": "2026-05-21T21:19:45+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:48+00:00",
+      "status": "ok",
+      "station_count": 16,
+      "station_count_prev": 16,
+      "station_count_declared": null
     },
     "kycors": {
-      "last_ok": "2026-05-21T21:19:45+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:49+00:00",
+      "status": "ok",
+      "station_count": 17,
+      "station_count_prev": 17,
+      "station_count_declared": null
     },
     "mncors": {
       "last_ok": "2026-05-06T20:16:19+00:00",
-      "status": "stale"
+      "status": "stale",
+      "station_count": 0,
+      "station_count_prev": 0,
+      "station_count_declared": 140
     },
     "odot_rtn": {
       "last_ok": "2026-05-06T20:16:19+00:00",
-      "status": "stale"
+      "status": "stale",
+      "station_count": 0,
+      "station_count_prev": 0,
+      "station_count_declared": null
     },
     "modot_rtn": {
-      "last_ok": "2026-05-21T21:19:46+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:49+00:00",
+      "status": "ok",
+      "station_count": 0,
+      "station_count_prev": 0,
+      "station_count_declared": 80,
+      "flags": [
+        "incomplete"
+      ]
     },
     "wvrtn": {
-      "last_ok": "2026-05-21T21:19:45+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:49+00:00",
+      "status": "ok",
+      "station_count": 24,
+      "station_count_prev": 24,
+      "station_count_declared": 34
     },
     "mainedot": {
-      "last_ok": "2026-05-21T21:19:45+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:49+00:00",
+      "status": "ok",
+      "station_count": 0,
+      "station_count_prev": 0,
+      "station_count_declared": null
     },
     "mesa_rtvrn": {
-      "last_ok": "2026-05-21T21:19:46+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:49+00:00",
+      "status": "ok",
+      "station_count": 27,
+      "station_count_prev": 27,
+      "station_count_declared": 33
     },
     "renep": {
-      "last_ok": "2026-05-21T21:19:45+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:48+00:00",
+      "status": "ok",
+      "station_count": 46,
+      "station_count_prev": 46,
+      "station_count_declared": 47
     },
     "litpos": {
-      "last_ok": "2026-05-21T21:19:45+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:48+00:00",
+      "status": "ok",
+      "station_count": 31,
+      "station_count_prev": 31,
+      "station_count_declared": 35
     },
     "ugrf": {
-      "last_ok": "2026-05-21T21:19:46+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:49+00:00",
+      "status": "ok",
+      "station_count": 40,
+      "station_count_prev": 40,
+      "station_count_declared": 78
     },
     "thailand_dol": {
       "last_ok": null,
-      "status": "error"
+      "status": "error",
+      "station_count": 0,
+      "station_count_prev": 0,
+      "station_count_declared": 114
     },
     "tpos": {
-      "last_ok": "2026-05-21T21:19:44+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:48+00:00",
+      "status": "ok",
+      "station_count": 15,
+      "station_count_prev": 15,
+      "station_count_declared": 11
     },
     "stpos": {
-      "last_ok": "2026-05-21T21:19:45+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:48+00:00",
+      "status": "ok",
+      "station_count": 5,
+      "station_count_prev": 5,
+      "station_count_declared": 10
     },
     "gnss_veneto": {
-      "last_ok": "2026-05-21T21:19:46+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:49+00:00",
+      "status": "ok",
+      "station_count": 17,
+      "station_count_prev": 17,
+      "station_count_declared": 20
     },
     "gnss_liguria": {
-      "last_ok": "2026-05-21T21:19:46+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:49+00:00",
+      "status": "ok",
+      "station_count": 6,
+      "station_count_prev": 6,
+      "station_count_declared": 10
     },
     "sicilianet": {
-      "last_ok": "2026-05-21T21:19:45+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:49+00:00",
+      "status": "ok",
+      "station_count": 7,
+      "station_count_prev": 7,
+      "station_count_declared": 80,
+      "flags": [
+        "incomplete"
+      ]
     },
     "acorn": {
-      "last_ok": "2026-05-21T21:19:45+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:49+00:00",
+      "status": "ok",
+      "station_count": 0,
+      "station_count_prev": 0,
+      "station_count_declared": null
     },
     "nps_cors": {
-      "last_ok": "2026-05-21T21:19:45+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:49+00:00",
+      "status": "ok",
+      "station_count": 142,
+      "station_count_prev": 142,
+      "station_count_declared": 141
     },
     "rem_fvg": {
-      "last_ok": "2026-05-21T21:19:45+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:48+00:00",
+      "status": "ok",
+      "station_count": 22,
+      "station_count_prev": 22,
+      "station_count_declared": 17
     },
     "ergnss": {
-      "last_ok": "2026-05-21T21:19:46+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:49+00:00",
+      "status": "ok",
+      "station_count": 126,
+      "station_count_prev": 127,
+      "station_count_declared": 272,
+      "flags": [
+        "incomplete"
+      ]
     },
     "catnet": {
-      "last_ok": "2026-05-21T21:19:45+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:49+00:00",
+      "status": "ok",
+      "station_count": 40,
+      "station_count_prev": 40,
+      "station_count_declared": 25
     },
     "satref": {
-      "last_ok": "2026-05-21T21:19:47+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:50+00:00",
+      "status": "ok",
+      "station_count": 22,
+      "station_count_prev": 22,
+      "station_count_declared": 19
     },
     "inacors": {
-      "last_ok": "2026-05-21T21:19:46+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:49+00:00",
+      "status": "ok",
+      "station_count": 0,
+      "station_count_prev": 0,
+      "station_count_declared": 432,
+      "flags": [
+        "incomplete"
+      ]
     },
     "igac": {
-      "last_ok": "2026-05-21T21:19:45+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:50+00:00",
+      "status": "ok",
+      "station_count": 144,
+      "station_count_prev": 144,
+      "station_count_declared": 260
     },
     "spslux": {
-      "last_ok": "2026-05-21T21:19:46+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:48+00:00",
+      "status": "ok",
+      "station_count": 0,
+      "station_count_prev": 0,
+      "station_count_declared": 13,
+      "flags": [
+        "incomplete"
+      ]
     },
     "icecors": {
-      "last_ok": "2026-05-21T21:19:46+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:49+00:00",
+      "status": "ok",
+      "station_count": 10,
+      "station_count_prev": 10,
+      "station_count_declared": 33,
+      "flags": [
+        "incomplete"
+      ]
     },
     "cors_korea": {
-      "last_ok": "2026-05-21T21:19:46+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:50+00:00",
+      "status": "ok",
+      "station_count": 493,
+      "station_count_prev": 493,
+      "station_count_declared": 167
     },
     "almgg_mn": {
-      "last_ok": "2026-05-21T21:19:46+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:50+00:00",
+      "status": "ok",
+      "station_count": 42,
+      "station_count_prev": 42,
+      "station_count_declared": 40
     },
     "auscors": {
-      "last_ok": "2026-05-21T21:19:47+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:51+00:00",
+      "status": "ok",
+      "station_count": 817,
+      "station_count_prev": 818,
+      "station_count_declared": 922
     },
     "positionz": {
-      "last_ok": "2026-05-21T21:19:47+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:50+00:00",
+      "status": "ok",
+      "station_count": 62,
+      "station_count_prev": 62,
+      "station_count_declared": 62
     },
     "trignet": {
-      "last_ok": "2026-05-21T21:19:46+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:49+00:00",
+      "status": "ok",
+      "station_count": 71,
+      "station_count_prev": 71,
+      "station_count_declared": 83
     },
     "rbmc_ip": {
-      "last_ok": "2026-05-21T21:19:47+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:51+00:00",
+      "status": "ok",
+      "station_count": 147,
+      "station_count_prev": 147,
+      "station_count_declared": 153
     },
     "ramsac": {
-      "last_ok": "2026-05-21T21:19:47+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:50+00:00",
+      "status": "ok",
+      "station_count": 186,
+      "station_count_prev": 194,
+      "station_count_declared": 203
     },
     "regna_rou": {
-      "last_ok": "2026-05-21T21:19:46+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:50+00:00",
+      "status": "ok",
+      "station_count": 77,
+      "station_count_prev": 77,
+      "station_count_declared": 35
     },
     "regme_ec": {
-      "last_ok": "2026-05-21T21:19:46+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:49+00:00",
+      "status": "ok",
+      "station_count": 24,
+      "station_count_prev": 24,
+      "station_count_declared": 26
     },
     "ign_cr_cors": {
-      "last_ok": "2026-05-21T21:19:46+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:50+00:00",
+      "status": "ok",
+      "station_count": 14,
+      "station_count_prev": 14,
+      "station_count_declared": 14
     },
     "mirai": {
-      "last_ok": "2026-05-21T21:19:47+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:50+00:00",
+      "status": "ok",
+      "station_count": 325,
+      "station_count_prev": 325,
+      "station_count_declared": 16
     },
     "geortk": {
-      "last_ok": "2026-05-21T21:19:45+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:50+00:00",
+      "status": "ok",
+      "station_count": 42,
+      "station_count_prev": 42,
+      "station_count_declared": 44
     },
     "sapos_HE": {
-      "last_ok": "2026-05-21T21:19:46+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:49+00:00",
+      "status": "ok",
+      "station_count": 0,
+      "station_count_prev": 0,
+      "station_count_declared": 4,
+      "flags": [
+        "incomplete"
+      ]
     },
     "sapos_SL": {
-      "last_ok": "2026-05-21T21:19:46+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:50+00:00",
+      "status": "ok",
+      "station_count": 8,
+      "station_count_prev": 8,
+      "station_count_declared": 14
     },
     "sapos_SN": {
-      "last_ok": "2026-05-21T21:19:45+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:49+00:00",
+      "status": "ok",
+      "station_count": 0,
+      "station_count_prev": 0,
+      "station_count_declared": null
     },
     "spin3": {
-      "last_ok": "2026-05-21T21:19:45+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:49+00:00",
+      "status": "ok",
+      "station_count": 37,
+      "station_count_prev": 37,
+      "station_count_declared": 39
     },
     "gpsumbria": {
-      "last_ok": "2026-05-21T21:19:46+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:49+00:00",
+      "status": "ok",
+      "station_count": 12,
+      "station_count_prev": 12,
+      "station_count_declared": 13
     },
     "gnss_abruzzo_lazio": {
       "last_ok": "2026-05-21T00:00:00+00:00",
-      "status": "ok"
+      "status": "ok",
+      "station_count": 22,
+      "station_count_prev": 22,
+      "station_count_declared": 29
     },
     "sit_puglia": {
-      "last_ok": "2026-05-21T21:19:46+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:49+00:00",
+      "status": "ok",
+      "station_count": 12,
+      "station_count_prev": 12,
+      "station_count_declared": 12
     },
     "gnss_campania": {
-      "last_ok": "2026-05-21T21:19:46+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:50+00:00",
+      "status": "ok",
+      "station_count": 16,
+      "station_count_prev": 16,
+      "station_count_declared": 16
     },
     "wiscors": {
-      "last_ok": "2026-05-21T21:19:46+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:49+00:00",
+      "status": "ok",
+      "station_count": 0,
+      "station_count_prev": 0,
+      "station_count_declared": 115,
+      "flags": [
+        "incomplete"
+      ]
     },
     "fprn": {
       "last_ok": null,
-      "status": "error"
+      "status": "error",
+      "station_count": 0,
+      "station_count_prev": 0,
+      "station_count_declared": 100
     },
     "ardot_rtn": {
-      "last_ok": "2026-05-21T21:19:46+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:49+00:00",
+      "status": "ok",
+      "station_count": 23,
+      "station_count_prev": 23,
+      "station_count_declared": 50,
+      "flags": [
+        "incomplete"
+      ]
     },
     "macors": {
       "last_ok": null,
-      "status": "error"
+      "status": "error",
+      "station_count": 0,
+      "station_count_prev": 0,
+      "station_count_declared": 22
     },
     "vector": {
-      "last_ok": "2026-05-21T21:19:45+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:49+00:00",
+      "status": "ok",
+      "station_count": 19,
+      "station_count_prev": 19,
+      "station_count_declared": 18
     },
     "ct_acorn": {
-      "last_ok": "2026-05-21T21:19:45+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:49+00:00",
+      "status": "ok",
+      "station_count": 42,
+      "station_count_prev": 42,
+      "station_count_declared": 13
     },
     "azcors": {
       "last_ok": null,
-      "status": "error"
+      "status": "error",
+      "station_count": 0,
+      "station_count_prev": 0,
+      "station_count_declared": 52
     },
     "gcgc_rtn": {
-      "last_ok": "2026-05-21T21:19:46+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:49+00:00",
+      "status": "ok",
+      "station_count": 0,
+      "station_count_prev": 0,
+      "station_count_declared": 52,
+      "flags": [
+        "incomplete"
+      ]
     },
     "alcors": {
       "last_ok": null,
-      "status": "error"
+      "status": "error",
+      "station_count": 0,
+      "station_count_prev": 0,
+      "station_count_declared": 158
     },
     "orgn": {
-      "last_ok": "2026-05-21T21:19:46+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:50+00:00",
+      "status": "ok",
+      "station_count": 64,
+      "station_count_prev": 64,
+      "station_count_declared": 100
     },
     "msrn": {
       "last_ok": null,
-      "status": "error"
+      "status": "error",
+      "station_count": 0,
+      "station_count_prev": 0,
+      "station_count_declared": 95
     },
     "nysnet": {
-      "last_ok": "2026-05-21T21:19:46+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:49+00:00",
+      "status": "ok",
+      "station_count": 1,
+      "station_count_prev": 1,
+      "station_count_declared": null
     },
     "iartn": {
-      "last_ok": "2026-05-21T21:19:45+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:49+00:00",
+      "status": "ok",
+      "station_count": 105,
+      "station_count_prev": 105,
+      "station_count_declared": 83
     },
     "agrs_nl": {
-      "last_ok": "2026-05-21T21:19:46+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:49+00:00",
+      "status": "ok",
+      "station_count": 34,
+      "station_count_prev": 34,
+      "station_count_declared": 30
     },
     "mosref": {
-      "last_ok": "2026-05-21T21:19:47+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:50+00:00",
+      "status": "ok",
+      "station_count": 0,
+      "station_count_prev": 0,
+      "station_count_declared": 4,
+      "flags": [
+        "incomplete"
+      ]
     },
     "rtk2go": {
-      "last_ok": "2026-05-21T21:19:48+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:50+00:00",
+      "status": "ok",
+      "station_count": 870,
+      "station_count_prev": 868,
+      "station_count_declared": null
     },
     "centipede": {
-      "last_ok": "2026-05-21T21:19:46+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:50+00:00",
+      "status": "ok",
+      "station_count": 1224,
+      "station_count_prev": 1224,
+      "station_count_declared": null
     },
     "earthscope": {
-      "last_ok": "2026-05-21T21:19:48+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:51+00:00",
+      "status": "ok",
+      "station_count": 1088,
+      "station_count_prev": 1091,
+      "station_count_declared": null
     },
     "euref_ip": {
-      "last_ok": "2026-05-21T21:19:46+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:49+00:00",
+      "status": "ok",
+      "station_count": 209,
+      "station_count_prev": 209,
+      "station_count_declared": null
     },
     "igs_ip": {
-      "last_ok": "2026-05-21T21:19:46+00:00",
-      "status": "ok"
+      "last_ok": "2026-05-22T22:11:50+00:00",
+      "status": "ok",
+      "station_count": 336,
+      "station_count_prev": 336,
+      "station_count_declared": null
     }
   }
 }

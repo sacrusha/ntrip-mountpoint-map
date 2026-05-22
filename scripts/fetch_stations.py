@@ -93,7 +93,8 @@ def load_networks() -> list[dict]:
     """
     data = json.loads((DATA_DIR / "rtk_map.json").read_text(encoding="utf-8"))
     return [
-        {"id": m["id"], "endpoints": m["endpoints"]}
+        {"id": m["id"], "endpoints": m["endpoints"],
+         "stations_declared": m.get("stations_declared")}
         for m in data["markers"] if m.get("endpoints")
     ]
 
@@ -850,19 +851,59 @@ def main() -> int:
     # on every pipeline run, regardless of whether station data changed. This keeps
     # staleness display accurate to the cron interval (±6 h) without committing the
     # full stations.json unnecessarily.
+    #
+    # Regression detection: compare current station_count against the previous
+    # snapshot (sudden drop = scraper rot) and against research-derived
+    # `stations_declared` from rtk_map.json (initial baseline never met = scraper
+    # never fully worked). Maintainer surfaces these via scripts/source_health.py.
     health_path = DATA_DIR / "source_health.json"
+    prev_health: dict = {}
+    if health_path.exists():
+        try:
+            prev_health = json.loads(health_path.read_text(encoding="utf-8")).get("sources", {})
+        except (OSError, json.JSONDecodeError):
+            pass
+    declared_by_id = {net["id"]: net.get("stations_declared") for net in NETWORKS}
+
+    new_sources: dict = {}
+    for sid in payload_sources:
+        rec = payload_sources[sid]
+        count = len(rec.get("stations", []))
+        prev_count = (prev_health.get(sid) or {}).get("station_count")
+        declared = declared_by_id.get(sid)
+        flags: list[str] = []
+        if rec.get("status") == "ok":
+            if (prev_count is not None and prev_count >= 4
+                    and count < 0.75 * prev_count):
+                flags.append("regression")
+            if (declared and declared >= 4
+                    and count < 0.5 * declared):
+                flags.append("incomplete")
+        out_rec = {
+            "last_ok": rec.get("last_ok"),
+            "status": rec.get("status"),
+            "station_count": count,
+            "station_count_prev": prev_count,
+            "station_count_declared": declared,
+        }
+        if flags:
+            out_rec["flags"] = flags
+        new_sources[sid] = out_rec
+
     health = {
         "checked_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-        "sources": {
-            sid: {
-                "last_ok": payload_sources[sid].get("last_ok"),
-                "status": payload_sources[sid].get("status"),
-            }
-            for sid in payload_sources
-        },
+        "sources": new_sources,
     }
     _atomic_write_text(health_path, json.dumps(health, indent=2) + "\n")
     print(f"Wrote {health_path}.")
+    flagged = [(sid, rec["flags"]) for sid, rec in new_sources.items() if rec.get("flags")]
+    if flagged:
+        print(f"  station-count flags ({len(flagged)}):")
+        for sid, fs in sorted(flagged):
+            r = new_sources[sid]
+            print(f"    {sid:<22} flags={','.join(fs):<22} "
+                  f"count={r['station_count']} prev={r['station_count_prev']} "
+                  f"declared={r['station_count_declared']}")
 
     if not write_stations:
         return 0
