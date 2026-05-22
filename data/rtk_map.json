@@ -95,7 +95,13 @@
         {
           "type": "scraped",
           "id": "walcors_ext",
-          "scraper": "walcors",
+          "scraper": "m3g",
+          "country": "BEL",
+          "ids": [
+            "ARLO", "BATT", "BERL", "CHLR", "FLRV", "FOVA", "GHIS", "KAIN",
+            "LEGL", "MABO", "MAFA", "MARI", "MEIX", "MOHA", "NAMR", "NIVL",
+            "OLLN", "ONHA", "OSTI", "TELL", "TILM", "VITH", "WERB"
+          ],
           "interval_days": 7,
           "pin_origin": "register"
         }
@@ -139,7 +145,15 @@
         {
           "type": "scraped",
           "id": "estpos_ext",
-          "scraper": "estpos",
+          "scraper": "m3g",
+          "country": "EST",
+          "ids": [
+            "AJOE", "ALAK", "AUDR", "AVNR", "EMM1", "HANI", "HRIS", "IKLA",
+            "IMAV", "JOGE", "KALL", "KARD", "KIVI", "KLNA", "KOID", "KOSI",
+            "KURE", "KUSA", "MEHI", "MOIS", "MRJA", "MUJA", "MUS2", "NJO1",
+            "NTSL", "PYRK", "RALL", "RUH1", "SOVE", "SUR4", "TARV", "TOIL",
+            "TOR3", "TORV", "TRTU", "UGA2", "UULU", "VAND", "VERG", "VOR2"
+          ],
           "interval_days": 7,
           "pin_origin": "register"
         }

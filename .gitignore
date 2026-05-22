@@ -9,3 +9,5 @@ map.zip
 .env.local
 _site/
 .wrangler/
+data/_m3g_features.json
+

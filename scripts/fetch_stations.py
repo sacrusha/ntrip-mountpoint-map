@@ -19,6 +19,7 @@ from __future__ import annotations
 
 import http.client
 import importlib
+import inspect
 import json
 import os
 import math
@@ -114,6 +115,12 @@ def _flatten_endpoints(networks: list[dict]) -> list[dict]:
     merge fetched results back per-network. Legacy fields user/pass/userNote
     are surfaced from endpoint.credentials for backward compat with
     sources_list.py / popup-credential rendering."""
+    # Endpoint keys re-shaped by the flattener (renamed, defaulted, or
+    # unpacked from sub-objects). Anything not in this set is forwarded
+    # verbatim so handlers can pick up scraper-specific config without
+    # editing this function.
+    reshaped = {"type", "url", "credentials", "near",
+                "nmea_filter", "solution_filter", "vrs_required"}
     out = []
     for net in networks:
         for idx, ep in enumerate(net["endpoints"]):
@@ -133,15 +140,9 @@ def _flatten_endpoints(networks: list[dict]) -> list[dict]:
                 "solution_filter": ep.get("solution_filter", True),
                 "vrs_required":    ep.get("vrs_required", False),
             }
-            # Type-specific config carried verbatim so handlers can pick it up.
-            if "path" in ep:
-                entry["path"] = ep["path"]
-            if "pin_origin" in ep:
-                entry["pin_origin"] = ep["pin_origin"]
-            if "scraper" in ep:
-                entry["scraper"] = ep["scraper"]
-            if "interval_days" in ep:
-                entry["interval_days"] = ep["interval_days"]
+            for k, v in ep.items():
+                if k not in reshaped:
+                    entry.setdefault(k, v)
             out.append(entry)
     return out
 
@@ -672,7 +673,11 @@ def _fetch_scraped_source(src: dict) -> tuple[str, dict, bool]:
 
     if scrape_fn is not None:
         try:
-            result = scrape_fn()
+            # Generic shared scrapers (e.g. `m3g`) read per-network spec
+            # off the endpoint dict; single-source scrapers keep the
+            # original no-arg signature. Inspect to support both.
+            takes_src = bool(inspect.signature(scrape_fn).parameters)
+            result = scrape_fn(src) if takes_src else scrape_fn()
             pin_origin = pin_origin_default or "external"
             new_cache = {
                 "last_scraped": now.isoformat(timespec="seconds"),

@@ -79,19 +79,27 @@ is `error` and 0 stations ship. Behaviour parallels how
 `_fetch_ntrip_source` reuses the `.sourcetable` cache on caster outage.
 
 **Scraper module shape** (`scripts/scrapers/<name>.py`):
-- Exposes a single `scrape() -> dict` callable.
+- Exposes a `scrape() -> dict` or `scrape(src: dict) -> dict` callable.
+  The dispatcher inspects the signature: a no-arg `scrape()` is for
+  single-source scrapers; the `scrape(src)` form lets one generic
+  scraper serve many networks by reading the endpoint dict.
 - Returns `{"source_url": str, "stations": [{"name", "lat", "lon",
   "country"?}, ...]}`.
 - Raises any exception on failure — the handler catches and falls back.
 - Should be self-contained (stdlib + urllib only; no project-internal
-  imports beyond stdlib). Treat it like a thin adapter.
-- One module per upstream source; do not coalesce two different
-  operator portals into one module — separate failure surfaces matter
-  for the cache-fallback contract.
+  imports beyond stdlib + the `_<name>` helper modules). Treat it like
+  a thin adapter.
+- One module per upstream **source-of-truth** — not one module per
+  network. A scraper backed by a per-network operator portal is
+  one-to-one; a scraper backed by a multi-network aggregator (M3G,
+  NGS bulk) is one-to-many, with the per-network spec read from the
+  endpoint dict. Separate failure surfaces still matter for the
+  cache-fallback contract: each endpoint id gets its own
+  `.scraped.json` cache regardless of which scraper produced it.
 
 **Shared helpers** (`scripts/scrapers/_<name>.py`, underscore-prefixed):
 - A module-naming convention for internal helpers that several
-  per-source scrapers share. Three patterns are in tree:
+  per-source scrapers share. Four patterns are in tree:
   - `_arcgis.py` — parameterised ArcGIS REST query/paging helper.
     Per-source scrapers (`iartn`, `vector`, `wvrtn`) pass their layer
     URL + name-field; the helper is not itself a data source.
@@ -100,15 +108,33 @@ is `error` and 0 stations ship. Behaviour parallels how
     file fetches once per pipeline run (double-checked locking around
     an in-process cache so concurrent stale-cache scrapers don't each
     download); each state-filter scraper writes its own `.scraped.json`
-    cache. This is the legitimate exception to "one module per source"
-    — the source is genuinely one file, not two portals coalesced.
+    cache.
   - `_sitelog.py` — IGS-format sitelog regex + DMS-string-to-decimal
     conversion. Consumed by `sapos_bb`, `sapos_nw`, `flepos` (all three
     parse IGS sitelogs from different operator portals but the
     line-format inside is identical).
+  - `_m3g.py` — M3G master GeoJSON (`gnss-metadata.eu/site/index`).
+    Single POST returns ~3.6k features across every M3G-registered
+    network. Disk-cached at `data/_m3g_features.json` (gitignored,
+    7-day TTL; delete the file or pass `force=True` to refresh).
+    In-process memoisation on top, double-checked locking inside.
+    Consumed by the generic `m3g` scraper to resolve coordinates for
+    any network whose stations are registered on M3G — endpoint
+    config supplies the `ids` list + ISO3 `country` code.
 - Helpers MUST NOT register themselves in `data/rtk_map.json`; only
-  the per-source thin scrapers do. Importing a helper from a scraper
-  module uses package-relative `from . import _name` syntax.
+  scrapers do. Importing a helper from a scraper module uses
+  package-relative `from . import _name` syntax.
+
+**Generic scrapers** (multi-network, `scripts/scrapers/<name>.py`):
+- Currently one in tree:
+  - `m3g.py` — every network registered on M3G uses this scraper.
+    Endpoint config must include `country` (ISO3) and `ids` (list of
+    4-char station codes; M3G key is `f"{sid}00{country}"`). One
+    HTTP call per pipeline run covers all M3G-backed endpoints; the
+    `_m3g` helper handles fetch + disk cache.
+- Adding a new M3G-backed network is a `rtk_map.json` data edit, not a
+  scrapers/ code edit: add an endpoint of `type:"scraped"`,
+  `scraper:"m3g"`, with the `country` + `ids` fields.
 
 ## When to edit this file
 
