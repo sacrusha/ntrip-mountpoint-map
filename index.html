@@ -154,12 +154,9 @@
   .help-chip .q{width:10px;height:10px;border-radius:50%;border:1px solid currentColor;
     display:inline-flex;align-items:center;justify-content:center;font-size:7px;font-weight:700;}
   .lbl-with-chip{display:inline-flex;align-items:center;gap:0;}
-  /* === Networks panel — desktop control (#toggles) and mobile sheet (#net-sheet)
-     share the same compact row + symbols layout. Component classes live at the
-     top level; container-specific overrides are scoped via the @media block
-     and a few #toggles-only / #net-sheet-only rules below. === */
+  /* Networks panel — desktop #toggles (Leaflet top-right control) and mobile
+     #net-sheet (bottom sheet) share .src-row, .sym-*, .tier, .cnt, .sw. */
 
-  /* Desktop control — frosted card, top-right Leaflet stack. */
   #toggles.leaflet-control{
     background:var(--ctrl-bg);
     -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
@@ -169,18 +166,17 @@
     display:flex;flex-direction:column;
     min-width:220px;max-width:300px;}
   #toggles .panel-head{display:flex;align-items:center;gap:10px;
-    padding:6px 10px 5px;border-bottom:1px solid var(--srv-border);flex-shrink:0;}
+    padding:10px 12px 9px;border-bottom:1px solid var(--srv-border);flex-shrink:0;}
   #toggles .panel-title{flex:1;margin:0;
-    font-family:Georgia,ui-serif,serif;font-weight:600;font-size:12.5px;
-    color:var(--fg);line-height:1.1;}
+    font-family:Georgia,ui-serif,serif;font-weight:600;font-size:13px;
+    color:var(--fg);line-height:1.15;}
   #toggles .declutter{display:flex;align-items:center;gap:5px;
     font-size:10.5px;color:var(--muted);cursor:pointer;white-space:nowrap;}
   #toggles .declutter input{margin:0;accent-color:var(--accent);}
   #toggles .src-list{flex:1;overflow-y:auto;}
 
-  /* Source row — shared between desktop and mobile. Tight density so 50+
-     network lists don't overflow on EU/US zooms; `name` truncates with
-     ellipsis to handle long labels without forcing the panel wider. */
+  /* Density tuned for 50+ network lists on EU/US zooms; name ellipsis-
+     truncates so long labels never widen the panel. */
   .src-row{display:flex;align-items:center;gap:8px;padding:3px 10px;
     border-bottom:1px solid var(--srv-border);font-size:12px;color:var(--fg);
     cursor:pointer;min-height:22px;}
@@ -190,9 +186,8 @@
   .src-row .sw{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
   .src-row .name{flex:1;line-height:1.2;
     white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-  /* Tier pill — clickable affordance opening the access-tiers help topic.
-     Without that click target the pill looks like a button users can't press;
-     making it actually do something resolves the visual / functional gap. */
+  /* Pill is interactive — click opens help. cursor:help signals the
+     hover-tooltip + click-for-more behaviour wired in renderSourceList. */
   .src-row .tier{font-size:9.5px;color:var(--muted);
     font-family:ui-monospace,Menlo,monospace;letter-spacing:.02em;
     padding:0 5px;border-radius:8px;border:1px solid var(--srv-border);
@@ -203,8 +198,6 @@
   .src-row .cnt{color:var(--fg);font-size:11px;font-weight:600;
     font-family:ui-monospace,Menlo,monospace;min-width:26px;text-align:right;}
 
-  /* Symbols & filters — collapsed-by-default footer holding tag toggles,
-     paid-tier toggles, and access-tier toggles (low-frequency use). */
   details.sym{border-top:1px solid var(--srv-border);background:var(--code-bg);
     flex-shrink:0;}
   details.sym summary{list-style:none;padding:7px 10px;cursor:pointer;
@@ -235,8 +228,6 @@
     border:1px solid currentColor;display:inline-flex;align-items:center;
     justify-content:center;font-size:9px;font-weight:700;}
 
-  /* Accuracy ramp — bottom-left overlay, persistent on both desktop and mobile.
-     Read-only legend that survives panel collapse / sheet dismiss. */
   #net-ramp{position:fixed;left:8px;bottom:8px;z-index:9995;
     background:var(--ctrl-bg);
     -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
@@ -251,8 +242,7 @@
   #net-ramp .sw{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
   #net-ramp .lbl{flex:1;}
   #net-ramp .acc{color:var(--muted);font-size:9.5px;font-family:ui-monospace,Menlo,monospace;}
-  /* Hide ramp when the card-sheet is open — it occludes the bottom-left strip. */
-  body.card-open #net-ramp{display:none;}
+  body.card-open #net-ramp{display:none;}  /* card-sheet covers bottom-left */
 
   /* ——— Help system ——— */
   /* Toast */
@@ -417,17 +407,13 @@
     outline:2px solid var(--link);outline-offset:2px;
   }
 
-  /* Mobile-only elements (≤768px): FAB + scrim + bottom sheet. The desktop
-     control (#toggles) hides; the same source list + symbols footer that lives
-     in the panel above also lives in the sheet here. */
+  /* Mobile FAB / scrim / sheet — hidden by default, opted in below ≤768px. */
   #net-fab, #net-scrim, #net-sheet{ display:none; }
   body.card-open #net-fab{ display:none !important; }
 
   @media(max-width:768px){
-    /* Desktop control hidden — mobile shows the bottom sheet instead. */
     #toggles.leaflet-control{ display:none !important; }
 
-    /* FAB — bottom-right, frosted pill w/ accent count badge. */
     #net-fab{
       display:flex;
       position:fixed;right:12px;bottom:14px;z-index:9996;
@@ -444,7 +430,6 @@
       padding:1px 7px;border-radius:10px;font-weight:600;
       font-family:ui-monospace,Menlo,monospace;}
 
-    /* Scrim + bottom sheet. */
     #net-scrim{
       display:block;position:fixed;inset:0;z-index:9997;
       background:rgba(0,0,0,.42);opacity:0;pointer-events:none;
@@ -494,7 +479,7 @@
 </head>
 <body>
 <h1 class="sr-only">NTRIP Mountpoint Map — Free RTK GNSS Correction Networks</h1>
-<p class="sr-only">An interactive map of free public NTRIP mountpoints and RTK correction networks worldwide. Filter by network and access tier (free, registration, conditions); see coverage at hobbyist accuracy bands; copy server, port, and mountpoint settings into your NTRIP client. Sources include rtk2go, Centipede, EarthScope NOTA, SAPOS, ERGNSS, AUSCORS, RBMC-IP, RAMSAC, TrigNet, and dozens more — about 5,400 stations across 66 networks. For hobbyists and small shops who need centimetre-accurate GNSS without a paid subscription.</p>
+<p class="sr-only">An interactive map of free public NTRIP mountpoints and RTK correction networks worldwide. Filter by network; see coverage at hobbyist accuracy bands; copy server, port, and mountpoint settings into your NTRIP client. Sources include rtk2go, Centipede, EarthScope NOTA, SAPOS, ERGNSS, AUSCORS, RBMC-IP, RAMSAC, TrigNet, and dozens more — about 5,400 stations across 66 networks. For hobbyists and small shops who need centimetre-accurate GNSS without a paid subscription.</p>
 <noscript>
   <div style="max-width:680px;margin:24px auto;padding:16px 20px;font-family:system-ui,-apple-system,sans-serif;line-height:1.55;">
     <h2 style="margin-top:0;">JavaScript required for the interactive map</h2>
@@ -1012,19 +997,15 @@
     var s=document.getElementById('card-sheet'); if(!s) return;
     s.querySelector('.card-content').innerHTML=html;
     s.classList.add('on');
-    // `body.card-open` lets the mobile FAB + accuracy ramp hide themselves so
-    // they aren't visually buried under the card-sheet at bottom:0.
-    document.body.classList.add('card-open');
+    document.body.classList.add('card-open');  /* FAB + ramp self-hide via CSS */
   }
   function closeCardSheet(){
     var s=document.getElementById('card-sheet'); if(s) s.classList.remove('on');
     document.body.classList.remove('card-open');
   }
 
-  // Mobile network sheet — module-scope so openHelp() + global Escape handler
-  // can dismiss it without crossing into the buildTogglePanel closure. The
-  // closure builds the content + wires per-row toggles; the open/close
-  // mechanics (focus capture, aria, scrim) live here.
+  // Module-scope so openHelp() + global Escape can dismiss without crossing
+  // into the buildTogglePanel closure (which only builds content + wires rows).
   var _netSheetPrevFocus=null;
   function openNetSheet(){
     var sheet=document.getElementById('net-sheet');
@@ -1461,9 +1442,7 @@
     if(scrim) scrim.classList.add('on');
     renderHelp('', highlightId||null);
     if(highlightId){
-      // block:'start' so the highlighted topic loads at the top of the body
-      // where the eye is (the search-field caret also focuses near the top);
-      // block:'center' parked the answer mid-viewport, jarring vs. the caret.
+      // block:'start' aligns the topic with the search-caret focus near the top.
       setTimeout(function(){
         var el=document.querySelector('.help-topic[data-id="'+highlightId+'"]');
         if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
@@ -1713,20 +1692,16 @@
   function sw(s){ return '<span style="display:inline-block;width:12px;height:12px;vertical-align:middle;'+s+'"></span>'; }
 
   function buildTogglePanel(freeNetworks,vrsLayerBySid,greyLayerById,liveLayerBySid,paidLayers,onChange){
-    var state={tier_open:true,tier_registration:true,tier_conditions:true,
-               vrs_global:true,grey_global:true,live_global:true};
+    var state={vrs_global:true,grey_global:true,live_global:true};
     freeNetworks.forEach(function(net){ state[net.id]=true; });
     Object.keys(paidLayers).forEach(function(tier){
       state[tier+'_global']=true;
       Object.keys(paidLayers[tier]).forEach(function(id){ state[tier+':'+id]=true; });
     });
-    var accessBySid={};
-    freeNetworks.forEach(function(net){ accessBySid[net.id]=net.access; });
 
     function applyMarkers(){
       Object.keys(vrsLayerBySid).forEach(function(sid){
-        var tier='tier_'+(accessBySid[sid]||'registration');
-        var show=!!(state[sid]&&state[tier]&&state.vrs_global);
+        var show=!!(state[sid]&&state.vrs_global);
         var entry=vrsLayerBySid[sid];
         entry.visual.setStyle({opacity:show?1:0,fillOpacity:show?0.25:0});
         var mkEl=entry.marker.getElement();
@@ -1740,8 +1715,7 @@
         if(mkEl) mkEl.style.display=show?'':'none';
       });
       Object.keys(liveLayerBySid).forEach(function(sid){
-        var tier='tier_'+(accessBySid[sid]||'registration');
-        var show=!!(state[sid]&&state[tier]&&state.live_global);
+        var show=!!(state[sid]&&state.live_global);
         var entry=liveLayerBySid[sid];
         var mkEl=entry.marker.getElement();
         if(mkEl) mkEl.style.display=show?'':'none';
@@ -1756,18 +1730,15 @@
         });
       });
     }
-    // Returns the subset of mountpoints currently enabled by source + tier
-    // toggles. Empty array means the station should be hidden.
     function filterMountpoints(s){
       var out=[];
       for(var i=0;i<s.mountpoints.length;i++){
-        var mp=s.mountpoints[i], src=mp.source;
-        if(state[src.id]&&state['tier_'+(src.access||'registration')]) out.push(mp);
+        var mp=s.mountpoints[i];
+        if(state[mp.source.id]) out.push(mp);
       }
       return out;
     }
 
-    // === Static derived per-tier / per-marker counts (don't change after build). ===
     var vrsCount  = Object.keys(vrsLayerBySid).length;
     var liveCount = Object.keys(liveLayerBySid).length;
     var greyCount = Object.keys(greyLayerById).length;
@@ -1779,28 +1750,20 @@
     var hasPaidRows = paidCounts.affordable||paidCounts.paid||paidCounts.restricted||paidCounts.info;
     var PAID_TIER_LABELS = {affordable:'Affordable',paid:'Paid',restricted:'Restricted',info:'Info'};
 
-    // Per-source invariants — built once, reused on every list render. Count
-    // is recomputed per render from the current bounds (passed as the counts
-    // arg). Sorting also happens per render so in-view-first stays accurate.
+    // Pre-built per-source data. count + sort recomputed per render so
+    // in-view-first ordering stays accurate as the user pans.
     var sourceList = freeNetworks.filter(function(net){ return net.stationCount; })
       .map(function(net){
         return { sid:net.id, label:net.label, color:net.color,
-                 access:accessBySid[net.id]||'registration',
+                 access:net.access||'registration',
                  conditionsNote:net.conditionsNote||null };
       });
 
     var _declutter = true;
     var _lastCounts = {};
 
-    // === Shared HTML builders — used by #toggles (desktop) and #net-sheet (mobile).
-    // Symbols (B+D + access toggles) renders once into each container's footer;
-    // the source list is re-rendered into both containers on every applyDeclutter. ===
-
     function tierClassFor(access){
       return access==='open'?'open':access==='registration'?'register':'conditions';
-    }
-    function tierPillHtml(cls){
-      return '<span class="tier '+cls+'" style="font-size:9px;padding:0 5px">'+cls+'</span>';
     }
     function symRowHtml(stateKey, iconHtml, label, count){
       var checked = state[stateKey]!==false?'checked':'';
@@ -1830,12 +1793,6 @@
         });
         h+='</div>';
       }
-      // Access — rarely toggled in practice; comes last in the symbols footer.
-      h+='<div class="sym-group"><h6>Access</h6>'
-        +symRowHtml('tier_open',         tierPillHtml('open'),       'Free, no signup',    null)
-        +symRowHtml('tier_registration', tierPillHtml('register'),   'Free (registration)',null)
-        +symRowHtml('tier_conditions',   tierPillHtml('conditions'), 'Free (conditions)',  null)
-        +'</div>';
       h+='<button class="sym-help" type="button">What do these mean?</button>';
       return h;
     }
@@ -1860,10 +1817,6 @@
       };
     }
 
-    // Tier pill — visible label + hover tooltip. Tooltip must answer "what
-    // does this mean" without forcing a help-drawer trip; for conditions
-    // the per-source `conditionsNote` (from rtk_map.json) supplies the
-    // specific restriction, falling back to the generic description.
     var TIER_LABELS = {
       open:       'free access',
       register:   'free signup',
@@ -1873,6 +1826,8 @@
       open:     'Free access — no signup required.',
       register: 'Free signup — create an account, then connect.'
     };
+    // Per-source `conditionsNote` (from rtk_map.json) overrides this default
+    // — populated case-by-case as networks are curated.
     var DEFAULT_CONDITIONS_TEXT =
       'Free only for specific users (e.g. non-commercial, agricultural) ' +
       "or within a defined trial period. Check the network's site for current terms.";
@@ -1910,10 +1865,9 @@
           });
           applyMarkers(); onChange(filterMountpoints);
         });
-        // Tier pill → open the access-tiers help topic. preventDefault stops
-        // the surrounding <label> from also toggling the checkbox.
         var pill = lbl.querySelector('.tier');
         if(pill) pill.addEventListener('click', function(ev){
+          // preventDefault keeps the surrounding <label> from also toggling.
           ev.preventDefault();
           ev.stopPropagation();
           if(typeof window.__ntripOpenHelp === 'function') window.__ntripOpenHelp('access-tiers');
@@ -1992,15 +1946,13 @@
         applyDeclutter(_lastCounts);
       });
 
-      // Open/close mechanics at module scope (openNetSheet / closeNetSheet near
-      // closeCardSheet) so the global Escape handler + openHelp() can dismiss
-      // the sheet without crossing into this closure.
+      // openNetSheet / closeNetSheet are module-scope so the global Escape
+      // handler + openHelp() can dismiss without crossing this closure.
       fab.addEventListener('click', openNetSheet);
       scrim.addEventListener('click', closeNetSheet);
       if(closeBtn) closeBtn.addEventListener('click', closeNetSheet);
 
-      // Leaflet propagation guards — taps on FAB or open sheet must not bubble
-      // to the map canvas and fire the nearest-station / closeCardSheet logic.
+      // Stop taps on FAB/sheet from bubbling to the map's nearest-station handler.
       L.DomEvent.disableClickPropagation(fab);
       L.DomEvent.disableClickPropagation(sheet);
       L.DomEvent.disableScrollPropagation(sheet);
