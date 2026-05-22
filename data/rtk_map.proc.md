@@ -22,6 +22,7 @@ editorial user-facing extract of `rtk_inventory.md` - "what the user on a networ
 | `lat`,`lon` | yes for single-country | Marker map placement. Omitted on aggregator stubs (rtk2go, Centipede, EarthScope, EUREF-IP, IGS-IP) — they render no country-zoom marker; the entry exists only to carry editorial data for the future per-pin mountpoint card. |
 | `tier` | yes | `free`, `paid`, `restricted`, `weird` |
 | `access` | for free | `open`, `registration`, `conditions` |
+| `conditions_note` | for `access:"conditions"` | One-line description of the actual restrictions (non-commercial only, residency requirement, defined trial period, etc.). Surfaces verbatim as the hover tooltip on the "conditions" pill in the networks list — the user gets the answer without opening the help drawer. Keep ≤200 chars. Omit to fall back to the generic default. |
 | `vrs` | when true | boolean, "true" if network delivers VRS/NRTK streams
 | `yearly_cost` | recommended on paid* | '$X/yr' / 'X €/yr' / '£X/yr', etc. local currency. if no yearly option, fall back to /mo, /h, /min, one time payment. Only one price, additional relevant pricing options in note field. No known pricing = no yearly_cost field
 | `yearly_cost_normalized` | required if yearly_cost present | Integer, used as color hint for affordability  |

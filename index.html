@@ -1461,9 +1461,12 @@
     if(scrim) scrim.classList.add('on');
     renderHelp('', highlightId||null);
     if(highlightId){
+      // block:'start' so the highlighted topic loads at the top of the body
+      // where the eye is (the search-field caret also focuses near the top);
+      // block:'center' parked the answer mid-viewport, jarring vs. the caret.
       setTimeout(function(){
         var el=document.querySelector('.help-topic[data-id="'+highlightId+'"]');
-        if(el) el.scrollIntoView({behavior:'smooth',block:'center'});
+        if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
       },280);
     }
     setTimeout(function(){ var s=document.getElementById('help-search'); if(s) s.focus(); },260);
@@ -1782,7 +1785,8 @@
     var sourceList = freeNetworks.filter(function(net){ return net.stationCount; })
       .map(function(net){
         return { sid:net.id, label:net.label, color:net.color,
-                 access:accessBySid[net.id]||'registration' };
+                 access:accessBySid[net.id]||'registration',
+                 conditionsNote:net.conditionsNote||null };
       });
 
     var _declutter = true;
@@ -1856,30 +1860,43 @@
       };
     }
 
-    // Hover tooltip + help-topic affordance for the tier pills. Without these
-    // the pills look like buttons the user can't press; clicking opens the
-    // access-tiers help topic which explains the three categories.
-    var TIER_TOOLTIPS = {
-      open:       'Open — no signup. Click to learn more.',
-      register:   'Registration — free account required. Click to learn more.',
-      conditions: 'Conditions — restrictions apply (non-commercial, trial, etc). Click to learn more.'
+    // Tier pill — visible label + hover tooltip. Tooltip must answer "what
+    // does this mean" without forcing a help-drawer trip; for conditions
+    // the per-source `conditionsNote` (from rtk_map.json) supplies the
+    // specific restriction, falling back to the generic description.
+    var TIER_LABELS = {
+      open:       'free access',
+      register:   'free signup',
+      conditions: 'conditions'
     };
+    var TIER_TOOLTIPS = {
+      open:     'Free access — no signup required.',
+      register: 'Free signup — create an account, then connect.'
+    };
+    var DEFAULT_CONDITIONS_TEXT =
+      'Free only for specific users (e.g. non-commercial, agricultural) ' +
+      "or within a defined trial period. Check the network's site for current terms.";
 
     function renderSourceList(listContainer, counts){
       counts = counts || {};
       var rows = sourceList.map(function(s){
-        return {sid:s.sid, label:s.label, color:s.color, access:s.access, count:counts[s.sid]||0};
+        return {sid:s.sid, label:s.label, color:s.color, access:s.access,
+                conditionsNote:s.conditionsNote, count:counts[s.sid]||0};
       });
       rows.sort(function(a,b){ return b.count-a.count || a.label.localeCompare(b.label); });
       var visible = _declutter ? rows.filter(function(r){ return r.count>0; }) : rows;
       listContainer.innerHTML = visible.map(function(r){
         var tierCls = tierClassFor(r.access);
+        var tierLabel = TIER_LABELS[tierCls];
+        var tierTip = tierCls==='conditions'
+          ? (r.conditionsNote || DEFAULT_CONDITIONS_TEXT)
+          : TIER_TOOLTIPS[tierCls];
         var checked = state[r.sid] ? 'checked' : '';
         return '<label class="src-row" data-sid="'+esc(r.sid)+'">'
           + '<input type="checkbox" '+checked+'>'
           + '<span class="sw" style="background:'+r.color+'"></span>'
           + '<span class="name">'+esc(r.label)+'</span>'
-          + '<span class="tier '+tierCls+'" title="'+esc(TIER_TOOLTIPS[tierCls])+'">'+tierCls+'</span>'
+          + '<span class="tier '+tierCls+'" title="'+esc(tierTip)+'">'+tierLabel+'</span>'
           + '<span class="cnt">'+r.count+'</span>'
           + '</label>';
       }).join('');
@@ -2057,6 +2074,7 @@
         label:        mk.name||sid,
         registration: validUrl(mk.registration||''),
         access:       mk.access||'registration',
+        conditionsNote: mk.conditions_note||null,
         note:         mk.note||null,
         near:         (rs&&rs.near)||false,
         user:         rs?(rs.user||(rs.credentials&&rs.credentials.user&&!rs.userNote?rs.credentials.user:null)):null,
