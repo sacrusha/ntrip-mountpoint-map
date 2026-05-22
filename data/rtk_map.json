@@ -118,6 +118,15 @@
       "endpoints": [
         {
           "url": "http://latpos.lgia.gov.lv:5001/"
+        },
+        {
+          "type": "scraped",
+          "id": "latpos_ext",
+          "scraper": "m3g",
+          "moid": "5e26ae2055d9ef4fef718d02",
+          "country": "LVA",
+          "interval_days": 7,
+          "pin_origin": "register"
         }
       ]
     },
@@ -2006,6 +2015,15 @@
       "endpoints": [
         {
           "url": "http://stream.spslux.lu:5005/"
+        },
+        {
+          "type": "scraped",
+          "id": "spslux_ext",
+          "scraper": "m3g",
+          "moid": "67629ff568e35d06240a34ab",
+          "country": "LUX",
+          "interval_days": 7,
+          "pin_origin": "register"
         }
       ]
     },
