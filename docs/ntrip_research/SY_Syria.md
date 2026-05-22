@@ -1,5 +1,8 @@
 # Syria [SY] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-17 (re-verified from 2026-05-13 — no change in operational status; no NTRIP / CORS announcement; HOT Syria ReMapping 2025-2026 still the only active geospatial effort)
+**Date researched:** 2026-05-23 (re-verified from 2026-05-17 — no change in operational status; no NTRIP / CORS announcement; HOT Syria ReMapping 2025-2026 still the only active geospatial effort; radius probe Damascus 33.5/36.3 within 250 km returns zero stations; the prior 35.5/38.5 coordinates used in earlier revisions point to central Syria near the Turkish border, not Damascus — re-run with correct coordinates returned the same zero result)
+last_verified_date: 2026-05-23
+last_gap_fill_date: 2026-05-17
+last_caster_search_date: 2026-05-23
 
 ## Status: NO — no public NTRIP infrastructure; pre-conflict geodetic agency (GORS) never operated a CORS/NTRIP service; post-conflict reconstruction in early stages with no GNSS-infrastructure announcement found
 
@@ -15,20 +18,20 @@
 | **legal_residency_required** | — |
 | **last_confirmed_alive** | — |
 | **datum_epoch** | omitted — N/A (no caster, no operator declaration to cite) |
-| **Most recent project announcement** | None found for GNSS / CORS / NTRIP in Syria as of 2026-05-13. The most visible 2025–2026 geospatial activity is OSM-focused: **Humanitarian OpenStreetMap Team (HOT) "Syria ReMapping 2025–2026"** (Nov 2025 – May 2026), which produces vector OSM data for rural Aleppo and Rural Damascus and does **not** establish CORS or NTRIP infrastructure |
+| **Most recent project announcement** | None found for GNSS / CORS / NTRIP in Syria as of 2026-05-23. The most visible 2025–2026 geospatial activity is OSM-focused: **Humanitarian OpenStreetMap Team (HOT) "Syria ReMapping 2025–2026"** (Nov 2025 – May 2026), which produces vector OSM data for rural Aleppo and Rural Damascus and does **not** establish CORS or NTRIP infrastructure |
 
 ## Context Notes
 
 - Syria has been in civil conflict since 2011, with full-scale war devastating most infrastructure. As of 2025–2026 a post-conflict reconstruction period is beginning following regime change in December 2024, but no geodetic CORS or NTRIP infrastructure has been announced.
 - **Pre-conflict mapping authority**: the **General Organization of Remote Sensing (GORS)** / الهيئة العامة للاستشعار عن بُعد — Syrian space-research agency established 1986, headquartered in Damascus, remit covers aerospace and land surveying using remote-sensing techniques (LANDSAT, SPOT). The previous research-file mention of a "General Commission for Remote Sensing / GCRS" reflects an alternative English transliteration of the same body (GORS is the spelling used by the IAF and Springer Nature). Citable source for the mandate is the Springer Nature chapter listed under Sources Consulted; the Wikipedia entity page is retained only as a secondary cross-reference per primer guidance (country-specific entity pages borderline-OK). No GNSS CORS or NTRIP service was operated by GORS pre-conflict.
-- No volunteer rtk2go or Centipede bases found inside Syria (re-cross-checked 2026-05-13 via `py scripts/stations_by_radius.py 35.0 38.5 200` — no stations within 200 km of central Syria).
+- No volunteer rtk2go or Centipede bases found inside Syria (re-cross-checked 2026-05-23 via `py scripts/stations_by_radius.py 33.5 36.3 250` from Damascus — zero stations within 250 km; the prior probe with 35.5/38.5 was centred near the Turkish-Syrian border, well north of Damascus, and likewise returned zero).
 - No RINEX download portal found for Syrian CORS data.
 - Arabic-language search ("نظام RTK GNSS NTRIP سوريا") returned no Syria-specific real-time services — only generic RTK technology articles.
 - Western sanctions still complicate foreign-issued credentials and remittance to Syrian government services; any post-conflict NTRIP service emerging would face this hurdle.
 
 ## Most Recent Project Announcement
 
-None identified as of 2026-05-13. Post-conflict reconstruction planning is in early stages; any geodetic-network restoration project would be a multi-year undertaking. The closest currently active geospatial effort is the HOT OSM "Syria ReMapping 2025–2026" (vector OSM data only, not GNSS infrastructure).
+None identified as of 2026-05-23. Post-conflict reconstruction planning is in early stages; any geodetic-network restoration project would be a multi-year undertaking. The closest currently active geospatial effort is the HOT OSM "Syria ReMapping 2025–2026" (vector OSM data only, not GNSS infrastructure).
 
 ## Post-Processing (RINEX) Fallback
 
@@ -40,4 +43,4 @@ None available for Syria specifically. Nearest IGS / EUREF stations: Jordan (JOR
 - WebSearch Arabic "نظام RTK GNSS NTRIP سوريا تحديد المواقع المساحة 2024 2025" — no Syria-specific results
 - General Organization of Remote Sensing (GORS): https://en.wikipedia.org/wiki/General_Organization_of_Remote_Sensing ; Springer chapter "A Brief Account of the General Organization of Remote Sensing (GORS) in Syria and its Activities" — confirmed mandate is remote sensing, not GNSS CORS
 - HOT Syria ReMapping 2025–2026: https://www.hotosm.org/en/projects/syria-remapping-2025-2026/
-- `data/stations.json` cross-check (`py scripts/stations_by_radius.py 35.0 38.5 200`) — zero hits
+- `data/stations.json` cross-check (`py scripts/stations_by_radius.py 33.5 36.3 250` from Damascus, 2026-05-23) — zero hits

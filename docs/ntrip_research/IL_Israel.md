@@ -1,5 +1,8 @@
 # Israel [IL] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-17 (refresh of 2026-05-12 entry; APN/mapigps.co.il + Survey of Israel govil portal both ECONNREFUSED from sandbox 2026-05-17 — geo-block pattern unchanged; spoofing environment unchanged)
+**Date researched:** 2026-05-23 (refresh of 2026-05-17 entry; APN/mapigps.co.il continues ECONNREFUSED from sandbox 2026-05-23 — geo-block pattern unchanged; spoofing environment unchanged; pipeline still surfaces 1 ARKG centipede + 1 misgav_dov rtk2go + 1 BSHM00ISR0 igs_ip)
+last_verified_date: 2026-05-23
+last_gap_fill_date: 2026-05-17
+last_caster_search_date: 2026-05-17
 
 ## Status: YES (nominally) — APN caster is live; rejected from pipeline due to pervasive military GNSS spoofing making RTK unreliable
 
@@ -8,10 +11,12 @@
 | **Active public NTRIP RTK caster** | Yes — APN (`mapigps.co.il`) is operational |
 | **host:port** | `mapigps.co.il` (port not published; conventionally 2101; Geo++ Nt caster). Direct TCP probe from sandbox timed out 2026-05-12; WebFetch returned ECONNREFUSED 2026-05-17 — consistent geo-block pattern (caster accessible inside IL but not from many external networks). |
 | **network type** | VRS — virtual reference station; powered by Geo++ Nt software |
+| **access_type** | restricted — primary user base is licensed Israeli surveyors registered with Survey of Israel (MAPI); no documented open self-service sign-up path for non-licensed users |
+| **stations_source** | none publicly indexed — `mapigps.co.il` sourcetable unreachable from sandbox; ResearchGate diagram fig_328049994 (2018) shows the SOI-APN station distribution; no current live map URL identified |
 | **tariff** | not publicly listed; believed free for licensed Israeli surveyors; contact apn@mapi.gov.il / 03-6231697 |
 | **hobbyist_eligibility** | Unclear — primary user base is licensed surveyors registered with Survey of Israel (MAPI); no documented open self-service sign-up path for non-licensed users |
 | **legal_residency_required** | Unclear — registration appears tied to Israeli surveyor licensing; foreign hobbyists have no documented access path |
-| **last_confirmed_alive** | APN/mapigps.co.il caster: WebFetch ECONNREFUSED 2026-05-17 (sandbox geo-block consistent with prior — caster was HTTP 200 on 2026-05-06 from a different vantage); service continuously referenced in academic/professional literature through 2025. ArduSimple Israel page (docs/ardusimple/IL_Israel.md 2026-05-16) lists Israel Mapping Center as paid national service (registration auth-required from external vantage). Centipede has 1 IL station (ARKG, 32.65,35.29 — Golan); rtk2go has 1 IL station (misgav_dov, 31.81,34.74 — Shfela); igs_ip carries BSHM00ISR0 (Haifa, 32.78,35.02) |
+| **last_confirmed_alive** | APN/mapigps.co.il caster: WebFetch ECONNREFUSED 2026-05-23 (sandbox geo-block consistent with prior — caster was HTTP 200 on 2026-05-06 from a different vantage); service continuously referenced in academic/professional literature through 2025. ArduSimple Israel page (docs/ardusimple/IL_Israel.md 2026-05-16) lists Israel Mapping Center as paid national service (registration auth-required from external vantage). Centipede has 1 IL station (ARKG, 32.65,35.29 — Golan); rtk2go has 1 IL station (misgav_dov, 31.81,34.74 — Shfela); igs_ip carries BSHM00ISR0 (Haifa, 32.78,35.02) — pipeline snapshot re-verified 2026-05-23 |
 | **pipeline status** | REJECTED — pervasive military GNSS spoofing active since Oct 2023 renders RTK unreliable regardless of NTRIP access |
 | **datum_epoch** | omitted — no citable operator declaration. `mapigps.co.il` unreachable from sandbox; ArduSimple landing URL points at `gov.il/he/departments/survey_of_israel/govil-landing-page` (auth-required). Israeli national grid is ITM/IG05 but no operator real-time-service datum statement obtainable |
 
@@ -21,7 +26,7 @@ Israel has been operating military GPS/GNSS spoofing continuously since October 
 
 **Geographic extent of disruption (as of 2026-05-06):**
 - Core affected area: Israel, Lebanon, the Sinai Peninsula, Cyprus, and parts of Jordan and southern Syria
-- Extended disruption during active conflict: The June 2025 "Twelve-Day War" (IDF strikes on Iranian nuclear and military facilities, 13–24 June 2025) caused a major surge in GNSS jamming and spoofing across the broader Middle East and Persian Gulf
+- Extended disruption during active conflict: The June 2025 "Twelve-Day War" (IDF strikes on Iranian nuclear and military facilities, 13–24 June 2025 per Wikipedia, Britannica, and Al Jazeera coverage) caused a major surge in GNSS jamming and spoofing across the broader Middle East and Persian Gulf, per GPSPATRON cumulative analysis and GPS World reporting
 - An estimated 50,000+ commercial aviation flights were affected by GNSS disruption in 2024; maritime disruption in Q2 2025 exceeded 10,000 vessel reports
 
 **Why NTRIP cannot compensate for spoofing:** RTK corrections supplied via NTRIP correct for atmospheric and orbital errors in the satellite signals; they cannot correct for false carrier-phase observables introduced by a spoofing transmitter. A receiver locked to a spoofed signal will compute a false position regardless of the correction stream being used.
@@ -30,7 +35,7 @@ Israel has been operating military GPS/GNSS spoofing continuously since October 
 
 - **Operator**: Survey of Israel (MAPI — המרכז למיפוי ישראל), under Israel's Ministry of Housing and Construction
 - **Software**: Geo++ Nt CORS system (confirmed by mapigps.co.il splash page attribution)
-- **Station network**: The SOI-APN network has ~30–35 permanent GNSS reference stations distributed across Israel; ResearchGate figures show coverage spanning from Eilat (south) to the Golan Heights (north)
+- **Station network**: SOI-APN station count varies by source and snapshot date — a 2009 FIG paper (Salmon ts01c_salmon_3248) cites ~30–35 permanent stations, a later research diagram (ResearchGate fig_328049994, 2018) shows ~21 active receivers in the Eastern Mediterranean labelled set; the figure ages quickly and no current authoritative count from `mapi.gov.il` was recoverable. Coverage spans from Eilat (south) to the Golan Heights (north).
 - **Service type**: VRS — virtual reference station corrections generated from the network of physical bases; user connects and receives corrections for a virtual station near their location
 - **Correction format**: RTCM; RINEX data also available for post-processing
 - **Contact**: apn@mapi.gov.il · phone 03-6231697
@@ -64,9 +69,9 @@ No commercial or volunteer NTRIP network with confirmed Israel coverage and fore
 - GPSJAM interference map: https://gpsjam.org/
 - country-survey.md IL stub (2026-04-29)
 - rtk_inventory.md `apn` entry (status: weird)
-- Centipede IL stations: 1 (ARKG, Golan area) — 2026-05-17 pipeline snapshot via `scripts/stations_by_country.py ISR`
-- rtk2go IL stations: 1 (misgav_dov, Shfela area) — 2026-05-17 pipeline snapshot
-- igs_ip IL stations: 1 (BSHM00ISR0, Haifa Technion) — 2026-05-17 pipeline snapshot
+- Centipede IL stations: 1 (ARKG, Golan area) — 2026-05-23 pipeline snapshot via `scripts/stations_by_country.py ISR`
+- rtk2go IL stations: 1 (misgav_dov, Shfela area) — 2026-05-23 pipeline snapshot
+- igs_ip IL stations: 1 (BSHM00ISR0, Haifa Technion) — 2026-05-23 pipeline snapshot
 - ArduSimple Israel cache (docs/ardusimple/IL_Israel.md 2026-05-16): lists Israel Mapping Center as paid national service via gov.il landing page
 - GPS World — GPS disruptions in Tel Aviv (2025): https://www.gpsworld.com/gps-disruptions-in-tel-aviv-as-israel-braces-for-possible-iranian-attacks/
 - Times of Israel — Israel's GPS warfare: https://www.timesofisrael.com/israels-gps-warfare-aims-to-keep-its-own-drones-flying-and-enemies-baffled/

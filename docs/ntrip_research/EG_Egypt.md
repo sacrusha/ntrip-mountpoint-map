@@ -1,7 +1,10 @@
 # Egypt [EG] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-17 (re-verified; original 2026-05-06)
+**Date researched:** 2026-05-23 (re-verified; original 2026-05-06, prior refresh 2026-05-17)
+last_verified_date: 2026-05-23
+last_gap_fill_date: 2026-05-17
+last_caster_search_date: 2026-05-23
 
-## Status: NO confirmed public NTRIP caster (national CORS exists; stream not publicly available). Re-verified 2026-05-17 — no public ESA NTRIP endpoint, registration portal, or tariff has been announced since the original research; ArduSimple country page still reports "as far as we know Egypt is not among" countries with a National RTK Network.
+## Status: NO confirmed public NTRIP caster (national CORS exists; stream not publicly available). Re-verified 2026-05-23 — `esa.gov.eg` homepage re-fetched, no CORS / NTRIP / RTK / GNSS service section published (only traditional surveying products and a weather-related "fixed stations" project). No public ESA NTRIP endpoint, registration portal, or tariff has been announced since the original research; ArduSimple country page still reports "as far as we know Egypt is not among" countries with a National RTK Network. Radius probe Cairo 30.0/31.2 within 250 km returns zero ingested-pipeline stations.
 
 | Field | Value |
 |---|---|
@@ -10,7 +13,7 @@
 | **access_url** | null — no signup/conditions page exists |
 | **host:port** | null |
 | **tariff** | null |
-| **num_stations** | 33 per ESA official network description (operational since 2012); academic literature (Saad et al. 2017; subsequent MDPI Remote Sensing 2023 ref) cites 40 stations. Both figures appear in non-operator sources; ESA portal does not publish a current authoritative count. Discrepancy unresolved as of 2026-05-17. |
+| **num_stations** | ESA-CORS = ~40 stations covering Nile valley + delta, established January 2012 (multiple peer-reviewed sources including Saad et al. 2017 and MDPI Remote Sensing 2023). The "33-station" figure in earlier ESA-linked descriptions appears to refer to a subset used in specific tectonic-coordinate studies rather than the full deployment. A separate research network NACN (National Agricultural Cadastral Network, established 1997) operates ~30 stations at 30–40 km spacing. ESA portal publishes no current authoritative count, but academic literature treats 40 as the operational ESA-CORS figure. |
 | **hobbyist_eligibility** | null — no service confirmed |
 | **legal_residency_required** | null — no service confirmed |
 | **last_confirmed_alive** | null — no public caster confirmed at any date |
@@ -24,9 +27,10 @@
 
 ## Context Notes
 
-- Egypt's national CORS network (operated by ESA since 2012) is used internally for cadastral surveying and geodetic reference frame maintenance — no public NTRIP stream has been confirmed. Station count cited as 33 in early ESA-linked descriptions, 40 in later academic literature; ESA does not publish a current authoritative figure.
+- Egypt's national CORS network (ESA-CORS, operated by the Egyptian Surveying Authority since January 2012, ~40 stations covering the Nile valley and delta) is used internally for cadastral surveying and geodetic reference frame maintenance — no public NTRIP stream has been confirmed. Academic literature on the network adjusts to ITRF2008 epoch 2011.8096 (initial adjustment) and ITRF2014 epoch 2019.5833 (later re-adjustment), per the ResearchGate "ITRF-Based Tectonic Coordinates Changes using GNSS-CORS Networks: A Case Study of Egypt" paper.
 - The ESA website (esa.gov.eg) is the official portal; no RTK or NTRIP service information is published there in English or Arabic web-accessible documentation.
-- A research-focused CORS network (NACN — National Active Control Network) is operated for geodetic research; data is not publicly streamed via NTRIP.
+- A separate ESA-operated research network NACN (National Agricultural Cadastral Network, established 1997, ~30 stations at 30–40 km spacing covering the green-area Nile valley and delta) is used for geodetic research; data is not publicly streamed via NTRIP.
+- Egypt's national geodetic frame is published in ITRF realisations (ITRF2008 originally, ITRF2014 in recent literature) per academic ESA-linked publications; this is not an operator real-time-service declaration for any caster — included as geodetic context only.
 - Global commercial networks: GEODNET and ONOCOY coverage in Egypt has not been confirmed in public station maps as of research date.
 - Practical workaround: Deploy a local base station, or use satellite-based PPP (Trimble RTX, Galileo HAS, NRCAN PPP). Free global community NTRIP streams (RTK2go) have no Egyptian base stations listed.
 
@@ -34,7 +38,7 @@
 
 | Service | URL | Cost |
 |---------|-----|------|
-| **IGS / EarthScope archive** — GNSS stations in/near Egypt (RAMO in Israel is nearest IGS quality station) | https://www.unavco.org/data/gps-gnss/ | Free non-commercial |
+| **IGS / EarthScope archive** — IGS does not currently list Egypt-located stations in the active core network (network.igs.org, 2026-05-23). The Egyptian Permanent GPS Network (EPGN, operated by NRIAG; stations include HELW Helwan and an Alexandria CEALX site) is a national research archive, not an IGS-tier real-time NTRIP source. Nearest IGS-tier RINEX archives are in Israel (RAMO Ramon Crater ~780 km from Cairo) and across the Mediterranean. | https://www.unavco.org/data/gps-gnss/ | Free non-commercial |
 | **Egyptian Survey Authority (ESA)** — CORS RINEX may be available on request; not publicly confirmed | https://www.esa.gov.eg/ | Unknown |
 
 ## Sources Consulted
@@ -44,3 +48,5 @@
 - mvarga1989 GitHub GNSS CORS networks list (Egypt not listed): https://github.com/mvarga1989/The-list-of-GNSS-CORS-RTK-networks
 - RTK2go monitor (no Egypt stations observed)
 - NTRIP-list.com (no Egyptian NTRIP service listed)
+- ResearchGate "ITRF-Based Tectonic Coordinates Changes using GNSS-CORS Networks: A Case Study of Egypt" (ESA-CORS adjusted to ITRF2008 epoch 2011.8096; updated to ITRF2014 epoch 2019.5833): https://www.researchgate.net/publication/356716765_ITRF-Based_Tectonic_Coordinates_Changes_using_GNSS-CORS_Networks_A_Case_Study_of_Egypt
+- IGS Network browser (network.igs.org, 2026-05-23): no Egypt-located stations in the active core station list — confirms RAMO (Israel) as nearest IGS-tier RINEX source for Egyptian users

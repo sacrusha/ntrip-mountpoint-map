@@ -1,5 +1,8 @@
 # Palestine [PS] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-17 (prior: 2026-05-12)
+**Date researched:** 2026-05-23 (prior: 2026-05-17). WebSearch for PA / PLA / An-Najah / Birzeit / donor-funded CORS announcements returned no infrastructure news. Radius probe of Ramallah 31.9/35.2 within 50 km still returns only the Israeli rtk2go base `misgav_dov` (44.6 km, ISR — not Palestinian-operated).
+last_verified_date: 2026-05-23
+last_gap_fill_date: 2026-05-17
+last_caster_search_date: 2026-05-23
 
 ## Status: NO active public NTRIP caster
 
@@ -37,30 +40,14 @@ No JICA, USAID, World Bank, or EU (PEGASE-framework) funded public CORS/NTRIP pr
 
 Note: GNSS spoofing active in the region since Oct 2023 — may affect post-processed data quality as well as real-time.
 
-## 2026-05-17 Re-Check Notes
+## Verification Snapshot (2026-05-23)
 
-- Local `py scripts/stations_by_country.py PSE` (2026-05-17) → "No stations for 'PSE'". Confirms zero ingested-globals coverage.
-- `py scripts/stations_by_radius.py 31.9 35.2 50` (50 km Ramallah) → 1 rtk2go station `misgav_dov` at 31.81, 34.74 (44.6 km, ISR — Israel volunteer base, not Palestinian-operated).
-- No new PA/PLA/An-Najah/donor-funded CORS or NTRIP announcement located in WebSearch 2026-05-17.
-
-## 2026-05-12 Re-Check Notes
-
-- No new public NTRIP caster announcement found for the Palestinian Authority,
-  Palestinian Land Authority (PLA), An-Najah National University, or any
-  donor-funded project (JICA, USAID, World Bank, EU). WebSearch returned only
-  conflict / settler-violence / land-registration coverage; no geodetic
-  infrastructure news.
-- Israeli land-registration push into Area C (Feb 2026 cabinet decisions)
-  intensifies the political and operational constraints on any Palestinian
-  CORS rollout in open-area C terrain — surveying access for Palestinians is
-  reportedly tightening rather than expanding.
-- Bnei Eli Etkes "SpiderNET" (Israeli, private; Leica distributor) — no
-  evidence of a public sourcetable, hobbyist tariff, or formal access policy
-  for Palestinian residents. Listed on Who Profits as operating bases in the
-  West Bank (Ramallah, Jenin, Jericho, Burin, Sinjil, Dura).
-- GNSS spoofing across Israel/Lebanon/Jordan/Sinai/Cyprus, persistent since
-  October 2023, remains an operational hazard for any rover work in the West
-  Bank or Gaza.
+- `py scripts/stations_by_country.py PSE` → "No stations for 'PSE'". Zero ingested-globals coverage.
+- `py scripts/stations_by_radius.py 31.9 35.2 50` (Ramallah 50 km) → 1 rtk2go station `misgav_dov` at 31.81, 34.74 (44.6 km, ISR — Israel volunteer base, not Palestinian-operated).
+- WebSearch for PA / PLA / An-Najah / Birzeit / donor-funded (JICA, USAID, World Bank, EU PEGASE) CORS or NTRIP announcements returned only conflict / settler-violence / land-registration coverage; no geodetic infrastructure news.
+- Israeli land-registration push into Area C (Feb 2026 cabinet decisions) continues to tighten rather than expand surveying access for Palestinians in Area C terrain.
+- Bnei Eli Etkes "SpiderNET" (Israeli, private; Leica distributor): no public sourcetable, hobbyist tariff, or published access policy for Palestinian residents. Who Profits database lists bases in Ramallah, Jenin, Jericho, Burin, Sinjil, Dura.
+- GNSS spoofing across Israel/Lebanon/Jordan/Sinai/Cyprus, persistent since October 2023, remains an operational hazard for rover work in the West Bank or Gaza.
 
 ## Sources Consulted
 - RTK2GO sourcetable, SNIP monitor
