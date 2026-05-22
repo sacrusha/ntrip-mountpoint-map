@@ -9,8 +9,10 @@ docs/ntrip_research/CC_*.md     ← per-country primary research, citation-grade
         ↓ distil
 docs/rtk_inventory.md                ← refined operator catalogue, per-network blocks
         ↓ surface (parallel, sibling consumers)
-data/rtk_map.json       user-facing markers
-scripts/fetch_stations.py       ingestion of free endpoints
+data/rtk_map.json       user-facing markers + typed endpoints[]
+scripts/fetch_stations.py       per-endpoint dispatch (ntrip / file / scraped)
+                                 → data/stations.json + data/source_health.json
+                                 + data/<id>.sourcetable | data/external_<id>.json | data/<id>.scraped.json
 ```
 
 ## Research stage (upstream, external)
@@ -40,6 +42,25 @@ and supplies physical mountpoints. Sweep endpoints whenever a block's
 `status:` changes — see `../data/rtk_map.proc.md` §Endpoints for the
 status→action table. `fetch_stations.py` reads the endpoints directly;
 its own rules are about the script's code, not pipeline operations.
+
+Endpoints are typed (`type` field, default `"ntrip"`). Three types are
+in tree:
+
+- `"ntrip"` — live NTRIP sourcetable fetch, 4×/day cron cadence.
+- `"file"` — curated station list at `data/external_<id>.json`. For
+  inputs that never update upstream (forum-transcribed coords, one-shot
+  PDF extracts). Staleness from the file's `last_reviewed` date.
+- `"scraped"` — operator portal scrape via a per-source module in
+  `scripts/scrapers/<name>.py`. Refreshed on a per-endpoint
+  `interval_days` cadence (default 7). Caches to
+  `data/<id>.scraped.json`. For operator-published station registers
+  that do update but aren't NTRIP sourcetables (IGS sitelogs, ArcGIS
+  FeatureServers, HTML tables, etc.).
+
+A network can mix endpoint types — most `scraped`/`file` endpoints
+sit alongside a live `ntrip` endpoint for the same caster. See
+`../scripts/fetch_stations.proc.md` §Source types for the dispatch
+and cadence rules.
 
 ## Upstream is the source of truth
 

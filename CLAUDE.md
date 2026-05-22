@@ -25,8 +25,9 @@ AskUserQuestion tool banned.
 
 index.html                    # map - Leaflet SPA, all UI.
 guide.html                    # visitor primer, linked from map. Keep aligned w/ help_topics.json.
-scripts/fetch_stations.py        # reads endpoints from rtk_map.json; updates .sourcetable + source_health.json + stations.json. Invoked via refresh_data.py, not directly.
-scripts/fetch_stations.proc.md   # edit rules for the fetch script + rtk_map.json endpoints[]. Read BEFORE editing either.
+scripts/fetch_stations.py        # reads typed endpoints from rtk_map.json; dispatches to per-source-type handler (ntrip / file / scraped); updates .sourcetable + .scraped.json caches + source_health.json + stations.json. Invoked via refresh_data.py, not directly.
+scripts/fetch_stations.proc.md   # edit rules for the fetch script + rtk_map.json endpoints[]. Documents source types + cadence + shared-helper convention. Read BEFORE editing either.
+scripts/scrapers/                # per-operator portal scrapers loaded by 'scraped' source type. _<name>.py = shared helper, <name>.py = per-source. Each per-source module exposes `scrape() -> dict`.
 scripts/assign_colors.py         # reads stations.json + previous color_assignments.json (cache); writes color_assignments.json with palette slot per source (globalN/communityN/localN). Density-aware clustering + Delaunay conflict graph + k=4 coloring. Cache stickiness only persists when run manually on main; scheduler runs in ephemeral worktree and any update is discarded. Invoked via refresh_data.py.
 scripts/refresh_data.py          # Python orchestrator: imports fetch_stations + assign_colors and runs both in one process. Single entry point invoked by run_in_worktree.ps1.
 scripts/inject_seo_help.py       # splices hidden SEO mirror of help_topics.json into index.html. Run after editing help_topics.json; commit index.html diff same commit.
@@ -47,7 +48,9 @@ data/
   rtk_map.proc.md        # edit rules for rtk_map.json. Read BEFORE editing .json.
   coord_overrides.json   # per-station coord patches applied during fetch when (name, bad_lat, bad_lon) match exactly. See fetch_stations.proc.md.
   help_topics.json               # searchable user-facing help. Surfaced via Help button on map; aligned w/ guide.html.
-  <source>.sourcetable           # cached raw NTRIP response per fetched caster.
+  <source>.sourcetable           # cached raw NTRIP response per fetched caster (type:"ntrip" sources).
+  external_<id>.json             # curated/editor-authored station list for type:"file" sources (forum-inferred, one-shot PDFs). Schema: last_reviewed + source_url + pin_origin + stations[].
+  <id>.scraped.json              # programmatic-scraper cache for type:"scraped" sources. Schema: last_scraped + source_url + pin_origin + stations[]. Refreshed at interval_days cadence by scripts/scrapers/<name>.py.
   stations.json                  # fetched mountpoint data, consumed by index
   color_assignments.json         # {source_id: palette_slot}, produced by assign_colors.py, consumed by index.html via PALETTE const.
 docs/
