@@ -334,6 +334,7 @@
   @media (prefers-reduced-motion: reduce){
     #help-drawer, #help-scrim, #card-sheet,
     #toggles.leaflet-control, #legend-handle,
+    #net-sheet, #net-scrim,
     .help-topic .chev, .help-answer .deep summary::before,
     .det-sum::after, .leaflet-fade-anim .leaflet-tile{
       transition:none !important;
@@ -346,6 +347,9 @@
   #legend-handle:focus-visible,
   #toggles .legend-x:focus-visible,
   #card-sheet .card-close:focus-visible,
+  #net-fab:focus-visible,
+  #net-sheet .sh-close:focus-visible,
+  #net-sheet .sym-help:focus-visible,
   .popup-plain button.cp:focus-visible,
   .popup-plain .b-primary:focus-visible,
   .popup-plain .b-secondary:focus-visible,
@@ -356,65 +360,145 @@
     outline:2px solid var(--link);outline-offset:2px;
   }
 
-  /* Mobile (≤768px) — legend becomes a right-anchored drawer with a labeled
-     vertical edge-tab. The tab is anchored to the viewport's right rim in
-     BOTH states: it's the close affordance when the panel is open and the
-     pull tab when collapsed. Open-by-default behaviour is unchanged; the
-     refactor exists so the closed state is finally discoverable.
+  /* Mobile (≤768px) — desktop legend is hidden in favor of a decomposed UI:
+     (A) #net-ramp  : accuracy band ramp, bottom-left, always visible (read-only).
+     (B) #net-fab   : floating action button, bottom-right, opens the sheet.
+                      Count badge = number of networks currently in view.
+     (C) #net-sheet : modal bottom sheet w/ scrim. Primary content = source list
+                      sorted by in-view count desc. "Symbols & tags" collapsed
+                      footer holds tag / paid-tier toggles (low-frequency use).
 
-     CSS var --legend-w keeps the panel width and tab offset in sync. */
+     New elements are display:none by default; the @media block opts them in. */
+  #net-ramp, #net-fab, #net-scrim, #net-sheet{ display:none; }
+
   @media(max-width:768px){
-    :root{--legend-w:min(85vw,300px);}
-    /* Break the panel out of Leaflet's topright stack into a fixed drawer. */
-    #toggles.leaflet-control{
-      position:fixed;
-      top:0;right:0;bottom:0;
-      width:var(--legend-w);
-      max-height:none;height:auto;
-      margin:0!important;
-      border-radius:5px 0 0 5px;border-right:none;
-      transform:translateX(0);
-      transition:transform .24s cubic-bezier(.2,.8,.2,1);
-      z-index:9996;overflow-y:auto;
+    /* Hide the desktop control + its reopen handle on phones. */
+    #toggles.leaflet-control{ display:none !important; }
+    #legend-handle{ display:none !important; }
+
+    /* (A) Accuracy ramp — frosted overlay, bottom-left. */
+    #net-ramp{
+      display:block;
+      position:fixed;left:8px;bottom:8px;z-index:9995;
+      background:var(--ctrl-bg);
+      -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+      border:1px solid var(--ctrl-border);
+      border-radius:5px;padding:6px 9px 7px;
+      font-size:10.5px;line-height:1.55;color:var(--fg);
+      min-width:128px;pointer-events:none;
     }
-    body.banner-visible #toggles.leaflet-control{top:44px;}
-    /* Slide off-screen instead of display:none so the drawer animates and the
-       tab's :not(.on) ↔ .on transition can play in tandem. */
-    #toggles.legend-hidden{
-      display:block!important;
-      transform:translateX(100%);
-      pointer-events:none;
-    }
-    /* Edge tab — vertical labeled pull on the right rim, always visible.
-       Sits flush with the panel's left edge when open; slides to the
-       viewport edge when collapsed. */
-    #legend-handle{
-      display:flex!important;
-      top:50%;right:var(--legend-w);
-      transform:translateY(-50%);
-      width:auto;height:auto;
-      flex-direction:column;align-items:center;gap:6px;
-      padding:14px 12px;
-      border-radius:5px 0 0 5px;border-right:none;
-      font-size:12px;line-height:1;
-      transition:right .24s cubic-bezier(.2,.8,.2,1);
-    }
-    body.banner-visible #legend-handle{top:calc(50% + 22px);}
-    #legend-handle.on{right:0;}
-    #legend-handle .lh-icon{display:none;}
-    #legend-handle .lh-label{
-      display:block;writing-mode:vertical-rl;
-      font-weight:600;letter-spacing:.06em;font-size:12px;
-    }
-    /* Chevron points the way the panel will travel on tap:
-       open  → tap closes → panel moves right → ›
-       closed→ tap opens  → panel moves left  → ‹
-       text-orientation:upright keeps the glyph horizontal inside the
-       vertical-rl tab so the arrow reads as left/right, not up/down. */
-    #legend-handle .lh-chev{display:block;font-size:13px;opacity:.7;
-      writing-mode:horizontal-tb;text-orientation:upright;}
-    #legend-handle:not(.on) .lh-chev::before{content:"\203A";}
-    #legend-handle.on        .lh-chev::before{content:"\2039";}
+    #net-ramp .title{font-family:Georgia,ui-serif,serif;font-weight:600;font-size:10px;
+      color:var(--muted);text-transform:uppercase;letter-spacing:.1em;
+      margin-bottom:4px;padding-bottom:3px;border-bottom:1px solid var(--srv-border);}
+    #net-ramp .row{display:flex;align-items:center;gap:6px;line-height:1.5;}
+    #net-ramp .sw{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
+    #net-ramp .lbl{flex:1;}
+    #net-ramp .acc{color:var(--muted);font-size:9.5px;font-family:ui-monospace,Menlo,monospace;}
+
+    /* (B) FAB — bottom-right, frosted pill w/ accent count badge. */
+    #net-fab{
+      display:flex;
+      position:fixed;right:12px;bottom:14px;z-index:9996;
+      background:var(--ctrl-bg);
+      -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+      border:1px solid var(--ctrl-border);
+      border-radius:22px;padding:9px 12px 9px 14px;
+      align-items:center;gap:8px;
+      font:500 13px/1 system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+      color:var(--fg);cursor:pointer;
+      box-shadow:0 4px 14px rgba(0,0,0,.22);}
+    #net-fab .glyph{font-size:17px;line-height:1;color:var(--muted);}
+    #net-fab .cnt{background:var(--accent);color:#fff;font-size:11px;
+      padding:1px 7px;border-radius:10px;font-weight:600;
+      font-family:ui-monospace,Menlo,monospace;}
+
+    /* (C) Scrim + bottom sheet */
+    #net-scrim{
+      display:block;position:fixed;inset:0;z-index:9997;
+      background:rgba(0,0,0,.42);opacity:0;pointer-events:none;
+      transition:opacity .2s;}
+    #net-scrim.on{opacity:1;pointer-events:auto;}
+    #net-sheet{
+      display:flex;flex-direction:column;
+      position:fixed;left:0;right:0;bottom:0;z-index:9998;
+      background:var(--panel-bg);
+      border-radius:14px 14px 0 0;
+      border:1px solid var(--panel-border);border-bottom:none;
+      box-shadow:0 -8px 30px rgba(0,0,0,.35);
+      max-height:78vh;
+      transform:translateY(100%);opacity:0;pointer-events:none;
+      transition:transform .24s cubic-bezier(.2,.8,.2,1),opacity .18s;}
+    #net-sheet.on{transform:translateY(0);opacity:1;pointer-events:auto;}
+    #net-sheet .grab{height:4px;width:38px;background:var(--muted);
+      border-radius:2px;margin:8px auto 4px;opacity:.35;flex-shrink:0;}
+    #net-sheet .sh-head{padding:4px 14px 10px;display:flex;align-items:center;gap:10px;
+      border-bottom:1px solid var(--srv-border);flex-shrink:0;}
+    #net-sheet .sh-title{flex:1;font-family:Georgia,ui-serif,serif;font-weight:600;
+      font-size:15px;color:var(--fg);line-height:1.2;}
+    #net-sheet .sh-title small{font-weight:400;color:var(--muted);font-size:12px;
+      font-family:ui-monospace,Menlo,monospace;margin-left:6px;}
+    #net-sheet .sh-close{background:transparent;border:none;color:var(--muted);
+      font-size:20px;cursor:pointer;line-height:1;padding:4px 8px;}
+    #net-sheet .sh-meta{padding:8px 14px;display:flex;align-items:center;
+      justify-content:space-between;border-bottom:1px solid var(--srv-border);
+      background:var(--code-bg);flex-shrink:0;}
+    #net-sheet .sh-meta label{display:flex;align-items:center;gap:6px;
+      font-size:12px;color:var(--fg);cursor:pointer;}
+    #net-sheet .sh-meta input{margin:0;accent-color:var(--accent);}
+    #net-sheet .sh-sort{font-size:10.5px;color:var(--muted);
+      font-family:ui-monospace,Menlo,monospace;text-transform:uppercase;letter-spacing:.06em;}
+    #net-sheet .sh-body{flex:1;overflow-y:auto;position:relative;}
+    #net-sheet .sh-body::after{content:"";position:sticky;bottom:0;left:0;right:0;
+      height:24px;display:block;margin-top:-24px;pointer-events:none;
+      background:linear-gradient(to bottom,transparent,var(--panel-bg));}
+
+    /* Source row — compact, suited to 20+ network lists in EU / US zooms. */
+    #net-sheet .src-row{display:flex;align-items:center;gap:9px;padding:6px 14px;
+      border-bottom:1px solid var(--srv-border);font-size:12.5px;color:var(--fg);
+      cursor:pointer;min-height:30px;}
+    #net-sheet .src-row input{margin:0;width:14px;height:14px;
+      accent-color:var(--accent);flex-shrink:0;}
+    #net-sheet .src-row .sw{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
+    #net-sheet .src-row .name{flex:1;line-height:1.2;
+      white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    #net-sheet .src-row .tier{font-size:10px;color:var(--muted);
+      font-family:ui-monospace,Menlo,monospace;letter-spacing:.02em;
+      padding:1px 6px;border-radius:8px;border:1px solid var(--srv-border);flex-shrink:0;}
+    #net-sheet .src-row .tier.register{color:var(--link);border-color:rgba(42,88,148,.35);}
+    #net-sheet .src-row .tier.conditions{color:var(--warn);
+      border-color:rgba(170,102,0,.5);background:rgba(170,102,0,.07);}
+    #net-sheet .src-row .cnt{color:var(--fg);font-size:12px;font-weight:600;
+      font-family:ui-monospace,Menlo,monospace;min-width:32px;text-align:right;}
+
+    /* Symbols & tags — collapsed footer; B+D (tag toggles, paid tiers) live here. */
+    #net-sheet .sym{border-top:1px solid var(--srv-border);background:var(--code-bg);}
+    #net-sheet .sym summary{list-style:none;padding:11px 14px;cursor:pointer;
+      font-size:10.5px;color:var(--muted);display:flex;align-items:center;
+      justify-content:space-between;font-family:ui-monospace,Menlo,monospace;
+      text-transform:uppercase;letter-spacing:.08em;}
+    #net-sheet .sym summary::-webkit-details-marker{display:none;}
+    #net-sheet .sym summary::after{content:"▾";font-size:10px;opacity:.6;}
+    #net-sheet .sym[open] summary::after{content:"▴";}
+    #net-sheet .sym-body{padding:6px 14px 14px;}
+    #net-sheet .sym-group{margin-bottom:10px;}
+    #net-sheet .sym-group:last-of-type{margin-bottom:0;}
+    #net-sheet .sym-group h6{font-size:10px;font-family:ui-monospace,Menlo,monospace;
+      text-transform:uppercase;letter-spacing:.08em;color:var(--muted);
+      margin:6px 0 4px;font-weight:500;}
+    #net-sheet .sym-row{display:flex;align-items:center;gap:8px;padding:4px 0;
+      font-size:12px;color:var(--fg);cursor:pointer;}
+    #net-sheet .sym-row input{margin:0 4px 0 0;width:13px;height:13px;
+      accent-color:var(--accent);}
+    #net-sheet .sym-row .ic{width:18px;display:flex;justify-content:center;}
+    #net-sheet .sym-row .lbl{flex:1;}
+    #net-sheet .sym-row .cnt{color:var(--muted);font-size:11px;
+      font-family:ui-monospace,Menlo,monospace;}
+    #net-sheet .sym-help{margin-top:10px;display:inline-flex;align-items:center;gap:5px;
+      color:var(--link);font-size:11.5px;cursor:pointer;border:none;background:transparent;
+      padding:0;font-family:inherit;}
+    #net-sheet .sym-help::before{content:"?";width:13px;height:13px;border-radius:50%;
+      border:1px solid currentColor;display:inline-flex;align-items:center;
+      justify-content:center;font-size:9px;font-weight:700;}
   }
 </style>
 </head>
@@ -525,12 +609,45 @@
   </div>
   <div class="help-dbody" id="help-body"></div>
 </aside>
-<!-- legend handle — desktop: top-right re-open button after collapse. Mobile: vertical
-     edge-tab on the right rim, always visible, toggles the drawer in both directions. -->
+<!-- legend handle — desktop only: top-right re-open button after the panel is
+     collapsed via its in-panel ✕. Hidden on phones in favor of #net-fab + #net-sheet. -->
 <button id="legend-handle" aria-label="Hide legend" aria-expanded="true" title="Hide legend"
   ><span aria-hidden="true" class="lh-icon">≡</span
   ><span aria-hidden="true" class="lh-label">Legend</span
   ><span aria-hidden="true" class="lh-chev"></span></button>
+<!-- Mobile UI: accuracy ramp overlay (A), networks FAB (B), bottom sheet (C+D+E).
+     All three are display:none by default and opted-in via @media(max-width:768px). -->
+<aside id="net-ramp" aria-hidden="true">
+  <div class="title">Accuracy</div>
+  <div class="row"><span class="sw" style="background:rgb(0,170,0)"></span><span class="lbl">&lt;10 km</span><span class="acc">~2 cm</span></div>
+  <div class="row"><span class="sw" style="background:rgb(180,200,30)"></span><span class="lbl">10–30 km</span><span class="acc">~3 cm</span></div>
+  <div class="row"><span class="sw" style="background:rgb(220,150,30)"></span><span class="lbl">30–50 km</span><span class="acc">~5 cm</span></div>
+  <div class="row"><span class="sw" style="background:rgb(210,90,90)"></span><span class="lbl">50–100 km</span><span class="acc">&lt;1 m</span></div>
+</aside>
+<button id="net-fab" type="button" aria-label="Open networks panel" aria-expanded="false">
+  <span class="glyph" aria-hidden="true">≡</span>
+  <span>Networks</span>
+  <span class="cnt" id="net-fab-count">0</span>
+</button>
+<div id="net-scrim" aria-hidden="true"></div>
+<aside id="net-sheet" role="dialog" aria-modal="false" aria-labelledby="net-sheet-title" aria-hidden="true">
+  <div class="grab" aria-hidden="true"></div>
+  <div class="sh-head">
+    <div id="net-sheet-title" class="sh-title">Networks here <small id="net-sheet-meta"></small></div>
+    <button class="sh-close" type="button" aria-label="Close networks panel">✕</button>
+  </div>
+  <div class="sh-meta">
+    <label><input type="checkbox" id="net-declutter" checked> Hide out-of-view</label>
+    <span class="sh-sort">sort: count ↓</span>
+  </div>
+  <div class="sh-body">
+    <div id="net-source-list"></div>
+    <details id="net-symbols" class="sym">
+      <summary><span>Symbols &amp; tags</span></summary>
+      <div class="sym-body" id="net-symbols-body"></div>
+    </details>
+  </div>
+</aside>
 <!-- card bottom-sheet — single card surface for any marker click.
      role=region (not dialog) because the sheet is non-modal: the rest of
      the app stays interactive (tap another marker to replace, tap the map
@@ -1724,15 +1841,23 @@
       _rows.push({label:label, members:members, badge:label.querySelector('.view-badge')});
     });
 
+    // Mobile sheet hook — populated below; applyDeclutter calls it (if present)
+    // so mobile rows re-sort + filter on every pan / zoom.
+    var _mobileRebuild=null;
+
     d.querySelectorAll('input[data-m]').forEach(function(cb){
       cb.addEventListener('change',function(){
         JSON.parse(cb.dataset.m).forEach(function(sid){ state[sid]=cb.checked; });
         applyMarkers(); onChange(filterMountpoints);
+        // Mobile rows refresh on next applyDeclutter (zoom/move); no explicit sync.
       });
     });
     d.querySelectorAll('input[data-k]').forEach(function(cb){
       cb.addEventListener('change',function(){
         state[cb.dataset.k]=cb.checked;
+        // Sync the mirrored mobile sym-row checkbox so both surfaces stay aligned.
+        var mCb=document.querySelector('#net-symbols-body input[data-k="'+cb.dataset.k+'"]');
+        if(mCb && mCb.checked!==cb.checked) mCb.checked=cb.checked;
         applyMarkers(); onChange(filterMountpoints);
       });
     });
@@ -1746,10 +1871,14 @@
         if(row.badge) row.badge.textContent=' ('+n+')';
         row.label.style.display=(_declutter&&n===0)?'none':'';
       });
+      if(_mobileRebuild) _mobileRebuild(_lastCounts);
     }
     var declutterCb=d.querySelector('#declutter-cb');
     if(declutterCb) declutterCb.addEventListener('change',function(){
-      _declutter=declutterCb.checked; applyDeclutter(_lastCounts);
+      _declutter=declutterCb.checked;
+      var mCb=document.getElementById('net-declutter');
+      if(mCb && mCb.checked!==declutterCb.checked) mCb.checked=declutterCb.checked;
+      applyDeclutter(_lastCounts);
     });
 
     // Legend collapse — X hides the panel, the fixed top-right handle shows it
@@ -1801,6 +1930,141 @@
       if(scrolled) return;
       if(dx>60&&dx>2*dy) collapseLegend();
     },{passive:true});
+
+    // ===== Mobile sheet (≤768px). Decomposed UI: ramp overlay (A) + FAB (B) +
+    // bottom-sheet (C primary source list, D+B toggles in collapsed Symbols
+    // footer, E declutter in header). Reuses state[], applyMarkers, onChange
+    // so both surfaces stay coherent regardless of which the user touches. =====
+    (function buildMobileSheet(){
+      var fab       = document.getElementById('net-fab');
+      var fabCount  = document.getElementById('net-fab-count');
+      var sheet     = document.getElementById('net-sheet');
+      var scrim     = document.getElementById('net-scrim');
+      var metaEl    = document.getElementById('net-sheet-meta');
+      var declOv    = document.getElementById('net-declutter');
+      var listEl    = document.getElementById('net-source-list');
+      var symBody   = document.getElementById('net-symbols-body');
+      if(!fab||!sheet||!listEl||!symBody||!scrim||!declOv) return;
+      var closeBtn  = sheet.querySelector('.sh-close');
+
+      // Symbols footer — VRS / RS / Stale + paid tiers. Mirrors desktop "Tags"
+      // section; same data-k state keys so both surfaces drive the same flags.
+      function symRow(stateKey, iconHtml, label, count){
+        var checked=state[stateKey]!==false?'checked':'';
+        return '<label class="sym-row">'
+          +'<input type="checkbox" data-k="'+esc(stateKey)+'" '+checked+'>'
+          +'<span class="ic">'+iconHtml+'</span>'
+          +'<span class="lbl">'+esc(label)+'</span>'
+          +'<span class="cnt">'+count+'</span>'
+          +'</label>';
+      }
+      var symHtml='';
+      if(hasFreeRows){
+        symHtml+='<div class="sym-group"><h6>Tags</h6>';
+        if(vrsCount)  symHtml+=symRow('vrs_global',  antennaIconSvg(VRS_COLOR,14),       'VRS networks', vrsCount);
+        if(liveCount) symHtml+=symRow('live_global', antennaIconSvg(LIVE_NET_COLOR,14),  'RS networks',  liveCount);
+        if(greyCount) symHtml+=symRow('grey_global', antennaIconSvg(GREY_MARKER_COLOR,14),'Stale',       greyCount);
+        symHtml+='</div>';
+      }
+      if(hasPaidRows){
+        symHtml+='<div class="sym-group"><h6>Paid tiers</h6>';
+        ['affordable','paid','restricted','info'].forEach(function(t){
+          if(!paidCounts[t]) return;
+          var ic=PAID_TIER_ICONS[t]||PAID_TIER_ICONS.info;
+          symHtml+=symRow(t+'_global', tierIconSvg(ic.glyph,ic.color,null,14), PAID_TIER_LABELS[t], paidCounts[t]);
+        });
+        symHtml+='</div>';
+      }
+      symHtml+='<button class="sym-help" type="button">What do these mean?</button>';
+      symBody.innerHTML=symHtml;
+
+      symBody.querySelectorAll('input[data-k]').forEach(function(cb){
+        cb.addEventListener('change',function(){
+          var k=cb.dataset.k;
+          state[k]=cb.checked;
+          var twin=d.querySelector('input[data-k="'+k+'"]');
+          if(twin && twin.checked!==cb.checked) twin.checked=cb.checked;
+          applyMarkers(); onChange(filterMountpoints);
+        });
+      });
+      var symHelp=symBody.querySelector('.sym-help');
+      if(symHelp) symHelp.onclick=function(){
+        closeSheet();
+        if(typeof window.__ntripOpenHelp==='function') window.__ntripOpenHelp();
+      };
+
+      // Source rows — rebuilt on each applyDeclutter so sort + declutter stay
+      // current as the user pans / zooms. Cheap: 50–60 rows max in practice.
+      function rebuildList(counts){
+        counts=counts||{};
+        var rows=entries.map(function(e){
+          var sid=e.members[0];
+          var n=e.members.reduce(function(a,id){ return a+(counts[id]||0); },0);
+          return {sid:sid,label:e.label,color:e.color,count:n,access:accessBySid[sid]||'registration'};
+        });
+        rows.sort(function(a,b){ return b.count-a.count || a.label.localeCompare(b.label); });
+        var inView=0;
+        rows.forEach(function(r){ if(r.count>0) inView++; });
+        var hideOOV=declOv.checked;
+        var visible=hideOOV?rows.filter(function(r){return r.count>0;}):rows;
+
+        listEl.innerHTML=visible.map(function(r){
+          var tierCls=r.access==='open'?'open':r.access==='registration'?'register':'conditions';
+          var checked=state[r.sid]?'checked':'';
+          return '<label class="src-row" data-sid="'+esc(r.sid)+'">'
+            +'<input type="checkbox" '+checked+'>'
+            +'<span class="sw" style="background:'+r.color+'"></span>'
+            +'<span class="name">'+esc(r.label)+'</span>'
+            +'<span class="tier '+tierCls+'">'+tierCls+'</span>'
+            +'<span class="cnt">'+r.count+'</span>'
+            +'</label>';
+        }).join('');
+
+        listEl.querySelectorAll('label[data-sid]').forEach(function(lbl){
+          var sid=lbl.dataset.sid;
+          lbl.querySelector('input').addEventListener('change',function(ev){
+            state[sid]=ev.target.checked;
+            // Sync the corresponding desktop checkbox (single-source rows).
+            d.querySelectorAll('input[data-m]').forEach(function(deskCb){
+              try{
+                var members=JSON.parse(deskCb.dataset.m);
+                if(members.length===1 && members[0]===sid && deskCb.checked!==ev.target.checked){
+                  deskCb.checked=ev.target.checked;
+                }
+              }catch(_){}
+            });
+            applyMarkers(); onChange(filterMountpoints);
+          });
+        });
+
+        fabCount.textContent=inView;
+        metaEl.textContent  =inView?'· '+inView+' in view':'';
+      }
+      _mobileRebuild=rebuildList;
+
+      declOv.addEventListener('change',function(){
+        _declutter=declOv.checked;
+        var dCb=d.querySelector('#declutter-cb');
+        if(dCb && dCb.checked!==declOv.checked) dCb.checked=declOv.checked;
+        applyDeclutter(_lastCounts);
+      });
+
+      function openSheet(){
+        sheet.classList.add('on'); scrim.classList.add('on');
+        sheet.setAttribute('aria-hidden','false');
+        fab.setAttribute('aria-expanded','true');
+      }
+      function closeSheet(){
+        sheet.classList.remove('on'); scrim.classList.remove('on');
+        sheet.setAttribute('aria-hidden','true');
+        fab.setAttribute('aria-expanded','false');
+      }
+      fab.addEventListener('click', openSheet);
+      scrim.addEventListener('click', closeSheet);
+      if(closeBtn) closeBtn.addEventListener('click', closeSheet);
+
+      rebuildList({});
+    })();
 
     var ctrl=L.control({position:'topright'});
     ctrl.onAdd=function(){ return d; };
