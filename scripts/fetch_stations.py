@@ -495,7 +495,7 @@ def _fetch_file_source(src: dict) -> tuple[str, dict, bool]:
 
     Schema (data/external_<id>.json):
       {
-        "last_reviewed": "YYYY-MM-DD",        # drives staleness via last_ok
+        "last_updated":  "YYYY-MM-DD" or ISO instant,  # drives staleness via last_ok
         "source_url":    "...",                # provenance; displayed in popup
         "pin_origin":    "forum" | "register", # routed to each station record
         "stations": [
@@ -533,21 +533,27 @@ def _fetch_file_source(src: dict) -> tuple[str, dict, bool]:
             "stations": [],
         }, False
     pin_origin = raw.get("pin_origin") or pin_origin_default or "external"
-    last_reviewed = raw.get("last_reviewed")
+    last_updated = raw.get("last_updated")
     last_ok_iso = None
-    if last_reviewed:
-        # treat last_reviewed as midnight UTC of that date so the staleness clock
-        # is comparable to ntrip-source last_ok (an ISO-8601 instant).
+    if last_updated:
+        # Accept either a bare date (YYYY-MM-DD, human-friendly) or an ISO
+        # instant. Stored uniformly as ISO instant in stations.json so the
+        # staleness clock matches NTRIP-source `last_ok`.
         try:
-            last_ok_iso = datetime.strptime(last_reviewed, "%Y-%m-%d")\
-                .replace(tzinfo=timezone.utc).isoformat(timespec="seconds")
+            if "T" in last_updated:
+                last_ok_iso = datetime.fromisoformat(last_updated.replace("Z", "+00:00"))\
+                    .astimezone(timezone.utc).isoformat(timespec="seconds")
+            else:
+                last_ok_iso = datetime.strptime(last_updated, "%Y-%m-%d")\
+                    .replace(tzinfo=timezone.utc).isoformat(timespec="seconds")
         except ValueError:
-            print(f"[{sid}] last_reviewed not YYYY-MM-DD ({last_reviewed!r}); "
-                  f"staleness will read as unknown", file=sys.stderr)
+            print(f"[{sid}] last_updated not YYYY-MM-DD or ISO instant "
+                  f"({last_updated!r}); staleness will read as unknown",
+                  file=sys.stderr)
     stations = _build_external_records(raw.get("stations", []), pin_origin)
     src_url = raw.get("source_url")
     print(f"[{sid}] file source: {len(stations)} stations from {path.name} "
-          f"(reviewed {last_reviewed or '?'}, origin={pin_origin})")
+          f"(updated {last_updated or '?'}, origin={pin_origin})")
     fetched_at_iso = datetime.now(timezone.utc).isoformat(timespec="seconds")
     return sid, {**_meta,
         "url": src_url or _meta["url"],
@@ -568,15 +574,15 @@ def _fetch_scraped_source(src: dict) -> tuple[str, dict, bool]:
 
     Cache layout: `data/<endpoint_id>.scraped.json`, same schema as
     file-source inputs (`source_url`, `pin_origin`, `stations[]`) plus a
-    `last_scraped` ISO-8601 timestamp tracking when the scraper last ran
-    successfully. The cache is the on-disk equivalent of the
+    `last_updated` ISO-8601 timestamp tracking when the data was last
+    refreshed from upstream. The cache is the on-disk equivalent of the
     `.sourcetable` files NTRIP sources keep — it's the "last known good"
     output that survives a transient operator-portal outage.
 
     Lifecycle per run:
       1. Load existing cache if present (read once, used for both
          freshness gating and failure fallback).
-      2. If cache is fresh (last_scraped within `interval_days`), serve
+      2. If cache is fresh (last_updated within `interval_days`), serve
          from cache without re-scraping. Stations come from cache;
          status is 'ok'.
       3. Otherwise, import the scraper module (`scripts.scrapers.<name>`)
@@ -617,7 +623,7 @@ def _fetch_scraped_source(src: dict) -> tuple[str, dict, bool]:
             return None
 
     def _last_ok_iso(cached: dict) -> str | None:
-        ts = cached.get("last_scraped")
+        ts = cached.get("last_updated")
         if not ts:
             return None
         try:
@@ -643,7 +649,7 @@ def _fetch_scraped_source(src: dict) -> tuple[str, dict, bool]:
                     pin_origin = cached.get("pin_origin") or pin_origin_default or "external"
                     stations = _build_external_records(cached.get("stations", []), pin_origin)
                     print(f"[{sid}] scraped cache fresh "
-                          f"({len(stations)} stations, scraped {last_iso}, "
+                          f"({len(stations)} stations, updated {last_iso}, "
                           f"age {age.days}d < {interval_days}d)")
                     return sid, {**_meta,
                         "url": cached.get("source_url") or _meta["url"],
@@ -680,7 +686,7 @@ def _fetch_scraped_source(src: dict) -> tuple[str, dict, bool]:
             result = scrape_fn(src) if takes_src else scrape_fn()
             pin_origin = pin_origin_default or "external"
             new_cache = {
-                "last_scraped": now.isoformat(timespec="seconds"),
+                "last_updated": now.isoformat(timespec="seconds"),
                 "source_url":   result.get("source_url"),
                 "pin_origin":   pin_origin,
                 "stations":     result.get("stations", []),
@@ -707,7 +713,7 @@ def _fetch_scraped_source(src: dict) -> tuple[str, dict, bool]:
         stations = _build_external_records(cached.get("stations", []), pin_origin)
         last_iso = _last_ok_iso(cached) or prev_last_ok
         print(f"[{sid}] reusing cached scrape ({len(stations)} stations, "
-              f"scraped {last_iso or '?'})", file=sys.stderr)
+              f"updated {last_iso or '?'})", file=sys.stderr)
         return sid, {**_meta,
             "url": cached.get("source_url") or _meta["url"],
             "status": "stale",

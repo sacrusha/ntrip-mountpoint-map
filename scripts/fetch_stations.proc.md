@@ -21,8 +21,19 @@ registering it in `HANDLERS`.
 | type | When to use | Cache file |
 |---|---|---|
 | `ntrip` | Live NTRIP caster sourcetable (`GET / HTTP/1.0`). Default. | `data/<id>.sourcetable` |
-| `file` | One-shot input that never updates upstream: forum-transcribed station lists, manually-curated PDFs, blog-extracted coords. Editor commits the JSON; pipeline re-reads it every run. | none — file IS the input |
+| `file` | One-shot input that never updates upstream: forum-transcribed station lists, manually-curated PDFs, blog-extracted coords. Editor commits the JSON; pipeline re-reads it every run. | `data/external_<id>.json` |
 | `scraped` | Operator portal that DOES update but is not an NTRIP sourcetable: HTML refmaps, IGS sitelog directories, KMLs. Refreshed on a per-source interval (default 7 d). | `data/<id>.scraped.json` |
+
+**Shared schema across all JSON caches** (file, scraped, and internal
+`_m3g_*` helpers): top-level fields are `last_updated` (ISO instant or
+bare date), `source_url`, optional `pin_origin`, plus the cache-specific
+payload (`stations[]` for file/scraped, `features{}` / `update_ts{}` /
+`attrs{}` / `projects{}` for `_m3g_*`). Naming is uniform — there is no
+`last_reviewed` / `last_scraped` / `fetched_at` variant; if you find one
+in a new cache, rename it. `stations.json` source records keep their
+own `fetched_at` + `last_ok` pair (last attempt vs last success) because
+they need to distinguish those — caches only exist on success and so
+have one timestamp.
 
 ### `scraped` source type
 
@@ -49,13 +60,13 @@ serialises the result to a JSON cache, and serves the cache for up to
 | `type` | yes | Must be `"scraped"`. |
 | `id` | yes | Cache-file basename: `data/<id>.scraped.json`. Set explicitly so the cache is stable across endpoint reorderings. |
 | `scraper` | yes | Module name under `scripts/scrapers/`. `"sapos_bb"` -> `scripts/scrapers/sapos_bb.py`. |
-| `interval_days` | optional, default `7` | Minimum gap between scrapes. Cache served unchanged when fresh; re-scraped only when the cache's `last_scraped` timestamp is older than this. |
+| `interval_days` | optional, default `7` | Minimum gap between scrapes. Cache served unchanged when fresh; re-scraped only when the cache's `last_updated` timestamp is older than this. |
 | `pin_origin` | optional | Written into every station record (`register` for operator-published station registers, `forum` for community lists, etc.). Defaults to `"external"`. |
 
 **Cache format** (`data/<id>.scraped.json`):
 ```json
 {
-  "last_scraped": "2026-05-21T12:34:56+00:00",
+  "last_updated": "2026-05-21T12:34:56+00:00",
   "source_url":   "https://example.org/stations/",
   "pin_origin":   "register",
   "stations": [

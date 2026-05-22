@@ -107,7 +107,7 @@ def _cache_fresh(cache: dict | None) -> bool:
     if cache is None:
         return False
     try:
-        ts = _dt.datetime.fromisoformat(cache["fetched_at"])
+        ts = _dt.datetime.fromisoformat(cache["last_updated"])
     except (KeyError, ValueError):
         return False
     return _now() - ts <= _dt.timedelta(days=CACHE_TTL_DAYS)
@@ -128,7 +128,7 @@ def fetch_features(force: bool = False) -> dict[str, tuple[float, float]]:
                 return feats
         feats = _fetch_features_remote()
         _write_cache(CACHE_FEATURES, {
-            "fetched_at": _now().isoformat(timespec="seconds"),
+            "last_updated": _now().isoformat(timespec="seconds"),
             "source_url": URL_FEATURES,
             "feature_count": len(feats),
             "features": {sid: [lat, lon] for sid, (lat, lon) in feats.items()},
@@ -172,7 +172,7 @@ def fetch_metadata_list(force: bool = False) -> dict[str, str]:
         body = _http(URL_METADATA, accept="application/json").decode("utf-8", errors="replace")
         update_ts = _parse_metadata_list(body)
         _write_cache(CACHE_METADATA, {
-            "fetched_at": _now().isoformat(timespec="seconds"),
+            "last_updated": _now().isoformat(timespec="seconds"),
             "source_url": URL_METADATA,
             "update_ts": update_ts,
         })
@@ -212,7 +212,7 @@ def fetch_project_ids(moid: str, force: bool = False) -> list[str]:
         if not ids:
             raise ValueError(f"M3G project {moid} returned 0 station IDs")
         cache.setdefault("projects", {})[moid] = {
-            "fetched_at": _now().isoformat(timespec="seconds"),
+            "last_updated": _now().isoformat(timespec="seconds"),
             "source_url": URL_PROJECT.format(moid=moid),
             "ids": ids,
         }
@@ -318,7 +318,7 @@ def fetch_station_attrs(ids: Iterable[str], force: bool = False) -> dict[str, di
             }
             fetched += 1
         if fetched:
-            cache["fetched_at"] = _now().isoformat(timespec="seconds")
+            cache["last_updated"] = _now().isoformat(timespec="seconds")
             _write_cache(CACHE_STATION_ATTRS, cache)
             print(f"[_m3g] refreshed {fetched} sitelog(s)", flush=True)
         return {sid: dict(attrs[sid]) for sid in ids if sid in attrs}
