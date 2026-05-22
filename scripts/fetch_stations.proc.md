@@ -113,14 +113,20 @@ is `error` and 0 stations ship. Behaviour parallels how
     conversion. Consumed by `sapos_bb`, `sapos_nw`, `flepos` (all three
     parse IGS sitelogs from different operator portals but the
     line-format inside is identical).
-  - `_m3g.py` — M3G master GeoJSON (`gnss-metadata.eu/site/index`).
-    Single POST returns ~3.6k features across every M3G-registered
-    network. Disk-cached at `data/_m3g_features.json` (gitignored,
-    7-day TTL; delete the file or pass `force=True` to refresh).
-    In-process memoisation on top, double-checked locking inside.
-    Consumed by the generic `m3g` scraper to resolve coordinates for
-    any network whose stations are registered on M3G — endpoint
-    config supplies the `ids` list + ISO3 `country` code.
+  - `_m3g.py` — M3G (gnss-metadata.eu) integration. Four endpoints
+    wrapped: master GeoJSON (id→coords), metadata-list (id→update_ts
+    cursor), per-project membership page (moid→9-char ID universe),
+    per-station IGS sitelog (retirement flag, agency). Membership
+    universe needs the retirement filter because M3G project pages
+    are sticky on removals — verified against ESTPOS (10 retired
+    predecessors lingered alongside successors) and WALCORS (1
+    retired station). The per-station sitelog cache is incremental:
+    `fetch_station_attrs(ids)` only re-fetches sitelogs whose
+    `update(system-time)` changed since the last run. Disk caches
+    at `data/_m3g_features.json`, `_m3g_metadata.json`,
+    `_m3g_projects.json`, `_m3g_station_attrs.json` (all gitignored,
+    7-day TTL except station-attrs which is incremental).
+    Consumed by the generic `m3g` scraper.
 - Helpers MUST NOT register themselves in `data/rtk_map.json`; only
   scrapers do. Importing a helper from a scraper module uses
   package-relative `from . import _name` syntax.
@@ -128,13 +134,15 @@ is `error` and 0 stations ship. Behaviour parallels how
 **Generic scrapers** (multi-network, `scripts/scrapers/<name>.py`):
 - Currently one in tree:
   - `m3g.py` — every network registered on M3G uses this scraper.
-    Endpoint config must include `country` (ISO3) and `ids` (list of
-    4-char station codes; M3G key is `f"{sid}00{country}"`). One
-    HTTP call per pipeline run covers all M3G-backed endpoints; the
-    `_m3g` helper handles fetch + disk cache.
+    Endpoint config requires `country` (ISO3) plus either `moid`
+    (M3G project page; preferred — auto-discovers added/retired
+    stations) or `ids` (manual 4-char list, fallback when no M3G
+    project exists). Retirement is auto-detected by reading each
+    station's IGS sitelog (Section 3 last non-template receiver
+    block's `Date Removed`). Retired IDs are filtered and logged.
 - Adding a new M3G-backed network is a `rtk_map.json` data edit, not a
   scrapers/ code edit: add an endpoint of `type:"scraped"`,
-  `scraper:"m3g"`, with the `country` + `ids` fields.
+  `scraper:"m3g"`, with `country` + `moid`.
 
 ## When to edit this file
 

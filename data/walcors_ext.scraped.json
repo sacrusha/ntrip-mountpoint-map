@@ -1,6 +1,6 @@
 {
-  "last_scraped": "2026-05-22T09:14:03+00:00",
-  "source_url": "https://gnss-metadata.eu/site/index (M3G master GeoJSON)",
+  "last_scraped": "2026-05-22T11:47:25+00:00",
+  "source_url": "https://gnss-metadata.eu/MOID/projnet.6059fc54e0e210199a06e792",
   "pin_origin": "register",
   "stations": [
     {
@@ -49,12 +49,6 @@
       "name": "KAIN",
       "lat": 50.62860033500378,
       "lon": 3.371723016824518,
-      "country": "BEL"
-    },
-    {
-      "name": "LEGL",
-      "lat": 49.85578066138532,
-      "lon": 5.51048683939599,
       "country": "BEL"
     },
     {
