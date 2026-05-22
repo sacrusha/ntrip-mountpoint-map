@@ -19,7 +19,8 @@
       "Bash(py scripts/stations_inspect.py:*)",
       "Bash(py scripts/source_health.py:*)",
       "Bash(py scripts/sources_list.py:*)",
-      "Bash(py scripts/network_lookup.py:*)"
+      "Bash(py scripts/network_lookup.py:*)",
+      "Bash(py scripts/check_ntrip_research.py:*)"
     ],
     "deny": [
       "Read(./.git/**)",

@@ -60,7 +60,7 @@ countries with a national RTK network.
 | landing_url | https://www.scsequipos.com/ |
 | access_url | https://www.scsequipos.com/cinco-nuevas-estaciones-ntrip-instaladas-en-santiago-por-scs-equipos/ |
 | access_type | restricted (Emlid hardware required; trial credentials issued by email) |
-| sourcetable | host:port not published; credentials issued by email |
+| sourcetable | host:port not published; credentials issued by email (checked: scsequipos.com pilot landing-page 2026-05-23; no public sourcetable host disclosed) |
 | coverage | 5 stations in Santiago metro (Providencia, Tiltil, Colina, La Reina, San Bernardo) + 1 Quillota (Valparaíso) — Santiago metro only, operator-claimed <20 km baselines |
 | num_stations | 6 |
 | vrs | no — single-base, nearest-station |
