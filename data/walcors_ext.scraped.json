@@ -1,0 +1,145 @@
+{
+  "last_scraped": "2026-05-22T00:59:30+00:00",
+  "source_url": "https://gnss-metadata.eu/v1/sitelog/exportlog?id=...00BEL",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "ARLO",
+      "lat": 49.652014,
+      "lon": 5.819131,
+      "country": "BEL"
+    },
+    {
+      "name": "BATT",
+      "lat": 50.637408,
+      "lon": 5.834025,
+      "country": "BEL"
+    },
+    {
+      "name": "BERL",
+      "lat": 50.700686,
+      "lon": 5.186858,
+      "country": "BEL"
+    },
+    {
+      "name": "CHLR",
+      "lat": 50.405411,
+      "lon": 4.447142,
+      "country": "BEL"
+    },
+    {
+      "name": "FLRV",
+      "lat": 49.761856,
+      "lon": 5.135003,
+      "country": "BEL"
+    },
+    {
+      "name": "FOVA",
+      "lat": 50.320822,
+      "lon": 4.216444,
+      "country": "BEL"
+    },
+    {
+      "name": "GHIS",
+      "lat": 50.453669,
+      "lon": 3.883061,
+      "country": "BEL"
+    },
+    {
+      "name": "KAIN",
+      "lat": 50.6286,
+      "lon": 3.371722,
+      "country": "BEL"
+    },
+    {
+      "name": "LEGL",
+      "lat": 49.855781,
+      "lon": 5.510486,
+      "country": "BEL"
+    },
+    {
+      "name": "MABO",
+      "lat": 50.074642,
+      "lon": 5.739267,
+      "country": "BEL"
+    },
+    {
+      "name": "MAFA",
+      "lat": 50.236994,
+      "lon": 5.297464,
+      "country": "BEL"
+    },
+    {
+      "name": "MARI",
+      "lat": 50.089978,
+      "lon": 4.510608,
+      "country": "BEL"
+    },
+    {
+      "name": "MEIX",
+      "lat": 49.624014,
+      "lon": 5.444078,
+      "country": "BEL"
+    },
+    {
+      "name": "MOHA",
+      "lat": 50.540292,
+      "lon": 5.191983,
+      "country": "BEL"
+    },
+    {
+      "name": "NAMR",
+      "lat": 50.469522,
+      "lon": 4.860639,
+      "country": "BEL"
+    },
+    {
+      "name": "NIVL",
+      "lat": 50.585294,
+      "lon": 4.304747,
+      "country": "BEL"
+    },
+    {
+      "name": "OLLN",
+      "lat": 50.677386,
+      "lon": 4.627839,
+      "country": "BEL"
+    },
+    {
+      "name": "ONHA",
+      "lat": 50.245322,
+      "lon": 4.845044,
+      "country": "BEL"
+    },
+    {
+      "name": "OSTI",
+      "lat": 50.678456,
+      "lon": 3.802017,
+      "country": "BEL"
+    },
+    {
+      "name": "TELL",
+      "lat": 50.05155,
+      "lon": 5.209583,
+      "country": "BEL"
+    },
+    {
+      "name": "TILM",
+      "lat": 50.582614,
+      "lon": 5.566578,
+      "country": "BEL"
+    },
+    {
+      "name": "VITH",
+      "lat": 50.316564,
+      "lon": 6.085325,
+      "country": "BEL"
+    },
+    {
+      "name": "WERB",
+      "lat": 50.382233,
+      "lon": 5.676875,
+      "country": "BEL"
+    }
+  ]
+}

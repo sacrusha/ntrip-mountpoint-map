@@ -87,10 +87,17 @@
       "vrs": true,
       "access": "registration",
       "registration": "https://gnss.wallonie.be/walcors.html",
-      "stations_declared": 22,
+      "stations_declared": 23,
       "endpoints": [
         {
           "url": "http://gnss.wallonie.be:8081/"
+        },
+        {
+          "type": "scraped",
+          "id": "walcors_ext",
+          "scraper": "walcors",
+          "interval_days": 7,
+          "pin_origin": "register"
         }
       ]
     },
