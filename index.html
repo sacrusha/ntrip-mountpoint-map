@@ -169,42 +169,46 @@
     display:flex;flex-direction:column;
     min-width:220px;max-width:300px;}
   #toggles .panel-head{display:flex;align-items:center;gap:10px;
-    padding:8px 12px 7px;border-bottom:1px solid var(--srv-border);flex-shrink:0;}
+    padding:6px 10px 5px;border-bottom:1px solid var(--srv-border);flex-shrink:0;}
   #toggles .panel-title{flex:1;margin:0;
-    font-family:Georgia,ui-serif,serif;font-weight:600;font-size:13px;
+    font-family:Georgia,ui-serif,serif;font-weight:600;font-size:12.5px;
     color:var(--fg);line-height:1.1;}
   #toggles .declutter{display:flex;align-items:center;gap:5px;
-    font-size:11px;color:var(--muted);cursor:pointer;white-space:nowrap;}
+    font-size:10.5px;color:var(--muted);cursor:pointer;white-space:nowrap;}
   #toggles .declutter input{margin:0;accent-color:var(--accent);}
   #toggles .src-list{flex:1;overflow-y:auto;}
 
-  /* Source row — shared between desktop and mobile. Compact density;
-     `name` truncates with ellipsis to handle long network labels without
-     forcing the panel wider. */
-  .src-row{display:flex;align-items:center;gap:9px;padding:5px 12px;
-    border-bottom:1px solid var(--srv-border);font-size:12.5px;color:var(--fg);
-    cursor:pointer;min-height:28px;}
+  /* Source row — shared between desktop and mobile. Tight density so 50+
+     network lists don't overflow on EU/US zooms; `name` truncates with
+     ellipsis to handle long labels without forcing the panel wider. */
+  .src-row{display:flex;align-items:center;gap:8px;padding:3px 10px;
+    border-bottom:1px solid var(--srv-border);font-size:12px;color:var(--fg);
+    cursor:pointer;min-height:22px;}
   .src-row:last-child{border-bottom:none;}
-  .src-row input{margin:0;width:13px;height:13px;
+  .src-row input{margin:0;width:12px;height:12px;
     accent-color:var(--accent);flex-shrink:0;}
-  .src-row .sw{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
+  .src-row .sw{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
   .src-row .name{flex:1;line-height:1.2;
     white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-  .src-row .tier{font-size:10px;color:var(--muted);
+  /* Tier pill — clickable affordance opening the access-tiers help topic.
+     Without that click target the pill looks like a button users can't press;
+     making it actually do something resolves the visual / functional gap. */
+  .src-row .tier{font-size:9.5px;color:var(--muted);
     font-family:ui-monospace,Menlo,monospace;letter-spacing:.02em;
-    padding:1px 6px;border-radius:8px;border:1px solid var(--srv-border);flex-shrink:0;}
+    padding:0 5px;border-radius:8px;border:1px solid var(--srv-border);
+    flex-shrink:0;cursor:help;transition:filter .12s,border-color .12s;}
+  .src-row .tier:hover{filter:brightness(1.15);border-color:var(--link);}
   .src-row .tier.register{color:var(--link);border-color:rgba(42,88,148,.35);}
-  .src-row .tier.conditions{color:var(--warn);
-    border-color:rgba(170,102,0,.5);background:rgba(170,102,0,.07);}
-  .src-row .cnt{color:var(--fg);font-size:12px;font-weight:600;
-    font-family:ui-monospace,Menlo,monospace;min-width:32px;text-align:right;}
+  .src-row .tier.conditions{color:var(--warn);border-color:rgba(170,102,0,.45);}
+  .src-row .cnt{color:var(--fg);font-size:11px;font-weight:600;
+    font-family:ui-monospace,Menlo,monospace;min-width:26px;text-align:right;}
 
   /* Symbols & filters — collapsed-by-default footer holding tag toggles,
      paid-tier toggles, and access-tier toggles (low-frequency use). */
   details.sym{border-top:1px solid var(--srv-border);background:var(--code-bg);
     flex-shrink:0;}
-  details.sym summary{list-style:none;padding:9px 12px;cursor:pointer;
-    font-size:10px;color:var(--muted);display:flex;align-items:center;
+  details.sym summary{list-style:none;padding:7px 10px;cursor:pointer;
+    font-size:9.5px;color:var(--muted);display:flex;align-items:center;
     justify-content:space-between;font-family:ui-monospace,Menlo,monospace;
     text-transform:uppercase;letter-spacing:.08em;}
   details.sym summary::-webkit-details-marker{display:none;}
@@ -1852,6 +1856,15 @@
       };
     }
 
+    // Hover tooltip + help-topic affordance for the tier pills. Without these
+    // the pills look like buttons the user can't press; clicking opens the
+    // access-tiers help topic which explains the three categories.
+    var TIER_TOOLTIPS = {
+      open:       'Open — no signup. Click to learn more.',
+      register:   'Registration — free account required. Click to learn more.',
+      conditions: 'Conditions — restrictions apply (non-commercial, trial, etc). Click to learn more.'
+    };
+
     function renderSourceList(listContainer, counts){
       counts = counts || {};
       var rows = sourceList.map(function(s){
@@ -1866,7 +1879,7 @@
           + '<input type="checkbox" '+checked+'>'
           + '<span class="sw" style="background:'+r.color+'"></span>'
           + '<span class="name">'+esc(r.label)+'</span>'
-          + '<span class="tier '+tierCls+'">'+tierCls+'</span>'
+          + '<span class="tier '+tierCls+'" title="'+esc(TIER_TOOLTIPS[tierCls])+'">'+tierCls+'</span>'
           + '<span class="cnt">'+r.count+'</span>'
           + '</label>';
       }).join('');
@@ -1879,6 +1892,14 @@
             if(other !== ev.target && other.checked !== ev.target.checked) other.checked = ev.target.checked;
           });
           applyMarkers(); onChange(filterMountpoints);
+        });
+        // Tier pill → open the access-tiers help topic. preventDefault stops
+        // the surrounding <label> from also toggling the checkbox.
+        var pill = lbl.querySelector('.tier');
+        if(pill) pill.addEventListener('click', function(ev){
+          ev.preventDefault();
+          ev.stopPropagation();
+          if(typeof window.__ntripOpenHelp === 'function') window.__ntripOpenHelp('access-tiers');
         });
       });
     }
