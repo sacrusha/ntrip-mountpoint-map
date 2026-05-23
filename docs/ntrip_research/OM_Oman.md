@@ -1,111 +1,165 @@
 # Oman [OM] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-17 (refresh; prior pass 2026-05-12)
 
-## Status: YES — OmanCORSnet active (~47 physical stations, expanding to 60+; Leica GNSS Spider VRS caster live on port 2101); hobbyist eligibility unconfirmed, tariff not published
+last_verified_date: 2026-05-23
+last_gap_fill_date: 2026-05-23
+last_caster_search_date: 2026-05-23
+agent_version: 0.1
 
-| Field | Value |
-|---|---|
-| **Active public NTRIP RTK caster** | Yes — OmanCORSnet (caster live on `omancorsnet.gov.om:2101`) |
-| **Network name** | OmanCORSnet |
-| **Operator** | NSGIA — National Survey and Geospatial Information Authority (successor to NSA, National Survey Authority, under Ministry of Defence) |
-| **landing_url** | https://www.nsaomangeoportal.gov.om/en/oman-corsnet (NSGIA geoportal OmanCORSnet page) |
-| **access_url** | https://omancorsnet.gov.om/SBC/Account/Index (Spider Business Center login / subscription portal) |
-| **host:port — portal (Spider Business Center)** | `https://omancorsnet.gov.om/SBC/Account/Index` |
-| **host:port — NTRIP caster** | `omancorsnet.gov.om:2101` — SOURCETABLE 200 OK on 2026-05-12 (curl). Server header: `GNSS Spider 7.11.1.109/1.0`. Sourcetable lists 8 mountpoints: `Nearest`, `MAX`, `VRS`, `UTM-40-Auto-Geoid`, `UTM-39-Auto-Geoid`, `MAX-Geoid-39`, `MAX-Geoid-40`, `ONGD23`. RTCM 3, GPS+GLO. Physical CORS are not exposed as individual streams. Authentication required to actually stream data — sourcetable is open. |
-| **vrs** | yes — confirmed; sourcetable advertises `VRS`, `MAX` (Master-Auxiliary), and `Nearest` network-RTK mountpoints. Leica GNSS Spider platform. |
-| **Datum (informational)** | `ONGD23` mountpoint name in sourcetable is suggestive of an updated Oman National Geodetic Datum, but a mountpoint name is **not a citable operator declaration** per primer [datum-epoch]; do not infer ONGD23 as the broadcast datum without an NSGIA spec page. ONGD17 (ITRF2014, epoch 2017.0) remains the only operator-declared frame. |
-| **num_stations** | ~47 physical CORS (per NSGIA), with stated plan to expand beyond 60 |
-| **tariff** | Not publicly listed; subscription management via Spider Business Center |
-| **hobbyist_eligibility** | Unclear — no hobbyist or individual tier documented; ArduSimple Oman page indicates registration required but does not specify licensed-professional-only restriction |
-| **legal_residency_required** | Unclear — no explicit restriction found; non-resident eligibility unconfirmed |
-| **last_confirmed_alive** | Caster `omancorsnet.gov.om:2101` SOURCETABLE 200 OK re-confirmed 2026-05-17 (curl --http0.9; GNSS Spider 7.11.1.109/1.0; same 8 mountpoints — Nearest, MAX, VRS, UTM-40-Auto-Geoid, UTM-39-Auto-Geoid, MAX-Geoid-39, MAX-Geoid-40, ONGD23) |
-| **datum_epoch** | ONGD17 (ITRF2014, epoch 2017.0) — operator declaration on NSGIA ONGD17 page (https://www.nsaomangeoportal.gov.om/en/ongd17, 502 on 2026-05-17 from sandbox; previously cited and archived). `ONGD23` mountpoint name in sourcetable suggests a newer realisation; **no operator declaration of ONGD23 datum/epoch retrieved** on this pass — treat datum_epoch as unchanged (ONGD17) until NSGIA publishes ONGD23 spec page. |
+## Summary
 
----
+One nationwide government NRTK network — OmanCORSnet (NSGIA, 46 CORS
+sites, expanding past 60), Leica GNSS Spider caster on
+`omancorsnet.gov.om:2101` with an open sourcetable (8 mountpoints,
+2026-05-23). Streaming requires credentials issued via the Spider
+Business Center after registration. ArduSimple categorises it as a free
+national service "Recommended for any type of work in Oman"; NSGIA
+itself does not publish a tariff. No explicit hobbyist tier, but no
+licensed-surveyor-only clause has been retrieved either; gating is the
+SBC registration approval.
 
-## Service Details
+No rtk2go / Centipede / EarthScope / IGS-IP stations in Oman 2026-05-23.
+Cross-border / global fallback: Galileo HAS (free PPP, no caster
+connectivity, ~20–40 cm converged).
 
-### OmanCORSnet — Network Overview
+## Casters
 
-**Established:** 2016 (47 CORS sites installed by National Survey Authority).
-**Operator brand evolution:** NSA (National Survey Authority) → NSGIA (National Survey and Geospatial Information Authority); geoportal at `nsaomangeoportal.gov.om`.
-**Stations:** 47 continuously operating GNSS reference stations distributed across Oman (~309,500 km²).
-**Datum:** ONGD17 — Oman National Geodetic Datum 2017 (ITRF2014, epoch 2017.0). ONGD17 replaced the earlier GD-Oman reference.
-**Signals:** Multi-constellation GNSS (exact constellation support not confirmed from public docs).
-**Software platform:** Leica GNSS Spider (Spider Business Center) — the standard Leica CORS management / subscription platform. This is the same platform used by other commercial/government networks (e.g., HxGN SmartNet affiliates).
-**Geoid:** OMANGEOID (national geoid model) — part of the Oman National Spatial Reference System alongside OmanCORSnet and ONGD17.
+### OmanCORSnet — Oman Continuously Operating Reference Stations Network
 
-### Portal and Access
+- operator: NSGIA — National Survey and Geospatial Information Authority
+  (successor to NSA, National Survey Authority, under Ministry of Defence)
+- landing_url: https://www.nsaomangeoportal.gov.om/en/oman-corsnet
+  (NSGIA geoportal OmanCORSnet page; WebFetch returned 502 from sandbox
+  2026-05-23 — content corroborated via WebSearch snippets and the
+  FIG 2024 paper)
+- access_url: https://www.omancorsnet.gov.om/SBC/Account/Register
+  (Spider Business Center registration; identified by ArduSimple
+  2026-05-23 as the registration entry point)
+- access_type: free-signup — ArduSimple Oman page (WebFetch 200
+  2026-05-23) categorises OmanCORSnet as a "Free national service" and
+  notes *"register on the website or send them an email"*. NSGIA itself
+  publishes no tariff and the SBC pricing surface (if any) is only
+  visible post-approval — `free-signup` rests on ArduSimple's editorial
+  characterisation, not an NSGIA declaration, and could in principle
+  resolve to paid after login. No reports of charges encountered in
+  practice 2026-05-23.
+- coverage: full Sultanate of Oman (~309,500 km²); Leica GNSS Spider
+  network-RTK output (VRS / MAX / Nearest) is operationally available
+  across populated areas
+- num_stations: 46 (NSGIA / OmanCORSnet, established 2016; FIG 2024
+  paper *"A New Reference Frame for Oman"* uses the OmanCORSnet set
+  through end-2022 and cites 46 stations). The NSGIA page describes a
+  plan to expand beyond 60 — 60 is a planning figure, 46 is the
+  operational figure documented in the FIG 2024 abstract.
+- hobbyist_eligibility: ? — ArduSimple notes "The registration process
+  is not always very user-friendly, so it might take some effort"; no
+  explicit licensed-surveyor restriction is published, but no clear
+  hobbyist tier either (checked: ArduSimple Oman page 2026-05-23
+  WebFetch; nsaomangeoportal.gov.om OmanCORSnet page 2026-05-23 (502);
+  FIG 2024 paper 2026-05-23 WebFetch)
+- residency_required: ? — no explicit restriction found on the NSGIA
+  page or the ArduSimple cross-reference; non-resident eligibility
+  unconfirmed (checked: ArduSimple Oman 2026-05-23 WebFetch;
+  nsaomangeoportal.gov.om 2026-05-23 (502); GIM International "Oman
+  Launches New Geodetic Datum" 2026-05-23 via WebSearch)
+- sourcetable: `omancorsnet.gov.om:2101` — direct TCP probe 2026-05-23
+  returned `SOURCETABLE 200 OK`, server `GNSS Spider 7.11.1.109/1.0`,
+  8 mountpoints, total 778 bytes:
+  - `Nearest` (single-base routing, RTCM 3, GPS+GLO, nmea=1, solution=0)
+  - `MAX` (Master-Auxiliary / iMAX NRTK, GPS+GLO, nmea=1, solution=1)
+  - `VRS` (Virtual Reference Station, GPS+GLO, nmea=1, solution=1)
+  - `UTM-40-Auto-Geoid`, `UTM-39-Auto-Geoid` (UTM 40N / 39N projected
+    NRTK with geoid applied)
+  - `MAX-Geoid-39`, `MAX-Geoid-40` (NRTK with geoid in UTM 39N / 40N)
+  - `ONGD23` (native ONGD23 datum stream)
 
-The Spider Business Center (SBC) at `https://omancorsnet.gov.om/SBC/Account/Index` is the login / subscription management frontend. The NTRIP caster runs on the same host on port 2101 and serves an open sourcetable (confirmed 2026-05-12). Streaming any mountpoint requires NTRIP credentials issued through the SBC after registration / approval.
+  Constellations in the public sourcetable are GPS+GLO only;
+  Galileo/BeiDou are not exposed externally. Unusual for a Leica
+  GNSS Spider 7.11 caster — could be a deliberate broadcast-policy
+  choice, a sourcetable-filter configuration, or limitations on some
+  station receivers. Neither the NSGIA OmanCORSnet page nor the FIG
+  2024 paper documents multi-constellation policy (checked: NSGIA
+  page 2026-05-23 WebFetch 502; FIG 2024 abstract 2026-05-23 WebFetch
+  — does not address constellation broadcast). Authentication required
+  to actually pull RTCM bytes.
+- vrs: yes — confirmed in the live sourcetable (mounts `VRS`, `MAX`,
+  `Nearest`); Leica GNSS Spider platform
+- stations_source: sourcetable advertises only routing mountpoints (no
+  per-station mounts); the NSGIA OmanCORSnet page is the canonical
+  station list (sandbox cannot read it 2026-05-23, only WebSearch
+  excerpts available). FIG 2024 paper lists 46 sites with positions and
+  velocities for the ONGD23 frame.
+- datum_epoch: ONGD23 — Oman National Geodetic Datum 2023, **ITRF2020 at
+  epoch 2023.0**, derived from OmanCORSnet long-term processing through
+  end-2022 (Al Balushi et al., FIG 2024 *"A New Reference Frame for
+  Oman, Derived by Precise Processing of the CORS"*,
+  https://www.fig.net/resources/proceedings/fig_proceedings/fig2024/papers/ts08f/TS08F_al_balushi_abolghasem_et_al_12396_abs.pdf;
+  WebFetch 200 2026-05-23). The FIG abstract states: *"application of
+  rotations and rotation rates to ITRF20, so that the velocity of Oman
+  block is minimized"* with positions at epoch 2023.0. The sourcetable
+  mountpoint `ONGD23` confirms the operator broadcasts this frame
+  natively. The previous ONGD17 (ITRF2014 @ 2017.0) remains documented
+  on the NSGIA ONGD17 page but is being superseded operationally.
 
-ArduSimple's Oman page states that to access real-time services, registration on the website or email contact is required to receive NTRIP credentials — consistent with a gated access model.
+NSGIA brand evolution: NSA (National Survey Authority) → NSGIA
+(National Survey and Geospatial Information Authority); geoportal at
+`nsaomangeoportal.gov.om`. The Oman geoid model is OMANGEOID, part of
+the Oman National Spatial Reference System alongside OmanCORSnet and
+ONGD23.
 
-**No evidence of an open hobbyist tier** was found. The network is aimed at professional surveying and geodetic applications, but no explicit "licensed surveyor only" language was retrieved from public pages. Fees, if any, are managed through the SBC subscription system.
+### IGS / EarthScope — no Oman station
 
-### Mountpoint Breakdown (sourcetable, 2026-05-12)
+No Muscat IGS station appears in `data/igs_ip.sourcetable` 2026-05-23
+under codes MUSC / MUSK / OMAN / MUSCT. Prior research mentioned a
+Muscat IGS site as a RINEX/raw observation source; not currently
+exposed as a real-time NTRIP stream from any tracked IGS rebroadcaster.
 
-| Mountpoint | Format | Constellations | Solution | Notes |
-|---|---|---|---|---|
-| `Nearest` | RTCM 3 | GPS+GLO | Single-base (nearest CORS to rover) | nmea=1, solution=0 |
-| `MAX` | RTCM 3 | GPS+GLO | Network RTK (Master-Auxiliary / iMAX) | nmea=1, solution=1 |
-| `VRS` | RTCM 3 | GPS+GLO | Virtual Reference Station | nmea=1, solution=1 |
-| `UTM-40-Auto-Geoid` | RTCM 3 | GPS+GLO | UTM zone 40N projection, geoid model applied | nmea=1, solution=1 |
-| `UTM-39-Auto-Geoid` | RTCM 3 | GPS+GLO | UTM zone 39N projection, geoid model applied | nmea=1, solution=1 |
-| `MAX-Geoid-39` | RTCM 3 | GPS+GLO | Network RTK + geoid (UTM 39N) | nmea=1, solution=1 |
-| `MAX-Geoid-40` | RTCM 3 | GPS+GLO | Network RTK + geoid (UTM 40N) | nmea=1, solution=1 |
-| `ONGD23` | RTCM 3 | GPS+GLO | Native ONGD23 datum stream | nmea=1, solution=1 |
+## Disqualified / not applicable
 
-Multi-constellation (Galileo/BeiDou) mountpoints are not exposed publicly — current sourcetable shows GPS+GLONASS only.
+- **rtk2go** — 0 OM mountpoints 2026-05-23
+  (`py scripts/stations_by_country.py OMN` → "No stations for 'OMN'").
+- **Centipede, EarthScope NOTA, IGS-IP** — 0 OM-coded stations 2026-05-23.
+- **GEODNET, onocoy, PointOne, HxGN SmartNet, Trimble VRS Now** — no
+  Oman coverage advertised in public documentation 2026-05-23.
+- **"NAGSN"** acronym used in older project notes does not appear in
+  current NSGIA documentation; the official name is OmanCORSnet.
 
-### IGS Station
+## Post-Processing (RINEX) fallback
 
-An IGS station at Muscat (MUSK) broadcasts raw GNSS observations via EarthScope/IGS-IP streams. This is a raw observation stream, not an RTK corrections stream, and is not a substitute for an NTRIP RTK caster. It is useful for post-processing.
-
----
-
-## Commercial Alternatives
-
-No independent commercial NTRIP provider with confirmed Oman coverage has been identified. Global networks (GEODNET, PointOne, HxGN SmartNet) do not list confirmed Oman coverage from public documentation.
-
-Global free fallback: **Galileo HAS** (~40 cm accuracy, no connectivity required, globally available including Oman).
-
----
-
-## Post-Processing (RINEX) Fallback
-
-| Service | URL | Cost |
+| Service | URL | Notes |
 |---|---|---|
-| **OmanCORSnet / NSGIA** — RINEX data download (via same Spider Business Center portal, if access granted) | https://omancorsnet.gov.om/ | Registration required; fee unknown |
-| **IGS / EarthScope** — Muscat IGS station (MUSK) raw GNSS observations | https://www.earthscope.org/data/gnss-data/ | Free non-commercial |
-| **NSGIA Geoportal** | https://www.nsaomangeoportal.gov.om/en/oman-corsnet | Information page; link to OmanCORSnet |
-
----
-
-## Negative Findings
-
-- NTRIP caster host:port is `omancorsnet.gov.om:2101` (now confirmed by direct probe — earlier assumption that it was undisclosed was wrong); however **credentials and per-station mountpoints are not public**
-- Tariff / fee schedule not publicly documented
-- Hobbyist eligibility: unclear (not explicitly denied but no individual tier found)
-- rtk2go: zero OM mountpoints (no OMN-tagged stations in current local index)
-- Centipede: zero OM nodes
-- GEODNET, PointOne, HxGN SmartNet: no Oman coverage confirmed in public documentation
-- NAGSN acronym used in project's country-survey.md does not appear in current NSGIA documentation; current official name is OmanCORSnet
-
----
+| OmanCORSnet RINEX (via the same SBC portal) | https://omancorsnet.gov.om/ | Registration required; fee unknown |
+| NSGIA Geoportal — OmanCORSnet page | https://www.nsaomangeoportal.gov.om/en/oman-corsnet | Information page |
+| IGS / EarthScope | https://www.earthscope.org/data/gnss-data/ | Free non-commercial; no Muscat real-time NTRIP stream in tracked rebroadcasters 2026-05-23 |
 
 ## Sources Consulted
-- Investigation notes next.txt entry 85 (project internal)
-- country-survey.md entry `OM — Oman` (project internal, date_added 2026-04-28)
-- NSGIA OmanCORSnet page: https://www.nsaomangeoportal.gov.om/en/oman-corsnet
+
+- NSGIA OmanCORSnet page (WebFetch 502 from sandbox 2026-05-23;
+  content reproducible via WebSearch snippet, ArduSimple cross-ref,
+  and FIG 2024 paper):
+  https://www.nsaomangeoportal.gov.om/en/oman-corsnet
 - NSGIA About page: https://www.nsaomangeoportal.gov.om/en/about-nsa
-- NSGIA ONGD17 page: https://www.nsaomangeoportal.gov.om/en/ongd17
-- OmanCORSnet Spider Business Center login: https://www.omancorsnet.gov.om/SBC/Account/Index?returnUrl=/SBC
-- Oman Geospatial Forum PDF — "Latest Geospatial Infrastructure in Oman": http://omangeospatialforum.org/presentation/latest-geospatial-infrastructure-in-Oman-national-development-benefits.pdf
-- GIM International — "Oman Launches New Geodetic Datum": https://www.gim-international.com/content/article/oman-launches-new-geodetic-datum
-- Geospatial World — "Oman Moves Ahead with New Geodetic Datum": https://geospatialworld.net/article/oman-moves-ahead-with-new-geodetic-datum/
-- FIG 2024 — "A New Reference Frame for Oman": https://www.fig.net/resources/proceedings/fig_proceedings/fig2024/papers/ts08f/TS08F_al_balushi_abolghasem_et_al_12396.pdf
-- ArduSimple Oman NTRIP page: https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-oman/
-- EarthScope IGS data (Muscat station): https://www.earthscope.org/data/gnss-data/
-- curl probe of `omancorsnet.gov.om:2101` — SOURCETABLE 200 OK re-confirmed 2026-05-17 (8 mountpoints unchanged; GNSS Spider 7.11.1.109/1.0)
-- Local pipeline `scripts/stations_by_country.py OMN` 2026-05-17: zero — Oman has no MPs in any ingested global caster (rtk2go/centipede/earthscope/euref_ip/igs_ip/auscors/mirai)
+- NSGIA ONGD17 page (legacy datum):
+  https://www.nsaomangeoportal.gov.om/en/ongd17
+- NSGIA Oman Geospatial Manual:
+  https://www.nsaomangeoportal.gov.om/en/oman-geospatial-manual
+- OmanCORSnet Spider Business Center login:
+  https://www.omancorsnet.gov.om/SBC/Account/Index?returnUrl=/SBC
+- OmanCORSnet SBC registration: https://www.omancorsnet.gov.om/SBC/Account/Register
+- FIG 2024 — "A New Reference Frame for Oman, Derived by Precise
+  Processing of the CORS" (Al Balushi, Abolghasem et al.):
+  https://www.fig.net/resources/proceedings/fig_proceedings/fig2024/papers/ts08f/TS08F_al_balushi_abolghasem_et_al_12396_abs.pdf
+  (and full paper TS08F_…_12396.pdf)
+- Oman Geospatial Forum — Latest Geospatial Infrastructure in Oman:
+  http://omangeospatialforum.org/presentation/latest-geospatial-infrastructure-in-Oman-national-development-benefits.pdf
+- GIM International — Oman Launches New Geodetic Datum (ONGD17 era):
+  https://www.gim-international.com/content/article/oman-launches-new-geodetic-datum
+- Geospatial World — Oman Moves Ahead with New Geodetic Datum:
+  https://geospatialworld.net/article/oman-moves-ahead-with-new-geodetic-datum/
+- ArduSimple Oman NTRIP page (WebFetch 200 2026-05-23 — confirms free
+  national service, SBC registration, recommended for any work in Oman):
+  https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-oman/
+- Direct TCP probe 2026-05-23 of `omancorsnet.gov.om:2101` →
+  `SOURCETABLE 200 OK`, server `GNSS Spider 7.11.1.109/1.0`, 8
+  mountpoints unchanged from prior pass.
+- Local data 2026-05-23: `py scripts/stations_by_country.py OMN` →
+  no stations on any tracked source.

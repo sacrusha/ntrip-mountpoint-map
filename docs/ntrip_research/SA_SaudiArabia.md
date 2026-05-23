@@ -30,12 +30,19 @@ registration.
   (operator-owned How-to-Register PDF; registration via online form on
   `ksacors.geoportal.sa/RegisterAccount.aspx` or by emailing the signed
   PDF to info@geosa.gov.sa)
-- access_type: free-signup — Saudipedia 2026-05-23 cites the GEOSA FAQ:
-  *"The subscription is currently free and shall be automatically renewed."*
+- access_type: free-signup — GEOSA FAQ
+  (geosa.gov.sa/En/Products/Geodesy/FAQ/Pages/FAQAboutKSA-CORS.aspx, WebSearch
+  snippet 2026-05-23): *"The subscription is currently free and shall be
+  automatically renewed."* FAQ page itself returns 404 from sandbox; text is
+  retrievable only via cached search snippets. Saudipedia article 2026-05-23
+  separately describes the service as a free subscription but does not
+  reproduce the FAQ wording.
 - coverage: full Kingdom — high-density national grid; service portal exposes
-  only 4 sourcetable mountpoints (NRTK_VRS, NEAREST_RTK, NDGPS_VRS,
-  NRTK_RTX) at the operations centre coordinate (24.40, 46.41), no
-  per-station mountpoints
+  4 sourcetable mountpoints at the operations centre coordinate
+  (24.40, 46.41), no per-station mountpoints. Of those four, only
+  NRTK_VRS and NEAREST_RTK are RTK in this project's sense; NDGPS_VRS is
+  code-only DGNSS (out of scope) and NRTK_RTX is the Trimble RTX
+  PPP/SSR-via-NTRIP stream (out of scope per CLAUDE.md).
 - num_stations: 209 (operator-declared on the GEOSA KSA-CORS product page;
   333 CORS were used in the KSA-GRF17 determination per FIG 2023 — the
   larger figure mixes operational CORS with historical / one-shot
@@ -56,10 +63,10 @@ registration.
   any response bytes returned. Consistent with IP-geo gating; sourcetable
   unreadable from outside Saudi Arabia / GCC. Mountpoint inventory
   (NRTK_VRS / NEAREST_RTK / NDGPS_VRS / NRTK_RTX) is reproduced from
-  prior in-country fetches and the Getting Started v2.1 PDF.
+  prior in-country fetches and the Getting Started v2.0 PDF.
 - vrs: yes — KSA-CORS Getting Started v2.0 specifies VRS as the primary
-  network-RTK service; NEAREST_RTK is single-base routing, NRTK_RTX is
-  the Trimble RTX-style PPP-via-NTRIP stream
+  network-RTK service; NEAREST_RTK is single-base routing. NRTK_RTX is
+  the Trimble RTX-style PPP/SSR stream (out of project scope).
 - stations_source: operator station map at
   https://apps.geoportal.sa/KSA-CORS/ (gated — login required to view
   individual CORS coordinates; map renders no station markers without

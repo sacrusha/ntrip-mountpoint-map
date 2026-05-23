@@ -1,93 +1,118 @@
 # Qatar [QA] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-17 (prior: 2026-05-12)
 
-## Status: YES — QCORS active (9 stations); subscription required; restricted to gov/licensed surveyors; no hobbyist path confirmed
+last_verified_date: 2026-05-23
+last_gap_fill_date: 2026-05-23
+last_caster_search_date: 2026-05-23
+agent_version: 0.1
 
-| Field | Value |
-|---|---|
-| **Active public NTRIP RTK caster** | Yes — QCORS (restricted access) |
-| **Network name** | QCORS — Qatar Continuously Operating Reference Stations |
-| **Operator** | CGIS — Centre for GIS, Ministry of Municipality (State of Qatar) |
-| **host:port** | Not publicly disclosed; issued post-subscription |
-| **VRS** | Likely yes — 9-station network with TCP/IP data center, web portal; ±2 cm horizontal accuracy claimed |
-| **tariff** | Not publicly listed; subscription via CGIS application |
-| **hobbyist_eligibility** | Unclear — described as serving "government and private survey and mapping communities"; no confirmed individual/hobbyist tier |
-| **legal_residency_required** | Unclear — no explicit restriction found; non-resident eligibility unconfirmed |
-| **datum_epoch** | omitted -- no citable operator declaration for NTRIP output frame on CGIS portal. |
-| **last_confirmed_alive** | CGIS portal `gisqatar.org.qa` referenced (HTTP 200, 2026-05-06); 2026-05-17 WebFetch returned empty body. No NTRIP-specific endpoint reachable from public sources. |
+## Summary
 
----
+One government NRTK network — QCORS (CGIS, Ministry of Municipality), 9
+CORS stations covering the peninsula, runs on a Leica Spider Business
+Center portal at `qcors.gisqatar.org.qa`. Subscription is gated to
+registered companies / professional users; no published tariff, no
+hobbyist tier confirmed. The NTRIP caster on port 2101 TCP times out from
+non-QA IPs (probed 2026-05-23). No commercial alternative covers Qatar.
+No rtk2go / Centipede / EarthScope / IGS-IP stations in the country
+2026-05-23.
 
-## Service Details
+## Casters
 
-### QCORS — Network Overview
+### QCORS — Qatar Continuously Operating Reference Stations
 
-**Established:** Network installed 2009, operations commenced 2010.
-**Operator:** CGIS (Centre for GIS) under Qatar's Ministry of Municipality (formerly Ministry of Municipality and Environment).
-**Stations:** 9 reference stations connected via TCP/IP protocol; data transmitted to a central data center.
-**Accuracy:** ±2 cm horizontal, ±10 cm vertical across Qatar's territory.
-**Datum / Reference:** Not declared on CGIS portal (omitted per citation rule).
-**Signals:** Multi-constellation GNSS (exact constellation mix not confirmed from public docs; system pre-dates mass BeiDou deployment).
+- operator: CGIS — Centre for GIS, Ministry of Municipality (State of Qatar)
+- landing_url: https://www.gisqatar.org.qa/ (CGIS landing; the gisqatar.org.qa
+  domain rejects WebFetch with empty body 2026-05-23 — likely SPA / IP-geo
+  gated; navigation indexes via WebSearch)
+- access_url: http://qcors.gisqatar.org.qa/SBC/ (Leica Spider Business
+  Center login portal; "GNSS User Access and Subscription Management
+  Solution" — confirmed live 2026-05-23 via WebSearch result listing.
+  Direct WebFetch returned ECONNREFUSED from sandbox 2026-05-23, consistent
+  with IP-geo gating.)
+- access_type: restricted — service description on CGIS profile is
+  "government and private survey and mapping communities"; QCORS landing
+  is the Spider Business Center login (no self-service registration link
+  exposed); rover users are described in academic literature as
+  "registered companies" with no individual tier. Tariff is not published
+  (checked: gisqatar.org.qa 2026-05-23 WebFetch — empty body; UN-GGIM
+  CGIS exchange-forum 2013 PDF 2026-05-23 via WebSearch; geospatialworld
+  CGIS profile 2026-05-23; flypix.ai Qatar geospatial directory
+  2026-05-23 via WebSearch).
+- coverage: full Qatar peninsula (~11,586 km²); ±2 cm horizontal / ±10 cm
+  vertical claimed across the territory by CGIS
+- num_stations: 9 (per CGIS exchange-forum presentation; reproduced in
+  geospatialworld profile)
+- hobbyist_eligibility: no — described as serving "government and private
+  survey and mapping communities" requiring subscription; no individual /
+  hobbyist tier documented or publicly self-serviceable
+- residency_required: ? — no explicit residency clause found on the public
+  CGIS / QCORS surface (checked: gisqatar.org.qa 2026-05-23 WebFetch
+  empty; geospatialworld CGIS profile 2026-05-23 via WebSearch). In
+  practice access is via direct application to CGIS and is QA-business-
+  oriented.
+- datum_epoch: omitted — no citable operator declaration of the NTRIP
+  output frame is exposed on the gisqatar.org.qa surface. QND95 (Qatar
+  National Datum 1995) is documented as the legacy national projection
+  basis but is not the GNSS reference frame; the QCORS modern frame is
+  not operator-declared on any accessible page.
 
-### Access Policy
+NTRIP technical surface — `qcors.gisqatar.org.qa` resolves to
+89.211.33.57; direct TCP probe to port 2101 timed out 2026-05-23. The
+`qcors.gisqatar.org.qa/SBC/` Spider Business Center login is consistent
+with a Leica GNSS Spider caster identical in software to OmanCORSnet
+and many HxGN SmartNet affiliates — which on every comparable
+deployment expose VRS / MAX / Nearest mountpoints to subscribers — but
+no QCORS-specific VRS confirmation is published by CGIS and the
+sourcetable cannot be read from outside QA without authentication. The
+VRS inference is platform-level, not operator-declared.
 
-QCORS is described in academic and government sources as serving "government and private survey and mapping communities" requiring subscription. The service provides "economical advantages against conventional GNSS surveying where two GPS units are necessary." No public self-registration page or hobbyist tier has been identified. Access requires application to CGIS.
+CGIS contact: +974 4426 6284 (tel); cgisinfo@gisqatar.org.qa (email);
+portal https://www.gisqatar.org.qa/.
 
-**CGIS contact (from public sources):**
-- Telephone: +974 4426 6284
-- Fax: +974 4426 2532
-- Email: cgisinfo@gisqatar.org.qa
-- Portal: https://www.gisqatar.org.qa/
+## Disqualified / not applicable
 
-### Territory Context
+- **rtk2go, Centipede, EarthScope, IGS-IP** — 0 QA mountpoints
+  2026-05-23: `py scripts/stations_by_country.py QAT` →
+  "No stations for 'QAT'". `py scripts/stations_by_radius.py 25.3 51.5 200`
+  → no stations within 200 km of Doha on any tracked source.
+- **GEODNET, onocoy, PointOne, HxGN SmartNet, Trimble VRS Now** — no
+  Qatar coverage advertised in public documentation 2026-05-23.
+- **ArduSimple Qatar** — no dedicated country page indexed under
+  `ardusimple.com/rtk-correction-services-and-ntrip-casters-in-qatar/`
+  2026-05-23 (404).
+- **"FIFA 2022 World Cup legacy" CORS** — no open-access NTRIP network
+  beyond QCORS announced.
 
-Qatar is small (~11,586 km², peninsula jutting into the Persian Gulf). A 9-station network is sufficient for national RTK coverage. Despite this modest scale, no public NTRIP endpoint has been disclosed.
+## Post-Processing (RINEX) fallback
 
-### CGIS GeoPortal
-
-A CGIS GeoPortal (`geoportal.gisqatar.org.qa/qmape/`) is live and provides GIS web mapping services. The RTK/NTRIP corrections service is separate and gated behind CGIS subscription approval.
-
----
-
-## Commercial Alternatives
-
-No independent commercial NTRIP provider with confirmed Qatar coverage has been identified. Global networks (GEODNET, PointOne, HxGN SmartNet, ONOCOY) do not list Qatar in confirmed coverage maps from public documentation.
-
----
-
-## Post-Processing (RINEX) Fallback
-
-| Service | URL | Cost |
+| Service | URL | Notes |
 |---|---|---|
-| **CGIS / QCORS** — RINEX data download (via CGIS subscription, if granted) | https://www.gisqatar.org.qa/ | Subscription required; fee unknown |
-| **IGS / EarthScope** — check for any IGS station in Qatar | https://www.earthscope.org/data/gnss-data/ | Free non-commercial |
-
----
-
-## Negative Findings
-
-- QCORS NTRIP caster host:port not publicly disclosed (re-checked 2026-05-12)
-- Tariff / fee schedule not publicly documented
-- Hobbyist eligibility: unclear (not explicitly denied but no individual tier documented)
-- rtk2go: zero QA mountpoints (re-confirmed `py scripts/stations_by_country.py QAT` → "No stations for 'QAT'", 2026-05-17)
-- Radius probe `py scripts/stations_by_radius.py 25.3 51.5 200` 2026-05-17 → zero stations of any source within 200 km of Doha
-- Centipede: zero QA nodes
-- EarthScope NOTA: not applicable (NOTA is Americas-only)
-- GEODNET, PointOne, HxGN SmartNet: no Qatar coverage confirmed in public docs
-- No "World Cup legacy" commercial NTRIP network; FIFA 2022 World Cup construction drove no open-access CORS beyond QCORS
-- WebSearch 2026-05-17 — no public host:port, tariff, or hobbyist-tier announcement located; CGIS most-recent news = aerial mapping 2021-2025 + Qatar Vision 2030 digital-twin plan (no QCORS public-access change)
-
----
+| CGIS / QCORS RINEX | https://www.gisqatar.org.qa/ | Same Spider Business Center subscription required |
+| IGS / EarthScope | https://www.earthscope.org/data/gnss-data/ | Free non-commercial; no IGS station in Qatar 2026-05-23 |
 
 ## Sources Consulted
-- Investigation notes next.txt entry 86 (project internal)
-- country-survey.md entry `QA — Qatar` (project internal, date_added 2026-04-28)
-- CGIS portal: https://www.gisqatar.org.qa/en/page3/test.html (Services)
-- CGIS About page: https://gisqatar.org.qa/en/page1/test.html
-- CGIS GeoPortal: https://geoportal.gisqatar.org.qa/qmape/
-- CGIS on Geospatial World: https://resource.geospatialworld.net/user/centre-for-gis-qatar-cgis
-- Qatar e-government portal — "Request Geographic Information System Software Licenses": https://portal.www.gov.qa/wps/portal/Home/Government-Services/
-- Qatar Survey Manual (PDFCOFFEE): https://pdfcoffee.com/qatar-survey-manual-pdf-free.html
-- UN-GGIM Exchange Forum 2013 — "Qatar's GIS Cooperation with Local Community": https://ggim.un.org/ggim_20171012/docs/meetings/Exchange_Forum_2013/Opening%20Remarks/ExchangeForum_CGIS-Qatar_El-WahabHamouda.pdf
-- mvarga1989 GitHub — community CORS/RTK networks list (Qatar not listed): https://github.com/mvarga1989/The-list-of-GNSS-CORS-RTK-networks
-- ArduSimple country listing (Qatar not listed with dedicated page): https://www.ardusimple.com/rtk-correction-services-in-your-country/
+
+- CGIS landing: https://www.gisqatar.org.qa/ (2026-05-23 WebFetch
+  returned empty body — page SPA-rendered or IP-geo gated)
+- QCORS Spider Business Center login (confirmed live via WebSearch index
+  2026-05-23; direct fetch ECONNREFUSED from sandbox):
+  http://qcors.gisqatar.org.qa/SBC/
+- CGIS Services (PageId=3): https://www.gisqatar.org.qa/en/page3/test.html
+- CGIS About (PageId=1): https://gisqatar.org.qa/en/page1/test.html
+- CGIS GeoPortal (web mapping; not QCORS):
+  https://geoportal.gisqatar.org.qa/qmape/
+- CGIS profile on Geospatial World Resource Platform (2026-05-23 via
+  WebSearch): https://resource.geospatialworld.net/user/centre-for-gis-qatar-cgis
+- UN-GGIM Exchange Forum 2013 — Qatar GIS Cooperation:
+  https://ggim.un.org/ggim_20171012/docs/meetings/Exchange_Forum_2013/Opening%20Remarks/ExchangeForum_CGIS-Qatar_El-WahabHamouda.pdf
+- Qatar Survey Manual (community mirror, PDF):
+  https://pdfcoffee.com/qatar-survey-manual-pdf-free.html
+- flypix.ai — Geospatial Companies in Qatar (2026-05-23 via WebSearch):
+  https://flypix.ai/geospatial-companies-in-qatar/
+- ArduSimple country listing (no Qatar entry 2026-05-23):
+  https://www.ardusimple.com/rtk-correction-services-in-your-country/
+- Direct TCP probe 2026-05-23 of `qcors.gisqatar.org.qa:2101`
+  (89.211.33.57) → connection timed out after 8 s
+- Local data 2026-05-23: `py scripts/stations_by_country.py QAT` →
+  no stations; `py scripts/stations_by_radius.py 25.3 51.5 200` → no
+  stations within 200 km of Doha.

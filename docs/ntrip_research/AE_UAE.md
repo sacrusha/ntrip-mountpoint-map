@@ -1,133 +1,204 @@
 # UAE [AE] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-17 (originally 2026-05-06; refactored 2026-05-12, 2026-05-15, 2026-05-17)
 
-## Status: PARTIAL — DVRS (Dubai) and AD-GRS (Abu Dhabi) exist as government NRTK networks but are restricted to licensed surveyors / professional applicants; no hobbyist tier confirmed on either. One free hobbyist-accessible single-base mountpoint exists on rtk2go in Sharjah (MARAKEB). Two IGS reference stations (DUBI00ARE, ADH100ARE) are rebroadcast on IGS-IP — single-base, scientific use only.
+last_verified_date: 2026-05-23
+last_gap_fill_date: 2026-05-23
+last_caster_search_date: 2026-05-23
+agent_version: 0.1
 
----
+## Summary
 
-## 1. DVRS — Dubai Virtual Reference System
+Two emirate-level government NRTK networks — DVRS (Dubai Municipality, 18
+GNSS stations) and AD-GRS (DMT Abu Dhabi, 32 CORS). Both are gated behind
+emirate-portal applications oriented at survey / construction / GIS
+professionals; neither publishes a host:port, neither publishes a price
+list. No tariff and no clear hobbyist tier on either; both effectively
+require an emirate-pass account (UAE Pass / DM portal account) so
+function as paid+restricted for an outside hobbyist.
 
-| Field | Value |
-|---|---|
-| **landing_url** | https://www.dm.gov.ae/survey-department/dubai-virtual-reference-station/ |
-| **access_url** | https://geodubai.dm.gov.ae/sites/buildingsmart/en/Pages/Registration.aspx (GeoDubai BIM/portal registration; DVRS subscription routed via `survey.dm.gov.ae/Admin/Dashboard/CheckFormExist?ApiServiceid=3706` linked from the landing page) |
-| **operator** | Dubai Municipality, Survey Department |
-| **host:port** | Not publicly disclosed. `geodubai.dm.gov.ae:2101` is the historically cited NTRIP endpoint in older third-party documentation; not verifiable from this sandbox (no outbound :2101 reachability). Operator does not publish the caster hostname. |
-| **tariff** | Not publicly listed on operator landing as of 2026-05-17 (source: https://www.dm.gov.ae/survey-department/dubai-virtual-reference-station/). Subscription application is gated through the DM survey portal; price discovery requires a logged-in application. Currency unknown (AED expected). VAT status not stated. |
-| **num_stations** | "More than 18" quad-constellation (GPS+GLO+GAL+BDS) reference stations across Dubai Emirate, verbatim from dm.gov.ae landing page (re-fetched 2026-05-17). |
-| **vrs** | yes (VRS with NMEA GGA upload; RTCM streamed back). |
-| **hobbyist_eligibility** | no — application restricted to surveying, construction, GIS, and government contractors per geospatialworld.net interview and operator portal flow. |
-| **legal_residency_required** | unclear — no explicit residency clause; practical access requires UAE professional licensing / DM portal account, which is effectively residency-bound. |
-| **last_confirmed_alive** | 2026-05-17 — `dm.gov.ae/survey-department/dubai-virtual-reference-station/` WebFetch 200 with content. `geodubai.dm.gov.ae/en/Pages/default.aspx` not re-probed this round. NTRIP port 2101 not probed from sandbox. |
-| **datum_epoch** | WGS84 / ITRS — declared on operator geodesy page; epoch **not stated** on the operator page. Source: https://www.dm.gov.ae/survey-department/geodesy/ (re-fetched 2026-05-17). |
+One free single-base on rtk2go in Sharjah (`MARAKEB`) covers a ~20-50 km
+radius around 25.32, 55.45 — the only zero-friction free RTK path for an
+AE hobbyist. Two IGS-IP rebroadcasts (DUBI00ARE0, ADH100ARE0) are
+research-only (single-base, IGS data policy).
 
-**Notes:**
-- Designed 2001, tested 2002, service launched 2003 per FIG Cairo paper (Establishment & Testing of DVRS, mirrored on geospatialworld.net) — first NRTK network in the Middle East (5 Leica stations + Geo++ GNSMART originally; since expanded to 18+ quad-constellation stations). Third-party (non-operator) source notes ITRF2000 anchor epoch 2000.0 — not citable per operator-declaration rule, kept here as context only: https://geospatialworld.net/article/establishment-testing-of-dubai-virtual-reference-system-dvrs-national-gps-rtk-network/
-- Local grid: Dubai Local Transverse Mercator (DLTM, central meridian 55°20′E, false easting 500 km) on WGS84 ellipsoid — EPSG:3997.
-- Precise gravimetric geoid model exists for orthometric heights.
-- The dm.gov.ae landing page now links DVRS subscription via `survey.dm.gov.ae/.../CheckFormExist?ApiServiceid=3706`, suggesting the portal has been unified under the DM Survey Application platform rather than legacy GeoDubai SharePoint pages. Earlier prior-research speculation that "the service may have been restructured" is confirmed: it's the same agency, new front-door.
+No emirate-level network in Sharjah / Ajman / Umm Al Quwain / Ras Al
+Khaimah / Fujairah; no UAE-federal NTRIP service.
 
----
+## Casters
 
-## 2. AD-GRS — Abu Dhabi GNSS Reference Stations Network (Abu Dhabi Spatial Reference System)
+### DVRS — Dubai Virtual Reference Station (Dubai Municipality)
 
-| Field | Value |
-|---|---|
-| **landing_url** | https://geosmart.dmt.gov.ae/LSDCompany/PDFs/Survey%20Standards/Abu%20Dhabi%20Spatial%20Reference%20System.pdf (DMT GeoSMART survey-standards PDF; no dedicated landing page found) |
-| **access_url** | https://www.tamm.abudhabi/en/life-events/business/housing-construction/construction/RequesttoJointheSurveyStationsNetworkSystem (TAMM service "Request to Join the Survey Stations Network System" — cited as the AD-GRS registration path by ardusimple.com, re-confirmed 2026-05-17) |
-| **operator** | Department of Municipalities and Transport (DMT), Abu Dhabi (in partnership with Fugro for the 2017–2019 build-out) |
-| **host:port** | Not publicly disclosed. No public sourcetable URL surfaced; operator does not publish the caster hostname. |
-| **tariff** | Not publicly listed as of 2026-05-17 (source: https://www.tamm.abudhabi/en/life-events/business/housing-construction/construction/RequesttoJointheSurveyStationsNetworkSystem — service "Request to Join the Survey Stations Network System"). TAMM application gating; price discovery requires submitting the service request. Currency unknown (AED expected). VAT status not stated. |
-| **num_stations** | 32 CORS across Abu Dhabi Emirate (recomputed 2019 by Fugro); plus 53 supplementary geodetic control pillars. Source: Fugro technical paper. |
-| **vrs** | ? — system described as network-RTK GRS providing centimeter-level corrections; VRS vs MAC/FKP not explicitly stated in public docs. |
-| **hobbyist_eligibility** | no — application is a government service "Request to Join the Survey Stations Network System" oriented at construction/housing professionals. |
-| **legal_residency_required** | unclear — TAMM is the Abu Dhabi resident/business services portal; account creation typically requires a UAE Pass / Emirates ID, which is effectively residency-bound. |
-| **last_confirmed_alive** | 2026-05-17 — Fugro technical-paper page re-fetched, 200 OK, confirms 32 CORS / ITRF2014@2019.0 / ITRF2000@2000.0. `tamm.abudhabi/...` still SPA-rendered (empty body via WebFetch), cited live by ardusimple.com (2026-05-17). No external NTRIP probe possible from sandbox. |
-| **datum_epoch** | Abu Dhabi SRS — WGS84 / ITRF2000 at epoch 2000.0 (original 2008 establishment); recomputed in ITRF2014 at epoch 2019.0 by Fugro 2017–2019. Vertical: Ras Ghumays national vertical datum. Source: https://www.fugro.com/expertise/technical-papers/enhanced-geodetic-network-geoid-model-municipalities-abu-dhabi-emirate-fugro |
+- operator: Dubai Municipality, Survey Department
+- landing_url: https://www.dm.gov.ae/survey-department/dubai-virtual-reference-station/
+- access_url: https://survey.dm.gov.ae/Admin/Dashboard/CheckFormExist?ApiServiceid=3706
+  (DM survey portal — DVRS subscription request, linked from the landing page;
+  the older GeoDubai SharePoint portal at https://geodubai.dm.gov.ae/ has been
+  unified under this DM Survey Application platform)
+- access_type: paid — operator landing describes a subscription model;
+  ArduSimple categorises DVRS as "paid regional service"; no pricing
+  published on the landing page (tariff not published — checked:
+  dm.gov.ae landing 2026-05-23 via WebFetch; ArduSimple UAE page
+  2026-05-23 via WebFetch; geospatialworld.net Dubai-reference interview
+  2026-05-23)
+- coverage: Emirate of Dubai (~4,114 km²); operator describes "whole of
+  Dubai" with sub-cm 24/7 accuracy
+- num_stations: 18 (operator-declared; verbatim 2026-05-23 from dm.gov.ae:
+  *"more than 18 GNSS stations covering the whole of Dubai"*)
+- hobbyist_eligibility: no — DVRS subscription is gated through
+  survey.dm.gov.ae, which routes applications to surveying, construction,
+  GIS and government users; a DM portal account is required, which
+  practically requires UAE Pass / Emirates ID
+- residency_required: ? — DM portal access is not formally residency-locked
+  but in practice requires UAE Pass / Emirates ID, which is residency-
+  bound (checked: dm.gov.ae 2026-05-23 WebFetch — registration requires
+  DM portal account; geospatialworld 2026-05-23 — describes professional
+  subscriber base)
+- datum_epoch: WGS84 / ITRS — declared on the Dubai Municipality Geodesy
+  page (https://www.dm.gov.ae/survey-department/geodesy/, WebFetch 200
+  2026-05-23: *"realization of … WGS84 … and the international
+  Terrestrial Reference System ITRS … via the connection of 4 selected
+  main sites of the Dubai national GPS network to the closest IGS
+  Permanents tracking sites"*). Epoch not stated on the operator page.
+  Local grid is EPSG:3997 (WGS 84 / Dubai Local TM, central meridian
+  55°20′E, false easting 500 km); orthometric heights use a precise
+  gravimetric geoid model.
 
-**Notes:**
-- AD-GRS replaced the legacy Nahrwan 1967 datum as the official Abu Dhabi geodetic reference.
-- The two CORS most commonly cited in academic literature are ADCN (Abu Dhabi city, coastal) and MDZN (Madinat Zayed, inland) — confirmed in a 2025 ISPRS Annals paper on UAE GNSS error variations.
-- This entry is missing from prior project research (rtk_inventory.md has no AD-GRS row; rtk_map.json only has DVRS). PIPELINE NOTE downstream.
+Notes: Designed 2001, tested 2002, launched 2003 — first NRTK in the
+Middle East. Originally 5 Leica + Geo++ GNSMART, since expanded to 18+
+quad-constellation (GPS+GLO+GAL+BDS). Caster host is not disclosed
+publicly; `geodubai.dm.gov.ae:2101` (213.42.55.155) and
+`survey.dm.gov.ae:2101` (213.42.54.19) probed 2026-05-23 — both TCP
+timed out (DM caster either gated to the customer-facing host issued
+post-subscription, or restricted from non-AE source addresses).
 
----
+### AD-GRS — Abu Dhabi GNSS Reference Stations Network
 
-## 3. MARAKEB — rtk2go single-base (Sharjah)
+- operator: Department of Municipalities and Transport (DMT), Abu Dhabi
+  (2017–2019 expansion delivered in partnership with Fugro)
+- landing_url: https://geosmart.dmt.gov.ae/LSDCompany/PDFs/Survey%20Standards/Abu%20Dhabi%20Spatial%20Reference%20System.pdf
+  (DMT GeoSMART survey-standards PDF; no dedicated landing page found)
+- access_url: https://www.tamm.abudhabi/en/life-events/business/housing-construction/construction/RequesttoJointheSurveyStationsNetworkSystem
+  (TAMM "Request to Join the Survey Stations Network System" — the AD-GRS
+  registration path per ArduSimple; SPA-rendered, empty WebFetch body
+  2026-05-23, but cited live by ArduSimple same date)
+- access_type: paid — ArduSimple categorises AD-GRS as a paid regional
+  service; TAMM service flow routes applications to construction /
+  housing professionals (tariff not published — checked: TAMM service
+  page 2026-05-23 WebFetch (SPA empty body); ArduSimple UAE 2026-05-23;
+  Fugro technical paper 2026-05-23)
+- coverage: Emirate of Abu Dhabi (~67,340 km²); ADCN (Abu Dhabi city,
+  coastal) and MDZN (Madinat Zayed, inland) are the most-cited stations
+  in academic work
+- num_stations: 32 (Fugro technical paper, recomputed 2017–2019; plus
+  53 supplementary geodetic control pillars). An earlier 2008
+  configuration had 20 CORS — superseded.
+- hobbyist_eligibility: no — TAMM service is "Request to Join the
+  Survey Stations Network System" gated to construction/housing
+  professionals; UAE Pass / Emirates ID required
+- residency_required: ? — TAMM requires UAE Pass which is residency-
+  bound in practice; no explicit nationality rule found on the service
+  page (checked: TAMM service URL 2026-05-23 WebFetch; ArduSimple UAE
+  2026-05-23; ResearchGate Georeferencing Abu Dhabi 2026-05-23 via
+  WebSearch)
+- datum_epoch: ITRF2014 at epoch 2019.0 — Fugro technical paper
+  (https://www.fugro.com/expertise/technical-papers/enhanced-geodetic-network-geoid-model-municipalities-abu-dhabi-emirate-fugro,
+  WebFetch 200 2026-05-23): *"Abu Dhabi GPS Reference Stations network,
+  consisting of 32 CORS, was recomputed in both ITRF2014 at Epoch 2019.0
+  and historical ITRF2000 at Epoch 2000.0"*. Vertical datum: Ras Ghumays.
 
-| Field | Value |
-|---|---|
-| **landing_url** | http://rtk2go.com/ |
-| **access_url** | http://new.rtk2go.com/ (rtk2go reservation/usage — free community caster; mountpoint discoverable via the public sourcetable) |
-| **operator** | rtk2go community caster (Subcarrier Systems Corp / SNIP); base station operator anonymous (mountpoint name suggests Marakeb Technologies LLC, a UAE unmanned-systems company, but no confirmed link). |
-| **host:port** | `rtk2go.com:2101` (mountpoint `MARAKEB`) — present in `data/rtk2go.sourcetable`; re-verified 2026-05-17 via `scripts/stations_by_country.py ARE` |
-| **tariff** | free (community); rtk2go requires a valid email address as user/pw on the mountpoint per rtk2go.com terms. |
-| **num_stations** | 1 (single base). |
-| **vrs** | no — single-base RTCM 3.2 stream (messages 1005, 1033, 1074, 1084, 1094, 1124 → GPS+GLO+GAL+BDS MSM4 + station info). |
-| **hobbyist_eligibility** | yes — rtk2go is open to anyone with a valid email; no professional credentials required. |
-| **legal_residency_required** | no. |
-| **last_confirmed_alive** | 2026-05-17 — present in current rtk2go sourcetable. Coverage radius ~20–50 km from 25.32 N, 55.45 E (Sharjah, ~22 km NE of Dubai centre). |
-| **datum_epoch** | base operator does not publish a datum; rtk2go streams the operator's local frame. Treat as unknown — likely WGS84 current epoch but uncited. Omitted per spec. |
+### MARAKEB — rtk2go single-base (Sharjah)
 
----
+- operator: rtk2go community caster (Subcarrier Systems Corp / SNIP);
+  base station operator anonymous, name suggests Marakeb Technologies LLC
+  (UAE unmanned-systems company), no operator-confirmed link
+- See `RTK2GO.md` for credentials / etiquette / known-unreliable warning
+- access_type: free, no registration (rtk2go convention: any email as
+  username, password `none`)
+- coverage: ~20–50 km radius around 25.32, 55.45 (Sharjah, ~22 km NE
+  of Dubai centre); useful for hobbyist work across Dubai-Sharjah-Ajman
+  metro
+- num_stations: 1 (single base)
+- hobbyist_eligibility: yes
+- residency_required: no
+- sourcetable: `rtk2go.com:2101`, mountpoint `MARAKEB` — present in
+  `data/rtk2go.sourcetable` 2026-05-23. RTCM 3.2 stream
+  (1005, 1033, 1074, 1084, 1094, 1114, 1124 → GPS+GLO+GAL+QZSS+BDS MSM4
+  + station info).
+- vrs: no
+- stations_source: rtk2go monitor https://monitor.use-snip.com/
+- datum_epoch: omitted — base operator does not declare a datum; rtk2go
+  does not transmit a transformation message
 
-## 4. Other Emirates / Federal — Negative Findings
+### IGS-IP — DUBI00ARE0, ADH100ARE0
 
-- **Sharjah, Ajman, Umm Al Quwain, Ras Al Khaimah, Fujairah:** no emirate-level public NTRIP caster found. Surveying firms cited as operating across these emirates rely on DVRS (Dubai) or AD-GRS (Abu Dhabi) reach or private base stations.
-- **UAE federal:** no UAE-federal NTRIP network found; each emirate manages its own geodetic infrastructure.
-- **rtk2go (other than MARAKEB):** 1 station total in ARE (`scripts/stations_by_country.py ARE`, 2026-05-17).
-- **Centipede:** zero AE nodes (2026-05-17, same script).
-- **EarthScope (NOTA):** zero AE stations (no ARE territory tag).
-- **GEODNET:** coverage map (`rtk.geodnet.com/coverage/`) renders client-side; sandbox WebFetch returns headers only. No UAE GEODNET station cited in any web result. UAE coverage **unknown — not verified this pass** (GEODNET not in local pipeline sources; client-side coverage map not extractable from sandbox).
-- **IGS-IP:** 2 ARE stations rebroadcast on `products.igs-ip.net:2101` and present in `data/igs_ip.sourcetable` (2026-05-17): `DUBI00ARE0` (Dubai, 25.0023 N 55.4668 E, TRIMBLE NETR9, GPS+GLO+GAL+BDS real-time, co-located on Dubai Municipality premises — same site as DVRS core) and `ADH100ARE0` (Abu Dhabi area, 24.38 N 54.52 E, 16 km from city centre). IGS-IP registration required (`register.rtcm-ntrip.org`); IGS data-use policy = research/non-commercial. Single-base streams, not VRS/NRTK. The 2024 announcement of American University of Sharjah as "first UAE IGS station" referred to AUS site joining IGS observation network; DUBI and ADH1 have been IGS members earlier (DUBI listed in IGS network for years).
+- operator: IGS / EarthScope / BKG rebroadcast (covered in `IGS.md` and
+  `Earthscope.md`)
+- DUBI00ARE0 — Dubai (25.00, 55.47), TRIMBLE NETR9, RTCM 3.2 + MSM3
+  (msgs 1073/1083/1093/1123 per `data/igs_ip.sourcetable` 2026-05-23),
+  GPS+GLO+GAL+BDS, hosted on the Dubai Municipality premises (same site
+  as DVRS core); rebroadcast by IGS NRIAG
+- ADH100ARE0 — Abu Dhabi area (24.38, 54.52), SEPT POLARX5, RTCM 3.2 +
+  MSM4, GPS+GLO+GAL+BDS, rebroadcast via Fugro contribution
+- access_type: restricted — IGS registration at register.rtcm-ntrip.org;
+  IGS data policy = research / non-commercial
+- These are single-base streams, not VRS / NRTK. Useful for Dubai-city or
+  Abu Dhabi-city RTK only, and for post-processing.
 
----
+## Disqualified / not applicable
 
-## 5. Post-Processing (RINEX) Fallback
+- **Centipede** — 0 AE nodes 2026-05-23 (`py scripts/stations_by_country.py ARE`).
+- **EarthScope NOTA** — Americas-only.
+- **GEODNET, onocoy, PointOne, HxGN SmartNet, Trimble VRS Now** — no
+  UAE coverage advertised on public coverage maps 2026-05-23.
+- **Other emirates (Sharjah, Ajman, Umm Al Quwain, Ras Al Khaimah,
+  Fujairah)** — no emirate-level public NTRIP caster found; surveying
+  firms operating there use DVRS or AD-GRS reach or private bases.
+- **UAE federal** — no UAE-federal NTRIP network; each emirate manages
+  its own geodetic infrastructure.
 
-| Service | URL | Cost |
+## Post-Processing (RINEX) fallback
+
+| Service | URL | Notes |
 |---|---|---|
-| **DVRS / GeoDubai** RINEX | https://geodubai.dm.gov.ae/ (when reachable; sandbox got ECONNREFUSED on 2026-05-15, not re-probed 2026-05-17) | Requires DM portal account |
-| **AD-GRS** RINEX | https://geosmart.dmt.gov.ae/ + TAMM application | Application-gated |
-| **IGS / EarthScope** | https://network.igs.org/ , https://www.earthscope.org/data/gnss-data/ | Free non-commercial |
-
-## 6. Global Free Fallback
-
-- **Galileo HAS** (~20–40 cm convergence, no connectivity required, globally available including UAE).
-
----
-
-## URL Probe Results (from this sandbox, 2026-05-17)
-
-| URL | Result |
-|---|---|
-| https://www.dm.gov.ae/survey-department/dubai-virtual-reference-station/ | WebFetch 200 — "more than 18 GNSS stations cover whole of Dubai"; GPS+GLO+GAL+BDS; NTRIP wireless; sub-cm 24/7; subscription link present |
-| https://www.fugro.com/expertise/technical-papers/enhanced-geodetic-network-geoid-model-municipalities-abu-dhabi-emirate-fugro | WebFetch 200 — confirms 32 CORS, recomputed both ITRF2014@2019.0 and ITRF2000@2000.0 |
-| https://network.igs.org/DUBI00ARE | WebFetch 200 — TRIMBLE NETR9, last RINEX 2026-05-06 |
-| https://network.igs.org/ADH100ARE | (not probed; presence verified via local sourcetable) |
-| https://www.dm.gov.ae/survey-department/geodesy/ | WebFetch 200 OK; WGS84/ITRS declaration confirmed |
-| https://geodubai.dm.gov.ae/en/Pages/default.aspx | ECONNREFUSED from sandbox; URL returned by Google Search index — likely user-side reachable, sandbox-blocked egress |
-| https://www.tamm.abudhabi/.../RequesttoJointheSurveyStationsNetworkSystem | WebFetch returned empty body (SPA / JS-rendered) — URL cited live by ardusimple.com same date |
-| https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-uae-united-arab-emirates/ | 200 OK; primary source for AD-GRS / TAMM cross-reference |
-| https://www.fugro.com/expertise/technical-papers/enhanced-geodetic-network-geoid-model-municipalities-abu-dhabi-emirate-fugro | 200 OK; primary source for AD-GRS 32-CORS, ITRF2014@2019.0 |
-| http://rtk2go.com/ (port 2101 sourcetable) | Not probed from sandbox; MARAKEB presence re-verified 2026-05-17 via `scripts/stations_by_country.py ARE` |
-| https://rtk.geodnet.com/coverage/ | Page rendered client-side; UAE coverage not extractable from server HTML |
-| `geodubai.dm.gov.ae:2101` | Not probed from sandbox |
-
----
+| DVRS / GeoDubai RINEX | https://geodubai.dm.gov.ae/ | Requires DM portal account |
+| AD-GRS RINEX | https://geosmart.dmt.gov.ae/ + TAMM application | Application-gated |
+| IGS / EarthScope | https://www.earthscope.org/data/gnss-data/ | Free non-commercial |
 
 ## Sources Consulted
-- Dubai Municipality DVRS page: https://www.dm.gov.ae/survey-department/dubai-virtual-reference-station/
-- Dubai Municipality Geodesy page (datum declaration): https://www.dm.gov.ae/survey-department/geodesy/
-- GeoDubai portal: https://geodubai.dm.gov.ae/en/Pages/default.aspx
-- DM Survey Application portal: https://survey.dm.gov.ae/admin/dashboard/formnav
-- Geospatial World — "Establishment & Testing of DVRS" (ITRF epoch 2000): https://geospatialworld.net/article/establishment-testing-of-dubai-virtual-reference-system-dvrs-national-gps-rtk-network/
-- Geospatial World interview — "Dubai's Reference Station, Middle East's First": https://geospatialworld.net/prime/interviews/dubai-reference-station-middle-east-first/
-- DMT Abu Dhabi — Abu Dhabi Spatial Reference System (PDF): https://geosmart.dmt.gov.ae/LSDCompany/PDFs/Survey%20Standards/Abu%20Dhabi%20Spatial%20Reference%20System.pdf
-- Fugro technical paper (AD-GRS 32-CORS, ITRF2014@2019.0, Ras Ghumays vertical): https://www.fugro.com/expertise/technical-papers/enhanced-geodetic-network-geoid-model-municipalities-abu-dhabi-emirate-fugro
-- TAMM service — Request to Join the Survey Stations Network System: https://www.tamm.abudhabi/en/life-events/business/housing-construction/construction/RequesttoJointheSurveyStationsNetworkSystem
-- ISPRS Annals 2025 — UAE GNSS error assessment (ADCN, MDZN): https://isprs-annals.copernicus.org/articles/X-G-2025/87/2025/isprs-annals-X-G-2025-87-2025.pdf
-- American University of Sharjah — first UAE IGS station: https://www.aus.edu/media/news/first-gnss-station-with-igs-service-to-be-installed-in-the-uae
-- ArduSimple UAE NTRIP page (AD-GRS + DVRS cross-reference): https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-uae-united-arab-emirates/
+
+- Dubai Municipality DVRS page (WebFetch 200 2026-05-23):
+  https://www.dm.gov.ae/survey-department/dubai-virtual-reference-station/
+- Dubai Municipality Geodesy / datum declaration (WebFetch 200 2026-05-23):
+  https://www.dm.gov.ae/survey-department/geodesy/
+- DM Survey Application portal (subscription router):
+  https://survey.dm.gov.ae/Admin/Dashboard/CheckFormExist?ApiServiceid=3706
+- GeoDubai portal (legacy front-end):
+  https://geodubai.dm.gov.ae/en/Pages/default.aspx
+- Geospatial World — Establishment & Testing of DVRS (FIG Cairo paper
+  mirror): https://geospatialworld.net/article/establishment-testing-of-dubai-virtual-reference-system-dvrs-national-gps-rtk-network/
+- Geospatial World — Dubai's Reference Station interview:
+  https://geospatialworld.net/prime/interviews/dubai-reference-station-middle-east-first/
+- FIG Cairo paper — Establishment of DVRS:
+  https://www.fig.net/resources/proceedings/fig_proceedings/cairo/papers/ts_03/ts03_04_marzooqi_etal.pdf
+- DMT Abu Dhabi Spatial Reference System PDF (GeoSMART survey-standards):
+  https://geosmart.dmt.gov.ae/LSDCompany/PDFs/Survey%20Standards/Abu%20Dhabi%20Spatial%20Reference%20System.pdf
+- Fugro technical paper (32 CORS, ITRF2014@2019.0, Ras Ghumays vertical;
+  WebFetch 200 2026-05-23):
+  https://www.fugro.com/expertise/technical-papers/enhanced-geodetic-network-geoid-model-municipalities-abu-dhabi-emirate-fugro
+- TAMM service — Request to Join the Survey Stations Network System
+  (SPA-rendered, empty WebFetch body; URL live per ArduSimple):
+  https://www.tamm.abudhabi/en/life-events/business/housing-construction/construction/RequesttoJointheSurveyStationsNetworkSystem
+- ResearchGate — Georeferencing System for Abu Dhabi Spatial Data (2008
+  vs 2019 vintage of the network): https://www.researchgate.net/publication/331608656_Georeferencing_System_for_Abu_Dhabi_Spatial_Data
+- ISPRS Annals 2025 — UAE GNSS error variations (ADCN, MDZN):
+  https://isprs-annals.copernicus.org/articles/X-G-2025/87/2025/isprs-annals-X-G-2025-87-2025.pdf
+- American University of Sharjah — first UAE IGS station (AUS site
+  joining IGS observation network):
+  https://www.aus.edu/media/news/first-gnss-station-with-igs-service-to-be-installed-in-the-uae
+- ArduSimple UAE NTRIP (WebFetch 200 2026-05-23):
+  https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-uae-united-arab-emirates/
 - EPSG:3997 — WGS 84 / Dubai Local TM: https://epsg.io/3997
-- rtk2go community caster: http://rtk2go.com/
-- Local project data: `data/rtk2go.sourcetable` (MARAKEB, Sharjah), `data/igs_ip.sourcetable` (DUBI00ARE0, ADH100ARE0), `data/stations.json` (refreshed 2026-05-17 via `scripts/stations_by_country.py ARE`)
+- Direct TCP probes 2026-05-23:
+  - `geodubai.dm.gov.ae:2101` (213.42.55.155) → timed out
+  - `survey.dm.gov.ae:2101` (213.42.54.19) → timed out
+- Local data 2026-05-23: `py scripts/stations_by_country.py ARE` →
+  igs_ip:2 (DUBI00ARE0, ADH100ARE0), rtk2go:1 (MARAKEB)
