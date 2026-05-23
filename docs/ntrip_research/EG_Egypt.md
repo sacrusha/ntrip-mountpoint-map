@@ -3,6 +3,7 @@
 last_verified_date: 2026-05-23
 last_gap_fill_date: 2026-05-17
 last_caster_search_date: 2026-05-23
+agent_version: 0.1
 
 ## Status: NO confirmed public NTRIP caster (national CORS exists; stream not publicly available). Re-verified 2026-05-23 — `esa.gov.eg` homepage re-fetched, no CORS / NTRIP / RTK / GNSS service section published (only traditional surveying products and a weather-related "fixed stations" project). No public ESA NTRIP endpoint, registration portal, or tariff has been announced since the original research; ArduSimple country page still reports "as far as we know Egypt is not among" countries with a National RTK Network. Radius probe Cairo 30.0/31.2 within 250 km returns zero ingested-pipeline stations.
 

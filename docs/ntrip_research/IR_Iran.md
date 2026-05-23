@@ -3,6 +3,7 @@
 last_verified_date: 2026-05-23
 last_gap_fill_date: 2026-05-17
 last_caster_search_date: 2026-05-23
+agent_version: 0.1
 
 ## Status: YES — three government NTRIP RTK services (SHAMIM / SHAMIM Plus, Hoda Pro, SEMT Tehran); all restricted to Iranian nationals; endpoint IPs geo-blocked from outside Iran
 

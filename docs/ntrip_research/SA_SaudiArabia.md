@@ -1,134 +1,131 @@
 # Saudi Arabia [SA] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-21 (station map confirmed login-gated; sourcetable mount count added; prior versions: 2026-05-17, 2026-05-12, 2026-05-06)
 
-## Status: YES — KSA-CORS (free government network, 209 stations, VRS); endpoint reachability from non-SA IPs UNCONFIRMED
+last_verified_date: 2026-05-23
+last_gap_fill_date: 2026-05-23
+last_caster_search_date: 2026-05-23
+agent_version: 0.1
 
-| Field | Value |
-|---|---|
-| **Active public NTRIP RTK caster** | Yes (free, self-registration) — reachability from outside Saudi Arabia / GCC unconfirmed |
-| **Network name** | KSA-CORS (Kingdom of Saudi Arabia Continuously Operating Reference Station Network) |
-| **Operator** | GEOSA — General Authority for Survey and Geospatial Information (formerly GASGI / GCS) |
-| **num_stations** | 209 declared (KSA-wide, high-density national grid) — operator-declared on GEOSA KSA-CORS product page (https://www.geosa.gov.sa/en/products/geodesy/pages/ksa-cors.aspx); URL ECONNREFUSED from this sandbox 2026-05-17, value reproduced from earlier operator-portal fetch and consistent across GEOSA/Saudipedia sources |
-| **landing_url** | `https://www.geosa.gov.sa/en/products/geodesy/pages/ksa-cors.aspx` — operator-owned KSA-CORS product page on GEOSA's authority site (EN). Describes the network, free-tier policy, station count, datum. Portal alternative: `https://ksacors.geoportal.sa/` (service portal; less descriptive). |
-| **access_url** | `https://www.geoportal.sa/pdf/How_to_Register_to_KSA-CORS_Network_v.1.0.pdf` — operator-owned How-to-Register PDF describing the registration workflow (online form or email to info@geosa.gov.sa). `ksacors.geoportal.sa/RegisterAccount.aspx` is the bare registration form, not a service description page. |
-| **host:port — current** | `ksacors.geoportal.sa:2101` (active portal domain as of 2026-05-06) |
-| **host:port — legacy** | `ksacors.gcs.gov.sa:2101` (old domain; login page still resolves but domain authority migrated to GEOSA/geoportal.sa) |
-| **host:port — obsolete** | `KSACORS.gcs.gov.sa` / `ksacors.geosa.gov.sa` — NXDOMAIN / redirected as of 2026-04 |
-| **tariff** | **Free** — subscription is free and automatically renewed. Source: FAQ at gasgi.gov.sa / geosa.gov.sa (confirmed 2026-05-06). No VAT, no fee schedule. |
-| **VRS** | Yes — KSA-GRF17 datum, VRS (Virtual Reference Station) method; GPS+GLO+GAL+BDS |
-| **hobbyist_eligibility** | **Yes** — registration open to any user; no licensed-surveyor requirement documented. Self-service online registration at `ksacors.geoportal.sa` or by downloading and emailing the registration form to info@geosa.gov.sa. |
-| **legal_residency_required** | **Unclear** — no explicit residency restriction in published documentation; registration form requests personal/organisational details but no nationality gate has been confirmed or denied from external sources. |
-| **last_confirmed_alive** | 2026-05-17: `geosa.gov.sa` ECONNREFUSED + `ksacors.geoportal.sa` unstable (socket close) from this sandbox — consistent with IP-geo gating or instability. Last confirmed portal HTTP 200 = 2026-05-06; NTRIP TCP 2101 timed out from non-SA IP same date. Endpoint likely IP-restricted to Saudi / GCC ranges. |
-| **datum / epoch** | cited URL https://www.geosa.gov.sa/en/products/geodesy/pages/ksa-cors.aspx + SANSRS v2.0 (https://www.geoportal.sa/pdf/SANSRS_Implementation_Guidelines_V_2_0.pdf) — operator declared **KSA-GRF17** as national frame; portal currently ECONNREFUSED 2026-05-17, citation from earlier operator-portal fetch (2026-05-06) when both URLs returned HTTP 200; prior operator-sourced fetch counts per project rule. Epoch: not stated on cited operator pages. |
+## Summary
 
----
+One nationwide free government VRS network — KSA-CORS (GEOSA), 209 stations,
+self-service registration, automatically-renewed free subscription. From a
+non-Saudi IP, the caster TCP-resets on connect (firewall observed
+2026-05-23 — connection established to `ksacors.geoportal.sa:2101 (212.62.124.118)` then
+Recv reset, consistent with IP-geo gating). No commercial alternative
+publishes Saudi coverage. No rtk2go / Centipede / EarthScope nodes
+in-country 2026-05-23. RINEX fallback via the same GEOSA portal after
+registration.
 
-## Service Details
+## Casters
 
-### KSA-CORS — Network Overview
+### KSA-CORS — Kingdom of Saudi Arabia Continuously Operating Reference Station Network
 
-**Operator:** GEOSA (General Authority for Survey and Geospatial Information) — previously operated under GCS (General Commission for Survey) and GASGI.
-**Portal:** https://ksacors.geoportal.sa/ (primary, 2026)
-**Legacy portal:** https://ksacors.gcs.gov.sa/ (login page still accessible; underlying NTRIP caster domain status unclear)
-**Registration:** Online at `ksacors.geoportal.sa/RegisterAccount.aspx` — OR — download form from site, sign, scan, email to info@geosa.gov.sa
-**National platform service listing:** https://my.gov.sa/en/services/294222
+- operator: GEOSA — General Authority for Survey and Geospatial Information
+  (formerly GCS / GASGI)
+- landing_url: https://www.geosa.gov.sa/en/products/geodesy/pages/ksa-cors.aspx
+  (operator product page; describes the service. WebFetch returned 404 from
+  sandbox 2026-05-23 — geoportal index has reorganised; same content
+  republished on the `geoportal.sa` landings below and on Saudipedia.)
+- access_url: https://www.geoportal.sa/pdf/How_to_Register_to_KSA-CORS_Network_v.1.0.pdf
+  (operator-owned How-to-Register PDF; registration via online form on
+  `ksacors.geoportal.sa/RegisterAccount.aspx` or by emailing the signed
+  PDF to info@geosa.gov.sa)
+- access_type: free-signup — Saudipedia 2026-05-23 cites the GEOSA FAQ:
+  *"The subscription is currently free and shall be automatically renewed."*
+- coverage: full Kingdom — high-density national grid; service portal exposes
+  only 4 sourcetable mountpoints (NRTK_VRS, NEAREST_RTK, NDGPS_VRS,
+  NRTK_RTX) at the operations centre coordinate (24.40, 46.41), no
+  per-station mountpoints
+- num_stations: 209 (operator-declared on the GEOSA KSA-CORS product page;
+  333 CORS were used in the KSA-GRF17 determination per FIG 2023 — the
+  larger figure mixes operational CORS with historical / one-shot
+  collocations and is not the current real-time count)
+- hobbyist_eligibility: yes — registration accepts any user; no
+  licensed-surveyor or commercial-entity gate. Saudipedia describes
+  applications including "navigation, machine control, asset tracking,
+  vehicle navigation, fleet management" alongside professional survey.
+- residency_required: ? — registration form requires national/organisational
+  details; no explicit nationality clause has been confirmed or denied
+  on either the geoportal How-to-Register PDF or the GEOSA FAQ
+  (checked: geoportal.sa How-to-Register 2026-05-23 via WebSearch;
+  saudipedia 2026-05-23 via WebFetch; ksacors.geoportal.sa portal
+  2026-05-23 via direct TCP probe — caster reachable but TCP-resets
+  Recv on non-SA IP)
+- sourcetable: `ksacors.geoportal.sa:2101` — TCP probe 2026-05-23
+  established connection to 212.62.124.118:2101 then Recv reset before
+  any response bytes returned. Consistent with IP-geo gating; sourcetable
+  unreadable from outside Saudi Arabia / GCC. Mountpoint inventory
+  (NRTK_VRS / NEAREST_RTK / NDGPS_VRS / NRTK_RTX) is reproduced from
+  prior in-country fetches and the Getting Started v2.1 PDF.
+- vrs: yes — KSA-CORS Getting Started v2.0 specifies VRS as the primary
+  network-RTK service; NEAREST_RTK is single-base routing, NRTK_RTX is
+  the Trimble RTX-style PPP-via-NTRIP stream
+- stations_source: operator station map at
+  https://apps.geoportal.sa/KSA-CORS/ (gated — login required to view
+  individual CORS coordinates; map renders no station markers without
+  authentication). 333-CORS GRF17 station listing only in FIG 2023 PDF.
+- datum_epoch: KSA-GRF17 — operator-declared frame for the Saudi National
+  Spatial Reference System (SANSRS v2.0, December 2022;
+  https://www.geoportal.sa/pdf/SANSRS_Implementation_Guidelines_V_2_0.pdf).
+  Epoch is not stated alongside the frame on the operator landing; FIG
+  2023 / academic literature refers to "KSA-GRF17" with realisation
+  year 2017 but the canonical epoch is not declared on the cited
+  operator pages.
 
-### Station Count and Coverage
+### rtk2go, Centipede, EarthScope, IGS-IP — no Saudi-coded stations
 
-| Attribute | Value |
-|-----------|-------|
-| Physical CORS stations | 209 declared (KSA-wide, high-density national grid); 333 CORS stations involved in the KSA-GRF17 determination process per FIG 2023 abstract |
-| Coverage area | All of Saudi Arabia (~2.15 million km²) |
-| Datum | KSA-GRF17 (Saudi national spatial reference system, SANSRS) |
-| Signals | GPS + GLONASS + Galileo + BeiDou (quad-constellation) |
-| Corrections | VRS (Virtual Reference Station) — single-coordinate rover input; RTCM streamed back |
-| Mountpoints visible externally | 4 (NRTK_VRS, NEAREST_RTK, NDGPS_VRS, NRTK_RTX — all at 24.4, 46.41; VRS-only sourcetable; no physical station list) |
+- rtk2go: 0 mountpoints in SAU. Verified 2026-05-23:
+  `py scripts/stations_by_country.py SAU` → "No stations for 'SAU'".
+- Centipede: 0 SA nodes 2026-05-23 (same script). KHAY (25.72, 39.30)
+  was briefly present in 2026-05-12 archive but is no longer tagged
+  SAU; not relied on.
+- EarthScope NOTA: not applicable (NOTA = Americas).
+- IGS-IP: no SA-tagged station in `data/igs_ip.sourcetable` 2026-05-23.
 
-### Access Method (per v2.1 Getting Started Guide)
+## Disqualified / not applicable
 
-1. Register at `ksacors.geoportal.sa` (online form or email)
-2. Receive username + password from GEOSA/KSA-CORS team
-3. Configure GNSS rover: NtripCaster = `ksacors.geoportal.sa`, Port = `2101`
-4. Send NMEA GGA sentence (rover position) to receive VRS corrections
+- **GEODNET, onocoy, PointOne, HxGN SmartNet, Trimble VRS Now** — no Saudi
+  coverage advertised on public coverage maps 2026-05-23.
+- **Commercial NTRIP resellers in KSA** — no independent paid NTRIP service
+  with confirmed Saudi coverage has been identified; ArduSimple's Saudi
+  page lists only KSA-CORS + the global trio (rtk2go, IGS, EarthScope).
 
-Receivers must support VRS / NTRIP to connect. Standard NTRIP v1/v2 clients (RTKLIB, Lefebure, u-blox AssistNow, SurvCE, Field Genius) are compatible.
+## Post-Processing (RINEX) fallback
 
-### Endpoint Reachability Issue
-
-`ksacors.geoportal.sa:2101` has been timing out in the project's CI pipeline since at least 2026-04. The portal website (HTTPS) is reachable from external IPs. The NTRIP port (TCP 2101) does not respond to external probes. This is consistent with two possible explanations:
-
-1. **IP geo-restriction:** The caster firewall only accepts connections from Saudi or GCC IP ranges.
-2. **Domain / port migration:** GEOSA migrated from `gcs.gov.sa` → `geosa.gov.sa` → `geoportal.sa`; the NTRIP daemon may not yet be fully propagated to the new domain's port 2101 configuration.
-
-The v2.1 guide (fetched from `ksacors.geoportal.sa`) still references port 2101 as the active NtripCaster port. Verification from a Saudi/GCC IP is required to confirm current operability.
-
-### Operator Contact
-
-| Contact type | Value |
-|---|---|
-| Registration email | info@geosa.gov.sa |
-| Legacy registration email | info@gcs.gov.sa |
-| GEOSA website | https://www.geosa.gov.sa/en/products/geodesy/pages/ksa-cors.aspx |
-| GASGI FAQ (archived) | https://gasgi.gov.sa/En/Products/Geodesy/FAQ/Pages/FAQAboutKSA-CORS.aspx |
-
----
-
-## Commercial Alternatives
-
-No independent commercial NTRIP provider with confirmed Saudi Arabia coverage has been identified. The ArduSimple Saudi Arabia RTK page notes KSA-CORS as the primary (and only documented) option; Galileo HAS is mentioned as a free global fallback for ~40 cm accuracy without connectivity.
-
-Global commercial networks (GEODNET, ONOCOY, PointOne, HxGN SmartNet) do not list Saudi Arabia in their coverage maps.
-
----
-
-## Post-Processing (RINEX) Fallback
-
-| Service | URL | Cost |
-|---------|-----|------|
-| **KSA-CORS RINEX data download** — static RINEX from 209 stations; available via GEOSA portal after registration | https://ksacors.geoportal.sa/ | Free (same registration) |
-| **EarthScope / IGS** — select Saudi IGS stations (e.g., ARSH, JFNG) contribute to IGS; download via EarthScope | https://www.earthscope.org/data/gnss-data/ | Free noncommercial |
-
----
-
-## Context Notes
-
-- **GEOSA brand evolution:** The network was originally GCS → GASGI → now GEOSA (General Authority for Survey and Geospatial Information, established by Royal Decree). The geoportal.sa domain is the current authoritative domain as of 2026.
-- **SANSRS v2.0 (Dec 2022):** Saudi Arabia published the Saudi Arabia National Spatial Reference System v2.0 implementation guidelines, standardising KSA-GRF17 as the national datum. KSA-CORS is the primary realisation mechanism.
-- **Hobbyist practical path:** Register by email (info@geosa.gov.sa); wait for credentials; test `ksacors.geoportal.sa:2101` from inside the country. Galileo HAS (free, global, ~40 cm, no connectivity needed) is the recommended fallback for users unable to access KSA-CORS from outside KSA.
-- **rtk2go presence:** Zero SA mountpoints (re-confirmed 2026-05-17).
-- **Centipede presence (2026-05-17):** `py scripts/stations_by_country.py SAU` → "No stations for 'SAU'". The KHAY node observed on 2026-05-12 is no longer in local Centipede archive — likely dropped from the Centipede SAU tag or relabelled; verify via map.centipede-rtk.org if KHAY is needed.
-
----
-
-## Negative Findings
-
-- `ksacors.geoportal.sa:2101` — connection timeout from external IP (2026-05-06; re-check 2026-05-12: GEOSA product page www.geosa.gov.sa returned ECONNREFUSED, KSACORS portal HTTP behaviour unchanged)
-- `KSACORS.gcs.gov.sa` — NXDOMAIN as of 2026-04
-- rtk2go monitor: zero SA mountpoints
-- Centipede: 0 SA nodes in local archive 2026-05-17 (KHAY dropped since 2026-05-12)
-- GEODNET, ONOCOY, PointOne, HxGN SmartNet: no Saudi Arabia coverage confirmed
-
----
+| Service | URL | Notes |
+|---|---|---|
+| KSA-CORS RINEX | https://ksacors.geoportal.sa/ | Same free registration as the real-time service |
+| IGS / EarthScope | https://www.earthscope.org/data/gnss-data/ | Free non-commercial; select Saudi IGS stations historically contributed |
 
 ## Sources Consulted
-- GEOSA KSA-CORS product page: https://www.geosa.gov.sa/en/products/geodesy/pages/ksa-cors.aspx
-- KSA-CORS portal (ksacors.geoportal.sa): https://ksacors.geoportal.sa/
-- KSA-CORS Getting Started v2.0 (PDF): https://ksacors.geoportal.sa/WelcomePage/Getting%20Started%20with%20KSA-CORS%20Network_v.2.0.pdf
-- KSA-CORS Getting Started v2.1 (PDF): https://ksacors.geoportal.sa/WelcomePage/Getting%20Started%20with%20KSA-CORS%20Network_v.2.1.pdf
-- KSA-CORS Getting Started v1.0 (geoportal.sa): https://www.geoportal.sa/pdf/Getting_Started_with_KSA-CORS_Network_v1.0.pdf
-- How to Register v1.0 (PDF): https://www.geoportal.sa/pdf/How_to_Register_to_KSA-CORS_Network_v.1.0.pdf
-- FAQ about KSA-CORS (GASGI/GEOSA): https://gasgi.gov.sa/En/Products/Geodesy/FAQ/Pages/FAQAboutKSA-CORS.aspx
-- KSA-CORS national platform service listing: https://my.gov.sa/en/services/294222
-- Saudipedia KSA-CORS article: https://saudipedia.com/en/article/4075/government-and-politics/communication-and-information-technology/saudi-arabia-continuously-operating-reference-station-ksa-cors-network
-- SANSRS v2.0 implementation guidelines (PDF, Dec 2022): https://www.geoportal.sa/pdf/SANSRS_Implementation_Guidelines_V_2_0.pdf
-- KSA-CORS and unification of CORS networks in KSA (EGU/IAG-Comm4 2022 abstract): https://meetingorganizer.copernicus.org/iag-comm4-2022/iag-comm4-2022-33.html
-- Establishment of KSA-CORS Network, FIG 2023 (333 CORS in KSA-GRF17; station map login-gated): https://www.fig.net/resources/proceedings/fig_proceedings/fig2023/papers/ts04g/TS04G_al-qahtani_salawu_et_al_12208.pdf (2026-05-21 — binary PDF not text-extractable from sandbox)
-- GEOSA National Geospatial Platform KSA-CORS page: https://www.geoportal.sa/Geoportal/Geodesy/KSACors (2026-05-21 — access rejected from external IP; station map confirmed login-gated per Getting Started guide)
-- KSA-CORS apps portal: https://apps.geoportal.sa/KSA-CORS/ (2026-05-21 — minimal public content visible; station data requires authentication)
-- Evaluation of KSACORS for hydrographic surveys (Taylor & Francis, 2020): https://www.tandfonline.com/doi/full/10.1080/19475705.2020.1799081
-- ArduSimple Saudi Arabia RTK/NTRIP page: https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-saudi-arabia/
-- ntrip-list.com (Middle East / Asia): https://ntrip-list.com/
-- curl probe of `ksacors.geoportal.sa:2101` — connection timeout from external IP, 2026-05-06
-- WebFetch ksacors.geoportal.sa 2026-05-12 — socket closed unexpectedly (portal likely partially reachable from EU but unstable from this environment)
-- WebFetch www.geosa.gov.sa 2026-05-12 — ECONNREFUSED
-- Local: `py scripts/stations_by_country.py SAU` → 1 Centipede station (KHAY at 25.72, 39.30) (2026-05-12)
+
+- GEOSA KSA-CORS product page (404 from sandbox 2026-05-23; cached content
+  via WebSearch snippet + Saudipedia):
+  https://www.geosa.gov.sa/en/products/geodesy/pages/ksa-cors.aspx
+- GEOSA KSA-CORS Phase One page (also 404 from sandbox 2026-05-23):
+  https://www.geosa.gov.sa/En/Products/Products_v1/GeodesyandLandSurvey/pages/cors.aspx
+- KSA-CORS Web service portal: https://ksacors.geoportal.sa/
+- KSA-CORS legacy portal: https://ksacors.gcs.gov.sa/
+- KSA-CORS Network Web Login (geosa subdomain): https://ksacors.geosa.gov.sa/Login.aspx
+- KSA-CORS Getting Started v1.0 (geoportal.sa):
+  https://www.geoportal.sa/pdf/Getting_Started_with_KSA-CORS_Network_v1.0.pdf
+- KSA-CORS Getting Started v2.0:
+  https://ksacors.geosa.gov.sa/WelcomePage/Getting%20Started%20with%20KSA-CORS%20Network_v.2.0.pdf
+- How to Register v1.0:
+  https://www.geoportal.sa/pdf/How_to_Register_to_KSA-CORS_Network_v.1.0.pdf
+- Saudipedia KSA-CORS article (2026-05-23 WebFetch 200; confirms 209
+  stations, KSA-GRF17, free subscription, automatic renewal):
+  https://saudipedia.com/en/article/4075/government-and-politics/communication-and-information-technology/saudi-arabia-continuously-operating-reference-station-ksa-cors-network
+- SANSRS v2.0 implementation guidelines (Dec 2022):
+  https://www.geoportal.sa/pdf/SANSRS_Implementation_Guidelines_V_2_0.pdf
+- Establishment of KSA-CORS Network, FIG 2023 (333-CORS GRF17 set):
+  https://www.fig.net/resources/proceedings/fig_proceedings/fig2023/papers/ts04g/TS04G_al-qahtani_salawu_et_al_12208.pdf
+- KSA-CORS apps portal (login-gated map):
+  https://apps.geoportal.sa/KSA-CORS/
+- ArduSimple Saudi Arabia RTK page:
+  https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-saudi-arabia/
+- Direct TCP probe 2026-05-23 of `ksacors.geoportal.sa:2101` →
+  connection established to 212.62.124.118:2101, Recv reset before
+  bytes returned (IP-geo gate observed)
+- Local data 2026-05-23: `py scripts/stations_by_country.py SAU` →
+  no stations on any tracked source.

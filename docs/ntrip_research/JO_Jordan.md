@@ -3,6 +3,7 @@
 last_verified_date: 2026-05-23
 last_gap_fill_date: 2026-05-23
 last_caster_search_date: 2026-05-23
+agent_version: 0.1
 
 ## Status: YES — single-station NTRIP base confirmed (ACOR, Amman); no national government or commercial caster found
 

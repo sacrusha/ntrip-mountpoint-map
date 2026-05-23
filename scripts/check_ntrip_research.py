@@ -30,6 +30,12 @@ Checks (each cross-referenced to the spec section it derives from):
     When access_type == free OR free-signup, the block must also declare:
     sourcetable, vrs, residency_required, stations_source
 
+  [Imaginary / retired fields]
+    Any per-caster table row whose field name is not in the spec's per-caster
+    field set is flagged as either retired (known previous-version name -
+    suggests the replacement) or invented (unknown name - suggests the agent
+    fabricated a field outside the spec).
+
   [Negative-evidence trail]
     Per spec: "Any field marked ? or 'not published / not found' require
     a one-line negative-evidence trail next to it, format
@@ -107,6 +113,35 @@ REQUIRED_ON_FREE = (
 
 ACCESS_TYPE_VALUES = {"free", "free-signup", "paid", "restricted"}
 FREE_ACCESS_VALUES = {"free", "free-signup"}
+
+# Full per-caster field whitelist (Default + Required-on-free). Anything in a
+# `| Field | Value |` table outside this set is imaginary or retired.
+ALLOWED_CASTER_FIELDS = (
+    set(DEFAULT_FIELDS_REQUIRED)
+    | {"tariff", "datum_epoch"}
+    | set(REQUIRED_ON_FREE)
+)
+
+# Known retired / renamed field names from prior spec versions. Keyed by the
+# retired name with a one-line hint about the v0.1 replacement.
+RETIRED_CASTER_FIELDS = {
+    "last_confirmed_alive": "retired; merge into `last_verified_date` "
+    "(file-level) or fold the date into `sourcetable`",
+    "legal_residency_required": "retired; renamed to `residency_required`",
+    "host:port": "retired; fold host:port into `sourcetable` value",
+    "host": "retired; fold host:port into `sourcetable` value",
+    "port": "retired; fold host:port into `sourcetable` value",
+    "type": "retired; not a spec field (use `vrs` for VRS/single-base "
+    "distinction; mountpoint-level details belong in `sourcetable` or prose)",
+    "mountpoints": "retired; not a spec field (mountpoint inventory belongs "
+    "in `sourcetable` probe output or prose)",
+    "caster_status": "retired; not a spec field",
+    "format": "retired; not a per-caster spec field",
+    "nmea": "retired; not a per-caster spec field (per-mountpoint flag)",
+    "solution": "retired; not a per-caster spec field (per-mountpoint flag)",
+    "auth": "retired; not a per-caster spec field (per-mountpoint flag)",
+    "carrier": "retired; not a per-caster spec field (per-mountpoint flag)",
+}
 
 # Triggers for the negative-evidence-trail requirement. Spec: "? or
 # 'not published / not found'". `omitted`, `n/a`, `not applicable`,
@@ -348,6 +383,32 @@ def check_caster_table(
                         f"up otherwise')",
                     )
                 )
+
+    # Imaginary / retired field check (spec: per-caster field set is closed)
+    for line_no, field, _value in rows:
+        if field in ALLOWED_CASTER_FIELDS:
+            continue
+        if field in RETIRED_CASTER_FIELDS:
+            hint = RETIRED_CASTER_FIELDS[field]
+            violations.append(
+                Violation(
+                    line=line_no,
+                    field=field,
+                    block=block_name,
+                    message=f"retired field `{field}` ({hint})",
+                )
+            )
+        else:
+            violations.append(
+                Violation(
+                    line=line_no,
+                    field=field,
+                    block=block_name,
+                    message=f"unknown field `{field}` - not in spec's "
+                    f"per-caster field set (Default + Required-on-free); "
+                    f"move to freeform prose or remove",
+                )
+            )
 
     # Negative-evidence-trail (spec: "Fields per Caster" header rule)
     for line_no, field, value in rows:
