@@ -1,56 +1,74 @@
 # India [IN] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-17 (refresh of 2026-05-12 entry; HTTP IP 103.205.244.106 still serves SoI portal; HTTPS portal + Region 2 (103.206.29.4:2105) sandbox-unreachable — geo-route consistent w/ prior; subscription-charges page WebFetch ECONNREFUSED 2026-05-17)
 
-## Status: YES — national SoI CORS caster operational; paid for private users; Indian ID required
+last_verified_date: 2026-05-23
+last_gap_fill_date: 2026-05-23
+last_caster_search_date: 2026-05-23
+agent_version: 0.1
+
+## Status: YES — national SoI CORS caster (NRTK) operational; paid for private users; Indian-resident photo-ID required
+
+The only pareto NTRIP RTK caster for a hobbyist physically located in India is the Survey of India CORS network (national, paid, Indian-ID-gated). No free or cheaper-than-SoI public option exists with usable density inside India: rtk2go carries 1 IN base, AUSCORS rebroadcasts 2 IN IGS stations, igs_ip carries 3 IN stations — all single-base with multi-hundred-km gaps. Government-but-state CORS networks (Tamil Nadu, Kerala) are closed; Andhra Pradesh's 70 stations were absorbed into SoI via the 13 Oct 2025 MoU.
+
+---
+
+## SoI CORS — Survey of India Continuously Operating Reference Stations
 
 | Field | Value |
 |---|---|
-| **Active public NTRIP RTK caster** | Yes |
-| **landing_url — SoI CORS** | `https://cors.surveyofindia.gov.in/` — operator-owned portal (Survey of India CORS). Describes service, regions, station coverage. |
-| **access_url — SoI CORS** | `https://cors.surveyofindia.gov.in/subscription-charges` — pricing + registration terms. More useful than the bare portal for someone deciding to subscribe. |
-| **host:port — Region 1** | `103.205.244.106:2101` (UP, Uttarakhand, Haryana, Punjab, Himachal Pradesh, NCR, MP, Rajasthan) |
-| **host:port — Region 2** | `103.206.29.4:2105` (Maharashtra, Karnataka, south) |
-| **portal** | https://cors.surveyofindia.gov.in (HTTPS portal not reachable from sandbox 2026-05-12 + 2026-05-17 — geo-routing pattern; HTTP at 103.205.244.106 returns HTTP 200 + portal HTML 200 OK 2026-05-17 + portal markup 2026 footer, confirming alive) |
-| **tariff — Gov / Academic** | Free (no subscription fee; KYC registration required) |
-| **tariff — private (RTK, excl. GST)** | ₹5,000/mo · ₹15,000/3 mo · ₹30,000/6 mo · ₹60,000/yr; add 18% GST → ₹5,900 · ₹17,700 · ₹35,400 · ₹70,800 incl. GST (last confirmed via subscription-charges page 2026-05-04; re-fetch attempts 2026-05-12 + 2026-05-17 returned ECONNREFUSED from sandbox — geo-routing) |
-| **tariff — private (DGNSS, excl. GST)** | ₹2,000/mo (DGNSS1) incl. GST ₹2,360; DGNSS3/DGNSS12 prices not confirmed publicly |
-| **tariff VAT note** | 18% GST added at checkout; all prices above are gross (incl. GST) where confirmed |
-| **promotional free access (private sector)** | Confirmed: SoI has run promotional free 3-month CORS access campaigns for private-sector users (Geospatial World coverage 2025; SoI's own X/Facebook accounts have continued to repost a "Free Subscription of CORS Services by Survey of India" announcement as recently as October 2025 — see SoI X status 1983899442022367368, 2025-10-30). Promotional terms re-issued periodically; post-promo status reverts to the paid tariff above |
-| **hobbyist_eligibility** | Unclear / conditionally yes — private individuals can register and pay; no surveying licence required |
-| **legal_residency_required** | Yes (effectively) — Aadhaar Card or PAN Card required for registration; foreign nationals cannot hold either in the ordinary course |
-| **last_confirmed_alive** | 2026-05-17 — `http://103.205.244.106` returned HTTP 200 (ASP.NET portal, fresh session cookie 2026-05-17); HTTPS portal cors.surveyofindia.gov.in + Region 2 NTRIP `103.206.29.4:2105` both sandbox-unreachable (geo-route, not outage); rtk2go shows 1 IN station (IndiaTN02, Tamil Nadu, 10.97,78.08); AUSCORS rebroadcasts 2 IN IGS stations (GDKG, IISC); igs_ip carries 3 (GDKG, IISC, IITK Kanpur) |
-| **datum_epoch** | omitted — no citable operator declaration. SoI CORS subscription page not re-fetchable; connection-settings page sandbox-unreachable 2026-05-17. National survey datum is WGS84-based per IS public statements but no real-time-service datum statement obtained from operator portal |
+| operator | Survey of India (Department of Science & Technology, Govt. of India) |
+| landing_url | https://cors.surveyofindia.gov.in/ |
+| access_url | https://cors.surveyofindia.gov.in/subscription-charges.html |
+| access_type | paid (private/PSU); free for Central Govt, State Govt, and Government academic institutions |
+| coverage | National. Region 1 — Punjab, Himachal Pradesh, Uttarakhand, Haryana, Rajasthan, Uttar Pradesh, Bihar, Madhya Pradesh, Chhattisgarh, Telangana, Assam, Arunachal Pradesh, Tripura, Manipur, Mizoram, Meghalaya, Nagaland, plus UTs NCR/Delhi and Chandigarh (16 states + 2 UTs, per `cors.surveyofindia.gov.in/subscription.php` snippet 2026-05-23). Region 2 — Maharashtra, Karnataka, Gujarat, Goa, Kerala, Odisha, Jharkhand, West Bengal, Sikkim, J&K, Ladakh, Andamans, Lakshadweep, Dadra-NH, Daman-Diu. Region 3 — Andhra Pradesh, Tamil Nadu, Puducherry (AP integrated into SoI per 13 Oct 2025 MoU; AP's 70 stations migrating to SoI infrastructure — no separate public AP NTRIP endpoint announced as of 2026-05-23; TN's separate departmental network remains closed and outside SoI). Region 1 is further zoned by SoI into Zone 1 (full RTPS+RDS), Zone 2 (RTPS limited to 30–40 cm DGNSS only; includes Bihar and parts of NE), and Zone 3 (no RTPS/RDS yet). |
+| num_stations | 1,105+ physical CORS (operator figure, repeated in SoI X post 2025-10-30 and GoI ISTI portal). Additional 70 ex-AP stations being integrated per 13 Oct 2025 MoU. |
+| sourcetable | `103.205.244.106:2101` (Region 1) SOURCETABLE 200 OK 2026-05-23 — Trimble Pivot Caster 5.3, 4 mountpoints: `RTCM_VRS` (RTCM 3.4, GPS+GLO+GAL+BDS+QZS, VRS), `RTCM_FKP` (RTCM SAPOS, GPS+GLO, FKP), `RTCM_MAC` (RTCM3Net, GPS+GLO, MAC), `RTCM_DGNSS` (RTCM 2.3, sub-metre code only). All four flagged nmea=1,solution=1 (NRTK; rover must push GGA). NavIC not advertised in `RTCM_VRS` constellation list despite operator portal text claiming NavIC integration (CORS receivers track IRNSS at the station — broadcast inclusion in NRTK stream unverified). `103.206.29.4:2105` (Region 2) reprobed 2026-05-23 with 20 s timeout, no response from sandbox — consistent with prior probes 2026-05-12/17/23; no independent third-party sourcetable cache located. Per-station physical mounts are not exposed via either NTRIP sourcetable (operator publishes them behind portal login only). |
+| vrs | yes (VRS/MAC/FKP all advertised in sourcetable) |
+| tariff | Private/PSU only. Private RTK unlimited: ₹5,000 + 18% GST = ₹5,900/mo (₹15,000 + GST / 3 mo; ₹30,000 + GST / 6 mo; annual extrapolates to ~₹60,000 + GST = ₹70,800/yr — annual tier not separately re-confirmed 2026-05-23). RTK + 10 h RINEX bundle: ₹5,032 + GST = ₹5,938/mo. DGNSS (sub-metre code) post-processing: ₹2,164 + GST/mo. Online GNSS Processing (RINEX post-processing service — NOT real-time RTK; epoch-capped data download for static survey post-processing): ₹180 + GST/mo (10 h cap), ₹540 + GST/3 mo, ₹1,800 + GST/6 mo, ₹3,600 + GST/yr. 18% GST rate is standard Indian IT-services rate, not separately operator-cited. Promotional 3-month free window for private individuals ran 1 Nov 2025 – 31 Jan 2026 (LinkedIn SoI post 2025-10-30, Geospatial World coverage); window expired. SoI's "Free Subscription of CORS Services" banner reposted on X 2025-10-30 (status 1983899442022367368) appears to re-promote that same Nov 2025 – Jan 2026 window rather than announce a new one — no later free-period extension confirmed as of 2026-05-23 (checked: SoI X/LinkedIn 2026-05-23; subscription portal WebSearch snippets 2026-05-23). Default treatment: paid for hobbyists today. All figures observed via WebSearch snippets of `cors.surveyofindia.gov.in/subscription-charges.html` 2026-05-23; direct WebFetch from sandbox returned ECONNREFUSED (also tried `cors.surveyofindia.gov.in/policies/subscription_sop.pdf` 2026-05-23 — ECONNREFUSED). |
+| hobbyist_eligibility | yes (no surveyor licence required), conditional on Indian-resident photo ID. SoI registration portal lists Voter ID, Driving Licence, Aadhaar Card, or PAN Card as acceptable photo-ID proof. |
+| residency_required | yes (effective). All four accepted IDs are Indian-resident documents in the ordinary course. Foreign-national paths exist but require Indian-residency entanglement: (a) resident-foreigner Aadhaar — ≥182-day Indian residency rule per `uidai.gov.in` FAQ "Resident Foreign Nationals" (1461-english-uk); (b) foreign-citizen PAN via Form 95 — see `services.india.gov.in/service/detail/apply-for-pan-card-online-foreign-citizens`. Neither is realistic for a non-resident hobbyist. |
+| stations_source | https://cors.surveyofindia.gov.in/ portal map (login-gated for full per-station listing); HTTP fallback http://103.205.244.106/ also serves the portal. Sourcetable on `103.205.244.106:2101` exposes only NRTK mountpoints, not physical bases — physical station list lives behind login. No public unauthenticated station-coverage map located (checked: cors.surveyofindia.gov.in 2026-05-23; surveyofindia.gov.in/pages/continuously-operating-reference-stations-cors- 2026-05-23; Geospatial World / ISTI Portal entries 2026-05-23 — narrative only, no public map image). |
+| datum_epoch | omitted — no real-time-service datum statement found in citable operator portal page reachable from sandbox (checked: cors.surveyofindia.gov.in subscription/connection-settings/introduction pages 2026-05-23 ECONNREFUSED; cors.surveyofindia.gov.in/policies/guidelines-for-network-rtk-survey-7.pdf 2026-05-23 WebFetch timeout 60 s; cors.surveyofindia.gov.in/policies/subscription_sop.pdf 2026-05-23 ECONNREFUSED). SoI's national Ground Control Point library is realised in ITRF2008 epoch 2005 (Current Science 127(2) 2024-07-25 and SoI 2024 White Paper on Geodetic Infrastructure), and the surveyor-general's office proposes migration to ITRF2020 + dynamic-epoch coordinates, but neither document is the operator's portal and neither explicitly binds the broadcast NRTK stream's frame. Third-party tutorial (Surveygyaan / mycoordinates.org) describes SoI CORS coordinate output as "WGS-84 or geographical projection" without operator-grade epoch citation. Caster sourcetable mountpoints (RTCM_VRS / RTCM_FKP / RTCM_MAC) do not carry a misc-field datum tag. Working assumption for hobbyists is ITRF2008 ep 2005 (matches GCP framework); a survey-grade user should obtain the operator-portal NRTK Guidelines PDF directly. |
 
-## Context Notes
+### NRTK notes
 
-- **SoI CORS** is the Survey of India Continuously Operating Reference Stations network; 1,105+ stations across most of India (operational since ~2022). National portal: cors.surveyofindia.gov.in. NTRIP mount point carries RTCM3 / NRTK (VRS) corrections at ±3–4 cm claimed accuracy.
-- **Region 1** covers the north and central states; **Region 2** covers Maharashtra, Karnataka, and further south. An older IP (117.251.x.x) cited in early tutorials for the Maharashtra/Karnataka region appears superseded by Region 2.
-- **Andhra Pradesh (70 stations):** Signed MoU with SoI on 13 October 2025 to integrate all 70 AP CORS stations into the national SoI CORS network (confirmed by Times of India 2025-10-17, SoI X status 1979437501711368536 dated 2025-10-17, and Financial Content / WRAL coverage 2025-10-17). No standalone AP NTRIP endpoint remains; AP stations are migrating to SoI infrastructure. No new SoI regional endpoint for AP publicly announced as of 2026-05-12. Contact: itdept.sslr@gmail.com.
-- **Tamil Nadu (70 stations):** Department of Survey and Settlement operates 70 CORS stations on rooftops of state government buildings. Network is a closed internal tool for departmental cadastral resurvey only; no public NTRIP access. Has not signed an MoU with SoI as of 2026-05-04. Portal: tnlandsurvey.tn.gov.in (live 2026-05-04).
-- **Kerala:** MoU with SoI signed 18 Jan 2021 for a VRS/NTRIP/NavIC-capable network. CORS equipment installed and used by DSLR staff; no public NTRIP endpoint or tariff published as of 2026-05-04. Portal: dslr.kerala.gov.in (live 2026-05-04). Most recent announcement: 2021-05-24 — https://dslr.kerala.gov.in/en/2021/05/24/cors-network/.
-- **ISRO / NavIC:** NavIC is a GNSS constellation, not a CORS/NTRIP RTK correction network. No ISRO-operated NTRIP caster exists.
-- **Private operators noted (out of scope):** GEODNET (India stations via HYFIX reseller hyfix.in), RTKdata (rtkdata.com, from $40/mo, 30-day trial), Trimble VRS Now and HxGN SmartNet (no confirmed India production coverage as of Apr 2026), TopNET Live (India coverage unconfirmed).
+- Trimble Pivot back-end, 4 NRTK mountpoints (VRS / MAC / FKP / DGNSS code).
+- All NRTK mounts require rover GGA upload to receive RTCM (sourcetable flags nmea=1, solution=1; this is correct, not a misconfig).
+- Operator-claimed real-time RTK accuracy: ±3 cm canonical (CORS portal `cors-services.php`, mirrored in `introduction.html`, ISTI Portal entry, PIB press release PRID=1967096). NRTK "3–4 cm" range appears in some operator restatements as the best-practice-real-world figure. DGNSS code-only stream is 30–40 cm (operator).
+- ~70 km mean station spacing inside operational hull — adequate for VRS-style cm-accurate fix throughout the covered states.
 
-## Post-Processing (RINEX) Fallback
+### Regional integration status
 
-| Service | URL | Cost |
-|---|---|---|
-| **SoI CORS RINEX download** | https://cors.surveyofindia.gov.in | ₹150/GB + 18% GST (Online GNSS Data Processing); raw RINEX available post-registration |
-| **EarthScope / GAGE** (sparse scientific stations) | https://www.earthscope.org/data/gnss-data/ | Free non-commercial (email rtgps@earthscope.org for credentials); legacy UNAVCO real-time platform retired 2025-07-29 |
-| **IGS Real-Time Service** | ntrip.igs-ip.net:2101 | Free (sparse India coverage; insufficient for dense field RTK) |
+- **Andhra Pradesh (70 stations):** integrated into SoI national network per MoU signed 13 Oct 2025 (Times of India 2025-10-17, SoI X 1979437501711368536, Financial Content / WRAL 2025-10-17). Becomes part of SoI's Region 3. Operational handover status as of 2026-05-23 still ambiguous: no separate AP NTRIP endpoint (Vijayawada/Visakhapatnam) located in operator portal or third-party sources; presumed served via SoI Region 3 once subscription gating is activated. A hobbyist in AP should presently subscribe to SoI rather than seek an AP-state caster.
+- **Tamil Nadu:** Tamil Nadu Department of Survey and Settlement operates a state-internal CORS network on government-building rooftops for cadastral resurvey. District-level confirmations exist (Kancheepuram 3 stations, Cuddalore pillars) but no statewide total is publicly published — earlier file claim of "70 stations" was unsubstantiated and the 70-figure in Indian CORS discourse refers specifically to AP. No public NTRIP, no tariff, no MoU with SoI as of 2026-05-23. Portal: https://tnlandsurvey.tn.gov.in. Disqualified — closed.
+- **Kerala:** MoU signed with SoI on 18 Jan 2021 for a VRS/NTRIP/NavIC network; hardware deployed and used by DSLR field staff. No public NTRIP endpoint or tariff published. Latest public note: https://dslr.kerala.gov.in/en/2021/05/24/cors-network/ . Disqualified — closed.
 
-## Sources Consulted
-- SoI CORS portal and subscription-charges page: https://cors.surveyofindia.gov.in/subscription-charges
-- SoI CORS connection-settings: https://cors.surveyofindia.gov.in/connection-settings
-- SoI CORS HTTP landing: http://103.205.244.106
-- AP–SoI MoU announcement: SoI LinkedIn/Facebook/Instagram + Times of India 2025-10-17
-- Tamil Nadu land survey portal: https://tnlandsurvey.tn.gov.in
-- Kerala DSLR CORS announcement: https://dslr.kerala.gov.in/en/2021/05/24/cors-network/
-- RTKdata India coverage note: https://www.rtkdata.com (observed 2026-05-04)
-- Contact for pricing gaps: cors-grb.soi@gov.in
-- SoI X — Andhra Pradesh CORS integration MoU (2025-10-17): https://x.com/india_soi/status/1979437501711368536
-- SoI X — Free Subscription of CORS Services repost (2025-10-30): https://x.com/india_soi/status/1983899442022367368
-- Financial Content / WRAL — AP CORS integration coverage (2025-10-17): https://markets.financialcontent.com/wral/article/tokenring-2025-10-17-andhra-pradesh-forges-geospatial-future-cors-integration-promises-precision-revolution
-- Geospatial World — SoI announces three-month free CORS service for private sector: https://geospatialworld.net/prime/soi-announces-three-month-free-cors-service-for-private-sector/
-- rtk2go IN station count: 1 (IndiaTN02 in Tamil Nadu) — 2026-05-17 pipeline snapshot via `scripts/stations_by_country.py IND`. AUSCORS rebroadcasts 2 IN (GDKG, IISC); igs_ip carries 3 (GDKG, IISC, IITK)
-- ArduSimple India cache (docs/ardusimple/IN_India.md 2026-05-16): notes only SoI CORS as national paid service; aligns w/ this entry
+### Global / cross-border casters with sparse Indian presence
+
+These are documented in their own files and are not pareto inside India:
+
+- **rtk2go** — 1 volunteer base in IN: `IndiaTN02` at 10.97 N, 78.08 E (central Tamil Nadu, near Tiruchirappalli/Trichy) per local pipeline snapshot 2026-05-23. Single-base, ~10–30 km effective baseline; the only free option for a TN hobbyist near Trichy. See `docs/ntrip_research/Rtk2go.md`.
+- **IGS-IP** — 3 IN stations: GDKG (Gadanki, 13.46 N 79.18 E), IISC (Bangalore, 13.02 N 77.57 E), IITK (Kanpur, 26.52 N 80.23 E). Sparse; not field-RTK-usable in general but viable single-base near each site. See `docs/ntrip_research/EUREF-IP.md` and `docs/ntrip_research/IGS-IP.md`.
+- **AUSCORS** — rebroadcasts 2 IN IGS stations (GDKG, IISC) as part of its Asia-Pacific feed (confirmed via local pipeline 2026-05-23). Disqualified for primary use in India (same stations as IGS-IP, no added coverage).
+- **MIRAI (Japan QZS GNSS Data Sharing)** — no IN stations carried in current sourcetable (local pipeline 2026-05-23 lists MIRAI as LKA-2 only). Disqualified — no Indian coverage.
+- **EarthScope / NOTA RTGPS** — no Indian stations in current sourcetable; legacy UNAVCO real-time platform retired 2025-07-29. The 3 IN igs_ip stations remain live independent of NOTA (separate BKG/IGS distribution path). See `docs/ntrip_research/Earthscope.md`.
+- **GEODNET via HYFIX India** — paid commercial service, ₹34,000/yr (~$358) yearly single-device per `hyfix.in/products/geodnet-rtk-subscription-yearly` 2026-05-23, free 30-day trial. Coverage density inside India not publicly disclosed by HYFIX/GEODNET (hyfix.in/pages/network and hyfix.ai/pages/network checked 2026-05-23 — global narrative only, no India station count or map). Out of scope (commercial / blockchain-mined network with unverifiable India coverage).
+- **RTKdata** — $40/mo commercial reseller bundling third-party networks; coverage map only mentions "20,000+ stations in 140+ countries" without India-specific breakdown. Out of scope (no own India infrastructure).
+- **ISRO / NavIC (IRNSS)** — NavIC is a GNSS constellation, not a CORS/NTRIP RTK correction network. SoI CORS receivers track NavIC at the antenna, but the broadcast NRTK RTCM stream observed 2026-05-23 advertises GPS+GLO+GAL+BDS+QZS only (NavIC corrections not exposed in `RTCM_VRS` constellation list). No ISRO-operated NTRIP caster exists.
+- **GAGAN (GPS-Aided GEO Augmented Navigation)** — Indian SBAS (satellite-based augmentation), not NTRIP RTK. Sub-metre accuracy via L1 GEO broadcast — out of scope for this project (DGNSS class).
+
+## Sources Consulted (2026-05-23 verification cycle)
+
+- SoI CORS sourcetable probe: `curl --http0.9 http://103.205.244.106:2101/` → SOURCETABLE 200 OK 2026-05-23 (Trimble Pivot 5.3, 4 mountpoints).
+- Subscription-charges page (WebSearch snippet of `cors.surveyofindia.gov.in/subscription-charges.html`, 2026-05-23): RTK ₹5,000 + GST/mo unlimited, RTK+10h-RINEX bundle ₹5,032 + GST/mo, 3-mo / 6-mo / annual tiers prorated; DGNSS ₹2,164 + GST/mo; Online GNSS Processing ₹180–3,600 + GST.
+- SoI CORS portal `https://cors.surveyofindia.gov.in/cors-services.php` and `introduction.html` (WebSearch-indexed, direct WebFetch ECONNREFUSED from sandbox 2026-05-23): mountpoint formats, ±3 cm accuracy, NRTK 24×7.
+- SoI CORS registration page `https://cors.surveyofindia.gov.in/registration.php` (WebSearch-indexed): accepted photo IDs = Voter ID / Driving Licence / Aadhaar / PAN.
+- LinkedIn post: SoI offers 3-month free CORS, 1 Nov 2025 – 31 Jan 2026: `https://www.linkedin.com/posts/surveyofindia_surveyofindia-cors-geospatial-activity-7389614969484414977-EyVK` (WebFetched 2026-05-23).
+- Geospatial World: "SOI Announces Three Month Free CORS Service for Private Sector": `https://geospatialworld.net/prime/soi-announces-three-month-free-cors-service-for-private-sector/` (2025).
+- Andhra Pradesh integration MoU 13 Oct 2025: SoI X status 1979437501711368536; Financial Content / WRAL `https://markets.financialcontent.com/wral/article/tokenring-2025-10-17-andhra-pradesh-forges-geospatial-future-cors-integration-promises-precision-revolution`.
+- SoI "Free Subscription of CORS Services" repost 2025-10-30: `https://x.com/india_soi/status/1983899442022367368` (WebFetch 402; WebSearch snippet).
+- Datum context (not real-time-service citation): Current Science 127(2) 2024-07-25 (`https://www.currentscience.ac.in/Volumes/127/02/0147.pdf`); SoI 2024 White Paper on Geodetic Infrastructure (`https://surveyofindia.gov.in/UserFiles/files/White_paper_on_Geodetic_Infrastructure_15052024(1).pdf`).
+- Tamil Nadu DSS portal: `https://tnlandsurvey.tn.gov.in`. Kerala DSLR CORS: `https://dslr.kerala.gov.in/en/2021/05/24/cors-network/`.
+- ArduSimple India dealer cache: `docs/ardusimple/IN_India.md` 2026-05-16 — names only SoI CORS as the national paid service.
+- Local pipeline counts via `scripts/stations_by_country.py IND` 2026-05-23: auscors 2, igs_ip 3, rtk2go 1.
+- HYFIX India GEODNET reseller: `https://www.hyfix.in/products/geodnet-rtk-subscription-yearly` 2026-05-23 (₹34,000/yr).
+- RTKdata commercial: `https://www.rtkdata.com/` 2026-05-23.
