@@ -722,7 +722,7 @@
       "yearly_cost": "3,180 KGS/mo (~$37/mo, ~$444/yr)",
       "yearly_cost_normalized": 444,
       "stations_declared": 18,
-      "note": "Sign-up is a paper-contract flow: download, post, bank transfer; needs a local postal address and bank account. Minimum 1-month subscription. The caster appears geo-filtered outside Kyrgyzstan."
+      "note": "Sign-up is a paper-contract flow: download, post, bank transfer; needs a local postal address and bank account. Minimum 1-month subscription. The caster on port 8085 has not been reachable from outside the country."
     },
     {
       "id": "khmer_geonet",
@@ -1660,10 +1660,9 @@
       "lat": 51.18,
       "lon": 71.45,
       "tier": "paid",
-      "vrs": true,
       "registration": "https://qazgeodesy.kz/",
       "stations_declared": 86,
-      "note": "Pricing on request. Sign-up requires a Kazakh ИИН/БИН ID and KZT bank transfer. Baselines reach ~180 km outside the Astana–Almaty corridor."
+      "note": "Pricing on request. Sign-up requires a Kazakh ИИН/БИН ID and KZT bank transfer. Baselines reach ~180 km outside the Astana–Almaty corridor. Kazakhstan's QazTRF-23 national datum has been in force since 2025-01-01."
     },
     {
       "id": "uzpos",
@@ -1696,10 +1695,9 @@
       "lat": 40.41,
       "lon": 49.87,
       "tier": "restricted",
-      "vrs": true,
       "registration": "https://www.emlak.gov.az/en/page/view/96",
       "stations_declared": 45,
-      "note": "Requires a bilateral service agreement with a government office in Baku; no self-service registration and no published tariff. A single volunteer base provides free coverage of greater Baku."
+      "note": "Requires a bilateral service agreement with a government office in Baku; no self-service registration and no published tariff. Karabakh expansion added 8 stations in 2024. A single volunteer base provides free coverage of greater Baku."
     },
     {
       "id": "armpos",

@@ -1,77 +1,59 @@
-# Azerbaijan [AZ] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-17 (re-probe; 2026-05-15 deep research unchanged)
+# Azerbaijan [AZ] - NTRIP RTK Caster Research
 
-## Status: RESTRICTED — one national NTRIP caster (AzPOS); contract-gated, no anonymous endpoint; 1 free rtk2go volunteer base in greater Baku.
+last_verified_date: 2026-05-23
+last_gap_fill_date: 2026-05-23
+last_caster_search_date: 2026-05-23
+agent_version: 0.1
 
-## AzPOS — Azerbaijan Positioning Observation System
+## Status: RESTRICTED - one national NTRIP caster (AzPOS); bilateral Azerbaijani-language contract gates access. One free rtk2go volunteer base in greater Baku.
+
+## AzPOS - Azerbaijan Positioning Observation System
 
 | Field | Value |
 |---|---|
-| **landing_url** | https://www.emlak.gov.az/en/page/view/96 (operator-owned; "About AzPOS") |
-| **access_url** | https://www.emlak.gov.az/en/page/view/96 — same operator page describes the service, eligibility ("legal entities and individuals"), and routes applicants to AzPOS staff for the bilateral agreement. Direct contact: azpos@emlak.gov.az, tel. (012) 562-82-70, mobile (050) 759-11-44 / (050) 229-25-23 (Baku, Yasamal district) |
-| **host:port** | Provisional: `azpos.az:2101`. DNS still resolves to 185.161.226.29 (re-checked 2026-05-17, this sandbox); TCP 2101/80/443 all timed out from this sandbox. ArduSimple's country page confirms users receive NTRIP credentials only after applying via the operator portal — the actual delivered host/port is contract-dependent. No public sourcetable is published. |
-| **tariff** | Not publicly listed. Service is governed by a bilateral agreement signed at the State Service on Property Issues office in Baku; AZN pricing has never been posted on emlak.gov.az or in operator press releases. No tier table to record. VAT status unknown — not declared on any public operator material. Date observed: 2026-05-15. |
-| **num_stations** | ~45 physical CORS: 37 from the 2014 commissioning + 8 added in Karabakh in 2024 (Fuzuli, Jebrail, Zangilan, Kəlbəcər ×2, Ağdam, Şuşa, Laçın). |
-| **vrs** | yes — backend documented in recent operator project material as Leica GNSS Spider (VRS-capable). |
-| **hobbyist_eligibility** | no (effectively) — eligibility text accepts "legal entities and individuals", but the contract is bilateral, Azerbaijani-language, requires in-person/email engagement with the Baku office, and excludes anonymous or self-service signup. No hobbyist tariff exists. |
-| **legal_residency_required** | ? — not stated explicitly. The contract-based access model and Azerbaijani-language process in practice favour residents or local agents; non-residents have no documented path. |
-| **last_confirmed_alive** | 2026-05-15 — operator page https://www.emlak.gov.az/en/page/view/96 reachable via WebFetch (HTTP 200). Caster itself not probeable from this sandbox (TCP filtered); no public sourcetable to verify. Most recent public evidence of operational continuity: 2024 Karabakh expansion. |
-| **datum_epoch** | Omitted — 2014 operator documentation states "WGS-84, UTM zones 38/39" but provides no epoch realization or official declaration document. Per tightened spec, no citable URL → omit. |
+| operator | State Service on Property Issues under the Ministry of Economy (Emlak Meseleleri Dovlet Xidmeti); operator entity for the CORS network is the Cadastre and Land Surveying Service |
+| landing_url | https://www.emlak.gov.az/en/page/view/96 |
+| access_url | https://www.emlak.gov.az/en/page/view/96 |
+| access_type | paid |
+| coverage | 37 mainland CORS + 8 added in reintegrated Karabakh per 2024 paper (operator portal still lists 37 only as of 2026-05-23); 30-40 km station spacing; per-station RTK radius ~20 km, communication range up to 70 km (2014 operator spec, unchanged in public material) |
+| num_stations | 37 per operator portal (emlak.gov.az/en/page/view/96 refetched 2026-05-23: "37 reference stations in the country, 3 of which are in the mountains"); 8 Karabakh stations (Fuzuli, Jebrail, Zangilan, Kelbajar1, Kelbajar2, Agdam, Shusha, Lachin) added per 2024 AMA-journal paper "Post-war Restoration of the AzPOS Network in Karabakh" - operator total not yet updated to reflect expansion |
+| tariff | not published - emlak.gov.az AzPOS page describes service + eligibility only; pricing governed by bilateral service agreement signed at the State Service on Property Issues office in Baku; no public AZN figures (checked: emlak.gov.az/en/page/view/96 2026-05-23; ardusimple.com Azerbaijan page 2026-05-16; readkong AzPOS paper mirror 2026-05-23; web search "azpos.az SBC tariff 2025/2026" 2026-05-23) |
+| hobbyist_eligibility | no - operator text accepts "legal entities and individuals" but the contract is bilateral, Azerbaijani-language, requires in-person / email engagement with the Baku Yasamal office, and excludes anonymous or self-service signup; no hobbyist tariff exists |
+| sourcetable | not reachable - provisional host `azpos.az:2101` resolves (185.161.226.29 refetched 2026-05-23) but TCP 2101/80/443 filtered from this sandbox; no third-party confirmation of geo-block published (checked: monitor.use-snip.com 2026-05-23; ntrip-list.com 2026-05-23; mvarga1989 GNSS CORS list 2026-05-23) |
+| vrs | ? - operator material describes Leica-Spider-style architecture (which supports NRTK / VRS / MAX / iMAX) but no operator declaration of NRTK products surfaced; no NRTK-style mountpoint names confirmed (checked: emlak.gov.az/en/page/view/96 2026-05-23; ardusimple Azerbaijan page 2026-05-23; UNOOSA 2014 paper) |
+| residency_required | yes - bilateral Azerbaijani-language contract signed at the Baku Yasamal office; no remote / non-resident signup channel exists |
+| stations_source | https://www.emlak.gov.az/en/page/view/96 (operator descriptive text; no live map; no public sourcetable URL) |
 
-### Signals & Backend
-- GPS + GLONASS (2014 baseline); Galileo + BeiDou indicated in post-2020 operator project documentation consistent with a Leica Spider upgrade.
-- Control centre supports up to 100 parallel RTK users and 25 parallel web-service users (2014 spec, unchanged in public material).
-- Station spacing 30–40 km; per-station usable RTK radius ~20 km; communication range up to 70 km (2014 spec).
-- Services: real-time RTK + DGNSS + RINEX post-processing on request.
+AzPOS is governed under the Ministry of Economy's State Service on Property Issues; the AzPOS contact channel is azpos@emlak.gov.az / (012) 562-82-70 / (050) 759-11-44 / (050) 229-25-23 (Baku, Yasamal district, Sh. Mehdiyev str. 269). The 2014 commissioning paper describes Leica-Spider-style architecture, GPS+GLONASS baseline; Control Centre supports up to 100 parallel RTK users and 25 parallel web-service users. BeiDou support is not stated on the operator portal (emlak.gov.az lists GPS + GLONASS + Galileo); whether AzPOS now streams BeiDou is unverified. The 2024 Karabakh expansion was documented in the AMA-journal paper "Post-war Restoration of the AzPOS Network in Karabakh" (8 stations: Fuzuli, Jebrail, Zangilan, Kelbajar1, Kelbajar2, Agdam, Shusha, Lachin; 30 km coverage radius each) with 24-hour test measurements at Fuzuli using Leica GS18. Per the paper the 8 Karabakh stations bring AzPOS to 45 total, but emlak.gov.az still lists 37 only (refetched 2026-05-23) - operator portal lag, not contradiction. The 2024 operator material continues to describe WGS-84 with UTM zones 38/39 as the published frame; the ardusimple.com Azerbaijan page lists "Coordinate System: Global WGS84" for AzPOS consistent with this. No epoch realization or operator-portal declaration URL is provided; per the operator-declaration rule, datum_epoch is omitted. Provisional host `azpos.az:2101` (DNS still resolves to 185.161.226.29, refetched 2026-05-23) has TCP 2101 / 80 / 443 filtered from this sandbox - no public sourcetable is published, and credentials/host are issued contract-side; no third-party reachability confirmation surfaced.
 
-### Most Recent Project Announcements
-- **2014** — AzPOS commissioned with 37 stations across mainland Azerbaijan (Karabakh excluded). UNOOSA workshop paper documented architecture and RTK service launch.
-- **2024** — 8 new stations installed in the post-2020 reintegrated Karabakh region (Fuzuli, Jebrail, Zangilan, two in Kəlbəcər, Ağdam, Şuşa, Laçın) per ResearchGate "Post-war Restoration of the AzPOS Network in Karabakh" (2024). 24-hour test measurements at Fuzuli used Leica GS18.
-- No public re-launch, public tariff, or public sourcetable announcement for 2025–2026. Service has been in continuous commercial operation since 2014.
-
-## Free / Volunteer Alternatives in Azerbaijan
+## Free / volunteer fallback
 
 | Source | Mountpoint | Lat / Lon | Notes |
 |---|---|---|---|
-| rtk2go | `WHTCTY` | 40.38, 49.89 | Single volunteer base in greater Baku; visible in `data/stations.json` 2026-05-15 via `rtk2go.com:2101`. Free, no signup. Single-base RTK only — usable within ~20 km of Baku. |
+| rtk2go | `WHTCTY` | 40.38 N, 49.89 E | Single volunteer base in greater Baku (verified 2026-05-23 in `data/rtk2go.sourcetable`, RTCM 3.2 GPS+GLO+GAL+BDS, single-base; rtk2go convention any-email / no password). Free, no signup. Usable within ~20 km of Baku. Anchor accuracy on rtk2go is typically TMODE3 survey-in (1-3 m absolute, frozen at install; relative accuracy still cm) - rover positions are repeatable but not tied to a declared frame. |
 
-No Centipede-RTK, EarthScope, GEODNET, ONOCOY, PointOne, or Swift Skylark stations have been observed inside Azerbaijan as of the 2026-05-15 snapshot. Nearest cross-border alternatives (>200 km from any Azerbaijani settlement) are not viable.
+No Centipede, EarthScope, GEODNET, ONOCOY, PointOne, or Swift Skylark stations have been observed inside Azerbaijan as of 2026-05-23. The next-nearest free RTK source on any side (Turkey TUSAGA-Aktif, Iran SHAMIM, Russia FAGS) is >200 km from any Azerbaijani settlement and either residency-gated or geo-blocked.
 
-## Hobbyist Path
-1. **In or near Baku (≤20 km)** — try rtk2go `WHTCTY` first (free, no signup, single-base RTK).
-2. **Elsewhere in Azerbaijan** — no free RTK path. AzPOS access requires a bilateral Azerbaijani-language contract with the Baku office; effectively restricted to local entities.
-3. **Self-host** — deploy a personal base/rover pair, or stream a base to rtk2go.com / Centipede / ONOCOY for community use.
-4. **PPP / SSR fallback** — Galileo HAS (~20 cm horizontal, free, satellite-delivered, no internet needed) for sub-metre work where RTK is unavailable.
+## Hobbyist path
 
-## Post-Processing (RINEX) Fallback
+1. **Greater Baku (<=20 km)** - try rtk2go `WHTCTY` (free, no signup, single-base RTK).
+2. **Elsewhere in Azerbaijan** - no free RTK path. AzPOS access requires a bilateral Azerbaijani-language contract with the Baku office; effectively restricted to local entities.
+3. **Self-host** - deploy a base/rover pair, or stream a base to rtk2go.com / Centipede for community use.
+4. **PPP / SSR fallback** - Galileo HAS (~20 cm horizontal, free, satellite-delivered) for sub-metre work where RTK is unavailable.
+
+## Post-processing (RINEX) fallback
 
 | Service | URL | Cost |
 |---|---|---|
 | AzPOS RINEX archive (via service agreement) | https://www.emlak.gov.az/en/page/view/96 | Governed by AzPOS agreement; not publicly priced |
 | IGS BAKU station archive | https://network.igs.org/ | Free non-commercial |
 
-## URL Probes (2026-05-15, this sandbox)
+## Sources
 
-| URL | Result |
-|---|---|
-| https://www.emlak.gov.az/en/page/view/96 | 200 (WebFetch — content extracted) |
-| https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-azerbaijan/ | 200 (WebFetch — content extracted) |
-| https://www.unoosa.org/documents/pdf/psa/activities/2014/trieste-gnss/33.pdf | 200 (WebFetch — PDF binary, limited text extraction) |
-| https://docplayer.net/48966253-Azerbaijan-positioning-observation-system-azpos-for-real-estate-cadastre-data-base.html | ECONNREFUSED (sandbox; target-user-reachable per WebSearch hit) |
-| https://www.readkong.com/page/azerbaijan-positioning-observation-system-azpos-for-real-3736136 | 200 (WebFetch — extracted "WGS-84 in UTM 38/39") |
-| https://www.researchgate.net/publication/389768010_Post-war_Restoration_of_the_AzPOS_Network_in_Karabakh | 403 Forbidden (sandbox; abstract visible via WebSearch) |
-| https://www.geospatialworld.net/news/azerbaijan-positioning-observation-system-put-into-commercial-use/ | Not refetched 2026-05-15; cited from prior research |
-| https://qrgs.emlak.gov.az/ | 404 (operator Karabakh GIS portal — separate cadastre product, not AzPOS) |
-| `azpos.az:2101` TCP | Sandbox timeout (DNS OK → 185.161.226.29; ports filtered from this sandbox) |
-| `rtk2go.com:2101` | Not probed live; mountpoint `WHTCTY` confirmed via `data/stations.json` 2026-05-15 snapshot |
-
-## Sources Consulted
-- AzPOS operator page (English): https://www.emlak.gov.az/en/page/view/96
-- ArduSimple Azerbaijan country page: https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-azerbaijan/
+- AzPOS operator page (English; refetched 2026-05-23 - 37+3 mountain stations, "legal entities and individuals" eligibility, Baku Yasamal contact): https://www.emlak.gov.az/en/page/view/96
+- ArduSimple Azerbaijan: https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-azerbaijan/
 - UNOOSA 2014 GNSS workshop AzPOS paper: https://www.unoosa.org/documents/pdf/psa/activities/2014/trieste-gnss/33.pdf
-- ReadKong mirror of AzPOS cadastre paper (WGS-84 / UTM38–39 reference): https://www.readkong.com/page/azerbaijan-positioning-observation-system-azpos-for-real-3736136
+- ReadKong mirror of AzPOS cadastre paper (WGS-84 / UTM38-39): https://www.readkong.com/page/azerbaijan-positioning-observation-system-azpos-for-real-3736136
 - ResearchGate "Post-war Restoration of the AzPOS Network in Karabakh" (2024): https://www.researchgate.net/publication/389768010_Post-war_Restoration_of_the_AzPOS_Network_in_Karabakh
 - Geospatial World AzPOS commercial-launch notice: https://www.geospatialworld.net/news/azerbaijan-positioning-observation-system-put-into-commercial-use/
-- FIG 2020 "Digital Land Cadastre Information System in Azerbaijan": https://www.fig.net/resources/proceedings/fig_proceedings/fig2020/papers/ts04h/TS04H_jafarov_khanalibayli_10649.pdf
-- Local: `data/stations.json` 2026-05-15 — rtk2go `WHTCTY` [AZE] (40.38, 49.89); no Centipede/EarthScope/GEODNET/ONOCOY stations in AZE.
-- RTK2go monitor (target-user-reachable; sandbox TLS-altname error): http://monitor.use-snip.com/?hostUrl=rtk2go.com&port=2101
+- Local 2026-05-23: `data/rtk2go.sourcetable` row 863 `WHTCTY;Baku;...;AZE;40.38;49.89` confirmed; `scripts/stations_by_country.py AZE` -> 1 rtk2go station only

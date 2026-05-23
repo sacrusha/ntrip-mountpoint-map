@@ -1,45 +1,43 @@
-# Tajikistan [TJ] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-17 (refresh of 2026-05-13 entry — no change)
+# Tajikistan [TJ] - NTRIP RTK Caster Research
 
-## Status: NO active public NTRIP caster confirmed
+last_verified_date: 2026-05-23
+last_gap_fill_date: 2026-05-23
+last_caster_search_date: 2026-05-23
+agent_version: 0.1
 
-| Field | Value |
-|---|---|
-| **Active public NTRIP RTK caster** | No — none confirmed |
-| **host:port** | null |
-| **tariff** | null |
-| **hobbyist_eligibility** | null — no service confirmed |
-| **legal_residency_required** | null — no service confirmed |
-| **last_confirmed_alive** | null — no caster confirmed alive |
+## Status: NO public NTRIP RTK caster confirmed. National geodetic GNSS network built ~2005-2012 under World Bank LRCSP supports cadastre / orthophoto work via the FAZO Institute but no real-time RTK corrections endpoint is published. RTK2go / Centipede / EarthScope / IGS-IP: zero TJ stations. Nearest cross-border CORS is KITG (Uzbekistan, ~175 km from Dushanbe) - post-processing only at that baseline.
 
-## Most Recent Project Announcement
+## Why there is no public caster
 
-No formal project announcement for a Tajikistani national NTRIP/RTK caster was found in any development-bank, UN, or geospatial trade press source as of 2026-05-06.
+- **Agency for Land Management, Geodesy and Cartography (ALMGC)** of Tajikistan is the relevant authority (per UNECE and GIM-International references; older Russian-language sources cite "State Committee for Land Management and Geodesy" - same entity, agency since reorganization). No public NTRIP service is advertised on any state portal. Russian-language searches ("Tajikistan GNSS NTRIP set", "geodesy Tajikistan real time CORS") returned no operational endpoint 2026-05-13 / 2026-05-23. Channels checked for the negative: ALMGC web presence 2026-05-23; FAZO Institute publications 2026-05-23; avrocom-geo.tj/projects 2026-05-23; monitor.use-snip.com 2026-05-23; ntrip-list.com 2026-05-23; mvarga1989 GNSS CORS list 2026-05-23.
+- **FAZO Institute** (subordinate to ALMGC) produced ~2,500 digital orthophoto sheets at 1:5,000 (0.5 m pixel) using GNSS field surveys trained under the World Bank-funded Land Registration and Cadastre System Project (LRCSP, ~2005-2012). Those activities consumed GNSS but did not result in a public NTRIP caster - the geodetic network is operated as cadastre infrastructure, not a corrections service.
+- **Avrocom-Geo** (private surveyor, avrocom-geo.tj) lists GNSS-RTK cadastral measuring as a service - this is a survey contractor using their own / borrowed bases, not a public caster.
+- **Central Asian Geodynamics network** (GFZ + CAIAG cooperation since 2009) operates 1 permanent GNSS station on Tajikistan territory for tectonic monitoring (CAIAG GNSS page states "30 permanent stations ... Tajikistan (1)"; fetched 2026-05-23). Research station, post-processed; no real-time RTCM stream is advertised on caiag.kg or GFZ data publications.
+- **GeoComm Kazakhstan** (geocomm.kz) does not extend coverage into Tajikistan based on available material.
+- **GEODNET / ONOCOY / Skylark / PointOne** - no Tajikistan ground stations confirmed.
+- **Local data 2026-05-23**: `scripts/stations_by_country.py TJK` returns no entries; `scripts/stations_by_radius.py 38.56 68.78 500` returns 2 stations - both KITG00UZB0 (Uzbekistan, 175 km from Dushanbe) on AUSCORS rebroadcast + IGS-IP. KITG is single-base, far outside RTK baseline range, post-processing only.
 
-An academic paper referenced from neighboring-country GNSS literature notes that GNSS permanent networks exist in Kyrgyzstan, Tajikistan, and Uzbekistan in a scientific monitoring context. However, this refers to geodynamics and plate-motion research stations, not to RTK corrections delivery.
+## Hobbyist path
 
-## Context Notes
+1. **Cm-class** - none free; deploy a local base for single-baseline RTK.
+2. **Sub-decimetre** - Galileo HAS (~20-40 cm horizontal after convergence, satellite-delivered, free).
+3. **Post-processing only** - KITG (UZB), DUSH (TJK - IGS post-processed; no NTRIP), or other Central Asian IGS stations via EarthScope / CDDIS.
 
-- **No documented CORS RTK network**: Searches in Russian ("Таджикистан ГНСС НТРИП сеть", "геодезия Таджикистан реальное время CORS") and English found no Tajikistani CORS network or NTRIP caster with an operational endpoint.
-- **Scientific GNSS stations**: The Central Asian Geodynamics network and affiliated projects (USGS, NASA, UNAVCO) have installed permanent GNSS receivers in Tajikistan for tectonic monitoring — these are research stations, not RTK correction sources.
-- **Geodetic authority**: The State Committee for Land Management and Geodesy of Tajikistan is the relevant authority. No NTRIP service was found from that body.
-- **GeoComm Kazakhstan**: GeoComm (geocomm.kz), which operates commercial CORS in Kazakhstan, does not appear to extend coverage into Tajikistan based on available information.
-- **Global commercial networks**: GEODNET, ONOCOY — no confirmed Tajikistan coverage.
-- **Neighboring coverage**: Kazakhstan (partial commercial CORS), Kyrgyzstan (KyrPOS, 18 stations), and Uzbekistan (developing national CORS) are more developed. Tajikistan's difficult mountainous terrain would make a CORS network expensive to build.
-- **Practical workaround**: Deploy a local base station for single-base RTK, or use satellite PPP (Galileo HAS, Trimble RTX).
-
-## Post-Processing (RINEX) Fallback
+## Post-processing (RINEX) fallback
 
 | Service | URL | Cost |
-|---------|-----|------|
-| **EarthScope GNSS Data Archive** — geodynamics-network stations in Tajikistan region | https://www.earthscope.org/data/gnss-data/ | Free noncommercial (account + NULA) |
+|---|---|---|
+| EarthScope GNSS data archive (regional Central Asia + DUSH) | https://www.earthscope.org/data/gnss-data/ | Free non-commercial (account + NULA) |
+| NASA CDDIS (IGS / MGEX archive) | https://cddis.nasa.gov/ | Free non-commercial (account) |
 
-## Sources Consulted
-- Searches in Russian and English (no Tajikistani NTRIP/CORS found 2026-05-06 or 2026-05-13)
-- Tajikistan UNFCCC Fourth National Communication: https://unfccc.int/sites/default/files/resource/4NC_TJK_eng_0.pdf — no GNSS/CORS infrastructure mentioned
-- ResearchGate — "GNSS Permanent Networks in Kyrgyzstan" (regional context mentioning Tajikistan)
-- GeoComm Kazakhstan (geocomm.kz) — no Tajikistan coverage listed
-- E3S Conferences 2024 — Central Asian geodetic papers (Uzbekistan and Kazakhstan focus)
-- RTK2go monitor — no Tajikistan NTRIP streams 2026-05-13
-- ArduSimple country selector — no Tajikistan page (URL returns 404 2026-05-13)
-- GitHub mvarga1989 GNSS CORS RTK networks list — no Tajikistan entry confirmed
+## Sources
+
+- Avrocom-Geo (private surveyor, GNSS-RTK cadastral): https://avrocom-geo.tj/index.php/projects
+- ResearchGate "Cadastral mapping in Tajikistan" + GIM International article (FAZO orthophoto, World Bank LRCSP context): https://www.gim-international.com/content/article/cadastral-mapping-in-tajikistan
+- ISPRS XXXIX-B6/2012 "Transfer of Technology for Cadastral Mapping in Tajikistan": https://isprs-archives.copernicus.org/articles/XXXIX-B6/41/2012/isprsarchives-XXXIX-B6-41-2012.pdf
+- World Bank Tajikistan Land Reg & Cadastre project: https://documents.worldbank.org/en/publication/documents-reports/documentdetail/704991508334674315/tajikistan-land-regis-cadastre
+- ResearchGate "GNSS Permanent Networks in Kyrgyzstan" (Central Asia regional context including Tajikistan)
+- ArduSimple country selector - no Tajikistan page (URL returns 404)
+- GitHub mvarga1989 GNSS CORS RTK networks list - no Tajikistan entry
+- Local data 2026-05-23: `scripts/stations_by_country.py TJK` -> no stations; `scripts/stations_by_radius.py 38.56 68.78 500` -> KITG00UZB0 (175 km, Uzbekistan, post-processing only)
+- WebSearch "Tajikistan GNSS CORS NTRIP network 2025 cadastre national geodesy" 2026-05-23 - no public service surfaced

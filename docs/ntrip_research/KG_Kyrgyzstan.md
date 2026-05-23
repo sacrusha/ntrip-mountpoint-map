@@ -1,64 +1,54 @@
-# Kyrgyzstan [KG] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06; verified 2026-05-12; portal + tariff re-confirmed 2026-05-17
+# Kyrgyzstan [KG] - NTRIP RTK Caster Research
 
-## Status: YES — KyrPOS national CORS/RTK network active; contract registration required
+last_verified_date: 2026-05-23
+last_gap_fill_date: 2026-05-23
+last_caster_search_date: 2026-05-23
+agent_version: 0.1
+
+## Status: YES - KyrPOS national CORS/RTK network active and priced; contract registration required; endpoint port 8085 not reachable from outside Kyrgyzstan. One IGS station (BIK000KGZ0) in Bishkek for scientific use only.
+
+## KyrPOS - State Agency for Land Resources, Cadastre, Geodesy and Cartography
 
 | Field | Value |
 |---|---|
-| **Active public NTRIP RTK caster** | Yes — KyrPOS (Kyrgyz Positioning System), operated by ГАЗРКГК (State Agency for Land Resources, Cadastre, Geodesy and Cartography of the Kyrgyz Republic / gosreg.gov.kg) |
-| **host:port — KyrPOS** | `cors.gosreg.gov.kg : 8085` (source: gosreg.gov.kg/ky/?page_id=3029, reconfirmed 2026-05-12) |
-| **tariff — KyrPOS** | 170 KGS / day per receiver · 3 180 KGS / month per receiver (minimum subscription: 1 month; weekends and public holidays not counted). Source: gosreg.gov.kg/ky/?page_id=3029, reconfirmed 2026-05-12. VAT inclusion not confirmed. At May 2026 rates 3 180 KGS ≈ USD 36–37. |
-| **hobbyist_eligibility** | Unclear — registration requires a signed contract with the receiver's make, model, and serial number; no individual/hobbyist category is listed. Bureaucratic friction is high, but non-professionals are not explicitly excluded. |
-| **legal_residency_required** | Unclear in policy but practically yes — workflow requires a postal address for contract delivery (signed copies are physically mailed back) and an in-country bank transfer; no explicit residency bar in the published text. |
-| **last_confirmed_alive** | 2026-05-17 — gosreg.gov.kg/ky/?page_id=3029 re-fetched: host:port `cors.gosreg.gov.kg:8085` + tariff (170 KGS/day, 3180 KGS/month) re-confirmed in page content. WebFetch of `cors.gosreg.gov.kg:8085` returned ECONNREFUSED on 2026-05-06 — port not reachable from outside (firewall or geo-block likely; caster appears to filter to credentialed / KG-IP clients). |
-| **datum_epoch** | omitted -- no citable declaration (gosreg.gov.kg/ky/?page_id=3029 lists procedure + tariff + contact only; no reference-frame statement; agency contact `kyrposgnss@gosreg.gov.kg` would be required to obtain the operator's frame declaration) |
+| operator | GAZRKGK (State Agency for Land Resources, Cadastre, Geodesy and Cartography of the Kyrgyz Republic; gosatlas/gosreg.gov.kg) |
+| landing_url | https://gosreg.gov.kg/ky/?page_id=3029 |
+| access_url | https://gosreg.gov.kg/ky/?page_id=3029 |
+| access_type | paid |
+| coverage | 18 permanent CORS across 5 oblasts: Chui/Bishkek 6, Fergana Valley/Osh 8, Naryn 1, Issyk-Kul 3. Chui plain and Fergana have best coverage; Naryn, Batken, parts of Jalal-Abad underserved. High terrain in mountain corridors degrades VRS. |
+| num_stations | 18 |
+| tariff | 170 KGS / day per receiver; 3,180 KGS / month per receiver (minimum 1 month; weekends and public holidays not counted). At May 2026 KGS/USD ~86, 3,180 KGS ~= USD 37 / month. VAT inclusion not declared. Date observed: 2026-05-23 via gosreg.gov.kg/ky/?page_id=3029 |
+| hobbyist_eligibility | ? - registration requires a signed contract with the receiver's make, model, and serial number; no individual / hobbyist category listed; non-professionals are not explicitly excluded but workflow (signed contract, postal mailing, KGS bank transfer) is a bureaucratic barrier (checked: gosreg.gov.kg/ky/?page_id=3029 2026-05-23) |
+| sourcetable | host:port `cors.gosreg.gov.kg:8085` published (non-standard NTRIP port); ECONNREFUSED from sandbox 2026-05-23; no third-party confirmation of geo-block / firewall published (checked: gosreg.gov.kg/ky/?page_id=3029 2026-05-23; monitor.use-snip.com 2026-05-23; ntrip-list.com 2026-05-23) |
+| vrs | ? - 18 stations across 5 oblasts with Chui plain density potentially under 70 km could enable NRTK; operator portal lists tariff per "receiver" without product distinction; no NRTK / VRS / MAC declaration surfaced (checked: gosreg.gov.kg/ky/?page_id=3029 2026-05-23) |
+| residency_required | ? - contract workflow involves Kyrgyz postal mailing of signed copies + KGS bank transfer + physical office visit (Bishkek, ul. Orozbekova 44); non-resident eligibility not addressed by the portal |
+| stations_source | https://gosreg.gov.kg/ky/?page_id=3029 (text-only oblast breakdown; no public station map; sourcetable not externally reachable to confirm mountpoint list) |
 
-## Most Recent Project Announcement
+The connection form, detailed service description, host:port `cors.gosreg.gov.kg:8085`, and tariff are re-confirmed at https://gosreg.gov.kg/ky/?page_id=3029 (refetched 2026-05-23). Port 8085 is non-standard for NTRIP (standard 2101) but used here. WebFetch probe of `cors.gosreg.gov.kg:8085` returns ECONNREFUSED from sandbox - likely IP-filtered or restricted to credentialed clients (no third-party confirmation of geo-block, but the consistent ECONNREFUSED across multiple test dates is consistent with a closed credential-gated caster, not a misconfiguration). Access workflow (per the official page): (1) download contract template; (2) fill receiver make/model/serial + period; (3) email contract to kyrposgnss@gosreg.gov.kg; (4) agency issues login credentials; (5) two printed contract copies mailed back; (6) sign + register; (7) bank payment; (8) deliver signed contract + receipt to physical office; (9) phone 0312 664937 for follow-up. Portal registration with QR-code payment is also available; multiple sub-accounts (per receiver) under one portal account. Agency contact: kyrposgnss@gosreg.gov.kg; phone 0312 664937; general gazr@mail.gov.kg; Bishkek, ul. Orozbekova 44. No reference-frame statement appears on the connection page; CAIAG operates BIK000KGZ0 in IGS20 for scientific use, but that is not declared as a national KG frame (checked: gosreg.gov.kg/ky/?page_id=3029 2026-05-23; caiag.kg 2026-05-23; web search "Kyrgyzstan national datum CORS GSK-2011 SK-42 reference frame" 2026-05-23). datum_epoch omitted.
 
-KyrPOS is the national CORS RTK network managed by ГАЗРКГК (gosreg.gov.kg). The online connection form and detailed service description are active at https://gosreg.gov.kg/ky/?page_id=3029. The network operates 18 permanent CORS stations distributed across five geographic zones:
+## IGS / scientific station
 
-- 6 stations in Chui oblast (capital region / Bishkek area)
-- 8 stations in the Fergana Valley (Osh, Jalal-Abad)
-- 1 station in Naryn oblast
-- 3 stations in Issyk-Kul oblast
+`BIK000KGZ0` (Bishkek, 42.85 N / 74.53 E) is an active IGS station - Septentrio POLARX5, GPS+GLO+GAL+BDS+QZS+IRS+SBAS, rebroadcast through GFZ on `caster.cddis.eosdis.nasa.gov:443` (verified 2026-05-23 in `data/igs_ip.sourcetable` row 36; `solution=1` flag drops the row from the pipeline output, but the row carries real station coordinates and is a legitimate IGS-IP single-base for credentialed scientific use). The Central Asian Institute for Applied Geosciences (CAIAG, caiag.kg) operates this and related geodynamic stations in Bishkek - scientific only, not an RTK corrections stream.
 
-An academic paper (ResearchGate: "GNSS Permanent Networks in Kyrgyzstan") documented an earlier iteration of the same network. The UN RCCAP-20 workshop presentation by Azamat Karypov (2020) confirms the KyrPOS Control Centre of CORS Network provides RTK satellite positioning service.
+## Hobbyist path
 
-## Context Notes
+1. **Cheapest cm-class option**: KyrPOS at 170 KGS/day (~USD 2/day) is the most affordable national RTK in the region if you can complete the contract workflow - bureaucratic friction is high but per-day pricing is hobbyist-grade.
+2. **Without contract** - self-host a base, or use Galileo HAS (~20 cm horizontal, free, satellite-delivered) for sub-metre work. No free RTK NTRIP option in country.
+3. **Scientific post-processing** - BIK000KGZ0 via CDDIS / EarthScope (free non-commercial).
 
-- **NTRIP caster endpoint**: `cors.gosreg.gov.kg:8085`. This hostname and port were obtained directly from the official ГАЗРКГК service page (gosreg.gov.kg/ky/?page_id=3029) on 2026-05-06. Port 8085 is non-standard for NTRIP (standard is 2101) but used here. WebFetch probe returned ECONNREFUSED — likely filtered from outside Kyrgyzstan or restricted to credentialed IPs.
-- **Access procedure (9 steps as listed on the official page)**:
-  1. Download the contract template from gosreg.gov.kg.
-  2. Fill in GNSS receiver make, model, serial number, and desired subscription period.
-  3. Email the contract to kyrposgnss@gosreg.gov.kg.
-  4. Receive login credentials by email.
-  5. Receive two printed contract copies by mail.
-  6. Sign and register the contracts.
-  7. Make bank payment.
-  8. Submit signed contract + payment receipt to the agency's physical office.
-  9. Call 0312 664937 for questions or follow-up.
-  Portal registration with QR-code payment is also available; multiple sub-accounts (per receiver) can be created under one portal account.
-- **Tariff currency**: Kyrgyzstani Som (KGS). At May 2026 rates, 3 180 KGS/month ≈ USD 37 at market exchange rates. Whether this is inclusive of VAT (НДС) was not confirmed from the page.
-- **Coverage gaps**: 18 stations across a mountainous country of ~200 000 km². The Chui plain and Fergana Valley have best coverage; Naryn, Batken, and parts of Jalal-Abad are underserved. High terrain in mountain corridors will degrade VRS performance.
-- **Contact**: kyrposgnss@gosreg.gov.kg · phone 0312 664937 · general agency: gazr@mail.gov.kg · Bishkek, ul. Orozbekova 44, office hours.
-- **CAIAG station**: The Central Asian Institute for Applied Geosciences (CAIAG, caiag.kg) operates scientific GNSS station BIK0/BIS2 in Bishkek for geodynamic research — not an RTK corrections stream.
-- **Practical workaround**: Apply via gosreg.gov.kg/ky/?page_id=3029; alternatively deploy a local base station or use satellite PPP (Galileo HAS, Trimble RTX).
-
-## Post-Processing (RINEX) Fallback
+## Post-processing (RINEX) fallback
 
 | Service | URL | Cost |
-|---------|-----|------|
-| **EarthScope / GAGE GNSS Archive** — IGS and regional stations in Kyrgyzstan | https://www.earthscope.org/data/gnss-data/ | Free noncommercial (account + NULA) |
-| **CAIAG** — Central Asian Institute; scientific GNSS data, Bishkek area | http://www.caiag.kg | Contact required |
+|---|---|---|
+| EarthScope / GAGE GNSS archive (IGS + CAIAG stations) | https://www.earthscope.org/data/gnss-data/ | Free non-commercial (account + NULA) |
+| CAIAG (Bishkek, scientific) | http://www.caiag.kg | Contact required |
 
-## Sources Consulted
-- gosreg.gov.kg/ky/?page_id=3029 — KyrPOS official connection form; caster host:port `cors.gosreg.gov.kg:8085`, tariff 170 KGS/day · 3 180 KGS/month, 9-step registration, contact email kyrposgnss@gosreg.gov.kg, phone 0312 664937; observed 2026-05-06
-- gosreg.gov.kg — agency home page and navigation structure; observed 2026-05-06
-- ResearchGate — "GNSS Permanent Networks in Kyrgyzstan" (academic paper; 18-station breakdown by oblast confirmed)
-- UN RCCAP-20 workshop — Azamat Karypov presentation "Department of Cadastre and Registration of Rights on Immovable Property" (2020, unstats.un.org)
-- CAIAG Bishkek station page (caiag.kg)
-- GitHub mvarga1989 — The-list-of-GNSS-CORS-RTK-networks (lists Kyrgyzstan / gosreg entry)
-- RTK2go monitor — no Kyrgyzstan NTRIP streams confirmed
-- ArduSimple country selector — no dedicated Kyrgyzstan page found
-- WebFetch probe of `cors.gosreg.gov.kg:8085` — ECONNREFUSED 2026-05-06 (port not reachable from external network; caster may filter by IP or geo-block)
-- WebFetch probe of `gosreg.gov.kg/ky/?page_id=3029` — HTTP 200 confirmed 2026-05-06
+## Sources
+
+- gosreg.gov.kg/ky/?page_id=3029 (refetched 2026-05-23 - host `cors.gosreg.gov.kg:8085`, tariff 170 KGS/day + 3,180 KGS/month, 6-step registration, contact kyrposgnss@gosreg.gov.kg / 0312 664937)
+- gosreg.gov.kg agency home page
+- ResearchGate "GNSS Permanent Networks in Kyrgyzstan" (18-station breakdown by oblast)
+- UN RCCAP-20 workshop (Azamat Karypov 2020): https://unstats.un.org
+- CAIAG: http://www.caiag.kg
+- WebFetch probe of `cors.gosreg.gov.kg:8085` - ECONNREFUSED from sandbox 2026-05-23 (consistent with prior probes; closed / credential-gated; not externally confirmed as geo-block)
+- Local 2026-05-23: `scripts/stations_by_country.py KGZ` returns no pipeline-visible stations (BIK000KGZ0 is `solution=1`-filtered); `data/igs_ip.sourcetable` row 36 confirms the IGS-IP station exists

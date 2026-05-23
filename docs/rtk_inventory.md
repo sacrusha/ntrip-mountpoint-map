@@ -4684,61 +4684,66 @@ entry.
 **operator**:  RGP NCGPI (Republican State Enterprise "National Centre of Geodesy and Spatial Information") under the Committee of Geodesy and Cartography
 **landing_url**: https://qazgeodesy.kz/
 **host:port**: not publicly disclosed
-**type**:      physical-coord-vrs (network RTK)
+**type**:      single-base / VRS unknown (180 km mean spacing exceeds the ~70 km NRTK hull rule; operator portal silent on NRTK product)
 **access**:    paid subscription; sales-contact gated; sign-up requires a Kazakh ИИН (individual) or БИН (business) and KZT bank transfer
 **yearly_cost**: unpublished — sales-contact only
-**stations**:  86 reference stations (per KGS national-operator figure); 60-station legacy figure also cited
+**stations**:  conflicting — 60 (geocomm.kz/bazovye-stanczii, KGS ownership) vs 86 (qazgeodesy.kz marketing); no operator-side reconciliation
 **last_researched_date**: 2026-05-12
-**investigate**: confirm public NTRIP host:port via direct NCGPI or reseller contact; reconcile the earlier 2026-04-30 tariff snapshot (65,000 ₸/yr annual, 7,000 ₸/month at qgeo.kz/tarifs) with the 2026-05-12 reverify showing no public pricing page
+**reference_frame**: QazTRF-23 (Qazaqstan Terrestrial Reference Frame 2023; official national datum since 2025-01-01)
+**investigate**: confirm public NTRIP host:port via direct NCGPI or reseller contact; reconcile the earlier 2026-04-30 tariff snapshot (65,000 ₸/yr annual, 7,000 ₸/month at qgeo.kz/tarifs) with the 2026-05-12 reverify showing no public pricing page; reconcile the 60-vs-86 station count (geocomm.kz attributes 60 to KGS ownership; qazgeodesy.kz marketing cites 86)
 
 RGP NCGPI ("Национальный центр геодезии и пространственной информации"); colloquially
 still "Казгеодезия / KazGeoDesy". Operator landing is `qazgeodesy.kz` (HU/RU; EN at
 `/en/`). The national-operator role for Kazakhstan's high-precision satellite navigation
 system sits with JSC NC Қазақстан Ғарыш Сапары (Kazakhstan Gharysh Sapary / KGS;
-`gharysh.kz`), authorised by Government Decree RK №721 (31 May 2012); KGS publishes 60
-navigation stations and 86 reference stations across the state-investment build-out,
-offering RTK + RINEX through NCGPI. An earlier audit recorded public tariffs at
-`rtk.qgeo.kz/tarifs` (65,000 ₸/yr annual, 7,000 ₸/month, each subscription covering up
-to 5 reference stations and 5 simultaneous rover connections, plus 7-day trial /
-2/3/5-year / Unlimited tiers with prices hidden); the 2026-05-12 reverify found
-`rtk.qgeo.kz` reduced to a near-empty header and the tariff page no longer reachable —
-hence `qazgeodesy.kz` is the canonical landing and no access_url is recorded. VAT
-inclusion unclear — 12% Kazakh VAT may apply. The legacy `kazgeodeziya.kz` domain
-returns a hosting-expired error. Country is ~2.7 million km²; 86 stations ≈ 180 km
-mean spacing — adequate for the Astana–Pavlodar–Karaganda corridor and Almaty, thin
-in the western steppe and Caspian region. Commercial resellers / private CORS
-operators (GeoComm, EFT, Geokurs/Trimble RTX, RTKNet) all gate pricing behind sales
-contact and publish no public NTRIP endpoint; volunteer fallback is one rtk2go base
-near Pavlodar (`GerAndry` 53.09 N / 77.44 E).
+`gharysh.kz`), authorised by Government Decree RK №721 (31 May 2012); KGS / NCGPI offers
+RTK + RINEX, with station counts varying by source — geocomm.kz/bazovye-stanczii states
+KGS "owns 60 navigation stations" (refetched 2026-05-23) while qazgeodesy.kz "National
+Spatial Data Infrastructure" marketing cites 86; no operator-side reconciliation. An
+earlier audit recorded public tariffs at `rtk.qgeo.kz/tarifs` (65,000 ₸/yr annual,
+7,000 ₸/month, each subscription covering up to 5 reference stations and 5 simultaneous
+rover connections, plus 7-day trial / 2/3/5-year / Unlimited tiers with prices hidden);
+the 2026-05-12 reverify found `rtk.qgeo.kz` reduced to a near-empty header and the tariff
+page no longer reachable — hence `qazgeodesy.kz` is the canonical landing and no
+access_url is recorded. VAT inclusion unclear — 12% Kazakh VAT may apply. The legacy
+`kazgeodeziya.kz` domain returns a hosting-expired error. Country is ~2.7 million km²; 86
+stations ≈ 180 km mean spacing — adequate for the Astana–Pavlodar–Karaganda corridor and
+Almaty, thin in the western steppe and Caspian region. QazTRF-23 became the official
+national datum on 2025-01-01 (Ministry of Digital Development, Innovation and Aerospace
+Industry), replacing Soviet SK-42 / SK-95; ITRF realization tie not publicly declared.
+Commercial resellers / private CORS operators (GeoComm, EFT, Geokurs/Trimble RTX, RTKNet)
+all gate pricing behind sales contact and publish no public NTRIP endpoint; volunteer
+fallback is one rtk2go base near Pavlodar (`GerAndry` 53.09 N / 77.44 E).
 
 ---
 
-## almgc_tj — State Committee for Land Management and Geodesy (TJ)
+## almgc_tj — Agency for Land Management, Geodesy and Cartography (TJ)
 
 **status**:    other
 **date_added**: 2026-04-30
-**last_researched_date**: 2026-05-13
+**last_researched_date**: 2026-05-23
 **country**:   TJ
-**operator**:  State Committee for Land Management and Geodesy (Государственный
-               комитет по земельному управлению и геодезии), supported by the
-               "Fazo" Institute
+**operator**:  Agency for Land Management, Geodesy and Cartography (ALMGC; per
+               UNECE / GIM-International references — older Russian sources cite
+               "State Committee for Land Management and Geodesy" as the
+               pre-reorganization name), supported by the "Fazo" Institute
 **access**:    no public NTRIP endpoint found; agency website unreachable
 **host:port**: not found
 **source**:    zamin.tj
 
-The State Committee for Land Management and Geodesy (Государственный комитет
-по земельному управлению и геодезии) operates GNSS equipment for cadastral
-and land-reform work across Tajikistan, supported by the "Fazo" Institute.
-A national geodetic GNSS network was established partly through the World
-Bank Land Registration and Cadastre System project (~2005–2012). No public
-NTRIP caster or open self-service CORS endpoint has been identified.
-The almgc.tj domain returned browser error pages on 2026-04-30; no cached
-or archived version returned any GNSS or NTRIP content. No evidence that
-a real-time NTRIP/RTK service has ever been publicly operated by this agency.
-CAIAG (Central Asian Institute for Applied Geosciences) maintains one
-permanent GNSS station in the Pamir region as part of its 30-station
-Central Asia seismic monitoring network; this is a research facility and
-does not provide an RTK correction service.
+ALMGC operates GNSS equipment for cadastral and land-reform work across
+Tajikistan, supported by the "Fazo" Institute. A national geodetic GNSS
+network was established partly through the World Bank Land Registration and
+Cadastre System project (~2005–2012). No public NTRIP caster or open
+self-service CORS endpoint has been identified. The almgc.tj domain returned
+browser error pages on 2026-04-30; no cached or archived version returned
+any GNSS or NTRIP content. No evidence that a real-time NTRIP/RTK service
+has ever been publicly operated by this agency. CAIAG (Central Asian
+Institute for Applied Geosciences) maintains 1 permanent GNSS station in
+Tajikistan as part of its 30-station Central Asia seismic monitoring network
+(CAIAG GNSS monitoring page refetched 2026-05-23: "30 permanent stations ...
+Tajikistan (1)"); this is a research facility and does not provide an RTK
+correction service.
 No public endpoint found; agency website unreachable.
 
 ---
@@ -4849,30 +4854,32 @@ site). Central Asian pattern is uniformly closed-access (cf. `kazgeodesy` paid-b
 **operator**:  State Service on Property Issues under the Ministry of Economy
                (Əmlak Məsələləri Dövlət Xidməti); operator entity "Kadastr və
                Yer Quruluşu Layihə Tədqiqat Mərkəz"
-**type**:      physical-coord-vrs (Leica GNSS Spider backend)
+**type**:      single-base / VRS unknown (Leica GNSS Spider backend supports both; operator portal silent on NRTK product)
 **host:port**: `azpos.az:2101` (provisional; authentication-gated, no sourcetable
                response to unauthenticated queries — consistent with IP-whitelisting
                or authenticated NTRIP). Actual delivered hostname/port issued per subscriber.
 **access**:    bilateral service agreement required; no self-service registration;
                "legal entities and individuals" may apply; process conducted in Azerbaijani
 **access_url**: https://www.emlak.gov.az/en/page/view/96; contact: azpos@emlak.gov.az
-**stations**:  45 (37 original 2014 commissioning + 8 restored in Karabakh 2024:
-               Fuzuli, Jebrail, Zangilan, Kəlbəcər ×2, Ağdam, Şuşa, Laçın)
-**signals**:   GPS + GLONASS (2014 baseline); Galileo + BeiDou per recent project documentation
-**last_researched_date**: 2026-05-12
+**stations**:  37 mainland (per operator portal emlak.gov.az/en/page/view/96, refetched 2026-05-23) + 8 added in Karabakh 2024 per AMA-journal paper (Fuzuli, Jebrail, Zangilan, Kəlbəcər ×2, Ağdam, Şuşa, Laçın); operator portal total not yet updated to reflect expansion
+**signals**:   GPS + GLONASS + Galileo (operator portal); BeiDou cited in third-party project material but not on operator portal
+**last_researched_date**: 2026-05-23
 
 AzPOS (Azerbaijan Positioning Observation System) is the national CORS
 network operated by the State Service on Property Issues under the Ministry
 of Economy. Originally 37 stations at 30–40 km spacing across mainland
 Azerbaijan (usable RTK radius ~20 km/station, communication range up to
-70 km); 8 stations were added in the Karabakh region in 2024 following the
-September 2023 restoration of territorial control. Control centre supports
-up to 100 parallel RTK users (2014 spec). The SBC login portal at
-`azpos.az/sbc/` shows an RTK product with Subscription Period, Consumption
-Limit, and Working Area fields — all values hidden pre-login. No published
-tariff; ArduSimple lists AzPOS as "paid national service" without price.
-The contract-based access model with a Baku office in practice favours
-local residents or agents.
+70 km); per the 2024 AMA-journal paper "Post-war Restoration of the AzPOS
+Network in Karabakh", 8 stations were added in the Karabakh region in 2024
+following the September 2023 restoration of territorial control — the
+operator portal still lists 37 only as of 2026-05-23, a portal lag rather
+than a contradiction. Control centre supports up to 100 parallel RTK users
+(2014 spec). The SBC login portal at `azpos.az/sbc/` shows an RTK product
+with Subscription Period, Consumption Limit, and Working Area fields — all
+values hidden pre-login. No published tariff; ArduSimple lists AzPOS as
+"paid national service" without price (and gives "Coordinate System: Global
+WGS84"). The contract-based access model with a Baku office in practice
+favours local residents or agents.
 
 Volunteer: 1 rtk2go base — `WHTCTY` at 40.38°N 49.89°E in greater Baku
 (country code `AZE`); useful within ~20 km. Zero AZ-coded Centipede or
@@ -4930,8 +4937,8 @@ access is feasible — apply via krgjsh.asig.gov.al.
 **access_url**: https://www.cadastre.am/en
 **stations**:  12 single-base stations, ~50 km spacing across ~30,000 km²
 **signals**:   GPS + GLONASS (original Leica L1+L2; multi-constellation upgrade status not publicly documented)
-**reference_frame**: ARMREF02
-**last_researched_date**: 2026-05-12
+**reference_frame**: ARMREF02 (third-party academic citations only; no Armenian legal-instrument URL surfaced)
+**last_researched_date**: 2026-05-23
 
 ARMPOS (Armenian CORS) was commissioned in 2013 by the State Committee for
 Real Property Cadastre with Norwegian government funding (NOK 9.8 million,

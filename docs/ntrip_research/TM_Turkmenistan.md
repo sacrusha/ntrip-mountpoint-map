@@ -1,45 +1,43 @@
-# Turkmenistan [TM] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-17 (refresh of 2026-05-13 entry — no change)
+# Turkmenistan [TM] - NTRIP RTK Caster Research
 
-## Status: NO public NTRIP caster — government CORS infrastructure under development via FAO project; no public access confirmed
+last_verified_date: 2026-05-23
+last_gap_fill_date: 2026-05-23
+last_caster_search_date: 2026-05-23
+agent_version: 0.1
 
-| Field | Value |
-|---|---|
-| **Active public NTRIP RTK caster** | No |
-| **Operator** | Ministry of Agriculture — Land Resources Service (no independent geodetic agency publicly listed) |
-| **host:port** | — |
-| **VRS** | — |
-| **tariff** | — |
-| **hobbyist_eligibility** | — |
-| **legal_residency_required** | — |
-| **last_confirmed_alive** | — |
-| **Most recent project announcement** | FAO CORS project (65 stations planned); finalization ceremony Ashgabat 2025-04-09 |
+## Status: NO public NTRIP RTK caster. Government CORS infrastructure under construction via FAO-supported "Digital Land Cadastre" project (2022-2025) - 65 stations procured + 3-province pilot + finalization ceremony 2025-04-09 in Ashgabat. Public access not announced and unlikely in the near term given Turkmenistan's closed information regime. RTK2go / Centipede / EarthScope / IGS-IP / AUSCORS: zero TM stations within 500 km of Ashgabat.
 
-## Context Notes
+## Why there is no public caster
 
-- Turkmenistan is a closed authoritarian state with severely restricted internet access; external search engines cannot index domestic geodetic portals if they exist.
-- **FAO CORS project (2022–2025):** The Food and Agriculture Organization supported the Ministry of Agriculture in building a national CORS network for land cadastre modernization. The government acquired 65 reference stations and 97 GNSS receivers. FAO provided 3 pilot stations, 4 GNSS receivers, and control software as a pilot model installed in 3 provinces. A finalization ceremony was held in Ashgabat on 2025-04-09.
-- Whether the resulting CORS network will offer public NTRIP access, or be restricted to government use for land cadastre only, is not confirmed. Given the closed nature of Turkmenistan's governance, public access is unlikely in the near term.
-- No rtk2go or Centipede volunteer bases found for Turkmenistan.
-- No IGS permanent station on Turkmenistan territory confirmed as of 2026.
-- English-language and Russian-language search returned no NTRIP or public RTK service information.
+- **Closed information regime**: Turkmenistan severely restricts internet access; external search engines cannot index domestic geodetic portals if they exist. English-language and Russian-language searches returned no NTRIP / public RTK service information 2026-05-13 / 2026-05-23. A Turkmen-language probe ("Turkmen geodezia CORS GNSS NTRIP 2025 Ashgabat") returned no follow-up announcement to the 2025-04-09 FAO finalization.
+- **FAO Digital Land Cadastre CORS project (2022-2025)** supported Turkmengeodezija (the state geodesy service under the Ministry of Agriculture's Land Resources Service) in building a national CORS network for cadastre modernization. The government procured 65 reference stations and 97 GNSS receivers; FAO contributed 3 pilot stations + 4 receivers + control software installed in 3 provinces as a model (specific provinces not named in the FAO / newscentralasia.net coverage). Finalization ceremony 2025-04-09 in Ashgabat per newscentralasia.net (2025-04-17). The horizon for public access is governed by the "Concept for the Development of Digital State Land Cadastre 2025-2030" (FAO source); public NTRIP availability is not announced and unlikely under the closed-information regime even within that horizon.
+- **No IGS / EUREF / AFREF membership** for any TM station; no IGS permanent station on Turkmenistan territory confirmed as of 2026.
+- **No commercial coverage**: GEODNET, PointOne Polaris, Swift Skylark, Trimble VRS Now, Hexagon HxGN SmartNet publish no Turkmenistan PoPs.
+- **No volunteer coverage**: Local 2026-05-23 - `scripts/stations_by_country.py TKM` returns no entries; `scripts/stations_by_radius.py 37.95 58.38 500` (Ashgabat, 500 km) returns no stations on any ingested source (rtk2go, Centipede, EarthScope, IGS-IP, AUSCORS).
+- **Iran SHAMIM cross-border**: NCC SHAMIM (Iranian national CORS) has stations within ~30 km of the Turkmen border in NE Iran (Khorasan-e Razavi). Not publicly accessible to non-Iranian users; National Cartographic Center distributes corrections via internal subscription only. Functionally unreachable for foreign hobbyists.
 
-## Most Recent Project Announcement
+## Most recent project / announcement
 
-**FAO Digital Land Cadastre CORS Project — finalization 2025-04-09, Ashgabat**
-65 CORS stations and 97 GNSS receivers procured by Government of Turkmenistan; FAO pilot infrastructure installed in 3 provinces. Project finalised April 2025. No public NTRIP access announced.
+**FAO Digital Land Cadastre CORS Project - finalization 2025-04-09, Ashgabat.** 65 CORS + 97 receivers procured by Government of Turkmenistan; FAO 3-province pilot. No public NTRIP access announced. No follow-up announcement located via Turkmen-language search 2026-05-23.
+
 Source: https://www.newscentralasia.net/2025/04/17/from-farmers-to-government-officials-everyone-benefits-from-a-digital-land-cadastre/
 
-## Post-Processing (RINEX) Fallback
+## Hobbyist path
 
-None confirmed. Nearest IGS/EPN stations are in Kazakhstan, Iran, or Turkey — baselines of 500–1,500 km; usable for PPP only.
+1. **Cm-class** - none. Deploy a local base for single-baseline RTK.
+2. **Sub-decimetre** - Galileo HAS (~20-40 cm horizontal, satellite-delivered, free) - the only practical option for non-resident hobbyists.
+3. **Post-processing only** - nearest IGS/EPN stations in Kazakhstan, Iran (KIT3, TEHN, ARTU) - 500-1,500 km baselines, usable for PPP only.
 
-## Sources Consulted
-- FAO/Turkmenistan CORS project article: https://www.newscentralasia.net/2025/04/17/from-farmers-to-government-officials-everyone-benefits-from-a-digital-land-cadastre/ (observed 2026-05-06)
-- WebSearch "Turkmenistan GNSS geodesy survey authority CORS reference station 2024" (2026-05-06) — no public service found
-- WebSearch "Turkmenistan CORS GNSS NTRIP RTK network Ashgabat 2024" (2026-05-06) — no public service found
-- WebSearch "Türkmen geodeziýa CORS GNSS NTRIP 2025 Ashgabat" (Turkmen-language probe 2026-05-13) — no public service found; no follow-up announcement located on the FAO 2025-04-09 finalization
-- WebSearch "Turkmenistan FAO CORS GNSS NTRIP RTK public access 2026" (2026-05-13) — no public access announced
-- ArduSimple Turkmenistan page: HTTP 404 (no country page exists) 2026-05-13
-- RTK2go monitor — no TM NTRIP streams 2026-05-13
-- Centipede crtk.net:2101 sourcetable — no TM mountpoints 2026-05-13
+## Post-processing (RINEX) fallback
+
+None confirmed inside Turkmenistan. Nearest options 500+ km away.
+
+## Sources
+
+- FAO Turkmenistan CORS project (newscentralasia.net 2025-04-17, finalization 2025-04-09 Ashgabat, 65 stations + 97 receivers): https://www.newscentralasia.net/2025/04/17/from-farmers-to-government-officials-everyone-benefits-from-a-digital-land-cadastre/
+- WebSearch "Turkmenistan GNSS geodesy survey authority CORS reference station 2024" (2026-05-06) - no public service found
+- WebSearch "Turkmenistan CORS GNSS NTRIP RTK network Ashgabat 2024" (2026-05-06) - no public service found
+- WebSearch "Turkmen geodezia CORS GNSS NTRIP 2025 Ashgabat" 2026-05-13 - no follow-up to 2025-04-09 finalization
+- WebSearch "Turkmenistan FAO CORS GNSS NTRIP RTK public access 2026" 2026-05-13 + "Turkmenistan FAO CORS GNSS 2025 RTK NTRIP public" 2026-05-23 - no public access announced
+- ArduSimple Turkmenistan: HTTP 404 (no country page exists)
+- Local 2026-05-23: `scripts/stations_by_country.py TKM` -> no stations; `scripts/stations_by_radius.py 37.95 58.38 500` -> no stations within 500 km of Ashgabat

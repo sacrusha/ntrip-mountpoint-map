@@ -1,76 +1,74 @@
-# Kazakhstan [KZ] — NTRIP RTK Caster Research
-**Date researched:** 2026-05-06; expanded 2026-05-12; reverified 2026-05-17 (qazgeodesy.kz EN landing + eft.kz/base still pricing-gated; no public NTRIP host:port surfaced; rtk2go GerAndry single base still the only free KZ pin)
+# Kazakhstan [KZ] - NTRIP RTK Caster Research
 
-## Status: PARTIAL — national operator KGS runs an 86-station reference network with RTK + RINEX services, but no public NTRIP endpoint is published; access is contract-based via 4+ confirmed commercial resellers / private CORS operators
+last_verified_date: 2026-05-23
+last_gap_fill_date: 2026-05-23
+last_caster_search_date: 2026-05-23
+agent_version: 0.1
+
+## Status: PARTIAL - national operator (NCGPI / KGS) runs an 86-station reference network with RTK + RINEX services; no public NTRIP host:port published; access is contract-based via NCGPI or 3+ commercial resellers (GeoComm, EFT, RTKNet). One free rtk2go volunteer base in northern Kazakhstan.
+
+## NCGPI / Qazgeodesy - national operator
 
 | Field | Value |
 |---|---|
-| **Active public NTRIP RTK caster** | **Yes (contract-based, not open-access)** — national operator JSC NC "Қазақстан Ғарыш Сапары" (Kazakhstan Gharysh Sapary / KGS) provides RTK corrections from 86 reference stations; commercial entities (GeoComm, EFT, Geokurs/Trimble RTX, RTKNet, qgeo.kz) act as access/integration channels. No advertised free-tier or self-serve NTRIP endpoint. |
-| **landing_url — NCGPI / KazGeoDesy** | `https://qazgeodesy.kz/` (HU/RU; EN at `/en/`) — official operator landing for RGP "National Centre of Geodesy and Spatial Information" (NCGPI) under the Committee of Geodesy and Cartography. Describes the RTK correcting-information service. Replaces previous `rtk.qgeo.kz` (degraded to near-empty header 2026-05-12) as the canonical landing. KGS corporate site `https://gharysh.kz/` covers the wider national space mandate. |
-| **access_url — NCGPI / KazGeoDesy** | Skip — no public self-serve registration page exists; the historical tariff page at `rtk.qgeo.kz/tarifs` is no longer reachable, and access is sales-contact-only via NCGPI reception (+7 7172 27-27-75) or a reseller. The landing_url adequately surfaces this. |
-| **host:port — KGS national** | Not publicly disclosed. Connection requires GNSS receiver + GPRS/4G modem + service contract via KGS or a reseller. The "Корректирующая Информация" page at `https://rtk.qgeo.kz/` is the most prominent public entry surface but contains only a logo and a link to instructions; sandbox observed the page as a near-empty header (2026-05-12). |
-| **num_stations — KGS national** | 86 reference stations (secondary citation via geocomm.kz/bazovye-stanczii/ reproducing KGS's own published figure; KGS also publishes a 60-station figure for the original 2012 deployment — the 86 number is the current state-investment build-out used in RINEX/RTK marketing). Caveat: not declared on a first-party KGS portal page surface in sandbox-reachable form; treat as secondary-source. |
-| **vrs — KGS national** | ? — national network-RTK is plausible (86-station spacing supports it) but no operator declaration of VRS/MAC/FKP/i-MAX surfaced in qazgeodesy.kz / gharysh.kz / reseller pages. Unverified. |
-| **landing_url — GeoComm** | https://geocomm.kz/bazovye-stanczii/ (operator-owned base-stations page) |
-| **access_url — GeoComm** | Skip — no public self-serve/registration page; access is sales-contact-only (Anatoly +7 (771) 180-78-99 / saa@geocomm.kz). landing_url adequately surfaces this. |
-| **host:port — GeoComm** | Not published on the public site (geocomm.kz/bazovye-stanczii/). Access via direct contact: Anatoly +7 (771) 180-78-99 / saa@geocomm.kz · Karaganda, Moskovskaya 16/1. |
-| **num_stations — GeoComm** | unknown — operator does not publish a station count or coverage map; private CORS network of unspecified size. |
-| **vrs — GeoComm** | ? — no public technical disclosure of VRS / network solution; unverified. |
-| **landing_url — EFT** | https://eft.kz/base (operator-owned base-station landing page) |
-| **access_url — EFT** | Skip — same page describes service + registration form; no distinct signup URL. |
-| **host:port — EFT** | Not published on eft.kz/base. Contact: +7 (727) 310 00 81 · info@eft.kz · Almaty. Free RINEX after registration; "continuous RTK corrections coverage across Kazakhstan" using EFT RS1 receivers (GPS+GLONASS+BeiDou+Galileo). |
-| **num_stations — EFT** | unknown — operator advertises "continuous RTK corrections coverage across Kazakhstan" without publishing a station count. |
-| **vrs — EFT** | ? — "continuous coverage across Kazakhstan" language implies network solution but no operator technical declaration; unverified. |
-| **host:port — Geokurs / Trimble RTX** | PPP / SSR via satellite (Trimble CenterPoint RTX) — **out of scope per project rule (PPP not RTK-NTRIP)** but documented for completeness. Distributor: bs.geokurs.kz; +7 727 229 00 00. 30-day free trial promo code `FREE30`. Annual subscription, KZT pricing on request. |
-| **landing_url — RTKNet** | https://southinstrument.kz/rtknet (distributor-owned page; ТОО "Гео Мастер А") |
-| **access_url — RTKNet** | Skip — sales-only page; no self-serve signup surface. |
-| **host:port — RTKNet (Geo Master A)** | Not published on southinstrument.kz/rtknet. ТОО "Гео Мастер А", Almaty. Sales-only page; no endpoint, mountpoint, or KZT pricing on public web. |
-| **num_stations — RTKNet** | unknown — no public station count or coverage map. |
-| **vrs — RTKNet** | ? — no public technical disclosure; unverified. |
-| **tariff** | **Unknown — all commercial** (KGS state network, GeoComm, EFT, RTKNet). All providers gate price disclosure behind a sales contact. Geokurs RTX (PPP, out of scope) advertises a 30-day free trial via code `FREE30`. |
-| **hobbyist_eligibility** | Unclear — all four providers are oriented to surveyors / engineering firms; no individual / hobbyist tier was advertised. Nothing in the public material explicitly excludes individual buyers, but a Kazakh-language contract negotiation and bank-transfer payment workflow is the practical barrier. |
-| **legal_residency_required** | Effectively yes — KZT bank transfer + Kazakh-language contract are the typical onboarding workflow. No formal residency bar published. |
-| **last_confirmed_alive** | geocomm.kz/bazovye-stanczii/ HTTPS 200 (2026-05-12); eft.kz/base WebFetch HTTPS 200 with KZT pricing form but no rates (2026-05-17); bs.geokurs.kz/rtx HTTPS 200 (2026-05-12); rtk.qgeo.kz HTTPS 200 near-empty page (2026-05-12); qazgeodesy.kz/en/ WebFetch HTTPS 200 (2026-05-17) -- still pricing-gated, no NTRIP host:port published; gharysh.kz HTTPS 200 (2026-05-12). No live sourcetable connection from sandbox. |
-| **datum_epoch** | omitted -- no citable operator declaration on qazgeodesy.kz / gharysh.kz / commercial reseller sites checked 2026-05-17 (national geodetic frame SK-42 / GSK-2011 / WGS84 contexts variously referenced in academic + decree material, none through the NTRIP operator portal -- not citable per primer rule) |
+| operator | RGP "National Centre of Geodesy and Spatial Information" (NCGPI / Qazgeodesy) under the Committee of Geodesy and Cartography; high-precision satellite navigation system mandate vested in JSC NC Qazaqstan Garysh Sapary (KGS) per Government Decree RK No 721 (2012-05-31) |
+| landing_url | https://qazgeodesy.kz/en/ |
+| access_url | https://ggo.gov.kz/correct-info |
+| access_type | paid |
+| coverage | conflicting station counts (see num_stations); ~180 km mean spacing implied by the 86 figure across 2.72 million km^2; densest in the populated north (Astana-Pavlodar-Karaganda) and southeast (Almaty); thin in the western steppe and Caspian region. No public coverage map. |
+| num_stations | conflicting - geocomm.kz/bazovye-stanczii states KGS "owns 60 navigation stations" (refetched 2026-05-23); qazgeodesy.kz "National Spatial Data Infrastructure" programme materials cite 86 as the current build-out; no operator-side authoritative reconciliation surfaced. Either figure is plausible (60 = KGS-owned core, 86 = total including newer additions). |
+| tariff | not published - qazgeodesy.kz/en lists "Corrective information services in RTK mode" without prices; rtk.qgeo.kz portal is a logo + form; ggo.gov.kz/correct-info routes through subscription form; no AOC/KZT figures surfaced (checked: qazgeodesy.kz/en 2026-05-23; ggo.gov.kz/correct-info 2026-05-23; geocomm.kz/bazovye-stanczii 2026-05-23; eft.kz/base 2026-05-23; web search "qazgeodesy qgeo.kz RTK tariff 2026" 2026-05-23) |
+| hobbyist_eligibility | ? - all providers oriented to surveyors / engineering firms; no individual / hobbyist tier advertised; non-professionals are not explicitly excluded but Kazakh-language contract + KZT bank transfer + IIN (individual) / BIN (business) workflow is the practical barrier (checked: qazgeodesy.kz/en 2026-05-23; ggo.gov.kz/correct-info 2026-05-23) |
+| datum_epoch | QazTRF-23 (Qazaqstan Terrestrial Reference Frame 2023) - national geodetic coordinate system launched 2025-01-01 by the Ministry of Digital Development, Innovation and Aerospace Industry alongside the CORS network (citation: tengrinews.kz 2025-02-03 "Kazakhstan launches its own geodetic coordinate system"; tvbrics.com 2025-02-03; MINEX Forum 2025-02-03; ggo.gov.kz hosts QazTRF-23 catalogues). Replaces Soviet SK-42 / SK-95. Epoch not specified in news sources; ITRF realization tie not declared publicly. |
+| sourcetable | none published - no public host:port surfaced for the national network; reseller portals (geocomm, eft, geokurs, southinstrument) all gate live endpoints behind contract (checked: ggo.gov.kz/correct-info 2026-05-23; qazgeodesy.kz/en 2026-05-23; rtk.qgeo.kz 2026-05-23; geocomm.kz 2026-05-23; eft.kz/base 2026-05-23; monitor.use-snip.com 2026-05-23) |
+| vrs | ? - 180 km mean spacing exceeds the ~70 km NRTK hull rule (primer accuracy); operator portal silent on VRS/MAC/FKP/iMAX. NRTK across the full country is implausible unless densified in metro clusters; no operator declaration surfaced (checked: ggo.gov.kz/correct-info 2026-05-23; qazgeodesy.kz/en 2026-05-23) |
+| residency_required | yes - KZT bank transfer + IIN (individual taxpayer ID) / BIN (business ID) + Kazakh-language contract are practical barriers to non-resident signup |
+| stations_source | https://qazgeodesy.kz/en/ + https://geocomm.kz/bazovye-stanczii/ (no public coverage map; station counts disclosed in textual marketing only) |
 
-## Most Recent Project Announcement
+NCGPI is the operational descendant of the 2012 mandate (Government Decree RK No 721, 2012-05-31, cited in KGS / NCGPI literature - no canonical URL); the landing has migrated through qgeo.kz -> qazgeodesy.kz -> ggo.gov.kz (the canonical correction-services page is now ggo.gov.kz/correct-info, reachable 2026-05-23, with subscription contact rtk@qgeo.kz / +7 7172 277-726). The earlier `rtk.qgeo.kz` portal has degraded to a near-empty header. The legacy `kazgeodeziya.kz` domain returns hosting-expired error. Connection requires GNSS receiver + GPRS/4G modem + service contract via NCGPI or a reseller. QazTRF-23 (Qazaqstan Terrestrial Reference Frame 2023) became the official national datum on 2025-01-01, displacing earlier Soviet SK-42 / SK-95 contexts and the academic GSK-2011 / WGS84 references that appeared in pre-2025 literature.
 
-**National RTK infrastructure — JSC NC "Қазақстан Ғарыш Сапары" (KGS / Kazakhstan Gharysh Sapary)** is the national operator of the high-precision satellite navigation system of the Republic of Kazakhstan. Per the company's own public-facing summary (cited by geocomm.kz and reproduced by 2gis.kz business directory and gharysh.kz): KGS owns **60 navigation stations** receiving GPS/GLONASS satellite signals with real-time corrections at metre- and centimetre-level accuracy. Under a separate state investment programme **86 reference stations** were installed; users can obtain RINEX for post-processing and RTK corrections through this network. Headquarters: Astana, Turan Avenue 89. No public NTRIP host:port has been disclosed; access is via service contract.
+## Commercial resellers / private CORS layer
 
-**Government decree:** Decree of the Government of the Republic of Kazakhstan RK №721 (31 May 2012) authorised the National Space Agency to provide RTK corrections; KGS is the operational descendant of that mandate.
+- **GeoComm LLP** (geocomm.kz; Karaganda, Moskovskaya 16/1) - private CORS network + resells KGS national; price on contact (Anatoly +7 (771) 180-78-99 / saa@geocomm.kz; main +7 (7212) 79-12-12 / info@geocomm.kz). Station count not publicly disclosed; 24/7 marketing.
+- **EFT** (eft.kz/base; Almaty, Pirogova 37) - EFT RS1 GPS+GLO+BeiDou+Galileo receivers, "continuous RTK across Kazakhstan"; RINEX post-processing free after registration; RTK price gated behind registration form ("Cena: tenge" with no rate). Contact +7 (727) 310 00 81 / info@eft.kz.
+- **Geokurs** (bs.geokurs.kz; Almaty, +7 727 229 00 00) - resells Trimble CenterPoint RTX (SSR/PPP via satellite); out of scope per project rule (PPP not RTK-NTRIP, see guide for HAS/PPP alternative).
+- **RTKNet (TOO Geo Master A)** (southinstrument.kz/rtknet; Almaty) - equipment-distributor-operated network; sales-only page; no endpoint, mountpoint, or KZT pricing on public web.
 
-**Commercial CORS / NTRIP layer:**
-- **GeoComm LLP** (geocomm.kz; Karaganda HQ) — operates / advertises a private CORS network; price on contact. 24/7 service marketing.
-- **EFT** (eft.kz/base; Almaty) — "modern infrastructure project" providing continuous RTK across Kazakhstan; EFT RS1 receivers; free RINEX post-registration.
-- **Geokurs / Trimble RTX** (bs.geokurs.kz; Almaty) — satellite-delivered PPP-RTK; out of scope for this project but the most accessible centimetre-class option for foreigners (no in-country contract needed if buying RTX subscription directly from Trimble).
-- **RTKNet (Гео Мастер А)** (southinstrument.kz/rtknet; Almaty) — equipment-distributor-operated network; no public endpoint.
+## Free / volunteer fallback
 
-## Context Notes
+| Source | Mountpoint | Lat / Lon | Notes |
+|---|---|---|---|
+| rtk2go | `GerAndry` | 53.09 N, 77.44 E | Single volunteer base near Pavlodar (Ilichyovka), verified 2026-05-23 in `data/rtk2go.sourcetable`. RTCM 3.2 GPS+GLO+GAL+BDS, single-base; rtk2go convention any-email / no password. Usable within ~20-30 km. |
 
-- **No free / open public NTRIP**: ArduSimple's Kazakhstan page (re-checked 2026-05-12) still states the country has no national RTK network — this is wrong if "national" includes contract-gated state RTK; correct in spirit if it means "open / free national tier". RTK2GO, IGS, and EarthScope are the suggested fallbacks.
-- **KGS station count discrepancy**: KGS publishes both "60 navigation stations" and "86 reference stations" figures; these likely refer to the original 2012-era deployment vs. the expanded state-investment build-out. The 86-station figure is the one currently used in RINEX/RTK marketing.
-- **Coverage**: 86 stations across 2.72 million km² yields ~180 km mean spacing — adequate for network-RTK in the populated north (Astana–Pavlodar–Karaganda) and southeast (Almaty), thinner in the western steppe and Caspian region. No public coverage map.
-- **Free-tier alternatives**: RTK2GO has **1 base station in Kazakhstan** (`GerAndry` at 53.09 N / 77.44 E, near Pavlodar — re-confirmed via `py scripts/stations_by_country.py KAZ` on 2026-05-17). Coverage is point-only; rover must be within ~30–40 km. Galileo HAS provides ~40 cm globally with no contract. GEODNET / Onocoy: no Kazakhstan coverage confirmed.
-- **PPP fallback for foreigners**: Trimble RTX via Geokurs / direct Trimble subscription is the most realistic centimetre-class option for non-resident hobbyists.
-- **Searches in Kazakh/Russian**: queries on "Казахстан ГНСС НТРИП сеть", "Қазақстан Ғарыш Сапары RTK", "геодезия Казахстан реальное время" surfaced KGS + GeoComm + EFT + Geokurs + RTKNet + qgeo as the prominent providers, none with self-serve pricing.
+No Centipede, EarthScope, GEODNET, ONOCOY ground stations confirmed inside Kazakhstan as of 2026-05-23. The nearest IGS-class stations for post-processing only are KITG (Uzbekistan, ~175 km from Dushanbe but well outside KZ).
 
-## Post-Processing (RINEX) Fallback
+## Hobbyist path
+
+1. **Near Pavlodar (<=30 km of 53.09/77.44)** - rtk2go `GerAndry` (free, single-base).
+2. **Elsewhere in Kazakhstan** - no free RTK path. NCGPI / KGS or a reseller contract is the only cm-class option, all priced on request via Russian/Kazakh-language sales channels. Practical barrier: KZT bank transfer + IIN/BIN + Kazakh-language contract.
+3. **PPP / SSR fallback** - Galileo HAS (~20 cm horizontal, free, satellite-delivered) for sub-metre work; Trimble CenterPoint RTX via Geokurs is a paid SSR option for non-residents but out of project scope.
+
+## Post-processing (RINEX) fallback
 
 | Service | URL | Cost |
-|---------|-----|------|
-| **EarthScope GNSS Data Archive** — IGS stations in Kazakhstan (e.g., ARTI, ARTU, KIT3) | https://www.earthscope.org/data/gnss-data/ | Free noncommercial (account + NULA) |
-| **BKG NTRIP** — IGS real-time streams including Central Asian stations | https://igs.bkg.bund.de/ntrip/ | Free (account required) |
+|---|---|---|
+| NCGPI national RINEX archive (via subscription) | https://qazgeodesy.kz/en/ | Sales-contact only |
+| EFT RINEX post-processing archive | https://eft.kz/base | Free after registration |
+| EarthScope GNSS data archive (regional IGS holdings - ARTI / ARTU / KIT3) | https://www.earthscope.org/data/gnss-data/ | Free non-commercial (account + NULA) |
+| BKG NTRIP IGS real-time (Central Asian stations) | https://igs.bkg.bund.de/ntrip/ | Free (account) |
 
-## Sources Consulted
-- ArduSimple — RTK correction services and NTRIP Casters in Kazakhstan (re-checked 2026-05-12)
-- **geocomm.kz/bazovye-stanczii/** — GeoComm base stations page; KGS 60-station + 86-station figures, contacts (HTTPS 200 2026-05-12)
-- **eft.kz/base** — EFT base-station network landing page (HTTPS 200 2026-05-12)
-- **bs.geokurs.kz/rtx** — Geokurs / Trimble CenterPoint RTX Kazakhstan landing (HTTPS 200 2026-05-12)
-- **rtk.qgeo.kz** — "Корректирующая Информация" page (near-empty header; HTTPS 200 2026-05-12)
-- **gharysh.kz** — JSC NC "Қазақстан Ғарыш Сапары" corporate page (HTTPS 200 2026-05-12)
-- southinstrument.kz/rtknet — RTKNet reference page; operator ТОО "Гео Мастер А" (Almaty)
-- 2gis.kz — KGS HQ address (Astana, Turan Avenue 89)
-- GitHub mvarga1989 GNSS CORS RTK networks list
-- Russian-language survey forums and trade press (gis2000.ru, vestnik-glonass.ru)
-- RTK2go monitor / stations.json — **1 KZ rtk2go station confirmed: `GerAndry` 53.09 N / 77.44 E** (2026-05-12)
-- NTRIP-list.com — no Kazakhstan entry confirmed
+## Sources
+
+- qazgeodesy.kz EN landing (refetched 2026-05-23): https://qazgeodesy.kz/en/
+- ggo.gov.kz/correct-info (canonical correction-services page; subscription contact rtk@qgeo.kz / +7 7172 277-726): https://ggo.gov.kz/correct-info
+- rtk.qgeo.kz (legacy logo-only header): https://rtk.qgeo.kz/
+- gharysh.kz (JSC NC Qazaqstan Garysh Sapary corporate; KGS mandate): https://gharysh.kz/
+- geocomm.kz/bazovye-stanczii (refetched 2026-05-23 - 60-station legacy + 86-station current figures attributed to KGS; contact details): https://geocomm.kz/bazovye-stanczii/
+- eft.kz/base (refetched 2026-05-23 - GPS+GLO+BeiDou+Galileo, free RINEX, RTK price gated): https://eft.kz/base
+- bs.geokurs.kz/rtx (Geokurs Trimble CenterPoint RTX): https://bs.geokurs.kz/rtx
+- southinstrument.kz/rtknet (RTKNet / TOO Geo Master A): https://southinstrument.kz/rtknet
+- ArduSimple Kazakhstan: https://www.ardusimple.com/rtk-correction-services-and-ntrip-casters-in-kazakhstan/
+- 2gis.kz business directory (KGS HQ Astana, Turan Avenue 89)
+- Government Decree RK No 721 (2012-05-31) cited in KGS / NCGPI literature (no canonical URL)
+- QazTRF-23 launch coverage (2025-02-03): https://en.tengrinews.kz/kazakhstan_news/kazakhstan-launches-its-own-geodetic-coordinate-system-266558/; https://tvbrics.com/en/news/kazakhstan-launches-national-geodetic-coordinate-system-to-enhance-spatial-data-infrastructure/; https://minexforum.com/2025/02/03/kazakhstan-launches-its-own-geodetic-coordinate-system/
+- Local 2026-05-23: `data/rtk2go.sourcetable` row 219 `GerAndry;Ilichyovka;...;KAZ;53.09;77.44` confirmed; `scripts/stations_by_country.py KAZ` -> 1 rtk2go station only
