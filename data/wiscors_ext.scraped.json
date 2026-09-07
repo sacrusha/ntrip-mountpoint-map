@@ -1,0 +1,758 @@
+{
+  "last_updated": "2026-09-01T21:00:14+00:00",
+  "scraper_version": "a81ba198b9aa",
+  "source_url": "https://wiscorsweb.dot.wi.gov/TrimblePivotWeb/Map/SensorMap.aspx/GetSensorListWithConfiguration",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "ABMS",
+      "lat": 44.790916,
+      "lon": -88.045052,
+      "country": "USA"
+    },
+    {
+      "name": "ANGO",
+      "lat": 45.113819,
+      "lon": -89.162957,
+      "country": "USA"
+    },
+    {
+      "name": "APTN",
+      "lat": 44.283087,
+      "lon": -88.459719,
+      "country": "USA"
+    },
+    {
+      "name": "ARIA",
+      "lat": 44.240101,
+      "lon": -91.511324,
+      "country": "USA"
+    },
+    {
+      "name": "ASHW",
+      "lat": 44.47917,
+      "lon": -88.075989,
+      "country": "USA"
+    },
+    {
+      "name": "ASND",
+      "lat": 46.552132,
+      "lon": -90.913994,
+      "country": "USA"
+    },
+    {
+      "name": "BEDA",
+      "lat": 43.443614,
+      "lon": -88.845749,
+      "country": "USA"
+    },
+    {
+      "name": "BELL",
+      "lat": 46.866334,
+      "lon": -91.085757,
+      "country": "USA"
+    },
+    {
+      "name": "BELO",
+      "lat": 42.500265,
+      "lon": -88.99778,
+      "country": "USA"
+    },
+    {
+      "name": "BLFA",
+      "lat": 44.357453,
+      "lon": -90.656129,
+      "country": "USA"
+    },
+    {
+      "name": "BNET",
+      "lat": 46.460339,
+      "lon": -91.820988,
+      "country": "USA"
+    },
+    {
+      "name": "BOSC",
+      "lat": 43.038998,
+      "lon": -90.66137,
+      "country": "USA"
+    },
+    {
+      "name": "BRCE",
+      "lat": 45.461756,
+      "lon": -91.256038,
+      "country": "USA"
+    },
+    {
+      "name": "BURL",
+      "lat": 42.726224,
+      "lon": -88.223489,
+      "country": "USA"
+    },
+    {
+      "name": "CALE",
+      "lat": 46.206591,
+      "lon": -91.29164,
+      "country": "USA"
+    },
+    {
+      "name": "CAMB",
+      "lat": 45.574612,
+      "lon": -93.216132,
+      "country": "USA"
+    },
+    {
+      "name": "CCT2",
+      "lat": 45.40321,
+      "lon": -92.811202,
+      "country": "USA"
+    },
+    {
+      "name": "CHEK",
+      "lat": 45.241524,
+      "lon": -91.59586,
+      "country": "USA"
+    },
+    {
+      "name": "CHFA",
+      "lat": 44.930399,
+      "lon": -91.362068,
+      "country": "USA"
+    },
+    {
+      "name": "CHON",
+      "lat": 44.019248,
+      "lon": -88.150267,
+      "country": "USA"
+    },
+    {
+      "name": "CLAY",
+      "lat": 45.329009,
+      "lon": -92.184429,
+      "country": "USA"
+    },
+    {
+      "name": "COM0",
+      "lat": 44.07762,
+      "lon": -89.535108,
+      "country": "USA"
+    },
+    {
+      "name": "CRON",
+      "lat": 45.5764,
+      "lon": -88.891789,
+      "country": "USA"
+    },
+    {
+      "name": "CUDA",
+      "lat": 42.953126,
+      "lon": -87.849351,
+      "country": "USA"
+    },
+    {
+      "name": "CULV",
+      "lat": 46.896549,
+      "lon": -92.595603,
+      "country": "USA"
+    },
+    {
+      "name": "CUSH",
+      "lat": 45.570555,
+      "lon": -92.657848,
+      "country": "USA"
+    },
+    {
+      "name": "DAND",
+      "lat": 46.215586,
+      "lon": -92.182404,
+      "country": "USA"
+    },
+    {
+      "name": "DEKO",
+      "lat": 43.427216,
+      "lon": -89.481954,
+      "country": "USA"
+    },
+    {
+      "name": "DEP2",
+      "lat": 44.407388,
+      "lon": -88.115513,
+      "country": "USA"
+    },
+    {
+      "name": "DLTH",
+      "lat": 46.797478,
+      "lon": -92.10779,
+      "country": "USA"
+    },
+    {
+      "name": "DOLE",
+      "lat": 42.978116,
+      "lon": -90.128161,
+      "country": "USA"
+    },
+    {
+      "name": "DOTY",
+      "lat": 45.219709,
+      "lon": -88.606752,
+      "country": "USA"
+    },
+    {
+      "name": "DUND",
+      "lat": 44.606945,
+      "lon": -91.851998,
+      "country": "USA"
+    },
+    {
+      "name": "EACL",
+      "lat": 44.784383,
+      "lon": -91.539127,
+      "country": "USA"
+    },
+    {
+      "name": "ELK_",
+      "lat": 45.658649,
+      "lon": -90.539576,
+      "country": "USA"
+    },
+    {
+      "name": "FOLA",
+      "lat": 43.794927,
+      "lon": -88.452709,
+      "country": "USA"
+    },
+    {
+      "name": "GOAN",
+      "lat": 45.621364,
+      "lon": -88.360044,
+      "country": "USA"
+    },
+    {
+      "name": "HAUG",
+      "lat": 45.603282,
+      "lon": -91.778816,
+      "country": "USA"
+    },
+    {
+      "name": "IAD2",
+      "lat": 42.431995,
+      "lon": -90.679127,
+      "country": "USA"
+    },
+    {
+      "name": "IAEL",
+      "lat": 42.877903,
+      "lon": -91.361524,
+      "country": "USA"
+    },
+    {
+      "name": "IANA",
+      "lat": 43.49707,
+      "lon": -91.290694,
+      "country": "USA"
+    },
+    {
+      "name": "IAWK",
+      "lat": 43.254821,
+      "lon": -91.485684,
+      "country": "USA"
+    },
+    {
+      "name": "IRMA",
+      "lat": 45.313112,
+      "lon": -89.625931,
+      "country": "USA"
+    },
+    {
+      "name": "IRR2",
+      "lat": 46.568174,
+      "lon": -91.473831,
+      "country": "USA"
+    },
+    {
+      "name": "JABS",
+      "lat": 46.129202,
+      "lon": -90.580899,
+      "country": "USA"
+    },
+    {
+      "name": "JAL2",
+      "lat": 42.710993,
+      "lon": -89.029244,
+      "country": "USA"
+    },
+    {
+      "name": "KEEE",
+      "lat": 44.465251,
+      "lon": -87.495924,
+      "country": "USA"
+    },
+    {
+      "name": "KEHA",
+      "lat": 42.558972,
+      "lon": -87.919208,
+      "country": "USA"
+    },
+    {
+      "name": "KNAP",
+      "lat": 44.951816,
+      "lon": -92.044243,
+      "country": "USA"
+    },
+    {
+      "name": "LAER",
+      "lat": 42.837679,
+      "lon": -90.711398,
+      "country": "USA"
+    },
+    {
+      "name": "LAX3",
+      "lat": 43.88466,
+      "lon": -91.163621,
+      "country": "USA"
+    },
+    {
+      "name": "LYNE",
+      "lat": 45.710721,
+      "lon": -89.982339,
+      "country": "USA"
+    },
+    {
+      "name": "MAOC",
+      "lat": 44.154289,
+      "lon": -87.693378,
+      "country": "USA"
+    },
+    {
+      "name": "MAON",
+      "lat": 43.036884,
+      "lon": -89.409519,
+      "country": "USA"
+    },
+    {
+      "name": "MAT0",
+      "lat": 45.069605,
+      "lon": -87.628302,
+      "country": "USA"
+    },
+    {
+      "name": "MAWA",
+      "lat": 46.122337,
+      "lon": -89.876363,
+      "country": "USA"
+    },
+    {
+      "name": "MEQU",
+      "lat": 43.193242,
+      "lon": -87.923504,
+      "country": "USA"
+    },
+    {
+      "name": "MESE",
+      "lat": 44.11773,
+      "lon": -91.009738,
+      "country": "USA"
+    },
+    {
+      "name": "MFLD",
+      "lat": 44.636834,
+      "lon": -90.134967,
+      "country": "USA"
+    },
+    {
+      "name": "MIIR",
+      "lat": 46.080381,
+      "lon": -88.633364,
+      "country": "USA"
+    },
+    {
+      "name": "MIIW",
+      "lat": 46.47024,
+      "lon": -90.165711,
+      "country": "USA"
+    },
+    {
+      "name": "MING",
+      "lat": 46.126428,
+      "lon": -91.823041,
+      "country": "USA"
+    },
+    {
+      "name": "MINW",
+      "lat": 45.790091,
+      "lon": -87.918264,
+      "country": "USA"
+    },
+    {
+      "name": "MIST",
+      "lat": 45.421698,
+      "lon": -87.599612,
+      "country": "USA"
+    },
+    {
+      "name": "MNAV",
+      "lat": 44.73292,
+      "lon": -93.209705,
+      "country": "USA"
+    },
+    {
+      "name": "MNCA",
+      "lat": 43.63295,
+      "lon": -91.496243,
+      "country": "USA"
+    },
+    {
+      "name": "MNHN",
+      "lat": 45.984906,
+      "lon": -92.948314,
+      "country": "USA"
+    },
+    {
+      "name": "MNOK",
+      "lat": 44.998991,
+      "lon": -92.963561,
+      "country": "USA"
+    },
+    {
+      "name": "MNWN",
+      "lat": 44.065002,
+      "lon": -91.712633,
+      "country": "USA"
+    },
+    {
+      "name": "MOOE",
+      "lat": 42.619308,
+      "lon": -89.592947,
+      "country": "USA"
+    },
+    {
+      "name": "MSL2",
+      "lat": 46.435147,
+      "lon": -92.761317,
+      "country": "USA"
+    },
+    {
+      "name": "MTHO",
+      "lat": 43.000162,
+      "lon": -89.668104,
+      "country": "USA"
+    },
+    {
+      "name": "NELI",
+      "lat": 43.840945,
+      "lon": -90.142099,
+      "country": "USA"
+    },
+    {
+      "name": "NEMI",
+      "lat": 44.180033,
+      "lon": -90.057252,
+      "country": "USA"
+    },
+    {
+      "name": "OSE2",
+      "lat": 44.578101,
+      "lon": -91.205586,
+      "country": "USA"
+    },
+    {
+      "name": "OSHK",
+      "lat": 44.01667,
+      "lon": -88.554628,
+      "country": "USA"
+    },
+    {
+      "name": "OXFO",
+      "lat": 43.77735,
+      "lon": -89.639831,
+      "country": "USA"
+    },
+    {
+      "name": "PAR0",
+      "lat": 42.873825,
+      "lon": -88.592808,
+      "country": "USA"
+    },
+    {
+      "name": "PDCH",
+      "lat": 43.021071,
+      "lon": -91.117705,
+      "country": "USA"
+    },
+    {
+      "name": "PENG",
+      "lat": 45.271122,
+      "lon": -90.850234,
+      "country": "USA"
+    },
+    {
+      "name": "PHPS",
+      "lat": 46.063313,
+      "lon": -89.079461,
+      "country": "USA"
+    },
+    {
+      "name": "PLIN",
+      "lat": 43.276077,
+      "lon": -90.038305,
+      "country": "USA"
+    },
+    {
+      "name": "POWA",
+      "lat": 43.382469,
+      "lon": -87.886448,
+      "country": "USA"
+    },
+    {
+      "name": "PRON",
+      "lat": 43.863078,
+      "lon": -89.142309,
+      "country": "USA"
+    },
+    {
+      "name": "RACI",
+      "lat": 42.709956,
+      "lon": -87.812613,
+      "country": "USA"
+    },
+    {
+      "name": "RASN",
+      "lat": 43.03637,
+      "lon": -88.121535,
+      "country": "USA"
+    },
+    {
+      "name": "RBR2",
+      "lat": 44.96467,
+      "lon": -92.557832,
+      "country": "USA"
+    },
+    {
+      "name": "RCDO",
+      "lat": 44.77113,
+      "lon": -90.778206,
+      "country": "USA"
+    },
+    {
+      "name": "REDW",
+      "lat": 44.561819,
+      "lon": -92.534059,
+      "country": "USA"
+    },
+    {
+      "name": "REED",
+      "lat": 43.525655,
+      "lon": -89.980792,
+      "country": "USA"
+    },
+    {
+      "name": "RHER",
+      "lat": 45.632848,
+      "lon": -89.443849,
+      "country": "USA"
+    },
+    {
+      "name": "RICE",
+      "lat": 43.36692,
+      "lon": -90.381231,
+      "country": "USA"
+    },
+    {
+      "name": "RILA",
+      "lat": 45.32385,
+      "lon": -90.166955,
+      "country": "USA"
+    },
+    {
+      "name": "SECA",
+      "lat": 43.256577,
+      "lon": -90.977115,
+      "country": "USA"
+    },
+    {
+      "name": "SHAN",
+      "lat": 43.747628,
+      "lon": -87.734785,
+      "country": "USA"
+    },
+    {
+      "name": "SHNO",
+      "lat": 44.761732,
+      "lon": -88.542336,
+      "country": "USA"
+    },
+    {
+      "name": "SHON",
+      "lat": 44.448662,
+      "lon": -88.5667,
+      "country": "USA"
+    },
+    {
+      "name": "SHRG",
+      "lat": 42.579728,
+      "lon": -90.142811,
+      "country": "USA"
+    },
+    {
+      "name": "SIB2",
+      "lat": 45.188844,
+      "lon": -87.106642,
+      "country": "USA"
+    },
+    {
+      "name": "SIW2",
+      "lat": 42.867926,
+      "lon": -87.982934,
+      "country": "USA"
+    },
+    {
+      "name": "SLVB",
+      "lat": 47.302602,
+      "lon": -91.251209,
+      "country": "USA"
+    },
+    {
+      "name": "SNLK",
+      "lat": 45.853515,
+      "lon": -91.540574,
+      "country": "USA"
+    },
+    {
+      "name": "STBA",
+      "lat": 44.811929,
+      "lon": -87.400904,
+      "country": "USA"
+    },
+    {
+      "name": "STL0",
+      "lat": 45.069944,
+      "lon": -90.303816,
+      "country": "USA"
+    },
+    {
+      "name": "STPT",
+      "lat": 44.545326,
+      "lon": -89.536456,
+      "country": "USA"
+    },
+    {
+      "name": "SUNG",
+      "lat": 44.997633,
+      "lon": -88.328593,
+      "country": "USA"
+    },
+    {
+      "name": "SUNP",
+      "lat": 43.23882,
+      "lon": -89.146339,
+      "country": "USA"
+    },
+    {
+      "name": "SUP2",
+      "lat": 45.749475,
+      "lon": -87.073499,
+      "country": "USA"
+    },
+    {
+      "name": "SUWI",
+      "lat": 46.679236,
+      "lon": -92.097611,
+      "country": "USA"
+    },
+    {
+      "name": "TIGR",
+      "lat": 44.741984,
+      "lon": -89.042872,
+      "country": "USA"
+    },
+    {
+      "name": "TOMA",
+      "lat": 44.018195,
+      "lon": -90.498755,
+      "country": "USA"
+    },
+    {
+      "name": "TWOH",
+      "lat": 47.044989,
+      "lon": -91.668602,
+      "country": "USA"
+    },
+    {
+      "name": "VIUA",
+      "lat": 43.566091,
+      "lon": -90.877974,
+      "country": "USA"
+    },
+    {
+      "name": "WACA",
+      "lat": 44.348504,
+      "lon": -89.035276,
+      "country": "USA"
+    },
+    {
+      "name": "WAEE",
+      "lat": 45.386194,
+      "lon": -87.946177,
+      "country": "USA"
+    },
+    {
+      "name": "WAIS",
+      "lat": 45.387124,
+      "lon": -86.92115,
+      "country": "USA"
+    },
+    {
+      "name": "WATH",
+      "lat": 42.526702,
+      "lon": -88.593442,
+      "country": "USA"
+    },
+    {
+      "name": "WAU2",
+      "lat": 44.926442,
+      "lon": -89.624333,
+      "country": "USA"
+    },
+    {
+      "name": "WAWN",
+      "lat": 43.174059,
+      "lon": -88.736801,
+      "country": "USA"
+    },
+    {
+      "name": "WBSH",
+      "lat": 44.379541,
+      "lon": -92.030153,
+      "country": "USA"
+    },
+    {
+      "name": "WEBE",
+      "lat": 43.420547,
+      "lon": -88.148742,
+      "country": "USA"
+    },
+    {
+      "name": "WIL2",
+      "lat": 43.7903,
+      "lon": -90.54259,
+      "country": "USA"
+    },
+    {
+      "name": "WIN2",
+      "lat": 45.830227,
+      "lon": -90.996158,
+      "country": "USA"
+    },
+    {
+      "name": "WINE",
+      "lat": 44.104498,
+      "lon": -88.715249,
+      "country": "USA"
+    },
+    {
+      "name": "WISN",
+      "lat": 45.821961,
+      "lon": -92.36851,
+      "country": "USA"
+    }
+  ]
+}

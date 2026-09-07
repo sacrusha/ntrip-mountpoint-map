@@ -1,0 +1,884 @@
+{
+  "last_updated": "2026-08-31T11:00:12+00:00",
+  "scraper_version": "ae2ff201d755",
+  "source_url": "https://gnss.cropos.hr/Map/SensorMap.aspx/GetSensorListWithConfiguration",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "BJEL_32",
+      "lat": 45.896342,
+      "lon": 16.84472,
+      "country": "HRV",
+      "format": "RTCM 3.4",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO+GAL+BDS+QZS",
+      "carrier": 2
+    },
+    {
+      "name": "BJEL_31",
+      "lat": 45.896342,
+      "lon": 16.84472,
+      "country": "HRV",
+      "format": "RTCM 3.1",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "BLAT_31",
+      "lat": 42.938299,
+      "lon": 16.790077,
+      "country": "HRV",
+      "format": "RTCM 3.1",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "BLAT_32",
+      "lat": 42.938299,
+      "lon": 16.790077,
+      "country": "HRV",
+      "format": "RTCM 3.4",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO+GAL+BDS+QZS",
+      "carrier": 2
+    },
+    {
+      "name": "CAKO_31",
+      "lat": 46.387099,
+      "lon": 16.439072,
+      "country": "HRV",
+      "format": "RTCM 3.1",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "CAKO_32",
+      "lat": 46.387099,
+      "lon": 16.439072,
+      "country": "HRV",
+      "format": "RTCM 3.4",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO+GAL+BDS+QZS",
+      "carrier": 2
+    },
+    {
+      "name": "CAZM",
+      "lat": 45.749944,
+      "lon": 16.615619,
+      "country": "HRV"
+    },
+    {
+      "name": "DARU",
+      "lat": 45.589712,
+      "lon": 17.223851,
+      "country": "HRV"
+    },
+    {
+      "name": "DELN_31",
+      "lat": 45.393178,
+      "lon": 14.801019,
+      "country": "HRV",
+      "format": "RTCM 3.1",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "DELN_32",
+      "lat": 45.393178,
+      "lon": 14.801019,
+      "country": "HRV",
+      "format": "RTCM 3.4",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO+GAL+BDS+QZS",
+      "carrier": 2
+    },
+    {
+      "name": "DRNI",
+      "lat": 43.860049,
+      "lon": 16.155724,
+      "country": "HRV"
+    },
+    {
+      "name": "DUB2_31",
+      "lat": 42.650163,
+      "lon": 18.110313,
+      "country": "HRV",
+      "format": "RTCM 3.1",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "DUB2_32",
+      "lat": 42.650163,
+      "lon": 18.110313,
+      "country": "HRV",
+      "format": "RTCM 3.4",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO+GAL+BDS+QZS",
+      "carrier": 2
+    },
+    {
+      "name": "DUBR_31",
+      "lat": 42.650056,
+      "lon": 18.091895,
+      "country": "HRV",
+      "format": "RTCM 3.1",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "DUBR_32",
+      "lat": 42.650056,
+      "lon": 18.091895,
+      "country": "HRV",
+      "format": "RTCM 3.4",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO+GAL+BDS+QZS",
+      "carrier": 2
+    },
+    {
+      "name": "GLIN",
+      "lat": 45.339381,
+      "lon": 16.090662,
+      "country": "HRV"
+    },
+    {
+      "name": "GOSP_31",
+      "lat": 44.552141,
+      "lon": 15.377374,
+      "country": "HRV",
+      "format": "RTCM 3.1",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "GOSP_32",
+      "lat": 44.552141,
+      "lon": 15.377374,
+      "country": "HRV",
+      "format": "RTCM 3.4",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO+GAL+BDS+QZS",
+      "carrier": 2
+    },
+    {
+      "name": "GRA2_31",
+      "lat": 44.300481,
+      "lon": 15.852158,
+      "country": "HRV",
+      "format": "RTCM 3.1",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "GRA2_32",
+      "lat": 44.300481,
+      "lon": 15.852158,
+      "country": "HRV",
+      "format": "RTCM 3.4",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO+GAL+BDS+QZS",
+      "carrier": 2
+    },
+    {
+      "name": "HVA2_31",
+      "lat": 43.177436,
+      "lon": 16.44902,
+      "country": "HRV",
+      "format": "RTCM 3.1",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "HVA2_32",
+      "lat": 43.177436,
+      "lon": 16.44902,
+      "country": "HRV",
+      "format": "RTCM 3.4",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO+GAL+BDS+QZS",
+      "carrier": 2
+    },
+    {
+      "name": "IMOT_31",
+      "lat": 43.447805,
+      "lon": 17.212483,
+      "country": "HRV",
+      "format": "RTCM 3.1",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "IMOT_32",
+      "lat": 43.447805,
+      "lon": 17.212483,
+      "country": "HRV",
+      "format": "RTCM 3.4",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO+GAL+BDS+QZS",
+      "carrier": 2
+    },
+    {
+      "name": "JAST",
+      "lat": 45.674147,
+      "lon": 15.655693,
+      "country": "HRV"
+    },
+    {
+      "name": "KARL_31",
+      "lat": 45.492078,
+      "lon": 15.554352,
+      "country": "HRV",
+      "format": "RTCM 3.1",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "KARL_32",
+      "lat": 45.492078,
+      "lon": 15.554352,
+      "country": "HRV",
+      "format": "RTCM 3.4",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO+GAL+BDS+QZS",
+      "carrier": 2
+    },
+    {
+      "name": "MALI_31",
+      "lat": 44.534058,
+      "lon": 14.46786,
+      "country": "HRV",
+      "format": "RTCM 3.1",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "MALI_32",
+      "lat": 44.534058,
+      "lon": 14.46786,
+      "country": "HRV",
+      "format": "RTCM 3.4",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO+GAL+BDS+QZS",
+      "carrier": 2
+    },
+    {
+      "name": "MET3_31",
+      "lat": 43.05622,
+      "lon": 17.649961,
+      "country": "HRV",
+      "format": "RTCM 3.1",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "MET3_32",
+      "lat": 43.05622,
+      "lon": 17.649961,
+      "country": "HRV",
+      "format": "RTCM 3.4",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO+GAL+BDS+QZS",
+      "carrier": 2
+    },
+    {
+      "name": "NASI_31",
+      "lat": 45.490989,
+      "lon": 18.094154,
+      "country": "HRV",
+      "format": "RTCM 3.1",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "NASI_32",
+      "lat": 45.490989,
+      "lon": 18.094154,
+      "country": "HRV",
+      "format": "RTCM 3.4",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO+GAL+BDS+QZS",
+      "carrier": 2
+    },
+    {
+      "name": "NGRD_31",
+      "lat": 45.259586,
+      "lon": 17.379402,
+      "country": "HRV",
+      "format": "RTCM 3.1",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "NGRD_32",
+      "lat": 45.259586,
+      "lon": 17.379402,
+      "country": "HRV",
+      "format": "RTCM 3.4",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO+GAL+BDS+QZS",
+      "carrier": 2
+    },
+    {
+      "name": "NOVS_31",
+      "lat": 45.341814,
+      "lon": 16.977466,
+      "country": "HRV",
+      "format": "RTCM 3.1",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "NOVS_32",
+      "lat": 45.341814,
+      "lon": 16.977466,
+      "country": "HRV",
+      "format": "RTCM 3.4",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO+GAL+BDS+QZS",
+      "carrier": 2
+    },
+    {
+      "name": "PAZI",
+      "lat": 45.239019,
+      "lon": 13.937581,
+      "country": "HRV"
+    },
+    {
+      "name": "PORE_31",
+      "lat": 45.226014,
+      "lon": 13.595041,
+      "country": "HRV",
+      "format": "RTCM 3.1",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "PORE_32",
+      "lat": 45.226014,
+      "lon": 13.595041,
+      "country": "HRV",
+      "format": "RTCM 3.4",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO+GAL+BDS+QZS",
+      "carrier": 2
+    },
+    {
+      "name": "POZE_31",
+      "lat": 45.332819,
+      "lon": 17.675459,
+      "country": "HRV",
+      "format": "RTCM 3.1",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "POZE_32",
+      "lat": 45.332819,
+      "lon": 17.675459,
+      "country": "HRV",
+      "format": "RTCM 3.4",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO+GAL+BDS+QZS",
+      "carrier": 2
+    },
+    {
+      "name": "PULA_31",
+      "lat": 44.869777,
+      "lon": 13.841748,
+      "country": "HRV",
+      "format": "RTCM 3.1",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "PULA_32",
+      "lat": 44.869777,
+      "lon": 13.841748,
+      "country": "HRV",
+      "format": "RTCM 3.4",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO+GAL+BDS+QZS",
+      "carrier": 2
+    },
+    {
+      "name": "RG01_31",
+      "lat": 45.828974,
+      "lon": 15.85857,
+      "country": "HRV",
+      "format": "RTCM 3.1",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "RG01_32",
+      "lat": 45.828974,
+      "lon": 15.85857,
+      "country": "HRV",
+      "format": "RTCM 3.4",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO+GAL+BDS+QZS",
+      "carrier": 2
+    },
+    {
+      "name": "RGNF_31",
+      "lat": 45.807006,
+      "lon": 15.963854,
+      "country": "HRV",
+      "format": "RTCM 3.1",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "RGNF_32",
+      "lat": 45.807006,
+      "lon": 15.963854,
+      "country": "HRV",
+      "format": "RTCM 3.4",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO+GAL+BDS+QZS",
+      "carrier": 2
+    },
+    {
+      "name": "RIJE_31",
+      "lat": 45.365779,
+      "lon": 14.346164,
+      "country": "HRV",
+      "format": "RTCM 3.1",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "RIJE_32",
+      "lat": 45.365779,
+      "lon": 14.346164,
+      "country": "HRV",
+      "format": "RTCM 3.4",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO+GAL+BDS+QZS",
+      "carrier": 2
+    },
+    {
+      "name": "SENJ_31",
+      "lat": 44.988318,
+      "lon": 14.905569,
+      "country": "HRV",
+      "format": "RTCM 3.1",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "SENJ_32",
+      "lat": 44.988318,
+      "lon": 14.905569,
+      "country": "HRV",
+      "format": "RTCM 3.4",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO+GAL+BDS+QZS",
+      "carrier": 2
+    },
+    {
+      "name": "SIB2_31",
+      "lat": 43.735697,
+      "lon": 15.892822,
+      "country": "HRV",
+      "format": "RTCM 3.1",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "SIB2_32",
+      "lat": 43.735697,
+      "lon": 15.892822,
+      "country": "HRV",
+      "format": "RTCM 3.4",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO+GAL+BDS+QZS",
+      "carrier": 2
+    },
+    {
+      "name": "SISA_31",
+      "lat": 45.485409,
+      "lon": 16.367985,
+      "country": "HRV",
+      "format": "RTCM 3.1",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "SISA_32",
+      "lat": 45.485409,
+      "lon": 16.367985,
+      "country": "HRV",
+      "format": "RTCM 3.4",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO+GAL+BDS+QZS",
+      "carrier": 2
+    },
+    {
+      "name": "SLAT_31",
+      "lat": 45.701187,
+      "lon": 17.702921,
+      "country": "HRV",
+      "format": "RTCM 3.1",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "SLAT_32",
+      "lat": 45.701187,
+      "lon": 17.702921,
+      "country": "HRV",
+      "format": "RTCM 3.4",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO+GAL+BDS+QZS",
+      "carrier": 2
+    },
+    {
+      "name": "SLUN_31",
+      "lat": 45.114669,
+      "lon": 15.584245,
+      "country": "HRV",
+      "format": "RTCM 3.1",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "SLUN_32",
+      "lat": 45.114669,
+      "lon": 15.584245,
+      "country": "HRV",
+      "format": "RTCM 3.4",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO+GAL+BDS+QZS",
+      "carrier": 2
+    },
+    {
+      "name": "SPL2_31",
+      "lat": 43.513041,
+      "lon": 16.443625,
+      "country": "HRV",
+      "format": "RTCM 3.1",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO+GAL+BDS+QZS",
+      "carrier": 2
+    },
+    {
+      "name": "SPL2_32",
+      "lat": 43.513041,
+      "lon": 16.443625,
+      "country": "HRV",
+      "format": "RTCM 3.4",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO+GAL+BDS+QZS",
+      "carrier": 2
+    },
+    {
+      "name": "STGF_31",
+      "lat": 43.511135,
+      "lon": 16.465022,
+      "country": "HRV",
+      "format": "RTCM 3.1",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO+GAL+BDS+QZS",
+      "carrier": 2
+    },
+    {
+      "name": "STGF_32",
+      "lat": 43.511135,
+      "lon": 16.465022,
+      "country": "HRV",
+      "format": "RTCM 3.4",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO+GAL+BDS+QZS",
+      "carrier": 2
+    },
+    {
+      "name": "VALP_31",
+      "lat": 45.660575,
+      "lon": 18.417362,
+      "country": "HRV",
+      "format": "RTCM 3.1",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "VALP_32",
+      "lat": 45.660575,
+      "lon": 18.417362,
+      "country": "HRV",
+      "format": "RTCM 3.4",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO+GAL+BDS+QZS",
+      "carrier": 2
+    },
+    {
+      "name": "VISO_31",
+      "lat": 43.065672,
+      "lon": 16.188958,
+      "country": "HRV",
+      "format": "RTCM 3.1",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "VISO_32",
+      "lat": 43.065672,
+      "lon": 16.188958,
+      "country": "HRV",
+      "format": "RTCM 3.4",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO+GAL+BDS+QZS",
+      "carrier": 2
+    },
+    {
+      "name": "VUKO_31",
+      "lat": 45.355179,
+      "lon": 18.997982,
+      "country": "HRV",
+      "format": "RTCM 3.1",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "VUKO_32",
+      "lat": 45.355179,
+      "lon": 18.997982,
+      "country": "HRV",
+      "format": "RTCM 3.4",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO+GAL+BDS+QZS",
+      "carrier": 2
+    },
+    {
+      "name": "ZABO_31",
+      "lat": 46.030042,
+      "lon": 15.909243,
+      "country": "HRV",
+      "format": "RTCM 3.1",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "ZABO_32",
+      "lat": 46.030042,
+      "lon": 15.909243,
+      "country": "HRV",
+      "format": "RTCM 3.4",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO+GAL+BDS+QZS",
+      "carrier": 2
+    },
+    {
+      "name": "ZADA_31",
+      "lat": 44.113173,
+      "lon": 15.227585,
+      "country": "HRV",
+      "format": "RTCM 3.1",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "ZADA_32",
+      "lat": 44.113173,
+      "lon": 15.227585,
+      "country": "HRV",
+      "format": "RTCM 3.4",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO+GAL+BDS+QZS",
+      "carrier": 2
+    },
+    {
+      "name": "ZUPA_31",
+      "lat": 45.074754,
+      "lon": 18.695378,
+      "country": "HRV",
+      "format": "RTCM 3.1",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "ZUPA_32",
+      "lat": 45.074754,
+      "lon": 18.695378,
+      "country": "HRV",
+      "format": "RTCM 3.4",
+      "groups": [
+        "own"
+      ],
+      "constellations": "GPS+GLO+GAL+BDS+QZS",
+      "carrier": 2
+    }
+  ]
+}

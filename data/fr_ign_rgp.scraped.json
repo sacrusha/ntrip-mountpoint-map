@@ -1,0 +1,432 @@
+{
+  "last_updated": "2026-09-02T11:00:11+00:00",
+  "scraper_version": "5ce11def3fa2",
+  "source_url": "http://rgp-ip.ign.fr:80/",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "AAER00FRA7",
+      "lat": 49.78,
+      "lon": 4.64,
+      "country": "FRA",
+      "format": "RTCM3.3",
+      "carrier": 2
+    },
+    {
+      "name": "AUTN00FRA7",
+      "lat": 46.95,
+      "lon": 4.28,
+      "country": "FRA",
+      "format": "RTCM 3.3",
+      "carrier": 2
+    },
+    {
+      "name": "AUTN1",
+      "lat": 46.95,
+      "lon": 4.28,
+      "country": "FRA",
+      "format": "RTCM 3.1",
+      "carrier": 2
+    },
+    {
+      "name": "AXPV00FRA7",
+      "lat": 43.49,
+      "lon": 5.33,
+      "country": "FRA",
+      "format": "RTCM 3.3",
+      "carrier": 2
+    },
+    {
+      "name": "AXPV1",
+      "lat": 43.49,
+      "lon": 5.33,
+      "country": "FRA",
+      "format": "RTCM 3.1",
+      "carrier": 2
+    },
+    {
+      "name": "BRMF00FRA7",
+      "lat": 45.72,
+      "lon": 4.93,
+      "country": "FRA",
+      "format": "RTCM 3.3",
+      "carrier": 2
+    },
+    {
+      "name": "BRMF1",
+      "lat": 45.72,
+      "lon": 4.93,
+      "country": "FRA",
+      "format": "RTCM 3.1",
+      "carrier": 2
+    },
+    {
+      "name": "BRST00FRA7",
+      "lat": 48.38,
+      "lon": -4.5,
+      "country": "FRA",
+      "format": "RTCM 3.2",
+      "carrier": 2
+    },
+    {
+      "name": "BRST1",
+      "lat": 48.38,
+      "lon": -4.5,
+      "country": "FRA",
+      "format": "RTCM 3.1",
+      "carrier": 2
+    },
+    {
+      "name": "BSCN00FRA7",
+      "lat": 47.24,
+      "lon": 5.99,
+      "country": "FRA",
+      "format": "RTCM 3.3",
+      "carrier": 2
+    },
+    {
+      "name": "BSCN1",
+      "lat": 47.24,
+      "lon": 5.99,
+      "country": "FRA",
+      "format": "RTCM 3.1",
+      "carrier": 2
+    },
+    {
+      "name": "CRTE00FRA7",
+      "lat": 42.3,
+      "lon": 9.15,
+      "country": "FRA",
+      "format": "RTCM 3.3",
+      "carrier": 2
+    },
+    {
+      "name": "CRTE1",
+      "lat": 42.3,
+      "lon": 9.15,
+      "country": "FRA",
+      "format": "RTCM 3.1",
+      "carrier": 2
+    },
+    {
+      "name": "EGLT0",
+      "lat": 45.4,
+      "lon": 2.05,
+      "country": "FRA",
+      "format": "RTCM 2.3",
+      "carrier": 2
+    },
+    {
+      "name": "EGLT00FRA7",
+      "lat": 45.4,
+      "lon": 2.05,
+      "country": "FRA",
+      "format": "RTCM 3.3",
+      "carrier": 2
+    },
+    {
+      "name": "EGLT1",
+      "lat": 45.4,
+      "lon": 2.05,
+      "country": "FRA",
+      "format": "RTCM 3.1",
+      "carrier": 2
+    },
+    {
+      "name": "ENTZ00FRA7",
+      "lat": 48.53,
+      "lon": 7.63,
+      "country": "FRA",
+      "format": "RTCM3.3",
+      "carrier": 2
+    },
+    {
+      "name": "ENTZ1",
+      "lat": 48.53,
+      "lon": 7.63,
+      "country": "FRA",
+      "format": "RTCM 3.1",
+      "carrier": 2
+    },
+    {
+      "name": "GRAC00FRA7",
+      "lat": 43.75,
+      "lon": 6.92,
+      "country": "FRA",
+      "format": "RTCM 3.3",
+      "carrier": 2
+    },
+    {
+      "name": "GRAC1",
+      "lat": 43.75,
+      "lon": 6.92,
+      "country": "FRA",
+      "format": "RTCM 3.1",
+      "carrier": 2
+    },
+    {
+      "name": "GRAS00FRA0",
+      "lat": 43.75,
+      "lon": 6.92,
+      "country": "FRA",
+      "format": "RTCM 3.3",
+      "carrier": 2
+    },
+    {
+      "name": "GUIP00FRA7",
+      "lat": 48.44,
+      "lon": -4.41,
+      "country": "FRA",
+      "format": "RTCM 3.3",
+      "carrier": 2
+    },
+    {
+      "name": "GUIP1",
+      "lat": 48.44,
+      "lon": -4.41,
+      "country": "FRA",
+      "format": "RTCM 3.1",
+      "carrier": 2
+    },
+    {
+      "name": "IGNP00FRA7",
+      "lat": 48.5,
+      "lon": 2.25,
+      "country": "FRA",
+      "format": "RTCM3.3",
+      "carrier": 2
+    },
+    {
+      "name": "ILDX00FRA7",
+      "lat": 46.0,
+      "lon": -1.17,
+      "country": "FRA",
+      "format": "RTCM 3.3",
+      "carrier": 2
+    },
+    {
+      "name": "ILDX1",
+      "lat": 46.0,
+      "lon": -1.17,
+      "country": "FRA",
+      "format": "RTCM 3.1",
+      "carrier": 2
+    },
+    {
+      "name": "LBTM1",
+      "lat": 48.3,
+      "lon": -2.45,
+      "country": "FRA",
+      "format": "RTCM 3.3",
+      "carrier": 2
+    },
+    {
+      "name": "LBTM7",
+      "lat": 48.3,
+      "lon": -2.45,
+      "country": "FRA",
+      "format": "RTCM 3.3",
+      "carrier": 2
+    },
+    {
+      "name": "LIL200FRA7",
+      "lat": 50.61,
+      "lon": 3.14,
+      "country": "FRA",
+      "format": "RTCM 3.3",
+      "carrier": 2
+    },
+    {
+      "name": "LIL21",
+      "lat": 50.61,
+      "lon": 3.14,
+      "country": "FRA",
+      "format": "RTCM 3.1",
+      "carrier": 2
+    },
+    {
+      "name": "MARS00FRA7",
+      "lat": 43.27,
+      "lon": 5.35,
+      "country": "FRA",
+      "format": "RTCM 3.3",
+      "carrier": 2
+    },
+    {
+      "name": "MARS1",
+      "lat": 43.27,
+      "lon": 5.35,
+      "country": "FRA",
+      "format": "RTCM 3.1",
+      "carrier": 2
+    },
+    {
+      "name": "MELH00FRA7",
+      "lat": 50.57,
+      "lon": 2.85,
+      "country": "FRA",
+      "format": "RTCM 3.2",
+      "carrier": 2
+    },
+    {
+      "name": "MELH1",
+      "lat": 50.57,
+      "lon": 2.85,
+      "country": "FRA",
+      "format": "RTCM 3.1",
+      "carrier": 2
+    },
+    {
+      "name": "MELR00FRA7",
+      "lat": 50.75,
+      "lon": 3.13,
+      "country": "FRA",
+      "format": "RTCM 3.2",
+      "carrier": 2
+    },
+    {
+      "name": "MELR1",
+      "lat": 50.75,
+      "lon": 3.13,
+      "country": "FRA",
+      "format": "RTCM 3.1",
+      "carrier": 2
+    },
+    {
+      "name": "MLVL00FRA7",
+      "lat": 48.84,
+      "lon": 2.59,
+      "country": "FRA",
+      "format": "RTCM 3.3",
+      "carrier": 2
+    },
+    {
+      "name": "MLVL1",
+      "lat": 48.84,
+      "lon": 2.59,
+      "country": "FRA",
+      "format": "RTCM 3.1",
+      "carrier": 2
+    },
+    {
+      "name": "NMCU1",
+      "lat": 47.22,
+      "lon": -1.6,
+      "country": "FRA",
+      "format": "RTCM 3.1",
+      "carrier": 2
+    },
+    {
+      "name": "PUYV00FRA7",
+      "lat": 45.04,
+      "lon": 3.87,
+      "country": "FRA",
+      "format": "RTCM 3.3",
+      "carrier": 2
+    },
+    {
+      "name": "PUYV1",
+      "lat": 45.04,
+      "lon": 3.87,
+      "country": "FRA",
+      "format": "RTCM 3.1",
+      "carrier": 2
+    },
+    {
+      "name": "SCOA00FRA7",
+      "lat": 43.39,
+      "lon": -1.68,
+      "country": "FRA",
+      "format": "RTCM 3.3",
+      "carrier": 2
+    },
+    {
+      "name": "SCOA1",
+      "lat": 43.39,
+      "lon": -1.68,
+      "country": "FRA",
+      "format": "RTCM 3.1",
+      "carrier": 2
+    },
+    {
+      "name": "STBR00FRA0",
+      "lat": 48.3,
+      "lon": -2.45,
+      "country": "FRA",
+      "format": "RTCM 3.1",
+      "carrier": 2
+    },
+    {
+      "name": "STBR00FRA7",
+      "lat": 48.3,
+      "lon": -2.45,
+      "country": "FRA",
+      "format": "RTCM 3.3",
+      "carrier": 2
+    },
+    {
+      "name": "TLMF00FRA7",
+      "lat": 43.57,
+      "lon": 1.38,
+      "country": "FRA",
+      "format": "RTCM 3.3",
+      "carrier": 2
+    },
+    {
+      "name": "TLMF1",
+      "lat": 43.57,
+      "lon": 1.38,
+      "country": "FRA",
+      "format": "RTCM 3.1",
+      "carrier": 2
+    },
+    {
+      "name": "TLSE00FRA0",
+      "lat": 43.56,
+      "lon": 1.48,
+      "country": "FRA",
+      "format": "RTCM 3.3",
+      "carrier": 2
+    },
+    {
+      "name": "TLSG00FRA0",
+      "lat": 43.32,
+      "lon": 1.29,
+      "country": "FRA",
+      "format": "RTCM 3.3",
+      "carrier": 2
+    },
+    {
+      "name": "TLTG00FRA7",
+      "lat": 43.12,
+      "lon": 5.91,
+      "country": "FRA",
+      "format": "RTCM 3.3",
+      "carrier": 2
+    },
+    {
+      "name": "TLTG1",
+      "lat": 43.12,
+      "lon": 5.91,
+      "country": "FRA",
+      "format": "RTCM 3.1",
+      "carrier": 2
+    },
+    {
+      "name": "VFCH00FRA7",
+      "lat": 47.29,
+      "lon": 1.72,
+      "country": "FRA",
+      "format": "RTCM 3.3",
+      "carrier": 2
+    },
+    {
+      "name": "VFCH1",
+      "lat": 47.29,
+      "lon": 1.72,
+      "country": "FRA",
+      "format": "RTCM 3.1",
+      "carrier": 2
+    }
+  ]
+}

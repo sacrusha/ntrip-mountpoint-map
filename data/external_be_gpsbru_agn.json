@@ -1,0 +1,8 @@
+{
+  "last_updated": "2026-06-16",
+  "source_url": "https://agn.ngi.be/NL/NL1-1.jsp",
+  "pin_origin": "register",
+  "stations": [
+    {"name": "UKKE", "lat": 50.7983, "lon": 4.3587, "format": "RTCM 3.0", "carrier": 2, "constellations": "GPS+GLO", "country": "BEL"}
+  ]
+}

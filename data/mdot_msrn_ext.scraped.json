@@ -1,0 +1,560 @@
+{
+  "last_updated": "2026-08-31T11:00:14+00:00",
+  "scraper_version": "212c580d1ad3",
+  "source_url": "https://services2.arcgis.com/C8EMgrsFcRFL6LrL/arcgis/rest/services/NOAA_CORS_Network_Test/FeatureServer/0",
+  "pin_origin": "external",
+  "stations": [
+    {
+      "name": "ADRI",
+      "lat": 41.918889,
+      "lon": -84.024167,
+      "country": "USA"
+    },
+    {
+      "name": "AVCA",
+      "lat": 43.060833,
+      "lon": -82.6875,
+      "country": "USA"
+    },
+    {
+      "name": "BIGR",
+      "lat": 43.678889,
+      "lon": -85.4875,
+      "country": "USA"
+    },
+    {
+      "name": "BRCH",
+      "lat": 43.250556,
+      "lon": -83.867222,
+      "country": "USA"
+    },
+    {
+      "name": "BRIG",
+      "lat": 42.52,
+      "lon": -83.756389,
+      "country": "USA"
+    },
+    {
+      "name": "CHSN",
+      "lat": 43.189722,
+      "lon": -84.122778,
+      "country": "USA"
+    },
+    {
+      "name": "CLRE",
+      "lat": 42.723611,
+      "lon": -82.595556,
+      "country": "USA"
+    },
+    {
+      "name": "CPAC",
+      "lat": 43.010278,
+      "lon": -82.934167,
+      "country": "USA"
+    },
+    {
+      "name": "FRTG",
+      "lat": 43.0375,
+      "lon": -82.488056,
+      "country": "USA"
+    },
+    {
+      "name": "GRAR",
+      "lat": 42.988611,
+      "lon": -85.674167,
+      "country": "USA"
+    },
+    {
+      "name": "HAST",
+      "lat": 42.609444,
+      "lon": -85.265,
+      "country": "USA"
+    },
+    {
+      "name": "HBCH",
+      "lat": 43.846111,
+      "lon": -82.643056,
+      "country": "USA"
+    },
+    {
+      "name": "HMLK",
+      "lat": 43.411389,
+      "lon": -84.237222,
+      "country": "USA"
+    },
+    {
+      "name": "LANS",
+      "lat": 42.673611,
+      "lon": -84.663056,
+      "country": "USA"
+    },
+    {
+      "name": "METR",
+      "lat": 42.684722,
+      "lon": -83.2425,
+      "country": "USA"
+    },
+    {
+      "name": "MIAL",
+      "lat": 45.062778,
+      "lon": -83.428333,
+      "country": "USA"
+    },
+    {
+      "name": "MIAR",
+      "lat": 43.9825,
+      "lon": -83.979722,
+      "country": "USA"
+    },
+    {
+      "name": "MIBC",
+      "lat": 42.321667,
+      "lon": -85.2025,
+      "country": "USA"
+    },
+    {
+      "name": "MIBH",
+      "lat": 42.088056,
+      "lon": -86.389722,
+      "country": "USA"
+    },
+    {
+      "name": "MIBO",
+      "lat": 45.205556,
+      "lon": -84.995556,
+      "country": "USA"
+    },
+    {
+      "name": "MIBX",
+      "lat": 46.763889,
+      "lon": -88.512778,
+      "country": "USA"
+    },
+    {
+      "name": "MIBY",
+      "lat": 43.623056,
+      "lon": -83.946944,
+      "country": "USA"
+    },
+    {
+      "name": "MICA",
+      "lat": 43.427778,
+      "lon": -82.667778,
+      "country": "USA"
+    },
+    {
+      "name": "MICC",
+      "lat": 43.607222,
+      "lon": -83.171944,
+      "country": "USA"
+    },
+    {
+      "name": "MICP",
+      "lat": 47.467222,
+      "lon": -87.874167,
+      "country": "USA"
+    },
+    {
+      "name": "MICV",
+      "lat": 41.9225,
+      "lon": -85.516111,
+      "country": "USA"
+    },
+    {
+      "name": "MICW",
+      "lat": 41.939444,
+      "lon": -84.979722,
+      "country": "USA"
+    },
+    {
+      "name": "MICX",
+      "lat": 45.310278,
+      "lon": -85.263056,
+      "country": "USA"
+    },
+    {
+      "name": "MIDI",
+      "lat": 46.015278,
+      "lon": -83.74,
+      "country": "USA"
+    },
+    {
+      "name": "MIDS",
+      "lat": 43.049722,
+      "lon": -83.519722,
+      "country": "USA"
+    },
+    {
+      "name": "MIDT",
+      "lat": 42.443611,
+      "lon": -83.005278,
+      "country": "USA"
+    },
+    {
+      "name": "MIFW",
+      "lat": 42.298889,
+      "lon": -83.0925,
+      "country": "USA"
+    },
+    {
+      "name": "MIGD",
+      "lat": 45.026389,
+      "lon": -84.644722,
+      "country": "USA"
+    },
+    {
+      "name": "MIGH",
+      "lat": 43.0075,
+      "lon": -86.208611,
+      "country": "USA"
+    },
+    {
+      "name": "MIGL",
+      "lat": 44.655556,
+      "lon": -84.703333,
+      "country": "USA"
+    },
+    {
+      "name": "MIHA",
+      "lat": 44.018333,
+      "lon": -84.811944,
+      "country": "USA"
+    },
+    {
+      "name": "MIHD",
+      "lat": 41.888611,
+      "lon": -84.616111,
+      "country": "USA"
+    },
+    {
+      "name": "MIHL",
+      "lat": 44.332778,
+      "lon": -84.794722,
+      "country": "USA"
+    },
+    {
+      "name": "MIHO",
+      "lat": 42.813889,
+      "lon": -86.083889,
+      "country": "USA"
+    },
+    {
+      "name": "MIHT",
+      "lat": 43.688056,
+      "lon": -86.364444,
+      "country": "USA"
+    },
+    {
+      "name": "MIHV",
+      "lat": 42.886667,
+      "lon": -85.858611,
+      "country": "USA"
+    },
+    {
+      "name": "MIIR",
+      "lat": 46.080278,
+      "lon": -88.633333,
+      "country": "USA"
+    },
+    {
+      "name": "MIIT",
+      "lat": 43.288889,
+      "lon": -84.591389,
+      "country": "USA"
+    },
+    {
+      "name": "MIIW",
+      "lat": 46.47,
+      "lon": -90.165556,
+      "country": "USA"
+    },
+    {
+      "name": "MIKK",
+      "lat": 44.741944,
+      "lon": -85.185278,
+      "country": "USA"
+    },
+    {
+      "name": "MIKS",
+      "lat": 41.850556,
+      "lon": -84.351111,
+      "country": "USA"
+    },
+    {
+      "name": "MILI",
+      "lat": 42.435,
+      "lon": -83.414722,
+      "country": "USA"
+    },
+    {
+      "name": "MILS",
+      "lat": 46.486944,
+      "lon": -84.364167,
+      "country": "USA"
+    },
+    {
+      "name": "MILT",
+      "lat": 43.947222,
+      "lon": -86.441389,
+      "country": "USA"
+    },
+    {
+      "name": "MIMA",
+      "lat": 42.564167,
+      "lon": -84.451667,
+      "country": "USA"
+    },
+    {
+      "name": "MIMC",
+      "lat": 45.777222,
+      "lon": -84.720833,
+      "country": "USA"
+    },
+    {
+      "name": "MIME",
+      "lat": 45.095833,
+      "lon": -87.59,
+      "country": "USA"
+    },
+    {
+      "name": "MIMK",
+      "lat": 43.203056,
+      "lon": -86.249167,
+      "country": "USA"
+    },
+    {
+      "name": "MIMN",
+      "lat": 44.372222,
+      "lon": -86.162778,
+      "country": "USA"
+    },
+    {
+      "name": "MIMO",
+      "lat": 41.924722,
+      "lon": -83.464722,
+      "country": "USA"
+    },
+    {
+      "name": "MIMQ",
+      "lat": 46.545278,
+      "lon": -87.378611,
+      "country": "USA"
+    },
+    {
+      "name": "MIMR",
+      "lat": 42.153056,
+      "lon": -84.038611,
+      "country": "USA"
+    },
+    {
+      "name": "MINB",
+      "lat": 46.284444,
+      "lon": -84.209722,
+      "country": "USA"
+    },
+    {
+      "name": "MIND",
+      "lat": 45.384722,
+      "lon": -84.629722,
+      "country": "USA"
+    },
+    {
+      "name": "MINH",
+      "lat": 42.728889,
+      "lon": -82.796389,
+      "country": "USA"
+    },
+    {
+      "name": "MINI",
+      "lat": 41.809167,
+      "lon": -86.223611,
+      "country": "USA"
+    },
+    {
+      "name": "MINW",
+      "lat": 45.79,
+      "lon": -87.918056,
+      "country": "USA"
+    },
+    {
+      "name": "MIO2",
+      "lat": 44.647222,
+      "lon": -84.148611,
+      "country": "USA"
+    },
+    {
+      "name": "MIOG",
+      "lat": 44.301389,
+      "lon": -84.126389,
+      "country": "USA"
+    },
+    {
+      "name": "MIOT",
+      "lat": 46.863333,
+      "lon": -89.299444,
+      "country": "USA"
+    },
+    {
+      "name": "MIPP",
+      "lat": 42.219167,
+      "lon": -85.876667,
+      "country": "USA"
+    },
+    {
+      "name": "MIPW",
+      "lat": 42.462778,
+      "lon": -85.656944,
+      "country": "USA"
+    },
+    {
+      "name": "MIQE",
+      "lat": 45.966667,
+      "lon": -86.235556,
+      "country": "USA"
+    },
+    {
+      "name": "MISC",
+      "lat": 42.967778,
+      "lon": -83.834722,
+      "country": "USA"
+    },
+    {
+      "name": "MISH",
+      "lat": 42.383889,
+      "lon": -86.264444,
+      "country": "USA"
+    },
+    {
+      "name": "MISR",
+      "lat": 46.485833,
+      "lon": -84.301667,
+      "country": "USA"
+    },
+    {
+      "name": "MITC",
+      "lat": 44.713056,
+      "lon": -85.605833,
+      "country": "USA"
+    },
+    {
+      "name": "MITO",
+      "lat": 41.8,
+      "lon": -86.603333,
+      "country": "USA"
+    },
+    {
+      "name": "MITS",
+      "lat": 43.301111,
+      "lon": -85.086944,
+      "country": "USA"
+    },
+    {
+      "name": "MITU",
+      "lat": 47.110833,
+      "lon": -88.551667,
+      "country": "USA"
+    },
+    {
+      "name": "MITW",
+      "lat": 44.279722,
+      "lon": -83.583611,
+      "country": "USA"
+    },
+    {
+      "name": "MIVA",
+      "lat": 43.378611,
+      "lon": -83.585278,
+      "country": "USA"
+    },
+    {
+      "name": "MIWA",
+      "lat": 42.7825,
+      "lon": -83.005833,
+      "country": "USA"
+    },
+    {
+      "name": "MIWB",
+      "lat": 42.676389,
+      "lon": -84.2175,
+      "country": "USA"
+    },
+    {
+      "name": "MIWC",
+      "lat": 43.569167,
+      "lon": -85.777778,
+      "country": "USA"
+    },
+    {
+      "name": "MPLE",
+      "lat": 43.615,
+      "lon": -84.761667,
+      "country": "USA"
+    },
+    {
+      "name": "MSKY",
+      "lat": 43.2375,
+      "lon": -86.054444,
+      "country": "USA"
+    },
+    {
+      "name": "NOR1",
+      "lat": 44.255556,
+      "lon": -85.436944,
+      "country": "USA"
+    },
+    {
+      "name": "NOR3",
+      "lat": 45.068333,
+      "lon": -83.568611,
+      "country": "USA"
+    },
+    {
+      "name": "PTIR",
+      "lat": 46.484444,
+      "lon": -84.630833,
+      "country": "USA"
+    },
+    {
+      "name": "SIBY",
+      "lat": 42.17,
+      "lon": -83.241111,
+      "country": "USA"
+    },
+    {
+      "name": "SUP2",
+      "lat": 45.749444,
+      "lon": -87.073333,
+      "country": "USA"
+    },
+    {
+      "name": "SUP3",
+      "lat": 46.3025,
+      "lon": -85.512778,
+      "country": "USA"
+    },
+    {
+      "name": "UNIV",
+      "lat": 42.285556,
+      "lon": -84.385833,
+      "country": "USA"
+    },
+    {
+      "name": "UOFM",
+      "lat": 42.295556,
+      "lon": -83.839444,
+      "country": "USA"
+    },
+    {
+      "name": "WARR",
+      "lat": 42.533889,
+      "lon": -83.020278,
+      "country": "USA"
+    },
+    {
+      "name": "WRUN",
+      "lat": 42.234722,
+      "lon": -83.541667,
+      "country": "USA"
+    }
+  ]
+}

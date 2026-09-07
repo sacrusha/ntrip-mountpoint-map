@@ -1,0 +1,188 @@
+{
+  "last_updated": "2026-09-02T05:00:09+00:00",
+  "scraper_version": "5254d4ab0c73",
+  "source_url": "http://geocors.napr.gov.ge/SBC/User/SiteMap/SiteMapPublic",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "AKH1",
+      "lat": 41.630784,
+      "lon": 42.968138,
+      "country": "GEO"
+    },
+    {
+      "name": "ALGT",
+      "lat": 41.386128,
+      "lon": 45.036866,
+      "country": "GEO"
+    },
+    {
+      "name": "BAT1",
+      "lat": 41.604003,
+      "lon": 41.693598,
+      "country": "GEO"
+    },
+    {
+      "name": "BORJ",
+      "lat": 41.841259,
+      "lon": 43.386006,
+      "country": "GEO"
+    },
+    {
+      "name": "CAG1",
+      "lat": 42.647507,
+      "lon": 42.76747,
+      "country": "GEO"
+    },
+    {
+      "name": "CHOK",
+      "lat": 42.021917,
+      "lon": 42.243715,
+      "country": "GEO"
+    },
+    {
+      "name": "DED1",
+      "lat": 41.445784,
+      "lon": 46.118211,
+      "country": "GEO"
+    },
+    {
+      "name": "GOR1",
+      "lat": 41.984607,
+      "lon": 44.10499,
+      "country": "GEO"
+    },
+    {
+      "name": "GUDA",
+      "lat": 42.443826,
+      "lon": 44.490652,
+      "country": "GEO"
+    },
+    {
+      "name": "IOR1",
+      "lat": 41.589734,
+      "lon": 45.538832,
+      "country": "GEO"
+    },
+    {
+      "name": "KAZ1",
+      "lat": 41.387089,
+      "lon": 44.397923,
+      "country": "GEO"
+    },
+    {
+      "name": "KHAS",
+      "lat": 41.999427,
+      "lon": 43.597489,
+      "country": "GEO"
+    },
+    {
+      "name": "KOB1",
+      "lat": 41.825966,
+      "lon": 41.77839,
+      "country": "GEO"
+    },
+    {
+      "name": "LAGD",
+      "lat": 41.826672,
+      "lon": 46.272894,
+      "country": "GEO"
+    },
+    {
+      "name": "MEST",
+      "lat": 43.043132,
+      "lon": 42.723574,
+      "country": "GEO"
+    },
+    {
+      "name": "NINT",
+      "lat": 41.265965,
+      "lon": 43.586513,
+      "country": "GEO"
+    },
+    {
+      "name": "ONI2",
+      "lat": 42.576478,
+      "lon": 43.454881,
+      "country": "GEO"
+    },
+    {
+      "name": "POT2",
+      "lat": 42.143579,
+      "lon": 41.675735,
+      "country": "GEO"
+    },
+    {
+      "name": "QTS2",
+      "lat": 42.264073,
+      "lon": 42.667337,
+      "country": "GEO"
+    },
+    {
+      "name": "SACH",
+      "lat": 42.34037,
+      "lon": 43.406116,
+      "country": "GEO"
+    },
+    {
+      "name": "TB21",
+      "lat": 41.721298,
+      "lon": 44.964601,
+      "country": "GEO"
+    },
+    {
+      "name": "TB31",
+      "lat": 41.781467,
+      "lon": 44.770807,
+      "country": "GEO"
+    },
+    {
+      "name": "TELV",
+      "lat": 41.924185,
+      "lon": 45.474723,
+      "country": "GEO"
+    },
+    {
+      "name": "TIA1",
+      "lat": 42.102731,
+      "lon": 44.968386,
+      "country": "GEO"
+    },
+    {
+      "name": "TSA1",
+      "lat": 42.610742,
+      "lon": 42.091464,
+      "country": "GEO"
+    },
+    {
+      "name": "TUSH",
+      "lat": 42.366964,
+      "lon": 45.640285,
+      "country": "GEO"
+    },
+    {
+      "name": "WLK1",
+      "lat": 41.595338,
+      "lon": 44.092516,
+      "country": "GEO"
+    },
+    {
+      "name": "XULO",
+      "lat": 41.646075,
+      "lon": 42.313432,
+      "country": "GEO"
+    },
+    {
+      "name": "ZGDD",
+      "lat": 42.507762,
+      "lon": 41.874371,
+      "country": "GEO"
+    },
+    {
+      "name": "ZSFN",
+      "lat": 42.104523,
+      "lon": 43.033423,
+      "country": "GEO"
+    }
+  ]
+}

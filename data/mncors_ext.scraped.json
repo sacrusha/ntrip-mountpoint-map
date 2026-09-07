@@ -1,0 +1,326 @@
+{
+  "last_updated": "2026-08-31T11:00:14+00:00",
+  "scraper_version": "212c580d1ad3",
+  "source_url": "https://services2.arcgis.com/C8EMgrsFcRFL6LrL/arcgis/rest/services/NOAA_CORS_Network_Test/FeatureServer/0",
+  "pin_origin": "external",
+  "stations": [
+    {
+      "name": "IANA",
+      "lat": 43.496944,
+      "lon": -91.290556,
+      "country": "USA"
+    },
+    {
+      "name": "MNAN",
+      "lat": 45.195278,
+      "lon": -96.021389,
+      "country": "USA"
+    },
+    {
+      "name": "MNAS",
+      "lat": 48.293889,
+      "lon": -92.970278,
+      "country": "USA"
+    },
+    {
+      "name": "MNAV",
+      "lat": 44.732778,
+      "lon": -93.209444,
+      "country": "USA"
+    },
+    {
+      "name": "MNAX",
+      "lat": 45.8875,
+      "lon": -95.391389,
+      "country": "USA"
+    },
+    {
+      "name": "MNBD",
+      "lat": 48.6275,
+      "lon": -94.067222,
+      "country": "USA"
+    },
+    {
+      "name": "MNBE",
+      "lat": 43.662778,
+      "lon": -94.121944,
+      "country": "USA"
+    },
+    {
+      "name": "MNBJ",
+      "lat": 47.501111,
+      "lon": -94.9375,
+      "country": "USA"
+    },
+    {
+      "name": "MNBV",
+      "lat": 43.608056,
+      "lon": -96.378056,
+      "country": "USA"
+    },
+    {
+      "name": "MNCA",
+      "lat": 43.632778,
+      "lon": -91.496111,
+      "country": "USA"
+    },
+    {
+      "name": "MNCL",
+      "lat": 44.949167,
+      "lon": -95.409722,
+      "country": "USA"
+    },
+    {
+      "name": "MNDN",
+      "lat": 48.572222,
+      "lon": -96.914444,
+      "country": "USA"
+    },
+    {
+      "name": "MNDT",
+      "lat": 46.822778,
+      "lon": -95.859722,
+      "country": "USA"
+    },
+    {
+      "name": "MNDV",
+      "lat": 44.056944,
+      "lon": -95.596944,
+      "country": "USA"
+    },
+    {
+      "name": "MNEM",
+      "lat": 46.688056,
+      "lon": -93.954444,
+      "country": "USA"
+    },
+    {
+      "name": "MNEY",
+      "lat": 43.955556,
+      "lon": -92.205278,
+      "country": "USA"
+    },
+    {
+      "name": "MNFF",
+      "lat": 46.273333,
+      "lon": -96.055556,
+      "country": "USA"
+    },
+    {
+      "name": "MNGP",
+      "lat": 47.223333,
+      "lon": -93.483889,
+      "country": "USA"
+    },
+    {
+      "name": "MNGR",
+      "lat": 45.558056,
+      "lon": -96.493889,
+      "country": "USA"
+    },
+    {
+      "name": "MNHD",
+      "lat": 44.458889,
+      "lon": -96.435278,
+      "country": "USA"
+    },
+    {
+      "name": "MNHK",
+      "lat": 48.772222,
+      "lon": -96.949167,
+      "country": "USA"
+    },
+    {
+      "name": "MNHN",
+      "lat": 45.984722,
+      "lon": -92.948056,
+      "country": "USA"
+    },
+    {
+      "name": "MNHW",
+      "lat": 44.905833,
+      "lon": -93.986667,
+      "country": "USA"
+    },
+    {
+      "name": "MNHY",
+      "lat": 47.949167,
+      "lon": -95.625833,
+      "country": "USA"
+    },
+    {
+      "name": "MNJC",
+      "lat": 46.978056,
+      "lon": -93.273611,
+      "country": "USA"
+    },
+    {
+      "name": "MNJF",
+      "lat": 44.083333,
+      "lon": -95.119722,
+      "country": "USA"
+    },
+    {
+      "name": "MNKA",
+      "lat": 45.145,
+      "lon": -95.014722,
+      "country": "USA"
+    },
+    {
+      "name": "MNLC",
+      "lat": 44.478056,
+      "lon": -93.292222,
+      "country": "USA"
+    },
+    {
+      "name": "MNLK",
+      "lat": 43.638611,
+      "lon": -95.118333,
+      "country": "USA"
+    },
+    {
+      "name": "MNLS",
+      "lat": 44.441111,
+      "lon": -93.906667,
+      "country": "USA"
+    },
+    {
+      "name": "MNME",
+      "lat": 45.129444,
+      "lon": -94.529167,
+      "country": "USA"
+    },
+    {
+      "name": "MNMG",
+      "lat": 48.134444,
+      "lon": -93.878333,
+      "country": "USA"
+    },
+    {
+      "name": "MNMN",
+      "lat": 44.544444,
+      "lon": -94.995556,
+      "country": "USA"
+    },
+    {
+      "name": "MNMR",
+      "lat": 44.936111,
+      "lon": -96.441944,
+      "country": "USA"
+    },
+    {
+      "name": "MNMS",
+      "lat": 44.463611,
+      "lon": -95.795556,
+      "country": "USA"
+    },
+    {
+      "name": "MNOK",
+      "lat": 44.998889,
+      "lon": -92.963333,
+      "country": "USA"
+    },
+    {
+      "name": "MNPS",
+      "lat": 43.514722,
+      "lon": -91.885,
+      "country": "USA"
+    },
+    {
+      "name": "MNRE",
+      "lat": 47.058333,
+      "lon": -93.906667,
+      "country": "USA"
+    },
+    {
+      "name": "MNRM",
+      "lat": 43.637222,
+      "lon": -95.77,
+      "country": "USA"
+    },
+    {
+      "name": "MNRT",
+      "lat": 46.490278,
+      "lon": -96.291111,
+      "country": "USA"
+    },
+    {
+      "name": "MNRV",
+      "lat": 48.789167,
+      "lon": -95.051111,
+      "country": "USA"
+    },
+    {
+      "name": "MNSB",
+      "lat": 45.488056,
+      "lon": -95.561944,
+      "country": "USA"
+    },
+    {
+      "name": "MNSC",
+      "lat": 45.712778,
+      "lon": -94.931111,
+      "country": "USA"
+    },
+    {
+      "name": "MNSQ",
+      "lat": 47.603611,
+      "lon": -94.126667,
+      "country": "USA"
+    },
+    {
+      "name": "MNSV",
+      "lat": 43.9025,
+      "lon": -92.481944,
+      "country": "USA"
+    },
+    {
+      "name": "MNTF",
+      "lat": 48.118889,
+      "lon": -96.207222,
+      "country": "USA"
+    },
+    {
+      "name": "MNVI",
+      "lat": 47.523056,
+      "lon": -92.561389,
+      "country": "USA"
+    },
+    {
+      "name": "MNVN",
+      "lat": 46.413333,
+      "lon": -95.054444,
+      "country": "USA"
+    },
+    {
+      "name": "MNVT",
+      "lat": 48.970833,
+      "lon": -97.201389,
+      "country": "USA"
+    },
+    {
+      "name": "MNWH",
+      "lat": 48.15,
+      "lon": -94.511944,
+      "country": "USA"
+    },
+    {
+      "name": "MNWN",
+      "lat": 44.065,
+      "lon": -91.7125,
+      "country": "USA"
+    },
+    {
+      "name": "MORH",
+      "lat": 46.884167,
+      "lon": -96.763611,
+      "country": "USA"
+    },
+    {
+      "name": "WISN",
+      "lat": 45.821944,
+      "lon": -92.368333,
+      "country": "USA"
+    }
+  ]
+}

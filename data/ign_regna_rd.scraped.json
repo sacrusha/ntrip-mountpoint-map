@@ -1,0 +1,128 @@
+{
+  "last_updated": "2026-09-04T11:00:14+00:00",
+  "scraper_version": "33b88b66b147",
+  "source_url": "http://sirgas-rt.espoch.edu.ec:2101/",
+  "pin_origin": "ntrip",
+  "stations": [
+    {
+      "name": "ATT33",
+      "lat": 18.506934,
+      "lon": 69.979172,
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "country": "DOM"
+    },
+    {
+      "name": "CRLR3",
+      "lat": 18.41669,
+      "lon": -68.93691,
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "country": "DOM"
+    },
+    {
+      "name": "CRSE3",
+      "lat": 18.76808,
+      "lon": -69.04371,
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "country": "DOM"
+    },
+    {
+      "name": "IGMO3",
+      "lat": 19.3919,
+      "lon": -70.5212,
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "country": "DOM"
+    },
+    {
+      "name": "IGPP3",
+      "lat": 19.7841,
+      "lon": -70.6722,
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "country": "DOM"
+    },
+    {
+      "name": "RDBN3",
+      "lat": 18.94603,
+      "lon": -70.40335,
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "country": "DOM"
+    },
+    {
+      "name": "RDEG3",
+      "lat": 19.779005,
+      "lon": 70.679259,
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "country": "DOM"
+    },
+    {
+      "name": "RDMA3",
+      "lat": 19.850095,
+      "lon": 71.07724,
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "country": "DOM"
+    },
+    {
+      "name": "RDMS3",
+      "lat": 18.979607,
+      "lon": -69.040817,
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "country": "DOM"
+    },
+    {
+      "name": "RDNA3",
+      "lat": 19.36898,
+      "lon": -69.84699,
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "country": "DOM"
+    },
+    {
+      "name": "RDNE3",
+      "lat": 18.500752,
+      "lon": 71.420255,
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "country": "DOM"
+    },
+    {
+      "name": "RDPP3",
+      "lat": 19.811308,
+      "lon": 70.713244,
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "country": "DOM"
+    },
+    {
+      "name": "RDSD3",
+      "lat": 18.4613,
+      "lon": -69.9113,
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "country": "DOM"
+    },
+    {
+      "name": "RDSF3",
+      "lat": 19.28571,
+      "lon": -70.24649,
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "country": "DOM"
+    },
+    {
+      "name": "RDSJ3",
+      "lat": 18.819476,
+      "lon": 71.227006,
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "country": "DOM"
+    }
+  ]
+}

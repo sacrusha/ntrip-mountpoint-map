@@ -1,0 +1,452 @@
+{
+  "last_updated": "2026-08-31T11:00:14+00:00",
+  "scraper_version": "0074d1b7daa0",
+  "source_url": "https://www.oregon.gov/odot/ORGN/Documents/ORGN.kmz",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "AGNS",
+      "lat": 42.552762,
+      "lon": -124.059096,
+      "country": "USA"
+    },
+    {
+      "name": "ANAT",
+      "lat": 46.13286,
+      "lon": -117.135411,
+      "country": "USA"
+    },
+    {
+      "name": "BASQ",
+      "lat": 42.411601,
+      "lon": -117.863014,
+      "country": "USA"
+    },
+    {
+      "name": "BNGN",
+      "lat": 45.718249,
+      "lon": -121.475319,
+      "country": "USA"
+    },
+    {
+      "name": "BRNT",
+      "lat": 44.440214,
+      "lon": -118.191303,
+      "country": "USA"
+    },
+    {
+      "name": "BURN",
+      "lat": 42.779497,
+      "lon": -117.843514,
+      "country": "USA"
+    },
+    {
+      "name": "CABL",
+      "lat": 42.836095,
+      "lon": -124.563329,
+      "country": "USA"
+    },
+    {
+      "name": "CATH",
+      "lat": 46.197299,
+      "lon": -123.367254,
+      "country": "USA"
+    },
+    {
+      "name": "CHZZ",
+      "lat": 45.486511,
+      "lon": -123.978107,
+      "country": "USA"
+    },
+    {
+      "name": "CRLA",
+      "lat": 42.89581,
+      "lon": -122.136133,
+      "country": "USA"
+    },
+    {
+      "name": "CROK",
+      "lat": 46.274596,
+      "lon": -122.912526,
+      "country": "USA"
+    },
+    {
+      "name": "DANP",
+      "lat": 46.280038,
+      "lon": -119.276258,
+      "country": "USA"
+    },
+    {
+      "name": "DOWL",
+      "lat": 44.085987,
+      "lon": -123.053112,
+      "country": "USA"
+    },
+    {
+      "name": "EUCH",
+      "lat": 44.834738,
+      "lon": -123.870794,
+      "country": "USA"
+    },
+    {
+      "name": "GLWD",
+      "lat": 46.019824,
+      "lon": -121.28859,
+      "country": "USA"
+    },
+    {
+      "name": "GOBS",
+      "lat": 45.838814,
+      "lon": -120.81466,
+      "country": "USA"
+    },
+    {
+      "name": "GOLY",
+      "lat": 45.828694,
+      "lon": -120.802441,
+      "country": "USA"
+    },
+    {
+      "name": "HALF",
+      "lat": 44.872386,
+      "lon": -117.099813,
+      "country": "USA"
+    },
+    {
+      "name": "JUNT",
+      "lat": 43.743816,
+      "lon": -118.078466,
+      "country": "USA"
+    },
+    {
+      "name": "KENI",
+      "lat": 46.197879,
+      "lon": -119.158616,
+      "country": "USA"
+    },
+    {
+      "name": "LKVW",
+      "lat": 42.172092,
+      "lon": -120.346665,
+      "country": "USA"
+    },
+    {
+      "name": "LWCK",
+      "lat": 46.278129,
+      "lon": -124.053829,
+      "country": "USA"
+    },
+    {
+      "name": "MDMT",
+      "lat": 42.418337,
+      "lon": -121.221585,
+      "country": "USA"
+    },
+    {
+      "name": "MZNT",
+      "lat": 45.701525,
+      "lon": -123.930843,
+      "country": "USA"
+    },
+    {
+      "name": "NOSE",
+      "lat": 43.911899,
+      "lon": -123.738705,
+      "country": "USA"
+    },
+    {
+      "name": "P018",
+      "lat": 42.981702,
+      "lon": -117.064543,
+      "country": "USA"
+    },
+    {
+      "name": "P023",
+      "lat": 44.898428,
+      "lon": -116.10299,
+      "country": "USA"
+    },
+    {
+      "name": "P154",
+      "lat": 41.807079,
+      "lon": -123.360034,
+      "country": "USA"
+    },
+    {
+      "name": "P191",
+      "lat": 42.275352,
+      "lon": -123.632247,
+      "country": "USA"
+    },
+    {
+      "name": "P364",
+      "lat": 43.090324,
+      "lon": -124.409274,
+      "country": "USA"
+    },
+    {
+      "name": "P365",
+      "lat": 43.395514,
+      "lon": -124.253466,
+      "country": "USA"
+    },
+    {
+      "name": "P366",
+      "lat": 43.614307,
+      "lon": -123.979577,
+      "country": "USA"
+    },
+    {
+      "name": "P371",
+      "lat": 43.36327,
+      "lon": -123.057883,
+      "country": "USA"
+    },
+    {
+      "name": "P375",
+      "lat": 44.689251,
+      "lon": -123.42697,
+      "country": "USA"
+    },
+    {
+      "name": "P378",
+      "lat": 44.534978,
+      "lon": -122.930865,
+      "country": "USA"
+    },
+    {
+      "name": "P380",
+      "lat": 42.259666,
+      "lon": -121.779682,
+      "country": "USA"
+    },
+    {
+      "name": "P381",
+      "lat": 43.001772,
+      "lon": -119.951787,
+      "country": "USA"
+    },
+    {
+      "name": "P384",
+      "lat": 44.841126,
+      "lon": -122.482802,
+      "country": "USA"
+    },
+    {
+      "name": "P385",
+      "lat": 44.434844,
+      "lon": -121.945818,
+      "country": "USA"
+    },
+    {
+      "name": "P386",
+      "lat": 44.402823,
+      "lon": -118.967801,
+      "country": "USA"
+    },
+    {
+      "name": "P388",
+      "lat": 42.468775,
+      "lon": -120.377595,
+      "country": "USA"
+    },
+    {
+      "name": "P389",
+      "lat": 43.811988,
+      "lon": -120.603345,
+      "country": "USA"
+    },
+    {
+      "name": "P390",
+      "lat": 43.034003,
+      "lon": -118.928474,
+      "country": "USA"
+    },
+    {
+      "name": "P391",
+      "lat": 42.254625,
+      "lon": -118.412458,
+      "country": "USA"
+    },
+    {
+      "name": "P392",
+      "lat": 43.446754,
+      "lon": -119.000985,
+      "country": "USA"
+    },
+    {
+      "name": "P393",
+      "lat": 43.234491,
+      "lon": -117.892023,
+      "country": "USA"
+    },
+    {
+      "name": "P395",
+      "lat": 45.022275,
+      "lon": -123.85751,
+      "country": "USA"
+    },
+    {
+      "name": "P397",
+      "lat": 46.421615,
+      "lon": -123.799144,
+      "country": "USA"
+    },
+    {
+      "name": "P406",
+      "lat": 45.190368,
+      "lon": -123.15224,
+      "country": "USA"
+    },
+    {
+      "name": "P408",
+      "lat": 46.200498,
+      "lon": -123.37657,
+      "country": "USA"
+    },
+    {
+      "name": "P412",
+      "lat": 45.221102,
+      "lon": -122.589084,
+      "country": "USA"
+    },
+    {
+      "name": "P414",
+      "lat": 45.834864,
+      "lon": -122.692821,
+      "country": "USA"
+    },
+    {
+      "name": "P427",
+      "lat": 45.430175,
+      "lon": -122.340614,
+      "country": "USA"
+    },
+    {
+      "name": "P429",
+      "lat": 45.676124,
+      "lon": -121.877343,
+      "country": "USA"
+    },
+    {
+      "name": "P445",
+      "lat": 45.590119,
+      "lon": -120.67223,
+      "country": "USA"
+    },
+    {
+      "name": "P446",
+      "lat": 46.115658,
+      "lon": -122.892771,
+      "country": "USA"
+    },
+    {
+      "name": "P447",
+      "lat": 45.452817,
+      "lon": -119.690108,
+      "country": "USA"
+    },
+    {
+      "name": "P672",
+      "lat": 41.711566,
+      "lon": -121.506923,
+      "country": "USA"
+    },
+    {
+      "name": "P732",
+      "lat": 43.392495,
+      "lon": -123.891354,
+      "country": "USA"
+    },
+    {
+      "name": "P733",
+      "lat": 42.442012,
+      "lon": -124.413281,
+      "country": "USA"
+    },
+    {
+      "name": "P734",
+      "lat": 42.076631,
+      "lon": -124.293241,
+      "country": "USA"
+    },
+    {
+      "name": "P735",
+      "lat": 42.691606,
+      "lon": -123.230983,
+      "country": "USA"
+    },
+    {
+      "name": "P738",
+      "lat": 42.546077,
+      "lon": -119.658686,
+      "country": "USA"
+    },
+    {
+      "name": "P739",
+      "lat": 42.020195,
+      "lon": -117.725415,
+      "country": "USA"
+    },
+    {
+      "name": "P784",
+      "lat": 41.830812,
+      "lon": -122.42044,
+      "country": "USA"
+    },
+    {
+      "name": "P824",
+      "lat": 45.853091,
+      "lon": -123.247702,
+      "country": "USA"
+    },
+    {
+      "name": "P826",
+      "lat": 46.181988,
+      "lon": -123.799135,
+      "country": "USA"
+    },
+    {
+      "name": "PCS2",
+      "lat": 44.919074,
+      "lon": -123.327823,
+      "country": "USA"
+    },
+    {
+      "name": "PDTN",
+      "lat": 45.665942,
+      "lon": -118.756912,
+      "country": "USA"
+    },
+    {
+      "name": "PTSG",
+      "lat": 41.782738,
+      "lon": -124.255184,
+      "country": "USA"
+    },
+    {
+      "name": "SKSO",
+      "lat": 45.694243,
+      "lon": -121.883943,
+      "country": "USA"
+    },
+    {
+      "name": "VCWA",
+      "lat": 45.617623,
+      "lon": -122.516055,
+      "country": "USA"
+    },
+    {
+      "name": "WALA",
+      "lat": 46.091505,
+      "lon": -118.258126,
+      "country": "USA"
+    },
+    {
+      "name": "YACH",
+      "lat": 44.292952,
+      "lon": -124.080418,
+      "country": "USA"
+    }
+  ]
+}

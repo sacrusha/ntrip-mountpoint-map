@@ -1,0 +1,767 @@
+{
+  "checked_at": "2026-09-07T05:00:20+00:00",
+  "sources": {
+    "ergnss": {
+      "last_ok": "2026-09-07T05:00:16+00:00",
+      "status": "ok",
+      "station_count": 262,
+      "station_count_prev": 262,
+      "station_count_declared": 272
+    },
+    "catnet": {
+      "last_ok": "2026-09-07T05:00:15+00:00",
+      "status": "ok",
+      "station_count": 17,
+      "station_count_prev": 17,
+      "station_count_declared": 17
+    },
+    "rgac": {
+      "last_ok": "2026-09-07T05:00:15+00:00",
+      "status": "ok",
+      "station_count": 7,
+      "station_count_prev": 7,
+      "station_count_declared": 7
+    },
+    "rgapa": {
+      "last_ok": "2026-09-07T05:00:18+00:00",
+      "status": "ok",
+      "station_count": 16,
+      "station_count_prev": 16,
+      "station_count_declared": 14
+    },
+    "renep": {
+      "last_ok": "2026-09-07T05:00:15+00:00",
+      "status": "ok",
+      "station_count": 46,
+      "station_count_prev": 46,
+      "station_count_declared": 47
+    },
+    "ergand_pcar": {
+      "last_ok": "2026-06-22T00:00:00+00:00",
+      "status": "ok",
+      "station_count": 1,
+      "station_count_prev": 1,
+      "station_count_declared": 1
+    },
+    "ergand_rull": {
+      "last_ok": "2026-06-22T00:00:00+00:00",
+      "status": "ok",
+      "station_count": 1,
+      "station_count_prev": 1,
+      "station_count_declared": 1
+    },
+    "spin3": {
+      "last_ok": "2026-08-31T11:00:12+00:00",
+      "status": "ok",
+      "station_count": 37,
+      "station_count_prev": 37,
+      "station_count_declared": 33
+    },
+    "gnss_liguria": {
+      "last_ok": "2026-09-07T05:00:15+00:00",
+      "status": "ok",
+      "station_count": 7,
+      "station_count_prev": 7,
+      "station_count_declared": 10
+    },
+    "tpos": {
+      "last_ok": "2026-09-07T05:00:15+00:00",
+      "status": "ok",
+      "station_count": 11,
+      "station_count_prev": 11,
+      "station_count_declared": 11
+    },
+    "stpos": {
+      "last_ok": "2026-09-07T05:00:15+00:00",
+      "status": "ok",
+      "station_count": 10,
+      "station_count_prev": 10,
+      "station_count_declared": 10
+    },
+    "gnss_veneto": {
+      "last_ok": "2026-09-07T05:00:16+00:00",
+      "status": "ok",
+      "station_count": 18,
+      "station_count_prev": 18,
+      "station_count_declared": 30
+    },
+    "rem_fvg": {
+      "last_ok": "2026-09-07T05:00:15+00:00",
+      "status": "ok",
+      "station_count": 22,
+      "station_count_prev": 22,
+      "station_count_declared": 12
+    },
+    "frednet": {
+      "last_ok": "2026-09-07T05:00:15+00:00",
+      "status": "ok",
+      "station_count": 45,
+      "station_count_prev": 45,
+      "station_count_declared": 22
+    },
+    "gpsumbria": {
+      "last_ok": "2026-08-31T11:00:12+00:00",
+      "status": "ok",
+      "station_count": 13,
+      "station_count_prev": 13,
+      "station_count_declared": 13
+    },
+    "gnss_campania": {
+      "last_ok": "2026-08-31T11:00:12+00:00",
+      "status": "ok",
+      "station_count": 16,
+      "station_count_prev": 16,
+      "station_count_declared": 16
+    },
+    "sit_puglia": {
+      "last_ok": "2026-06-18T00:00:00+00:00",
+      "status": "ok",
+      "station_count": 12,
+      "station_count_prev": 12,
+      "station_count_declared": 12
+    },
+    "gnss_abruzzo_lazio": {
+      "last_ok": "2026-08-31T11:00:12+00:00",
+      "status": "ok",
+      "station_count": 33,
+      "station_count_prev": 33,
+      "station_count_declared": 33
+    },
+    "sicilianet": {
+      "last_ok": "2026-09-07T05:00:15+00:00",
+      "status": "ok",
+      "station_count": 44,
+      "station_count_prev": 44,
+      "station_count_declared": 80
+    },
+    "hr_cropos": {
+      "last_ok": "2026-08-31T11:00:12+00:00",
+      "status": "ok",
+      "station_count": 76,
+      "station_count_prev": 76,
+      "station_count_declared": 41
+    },
+    "sapos_bw": {
+      "last_ok": "2026-09-07T05:00:15+00:00",
+      "status": "ok",
+      "station_count": 23,
+      "station_count_prev": 23,
+      "station_count_declared": 23
+    },
+    "sapos_bb": {
+      "last_ok": "2026-09-07T05:00:15+00:00",
+      "status": "ok",
+      "station_count": 22,
+      "station_count_prev": 22,
+      "station_count_declared": 22
+    },
+    "sapos_be": {
+      "last_ok": "2026-09-07T05:00:15+00:00",
+      "status": "ok",
+      "station_count": 3,
+      "station_count_prev": 3,
+      "station_count_declared": 3
+    },
+    "sapos_geonord": {
+      "last_ok": "2026-09-07T05:00:15+00:00",
+      "status": "ok",
+      "station_count": 20,
+      "station_count_prev": 20,
+      "station_count_declared": null
+    },
+    "sapos_he": {
+      "last_ok": "2026-09-07T05:00:15+00:00",
+      "status": "ok",
+      "station_count": 13,
+      "station_count_prev": 13,
+      "station_count_declared": 12
+    },
+    "sapos_mv": {
+      "last_ok": "2026-09-07T05:00:15+00:00",
+      "status": "ok",
+      "station_count": 18,
+      "station_count_prev": 18,
+      "station_count_declared": 22
+    },
+    "sapos_ni": {
+      "last_ok": "2026-09-07T05:00:15+00:00",
+      "status": "ok",
+      "station_count": 44,
+      "station_count_prev": 44,
+      "station_count_declared": 43
+    },
+    "sapos_nw": {
+      "last_ok": "2026-09-07T05:00:15+00:00",
+      "status": "ok",
+      "station_count": 27,
+      "station_count_prev": 27,
+      "station_count_declared": 27
+    },
+    "sapos_sl": {
+      "last_ok": "2026-09-07T05:00:15+00:00",
+      "status": "ok",
+      "station_count": 8,
+      "station_count_prev": 8,
+      "station_count_declared": null
+    },
+    "sapos_sn": {
+      "last_ok": "2026-09-07T05:00:15+00:00",
+      "status": "ok",
+      "station_count": 19,
+      "station_count_prev": 19,
+      "station_count_declared": 19
+    },
+    "sapos_lsa": {
+      "last_ok": "2026-09-07T05:00:15+00:00",
+      "status": "ok",
+      "station_count": 19,
+      "station_count_prev": 18,
+      "station_count_declared": null
+    },
+    "sapos_th": {
+      "last_ok": "2026-09-07T05:00:15+00:00",
+      "status": "ok",
+      "station_count": 16,
+      "station_count_prev": 16,
+      "station_count_declared": null
+    },
+    "fr_ign_rgp": {
+      "last_ok": "2026-09-02T11:00:11+00:00",
+      "status": "ok",
+      "station_count": 53,
+      "station_count_prev": 53,
+      "station_count_declared": 30
+    },
+    "be_walcors": {
+      "last_ok": "2026-08-31T11:00:14+00:00",
+      "status": "ok",
+      "station_count": 22,
+      "station_count_prev": 22,
+      "station_count_declared": 22
+    },
+    "be_gpsbru_agn": {
+      "last_ok": "2026-06-16T00:00:00+00:00",
+      "status": "ok",
+      "station_count": 1,
+      "station_count_prev": 1,
+      "station_count_declared": 1
+    },
+    "be_flepos": {
+      "last_ok": "2026-09-01T21:00:14+00:00",
+      "status": "ok",
+      "station_count": 46,
+      "station_count_prev": 46,
+      "station_count_declared": 46,
+      "flags": [
+        "coord_mistag:2"
+      ]
+    },
+    "nl_agrs": {
+      "last_ok": "2026-09-04T11:00:14+00:00",
+      "status": "ok",
+      "station_count": 28,
+      "station_count_prev": 28,
+      "station_count_declared": 22
+    },
+    "lu_spslux": {
+      "last_ok": "2026-09-01T21:00:14+00:00",
+      "status": "ok",
+      "station_count": 7,
+      "station_count_prev": 7,
+      "station_count_declared": 14
+    },
+    "dk_kds": {
+      "last_ok": "2026-09-07T05:00:15+00:00",
+      "status": "ok",
+      "station_count": 21,
+      "station_count_prev": 21,
+      "station_count_declared": 15
+    },
+    "is_icecors": {
+      "last_ok": "2026-09-07T05:00:16+00:00",
+      "status": "ok",
+      "station_count": 40,
+      "station_count_prev": 40,
+      "station_count_declared": 33
+    },
+    "gl_gnet": {
+      "last_ok": "2026-09-07T05:00:15+00:00",
+      "status": "ok",
+      "station_count": 19,
+      "station_count_prev": 19,
+      "station_count_declared": 20
+    },
+    "gl_asiaq": {
+      "last_ok": "2026-09-07T05:00:17+00:00",
+      "status": "ok",
+      "station_count": 1,
+      "station_count_prev": 1,
+      "station_count_declared": 1
+    },
+    "estpos": {
+      "last_ok": "2026-09-02T11:00:11+00:00",
+      "status": "ok",
+      "station_count": 40,
+      "station_count_prev": 40,
+      "station_count_declared": 40
+    },
+    "latpos": {
+      "last_ok": "2026-09-02T11:00:11+00:00",
+      "status": "ok",
+      "station_count": 28,
+      "station_count_prev": 28,
+      "station_count_declared": 27
+    },
+    "litpos": {
+      "last_ok": "2026-09-01T21:00:14+00:00",
+      "status": "ok",
+      "station_count": 30,
+      "station_count_prev": 30,
+      "station_count_declared": 35
+    },
+    "asg_eupos": {
+      "last_ok": "2026-09-07T05:00:15+00:00",
+      "status": "ok",
+      "station_count": 117,
+      "station_count_prev": 117,
+      "station_count_declared": 120
+    },
+    "geo_cors": {
+      "last_ok": "2026-09-02T05:00:09+00:00",
+      "status": "ok",
+      "station_count": 30,
+      "station_count_prev": 30,
+      "station_count_declared": 30
+    },
+    "ksa_cors": {
+      "last_ok": "2026-09-02T17:00:16+00:00",
+      "status": "ok",
+      "station_count": 209,
+      "station_count_prev": 209,
+      "station_count_declared": 209
+    },
+    "oman_corsnet": {
+      "last_ok": "2026-09-04T11:00:14+00:00",
+      "status": "ok",
+      "station_count": 42,
+      "station_count_prev": 42,
+      "station_count_declared": 47
+    },
+    "mirai": {
+      "last_ok": "2026-09-07T05:00:16+00:00",
+      "status": "ok",
+      "station_count": 321,
+      "station_count_prev": 322,
+      "station_count_declared": 355,
+      "flags": [
+        "coord_mistag:3"
+      ]
+    },
+    "geortk": {
+      "last_ok": "2026-09-07T05:00:16+00:00",
+      "status": "ok",
+      "station_count": 43,
+      "station_count_prev": 41,
+      "station_count_declared": 38
+    },
+    "jp_drogger": {
+      "last_ok": "2026-09-07T05:00:16+00:00",
+      "status": "ok",
+      "station_count": 318,
+      "station_count_prev": 308,
+      "station_count_declared": 290,
+      "flags": [
+        "coord_drop:2",
+        "coord_mistag:3"
+      ]
+    },
+    "kr_gnssdata": {
+      "last_ok": "2026-09-07T05:00:17+00:00",
+      "status": "ok",
+      "station_count": 526,
+      "station_count_prev": 526,
+      "station_count_declared": 167
+    },
+    "satref": {
+      "last_ok": "2026-09-07T05:00:16+00:00",
+      "status": "ok",
+      "station_count": 18,
+      "station_count_prev": 18,
+      "station_count_declared": 19
+    },
+    "mosref": {
+      "last_ok": "2026-09-05T08:38:54+00:00",
+      "status": "ok",
+      "station_count": 4,
+      "station_count_prev": 4,
+      "station_count_declared": 4
+    },
+    "monpos": {
+      "last_ok": "2026-09-07T05:00:16+00:00",
+      "status": "ok",
+      "station_count": 42,
+      "station_count_prev": 41,
+      "station_count_declared": 42,
+      "flags": [
+        "coord_mistag:2"
+      ]
+    },
+    "th_dol_landgnss": {
+      "last_ok": "2026-09-02T21:01:28+00:00",
+      "status": "ok",
+      "station_count": 393,
+      "station_count_prev": 393,
+      "station_count_declared": 393
+    },
+    "kh_khmer_geonet": {
+      "last_ok": "2026-09-02T11:00:11+00:00",
+      "status": "ok",
+      "station_count": 5,
+      "station_count_prev": 5,
+      "station_count_declared": 5
+    },
+    "id_inacors": {
+      "last_ok": "2026-08-31T11:00:14+00:00",
+      "status": "ok",
+      "station_count": 474,
+      "station_count_prev": 474,
+      "station_count_declared": 474
+    },
+    "auscors": {
+      "last_ok": "2026-09-07T05:00:17+00:00",
+      "status": "ok",
+      "station_count": 911,
+      "station_count_prev": 901,
+      "station_count_declared": 700,
+      "flags": [
+        "coord_mistag:7"
+      ]
+    },
+    "positionz_rt": {
+      "last_ok": "2026-09-07T05:00:16+00:00",
+      "status": "ok",
+      "station_count": 61,
+      "station_count_prev": 61,
+      "station_count_declared": 37
+    },
+    "bj_ign_benin": {
+      "last_ok": "2026-09-01T21:00:14+00:00",
+      "status": "ok",
+      "station_count": 7,
+      "station_count_prev": 7,
+      "station_count_declared": 7
+    },
+    "ugrf": {
+      "last_ok": "2026-09-06T21:00:12+00:00",
+      "status": "stale",
+      "station_count": 39,
+      "station_count_prev": 39,
+      "station_count_declared": 40
+    },
+    "trignet": {
+      "last_ok": "2026-09-03T11:00:14+00:00",
+      "status": "ok",
+      "station_count": 65,
+      "station_count_prev": 65,
+      "station_count_declared": 70
+    },
+    "us_ardot_rtn": {
+      "last_ok": "2026-09-01T21:00:14+00:00",
+      "status": "ok",
+      "station_count": 55,
+      "station_count_prev": 55,
+      "station_count_declared": 55
+    },
+    "us_azcors": {
+      "last_ok": "2026-08-31T11:00:14+00:00",
+      "status": "ok",
+      "station_count": 49,
+      "station_count_prev": 49,
+      "station_count_declared": 49
+    },
+    "us_mesa_rtvrn": {
+      "last_ok": "2026-08-31T11:00:14+00:00",
+      "status": "ok",
+      "station_count": 27,
+      "station_count_prev": 27,
+      "station_count_declared": 33
+    },
+    "us_orgn": {
+      "last_ok": "2026-09-07T05:00:16+00:00",
+      "status": "ok",
+      "station_count": 137,
+      "station_count_prev": 137,
+      "station_count_declared": 150
+    },
+    "us_crtn": {
+      "last_ok": "2026-09-07T05:00:17+00:00",
+      "status": "ok",
+      "station_count": 685,
+      "station_count_prev": 689,
+      "station_count_declared": 431
+    },
+    "us_odot_rtn": {
+      "last_ok": "2026-08-31T11:00:14+00:00",
+      "status": "ok",
+      "station_count": 47,
+      "station_count_prev": 47,
+      "station_count_declared": 53
+    },
+    "us_incors": {
+      "last_ok": "2026-08-31T11:00:14+00:00",
+      "status": "ok",
+      "station_count": 46,
+      "station_count_prev": 46,
+      "station_count_declared": 45
+    },
+    "us_mdot_msrn": {
+      "last_ok": "2026-08-31T11:00:14+00:00",
+      "status": "ok",
+      "station_count": 92,
+      "station_count_prev": 92,
+      "station_count_declared": 95
+    },
+    "us_wiscors": {
+      "last_ok": "2026-09-01T21:00:14+00:00",
+      "status": "ok",
+      "station_count": 125,
+      "station_count_prev": 125,
+      "station_count_declared": 98
+    },
+    "us_mncors": {
+      "last_ok": "2026-08-31T11:00:14+00:00",
+      "status": "ok",
+      "station_count": 110,
+      "station_count_prev": 110,
+      "station_count_declared": 55
+    },
+    "us_iartn": {
+      "last_ok": "2026-08-31T11:00:14+00:00",
+      "status": "ok",
+      "station_count": 105,
+      "station_count_prev": 105,
+      "station_count_declared": 84
+    },
+    "us_modot_rtn": {
+      "last_ok": "2026-08-31T11:00:14+00:00",
+      "status": "ok",
+      "station_count": 79,
+      "station_count_prev": 79,
+      "station_count_declared": 80
+    },
+    "us_mainedot_rtn": {
+      "last_ok": "2026-08-31T11:00:14+00:00",
+      "status": "ok",
+      "station_count": 29,
+      "station_count_prev": 29,
+      "station_count_declared": 21
+    },
+    "us_vector_vt": {
+      "last_ok": "2026-08-31T11:00:14+00:00",
+      "status": "ok",
+      "station_count": 17,
+      "station_count_prev": 17,
+      "station_count_declared": 18
+    },
+    "us_ct_acorn": {
+      "last_ok": "2026-08-31T11:00:14+00:00",
+      "status": "ok",
+      "station_count": 13,
+      "station_count_prev": 13,
+      "station_count_declared": 13
+    },
+    "us_nysnet": {
+      "last_ok": "2026-08-31T11:00:14+00:00",
+      "status": "ok",
+      "station_count": 58,
+      "station_count_prev": 58,
+      "station_count_declared": 58
+    },
+    "us_wvrtn": {
+      "last_ok": "2026-08-31T11:00:14+00:00",
+      "status": "ok",
+      "station_count": 24,
+      "station_count_prev": 24,
+      "station_count_declared": 32
+    },
+    "us_fprn": {
+      "last_ok": "2026-09-07T05:00:15+00:00",
+      "status": "ok",
+      "station_count": 101,
+      "station_count_prev": 101,
+      "station_count_declared": 101
+    },
+    "us_alcors": {
+      "last_ok": "2026-09-07T05:00:16+00:00",
+      "status": "ok",
+      "station_count": 50,
+      "station_count_prev": 50,
+      "station_count_declared": 50
+    },
+    "us_gcgc_rtn": {
+      "last_ok": "2026-09-01T21:00:14+00:00",
+      "status": "ok",
+      "station_count": 70,
+      "station_count_prev": 70,
+      "station_count_declared": 70
+    },
+    "us_kycors": {
+      "last_ok": "2026-09-07T05:00:17+00:00",
+      "status": "ok",
+      "station_count": 58,
+      "station_count_prev": 58,
+      "station_count_declared": 59
+    },
+    "us_acorn_ak": {
+      "last_ok": "2026-08-31T11:00:14+00:00",
+      "status": "ok",
+      "station_count": 85,
+      "station_count_prev": 85,
+      "station_count_declared": 89
+    },
+    "ca_qc_mrnf": {
+      "last_ok": "2026-08-11T00:00:00+00:00",
+      "status": "ok",
+      "station_count": 2,
+      "station_count_prev": 2,
+      "station_count_declared": 2
+    },
+    "cr_ign_snit": {
+      "last_ok": "2026-09-07T05:00:16+00:00",
+      "status": "ok",
+      "station_count": 8,
+      "station_count_prev": 0,
+      "station_count_declared": 14
+    },
+    "ign_regna_rd": {
+      "last_ok": "2026-09-04T11:00:14+00:00",
+      "status": "ok",
+      "station_count": 9,
+      "station_count_prev": 9,
+      "station_count_declared": null,
+      "flags": [
+        "coord_drop:6"
+      ]
+    },
+    "agrs_bes": {
+      "last_ok": "2026-09-04T11:00:14+00:00",
+      "status": "ok",
+      "station_count": 5,
+      "station_count_prev": 5,
+      "station_count_declared": 3
+    },
+    "ramsac": {
+      "last_ok": "2026-09-07T05:00:16+00:00",
+      "status": "ok",
+      "station_count": 224,
+      "station_count_prev": 226,
+      "station_count_declared": 129,
+      "flags": [
+        "coord_mistag:2"
+      ]
+    },
+    "regna_rou": {
+      "last_ok": "2026-09-07T05:00:17+00:00",
+      "status": "ok",
+      "station_count": 82,
+      "station_count_prev": 82,
+      "station_count_declared": 30
+    },
+    "rbmc_ip": {
+      "last_ok": "2026-09-07T05:00:16+00:00",
+      "status": "ok",
+      "station_count": 134,
+      "station_count_prev": 135,
+      "station_count_declared": 146
+    },
+    "regme_ec": {
+      "last_ok": "2026-09-07T05:00:16+00:00",
+      "status": "ok",
+      "station_count": 23,
+      "station_count_prev": 23,
+      "station_count_declared": 30
+    },
+    "igac": {
+      "last_ok": "2026-09-07T05:00:16+00:00",
+      "status": "ok",
+      "station_count": 172,
+      "station_count_prev": 172,
+      "station_count_declared": 140
+    },
+    "centipede": {
+      "last_ok": "2026-09-07T05:00:16+00:00",
+      "status": "ok",
+      "station_count": 1256,
+      "station_count_prev": 1256,
+      "station_count_declared": 1210,
+      "flags": [
+        "coord_mistag:16"
+      ]
+    },
+    "rtk2go": {
+      "last_ok": "2026-09-07T05:00:16+00:00",
+      "status": "ok",
+      "station_count": 690,
+      "station_count_prev": 683,
+      "station_count_declared": 800,
+      "flags": [
+        "coord_mistag:4"
+      ]
+    },
+    "earthscope": {
+      "last_ok": "2026-09-07T05:00:16+00:00",
+      "status": "ok",
+      "station_count": 1113,
+      "station_count_prev": 1117,
+      "station_count_declared": 1140,
+      "flags": [
+        "coord_mistag:6"
+      ]
+    },
+    "igs_ip": {
+      "last_ok": "2026-09-07T05:00:16+00:00",
+      "status": "ok",
+      "station_count": 361,
+      "station_count_prev": 361,
+      "station_count_declared": null,
+      "flags": [
+        "coord_mistag:6"
+      ]
+    },
+    "euref_ip": {
+      "last_ok": "2026-09-07T05:00:16+00:00",
+      "status": "ok",
+      "station_count": 214,
+      "station_count_prev": 213,
+      "station_count_declared": 215
+    },
+    "usach_uscl": {
+      "last_ok": "2026-09-07T05:00:16+00:00",
+      "status": "ok",
+      "station_count": 1,
+      "station_count_prev": 1,
+      "station_count_declared": 1
+    },
+    "prsn_rspr": {
+      "last_ok": "2026-09-05T08:38:54+00:00",
+      "status": "ok",
+      "station_count": 11,
+      "station_count_prev": 11,
+      "station_count_declared": 12
+    },
+    "domcors": {
+      "last_ok": "2026-09-01T21:00:14+00:00",
+      "status": "ok",
+      "station_count": 3,
+      "station_count_prev": 3,
+      "station_count_declared": 4
+    },
+    "repgram": {
+      "last_ok": "2026-09-04T11:00:14+00:00",
+      "status": "ok",
+      "station_count": 7,
+      "station_count_prev": 7,
+      "station_count_declared": 8
+    }
+  }
+}

@@ -1,0 +1,248 @@
+{
+  "last_updated": "2026-09-02T11:00:11+00:00",
+  "scraper_version": "72b5315d93e3",
+  "source_url": "https://gnss-rtk.maaamet.ee/sbc/User/SiteMap/SiteMapPublic",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "ALAK_MSM5",
+      "lat": 58.599915,
+      "lon": 27.135347,
+      "country": "EST"
+    },
+    {
+      "name": "AUDR_MSM5",
+      "lat": 58.422465,
+      "lon": 24.31367,
+      "country": "EST"
+    },
+    {
+      "name": "AVNR_MSM5",
+      "lat": 58.985216,
+      "lon": 26.868205,
+      "country": "EST"
+    },
+    {
+      "name": "EMM1_MSM5",
+      "lat": 58.69074,
+      "lon": 22.553562,
+      "country": "EST"
+    },
+    {
+      "name": "HANI_MSM5",
+      "lat": 58.623549,
+      "lon": 23.632809,
+      "country": "EST"
+    },
+    {
+      "name": "HRIS_MSM5",
+      "lat": 59.227771,
+      "lon": 24.014212,
+      "country": "EST"
+    },
+    {
+      "name": "IKLA_MSM5",
+      "lat": 57.875795,
+      "lon": 24.382875,
+      "country": "EST"
+    },
+    {
+      "name": "IMAV_MSM5",
+      "lat": 58.731742,
+      "lon": 25.768415,
+      "country": "EST"
+    },
+    {
+      "name": "ISKU_MSM5",
+      "lat": 59.093342,
+      "lon": 27.312238,
+      "country": "EST"
+    },
+    {
+      "name": "JHVI_MSM5",
+      "lat": 59.355229,
+      "lon": 27.422844,
+      "country": "EST"
+    },
+    {
+      "name": "JOGE_MSM5",
+      "lat": 58.761679,
+      "lon": 26.407679,
+      "country": "EST"
+    },
+    {
+      "name": "KALL_MSM5",
+      "lat": 58.369407,
+      "lon": 22.880359,
+      "country": "EST"
+    },
+    {
+      "name": "KARD_MSM5",
+      "lat": 58.994374,
+      "lon": 22.719561,
+      "country": "EST"
+    },
+    {
+      "name": "KIVI_MSM5",
+      "lat": 59.357727,
+      "lon": 26.974006,
+      "country": "EST"
+    },
+    {
+      "name": "KLNA_MSM5",
+      "lat": 58.92084,
+      "lon": 22.066262,
+      "country": "EST"
+    },
+    {
+      "name": "KOID_MSM5",
+      "lat": 57.836773,
+      "lon": 27.595252,
+      "country": "EST"
+    },
+    {
+      "name": "KOSI_MSM5",
+      "lat": 59.182955,
+      "lon": 25.160596,
+      "country": "EST"
+    },
+    {
+      "name": "KURE_MSM5",
+      "lat": 58.255632,
+      "lon": 22.510054,
+      "country": "EST"
+    },
+    {
+      "name": "KUSA_MSM5",
+      "lat": 59.451661,
+      "lon": 25.418943,
+      "country": "EST"
+    },
+    {
+      "name": "MEHI_MSM5",
+      "lat": 58.235394,
+      "lon": 27.469696,
+      "country": "EST"
+    },
+    {
+      "name": "MOIS_MSM5",
+      "lat": 58.092718,
+      "lon": 25.182759,
+      "country": "EST"
+    },
+    {
+      "name": "MRJA_MSM5",
+      "lat": 58.895487,
+      "lon": 24.420196,
+      "country": "EST"
+    },
+    {
+      "name": "MUJA_MSM5",
+      "lat": 58.463169,
+      "lon": 22.232529,
+      "country": "EST"
+    },
+    {
+      "name": "MUS2_MSM5",
+      "lat": 59.421147,
+      "lon": 24.698032,
+      "country": "EST"
+    },
+    {
+      "name": "NJO1_MSM5",
+      "lat": 59.461405,
+      "lon": 28.048889,
+      "country": "EST"
+    },
+    {
+      "name": "NTSL_MSM5",
+      "lat": 57.832123,
+      "lon": 26.531483,
+      "country": "EST"
+    },
+    {
+      "name": "PYRK_MSM5",
+      "lat": 59.006575,
+      "lon": 23.521283,
+      "country": "EST"
+    },
+    {
+      "name": "RALL_MSM5",
+      "lat": 59.029875,
+      "lon": 25.708642,
+      "country": "EST"
+    },
+    {
+      "name": "RUH1_MSM5",
+      "lat": 57.783017,
+      "lon": 23.260213,
+      "country": "EST"
+    },
+    {
+      "name": "SOVE_MSM5",
+      "lat": 57.913421,
+      "lon": 22.057864,
+      "country": "EST"
+    },
+    {
+      "name": "SUR4_MSM5",
+      "lat": 59.463571,
+      "lon": 24.380255,
+      "country": "EST"
+    },
+    {
+      "name": "TARV_MSM5",
+      "lat": 59.348708,
+      "lon": 26.346409,
+      "country": "EST"
+    },
+    {
+      "name": "TOR3_MSM5",
+      "lat": 58.264361,
+      "lon": 26.461457,
+      "country": "EST"
+    },
+    {
+      "name": "TORV_MSM5",
+      "lat": 57.998919,
+      "lon": 25.923416,
+      "country": "EST"
+    },
+    {
+      "name": "TRTU_MSM5",
+      "lat": 58.392579,
+      "lon": 26.693202,
+      "country": "EST"
+    },
+    {
+      "name": "UGA2_MSM5",
+      "lat": 58.361813,
+      "lon": 25.587834,
+      "country": "EST"
+    },
+    {
+      "name": "UULU_MSM5",
+      "lat": 58.280833,
+      "lon": 24.576896,
+      "country": "EST"
+    },
+    {
+      "name": "VAND_MSM5",
+      "lat": 58.652361,
+      "lon": 25.029587,
+      "country": "EST"
+    },
+    {
+      "name": "VERG_MSM5",
+      "lat": 59.601485,
+      "lon": 26.100788,
+      "country": "EST"
+    },
+    {
+      "name": "VOR2_MSM5",
+      "lat": 57.840159,
+      "lon": 27.002675,
+      "country": "EST"
+    }
+  ]
+}

@@ -1,0 +1,188 @@
+{
+  "last_updated": "2026-09-01T21:00:14+00:00",
+  "scraper_version": "7eef514a8d57",
+  "source_url": "https://www.geoportal.lt/mapproxy/gisc_litpos_stotys/MapServer/0",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "ALYT",
+      "lat": 54.393272,
+      "lon": 24.039702,
+      "country": "LTU"
+    },
+    {
+      "name": "BIRZ",
+      "lat": 56.200873,
+      "lon": 24.758246,
+      "country": "LTU"
+    },
+    {
+      "name": "DIDZ",
+      "lat": 55.316663,
+      "lon": 26.673018,
+      "country": "LTU"
+    },
+    {
+      "name": "DKST",
+      "lat": 55.520448,
+      "lon": 26.318847,
+      "country": "LTU"
+    },
+    {
+      "name": "ELKT",
+      "lat": 54.776658,
+      "lon": 24.64456,
+      "country": "LTU"
+    },
+    {
+      "name": "JNSK",
+      "lat": 56.242128,
+      "lon": 23.617603,
+      "country": "LTU"
+    },
+    {
+      "name": "KAUN",
+      "lat": 54.906127,
+      "lon": 23.979574,
+      "country": "LTU"
+    },
+    {
+      "name": "KEDN",
+      "lat": 55.257551,
+      "lon": 23.994171,
+      "country": "LTU"
+    },
+    {
+      "name": "KELM",
+      "lat": 55.628433,
+      "lon": 22.930671,
+      "country": "LTU"
+    },
+    {
+      "name": "KLAI",
+      "lat": 55.699323,
+      "lon": 21.145985,
+      "country": "LTU"
+    },
+    {
+      "name": "KRTN",
+      "lat": 55.888112,
+      "lon": 21.245629,
+      "country": "LTU"
+    },
+    {
+      "name": "MAZK",
+      "lat": 56.314472,
+      "lon": 22.308595,
+      "country": "LTU"
+    },
+    {
+      "name": "MRJM",
+      "lat": 54.572933,
+      "lon": 23.369266,
+      "country": "LTU"
+    },
+    {
+      "name": "NIDA",
+      "lat": 55.308866,
+      "lon": 21.005044,
+      "country": "LTU"
+    },
+    {
+      "name": "PNVZ",
+      "lat": 55.736848,
+      "lon": 24.30637,
+      "country": "LTU"
+    },
+    {
+      "name": "RIET",
+      "lat": 55.729739,
+      "lon": 21.928679,
+      "country": "LTU"
+    },
+    {
+      "name": "RKSK",
+      "lat": 55.957931,
+      "lon": 25.587155,
+      "country": "LTU"
+    },
+    {
+      "name": "SAKI",
+      "lat": 54.951955,
+      "lon": 23.048854,
+      "country": "LTU"
+    },
+    {
+      "name": "SAUL",
+      "lat": 55.956503,
+      "lon": 23.314442,
+      "country": "LTU"
+    },
+    {
+      "name": "SILT",
+      "lat": 55.341943,
+      "lon": 21.466585,
+      "country": "LTU"
+    },
+    {
+      "name": "SLCN",
+      "lat": 54.31503,
+      "lon": 25.384786,
+      "country": "LTU"
+    },
+    {
+      "name": "SVNL",
+      "lat": 55.162753,
+      "lon": 25.995928,
+      "country": "LTU"
+    },
+    {
+      "name": "TAUR",
+      "lat": 55.252283,
+      "lon": 22.285861,
+      "country": "LTU"
+    },
+    {
+      "name": "TELS",
+      "lat": 55.985188,
+      "lon": 22.240945,
+      "country": "LTU"
+    },
+    {
+      "name": "UKMG",
+      "lat": 55.238707,
+      "lon": 24.731852,
+      "country": "LTU"
+    },
+    {
+      "name": "UTEN",
+      "lat": 55.506145,
+      "lon": 25.632757,
+      "country": "LTU"
+    },
+    {
+      "name": "VARN",
+      "lat": 54.21585,
+      "lon": 24.595437,
+      "country": "LTU"
+    },
+    {
+      "name": "VEIS",
+      "lat": 54.093936,
+      "lon": 23.704442,
+      "country": "LTU"
+    },
+    {
+      "name": "VGTU",
+      "lat": 54.721533,
+      "lon": 25.337669,
+      "country": "LTU"
+    },
+    {
+      "name": "VIST",
+      "lat": 54.464857,
+      "lon": 22.710845,
+      "country": "LTU"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "last_updated": "2026-09-02T11:00:11+00:00",
+  "scraper_version": "de8c3f03bfeb",
+  "source_url": "https://khmergeonet.xyz/",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "KND100KHM",
+      "lat": 11.358086,
+      "lon": 105.007857,
+      "country": "KHM"
+    },
+    {
+      "name": "KSP100KHM",
+      "lat": 11.474592,
+      "lon": 104.570645,
+      "country": "KHM"
+    },
+    {
+      "name": "PNH100KHM",
+      "lat": 11.629761,
+      "lon": 104.87242,
+      "country": "KHM"
+    },
+    {
+      "name": "SIE100KHM",
+      "lat": 13.375859,
+      "lon": 103.894217,
+      "country": "KHM"
+    },
+    {
+      "name": "STG100KHM",
+      "lat": 13.520633,
+      "lon": 105.972543,
+      "country": "KHM"
+    }
+  ]
+}

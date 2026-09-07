@@ -1,0 +1,86 @@
+{
+  "last_updated": "2026-08-31T11:00:12+00:00",
+  "scraper_version": "fdae00778087",
+  "source_url": "https://sapos.hvbg.hessen.de/refmap.php",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "Bad Hersfeld",
+      "lat": 50.864069,
+      "lon": 9.711536,
+      "country": "DEU"
+    },
+    {
+      "name": "Bad Wildungen",
+      "lat": 51.127819,
+      "lon": 9.154192,
+      "country": "DEU"
+    },
+    {
+      "name": "Beerfelden2",
+      "lat": 49.561367,
+      "lon": 8.966414,
+      "country": "DEU"
+    },
+    {
+      "name": "Braunfels",
+      "lat": 50.520497,
+      "lon": 8.381536,
+      "country": "DEU"
+    },
+    {
+      "name": "Darmstadt",
+      "lat": 49.874972,
+      "lon": 8.656836,
+      "country": "DEU"
+    },
+    {
+      "name": "Eschwege",
+      "lat": 51.182894,
+      "lon": 10.051225,
+      "country": "DEU"
+    },
+    {
+      "name": "Kassel3",
+      "lat": 51.31145,
+      "lon": 9.493111,
+      "country": "DEU"
+    },
+    {
+      "name": "Kloppenheim",
+      "lat": 50.219761,
+      "lon": 8.729933,
+      "country": "DEU"
+    },
+    {
+      "name": "Leusel",
+      "lat": 50.76595,
+      "lon": 9.236589,
+      "country": "DEU"
+    },
+    {
+      "name": "Marburg",
+      "lat": 50.815044,
+      "lon": 8.774728,
+      "country": "DEU"
+    },
+    {
+      "name": "Neuhof",
+      "lat": 50.446328,
+      "lon": 9.609125,
+      "country": "DEU"
+    },
+    {
+      "name": "Schotten",
+      "lat": 50.499325,
+      "lon": 9.120297,
+      "country": "DEU"
+    },
+    {
+      "name": "Wiesbaden",
+      "lat": 50.088086,
+      "lon": 8.226694,
+      "country": "DEU"
+    }
+  ]
+}

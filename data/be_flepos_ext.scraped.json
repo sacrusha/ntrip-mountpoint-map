@@ -1,0 +1,284 @@
+{
+  "last_updated": "2026-09-01T21:00:14+00:00",
+  "scraper_version": "a81ba198b9aa",
+  "source_url": "https://flepos.vlaanderen.be/Map/SensorMap.aspx/GetSensorListWithConfiguration",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "AARS",
+      "lat": 50.963307,
+      "lon": 4.836114,
+      "country": "BEL"
+    },
+    {
+      "name": "ALDB",
+      "lat": 52.153164,
+      "lon": 1.602826,
+      "country": "BEL"
+    },
+    {
+      "name": "ARDL",
+      "lat": 51.91578,
+      "lon": 0.961887,
+      "country": "BEL"
+    },
+    {
+      "name": "ATWR",
+      "lat": 51.203536,
+      "lon": 4.447625,
+      "country": "BEL"
+    },
+    {
+      "name": "BATT",
+      "lat": 50.637409,
+      "lon": 5.834025,
+      "country": "BEL"
+    },
+    {
+      "name": "BERL",
+      "lat": 50.700687,
+      "lon": 5.186858,
+      "country": "BEL"
+    },
+    {
+      "name": "BERT",
+      "lat": 50.862295,
+      "lon": 4.612402,
+      "country": "BEL"
+    },
+    {
+      "name": "BEZA",
+      "lat": 51.306856,
+      "lon": 4.315579,
+      "country": "BEL"
+    },
+    {
+      "name": "BGGN",
+      "lat": 51.012779,
+      "lon": 4.191009,
+      "country": "BEL"
+    },
+    {
+      "name": "BLIG",
+      "lat": 51.69471,
+      "lon": 2.817398,
+      "country": "BEL"
+    },
+    {
+      "name": "BRCT",
+      "lat": 51.353471,
+      "lon": 4.628127,
+      "country": "BEL"
+    },
+    {
+      "name": "BRGG",
+      "lat": 51.190653,
+      "lon": 3.200215,
+      "country": "BEL"
+    },
+    {
+      "name": "COU2",
+      "lat": 51.022629,
+      "lon": 2.373614,
+      "country": "BEL"
+    },
+    {
+      "name": "DENT",
+      "lat": 50.933703,
+      "lon": 3.399667,
+      "country": "BEL"
+    },
+    {
+      "name": "EEKL",
+      "lat": 51.189905,
+      "lon": 3.564695,
+      "country": "BEL"
+    },
+    {
+      "name": "ERPE",
+      "lat": 50.922527,
+      "lon": 3.969228,
+      "country": "BEL"
+    },
+    {
+      "name": "GBGN",
+      "lat": 50.768598,
+      "lon": 3.869524,
+      "country": "BEL"
+    },
+    {
+      "name": "GELD",
+      "lat": 51.412143,
+      "lon": 5.55513,
+      "country": "BEL"
+    },
+    {
+      "name": "GENT",
+      "lat": 51.008791,
+      "lon": 3.709153,
+      "country": "BEL"
+    },
+    {
+      "name": "HERE",
+      "lat": 51.1863,
+      "lon": 4.840321,
+      "country": "BEL"
+    },
+    {
+      "name": "HOEG",
+      "lat": 50.77857,
+      "lon": 4.90044,
+      "country": "BEL"
+    },
+    {
+      "name": "HOUT",
+      "lat": 51.017684,
+      "lon": 5.374203,
+      "country": "BEL"
+    },
+    {
+      "name": "IEPE",
+      "lat": 50.848962,
+      "lon": 2.859037,
+      "country": "BEL"
+    },
+    {
+      "name": "KAIN",
+      "lat": 50.6286,
+      "lon": 3.371723,
+      "country": "BEL"
+    },
+    {
+      "name": "LEEU",
+      "lat": 50.753911,
+      "lon": 4.254171,
+      "country": "BEL"
+    },
+    {
+      "name": "MAAS",
+      "lat": 51.105802,
+      "lon": 5.75065,
+      "country": "BEL"
+    },
+    {
+      "name": "MECH",
+      "lat": 51.003105,
+      "lon": 4.470232,
+      "country": "BEL"
+    },
+    {
+      "name": "MENE",
+      "lat": 50.780855,
+      "lon": 3.100691,
+      "country": "BEL"
+    },
+    {
+      "name": "MIDD",
+      "lat": 51.497369,
+      "lon": 3.624101,
+      "country": "BEL"
+    },
+    {
+      "name": "MOL1",
+      "lat": 51.182556,
+      "lon": 5.117051,
+      "country": "BEL"
+    },
+    {
+      "name": "NIKL",
+      "lat": 51.141012,
+      "lon": 4.150915,
+      "country": "BEL"
+    },
+    {
+      "name": "NIVL",
+      "lat": 50.585295,
+      "lon": 4.304746,
+      "country": "BEL"
+    },
+    {
+      "name": "OOSB",
+      "lat": 51.334217,
+      "lon": 3.499163,
+      "country": "BEL"
+    },
+    {
+      "name": "OSTE",
+      "lat": 51.233804,
+      "lon": 2.929207,
+      "country": "BEL"
+    },
+    {
+      "name": "OUDN",
+      "lat": 50.871222,
+      "lon": 3.622928,
+      "country": "BEL"
+    },
+    {
+      "name": "PTTM",
+      "lat": 50.992623,
+      "lon": 3.251106,
+      "country": "BEL"
+    },
+    {
+      "name": "ROO2",
+      "lat": 51.564521,
+      "lon": 4.467398,
+      "country": "BEL"
+    },
+    {
+      "name": "SELFKANT2",
+      "lat": 50.995461,
+      "lon": 5.928905,
+      "country": "BEL"
+    },
+    {
+      "name": "TGRN",
+      "lat": 50.770546,
+      "lon": 5.477852,
+      "country": "BEL"
+    },
+    {
+      "name": "TILB",
+      "lat": 51.58115,
+      "lon": 5.056193,
+      "country": "BEL"
+    },
+    {
+      "name": "UKKE",
+      "lat": 50.798266,
+      "lon": 4.358702,
+      "country": "BEL"
+    },
+    {
+      "name": "VEUR",
+      "lat": 51.070741,
+      "lon": 2.667705,
+      "country": "BEL"
+    },
+    {
+      "name": "VOER",
+      "lat": 50.757462,
+      "lon": 5.710326,
+      "country": "BEL"
+    },
+    {
+      "name": "ZEEB",
+      "lat": 51.335856,
+      "lon": 3.208222,
+      "country": "BEL"
+    },
+    {
+      "name": "ZELZ",
+      "lat": 51.192451,
+      "lon": 3.80525,
+      "country": "BEL"
+    },
+    {
+      "name": "ZWEV",
+      "lat": 50.823062,
+      "lon": 3.345619,
+      "country": "BEL"
+    }
+  ]
+}

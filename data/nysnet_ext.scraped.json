@@ -1,0 +1,356 @@
+{
+  "last_updated": "2026-08-31T11:00:14+00:00",
+  "scraper_version": "7924b1e70747",
+  "source_url": "https://data.ny.gov/resource/j7t6-d8a8.json?$limit=500",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "NYAB",
+      "lat": 42.713576,
+      "lon": -73.81625,
+      "country": "USA"
+    },
+    {
+      "name": "NYCI",
+      "lat": 40.760621,
+      "lon": -73.197719,
+      "country": "USA"
+    },
+    {
+      "name": "NYDV",
+      "lat": 42.548915,
+      "lon": -77.697943,
+      "country": "USA"
+    },
+    {
+      "name": "NYWG",
+      "lat": 42.351054,
+      "lon": -76.875917,
+      "country": "USA"
+    },
+    {
+      "name": "NYPB",
+      "lat": 44.680717,
+      "lon": -73.453974,
+      "country": "USA"
+    },
+    {
+      "name": "NYIL",
+      "lat": 43.782677,
+      "lon": -74.277739,
+      "country": "USA"
+    },
+    {
+      "name": "NJI2",
+      "lat": 40.741474,
+      "lon": -74.177702,
+      "country": "USA"
+    },
+    {
+      "name": "NYKT",
+      "lat": 41.936937,
+      "lon": -74.031172,
+      "country": "USA"
+    },
+    {
+      "name": "NYVH",
+      "lat": 41.082284,
+      "lon": -73.817813,
+      "country": "USA"
+    },
+    {
+      "name": "NYFS",
+      "lat": 42.204665,
+      "lon": -78.143872,
+      "country": "USA"
+    },
+    {
+      "name": "NYHC",
+      "lat": 41.958328,
+      "lon": -75.292744,
+      "country": "USA"
+    },
+    {
+      "name": "NYRM",
+      "lat": 43.177786,
+      "lon": -75.48719,
+      "country": "USA"
+    },
+    {
+      "name": "NYWV",
+      "lat": 42.012389,
+      "lon": -76.521575,
+      "country": "USA"
+    },
+    {
+      "name": "NYML",
+      "lat": 44.87094,
+      "lon": -74.288151,
+      "country": "USA"
+    },
+    {
+      "name": "NYBT",
+      "lat": 42.988322,
+      "lon": -78.122326,
+      "country": "USA"
+    },
+    {
+      "name": "NYCS",
+      "lat": 42.667454,
+      "lon": -74.486374,
+      "country": "USA"
+    },
+    {
+      "name": "NYLV",
+      "lat": 43.796456,
+      "lon": -75.485432,
+      "country": "USA"
+    },
+    {
+      "name": "NYNS",
+      "lat": 43.118819,
+      "lon": -76.141604,
+      "country": "USA"
+    },
+    {
+      "name": "NYHM",
+      "lat": 43.018417,
+      "lon": -74.995857,
+      "country": "USA"
+    },
+    {
+      "name": "NYMO",
+      "lat": 41.646001,
+      "lon": -74.662273,
+      "country": "USA"
+    },
+    {
+      "name": "VTDA",
+      "lat": 43.349949,
+      "lon": -72.995237,
+      "country": "USA"
+    },
+    {
+      "name": "NYWS",
+      "lat": 42.700868,
+      "lon": -78.126082,
+      "country": "USA"
+    },
+    {
+      "name": "NYFD",
+      "lat": 42.428274,
+      "lon": -79.339644,
+      "country": "USA"
+    },
+    {
+      "name": "NYPF",
+      "lat": 43.09319,
+      "lon": -77.525309,
+      "country": "USA"
+    },
+    {
+      "name": "VTBE",
+      "lat": 42.882508,
+      "lon": -73.199902,
+      "country": "USA"
+    },
+    {
+      "name": "NYMD",
+      "lat": 41.406812,
+      "lon": -74.4428,
+      "country": "USA"
+    },
+    {
+      "name": "NJMT",
+      "lat": 40.796486,
+      "lon": -74.48315,
+      "country": "USA"
+    },
+    {
+      "name": "NYRH",
+      "lat": 40.923358,
+      "lon": -72.714045,
+      "country": "USA"
+    },
+    {
+      "name": "CTGU",
+      "lat": 41.289373,
+      "lon": -72.667901,
+      "country": "USA"
+    },
+    {
+      "name": "NYHS",
+      "lat": 42.252322,
+      "lon": -73.757545,
+      "country": "USA"
+    },
+    {
+      "name": "NYRB",
+      "lat": 44.303867,
+      "lon": -74.078354,
+      "country": "USA"
+    },
+    {
+      "name": "NYLP",
+      "lat": 43.165237,
+      "lon": -78.75371,
+      "country": "USA"
+    },
+    {
+      "name": "NYET",
+      "lat": 44.209681,
+      "lon": -73.540515,
+      "country": "USA"
+    },
+    {
+      "name": "NYWL",
+      "lat": 42.898674,
+      "lon": -76.852029,
+      "country": "USA"
+    },
+    {
+      "name": "NYST",
+      "lat": 43.061593,
+      "lon": -73.80417,
+      "country": "USA"
+    },
+    {
+      "name": "NYCP",
+      "lat": 42.187901,
+      "lon": -77.143425,
+      "country": "USA"
+    },
+    {
+      "name": "NYON",
+      "lat": 42.440226,
+      "lon": -75.111808,
+      "country": "USA"
+    },
+    {
+      "name": "NYBH",
+      "lat": 42.109749,
+      "lon": -75.827418,
+      "country": "USA"
+    },
+    {
+      "name": "NJNT",
+      "lat": 40.209339,
+      "lon": -74.036553,
+      "country": "USA"
+    },
+    {
+      "name": "NYSM",
+      "lat": 42.19205,
+      "lon": -78.747352,
+      "country": "USA"
+    },
+    {
+      "name": "NYHL",
+      "lat": 44.308763,
+      "lon": -75.449358,
+      "country": "USA"
+    },
+    {
+      "name": "MASH",
+      "lat": 42.140487,
+      "lon": -73.364184,
+      "country": "USA"
+    },
+    {
+      "name": "NYGC",
+      "lat": 40.734656,
+      "lon": -73.600271,
+      "country": "USA"
+    },
+    {
+      "name": "VTMI",
+      "lat": 43.998618,
+      "lon": -73.152606,
+      "country": "USA"
+    },
+    {
+      "name": "CTDA",
+      "lat": 41.065853,
+      "lon": -73.507206,
+      "country": "USA"
+    },
+    {
+      "name": "NYPD",
+      "lat": 44.652516,
+      "lon": -75.041807,
+      "country": "USA"
+    },
+    {
+      "name": "NJTP",
+      "lat": 40.540512,
+      "lon": -74.467815,
+      "country": "USA"
+    },
+    {
+      "name": "NYLC",
+      "lat": 41.481077,
+      "lon": -73.651492,
+      "country": "USA"
+    },
+    {
+      "name": "NYWT",
+      "lat": 44.028238,
+      "lon": -75.921097,
+      "country": "USA"
+    },
+    {
+      "name": "NYHF",
+      "lat": 43.317674,
+      "lon": -73.568714,
+      "country": "USA"
+    },
+    {
+      "name": "NYCL",
+      "lat": 42.584363,
+      "lon": -76.211331,
+      "country": "USA"
+    },
+    {
+      "name": "NYNB",
+      "lat": 41.495224,
+      "lon": -74.025548,
+      "country": "USA"
+    },
+    {
+      "name": "NYMX",
+      "lat": 43.470105,
+      "lon": -76.231913,
+      "country": "USA"
+    },
+    {
+      "name": "NYSB",
+      "lat": 42.679176,
+      "lon": -75.513188,
+      "country": "USA"
+    },
+    {
+      "name": "NYHB",
+      "lat": 42.717406,
+      "lon": -78.846465,
+      "country": "USA"
+    },
+    {
+      "name": "NYBR",
+      "lat": 40.688651,
+      "lon": -74.001272,
+      "country": "USA"
+    },
+    {
+      "name": "VTRU",
+      "lat": 43.607122,
+      "lon": -72.979418,
+      "country": "USA"
+    },
+    {
+      "name": "NYFV",
+      "lat": 42.939166,
+      "lon": -74.353337,
+      "country": "USA"
+    }
+  ]
+}

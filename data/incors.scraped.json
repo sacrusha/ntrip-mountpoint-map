@@ -1,0 +1,284 @@
+{
+  "last_updated": "2026-08-31T11:00:14+00:00",
+  "scraper_version": "461fd1c2f5fb",
+  "source_url": "ftp://ftp.incors.in.gov/RINEX/",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "INAB",
+      "lat": 40.298247,
+      "lon": -85.211445,
+      "country": "USA"
+    },
+    {
+      "name": "INAG",
+      "lat": 41.63302,
+      "lon": -85.027795,
+      "country": "USA"
+    },
+    {
+      "name": "INAS",
+      "lat": 39.389508,
+      "lon": -87.111008,
+      "country": "USA"
+    },
+    {
+      "name": "INAX",
+      "lat": 40.278254,
+      "lon": -85.669595,
+      "country": "USA"
+    },
+    {
+      "name": "INBD",
+      "lat": 38.863084,
+      "lon": -86.522307,
+      "country": "USA"
+    },
+    {
+      "name": "INBL",
+      "lat": 39.194713,
+      "lon": -86.55329,
+      "country": "USA"
+    },
+    {
+      "name": "INBR",
+      "lat": 41.457979,
+      "lon": -86.192623,
+      "country": "USA"
+    },
+    {
+      "name": "INBU",
+      "lat": 40.741314,
+      "lon": -85.276632,
+      "country": "USA"
+    },
+    {
+      "name": "INCL",
+      "lat": 39.536421,
+      "lon": -86.801536,
+      "country": "USA"
+    },
+    {
+      "name": "INCO",
+      "lat": 39.19736,
+      "lon": -85.961925,
+      "country": "USA"
+    },
+    {
+      "name": "INCR",
+      "lat": 40.082162,
+      "lon": -86.904856,
+      "country": "USA"
+    },
+    {
+      "name": "INDA",
+      "lat": 38.195068,
+      "lon": -86.973883,
+      "country": "USA"
+    },
+    {
+      "name": "INEL",
+      "lat": 41.638781,
+      "lon": -85.966141,
+      "country": "USA"
+    },
+    {
+      "name": "INEV",
+      "lat": 38.129495,
+      "lon": -87.549572,
+      "country": "USA"
+    },
+    {
+      "name": "INFC",
+      "lat": 38.346754,
+      "lon": -85.749675,
+      "country": "USA"
+    },
+    {
+      "name": "INFL",
+      "lat": 40.612745,
+      "lon": -87.31506,
+      "country": "USA"
+    },
+    {
+      "name": "INFR",
+      "lat": 40.278376,
+      "lon": -86.532698,
+      "country": "USA"
+    },
+    {
+      "name": "INFW",
+      "lat": 41.128005,
+      "lon": -85.177538,
+      "country": "USA"
+    },
+    {
+      "name": "INGG",
+      "lat": 39.359838,
+      "lon": -85.514927,
+      "country": "USA"
+    },
+    {
+      "name": "INGY",
+      "lat": 41.59518,
+      "lon": -87.246573,
+      "country": "USA"
+    },
+    {
+      "name": "INJP",
+      "lat": 38.408345,
+      "lon": -86.938613,
+      "country": "USA"
+    },
+    {
+      "name": "INLB",
+      "lat": 39.631737,
+      "lon": -85.01239,
+      "country": "USA"
+    },
+    {
+      "name": "INLG",
+      "lat": 38.663943,
+      "lon": -86.931929,
+      "country": "USA"
+    },
+    {
+      "name": "INLN",
+      "lat": 39.029719,
+      "lon": -87.153365,
+      "country": "USA"
+    },
+    {
+      "name": "INLP",
+      "lat": 41.585204,
+      "lon": -86.69252,
+      "country": "USA"
+    },
+    {
+      "name": "INLW",
+      "lat": 41.290134,
+      "lon": -87.315961,
+      "country": "USA"
+    },
+    {
+      "name": "INMD",
+      "lat": 38.834189,
+      "lon": -85.421163,
+      "country": "USA"
+    },
+    {
+      "name": "INMO",
+      "lat": 40.725931,
+      "lon": -86.752762,
+      "country": "USA"
+    },
+    {
+      "name": "INMT",
+      "lat": 39.771155,
+      "lon": -86.043024,
+      "country": "USA"
+    },
+    {
+      "name": "INNP",
+      "lat": 39.869198,
+      "lon": -87.410808,
+      "country": "USA"
+    },
+    {
+      "name": "INPA",
+      "lat": 38.566029,
+      "lon": -86.491843,
+      "country": "USA"
+    },
+    {
+      "name": "INPD",
+      "lat": 39.973193,
+      "lon": -85.769659,
+      "country": "USA"
+    },
+    {
+      "name": "INPL",
+      "lat": 39.691857,
+      "lon": -86.394403,
+      "country": "USA"
+    },
+    {
+      "name": "INPR",
+      "lat": 40.78522,
+      "lon": -86.130182,
+      "country": "USA"
+    },
+    {
+      "name": "INRN",
+      "lat": 40.946383,
+      "lon": -87.139587,
+      "country": "USA"
+    },
+    {
+      "name": "INSB",
+      "lat": 39.867184,
+      "lon": -84.940847,
+      "country": "USA"
+    },
+    {
+      "name": "INSG",
+      "lat": 38.684205,
+      "lon": -85.795362,
+      "country": "USA"
+    },
+    {
+      "name": "INSY",
+      "lat": 38.960078,
+      "lon": -85.861787,
+      "country": "USA"
+    },
+    {
+      "name": "INTC",
+      "lat": 38.060042,
+      "lon": -86.625789,
+      "country": "USA"
+    },
+    {
+      "name": "INTP",
+      "lat": 40.280363,
+      "lon": -86.055513,
+      "country": "USA"
+    },
+    {
+      "name": "INVI",
+      "lat": 38.627377,
+      "lon": -87.530593,
+      "country": "USA"
+    },
+    {
+      "name": "INVR",
+      "lat": 39.047973,
+      "lon": -85.261604,
+      "country": "USA"
+    },
+    {
+      "name": "INWB",
+      "lat": 40.824729,
+      "lon": -85.803228,
+      "country": "USA"
+    },
+    {
+      "name": "INWL",
+      "lat": 40.457908,
+      "lon": -86.926197,
+      "country": "USA"
+    },
+    {
+      "name": "INWN",
+      "lat": 41.079399,
+      "lon": -86.60429,
+      "country": "USA"
+    },
+    {
+      "name": "INWR",
+      "lat": 41.270259,
+      "lon": -85.894637,
+      "country": "USA"
+    }
+  ]
+}

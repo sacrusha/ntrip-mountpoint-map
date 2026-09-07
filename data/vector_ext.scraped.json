@@ -1,0 +1,212 @@
+{
+  "last_updated": "2026-08-31T11:00:14+00:00",
+  "scraper_version": "81e04c004971",
+  "source_url": "https://vector.vermont.gov/Map/SensorMap.aspx/GetSensorListWithConfiguration",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "VCAP_RTCM3",
+      "lat": 44.261974,
+      "lon": -72.582376,
+      "country": "USA",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS",
+      "groups": [
+        "own"
+      ]
+    },
+    {
+      "name": "VJSC_RTCM3",
+      "lat": 44.640423,
+      "lon": -72.671047,
+      "country": "USA",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS",
+      "groups": [
+        "own"
+      ]
+    },
+    {
+      "name": "VTBE_RTCM3",
+      "lat": 42.882508,
+      "lon": -73.199902,
+      "country": "USA",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS",
+      "groups": [
+        "own"
+      ]
+    },
+    {
+      "name": "VTC1_RTCM3",
+      "lat": 43.939227,
+      "lon": -72.60349,
+      "country": "USA",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS",
+      "groups": [
+        "own"
+      ]
+    },
+    {
+      "name": "VTD2_RTCM3",
+      "lat": 42.918363,
+      "lon": -72.535123,
+      "country": "USA",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS",
+      "groups": [
+        "own"
+      ]
+    },
+    {
+      "name": "VTD7_RTCM3",
+      "lat": 44.397864,
+      "lon": -72.025665,
+      "country": "USA",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS",
+      "groups": [
+        "own"
+      ]
+    },
+    {
+      "name": "VTD9_RTCM3",
+      "lat": 44.950972,
+      "lon": -72.160201,
+      "country": "USA",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS",
+      "groups": [
+        "own"
+      ]
+    },
+    {
+      "name": "VTDA_RTCM3",
+      "lat": 43.349949,
+      "lon": -72.995236,
+      "country": "USA",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS",
+      "groups": [
+        "own"
+      ]
+    },
+    {
+      "name": "VTEB_RTCM3",
+      "lat": 44.914201,
+      "lon": -72.798896,
+      "country": "USA",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS",
+      "groups": [
+        "own"
+      ]
+    },
+    {
+      "name": "VTHA_RTCM3",
+      "lat": 44.508527,
+      "lon": -72.365879,
+      "country": "USA",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS",
+      "groups": [
+        "own"
+      ]
+    },
+    {
+      "name": "VTIP_RTCM3",
+      "lat": 44.82005,
+      "lon": -71.890511,
+      "country": "USA",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS",
+      "groups": [
+        "own"
+      ]
+    },
+    {
+      "name": "VTMI_RTCM3",
+      "lat": 43.998618,
+      "lon": -73.152606,
+      "country": "USA",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS",
+      "groups": [
+        "own"
+      ]
+    },
+    {
+      "name": "VTOX_RTCM3",
+      "lat": 44.007824,
+      "lon": -72.114336,
+      "country": "USA",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS",
+      "groups": [
+        "own"
+      ]
+    },
+    {
+      "name": "VTRI_RTCM3",
+      "lat": 44.413257,
+      "lon": -72.994826,
+      "country": "USA",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS",
+      "groups": [
+        "own"
+      ]
+    },
+    {
+      "name": "VTRU_RTCM3",
+      "lat": 43.607122,
+      "lon": -72.979418,
+      "country": "USA",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS",
+      "groups": [
+        "own"
+      ]
+    },
+    {
+      "name": "VTSP_RTCM3",
+      "lat": 43.281456,
+      "lon": -72.477566,
+      "country": "USA",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS",
+      "groups": [
+        "own"
+      ]
+    },
+    {
+      "name": "VTWR_RTCM3",
+      "lat": 43.649047,
+      "lon": -72.317408,
+      "country": "USA",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS",
+      "groups": [
+        "own"
+      ]
+    }
+  ]
+}

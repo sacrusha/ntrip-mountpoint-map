@@ -1,0 +1,248 @@
+{
+  "last_updated": "2026-08-31T11:00:14+00:00",
+  "scraper_version": "5c2c47316d39",
+  "source_url": "https://kycors.ky.gov/Map/SensorMap.aspx/GetSensorListWithConfiguration",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "GRTN",
+      "lat": 38.859536,
+      "lon": -83.879086,
+      "country": "USA"
+    },
+    {
+      "name": "INEV",
+      "lat": 38.129495,
+      "lon": -87.549572,
+      "country": "USA"
+    },
+    {
+      "name": "INFC",
+      "lat": 38.346754,
+      "lon": -85.749675,
+      "country": "USA"
+    },
+    {
+      "name": "INMD",
+      "lat": 38.834189,
+      "lon": -85.421163,
+      "country": "USA"
+    },
+    {
+      "name": "INSG",
+      "lat": 38.684205,
+      "lon": -85.795362,
+      "country": "USA"
+    },
+    {
+      "name": "INTC",
+      "lat": 38.060042,
+      "lon": -86.625789,
+      "country": "USA"
+    },
+    {
+      "name": "INVR",
+      "lat": 39.047973,
+      "lon": -85.261605,
+      "country": "USA"
+    },
+    {
+      "name": "KYBC",
+      "lat": 37.574029,
+      "lon": -84.278107,
+      "country": "USA"
+    },
+    {
+      "name": "KYBO",
+      "lat": 39.038343,
+      "lon": -84.723644,
+      "country": "USA"
+    },
+    {
+      "name": "KYBV",
+      "lat": 37.551881,
+      "lon": -83.712714,
+      "country": "USA"
+    },
+    {
+      "name": "KYCP",
+      "lat": 37.342228,
+      "lon": -85.350062,
+      "country": "USA"
+    },
+    {
+      "name": "KYDR",
+      "lat": 38.715216,
+      "lon": -84.590985,
+      "country": "USA"
+    },
+    {
+      "name": "KYFW",
+      "lat": 38.174041,
+      "lon": -84.922251,
+      "country": "USA"
+    },
+    {
+      "name": "KYGB",
+      "lat": 38.48061,
+      "lon": -82.873327,
+      "country": "USA"
+    },
+    {
+      "name": "KYHT",
+      "lat": 37.443966,
+      "lon": -86.873185,
+      "country": "USA"
+    },
+    {
+      "name": "KYHZ",
+      "lat": 37.279025,
+      "lon": -83.233786,
+      "country": "USA"
+    },
+    {
+      "name": "KYLO",
+      "lat": 38.094123,
+      "lon": -82.693044,
+      "country": "USA"
+    },
+    {
+      "name": "KYMH",
+      "lat": 38.184132,
+      "lon": -83.436524,
+      "country": "USA"
+    },
+    {
+      "name": "KYMR",
+      "lat": 37.33674,
+      "lon": -88.073895,
+      "country": "USA"
+    },
+    {
+      "name": "KYSA",
+      "lat": 37.709474,
+      "lon": -83.007756,
+      "country": "USA"
+    },
+    {
+      "name": "KYSS",
+      "lat": 38.725362,
+      "lon": -82.963756,
+      "country": "USA"
+    },
+    {
+      "name": "KYTD",
+      "lat": 37.681794,
+      "lon": -85.85067,
+      "country": "USA"
+    },
+    {
+      "name": "KYTG",
+      "lat": 38.075546,
+      "lon": -84.492197,
+      "country": "USA"
+    },
+    {
+      "name": "KYTH",
+      "lat": 37.07032,
+      "lon": -84.618196,
+      "country": "USA"
+    },
+    {
+      "name": "KYTI",
+      "lat": 38.422225,
+      "lon": -83.749454,
+      "country": "USA"
+    },
+    {
+      "name": "KYTL",
+      "lat": 37.483382,
+      "lon": -82.535471,
+      "country": "USA"
+    },
+    {
+      "name": "KYWL",
+      "lat": 36.974142,
+      "lon": -89.082876,
+      "country": "USA"
+    },
+    {
+      "name": "OHAD",
+      "lat": 38.78593,
+      "lon": -83.556291,
+      "country": "USA"
+    },
+    {
+      "name": "TN12",
+      "lat": 36.248038,
+      "lon": -83.286409,
+      "country": "USA"
+    },
+    {
+      "name": "TN14",
+      "lat": 36.407586,
+      "lon": -84.065175,
+      "country": "USA"
+    },
+    {
+      "name": "TN19",
+      "lat": 36.408315,
+      "lon": -84.528053,
+      "country": "USA"
+    },
+    {
+      "name": "TN1B",
+      "lat": 36.477629,
+      "lon": -82.811656,
+      "country": "USA"
+    },
+    {
+      "name": "TN27",
+      "lat": 36.396001,
+      "lon": -85.317474,
+      "country": "USA"
+    },
+    {
+      "name": "TN32",
+      "lat": 36.396823,
+      "lon": -86.405466,
+      "country": "USA"
+    },
+    {
+      "name": "TN33",
+      "lat": 36.558699,
+      "lon": -87.319441,
+      "country": "USA"
+    },
+    {
+      "name": "TN41",
+      "lat": 36.126355,
+      "lon": -88.51274,
+      "country": "USA"
+    },
+    {
+      "name": "TN48",
+      "lat": 36.296043,
+      "lon": -88.296578,
+      "country": "USA"
+    },
+    {
+      "name": "TN4B",
+      "lat": 36.340399,
+      "lon": -88.864528,
+      "country": "USA"
+    },
+    {
+      "name": "TN4I",
+      "lat": 36.320437,
+      "lon": -89.474323,
+      "country": "USA"
+    },
+    {
+      "name": "WVHU",
+      "lat": 38.422949,
+      "lon": -82.4247,
+      "country": "USA"
+    }
+  ]
+}

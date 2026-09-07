@@ -1,0 +1,50 @@
+{
+  "last_updated": "2026-09-04T11:00:14+00:00",
+  "scraper_version": "4d730cdd66e3",
+  "source_url": "https://repgram.madeira.gov.pt/sbc/User/SiteMap/SiteMapPublic",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "CNCL",
+      "lat": 32.736488,
+      "lon": -16.735677,
+      "country": "PRT"
+    },
+    {
+      "name": "PSTO",
+      "lat": 33.05981,
+      "lon": -16.335202,
+      "country": "PRT"
+    },
+    {
+      "name": "PTMZ",
+      "lat": 32.844945,
+      "lon": -17.184848,
+      "country": "PRT"
+    },
+    {
+      "name": "PTPG",
+      "lat": 32.810715,
+      "lon": -17.248571,
+      "country": "PRT"
+    },
+    {
+      "name": "PTSO",
+      "lat": 32.684145,
+      "lon": -17.106103,
+      "country": "PRT"
+    },
+    {
+      "name": "STNB",
+      "lat": 32.810171,
+      "lon": -16.886855,
+      "country": "PRT"
+    },
+    {
+      "name": "URZE",
+      "lat": 32.752057,
+      "lon": -17.119064,
+      "country": "PRT"
+    }
+  ]
+}

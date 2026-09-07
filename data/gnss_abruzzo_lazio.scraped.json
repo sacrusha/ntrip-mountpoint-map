@@ -1,0 +1,206 @@
+{
+  "last_updated": "2026-08-31T11:00:12+00:00",
+  "scraper_version": "ec7eb10cf7ba",
+  "source_url": "https://gnssnet.regione.abruzzo.it/indexvisual.php?type=2L",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "ACQU",
+      "lat": 42.743889,
+      "lon": 11.864722,
+      "country": "ITA"
+    },
+    {
+      "name": "ALRA",
+      "lat": 41.733889,
+      "lon": 14.034167,
+      "country": "ITA"
+    },
+    {
+      "name": "AMAP",
+      "lat": 42.626389,
+      "lon": 13.292222,
+      "country": "ITA"
+    },
+    {
+      "name": "AQRA",
+      "lat": 42.365833,
+      "lon": 13.374167,
+      "country": "ITA"
+    },
+    {
+      "name": "ARDE",
+      "lat": 41.611944,
+      "lon": 12.536667,
+      "country": "ITA"
+    },
+    {
+      "name": "ATRA",
+      "lat": 42.575833,
+      "lon": 13.990833,
+      "country": "ITA"
+    },
+    {
+      "name": "AZRA",
+      "lat": 42.043056,
+      "lon": 13.423611,
+      "country": "ITA"
+    },
+    {
+      "name": "BLRA",
+      "lat": 41.810278,
+      "lon": 13.560278,
+      "country": "ITA"
+    },
+    {
+      "name": "CASS",
+      "lat": 41.492778,
+      "lon": 13.830278,
+      "country": "ITA"
+    },
+    {
+      "name": "CDRA",
+      "lat": 42.367222,
+      "lon": 13.72,
+      "country": "ITA"
+    },
+    {
+      "name": "FIUM",
+      "lat": 41.771389,
+      "lon": 12.23,
+      "country": "ITA"
+    },
+    {
+      "name": "FOND",
+      "lat": 41.355833,
+      "lon": 13.431944,
+      "country": "ITA"
+    },
+    {
+      "name": "FROS",
+      "lat": 41.637778,
+      "lon": 13.346389,
+      "country": "ITA"
+    },
+    {
+      "name": "FRRA",
+      "lat": 42.4175,
+      "lon": 14.291944,
+      "country": "ITA"
+    },
+    {
+      "name": "MIRA",
+      "lat": 42.220278,
+      "lon": 14.445278,
+      "country": "ITA"
+    },
+    {
+      "name": "MOCA",
+      "lat": 42.353611,
+      "lon": 11.603889,
+      "country": "ITA"
+    },
+    {
+      "name": "MRRA",
+      "lat": 42.885278,
+      "lon": 13.915833,
+      "country": "ITA"
+    },
+    {
+      "name": "MTRA",
+      "lat": 42.527778,
+      "lon": 13.239722,
+      "country": "ITA"
+    },
+    {
+      "name": "MZRA",
+      "lat": 41.946389,
+      "lon": 14.428333,
+      "country": "ITA"
+    },
+    {
+      "name": "OCRA",
+      "lat": 42.049444,
+      "lon": 13.038889,
+      "country": "ITA"
+    },
+    {
+      "name": "OTRA",
+      "lat": 41.954722,
+      "lon": 13.645833,
+      "country": "ITA"
+    },
+    {
+      "name": "PBRA",
+      "lat": 42.124167,
+      "lon": 14.228333,
+      "country": "ITA"
+    },
+    {
+      "name": "RIFL",
+      "lat": 42.209722,
+      "lon": 12.480833,
+      "country": "ITA"
+    },
+    {
+      "name": "RITI",
+      "lat": 42.405278,
+      "lon": 12.856111,
+      "country": "ITA"
+    },
+    {
+      "name": "RMRA",
+      "lat": 42.203333,
+      "lon": 13.52,
+      "country": "ITA"
+    },
+    {
+      "name": "ROUN",
+      "lat": 41.893056,
+      "lon": 12.493611,
+      "country": "ITA"
+    },
+    {
+      "name": "SCRA",
+      "lat": 42.268056,
+      "lon": 14.001944,
+      "country": "ITA"
+    },
+    {
+      "name": "SMRA",
+      "lat": 42.047778,
+      "lon": 13.923889,
+      "country": "ITA"
+    },
+    {
+      "name": "TERA",
+      "lat": 42.661944,
+      "lon": 13.700278,
+      "country": "ITA"
+    },
+    {
+      "name": "VALM",
+      "lat": 41.775278,
+      "lon": 12.917778,
+      "country": "ITA"
+    },
+    {
+      "name": "VCRA",
+      "lat": 42.735278,
+      "lon": 13.4975,
+      "country": "ITA"
+    },
+    {
+      "name": "VIRB",
+      "lat": 42.419722,
+      "lon": 12.106111,
+      "country": "ITA"
+    },
+    {
+      "name": "VTRA",
+      "lat": 42.110278,
+      "lon": 14.707778,
+      "country": "ITA"
+    }
+  ]
+}

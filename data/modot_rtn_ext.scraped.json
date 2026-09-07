@@ -1,0 +1,482 @@
+{
+  "last_updated": "2026-08-31T11:00:14+00:00",
+  "scraper_version": "a922d62915aa",
+  "source_url": "https://gpsweb3.modot.mo.gov/Map/SensorMap.aspx/GetSensorListWithConfiguration",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "ARFY",
+      "lat": 36.115792,
+      "lon": -94.180038,
+      "country": "USA"
+    },
+    {
+      "name": "ARHL",
+      "lat": 36.260053,
+      "lon": -91.543215,
+      "country": "USA"
+    },
+    {
+      "name": "ARHR",
+      "lat": 36.184232,
+      "lon": -93.030202,
+      "country": "USA"
+    },
+    {
+      "name": "ARM3",
+      "lat": 36.369235,
+      "lon": -92.373137,
+      "country": "USA"
+    },
+    {
+      "name": "ARPG",
+      "lat": 36.059108,
+      "lon": -90.518785,
+      "country": "USA"
+    },
+    {
+      "name": "MOA2",
+      "lat": 36.684276,
+      "lon": -94.438402,
+      "country": "USA"
+    },
+    {
+      "name": "MOAL",
+      "lat": 40.255765,
+      "lon": -94.299695,
+      "country": "USA"
+    },
+    {
+      "name": "MOAT",
+      "lat": 36.689363,
+      "lon": -91.37682,
+      "country": "USA"
+    },
+    {
+      "name": "MOB3",
+      "lat": 39.346745,
+      "lon": -91.236011,
+      "country": "USA"
+    },
+    {
+      "name": "MOB4",
+      "lat": 38.805998,
+      "lon": -94.500722,
+      "country": "USA"
+    },
+    {
+      "name": "MOBE",
+      "lat": 37.455358,
+      "lon": -91.215754,
+      "country": "USA"
+    },
+    {
+      "name": "MOBF",
+      "lat": 38.764311,
+      "lon": -90.246581,
+      "country": "USA"
+    },
+    {
+      "name": "MOBO",
+      "lat": 38.931259,
+      "lon": -92.778794,
+      "country": "USA"
+    },
+    {
+      "name": "MOBR",
+      "lat": 36.709778,
+      "lon": -93.22322,
+      "country": "USA"
+    },
+    {
+      "name": "MOBT",
+      "lat": 38.257484,
+      "lon": -94.393348,
+      "country": "USA"
+    },
+    {
+      "name": "MOBU",
+      "lat": 37.659737,
+      "lon": -93.10291,
+      "country": "USA"
+    },
+    {
+      "name": "MOBW",
+      "lat": 37.704928,
+      "lon": -90.74406,
+      "country": "USA"
+    },
+    {
+      "name": "MOCA",
+      "lat": 37.177546,
+      "lon": -94.357568,
+      "country": "USA"
+    },
+    {
+      "name": "MOCD",
+      "lat": 38.035942,
+      "lon": -92.773087,
+      "country": "USA"
+    },
+    {
+      "name": "MOCE",
+      "lat": 39.769178,
+      "lon": -93.539135,
+      "country": "USA"
+    },
+    {
+      "name": "MOCH",
+      "lat": 36.918118,
+      "lon": -89.318774,
+      "country": "USA"
+    },
+    {
+      "name": "MOCL",
+      "lat": 38.388818,
+      "lon": -93.755926,
+      "country": "USA"
+    },
+    {
+      "name": "MOCN",
+      "lat": 40.143525,
+      "lon": -91.543796,
+      "country": "USA"
+    },
+    {
+      "name": "MOCO",
+      "lat": 38.992223,
+      "lon": -92.28469,
+      "country": "USA"
+    },
+    {
+      "name": "MOCR",
+      "lat": 39.746815,
+      "lon": -94.231172,
+      "country": "USA"
+    },
+    {
+      "name": "MOCS",
+      "lat": 36.646725,
+      "lon": -93.905654,
+      "country": "USA"
+    },
+    {
+      "name": "MODP",
+      "lat": 36.645109,
+      "lon": -90.797993,
+      "country": "USA"
+    },
+    {
+      "name": "MODR",
+      "lat": 38.462632,
+      "lon": -91.465262,
+      "country": "USA"
+    },
+    {
+      "name": "MODX",
+      "lat": 36.806895,
+      "lon": -89.9786,
+      "country": "USA"
+    },
+    {
+      "name": "MOEB",
+      "lat": 39.178913,
+      "lon": -90.78765,
+      "country": "USA"
+    },
+    {
+      "name": "MOED",
+      "lat": 40.186571,
+      "lon": -92.17508,
+      "country": "USA"
+    },
+    {
+      "name": "MOEL",
+      "lat": 38.347133,
+      "lon": -92.595371,
+      "country": "USA"
+    },
+    {
+      "name": "MOFE",
+      "lat": 38.194813,
+      "lon": -90.389216,
+      "country": "USA"
+    },
+    {
+      "name": "MOFL",
+      "lat": 38.849327,
+      "lon": -91.977142,
+      "country": "USA"
+    },
+    {
+      "name": "MOGF",
+      "lat": 37.429311,
+      "lon": -93.846102,
+      "country": "USA"
+    },
+    {
+      "name": "MOGV",
+      "lat": 36.600308,
+      "lon": -92.437671,
+      "country": "USA"
+    },
+    {
+      "name": "MOHL",
+      "lat": 39.695437,
+      "lon": -91.40139,
+      "country": "USA"
+    },
+    {
+      "name": "MOHS",
+      "lat": 37.338206,
+      "lon": -91.939885,
+      "country": "USA"
+    },
+    {
+      "name": "MOHT",
+      "lat": 36.243876,
+      "lon": -89.728293,
+      "country": "USA"
+    },
+    {
+      "name": "MOHV",
+      "lat": 38.609191,
+      "lon": -94.320245,
+      "country": "USA"
+    },
+    {
+      "name": "MOIP",
+      "lat": 39.121833,
+      "lon": -94.387456,
+      "country": "USA"
+    },
+    {
+      "name": "MOJC",
+      "lat": 38.579805,
+      "lon": -92.294652,
+      "country": "USA"
+    },
+    {
+      "name": "MOJK",
+      "lat": 37.41235,
+      "lon": -89.650061,
+      "country": "USA"
+    },
+    {
+      "name": "MOKE",
+      "lat": 36.221418,
+      "lon": -90.073463,
+      "country": "USA"
+    },
+    {
+      "name": "MOKV",
+      "lat": 39.432148,
+      "lon": -92.931928,
+      "country": "USA"
+    },
+    {
+      "name": "MOM2",
+      "lat": 39.118734,
+      "lon": -93.216265,
+      "country": "USA"
+    },
+    {
+      "name": "MOMC",
+      "lat": 39.161806,
+      "lon": -91.829426,
+      "country": "USA"
+    },
+    {
+      "name": "MOMF",
+      "lat": 37.346042,
+      "lon": -92.950449,
+      "country": "USA"
+    },
+    {
+      "name": "MOMG",
+      "lat": 37.131019,
+      "lon": -92.311097,
+      "country": "USA"
+    },
+    {
+      "name": "MOML",
+      "lat": 40.210489,
+      "lon": -93.116077,
+      "country": "USA"
+    },
+    {
+      "name": "MOMO",
+      "lat": 36.916802,
+      "lon": -93.98306,
+      "country": "USA"
+    },
+    {
+      "name": "MOMV",
+      "lat": 40.358163,
+      "lon": -94.846673,
+      "country": "USA"
+    },
+    {
+      "name": "MONC",
+      "lat": 39.758645,
+      "lon": -92.74277,
+      "country": "USA"
+    },
+    {
+      "name": "MONE",
+      "lat": 37.865756,
+      "lon": -94.349547,
+      "country": "USA"
+    },
+    {
+      "name": "MONF",
+      "lat": 37.572094,
+      "lon": -92.342584,
+      "country": "USA"
+    },
+    {
+      "name": "MOOA",
+      "lat": 38.04156,
+      "lon": -93.685195,
+      "country": "USA"
+    },
+    {
+      "name": "MOOF",
+      "lat": 38.753906,
+      "lon": -90.695772,
+      "country": "USA"
+    },
+    {
+      "name": "MOPL",
+      "lat": 39.384465,
+      "lon": -94.783345,
+      "country": "USA"
+    },
+    {
+      "name": "MOPN",
+      "lat": 40.417352,
+      "lon": -93.57751,
+      "country": "USA"
+    },
+    {
+      "name": "MOPT",
+      "lat": 37.524421,
+      "lon": -90.013108,
+      "country": "USA"
+    },
+    {
+      "name": "MORM",
+      "lat": 39.27752,
+      "lon": -93.92615,
+      "country": "USA"
+    },
+    {
+      "name": "MOS3",
+      "lat": 38.339729,
+      "lon": -91.008965,
+      "country": "USA"
+    },
+    {
+      "name": "MOSD",
+      "lat": 38.692198,
+      "lon": -93.251095,
+      "country": "USA"
+    },
+    {
+      "name": "MOSE",
+      "lat": 37.155772,
+      "lon": -92.753979,
+      "country": "USA"
+    },
+    {
+      "name": "MOSF",
+      "lat": 37.24176,
+      "lon": -93.229873,
+      "country": "USA"
+    },
+    {
+      "name": "MOSG",
+      "lat": 37.937488,
+      "lon": -90.135754,
+      "country": "USA"
+    },
+    {
+      "name": "MOSH",
+      "lat": 39.698541,
+      "lon": -92.052722,
+      "country": "USA"
+    },
+    {
+      "name": "MOSI",
+      "lat": 38.562286,
+      "lon": -90.461362,
+      "country": "USA"
+    },
+    {
+      "name": "MOSL",
+      "lat": 37.177263,
+      "lon": -90.464568,
+      "country": "USA"
+    },
+    {
+      "name": "MOSR",
+      "lat": 37.820739,
+      "lon": -92.154275,
+      "country": "USA"
+    },
+    {
+      "name": "MOST",
+      "lat": 37.970401,
+      "lon": -91.342543,
+      "country": "USA"
+    },
+    {
+      "name": "MOSV",
+      "lat": 39.954208,
+      "lon": -94.847588,
+      "country": "USA"
+    },
+    {
+      "name": "MOTK",
+      "lat": 40.437258,
+      "lon": -95.35121,
+      "country": "USA"
+    },
+    {
+      "name": "MOVB",
+      "lat": 36.960127,
+      "lon": -91.060503,
+      "country": "USA"
+    },
+    {
+      "name": "MOVE",
+      "lat": 38.191419,
+      "lon": -91.948683,
+      "country": "USA"
+    },
+    {
+      "name": "MOWB",
+      "lat": 38.814498,
+      "lon": -93.741283,
+      "country": "USA"
+    },
+    {
+      "name": "MOWR",
+      "lat": 38.814639,
+      "lon": -91.161368,
+      "country": "USA"
+    },
+    {
+      "name": "MOWS",
+      "lat": 36.96993,
+      "lon": -91.919875,
+      "country": "USA"
+    },
+    {
+      "name": "MOWW",
+      "lat": 38.25336,
+      "lon": -93.361759,
+      "country": "USA"
+    }
+  ]
+}

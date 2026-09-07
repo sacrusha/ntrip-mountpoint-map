@@ -1,0 +1,11 @@
+{
+  "last_updated": "2026-07-02",
+  "source_url": "https://www.berlin.de/sen/stadt/_assets/stadtdaten/geoportal/landesvermessung/raumbezug/sapos-flyer_2026.pdf",
+  "pin_origin": "register",
+  "provenance": "Roster and identity from the operator flyer (SenStadt Berlin, sapos-flyer_2026.pdf): the Berlin SAPOS system runs three own reference stations - RS-ID 0897 Berlin-Wittenau, 0898 Berlin-Gruenau, 0899 Berlin-Dahlem - networked with Potsdam (RS-ID 0028, a Brandenburg station pinned under sapos_bb) and four further Brandenburg stations. Station names equal their direct mounts on www.sapos-be-ntrip.de:2102 (RTCM 3.2 MSM, Basic-auth; the sourcetable reports placeholder coords 52.00/13.00, so it cannot be the coordinate source). Berlin publishes no machine-readable station coordinates (geoportal CSW empty, flyer map is an image), so coordinates are the named locality's centre to 2 decimals (~1 km).",
+  "stations": [
+    {"name": "REF_0897_MSM", "lat": 52.59, "lon": 13.32, "country": "DEU", "format": "RTCM 3.2", "carrier": 2, "constellations": "GPS+GLO"},
+    {"name": "REF_0898_MSM", "lat": 52.41, "lon": 13.58, "country": "DEU", "format": "RTCM 3.2", "carrier": 2, "constellations": "GPS+GLO"},
+    {"name": "REF_0899_MSM", "lat": 52.46, "lon": 13.29, "country": "DEU", "format": "RTCM 3.2", "carrier": 2, "constellations": "GPS+GLO"}
+  ]
+}

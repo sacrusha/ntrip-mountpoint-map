@@ -1,0 +1,260 @@
+{
+  "last_updated": "2026-09-04T11:00:14+00:00",
+  "scraper_version": "a6349d2281d2",
+  "source_url": "https://www.omancorsnet.gov.om/SBC/User/SiteMap/SiteMapPublic",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "MUSA",
+      "lat": 23.740887,
+      "lon": 57.635001,
+      "country": "OMN"
+    },
+    {
+      "name": "NS01",
+      "lat": 23.611411,
+      "lon": 58.54706,
+      "country": "OMN"
+    },
+    {
+      "name": "NS02",
+      "lat": 23.483751,
+      "lon": 57.457734,
+      "country": "OMN"
+    },
+    {
+      "name": "NS03",
+      "lat": 23.961825,
+      "lon": 57.078933,
+      "country": "OMN"
+    },
+    {
+      "name": "NS04",
+      "lat": 23.913784,
+      "lon": 56.554086,
+      "country": "OMN"
+    },
+    {
+      "name": "NS05",
+      "lat": 24.349525,
+      "lon": 56.733027,
+      "country": "OMN"
+    },
+    {
+      "name": "NS06",
+      "lat": 22.93116,
+      "lon": 59.20311,
+      "country": "OMN"
+    },
+    {
+      "name": "NS07",
+      "lat": 22.523269,
+      "lon": 59.797252,
+      "country": "OMN"
+    },
+    {
+      "name": "NS09",
+      "lat": 17.490042,
+      "lon": 53.345831,
+      "country": "OMN"
+    },
+    {
+      "name": "NS10",
+      "lat": 17.627614,
+      "lon": 54.047789,
+      "country": "OMN"
+    },
+    {
+      "name": "NS11",
+      "lat": 17.842295,
+      "lon": 52.655402,
+      "country": "OMN"
+    },
+    {
+      "name": "NS12",
+      "lat": 18.593618,
+      "lon": 52.4438,
+      "country": "OMN"
+    },
+    {
+      "name": "NS15",
+      "lat": 18.254834,
+      "lon": 53.646634,
+      "country": "OMN"
+    },
+    {
+      "name": "NS16",
+      "lat": 17.04152,
+      "lon": 54.400466,
+      "country": "OMN"
+    },
+    {
+      "name": "NS19",
+      "lat": 17.443902,
+      "lon": 55.269335,
+      "country": "OMN"
+    },
+    {
+      "name": "NS20",
+      "lat": 23.385785,
+      "lon": 56.843924,
+      "country": "OMN"
+    },
+    {
+      "name": "NS21",
+      "lat": 23.219662,
+      "lon": 56.457467,
+      "country": "OMN"
+    },
+    {
+      "name": "NS22",
+      "lat": 23.601853,
+      "lon": 55.963393,
+      "country": "OMN"
+    },
+    {
+      "name": "NS23",
+      "lat": 22.831588,
+      "lon": 55.325902,
+      "country": "OMN"
+    },
+    {
+      "name": "NS25",
+      "lat": 22.723855,
+      "lon": 56.626204,
+      "country": "OMN"
+    },
+    {
+      "name": "NS26",
+      "lat": 22.410069,
+      "lon": 57.505652,
+      "country": "OMN"
+    },
+    {
+      "name": "NS27",
+      "lat": 22.384713,
+      "lon": 58.211254,
+      "country": "OMN"
+    },
+    {
+      "name": "NS28",
+      "lat": 22.836466,
+      "lon": 58.168836,
+      "country": "OMN"
+    },
+    {
+      "name": "NS29",
+      "lat": 22.489671,
+      "lon": 58.769599,
+      "country": "OMN"
+    },
+    {
+      "name": "NS31",
+      "lat": 23.039679,
+      "lon": 58.594402,
+      "country": "OMN"
+    },
+    {
+      "name": "NS33",
+      "lat": 21.848089,
+      "lon": 59.564231,
+      "country": "OMN"
+    },
+    {
+      "name": "NS34",
+      "lat": 21.373485,
+      "lon": 59.18729,
+      "country": "OMN"
+    },
+    {
+      "name": "NS35",
+      "lat": 20.772148,
+      "lon": 58.280875,
+      "country": "OMN"
+    },
+    {
+      "name": "NS36",
+      "lat": 20.201177,
+      "lon": 57.808428,
+      "country": "OMN"
+    },
+    {
+      "name": "NS37",
+      "lat": 19.629008,
+      "lon": 57.631131,
+      "country": "OMN"
+    },
+    {
+      "name": "NS38",
+      "lat": 21.177748,
+      "lon": 55.473881,
+      "country": "OMN"
+    },
+    {
+      "name": "NS39",
+      "lat": 19.94958,
+      "lon": 56.290483,
+      "country": "OMN"
+    },
+    {
+      "name": "NS40",
+      "lat": 19.565177,
+      "lon": 54.890281,
+      "country": "OMN"
+    },
+    {
+      "name": "NS41",
+      "lat": 18.978279,
+      "lon": 57.781805,
+      "country": "OMN"
+    },
+    {
+      "name": "NS42",
+      "lat": 18.096452,
+      "lon": 55.639691,
+      "country": "OMN"
+    },
+    {
+      "name": "NS43",
+      "lat": 24.545703,
+      "lon": 56.100374,
+      "country": "OMN"
+    },
+    {
+      "name": "NS44",
+      "lat": 25.6444,
+      "lon": 56.251472,
+      "country": "OMN"
+    },
+    {
+      "name": "NS45",
+      "lat": 26.142185,
+      "lon": 56.152434,
+      "country": "OMN"
+    },
+    {
+      "name": "NS46",
+      "lat": 18.580143,
+      "lon": 56.585552,
+      "country": "OMN"
+    },
+    {
+      "name": "NS48",
+      "lat": 16.817745,
+      "lon": 53.475221,
+      "country": "OMN"
+    },
+    {
+      "name": "QURA",
+      "lat": 23.259984,
+      "lon": 58.924533,
+      "country": "OMN"
+    },
+    {
+      "name": "SAMA",
+      "lat": 23.297157,
+      "lon": 57.956281,
+      "country": "OMN"
+    }
+  ]
+}

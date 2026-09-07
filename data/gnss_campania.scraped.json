@@ -1,0 +1,134 @@
+{
+  "last_updated": "2026-08-31T11:00:12+00:00",
+  "scraper_version": "9baf308ce6bf",
+  "source_url": "https://gps-sit.regione.campania.it/permanenti.php",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "11_NAPO_4C",
+      "lat": 40.87002,
+      "lon": 14.275982,
+      "country": "ITA",
+      "format": "MSM4",
+      "carrier": 2,
+      "groups": [
+        "direct"
+      ]
+    },
+    {
+      "name": "12_CARI_4C",
+      "lat": 41.194718,
+      "lon": 13.974186,
+      "country": "ITA",
+      "format": "MSM4",
+      "carrier": 2,
+      "groups": [
+        "direct"
+      ]
+    },
+    {
+      "name": "13_BENE_4C",
+      "lat": 41.121469,
+      "lon": 14.777987,
+      "country": "ITA",
+      "format": "MSM4",
+      "carrier": 2,
+      "groups": [
+        "direct"
+      ]
+    },
+    {
+      "name": "14_TRGR_4C",
+      "lat": 40.779012,
+      "lon": 14.410001,
+      "country": "ITA",
+      "format": "MSM4",
+      "carrier": 2,
+      "groups": [
+        "direct"
+      ]
+    },
+    {
+      "name": "15_AGRO_4C",
+      "lat": 40.346408,
+      "lon": 14.996771,
+      "country": "ITA",
+      "format": "MSM4",
+      "carrier": 2,
+      "groups": [
+        "direct"
+      ]
+    },
+    {
+      "name": "16_NICO_4C",
+      "lat": 41.046941,
+      "lon": 14.327393,
+      "country": "ITA",
+      "format": "MSM4",
+      "carrier": 2,
+      "groups": [
+        "direct"
+      ]
+    },
+    {
+      "name": "ALIF",
+      "lat": 41.327028,
+      "lon": 14.334606,
+      "country": "ITA"
+    },
+    {
+      "name": "ANGE",
+      "lat": 40.930918,
+      "lon": 15.18393,
+      "country": "ITA"
+    },
+    {
+      "name": "AVEL",
+      "lat": 40.911945,
+      "lon": 14.783297,
+      "country": "ITA"
+    },
+    {
+      "name": "BART",
+      "lat": 41.409958,
+      "lon": 15.015152,
+      "country": "ITA"
+    },
+    {
+      "name": "CITR",
+      "lat": 40.688584,
+      "lon": 15.230698,
+      "country": "ITA"
+    },
+    {
+      "name": "EBOL",
+      "lat": 40.546557,
+      "lon": 14.987017,
+      "country": "ITA"
+    },
+    {
+      "name": "ISCH",
+      "lat": 40.711958,
+      "lon": 13.924598,
+      "country": "ITA"
+    },
+    {
+      "name": "SALA",
+      "lat": 40.41721,
+      "lon": 15.556617,
+      "country": "ITA"
+    },
+    {
+      "name": "SAPR",
+      "lat": 40.073645,
+      "lon": 15.630122,
+      "country": "ITA"
+    },
+    {
+      "name": "VALL",
+      "lat": 40.235203,
+      "lon": 15.279938,
+      "country": "ITA"
+    }
+  ]
+}

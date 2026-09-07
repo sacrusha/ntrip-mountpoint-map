@@ -1,0 +1,290 @@
+{
+  "last_updated": "2026-08-31T11:00:14+00:00",
+  "scraper_version": "212c580d1ad3",
+  "source_url": "https://services2.arcgis.com/C8EMgrsFcRFL6LrL/arcgis/rest/services/NOAA_CORS_Network_Test/FeatureServer/0",
+  "pin_origin": "external",
+  "stations": [
+    {
+      "name": "COLB",
+      "lat": 39.959722,
+      "lon": -83.045556,
+      "country": "USA"
+    },
+    {
+      "name": "FREO",
+      "lat": 40.201389,
+      "lon": -81.257778,
+      "country": "USA"
+    },
+    {
+      "name": "GALP",
+      "lat": 38.844167,
+      "lon": -82.277778,
+      "country": "USA"
+    },
+    {
+      "name": "GARF",
+      "lat": 41.415556,
+      "lon": -81.614722,
+      "country": "USA"
+    },
+    {
+      "name": "GRTN",
+      "lat": 38.859444,
+      "lon": -83.878889,
+      "country": "USA"
+    },
+    {
+      "name": "GUST",
+      "lat": 41.4625,
+      "lon": -80.716111,
+      "country": "USA"
+    },
+    {
+      "name": "KNTN",
+      "lat": 40.630278,
+      "lon": -83.614722,
+      "country": "USA"
+    },
+    {
+      "name": "KYBO",
+      "lat": 39.038333,
+      "lon": -84.723611,
+      "country": "USA"
+    },
+    {
+      "name": "MCON",
+      "lat": 39.660833,
+      "lon": -81.829167,
+      "country": "USA"
+    },
+    {
+      "name": "MTVR",
+      "lat": 40.382222,
+      "lon": -82.510556,
+      "country": "USA"
+    },
+    {
+      "name": "OHAB",
+      "lat": 41.925,
+      "lon": -80.550278,
+      "country": "USA"
+    },
+    {
+      "name": "OHAD",
+      "lat": 38.785833,
+      "lon": -83.556111,
+      "country": "USA"
+    },
+    {
+      "name": "OHAL",
+      "lat": 40.769167,
+      "lon": -84.106944,
+      "country": "USA"
+    },
+    {
+      "name": "OHCB",
+      "lat": 40.776389,
+      "lon": -80.829722,
+      "country": "USA"
+    },
+    {
+      "name": "OHCL",
+      "lat": 39.943889,
+      "lon": -83.837778,
+      "country": "USA"
+    },
+    {
+      "name": "OHCS",
+      "lat": 40.2975,
+      "lon": -81.842778,
+      "country": "USA"
+    },
+    {
+      "name": "OHDF",
+      "lat": 41.333889,
+      "lon": -84.428889,
+      "country": "USA"
+    },
+    {
+      "name": "OHDR",
+      "lat": 40.099444,
+      "lon": -84.609722,
+      "country": "USA"
+    },
+    {
+      "name": "OHDT",
+      "lat": 39.764722,
+      "lon": -84.180556,
+      "country": "USA"
+    },
+    {
+      "name": "OHFN",
+      "lat": 41.558056,
+      "lon": -84.134722,
+      "country": "USA"
+    },
+    {
+      "name": "OHFY",
+      "lat": 39.525833,
+      "lon": -83.476111,
+      "country": "USA"
+    },
+    {
+      "name": "OHHA",
+      "lat": 41.040833,
+      "lon": -83.675833,
+      "country": "USA"
+    },
+    {
+      "name": "OHHI",
+      "lat": 39.2,
+      "lon": -83.597222,
+      "country": "USA"
+    },
+    {
+      "name": "OHHO",
+      "lat": 39.535278,
+      "lon": -82.443611,
+      "country": "USA"
+    },
+    {
+      "name": "OHHU",
+      "lat": 41.176667,
+      "lon": -82.561111,
+      "country": "USA"
+    },
+    {
+      "name": "OHJF",
+      "lat": 40.404444,
+      "lon": -80.721389,
+      "country": "USA"
+    },
+    {
+      "name": "OHLA",
+      "lat": 41.726389,
+      "lon": -81.286389,
+      "country": "USA"
+    },
+    {
+      "name": "OHLC",
+      "lat": 41.721111,
+      "lon": -83.526111,
+      "country": "USA"
+    },
+    {
+      "name": "OHLI",
+      "lat": 39.9525,
+      "lon": -82.414167,
+      "country": "USA"
+    },
+    {
+      "name": "OHLO",
+      "lat": 41.293333,
+      "lon": -82.232778,
+      "country": "USA"
+    },
+    {
+      "name": "OHMA",
+      "lat": 40.613611,
+      "lon": -83.081944,
+      "country": "USA"
+    },
+    {
+      "name": "OHME",
+      "lat": 39.777222,
+      "lon": -81.101667,
+      "country": "USA"
+    },
+    {
+      "name": "OHMN",
+      "lat": 41.023333,
+      "lon": -80.7725,
+      "country": "USA"
+    },
+    {
+      "name": "OHMR",
+      "lat": 40.545833,
+      "lon": -84.630556,
+      "country": "USA"
+    },
+    {
+      "name": "OHPR",
+      "lat": 39.740556,
+      "lon": -84.574722,
+      "country": "USA"
+    },
+    {
+      "name": "OHRI",
+      "lat": 40.768056,
+      "lon": -82.560556,
+      "country": "USA"
+    },
+    {
+      "name": "OHRS",
+      "lat": 39.365278,
+      "lon": -83.021111,
+      "country": "USA"
+    },
+    {
+      "name": "OHSB",
+      "lat": 41.636389,
+      "lon": -82.829722,
+      "country": "USA"
+    },
+    {
+      "name": "OHUN",
+      "lat": 40.232778,
+      "lon": -83.360833,
+      "country": "USA"
+    },
+    {
+      "name": "OHWI",
+      "lat": 41.581667,
+      "lon": -84.5575,
+      "country": "USA"
+    },
+    {
+      "name": "OHWS",
+      "lat": 39.426111,
+      "lon": -81.4175,
+      "country": "USA"
+    },
+    {
+      "name": "OHWY",
+      "lat": 40.819722,
+      "lon": -81.895833,
+      "country": "USA"
+    },
+    {
+      "name": "OHZP",
+      "lat": 41.076111,
+      "lon": -81.510556,
+      "country": "USA"
+    },
+    {
+      "name": "PKTN",
+      "lat": 39.045278,
+      "lon": -83.024167,
+      "country": "USA"
+    },
+    {
+      "name": "SIDN",
+      "lat": 40.310278,
+      "lon": -84.170833,
+      "country": "USA"
+    },
+    {
+      "name": "STKR",
+      "lat": 39.325833,
+      "lon": -82.106944,
+      "country": "USA"
+    },
+    {
+      "name": "TIFF",
+      "lat": 41.074722,
+      "lon": -83.150278,
+      "country": "USA"
+    }
+  ]
+}

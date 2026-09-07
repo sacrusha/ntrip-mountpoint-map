@@ -1,0 +1,176 @@
+{
+  "last_updated": "2026-09-02T11:00:11+00:00",
+  "scraper_version": "8418c01e5a2e",
+  "source_url": "https://latpos.lgia.gov.lv/SBC/User/SiteMap/SiteMapPublic",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "AIZP",
+      "lat": 56.718697,
+      "lon": 21.604407,
+      "country": "LVA"
+    },
+    {
+      "name": "ALK1",
+      "lat": 57.424129,
+      "lon": 27.071865,
+      "country": "LVA"
+    },
+    {
+      "name": "BARK",
+      "lat": 56.726106,
+      "lon": 26.608898,
+      "country": "LVA"
+    },
+    {
+      "name": "BAU1",
+      "lat": 56.405891,
+      "lon": 24.186142,
+      "country": "LVA"
+    },
+    {
+      "name": "BLTI",
+      "lat": 56.942936,
+      "lon": 27.642964,
+      "country": "LVA"
+    },
+    {
+      "name": "DAU2",
+      "lat": 55.869151,
+      "lon": 26.518419,
+      "country": "LVA"
+    },
+    {
+      "name": "DOB2",
+      "lat": 56.636695,
+      "lon": 23.283424,
+      "country": "LVA"
+    },
+    {
+      "name": "JEK1",
+      "lat": 56.504945,
+      "lon": 25.864594,
+      "country": "LVA"
+    },
+    {
+      "name": "KOLK",
+      "lat": 57.739993,
+      "lon": 22.585983,
+      "country": "LVA"
+    },
+    {
+      "name": "KUL3",
+      "lat": 56.979745,
+      "lon": 21.946488,
+      "country": "LVA"
+    },
+    {
+      "name": "LEDU",
+      "lat": 57.323723,
+      "lon": 24.743268,
+      "country": "LVA"
+    },
+    {
+      "name": "LEJA",
+      "lat": 57.280297,
+      "lon": 26.57845,
+      "country": "LVA"
+    },
+    {
+      "name": "LGIA",
+      "lat": 56.925482,
+      "lon": 24.076086,
+      "country": "LVA"
+    },
+    {
+      "name": "LIP3",
+      "lat": 56.550229,
+      "lon": 21.005752,
+      "country": "LVA"
+    },
+    {
+      "name": "LUZ1",
+      "lat": 56.362713,
+      "lon": 27.260945,
+      "country": "LVA"
+    },
+    {
+      "name": "LVR1",
+      "lat": 56.767718,
+      "lon": 24.827479,
+      "country": "LVA"
+    },
+    {
+      "name": "NERE",
+      "lat": 56.200285,
+      "lon": 25.311573,
+      "country": "LVA"
+    },
+    {
+      "name": "PRKP",
+      "lat": 55.820369,
+      "lon": 27.625475,
+      "country": "LVA"
+    },
+    {
+      "name": "PRL1",
+      "lat": 56.289964,
+      "lon": 26.724929,
+      "country": "LVA"
+    },
+    {
+      "name": "RUCA",
+      "lat": 56.156397,
+      "lon": 21.15309,
+      "country": "LVA"
+    },
+    {
+      "name": "SLD2",
+      "lat": 56.659782,
+      "lon": 22.498769,
+      "country": "LVA"
+    },
+    {
+      "name": "TAL1",
+      "lat": 57.246482,
+      "lon": 22.58689,
+      "country": "LVA"
+    },
+    {
+      "name": "TKM1",
+      "lat": 56.967246,
+      "lon": 23.152357,
+      "country": "LVA"
+    },
+    {
+      "name": "TRKP",
+      "lat": 56.355072,
+      "lon": 28.1872,
+      "country": "LVA"
+    },
+    {
+      "name": "VAL2",
+      "lat": 57.535956,
+      "lon": 25.405924,
+      "country": "LVA"
+    },
+    {
+      "name": "VALK",
+      "lat": 57.774667,
+      "lon": 26.014778,
+      "country": "LVA"
+    },
+    {
+      "name": "VNP1",
+      "lat": 57.393414,
+      "lon": 21.542031,
+      "country": "LVA"
+    },
+    {
+      "name": "VPBA",
+      "lat": 57.064066,
+      "lon": 25.812424,
+      "country": "LVA"
+    }
+  ]
+}

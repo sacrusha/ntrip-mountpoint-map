@@ -1,0 +1,15 @@
+SOURCETABLE 200 OK
+Server: GNSS Spider 7.4.1.8151/1.0
+Date: Fri, 14 Aug 2026 11:00:06 GMT Standard Time
+Content-Type: text/plain
+Content-Length: 918
+
+STR;Network_iMAX_R3_MSM5;Network_iMAX_R3_MSM5;RTCM 3;;2;GPS+GLO+BDS;;;22.25;113.89;1;1;Leica GNSS Spider;none;B;N;9600;
+STR;Network_VRS_R3_MSM5;Network_VRS_R3_MSM5;RTCM 3;;2;GPS+GLO+BDS;;;22.25;113.89;1;1;Leica GNSS Spider;none;B;N;9600;
+STR;DGPS_Nearest_R2_T1,2;DGPS_Nearest_R2_T1,2;RTCM 2;;2;GPS+GLO;;;22.25;113.89;1;0;Leica GNSS Spider;none;B;N;9600;
+STR;Network_iMAX_R3;Network_iMAX_R3;RTCM 3;;2;GPS+GLO;;;22.25;113.89;1;1;Leica GNSS Spider;none;B;N;9600;
+STR;RTK_Nearest_RTCM3;RTK_Nearest_RTCM3;RTCM 3;;2;GPS+GLO;;;22.25;113.89;1;0;Leica GNSS Spider;none;B;N;9600;
+STR;Network_FKP_R2_T18,19;Network_FKP_R2_T18,19;RTCM 2;;2;GPS+GLO;;;22.25;113.89;1;1;Leica GNSS Spider;none;B;N;9600;
+STR;Network_VRS_R3;Network_VRS_R3;RTCM 3;;2;GPS+GLO;;;22.25;113.89;1;1;Leica GNSS Spider;none;B;N;9600;
+STR;RTK_Nearest_R3_MSM5;RTK_Nearest_R3_MSM5;RTCM 3;;2;GPS+GLO+BDS;;;22.25;113.89;1;0;Leica GNSS Spider;none;B;N;9600;
+ENDSOURCETABLE

@@ -1,0 +1,50 @@
+{
+  "last_updated": "2026-09-01T21:00:14+00:00",
+  "scraper_version": "c0c03b431f2f",
+  "source_url": "https://geodesy.unr.edu/NGLStationPages/llh.out",
+  "pin_origin": "external",
+  "stations": [
+    {
+      "name": "BJAB",
+      "lat": 7.18234853,
+      "lon": 2.00053091,
+      "country": "BEN"
+    },
+    {
+      "name": "BJCO",
+      "lat": 6.38466451,
+      "lon": 2.4500219,
+      "country": "BEN"
+    },
+    {
+      "name": "BJKA",
+      "lat": 11.12474281,
+      "lon": 2.92798107,
+      "country": "BEN"
+    },
+    {
+      "name": "BJNA",
+      "lat": 10.25318146,
+      "lon": 1.38074908,
+      "country": "BEN"
+    },
+    {
+      "name": "BJNI",
+      "lat": 9.95127582,
+      "lon": 3.20403975,
+      "country": "BEN"
+    },
+    {
+      "name": "BJPA",
+      "lat": 9.35750898,
+      "lon": 2.62565487,
+      "country": "BEN"
+    },
+    {
+      "name": "BJSA",
+      "lat": 7.92777306,
+      "lon": 1.99319566,
+      "country": "BEN"
+    }
+  ]
+}

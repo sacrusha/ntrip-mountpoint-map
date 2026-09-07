@@ -1,0 +1,230 @@
+{
+  "last_updated": "2026-08-31T11:00:12+00:00",
+  "scraper_version": "23e39815618a",
+  "source_url": "https://www.spingnss.it/stazioni/",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "ACCE",
+      "lat": 44.47618,
+      "lon": 6.988206,
+      "country": "ITA"
+    },
+    {
+      "name": "AGNE",
+      "lat": 45.467938,
+      "lon": 7.139615,
+      "country": "ITA"
+    },
+    {
+      "name": "ALSN",
+      "lat": 44.923169,
+      "lon": 8.616345,
+      "country": "ITA"
+    },
+    {
+      "name": "BIEL",
+      "lat": 45.560744,
+      "lon": 8.048051,
+      "country": "ITA"
+    },
+    {
+      "name": "BORM",
+      "lat": 46.468179,
+      "lon": 10.363971,
+      "country": "ITA"
+    },
+    {
+      "name": "BREU",
+      "lat": 45.564936,
+      "lon": 10.23259,
+      "country": "ITA"
+    },
+    {
+      "name": "BUSL",
+      "lat": 45.136804,
+      "lon": 7.152153,
+      "country": "ITA"
+    },
+    {
+      "name": "CANL",
+      "lat": 44.722262,
+      "lon": 8.292822,
+      "country": "ITA"
+    },
+    {
+      "name": "CARZ",
+      "lat": 46.042338,
+      "lon": 8.6802,
+      "country": "ITA"
+    },
+    {
+      "name": "CHIA",
+      "lat": 46.319845,
+      "lon": 9.401271,
+      "country": "ITA"
+    },
+    {
+      "name": "COMO",
+      "lat": 45.80216,
+      "lon": 9.095619,
+      "country": "ITA"
+    },
+    {
+      "name": "CREA",
+      "lat": 45.354331,
+      "lon": 9.685305,
+      "country": "ITA"
+    },
+    {
+      "name": "CREO",
+      "lat": 45.140471,
+      "lon": 10.026315,
+      "country": "ITA"
+    },
+    {
+      "name": "CRSN",
+      "lat": 45.192435,
+      "lon": 8.105767,
+      "country": "ITA"
+    },
+    {
+      "name": "CUOR",
+      "lat": 45.38791,
+      "lon": 7.647698,
+      "country": "ITA"
+    },
+    {
+      "name": "CURN",
+      "lat": 45.689231,
+      "lon": 9.612006,
+      "country": "ITA"
+    },
+    {
+      "name": "DARF",
+      "lat": 45.880293,
+      "lon": 10.177167,
+      "country": "ITA"
+    },
+    {
+      "name": "DEMN",
+      "lat": 44.315721,
+      "lon": 7.292628,
+      "country": "ITA"
+    },
+    {
+      "name": "DOMS",
+      "lat": 46.119042,
+      "lon": 8.286326,
+      "country": "ITA"
+    },
+    {
+      "name": "GOZZ",
+      "lat": 45.746742,
+      "lon": 8.433397,
+      "country": "ITA"
+    },
+    {
+      "name": "LECO",
+      "lat": 45.84886,
+      "lon": 9.396556,
+      "country": "ITA"
+    },
+    {
+      "name": "MANT",
+      "lat": 45.1601,
+      "lon": 10.789404,
+      "country": "ITA"
+    },
+    {
+      "name": "MIL3",
+      "lat": 45.478369,
+      "lon": 9.229213,
+      "country": "ITA"
+    },
+    {
+      "name": "MONV",
+      "lat": 44.390357,
+      "lon": 7.828955,
+      "country": "ITA"
+    },
+    {
+      "name": "NOVR",
+      "lat": 45.447207,
+      "lon": 8.613964,
+      "country": "ITA"
+    },
+    {
+      "name": "OSTA",
+      "lat": 44.692337,
+      "lon": 7.18834,
+      "country": "ITA"
+    },
+    {
+      "name": "PARO",
+      "lat": 44.445988,
+      "lon": 8.081123,
+      "country": "ITA"
+    },
+    {
+      "name": "PAVI",
+      "lat": 45.202981,
+      "lon": 9.13614,
+      "country": "ITA"
+    },
+    {
+      "name": "RUMI",
+      "lat": 45.717123,
+      "lon": 7.198678,
+      "country": "ITA"
+    },
+    {
+      "name": "SAVI",
+      "lat": 44.647635,
+      "lon": 7.660664,
+      "country": "ITA"
+    },
+    {
+      "name": "SERR",
+      "lat": 44.731064,
+      "lon": 8.853094,
+      "country": "ITA"
+    },
+    {
+      "name": "SONP",
+      "lat": 46.169823,
+      "lon": 9.871937,
+      "country": "ITA"
+    },
+    {
+      "name": "TNUS",
+      "lat": 45.752888,
+      "lon": 7.442627,
+      "country": "ITA"
+    },
+    {
+      "name": "TORI",
+      "lat": 45.063365,
+      "lon": 7.661278,
+      "country": "ITA"
+    },
+    {
+      "name": "VARZ",
+      "lat": 44.823335,
+      "lon": 9.197405,
+      "country": "ITA"
+    },
+    {
+      "name": "VERR",
+      "lat": 45.66467,
+      "lon": 7.690182,
+      "country": "ITA"
+    },
+    {
+      "name": "VIGE",
+      "lat": 45.314794,
+      "lon": 8.861951,
+      "country": "ITA"
+    }
+  ]
+}

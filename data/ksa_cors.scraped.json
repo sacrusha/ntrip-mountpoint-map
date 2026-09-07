@@ -1,0 +1,1262 @@
+{
+  "last_updated": "2026-09-02T17:00:16+00:00",
+  "scraper_version": "38a652baa7f8",
+  "source_url": "https://geosa.gov.sa/ar/About/Documents/opendatafiles/%D8%A7%D8%AD%D8%AF%D8%A7%D8%AB%D9%8A%D8%A7%D8%AA%20%D9%85%D9%88%D8%A7%D9%82%D8%B9%20%D9%85%D8%AD%D8%B7%D8%A7%D8%AA%20%D8%A7%D9%84%D8%B1%D8%B5%D8%AF%20%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D9%85%D8%B1%20KSA-CORS.xlsx",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "AS01",
+      "lat": 18.5392,
+      "lon": 42.9038,
+      "country": "SAU"
+    },
+    {
+      "name": "AS02",
+      "lat": 19.9772,
+      "lon": 42.5984,
+      "country": "SAU"
+    },
+    {
+      "name": "AS03",
+      "lat": 19.5107,
+      "lon": 43.5293,
+      "country": "SAU"
+    },
+    {
+      "name": "AS04",
+      "lat": 18.0124,
+      "lon": 41.6823,
+      "country": "SAU"
+    },
+    {
+      "name": "AS05",
+      "lat": 19.9815,
+      "lon": 44.0605,
+      "country": "SAU"
+    },
+    {
+      "name": "AS06",
+      "lat": 19.4391,
+      "lon": 42.8187,
+      "country": "SAU"
+    },
+    {
+      "name": "AS07",
+      "lat": 19.1328,
+      "lon": 41.9255,
+      "country": "SAU"
+    },
+    {
+      "name": "AS89",
+      "lat": 17.8371,
+      "lon": 43.4135,
+      "country": "SAU"
+    },
+    {
+      "name": "AS90",
+      "lat": 18.054,
+      "lon": 43.06,
+      "country": "SAU"
+    },
+    {
+      "name": "AS91",
+      "lat": 18.3924,
+      "lon": 43.6446,
+      "country": "SAU"
+    },
+    {
+      "name": "AS92",
+      "lat": 18.6784,
+      "lon": 42.064,
+      "country": "SAU"
+    },
+    {
+      "name": "AS94",
+      "lat": 18.8948,
+      "lon": 43.2893,
+      "country": "SAU"
+    },
+    {
+      "name": "AS96",
+      "lat": 18.8295,
+      "lon": 42.5936,
+      "country": "SAU"
+    },
+    {
+      "name": "AS97",
+      "lat": 18.1377,
+      "lon": 42.324,
+      "country": "SAU"
+    },
+    {
+      "name": "AS98",
+      "lat": 19.6891,
+      "lon": 42.0195,
+      "country": "SAU"
+    },
+    {
+      "name": "AS99",
+      "lat": 19.5485,
+      "lon": 42.2754,
+      "country": "SAU"
+    },
+    {
+      "name": "BH01",
+      "lat": 20.0992,
+      "lon": 41.5853,
+      "country": "SAU"
+    },
+    {
+      "name": "BH98",
+      "lat": 19.8309,
+      "lon": 41.2824,
+      "country": "SAU"
+    },
+    {
+      "name": "BH99",
+      "lat": 20.294,
+      "lon": 41.0434,
+      "country": "SAU"
+    },
+    {
+      "name": "ES01",
+      "lat": 26.8331,
+      "lon": 49.9692,
+      "country": "SAU"
+    },
+    {
+      "name": "ES02",
+      "lat": 27.3135,
+      "lon": 49.3082,
+      "country": "SAU"
+    },
+    {
+      "name": "ES03",
+      "lat": 28.4308,
+      "lon": 48.4663,
+      "country": "SAU"
+    },
+    {
+      "name": "ES04",
+      "lat": 25.2765,
+      "lon": 50.5227,
+      "country": "SAU"
+    },
+    {
+      "name": "ES05",
+      "lat": 24.5713,
+      "lon": 51.4409,
+      "country": "SAU"
+    },
+    {
+      "name": "ES06",
+      "lat": 28.9895,
+      "lon": 47.1623,
+      "country": "SAU"
+    },
+    {
+      "name": "ES07",
+      "lat": 28.4311,
+      "lon": 45.963,
+      "country": "SAU"
+    },
+    {
+      "name": "ES08",
+      "lat": 27.5118,
+      "lon": 47.6818,
+      "country": "SAU"
+    },
+    {
+      "name": "ES09",
+      "lat": 24.8934,
+      "lon": 49.4963,
+      "country": "SAU"
+    },
+    {
+      "name": "ES10",
+      "lat": 23.2988,
+      "lon": 48.9642,
+      "country": "SAU"
+    },
+    {
+      "name": "ES11",
+      "lat": 22.9068,
+      "lon": 50.186,
+      "country": "SAU"
+    },
+    {
+      "name": "ES12",
+      "lat": 22.5116,
+      "lon": 53.9284,
+      "country": "SAU"
+    },
+    {
+      "name": "ES13",
+      "lat": 20.0673,
+      "lon": 54.9636,
+      "country": "SAU"
+    },
+    {
+      "name": "ES14",
+      "lat": 23.2482,
+      "lon": 52.1238,
+      "country": "SAU"
+    },
+    {
+      "name": "ES15",
+      "lat": 24.7394,
+      "lon": 50.7567,
+      "country": "SAU"
+    },
+    {
+      "name": "ES16",
+      "lat": 27.8093,
+      "lon": 48.7192,
+      "country": "SAU"
+    },
+    {
+      "name": "ES17",
+      "lat": 28.1155,
+      "lon": 46.7105,
+      "country": "SAU"
+    },
+    {
+      "name": "ES18",
+      "lat": 27.8414,
+      "lon": 45.9779,
+      "country": "SAU"
+    },
+    {
+      "name": "ES19",
+      "lat": 27.4639,
+      "lon": 48.5081,
+      "country": "SAU"
+    },
+    {
+      "name": "ES20",
+      "lat": 27.8617,
+      "lon": 44.8933,
+      "country": "SAU"
+    },
+    {
+      "name": "ES21",
+      "lat": 24.9665,
+      "lon": 48.7504,
+      "country": "SAU"
+    },
+    {
+      "name": "ES22",
+      "lat": 24.1304,
+      "lon": 49.0371,
+      "country": "SAU"
+    },
+    {
+      "name": "ES23",
+      "lat": 22.009,
+      "lon": 48.4609,
+      "country": "SAU"
+    },
+    {
+      "name": "ES91",
+      "lat": 25.8861,
+      "lon": 50.1075,
+      "country": "SAU"
+    },
+    {
+      "name": "ES92",
+      "lat": 26.0705,
+      "lon": 49.2954,
+      "country": "SAU"
+    },
+    {
+      "name": "ES93",
+      "lat": 26.182,
+      "lon": 50.1813,
+      "country": "SAU"
+    },
+    {
+      "name": "ES94",
+      "lat": 27.5443,
+      "lon": 49.2063,
+      "country": "SAU"
+    },
+    {
+      "name": "ES95",
+      "lat": 28.1062,
+      "lon": 47.8741,
+      "country": "SAU"
+    },
+    {
+      "name": "ES96",
+      "lat": 25.3558,
+      "lon": 49.5658,
+      "country": "SAU"
+    },
+    {
+      "name": "ES97",
+      "lat": 25.8489,
+      "lon": 48.8339,
+      "country": "SAU"
+    },
+    {
+      "name": "ES98",
+      "lat": 26.876,
+      "lon": 48.7254,
+      "country": "SAU"
+    },
+    {
+      "name": "ES99",
+      "lat": 26.2653,
+      "lon": 49.5308,
+      "country": "SAU"
+    },
+    {
+      "name": "HL01",
+      "lat": 27.3707,
+      "lon": 41.1795,
+      "country": "SAU"
+    },
+    {
+      "name": "HL02",
+      "lat": 28.2409,
+      "lon": 42.903,
+      "country": "SAU"
+    },
+    {
+      "name": "HL03",
+      "lat": 27.0695,
+      "lon": 43.0129,
+      "country": "SAU"
+    },
+    {
+      "name": "HL04",
+      "lat": 25.9968,
+      "lon": 40.818,
+      "country": "SAU"
+    },
+    {
+      "name": "HL05",
+      "lat": 26.8745,
+      "lon": 41.4924,
+      "country": "SAU"
+    },
+    {
+      "name": "HL06",
+      "lat": 27.6073,
+      "lon": 43.171,
+      "country": "SAU"
+    },
+    {
+      "name": "HL94",
+      "lat": 25.5957,
+      "lon": 40.6056,
+      "country": "SAU"
+    },
+    {
+      "name": "HL95",
+      "lat": 26.5749,
+      "lon": 42.2343,
+      "country": "SAU"
+    },
+    {
+      "name": "HL96",
+      "lat": 27.0292,
+      "lon": 42.1817,
+      "country": "SAU"
+    },
+    {
+      "name": "HL97",
+      "lat": 27.4327,
+      "lon": 42.4779,
+      "country": "SAU"
+    },
+    {
+      "name": "HL98",
+      "lat": 26.1361,
+      "lon": 41.3791,
+      "country": "SAU"
+    },
+    {
+      "name": "HL99",
+      "lat": 26.6002,
+      "lon": 40.9612,
+      "country": "SAU"
+    },
+    {
+      "name": "JW01",
+      "lat": 29.7771,
+      "lon": 40.0197,
+      "country": "SAU"
+    },
+    {
+      "name": "JW02",
+      "lat": 29.2506,
+      "lon": 41.4432,
+      "country": "SAU"
+    },
+    {
+      "name": "JW03",
+      "lat": 29.7778,
+      "lon": 38.4268,
+      "country": "SAU"
+    },
+    {
+      "name": "JW04",
+      "lat": 31.4255,
+      "lon": 37.0957,
+      "country": "SAU"
+    },
+    {
+      "name": "JW05",
+      "lat": 29.9153,
+      "lon": 39.2889,
+      "country": "SAU"
+    },
+    {
+      "name": "JZ01",
+      "lat": 16.869,
+      "lon": 42.5696,
+      "country": "SAU"
+    },
+    {
+      "name": "JZ02",
+      "lat": 16.829,
+      "lon": 41.8211,
+      "country": "SAU"
+    },
+    {
+      "name": "JZ03",
+      "lat": 17.6403,
+      "lon": 42.2269,
+      "country": "SAU"
+    },
+    {
+      "name": "JZ04",
+      "lat": 17.4915,
+      "lon": 42.6795,
+      "country": "SAU"
+    },
+    {
+      "name": "JZ98",
+      "lat": 17.137,
+      "lon": 43.0995,
+      "country": "SAU"
+    },
+    {
+      "name": "MD02",
+      "lat": 24.3507,
+      "lon": 37.6064,
+      "country": "SAU"
+    },
+    {
+      "name": "MD03",
+      "lat": 25.6466,
+      "lon": 39.3013,
+      "country": "SAU"
+    },
+    {
+      "name": "MD04",
+      "lat": 23.4895,
+      "lon": 40.8928,
+      "country": "SAU"
+    },
+    {
+      "name": "MD05",
+      "lat": 26.2295,
+      "lon": 37.9472,
+      "country": "SAU"
+    },
+    {
+      "name": "MD06",
+      "lat": 26.0742,
+      "lon": 38.8872,
+      "country": "SAU"
+    },
+    {
+      "name": "MD07",
+      "lat": 25.0169,
+      "lon": 40.3574,
+      "country": "SAU"
+    },
+    {
+      "name": "MD08",
+      "lat": 25.1598,
+      "lon": 38.4457,
+      "country": "SAU"
+    },
+    {
+      "name": "MD09",
+      "lat": 23.589,
+      "lon": 38.6,
+      "country": "SAU"
+    },
+    {
+      "name": "MD10",
+      "lat": 23.8573,
+      "lon": 39.7191,
+      "country": "SAU"
+    },
+    {
+      "name": "MD11",
+      "lat": 24.3012,
+      "lon": 40.524,
+      "country": "SAU"
+    },
+    {
+      "name": "MD12",
+      "lat": 22.8961,
+      "lon": 40.8232,
+      "country": "SAU"
+    },
+    {
+      "name": "MD15",
+      "lat": 24.4806,
+      "lon": 39.7155,
+      "country": "SAU"
+    },
+    {
+      "name": "MD89",
+      "lat": 25.0317,
+      "lon": 41.2202,
+      "country": "SAU"
+    },
+    {
+      "name": "MD90",
+      "lat": 22.6651,
+      "lon": 40.3142,
+      "country": "SAU"
+    },
+    {
+      "name": "MD92",
+      "lat": 23.0845,
+      "lon": 40.3014,
+      "country": "SAU"
+    },
+    {
+      "name": "MD93",
+      "lat": 23.5035,
+      "lon": 40.3145,
+      "country": "SAU"
+    },
+    {
+      "name": "MD94",
+      "lat": 23.931,
+      "lon": 39.1034,
+      "country": "SAU"
+    },
+    {
+      "name": "MD95",
+      "lat": 24.0854,
+      "lon": 38.0899,
+      "country": "SAU"
+    },
+    {
+      "name": "MD96",
+      "lat": 24.7855,
+      "lon": 38.3407,
+      "country": "SAU"
+    },
+    {
+      "name": "MD97",
+      "lat": 25.5961,
+      "lon": 38.5559,
+      "country": "SAU"
+    },
+    {
+      "name": "MD98",
+      "lat": 25.6364,
+      "lon": 37.8691,
+      "country": "SAU"
+    },
+    {
+      "name": "MD99",
+      "lat": 23.217,
+      "lon": 39.5453,
+      "country": "SAU"
+    },
+    {
+      "name": "MK01",
+      "lat": 20.9886,
+      "lon": 39.2746,
+      "country": "SAU"
+    },
+    {
+      "name": "MK02",
+      "lat": 22.7611,
+      "lon": 39.0955,
+      "country": "SAU"
+    },
+    {
+      "name": "MK03",
+      "lat": 19.1679,
+      "lon": 41.0803,
+      "country": "SAU"
+    },
+    {
+      "name": "MK04",
+      "lat": 20.7071,
+      "lon": 40.5341,
+      "country": "SAU"
+    },
+    {
+      "name": "MK05",
+      "lat": 21.8307,
+      "lon": 40.4403,
+      "country": "SAU"
+    },
+    {
+      "name": "MK06",
+      "lat": 21.9067,
+      "lon": 42.0274,
+      "country": "SAU"
+    },
+    {
+      "name": "MK07",
+      "lat": 23.4121,
+      "lon": 42.35,
+      "country": "SAU"
+    },
+    {
+      "name": "MK08",
+      "lat": 22.9358,
+      "lon": 41.6678,
+      "country": "SAU"
+    },
+    {
+      "name": "MK09",
+      "lat": 22.7357,
+      "lon": 42.1751,
+      "country": "SAU"
+    },
+    {
+      "name": "MK10",
+      "lat": 22.5196,
+      "lon": 41.9021,
+      "country": "SAU"
+    },
+    {
+      "name": "MK75",
+      "lat": 21.0369,
+      "lon": 42.4671,
+      "country": "SAU"
+    },
+    {
+      "name": "MK76",
+      "lat": 20.7734,
+      "lon": 41.6952,
+      "country": "SAU"
+    },
+    {
+      "name": "MK77",
+      "lat": 20.9294,
+      "lon": 41.2028,
+      "country": "SAU"
+    },
+    {
+      "name": "MK78",
+      "lat": 21.0823,
+      "lon": 41.5597,
+      "country": "SAU"
+    },
+    {
+      "name": "MK80",
+      "lat": 22.6278,
+      "lon": 41.3514,
+      "country": "SAU"
+    },
+    {
+      "name": "MK81",
+      "lat": 22.5018,
+      "lon": 40.7675,
+      "country": "SAU"
+    },
+    {
+      "name": "MK82",
+      "lat": 21.8785,
+      "lon": 41.017,
+      "country": "SAU"
+    },
+    {
+      "name": "MK83",
+      "lat": 18.7049,
+      "lon": 41.3819,
+      "country": "SAU"
+    },
+    {
+      "name": "MK84",
+      "lat": 19.8086,
+      "lon": 40.7289,
+      "country": "SAU"
+    },
+    {
+      "name": "MK85",
+      "lat": 20.1325,
+      "lon": 40.2653,
+      "country": "SAU"
+    },
+    {
+      "name": "MK86",
+      "lat": 20.8383,
+      "lon": 40.139,
+      "country": "SAU"
+    },
+    {
+      "name": "MK87",
+      "lat": 20.4477,
+      "lon": 39.7213,
+      "country": "SAU"
+    },
+    {
+      "name": "MK88",
+      "lat": 21.1085,
+      "lon": 39.9154,
+      "country": "SAU"
+    },
+    {
+      "name": "MK89",
+      "lat": 21.3533,
+      "lon": 40.8343,
+      "country": "SAU"
+    },
+    {
+      "name": "MK90",
+      "lat": 21.2823,
+      "lon": 40.3977,
+      "country": "SAU"
+    },
+    {
+      "name": "MK91",
+      "lat": 21.5628,
+      "lon": 39.9563,
+      "country": "SAU"
+    },
+    {
+      "name": "MK92",
+      "lat": 22.0841,
+      "lon": 40.0218,
+      "country": "SAU"
+    },
+    {
+      "name": "MK93",
+      "lat": 21.9713,
+      "lon": 39.3715,
+      "country": "SAU"
+    },
+    {
+      "name": "MK94",
+      "lat": 22.579,
+      "lon": 39.6294,
+      "country": "SAU"
+    },
+    {
+      "name": "MK95",
+      "lat": 23.1176,
+      "lon": 38.842,
+      "country": "SAU"
+    },
+    {
+      "name": "MK96",
+      "lat": 22.2805,
+      "lon": 39.1135,
+      "country": "SAU"
+    },
+    {
+      "name": "MK97",
+      "lat": 21.5561,
+      "lon": 39.2429,
+      "country": "SAU"
+    },
+    {
+      "name": "MK98",
+      "lat": 21.4513,
+      "lon": 39.5401,
+      "country": "SAU"
+    },
+    {
+      "name": "MK99",
+      "lat": 21.762,
+      "lon": 39.1282,
+      "country": "SAU"
+    },
+    {
+      "name": "NB01",
+      "lat": 31.0251,
+      "lon": 40.9099,
+      "country": "SAU"
+    },
+    {
+      "name": "NB02",
+      "lat": 29.6429,
+      "lon": 43.5554,
+      "country": "SAU"
+    },
+    {
+      "name": "NB03",
+      "lat": 32.1384,
+      "lon": 39.1982,
+      "country": "SAU"
+    },
+    {
+      "name": "NB04",
+      "lat": 28.4449,
+      "lon": 44.332,
+      "country": "SAU"
+    },
+    {
+      "name": "NB05",
+      "lat": 28.7866,
+      "lon": 43.7255,
+      "country": "SAU"
+    },
+    {
+      "name": "NJ01",
+      "lat": 17.5187,
+      "lon": 44.1942,
+      "country": "SAU"
+    },
+    {
+      "name": "NJ02",
+      "lat": 18.5335,
+      "lon": 44.205,
+      "country": "SAU"
+    },
+    {
+      "name": "NJ03",
+      "lat": 18.967,
+      "lon": 45.1035,
+      "country": "SAU"
+    },
+    {
+      "name": "NJ04",
+      "lat": 17.4745,
+      "lon": 47.0874,
+      "country": "SAU"
+    },
+    {
+      "name": "NJ05",
+      "lat": 18.8979,
+      "lon": 51.1019,
+      "country": "SAU"
+    },
+    {
+      "name": "NJ07",
+      "lat": 18.136,
+      "lon": 44.1271,
+      "country": "SAU"
+    },
+    {
+      "name": "QS01",
+      "lat": 26.3974,
+      "lon": 43.9404,
+      "country": "SAU"
+    },
+    {
+      "name": "QS02",
+      "lat": 25.1079,
+      "lon": 42.6454,
+      "country": "SAU"
+    },
+    {
+      "name": "QS03",
+      "lat": 26.4491,
+      "lon": 42.8074,
+      "country": "SAU"
+    },
+    {
+      "name": "QS04",
+      "lat": 26.992,
+      "lon": 44.0945,
+      "country": "SAU"
+    },
+    {
+      "name": "QS05",
+      "lat": 25.4057,
+      "lon": 42.0897,
+      "country": "SAU"
+    },
+    {
+      "name": "QS06",
+      "lat": 25.9484,
+      "lon": 42.1176,
+      "country": "SAU"
+    },
+    {
+      "name": "QS07",
+      "lat": 25.6098,
+      "lon": 43.9478,
+      "country": "SAU"
+    },
+    {
+      "name": "QS95",
+      "lat": 25.8312,
+      "lon": 44.5891,
+      "country": "SAU"
+    },
+    {
+      "name": "QS96",
+      "lat": 25.5609,
+      "lon": 43.3547,
+      "country": "SAU"
+    },
+    {
+      "name": "QS97",
+      "lat": 26.0334,
+      "lon": 43.2906,
+      "country": "SAU"
+    },
+    {
+      "name": "QS98",
+      "lat": 25.5567,
+      "lon": 41.4292,
+      "country": "SAU"
+    },
+    {
+      "name": "QS99",
+      "lat": 26.9089,
+      "lon": 43.3595,
+      "country": "SAU"
+    },
+    {
+      "name": "RY01",
+      "lat": 24.9173,
+      "lon": 46.363,
+      "country": "SAU"
+    },
+    {
+      "name": "RY02",
+      "lat": 25.3256,
+      "lon": 46.1658,
+      "country": "SAU"
+    },
+    {
+      "name": "RY03",
+      "lat": 24.2066,
+      "lon": 48.0589,
+      "country": "SAU"
+    },
+    {
+      "name": "RY04",
+      "lat": 26.1319,
+      "lon": 46.1491,
+      "country": "SAU"
+    },
+    {
+      "name": "RY05",
+      "lat": 23.5755,
+      "lon": 45.6155,
+      "country": "SAU"
+    },
+    {
+      "name": "RY06",
+      "lat": 26.8836,
+      "lon": 45.3187,
+      "country": "SAU"
+    },
+    {
+      "name": "RY07",
+      "lat": 23.4039,
+      "lon": 43.9196,
+      "country": "SAU"
+    },
+    {
+      "name": "RY08",
+      "lat": 22.0273,
+      "lon": 46.563,
+      "country": "SAU"
+    },
+    {
+      "name": "RY09",
+      "lat": 20.4237,
+      "lon": 44.89,
+      "country": "SAU"
+    },
+    {
+      "name": "RY10",
+      "lat": 25.1561,
+      "lon": 46.6488,
+      "country": "SAU"
+    },
+    {
+      "name": "RY11",
+      "lat": 23.5562,
+      "lon": 47.0941,
+      "country": "SAU"
+    },
+    {
+      "name": "RY12",
+      "lat": 23.9122,
+      "lon": 46.8451,
+      "country": "SAU"
+    },
+    {
+      "name": "RY13",
+      "lat": 24.1876,
+      "lon": 47.5172,
+      "country": "SAU"
+    },
+    {
+      "name": "RY15",
+      "lat": 24.5572,
+      "lon": 43.2337,
+      "country": "SAU"
+    },
+    {
+      "name": "RY16",
+      "lat": 20.5324,
+      "lon": 47.6026,
+      "country": "SAU"
+    },
+    {
+      "name": "RY17",
+      "lat": 19.5015,
+      "lon": 45.0997,
+      "country": "SAU"
+    },
+    {
+      "name": "RY18",
+      "lat": 26.3678,
+      "lon": 47.2334,
+      "country": "SAU"
+    },
+    {
+      "name": "RY20",
+      "lat": 21.5839,
+      "lon": 44.0935,
+      "country": "SAU"
+    },
+    {
+      "name": "RY21",
+      "lat": 22.7596,
+      "lon": 44.4541,
+      "country": "SAU"
+    },
+    {
+      "name": "RY22",
+      "lat": 24.3121,
+      "lon": 43.5175,
+      "country": "SAU"
+    },
+    {
+      "name": "RY70",
+      "lat": 24.2643,
+      "lon": 44.1838,
+      "country": "SAU"
+    },
+    {
+      "name": "RY71",
+      "lat": 25.1123,
+      "lon": 44.6765,
+      "country": "SAU"
+    },
+    {
+      "name": "RY72",
+      "lat": 24.7208,
+      "lon": 44.2864,
+      "country": "SAU"
+    },
+    {
+      "name": "RY73",
+      "lat": 24.6729,
+      "lon": 43.6843,
+      "country": "SAU"
+    },
+    {
+      "name": "RY74",
+      "lat": 25.1413,
+      "lon": 43.4793,
+      "country": "SAU"
+    },
+    {
+      "name": "RY75",
+      "lat": 26.2477,
+      "lon": 44.8216,
+      "country": "SAU"
+    },
+    {
+      "name": "RY76",
+      "lat": 26.7994,
+      "lon": 44.6274,
+      "country": "SAU"
+    },
+    {
+      "name": "RY77",
+      "lat": 23.2153,
+      "lon": 46.4906,
+      "country": "SAU"
+    },
+    {
+      "name": "RY82",
+      "lat": 24.3039,
+      "lon": 47.1725,
+      "country": "SAU"
+    },
+    {
+      "name": "RY83",
+      "lat": 24.4013,
+      "lon": 46.8351,
+      "country": "SAU"
+    },
+    {
+      "name": "RY84",
+      "lat": 24.0232,
+      "lon": 46.2939,
+      "country": "SAU"
+    },
+    {
+      "name": "RY85",
+      "lat": 23.7603,
+      "lon": 44.7592,
+      "country": "SAU"
+    },
+    {
+      "name": "RY86",
+      "lat": 24.0608,
+      "lon": 45.2738,
+      "country": "SAU"
+    },
+    {
+      "name": "RY87",
+      "lat": 24.3444,
+      "lon": 45.8117,
+      "country": "SAU"
+    },
+    {
+      "name": "RY88",
+      "lat": 24.4635,
+      "lon": 46.2794,
+      "country": "SAU"
+    },
+    {
+      "name": "RY89",
+      "lat": 24.6136,
+      "lon": 45.2548,
+      "country": "SAU"
+    },
+    {
+      "name": "RY90",
+      "lat": 24.9211,
+      "lon": 45.8634,
+      "country": "SAU"
+    },
+    {
+      "name": "RY91",
+      "lat": 25.2371,
+      "lon": 45.2397,
+      "country": "SAU"
+    },
+    {
+      "name": "RY92",
+      "lat": 25.8618,
+      "lon": 45.418,
+      "country": "SAU"
+    },
+    {
+      "name": "RY93",
+      "lat": 25.6886,
+      "lon": 46.5521,
+      "country": "SAU"
+    },
+    {
+      "name": "RY94",
+      "lat": 25.5954,
+      "lon": 45.7944,
+      "country": "SAU"
+    },
+    {
+      "name": "RY95",
+      "lat": 25.5707,
+      "lon": 47.1558,
+      "country": "SAU"
+    },
+    {
+      "name": "RY96",
+      "lat": 25.103,
+      "lon": 47.5557,
+      "country": "SAU"
+    },
+    {
+      "name": "RY97",
+      "lat": 24.9294,
+      "lon": 46.9967,
+      "country": "SAU"
+    },
+    {
+      "name": "RY99",
+      "lat": 24.6741,
+      "lon": 46.6942,
+      "country": "SAU"
+    },
+    {
+      "name": "TB01",
+      "lat": 28.381,
+      "lon": 36.4769,
+      "country": "SAU"
+    },
+    {
+      "name": "TB02",
+      "lat": 29.2287,
+      "lon": 34.9172,
+      "country": "SAU"
+    },
+    {
+      "name": "TB03",
+      "lat": 28.4046,
+      "lon": 34.7401,
+      "country": "SAU"
+    },
+    {
+      "name": "TB04",
+      "lat": 27.5659,
+      "lon": 35.5417,
+      "country": "SAU"
+    },
+    {
+      "name": "TB05",
+      "lat": 26.3669,
+      "lon": 36.3686,
+      "country": "SAU"
+    },
+    {
+      "name": "TB06",
+      "lat": 27.6108,
+      "lon": 38.5441,
+      "country": "SAU"
+    },
+    {
+      "name": "TB07",
+      "lat": 28.9691,
+      "lon": 38.5611,
+      "country": "SAU"
+    },
+    {
+      "name": "TB08",
+      "lat": 28.4973,
+      "lon": 37.631,
+      "country": "SAU"
+    },
+    {
+      "name": "TB09",
+      "lat": 28.2705,
+      "lon": 38.9815,
+      "country": "SAU"
+    },
+    {
+      "name": "TB97",
+      "lat": 25.3733,
+      "lon": 37.1904,
+      "country": "SAU"
+    },
+    {
+      "name": "TB98",
+      "lat": 24.905,
+      "lon": 37.7704,
+      "country": "SAU"
+    },
+    {
+      "name": "TB99",
+      "lat": 24.7623,
+      "lon": 37.2339,
+      "country": "SAU"
+    }
+  ]
+}

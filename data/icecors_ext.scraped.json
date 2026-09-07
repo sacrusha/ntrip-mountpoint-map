@@ -1,0 +1,348 @@
+{
+  "last_updated": "2026-09-02T11:00:11+00:00",
+  "scraper_version": "c500f6a3f2b0",
+  "source_url": "https://hnit.natt.is/ISN2016%20header.txt",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "AKUR0",
+      "lat": 65.685427,
+      "lon": -18.122483,
+      "country": "ISL",
+      "groups": [
+        "network",
+        "single_base"
+      ],
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "ALHV0",
+      "lat": 63.454984,
+      "lon": -18.307747,
+      "country": "ISL",
+      "groups": [
+        "network",
+        "single_base"
+      ],
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "BJTV0",
+      "lat": 65.502541,
+      "lon": -24.531557,
+      "country": "ISL",
+      "groups": [
+        "network",
+        "single_base"
+      ],
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "BLON0",
+      "lat": 65.404714,
+      "lon": -19.828917,
+      "country": "ISL",
+      "groups": [
+        "network",
+        "single_base"
+      ],
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "FAGC",
+      "lat": 63.874679,
+      "lon": -16.653298,
+      "country": "ISL",
+      "groups": [
+        "network"
+      ]
+    },
+    {
+      "name": "FIHO0",
+      "lat": 64.694345,
+      "lon": -22.147982,
+      "country": "ISL",
+      "groups": [
+        "network",
+        "single_base"
+      ],
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS+GAL"
+    },
+    {
+      "name": "FJOC",
+      "lat": 64.874935,
+      "lon": -18.006051,
+      "country": "ISL",
+      "groups": [
+        "network"
+      ]
+    },
+    {
+      "name": "GJFV3",
+      "lat": 65.995602,
+      "lon": -21.329865,
+      "country": "ISL",
+      "groups": [
+        "network",
+        "single_base"
+      ],
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "GUSK0",
+      "lat": 64.891454,
+      "lon": -23.923126,
+      "country": "ISL",
+      "groups": [
+        "network",
+        "single_base"
+      ],
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "HEID2",
+      "lat": 65.380846,
+      "lon": -14.540945,
+      "country": "ISL",
+      "groups": [
+        "network",
+        "single_base"
+      ],
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "HOFN",
+      "lat": 64.267293,
+      "lon": -15.197917,
+      "country": "ISL",
+      "groups": [
+        "network"
+      ]
+    },
+    {
+      "name": "HRNC",
+      "lat": 66.109959,
+      "lon": -20.122541,
+      "country": "ISL",
+      "groups": [
+        "network"
+      ]
+    },
+    {
+      "name": "HVEL",
+      "lat": 64.873042,
+      "lon": -19.561244,
+      "country": "ISL",
+      "groups": [
+        "network"
+      ]
+    },
+    {
+      "name": "INTA",
+      "lat": 64.940011,
+      "lon": -15.782802,
+      "country": "ISL",
+      "groups": [
+        "network"
+      ]
+    },
+    {
+      "name": "ISAF3",
+      "lat": 66.073559,
+      "lon": -23.119466,
+      "country": "ISL",
+      "groups": [
+        "network",
+        "single_base"
+      ],
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "ISAK",
+      "lat": 64.11933,
+      "lon": -19.747178,
+      "country": "ISL",
+      "groups": [
+        "network"
+      ]
+    },
+    {
+      "name": "KALF",
+      "lat": 63.94733,
+      "lon": -17.68887,
+      "country": "ISL",
+      "groups": [
+        "network"
+      ]
+    },
+    {
+      "name": "KALT",
+      "lat": 63.897342,
+      "lon": -20.656085,
+      "country": "ISL",
+      "groups": [
+        "network"
+      ]
+    },
+    {
+      "name": "LAVI0",
+      "lat": 64.826032,
+      "lon": -13.82686,
+      "country": "ISL",
+      "groups": [
+        "network",
+        "single_base"
+      ],
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "MYVA",
+      "lat": 65.642322,
+      "lon": -16.891353,
+      "country": "ISL",
+      "groups": [
+        "network"
+      ]
+    },
+    {
+      "name": "NYLA",
+      "lat": 63.973541,
+      "lon": -22.738099,
+      "country": "ISL",
+      "groups": [
+        "network"
+      ]
+    },
+    {
+      "name": "REYK",
+      "lat": 64.138786,
+      "lon": -21.955488,
+      "country": "ISL",
+      "groups": [
+        "network"
+      ]
+    },
+    {
+      "name": "RHOF",
+      "lat": 66.461122,
+      "lon": -15.946708,
+      "country": "ISL",
+      "groups": [
+        "network"
+      ]
+    },
+    {
+      "name": "RHOL0",
+      "lat": 65.425958,
+      "lon": -22.214096,
+      "country": "ISL",
+      "groups": [
+        "network",
+        "single_base"
+      ],
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "SEYD",
+      "lat": 65.280947,
+      "lon": -14.002379,
+      "country": "ISL",
+      "groups": [
+        "network"
+      ]
+    },
+    {
+      "name": "SIFJ",
+      "lat": 66.138041,
+      "lon": -18.899351,
+      "country": "ISL",
+      "groups": [
+        "network"
+      ]
+    },
+    {
+      "name": "SJUK",
+      "lat": 66.048925,
+      "lon": -17.339819,
+      "country": "ISL",
+      "groups": [
+        "network"
+      ]
+    },
+    {
+      "name": "SKHA3",
+      "lat": 64.7921,
+      "lon": -21.453704,
+      "country": "ISL",
+      "groups": [
+        "network",
+        "single_base"
+      ],
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "STKA",
+      "lat": 64.43919,
+      "lon": -18.822186,
+      "country": "ISL",
+      "groups": [
+        "network"
+      ]
+    },
+    {
+      "name": "VMEY",
+      "lat": 63.42699,
+      "lon": -20.293559,
+      "country": "ISL",
+      "groups": [
+        "network"
+      ]
+    },
+    {
+      "name": "VOFJ0",
+      "lat": 65.753539,
+      "lon": -14.837898,
+      "country": "ISL",
+      "groups": [
+        "network",
+        "single_base"
+      ],
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "VOGS",
+      "lat": 63.85269,
+      "lon": -21.703645,
+      "country": "ISL",
+      "groups": [
+        "network"
+      ]
+    }
+  ]
+}

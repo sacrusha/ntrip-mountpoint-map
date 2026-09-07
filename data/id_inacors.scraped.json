@@ -1,0 +1,2852 @@
+{
+  "last_updated": "2026-08-31T11:00:14+00:00",
+  "scraper_version": "4ac11d37f03f",
+  "source_url": "https://srgi.big.go.id/visual_gnss",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "BAK1",
+      "lat": -6.490706,
+      "lon": 106.848887,
+      "country": "IDN"
+    },
+    {
+      "name": "BAKO",
+      "lat": -6.491056,
+      "lon": 106.848914,
+      "country": "IDN"
+    },
+    {
+      "name": "BANE",
+      "lat": -4.522481,
+      "lon": 129.904501,
+      "country": "IDN"
+    },
+    {
+      "name": "CACL",
+      "lat": 2.270886,
+      "lon": 97.818766,
+      "country": "IDN"
+    },
+    {
+      "name": "CACR",
+      "lat": -0.663626,
+      "lon": 102.278535,
+      "country": "IDN"
+    },
+    {
+      "name": "CAGM",
+      "lat": -3.439099,
+      "lon": 102.194133,
+      "country": "IDN"
+    },
+    {
+      "name": "CAHA",
+      "lat": -3.85293,
+      "lon": 122.04022,
+      "country": "IDN"
+    },
+    {
+      "name": "CAIR",
+      "lat": 0.207999,
+      "lon": 99.394554,
+      "country": "IDN"
+    },
+    {
+      "name": "CALI",
+      "lat": -3.006074,
+      "lon": 106.462674,
+      "country": "IDN"
+    },
+    {
+      "name": "CALO",
+      "lat": 0.628291,
+      "lon": 122.98205,
+      "country": "IDN"
+    },
+    {
+      "name": "CALU",
+      "lat": -0.887233,
+      "lon": 119.86395,
+      "country": "IDN"
+    },
+    {
+      "name": "CAMB",
+      "lat": -3.69556,
+      "lon": 128.184896,
+      "country": "IDN"
+    },
+    {
+      "name": "CAMP",
+      "lat": -0.871298,
+      "lon": 121.579567,
+      "country": "IDN"
+    },
+    {
+      "name": "CANA",
+      "lat": -4.449263,
+      "lon": 102.923728,
+      "country": "IDN"
+    },
+    {
+      "name": "CANG",
+      "lat": -7.021273,
+      "lon": 107.524749,
+      "country": "IDN"
+    },
+    {
+      "name": "CAPI",
+      "lat": -3.139799,
+      "lon": 115.089902,
+      "country": "IDN"
+    },
+    {
+      "name": "CARU",
+      "lat": 1.606859,
+      "lon": 109.676818,
+      "country": "IDN"
+    },
+    {
+      "name": "CBAB",
+      "lat": 4.458945,
+      "lon": 96.519259,
+      "country": "IDN"
+    },
+    {
+      "name": "CBAG",
+      "lat": -8.440454,
+      "lon": 115.613453,
+      "country": "IDN"
+    },
+    {
+      "name": "CBAK",
+      "lat": -9.637817,
+      "lon": 119.409344,
+      "country": "IDN"
+    },
+    {
+      "name": "CBAL",
+      "lat": -1.256148,
+      "lon": 116.839717,
+      "country": "IDN"
+    },
+    {
+      "name": "CBAR",
+      "lat": -4.411867,
+      "lon": 119.617145,
+      "country": "IDN"
+    },
+    {
+      "name": "CBAS",
+      "lat": 1.36074,
+      "lon": 109.301033,
+      "country": "IDN"
+    },
+    {
+      "name": "CBAU",
+      "lat": -5.487681,
+      "lon": 122.571169,
+      "country": "IDN"
+    },
+    {
+      "name": "CBBA",
+      "lat": 5.522569,
+      "lon": 95.417021,
+      "country": "IDN"
+    },
+    {
+      "name": "CBBG",
+      "lat": -0.626604,
+      "lon": 127.604355,
+      "country": "IDN"
+    },
+    {
+      "name": "CBBK",
+      "lat": -0.713698,
+      "lon": 115.765635,
+      "country": "IDN"
+    },
+    {
+      "name": "CBBL",
+      "lat": -2.473514,
+      "lon": 119.131129,
+      "country": "IDN"
+    },
+    {
+      "name": "CBDA",
+      "lat": 5.2963,
+      "lon": 95.609382,
+      "country": "IDN"
+    },
+    {
+      "name": "CBDL",
+      "lat": -6.100862,
+      "lon": 140.302683,
+      "country": "IDN"
+    },
+    {
+      "name": "CBEL",
+      "lat": -2.744014,
+      "lon": 107.62869,
+      "country": "IDN"
+    },
+    {
+      "name": "CBEM",
+      "lat": -3.376537,
+      "lon": 129.54171,
+      "country": "IDN"
+    },
+    {
+      "name": "CBGO",
+      "lat": -7.264062,
+      "lon": 111.92298,
+      "country": "IDN"
+    },
+    {
+      "name": "CBGT",
+      "lat": -1.609928,
+      "lon": 123.499346,
+      "country": "IDN"
+    },
+    {
+      "name": "CBIK",
+      "lat": -1.186413,
+      "lon": 136.089958,
+      "country": "IDN"
+    },
+    {
+      "name": "CBIM",
+      "lat": -8.462418,
+      "lon": 118.74706,
+      "country": "IDN"
+    },
+    {
+      "name": "CBIT",
+      "lat": 1.443126,
+      "lon": 125.186755,
+      "country": "IDN"
+    },
+    {
+      "name": "CBJM",
+      "lat": -3.330357,
+      "lon": 114.610622,
+      "country": "IDN"
+    },
+    {
+      "name": "CBJN",
+      "lat": -7.205385,
+      "lon": 109.888408,
+      "country": "IDN"
+    },
+    {
+      "name": "CBJR",
+      "lat": -3.280207,
+      "lon": 115.026544,
+      "country": "IDN"
+    },
+    {
+      "name": "CBJW",
+      "lat": -8.787507,
+      "lon": 120.97611,
+      "country": "IDN"
+    },
+    {
+      "name": "CBJY",
+      "lat": -4.950469,
+      "lon": 105.215778,
+      "country": "IDN"
+    },
+    {
+      "name": "CBKA",
+      "lat": -5.633475,
+      "lon": 104.306849,
+      "country": "IDN"
+    },
+    {
+      "name": "CBKJ",
+      "lat": 3.990341,
+      "lon": 97.343518,
+      "country": "IDN"
+    },
+    {
+      "name": "CBKL",
+      "lat": -3.796193,
+      "lon": 102.266174,
+      "country": "IDN"
+    },
+    {
+      "name": "CBKN",
+      "lat": 0.337227,
+      "lon": 101.02219,
+      "country": "IDN"
+    },
+    {
+      "name": "CBKP",
+      "lat": -1.311877,
+      "lon": 123.296761,
+      "country": "IDN"
+    },
+    {
+      "name": "CBKT",
+      "lat": -0.308948,
+      "lon": 100.371096,
+      "country": "IDN"
+    },
+    {
+      "name": "CBKU",
+      "lat": -3.240805,
+      "lon": 101.625084,
+      "country": "IDN"
+    },
+    {
+      "name": "CBKY",
+      "lat": 0.869264,
+      "lon": 109.496688,
+      "country": "IDN"
+    },
+    {
+      "name": "CBLA",
+      "lat": -3.104022,
+      "lon": 130.488085,
+      "country": "IDN"
+    },
+    {
+      "name": "CBLG",
+      "lat": 2.331692,
+      "lon": 99.069413,
+      "country": "IDN"
+    },
+    {
+      "name": "CBLN",
+      "lat": -6.950925,
+      "lon": 112.825618,
+      "country": "IDN"
+    },
+    {
+      "name": "CBLR",
+      "lat": -6.969229,
+      "lon": 111.414769,
+      "country": "IDN"
+    },
+    {
+      "name": "CBLT",
+      "lat": -2.872873,
+      "lon": 108.267936,
+      "country": "IDN"
+    },
+    {
+      "name": "CBMR",
+      "lat": -4.078659,
+      "lon": 104.622424,
+      "country": "IDN"
+    },
+    {
+      "name": "CBMY",
+      "lat": -4.598615,
+      "lon": 104.85683,
+      "country": "IDN"
+    },
+    {
+      "name": "CBNA",
+      "lat": -4.738738,
+      "lon": 122.002202,
+      "country": "IDN"
+    },
+    {
+      "name": "CBNE",
+      "lat": -4.542963,
+      "lon": 120.340968,
+      "country": "IDN"
+    },
+    {
+      "name": "CBNG",
+      "lat": -7.503911,
+      "lon": 131.658603,
+      "country": "IDN"
+    },
+    {
+      "name": "CBOH",
+      "lat": 4.135684,
+      "lon": 96.129854,
+      "country": "IDN"
+    },
+    {
+      "name": "CBOM",
+      "lat": 0.742041,
+      "lon": 124.313362,
+      "country": "IDN"
+    },
+    {
+      "name": "CBON",
+      "lat": -7.381848,
+      "lon": 121.078299,
+      "country": "IDN"
+    },
+    {
+      "name": "CBPB",
+      "lat": 1.369416,
+      "lon": 118.420745,
+      "country": "IDN"
+    },
+    {
+      "name": "CBPI",
+      "lat": 3.739939,
+      "lon": 96.839352,
+      "country": "IDN"
+    },
+    {
+      "name": "CBRG",
+      "lat": -8.82665,
+      "lon": 120.610564,
+      "country": "IDN"
+    },
+    {
+      "name": "CBRJ",
+      "lat": -4.453209,
+      "lon": 103.872826,
+      "country": "IDN"
+    },
+    {
+      "name": "CBRK",
+      "lat": -2.981764,
+      "lon": 114.741545,
+      "country": "IDN"
+    },
+    {
+      "name": "CBRN",
+      "lat": -7.838299,
+      "lon": 114.440347,
+      "country": "IDN"
+    },
+    {
+      "name": "CBRS",
+      "lat": 2.005015,
+      "lon": 98.397903,
+      "country": "IDN"
+    },
+    {
+      "name": "CBRU",
+      "lat": -0.951987,
+      "lon": 114.89694,
+      "country": "IDN"
+    },
+    {
+      "name": "CBSE",
+      "lat": -1.719847,
+      "lon": 114.845021,
+      "country": "IDN"
+    },
+    {
+      "name": "CBSK",
+      "lat": 1.271037,
+      "lon": 121.361472,
+      "country": "IDN"
+    },
+    {
+      "name": "CBSL",
+      "lat": -4.682459,
+      "lon": 105.723214,
+      "country": "IDN"
+    },
+    {
+      "name": "CBTA",
+      "lat": -0.833288,
+      "lon": 122.162751,
+      "country": "IDN"
+    },
+    {
+      "name": "CBTG",
+      "lat": 0.069417,
+      "lon": 117.447496,
+      "country": "IDN"
+    },
+    {
+      "name": "CBTH",
+      "lat": -4.842049,
+      "lon": 103.412768,
+      "country": "IDN"
+    },
+    {
+      "name": "CBTI",
+      "lat": -2.104806,
+      "lon": 133.519797,
+      "country": "IDN"
+    },
+    {
+      "name": "CBTL",
+      "lat": -7.892529,
+      "lon": 110.335486,
+      "country": "IDN"
+    },
+    {
+      "name": "CBTM",
+      "lat": 1.07105,
+      "lon": 103.930579,
+      "country": "IDN"
+    },
+    {
+      "name": "CBTT",
+      "lat": -10.863714,
+      "lon": 122.983402,
+      "country": "IDN"
+    },
+    {
+      "name": "CBTU",
+      "lat": -6.308319,
+      "lon": 107.096371,
+      "country": "IDN"
+    },
+    {
+      "name": "CBTY",
+      "lat": 3.492108,
+      "lon": 116.97539,
+      "country": "IDN"
+    },
+    {
+      "name": "CBUA",
+      "lat": -9.105237,
+      "lon": 124.89834,
+      "country": "IDN"
+    },
+    {
+      "name": "CBUL",
+      "lat": 2.836065,
+      "lon": 117.392661,
+      "country": "IDN"
+    },
+    {
+      "name": "CBYL",
+      "lat": -2.048677,
+      "lon": 103.688335,
+      "country": "IDN"
+    },
+    {
+      "name": "CCIR",
+      "lat": -6.716136,
+      "lon": 108.560909,
+      "country": "IDN"
+    },
+    {
+      "name": "CCLP",
+      "lat": -7.737638,
+      "lon": 109.010168,
+      "country": "IDN"
+    },
+    {
+      "name": "CCTR",
+      "lat": 4.927629,
+      "lon": 97.789434,
+      "country": "IDN"
+    },
+    {
+      "name": "CDAI",
+      "lat": -8.068931,
+      "lon": 122.867803,
+      "country": "IDN"
+    },
+    {
+      "name": "CDEM",
+      "lat": -4.024411,
+      "lon": 103.187923,
+      "country": "IDN"
+    },
+    {
+      "name": "CDLA",
+      "lat": -0.493951,
+      "lon": 119.769139,
+      "country": "IDN"
+    },
+    {
+      "name": "CDNP",
+      "lat": -8.818106,
+      "lon": 115.145658,
+      "country": "IDN"
+    },
+    {
+      "name": "CDOM",
+      "lat": -8.543094,
+      "lon": 118.434937,
+      "country": "IDN"
+    },
+    {
+      "name": "CDPU",
+      "lat": -8.34616,
+      "lon": 117.824189,
+      "country": "IDN"
+    },
+    {
+      "name": "CDRI",
+      "lat": 1.267313,
+      "lon": 101.192258,
+      "country": "IDN"
+    },
+    {
+      "name": "CDSL",
+      "lat": -0.479316,
+      "lon": 104.577702,
+      "country": "IDN"
+    },
+    {
+      "name": "CDSR",
+      "lat": -2.386888,
+      "lon": 112.230157,
+      "country": "IDN"
+    },
+    {
+      "name": "CDUM",
+      "lat": 1.678327,
+      "lon": 101.445997,
+      "country": "IDN"
+    },
+    {
+      "name": "CEDA",
+      "lat": 0.334019,
+      "lon": 127.881687,
+      "country": "IDN"
+    },
+    {
+      "name": "CEKG",
+      "lat": -3.58772,
+      "lon": 119.770763,
+      "country": "IDN"
+    },
+    {
+      "name": "CELO",
+      "lat": -8.621432,
+      "lon": 116.471153,
+      "country": "IDN"
+    },
+    {
+      "name": "CEND",
+      "lat": -8.502181,
+      "lon": 121.712328,
+      "country": "IDN"
+    },
+    {
+      "name": "CENT",
+      "lat": 0.986638,
+      "lon": 110.352504,
+      "country": "IDN"
+    },
+    {
+      "name": "CERI",
+      "lat": -3.761387,
+      "lon": 128.124137,
+      "country": "IDN"
+    },
+    {
+      "name": "CERU",
+      "lat": -3.413806,
+      "lon": 112.541098,
+      "country": "IDN"
+    },
+    {
+      "name": "CFAK",
+      "lat": -2.924482,
+      "lon": 132.303703,
+      "country": "IDN"
+    },
+    {
+      "name": "CFLT",
+      "lat": -8.506633,
+      "lon": 122.717981,
+      "country": "IDN"
+    },
+    {
+      "name": "CGAI",
+      "lat": -1.52712,
+      "lon": 122.217742,
+      "country": "IDN"
+    },
+    {
+      "name": "CGIT",
+      "lat": 0.390928,
+      "lon": 127.622367,
+      "country": "IDN"
+    },
+    {
+      "name": "CGMS",
+      "lat": -1.100534,
+      "lon": 113.86817,
+      "country": "IDN"
+    },
+    {
+      "name": "CGOA",
+      "lat": 0.741254,
+      "lon": 120.10485,
+      "country": "IDN"
+    },
+    {
+      "name": "CGON",
+      "lat": -6.020773,
+      "lon": 106.052248,
+      "country": "IDN"
+    },
+    {
+      "name": "CGRG",
+      "lat": -8.180155,
+      "lon": 114.747497,
+      "country": "IDN"
+    },
+    {
+      "name": "CGRT",
+      "lat": -7.522273,
+      "lon": 107.487188,
+      "country": "IDN"
+    },
+    {
+      "name": "CGSR",
+      "lat": -3.887145,
+      "lon": 130.895327,
+      "country": "IDN"
+    },
+    {
+      "name": "CGUT",
+      "lat": 0.837005,
+      "lon": 122.916192,
+      "country": "IDN"
+    },
+    {
+      "name": "CHAI",
+      "lat": -3.338422,
+      "lon": 128.920897,
+      "country": "IDN"
+    },
+    {
+      "name": "CHUL",
+      "lat": -2.787236,
+      "lon": 115.26591,
+      "country": "IDN"
+    },
+    {
+      "name": "CIAN",
+      "lat": -7.452262,
+      "lon": 107.138389,
+      "country": "IDN"
+    },
+    {
+      "name": "CIBU",
+      "lat": 1.500588,
+      "lon": 127.554673,
+      "country": "IDN"
+    },
+    {
+      "name": "CIDU",
+      "lat": -6.333561,
+      "lon": 108.318915,
+      "country": "IDN"
+    },
+    {
+      "name": "CIGI",
+      "lat": -1.444321,
+      "lon": 119.987242,
+      "country": "IDN"
+    },
+    {
+      "name": "CIHR",
+      "lat": -0.316074,
+      "lon": 103.157888,
+      "country": "IDN"
+    },
+    {
+      "name": "CIRU",
+      "lat": -3.06703,
+      "lon": 128.179609,
+      "country": "IDN"
+    },
+    {
+      "name": "CJAI",
+      "lat": 1.06405,
+      "lon": 127.465694,
+      "country": "IDN"
+    },
+    {
+      "name": "CJAY",
+      "lat": -5.116335,
+      "lon": 120.247824,
+      "country": "IDN"
+    },
+    {
+      "name": "CJBI",
+      "lat": -1.607209,
+      "lon": 103.589514,
+      "country": "IDN"
+    },
+    {
+      "name": "CJEM",
+      "lat": -8.174866,
+      "lon": 113.693223,
+      "country": "IDN"
+    },
+    {
+      "name": "CJKT",
+      "lat": -6.110111,
+      "lon": 106.884532,
+      "country": "IDN"
+    },
+    {
+      "name": "CJKU",
+      "lat": -6.155988,
+      "lon": 106.842208,
+      "country": "IDN"
+    },
+    {
+      "name": "CJMR",
+      "lat": -2.636981,
+      "lon": 101.888065,
+      "country": "IDN"
+    },
+    {
+      "name": "CJPR",
+      "lat": -6.596202,
+      "lon": 110.666756,
+      "country": "IDN"
+    },
+    {
+      "name": "CJTO",
+      "lat": -5.668914,
+      "lon": 119.772106,
+      "country": "IDN"
+    },
+    {
+      "name": "CJUR",
+      "lat": -6.822091,
+      "lon": 107.138143,
+      "country": "IDN"
+    },
+    {
+      "name": "CJYP",
+      "lat": -2.54183,
+      "lon": 140.704851,
+      "country": "IDN"
+    },
+    {
+      "name": "CKAG",
+      "lat": -3.39271,
+      "lon": 104.830454,
+      "country": "IDN"
+    },
+    {
+      "name": "CKAL",
+      "lat": -8.21344,
+      "lon": 124.516797,
+      "country": "IDN"
+    },
+    {
+      "name": "CKAR",
+      "lat": -8.208809,
+      "lon": 115.499424,
+      "country": "IDN"
+    },
+    {
+      "name": "CKBJ",
+      "lat": 3.102305,
+      "lon": 98.497043,
+      "country": "IDN"
+    },
+    {
+      "name": "CKBM",
+      "lat": -7.670076,
+      "lon": 109.653189,
+      "country": "IDN"
+    },
+    {
+      "name": "CKBR",
+      "lat": -0.230816,
+      "lon": 115.815741,
+      "country": "IDN"
+    },
+    {
+      "name": "CKBT",
+      "lat": -2.529938,
+      "lon": 112.943102,
+      "country": "IDN"
+    },
+    {
+      "name": "CKCI",
+      "lat": -2.091398,
+      "lon": 101.461971,
+      "country": "IDN"
+    },
+    {
+      "name": "CKCN",
+      "lat": 3.487571,
+      "lon": 97.811202,
+      "country": "IDN"
+    },
+    {
+      "name": "CKDW",
+      "lat": -2.51685,
+      "lon": 110.216128,
+      "country": "IDN"
+    },
+    {
+      "name": "CKEF",
+      "lat": -9.454881,
+      "lon": 124.476673,
+      "country": "IDN"
+    },
+    {
+      "name": "CKEN",
+      "lat": -3.962843,
+      "lon": 122.544594,
+      "country": "IDN"
+    },
+    {
+      "name": "CKGN",
+      "lat": -6.999634,
+      "lon": 108.456952,
+      "country": "IDN"
+    },
+    {
+      "name": "CKHU",
+      "lat": 1.027886,
+      "lon": 111.880005,
+      "country": "IDN"
+    },
+    {
+      "name": "CKKA",
+      "lat": -0.14706,
+      "lon": 116.731275,
+      "country": "IDN"
+    },
+    {
+      "name": "CKKG",
+      "lat": -8.677326,
+      "lon": 115.493715,
+      "country": "IDN"
+    },
+    {
+      "name": "CKMA",
+      "lat": -3.639063,
+      "lon": 133.74104,
+      "country": "IDN"
+    },
+    {
+      "name": "CKMI",
+      "lat": -0.971199,
+      "lon": 102.763824,
+      "country": "IDN"
+    },
+    {
+      "name": "CKMN",
+      "lat": -4.86538,
+      "lon": 104.566814,
+      "country": "IDN"
+    },
+    {
+      "name": "CKOL",
+      "lat": -3.490388,
+      "lon": 120.885821,
+      "country": "IDN"
+    },
+    {
+      "name": "CKON",
+      "lat": -3.511142,
+      "lon": 122.112814,
+      "country": "IDN"
+    },
+    {
+      "name": "CKPI",
+      "lat": 1.892546,
+      "lon": 100.093085,
+      "country": "IDN"
+    },
+    {
+      "name": "CKRC",
+      "lat": 0.421919,
+      "lon": 101.858716,
+      "country": "IDN"
+    },
+    {
+      "name": "CKRG",
+      "lat": -6.111182,
+      "lon": 107.328031,
+      "country": "IDN"
+    },
+    {
+      "name": "CKRI",
+      "lat": -5.196149,
+      "lon": 103.93087,
+      "country": "IDN"
+    },
+    {
+      "name": "CKRU",
+      "lat": -5.772638,
+      "lon": 134.215319,
+      "country": "IDN"
+    },
+    {
+      "name": "CKRY",
+      "lat": 3.911273,
+      "lon": 115.697239,
+      "country": "IDN"
+    },
+    {
+      "name": "CKSI",
+      "lat": -0.504559,
+      "lon": 101.537433,
+      "country": "IDN"
+    },
+    {
+      "name": "CKTA",
+      "lat": -7.672663,
+      "lon": 131.034262,
+      "country": "IDN"
+    },
+    {
+      "name": "CKTB",
+      "lat": -3.33701,
+      "lon": 116.16309,
+      "country": "IDN"
+    },
+    {
+      "name": "CKTF",
+      "lat": 3.086835,
+      "lon": 97.333414,
+      "country": "IDN"
+    },
+    {
+      "name": "CKTI",
+      "lat": 0.748659,
+      "lon": 117.584243,
+      "country": "IDN"
+    },
+    {
+      "name": "CKTK",
+      "lat": -0.813101,
+      "lon": 103.465839,
+      "country": "IDN"
+    },
+    {
+      "name": "CKTM",
+      "lat": 0.305331,
+      "lon": 103.614659,
+      "country": "IDN"
+    },
+    {
+      "name": "CKTP",
+      "lat": -1.828796,
+      "lon": 109.977596,
+      "country": "IDN"
+    },
+    {
+      "name": "CKTR",
+      "lat": 0.987598,
+      "lon": 117.975677,
+      "country": "IDN"
+    },
+    {
+      "name": "CKTT",
+      "lat": -3.199994,
+      "lon": 112.964329,
+      "country": "IDN"
+    },
+    {
+      "name": "CKUP",
+      "lat": -10.169248,
+      "lon": 123.596824,
+      "country": "IDN"
+    },
+    {
+      "name": "CKWB",
+      "lat": -2.736772,
+      "lon": 111.640504,
+      "country": "IDN"
+    },
+    {
+      "name": "CKYU",
+      "lat": -1.253323,
+      "lon": 109.95424,
+      "country": "IDN"
+    },
+    {
+      "name": "CLAN",
+      "lat": 4.63489,
+      "lon": 95.577704,
+      "country": "IDN"
+    },
+    {
+      "name": "CLBG",
+      "lat": -6.824439,
+      "lon": 107.615602,
+      "country": "IDN"
+    },
+    {
+      "name": "CLBJ",
+      "lat": -8.498309,
+      "lon": 119.884911,
+      "country": "IDN"
+    },
+    {
+      "name": "CLBT",
+      "lat": -8.357862,
+      "lon": 116.522925,
+      "country": "IDN"
+    },
+    {
+      "name": "CLBU",
+      "lat": 2.568619,
+      "lon": 99.639616,
+      "country": "IDN"
+    },
+    {
+      "name": "CLDK",
+      "lat": 0.374276,
+      "lon": 109.93761,
+      "country": "IDN"
+    },
+    {
+      "name": "CLDO",
+      "lat": -6.767331,
+      "lon": 106.830304,
+      "country": "IDN"
+    },
+    {
+      "name": "CLEG",
+      "lat": -3.155773,
+      "lon": 102.164309,
+      "country": "IDN"
+    },
+    {
+      "name": "CLGI",
+      "lat": -5.811614,
+      "lon": 105.297431,
+      "country": "IDN"
+    },
+    {
+      "name": "CLHT",
+      "lat": -3.795172,
+      "lon": 103.533233,
+      "country": "IDN"
+    },
+    {
+      "name": "CLKI",
+      "lat": 0.854555,
+      "lon": 123.935291,
+      "country": "IDN"
+    },
+    {
+      "name": "CLKT",
+      "lat": 4.005071,
+      "lon": 98.268823,
+      "country": "IDN"
+    },
+    {
+      "name": "CLMD",
+      "lat": -2.183299,
+      "lon": 111.452834,
+      "country": "IDN"
+    },
+    {
+      "name": "CLMG",
+      "lat": -7.092597,
+      "lon": 112.326524,
+      "country": "IDN"
+    },
+    {
+      "name": "CLMP",
+      "lat": -2.775454,
+      "lon": 121.040843,
+      "country": "IDN"
+    },
+    {
+      "name": "CLOK",
+      "lat": 1.191652,
+      "lon": 121.420587,
+      "country": "IDN"
+    },
+    {
+      "name": "CLOR",
+      "lat": -8.362435,
+      "lon": 124.087419,
+      "country": "IDN"
+    },
+    {
+      "name": "CLSA",
+      "lat": 4.473752,
+      "lon": 97.96599,
+      "country": "IDN"
+    },
+    {
+      "name": "CLSI",
+      "lat": -5.47519,
+      "lon": 134.654258,
+      "country": "IDN"
+    },
+    {
+      "name": "CLSN",
+      "lat": -5.713361,
+      "lon": 105.582421,
+      "country": "IDN"
+    },
+    {
+      "name": "CLTI",
+      "lat": -2.464677,
+      "lon": 120.814528,
+      "country": "IDN"
+    },
+    {
+      "name": "CLUM",
+      "lat": -8.213748,
+      "lon": 113.114701,
+      "country": "IDN"
+    },
+    {
+      "name": "CLWB",
+      "lat": -8.371315,
+      "lon": 123.421772,
+      "country": "IDN"
+    },
+    {
+      "name": "CLWK",
+      "lat": -1.035554,
+      "lon": 122.775406,
+      "country": "IDN"
+    },
+    {
+      "name": "CLYK",
+      "lat": -8.974469,
+      "lon": 117.21573,
+      "country": "IDN"
+    },
+    {
+      "name": "CMAB",
+      "lat": 0.68294,
+      "lon": 128.295412,
+      "country": "IDN"
+    },
+    {
+      "name": "CMAG",
+      "lat": -7.606415,
+      "lon": 111.451437,
+      "country": "IDN"
+    },
+    {
+      "name": "CMAK",
+      "lat": -5.134803,
+      "lon": 119.408017,
+      "country": "IDN"
+    },
+    {
+      "name": "CMAN",
+      "lat": -0.859161,
+      "lon": 134.072362,
+      "country": "IDN"
+    },
+    {
+      "name": "CMAR",
+      "lat": -8.285484,
+      "lon": 125.128401,
+      "country": "IDN"
+    },
+    {
+      "name": "CMAS",
+      "lat": -2.959903,
+      "lon": 119.380271,
+      "country": "IDN"
+    },
+    {
+      "name": "CMAT",
+      "lat": -8.583052,
+      "lon": 116.09763,
+      "country": "IDN"
+    },
+    {
+      "name": "CMBA",
+      "lat": -8.89847,
+      "lon": 121.139833,
+      "country": "IDN"
+    },
+    {
+      "name": "CMBD",
+      "lat": -8.147354,
+      "lon": 127.794395,
+      "country": "IDN"
+    },
+    {
+      "name": "CMBK",
+      "lat": 1.057058,
+      "lon": 103.349106,
+      "country": "IDN"
+    },
+    {
+      "name": "CMDO",
+      "lat": 1.54593,
+      "lon": 124.923257,
+      "country": "IDN"
+    },
+    {
+      "name": "CMDP",
+      "lat": 0.45918,
+      "lon": 101.447279,
+      "country": "IDN"
+    },
+    {
+      "name": "CMEN",
+      "lat": -4.474294,
+      "lon": 105.252738,
+      "country": "IDN"
+    },
+    {
+      "name": "CMGL",
+      "lat": -7.475775,
+      "lon": 110.217001,
+      "country": "IDN"
+    },
+    {
+      "name": "CMIS",
+      "lat": -7.326058,
+      "lon": 108.343444,
+      "country": "IDN"
+    },
+    {
+      "name": "CMJG",
+      "lat": -7.300487,
+      "lon": 108.744834,
+      "country": "IDN"
+    },
+    {
+      "name": "CMJH",
+      "lat": -2.082824,
+      "lon": 119.301672,
+      "country": "IDN"
+    },
+    {
+      "name": "CMJK",
+      "lat": -6.647261,
+      "lon": 108.149947,
+      "country": "IDN"
+    },
+    {
+      "name": "CMJN",
+      "lat": -3.550545,
+      "lon": 118.980327,
+      "country": "IDN"
+    },
+    {
+      "name": "CMJT",
+      "lat": -7.465579,
+      "lon": 112.441616,
+      "country": "IDN"
+    },
+    {
+      "name": "CMJU",
+      "lat": -2.666493,
+      "lon": 118.849634,
+      "country": "IDN"
+    },
+    {
+      "name": "CMLE",
+      "lat": 3.997918,
+      "lon": 126.675681,
+      "country": "IDN"
+    },
+    {
+      "name": "CMLG",
+      "lat": -7.979607,
+      "lon": 112.662681,
+      "country": "IDN"
+    },
+    {
+      "name": "CMLI",
+      "lat": -2.633525,
+      "lon": 121.099716,
+      "country": "IDN"
+    },
+    {
+      "name": "CMLP",
+      "lat": -6.778304,
+      "lon": 106.019081,
+      "country": "IDN"
+    },
+    {
+      "name": "CMLW",
+      "lat": -0.347977,
+      "lon": 111.750466,
+      "country": "IDN"
+    },
+    {
+      "name": "CMNE",
+      "lat": 4.869237,
+      "lon": 96.090258,
+      "country": "IDN"
+    },
+    {
+      "name": "CMOL",
+      "lat": -0.360682,
+      "lon": 102.293797,
+      "country": "IDN"
+    },
+    {
+      "name": "CMOR",
+      "lat": 2.016564,
+      "lon": 128.280381,
+      "country": "IDN"
+    },
+    {
+      "name": "CMPW",
+      "lat": 0.349099,
+      "lon": 108.962522,
+      "country": "IDN"
+    },
+    {
+      "name": "CMRA",
+      "lat": -2.734785,
+      "lon": 102.900988,
+      "country": "IDN"
+    },
+    {
+      "name": "CMRE",
+      "lat": -8.627496,
+      "lon": 122.219638,
+      "country": "IDN"
+    },
+    {
+      "name": "CMRG",
+      "lat": -2.053099,
+      "lon": 102.279178,
+      "country": "IDN"
+    },
+    {
+      "name": "CMRI",
+      "lat": -2.547779,
+      "lon": 121.971247,
+      "country": "IDN"
+    },
+    {
+      "name": "CMRT",
+      "lat": 1.013314,
+      "lon": 102.710858,
+      "country": "IDN"
+    },
+    {
+      "name": "CMRW",
+      "lat": -3.252302,
+      "lon": 103.01437,
+      "country": "IDN"
+    },
+    {
+      "name": "CMSB",
+      "lat": -2.554578,
+      "lon": 120.324228,
+      "country": "IDN"
+    },
+    {
+      "name": "CMTA",
+      "lat": 1.057435,
+      "lon": 124.662116,
+      "country": "IDN"
+    },
+    {
+      "name": "CMTB",
+      "lat": -1.479057,
+      "lon": 102.441518,
+      "country": "IDN"
+    },
+    {
+      "name": "CMTH",
+      "lat": -3.536334,
+      "lon": 128.687596,
+      "country": "IDN"
+    },
+    {
+      "name": "CMTJ",
+      "lat": -1.273532,
+      "lon": 103.05073,
+      "country": "IDN"
+    },
+    {
+      "name": "CMTK",
+      "lat": -2.053865,
+      "lon": 105.167312,
+      "country": "IDN"
+    },
+    {
+      "name": "CMTP",
+      "lat": -4.315664,
+      "lon": 104.347728,
+      "country": "IDN"
+    },
+    {
+      "name": "CMTS",
+      "lat": 1.212788,
+      "lon": 124.597739,
+      "country": "IDN"
+    },
+    {
+      "name": "CMTU",
+      "lat": 1.693127,
+      "lon": 125.013225,
+      "country": "IDN"
+    },
+    {
+      "name": "CMUK",
+      "lat": -2.570095,
+      "lon": 101.11201,
+      "country": "IDN"
+    },
+    {
+      "name": "CMUR",
+      "lat": -0.64159,
+      "lon": 114.568953,
+      "country": "IDN"
+    },
+    {
+      "name": "CMUS",
+      "lat": -5.480138,
+      "lon": 104.682611,
+      "country": "IDN"
+    },
+    {
+      "name": "CMWS",
+      "lat": -1.510694,
+      "lon": 134.176994,
+      "country": "IDN"
+    },
+    {
+      "name": "CMWU",
+      "lat": -1.979246,
+      "lon": 121.337659,
+      "country": "IDN"
+    },
+    {
+      "name": "CNAB",
+      "lat": -3.366776,
+      "lon": 135.505482,
+      "country": "IDN"
+    },
+    {
+      "name": "CNAN",
+      "lat": -8.502616,
+      "lon": 115.018155,
+      "country": "IDN"
+    },
+    {
+      "name": "CNAT",
+      "lat": 3.941121,
+      "lon": 108.387742,
+      "country": "IDN"
+    },
+    {
+      "name": "CNAU",
+      "lat": 3.58605,
+      "lon": 116.620537,
+      "country": "IDN"
+    },
+    {
+      "name": "CNBS",
+      "lat": 3.214091,
+      "lon": 106.248551,
+      "country": "IDN"
+    },
+    {
+      "name": "CNDE",
+      "lat": -8.841688,
+      "lon": 121.650607,
+      "country": "IDN"
+    },
+    {
+      "name": "CNEG",
+      "lat": -8.356501,
+      "lon": 114.621444,
+      "country": "IDN"
+    },
+    {
+      "name": "CNGA",
+      "lat": -7.604705,
+      "lon": 111.905304,
+      "country": "IDN"
+    },
+    {
+      "name": "CNMB",
+      "lat": -5.204287,
+      "lon": 122.960272,
+      "country": "IDN"
+    },
+    {
+      "name": "CNML",
+      "lat": -3.26921,
+      "lon": 127.083728,
+      "country": "IDN"
+    },
+    {
+      "name": "CNNK",
+      "lat": 4.004894,
+      "lon": 117.03278,
+      "country": "IDN"
+    },
+    {
+      "name": "CNTL",
+      "lat": 0.710864,
+      "lon": 99.577027,
+      "country": "IDN"
+    },
+    {
+      "name": "CNUA",
+      "lat": 1.394459,
+      "lon": 97.167253,
+      "country": "IDN"
+    },
+    {
+      "name": "CNUK",
+      "lat": 4.141165,
+      "lon": 117.657688,
+      "country": "IDN"
+    },
+    {
+      "name": "CNYU",
+      "lat": -8.212199,
+      "lon": 114.375375,
+      "country": "IDN"
+    },
+    {
+      "name": "COLE",
+      "lat": -3.851176,
+      "lon": 126.732471,
+      "country": "IDN"
+    },
+    {
+      "name": "CONG",
+      "lat": -2.164373,
+      "lon": 115.382357,
+      "country": "IDN"
+    },
+    {
+      "name": "COSO",
+      "lat": -1.669136,
+      "lon": 120.661635,
+      "country": "IDN"
+    },
+    {
+      "name": "CPAC",
+      "lat": -8.196006,
+      "lon": 111.097788,
+      "country": "IDN"
+    },
+    {
+      "name": "CPAI",
+      "lat": -7.718754,
+      "lon": 113.530421,
+      "country": "IDN"
+    },
+    {
+      "name": "CPAL",
+      "lat": -3.007033,
+      "lon": 120.192382,
+      "country": "IDN"
+    },
+    {
+      "name": "CPAN",
+      "lat": -4.831703,
+      "lon": 119.574067,
+      "country": "IDN"
+    },
+    {
+      "name": "CPAR",
+      "lat": -0.625126,
+      "lon": 100.132012,
+      "country": "IDN"
+    },
+    {
+      "name": "CPAS",
+      "lat": -7.651408,
+      "lon": 112.901037,
+      "country": "IDN"
+    },
+    {
+      "name": "CPBG",
+      "lat": -7.4029,
+      "lon": 109.367809,
+      "country": "IDN"
+    },
+    {
+      "name": "CPBI",
+      "lat": -8.543302,
+      "lon": 115.470803,
+      "country": "IDN"
+    },
+    {
+      "name": "CPBM",
+      "lat": -3.432042,
+      "lon": 104.237066,
+      "country": "IDN"
+    },
+    {
+      "name": "CPBO",
+      "lat": -7.714937,
+      "lon": 113.215731,
+      "country": "IDN"
+    },
+    {
+      "name": "CPBR",
+      "lat": -8.348058,
+      "lon": 122.319,
+      "country": "IDN"
+    },
+    {
+      "name": "CPCR",
+      "lat": -6.864447,
+      "lon": 112.368446,
+      "country": "IDN"
+    },
+    {
+      "name": "CPDG",
+      "lat": -0.953981,
+      "lon": 100.363114,
+      "country": "IDN"
+    },
+    {
+      "name": "CPEN",
+      "lat": -1.497135,
+      "lon": 116.46388,
+      "country": "IDN"
+    },
+    {
+      "name": "CPES",
+      "lat": -8.533922,
+      "lon": 114.11009,
+      "country": "IDN"
+    },
+    {
+      "name": "CPET",
+      "lat": -1.563561,
+      "lon": 99.196773,
+      "country": "IDN"
+    },
+    {
+      "name": "CPGN",
+      "lat": -7.641876,
+      "lon": 108.511271,
+      "country": "IDN"
+    },
+    {
+      "name": "CPGR",
+      "lat": 2.595052,
+      "lon": 98.706651,
+      "country": "IDN"
+    },
+    {
+      "name": "CPID",
+      "lat": 5.251326,
+      "lon": 96.247765,
+      "country": "IDN"
+    },
+    {
+      "name": "CPKL",
+      "lat": -6.887014,
+      "lon": 109.669443,
+      "country": "IDN"
+    },
+    {
+      "name": "CPKY",
+      "lat": -2.21349,
+      "lon": 113.920445,
+      "country": "IDN"
+    },
+    {
+      "name": "CPLG",
+      "lat": -8.796294,
+      "lon": 117.777443,
+      "country": "IDN"
+    },
+    {
+      "name": "CPLL",
+      "lat": 1.045169,
+      "lon": 121.954822,
+      "country": "IDN"
+    },
+    {
+      "name": "CPLM",
+      "lat": -3.402438,
+      "lon": 119.30573,
+      "country": "IDN"
+    },
+    {
+      "name": "CPLU",
+      "lat": 1.398691,
+      "lon": 99.430987,
+      "country": "IDN"
+    },
+    {
+      "name": "CPMG",
+      "lat": -8.392121,
+      "lon": 116.098712,
+      "country": "IDN"
+    },
+    {
+      "name": "CPMK",
+      "lat": -7.655126,
+      "lon": 107.690514,
+      "country": "IDN"
+    },
+    {
+      "name": "CPML",
+      "lat": -7.16407,
+      "lon": 109.198604,
+      "country": "IDN"
+    },
+    {
+      "name": "CPMS",
+      "lat": -6.936376,
+      "lon": 113.560268,
+      "country": "IDN"
+    },
+    {
+      "name": "CPOH",
+      "lat": 0.467862,
+      "lon": 121.937256,
+      "country": "IDN"
+    },
+    {
+      "name": "CPOK",
+      "lat": -8.514569,
+      "lon": 121.328462,
+      "country": "IDN"
+    },
+    {
+      "name": "CPOM",
+      "lat": -4.180719,
+      "lon": 121.610815,
+      "country": "IDN"
+    },
+    {
+      "name": "CPON",
+      "lat": -0.003616,
+      "lon": 109.329046,
+      "country": "IDN"
+    },
+    {
+      "name": "CPOS",
+      "lat": -2.048726,
+      "lon": 120.734814,
+      "country": "IDN"
+    },
+    {
+      "name": "CPPR",
+      "lat": 0.86165,
+      "lon": 100.301027,
+      "country": "IDN"
+    },
+    {
+      "name": "CPPU",
+      "lat": -0.908456,
+      "lon": 116.763312,
+      "country": "IDN"
+    },
+    {
+      "name": "CPRE",
+      "lat": -3.978545,
+      "lon": 119.650017,
+      "country": "IDN"
+    },
+    {
+      "name": "CPSK",
+      "lat": -1.136098,
+      "lon": 119.394057,
+      "country": "IDN"
+    },
+    {
+      "name": "CPSM",
+      "lat": 0.120126,
+      "lon": 100.173813,
+      "country": "IDN"
+    },
+    {
+      "name": "CPSO",
+      "lat": -1.420371,
+      "lon": 120.656903,
+      "country": "IDN"
+    },
+    {
+      "name": "CPSR",
+      "lat": -6.226014,
+      "lon": 105.833622,
+      "country": "IDN"
+    },
+    {
+      "name": "CPSU",
+      "lat": -5.344293,
+      "lon": 105.006918,
+      "country": "IDN"
+    },
+    {
+      "name": "CPTN",
+      "lat": -6.960851,
+      "lon": 106.411389,
+      "country": "IDN"
+    },
+    {
+      "name": "CPTS",
+      "lat": -8.00888,
+      "lon": 110.301944,
+      "country": "IDN"
+    },
+    {
+      "name": "CPTU",
+      "lat": -6.989194,
+      "lon": 106.551381,
+      "country": "IDN"
+    },
+    {
+      "name": "CPUP",
+      "lat": -2.717354,
+      "lon": 114.304394,
+      "country": "IDN"
+    },
+    {
+      "name": "CPUT",
+      "lat": 0.877197,
+      "lon": 112.922775,
+      "country": "IDN"
+    },
+    {
+      "name": "CPWD",
+      "lat": -7.09608,
+      "lon": 110.914208,
+      "country": "IDN"
+    },
+    {
+      "name": "CPWJ",
+      "lat": -7.719413,
+      "lon": 110.000807,
+      "country": "IDN"
+    },
+    {
+      "name": "CPWK",
+      "lat": -6.551118,
+      "lon": 107.443061,
+      "country": "IDN"
+    },
+    {
+      "name": "CPYG",
+      "lat": -7.77207,
+      "lon": 108.087815,
+      "country": "IDN"
+    },
+    {
+      "name": "CRAT",
+      "lat": -7.153156,
+      "lon": 131.71374,
+      "country": "IDN"
+    },
+    {
+      "name": "CRAU",
+      "lat": 2.149365,
+      "lon": 117.496988,
+      "country": "IDN"
+    },
+    {
+      "name": "CREM",
+      "lat": -6.70311,
+      "lon": 111.333093,
+      "country": "IDN"
+    },
+    {
+      "name": "CREO",
+      "lat": -8.310949,
+      "lon": 120.490374,
+      "country": "IDN"
+    },
+    {
+      "name": "CRHR",
+      "lat": 2.09364,
+      "lon": 100.826715,
+      "country": "IDN"
+    },
+    {
+      "name": "CRHU",
+      "lat": 1.249912,
+      "lon": 100.367513,
+      "country": "IDN"
+    },
+    {
+      "name": "CRJS",
+      "lat": -4.213401,
+      "lon": 105.690625,
+      "country": "IDN"
+    },
+    {
+      "name": "CRJT",
+      "lat": -0.424703,
+      "lon": 130.820315,
+      "country": "IDN"
+    },
+    {
+      "name": "CRKS",
+      "lat": -6.35792,
+      "lon": 106.24632,
+      "country": "IDN"
+    },
+    {
+      "name": "CRLG",
+      "lat": -3.478047,
+      "lon": 102.644971,
+      "country": "IDN"
+    },
+    {
+      "name": "CRNG",
+      "lat": -8.42073,
+      "lon": 121.026508,
+      "country": "IDN"
+    },
+    {
+      "name": "CROL",
+      "lat": -6.312548,
+      "lon": 107.984592,
+      "country": "IDN"
+    },
+    {
+      "name": "CRPN",
+      "lat": -6.844984,
+      "lon": 105.604117,
+      "country": "IDN"
+    },
+    {
+      "name": "CRSL",
+      "lat": -4.877929,
+      "lon": 104.003436,
+      "country": "IDN"
+    },
+    {
+      "name": "CRTE",
+      "lat": -10.731131,
+      "lon": 123.047781,
+      "country": "IDN"
+    },
+    {
+      "name": "CRTG",
+      "lat": -8.611766,
+      "lon": 120.502105,
+      "country": "IDN"
+    },
+    {
+      "name": "CRUT",
+      "lat": -7.21721,
+      "lon": 107.904684,
+      "country": "IDN"
+    },
+    {
+      "name": "CSAB",
+      "lat": 5.893631,
+      "lon": 95.316498,
+      "country": "IDN"
+    },
+    {
+      "name": "CSAM",
+      "lat": -0.537553,
+      "lon": 117.146354,
+      "country": "IDN"
+    },
+    {
+      "name": "CSAP",
+      "lat": 1.121744,
+      "lon": 102.156019,
+      "country": "IDN"
+    },
+    {
+      "name": "CSAU",
+      "lat": -7.984226,
+      "lon": 131.298009,
+      "country": "IDN"
+    },
+    {
+      "name": "CSBA",
+      "lat": -8.907965,
+      "lon": 116.750234,
+      "country": "IDN"
+    },
+    {
+      "name": "CSBB",
+      "lat": -3.338893,
+      "lon": 128.367905,
+      "country": "IDN"
+    },
+    {
+      "name": "CSBE",
+      "lat": -8.497198,
+      "lon": 117.425998,
+      "country": "IDN"
+    },
+    {
+      "name": "CSBG",
+      "lat": -6.552793,
+      "lon": 107.79892,
+      "country": "IDN"
+    },
+    {
+      "name": "CSBH",
+      "lat": 1.048233,
+      "lon": 99.742856,
+      "country": "IDN"
+    },
+    {
+      "name": "CSBI",
+      "lat": -7.425253,
+      "lon": 106.743252,
+      "country": "IDN"
+    },
+    {
+      "name": "CSBK",
+      "lat": -5.901927,
+      "lon": 105.505096,
+      "country": "IDN"
+    },
+    {
+      "name": "CSBL",
+      "lat": 2.741967,
+      "lon": 98.405133,
+      "country": "IDN"
+    },
+    {
+      "name": "CSBR",
+      "lat": -8.434251,
+      "lon": 112.683622,
+      "country": "IDN"
+    },
+    {
+      "name": "CSBS",
+      "lat": 2.643347,
+      "lon": 98.001153,
+      "country": "IDN"
+    },
+    {
+      "name": "CSBT",
+      "lat": -3.453185,
+      "lon": 129.995245,
+      "country": "IDN"
+    },
+    {
+      "name": "CSBY",
+      "lat": -7.334335,
+      "lon": 112.724367,
+      "country": "IDN"
+    },
+    {
+      "name": "CSDG",
+      "lat": -8.190509,
+      "lon": 110.79933,
+      "country": "IDN"
+    },
+    {
+      "name": "CSDH",
+      "lat": -0.966146,
+      "lon": 101.506211,
+      "country": "IDN"
+    },
+    {
+      "name": "CSDK",
+      "lat": -0.79758,
+      "lon": 110.365774,
+      "country": "IDN"
+    },
+    {
+      "name": "CSEK",
+      "lat": -2.888629,
+      "lon": 103.838772,
+      "country": "IDN"
+    },
+    {
+      "name": "CSEL",
+      "lat": -1.79813,
+      "lon": 100.839151,
+      "country": "IDN"
+    },
+    {
+      "name": "CSEM",
+      "lat": -6.98727,
+      "lon": 110.376939,
+      "country": "IDN"
+    },
+    {
+      "name": "CSER",
+      "lat": -1.90467,
+      "lon": 116.19336,
+      "country": "IDN"
+    },
+    {
+      "name": "CSGA",
+      "lat": 0.807419,
+      "lon": 110.42218,
+      "country": "IDN"
+    },
+    {
+      "name": "CSGD",
+      "lat": -2.767874,
+      "lon": 103.408119,
+      "country": "IDN"
+    },
+    {
+      "name": "CSGM",
+      "lat": -5.058088,
+      "lon": 104.868143,
+      "country": "IDN"
+    },
+    {
+      "name": "CSIB",
+      "lat": 1.74095,
+      "lon": 98.776429,
+      "country": "IDN"
+    },
+    {
+      "name": "CSID",
+      "lat": -7.374581,
+      "lon": 112.781916,
+      "country": "IDN"
+    },
+    {
+      "name": "CSIT",
+      "lat": -7.703319,
+      "lon": 114.012883,
+      "country": "IDN"
+    },
+    {
+      "name": "CSIW",
+      "lat": -3.677252,
+      "lon": 120.427532,
+      "country": "IDN"
+    },
+    {
+      "name": "CSJA",
+      "lat": 4.409493,
+      "lon": 97.521892,
+      "country": "IDN"
+    },
+    {
+      "name": "CSKB",
+      "lat": 0.890317,
+      "lon": 108.967044,
+      "country": "IDN"
+    },
+    {
+      "name": "CSKD",
+      "lat": -0.000178,
+      "lon": 110.887198,
+      "country": "IDN"
+    },
+    {
+      "name": "CSKM",
+      "lat": -2.761958,
+      "lon": 111.176843,
+      "country": "IDN"
+    },
+    {
+      "name": "CSKP",
+      "lat": -2.774053,
+      "lon": 100.199338,
+      "country": "IDN"
+    },
+    {
+      "name": "CSLI",
+      "lat": -1.863172,
+      "lon": 106.106848,
+      "country": "IDN"
+    },
+    {
+      "name": "CSLL",
+      "lat": -1.526309,
+      "lon": 101.088137,
+      "country": "IDN"
+    },
+    {
+      "name": "CSLN",
+      "lat": -2.538666,
+      "lon": 104.113705,
+      "country": "IDN"
+    },
+    {
+      "name": "CSLO",
+      "lat": -7.570594,
+      "lon": 110.830297,
+      "country": "IDN"
+    },
+    {
+      "name": "CSLU",
+      "lat": 0.596956,
+      "lon": 112.122244,
+      "country": "IDN"
+    },
+    {
+      "name": "CSLY",
+      "lat": -6.116199,
+      "lon": 120.464419,
+      "country": "IDN"
+    },
+    {
+      "name": "CSMG",
+      "lat": -6.956646,
+      "lon": 110.461413,
+      "country": "IDN"
+    },
+    {
+      "name": "CSMI",
+      "lat": -1.853146,
+      "lon": 138.751669,
+      "country": "IDN"
+    },
+    {
+      "name": "CSML",
+      "lat": 2.906755,
+      "lon": 98.97231,
+      "country": "IDN"
+    },
+    {
+      "name": "CSMN",
+      "lat": -7.01832,
+      "lon": 113.875188,
+      "country": "IDN"
+    },
+    {
+      "name": "CSMO",
+      "lat": -3.627321,
+      "lon": 105.347602,
+      "country": "IDN"
+    },
+    {
+      "name": "CSMP",
+      "lat": -7.195448,
+      "lon": 113.251949,
+      "country": "IDN"
+    },
+    {
+      "name": "CSMT",
+      "lat": 0.983276,
+      "lon": 122.421282,
+      "country": "IDN"
+    },
+    {
+      "name": "CSNB",
+      "lat": 2.472361,
+      "lon": 96.385535,
+      "country": "IDN"
+    },
+    {
+      "name": "CSNT",
+      "lat": 0.472387,
+      "lon": 117.612953,
+      "country": "IDN"
+    },
+    {
+      "name": "CSOE",
+      "lat": -9.858812,
+      "lon": 124.289185,
+      "country": "IDN"
+    },
+    {
+      "name": "CSOQ",
+      "lat": -0.882123,
+      "lon": 131.281038,
+      "country": "IDN"
+    },
+    {
+      "name": "CSPE",
+      "lat": -8.568642,
+      "lon": 119.02004,
+      "country": "IDN"
+    },
+    {
+      "name": "CSPL",
+      "lat": 1.727584,
+      "lon": 109.314195,
+      "country": "IDN"
+    },
+    {
+      "name": "CSRB",
+      "lat": 0.942374,
+      "lon": 97.412096,
+      "country": "IDN"
+    },
+    {
+      "name": "CSRJ",
+      "lat": -8.14969,
+      "lon": 115.058021,
+      "country": "IDN"
+    },
+    {
+      "name": "CSRL",
+      "lat": -2.303211,
+      "lon": 102.723679,
+      "country": "IDN"
+    },
+    {
+      "name": "CSSL",
+      "lat": -1.474046,
+      "lon": 132.088599,
+      "country": "IDN"
+    },
+    {
+      "name": "CSTG",
+      "lat": -7.361431,
+      "lon": 110.531067,
+      "country": "IDN"
+    },
+    {
+      "name": "CSTS",
+      "lat": -0.042956,
+      "lon": 111.459415,
+      "country": "IDN"
+    },
+    {
+      "name": "CSUM",
+      "lat": -6.858911,
+      "lon": 107.92198,
+      "country": "IDN"
+    },
+    {
+      "name": "CSWA",
+      "lat": -8.516004,
+      "lon": 116.99387,
+      "country": "IDN"
+    },
+    {
+      "name": "CSWL",
+      "lat": -0.639562,
+      "lon": 100.74382,
+      "country": "IDN"
+    },
+    {
+      "name": "CTAB",
+      "lat": -8.330515,
+      "lon": 115.186233,
+      "country": "IDN"
+    },
+    {
+      "name": "CTAK",
+      "lat": 4.621737,
+      "lon": 96.847747,
+      "country": "IDN"
+    },
+    {
+      "name": "CTAN",
+      "lat": -7.267849,
+      "lon": 107.123798,
+      "country": "IDN"
+    },
+    {
+      "name": "CTAW",
+      "lat": -8.883681,
+      "lon": 116.399375,
+      "country": "IDN"
+    },
+    {
+      "name": "CTBL",
+      "lat": 1.730259,
+      "lon": 128.008001,
+      "country": "IDN"
+    },
+    {
+      "name": "CTBN",
+      "lat": -6.872255,
+      "lon": 111.986436,
+      "country": "IDN"
+    },
+    {
+      "name": "CTBT",
+      "lat": 3.335377,
+      "lon": 99.170353,
+      "country": "IDN"
+    },
+    {
+      "name": "CTBU",
+      "lat": -3.795835,
+      "lon": 115.393037,
+      "country": "IDN"
+    },
+    {
+      "name": "CTCN",
+      "lat": -5.912812,
+      "lon": 104.726877,
+      "country": "IDN"
+    },
+    {
+      "name": "CTEG",
+      "lat": -6.867975,
+      "lon": 109.121101,
+      "country": "IDN"
+    },
+    {
+      "name": "CTEK",
+      "lat": 0.364926,
+      "lon": 99.118659,
+      "country": "IDN"
+    },
+    {
+      "name": "CTER",
+      "lat": 0.787896,
+      "lon": 127.382791,
+      "country": "IDN"
+    },
+    {
+      "name": "CTGK",
+      "lat": -8.288563,
+      "lon": 111.730294,
+      "country": "IDN"
+    },
+    {
+      "name": "CTGR",
+      "lat": -6.290832,
+      "lon": 106.663805,
+      "country": "IDN"
+    },
+    {
+      "name": "CTHK",
+      "lat": 0.805674,
+      "lon": 100.931378,
+      "country": "IDN"
+    },
+    {
+      "name": "CTHN",
+      "lat": 3.612733,
+      "lon": 125.503803,
+      "country": "IDN"
+    },
+    {
+      "name": "CTIM",
+      "lat": -4.547048,
+      "lon": 136.888167,
+      "country": "IDN"
+    },
+    {
+      "name": "CTJB",
+      "lat": 2.964394,
+      "lon": 99.806136,
+      "country": "IDN"
+    },
+    {
+      "name": "CTJP",
+      "lat": 0.917438,
+      "lon": 104.514223,
+      "country": "IDN"
+    },
+    {
+      "name": "CTJU",
+      "lat": 2.275225,
+      "lon": 118.097416,
+      "country": "IDN"
+    },
+    {
+      "name": "CTKG",
+      "lat": -1.210031,
+      "lon": 122.629728,
+      "country": "IDN"
+    },
+    {
+      "name": "CTLH",
+      "lat": -3.585854,
+      "lon": 128.329399,
+      "country": "IDN"
+    },
+    {
+      "name": "CTLT",
+      "lat": -3.800147,
+      "lon": 114.781097,
+      "country": "IDN"
+    },
+    {
+      "name": "CTMJ",
+      "lat": -5.242179,
+      "lon": 104.302886,
+      "country": "IDN"
+    },
+    {
+      "name": "CTMN",
+      "lat": 1.343473,
+      "lon": 124.84025,
+      "country": "IDN"
+    },
+    {
+      "name": "CTMP",
+      "lat": 0.147592,
+      "lon": 102.568324,
+      "country": "IDN"
+    },
+    {
+      "name": "CTNB",
+      "lat": 0.386567,
+      "lon": 120.28915,
+      "country": "IDN"
+    },
+    {
+      "name": "CTOA",
+      "lat": -7.40647,
+      "lon": 121.767803,
+      "country": "IDN"
+    },
+    {
+      "name": "CTOL",
+      "lat": 1.042062,
+      "lon": 120.81737,
+      "country": "IDN"
+    },
+    {
+      "name": "CTOR",
+      "lat": -3.045024,
+      "lon": 119.818644,
+      "country": "IDN"
+    },
+    {
+      "name": "CTPS",
+      "lat": 1.833906,
+      "lon": 99.372775,
+      "country": "IDN"
+    },
+    {
+      "name": "CTRA",
+      "lat": -5.361119,
+      "lon": 105.312192,
+      "country": "IDN"
+    },
+    {
+      "name": "CTRK",
+      "lat": 3.304974,
+      "lon": 117.595191,
+      "country": "IDN"
+    },
+    {
+      "name": "CTSD",
+      "lat": 0.907478,
+      "lon": 123.185847,
+      "country": "IDN"
+    },
+    {
+      "name": "CTSL",
+      "lat": -1.402678,
+      "lon": 102.02132,
+      "country": "IDN"
+    },
+    {
+      "name": "CTTS",
+      "lat": -10.035151,
+      "lon": 124.52935,
+      "country": "IDN"
+    },
+    {
+      "name": "CTTU",
+      "lat": -9.178387,
+      "lon": 124.491511,
+      "country": "IDN"
+    },
+    {
+      "name": "CTUL",
+      "lat": -8.065519,
+      "lon": 111.906077,
+      "country": "IDN"
+    },
+    {
+      "name": "CTWL",
+      "lat": -2.834584,
+      "lon": 128.514962,
+      "country": "IDN"
+    },
+    {
+      "name": "CUAL",
+      "lat": -5.63199,
+      "lon": 132.745123,
+      "country": "IDN"
+    },
+    {
+      "name": "CUBN",
+      "lat": -2.186355,
+      "lon": 99.731343,
+      "country": "IDN"
+    },
+    {
+      "name": "CUBU",
+      "lat": -0.315348,
+      "lon": 109.151345,
+      "country": "IDN"
+    },
+    {
+      "name": "CUJG",
+      "lat": -7.38197,
+      "lon": 106.405567,
+      "country": "IDN"
+    },
+    {
+      "name": "CUJK",
+      "lat": -6.746626,
+      "lon": 105.213417,
+      "country": "IDN"
+    },
+    {
+      "name": "CUKA",
+      "lat": -8.327524,
+      "lon": 123.003483,
+      "country": "IDN"
+    },
+    {
+      "name": "CUKE",
+      "lat": -8.489853,
+      "lon": 140.394164,
+      "country": "IDN"
+    },
+    {
+      "name": "CULU",
+      "lat": 2.732347,
+      "lon": 125.415909,
+      "country": "IDN"
+    },
+    {
+      "name": "CUMB",
+      "lat": -5.553914,
+      "lon": 120.190154,
+      "country": "IDN"
+    },
+    {
+      "name": "CUMI",
+      "lat": -7.057162,
+      "lon": 106.800919,
+      "country": "IDN"
+    },
+    {
+      "name": "CUNA",
+      "lat": -4.795973,
+      "lon": 122.719744,
+      "country": "IDN"
+    },
+    {
+      "name": "CUWU",
+      "lat": -3.39639,
+      "lon": 120.365648,
+      "country": "IDN"
+    },
+    {
+      "name": "CWAI",
+      "lat": -9.654084,
+      "lon": 120.264905,
+      "country": "IDN"
+    },
+    {
+      "name": "CWJO",
+      "lat": -4.075348,
+      "lon": 120.024133,
+      "country": "IDN"
+    },
+    {
+      "name": "CWJP",
+      "lat": -5.174188,
+      "lon": 105.706126,
+      "country": "IDN"
+    },
+    {
+      "name": "CWKI",
+      "lat": -5.309938,
+      "lon": 123.53688,
+      "country": "IDN"
+    },
+    {
+      "name": "CWMN",
+      "lat": -4.095598,
+      "lon": 138.942415,
+      "country": "IDN"
+    },
+    {
+      "name": "CWOA",
+      "lat": -1.341851,
+      "lon": 127.655235,
+      "country": "IDN"
+    },
+    {
+      "name": "CWRU",
+      "lat": -6.465595,
+      "lon": 105.840722,
+      "country": "IDN"
+    },
+    {
+      "name": "CWSL",
+      "lat": 1.082188,
+      "lon": 128.131745,
+      "country": "IDN"
+    },
+    {
+      "name": "CWSS",
+      "lat": 0.801101,
+      "lon": 127.843103,
+      "country": "IDN"
+    },
+    {
+      "name": "CWWA",
+      "lat": -8.712933,
+      "lon": 118.81768,
+      "country": "IDN"
+    },
+    {
+      "name": "CYAP",
+      "lat": -1.879346,
+      "lon": 136.238735,
+      "country": "IDN"
+    },
+    {
+      "name": "JOGS",
+      "lat": -7.816652,
+      "lon": 110.294812,
+      "country": "IDN"
+    },
+    {
+      "name": "LHMI",
+      "lat": 5.228547,
+      "lon": 96.947061,
+      "country": "IDN"
+    },
+    {
+      "name": "MMRI",
+      "lat": -8.635645,
+      "lon": 122.23765,
+      "country": "IDN"
+    },
+    {
+      "name": "NIAN",
+      "lat": 1.303753,
+      "lon": 97.575581,
+      "country": "IDN"
+    },
+    {
+      "name": "P14P",
+      "lat": -0.905531,
+      "lon": 119.83672,
+      "country": "IDN"
+    },
+    {
+      "name": "PALE",
+      "lat": -2.902255,
+      "lon": 104.699543,
+      "country": "IDN"
+    },
+    {
+      "name": "PALP",
+      "lat": -0.915792,
+      "lon": 119.905581,
+      "country": "IDN"
+    },
+    {
+      "name": "PANJ",
+      "lat": -0.466268,
+      "lon": 100.379545,
+      "country": "IDN"
+    },
+    {
+      "name": "S1PO",
+      "lat": -2.054053,
+      "lon": 99.575578,
+      "country": "IDN"
+    },
+    {
+      "name": "SAMP",
+      "lat": 3.621607,
+      "lon": 98.714719,
+      "country": "IDN"
+    },
+    {
+      "name": "TOBP",
+      "lat": -0.708888,
+      "lon": 120.094907,
+      "country": "IDN"
+    },
+    {
+      "name": "WATP",
+      "lat": -0.873559,
+      "lon": 119.587062,
+      "country": "IDN"
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "last_updated": "2026-08-31T11:00:12+00:00",
+  "scraper_version": "e60c9f51e95a",
+  "source_url": "https://umbriageo.regione.umbria.it/CatalogoStazioni/StazioniMonografie.aspx",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "ITGT",
+      "lat": 43.237296,
+      "lon": 12.777993,
+      "country": "ITA"
+    },
+    {
+      "name": "REAM",
+      "lat": 42.558714,
+      "lon": 12.409841,
+      "country": "ITA"
+    },
+    {
+      "name": "REFO",
+      "lat": 42.955826,
+      "lon": 12.701224,
+      "country": "ITA"
+    },
+    {
+      "name": "REGU",
+      "lat": 43.352064,
+      "lon": 12.575801,
+      "country": "ITA"
+    },
+    {
+      "name": "RENO",
+      "lat": 42.796636,
+      "lon": 13.091756,
+      "country": "ITA"
+    },
+    {
+      "name": "REPI",
+      "lat": 42.952211,
+      "lon": 12.000578,
+      "country": "ITA"
+    },
+    {
+      "name": "RETO",
+      "lat": 42.782034,
+      "lon": 12.404686,
+      "country": "ITA"
+    },
+    {
+      "name": "RETU",
+      "lat": 43.208727,
+      "lon": 12.071456,
+      "country": "ITA"
+    },
+    {
+      "name": "UNOV",
+      "lat": 42.715853,
+      "lon": 12.113124,
+      "country": "ITA"
+    },
+    {
+      "name": "UNPG",
+      "lat": 43.118756,
+      "lon": 12.353934,
+      "country": "ITA"
+    },
+    {
+      "name": "UNSG",
+      "lat": 43.548447,
+      "lon": 12.174423,
+      "country": "ITA"
+    },
+    {
+      "name": "UNTR",
+      "lat": 42.559501,
+      "lon": 12.672711,
+      "country": "ITA"
+    },
+    {
+      "name": "UPG2",
+      "lat": 43.119134,
+      "lon": 12.355789,
+      "country": "ITA"
+    }
+  ]
+}

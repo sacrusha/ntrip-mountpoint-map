@@ -1,0 +1,125 @@
+{
+  "last_updated": "2026-08-31T11:00:14+00:00",
+  "scraper_version": "423715c7ed0c",
+  "source_url": "http://acorn.uconn.edu:2101/",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "BK3",
+      "lat": 41.497184,
+      "lon": -73.418243,
+      "country": "USA",
+      "format": "RTCM 3.4",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS"
+    },
+    {
+      "name": "DA3",
+      "lat": 41.065853,
+      "lon": -73.507206,
+      "country": "USA",
+      "format": "RTCM 3.4",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS"
+    },
+    {
+      "name": "EG3",
+      "lat": 41.92343,
+      "lon": -72.698856,
+      "country": "USA",
+      "format": "RTCM 3.4",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS"
+    },
+    {
+      "name": "GR3",
+      "lat": 41.335288,
+      "lon": -72.049714,
+      "country": "USA",
+      "format": "RTCM 3.4",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS"
+    },
+    {
+      "name": "GU3",
+      "lat": 41.289373,
+      "lon": -72.667901,
+      "country": "USA",
+      "format": "RTCM 3.4",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS"
+    },
+    {
+      "name": "MA3",
+      "lat": 41.731366,
+      "lon": -72.210799,
+      "country": "USA",
+      "format": "RTCM 3.4",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS"
+    },
+    {
+      "name": "NE3",
+      "lat": 41.673533,
+      "lon": -72.714515,
+      "country": "USA",
+      "format": "RTCM 3.4",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS"
+    },
+    {
+      "name": "PN3",
+      "lat": 41.899691,
+      "lon": -71.889136,
+      "country": "USA",
+      "format": "RTCM 3.4",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS"
+    },
+    {
+      "name": "WI3",
+      "lat": 41.897752,
+      "lon": -73.069713,
+      "country": "USA",
+      "format": "RTCM 3.4",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS"
+    },
+    {
+      "name": "URIL3",
+      "lat": 41.488933,
+      "lon": -71.527716,
+      "country": "USA",
+      "format": "RTCM 3.4",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS"
+    },
+    {
+      "name": "MASB3",
+      "lat": 42.111411,
+      "lon": -72.087218,
+      "country": "USA",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS"
+    },
+    {
+      "name": "MASH3",
+      "lat": 42.140487,
+      "lon": -73.364184,
+      "country": "USA",
+      "format": "RTCM 3.4",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS"
+    },
+    {
+      "name": "NYRH3",
+      "lat": 40.923358,
+      "lon": -72.714045,
+      "country": "USA",
+      "format": "RTCM 3.4",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS"
+    }
+  ]
+}

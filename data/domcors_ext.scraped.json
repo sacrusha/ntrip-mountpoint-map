@@ -1,0 +1,26 @@
+{
+  "last_updated": "2026-09-01T21:00:14+00:00",
+  "scraper_version": "a81ba198b9aa",
+  "source_url": "https://gnsscors.gov.dm/Map/SensorMap.aspx/GetSensorListWithConfiguration",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "LPLN",
+      "lat": 15.330999,
+      "lon": -61.242801,
+      "country": "DMA"
+    },
+    {
+      "name": "PMTH",
+      "lat": 15.576942,
+      "lon": -61.457536,
+      "country": "DMA"
+    },
+    {
+      "name": "RSDM",
+      "lat": 15.306347,
+      "lon": -61.389291,
+      "country": "DMA"
+    }
+  ]
+}

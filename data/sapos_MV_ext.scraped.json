@@ -1,0 +1,116 @@
+{
+  "last_updated": "2026-08-31T11:00:12+00:00",
+  "scraper_version": "2c54b6c60392",
+  "source_url": "http://www.sapos-mv-ntrip.de:2102/",
+  "pin_origin": "ntrip",
+  "stations": [
+    {
+      "name": "0773",
+      "lat": 54.09,
+      "lon": 12.1,
+      "country": "DEU"
+    },
+    {
+      "name": "0775",
+      "lat": 54.08,
+      "lon": 13.39,
+      "country": "DEU"
+    },
+    {
+      "name": "0779",
+      "lat": 53.99,
+      "lon": 11.47,
+      "country": "DEU"
+    },
+    {
+      "name": "0783",
+      "lat": 53.9,
+      "lon": 12.86,
+      "country": "DEU"
+    },
+    {
+      "name": "0785",
+      "lat": 53.78,
+      "lon": 12.18,
+      "country": "DEU"
+    },
+    {
+      "name": "0787",
+      "lat": 53.66,
+      "lon": 13.89,
+      "country": "DEU"
+    },
+    {
+      "name": "0789",
+      "lat": 53.7,
+      "lon": 13.25,
+      "country": "DEU"
+    },
+    {
+      "name": "0791",
+      "lat": 53.52,
+      "lon": 12.68,
+      "country": "DEU"
+    },
+    {
+      "name": "0793",
+      "lat": 53.42,
+      "lon": 11.84,
+      "country": "DEU"
+    },
+    {
+      "name": "0797",
+      "lat": 53.33,
+      "lon": 13.07,
+      "country": "DEU"
+    },
+    {
+      "name": "0799",
+      "lat": 54.68,
+      "lon": 13.43,
+      "country": "DEU"
+    },
+    {
+      "name": "0801",
+      "lat": 54.34,
+      "lon": 13.74,
+      "country": "DEU"
+    },
+    {
+      "name": "0803",
+      "lat": 54.47,
+      "lon": 12.5,
+      "country": "DEU"
+    },
+    {
+      "name": "0805",
+      "lat": 54.25,
+      "lon": 13.92,
+      "country": "DEU"
+    },
+    {
+      "name": "0806",
+      "lat": 53.65,
+      "lon": 11.38,
+      "country": "DEU"
+    },
+    {
+      "name": "0807",
+      "lat": 53.94,
+      "lon": 14.19,
+      "country": "DEU"
+    },
+    {
+      "name": "0808",
+      "lat": 54.3,
+      "lon": 12.93,
+      "country": "DEU"
+    },
+    {
+      "name": "0809",
+      "lat": 53.37,
+      "lon": 10.97,
+      "country": "DEU"
+    }
+  ]
+}

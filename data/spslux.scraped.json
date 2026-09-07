@@ -1,0 +1,50 @@
+{
+  "last_updated": "2026-09-01T21:00:14+00:00",
+  "scraper_version": "3900a8f512ae",
+  "source_url": "https://www.spslux.lu/SBC/User/SiteMap/SiteMapPublic",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "BASC",
+      "lat": 49.567933,
+      "lon": 5.939259,
+      "country": "LUX"
+    },
+    {
+      "name": "ECH2",
+      "lat": 49.803049,
+      "lon": 6.443096,
+      "country": "LUX"
+    },
+    {
+      "name": "ERPL",
+      "lat": 49.547786,
+      "lon": 6.323174,
+      "country": "LUX"
+    },
+    {
+      "name": "KBG2",
+      "lat": 49.625422,
+      "lon": 6.159473,
+      "country": "LUX"
+    },
+    {
+      "name": "ROUL",
+      "lat": 49.951418,
+      "lon": 5.917807,
+      "country": "LUX"
+    },
+    {
+      "name": "TROS",
+      "lat": 50.126732,
+      "lon": 6.007291,
+      "country": "LUX"
+    },
+    {
+      "name": "WALF",
+      "lat": 49.658137,
+      "lon": 6.131575,
+      "country": "LUX"
+    }
+  ]
+}

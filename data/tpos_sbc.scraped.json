@@ -1,0 +1,14 @@
+{
+  "last_updated": "2026-08-31T11:00:12+00:00",
+  "scraper_version": "9c9b0504880c",
+  "source_url": "https://www.tpos.provincia.tn.it/SBC/User/SiteMap/SiteMapPublic",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "FDOS",
+      "lat": 46.303945,
+      "lon": 11.723792,
+      "country": "ITA"
+    }
+  ]
+}

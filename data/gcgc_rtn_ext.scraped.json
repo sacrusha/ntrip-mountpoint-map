@@ -1,0 +1,428 @@
+{
+  "last_updated": "2026-09-01T21:00:14+00:00",
+  "scraper_version": "a81ba198b9aa",
+  "source_url": "http://rtn.usm.edu/Map/SensorMap.aspx/GetSensorListWithConfiguration",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "AL23",
+      "lat": 34.148568,
+      "lon": -87.953617,
+      "country": "USA"
+    },
+    {
+      "name": "AL81",
+      "lat": 32.575707,
+      "lon": -88.181749,
+      "country": "USA"
+    },
+    {
+      "name": "AL90",
+      "lat": 30.690825,
+      "lon": -88.031705,
+      "country": "USA"
+    },
+    {
+      "name": "ALBE",
+      "lat": 34.475416,
+      "lon": -87.864546,
+      "country": "USA"
+    },
+    {
+      "name": "ALBU",
+      "lat": 32.081638,
+      "lon": -88.233148,
+      "country": "USA"
+    },
+    {
+      "name": "ALC1",
+      "lat": 33.262272,
+      "lon": -88.09539,
+      "country": "USA"
+    },
+    {
+      "name": "ALCH",
+      "lat": 31.450985,
+      "lon": -88.195876,
+      "country": "USA"
+    },
+    {
+      "name": "ALDI",
+      "lat": 30.249163,
+      "lon": -88.077969,
+      "country": "USA"
+    },
+    {
+      "name": "ALFA",
+      "lat": 33.685207,
+      "lon": -87.829308,
+      "country": "USA"
+    },
+    {
+      "name": "ALMJ",
+      "lat": 31.028976,
+      "lon": -88.229741,
+      "country": "USA"
+    },
+    {
+      "name": "BOGA",
+      "lat": 30.788651,
+      "lon": -89.855769,
+      "country": "USA"
+    },
+    {
+      "name": "FOLK",
+      "lat": 30.835538,
+      "lon": -91.193862,
+      "country": "USA"
+    },
+    {
+      "name": "KENT",
+      "lat": 30.928021,
+      "lon": -90.526383,
+      "country": "USA"
+    },
+    {
+      "name": "MSBS",
+      "lat": 31.969994,
+      "lon": -89.26488,
+      "country": "USA"
+    },
+    {
+      "name": "MSBT",
+      "lat": 34.3137,
+      "lon": -89.940539,
+      "country": "USA"
+    },
+    {
+      "name": "MSBU",
+      "lat": 31.462257,
+      "lon": -90.837534,
+      "country": "USA"
+    },
+    {
+      "name": "MSBV",
+      "lat": 34.665684,
+      "lon": -88.564301,
+      "country": "USA"
+    },
+    {
+      "name": "MSCD",
+      "lat": 34.202222,
+      "lon": -90.570677,
+      "country": "USA"
+    },
+    {
+      "name": "MSCL",
+      "lat": 33.746698,
+      "lon": -90.733118,
+      "country": "USA"
+    },
+    {
+      "name": "MSCO",
+      "lat": 33.483819,
+      "lon": -88.389441,
+      "country": "USA"
+    },
+    {
+      "name": "MSCR",
+      "lat": 34.906478,
+      "lon": -88.548019,
+      "country": "USA"
+    },
+    {
+      "name": "MSCT",
+      "lat": 32.718511,
+      "lon": -89.571449,
+      "country": "USA"
+    },
+    {
+      "name": "MSDC",
+      "lat": 32.439714,
+      "lon": -89.112345,
+      "country": "USA"
+    },
+    {
+      "name": "MSEU",
+      "lat": 33.548107,
+      "lon": -89.182489,
+      "country": "USA"
+    },
+    {
+      "name": "MSEV",
+      "lat": 31.595023,
+      "lon": -89.203687,
+      "country": "USA"
+    },
+    {
+      "name": "MSFL",
+      "lat": 34.276817,
+      "lon": -88.415269,
+      "country": "USA"
+    },
+    {
+      "name": "MSFR",
+      "lat": 32.360579,
+      "lon": -89.573215,
+      "country": "USA"
+    },
+    {
+      "name": "MSFW",
+      "lat": 31.227659,
+      "lon": -89.869941,
+      "country": "USA"
+    },
+    {
+      "name": "MSGB",
+      "lat": 30.429097,
+      "lon": -88.427773,
+      "country": "USA"
+    },
+    {
+      "name": "MSGD",
+      "lat": 32.970755,
+      "lon": -89.915279,
+      "country": "USA"
+    },
+    {
+      "name": "MSGN",
+      "lat": 33.338696,
+      "lon": -91.040955,
+      "country": "USA"
+    },
+    {
+      "name": "MSGR",
+      "lat": 33.764008,
+      "lon": -89.821087,
+      "country": "USA"
+    },
+    {
+      "name": "MSGW",
+      "lat": 33.46868,
+      "lon": -90.20902,
+      "country": "USA"
+    },
+    {
+      "name": "MSHS",
+      "lat": 34.743416,
+      "lon": -89.453527,
+      "country": "USA"
+    },
+    {
+      "name": "MSHT",
+      "lat": 31.327539,
+      "lon": -89.336285,
+      "country": "USA"
+    },
+    {
+      "name": "MSIN",
+      "lat": 30.311724,
+      "lon": -89.604307,
+      "country": "USA"
+    },
+    {
+      "name": "MSJK",
+      "lat": 32.32705,
+      "lon": -90.181327,
+      "country": "USA"
+    },
+    {
+      "name": "MSLS",
+      "lat": 33.102025,
+      "lon": -89.084435,
+      "country": "USA"
+    },
+    {
+      "name": "MSLU",
+      "lat": 30.92514,
+      "lon": -88.589403,
+      "country": "USA"
+    },
+    {
+      "name": "MSMC",
+      "lat": 31.267057,
+      "lon": -90.476975,
+      "country": "USA"
+    },
+    {
+      "name": "MSME",
+      "lat": 32.367506,
+      "lon": -88.732439,
+      "country": "USA"
+    },
+    {
+      "name": "MSMN",
+      "lat": 31.925751,
+      "lon": -89.819521,
+      "country": "USA"
+    },
+    {
+      "name": "MSNA",
+      "lat": 31.561207,
+      "lon": -91.404566,
+      "country": "USA"
+    },
+    {
+      "name": "MSNS",
+      "lat": 34.894232,
+      "lon": -89.993472,
+      "country": "USA"
+    },
+    {
+      "name": "MSOS",
+      "lat": 30.428201,
+      "lon": -88.71245,
+      "country": "USA"
+    },
+    {
+      "name": "MSOX",
+      "lat": 34.364147,
+      "lon": -89.532366,
+      "country": "USA"
+    },
+    {
+      "name": "MSPE",
+      "lat": 33.79787,
+      "lon": -88.658363,
+      "country": "USA"
+    },
+    {
+      "name": "MSPH",
+      "lat": 32.761989,
+      "lon": -89.101522,
+      "country": "USA"
+    },
+    {
+      "name": "MSPK",
+      "lat": 30.77911,
+      "lon": -89.143316,
+      "country": "USA"
+    },
+    {
+      "name": "MSPN",
+      "lat": 34.243496,
+      "lon": -89.016856,
+      "country": "USA"
+    },
+    {
+      "name": "MSPP",
+      "lat": 30.845427,
+      "lon": -89.542225,
+      "country": "USA"
+    },
+    {
+      "name": "MSPT",
+      "lat": 31.883182,
+      "lon": -91.005909,
+      "country": "USA"
+    },
+    {
+      "name": "MSRF",
+      "lat": 32.907687,
+      "lon": -90.869322,
+      "country": "USA"
+    },
+    {
+      "name": "MSSB",
+      "lat": 32.829555,
+      "lon": -88.48721,
+      "country": "USA"
+    },
+    {
+      "name": "MSSC",
+      "lat": 30.528224,
+      "lon": -89.111039,
+      "country": "USA"
+    },
+    {
+      "name": "MSSN",
+      "lat": 34.623451,
+      "lon": -89.970771,
+      "country": "USA"
+    },
+    {
+      "name": "MSSP",
+      "lat": 30.373786,
+      "lon": -89.613088,
+      "country": "USA"
+    },
+    {
+      "name": "MSTU",
+      "lat": 34.69813,
+      "lon": -90.380787,
+      "country": "USA"
+    },
+    {
+      "name": "MSVC",
+      "lat": 32.332128,
+      "lon": -90.825324,
+      "country": "USA"
+    },
+    {
+      "name": "MSWN",
+      "lat": 33.479013,
+      "lon": -89.720507,
+      "country": "USA"
+    },
+    {
+      "name": "MSWS",
+      "lat": 31.692093,
+      "lon": -90.399381,
+      "country": "USA"
+    },
+    {
+      "name": "MSWV",
+      "lat": 30.326307,
+      "lon": -89.325806,
+      "country": "USA"
+    },
+    {
+      "name": "MSWY",
+      "lat": 31.678658,
+      "lon": -88.67309,
+      "country": "USA"
+    },
+    {
+      "name": "MSYZ",
+      "lat": 32.846355,
+      "lon": -90.411963,
+      "country": "USA"
+    },
+    {
+      "name": "OLRV",
+      "lat": 31.065218,
+      "lon": -91.589829,
+      "country": "USA"
+    },
+    {
+      "name": "SIHS",
+      "lat": 31.843377,
+      "lon": -91.655434,
+      "country": "USA"
+    },
+    {
+      "name": "TALL",
+      "lat": 32.400332,
+      "lon": -91.183003,
+      "country": "USA"
+    },
+    {
+      "name": "TN43",
+      "lat": 35.22857,
+      "lon": -88.603918,
+      "country": "USA"
+    },
+    {
+      "name": "TN45",
+      "lat": 35.29927,
+      "lon": -89.659611,
+      "country": "USA"
+    },
+    {
+      "name": "TN4D",
+      "lat": 35.319741,
+      "lon": -89.159979,
+      "country": "USA"
+    }
+  ]
+}

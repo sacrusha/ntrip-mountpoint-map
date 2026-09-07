@@ -1,0 +1,224 @@
+{
+  "last_updated": "2026-08-31T11:00:12+00:00",
+  "scraper_version": "9ac3c321f1b6",
+  "source_url": "https://www.ct.ingv.it/tsdata/pnet/json/APQStations.json",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "CAPO",
+      "lat": 38.1574,
+      "lon": 14.7396,
+      "country": "ITA"
+    },
+    {
+      "name": "CLTA",
+      "lat": 37.157,
+      "lon": 13.963,
+      "country": "ITA"
+    },
+    {
+      "name": "CPTP",
+      "lat": 37.4075,
+      "lon": 14.1625,
+      "country": "ITA"
+    },
+    {
+      "name": "ECAN",
+      "lat": 37.888699,
+      "lon": 14.9071,
+      "country": "ITA"
+    },
+    {
+      "name": "ECHR",
+      "lat": 37.686298,
+      "lon": 14.9129,
+      "country": "ITA"
+    },
+    {
+      "name": "ECNE",
+      "lat": 37.7653,
+      "lon": 15.0018,
+      "country": "ITA"
+    },
+    {
+      "name": "EFIU",
+      "lat": 37.7896,
+      "lon": 15.2103,
+      "country": "ITA"
+    },
+    {
+      "name": "ELIN",
+      "lat": 37.8416,
+      "lon": 15.1368,
+      "country": "ITA"
+    },
+    {
+      "name": "EMCL",
+      "lat": 37.735,
+      "lon": 15.089,
+      "country": "ITA"
+    },
+    {
+      "name": "EMCN",
+      "lat": 37.7913,
+      "lon": 15.0335,
+      "country": "ITA"
+    },
+    {
+      "name": "EMSA",
+      "lat": 37.498,
+      "lon": 14.945,
+      "country": "ITA"
+    },
+    {
+      "name": "EPZF",
+      "lat": 37.829201,
+      "lon": 14.8764,
+      "country": "ITA"
+    },
+    {
+      "name": "ESAL",
+      "lat": 37.7551,
+      "lon": 15.1345,
+      "country": "ITA"
+    },
+    {
+      "name": "ESCV",
+      "lat": 37.747101,
+      "lon": 14.8153,
+      "country": "ITA"
+    },
+    {
+      "name": "ESML",
+      "lat": 37.618099,
+      "lon": 14.8794,
+      "country": "ITA"
+    },
+    {
+      "name": "FAVR",
+      "lat": 37.266998,
+      "lon": 13.667,
+      "country": "ITA"
+    },
+    {
+      "name": "HCRL",
+      "lat": 37.2831,
+      "lon": 15.0323,
+      "country": "ITA"
+    },
+    {
+      "name": "HLNI",
+      "lat": 37.348598,
+      "lon": 14.8719,
+      "country": "ITA"
+    },
+    {
+      "name": "HPAC",
+      "lat": 36.7085,
+      "lon": 15.0372,
+      "country": "ITA"
+    },
+    {
+      "name": "HSCI",
+      "lat": 36.7938,
+      "lon": 14.7065,
+      "country": "ITA"
+    },
+    {
+      "name": "HSRS",
+      "lat": 37.0928,
+      "lon": 15.222,
+      "country": "ITA"
+    },
+    {
+      "name": "HVIT",
+      "lat": 36.9926,
+      "lon": 14.5216,
+      "country": "ITA"
+    },
+    {
+      "name": "IFIL",
+      "lat": 38.564201,
+      "lon": 14.5753,
+      "country": "ITA"
+    },
+    {
+      "name": "IPAN",
+      "lat": 38.6434,
+      "lon": 15.0688,
+      "country": "ITA"
+    },
+    {
+      "name": "IVCR",
+      "lat": 38.409599,
+      "lon": 14.961,
+      "country": "ITA"
+    },
+    {
+      "name": "IVLT",
+      "lat": 38.396099,
+      "lon": 14.9482,
+      "country": "ITA"
+    },
+    {
+      "name": "IVUG",
+      "lat": 38.396999,
+      "lon": 14.9864,
+      "country": "ITA"
+    },
+    {
+      "name": "MALI",
+      "lat": 38.053,
+      "lon": 15.4,
+      "country": "ITA"
+    },
+    {
+      "name": "MBFT",
+      "lat": 37.9462,
+      "lon": 12.9535,
+      "country": "ITA"
+    },
+    {
+      "name": "MCSR",
+      "lat": 38.0646,
+      "lon": 15.2301,
+      "country": "ITA"
+    },
+    {
+      "name": "MMBI",
+      "lat": 38.033,
+      "lon": 15.763,
+      "country": "ITA"
+    },
+    {
+      "name": "MPNC",
+      "lat": 38.145,
+      "lon": 15.352,
+      "country": "ITA"
+    },
+    {
+      "name": "MRCB",
+      "lat": 38.162,
+      "lon": 15.703,
+      "country": "ITA"
+    },
+    {
+      "name": "MUCR",
+      "lat": 38.043,
+      "lon": 14.8739,
+      "country": "ITA"
+    },
+    {
+      "name": "NOV",
+      "lat": 38.0286,
+      "lon": 15.1355,
+      "country": "ITA"
+    },
+    {
+      "name": "PING",
+      "lat": 38.1618,
+      "lon": 13.3142,
+      "country": "ITA"
+    }
+  ]
+}

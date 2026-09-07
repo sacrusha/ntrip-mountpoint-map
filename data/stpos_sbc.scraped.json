@@ -1,0 +1,38 @@
+{
+  "last_updated": "2026-08-31T11:00:12+00:00",
+  "scraper_version": "5a78d6239edd",
+  "source_url": "https://www.stpos.it/User/SiteMap/SiteMapPublic",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "BRBZ",
+      "lat": 46.796551,
+      "lon": 11.941337,
+      "country": "ITA"
+    },
+    {
+      "name": "HELM",
+      "lat": 46.716205,
+      "lon": 12.384898,
+      "country": "ITA"
+    },
+    {
+      "name": "KSRN",
+      "lat": 47.051103,
+      "lon": 12.129695,
+      "country": "ITA"
+    },
+    {
+      "name": "MITT",
+      "lat": 46.685112,
+      "lon": 11.294662,
+      "country": "ITA"
+    },
+    {
+      "name": "STBZ",
+      "lat": 46.898249,
+      "lon": 11.425579,
+      "country": "ITA"
+    }
+  ]
+}

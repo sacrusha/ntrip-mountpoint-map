@@ -1,0 +1,74 @@
+{
+  "last_updated": "2026-09-05T08:38:54+00:00",
+  "scraper_version": "2bfa43b9824b",
+  "source_url": "https://geodesy.unr.edu/NGLStationPages/llh.out",
+  "pin_origin": "external",
+  "stations": [
+    {
+      "name": "AGPR",
+      "lat": 18.46753322,
+      "lon": -67.11123462,
+      "country": "PRI"
+    },
+    {
+      "name": "AOPR",
+      "lat": 18.34652942,
+      "lon": -66.75409245,
+      "country": "PRI"
+    },
+    {
+      "name": "BYSP",
+      "lat": 18.40783641,
+      "lon": -66.16119935,
+      "country": "PRI"
+    },
+    {
+      "name": "CUPR",
+      "lat": 18.30743883,
+      "lon": -65.28251562,
+      "country": "PRI"
+    },
+    {
+      "name": "EMPR",
+      "lat": 18.47704985,
+      "lon": -66.52954829,
+      "country": "PRI"
+    },
+    {
+      "name": "HUPR",
+      "lat": 18.14877163,
+      "lon": -65.83855562,
+      "country": "PRI"
+    },
+    {
+      "name": "IGPR",
+      "lat": 17.96536571,
+      "lon": -66.10682155,
+      "country": "PRI"
+    },
+    {
+      "name": "MAYZ",
+      "lat": 18.21758563,
+      "lon": -67.15886724,
+      "country": "PRI"
+    },
+    {
+      "name": "PDPR",
+      "lat": 18.0195203,
+      "lon": -66.02275085,
+      "country": "PRI"
+    },
+    {
+      "name": "STVI",
+      "lat": 18.34009445,
+      "lon": -64.97444702,
+      "country": "VIR"
+    },
+    {
+      "name": "ABVI",
+      "lat": 18.72968387,
+      "lon": -64.33248509,
+      "country": "VGB"
+    }
+  ]
+}

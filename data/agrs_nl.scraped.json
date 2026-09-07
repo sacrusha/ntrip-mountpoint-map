@@ -1,0 +1,232 @@
+{
+  "last_updated": "2026-09-04T11:00:14+00:00",
+  "scraper_version": "33b88b66b147",
+  "source_url": "http://ntrip.kadaster.nl:2101/",
+  "pin_origin": "ntrip",
+  "stations": [
+    {
+      "name": "AMEL00NLD0",
+      "lat": 53.45,
+      "lon": 5.76,
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "country": "NLD"
+    },
+    {
+      "name": "APEL0",
+      "lat": 52.21,
+      "lon": 5.96,
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "country": "NLD"
+    },
+    {
+      "name": "APEL00NLD0",
+      "lat": 52.21,
+      "lon": 5.96,
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "country": "NLD"
+    },
+    {
+      "name": "APEL00NLD2",
+      "lat": 52.21,
+      "lon": 5.96,
+      "format": "RTCM 2.3",
+      "carrier": 1,
+      "country": "NLD"
+    },
+    {
+      "name": "BORS00NLD0",
+      "lat": 51.7,
+      "lon": 3.06,
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "country": "NLD"
+    },
+    {
+      "name": "CBW100NLD0",
+      "lat": 51.97,
+      "lon": 4.93,
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "country": "NLD"
+    },
+    {
+      "name": "DELF00NLD0",
+      "lat": 51.99,
+      "lon": 4.39,
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "country": "NLD"
+    },
+    {
+      "name": "DELZ00NLD0",
+      "lat": 53.33,
+      "lon": 6.93,
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "country": "NLD"
+    },
+    {
+      "name": "DHEL00NLD0",
+      "lat": 52.96,
+      "lon": 4.74,
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "country": "NLD"
+    },
+    {
+      "name": "DLF100NLD0",
+      "lat": 51.99,
+      "lon": 4.39,
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "country": "NLD"
+    },
+    {
+      "name": "EIJS0",
+      "lat": 50.76,
+      "lon": 5.68,
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "country": "NLD"
+    },
+    {
+      "name": "EIJS00NLD0",
+      "lat": 50.76,
+      "lon": 5.68,
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "country": "NLD"
+    },
+    {
+      "name": "EPL100NLD0",
+      "lat": 52.0,
+      "lon": 3.28,
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "country": "NLD"
+    },
+    {
+      "name": "HARL00NLD0",
+      "lat": 53.18,
+      "lon": 5.41,
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "country": "NLD"
+    },
+    {
+      "name": "HHO200NLD0",
+      "lat": 51.98,
+      "lon": 4.12,
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "country": "NLD"
+    },
+    {
+      "name": "HKNO00NLD0",
+      "lat": 52.7,
+      "lon": 4.29,
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "country": "NLD"
+    },
+    {
+      "name": "HKWA00NLD0",
+      "lat": 52.68,
+      "lon": 3.8,
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "country": "NLD"
+    },
+    {
+      "name": "HKZU00NLD0",
+      "lat": 52.32,
+      "lon": 4.04,
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "country": "NLD"
+    },
+    {
+      "name": "IJMU00NLD0",
+      "lat": 52.46,
+      "lon": 4.56,
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "country": "NLD"
+    },
+    {
+      "name": "KOS100NLD0",
+      "lat": 52.17,
+      "lon": 5.82,
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "country": "NLD"
+    },
+    {
+      "name": "SCHI00NLD0",
+      "lat": 53.48,
+      "lon": 6.16,
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "country": "NLD"
+    },
+    {
+      "name": "TERS0",
+      "lat": 53.36,
+      "lon": 5.22,
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "country": "NLD"
+    },
+    {
+      "name": "TERS00NLD0",
+      "lat": 53.36,
+      "lon": 5.22,
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "country": "NLD"
+    },
+    {
+      "name": "TXE200NLD0",
+      "lat": 53.04,
+      "lon": 4.85,
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "country": "NLD"
+    },
+    {
+      "name": "VLIE00NLD0",
+      "lat": 53.3,
+      "lon": 5.09,
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "country": "NLD"
+    },
+    {
+      "name": "VLIS00NLD0",
+      "lat": 51.44,
+      "lon": 3.6,
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "country": "NLD"
+    },
+    {
+      "name": "WSRA00NLD0",
+      "lat": 52.91,
+      "lon": 6.6,
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "country": "NLD"
+    },
+    {
+      "name": "WSRT00NLD0",
+      "lat": 52.91,
+      "lon": 6.6,
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "country": "NLD"
+    }
+  ]
+}

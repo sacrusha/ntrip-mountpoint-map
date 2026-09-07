@@ -1,0 +1,9 @@
+SOURCETABLE 200 OK
+Ntrip-Version: Ntrip/1.0
+Server: NTRIP Caster 1.0
+Date:  9/ 7/2026: 5: 0:34 GMT
+Content-Type: gnss/sourcetable
+Content-Length: 124
+
+STR;NUUK-RTK;ASIAQ;RTCM 3.3(MSM);RTCM(1);2;GNSS;Single Base;GL;64.17;-51.73;0;0;Trimble R750;;B;N;9600;;
+ENDSOURCETABLE

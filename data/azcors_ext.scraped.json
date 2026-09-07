@@ -1,0 +1,302 @@
+{
+  "last_updated": "2026-08-31T11:00:14+00:00",
+  "scraper_version": "212c580d1ad3",
+  "source_url": "https://services2.arcgis.com/C8EMgrsFcRFL6LrL/arcgis/rest/services/NOAA_CORS_Network_Test/FeatureServer/0",
+  "pin_origin": "external",
+  "stations": [
+    {
+      "name": "AZAM",
+      "lat": 31.73,
+      "lon": -111.071111,
+      "country": "USA"
+    },
+    {
+      "name": "AZAZ",
+      "lat": 32.761272,
+      "lon": -111.653899,
+      "country": "USA"
+    },
+    {
+      "name": "AZBF",
+      "lat": 33.431095,
+      "lon": -112.635875,
+      "country": "USA"
+    },
+    {
+      "name": "AZBH",
+      "lat": 35.107222,
+      "lon": -114.604722,
+      "country": "USA"
+    },
+    {
+      "name": "AZBR",
+      "lat": 32.258889,
+      "lon": -110.801389,
+      "country": "USA"
+    },
+    {
+      "name": "AZBZ",
+      "lat": 31.388002,
+      "lon": -109.926245,
+      "country": "USA"
+    },
+    {
+      "name": "AZCJ",
+      "lat": 34.333812,
+      "lon": -112.124352,
+      "country": "USA"
+    },
+    {
+      "name": "AZCR",
+      "lat": 33.851079,
+      "lon": -111.830248,
+      "country": "USA"
+    },
+    {
+      "name": "AZCS",
+      "lat": 33.660032,
+      "lon": -111.893604,
+      "country": "USA"
+    },
+    {
+      "name": "AZDA",
+      "lat": 31.45674,
+      "lon": -109.598444,
+      "country": "USA"
+    },
+    {
+      "name": "AZDS",
+      "lat": 35.533056,
+      "lon": -114.359167,
+      "country": "USA"
+    },
+    {
+      "name": "AZFC",
+      "lat": 35.304169,
+      "lon": -111.520226,
+      "country": "USA"
+    },
+    {
+      "name": "AZFL",
+      "lat": 35.177222,
+      "lon": -111.656944,
+      "country": "USA"
+    },
+    {
+      "name": "AZFM",
+      "lat": 34.852222,
+      "lon": -114.595,
+      "country": "USA"
+    },
+    {
+      "name": "AZFR",
+      "lat": 35.186552,
+      "lon": -113.360892,
+      "country": "USA"
+    },
+    {
+      "name": "AZGB",
+      "lat": 33.395278,
+      "lon": -110.771389,
+      "country": "USA"
+    },
+    {
+      "name": "AZGC",
+      "lat": 32.95789,
+      "lon": -109.213313,
+      "country": "USA"
+    },
+    {
+      "name": "AZGD",
+      "lat": 32.955128,
+      "lon": -112.69726,
+      "country": "USA"
+    },
+    {
+      "name": "AZGV",
+      "lat": 35.254167,
+      "lon": -114.254167,
+      "country": "USA"
+    },
+    {
+      "name": "AZLA",
+      "lat": 34.563639,
+      "lon": -114.350464,
+      "country": "USA"
+    },
+    {
+      "name": "AZLP",
+      "lat": 36.946862,
+      "lon": -111.50004,
+      "country": "USA"
+    },
+    {
+      "name": "AZMS",
+      "lat": 32.881512,
+      "lon": -112.040037,
+      "country": "USA"
+    },
+    {
+      "name": "AZOR",
+      "lat": 32.617025,
+      "lon": -110.808418,
+      "country": "USA"
+    },
+    {
+      "name": "AZP0",
+      "lat": 33.796528,
+      "lon": -112.083764,
+      "country": "USA"
+    },
+    {
+      "name": "AZP2",
+      "lat": 33.397669,
+      "lon": -112.246255,
+      "country": "USA"
+    },
+    {
+      "name": "AZP3",
+      "lat": 33.601601,
+      "lon": -112.074451,
+      "country": "USA"
+    },
+    {
+      "name": "AZPD",
+      "lat": 34.138679,
+      "lon": -114.282583,
+      "country": "USA"
+    },
+    {
+      "name": "AZPG",
+      "lat": 36.908611,
+      "lon": -111.4625,
+      "country": "USA"
+    },
+    {
+      "name": "AZPL",
+      "lat": 31.490289,
+      "lon": -110.870499,
+      "country": "USA"
+    },
+    {
+      "name": "AZRV",
+      "lat": 34.131667,
+      "lon": -109.280833,
+      "country": "USA"
+    },
+    {
+      "name": "AZSF",
+      "lat": 32.801944,
+      "lon": -109.711667,
+      "country": "USA"
+    },
+    {
+      "name": "AZSN",
+      "lat": 31.903546,
+      "lon": -110.211558,
+      "country": "USA"
+    },
+    {
+      "name": "AZSS",
+      "lat": 32.239591,
+      "lon": -109.089073,
+      "country": "USA"
+    },
+    {
+      "name": "AZST",
+      "lat": 33.167778,
+      "lon": -111.635278,
+      "country": "USA"
+    },
+    {
+      "name": "AZSV",
+      "lat": 34.264722,
+      "lon": -111.240278,
+      "country": "USA"
+    },
+    {
+      "name": "AZTP",
+      "lat": 33.445556,
+      "lon": -111.9375,
+      "country": "USA"
+    },
+    {
+      "name": "AZTW",
+      "lat": 33.695938,
+      "lon": -112.328241,
+      "country": "USA"
+    },
+    {
+      "name": "AZTX",
+      "lat": 35.486304,
+      "lon": -113.557169,
+      "country": "USA"
+    },
+    {
+      "name": "AZUP",
+      "lat": 33.480833,
+      "lon": -111.62,
+      "country": "USA"
+    },
+    {
+      "name": "AZVA",
+      "lat": 31.953889,
+      "lon": -110.770278,
+      "country": "USA"
+    },
+    {
+      "name": "AZWD",
+      "lat": 33.96466,
+      "lon": -112.71834,
+      "country": "USA"
+    },
+    {
+      "name": "AZWI",
+      "lat": 32.24662,
+      "lon": -109.884879,
+      "country": "USA"
+    },
+    {
+      "name": "AZWP",
+      "lat": 34.707156,
+      "lon": -113.616465,
+      "country": "USA"
+    },
+    {
+      "name": "AZYA",
+      "lat": 32.689454,
+      "lon": -114.597476,
+      "country": "USA"
+    },
+    {
+      "name": "AZYC",
+      "lat": 34.879167,
+      "lon": -114.146944,
+      "country": "USA"
+    },
+    {
+      "name": "AZYH",
+      "lat": 34.609557,
+      "lon": -112.460695,
+      "country": "USA"
+    },
+    {
+      "name": "GCES",
+      "lat": 36.047778,
+      "lon": -112.128889,
+      "country": "USA"
+    },
+    {
+      "name": "KGMN",
+      "lat": 35.230833,
+      "lon": -114.002222,
+      "country": "USA"
+    },
+    {
+      "name": "PIMA",
+      "lat": 32.227778,
+      "lon": -111.018611,
+      "country": "USA"
+    }
+  ]
+}

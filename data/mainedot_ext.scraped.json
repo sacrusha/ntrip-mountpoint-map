@@ -1,0 +1,182 @@
+{
+  "last_updated": "2026-08-31T11:00:14+00:00",
+  "scraper_version": "fc496033a15d",
+  "source_url": "https://medotrtn.maine.gov/Map/SensorMap.aspx/GetSensorListWithConfiguration",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "MEBA",
+      "lat": 43.916045,
+      "lon": -69.825587,
+      "country": "USA"
+    },
+    {
+      "name": "MECC",
+      "lat": 44.825892,
+      "lon": -68.744056,
+      "country": "USA"
+    },
+    {
+      "name": "MEDX",
+      "lat": 45.026363,
+      "lon": -69.296968,
+      "country": "USA"
+    },
+    {
+      "name": "MEFK",
+      "lat": 47.248807,
+      "lon": -68.591978,
+      "country": "USA"
+    },
+    {
+      "name": "MEFR",
+      "lat": 44.674715,
+      "lon": -70.131817,
+      "country": "USA"
+    },
+    {
+      "name": "MEGO",
+      "lat": 43.68113,
+      "lon": -70.451035,
+      "country": "USA"
+    },
+    {
+      "name": "MEGR",
+      "lat": 45.463676,
+      "lon": -69.593583,
+      "country": "USA"
+    },
+    {
+      "name": "MEJA",
+      "lat": 45.620505,
+      "lon": -70.239096,
+      "country": "USA"
+    },
+    {
+      "name": "MEJD",
+      "lat": 44.608249,
+      "lon": -69.599875,
+      "country": "USA"
+    },
+    {
+      "name": "MELI",
+      "lat": 45.363654,
+      "lon": -68.507393,
+      "country": "USA"
+    },
+    {
+      "name": "MEMA",
+      "lat": 44.709856,
+      "lon": -67.458265,
+      "country": "USA"
+    },
+    {
+      "name": "MEOW",
+      "lat": 44.296093,
+      "lon": -69.745436,
+      "country": "USA"
+    },
+    {
+      "name": "MEPH",
+      "lat": 44.405071,
+      "lon": -68.031601,
+      "country": "USA"
+    },
+    {
+      "name": "MEPI",
+      "lat": 46.670772,
+      "lon": -68.016786,
+      "country": "USA"
+    },
+    {
+      "name": "MERA",
+      "lat": 44.973704,
+      "lon": -70.65294,
+      "country": "USA"
+    },
+    {
+      "name": "MERO",
+      "lat": 44.113784,
+      "lon": -69.118645,
+      "country": "USA"
+    },
+    {
+      "name": "MESA",
+      "lat": 43.453912,
+      "lon": -70.783638,
+      "country": "USA"
+    },
+    {
+      "name": "MESP",
+      "lat": 44.218388,
+      "lon": -70.513085,
+      "country": "USA"
+    },
+    {
+      "name": "MEST",
+      "lat": 45.924743,
+      "lon": -68.439836,
+      "country": "USA"
+    },
+    {
+      "name": "METO",
+      "lat": 45.416909,
+      "lon": -67.735981,
+      "country": "USA"
+    },
+    {
+      "name": "MEWA",
+      "lat": 44.45422,
+      "lon": -69.09708,
+      "country": "USA"
+    },
+    {
+      "name": "NBGF",
+      "lat": 47.059472,
+      "lon": -67.74516,
+      "country": "CAN"
+    },
+    {
+      "name": "NBMA",
+      "lat": 45.593758,
+      "lon": -67.326858,
+      "country": "CAN"
+    },
+    {
+      "name": "NBSS",
+      "lat": 45.178686,
+      "lon": -67.316029,
+      "country": "CAN"
+    },
+    {
+      "name": "NBWS",
+      "lat": 46.138394,
+      "lon": -67.585882,
+      "country": "CAN"
+    },
+    {
+      "name": "QCLM",
+      "lat": 45.586333,
+      "lon": -70.898942,
+      "country": "CAN"
+    },
+    {
+      "name": "QCPM",
+      "lat": 47.443504,
+      "lon": -69.108394,
+      "country": "CAN"
+    },
+    {
+      "name": "QCSG",
+      "lat": 46.099669,
+      "lon": -70.674376,
+      "country": "CAN"
+    },
+    {
+      "name": "QCCL",
+      "lat": 46.500428,
+      "lon": -70.205973,
+      "country": "CAN"
+    }
+  ]
+}

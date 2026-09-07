@@ -1,0 +1,48 @@
+{
+  "last_updated": "2026-09-04T11:00:14+00:00",
+  "scraper_version": "33b88b66b147",
+  "source_url": "http://ntrip.kadaster.nl:2101/",
+  "pin_origin": "ntrip",
+  "stations": [
+    {
+      "name": "BON200BES0",
+      "lat": 12.15,
+      "lon": -68.27,
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "country": "BES"
+    },
+    {
+      "name": "SABY0",
+      "lat": 17.65,
+      "lon": -63.22,
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "country": "BES"
+    },
+    {
+      "name": "SABY00BES0",
+      "lat": 17.65,
+      "lon": -63.22,
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "country": "BES"
+    },
+    {
+      "name": "SEUS0",
+      "lat": 17.5,
+      "lon": -62.98,
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "country": "BES"
+    },
+    {
+      "name": "SEUS00BES0",
+      "lat": 17.5,
+      "lon": -62.98,
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "country": "BES"
+    }
+  ]
+}

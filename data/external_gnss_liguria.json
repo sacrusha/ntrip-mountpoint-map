@@ -1,0 +1,9 @@
+{
+  "last_updated": "2026-07-03",
+  "source_url": "https://geoportal.regione.liguria.it/servizi/rete-gnss-liguria/monografie.html",
+  "pin_origin": "register",
+  "provenance": "Operator monograph page draws all 7 own stations as Leaflet markers (L.marker([lat, lon], {title: CODE})). Only VENT (Ventimiglia) lives here: it is the one own station with no mount on the caster (81.23.86.70:2101 exposes BAJA3/BEVE3/CAMN3/CHIV3/GENU3/LOAN3) — VRS/NEAR-served only. Coord lifted verbatim from the marker. The 3 SPIN3-shared border stations are counted under spin3.",
+  "stations": [
+    {"name": "VENT", "lat": 43.790211, "lon": 7.595718, "country": "ITA"}
+  ]
+}

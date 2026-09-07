@@ -1,0 +1,140 @@
+{
+  "last_updated": "2026-08-31T11:00:12+00:00",
+  "scraper_version": "60fcf7bbafaf",
+  "source_url": "https://monitor.sapos-bb.de/station/sitelogs/",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "BELZIG",
+      "lat": 52.139586,
+      "lon": 12.579242,
+      "country": "DEU"
+    },
+    {
+      "name": "BRANDENBURG",
+      "lat": 52.430817,
+      "lon": 12.542644,
+      "country": "DEU"
+    },
+    {
+      "name": "COTTBUS",
+      "lat": 51.736769,
+      "lon": 14.331247,
+      "country": "DEU"
+    },
+    {
+      "name": "EBERSWALDE",
+      "lat": 52.832719,
+      "lon": 13.819564,
+      "country": "DEU"
+    },
+    {
+      "name": "FEHRBELLIN",
+      "lat": 52.814475,
+      "lon": 12.766244,
+      "country": "DEU"
+    },
+    {
+      "name": "FINSTERWALDE",
+      "lat": 51.631422,
+      "lon": 13.701842,
+      "country": "DEU"
+    },
+    {
+      "name": "FRANKFURT(ODER)",
+      "lat": 52.356172,
+      "lon": 14.541225,
+      "country": "DEU"
+    },
+    {
+      "name": "GUBEN",
+      "lat": 51.950286,
+      "lon": 14.713036,
+      "country": "DEU"
+    },
+    {
+      "name": "HERZBERG",
+      "lat": 51.694756,
+      "lon": 13.238928,
+      "country": "DEU"
+    },
+    {
+      "name": "KYRITZ",
+      "lat": 52.947975,
+      "lon": 12.392228,
+      "country": "DEU"
+    },
+    {
+      "name": "LUCKENWALDE",
+      "lat": 52.077156,
+      "lon": 13.155558,
+      "country": "DEU"
+    },
+    {
+      "name": "LUEBBEN",
+      "lat": 51.940961,
+      "lon": 13.899531,
+      "country": "DEU"
+    },
+    {
+      "name": "ORANIENBURG",
+      "lat": 52.752169,
+      "lon": 13.237292,
+      "country": "DEU"
+    },
+    {
+      "name": "PERLEBERG",
+      "lat": 53.072342,
+      "lon": 11.8679,
+      "country": "DEU"
+    },
+    {
+      "name": "POTSDAM",
+      "lat": 52.379269,
+      "lon": 13.066086,
+      "country": "DEU"
+    },
+    {
+      "name": "PRENZLAU",
+      "lat": 53.312094,
+      "lon": 13.867822,
+      "country": "DEU"
+    },
+    {
+      "name": "SCHWEDT",
+      "lat": 53.069511,
+      "lon": 14.258219,
+      "country": "DEU"
+    },
+    {
+      "name": "STORKOW",
+      "lat": 52.263528,
+      "lon": 13.942475,
+      "country": "DEU"
+    },
+    {
+      "name": "STRAUSBERG",
+      "lat": 52.582208,
+      "lon": 13.879322,
+      "country": "DEU"
+    },
+    {
+      "name": "TEMPLIN",
+      "lat": 53.088689,
+      "lon": 13.474681,
+      "country": "DEU"
+    },
+    {
+      "name": "WITTSTOCK",
+      "lat": 53.162969,
+      "lon": 12.497558,
+      "country": "DEU"
+    },
+    {
+      "name": "WUENSDORF",
+      "lat": 52.165867,
+      "lon": 13.483194,
+      "country": "DEU"
+    }
+  ]
+}
