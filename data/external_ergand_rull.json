@@ -1,0 +1,9 @@
+{
+  "last_updated": "2026-06-22",
+  "source_url": "https://www.cartografia.ad/serveis-a-temps-real",
+  "pin_origin": "register",
+  "_provenance": "ERGAND caster 194.158.95.189:2101 is live (SOURCETABLE 200 OK, probed 2026-06-22) but its STR rows publish empty lat/lon, so a {type:ntrip} source yields 0 pins. RULL has no EUREF-IP broadcast row (RINEX-only on EPN) and the operator portal publishes no machine-readable roster or surveyed coordinate (checked 2026-06-22; EPN coord/sitelog pages 403 the sandbox). 42.60/1.73 is an approximate marker for Roc del Pui de Rull, NE Andorra (Canillo/Encamp area) pending a published survey value -- adequate for a location marker, not a survey coordinate.",
+  "stations": [
+    {"name": "RULL", "lat": 42.6, "lon": 1.73, "format": "RTCM 3.2", "carrier": 2, "constellations": "GPS+GLO+GAL+BDS", "country": "AND"}
+  ]
+}

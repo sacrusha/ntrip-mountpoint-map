@@ -1,0 +1,590 @@
+{
+  "last_updated": "2026-08-02T21:00:08+00:00",
+  "scraper_version": "aab94d1d5650",
+  "source_url": "https://www.asgeupos.pl/language/en/services-2/coordinates-of-reference-stations/",
+  "pin_origin": "external",
+  "stations": [
+    {
+      "name": "BART",
+      "lat": 54.250701,
+      "lon": 20.815437,
+      "country": "POL"
+    },
+    {
+      "name": "BIAL",
+      "lat": 53.132093,
+      "lon": 23.138733,
+      "country": "POL"
+    },
+    {
+      "name": "BILG",
+      "lat": 50.531507,
+      "lon": 22.718565,
+      "country": "POL"
+    },
+    {
+      "name": "BOGI",
+      "lat": 52.474989,
+      "lon": 21.03521,
+      "country": "POL"
+    },
+    {
+      "name": "BOR1",
+      "lat": 52.276954,
+      "lon": 17.073452,
+      "country": "POL"
+    },
+    {
+      "name": "BPDL",
+      "lat": 52.035273,
+      "lon": 23.127348,
+      "country": "POL"
+    },
+    {
+      "name": "BRSK",
+      "lat": 52.741076,
+      "lon": 22.838604,
+      "country": "POL"
+    },
+    {
+      "name": "BUZD",
+      "lat": 50.46622,
+      "lon": 20.718933,
+      "country": "POL"
+    },
+    {
+      "name": "BYDG",
+      "lat": 53.134558,
+      "lon": 17.993625,
+      "country": "POL"
+    },
+    {
+      "name": "CBKA",
+      "lat": 52.21473,
+      "lon": 21.067691,
+      "country": "POL"
+    },
+    {
+      "name": "CCHN",
+      "lat": 52.882787,
+      "lon": 20.597829,
+      "country": "POL"
+    },
+    {
+      "name": "CHEL",
+      "lat": 51.130004,
+      "lon": 23.480405,
+      "country": "POL"
+    },
+    {
+      "name": "CHNO",
+      "lat": 53.16405,
+      "lon": 15.414039,
+      "country": "POL"
+    },
+    {
+      "name": "CHOJ",
+      "lat": 53.695179,
+      "lon": 17.552353,
+      "country": "POL"
+    },
+    {
+      "name": "DRWP",
+      "lat": 53.526322,
+      "lon": 15.817464,
+      "country": "POL"
+    },
+    {
+      "name": "DZIA",
+      "lat": 53.230323,
+      "lon": 20.167369,
+      "country": "POL"
+    },
+    {
+      "name": "DZWE",
+      "lat": 52.322616,
+      "lon": 18.923703,
+      "country": "POL"
+    },
+    {
+      "name": "ELBL",
+      "lat": 54.155552,
+      "lon": 19.400348,
+      "country": "POL"
+    },
+    {
+      "name": "GIZY",
+      "lat": 54.035779,
+      "lon": 21.767767,
+      "country": "POL"
+    },
+    {
+      "name": "GLOG",
+      "lat": 51.665256,
+      "lon": 16.074281,
+      "country": "POL"
+    },
+    {
+      "name": "GNIE",
+      "lat": 52.532943,
+      "lon": 17.583854,
+      "country": "POL"
+    },
+    {
+      "name": "GOLE",
+      "lat": 53.558713,
+      "lon": 14.838002,
+      "country": "POL"
+    },
+    {
+      "name": "GRAJ",
+      "lat": 53.651038,
+      "lon": 22.452299,
+      "country": "POL"
+    },
+    {
+      "name": "GRUD",
+      "lat": 53.488513,
+      "lon": 18.75497,
+      "country": "POL"
+    },
+    {
+      "name": "GWWL",
+      "lat": 52.737967,
+      "lon": 15.205208,
+      "country": "POL"
+    },
+    {
+      "name": "HAJN",
+      "lat": 52.740976,
+      "lon": 23.565893,
+      "country": "POL"
+    },
+    {
+      "name": "HOLO",
+      "lat": 51.651504,
+      "lon": 23.196586,
+      "country": "POL"
+    },
+    {
+      "name": "HOZD",
+      "lat": 50.188863,
+      "lon": 23.362251,
+      "country": "POL"
+    },
+    {
+      "name": "HRUB",
+      "lat": 50.804692,
+      "lon": 23.886283,
+      "country": "POL"
+    },
+    {
+      "name": "ILAW",
+      "lat": 53.587122,
+      "lon": 19.56796,
+      "country": "POL"
+    },
+    {
+      "name": "JLGR",
+      "lat": 50.919458,
+      "lon": 15.733248,
+      "country": "POL"
+    },
+    {
+      "name": "JOZ2",
+      "lat": 52.097833,
+      "lon": 21.032347,
+      "country": "POL"
+    },
+    {
+      "name": "KALI",
+      "lat": 51.753876,
+      "lon": 18.095164,
+      "country": "POL"
+    },
+    {
+      "name": "KAM1",
+      "lat": 53.963058,
+      "lon": 14.777393,
+      "country": "POL"
+    },
+    {
+      "name": "KATO",
+      "lat": 50.253268,
+      "lon": 19.035631,
+      "country": "POL"
+    },
+    {
+      "name": "KEPN",
+      "lat": 51.280164,
+      "lon": 17.983583,
+      "country": "POL"
+    },
+    {
+      "name": "KLCE",
+      "lat": 50.87575,
+      "lon": 20.629645,
+      "country": "POL"
+    },
+    {
+      "name": "KLDZ",
+      "lat": 50.435577,
+      "lon": 16.651886,
+      "country": "POL"
+    },
+    {
+      "name": "KLOB",
+      "lat": 50.905521,
+      "lon": 18.936894,
+      "country": "POL"
+    },
+    {
+      "name": "KONI",
+      "lat": 52.228116,
+      "lon": 18.253973,
+      "country": "POL"
+    },
+    {
+      "name": "KOSC",
+      "lat": 54.122551,
+      "lon": 17.981571,
+      "country": "POL"
+    },
+    {
+      "name": "KOSZ",
+      "lat": 54.203386,
+      "lon": 16.197719,
+      "country": "POL"
+    },
+    {
+      "name": "KRA1",
+      "lat": 50.066111,
+      "lon": 19.920458,
+      "country": "POL"
+    },
+    {
+      "name": "KROS",
+      "lat": 49.678745,
+      "lon": 21.774643,
+      "country": "POL"
+    },
+    {
+      "name": "KROT",
+      "lat": 51.692199,
+      "lon": 17.437175,
+      "country": "POL"
+    },
+    {
+      "name": "KUTN",
+      "lat": 52.226042,
+      "lon": 19.374968,
+      "country": "POL"
+    },
+    {
+      "name": "LAMA",
+      "lat": 53.892397,
+      "lon": 20.669937,
+      "country": "POL"
+    },
+    {
+      "name": "LEGN",
+      "lat": 51.200007,
+      "lon": 16.154968,
+      "country": "POL"
+    },
+    {
+      "name": "LELO",
+      "lat": 50.682884,
+      "lon": 19.628876,
+      "country": "POL"
+    },
+    {
+      "name": "LESZ",
+      "lat": 51.84039,
+      "lon": 16.578485,
+      "country": "POL"
+    },
+    {
+      "name": "LODZ",
+      "lat": 51.778713,
+      "lon": 19.459506,
+      "country": "POL"
+    },
+    {
+      "name": "LOMZ",
+      "lat": 53.173993,
+      "lon": 22.080359,
+      "country": "POL"
+    },
+    {
+      "name": "LUBL",
+      "lat": 51.250852,
+      "lon": 22.554724,
+      "country": "POL"
+    },
+    {
+      "name": "MIES",
+      "lat": 52.789935,
+      "lon": 14.476781,
+      "country": "POL"
+    },
+    {
+      "name": "MIMA",
+      "lat": 52.181302,
+      "lon": 21.559254,
+      "country": "POL"
+    },
+    {
+      "name": "MLCN",
+      "lat": 50.065893,
+      "lon": 21.971692,
+      "country": "POL"
+    },
+    {
+      "name": "MYSZ",
+      "lat": 53.386527,
+      "lon": 21.343567,
+      "country": "POL"
+    },
+    {
+      "name": "NODW",
+      "lat": 52.431075,
+      "lon": 20.710582,
+      "country": "POL"
+    },
+    {
+      "name": "NTML",
+      "lat": 52.320791,
+      "lon": 16.118023,
+      "country": "POL"
+    },
+    {
+      "name": "NWSC",
+      "lat": 49.618432,
+      "lon": 20.690019,
+      "country": "POL"
+    },
+    {
+      "name": "NYSA",
+      "lat": 50.47768,
+      "lon": 17.333735,
+      "country": "POL"
+    },
+    {
+      "name": "OPLE",
+      "lat": 50.667616,
+      "lon": 17.91934,
+      "country": "POL"
+    },
+    {
+      "name": "OPLU",
+      "lat": 51.149302,
+      "lon": 21.975905,
+      "country": "POL"
+    },
+    {
+      "name": "OPNT",
+      "lat": 53.763681,
+      "lon": 20.518152,
+      "country": "POL"
+    },
+    {
+      "name": "OSMZ",
+      "lat": 52.800777,
+      "lon": 21.891698,
+      "country": "POL"
+    },
+    {
+      "name": "POZN",
+      "lat": 52.43005,
+      "lon": 16.934937,
+      "country": "POL"
+    },
+    {
+      "name": "PPIL",
+      "lat": 53.156974,
+      "lon": 16.738258,
+      "country": "POL"
+    },
+    {
+      "name": "PROS",
+      "lat": 50.191739,
+      "lon": 20.288493,
+      "country": "POL"
+    },
+    {
+      "name": "PRZM",
+      "lat": 49.791949,
+      "lon": 22.752811,
+      "country": "POL"
+    },
+    {
+      "name": "RADM",
+      "lat": 51.391419,
+      "lon": 21.163824,
+      "country": "POL"
+    },
+    {
+      "name": "REDZ",
+      "lat": 54.472377,
+      "lon": 17.117523,
+      "country": "POL"
+    },
+    {
+      "name": "RYKI",
+      "lat": 51.624481,
+      "lon": 21.927208,
+      "country": "POL"
+    },
+    {
+      "name": "SIDZ",
+      "lat": 51.573005,
+      "lon": 18.717586,
+      "country": "POL"
+    },
+    {
+      "name": "SIED",
+      "lat": 52.157441,
+      "lon": 22.294212,
+      "country": "POL"
+    },
+    {
+      "name": "SIPC",
+      "lat": 52.856955,
+      "lon": 19.662699,
+      "country": "POL"
+    },
+    {
+      "name": "SOCH",
+      "lat": 52.218558,
+      "lon": 20.242569,
+      "country": "POL"
+    },
+    {
+      "name": "SOKL",
+      "lat": 53.408542,
+      "lon": 23.495739,
+      "country": "POL"
+    },
+    {
+      "name": "STRG",
+      "lat": 53.966305,
+      "lon": 18.529989,
+      "country": "POL"
+    },
+    {
+      "name": "SWIB",
+      "lat": 52.247909,
+      "lon": 15.536286,
+      "country": "POL"
+    },
+    {
+      "name": "SWKI",
+      "lat": 54.098608,
+      "lon": 22.928216,
+      "country": "POL"
+    },
+    {
+      "name": "SZE2",
+      "lat": 53.700179,
+      "lon": 16.701382,
+      "country": "POL"
+    },
+    {
+      "name": "TABG",
+      "lat": 50.570958,
+      "lon": 21.671177,
+      "country": "POL"
+    },
+    {
+      "name": "TAR1",
+      "lat": 50.451646,
+      "lon": 18.85813,
+      "country": "POL"
+    },
+    {
+      "name": "TORU",
+      "lat": 53.018375,
+      "lon": 18.634946,
+      "country": "POL"
+    },
+    {
+      "name": "TRNW",
+      "lat": 50.016079,
+      "lon": 20.984141,
+      "country": "POL"
+    },
+    {
+      "name": "USDL",
+      "lat": 49.432906,
+      "lon": 22.585768,
+      "country": "POL"
+    },
+    {
+      "name": "WAT1",
+      "lat": 52.253829,
+      "lon": 20.903836,
+      "country": "POL"
+    },
+    {
+      "name": "WIEL",
+      "lat": 51.219352,
+      "lon": 18.571735,
+      "country": "POL"
+    },
+    {
+      "name": "WLAD",
+      "lat": 54.796757,
+      "lon": 18.418748,
+      "country": "POL"
+    },
+    {
+      "name": "WLBR",
+      "lat": 50.767969,
+      "lon": 16.28007,
+      "country": "POL"
+    },
+    {
+      "name": "WLDW",
+      "lat": 51.545265,
+      "lon": 23.557176,
+      "country": "POL"
+    },
+    {
+      "name": "WLOC",
+      "lat": 52.658707,
+      "lon": 19.066935,
+      "country": "POL"
+    },
+    {
+      "name": "WRKI",
+      "lat": 52.70555,
+      "lon": 16.371074,
+      "country": "POL"
+    },
+    {
+      "name": "WROC",
+      "lat": 51.113258,
+      "lon": 17.062036,
+      "country": "POL"
+    },
+    {
+      "name": "ZARY",
+      "lat": 51.639919,
+      "lon": 15.146106,
+      "country": "POL"
+    },
+    {
+      "name": "ZIGR",
+      "lat": 51.940311,
+      "lon": 15.514292,
+      "country": "POL"
+    },
+    {
+      "name": "ZYWI",
+      "lat": 49.686688,
+      "lon": 19.20595,
+      "country": "POL"
+    }
+  ]
+}

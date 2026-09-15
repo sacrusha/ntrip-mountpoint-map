@@ -1,0 +1,9 @@
+STR;Nearest;Nearest;RTCM 3;;2;GPS+GLO;;;23.26;58.92;1;0;Leica GNSS Spider;none;B;Y;9600;
+STR;MAX;MAX;RTCM 3;;2;GPS+GLO;;;23.26;58.92;1;1;Leica GNSS Spider;none;B;Y;9600;
+STR;VRS;VRS;RTCM 3;;2;GPS+GLO;;;23.26;58.92;1;1;Leica GNSS Spider;none;B;Y;9600;
+STR;UTM-40-Auto-Geoid;UTM-40-Auto-Geoid;RTCM 3;;2;GPS+GLO;;;23.22;56.46;1;1;Leica GNSS Spider;none;B;Y;9600;
+STR;UTM-39-Auto-Geoid;UTM-39-Auto-Geoid;RTCM 3;;2;GPS+GLO;;;23.22;56.46;1;1;Leica GNSS Spider;none;B;Y;9600;
+STR;MAX-Geoid-39;MAX-Geoid-39;RTCM 3;;2;GPS+GLO;;;23.26;58.92;1;1;Leica GNSS Spider;none;B;Y;9600;
+STR;MAX-Geoid-40;MAX-Geoid-40;RTCM 3;;2;GPS+GLO;;;23.26;58.92;1;1;Leica GNSS Spider;none;B;Y;9600;
+STR;ONGD23;ONGD23;RTCM 3;;2;GPS+GLO;;;23.22;56.46;1;1;Leica GNSS Spider;none;B;Y;9600;
+ENDSOURCETABLE
