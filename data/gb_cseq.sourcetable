@@ -1,0 +1,35 @@
+CAS;176.126.240.39;2101;QNET;CSEQ Technologies Ltd;0;GBR;51.5;7.5;NTRIPCASTER
+NET;QNET;CSEQ Technologies Ltd;B;Y;http://cseq.co.uk;none;ntrip@cseq.co.uk;none
+STR;taunton;Taunton;RTCM 3.0;;2;GPS+GLONASS+GALILEO+BEIDOU;QNET;GBR;51.06;-3.03;1;0;Ublox F9P;none;B;N;520;Keirles Farm
+STR;wellington;Wellington;RTCM 3.0;;2;GPS+GLONASS+GALILEO+BEIDOU;QNET;GBR;51.03;-3.20;1;0;Ublox F9P;none;B;N;520;Oake
+STR;ripon;Ripon;RTCM 3.0;;2;GPS+GLONASS+GALILEO+BEIDOU;QNET;GBR;54.15;-1.50;1;0;Ublox F9P;none;B;N;520;ripon
+STR;bath;Bath;RTCM 3.0;;2;GPS+GLONASS+GALILEO+BEIDOU;QNET;GBR;51.26;-2.47;1;0;Ublox F9P;none;B;N;520;bath
+STR;hitchin;Hitchin;RTCM 3.0;;2;GPS+GLONASS+GALILEO+BEIDOU;QNET;GBR;51.88;-0.29;1;0;Ublox F9P;none;B;N;520;hitchin
+STR;leominster;Leominster;RTCM 3.0;;2;GPS+GLONASS+GALILEO+BEIDOU;QNET;GBR;52.24;-2.70;1;0;Ublox F9P;none;B;N;520;leominster
+STR;brechin;Brechin;RTCM 3.0;;2;GPS+GLONASS+GALILEO+BEIDOU;QNET;GBR;56.73;-2.56;1;0;Ublox F9P;none;B;N;520;brechin
+STR;romford;Romford;RTCM 3.0;;2;GPS+GLONASS+GALILEO+BEIDOU;QNET;GBR;51.62;0.17;1;0;Ublox F9P;none;B;N;520;romford
+STR;oswestry;oswestry;RTCM 3.0;;2;GPS+GLONASS+GALILEO+BEIDOU;QNET;GBR;52.83;-3.10;1;0;Ublox F9P;none;B;N;520;oswestry
+STR;daventry;daventry;RTCM 3.0;;2;GPS+GLONASS+GALILEO+BEIDOU;QNET;GBR;52.19;-1.25;1;0;Ublox F9P;none;B;N;520;daventry
+STR;scunthorpe;sunthorpe;RTCM 3.0;;2;GPS+GLONASS+GALILEO+BEIDOU;QNET;GBR;53.59;-0.87;1;0;Ublox F9P;none;B;N;520;scunthorpe
+STR;haddington;haddington;RTCM 3.0;;2;GPS+GLONASS+GALILEO+BEIDOU;QNET;GBR;55.99;-2.82;1;0;Ublox F9P;none;B;N;520;haddington
+STR;hexham;hexham;RTCM 3.0;;2;GPS+GLONASS+GALILEO+BEIDOU;QNET;GBR;55.02;-2.09;1;0;Ublox F9P;none;B;N;520;hexham
+STR;driffield;driffield;RTCM 3.0;;2;GPS+GLONASS+GALILEO+BEIDOU;QNET;GBR;53.93;-0.28;1;0;Ublox F9P;none;B;N;520;driffield
+STR;dundee;dundee;RTCM 3.0;;2;GPS+GLONASS+GALILEO+BEIDOU;QNET;GBR;56.55;-3.13;1;0;Ublox F9P;none;B;N;520;dundee
+STR;portsmouth;portsmouth;RTCM 3.0;;2;GPS+GLONASS+GALILEO+BEIDOU;QNET;GBR;50.93;-1.05;1;0;Ublox F9P;none;B;N;520;portsmouth
+STR;rotherham;rotherham;RTCM 3.0;;2;GPS+GLONASS+GALILEO+BEIDOU;QNET;GBR;53.54;-1.33;1;0;Ublox F9P;none;B;N;520;rotherham
+STR;richmond;richmond;RTCM 3.0;;2;GPS+GLONASS+GALILEO+BEIDOU;QNET;GBR;54.42;-1.64;1;0;Ublox F9P;none;B;N;520;richmond
+STR;york;york;RTCM 3.0;;2;GPS+GLONASS+GALILEO+BEIDOU;QNET;GBR;53.99;-1.24;1;0;Ublox F9P;none;B;N;520;york
+STR;launceston;launceston;RTCM 3.0;;2;GPS+GLONASS+GALILEO+BEIDOU;QNET;GBR;50.54;-4.32;1;0;Ublox F9P;none;B;N;520;launceston
+STR;usk;usk;RTCM 3.0;;2;GPS+GLONASS+GALILEO+BEIDOU;QNET;GBR;51.73;-2.94;1;0;Ublox F9P;none;B;N;520;usk
+STR;march;march;RTCM 3.0;;2;GPS+GLONASS+GALILEO+BEIDOU;QNET;GBR;52.56;0.03;1;0;Ublox F9P;none;B;N;520;march
+STR;wexford;wexford;RTCM 3.0;;2;GPS+GLONASS+GALILEO+BEIDOU;QNET;GBR;52.28;-6.58;1;0;Ublox F9P;none;B;N;520;wexford
+STR;thame;thame;RTCM 3.0;;2;GPS+GLONASS+GALILEO+BEIDOU;QNET;GBR;51.73;-0.99;1;0;Ublox F9P;none;B;N;520;thame
+STR;mkt-harborough;mkt-harborough;RTCM 3.0;;2;GPS+GLONASS+GALILEO+BEIDOU;QNET;GBR;52.45;-0.99;1;0;Ublox F9P;none;B;N;520;mkt-harborough
+STR;bromsgrove;bromsgrove;RTCM 3.0;;2;GPS+GLONASS+GALILEO+BEIDOU;QNET;GBR;52.33;-2.10;1;0;Ublox F9P;none;B;N;520;bromsgrove
+STR;margate;margate;RTCM 3.0;;2;GPS+GLONASS+GALILEO+BEIDOU;QNET;GBR;51.36;1.31;1;0;Ublox F9P;none;B;N;520;margate
+STR;glastonbury;glastonbury;RTCM 3.0;;2;GPS+GLONASS+GALILEO+BEIDOU;QNET;GBR;51.15;-2.86;1;0;Ublox F9P;none;B;N;520;glastonbury
+STR;honiton;honiton;RTCM 3.0;;2;GPS+GLONASS+GALILEO+BEIDOU;QNET;GBR;50.78;-3.24;1;0;Ublox F9P;none;B;N;520;honiton
+STR;gloucester;gloucester;RTCM 3.0;;2;GPS+GLONASS+GALILEO+BEIDOU;QNET;GBR;51.78;-2.39;1;0;Ublox F9P;none;B;N;520;gloucester
+STR;fraserburgh;fraserburgh;RTCM 3.0;;2;GPS+GLONASS+GALILEO+BEIDOU;QNET;GBR;57.59;-2.08;1;0;Ublox F9P;none;B;N;520;fraserburgh
+STR;tiverton;tiverton;RTCM 3.0;;2;GPS+GLONASS+GALILEO+BEIDOU;QNET;GBR;50.83;-3.68;1;0;Ublox F9P;none;B;N;520;tiverton
+ENDSOURCETABLE
