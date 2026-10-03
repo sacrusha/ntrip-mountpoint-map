@@ -1,0 +1,405 @@
+{
+  "_doc": "Operator-published coords are wrong; replace if mountpoint name AND both bad coords match the parsed sourcetable values exactly. See scripts/fetch_stations.py (COORD_OVERRIDES) for how matches are applied.",
+  "overrides": [
+    {
+      "mountpoint": "ICOL0",
+      "bad": {
+        "lat": 39.8,
+        "lon": 0.8
+      },
+      "fix": {
+        "lat": 39.898,
+        "lon": 0.686,
+        "latPrec": 3,
+        "lonPrec": 3
+      },
+      "note": "Columbretes Illa Grossa - ERGNSS published 1-decimal rounded incorrectly"
+    },
+    {
+      "mountpoint": "BNDR00AUS0",
+      "bad": {
+        "lat": 37.6808,
+        "lon": 145.0645
+      },
+      "fix": {
+        "lat": -37.6808,
+        "lon": 145.0645
+      },
+      "note": "Bundoora VIC - AUSCORS (Trimble Pivot Platform) stripped lat sign"
+    },
+    {
+      "mountpoint": "WFL200AUS0",
+      "bad": {
+        "lat": 34.1342,
+        "lon": 150.995
+      },
+      "fix": {
+        "lat": -34.1342,
+        "lon": 150.995
+      },
+      "note": "Waterfall NSW - AUSCORS (Trimble Pivot Platform) stripped lat sign"
+    },
+    {
+      "mountpoint": "Lsma-SB",
+      "bad": {
+        "lat": 28.55,
+        "lon": 29.76
+      },
+      "fix": {
+        "lat": -28.55,
+        "lon": 29.76
+      },
+      "note": "Ladysmith KZN - TrigNet (Trimble Pivot Platform) stripped lat sign"
+    },
+    {
+      "mountpoint": "ANDE_RTCM3",
+      "bad": {
+        "lat": 33.99,
+        "lon": -84.32
+      },
+      "fix": {
+        "lat": 32.2041,
+        "lon": -84.1331,
+        "latPrec": 4,
+        "lonPrec": 4
+      },
+      "note": "NPS SensorMap API (ANDE)"
+    },
+    {
+      "mountpoint": "AZLP_RTCM3",
+      "bad": {
+        "lat": 37.25,
+        "lon": -111.5
+      },
+      "fix": {
+        "lat": 36.9469,
+        "lon": -111.5,
+        "latPrec": 4,
+        "lonPrec": 4
+      },
+      "note": "NPS SensorMap API (AZLP)"
+    },
+    {
+      "mountpoint": "CHRI_RTCM3",
+      "bad": {
+        "lat": 47.96,
+        "lon": -89.69
+      },
+      "fix": {
+        "lat": 17.747,
+        "lon": -64.703,
+        "latPrec": 4,
+        "lonPrec": 4
+      },
+      "note": "NPS SensorMap API (CHRI)"
+    },
+    {
+      "mountpoint": "EVER_RTCM3",
+      "bad": {
+        "lat": 25.85,
+        "lon": -81.38999999999999
+      },
+      "fix": {
+        "lat": 25.1414,
+        "lon": -80.9238,
+        "latPrec": 4,
+        "lonPrec": 4
+      },
+      "note": "NPS SensorMap API (EVER)"
+    },
+    {
+      "mountpoint": "FOBO_RTCM3",
+      "bad": {
+        "lat": 31.35,
+        "lon": -110.25
+      },
+      "fix": {
+        "lat": 32.1467,
+        "lon": -109.4348,
+        "latPrec": 4,
+        "lonPrec": 4
+      },
+      "note": "NPS SensorMap API (FOBO)"
+    },
+    {
+      "mountpoint": "GAA2_RTCM3",
+      "bad": {
+        "lat": 67.25,
+        "lon": -150.18
+      },
+      "fix": {
+        "lat": 68.1421,
+        "lon": -151.7369,
+        "latPrec": 4,
+        "lonPrec": 4
+      },
+      "note": "NPS SensorMap API (GAA2)"
+    },
+    {
+      "mountpoint": "GAA3_RTCM3",
+      "bad": {
+        "lat": 68.14,
+        "lon": -151.74
+      },
+      "fix": {
+        "lat": 67.2532,
+        "lon": -150.1756,
+        "latPrec": 4,
+        "lonPrec": 4
+      },
+      "note": "NPS SensorMap API (GAA3)"
+    },
+    {
+      "mountpoint": "GLNA_RTCM3",
+      "bad": {
+        "lat": 66.73,
+        "lon": 162.61
+      },
+      "fix": {
+        "lat": 64.7331,
+        "lon": -156.9291,
+        "latPrec": 4,
+        "lonPrec": 4
+      },
+      "note": "NPS SensorMap API (GLNA)"
+    },
+    {
+      "mountpoint": "GWMP_RTCM3",
+      "bad": {
+        "lat": 38.56,
+        "lon": -77.05000000000001
+      },
+      "fix": {
+        "lat": 38.848,
+        "lon": -77.0494,
+        "latPrec": 4,
+        "lonPrec": 4
+      },
+      "note": "NPS SensorMap API (GWMP)"
+    },
+    {
+      "mountpoint": "HOSP_RTCM3",
+      "bad": {
+        "lat": 37.51,
+        "lon": -93.05000000000001
+      },
+      "fix": {
+        "lat": 34.512,
+        "lon": -93.0536,
+        "latPrec": 4,
+        "lonPrec": 4
+      },
+      "note": "NPS SensorMap API (HOSP)"
+    },
+    {
+      "mountpoint": "JELA_RTCM3",
+      "bad": {
+        "lat": 35.3,
+        "lon": -129.4
+      },
+      "fix": {
+        "lat": 29.7846,
+        "lon": -90.1156,
+        "latPrec": 4,
+        "lonPrec": 4
+      },
+      "note": "NPS SensorMap API (JELA)"
+    },
+    {
+      "mountpoint": "KLGO_RTCM3",
+      "bad": {
+        "lat": 58.46,
+        "lon": -135.32
+      },
+      "fix": {
+        "lat": 59.4554,
+        "lon": -135.3224,
+        "latPrec": 4,
+        "lonPrec": 4
+      },
+      "note": "NPS SensorMap API (KLGO)"
+    },
+    {
+      "mountpoint": "MDAI_RTCM3",
+      "bad": {
+        "lat": 35.3,
+        "lon": -129.4
+      },
+      "fix": {
+        "lat": 38.1391,
+        "lon": -75.1888,
+        "latPrec": 4,
+        "lonPrec": 4
+      },
+      "note": "NPS SensorMap API (MDAI)"
+    },
+    {
+      "mountpoint": "MOCA_RTCM3",
+      "bad": {
+        "lat": 35.65,
+        "lon": -111.75
+      },
+      "fix": {
+        "lat": 34.6489,
+        "lon": -111.7542,
+        "latPrec": 4,
+        "lonPrec": 4
+      },
+      "note": "NPS SensorMap API (MOCA)"
+    },
+    {
+      "mountpoint": "ORPI_RTCM3",
+      "bad": {
+        "lat": 32.95,
+        "lon": -112.81
+      },
+      "fix": {
+        "lat": 31.9547,
+        "lon": -112.8047,
+        "latPrec": 4,
+        "lonPrec": 4
+      },
+      "note": "NPS SensorMap API (ORPI)"
+    },
+    {
+      "mountpoint": "P004_RTCM3",
+      "bad": {
+        "lat": 31.78,
+        "lon": -112.15
+      },
+      "fix": {
+        "lat": 34.7844,
+        "lon": -112.152,
+        "latPrec": 4,
+        "lonPrec": 4
+      },
+      "note": "NPS SensorMap API (P004)"
+    },
+    {
+      "mountpoint": "P041_RTCM3",
+      "bad": {
+        "lat": 39.95,
+        "lon": -106.19
+      },
+      "fix": {
+        "lat": 39.9495,
+        "lon": -105.1943,
+        "latPrec": 4,
+        "lonPrec": 4
+      },
+      "note": "NPS SensorMap API (P041)"
+    },
+    {
+      "mountpoint": "P356_RTCM3",
+      "bad": {
+        "lat": 43.49,
+        "lon": -110.49000000000001
+      },
+      "fix": {
+        "lat": 43.8166,
+        "lon": -110.4891,
+        "latPrec": 4,
+        "lonPrec": 4
+      },
+      "note": "NPS SensorMap API (P356)"
+    },
+    {
+      "mountpoint": "P826_RTCM3",
+      "bad": {
+        "lat": 41.18,
+        "lon": -123.80000000000001
+      },
+      "fix": {
+        "lat": 46.182,
+        "lon": -123.7991,
+        "latPrec": 4,
+        "lonPrec": 4
+      },
+      "note": "NPS SensorMap API (P826)"
+    },
+    {
+      "mountpoint": "SC03_RTCM3",
+      "bad": {
+        "lat": 46.78,
+        "lon": -121.74000000000001
+      },
+      "fix": {
+        "lat": 47.8166,
+        "lon": -123.7057,
+        "latPrec": 4,
+        "lonPrec": 4
+      },
+      "note": "NPS SensorMap API (SC03)"
+    },
+    {
+      "mountpoint": "SDRC_RTCM3",
+      "bad": {
+        "lat": 43.08,
+        "lon": -103.22000000000003
+      },
+      "fix": {
+        "lat": 44.0828,
+        "lon": -103.2256,
+        "latPrec": 4,
+        "lonPrec": 4
+      },
+      "note": "NPS SensorMap API (SDRC)"
+    },
+    {
+      "mountpoint": "VOYA_RTCM3",
+      "bad": {
+        "lat": 48.6,
+        "lon": -93.97000000000003
+      },
+      "fix": {
+        "lat": 48.6024,
+        "lon": -93.375,
+        "latPrec": 4,
+        "lonPrec": 4
+      },
+      "note": "NPS SensorMap API (VOYA)"
+    },
+    {
+      "mountpoint": "DJIG00DJI0",
+      "bad": {
+        "lat": 11.52,
+        "lon": 43.56
+      },
+      "fix": {
+        "lat": 11.53,
+        "lon": 42.85,
+        "latPrec": 2,
+        "lonPrec": 2
+      },
+      "note": "Djibouti DJIG - AUSCORS/REGINA mirror published lon 43.56 (~78km E into Gulf of Tadjoura); IGS-IP authoritative 11.53/42.85"
+    },
+    {
+      "mountpoint": "VPAC_RTCM3",
+      "bad": {
+        "lat": 0.02,
+        "lon": 71.01
+      },
+      "fix": {
+        "lat": 0.02,
+        "lon": -71.01,
+        "latPrec": 2,
+        "lonPrec": 2
+      },
+      "note": "IGAC Pacoa (Vaupes, eastern Colombia) - sourcetable dropped the lon minus sign, placing it in the Indian Ocean; country field blank so the fetch coord-guard can't catch it"
+    },
+    {
+      "mountpoint": "USP100FJI0",
+      "bad": {
+        "lat": 39.84,
+        "lon": 116.34
+      },
+      "fix": {
+        "lat": -18.1491,
+        "lon": 178.4464,
+        "latPrec": 4,
+        "lonPrec": 4
+      },
+      "note": "USP1 University of the South Pacific, Suva - IGS-IP sourcetable published Beijing coords (39.84/116.34); NGL llh authoritative -18.149/178.446"
+    }
+  ]
+}
