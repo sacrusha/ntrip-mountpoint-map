@@ -1,0 +1,80 @@
+{
+  "last_updated": "2026-06-18",
+  "source_url": "http://gps.sit.puglia.it/spiderweb/workshop/Coordinate_GNSS_PUGLIA.pdf",
+  "pin_origin": "register",
+  "provenance": "Operator-published coordinate document 'Rete GNSS PUGLIA - Coordinate Stazioni Permanenti (ETRF2000-RDN)', determined 2013-01-15. 12 geocentric ECEF coords (X,Y,Z m, ETRF2000-RDN / GRS80) lifted verbatim into scripts/regen_external_sit_puglia.py and converted ECEF->geodetic by Bowring iteration. Live caster gps.sit.puglia.it:2101 is NRTK-only (no per-station physical mounts on any probed port), so no live machine source exists; this PDF is the authoritative physical roster. Re-run scripts/regen_external_sit_puglia.py to regenerate.",
+  "stations": [
+    {
+      "name": "ACCA",
+      "lat": 41.158592,
+      "lon": 15.331171,
+      "country": "ITA"
+    },
+    {
+      "name": "FASA",
+      "lat": 40.83483,
+      "lon": 17.359028,
+      "country": "ITA"
+    },
+    {
+      "name": "FOGG",
+      "lat": 41.452202,
+      "lon": 15.532128,
+      "country": "ITA"
+    },
+    {
+      "name": "GINO",
+      "lat": 40.57798,
+      "lon": 16.757766,
+      "country": "ITA"
+    },
+    {
+      "name": "GIUR",
+      "lat": 40.124438,
+      "lon": 18.430026,
+      "country": "ITA"
+    },
+    {
+      "name": "ISCH",
+      "lat": 41.904309,
+      "lon": 15.896532,
+      "country": "ITA"
+    },
+    {
+      "name": "MARG",
+      "lat": 41.373342,
+      "lon": 16.14892,
+      "country": "ITA"
+    },
+    {
+      "name": "POGG",
+      "lat": 40.91663,
+      "lon": 16.253773,
+      "country": "ITA"
+    },
+    {
+      "name": "SASA",
+      "lat": 40.385166,
+      "lon": 17.9646,
+      "country": "ITA"
+    },
+    {
+      "name": "SPCI",
+      "lat": 41.740439,
+      "lon": 15.259469,
+      "country": "ITA"
+    },
+    {
+      "name": "UGEN",
+      "lat": 39.927703,
+      "lon": 18.162004,
+      "country": "ITA"
+    },
+    {
+      "name": "VALE",
+      "lat": 41.016368,
+      "lon": 16.90452,
+      "country": "ITA"
+    }
+  ]
+}
