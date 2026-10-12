@@ -1,0 +1,10 @@
+{
+  "last_updated": "2026-07-02",
+  "source_url": "http://users.south-tyrolean.net/geodetico/Stazioni permanenti/coordinates of the STPOS stations .pdf",
+  "pin_origin": "register",
+  "provenance": "Operator-published coordinate document 'coordinates of the STPOS stations' (created 2026-05-12, header 'Etrf2000(Epoca 2008.0) - RDN'), Betreiber/Gestore column = STPOS. Only PILA and PRET live here: they are the two STPOS stations with neither a public mount on 62.101.0.40:2109 nor an M3G registration (the other roster gaps ride the sibling m3g endpoint). Coords are the document's DMS latitude/longitude converted to decimal; pdftotext scrambles the table's column alignment, so each DMS value was matched to its station via the known site locality (PILA = Piz La Ila/Alta Badia, PRET = Prettau/Predoi) rather than row order. The document's ECEF column is NOT trusted for these rows (row-shift produced a >0.2 deg error on a cross-checked station).",
+  "stations": [
+    {"name": "PILA", "lat": 46.565594, "lon": 11.906189, "country": "ITA"},
+    {"name": "PRET", "lat": 47.029158, "lon": 12.072985, "country": "ITA"}
+  ]
+}

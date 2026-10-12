@@ -1,0 +1,38 @@
+{
+  "last_updated": "2026-08-02T21:00:08+00:00",
+  "scraper_version": "cb2a65d9cbc9",
+  "source_url": "https://gnss-metadata.eu/MOID/projnet.67629ff568e35d06240a34ab",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "BASC",
+      "lat": 49.56793812523121,
+      "lon": 5.939267596248183,
+      "country": "LUX"
+    },
+    {
+      "name": "ECH2",
+      "lat": 49.80305489052928,
+      "lon": 6.443104072174536,
+      "country": "LUX"
+    },
+    {
+      "name": "ERPL",
+      "lat": 49.547791788935164,
+      "lon": 6.323181803093308,
+      "country": "LUX"
+    },
+    {
+      "name": "ROUL",
+      "lat": 49.951423295262146,
+      "lon": 5.917815008882665,
+      "country": "LUX"
+    },
+    {
+      "name": "TROS",
+      "lat": 50.12673751388271,
+      "lon": 6.00729936318346,
+      "country": "LUX"
+    }
+  ]
+}
