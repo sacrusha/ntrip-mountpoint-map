@@ -1,0 +1,26 @@
+{
+  "last_updated": "2026-08-09T21:00:08+00:00",
+  "scraper_version": "cb2a65d9cbc9",
+  "source_url": "https://gnss-metadata.eu/site/index",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "BRBZ",
+      "lat": 46.79655550367144,
+      "lon": 11.94133330541962,
+      "country": "ITA"
+    },
+    {
+      "name": "MITT",
+      "lat": 46.68511665263359,
+      "lon": 11.294666502135177,
+      "country": "ITA"
+    },
+    {
+      "name": "STBZ",
+      "lat": 46.898252271859555,
+      "lon": 11.425584205711687,
+      "country": "ITA"
+    }
+  ]
+}

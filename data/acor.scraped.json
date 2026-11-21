@@ -1,0 +1,32 @@
+{
+  "last_updated": "2026-11-15T12:00:16+00:00",
+  "scraper_version": "7007ef48865c",
+  "source_url": "https://acorjordan.org/ntrip-network/",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "Base Station 1",
+      "lat": 30.3261,
+      "lon": 35.4688,
+      "country": "JOR"
+    },
+    {
+      "name": "Base Station 2",
+      "lat": 32.008868,
+      "lon": 35.86824,
+      "country": "JOR"
+    },
+    {
+      "name": "Base Station 3",
+      "lat": 31.182327,
+      "lon": 35.702145,
+      "country": "JOR"
+    },
+    {
+      "name": "Base Station 4",
+      "lat": 32.597981,
+      "lon": 35.861289,
+      "country": "JOR"
+    }
+  ]
+}

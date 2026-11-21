@@ -1,0 +1,28 @@
+{
+  "last_updated": "2026-08-11",
+  "source_url": "https://diffusion.mern.gouv.qc.ca/diffusion/RGQ/Documentation/Geodesie/Stations_GNSS.pdf",
+  "pin_origin": "register",
+  "_note": "The two Réseau géodésique du Québec stations that speak NTRIP. Both mountpoints were probed live on 2026-08-11 (142.41.245.88:2107 and :2103, one STR row each); the ministry's sourcetable rows carry no coordinates, so the positions come from its own station register at source_url. Each station sits on its own port, hence the per-station `port`. The network's other sixteen stations emit raw RTCM on a plain socket with no mountpoint and are therefore not stations this layer can pin - see the ca_qc_mrnf_tcp element.",
+  "stations": [
+    {
+      "name": "Gatineau_RTCM3x",
+      "lat": 45.4809,
+      "lon": -75.689,
+      "port": 2107,
+      "format": "RTCM 3.x MSM4",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS",
+      "country": "CAN"
+    },
+    {
+      "name": "Quebec_RTCM3x",
+      "lat": 46.8477,
+      "lon": -71.2616,
+      "port": 2103,
+      "format": "RTCM 3.x MSM4",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS",
+      "country": "CAN"
+    }
+  ]
+}

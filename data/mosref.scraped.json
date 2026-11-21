@@ -1,0 +1,32 @@
+{
+  "last_updated": "2026-11-15T12:00:16+00:00",
+  "scraper_version": "4d103a3c9feb",
+  "source_url": "https://mosref.dsscu.gov.mo/",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "COAL",
+      "lat": 22.120686,
+      "lon": 113.561384,
+      "country": "MAC"
+    },
+    {
+      "name": "FOMO",
+      "lat": 22.197415,
+      "lon": 113.54249,
+      "country": "MAC"
+    },
+    {
+      "name": "TAGR",
+      "lat": 22.158871,
+      "lon": 113.568754,
+      "country": "MAC"
+    },
+    {
+      "name": "UMAC",
+      "lat": 22.134952,
+      "lon": 113.545748,
+      "country": "MAC"
+    }
+  ]
+}

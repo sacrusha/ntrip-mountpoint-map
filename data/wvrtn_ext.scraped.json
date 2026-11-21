@@ -1,0 +1,194 @@
+{
+  "last_updated": "2026-11-15T12:00:16+00:00",
+  "scraper_version": "3959f12d671f",
+  "source_url": "https://wvrtn.cors.us/Map/SensorMap.aspx/GetSensorListWithConfiguration",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "BCC2",
+      "lat": 39.165929,
+      "lon": -78.173938,
+      "country": "USA"
+    },
+    {
+      "name": "DEW5",
+      "lat": 39.610313,
+      "lon": -77.68789,
+      "country": "USA"
+    },
+    {
+      "name": "GALP",
+      "lat": 38.844208,
+      "lon": -82.277803,
+      "country": "USA"
+    },
+    {
+      "name": "JMU1",
+      "lat": 38.434149,
+      "lon": -78.858149,
+      "country": "USA"
+    },
+    {
+      "name": "KP19",
+      "lat": 39.632055,
+      "lon": -78.769626,
+      "country": "USA"
+    },
+    {
+      "name": "OHJF",
+      "lat": 40.404513,
+      "lon": -80.721457,
+      "country": "USA"
+    },
+    {
+      "name": "OHME",
+      "lat": 39.777374,
+      "lon": -81.10193,
+      "country": "USA"
+    },
+    {
+      "name": "OHWS",
+      "lat": 39.426261,
+      "lon": -81.417757,
+      "country": "USA"
+    },
+    {
+      "name": "PAFU",
+      "lat": 39.92658,
+      "lon": -79.697364,
+      "country": "USA"
+    },
+    {
+      "name": "WVAT",
+      "lat": 37.428514,
+      "lon": -81.067883,
+      "country": "USA"
+    },
+    {
+      "name": "WVBR",
+      "lat": 39.308023,
+      "lon": -80.277394,
+      "country": "USA"
+    },
+    {
+      "name": "WVBU",
+      "lat": 39.338006,
+      "lon": -78.913496,
+      "country": "USA"
+    },
+    {
+      "name": "WVCH",
+      "lat": 38.312814,
+      "lon": -81.570367,
+      "country": "USA"
+    },
+    {
+      "name": "WVCL",
+      "lat": 38.487391,
+      "lon": -81.011466,
+      "country": "USA"
+    },
+    {
+      "name": "WVCV",
+      "lat": 39.015299,
+      "lon": -79.456947,
+      "country": "USA"
+    },
+    {
+      "name": "WVFL",
+      "lat": 38.696114,
+      "lon": -80.666874,
+      "country": "USA"
+    },
+    {
+      "name": "WVFR",
+      "lat": 38.671866,
+      "lon": -79.283103,
+      "country": "USA"
+    },
+    {
+      "name": "WVGB",
+      "lat": 38.430118,
+      "lon": -79.817026,
+      "country": "USA"
+    },
+    {
+      "name": "WVHA",
+      "lat": 39.247851,
+      "lon": -81.043846,
+      "country": "USA"
+    },
+    {
+      "name": "WVHU",
+      "lat": 38.422949,
+      "lon": -82.4247,
+      "country": "USA"
+    },
+    {
+      "name": "WVKE",
+      "lat": 39.336909,
+      "lon": -77.915327,
+      "country": "USA"
+    },
+    {
+      "name": "WVLA",
+      "lat": 37.856154,
+      "lon": -81.912134,
+      "country": "USA"
+    },
+    {
+      "name": "WVLE",
+      "lat": 37.822278,
+      "lon": -80.421821,
+      "country": "USA"
+    },
+    {
+      "name": "WVMF",
+      "lat": 39.075651,
+      "lon": -78.932499,
+      "country": "USA"
+    },
+    {
+      "name": "WVMZ",
+      "lat": 38.838901,
+      "lon": -81.108773,
+      "country": "USA"
+    },
+    {
+      "name": "WVNR",
+      "lat": 38.895696,
+      "lon": -79.858408,
+      "country": "USA"
+    },
+    {
+      "name": "WVOH",
+      "lat": 37.998256,
+      "lon": -81.132163,
+      "country": "USA"
+    },
+    {
+      "name": "WVRA",
+      "lat": 38.941351,
+      "lon": -81.751345,
+      "country": "USA"
+    },
+    {
+      "name": "WVRH",
+      "lat": 38.545999,
+      "lon": -81.883228,
+      "country": "USA"
+    },
+    {
+      "name": "WVSA",
+      "lat": 37.640806,
+      "lon": -81.455399,
+      "country": "USA"
+    },
+    {
+      "name": "WVTA",
+      "lat": 39.437957,
+      "lon": -79.514709,
+      "country": "USA"
+    }
+  ]
+}

@@ -1,0 +1,350 @@
+{
+  "last_updated": "2022-09-09",
+  "source_url": "https://www.dot.state.mn.us/surveying/cors/mncors_site_info.pdf",
+  "pin_origin": "register",
+  "note": "MnCORS partner sites (county/city/DNR/RWIS/private) from the operator per-site PDF, parsed by scripts/regen_external_mncors.py; MnDOT-owned sites pin live via the noaa_cors endpoint and are coord-excluded here. PDF rev predates the 2026 northern densification.",
+  "stations": [
+    {
+      "name": "ADA",
+      "lat": 47.306712,
+      "lon": -96.51549,
+      "country": "USA"
+    },
+    {
+      "name": "ALBL",
+      "lat": 43.676559,
+      "lon": -93.329727,
+      "country": "USA"
+    },
+    {
+      "name": "ARDH",
+      "lat": 45.107505,
+      "lon": -93.179893,
+      "country": "USA"
+    },
+    {
+      "name": "BAUD",
+      "lat": 48.712506,
+      "lon": -94.590711,
+      "country": "USA"
+    },
+    {
+      "name": "BFRK",
+      "lat": 47.73455,
+      "lon": -93.650414,
+      "country": "USA"
+    },
+    {
+      "name": "BGL2",
+      "lat": 47.531934,
+      "lon": -95.347544,
+      "country": "USA"
+    },
+    {
+      "name": "BRKG",
+      "lat": 44.314854,
+      "lon": -96.786278,
+      "country": "USA"
+    },
+    {
+      "name": "BRKS",
+      "lat": 46.858051,
+      "lon": -92.588538,
+      "country": "USA"
+    },
+    {
+      "name": "BRMS",
+      "lat": 47.345366,
+      "lon": -91.84564,
+      "country": "USA"
+    },
+    {
+      "name": "BRWN",
+      "lat": 44.730407,
+      "lon": -94.356205,
+      "country": "USA"
+    },
+    {
+      "name": "BXTR",
+      "lat": 46.347942,
+      "lon": -94.241365,
+      "country": "USA"
+    },
+    {
+      "name": "CAMB",
+      "lat": 45.574612,
+      "lon": -93.216132,
+      "country": "USA"
+    },
+    {
+      "name": "COL2",
+      "lat": 44.769846,
+      "lon": -93.813276,
+      "country": "USA"
+    },
+    {
+      "name": "COTN",
+      "lat": 47.167047,
+      "lon": -92.486118,
+      "country": "USA"
+    },
+    {
+      "name": "CRKS",
+      "lat": 47.765216,
+      "lon": -96.627934,
+      "country": "USA"
+    },
+    {
+      "name": "CRWG",
+      "lat": 46.259777,
+      "lon": -94.319991,
+      "country": "USA"
+    },
+    {
+      "name": "DDGC",
+      "lat": 44.026722,
+      "lon": -92.838464,
+      "country": "USA"
+    },
+    {
+      "name": "DLTH",
+      "lat": 46.797478,
+      "lon": -92.10779,
+      "country": "USA"
+    },
+    {
+      "name": "EGAN",
+      "lat": 44.826553,
+      "lon": -93.200794,
+      "country": "USA"
+    },
+    {
+      "name": "ELKT",
+      "lat": 43.658331,
+      "lon": -92.688731,
+      "country": "USA"
+    },
+    {
+      "name": "ELY",
+      "lat": 47.902261,
+      "lon": -91.832421,
+      "country": "USA"
+    },
+    {
+      "name": "EMBR",
+      "lat": 47.657919,
+      "lon": -92.200532,
+      "country": "USA"
+    },
+    {
+      "name": "ERSK",
+      "lat": 47.663319,
+      "lon": -95.984667,
+      "country": "USA"
+    },
+    {
+      "name": "FRMT",
+      "lat": 43.664667,
+      "lon": -94.44352,
+      "country": "USA"
+    },
+    {
+      "name": "GPRT",
+      "lat": 47.970082,
+      "lon": -89.690948,
+      "country": "USA"
+    },
+    {
+      "name": "GRFT",
+      "lat": 48.410727,
+      "lon": -97.424561,
+      "country": "USA"
+    },
+    {
+      "name": "GRSN",
+      "lat": 46.297835,
+      "lon": -93.826934,
+      "country": "USA"
+    },
+    {
+      "name": "GRYG",
+      "lat": 48.297635,
+      "lon": -95.615992,
+      "country": "USA"
+    },
+    {
+      "name": "HAWL",
+      "lat": 46.878122,
+      "lon": -96.300164,
+      "country": "USA"
+    },
+    {
+      "name": "HENN",
+      "lat": 46.325437,
+      "lon": -95.457366,
+      "country": "USA"
+    },
+    {
+      "name": "HIBB",
+      "lat": 47.424492,
+      "lon": -92.921111,
+      "country": "USA"
+    },
+    {
+      "name": "IFL2",
+      "lat": 48.583405,
+      "lon": -93.375878,
+      "country": "USA"
+    },
+    {
+      "name": "KRLS",
+      "lat": 48.573821,
+      "lon": -96.513113,
+      "country": "USA"
+    },
+    {
+      "name": "LKIT",
+      "lat": 47.235311,
+      "lon": -95.194197,
+      "country": "USA"
+    },
+    {
+      "name": "MANO",
+      "lat": 47.311507,
+      "lon": -95.965626,
+      "country": "USA"
+    },
+    {
+      "name": "MKT2",
+      "lat": 44.162206,
+      "lon": -93.941622,
+      "country": "USA"
+    },
+    {
+      "name": "MLBK",
+      "lat": 45.214033,
+      "lon": -96.640181,
+      "country": "USA"
+    },
+    {
+      "name": "MNRD",
+      "lat": 45.258889,
+      "lon": -93.701893,
+      "country": "USA"
+    },
+    {
+      "name": "MOSL",
+      "lat": 46.4356,
+      "lon": -92.761291,
+      "country": "USA"
+    },
+    {
+      "name": "NOHM",
+      "lat": 47.883561,
+      "lon": -94.268271,
+      "country": "USA"
+    },
+    {
+      "name": "NULM",
+      "lat": 44.277495,
+      "lon": -94.438662,
+      "country": "USA"
+    },
+    {
+      "name": "PINR",
+      "lat": 46.697329,
+      "lon": -94.373668,
+      "country": "USA"
+    },
+    {
+      "name": "PPST",
+      "lat": 44.003043,
+      "lon": -96.325293,
+      "country": "USA"
+    },
+    {
+      "name": "PRKR",
+      "lat": 46.908002,
+      "lon": -95.067801,
+      "country": "USA"
+    },
+    {
+      "name": "REDL",
+      "lat": 47.876289,
+      "lon": -95.035584,
+      "country": "USA"
+    },
+    {
+      "name": "REDW",
+      "lat": 44.561819,
+      "lon": -92.534059,
+      "country": "USA"
+    },
+    {
+      "name": "REGL",
+      "lat": 45.432405,
+      "lon": -94.93257,
+      "country": "USA"
+    },
+    {
+      "name": "ROSE",
+      "lat": 48.845917,
+      "lon": -95.779149,
+      "country": "USA"
+    },
+    {
+      "name": "RSHF",
+      "lat": 43.822613,
+      "lon": -91.76276,
+      "country": "USA"
+    },
+    {
+      "name": "SLVB",
+      "lat": 47.302602,
+      "lon": -91.251209,
+      "country": "USA"
+    },
+    {
+      "name": "STJ2",
+      "lat": 43.979359,
+      "lon": -94.608095,
+      "country": "USA"
+    },
+    {
+      "name": "TWOH",
+      "lat": 47.044989,
+      "lon": -91.668602,
+      "country": "USA"
+    },
+    {
+      "name": "WARN",
+      "lat": 48.191367,
+      "lon": -96.770637,
+      "country": "USA"
+    },
+    {
+      "name": "WBSH",
+      "lat": 44.379541,
+      "lon": -92.030153,
+      "country": "USA"
+    },
+    {
+      "name": "WHP2",
+      "lat": 46.274007,
+      "lon": -96.606817,
+      "country": "USA"
+    },
+    {
+      "name": "WSCA",
+      "lat": 44.06439,
+      "lon": -93.501271,
+      "country": "USA"
+    },
+    {
+      "name": "ZUMB",
+      "lat": 44.290717,
+      "lon": -92.681265,
+      "country": "USA"
+    }
+  ]
+}

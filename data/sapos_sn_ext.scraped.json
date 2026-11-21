@@ -1,0 +1,128 @@
+{
+  "last_updated": "2026-11-15T12:00:16+00:00",
+  "scraper_version": "fb32c6e19b81",
+  "source_url": "https://geodesy.unr.edu/NGLStationPages/llh.out",
+  "pin_origin": "external",
+  "stations": [
+    {
+      "name": "Altendorf",
+      "lat": 50.93556511,
+      "lon": 14.17925826,
+      "country": "DEU"
+    },
+    {
+      "name": "Bad Brambach",
+      "lat": 50.17813502,
+      "lon": 12.31898269,
+      "country": "DEU"
+    },
+    {
+      "name": "Bad Muskau",
+      "lat": 51.56595267,
+      "lon": 14.70062783,
+      "country": "DEU"
+    },
+    {
+      "name": "Bautzen",
+      "lat": 51.19234359,
+      "lon": 14.52173433,
+      "country": "DEU"
+    },
+    {
+      "name": "Chemnitz",
+      "lat": 50.79598583,
+      "lon": 12.91294341,
+      "country": "DEU"
+    },
+    {
+      "name": "Dresden",
+      "lat": 51.07695071,
+      "lon": 13.75961055,
+      "country": "DEU"
+    },
+    {
+      "name": "Elstra",
+      "lat": 51.2209612,
+      "lon": 14.12591143,
+      "country": "DEU"
+    },
+    {
+      "name": "Hoyerswerda",
+      "lat": 51.45054697,
+      "lon": 14.18834876,
+      "country": "DEU"
+    },
+    {
+      "name": "Mutschlena",
+      "lat": 51.43706413,
+      "lon": 12.47346003,
+      "country": "DEU"
+    },
+    {
+      "name": "Olbersdorf",
+      "lat": 50.86780708,
+      "lon": 14.77563903,
+      "country": "DEU"
+    },
+    {
+      "name": "Oschatz",
+      "lat": 51.29330858,
+      "lon": 13.12561339,
+      "country": "DEU"
+    },
+    {
+      "name": "Plauen",
+      "lat": 50.49243185,
+      "lon": 12.10054662,
+      "country": "DEU"
+    },
+    {
+      "name": "Rabenberg",
+      "lat": 50.45496043,
+      "lon": 12.74296705,
+      "country": "DEU"
+    },
+    {
+      "name": "Rothenburg/O.L.",
+      "lat": 51.35488026,
+      "lon": 14.96567959,
+      "country": "DEU"
+    },
+    {
+      "name": "Sayda",
+      "lat": 50.70889191,
+      "lon": 13.42368134,
+      "country": "DEU"
+    },
+    {
+      "name": "Thiendorf",
+      "lat": 51.29714486,
+      "lon": 13.74083715,
+      "country": "DEU"
+    },
+    {
+      "name": "Torgau",
+      "lat": 51.56547651,
+      "lon": 12.98282524,
+      "country": "DEU"
+    },
+    {
+      "name": "Waldheim",
+      "lat": 51.07355287,
+      "lon": 13.02862499,
+      "country": "DEU"
+    },
+    {
+      "name": "Zinnwald",
+      "lat": 50.73075082,
+      "lon": 13.75216089,
+      "country": "DEU"
+    },
+    {
+      "name": "Zwickau",
+      "lat": 50.73227703,
+      "lon": 12.52034952,
+      "country": "DEU"
+    }
+  ]
+}

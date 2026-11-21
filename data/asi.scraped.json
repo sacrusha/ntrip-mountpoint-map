@@ -1,0 +1,404 @@
+{
+  "last_updated": "2026-11-20T18:16:47+00:00",
+  "scraper_version": "fdc493b9ec3a",
+  "source_url": "http://euref-ip.asi.it:2101/",
+  "pin_origin": "ntrip",
+  "stations": [
+    {
+      "name": "AGRN00ITA0",
+      "lat": 37.3,
+      "lon": 13.6,
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS",
+      "country": "ITA"
+    },
+    {
+      "name": "AQUI00ITA0",
+      "lat": 42.37,
+      "lon": 13.35,
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS",
+      "country": "ITA"
+    },
+    {
+      "name": "ASIR00ITA0",
+      "lat": 41.85,
+      "lon": 12.62,
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS",
+      "country": "ITA"
+    },
+    {
+      "name": "BIRG00ITA0",
+      "lat": 37.9,
+      "lon": 12.5,
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS",
+      "country": "ITA"
+    },
+    {
+      "name": "BSVZ00ITA0",
+      "lat": 45.64,
+      "lon": 13.87,
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS",
+      "country": "ITA"
+    },
+    {
+      "name": "CIMO00ITA0",
+      "lat": 44.19,
+      "lon": 10.7,
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS",
+      "country": "ITA"
+    },
+    {
+      "name": "CMEL00ITA0",
+      "lat": 43.95,
+      "lon": 8.17,
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS",
+      "country": "ITA"
+    },
+    {
+      "name": "CUGA00ITA0",
+      "lat": 40.61,
+      "lon": 8.45,
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS",
+      "country": "ITA"
+    },
+    {
+      "name": "EKAR00ITA0",
+      "lat": 45.85,
+      "lon": 11.57,
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS",
+      "country": "ITA"
+    },
+    {
+      "name": "ELBA00ITA0",
+      "lat": 42.75,
+      "lon": 10.21,
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS",
+      "country": "ITA"
+    },
+    {
+      "name": "ENZA00ITA0",
+      "lat": 44.91,
+      "lon": 9.73,
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS",
+      "country": "ITA"
+    },
+    {
+      "name": "FRNE00ITA0",
+      "lat": 41.65,
+      "lon": 13.3,
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS",
+      "country": "ITA"
+    },
+    {
+      "name": "GALH00ITA0",
+      "lat": 37.56,
+      "lon": 14.01,
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS",
+      "country": "ITA"
+    },
+    {
+      "name": "GENO00ITA0",
+      "lat": 44.42,
+      "lon": 8.92,
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS",
+      "country": "ITA"
+    },
+    {
+      "name": "ISRN00ITA0",
+      "lat": 41.61,
+      "lon": 14.27,
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS",
+      "country": "ITA"
+    },
+    {
+      "name": "JATE00ITA0",
+      "lat": 41.79,
+      "lon": 16.05,
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS",
+      "country": "ITA"
+    },
+    {
+      "name": "LAMP00ITA0",
+      "lat": 35.5,
+      "lon": 12.61,
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS",
+      "country": "ITA"
+    },
+    {
+      "name": "LCRA00ITA0",
+      "lat": 41.43,
+      "lon": 15.44,
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS",
+      "country": "ITA"
+    },
+    {
+      "name": "LIGN00ITA0",
+      "lat": 45.79,
+      "lon": 7.48,
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS",
+      "country": "ITA"
+    },
+    {
+      "name": "MAT100ITA0",
+      "lat": 40.65,
+      "lon": 16.7,
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS",
+      "country": "ITA"
+    },
+    {
+      "name": "MATE00ITA0",
+      "lat": 40.65,
+      "lon": 16.7,
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS",
+      "country": "ITA"
+    },
+    {
+      "name": "MATG00ITA0",
+      "lat": 40.65,
+      "lon": 16.7,
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS",
+      "country": "ITA"
+    },
+    {
+      "name": "MDEU00ITA0",
+      "lat": 40.89,
+      "lon": 9.16,
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS",
+      "country": "ITA"
+    },
+    {
+      "name": "MEDI00ITA0",
+      "lat": 44.52,
+      "lon": 11.65,
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS",
+      "country": "ITA"
+    },
+    {
+      "name": "MMET00ITA0",
+      "lat": 40.39,
+      "lon": 16.79,
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS",
+      "country": "ITA"
+    },
+    {
+      "name": "NOT100ITA0",
+      "lat": 36.87,
+      "lon": 14.99,
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS",
+      "country": "ITA"
+    },
+    {
+      "name": "ORTE00ITA0",
+      "lat": 42.47,
+      "lon": 12.34,
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS",
+      "country": "ITA"
+    },
+    {
+      "name": "PALB00ITA0",
+      "lat": 41.14,
+      "lon": 16.78,
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS",
+      "country": "ITA"
+    },
+    {
+      "name": "POPI00ITA0",
+      "lat": 43.37,
+      "lon": 13.67,
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS",
+      "country": "ITA"
+    },
+    {
+      "name": "RIVO00ITA0",
+      "lat": 45.98,
+      "lon": 13.05,
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS",
+      "country": "ITA"
+    },
+    {
+      "name": "SART00ITA0",
+      "lat": 39.49,
+      "lon": 9.24,
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS",
+      "country": "ITA"
+    },
+    {
+      "name": "SVLL00ITA0",
+      "lat": 39.31,
+      "lon": 16.75,
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS",
+      "country": "ITA"
+    },
+    {
+      "name": "TEOS00ITA0",
+      "lat": 42.65,
+      "lon": 13.73,
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS",
+      "country": "ITA"
+    },
+    {
+      "name": "TOPP00ITA0",
+      "lat": 40.82,
+      "lon": 15.46,
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS",
+      "country": "ITA"
+    },
+    {
+      "name": "TREU00ITA0",
+      "lat": 46.07,
+      "lon": 11.14,
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS",
+      "country": "ITA"
+    },
+    {
+      "name": "TRMI00ITA0",
+      "lat": 42.0,
+      "lon": 14.99,
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS",
+      "country": "ITA"
+    },
+    {
+      "name": "UCAG00ITA0",
+      "lat": 39.23,
+      "lon": 9.11,
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS",
+      "country": "ITA"
+    },
+    {
+      "name": "USAL00ITA0",
+      "lat": 40.33,
+      "lon": 18.11,
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS",
+      "country": "ITA"
+    },
+    {
+      "name": "VEN100ITA0",
+      "lat": 45.43,
+      "lon": 12.35,
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS",
+      "country": "ITA"
+    },
+    {
+      "name": "VIGI00ITA0",
+      "lat": 40.34,
+      "lon": 15.9,
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS",
+      "country": "ITA"
+    },
+    {
+      "name": "VIGN00ITA0",
+      "lat": 42.08,
+      "lon": 12.21,
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS",
+      "country": "ITA"
+    },
+    {
+      "name": "VIRG00ITA0",
+      "lat": 43.63,
+      "lon": 10.5,
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS",
+      "country": "ITA"
+    },
+    {
+      "name": "VLFR00ITA0",
+      "lat": 45.39,
+      "lon": 10.87,
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS",
+      "country": "ITA"
+    },
+    {
+      "name": "VTRB00ITA0",
+      "lat": 42.44,
+      "lon": 12.05,
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS",
+      "country": "ITA"
+    }
+  ]
+}

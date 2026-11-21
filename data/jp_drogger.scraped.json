@@ -1,0 +1,3193 @@
+{
+  "last_updated": "2026-11-20T18:16:47+00:00",
+  "scraper_version": "e3e8a6df41bd",
+  "source_url": "http://ntrip1.bizstation.jp:2101/",
+  "pin_origin": "ntrip",
+  "stations": [
+    {
+      "name": "041271E2",
+      "lat": 43.03,
+      "lon": 141.36,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+BDS+GAL+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "04431862",
+      "lat": 36.53,
+      "lon": 140.22,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+BDS+GAL+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "04432066",
+      "lat": 35.1,
+      "lon": 138.86,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "04446EAE",
+      "lat": 35.96,
+      "lon": 139.52,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+BDS+GAL+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "0890715A",
+      "lat": 43.53,
+      "lon": 142.53,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+BDS+GAL+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "08918DEA",
+      "lat": 34.6,
+      "lon": 138.21,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "08919242",
+      "lat": 35.2,
+      "lon": 137.21,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "0C03A88E",
+      "lat": 37.21,
+      "lon": 141.0,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "0C05FE4A",
+      "lat": 35.17,
+      "lon": 138.68,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "0C06E596",
+      "lat": 35.65,
+      "lon": 140.5,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "0C44E476",
+      "lat": 33.56,
+      "lon": 130.34,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "0C451D72",
+      "lat": 35.42,
+      "lon": 132.84,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "0C45215E",
+      "lat": 35.43,
+      "lon": 132.86,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "0C45276E",
+      "lat": 26.21,
+      "lon": 127.68,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "0C452AB6",
+      "lat": 36.32,
+      "lon": 139.84,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "0C45C94A",
+      "lat": 36.65,
+      "lon": 138.31,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+BDS+GAL",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "0C45CA0E",
+      "lat": 42.75,
+      "lon": 143.0,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "0C45CA3A",
+      "lat": 35.99,
+      "lon": 136.13,
+      "country": "JPN",
+      "format": "RTCM 3.1",
+      "constellations": "GPS+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "0C45CA3E",
+      "lat": 44.22,
+      "lon": 143.59,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "0C46D1F6",
+      "lat": 43.72,
+      "lon": 143.75,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "0C8BD2A6",
+      "lat": 43.96,
+      "lon": 142.16,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "0C8BD4BE",
+      "lat": 34.78,
+      "lon": 135.38,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "0CA05A92",
+      "lat": 34.82,
+      "lon": 137.93,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "0CA05B02",
+      "lat": 37.92,
+      "lon": 139.03,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "0CA05B6A",
+      "lat": 33.64,
+      "lon": 132.9,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "0CA08052",
+      "lat": 35.09,
+      "lon": 136.15,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "0CDF89D6",
+      "lat": 43.43,
+      "lon": 141.87,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "103F4E2A",
+      "lat": 34.71,
+      "lon": 137.75,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed",
+        "trust"
+      ]
+    },
+    {
+      "name": "10D85AA2",
+      "lat": 36.1,
+      "lon": 140.0,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed",
+        "trust"
+      ]
+    },
+    {
+      "name": "10D88A2A",
+      "lat": 34.91,
+      "lon": 134.96,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+BDS+GAL",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "10D971AA",
+      "lat": 36.2,
+      "lon": 139.71,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed",
+        "trust"
+      ]
+    },
+    {
+      "name": "10D9789E",
+      "lat": 33.02,
+      "lon": 129.93,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "10DDF152",
+      "lat": 34.5,
+      "lon": 135.71,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "240597EA",
+      "lat": 36.25,
+      "lon": 139.94,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed",
+        "trust"
+      ]
+    },
+    {
+      "name": "24EACD3A",
+      "lat": 34.6,
+      "lon": 138.18,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed",
+        "trust"
+      ]
+    },
+    {
+      "name": "24EAD3BE",
+      "lat": 44.3,
+      "lon": 142.63,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+BDS+GAL",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "24EB90EA",
+      "lat": 34.82,
+      "lon": 137.74,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed",
+        "trust"
+      ]
+    },
+    {
+      "name": "2889FCAA",
+      "lat": 36.43,
+      "lon": 139.28,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "30417632",
+      "lat": 35.96,
+      "lon": 136.09,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+BDS+GAL+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "3041F26E",
+      "lat": 36.39,
+      "lon": 140.37,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "3041F3CA",
+      "lat": 36.1,
+      "lon": 140.08,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "3041F6AE",
+      "lat": 34.25,
+      "lon": 132.53,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "341D6E92",
+      "lat": 35.17,
+      "lon": 136.12,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+BDS+GAL",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "34A3615A",
+      "lat": 33.67,
+      "lon": 130.43,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "34E142AE",
+      "lat": 43.95,
+      "lon": 144.31,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "34E24A9E",
+      "lat": 32.65,
+      "lon": 128.87,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "3879BA1E",
+      "lat": 36.57,
+      "lon": 139.87,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+BDS+GAL+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "387B03C6",
+      "lat": 36.79,
+      "lon": 137.4,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+BDS+GAL+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "3C66B072",
+      "lat": 35.75,
+      "lon": 139.69,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "3C66B9E2",
+      "lat": 35.18,
+      "lon": 136.87,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "3C66CC1E",
+      "lat": 37.45,
+      "lon": 137.36,
+      "country": "JPN",
+      "format": "RTCM 3.1",
+      "constellations": "GPS+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "3C66D5B6",
+      "lat": 34.97,
+      "lon": 138.4,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "3C66E6DA",
+      "lat": 34.35,
+      "lon": 134.88,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "3C66F096",
+      "lat": 35.17,
+      "lon": 137.11,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "3C6701A6",
+      "lat": 24.35,
+      "lon": 124.15,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "3C670D4A",
+      "lat": 33.0,
+      "lon": 131.21,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "3C6773EE",
+      "lat": 36.03,
+      "lon": 139.59,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "3C67AE06",
+      "lat": 36.32,
+      "lon": 139.8,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "3C67E4E6",
+      "lat": 34.86,
+      "lon": 135.53,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "3C67F286",
+      "lat": 36.24,
+      "lon": 139.18,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "3C681C26",
+      "lat": 37.43,
+      "lon": 137.28,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "3C682A76",
+      "lat": 37.95,
+      "lon": 139.97,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "3C682C2E",
+      "lat": 36.85,
+      "lon": 140.77,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "3C68307A",
+      "lat": 35.28,
+      "lon": 139.22,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "3C7203BA",
+      "lat": 33.54,
+      "lon": 133.5,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "3C722D56",
+      "lat": 34.7,
+      "lon": 135.0,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "3C73815A",
+      "lat": 34.53,
+      "lon": 131.5,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "3C7387EE",
+      "lat": 34.17,
+      "lon": 131.47,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "3C9798BA",
+      "lat": 34.61,
+      "lon": 135.8,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "3C97C112",
+      "lat": 35.93,
+      "lon": 139.84,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "3C97C942",
+      "lat": 35.52,
+      "lon": 137.84,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "3C99062E",
+      "lat": 33.25,
+      "lon": 130.71,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "403CD1CE",
+      "lat": 35.86,
+      "lon": 138.34,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "40F1AEA2",
+      "lat": 43.96,
+      "lon": 144.31,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "40F1AF8A",
+      "lat": 33.56,
+      "lon": 133.53,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "40F1B0BE",
+      "lat": 36.7,
+      "lon": 140.71,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "40F1B10E",
+      "lat": 39.53,
+      "lon": 140.58,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "40F1B18A",
+      "lat": 35.5,
+      "lon": 139.49,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "6C101E3A",
+      "lat": 34.84,
+      "lon": 135.71,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "6C101FD2",
+      "lat": 36.56,
+      "lon": 138.83,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "6C10214A",
+      "lat": 35.74,
+      "lon": 139.47,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "6C10215E",
+      "lat": 34.93,
+      "lon": 137.03,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "7080CFF6",
+      "lat": 36.89,
+      "lon": 136.78,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "70816D8E",
+      "lat": 36.63,
+      "lon": 138.15,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "708FE3D6",
+      "lat": 34.6,
+      "lon": 133.88,
+      "country": "JPN",
+      "format": "RTCM 3.1",
+      "constellations": "GPS+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "709001EE",
+      "lat": 34.68,
+      "lon": 131.81,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "70910322",
+      "lat": 34.77,
+      "lon": 132.88,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "709125DA",
+      "lat": 31.94,
+      "lon": 131.43,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "7833013E",
+      "lat": 34.86,
+      "lon": 137.31,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "7833020A",
+      "lat": 36.71,
+      "lon": 138.97,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "7833BB1A",
+      "lat": 34.86,
+      "lon": 137.13,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "7833BBA6",
+      "lat": 47.92,
+      "lon": 106.81,
+      "country": "MNG",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "7835324A",
+      "lat": 34.45,
+      "lon": 134.86,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "783548E2",
+      "lat": 41.61,
+      "lon": 140.42,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "78EC37B2",
+      "lat": 35.25,
+      "lon": 138.91,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed",
+        "trust"
+      ]
+    },
+    {
+      "name": "78EC3856",
+      "lat": 35.39,
+      "lon": 139.56,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "78EC3D02",
+      "lat": 34.74,
+      "lon": 137.78,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed",
+        "trust"
+      ]
+    },
+    {
+      "name": "78EC3D76",
+      "lat": 36.36,
+      "lon": 140.02,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "84DCA68E",
+      "lat": 36.39,
+      "lon": 140.37,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "88AF5342",
+      "lat": 36.34,
+      "lon": 137.87,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "88B25B76",
+      "lat": 35.1,
+      "lon": 137.12,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "88B26366",
+      "lat": 36.82,
+      "lon": 137.44,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "88CFA222",
+      "lat": 34.96,
+      "lon": 137.06,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "88CFD602",
+      "lat": 42.85,
+      "lon": 143.02,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "88D0066A",
+      "lat": 37.35,
+      "lon": 137.24,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "88D0100E",
+      "lat": 34.65,
+      "lon": 133.93,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "88D036A2",
+      "lat": 42.99,
+      "lon": 141.71,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "88D042C2",
+      "lat": 34.13,
+      "lon": 134.53,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "88D0AC12",
+      "lat": 34.28,
+      "lon": 135.37,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "88D0C27E",
+      "lat": 34.64,
+      "lon": 135.06,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "88D0D386",
+      "lat": 33.52,
+      "lon": 133.8,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "88D0FB16",
+      "lat": 36.39,
+      "lon": 139.15,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "88D0FB32",
+      "lat": 36.15,
+      "lon": 139.81,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "88D126A2",
+      "lat": 37.03,
+      "lon": 136.99,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed",
+        "trust"
+      ]
+    },
+    {
+      "name": "8C3529B6",
+      "lat": 36.35,
+      "lon": 139.96,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed",
+        "trust"
+      ]
+    },
+    {
+      "name": "8C354D76",
+      "lat": 42.34,
+      "lon": 141.03,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "9456E88A",
+      "lat": 26.35,
+      "lon": 127.75,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "9457169A",
+      "lat": 36.21,
+      "lon": 139.74,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "94571B96",
+      "lat": 35.35,
+      "lon": 136.96,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "94571E6E",
+      "lat": 36.28,
+      "lon": 139.77,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "94571F96",
+      "lat": 31.49,
+      "lon": 131.06,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "9457208A",
+      "lat": 35.82,
+      "lon": 140.34,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "945720C6",
+      "lat": 35.15,
+      "lon": 136.93,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "94572CBA",
+      "lat": 43.95,
+      "lon": 144.31,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "94572E26",
+      "lat": 38.14,
+      "lon": 140.81,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "945779CE",
+      "lat": 35.48,
+      "lon": 134.19,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "94577A5E",
+      "lat": 33.57,
+      "lon": 133.71,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "94577BF2",
+      "lat": 30.5,
+      "lon": 130.94,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "9458871A",
+      "lat": 36.56,
+      "lon": 138.21,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "980E982E",
+      "lat": 36.77,
+      "lon": 139.75,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "980E98D6",
+      "lat": 43.13,
+      "lon": 141.71,
+      "country": "JPN",
+      "format": "RTCM 3.1",
+      "constellations": "GPS+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "981D5626",
+      "lat": 44.31,
+      "lon": 142.59,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+BDS+GAL",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "981D594A",
+      "lat": 35.71,
+      "lon": 140.21,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+GLO+GAL+BDS",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "981E8A9A",
+      "lat": 39.75,
+      "lon": 141.12,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "981E8AEA",
+      "lat": 40.0,
+      "lon": 139.94,
+      "country": "JPN",
+      "format": "RTCM 3.1",
+      "constellations": "GPS+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "981FD1BE",
+      "lat": 36.28,
+      "lon": 140.08,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "981FD1C2",
+      "lat": 36.52,
+      "lon": 139.75,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "981FD1E2",
+      "lat": 35.42,
+      "lon": 139.53,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "981FD44A",
+      "lat": 39.02,
+      "lon": 141.08,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "98637DC6",
+      "lat": 36.07,
+      "lon": 140.61,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "986685DA",
+      "lat": 36.39,
+      "lon": 140.52,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "98668626",
+      "lat": 43.21,
+      "lon": 145.27,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "98668632",
+      "lat": 35.95,
+      "lon": 139.97,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed",
+        "trust"
+      ]
+    },
+    {
+      "name": "986687B2",
+      "lat": 32.79,
+      "lon": 130.71,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "A47B149A",
+      "lat": 35.49,
+      "lon": 135.77,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+BDS+GAL",
+      "carrier": 2
+    },
+    {
+      "name": "A47B1776",
+      "lat": 36.95,
+      "lon": 140.72,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "A47B17DE",
+      "lat": 34.79,
+      "lon": 132.84,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "A47B181A",
+      "lat": 38.11,
+      "lon": 140.9,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "ACA1D312",
+      "lat": 33.27,
+      "lon": 130.4,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "B-FARM",
+      "lat": 42.95,
+      "lon": 143.05,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL",
+      "carrier": 2
+    },
+    {
+      "name": "B49FE4EA",
+      "lat": 34.75,
+      "lon": 137.75,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed",
+        "trust"
+      ]
+    },
+    {
+      "name": "B49FE586",
+      "lat": 35.56,
+      "lon": 138.46,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed",
+        "trust"
+      ]
+    },
+    {
+      "name": "B49FE59E",
+      "lat": 34.82,
+      "lon": 136.99,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "B49FE5C6",
+      "lat": 35.29,
+      "lon": 139.25,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "B49FE63A",
+      "lat": 26.6,
+      "lon": 128.0,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "B49FE64A",
+      "lat": 39.17,
+      "lon": 140.43,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "B49FE6B2",
+      "lat": 35.18,
+      "lon": 136.71,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "B49FE73E",
+      "lat": 43.85,
+      "lon": 144.71,
+      "country": "JPN",
+      "format": "RTCM 3.1",
+      "constellations": "GPS+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "B49FE766",
+      "lat": 34.82,
+      "lon": 137.81,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed",
+        "trust"
+      ]
+    },
+    {
+      "name": "B49FE776",
+      "lat": 33.59,
+      "lon": 130.38,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed",
+        "trust"
+      ]
+    },
+    {
+      "name": "B49FE7E6",
+      "lat": 36.1,
+      "lon": 139.8,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed",
+        "trust"
+      ]
+    },
+    {
+      "name": "B49FE8C2",
+      "lat": 33.0,
+      "lon": 130.44,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "B49FE912",
+      "lat": 34.67,
+      "lon": 137.71,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed",
+        "trust"
+      ]
+    },
+    {
+      "name": "B49FE922",
+      "lat": 36.96,
+      "lon": 136.87,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed",
+        "trust"
+      ]
+    },
+    {
+      "name": "B49FE92E",
+      "lat": 31.51,
+      "lon": 130.77,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "B49FE93E",
+      "lat": 34.72,
+      "lon": 137.59,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed",
+        "trust"
+      ]
+    },
+    {
+      "name": "B49FE946",
+      "lat": 34.75,
+      "lon": 137.66,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed",
+        "trust"
+      ]
+    },
+    {
+      "name": "B49FE97E",
+      "lat": 35.45,
+      "lon": 132.83,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "B49FE98A",
+      "lat": 35.11,
+      "lon": 138.78,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed",
+        "trust"
+      ]
+    },
+    {
+      "name": "B49FE9DE",
+      "lat": 35.53,
+      "lon": 138.86,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "B49FECBA",
+      "lat": 36.84,
+      "lon": 140.03,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "B49FEE3A",
+      "lat": -6.15,
+      "lon": 106.81,
+      "country": "IDN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "B49FEEA6",
+      "lat": 35.43,
+      "lon": 133.15,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "B4A017E2",
+      "lat": 31.66,
+      "lon": 130.34,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "B814F4E6",
+      "lat": 36.04,
+      "lon": 139.87,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed",
+        "trust"
+      ]
+    },
+    {
+      "name": "B8AF7F8E",
+      "lat": 42.89,
+      "lon": 142.93,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "B8AF85AA",
+      "lat": 32.61,
+      "lon": 128.77,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+BDS+GAL",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "B8B767A2",
+      "lat": 34.59,
+      "lon": 133.84,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "BCDA0C8E",
+      "lat": 36.53,
+      "lon": 140.62,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "BCDA1AFA",
+      "lat": 37.6,
+      "lon": 139.86,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "BCDB1746",
+      "lat": 35.88,
+      "lon": 140.34,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "BCDB1DDE",
+      "lat": 42.92,
+      "lon": 143.03,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "BCDCCF52",
+      "lat": 42.64,
+      "lon": 141.92,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "BCDCD92E",
+      "lat": 36.89,
+      "lon": 140.78,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+GLO+GAL+BDS",
+      "carrier": 2
+    },
+    {
+      "name": "BCDF805E",
+      "lat": 36.22,
+      "lon": 137.87,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+BDS+GAL",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "BCDF8066",
+      "lat": 42.93,
+      "lon": 143.4,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "C468ECEE",
+      "lat": 34.96,
+      "lon": 139.09,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "C468EE0E",
+      "lat": 24.8,
+      "lon": 125.29,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "C468F122",
+      "lat": 34.82,
+      "lon": 138.18,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "C468F2E2",
+      "lat": 35.46,
+      "lon": 136.74,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+BDS+GAL",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "C468F49A",
+      "lat": 34.84,
+      "lon": 136.53,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+BDS+GAL+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "C469004E",
+      "lat": 35.43,
+      "lon": 139.36,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "C4690CDA",
+      "lat": 35.77,
+      "lon": 140.31,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "C469130A",
+      "lat": 35.63,
+      "lon": 136.06,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed",
+        "trust"
+      ]
+    },
+    {
+      "name": "C46A8F56",
+      "lat": 35.5,
+      "lon": 137.49,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "C46A8F6E",
+      "lat": 35.42,
+      "lon": 139.46,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "C46A8F9E",
+      "lat": 35.97,
+      "lon": 138.0,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "C46AE6D2",
+      "lat": 35.99,
+      "lon": 137.21,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+BDS+GAL",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "C46AEC12",
+      "lat": 24.75,
+      "lon": 125.37,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "C46B044A",
+      "lat": 26.67,
+      "lon": 127.9,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "C46B04B6",
+      "lat": 36.64,
+      "lon": 136.63,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "C46B052E",
+      "lat": 35.43,
+      "lon": 139.37,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed",
+        "trust"
+      ]
+    },
+    {
+      "name": "C46B0716",
+      "lat": 35.39,
+      "lon": 132.81,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "C46B07B6",
+      "lat": 35.06,
+      "lon": 136.0,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "C46B07D2",
+      "lat": 34.71,
+      "lon": 137.71,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "C491DEDA",
+      "lat": 34.7,
+      "lon": 134.13,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "C491DF1A",
+      "lat": 36.28,
+      "lon": 140.08,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "C491E016",
+      "lat": 43.82,
+      "lon": 144.09,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "C491E212",
+      "lat": 34.9,
+      "lon": 132.88,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "C491E5C2",
+      "lat": 33.28,
+      "lon": 130.37,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "C4CAE6D2",
+      "lat": 40.0,
+      "lon": 139.94,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "C4CAE992",
+      "lat": 35.78,
+      "lon": 139.41,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+BDS+GAL+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "C82357A2",
+      "lat": 30.73,
+      "lon": 130.84,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "C824353E",
+      "lat": 34.03,
+      "lon": 132.99,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "C82E34EA",
+      "lat": 36.89,
+      "lon": 139.99,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "D4C4D14E",
+      "lat": 34.89,
+      "lon": 139.12,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "E00D57F2",
+      "lat": 42.72,
+      "lon": 142.3,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "E00D57FA",
+      "lat": 34.93,
+      "lon": 132.31,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "E00D5806",
+      "lat": 42.59,
+      "lon": 142.12,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "E86F5982",
+      "lat": 36.14,
+      "lon": 140.24,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed",
+        "trust"
+      ]
+    },
+    {
+      "name": "E86F6D92",
+      "lat": 36.03,
+      "lon": 140.15,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed",
+        "trust"
+      ]
+    },
+    {
+      "name": "E8706F3A",
+      "lat": 38.88,
+      "lon": 140.34,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "E870EE26",
+      "lat": 34.45,
+      "lon": 135.41,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "E8B594D2",
+      "lat": 36.28,
+      "lon": 139.87,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "E8B5A0C6",
+      "lat": 36.32,
+      "lon": 140.11,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed",
+        "trust"
+      ]
+    },
+    {
+      "name": "E8B60F82",
+      "lat": 35.85,
+      "lon": 139.65,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed",
+        "trust"
+      ]
+    },
+    {
+      "name": "E8B618BA",
+      "lat": 34.71,
+      "lon": 137.53,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed",
+        "trust"
+      ]
+    },
+    {
+      "name": "E8B61C12",
+      "lat": 34.7,
+      "lon": 137.65,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed",
+        "trust"
+      ]
+    },
+    {
+      "name": "E8B622D2",
+      "lat": 33.32,
+      "lon": 130.93,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+GLO+GAL+BDS",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "E8B642FA",
+      "lat": 43.21,
+      "lon": 145.27,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "E8B6431A",
+      "lat": 36.21,
+      "lon": 140.03,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed",
+        "trust"
+      ]
+    },
+    {
+      "name": "E8BA999A",
+      "lat": 34.85,
+      "lon": 137.06,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "ECBEBB02",
+      "lat": 39.04,
+      "lon": 140.44,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "JF_HANI1",
+      "lat": 35.32,
+      "lon": 137.93,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "JF_HANI2",
+      "lat": 35.54,
+      "lon": 137.9,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "JF_KAMIINA",
+      "lat": 35.81,
+      "lon": 137.94,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "JF_KISO",
+      "lat": 35.93,
+      "lon": 137.62,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "JF_KITA-ALPS",
+      "lat": 36.53,
+      "lon": 137.84,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed",
+        "trust"
+      ]
+    },
+    {
+      "name": "JF_KITASHINSHU",
+      "lat": 36.78,
+      "lon": 138.34,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "JF_KITASHINSHU2",
+      "lat": 36.78,
+      "lon": 138.43,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "JF_MATSUMOTO3",
+      "lat": 36.1,
+      "lon": 137.93,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "JF_SAKU",
+      "lat": 36.31,
+      "lon": 138.44,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "JF_SAKUCHUBU",
+      "lat": 36.11,
+      "lon": 138.46,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "JF_SAKUNANBU",
+      "lat": 35.96,
+      "lon": 138.58,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "JF_SANADA",
+      "lat": 36.5,
+      "lon": 138.34,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "JF_SUWA",
+      "lat": 35.99,
+      "lon": 138.15,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "JF_WAGO",
+      "lat": 35.32,
+      "lon": 137.75,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "JP_BIZSTATION",
+      "lat": 36.21,
+      "lon": 137.96,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "NAKATSUGAWA_F",
+      "lat": 35.59,
+      "lon": 137.46,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    },
+    {
+      "name": "SZOK01",
+      "lat": 34.75,
+      "lon": 138.77,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+GLONASS",
+      "carrier": 2,
+      "groups": [
+        "fixed",
+        "trust"
+      ]
+    },
+    {
+      "name": "SZOK02",
+      "lat": 35.09,
+      "lon": 138.93,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+GLONASS",
+      "carrier": 2,
+      "groups": [
+        "fixed",
+        "trust"
+      ]
+    },
+    {
+      "name": "SZOK03",
+      "lat": 34.97,
+      "lon": 138.94,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+GLONASS",
+      "carrier": 2,
+      "groups": [
+        "fixed",
+        "trust"
+      ]
+    },
+    {
+      "name": "SZOK04",
+      "lat": 34.68,
+      "lon": 138.95,
+      "country": "JPN",
+      "groups": [
+        "fixed",
+        "trust"
+      ]
+    },
+    {
+      "name": "SZOK05",
+      "lat": 35.16,
+      "lon": 138.68,
+      "country": "JPN",
+      "groups": [
+        "fixed",
+        "trust"
+      ]
+    },
+    {
+      "name": "SZOK06",
+      "lat": 34.94,
+      "lon": 139.07,
+      "country": "JPN",
+      "groups": [
+        "fixed",
+        "trust"
+      ]
+    },
+    {
+      "name": "SZOK07",
+      "lat": 35.16,
+      "lon": 138.86,
+      "country": "JPN",
+      "groups": [
+        "fixed",
+        "trust"
+      ]
+    },
+    {
+      "name": "SZOK08",
+      "lat": 34.93,
+      "lon": 138.08,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed",
+        "trust"
+      ]
+    },
+    {
+      "name": "SZOK09",
+      "lat": 34.74,
+      "lon": 137.91,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed",
+        "trust"
+      ]
+    },
+    {
+      "name": "SZOK10",
+      "lat": 34.84,
+      "lon": 138.21,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed",
+        "trust"
+      ]
+    },
+    {
+      "name": "SZOK13",
+      "lat": 35.36,
+      "lon": 138.56,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed",
+        "trust"
+      ]
+    },
+    {
+      "name": "SZOK14",
+      "lat": 35.21,
+      "lon": 138.24,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed",
+        "trust"
+      ]
+    },
+    {
+      "name": "SZOK15",
+      "lat": 35.1,
+      "lon": 138.47,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed",
+        "trust"
+      ]
+    },
+    {
+      "name": "SZOK16",
+      "lat": 34.92,
+      "lon": 138.37,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed",
+        "trust"
+      ]
+    },
+    {
+      "name": "SZOK17",
+      "lat": 35.1,
+      "lon": 138.13,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed",
+        "trust"
+      ]
+    },
+    {
+      "name": "SZOK18",
+      "lat": 34.89,
+      "lon": 137.81,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed",
+        "trust"
+      ]
+    },
+    {
+      "name": "SZOK19",
+      "lat": 35.15,
+      "lon": 137.87,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed",
+        "trust"
+      ]
+    },
+    {
+      "name": "SZOK20",
+      "lat": 34.97,
+      "lon": 137.9,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed",
+        "trust"
+      ]
+    },
+    {
+      "name": "SZOK21",
+      "lat": 34.82,
+      "lon": 137.68,
+      "country": "JPN",
+      "format": "RTCM 3.2",
+      "constellations": "GPS+QZS+GAL+GLO",
+      "carrier": 2
+    },
+    {
+      "name": "THE_WAY_BRIGHT",
+      "lat": 33.42,
+      "lon": 129.99,
+      "country": "JPN",
+      "format": "RTCM 3.3",
+      "constellations": "GPS+BDS+GAL+GLO",
+      "carrier": 2,
+      "groups": [
+        "fixed"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "last_updated": "2026-11-15T12:00:16+00:00",
+  "scraper_version": "743d63054999",
+  "source_url": "https://gis.us.fo/arcgis/rest/services/fixpunkt/us_fixpunktir/MapServer/27",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "ARGI",
+      "lat": 61.997367,
+      "lon": -6.783527,
+      "country": "FRO"
+    },
+    {
+      "name": "KLAV",
+      "lat": 62.226354,
+      "lon": -6.586773,
+      "country": "FRO"
+    },
+    {
+      "name": "TRON",
+      "lat": 61.563919,
+      "lon": -6.845899,
+      "country": "FRO"
+    },
+    {
+      "name": "VEST",
+      "lat": 62.153591,
+      "lon": -7.149568,
+      "country": "FRO"
+    }
+  ]
+}

@@ -1,0 +1,143 @@
+{
+  "last_updated": "2026-11-20T18:16:47+00:00",
+  "scraper_version": "10eb25a72419",
+  "source_url": "https://www.gnssdata.or.kr/map/getCorsList.json",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "DBON-RTCM23",
+      "lat": 37.65820058,
+      "lon": 127.05111539,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLO"
+    },
+    {
+      "name": "DBON-RTCM31",
+      "lat": 37.65820058,
+      "lon": 127.05111539,
+      "country": "KOR",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO"
+    },
+    {
+      "name": "DBON-RTCM32",
+      "lat": 37.65820058,
+      "lon": 127.05111539,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+QZS"
+    },
+    {
+      "name": "GANS-RTCM23",
+      "lat": 37.54251825,
+      "lon": 126.83832731,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLO"
+    },
+    {
+      "name": "GANS-RTCM31",
+      "lat": 37.54251825,
+      "lon": 126.83832731,
+      "country": "KOR",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO"
+    },
+    {
+      "name": "GANS-RTCM32",
+      "lat": 37.54251825,
+      "lon": 126.83832731,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+QZS"
+    },
+    {
+      "name": "GUMC-RTCM23",
+      "lat": 37.45888972,
+      "lon": 126.90610481,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLO"
+    },
+    {
+      "name": "GUMC-RTCM31",
+      "lat": 37.45888972,
+      "lon": 126.90610481,
+      "country": "KOR",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO"
+    },
+    {
+      "name": "GUMC-RTCM32",
+      "lat": 37.45888972,
+      "lon": 126.90610481,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+QZS"
+    },
+    {
+      "name": "SONP-RTCM23",
+      "lat": 37.49049647,
+      "lon": 127.14303689,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLO"
+    },
+    {
+      "name": "SONP-RTCM31",
+      "lat": 37.49049647,
+      "lon": 127.14303689,
+      "country": "KOR",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO"
+    },
+    {
+      "name": "SONP-RTCM32",
+      "lat": 37.49049647,
+      "lon": 127.14303689,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+QZS"
+    },
+    {
+      "name": "YONS-RTCM23",
+      "lat": 37.54112211,
+      "lon": 127.00134461,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLO"
+    },
+    {
+      "name": "YONS-RTCM31",
+      "lat": 37.54112211,
+      "lon": 127.00134461,
+      "country": "KOR",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO"
+    },
+    {
+      "name": "YONS-RTCM32",
+      "lat": 37.54112211,
+      "lon": 127.00134461,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+QZS"
+    }
+  ]
+}

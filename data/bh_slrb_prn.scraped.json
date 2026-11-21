@@ -1,0 +1,62 @@
+{
+  "last_updated": "2026-11-15T12:00:16+00:00",
+  "scraper_version": "2996772e9bed",
+  "source_url": "http://82.194.61.180/SBC/User/SiteMap/SiteMapPublic",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "BUDY",
+      "lat": 26.213894,
+      "lon": 50.440753,
+      "country": "BHR"
+    },
+    {
+      "name": "CASW",
+      "lat": 26.183393,
+      "lon": 50.331007,
+      "country": "BHR"
+    },
+    {
+      "name": "CENT",
+      "lat": 26.202264,
+      "lon": 50.589278,
+      "country": "BHR"
+    },
+    {
+      "name": "DURT",
+      "lat": 25.836823,
+      "lon": 50.586339,
+      "country": "BHR"
+    },
+    {
+      "name": "DYAR",
+      "lat": 26.2945,
+      "lon": 50.643281,
+      "country": "BHR"
+    },
+    {
+      "name": "HAWR",
+      "lat": 25.650923,
+      "lon": 50.74214,
+      "country": "BHR"
+    },
+    {
+      "name": "JAUU",
+      "lat": 26.005115,
+      "lon": 50.620074,
+      "country": "BHR"
+    },
+    {
+      "name": "RIFA",
+      "lat": 26.120559,
+      "lon": 50.552329,
+      "country": "BHR"
+    },
+    {
+      "name": "SCOT",
+      "lat": 25.955177,
+      "lon": 50.461378,
+      "country": "BHR"
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "last_updated": "2026-11-15T12:00:15+00:00",
+  "scraper_version": "49375810cb6e",
+  "source_url": "http://ergnss-tr.ign.es:2102/",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "ALSA",
+      "lat": "42.89",
+      "lon": "-2.16",
+      "country": "ESP"
+    },
+    {
+      "name": "HOND",
+      "lat": "43.38",
+      "lon": "-1.80",
+      "country": "ESP"
+    },
+    {
+      "name": "LEIT",
+      "lat": "43.08",
+      "lon": "-1.91",
+      "country": "ESP"
+    },
+    {
+      "name": "ORON",
+      "lat": "43.14",
+      "lon": "-1.61",
+      "country": "ESP"
+    },
+    {
+      "name": "VITO",
+      "lat": "42.84",
+      "lon": "-2.67",
+      "country": "ESP"
+    },
+    {
+      "name": "BRZR",
+      "lat": 43.07,
+      "lon": -2.71,
+      "country": "ESP"
+    },
+    {
+      "name": "GERN",
+      "lat": 43.32,
+      "lon": -2.68,
+      "country": "ESP"
+    },
+    {
+      "name": "BIAZ",
+      "lat": 43.47,
+      "lon": -1.54,
+      "country": "FRA"
+    },
+    {
+      "name": "SCOA",
+      "lat": 43.39,
+      "lon": -1.68,
+      "country": "FRA"
+    }
+  ]
+}

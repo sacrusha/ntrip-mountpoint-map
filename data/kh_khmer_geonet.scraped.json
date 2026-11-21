@@ -1,0 +1,41 @@
+{
+  "last_updated": "2026-11-20T18:16:47+00:00",
+  "scraper_version": "3959f12d671f",
+  "source_url": "http://cgd09.khmergeonet.xyz:8080/TrimblePivotWeb/Map/SensorMap.aspx/GetSensorListWithConfiguration",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "KND1",
+      "lat": 11.358086,
+      "lon": 105.007857,
+      "country": "KHM",
+      "groups": [
+        "vrs"
+      ]
+    },
+    {
+      "name": "KSP1",
+      "lat": 11.474592,
+      "lon": 104.570645,
+      "country": "KHM",
+      "groups": [
+        "vrs"
+      ]
+    },
+    {
+      "name": "PNH1",
+      "lat": 11.629761,
+      "lon": 104.87242,
+      "country": "KHM",
+      "groups": [
+        "vrs"
+      ]
+    },
+    {
+      "name": "STG1",
+      "lat": 13.520633,
+      "lon": 105.972543,
+      "country": "KHM"
+    }
+  ]
+}

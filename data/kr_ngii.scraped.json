@@ -1,0 +1,566 @@
+{
+  "last_updated": "2026-11-20T18:16:47+00:00",
+  "scraper_version": "10eb25a72419",
+  "source_url": "https://www.gnssdata.or.kr/map/getCorsList.json",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "ANHN",
+      "lat": 36.67365531,
+      "lon": 126.13499883,
+      "country": "KOR"
+    },
+    {
+      "name": "BOEN",
+      "lat": 36.48836836,
+      "lon": 127.73026689,
+      "country": "KOR"
+    },
+    {
+      "name": "BONH",
+      "lat": 36.9440105,
+      "lon": 128.9145195,
+      "country": "KOR"
+    },
+    {
+      "name": "CCSB",
+      "lat": 37.94756992,
+      "lon": 127.75492647,
+      "country": "KOR"
+    },
+    {
+      "name": "CHEN",
+      "lat": 36.87800867,
+      "lon": 127.15525267,
+      "country": "KOR"
+    },
+    {
+      "name": "CHJU",
+      "lat": 33.51392644,
+      "lon": 126.52982003,
+      "country": "KOR"
+    },
+    {
+      "name": "CHLW",
+      "lat": 38.16448253,
+      "lon": 127.41524433,
+      "country": "KOR"
+    },
+    {
+      "name": "CHNG",
+      "lat": 35.53331125,
+      "lon": 128.47806039,
+      "country": "KOR"
+    },
+    {
+      "name": "CHSG",
+      "lat": 36.43562833,
+      "lon": 129.05634597,
+      "country": "KOR"
+    },
+    {
+      "name": "CHUL",
+      "lat": 38.27326819,
+      "lon": 127.14521192,
+      "country": "KOR"
+    },
+    {
+      "name": "CHWN",
+      "lat": 35.23612092,
+      "lon": 128.69299464,
+      "country": "KOR"
+    },
+    {
+      "name": "CHYG",
+      "lat": 36.45890194,
+      "lon": 126.80149514,
+      "country": "KOR"
+    },
+    {
+      "name": "CNJU",
+      "lat": 36.62689456,
+      "lon": 127.46122706,
+      "country": "KOR"
+    },
+    {
+      "name": "DAMY",
+      "lat": 35.23584715,
+      "lon": 127.01646613,
+      "country": "KOR"
+    },
+    {
+      "name": "DANG",
+      "lat": 34.09815225,
+      "lon": 126.60275325,
+      "country": "KOR"
+    },
+    {
+      "name": "DANJ",
+      "lat": 36.89241978,
+      "lon": 126.82304625,
+      "country": "KOR"
+    },
+    {
+      "name": "DOND",
+      "lat": 37.90205256,
+      "lon": 127.06074006,
+      "country": "KOR"
+    },
+    {
+      "name": "DONH",
+      "lat": 37.50698525,
+      "lon": 129.12420347,
+      "country": "KOR"
+    },
+    {
+      "name": "EOCH",
+      "lat": 36.12520489,
+      "lon": 125.96847922,
+      "country": "KOR"
+    },
+    {
+      "name": "GAGE",
+      "lat": 34.09489561,
+      "lon": 125.09891694,
+      "country": "KOR"
+    },
+    {
+      "name": "GANH",
+      "lat": 37.71937875,
+      "lon": 126.39024044,
+      "country": "KOR"
+    },
+    {
+      "name": "GEOM",
+      "lat": 34.00763689,
+      "lon": 127.32229936,
+      "country": "KOR"
+    },
+    {
+      "name": "GNGJ",
+      "lat": 37.72349314,
+      "lon": 128.85345734,
+      "country": "KOR"
+    },
+    {
+      "name": "GOCH",
+      "lat": 35.66790108,
+      "lon": 127.94333106,
+      "country": "KOR"
+    },
+    {
+      "name": "GOHG",
+      "lat": 34.56579091,
+      "lon": 127.25801031,
+      "country": "KOR"
+    },
+    {
+      "name": "GOJE",
+      "lat": 34.72178692,
+      "lon": 128.59086922,
+      "country": "KOR"
+    },
+    {
+      "name": "GOSG",
+      "lat": 34.98066372,
+      "lon": 128.30770497,
+      "country": "KOR"
+    },
+    {
+      "name": "GSAN",
+      "lat": 36.81616542,
+      "lon": 127.78678989,
+      "country": "KOR"
+    },
+    {
+      "name": "GYOI",
+      "lat": 35.67360455,
+      "lon": 129.2886171,
+      "country": "KOR"
+    },
+    {
+      "name": "HADG",
+      "lat": 35.16241633,
+      "lon": 127.70923481,
+      "country": "KOR"
+    },
+    {
+      "name": "HCHN",
+      "lat": 38.3080895,
+      "lon": 127.67954422,
+      "country": "KOR"
+    },
+    {
+      "name": "HCSN",
+      "lat": 38.06291335,
+      "lon": 127.52425035,
+      "country": "KOR"
+    },
+    {
+      "name": "HGDO",
+      "lat": 34.71125722,
+      "lon": 125.20443628,
+      "country": "KOR"
+    },
+    {
+      "name": "HOMI",
+      "lat": 36.07801114,
+      "lon": 129.5666855,
+      "country": "KOR"
+    },
+    {
+      "name": "HONC",
+      "lat": 37.70916089,
+      "lon": 128.19432497,
+      "country": "KOR"
+    },
+    {
+      "name": "ICHN",
+      "lat": 37.11740369,
+      "lon": 127.6130355,
+      "country": "KOR"
+    },
+    {
+      "name": "INCH",
+      "lat": 37.41985772,
+      "lon": 126.68643897,
+      "country": "KOR"
+    },
+    {
+      "name": "INJE",
+      "lat": 38.06946364,
+      "lon": 128.17079456,
+      "country": "KOR"
+    },
+    {
+      "name": "JAHG",
+      "lat": 34.67534883,
+      "lon": 126.89957094,
+      "country": "KOR"
+    },
+    {
+      "name": "JANS",
+      "lat": 35.64163038,
+      "lon": 127.52223179,
+      "country": "KOR"
+    },
+    {
+      "name": "JECH",
+      "lat": 36.90977234,
+      "lon": 128.16591826,
+      "country": "KOR"
+    },
+    {
+      "name": "JEOJ",
+      "lat": 38.55207708,
+      "lon": 128.39874406,
+      "country": "KOR"
+    },
+    {
+      "name": "JIND",
+      "lat": 34.47199397,
+      "lon": 126.32373189,
+      "country": "KOR"
+    },
+    {
+      "name": "JINJ",
+      "lat": 35.17308714,
+      "lon": 128.04967447,
+      "country": "KOR"
+    },
+    {
+      "name": "JSUN",
+      "lat": 37.36938136,
+      "lon": 128.68463942,
+      "country": "KOR"
+    },
+    {
+      "name": "JUNG",
+      "lat": 35.62276622,
+      "lon": 126.97402847,
+      "country": "KOR"
+    },
+    {
+      "name": "JUNJ",
+      "lat": 35.843452,
+      "lon": 127.13512492,
+      "country": "KOR"
+    },
+    {
+      "name": "KIMC",
+      "lat": 36.13739828,
+      "lon": 128.14229222,
+      "country": "KOR"
+    },
+    {
+      "name": "KUNW",
+      "lat": 36.23347936,
+      "lon": 128.57423969,
+      "country": "KOR"
+    },
+    {
+      "name": "KUSN",
+      "lat": 36.00547153,
+      "lon": 126.76155064,
+      "country": "KOR"
+    },
+    {
+      "name": "KWNJ",
+      "lat": 35.17837539,
+      "lon": 126.91023678,
+      "country": "KOR"
+    },
+    {
+      "name": "MARA",
+      "lat": 33.11693114,
+      "lon": 126.269144,
+      "country": "KOR"
+    },
+    {
+      "name": "MUAN",
+      "lat": 34.81743119,
+      "lon": 126.46622592,
+      "country": "KOR"
+    },
+    {
+      "name": "MUJU",
+      "lat": 36.00328792,
+      "lon": 127.66117458,
+      "country": "KOR"
+    },
+    {
+      "name": "MYSO",
+      "lat": 35.50179417,
+      "lon": 128.81576549,
+      "country": "KOR"
+    },
+    {
+      "name": "NAMH",
+      "lat": 34.72387659,
+      "lon": 127.98166891,
+      "country": "KOR"
+    },
+    {
+      "name": "NAMW",
+      "lat": 35.42304639,
+      "lon": 127.39617378,
+      "country": "KOR"
+    },
+    {
+      "name": "NAMY",
+      "lat": 37.71999201,
+      "lon": 127.30003955,
+      "country": "KOR"
+    },
+    {
+      "name": "NSAN",
+      "lat": 36.19416406,
+      "lon": 127.11232244,
+      "country": "KOR"
+    },
+    {
+      "name": "PAJU",
+      "lat": 37.74640647,
+      "lon": 126.73789803,
+      "country": "KOR"
+    },
+    {
+      "name": "PCHN",
+      "lat": 37.53466797,
+      "lon": 128.44604398,
+      "country": "KOR"
+    },
+    {
+      "name": "POCN",
+      "lat": 38.01858181,
+      "lon": 127.19097024,
+      "country": "KOR"
+    },
+    {
+      "name": "PSJA",
+      "lat": 35.38218819,
+      "lon": 129.24873601,
+      "country": "KOR"
+    },
+    {
+      "name": "PUSN",
+      "lat": 35.23393756,
+      "lon": 129.07484489,
+      "country": "KOR"
+    },
+    {
+      "name": "SEJN",
+      "lat": 36.52221339,
+      "lon": 127.30318989,
+      "country": "KOR"
+    },
+    {
+      "name": "SEOS",
+      "lat": 36.77640911,
+      "lon": 126.49420269,
+      "country": "KOR"
+    },
+    {
+      "name": "SIAN",
+      "lat": 34.78689093,
+      "lon": 126.148148,
+      "country": "KOR"
+    },
+    {
+      "name": "SMAN",
+      "lat": 35.73027475,
+      "lon": 126.52793894,
+      "country": "KOR"
+    },
+    {
+      "name": "SNJU",
+      "lat": 36.3791645,
+      "lon": 128.14447714,
+      "country": "KOR"
+    },
+    {
+      "name": "SONC",
+      "lat": 34.95748208,
+      "lon": 127.48613492,
+      "country": "KOR"
+    },
+    {
+      "name": "SORI",
+      "lat": 34.41188592,
+      "lon": 127.80106353,
+      "country": "KOR"
+    },
+    {
+      "name": "SOUL",
+      "lat": 37.61855197,
+      "lon": 127.09834817,
+      "country": "KOR"
+    },
+    {
+      "name": "SSAN",
+      "lat": 33.46780458,
+      "lon": 126.90471344,
+      "country": "KOR"
+    },
+    {
+      "name": "SUNJ",
+      "lat": 35.91407613,
+      "lon": 128.25612763,
+      "country": "KOR"
+    },
+    {
+      "name": "SUWN",
+      "lat": 37.27551469,
+      "lon": 127.05424019,
+      "country": "KOR"
+    },
+    {
+      "name": "TABK",
+      "lat": 37.16364592,
+      "lon": 128.98607856,
+      "country": "KOR"
+    },
+    {
+      "name": "TEGN",
+      "lat": 35.90630656,
+      "lon": 128.80196742,
+      "country": "KOR"
+    },
+    {
+      "name": "ULLE",
+      "lat": 37.518413,
+      "lon": 130.79770558,
+      "country": "KOR"
+    },
+    {
+      "name": "WNDO",
+      "lat": 34.33536999,
+      "lon": 126.74282646,
+      "country": "KOR"
+    },
+    {
+      "name": "WNJU",
+      "lat": 37.33720708,
+      "lon": 127.94708853,
+      "country": "KOR"
+    },
+    {
+      "name": "WOLS",
+      "lat": 35.50394672,
+      "lon": 129.41601483,
+      "country": "KOR"
+    },
+    {
+      "name": "WSSN",
+      "lat": 35.54542039,
+      "lon": 129.1189628,
+      "country": "KOR"
+    },
+    {
+      "name": "WULJ",
+      "lat": 36.99197653,
+      "lon": 129.41299553,
+      "country": "KOR"
+    },
+    {
+      "name": "YANJ",
+      "lat": 37.69689373,
+      "lon": 126.93162227,
+      "country": "KOR"
+    },
+    {
+      "name": "YANP",
+      "lat": 37.45418892,
+      "lon": 127.50562292,
+      "country": "KOR"
+    },
+    {
+      "name": "YCHG",
+      "lat": 35.98087475,
+      "lon": 129.10643009,
+      "country": "KOR"
+    },
+    {
+      "name": "YDKG",
+      "lat": 36.36295154,
+      "lon": 129.39043655,
+      "country": "KOR"
+    },
+    {
+      "name": "YECH",
+      "lat": 36.65145894,
+      "lon": 128.44633767,
+      "country": "KOR"
+    },
+    {
+      "name": "YEOJ",
+      "lat": 37.27857494,
+      "lon": 127.57830358,
+      "country": "KOR"
+    },
+    {
+      "name": "YODK",
+      "lat": 36.5334615,
+      "lon": 129.40905083,
+      "country": "KOR"
+    },
+    {
+      "name": "YONK",
+      "lat": 35.27858319,
+      "lon": 126.5164705,
+      "country": "KOR"
+    },
+    {
+      "name": "YOWL",
+      "lat": 37.18251822,
+      "lon": 128.46181328,
+      "country": "KOR"
+    },
+    {
+      "name": "YYAN",
+      "lat": 38.10509645,
+      "lon": 128.64039118,
+      "country": "KOR"
+    }
+  ]
+}

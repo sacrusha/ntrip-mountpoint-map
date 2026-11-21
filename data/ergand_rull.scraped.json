@@ -1,0 +1,26 @@
+{
+  "last_updated": "2026-11-20T18:16:47+00:00",
+  "scraper_version": "80be7072188b",
+  "source_url": "http://194.158.95.189:2101/",
+  "pin_origin": "ntrip",
+  "stations": [
+    {
+      "name": "RTCM3",
+      "lat": 42.504901,
+      "lon": 1.519481,
+      "format": "RTCM3",
+      "constellations": "GPSGLO",
+      "country": "AND",
+      "carrier": 2
+    },
+    {
+      "name": "RTCM32",
+      "lat": 42.504901,
+      "lon": 1.519481,
+      "format": "RTCM32",
+      "constellations": "GPSGLOGALBDS",
+      "country": "AND",
+      "carrier": 3
+    }
+  ]
+}

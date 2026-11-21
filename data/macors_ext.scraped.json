@@ -1,0 +1,104 @@
+{
+  "last_updated": "2026-11-15T12:00:16+00:00",
+  "scraper_version": "61985eb21630",
+  "source_url": "https://services2.arcgis.com/C8EMgrsFcRFL6LrL/arcgis/rest/services/NOAA_CORS_Network_Test/FeatureServer/0",
+  "pin_origin": "external",
+  "stations": [
+    {
+      "name": "MABN",
+      "lat": 42.67,
+      "lon": -72.541111,
+      "country": "USA"
+    },
+    {
+      "name": "MACM",
+      "lat": 41.691111,
+      "lon": -69.966944,
+      "country": "USA"
+    },
+    {
+      "name": "MADA",
+      "lat": 41.639444,
+      "lon": -71.028056,
+      "country": "USA"
+    },
+    {
+      "name": "MAFA",
+      "lat": 41.619722,
+      "lon": -70.540833,
+      "country": "USA"
+    },
+    {
+      "name": "MAMI",
+      "lat": 42.271944,
+      "lon": -71.048611,
+      "country": "USA"
+    },
+    {
+      "name": "MAMV",
+      "lat": 41.350124,
+      "lon": -70.763795,
+      "country": "USA"
+    },
+    {
+      "name": "MANT",
+      "lat": 41.269444,
+      "lon": -70.083333,
+      "country": "USA"
+    },
+    {
+      "name": "MAPL",
+      "lat": 41.938611,
+      "lon": -70.655,
+      "country": "USA"
+    },
+    {
+      "name": "MASA",
+      "lat": 42.8625,
+      "lon": -70.89,
+      "country": "USA"
+    },
+    {
+      "name": "MASB",
+      "lat": 42.111389,
+      "lon": -72.086944,
+      "country": "USA"
+    },
+    {
+      "name": "MASH",
+      "lat": 42.140278,
+      "lon": -73.364167,
+      "country": "USA"
+    },
+    {
+      "name": "MATB",
+      "lat": 42.63,
+      "lon": -71.271389,
+      "country": "USA"
+    },
+    {
+      "name": "MATU",
+      "lat": 41.980833,
+      "lon": -70.043333,
+      "country": "USA"
+    },
+    {
+      "name": "MAWM",
+      "lat": 42.561111,
+      "lon": -71.933056,
+      "country": "USA"
+    },
+    {
+      "name": "MAWR",
+      "lat": 42.041667,
+      "lon": -71.304167,
+      "country": "USA"
+    },
+    {
+      "name": "MAWT",
+      "lat": 42.639245,
+      "lon": -73.227175,
+      "country": "USA"
+    }
+  ]
+}

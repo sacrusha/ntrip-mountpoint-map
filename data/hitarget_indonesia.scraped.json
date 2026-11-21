@@ -1,0 +1,152 @@
+{
+  "last_updated": "2026-11-20T18:16:47+00:00",
+  "scraper_version": "fb3e18e711e8",
+  "source_url": "https://hitargetindonesia.net/wp-content/uploads/cors-hi-target-indonesia.html",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "11390028",
+      "lat": 1.10257,
+      "lon": 104.09144,
+      "country": "IDN",
+      "format": "RTCM 3",
+      "carrier": 3,
+      "constellations": "GPS+GLO+GAL+BDS+QZSS"
+    },
+    {
+      "name": "11390030",
+      "lat": 3.52413,
+      "lon": 98.69185,
+      "country": "IDN",
+      "format": "RTCM 3",
+      "carrier": 3,
+      "constellations": "GPS+GLO+GAL+BDS+QZSS"
+    },
+    {
+      "name": "11390047",
+      "lat": -7.38601,
+      "lon": 112.71926,
+      "country": "IDN",
+      "format": "RTCM 3",
+      "carrier": 3,
+      "constellations": "GPS+GLO+GAL+BDS+QZSS"
+    },
+    {
+      "name": "11390053",
+      "lat": -7.78274,
+      "lon": 110.34332,
+      "country": "IDN",
+      "format": "RTCM 3",
+      "carrier": 3,
+      "constellations": "GPS+GLO+GAL+BDS+QZSS"
+    },
+    {
+      "name": "11390060",
+      "lat": -6.30896,
+      "lon": 107.17024,
+      "country": "IDN",
+      "format": "RTCM 3",
+      "carrier": 3,
+      "constellations": "GPS+GLO+GAL+BDS+QZSS"
+    },
+    {
+      "name": "11390338",
+      "lat": -5.06247,
+      "lon": 119.52533,
+      "country": "IDN",
+      "format": "RTCM 3",
+      "carrier": 3,
+      "constellations": "GPS+GLO+GAL+BDS+QZSS"
+    },
+    {
+      "name": "11390355",
+      "lat": -3.42845,
+      "lon": 114.69511,
+      "country": "IDN",
+      "format": "RTCM 3",
+      "carrier": 3,
+      "constellations": "GPS+GLO+GAL+BDS+QZSS"
+    },
+    {
+      "name": "11390369",
+      "lat": -6.59946,
+      "lon": 106.81178,
+      "country": "IDN",
+      "format": "RTCM 3",
+      "carrier": 3,
+      "constellations": "GPS+GLO+GAL+BDS+QZSS"
+    },
+    {
+      "name": "11390377",
+      "lat": 1.53711,
+      "lon": 124.90314,
+      "country": "IDN",
+      "format": "RTCM 3",
+      "carrier": 3,
+      "constellations": "GPS+GLO+GAL+BDS+QZSS"
+    },
+    {
+      "name": "11390404",
+      "lat": -0.46308,
+      "lon": 117.16729,
+      "country": "IDN",
+      "format": "RTCM 3",
+      "carrier": 3,
+      "constellations": "GPS+GLO+GAL+BDS+QZSS"
+    },
+    {
+      "name": "11390425",
+      "lat": -2.9378,
+      "lon": 104.68927,
+      "country": "IDN",
+      "format": "RTCM 3",
+      "carrier": 3,
+      "constellations": "GPS+GLO+GAL+BDS+QZSS"
+    },
+    {
+      "name": "11390545",
+      "lat": -6.96376,
+      "lon": 107.63916,
+      "country": "IDN",
+      "format": "RTCM 3",
+      "carrier": 3,
+      "constellations": "GPS+GLO+GAL+BDS+QZSS"
+    },
+    {
+      "name": "11390556",
+      "lat": -6.88688,
+      "lon": 107.5282,
+      "country": "IDN",
+      "format": "RTCM 3",
+      "carrier": 3,
+      "constellations": "GPS+GLO+GAL+BDS+QZSS"
+    },
+    {
+      "name": "11390564",
+      "lat": -6.8613,
+      "lon": 107.59208,
+      "country": "IDN",
+      "format": "RTCM 3",
+      "carrier": 3,
+      "constellations": "GPS+GLO+GAL+BDS+QZSS"
+    },
+    {
+      "name": "11390673",
+      "lat": -5.36429,
+      "lon": 105.24304,
+      "country": "IDN",
+      "format": "RTCM 3",
+      "carrier": 3,
+      "constellations": "GPS+GLO+GAL+BDS+QZSS"
+    },
+    {
+      "name": "11390706",
+      "lat": -6.89814,
+      "lon": 107.63581,
+      "country": "IDN",
+      "format": "RTCM 3",
+      "carrier": 3,
+      "constellations": "GPS+GLO+GAL+BDS+QZSS"
+    }
+  ]
+}

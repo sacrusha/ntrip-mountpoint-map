@@ -1,0 +1,98 @@
+{
+  "last_updated": "2026-11-20T18:16:47+00:00",
+  "scraper_version": "3959f12d671f",
+  "source_url": "http://www.bfcors.net/Map/SensorMap.aspx/GetSensorListWithConfiguration",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "BAMA_RTCM31",
+      "lat": 11.373706,
+      "lon": -4.380147,
+      "country": "BFA",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO"
+    },
+    {
+      "name": "BF01_RTCM31",
+      "lat": 12.427286,
+      "lon": -1.387311,
+      "country": "BFA",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO"
+    },
+    {
+      "name": "BOBO_RTCM31",
+      "lat": 11.158008,
+      "lon": -4.204211,
+      "country": "BFA",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO"
+    },
+    {
+      "name": "DIEB_RTCM31",
+      "lat": 10.962685,
+      "lon": -3.233435,
+      "country": "BFA",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO"
+    },
+    {
+      "name": "GAOA_RTCM31",
+      "lat": 10.328386,
+      "lon": -3.192382,
+      "country": "BFA",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO"
+    },
+    {
+      "name": "IGB0_RTCM31",
+      "lat": 12.373619,
+      "lon": -1.513829,
+      "country": "BFA",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO"
+    },
+    {
+      "name": "IGB1_RTCM31",
+      "lat": 11.169565,
+      "lon": -4.34762,
+      "country": "BFA",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO"
+    },
+    {
+      "name": "KBRI_RTCM31",
+      "lat": 12.181502,
+      "lon": -1.406114,
+      "country": "BFA",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO"
+    },
+    {
+      "name": "MANG_RTCM31",
+      "lat": 11.677525,
+      "lon": -1.08425,
+      "country": "BFA",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO"
+    },
+    {
+      "name": "OHGY_RTCM31",
+      "lat": 13.57579,
+      "lon": -2.413351,
+      "country": "BFA",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO"
+    }
+  ]
+}
