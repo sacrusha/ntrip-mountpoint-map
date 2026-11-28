@@ -1,0 +1,668 @@
+{
+  "last_updated": "2026-11-22T19:39:36+00:00",
+  "scraper_version": "1a47e8d94f7a",
+  "source_url": "https://www.google.com/maps/d/kml?forcekml=1&mid=1E0LGmdJgr3NoodQ8kL-5gubnfrumIGg",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "ABASHIRI",
+      "lat": 43.8291,
+      "lon": 144.313521,
+      "country": "JPN"
+    },
+    {
+      "name": "AKIMACHI",
+      "lat": 33.461652,
+      "lon": 131.691154,
+      "country": "JPN"
+    },
+    {
+      "name": "ASSABU",
+      "lat": 41.873164,
+      "lon": 140.363535,
+      "country": "JPN"
+    },
+    {
+      "name": "ATSUMA",
+      "lat": 42.646745,
+      "lon": 141.918078,
+      "country": "JPN"
+    },
+    {
+      "name": "BIEI001",
+      "lat": 43.525325,
+      "lon": 142.463946,
+      "country": "JPN"
+    },
+    {
+      "name": "BIFUKA",
+      "lat": 44.483796,
+      "lon": 142.348076,
+      "country": "JPN"
+    },
+    {
+      "name": "BIHORO",
+      "lat": 43.822122,
+      "lon": 144.152043,
+      "country": "JPN"
+    },
+    {
+      "name": "DAISEN",
+      "lat": 39.481058,
+      "lon": 140.48492,
+      "country": "JPN"
+    },
+    {
+      "name": "DATE",
+      "lat": 42.507391,
+      "lon": 140.810553,
+      "country": "JPN"
+    },
+    {
+      "name": "ENGARU",
+      "lat": 44.025368,
+      "lon": 143.521306,
+      "country": "JPN"
+    },
+    {
+      "name": "ENIWA",
+      "lat": 42.92032,
+      "lon": 141.577695,
+      "country": "JPN"
+    },
+    {
+      "name": "FUKAGAWA",
+      "lat": 43.731202,
+      "lon": 142.044405,
+      "country": "JPN"
+    },
+    {
+      "name": "FURANO001",
+      "lat": 43.30716,
+      "lon": 142.378979,
+      "country": "JPN"
+    },
+    {
+      "name": "FURANO002",
+      "lat": 43.215389,
+      "lon": 142.375804,
+      "country": "JPN"
+    },
+    {
+      "name": "FUTTO",
+      "lat": 39.926991,
+      "lon": 139.938016,
+      "country": "JPN"
+    },
+    {
+      "name": "HAMAMATSU",
+      "lat": 34.768237,
+      "lon": 137.750274,
+      "country": "JPN"
+    },
+    {
+      "name": "HIGASHIKAWA",
+      "lat": 43.704341,
+      "lon": 142.513918,
+      "country": "JPN"
+    },
+    {
+      "name": "HIGASHINE",
+      "lat": 38.419468,
+      "lon": 140.434752,
+      "country": "JPN"
+    },
+    {
+      "name": "HIKONE",
+      "lat": 35.198317,
+      "lon": 136.208781,
+      "country": "JPN"
+    },
+    {
+      "name": "HOKOTA",
+      "lat": 36.083676,
+      "lon": 140.544508,
+      "country": "JPN"
+    },
+    {
+      "name": "HONBETSUCHO",
+      "lat": 43.185142,
+      "lon": 143.529033,
+      "country": "JPN"
+    },
+    {
+      "name": "HOROKANAI",
+      "lat": 43.983376,
+      "lon": 142.147118,
+      "country": "JPN"
+    },
+    {
+      "name": "IGA",
+      "lat": 34.706512,
+      "lon": 136.187413,
+      "country": "JPN"
+    },
+    {
+      "name": "IIYAMA",
+      "lat": 36.884827,
+      "lon": 138.381294,
+      "country": "JPN"
+    },
+    {
+      "name": "IKEDACHO",
+      "lat": 42.911813,
+      "lon": 143.420601,
+      "country": "JPN"
+    },
+    {
+      "name": "IMAZUCHO",
+      "lat": 35.410835,
+      "lon": 136.005742,
+      "country": "JPN"
+    },
+    {
+      "name": "ISHINOMAKI",
+      "lat": 38.484999,
+      "lon": 141.252854,
+      "country": "JPN"
+    },
+    {
+      "name": "IWAFUNE",
+      "lat": 36.301746,
+      "lon": 139.683559,
+      "country": "JPN"
+    },
+    {
+      "name": "JOETSU",
+      "lat": 37.079205,
+      "lon": 138.229829,
+      "country": "JPN"
+    },
+    {
+      "name": "JOSO",
+      "lat": 36.104125,
+      "lon": 139.980786,
+      "country": "JPN"
+    },
+    {
+      "name": "KAKEGAWA",
+      "lat": 34.732858,
+      "lon": 138.067284,
+      "country": "JPN"
+    },
+    {
+      "name": "KAKUDA",
+      "lat": 37.982151,
+      "lon": 140.793085,
+      "country": "JPN"
+    },
+    {
+      "name": "KAKUKITA",
+      "lat": 33.214054,
+      "lon": 131.565287,
+      "country": "JPN"
+    },
+    {
+      "name": "KARUMAI",
+      "lat": 40.324917,
+      "lon": 141.37978,
+      "country": "JPN"
+    },
+    {
+      "name": "KASHIWAZAKI",
+      "lat": 37.388338,
+      "lon": 138.630529,
+      "country": "JPN"
+    },
+    {
+      "name": "KESENNUMA",
+      "lat": 38.794522,
+      "lon": 141.499778,
+      "country": "JPN"
+    },
+    {
+      "name": "KITAMI",
+      "lat": 43.836458,
+      "lon": 143.927547,
+      "country": "JPN"
+    },
+    {
+      "name": "KOMAGANE",
+      "lat": 35.743758,
+      "lon": 137.918431,
+      "country": "JPN"
+    },
+    {
+      "name": "KOSIMIZU",
+      "lat": 43.906274,
+      "lon": 144.453212,
+      "country": "JPN"
+    },
+    {
+      "name": "KUNNEPPU",
+      "lat": 43.741637,
+      "lon": 143.725848,
+      "country": "JPN"
+    },
+    {
+      "name": "KUROKAWA",
+      "lat": 38.441893,
+      "lon": 140.89939,
+      "country": "JPN"
+    },
+    {
+      "name": "KYOGOKU",
+      "lat": 42.878021,
+      "lon": 140.883693,
+      "country": "JPN"
+    },
+    {
+      "name": "MAKUBETSU",
+      "lat": 42.837148,
+      "lon": 143.300263,
+      "country": "JPN"
+    },
+    {
+      "name": "MATUMOTO",
+      "lat": 36.261613,
+      "lon": 137.942439,
+      "country": "JPN"
+    },
+    {
+      "name": "MEMURO",
+      "lat": 42.942268,
+      "lon": 143.104566,
+      "country": "JPN"
+    },
+    {
+      "name": "MIKASA",
+      "lat": 43.23913,
+      "lon": 141.807288,
+      "country": "JPN"
+    },
+    {
+      "name": "MORIMACHI",
+      "lat": 42.119677,
+      "lon": 140.633128,
+      "country": "JPN"
+    },
+    {
+      "name": "NAGAHAMA",
+      "lat": 35.433795,
+      "lon": 136.231735,
+      "country": "JPN"
+    },
+    {
+      "name": "NAIE",
+      "lat": 43.425808,
+      "lon": 141.888362,
+      "country": "JPN"
+    },
+    {
+      "name": "NAKASATSUNAI",
+      "lat": 42.694607,
+      "lon": 143.157716,
+      "country": "JPN"
+    },
+    {
+      "name": "NAKASHIBETSU001",
+      "lat": 43.64042,
+      "lon": 144.939294,
+      "country": "JPN"
+    },
+    {
+      "name": "NAKASYUNBETSU",
+      "lat": 43.47095,
+      "lon": 145.061621,
+      "country": "JPN"
+    },
+    {
+      "name": "NANBU",
+      "lat": 40.470228,
+      "lon": 141.376615,
+      "country": "JPN"
+    },
+    {
+      "name": "NATORI",
+      "lat": 38.187383,
+      "lon": 140.885165,
+      "country": "JPN"
+    },
+    {
+      "name": "NISHIOSAKABEMACHI",
+      "lat": 36.489688,
+      "lon": 139.934374,
+      "country": "JPN"
+    },
+    {
+      "name": "NOSHIRO",
+      "lat": 40.233429,
+      "lon": 140.075233,
+      "country": "JPN"
+    },
+    {
+      "name": "OBIHIRO",
+      "lat": 42.744154,
+      "lon": 143.024384,
+      "country": "JPN"
+    },
+    {
+      "name": "ODATE",
+      "lat": 40.284,
+      "lon": 140.5983,
+      "country": "JPN"
+    },
+    {
+      "name": "OGATAMURA",
+      "lat": 40.010155,
+      "lon": 139.955101,
+      "country": "JPN"
+    },
+    {
+      "name": "OIWAKE",
+      "lat": 39.834446,
+      "lon": 140.07713,
+      "country": "JPN"
+    },
+    {
+      "name": "OMACHI",
+      "lat": 36.469692,
+      "lon": 137.833126,
+      "country": "JPN"
+    },
+    {
+      "name": "OMIHACHIMAN",
+      "lat": 35.183656,
+      "lon": 136.098182,
+      "country": "JPN"
+    },
+    {
+      "name": "OSAKI",
+      "lat": 38.601313,
+      "lon": 140.978048,
+      "country": "JPN"
+    },
+    {
+      "name": "OSHU",
+      "lat": 39.130224,
+      "lon": 141.092345,
+      "country": "JPN"
+    },
+    {
+      "name": "OTOE",
+      "lat": 43.662817,
+      "lon": 141.98129,
+      "country": "JPN"
+    },
+    {
+      "name": "OTOFUKE",
+      "lat": 42.94161,
+      "lon": 143.278862,
+      "country": "JPN"
+    },
+    {
+      "name": "OYABE",
+      "lat": 36.632347,
+      "lon": 36.632344,
+      "country": "JPN"
+    },
+    {
+      "name": "ROKKASYO",
+      "lat": 40.882127,
+      "lon": 141.368809,
+      "country": "JPN"
+    },
+    {
+      "name": "ROKUNOHE",
+      "lat": 40.609478,
+      "lon": 141.324903,
+      "country": "JPN"
+    },
+    {
+      "name": "SAKATA",
+      "lat": 38.97232,
+      "lon": 139.932524,
+      "country": "JPN"
+    },
+    {
+      "name": "SAKU",
+      "lat": 36.22955,
+      "lon": 138.446612,
+      "country": "JPN"
+    },
+    {
+      "name": "SENDAIAOBA",
+      "lat": 38.269027,
+      "lon": 140.742733,
+      "country": "JPN"
+    },
+    {
+      "name": "SETANA",
+      "lat": 42.330214,
+      "lon": 139.90958,
+      "country": "JPN"
+    },
+    {
+      "name": "SHIBETSU",
+      "lat": 44.24155,
+      "lon": 142.38833,
+      "country": "JPN"
+    },
+    {
+      "name": "SHICHINOHE",
+      "lat": 40.656199,
+      "lon": 141.140184,
+      "country": "JPN"
+    },
+    {
+      "name": "SHIKAOI",
+      "lat": 43.137368,
+      "lon": 142.94524,
+      "country": "JPN"
+    },
+    {
+      "name": "SHINTOTSUKAWA",
+      "lat": 43.519146,
+      "lon": 141.863865,
+      "country": "JPN"
+    },
+    {
+      "name": "SHIROISHI",
+      "lat": 38.00124,
+      "lon": 140.61243,
+      "country": "JPN"
+    },
+    {
+      "name": "SHIWA",
+      "lat": 39.523214,
+      "lon": 141.125188,
+      "country": "JPN"
+    },
+    {
+      "name": "SUYOSHICHO",
+      "lat": 37.418445,
+      "lon": 138.886016,
+      "country": "JPN"
+    },
+    {
+      "name": "SUZU",
+      "lat": 37.44659,
+      "lon": 137.286995,
+      "country": "JPN"
+    },
+    {
+      "name": "SUZUKA",
+      "lat": 34.897489,
+      "lon": 136.517858,
+      "country": "JPN"
+    },
+    {
+      "name": "TAIKI",
+      "lat": 42.478685,
+      "lon": 143.273714,
+      "country": "JPN"
+    },
+    {
+      "name": "TAKINOUE",
+      "lat": 44.196932,
+      "lon": 143.045126,
+      "country": "JPN"
+    },
+    {
+      "name": "TAKKO",
+      "lat": 40.344013,
+      "lon": 141.142981,
+      "country": "JPN"
+    },
+    {
+      "name": "TOBETSUCHO",
+      "lat": 43.207032,
+      "lon": 141.520031,
+      "country": "JPN"
+    },
+    {
+      "name": "TOKIWA",
+      "lat": 43.076458,
+      "lon": 143.451115,
+      "country": "JPN"
+    },
+    {
+      "name": "TOKORO",
+      "lat": 44.092004,
+      "lon": 144.04104,
+      "country": "JPN"
+    },
+    {
+      "name": "TONO",
+      "lat": 39.280899,
+      "lon": 141.598006,
+      "country": "JPN"
+    },
+    {
+      "name": "TOWADA",
+      "lat": 40.545586,
+      "lon": 141.223996,
+      "country": "JPN"
+    },
+    {
+      "name": "TOYOTA",
+      "lat": 35.022534,
+      "lon": 137.109009,
+      "country": "JPN"
+    },
+    {
+      "name": "TSUBATAMACHI",
+      "lat": 36.684498,
+      "lon": 136.715707,
+      "country": "JPN"
+    },
+    {
+      "name": "TSUBETSU",
+      "lat": 43.622056,
+      "lon": 144.111812,
+      "country": "JPN"
+    },
+    {
+      "name": "TSUKIGATA",
+      "lat": 43.376251,
+      "lon": 141.735823,
+      "country": "JPN"
+    },
+    {
+      "name": "UEDA",
+      "lat": 36.284558,
+      "lon": 138.23054,
+      "country": "JPN"
+    },
+    {
+      "name": "UKIHA",
+      "lat": 33.349421,
+      "lon": 130.75964,
+      "country": "JPN"
+    },
+    {
+      "name": "UOZU",
+      "lat": 36.835926,
+      "lon": 137.452627,
+      "country": "JPN"
+    },
+    {
+      "name": "URAHORO",
+      "lat": 42.847237,
+      "lon": 143.618689,
+      "country": "JPN"
+    },
+    {
+      "name": "URYU",
+      "lat": 43.63205,
+      "lon": 141.877323,
+      "country": "JPN"
+    },
+    {
+      "name": "WAKAYANGI",
+      "lat": 38.782952,
+      "lon": 141.11658,
+      "country": "JPN"
+    },
+    {
+      "name": "WASSAMU",
+      "lat": 44.052685,
+      "lon": 142.405662,
+      "country": "JPN"
+    },
+    {
+      "name": "YAKUMO",
+      "lat": 42.217954,
+      "lon": 140.357428,
+      "country": "JPN"
+    },
+    {
+      "name": "YATSUSHIRO",
+      "lat": 32.529658,
+      "lon": 130.649407,
+      "country": "JPN"
+    },
+    {
+      "name": "YAYOI",
+      "lat": 32.952603,
+      "lon": 131.842087,
+      "country": "JPN"
+    },
+    {
+      "name": "YOKOTE",
+      "lat": 39.324052,
+      "lon": 140.547147,
+      "country": "JPN"
+    },
+    {
+      "name": "YUBETSU",
+      "lat": 44.122689,
+      "lon": 143.559116,
+      "country": "JPN"
+    },
+    {
+      "name": "YURIHONJO",
+      "lat": 39.329334,
+      "lon": 140.096022,
+      "country": "JPN"
+    },
+    {
+      "name": "YUUWA",
+      "lat": 39.591912,
+      "lon": 140.166697,
+      "country": "JPN"
+    },
+    {
+      "name": "YUZAWA",
+      "lat": 39.125469,
+      "lon": 140.560491,
+      "country": "JPN"
+    },
+    {
+      "name": "ZAO",
+      "lat": 38.098081,
+      "lon": 140.655969,
+      "country": "JPN"
+    }
+  ]
+}

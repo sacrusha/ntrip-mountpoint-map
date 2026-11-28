@@ -1,0 +1,206 @@
+{
+  "last_updated": "2026-11-22T19:39:36+00:00",
+  "scraper_version": "3395580974aa",
+  "source_url": "https://vngeonet.vn/User/SiteMap/SiteMapPublic",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "ANHO",
+      "lat": 13.905996,
+      "lon": 109.104735,
+      "country": "VNM",
+      "format": "RTCM 3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+QZSS"
+    },
+    {
+      "name": "BLIE",
+      "lat": 9.295858,
+      "lon": 105.713768,
+      "country": "VNM",
+      "format": "RTCM 3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+QZSS"
+    },
+    {
+      "name": "CBAN",
+      "lat": 22.67141,
+      "lon": 106.208071,
+      "country": "VNM",
+      "format": "RTCM 3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+QZSS"
+    },
+    {
+      "name": "CRKH",
+      "lat": 11.918537,
+      "lon": 109.150742,
+      "country": "VNM",
+      "format": "RTCM 3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+QZSS"
+    },
+    {
+      "name": "DIEB",
+      "lat": 21.427766,
+      "lon": 103.005516,
+      "country": "VNM",
+      "format": "RTCM 3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+QZSS"
+    },
+    {
+      "name": "DNON",
+      "lat": 12.000415,
+      "lon": 107.678619,
+      "country": "VNM",
+      "format": "RTCM 3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+QZSS"
+    },
+    {
+      "name": "EAHL",
+      "lat": 13.215212,
+      "lon": 108.201466,
+      "country": "VNM",
+      "format": "RTCM 3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+QZSS"
+    },
+    {
+      "name": "HGIA",
+      "lat": 22.827539,
+      "lon": 104.959013,
+      "country": "VNM",
+      "format": "RTCM 3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+QZSS"
+    },
+    {
+      "name": "HTIE",
+      "lat": 10.369544,
+      "lon": 104.452893,
+      "country": "VNM",
+      "format": "RTCM 3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+QZSS"
+    },
+    {
+      "name": "KANH",
+      "lat": 18.086873,
+      "lon": 106.285406,
+      "country": "VNM",
+      "format": "RTCM 3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+QZSS"
+    },
+    {
+      "name": "KSAN",
+      "lat": 16.625514,
+      "lon": 106.733536,
+      "country": "VNM",
+      "format": "RTCM 3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+QZSS"
+    },
+    {
+      "name": "KTUM",
+      "lat": 14.347554,
+      "lon": 108.034045,
+      "country": "VNM",
+      "format": "RTCM 3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+QZSS"
+    },
+    {
+      "name": "LCAI",
+      "lat": 22.496714,
+      "lon": 103.965914,
+      "country": "VNM",
+      "format": "RTCM 3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+QZSS"
+    },
+    {
+      "name": "MCAI",
+      "lat": 21.518381,
+      "lon": 107.981634,
+      "country": "VNM",
+      "format": "RTCM 3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+QZSS"
+    },
+    {
+      "name": "MCHA",
+      "lat": 20.834779,
+      "lon": 104.683316,
+      "country": "VNM",
+      "format": "RTCM 3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+QZSS"
+    },
+    {
+      "name": "MGTE",
+      "lat": 22.386501,
+      "lon": 102.802454,
+      "country": "VNM",
+      "format": "RTCM 3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+QZSS"
+    },
+    {
+      "name": "QNAM",
+      "lat": 15.792841,
+      "lon": 108.414203,
+      "country": "VNM",
+      "format": "RTCM 3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+QZSS"
+    },
+    {
+      "name": "TDUO",
+      "lat": 19.263094,
+      "lon": 104.470525,
+      "country": "VNM",
+      "format": "RTCM 3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+QZSS"
+    },
+    {
+      "name": "THOA",
+      "lat": 19.762069,
+      "lon": 105.778061,
+      "country": "VNM",
+      "format": "RTCM 3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+QZSS"
+    },
+    {
+      "name": "TNIN",
+      "lat": 11.330839,
+      "lon": 106.105398,
+      "country": "VNM",
+      "format": "RTCM 3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+QZSS"
+    },
+    {
+      "name": "TQUA",
+      "lat": 21.823601,
+      "lon": 105.210075,
+      "country": "VNM",
+      "format": "RTCM 3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+QZSS"
+    },
+    {
+      "name": "VINH",
+      "lat": 18.675519,
+      "lon": 105.691044,
+      "country": "VNM",
+      "format": "RTCM 3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+QZSS"
+    }
+  ]
+}

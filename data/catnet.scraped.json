@@ -1,0 +1,251 @@
+{
+  "last_updated": "2026-11-22T19:39:35+00:00",
+  "scraper_version": "731c0ad36899",
+  "source_url": "https://catnet-ip.icgc.cat/SBC/User/SiteMap/SiteMapPublic",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "ARES",
+      "lat": 42.051381,
+      "lon": 0.729391,
+      "country": "ESP",
+      "groups": [
+        "own"
+      ]
+    },
+    {
+      "name": "AVEL",
+      "lat": 41.881607,
+      "lon": 0.750531,
+      "country": "ESP",
+      "groups": [
+        "own"
+      ]
+    },
+    {
+      "name": "BACA",
+      "lat": 42.839531,
+      "lon": 3.038761,
+      "country": "FRA"
+    },
+    {
+      "name": "BARY",
+      "lat": 43.0357,
+      "lon": 0.671923,
+      "country": "FRA"
+    },
+    {
+      "name": "BELL",
+      "lat": 41.599615,
+      "lon": 1.401137,
+      "country": "ESP",
+      "groups": [
+        "own"
+      ]
+    },
+    {
+      "name": "BERG",
+      "lat": 40.611516,
+      "lon": -0.097346,
+      "country": "ESP"
+    },
+    {
+      "name": "BEUD",
+      "lat": 42.255642,
+      "lon": 2.675727,
+      "country": "ESP",
+      "groups": [
+        "own"
+      ]
+    },
+    {
+      "name": "BINE",
+      "lat": 41.84816,
+      "lon": 0.295926,
+      "country": "ESP"
+    },
+    {
+      "name": "CASE",
+      "lat": 41.882883,
+      "lon": 2.904168,
+      "country": "ESP",
+      "groups": [
+        "own"
+      ]
+    },
+    {
+      "name": "CAZE",
+      "lat": 43.206847,
+      "lon": 1.086048,
+      "country": "FRA"
+    },
+    {
+      "name": "CREU",
+      "lat": 42.318839,
+      "lon": 3.315599,
+      "country": "ESP",
+      "groups": [
+        "own"
+      ]
+    },
+    {
+      "name": "CSOS",
+      "lat": 42.51187,
+      "lon": 0.485634,
+      "country": "ESP"
+    },
+    {
+      "name": "EBRE",
+      "lat": 40.820885,
+      "lon": 0.492359,
+      "country": "ESP",
+      "groups": [
+        "own"
+      ]
+    },
+    {
+      "name": "ESCO",
+      "lat": 42.693573,
+      "lon": 0.975663,
+      "country": "ESP",
+      "groups": [
+        "own"
+      ]
+    },
+    {
+      "name": "FENO",
+      "lat": 43.157148,
+      "lon": 2.029585,
+      "country": "FRA"
+    },
+    {
+      "name": "GARR",
+      "lat": 41.292938,
+      "lon": 1.914035,
+      "country": "ESP",
+      "groups": [
+        "own"
+      ]
+    },
+    {
+      "name": "GRAU",
+      "lat": 42.19148,
+      "lon": 0.340729,
+      "country": "ESP"
+    },
+    {
+      "name": "LACO",
+      "lat": 43.251323,
+      "lon": 1.129691,
+      "country": "FRA"
+    },
+    {
+      "name": "LLEI",
+      "lat": 41.629286,
+      "lon": 0.596292,
+      "country": "ESP",
+      "groups": [
+        "own"
+      ]
+    },
+    {
+      "name": "LLIV",
+      "lat": 42.478124,
+      "lon": 1.973048,
+      "country": "ESP",
+      "groups": [
+        "own"
+      ]
+    },
+    {
+      "name": "MARE",
+      "lat": 41.528442,
+      "lon": 2.434319,
+      "country": "ESP",
+      "groups": [
+        "own"
+      ]
+    },
+    {
+      "name": "MEQU",
+      "lat": 41.378605,
+      "lon": 0.303563,
+      "country": "ESP"
+    },
+    {
+      "name": "MSGT",
+      "lat": 42.879606,
+      "lon": 1.62943,
+      "country": "FRA"
+    },
+    {
+      "name": "MUNE",
+      "lat": 43.279123,
+      "lon": 0.266529,
+      "country": "FRA"
+    },
+    {
+      "name": "PERP",
+      "lat": 42.689159,
+      "lon": 2.882072,
+      "country": "FRA"
+    },
+    {
+      "name": "PLAN",
+      "lat": 41.418525,
+      "lon": 1.986952,
+      "country": "ESP",
+      "groups": [
+        "own"
+      ]
+    },
+    {
+      "name": "REUS",
+      "lat": 41.170002,
+      "lon": 1.168527,
+      "country": "ESP",
+      "groups": [
+        "own"
+      ]
+    },
+    {
+      "name": "SBAR",
+      "lat": 41.980108,
+      "lon": 2.174293,
+      "country": "ESP",
+      "groups": [
+        "own"
+      ]
+    },
+    {
+      "name": "SONA",
+      "lat": 41.992235,
+      "lon": 1.516822,
+      "country": "ESP",
+      "groups": [
+        "own"
+      ]
+    },
+    {
+      "name": "SORG",
+      "lat": 42.374529,
+      "lon": 1.13275,
+      "country": "ESP",
+      "groups": [
+        "own"
+      ]
+    },
+    {
+      "name": "SOUR",
+      "lat": 42.727546,
+      "lon": 2.434967,
+      "country": "FRA"
+    },
+    {
+      "name": "VRO2",
+      "lat": 40.873602,
+      "lon": 0.155987,
+      "country": "ESP"
+    }
+  ]
+}

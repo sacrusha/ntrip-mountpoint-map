@@ -1,0 +1,3680 @@
+{
+  "last_updated": "2026-11-22T19:39:36+00:00",
+  "scraper_version": "be96f6ffff3a",
+  "source_url": "https://dol-dms.com:8080/",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "AKSN",
+      "lat": 16.797833,
+      "lon": 104.044741,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "AMKO",
+      "lat": 17.800639,
+      "lon": 98.3583,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "ANGT",
+      "lat": 14.590612,
+      "lon": 100.455317,
+      "country": "THA",
+      "groups": [
+        "central"
+      ]
+    },
+    {
+      "name": "APKN",
+      "lat": 11.431535,
+      "lon": 99.555719,
+      "country": "THA",
+      "groups": [
+        "western"
+      ]
+    },
+    {
+      "name": "ARNG",
+      "lat": 9.851646,
+      "lon": 98.619542,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "ATRG",
+      "lat": 7.436532,
+      "lon": 99.502996,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "ATSM",
+      "lat": 15.843776,
+      "lon": 103.878576,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "AUPG",
+      "lat": 16.016167,
+      "lon": 98.862603,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "AUTT",
+      "lat": 17.769624,
+      "lon": 100.725492,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "AWLK",
+      "lat": 8.377234,
+      "lon": 98.721705,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "AYYA",
+      "lat": 14.364311,
+      "lon": 100.576764,
+      "country": "THA",
+      "groups": [
+        "central"
+      ]
+    },
+    {
+      "name": "BDLH",
+      "lat": 17.012343,
+      "lon": 99.584956,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "BDNG",
+      "lat": 17.700826,
+      "lon": 103.259067,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "BGKN",
+      "lat": 18.359212,
+      "lon": 103.655266,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "BGSP",
+      "lat": 11.259829,
+      "lon": 99.437585,
+      "country": "THA",
+      "groups": [
+        "western"
+      ]
+    },
+    {
+      "name": "BKOK",
+      "lat": 18.024994,
+      "lon": 101.067857,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "BKPI",
+      "lat": 13.784111,
+      "lon": 100.647203,
+      "country": "THA",
+      "groups": [
+        "central"
+      ]
+    },
+    {
+      "name": "BKYI",
+      "lat": 14.080457,
+      "lon": 102.022801,
+      "country": "THA",
+      "groups": [
+        "eastern"
+      ]
+    },
+    {
+      "name": "BLAN",
+      "lat": 13.988146,
+      "lon": 100.166305,
+      "country": "THA",
+      "groups": [
+        "central"
+      ]
+    },
+    {
+      "name": "BLMG",
+      "lat": 13.042356,
+      "lon": 100.923074,
+      "country": "THA",
+      "groups": [
+        "eastern"
+      ]
+    },
+    {
+      "name": "BNBG",
+      "lat": 13.297264,
+      "lon": 101.143691,
+      "country": "THA",
+      "groups": [
+        "eastern"
+      ]
+    },
+    {
+      "name": "BNKT",
+      "lat": 14.42231,
+      "lon": 103.098925,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "BNMG",
+      "lat": 17.850562,
+      "lon": 103.569369,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "BNNR",
+      "lat": 15.499835,
+      "lon": 101.686696,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "BNPE",
+      "lat": 17.688352,
+      "lon": 102.474263,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "BNPG",
+      "lat": 17.967298,
+      "lon": 104.214812,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "BNRK",
+      "lat": 13.914263,
+      "lon": 100.928132,
+      "country": "THA",
+      "groups": [
+        "eastern"
+      ]
+    },
+    {
+      "name": "BNST",
+      "lat": 6.261419,
+      "lon": 101.255114,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "BOBR",
+      "lat": 16.038932,
+      "lon": 103.118546,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "BOKO",
+      "lat": 19.148997,
+      "lon": 101.157365,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "BORI",
+      "lat": 12.580825,
+      "lon": 102.541151,
+      "country": "THA",
+      "groups": [
+        "eastern"
+      ]
+    },
+    {
+      "name": "BPAI",
+      "lat": 16.094117,
+      "lon": 102.7416,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "BPLE",
+      "lat": 13.592025,
+      "lon": 100.832119,
+      "country": "THA",
+      "groups": [
+        "central"
+      ]
+    },
+    {
+      "name": "BPNR",
+      "lat": 12.917904,
+      "lon": 102.374514,
+      "country": "THA",
+      "groups": [
+        "eastern"
+      ]
+    },
+    {
+      "name": "BPOG",
+      "lat": 13.798357,
+      "lon": 99.909622,
+      "country": "THA",
+      "groups": [
+        "western"
+      ]
+    },
+    {
+      "name": "BPPS",
+      "lat": 15.935146,
+      "lon": 99.990816,
+      "country": "THA",
+      "groups": [
+        "central"
+      ]
+    },
+    {
+      "name": "BRAI",
+      "lat": 15.08373,
+      "lon": 99.521885,
+      "country": "THA",
+      "groups": [
+        "central"
+      ]
+    },
+    {
+      "name": "BRKM",
+      "lat": 16.70261,
+      "lon": 100.102443,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "BRRM",
+      "lat": 14.991897,
+      "lon": 103.096957,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "BTAK",
+      "lat": 17.05061,
+      "lon": 99.073974,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "BTAN",
+      "lat": 13.903223,
+      "lon": 101.175817,
+      "country": "THA",
+      "groups": [
+        "eastern"
+      ]
+    },
+    {
+      "name": "BTHG",
+      "lat": 14.750998,
+      "lon": 105.387818,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "BTKG",
+      "lat": 13.697382,
+      "lon": 101.760296,
+      "country": "THA",
+      "groups": [
+        "eastern"
+      ]
+    },
+    {
+      "name": "BTNG",
+      "lat": 5.788602,
+      "lon": 101.07328,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "BUCT",
+      "lat": 14.526473,
+      "lon": 103.944818,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "BUYI",
+      "lat": 15.58259,
+      "lon": 102.422075,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "CCSO",
+      "lat": 13.687131,
+      "lon": 101.070692,
+      "country": "THA",
+      "groups": [
+        "eastern"
+      ]
+    },
+    {
+      "name": "CHAN",
+      "lat": 12.610309,
+      "lon": 102.102413,
+      "country": "THA",
+      "groups": [
+        "eastern"
+      ]
+    },
+    {
+      "name": "CHBR",
+      "lat": 8.464092,
+      "lon": 99.07525,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "CHDN",
+      "lat": 15.182575,
+      "lon": 101.109433,
+      "country": "THA",
+      "groups": [
+        "central"
+      ]
+    },
+    {
+      "name": "CHKG",
+      "lat": 20.216602,
+      "lon": 100.403707,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "CHKM",
+      "lat": 19.523387,
+      "lon": 100.300536,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "CHKN",
+      "lat": 17.898051,
+      "lon": 101.664465,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "CHMA",
+      "lat": 18.835274,
+      "lon": 98.969959,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "CHMN",
+      "lat": 18.886214,
+      "lon": 100.302735,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "CHNM",
+      "lat": 16.233114,
+      "lon": 105.000263,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "CHPM",
+      "lat": 15.792131,
+      "lon": 102.007106,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "CHSN",
+      "lat": 20.286109,
+      "lon": 100.083255,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "CHTK",
+      "lat": 17.276434,
+      "lon": 100.599584,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "CHUN",
+      "lat": 19.336227,
+      "lon": 100.134974,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "CHUT",
+      "lat": 7.995694,
+      "lon": 99.990086,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "CHYA",
+      "lat": 9.409086,
+      "lon": 99.165606,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "CHYN",
+      "lat": 16.407788,
+      "lon": 103.105537,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "CKRI",
+      "lat": 14.353396,
+      "lon": 98.957093,
+      "country": "THA",
+      "groups": [
+        "western"
+      ]
+    },
+    {
+      "name": "CLPK",
+      "lat": 19.579502,
+      "lon": 101.080834,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "CMPN",
+      "lat": 10.491161,
+      "lon": 99.126353,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "CMPR",
+      "lat": 15.117979,
+      "lon": 103.610243,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "CNBR",
+      "lat": 13.406017,
+      "lon": 100.997654,
+      "country": "THA",
+      "groups": [
+        "eastern"
+      ]
+    },
+    {
+      "name": "CPKN",
+      "lat": 19.742221,
+      "lon": 99.145442,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "CTAK",
+      "lat": 17.226808,
+      "lon": 99.064929,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "DACR",
+      "lat": 15.944485,
+      "lon": 104.632264,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "DBRM",
+      "lat": 14.554572,
+      "lon": 102.931849,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "DCMI",
+      "lat": 19.413915,
+      "lon": 98.965451,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "DCRI",
+      "lat": 20.107677,
+      "lon": 99.881693,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "DKTN",
+      "lat": 15.20903,
+      "lon": 101.765873,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "DLEI",
+      "lat": 17.420927,
+      "lon": 101.932617,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "DMSN",
+      "lat": 18.053623,
+      "lon": 97.932244,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "DNAN",
+      "lat": 19.100174,
+      "lon": 100.949666,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "DNPM",
+      "lat": 16.95514,
+      "lon": 104.451266,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "DOIT",
+      "lat": 17.953714,
+      "lon": 98.685169,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "DOSK",
+      "lat": 18.887421,
+      "lon": 99.163486,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "DPLK",
+      "lat": 16.840359,
+      "lon": 100.25713,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "DPNB",
+      "lat": 16.439424,
+      "lon": 101.146319,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "DPT9",
+      "lat": 13.75678,
+      "lon": 100.573201,
+      "country": "THA",
+      "groups": [
+        "central"
+      ]
+    },
+    {
+      "name": "DSAI",
+      "lat": 17.279997,
+      "lon": 101.147035,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "DSAK",
+      "lat": 9.315581,
+      "lon": 99.690446,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "DSNI",
+      "lat": 8.986963,
+      "lon": 99.32338,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "DSNK",
+      "lat": 17.305125,
+      "lon": 103.839269,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "DSSK",
+      "lat": 15.176479,
+      "lon": 104.156389,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "DUDM",
+      "lat": 14.91011,
+      "lon": 105.069682,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "DUDN",
+      "lat": 16.973172,
+      "lon": 103.269436,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "DUTI",
+      "lat": 15.245886,
+      "lon": 99.577544,
+      "country": "THA",
+      "groups": [
+        "central"
+      ]
+    },
+    {
+      "name": "DYLA",
+      "lat": 6.459545,
+      "lon": 101.079813,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "ECMI",
+      "lat": 18.473685,
+      "lon": 98.789098,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "EGAT",
+      "lat": 18.304749,
+      "lon": 99.739855,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "ENMA",
+      "lat": 14.597109,
+      "lon": 102.002223,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "FANG",
+      "lat": 19.93636,
+      "lon": 99.217899,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "HACH",
+      "lat": 18.327403,
+      "lon": 99.347002,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "HIIA",
+      "lat": 13.668667,
+      "lon": 100.606056,
+      "country": "THA",
+      "groups": [
+        "central"
+      ]
+    },
+    {
+      "name": "HODD",
+      "lat": 18.192063,
+      "lon": 98.611436,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "HSAI",
+      "lat": 8.048773,
+      "lon": 100.238552,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "HTPH",
+      "lat": 15.696674,
+      "lon": 104.491911,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "JAHM",
+      "lat": 18.707277,
+      "lon": 99.555864,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "JKRT",
+      "lat": 15.013854,
+      "lon": 102.413071,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "KABI",
+      "lat": 8.060369,
+      "lon": 98.918125,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "KABR",
+      "lat": 10.401829,
+      "lon": 98.772412,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "KANJ",
+      "lat": 14.053771,
+      "lon": 99.51891,
+      "country": "THA",
+      "groups": [
+        "western"
+      ]
+    },
+    {
+      "name": "KBCG",
+      "lat": 14.474563,
+      "lon": 103.594469,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "KCHR",
+      "lat": 16.537323,
+      "lon": 104.056671,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "KCND",
+      "lat": 9.172626,
+      "lon": 99.479191,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "KGHM",
+      "lat": 13.007839,
+      "lon": 101.905677,
+      "country": "THA",
+      "groups": [
+        "eastern"
+      ]
+    },
+    {
+      "name": "KHJM",
+      "lat": 15.318548,
+      "lon": 105.495264,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "KHMR",
+      "lat": 16.041921,
+      "lon": 105.226752,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "KHNH",
+      "lat": 14.617993,
+      "lon": 104.42478,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "KHNI",
+      "lat": 15.39045,
+      "lon": 104.54982,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "KHSN",
+      "lat": 16.61354,
+      "lon": 101.920374,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "KHYI",
+      "lat": 11.776685,
+      "lon": 102.885456,
+      "country": "THA",
+      "groups": [
+        "eastern"
+      ]
+    },
+    {
+      "name": "KKCT",
+      "lat": 12.804734,
+      "lon": 102.115257,
+      "country": "THA",
+      "groups": [
+        "eastern"
+      ]
+    },
+    {
+      "name": "KKJN",
+      "lat": 12.907793,
+      "lon": 99.648349,
+      "country": "THA",
+      "groups": [
+        "western"
+      ]
+    },
+    {
+      "name": "KKOI",
+      "lat": 14.586389,
+      "lon": 100.998331,
+      "country": "THA",
+      "groups": [
+        "central"
+      ]
+    },
+    {
+      "name": "KKOR",
+      "lat": 16.627936,
+      "lon": 100.995623,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "KKPB",
+      "lat": 13.867405,
+      "lon": 101.42005,
+      "country": "THA",
+      "groups": [
+        "eastern"
+      ]
+    },
+    {
+      "name": "KKPH",
+      "lat": 6.730093,
+      "lon": 101.095093,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "KLKG",
+      "lat": 16.213315,
+      "lon": 99.711283,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "KLLG",
+      "lat": 14.126831,
+      "lon": 100.632012,
+      "country": "THA",
+      "groups": [
+        "central"
+      ]
+    },
+    {
+      "name": "KLLN",
+      "lat": 16.203422,
+      "lon": 99.32066,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "KLNG",
+      "lat": 12.780839,
+      "lon": 101.688171,
+      "country": "THA",
+      "groups": [
+        "eastern"
+      ]
+    },
+    {
+      "name": "KLSE",
+      "lat": 7.703771,
+      "lon": 99.318327,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "KLYW",
+      "lat": 19.046728,
+      "lon": 98.284486,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "KMCE",
+      "lat": 16.577165,
+      "lon": 104.418457,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "KMNG",
+      "lat": 15.270522,
+      "lon": 103.001728,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "KMPW",
+      "lat": 17.113384,
+      "lon": 103.018666,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "KNKN",
+      "lat": 16.440951,
+      "lon": 102.837946,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "KNOI",
+      "lat": 13.088073,
+      "lon": 101.600471,
+      "country": "THA",
+      "groups": [
+        "eastern"
+      ]
+    },
+    {
+      "name": "KNSN",
+      "lat": 16.421599,
+      "lon": 103.513751,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "KNSW",
+      "lat": 15.931783,
+      "lon": 102.280681,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "KNUN",
+      "lat": 16.718151,
+      "lon": 103.082355,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "KNWR",
+      "lat": 16.061063,
+      "lon": 99.860244,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "KNYM",
+      "lat": 18.839758,
+      "lon": 97.95215,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "KOGD",
+      "lat": 11.658064,
+      "lon": 102.542039,
+      "country": "THA",
+      "groups": [
+        "eastern"
+      ]
+    },
+    {
+      "name": "KORN",
+      "lat": 14.523336,
+      "lon": 102.249124,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "KOYA",
+      "lat": 8.11211,
+      "lon": 98.591532,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "KPNG",
+      "lat": 9.742484,
+      "lon": 99.995603,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "KSKS",
+      "lat": 15.329591,
+      "lon": 102.171357,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "KSMP",
+      "lat": 16.633573,
+      "lon": 99.350339,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "KSPA",
+      "lat": 16.904138,
+      "lon": 100.640812,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "KSSB",
+      "lat": 16.280617,
+      "lon": 101.953727,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "KSWS",
+      "lat": 15.656113,
+      "lon": 103.579412,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "KTBN",
+      "lat": 13.623407,
+      "lon": 100.297072,
+      "country": "THA",
+      "groups": [
+        "central"
+      ]
+    },
+    {
+      "name": "KTCH",
+      "lat": 17.426042,
+      "lon": 102.56667,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "KTCM",
+      "lat": 16.033514,
+      "lon": 104.339123,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "KUBR",
+      "lat": 12.083021,
+      "lon": 99.85421,
+      "country": "THA",
+      "groups": [
+        "western"
+      ]
+    },
+    {
+      "name": "KUKN",
+      "lat": 14.713726,
+      "lon": 104.199063,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "LAGU",
+      "lat": 6.884492,
+      "lon": 99.787735,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "LCNT",
+      "lat": 14.979214,
+      "lon": 100.005941,
+      "country": "THA",
+      "groups": [
+        "central"
+      ]
+    },
+    {
+      "name": "LCPM",
+      "lat": 15.558857,
+      "lon": 101.841716,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "LDYW",
+      "lat": 15.751161,
+      "lon": 99.789287,
+      "country": "THA",
+      "groups": [
+        "central"
+      ]
+    },
+    {
+      "name": "LGNT",
+      "lat": 16.207142,
+      "lon": 104.555124,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "LGSN",
+      "lat": 9.94604,
+      "lon": 99.077522,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "LINT",
+      "lat": 14.559844,
+      "lon": 98.759349,
+      "country": "THA",
+      "groups": [
+        "western"
+      ]
+    },
+    {
+      "name": "LKPT",
+      "lat": 16.552195,
+      "lon": 99.512384,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "LKRI",
+      "lat": 14.307122,
+      "lon": 99.509544,
+      "country": "THA",
+      "groups": [
+        "western"
+      ]
+    },
+    {
+      "name": "LLEI",
+      "lat": 16.884635,
+      "lon": 101.885489,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "LLPG",
+      "lat": 18.756385,
+      "lon": 99.978419,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "LLPN",
+      "lat": 17.801875,
+      "lon": 98.950489,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "LLRI",
+      "lat": 15.089724,
+      "lon": 100.71525,
+      "country": "THA",
+      "groups": [
+        "central"
+      ]
+    },
+    {
+      "name": "LMDH",
+      "lat": 16.547017,
+      "lon": 104.726376,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "LMHP",
+      "lat": 12.172418,
+      "lon": 102.394607,
+      "country": "THA",
+      "groups": [
+        "eastern"
+      ]
+    },
+    {
+      "name": "LMPN",
+      "lat": 18.574285,
+      "lon": 99.006081,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "LMSG",
+      "lat": 12.481913,
+      "lon": 102.074047,
+      "country": "THA",
+      "groups": [
+        "eastern"
+      ]
+    },
+    {
+      "name": "LNAN",
+      "lat": 18.571369,
+      "lon": 100.751044,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "LNBP",
+      "lat": 17.223956,
+      "lon": 102.42462,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "LNKB",
+      "lat": 16.600677,
+      "lon": 99.849796,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "LNKI",
+      "lat": 17.8797,
+      "lon": 102.741499,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "LNMA",
+      "lat": 15.348332,
+      "lon": 102.741609,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "LNSK",
+      "lat": 8.370757,
+      "lon": 99.805108,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "LNSN",
+      "lat": 15.29942,
+      "lon": 100.402578,
+      "country": "THA",
+      "groups": [
+        "central"
+      ]
+    },
+    {
+      "name": "LNTA",
+      "lat": 7.610967,
+      "lon": 99.036278,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "LOMS",
+      "lat": 16.756337,
+      "lon": 101.201894,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "LPBI",
+      "lat": 12.722847,
+      "lon": 99.953279,
+      "country": "THA",
+      "groups": [
+        "western"
+      ]
+    },
+    {
+      "name": "LPBR",
+      "lat": 14.800906,
+      "lon": 100.651249,
+      "country": "THA",
+      "groups": [
+        "central"
+      ]
+    },
+    {
+      "name": "LPCT",
+      "lat": 16.508606,
+      "lon": 100.204321,
+      "country": "THA",
+      "groups": [
+        "central"
+      ]
+    },
+    {
+      "name": "LPLK",
+      "lat": 17.108328,
+      "lon": 100.826447,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "LPMA",
+      "lat": 15.025114,
+      "lon": 102.839173,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "LPRE",
+      "lat": 18.075303,
+      "lon": 99.83194,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "LSN1",
+      "lat": 9.472359,
+      "lon": 99.959197,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "LSN2",
+      "lat": 8.900008,
+      "lon": 98.884297,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "LSNK",
+      "lat": 17.595346,
+      "lon": 103.973488,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "LSRN",
+      "lat": 14.636538,
+      "lon": 103.853255,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "LSSK",
+      "lat": 14.640621,
+      "lon": 104.649801,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "LTRG",
+      "lat": 7.788603,
+      "lon": 99.635055,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "LTRT",
+      "lat": 12.233391,
+      "lon": 102.527135,
+      "country": "THA",
+      "groups": [
+        "eastern"
+      ]
+    },
+    {
+      "name": "LYST",
+      "lat": 15.803025,
+      "lon": 104.139904,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "MCRM",
+      "lat": 18.706143,
+      "lon": 101.006464,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "MEJM",
+      "lat": 18.499292,
+      "lon": 98.361785,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "MHCC",
+      "lat": 15.506714,
+      "lon": 104.229165,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "MHGS",
+      "lat": 19.290472,
+      "lon": 97.964191,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "MJKR",
+      "lat": 16.125444,
+      "lon": 102.542816,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "MKRI",
+      "lat": 14.607097,
+      "lon": 99.772392,
+      "country": "THA",
+      "groups": [
+        "western"
+      ]
+    },
+    {
+      "name": "MLNO",
+      "lat": 18.384286,
+      "lon": 97.93687,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "MNSN",
+      "lat": 15.600444,
+      "lon": 100.656862,
+      "country": "THA",
+      "groups": [
+        "central"
+      ]
+    },
+    {
+      "name": "MPRK",
+      "lat": 17.447944,
+      "lon": 99.114089,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "MRBR",
+      "lat": 13.560469,
+      "lon": 99.840574,
+      "country": "THA",
+      "groups": [
+        "western"
+      ]
+    },
+    {
+      "name": "MRM2",
+      "lat": 16.988642,
+      "lon": 98.52535,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "MSAI",
+      "lat": 20.427687,
+      "lon": 99.883542,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "MSKM",
+      "lat": 16.153994,
+      "lon": 103.307337,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "MSOD",
+      "lat": 16.711918,
+      "lon": 98.572953,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "MSSB",
+      "lat": 15.510167,
+      "lon": 104.727001,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "MTHA",
+      "lat": 18.133929,
+      "lon": 99.51283,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "MTNG",
+      "lat": 19.121744,
+      "lon": 98.943288,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "MWOG",
+      "lat": 15.781323,
+      "lon": 99.518863,
+      "country": "THA",
+      "groups": [
+        "central"
+      ]
+    },
+    {
+      "name": "NACH",
+      "lat": 15.798614,
+      "lon": 103.031057,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "NAMY",
+      "lat": 14.489105,
+      "lon": 105.000002,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "NANN",
+      "lat": 18.777063,
+      "lon": 100.770467,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "NANO",
+      "lat": 18.327364,
+      "lon": 100.710324,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "NAWA",
+      "lat": 6.907176,
+      "lon": 100.68741,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "NDDG",
+      "lat": 14.316149,
+      "lon": 102.743409,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "NGHN",
+      "lat": 17.361716,
+      "lon": 103.107809,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "NGKI",
+      "lat": 14.688492,
+      "lon": 102.53378,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "NGKS",
+      "lat": 16.654617,
+      "lon": 103.294477,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "NGPH",
+      "lat": 15.989138,
+      "lon": 101.061638,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "NGPL",
+      "lat": 12.591734,
+      "lon": 99.75559,
+      "country": "THA",
+      "groups": [
+        "western"
+      ]
+    },
+    {
+      "name": "NGPU",
+      "lat": 17.661549,
+      "lon": 101.427311,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "NGSC",
+      "lat": 13.138195,
+      "lon": 101.343679,
+      "country": "THA",
+      "groups": [
+        "eastern"
+      ]
+    },
+    {
+      "name": "NGYP",
+      "lat": 13.169171,
+      "lon": 99.687659,
+      "country": "THA",
+      "groups": [
+        "western"
+      ]
+    },
+    {
+      "name": "NKBI",
+      "lat": 7.935543,
+      "lon": 99.145477,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "NKNY",
+      "lat": 14.212001,
+      "lon": 101.202214,
+      "country": "THA",
+      "groups": [
+        "central"
+      ]
+    },
+    {
+      "name": "NKPN",
+      "lat": 17.409253,
+      "lon": 104.779056,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "NKPT",
+      "lat": 13.766621,
+      "lon": 100.057057,
+      "country": "THA",
+      "groups": [
+        "central"
+      ]
+    },
+    {
+      "name": "NKRM",
+      "lat": 14.992117,
+      "lon": 102.129472,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "NKSI",
+      "lat": 7.531379,
+      "lon": 99.716338,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "NKSW",
+      "lat": 15.690635,
+      "lon": 100.114114,
+      "country": "THA",
+      "groups": [
+        "central"
+      ]
+    },
+    {
+      "name": "NMPG",
+      "lat": 16.568436,
+      "lon": 100.635508,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "NPTM",
+      "lat": 8.719281,
+      "lon": 99.751347,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "NROA",
+      "lat": 16.492645,
+      "lon": 102.432802,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "NRTW",
+      "lat": 6.423861,
+      "lon": 101.790522,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "NSHO",
+      "lat": 15.733254,
+      "lon": 102.795921,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "NSOM",
+      "lat": 17.769822,
+      "lon": 102.19001,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "NTYA",
+      "lat": 13.816504,
+      "lon": 99.529722,
+      "country": "THA",
+      "groups": [
+        "western"
+      ]
+    },
+    {
+      "name": "OKRK",
+      "lat": 14.111359,
+      "lon": 100.978789,
+      "country": "THA",
+      "groups": [
+        "central"
+      ]
+    },
+    {
+      "name": "PAII",
+      "lat": 19.357964,
+      "lon": 98.43511,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "PALN",
+      "lat": 7.171777,
+      "lon": 99.685616,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "PBHN",
+      "lat": 15.245099,
+      "lon": 105.230089,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "PCBR",
+      "lat": 14.067039,
+      "lon": 101.590283,
+      "country": "THA",
+      "groups": [
+        "eastern"
+      ]
+    },
+    {
+      "name": "PCCO",
+      "lat": 13.445084,
+      "lon": 101.610446,
+      "country": "THA",
+      "groups": [
+        "eastern"
+      ]
+    },
+    {
+      "name": "PCPM",
+      "lat": 16.082637,
+      "lon": 101.802842,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "PCRI",
+      "lat": 19.656101,
+      "lon": 99.542982,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "PDCP",
+      "lat": 15.904702,
+      "lon": 101.421688,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "PGMP",
+      "lat": 19.523032,
+      "lon": 98.246391,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "PHAN",
+      "lat": 19.55422,
+      "lon": 99.740723,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "PHCI",
+      "lat": 17.285234,
+      "lon": 100.087928,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "PHEN",
+      "lat": 17.694907,
+      "lon": 102.905985,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "PHKH",
+      "lat": 16.369314,
+      "lon": 102.1398,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "PHKW",
+      "lat": 17.515811,
+      "lon": 100.400556,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "PHMI",
+      "lat": 15.220363,
+      "lon": 102.486506,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "PHSI",
+      "lat": 15.826308,
+      "lon": 105.260891,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "PJRK",
+      "lat": 11.811619,
+      "lon": 99.796348,
+      "country": "THA",
+      "groups": [
+        "western"
+      ]
+    },
+    {
+      "name": "PKCG",
+      "lat": 14.668629,
+      "lon": 101.440406,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "PKCM",
+      "lat": 18.022745,
+      "lon": 101.887269,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "PKET",
+      "lat": 7.889629,
+      "lon": 98.394395,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "PKKT",
+      "lat": 13.912476,
+      "lon": 100.540073,
+      "country": "THA",
+      "groups": [
+        "central"
+      ]
+    },
+    {
+      "name": "PKNK",
+      "lat": 8.337824,
+      "lon": 100.208883,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "PLDG",
+      "lat": 12.971817,
+      "lon": 101.215159,
+      "country": "THA",
+      "groups": [
+        "eastern"
+      ]
+    },
+    {
+      "name": "PNNK",
+      "lat": 13.465837,
+      "lon": 101.183344,
+      "country": "THA",
+      "groups": [
+        "eastern"
+      ]
+    },
+    {
+      "name": "PNPS",
+      "lat": 18.036011,
+      "lon": 103.082482,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "PNST",
+      "lat": 8.420065,
+      "lon": 99.395166,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "PNTG",
+      "lat": 16.317165,
+      "lon": 103.983343,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "PONG",
+      "lat": 19.149991,
+      "lon": 100.275195,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "PPRM",
+      "lat": 17.033672,
+      "lon": 100.201601,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "PRAW",
+      "lat": 19.334638,
+      "lon": 99.191231,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "PRCB",
+      "lat": 14.111581,
+      "lon": 101.329997,
+      "country": "THA",
+      "groups": [
+        "eastern"
+      ]
+    },
+    {
+      "name": "PRKU",
+      "lat": 14.858562,
+      "lon": 104.038981,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "PRST",
+      "lat": 14.640612,
+      "lon": 103.405062,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "PRTY",
+      "lat": 15.533191,
+      "lon": 102.722212,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "PRYN",
+      "lat": 16.324578,
+      "lon": 102.648207,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "PTBR",
+      "lat": 13.109144,
+      "lon": 99.944315,
+      "country": "THA",
+      "groups": [
+        "western"
+      ]
+    },
+    {
+      "name": "PTHI",
+      "lat": 10.701591,
+      "lon": 99.319243,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "PTLG",
+      "lat": 7.615586,
+      "lon": 100.071526,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "PTNK",
+      "lat": 14.856763,
+      "lon": 100.988792,
+      "country": "THA",
+      "groups": [
+        "central"
+      ]
+    },
+    {
+      "name": "PTRW",
+      "lat": 15.892243,
+      "lon": 104.905574,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "PTSG",
+      "lat": 15.560801,
+      "lon": 102.981485,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "PTTN",
+      "lat": 6.865506,
+      "lon": 101.248221,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "PYAO",
+      "lat": 19.192118,
+      "lon": 99.880508,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "PYMR",
+      "lat": 19.848321,
+      "lon": 100.153423,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "PYPS",
+      "lat": 15.515541,
+      "lon": 103.193257,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "RAND",
+      "lat": 7.767623,
+      "lon": 100.324382,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "RATP",
+      "lat": 7.140815,
+      "lon": 100.29375,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "RAYG",
+      "lat": 12.669044,
+      "lon": 101.273688,
+      "country": "THA",
+      "groups": [
+        "eastern"
+      ]
+    },
+    {
+      "name": "RGKW",
+      "lat": 18.340117,
+      "lon": 100.317312,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "ROET",
+      "lat": 16.06715,
+      "lon": 103.612379,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "RTNB",
+      "lat": 15.321227,
+      "lon": 103.857426,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "RUSO",
+      "lat": 6.391994,
+      "lon": 101.520132,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "SADO",
+      "lat": 6.730636,
+      "lon": 100.449095,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "SAEO",
+      "lat": 13.897798,
+      "lon": 102.520981,
+      "country": "THA",
+      "groups": [
+        "eastern"
+      ]
+    },
+    {
+      "name": "SAKW",
+      "lat": 13.80601,
+      "lon": 102.09686,
+      "country": "THA",
+      "groups": [
+        "eastern"
+      ]
+    },
+    {
+      "name": "SAMG",
+      "lat": 18.848127,
+      "lon": 98.732341,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "SATN",
+      "lat": 6.649423,
+      "lon": 100.083918,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "SBKK",
+      "lat": 13.792945,
+      "lon": 100.596491,
+      "country": "THA",
+      "groups": [
+        "central"
+      ]
+    },
+    {
+      "name": "SBRI",
+      "lat": 6.704526,
+      "lon": 101.618151,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "SBYI",
+      "lat": 6.530383,
+      "lon": 100.820492,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "SCHP",
+      "lat": 16.801188,
+      "lon": 102.187133,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "SDAN",
+      "lat": 16.189146,
+      "lon": 100.859279,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "SDAO",
+      "lat": 13.137029,
+      "lon": 102.21837,
+      "country": "THA",
+      "groups": [
+        "eastern"
+      ]
+    },
+    {
+      "name": "SEKA",
+      "lat": 17.927568,
+      "lon": 103.953233,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "SGNN",
+      "lat": 14.883943,
+      "lon": 101.664917,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "SIBR",
+      "lat": 14.888203,
+      "lon": 100.4052,
+      "country": "THA",
+      "groups": [
+        "central"
+      ]
+    },
+    {
+      "name": "SICN",
+      "lat": 9.007169,
+      "lon": 99.90125,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "SIMM",
+      "lat": 15.496667,
+      "lon": 105.27766,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "SISA",
+      "lat": 17.517531,
+      "lon": 99.760449,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "SISK",
+      "lat": 15.11612,
+      "lon": 104.28568,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "SKBR",
+      "lat": 15.155008,
+      "lon": 98.453361,
+      "country": "THA",
+      "groups": [
+        "western"
+      ]
+    },
+    {
+      "name": "SKNK",
+      "lat": 17.155203,
+      "lon": 104.133704,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "SKOM",
+      "lat": 18.063677,
+      "lon": 102.271976,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "SKPM",
+      "lat": 14.945872,
+      "lon": 103.791747,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "SKSR",
+      "lat": 9.344127,
+      "lon": 98.429714,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "SKTH",
+      "lat": 17.005183,
+      "lon": 99.827264,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "SLPM",
+      "lat": 16.033453,
+      "lon": 103.933326,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "SMCI",
+      "lat": 16.863022,
+      "lon": 103.536848,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "SMCK",
+      "lat": 14.7206,
+      "lon": 100.106678,
+      "country": "THA",
+      "groups": [
+        "central"
+      ]
+    },
+    {
+      "name": "SMDT",
+      "lat": 16.704788,
+      "lon": 103.749946,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "SMEN",
+      "lat": 18.051166,
+      "lon": 100.111297,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "SMKL",
+      "lat": 14.022694,
+      "lon": 99.191503,
+      "country": "THA",
+      "groups": [
+        "western"
+      ]
+    },
+    {
+      "name": "SMNM",
+      "lat": 18.0652,
+      "lon": 99.245529,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "SMPR",
+      "lat": 13.598431,
+      "lon": 100.597709,
+      "country": "THA",
+      "groups": [
+        "central"
+      ]
+    },
+    {
+      "name": "SMSK",
+      "lat": 13.41594,
+      "lon": 100.00222,
+      "country": "THA",
+      "groups": [
+        "central"
+      ]
+    },
+    {
+      "name": "SNCK",
+      "lat": 13.658579,
+      "lon": 101.439759,
+      "country": "THA",
+      "groups": [
+        "eastern"
+      ]
+    },
+    {
+      "name": "SOKA",
+      "lat": 7.20669,
+      "lon": 100.59612,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "SONG",
+      "lat": 18.469617,
+      "lon": 100.183388,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "SPBR",
+      "lat": 14.518873,
+      "lon": 100.130582,
+      "country": "THA",
+      "groups": [
+        "central"
+      ]
+    },
+    {
+      "name": "SPDI",
+      "lat": 6.084836,
+      "lon": 101.877432,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "SPRP",
+      "lat": 17.880079,
+      "lon": 99.337031,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "SPUG",
+      "lat": 13.547343,
+      "lon": 99.440765,
+      "country": "THA",
+      "groups": [
+        "western"
+      ]
+    },
+    {
+      "name": "SRTN",
+      "lat": 9.132222,
+      "lon": 99.331359,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "SSKM",
+      "lat": 17.627048,
+      "lon": 104.250884,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "SSWT",
+      "lat": 14.600642,
+      "lon": 99.114125,
+      "country": "THA",
+      "groups": [
+        "western"
+      ]
+    },
+    {
+      "name": "STCI",
+      "lat": 14.462922,
+      "lon": 104.730622,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "STHP",
+      "lat": 12.662821,
+      "lon": 100.904064,
+      "country": "THA",
+      "groups": [
+        "eastern"
+      ]
+    },
+    {
+      "name": "STPA",
+      "lat": 7.45928,
+      "lon": 100.443329,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "STUK",
+      "lat": 15.2979,
+      "lon": 103.292359,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "SURN",
+      "lat": 14.879638,
+      "lon": 103.487536,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "SWDD",
+      "lat": 17.484419,
+      "lon": 103.460893,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "SWKL",
+      "lat": 17.317781,
+      "lon": 99.831603,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "SWNP",
+      "lat": 15.611399,
+      "lon": 103.801177,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "TAPY",
+      "lat": 14.00621,
+      "lon": 102.805914,
+      "country": "THA",
+      "groups": [
+        "eastern"
+      ]
+    },
+    {
+      "name": "TATM",
+      "lat": 15.325167,
+      "lon": 103.707717,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "TCP1",
+      "lat": 10.802888,
+      "lon": 99.170226,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "TCP2",
+      "lat": 10.069822,
+      "lon": 99.058697,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "TCTI",
+      "lat": 12.73548,
+      "lon": 101.833441,
+      "country": "THA",
+      "groups": [
+        "eastern"
+      ]
+    },
+    {
+      "name": "TEPA",
+      "lat": 6.829826,
+      "lon": 100.9645,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "TGSG",
+      "lat": 8.129475,
+      "lon": 99.671288,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "THAI",
+      "lat": 14.043007,
+      "lon": 100.713614,
+      "country": "THA",
+      "groups": [
+        "central"
+      ]
+    },
+    {
+      "name": "THCG",
+      "lat": 19.386612,
+      "lon": 100.875813,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "THEN",
+      "lat": 17.611339,
+      "lon": 99.21567,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "THKP",
+      "lat": 8.870719,
+      "lon": 98.344423,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "THPA",
+      "lat": 17.792411,
+      "lon": 100.378204,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "THPP",
+      "lat": 14.744872,
+      "lon": 98.624196,
+      "country": "THA",
+      "groups": [
+        "western"
+      ]
+    },
+    {
+      "name": "THSY",
+      "lat": 17.232846,
+      "lon": 98.235556,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "THUT",
+      "lat": 17.579362,
+      "lon": 104.594358,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "TIMG",
+      "lat": 8.411477,
+      "lon": 98.24462,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "TKBI",
+      "lat": 6.259564,
+      "lon": 102.054992,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "TKK1",
+      "lat": 16.838455,
+      "lon": 102.912699,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "TKK2",
+      "lat": 15.895126,
+      "lon": 102.648848,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "TKPP",
+      "lat": 15.605304,
+      "lon": 105.036153,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "TKRI",
+      "lat": 14.105208,
+      "lon": 99.429524,
+      "country": "THA",
+      "groups": [
+        "western"
+      ]
+    },
+    {
+      "name": "TKUT",
+      "lat": 9.148182,
+      "lon": 98.964035,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "TMKA",
+      "lat": 13.920987,
+      "lon": 99.765981,
+      "country": "THA",
+      "groups": [
+        "western"
+      ]
+    },
+    {
+      "name": "TMOT",
+      "lat": 7.35851,
+      "lon": 100.123498,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "TNPM",
+      "lat": 17.334348,
+      "lon": 104.578337,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "TNPT",
+      "lat": 14.088019,
+      "lon": 99.93992,
+      "country": "THA",
+      "groups": [
+        "central"
+      ]
+    },
+    {
+      "name": "TNSN",
+      "lat": 15.880208,
+      "lon": 100.411614,
+      "country": "THA",
+      "groups": [
+        "central"
+      ]
+    },
+    {
+      "name": "TNST",
+      "lat": 8.489227,
+      "lon": 99.956238,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "TPHN",
+      "lat": 16.21885,
+      "lon": 100.42855,
+      "country": "THA",
+      "groups": [
+        "central"
+      ]
+    },
+    {
+      "name": "TPK1",
+      "lat": 12.415809,
+      "lon": 99.886147,
+      "country": "THA",
+      "groups": [
+        "western"
+      ]
+    },
+    {
+      "name": "TPK2",
+      "lat": 10.987269,
+      "lon": 99.368426,
+      "country": "THA",
+      "groups": [
+        "western"
+      ]
+    },
+    {
+      "name": "TPKT",
+      "lat": 8.134551,
+      "lon": 98.33047,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "TPNM",
+      "lat": 16.936912,
+      "lon": 104.709451,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "TPRI",
+      "lat": 13.944379,
+      "lon": 101.712279,
+      "country": "THA",
+      "groups": [
+        "eastern"
+      ]
+    },
+    {
+      "name": "TSKA",
+      "lat": 6.928744,
+      "lon": 100.40619,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "TSKW",
+      "lat": 13.694944,
+      "lon": 102.492417,
+      "country": "THA",
+      "groups": [
+        "eastern"
+      ]
+    },
+    {
+      "name": "TSRI",
+      "lat": 14.651883,
+      "lon": 101.155112,
+      "country": "THA",
+      "groups": [
+        "central"
+      ]
+    },
+    {
+      "name": "TSSK",
+      "lat": 15.105083,
+      "lon": 104.568985,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "TTKO",
+      "lat": 15.6414,
+      "lon": 100.482031,
+      "country": "THA",
+      "groups": [
+        "central"
+      ]
+    },
+    {
+      "name": "TUBN",
+      "lat": 15.192984,
+      "lon": 104.883719,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "TUTT",
+      "lat": 17.663034,
+      "lon": 100.124936,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "TWPH",
+      "lat": 19.100294,
+      "lon": 100.807056,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "UBON",
+      "lat": 15.280932,
+      "lon": 104.794608,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "UBRT",
+      "lat": 16.752562,
+      "lon": 102.634841,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "UDON",
+      "lat": 17.41273,
+      "lon": 102.780708,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "UTHI",
+      "lat": 15.360827,
+      "lon": 100.008665,
+      "country": "THA",
+      "groups": [
+        "central"
+      ]
+    },
+    {
+      "name": "UTOG",
+      "lat": 14.377271,
+      "lon": 99.893083,
+      "country": "THA",
+      "groups": [
+        "central"
+      ]
+    },
+    {
+      "name": "UTTD",
+      "lat": 17.630092,
+      "lon": 100.096346,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "VCBR",
+      "lat": 15.659365,
+      "lon": 101.12648,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "WAMG",
+      "lat": 14.848628,
+      "lon": 101.145494,
+      "country": "THA",
+      "groups": [
+        "central"
+      ]
+    },
+    {
+      "name": "WGCN",
+      "lat": 17.899837,
+      "lon": 99.603011,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "WGNR",
+      "lat": 19.145502,
+      "lon": 99.619185,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "WGNY",
+      "lat": 13.49961,
+      "lon": 102.182433,
+      "country": "THA",
+      "groups": [
+        "eastern"
+      ]
+    },
+    {
+      "name": "WGSA",
+      "lat": 8.659699,
+      "lon": 99.375968,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "WHAG",
+      "lat": 19.561554,
+      "lon": 98.636989,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "WHDG",
+      "lat": 14.346684,
+      "lon": 100.989393,
+      "country": "THA",
+      "groups": [
+        "central"
+      ]
+    },
+    {
+      "name": "WICI",
+      "lat": 19.883416,
+      "lon": 99.933187,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "WIPP",
+      "lat": 19.347156,
+      "lon": 99.508048,
+      "country": "THA",
+      "groups": [
+        "northern"
+      ]
+    },
+    {
+      "name": "WNKH",
+      "lat": 14.417009,
+      "lon": 101.850282,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "WNNW",
+      "lat": 17.631717,
+      "lon": 103.751956,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "WPPT",
+      "lat": 15.845695,
+      "lon": 103.379601,
+      "country": "THA",
+      "groups": [
+        "northeast2"
+      ]
+    },
+    {
+      "name": "WSPG",
+      "lat": 17.300784,
+      "lon": 101.76866,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "WTBK",
+      "lat": 15.386944,
+      "lon": 101.412082,
+      "country": "THA",
+      "groups": [
+        "northeast1"
+      ]
+    },
+    {
+      "name": "YALA",
+      "lat": 6.540147,
+      "lon": 101.278947,
+      "country": "THA",
+      "groups": [
+        "southern"
+      ]
+    },
+    {
+      "name": "YNRK",
+      "lat": 15.375578,
+      "lon": 100.965756,
+      "country": "THA",
+      "groups": [
+        "central"
+      ]
+    }
+  ]
+}

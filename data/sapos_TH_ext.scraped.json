@@ -1,0 +1,104 @@
+{
+  "last_updated": "2026-11-22T19:39:36+00:00",
+  "scraper_version": "8ae8070fe052",
+  "source_url": "https://sapos.thueringen.de/karte.php",
+  "pin_origin": "external",
+  "stations": [
+    {
+      "name": "Altenburg",
+      "lat": 50.98443817,
+      "lon": 12.425535,
+      "country": "DEU"
+    },
+    {
+      "name": "Bad Salzungen",
+      "lat": 50.81246212,
+      "lon": 10.2290812,
+      "country": "DEU"
+    },
+    {
+      "name": "Buttst\u00e4dt",
+      "lat": 51.12262008,
+      "lon": 11.42302562,
+      "country": "DEU"
+    },
+    {
+      "name": "Erfurt",
+      "lat": 51.00522564,
+      "lon": 11.02824271,
+      "country": "DEU"
+    },
+    {
+      "name": "Gera",
+      "lat": 50.87879724,
+      "lon": 12.07890927,
+      "country": "DEU"
+    },
+    {
+      "name": "Gotha",
+      "lat": 50.94774907,
+      "lon": 10.70358097,
+      "country": "DEU"
+    },
+    {
+      "name": "Hildburghausen",
+      "lat": 50.42796493,
+      "lon": 10.73118955,
+      "country": "DEU"
+    },
+    {
+      "name": "Ilmenau",
+      "lat": 50.68102889,
+      "lon": 10.9349703,
+      "country": "DEU"
+    },
+    {
+      "name": "Jena",
+      "lat": 50.9143705,
+      "lon": 11.71710765,
+      "country": "DEU"
+    },
+    {
+      "name": "Meiningen",
+      "lat": 50.59321099,
+      "lon": 10.41662858,
+      "country": "DEU"
+    },
+    {
+      "name": "M\u00fchlhausen",
+      "lat": 51.20271873,
+      "lon": 10.46408074,
+      "country": "DEU"
+    },
+    {
+      "name": "Saalfeld",
+      "lat": 50.6451489,
+      "lon": 11.35886669,
+      "country": "DEU"
+    },
+    {
+      "name": "Schleiz",
+      "lat": 50.58386981,
+      "lon": 11.81073049,
+      "country": "DEU"
+    },
+    {
+      "name": "Sondershausen",
+      "lat": 51.36711039,
+      "lon": 10.84926477,
+      "country": "DEU"
+    },
+    {
+      "name": "Sonneberg",
+      "lat": 50.35574449,
+      "lon": 11.17993973,
+      "country": "DEU"
+    },
+    {
+      "name": "Worbis",
+      "lat": 51.4210625,
+      "lon": 10.35901568,
+      "country": "DEU"
+    }
+  ]
+}

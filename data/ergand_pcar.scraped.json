@@ -1,0 +1,26 @@
+{
+  "last_updated": "2026-11-28T09:38:05+00:00",
+  "scraper_version": "80be7072188b",
+  "source_url": "http://185.194.59.113:2101/",
+  "pin_origin": "ntrip",
+  "stations": [
+    {
+      "name": "PCAR3",
+      "lat": 42.514482,
+      "lon": 1.497167,
+      "format": "RTCM3",
+      "constellations": "GPS GLO",
+      "country": "AND",
+      "carrier": 2
+    },
+    {
+      "name": "PCAR3M",
+      "lat": 42.514482,
+      "lon": 1.497167,
+      "format": "RTCM 3.2 MSM5",
+      "constellations": "GPS GLO GAL BDS",
+      "country": "AND",
+      "carrier": 3
+    }
+  ]
+}

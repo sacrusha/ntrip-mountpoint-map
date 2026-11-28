@@ -1,0 +1,863 @@
+{
+  "last_updated": "2026-11-28T09:38:05+00:00",
+  "scraper_version": "fcb4b6aaa698",
+  "source_url": "http://rgp-ip.ign.fr:80/",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "AAER00FRA7",
+      "lat": 49.782468,
+      "lon": 4.642637,
+      "country": "FRA",
+      "format": "RTCM3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS+QZSS"
+    },
+    {
+      "name": "ABMF00GLP7",
+      "lat": 16.262305,
+      "lon": -61.527537,
+      "country": "GLP",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS+QZS"
+    },
+    {
+      "name": "ABMF1",
+      "lat": 16.262305,
+      "lon": -61.527537,
+      "country": "GLP",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO"
+    },
+    {
+      "name": "AREG00PER0",
+      "lat": -16.46542316,
+      "lon": -71.49290406,
+      "country": "PER",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS"
+    },
+    {
+      "name": "ASCG00SHN0",
+      "lat": -7.91628097,
+      "lon": -14.33266438,
+      "country": "SHN",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS"
+    },
+    {
+      "name": "AUTN00FRA7",
+      "lat": 46.953838,
+      "lon": 4.288971,
+      "country": "FRA",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS+GALILEO+BEIDOU+QZSS"
+    },
+    {
+      "name": "AUTN1",
+      "lat": 46.953838,
+      "lon": 4.288971,
+      "country": "FRA",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "AXPV00FRA7",
+      "lat": 43.491211,
+      "lon": 5.333192,
+      "country": "FRA",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS+GALILEO+BEIDOU+QZSS"
+    },
+    {
+      "name": "AXPV1",
+      "lat": 43.491211,
+      "lon": 5.333192,
+      "country": "FRA",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "BRMF00FRA7",
+      "lat": 45.726072,
+      "lon": 4.938388,
+      "country": "FRA",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS+GALILEO+BEIDOU+QZSS"
+    },
+    {
+      "name": "BRMF1",
+      "lat": 45.726072,
+      "lon": 4.938388,
+      "country": "FRA",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "BRST00FRA7",
+      "lat": 48.380491,
+      "lon": -4.496598,
+      "country": "FRA",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS"
+    },
+    {
+      "name": "BRST1",
+      "lat": 48.380491,
+      "lon": -4.496598,
+      "country": "FRA",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "BSCN00FRA7",
+      "lat": 47.246878,
+      "lon": 5.989382,
+      "country": "FRA",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS+GALILEO+BEIDOU+QZSS"
+    },
+    {
+      "name": "BSCN1",
+      "lat": 47.246878,
+      "lon": 5.989382,
+      "country": "FRA",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "CHPG00BRA0",
+      "lat": -22.6822729,
+      "lon": -45.0023755,
+      "country": "BRA",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS"
+    },
+    {
+      "name": "CIBG00IDN0",
+      "lat": -6.49036524,
+      "lon": 106.84917456,
+      "country": "IDN",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+QZSS"
+    },
+    {
+      "name": "CPVG00CPV0",
+      "lat": 16.7320623,
+      "lon": -22.93493263,
+      "country": "CPV",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS"
+    },
+    {
+      "name": "CRTE00FRA7",
+      "lat": 42.298868,
+      "lon": 9.152865,
+      "country": "FRA",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "CRTE1",
+      "lat": 42.298868,
+      "lon": 9.152865,
+      "country": "FRA",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "CYNE00GUF7",
+      "lat": 4.821953,
+      "lon": -52.365414,
+      "country": "GUF",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS+QZS"
+    },
+    {
+      "name": "CYNE1",
+      "lat": 4.821953,
+      "lon": -52.365414,
+      "country": "GUF",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO"
+    },
+    {
+      "name": "CZTG00ATF0",
+      "lat": -46.43189632,
+      "lon": 51.85548211,
+      "country": "ATF",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL"
+    },
+    {
+      "name": "DJIG00DJI0",
+      "lat": 11.52628791,
+      "lon": 42.84706513,
+      "country": "DJI",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+IRNSS"
+    },
+    {
+      "name": "DUMG00ATA1",
+      "lat": -66.66518498,
+      "lon": 140.00218741,
+      "country": "ATA",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "DUMG00ATA7",
+      "lat": -66.66518498,
+      "lon": 140.00218741,
+      "country": "ATA",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS+GALILEO+BEIDOU+QZSS"
+    },
+    {
+      "name": "DYNG00GRC0",
+      "lat": 38.07855326,
+      "lon": 23.93243423,
+      "country": "GRC",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+IRNSS"
+    },
+    {
+      "name": "EGLT0",
+      "lat": 45.40335,
+      "lon": 2.051992,
+      "country": "FRA",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS"
+    },
+    {
+      "name": "EGLT00FRA7",
+      "lat": 45.40335,
+      "lon": 2.051992,
+      "country": "FRA",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS+GALILEO+BEIDOU+QZSS"
+    },
+    {
+      "name": "EGLT1",
+      "lat": 45.40335,
+      "lon": 2.051992,
+      "country": "FRA",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "ENTZ00FRA7",
+      "lat": 48.549357,
+      "lon": 7.639899,
+      "country": "FRA",
+      "format": "RTCM3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS+GALILEO+BEIDOU+QZSS"
+    },
+    {
+      "name": "ENTZ1",
+      "lat": 48.549357,
+      "lon": 7.639899,
+      "country": "FRA",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "EXSG00FRA7",
+      "lat": 48.899567,
+      "lon": 2.064704,
+      "country": "FRA",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+SBAS+BDS+QZSS"
+    },
+    {
+      "name": "FTNA00WLF0",
+      "lat": -14.30780452,
+      "lon": -178.12094314,
+      "country": "WLF",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+QZSS"
+    },
+    {
+      "name": "GAMB00PYF0",
+      "lat": -23.1303582,
+      "lon": -134.96481564,
+      "country": "PYF",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS"
+    },
+    {
+      "name": "GAMG00KOR0",
+      "lat": 35.5900706,
+      "lon": 127.91966041,
+      "country": "KOR",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+SBAS+BDS+QZSS+IRNSS"
+    },
+    {
+      "name": "GRAC00FRA7",
+      "lat": 43.754487,
+      "lon": 6.920763,
+      "country": "FRA",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS+GALILEO+BEIDOU+QZSS"
+    },
+    {
+      "name": "GRAC1",
+      "lat": 43.754487,
+      "lon": 6.920763,
+      "country": "FRA",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "GRAS00FRA0",
+      "lat": 43.754735,
+      "lon": 6.92057,
+      "country": "FRA",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL"
+    },
+    {
+      "name": "GUIP00FRA7",
+      "lat": 48.444601,
+      "lon": -4.411823,
+      "country": "FRA",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS+GALILEO+BEIDOU+QZSS"
+    },
+    {
+      "name": "GUIP1",
+      "lat": 48.444601,
+      "lon": -4.411823,
+      "country": "FRA",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "HAO201USA0",
+      "lat": 19.53568979,
+      "lon": -155.57690984,
+      "country": "USA",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+QZSS"
+    },
+    {
+      "name": "HARB00ZAF0",
+      "lat": -25.88696338,
+      "lon": 27.70724422,
+      "country": "ZAF",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+SBAS+BDS+IRNSS"
+    },
+    {
+      "name": "IGNP00FRA7",
+      "lat": 48.844474,
+      "lon": 2.425034,
+      "country": "FRA",
+      "format": "RTCM3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS+QZSS"
+    },
+    {
+      "name": "KERG00ATF0",
+      "lat": -49.35146684,
+      "lon": 70.25552199,
+      "country": "ATF",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS"
+    },
+    {
+      "name": "KIRG01KIR0",
+      "lat": 1.35458565,
+      "lon": 172.92288791,
+      "country": "KIR",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS+QZSS+IRNSS"
+    },
+    {
+      "name": "KITG00UZB0",
+      "lat": 39.1333864,
+      "lon": 66.88673819,
+      "country": "UZB",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+SBAS+BDS+QZSS+IRNSS"
+    },
+    {
+      "name": "KOUG00GUF0",
+      "lat": 5.098469,
+      "lon": -52.63975,
+      "country": "GUF",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS"
+    },
+    {
+      "name": "KRGG00ATF0",
+      "lat": -49.35154318,
+      "lon": 70.25550574,
+      "country": "ATF",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS"
+    },
+    {
+      "name": "LBTM1",
+      "lat": 48.47727,
+      "lon": -2.499941,
+      "country": "FRA",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL"
+    },
+    {
+      "name": "LBTM7",
+      "lat": 48.47727,
+      "lon": -2.499941,
+      "country": "FRA",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL"
+    },
+    {
+      "name": "LIL200FRA7",
+      "lat": 50.613507,
+      "lon": 3.135951,
+      "country": "FRA",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS+GALILEO+BEIDOU+QZSS"
+    },
+    {
+      "name": "LIL21",
+      "lat": 50.613507,
+      "lon": 3.135951,
+      "country": "FRA",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "LMMF00MTQ7",
+      "lat": 14.594816,
+      "lon": -60.996177,
+      "country": "MTQ",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS"
+    },
+    {
+      "name": "LMMF1",
+      "lat": 14.594816,
+      "lon": -60.996177,
+      "country": "MTQ",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO"
+    },
+    {
+      "name": "MARS00FRA7",
+      "lat": 43.278767,
+      "lon": 5.353784,
+      "country": "FRA",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS+GALILEO+BEIDOU+QZSS"
+    },
+    {
+      "name": "MARS1",
+      "lat": 43.278767,
+      "lon": 5.353784,
+      "country": "FRA",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "MELH00FRA7",
+      "lat": 50.569138,
+      "lon": 2.851383,
+      "country": "FRA",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS"
+    },
+    {
+      "name": "MELR00FRA7",
+      "lat": 50.743613,
+      "lon": 3.136315,
+      "country": "FRA",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS"
+    },
+    {
+      "name": "MELS00FRA7",
+      "lat": 50.633602,
+      "lon": 2.978503,
+      "country": "FRA",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS"
+    },
+    {
+      "name": "METG00FIN0",
+      "lat": 60.24196684,
+      "lon": 24.38417518,
+      "country": "FIN",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+IRNSS"
+    },
+    {
+      "name": "MIQU00SPM7",
+      "lat": 47.097331,
+      "lon": -56.3841,
+      "country": "SPM",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS+QZS"
+    },
+    {
+      "name": "MIQU1",
+      "lat": 47.097331,
+      "lon": -56.3841,
+      "country": "SPM",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO"
+    },
+    {
+      "name": "MLVL00FRA7",
+      "lat": 48.841055,
+      "lon": 2.587308,
+      "country": "FRA",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS+GALILEO+BEIDOU+QZSS"
+    },
+    {
+      "name": "MLVL1",
+      "lat": 48.841055,
+      "lon": 2.587308,
+      "country": "FRA",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "NBTG1",
+      "lat": -22.24199494,
+      "lon": 166.41612002,
+      "country": "NCL",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "NKLG00GAB0",
+      "lat": 0.35390564,
+      "lon": 9.67212396,
+      "country": "GAB",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+SBAS+BDS+IRNSS"
+    },
+    {
+      "name": "NMCU1",
+      "lat": 47.219184,
+      "lon": -1.598616,
+      "country": "FRA",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "NRMG00NCL0",
+      "lat": -22.22832347,
+      "lon": 166.48488593,
+      "country": "NCL",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+SBAS+BDS+QZSS+IRNSS"
+    },
+    {
+      "name": "OWMG00NZL0",
+      "lat": -44.02429362,
+      "lon": -176.36880348,
+      "country": "NZL",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+QZSS"
+    },
+    {
+      "name": "PPTG00GLP7",
+      "lat": 16.224365,
+      "lon": -61.531643,
+      "country": "GLP",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS"
+    },
+    {
+      "name": "PPTG1",
+      "lat": 16.224365,
+      "lon": -61.531643,
+      "country": "GLP",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "PUYV00FRA7",
+      "lat": 45.043615,
+      "lon": 3.878869,
+      "country": "FRA",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "PUYV1",
+      "lat": 45.043615,
+      "lon": 3.878869,
+      "country": "FRA",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "REUN00REU7",
+      "lat": -21.208227,
+      "lon": 55.571718,
+      "country": "REU",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS+QZS"
+    },
+    {
+      "name": "REUN1",
+      "lat": -21.208227,
+      "lon": 55.571718,
+      "country": "REU",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO"
+    },
+    {
+      "name": "RGDG00ARG0",
+      "lat": -53.78583838,
+      "lon": -67.7515278,
+      "country": "ARG",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS"
+    },
+    {
+      "name": "SCOA00FRA7",
+      "lat": 43.395232,
+      "lon": -1.681682,
+      "country": "FRA",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS+GALILEO+BEIDOU+QZSS"
+    },
+    {
+      "name": "SCOA1",
+      "lat": 43.395232,
+      "lon": -1.681682,
+      "country": "FRA",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "SEYG00SYC0",
+      "lat": -4.67873163,
+      "lon": 55.53063088,
+      "country": "SYC",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+IRNSS"
+    },
+    {
+      "name": "STBR00FRA0",
+      "lat": 48.506775,
+      "lon": -2.753349,
+      "country": "FRA",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO"
+    },
+    {
+      "name": "STBR00FRA7",
+      "lat": 48.506775,
+      "lon": -2.753349,
+      "country": "FRA",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL"
+    },
+    {
+      "name": "STGI00REU7",
+      "lat": -21.055661,
+      "lon": 55.222552,
+      "country": "REU",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS+QZS"
+    },
+    {
+      "name": "STJ300CAN0",
+      "lat": 47.59543527,
+      "lon": -52.67830795,
+      "country": "CAN",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+SBAS+BDS"
+    },
+    {
+      "name": "STPM00SPM7",
+      "lat": 46.777824,
+      "lon": -56.168244,
+      "country": "SPM",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+SBAS+BDS"
+    },
+    {
+      "name": "THTG00PYF0",
+      "lat": -17.57706043,
+      "lon": -149.6064378,
+      "country": "PYF",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS"
+    },
+    {
+      "name": "THTI00PYF0",
+      "lat": -17.57706146,
+      "lon": -149.60644991,
+      "country": "PYF",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS"
+    },
+    {
+      "name": "TLMF00FRA7",
+      "lat": 43.574604,
+      "lon": 1.375094,
+      "country": "FRA",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS+GALILEO+BEIDOU+QZSS"
+    },
+    {
+      "name": "TLMF1",
+      "lat": 43.574604,
+      "lon": 1.375094,
+      "country": "FRA",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "TLSE00FRA0",
+      "lat": 43.560692,
+      "lon": 1.480887,
+      "country": "FRA",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+IRNSS"
+    },
+    {
+      "name": "TLSG00FRA0",
+      "lat": 43.549709,
+      "lon": 1.485036,
+      "country": "FRA",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+SBAS+IRNSS"
+    },
+    {
+      "name": "TLTG00FRA7",
+      "lat": 43.117378,
+      "lon": 5.913152,
+      "country": "FRA",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS+GALILEO+BEIDOU+QZSS"
+    },
+    {
+      "name": "TLTG1",
+      "lat": 43.117378,
+      "lon": 5.913152,
+      "country": "FRA",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "VFCH00FRA7",
+      "lat": 47.294192,
+      "lon": 1.719671,
+      "country": "FRA",
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS+GALILEO+BEIDOU+QZSS"
+    },
+    {
+      "name": "VFCH1",
+      "lat": 47.294192,
+      "lon": 1.719671,
+      "country": "FRA",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "last_updated": "2026-06-22",
+  "source_url": "https://www.cartografia.ad/serveis-a-temps-real",
+  "pin_origin": "register",
+  "_provenance": "ERGAND caster 185.194.59.113:2101 is live (SOURCETABLE 200 OK, probed 2026-06-22) but its STR rows publish empty lat/lon, so a {type:ntrip} source yields 0 pins; coord curated here. 42.51/1.50 cross-checks exactly against the live EUREF-IP row PCAR00AND0 (Pic de Carroi) in data/euref_ip.sourcetable, which points at this same caster/mount 185.194.59.113:2101/PCAR3M.",
+  "stations": [
+    {"name": "PCAR", "lat": 42.51, "lon": 1.50, "format": "RTCM 3.2", "carrier": 2, "constellations": "GPS+GLO+GAL+BDS", "country": "AND"}
+  ]
+}

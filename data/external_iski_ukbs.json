@@ -1,0 +1,68 @@
+{
+  "last_updated": "2022-06-08",
+  "source_url": "https://ukbs.iski.gov.tr/",
+  "pin_origin": "register",
+  "provenance": "Operator station feed /Async/GetMarkers (https://web.archive.org/web/20220608101540id_/https://ukbs.iski.gov.tr/Async/GetMarkers), as of 2022-06-08: station name and position only. Regenerate with scripts/regen_external_iski_ukbs.py.",
+  "stations": [
+    {
+      "name": "BEYK",
+      "lat": 41.17672,
+      "lon": 29.093521,
+      "country": "TUR"
+    },
+    {
+      "name": "KCEK",
+      "lat": 41.002747,
+      "lon": 28.779751,
+      "country": "TUR"
+    },
+    {
+      "name": "KEST",
+      "lat": 41.225418,
+      "lon": 28.504011,
+      "country": "TUR"
+    },
+    {
+      "name": "PALA",
+      "lat": 41.086323,
+      "lon": 28.963201,
+      "country": "TUR"
+    },
+    {
+      "name": "PASA",
+      "lat": 41.008145,
+      "lon": 29.282729,
+      "country": "TUR"
+    },
+    {
+      "name": "SILE",
+      "lat": 41.178996,
+      "lon": 29.613318,
+      "country": "TUR"
+    },
+    {
+      "name": "SLVR",
+      "lat": 41.080215,
+      "lon": 28.083401,
+      "country": "TUR"
+    },
+    {
+      "name": "TERK",
+      "lat": 41.30307,
+      "lon": 28.673578,
+      "country": "TUR"
+    },
+    {
+      "name": "TUZL",
+      "lat": 40.826496,
+      "lon": 29.29245,
+      "country": "TUR"
+    },
+    {
+      "name": "YALI",
+      "lat": 41.473347,
+      "lon": 28.293197,
+      "country": "TUR"
+    }
+  ]
+}

@@ -1,0 +1,2195 @@
+{
+  "last_updated": "2026-11-28T09:38:05+00:00",
+  "scraper_version": "235ee2e03ecb",
+  "source_url": "https://map.centipede-rtk.org/index.php/lizmap/service?repository=cent&project=centipede&SERVICE=WFS&VERSION=1.0.0&REQUEST=GetFeature&TYPENAME=notdeclared&OUTPUTFORMAT=GeoJSON",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "56MO",
+      "lat": 47.837,
+      "lon": -2.854,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "ABAT",
+      "lat": 47.026,
+      "lon": 18.544,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "ABMF",
+      "lat": 16.262,
+      "lon": -61.528,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+QZS+BDS+GPS"
+    },
+    {
+      "name": "AGHJ",
+      "lat": 56.052,
+      "lon": 8.704,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "AHJA",
+      "lat": 58.192,
+      "lon": 27.085,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+QZS+BDS+GPS"
+    },
+    {
+      "name": "AKBY",
+      "lat": 57.701,
+      "lon": 14.295,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "ALEN",
+      "lat": 45.207,
+      "lon": 20.623,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+GPS"
+    },
+    {
+      "name": "AM52",
+      "lat": 48.011,
+      "lon": 5.241,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "ANIKO",
+      "lat": 46.642,
+      "lon": 16.927,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "ANNALA",
+      "lat": 63.889,
+      "lon": 24.664,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "ARON",
+      "lat": 48.316,
+      "lon": 21.655,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "AURSK",
+      "lat": 59.943,
+      "lon": 11.37,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "AVUL",
+      "lat": 51.453,
+      "lon": 5.448,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+QZS+BDS+GPS"
+    },
+    {
+      "name": "Atrey",
+      "lat": 49.082,
+      "lon": 16.591,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "BAJM",
+      "lat": 45.985,
+      "lon": 19.412,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "BASE",
+      "lat": 45.585,
+      "lon": 20.454,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "BAYFIELD",
+      "lat": 57.739,
+      "lon": -3.997,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "BDFD",
+      "lat": 50.992,
+      "lon": -4.164,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "BEAUC",
+      "lat": 49.652,
+      "lon": 1.005,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "BERG",
+      "lat": 61.451,
+      "lon": 21.719,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "BFAC",
+      "lat": 46.796,
+      "lon": 7.148,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "BFK1",
+      "lat": 47.881,
+      "lon": 19.429,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "BIRCSAK1",
+      "lat": 47.889,
+      "lon": 19.614,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GPS"
+    },
+    {
+      "name": "BNNGR",
+      "lat": 47.444,
+      "lon": 8.482,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "BODB",
+      "lat": 48.409,
+      "lon": 20.656,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "BOF1",
+      "lat": 46.697,
+      "lon": 0.882,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "BOKA",
+      "lat": 46.187,
+      "lon": 19.971,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "BOUZI",
+      "lat": 50.029,
+      "lon": 2.614,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "BSAMSON",
+      "lat": 46.41,
+      "lon": 20.621,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "B_ECKA_JM",
+      "lat": 45.325,
+      "lon": 20.441,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "Bima",
+      "lat": 46.233,
+      "lon": 29.198,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "CAD6",
+      "lat": 42.69,
+      "lon": 2.909,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "CAMB",
+      "lat": 52.212,
+      "lon": 0.199,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "CAR",
+      "lat": 39.127,
+      "lon": -3.092,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "CBALV",
+      "lat": -33.301,
+      "lon": -64.622,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "CBM1",
+      "lat": 47.931,
+      "lon": 20.821,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "CBV1",
+      "lat": -41.494,
+      "lon": 173.88,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "CGEL1",
+      "lat": 48.638,
+      "lon": -2.06,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "CHIN1",
+      "lat": 40.138,
+      "lon": -3.422,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "CHOI",
+      "lat": 55.755,
+      "lon": -2.404,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "CLRV",
+      "lat": 42.981,
+      "lon": -81.873,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "CRPF",
+      "lat": 44.747,
+      "lon": 10.369,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "CSAG",
+      "lat": 45.012,
+      "lon": 4.401,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "CSUKA",
+      "lat": 47.307,
+      "lon": 17.163,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "CTOR",
+      "lat": 45.048,
+      "lon": 4.794,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "CTX1",
+      "lat": 46.165,
+      "lon": -0.949,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "CUIK",
+      "lat": 55.825,
+      "lon": -3.222,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+QZS+BDS+GPS"
+    },
+    {
+      "name": "CVDY",
+      "lat": 48.042,
+      "lon": -1.581,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "CYNE",
+      "lat": 4.822,
+      "lon": -52.365,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+QZS+BDS+GPS"
+    },
+    {
+      "name": "DACH",
+      "lat": 53.31,
+      "lon": 7.753,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "DAMO",
+      "lat": 54.252,
+      "lon": -0.557,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "DANA",
+      "lat": 46.27,
+      "lon": 16.948,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "DRGHZ",
+      "lat": 51.384,
+      "lon": 4.005,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "DSM-Dovecot",
+      "lat": 56.787,
+      "lon": -2.582,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "DanbyWiske",
+      "lat": 54.402,
+      "lon": -1.543,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GPS"
+    },
+    {
+      "name": "EFIX",
+      "lat": 62.733,
+      "lon": 22.414,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+QZS+BDS+GPS"
+    },
+    {
+      "name": "EGFM",
+      "lat": 54.753,
+      "lon": -1.544,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "EH26",
+      "lat": 64.025,
+      "lon": 25.552,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "EKERO",
+      "lat": 60.036,
+      "lon": 23.534,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+QZS+BDS+GPS"
+    },
+    {
+      "name": "EMONIX",
+      "lat": 47.06,
+      "lon": -1.35,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "ESSIL",
+      "lat": 57.656,
+      "lon": -3.11,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "ETPA",
+      "lat": 47.28,
+      "lon": -0.391,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "FEDD",
+      "lat": 52.295,
+      "lon": -7.468,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "FGFL",
+      "lat": 45.674,
+      "lon": -75.032,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "FIN4",
+      "lat": 60.126,
+      "lon": 19.951,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "FJPC",
+      "lat": 46.699,
+      "lon": -71.627,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "FROG",
+      "lat": 48.332,
+      "lon": -0.325,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "Filipgps",
+      "lat": 45.942,
+      "lon": 19.537,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+GPS"
+    },
+    {
+      "name": "GABI",
+      "lat": 47.036,
+      "lon": 18.536,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "GALB",
+      "lat": 43.285,
+      "lon": -80.227,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "GEODATA2",
+      "lat": 48.841,
+      "lon": 2.587,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GPS"
+    },
+    {
+      "name": "GEOK",
+      "lat": 62.707,
+      "lon": 22.532,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "GKIS",
+      "lat": 46.414,
+      "lon": 19.85,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "GMCP",
+      "lat": 53.681,
+      "lon": -1.342,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "GMDM",
+      "lat": 48.274,
+      "lon": 19.951,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "GRAFIX1",
+      "lat": 47.507,
+      "lon": 19.046,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "HASA",
+      "lat": 61.044,
+      "lon": 26.699,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "HAUJ",
+      "lat": 50.59,
+      "lon": 4.732,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "HEDEM",
+      "lat": 60.314,
+      "lon": 16.105,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "HELP",
+      "lat": 54.12,
+      "lon": -0.545,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "Harjanne",
+      "lat": 60.776,
+      "lon": 27.627,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "Harjavalta_Hauvola",
+      "lat": 61.305,
+      "lon": 22.194,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "Heikkila",
+      "lat": 63.319,
+      "lon": 22.758,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "Heittola",
+      "lat": 63.603,
+      "lon": 25.089,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "Hintsa",
+      "lat": 60.495,
+      "lon": 22.181,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+QZS+BDS+GPS"
+    },
+    {
+      "name": "IIDRE",
+      "lat": 44.85,
+      "lon": -0.675,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "ILXR",
+      "lat": 46.142,
+      "lon": -1.157,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "IONA",
+      "lat": 51.971,
+      "lon": -0.06,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GPS"
+    },
+    {
+      "name": "IRAC",
+      "lat": 43.422,
+      "lon": -1.316,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "JEMA",
+      "lat": 60.672,
+      "lon": 23.454,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+QZS+BDS+GPS"
+    },
+    {
+      "name": "JHUG",
+      "lat": 54.784,
+      "lon": -6.323,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "JMU-ROBOTICS",
+      "lat": 49.781,
+      "lon": 9.974,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "JOCO",
+      "lat": 50.725,
+      "lon": 5.561,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "JOKIV103",
+      "lat": 60.996,
+      "lon": 23.278,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+GPS"
+    },
+    {
+      "name": "JORAN",
+      "lat": 60.269,
+      "lon": 10.192,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "Junttila",
+      "lat": 63.705,
+      "lon": 25.959,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "KAJLA",
+      "lat": 45.71,
+      "lon": 19.563,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+GPS"
+    },
+    {
+      "name": "KEILLORFARM",
+      "lat": 56.551,
+      "lon": -3.189,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "KETA",
+      "lat": 46.594,
+      "lon": 18.405,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "KF84",
+      "lat": 48.137,
+      "lon": 21.009,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "KJOK",
+      "lat": 62.265,
+      "lon": 21.74,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+QZS+BDS+GPS"
+    },
+    {
+      "name": "KOLR",
+      "lat": 46.033,
+      "lon": 19.04,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "KORPEL",
+      "lat": 61.221,
+      "lon": 22.098,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "KORPELA2",
+      "lat": 63.967,
+      "lon": 25.032,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "KUFF",
+      "lat": 46.519,
+      "lon": 6.435,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "KUTI1",
+      "lat": 47.819,
+      "lon": 19.638,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GPS"
+    },
+    {
+      "name": "KVSD",
+      "lat": 47.794,
+      "lon": 20.567,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "KZDE_2",
+      "lat": 46.284,
+      "lon": 18.767,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+SBS+GPS"
+    },
+    {
+      "name": "Kivijoenvihannes1",
+      "lat": 61.685,
+      "lon": 27.507,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "Knockclonagad",
+      "lat": 52.657,
+      "lon": -6.87,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "Koivula",
+      "lat": 64.616,
+      "lon": 25.212,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+GPS"
+    },
+    {
+      "name": "Kortepera",
+      "lat": 64.134,
+      "lon": 24.432,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "KoskiRTK",
+      "lat": 63.884,
+      "lon": 24.007,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "LAMM",
+      "lat": 62.123,
+      "lon": 22.747,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "LAND",
+      "lat": 55.929,
+      "lon": -2.826,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GPS"
+    },
+    {
+      "name": "LANONO111",
+      "lat": 47.061,
+      "lon": 20.311,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "LAP0",
+      "lat": 45.31,
+      "lon": -72.084,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "LEAR",
+      "lat": 51.855,
+      "lon": -0.835,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "LFRGL",
+      "lat": 44.037,
+      "lon": -0.075,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GAL+BDS+GPS"
+    },
+    {
+      "name": "LGNT",
+      "lat": 48.7,
+      "lon": 2.57,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "LHR1",
+      "lat": 50.746,
+      "lon": 23.935,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "LIER",
+      "lat": 60.508,
+      "lon": 21.866,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "LNDE",
+      "lat": 63.035,
+      "lon": 21.637,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "LNYCSK",
+      "lat": 46.012,
+      "lon": 18.622,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "LRSECmini",
+      "lat": 49.623,
+      "lon": 3.557,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+GPS"
+    },
+    {
+      "name": "LYNREP",
+      "lat": 44.001,
+      "lon": -80.66,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "LZ10",
+      "lat": 51.697,
+      "lon": 4.665,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GPS"
+    },
+    {
+      "name": "Leminen",
+      "lat": 62.926,
+      "lon": 22.822,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "Llanwgnog",
+      "lat": 52.542,
+      "lon": -3.408,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "Loms",
+      "lat": 60.602,
+      "lon": 10.301,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "MAEL",
+      "lat": 45.9,
+      "lon": -73.014,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "MALC",
+      "lat": 51.971,
+      "lon": -0.06,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "MARINEL",
+      "lat": 44.992,
+      "lon": 20.777,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+GPS"
+    },
+    {
+      "name": "MASG",
+      "lat": 45.461,
+      "lon": 3.256,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "MATIC",
+      "lat": 44.857,
+      "lon": 20.048,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+GPS"
+    },
+    {
+      "name": "MELK",
+      "lat": 51.593,
+      "lon": 4.941,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "MGSL",
+      "lat": 48.414,
+      "lon": 2.005,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "MILAN94",
+      "lat": 44.983,
+      "lon": 20.166,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+GPS"
+    },
+    {
+      "name": "MOSTAUL",
+      "lat": 59.491,
+      "lon": 8.311,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "MOYA",
+      "lat": 39.128,
+      "lon": -3.091,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "MRSE",
+      "lat": 43.279,
+      "lon": 5.354,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "MTApos_GOST",
+      "lat": 56.499,
+      "lon": 13.04,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "MTApos_HAGBARD",
+      "lat": 56.672,
+      "lon": 12.812,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "MYLLYTOYRY",
+      "lat": 60.891,
+      "lon": 26.618,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "Maenpaa",
+      "lat": 62.914,
+      "lon": 22.539,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "Millrand",
+      "lat": 46.407,
+      "lon": -80.122,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "Mirmenhof",
+      "lat": 47.5,
+      "lon": 8.436,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+QZS+BDS+GPS"
+    },
+    {
+      "name": "Miska",
+      "lat": 48.331,
+      "lon": 21.738,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "NACX",
+      "lat": 52.404,
+      "lon": 0.277,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "NATS",
+      "lat": 47.233,
+      "lon": -1.553,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "NBRN",
+      "lat": 57.216,
+      "lon": -2.63,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "NEMES2",
+      "lat": 47.23,
+      "lon": 18.381,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "NIEMELA",
+      "lat": 63.987,
+      "lon": 25.723,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "NOKKO",
+      "lat": 60.97,
+      "lon": 25.446,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "Norrgarden",
+      "lat": 59.145,
+      "lon": 14.952,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "OFFA",
+      "lat": 47.326,
+      "lon": 17.039,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "OLDHALLFARM",
+      "lat": 53.407,
+      "lon": -2.692,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "OSKU",
+      "lat": 60.876,
+      "lon": 24.496,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "OTSO",
+      "lat": 60.605,
+      "lon": 22.394,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "OWOW",
+      "lat": 53.388,
+      "lon": -9.058,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "Ojaranta",
+      "lat": 61.118,
+      "lon": 22.374,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "PAPD",
+      "lat": 46.215,
+      "lon": 20.032,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "PEWS",
+      "lat": 51.333,
+      "lon": -1.766,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "PGSL",
+      "lat": 45.664,
+      "lon": 19.696,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "PINS",
+      "lat": 46.519,
+      "lon": -72.502,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "PITG",
+      "lat": 57.623,
+      "lon": -2.392,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "POHJA",
+      "lat": 61.691,
+      "lon": 24.377,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "PRK_BASE1",
+      "lat": 61.121,
+      "lon": 23.032,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "PUNI",
+      "lat": 47.361,
+      "lon": 18.736,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "PYRUS",
+      "lat": 48.204,
+      "lon": 21.604,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "Pajala",
+      "lat": 64.465,
+      "lon": 25.648,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "Pellosniemi",
+      "lat": 61.628,
+      "lon": 27.273,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+QZS+BDS+GPS"
+    },
+    {
+      "name": "Prali",
+      "lat": 44.874,
+      "lon": 7.062,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "RAHULA2",
+      "lat": 61.685,
+      "lon": 27.507,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "RAJT2",
+      "lat": 47.167,
+      "lon": 18.386,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+GPS"
+    },
+    {
+      "name": "RANT",
+      "lat": 60.853,
+      "lon": 22.798,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "REME",
+      "lat": 63.819,
+      "lon": 26.423,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+GPS"
+    },
+    {
+      "name": "ROAIX",
+      "lat": 44.249,
+      "lon": 5.028,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "ROBERT",
+      "lat": 45.708,
+      "lon": 19.66,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "ROLF2",
+      "lat": 46.341,
+      "lon": 18.704,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "RSLR1",
+      "lat": 50.956,
+      "lon": 3.162,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+QZS+BDS+GPS"
+    },
+    {
+      "name": "SACI",
+      "lat": 46.176,
+      "lon": 20.457,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+QZS+BDS+GPS"
+    },
+    {
+      "name": "SAVA8",
+      "lat": 45.303,
+      "lon": 19.949,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+GPS"
+    },
+    {
+      "name": "SBBP",
+      "lat": 46.879,
+      "lon": 18.619,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "SCVE",
+      "lat": 45.791,
+      "lon": -0.297,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "SENE",
+      "lat": 47.625,
+      "lon": -2.708,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "SFRTK",
+      "lat": 47.05,
+      "lon": 7.298,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "SINA",
+      "lat": 47.184,
+      "lon": 18.859,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "SMDN",
+      "lat": 51.152,
+      "lon": 0.721,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "SMTRE",
+      "lat": 55.703,
+      "lon": 8.459,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "SOE",
+      "lat": 49.24,
+      "lon": 2.407,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "SOMI",
+      "lat": 47.925,
+      "lon": 20.816,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "SOU21",
+      "lat": 47.447,
+      "lon": 4.433,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "SOVANY",
+      "lat": 46.665,
+      "lon": 20.672,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "STEMA",
+      "lat": 44.494,
+      "lon": 25.252,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "STERTFARM",
+      "lat": 51.633,
+      "lon": -1.997,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "STRA",
+      "lat": 50.635,
+      "lon": 4.146,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "SVMK",
+      "lat": 63.29,
+      "lon": 22.822,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "SWIN",
+      "lat": 55.549,
+      "lon": -1.67,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "T2R002BR0",
+      "lat": -22.14,
+      "lon": -51.397,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "T2R00BR0",
+      "lat": -22.121,
+      "lon": -51.416,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "T2RBR0",
+      "lat": -22.121,
+      "lon": -51.416,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "TAAR",
+      "lat": 59.673,
+      "lon": 11.302,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "TAKSON",
+      "lat": 56.98,
+      "lon": 8.741,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "TANYA",
+      "lat": 48.009,
+      "lon": 21.095,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "TARO",
+      "lat": 66.35,
+      "lon": 23.684,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "TATE",
+      "lat": 54.499,
+      "lon": -6.133,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "TEKORTK",
+      "lat": 47.299,
+      "lon": 20.906,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "TIHBBG",
+      "lat": 45.914,
+      "lon": 18.934,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+GPS"
+    },
+    {
+      "name": "TOR5",
+      "lat": 60.357,
+      "lon": 21.038,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "TORZSAS",
+      "lat": 46.88,
+      "lon": 21.346,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "TPGN",
+      "lat": 14.738,
+      "lon": -17.311,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "TPJN",
+      "lat": 45.706,
+      "lon": 20.068,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "TRBC",
+      "lat": 49.098,
+      "lon": -117.71,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "TTV1",
+      "lat": 50.001,
+      "lon": 1.326,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "TUPA",
+      "lat": 63.308,
+      "lon": 22.933,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "UNTINEN",
+      "lat": 63.525,
+      "lon": 25.311,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "VALNE",
+      "lat": 41.042,
+      "lon": -96.812,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "VFCH",
+      "lat": 47.294,
+      "lon": 1.72,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "VHOOF",
+      "lat": 53.932,
+      "lon": -124.216,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "VIRT",
+      "lat": 51.334,
+      "lon": -0.317,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "VOGT01",
+      "lat": 47.201,
+      "lon": 7.408,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "VRLS",
+      "lat": 47.263,
+      "lon": 21.466,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "VTBGY",
+      "lat": 45.983,
+      "lon": 18.422,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "VaderstadAB",
+      "lat": 58.317,
+      "lon": 14.935,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "WHIT",
+      "lat": 55.745,
+      "lon": -2.204,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GPS"
+    },
+    {
+      "name": "WITTERSHAM",
+      "lat": 51.025,
+      "lon": 0.714,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "WS60",
+      "lat": -36.329,
+      "lon": 143.529,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "YLISH",
+      "lat": 60.658,
+      "lon": 21.871,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+QZS+BDS+GPS"
+    },
+    {
+      "name": "YTFL",
+      "lat": 52.193,
+      "lon": -2.069,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "Ylitalo1",
+      "lat": 63.789,
+      "lon": 24.215,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "Your_mount_name",
+      "lat": 49.695,
+      "lon": 1.955,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "ZDAR",
+      "lat": 49.253,
+      "lon": 15.075,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    },
+    {
+      "name": "ZOKISEF",
+      "lat": 45.007,
+      "lon": 20.483,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+GPS"
+    },
+    {
+      "name": "ZSIRO",
+      "lat": 47.368,
+      "lon": 20.101,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "chcnavfin",
+      "lat": 62.998,
+      "lon": 22.05,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+QZS+BDS+GPS"
+    },
+    {
+      "name": "dafpol",
+      "lat": 49.111,
+      "lon": 16.224,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "hietalantila",
+      "lat": 60.782,
+      "lon": 26.103,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "marttala",
+      "lat": 62.935,
+      "lon": 22.844,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+GPS"
+    },
+    {
+      "name": "mavv",
+      "lat": 53.526,
+      "lon": -8.009,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "mosskarr",
+      "lat": 60.399,
+      "lon": 25.236,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+GPS"
+    },
+    {
+      "name": "tervakoski",
+      "lat": 63.861,
+      "lon": 25.514,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+BDS+GPS"
+    },
+    {
+      "name": "viljala",
+      "lat": 61.06,
+      "lon": 22.524,
+      "latPrec": 3,
+      "lonPrec": 3,
+      "format": "RTCM3",
+      "constellations": "GLO+GAL+SBS+BDS+GPS"
+    }
+  ]
+}

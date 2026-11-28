@@ -1,0 +1,503 @@
+{
+  "last_updated": "2026-11-28T09:38:05+00:00",
+  "scraper_version": "80be7072188b",
+  "source_url": "http://geortk.jp:2101/",
+  "pin_origin": "ntrip",
+  "stations": [
+    {
+      "name": "989Shibata",
+      "lat": 38.07,
+      "lon": 140.77,
+      "format": "RTCM 3.3",
+      "constellations": "GPS+GLO+GAL+BDS",
+      "country": "JPN",
+      "carrier": 2
+    },
+    {
+      "name": "CSLAB",
+      "lat": 34.8,
+      "lon": 135.77,
+      "format": "RTCM 3.3",
+      "constellations": "GPS+GLO+GAL+BDS",
+      "country": "JPN",
+      "carrier": 2
+    },
+    {
+      "name": "HGT612",
+      "lat": 43.84,
+      "lon": 142.4,
+      "format": "RTCM 3.3",
+      "constellations": "GPS+GLO+QZSS+GAL+BDS",
+      "country": "JPN",
+      "carrier": 2
+    },
+    {
+      "name": "INA",
+      "lat": 35.84,
+      "lon": 137.98,
+      "format": "RTCM 3.3",
+      "constellations": "GPS+GLO+GAL+BDS+QZS",
+      "country": "JPN",
+      "carrier": 2
+    },
+    {
+      "name": "KPCT",
+      "lat": 32.89,
+      "lon": 130.83,
+      "format": "RTCM 3.3",
+      "constellations": "GPS+GLO+GAL+BDS",
+      "country": "JPN",
+      "carrier": 2
+    },
+    {
+      "name": "Matsudo",
+      "lat": 35.78,
+      "lon": 139.93,
+      "format": "RTCM 3.3",
+      "constellations": "GPS+GLO+GAL+BDS",
+      "country": "JPN",
+      "carrier": 3
+    },
+    {
+      "name": "Meijo-A-RTCM3",
+      "lat": 35.13,
+      "lon": 136.98,
+      "format": "RTCM 3.3",
+      "constellations": "GPS+GLO+GAL+BDS+QZSS",
+      "country": "JPN",
+      "carrier": 3
+    },
+    {
+      "name": "NIT_IchinosekiKosen",
+      "lat": 39.0,
+      "lon": 141.15,
+      "format": "RTCM 3.3",
+      "constellations": "GPS+GLO+GAL+BDS",
+      "country": "JPN",
+      "carrier": 2
+    },
+    {
+      "name": "OKAYAMAU",
+      "lat": 34.69,
+      "lon": 133.91,
+      "format": "RTCM 3.2",
+      "constellations": "GPS+GLO+GAL+BDS",
+      "country": "JPN",
+      "carrier": 2
+    },
+    {
+      "name": "OKAYAMAU2",
+      "lat": 34.54,
+      "lon": 133.93,
+      "format": "RTCM 3.2",
+      "constellations": "GPS+GLO+GAL+BDS",
+      "country": "JPN",
+      "carrier": 2
+    },
+    {
+      "name": "ONCT_M2",
+      "lat": 36.32,
+      "lon": 139.84,
+      "format": "RTCM 3.3",
+      "constellations": "GPS+GLO+GAL+BDS+QZSS",
+      "country": "JPN",
+      "carrier": 1
+    },
+    {
+      "name": "PERFUMEDESU",
+      "lat": 35.47,
+      "lon": 139.4,
+      "format": "RTCM 3.2",
+      "constellations": "GPS+GLO+GAL+BDS+QZSS",
+      "country": "JPN",
+      "carrier": 3
+    },
+    {
+      "name": "RTK-MIKAGE",
+      "lat": 42.89,
+      "lon": 142.93,
+      "format": "RTCM 3.2",
+      "constellations": "GPS+GLO+GAL+BDS+QZS",
+      "country": "JPN",
+      "carrier": 2
+    },
+    {
+      "name": "RTK-MIKAGE2",
+      "lat": 42.89,
+      "lon": 142.93,
+      "format": "RTCM 3.2",
+      "constellations": "GPS+GLO+GAL+BDS",
+      "country": "JPN",
+      "carrier": 2
+    },
+    {
+      "name": "SANJO-RTCM",
+      "lat": 37.64,
+      "lon": 138.97,
+      "format": "RTCM 3.3",
+      "constellations": "GPS+GLO+GAL+BDS",
+      "country": "JPN",
+      "carrier": 2
+    },
+    {
+      "name": "Saga-T",
+      "lat": 33.36,
+      "lon": 130.52,
+      "format": "RTCM 3.3",
+      "constellations": "GPS+GLO+GAL+BDS",
+      "country": "JPN",
+      "carrier": 2
+    },
+    {
+      "name": "Shihoro",
+      "lat": 43.16,
+      "lon": 143.17,
+      "format": "RTCM 3.3",
+      "constellations": "GPS+GLO+GAL+BDS",
+      "country": "JPN",
+      "carrier": 2
+    },
+    {
+      "name": "Simoiwasaki",
+      "lat": 40.84,
+      "lon": 140.48,
+      "format": "RTCM 3.3",
+      "constellations": "GPS+GLO+GAL+BDS",
+      "country": "JPN",
+      "carrier": 2
+    },
+    {
+      "name": "YAHIKO2",
+      "lat": 37.69,
+      "lon": 138.87,
+      "format": "RTCM 3.3",
+      "constellations": "GPS+GLO+GAL+BDS",
+      "country": "JPN",
+      "carrier": 2
+    },
+    {
+      "name": "YONEZAWA-SENKOUKA",
+      "lat": 37.92,
+      "lon": 140.15,
+      "format": "RTCM 3.2",
+      "constellations": "GPS+GLO+GAL+BDS",
+      "country": "JPN",
+      "carrier": 2
+    },
+    {
+      "name": "btf_nishiyamacho3",
+      "lat": 34.67,
+      "lon": 135.14,
+      "format": "RTCM 3.2",
+      "constellations": "GPS+GLO+GAL+BDS",
+      "country": "JPN",
+      "carrier": 2
+    },
+    {
+      "name": "fukuoka-nakagawa",
+      "lat": 33.49,
+      "lon": 130.42,
+      "format": "RTCM 3.3",
+      "constellations": "GPS+GLO+GAL+BDS",
+      "country": "JPN",
+      "carrier": 2
+    },
+    {
+      "name": "funabashi_sasaki",
+      "lat": 35.73,
+      "lon": 140.06,
+      "format": "RTCM 3.3",
+      "constellations": "GPS+GLO+GAL+BDS",
+      "country": "JPN",
+      "carrier": 2
+    },
+    {
+      "name": "geosense_f9p_rtcm",
+      "lat": 34.79,
+      "lon": 135.01,
+      "format": "RTCM 3.2",
+      "constellations": "GPS+GLO+GAL+BDS",
+      "country": "JPN",
+      "carrier": 2
+    },
+    {
+      "name": "kgr_suehiro_st",
+      "lat": 36.26,
+      "lon": 139.38,
+      "format": "RTCM 3.3",
+      "constellations": "GPS+GLO+GAL+BDS+QZSS",
+      "country": "JPN",
+      "carrier": 3
+    },
+    {
+      "name": "kirishima",
+      "lat": 31.67,
+      "lon": 130.86,
+      "format": "RTCM 3.x",
+      "constellations": "GPS+GLO+GAL+BDS",
+      "country": "JPN",
+      "carrier": 2
+    },
+    {
+      "name": "kunitomi-B",
+      "lat": 31.99,
+      "lon": 131.34,
+      "format": "RTCM 3.3",
+      "constellations": "GPS+GLO+GAL+BDS+QZS",
+      "country": "JPN",
+      "carrier": 1
+    },
+    {
+      "name": "kushiro-nct",
+      "lat": 43.02,
+      "lon": 144.26,
+      "format": "RTCM 3.3",
+      "constellations": "GPS+GLO+GAL+BDS+QZS",
+      "country": "JPN",
+      "carrier": 3
+    },
+    {
+      "name": "kzlab2",
+      "lat": 42.92,
+      "lon": 143.04,
+      "format": "RTCM 3.3",
+      "constellations": "GPS+GLO+GAL+BDS",
+      "country": "JPN",
+      "carrier": 2
+    },
+    {
+      "name": "mikami-farm",
+      "lat": 42.99,
+      "lon": 141.63,
+      "format": "RTCM 3.3",
+      "constellations": "GPS+GLO+GAL+BDS",
+      "country": "JPN",
+      "carrier": 3
+    },
+    {
+      "name": "n-survey",
+      "lat": 42.92,
+      "lon": 143.04,
+      "format": "RTCM 3.3",
+      "constellations": "GPS+QZS+GLO+GAL+BDS",
+      "country": "JPN",
+      "carrier": 2
+    },
+    {
+      "name": "n-survey2",
+      "lat": 42.92,
+      "lon": 143.04,
+      "format": "RTCM 3.3",
+      "constellations": "GPS+QZS+GLO+GAL+BDS",
+      "country": "JPN",
+      "carrier": 2
+    },
+    {
+      "name": "naganuma",
+      "lat": 43.01,
+      "lon": 141.64,
+      "format": "RTCM 3.3",
+      "constellations": "GPS+GLO+GAL+BDS",
+      "country": "JPN",
+      "carrier": 2
+    },
+    {
+      "name": "naganuma29",
+      "lat": 43.01,
+      "lon": 141.64,
+      "format": "RTCM 3.3",
+      "constellations": "GPS+GLO+GAL+BDS+QZSS",
+      "country": "JPN",
+      "carrier": 3
+    },
+    {
+      "name": "nagasurtk",
+      "lat": 36.05,
+      "lon": 139.86,
+      "format": "RTCM 3.2",
+      "constellations": "GPS+GLO+GAL+BDS",
+      "country": "JPN",
+      "carrier": 2
+    },
+    {
+      "name": "naie",
+      "lat": 43.44,
+      "lon": 141.88,
+      "format": "RTCM 3.3",
+      "constellations": "GPS+QZSS+GLO+GAL+BDS",
+      "country": "JPN",
+      "carrier": 2
+    },
+    {
+      "name": "oagmtest",
+      "lat": 36.17,
+      "lon": 140.52,
+      "format": "RTCM 3.3",
+      "constellations": "GPS+GLO+GAL+BDS",
+      "country": "JPN",
+      "carrier": 3
+    },
+    {
+      "name": "oita-kosen",
+      "lat": 33.23,
+      "lon": 131.65,
+      "format": "RTCM 3.3",
+      "constellations": "GPS+GLO+GAL+BDS+QZS",
+      "country": "JPN",
+      "carrier": 3
+    },
+    {
+      "name": "oita-mie",
+      "lat": 32.99,
+      "lon": 131.59,
+      "format": "RTCM 3.3",
+      "constellations": "GPS+GLO+GAL+BDS+QZS",
+      "country": "JPN",
+      "carrier": 3
+    },
+    {
+      "name": "oya-zim",
+      "lat": 34.91,
+      "lon": 132.1,
+      "format": "RTCM 3.3",
+      "constellations": "GPS+GLO+GAL+BDS",
+      "country": "JPN",
+      "carrier": 2
+    },
+    {
+      "name": "saito-B",
+      "lat": 32.11,
+      "lon": 131.4,
+      "format": "RTCM 3.3",
+      "constellations": "GPS+GLO+GAL+QZS+BDS",
+      "country": "JPN",
+      "carrier": 2
+    },
+    {
+      "name": "saitozim",
+      "lat": 34.68,
+      "lon": 131.85,
+      "format": "RTCM 3.3",
+      "constellations": "GPS+GLO+GAL+BDS",
+      "country": "JPN",
+      "carrier": 3
+    },
+    {
+      "name": "sano",
+      "lat": 36.94,
+      "lon": 140.04,
+      "format": "RTCM 3.3",
+      "constellations": "GPS+GLO+GAL+BDS+QZS",
+      "country": "JPN",
+      "carrier": 2
+    },
+    {
+      "name": "sg-farm31",
+      "lat": 36.33,
+      "lon": 139.85,
+      "format": "RTCM 3.1",
+      "constellations": "GPS+GLO",
+      "country": "JPN",
+      "carrier": 2
+    },
+    {
+      "name": "sg-farm324",
+      "lat": 36.33,
+      "lon": 139.85,
+      "format": "RTCM 3.2",
+      "constellations": "GPS+GLO+GAL+BDS+QZS",
+      "country": "JPN",
+      "carrier": 3
+    },
+    {
+      "name": "sg-farm325",
+      "lat": 36.33,
+      "lon": 139.85,
+      "format": "RTCM 3.2",
+      "constellations": "GPS+GLO+GAL+BDS+QZS",
+      "country": "JPN",
+      "carrier": 3
+    },
+    {
+      "name": "sg-farm327",
+      "lat": 36.33,
+      "lon": 139.85,
+      "format": "RTCM 3.2",
+      "constellations": "GPS+GLO+GAL+BDS+QZS",
+      "country": "JPN",
+      "carrier": 3
+    },
+    {
+      "name": "shinkotoni",
+      "lat": 43.13,
+      "lon": 141.33,
+      "format": "RTCM 3.3",
+      "constellations": "GPS+GLO+GAL+BDS",
+      "country": "JPN",
+      "carrier": 2
+    },
+    {
+      "name": "suzukihome",
+      "lat": 45.12,
+      "lon": 141.74,
+      "format": "RTCM 3.3",
+      "constellations": "GPS+GLO+GAL+BDS",
+      "country": "JPN",
+      "carrier": 2
+    },
+    {
+      "name": "tagashira-lab_kgs2",
+      "lat": 31.41,
+      "lon": 130.32,
+      "format": "RTCM 3.3",
+      "constellations": "GPS+GLO+GAL+BDS",
+      "country": "JPN",
+      "carrier": 2
+    },
+    {
+      "name": "tamtam",
+      "lat": 35.55,
+      "lon": 139.59,
+      "format": "RTCM 3.3",
+      "constellations": "GPS+GLO+GAL+BDS",
+      "country": "JPN",
+      "carrier": 2
+    },
+    {
+      "name": "tikuzen1",
+      "lat": 33.46,
+      "lon": 130.6,
+      "format": "RTCM 3.3",
+      "constellations": "GPS+GLO+GAL+BDS",
+      "country": "JPN",
+      "carrier": 2
+    },
+    {
+      "name": "wy18dhckgm",
+      "lat": 35.61,
+      "lon": 138.58,
+      "format": "RTCM 3.3",
+      "constellations": "GPS+GLO+GAL+BDS",
+      "country": "JPN",
+      "carrier": 2
+    },
+    {
+      "name": "yg.farm",
+      "lat": 44.7,
+      "lon": 141.88,
+      "format": "RTCM 3.2",
+      "constellations": "GPS+GLO+GAL+BDS",
+      "country": "JPN",
+      "carrier": 2
+    },
+    {
+      "name": "yoshimura",
+      "lat": 34.62,
+      "lon": 132.32,
+      "format": "RTCM 3.3",
+      "constellations": "GPS+GLO+GAL+BDS",
+      "country": "JPN",
+      "carrier": 2
+    }
+  ]
+}

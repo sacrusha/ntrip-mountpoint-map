@@ -1,0 +1,74 @@
+{
+  "last_updated": "2026-01-15",
+  "source_url": "https://cors.gov.taipei/index.php?option=cors",
+  "pin_origin": "register",
+  "provenance": "Operator station pages (cors.gov.taipei option=cors, cID 162-172), archive.org captures of 2022-01-27: station code and approximate ECEF, converted to GRS80 lat/lon. Roster confirmed by the operator's station menu in the 2026-01-15 capture. Regenerate with scripts/regen_external_taipei_cors.py.",
+  "stations": [
+    {
+      "name": "CSLA",
+      "lat": 25.063576,
+      "lon": 121.533992,
+      "country": "TWN"
+    },
+    {
+      "name": "FUSI",
+      "lat": 24.821233,
+      "lon": 121.352854,
+      "country": "TWN"
+    },
+    {
+      "name": "GDH1",
+      "lat": 25.120391,
+      "lon": 121.46643,
+      "country": "TWN"
+    },
+    {
+      "name": "LND2",
+      "lat": 25.10035,
+      "lon": 121.917829,
+      "country": "TWN"
+    },
+    {
+      "name": "NCCU",
+      "lat": 24.986303,
+      "lon": 121.573514,
+      "country": "TWN"
+    },
+    {
+      "name": "PLIN",
+      "lat": 24.933652,
+      "lon": 121.713955,
+      "country": "TWN"
+    },
+    {
+      "name": "S101",
+      "lat": 25.040478,
+      "lon": 121.613858,
+      "country": "TWN"
+    },
+    {
+      "name": "SHMN",
+      "lat": 25.291486,
+      "lon": 121.562158,
+      "country": "TWN"
+    },
+    {
+      "name": "WHDO",
+      "lat": 25.034912,
+      "lon": 121.499743,
+      "country": "TWN"
+    },
+    {
+      "name": "WUKU",
+      "lat": 25.11731,
+      "lon": 121.400688,
+      "country": "TWN"
+    },
+    {
+      "name": "YMSM",
+      "lat": 25.165739,
+      "lon": 121.57406,
+      "country": "TWN"
+    }
+  ]
+}

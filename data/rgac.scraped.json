@@ -1,0 +1,48 @@
+{
+  "last_updated": "2026-08-02T21:00:07+00:00",
+  "scraper_version": "0008403ca6cf",
+  "source_url": "http://ergnss-tr.ign.es:2102/",
+  "pin_origin": "ntrip",
+  "stations": [
+    {
+      "name": "LARE",
+      "lat": 43.4,
+      "lon": -3.45,
+      "country": "ESP",
+      "format": "RTCM 3.2",
+      "carrier": 2
+    },
+    {
+      "name": "RENS",
+      "lat": 43.0,
+      "lon": -4.13,
+      "country": "ESP",
+      "format": "RTCM 3.2",
+      "carrier": 2
+    },
+    {
+      "name": "RNAN",
+      "lat": 43.3,
+      "lon": -4.41,
+      "country": "ESP",
+      "format": "RTCM 3.2",
+      "carrier": 2
+    },
+    {
+      "name": "TRLV",
+      "lat": 43.36,
+      "lon": -4.06,
+      "country": "ESP",
+      "format": "RTCM 3.2",
+      "carrier": 2
+    },
+    {
+      "name": "VCRD",
+      "lat": 43.25,
+      "lon": -3.85,
+      "country": "ESP",
+      "format": "RTCM 3.2",
+      "carrier": 2
+    }
+  ]
+}

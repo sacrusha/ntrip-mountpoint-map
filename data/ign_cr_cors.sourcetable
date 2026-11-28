@@ -1,0 +1,5 @@
+CAS;igncaster.snitcr.go.cr;2101;Caster-IGN;IGNCR;0;CRI;9.92;-84.05;Caster-Nacional-Costa-Rica
+NET;IGN;IGN;N;N;http://www.snitcr.go.cr;none;snit.info@rnp.go.cr;none
+STR;RIDC3;Curridabat;RTCM 3.3;1004(1),1008(10);2;GPS+GLO+GAL+BDS;IGN;CRI;9.92;-84.05;0;0;Trimble TRM159900.00 SCIS;none;N;N;3600;Prueba
+STR;CAPO3;Cariari;RTCM 3.3;1004(1),1008(10);2;GPS+GLO+GAL+BDS;IGN;CRI;10.37;-83.73;0;0;Trimble TRM159900.00 SCIS;none;N;N;3600;Prueba
+ENDSOURCETABLE

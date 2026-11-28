@@ -1,0 +1,62 @@
+{
+  "last_updated": "2026-11-22T19:39:36+00:00",
+  "scraper_version": "49375810cb6e",
+  "source_url": "http://ergnss-tr.ign.es:2102/",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "AMUR",
+      "lat": "43.06",
+      "lon": "-3.00",
+      "country": "ESP"
+    },
+    {
+      "name": "ELGE",
+      "lat": "43.14",
+      "lon": "-2.49",
+      "country": "ESP"
+    },
+    {
+      "name": "EMAZ",
+      "lat": "43.24",
+      "lon": "-3.41",
+      "country": "ESP"
+    },
+    {
+      "name": "ISPS",
+      "lat": "43.35",
+      "lon": "-2.55",
+      "country": "ESP"
+    },
+    {
+      "name": "KAST",
+      "lat": "43.25",
+      "lon": "-2.97",
+      "country": "ESP"
+    },
+    {
+      "name": "LARE",
+      "lat": "43.40",
+      "lon": "-3.45",
+      "country": "ESP"
+    },
+    {
+      "name": "MDPM",
+      "lat": "42.94",
+      "lon": "-3.48",
+      "country": "ESP"
+    },
+    {
+      "name": "VITO",
+      "lat": "42.84",
+      "lon": "-2.67",
+      "country": "ESP"
+    },
+    {
+      "name": "IGEL",
+      "lat": 43.3064,
+      "lon": -2.0411,
+      "country": "ESP"
+    }
+  ]
+}

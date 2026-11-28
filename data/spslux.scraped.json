@@ -1,0 +1,50 @@
+{
+  "last_updated": "2026-11-22T19:39:36+00:00",
+  "scraper_version": "481ff67b3c1f",
+  "source_url": "https://www.spslux.lu/SBC/User/SiteMap/SiteMapPublic",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "0531",
+      "lat": 49.992106,
+      "lon": 6.194854,
+      "country": "DEU"
+    },
+    {
+      "name": "0935",
+      "lat": 49.486968,
+      "lon": 6.455858,
+      "country": "DEU"
+    },
+    {
+      "name": "ARLO",
+      "lat": 49.652013,
+      "lon": 5.81913,
+      "country": "BEL"
+    },
+    {
+      "name": "MABO",
+      "lat": 50.074643,
+      "lon": 5.739267,
+      "country": "BEL"
+    },
+    {
+      "name": "MEIX",
+      "lat": 49.624013,
+      "lon": 5.444079,
+      "country": "BEL"
+    },
+    {
+      "name": "THNV",
+      "lat": 49.363897,
+      "lon": 6.170329,
+      "country": "FRA"
+    },
+    {
+      "name": "TRI2",
+      "lat": 49.725291,
+      "lon": 6.618165,
+      "country": "DEU"
+    }
+  ]
+}

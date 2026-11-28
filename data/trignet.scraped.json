@@ -1,0 +1,520 @@
+{
+  "last_updated": "2026-11-22T19:39:36+00:00",
+  "scraper_version": "46a7d00b2fd7",
+  "source_url": "https://services6.arcgis.com/zOnyumh63cMmLBBH/arcgis/rest/services/South_Africa/FeatureServer/0",
+  "pin_origin": "external",
+  "stations": [
+    {
+      "name": "ANTH-SB",
+      "lat": -30.6798,
+      "lon": 26.716,
+      "country": "ZAF"
+    },
+    {
+      "name": "BENI-SB",
+      "lat": -26.195299,
+      "lon": 28.341299,
+      "country": "ZAF",
+      "groups": [
+        "gauteng"
+      ]
+    },
+    {
+      "name": "BETH-SB",
+      "lat": -28.2498,
+      "lon": 28.3342,
+      "country": "ZAF"
+    },
+    {
+      "name": "BFTA-SB",
+      "lat": -29.1113,
+      "lon": 26.2048,
+      "country": "ZAF"
+    },
+    {
+      "name": "BISO-SB",
+      "lat": -32.863701,
+      "lon": 27.4291,
+      "country": "ZAF"
+    },
+    {
+      "name": "BRIT-SB",
+      "lat": -25.635799,
+      "lon": 27.7766,
+      "country": "ZAF",
+      "groups": [
+        "gauteng"
+      ]
+    },
+    {
+      "name": "BRNK-SB",
+      "lat": -25.8034,
+      "lon": 28.7327,
+      "country": "ZAF",
+      "groups": [
+        "gauteng"
+      ]
+    },
+    {
+      "name": "BWES-SB",
+      "lat": -32.347401,
+      "lon": 22.573601,
+      "country": "ZAF"
+    },
+    {
+      "name": "CALV-SB",
+      "lat": -31.4821,
+      "lon": 19.761999,
+      "country": "ZAF"
+    },
+    {
+      "name": "CPNT-SB",
+      "lat": -34.353298,
+      "lon": 18.4897,
+      "country": "ZAF",
+      "groups": [
+        "wcape"
+      ]
+    },
+    {
+      "name": "CTWN-SB",
+      "lat": -33.951401,
+      "lon": 18.468599,
+      "country": "ZAF",
+      "groups": [
+        "wcape"
+      ]
+    },
+    {
+      "name": "DEAR-SB",
+      "lat": -30.665199,
+      "lon": 23.992599,
+      "country": "ZAF"
+    },
+    {
+      "name": "DRBA-SB",
+      "lat": -29.8512,
+      "lon": 31.0235,
+      "country": "ZAF",
+      "groups": [
+        "kzn"
+      ]
+    },
+    {
+      "name": "ELDA-SB",
+      "lat": -33.0369,
+      "lon": 27.8326,
+      "country": "ZAF"
+    },
+    {
+      "name": "EMLO-SB",
+      "lat": -26.497801,
+      "lon": 29.9839,
+      "country": "ZAF",
+      "groups": [
+        "gauteng"
+      ]
+    },
+    {
+      "name": "ERAS-SB",
+      "lat": -23.686701,
+      "lon": 27.6961,
+      "country": "ZAF"
+    },
+    {
+      "name": "GDAL-SB",
+      "lat": -25.161501,
+      "lon": 29.4121,
+      "country": "ZAF"
+    },
+    {
+      "name": "GEOB-SB",
+      "lat": -34.007999,
+      "lon": 22.381701,
+      "country": "ZAF"
+    },
+    {
+      "name": "GREY-SB",
+      "lat": -29.0711,
+      "lon": 30.5776,
+      "country": "ZAF",
+      "groups": [
+        "kzn"
+      ]
+    },
+    {
+      "name": "GRMA-SB",
+      "lat": -33.303501,
+      "lon": 26.520901,
+      "country": "ZAF"
+    },
+    {
+      "name": "GRNT-SB",
+      "lat": -32.248001,
+      "lon": 24.5345,
+      "country": "ZAF"
+    },
+    {
+      "name": "HEID-SB",
+      "lat": -26.508499,
+      "lon": 28.3729,
+      "country": "ZAF",
+      "groups": [
+        "gauteng"
+      ]
+    },
+    {
+      "name": "HNUS-SB",
+      "lat": -34.424599,
+      "lon": 19.223101,
+      "country": "ZAF",
+      "groups": [
+        "wcape"
+      ]
+    },
+    {
+      "name": "HUMD-SB",
+      "lat": -34.027901,
+      "lon": 24.775,
+      "country": "ZAF"
+    },
+    {
+      "name": "IXOP-SB",
+      "lat": -30.146099,
+      "lon": 30.0688,
+      "country": "ZAF",
+      "groups": [
+        "kzn"
+      ]
+    },
+    {
+      "name": "KLEY-SB",
+      "lat": -28.743,
+      "lon": 24.806499,
+      "country": "ZAF"
+    },
+    {
+      "name": "KMAN-SB",
+      "lat": -27.4608,
+      "lon": 23.432501,
+      "country": "ZAF"
+    },
+    {
+      "name": "KOKS-SB",
+      "lat": -30.564501,
+      "lon": 29.4221,
+      "country": "ZAF",
+      "groups": [
+        "kzn"
+      ]
+    },
+    {
+      "name": "KRUG-SB",
+      "lat": -26.082899,
+      "lon": 27.7663,
+      "country": "ZAF",
+      "groups": [
+        "gauteng"
+      ]
+    },
+    {
+      "name": "KSTD-SB",
+      "lat": -27.663601,
+      "lon": 27.240101,
+      "country": "ZAF"
+    },
+    {
+      "name": "LGBN-SB",
+      "lat": -32.9725,
+      "lon": 18.157801,
+      "country": "ZAF",
+      "groups": [
+        "wcape"
+      ]
+    },
+    {
+      "name": "LSMA-SB",
+      "lat": -28.5557,
+      "lon": 29.761101,
+      "country": "ZAF",
+      "groups": [
+        "kzn"
+      ]
+    },
+    {
+      "name": "MALM-SB",
+      "lat": -33.463799,
+      "lon": 18.7309,
+      "country": "ZAF",
+      "groups": [
+        "wcape"
+      ]
+    },
+    {
+      "name": "MBRG-SB",
+      "lat": -25.7738,
+      "lon": 29.454201,
+      "country": "ZAF",
+      "groups": [
+        "gauteng"
+      ]
+    },
+    {
+      "name": "MFKG-SB",
+      "lat": -25.805,
+      "lon": 25.5399,
+      "country": "ZAF"
+    },
+    {
+      "name": "MRIV-SB",
+      "lat": -29.2089,
+      "lon": 29.9874,
+      "country": "ZAF",
+      "groups": [
+        "kzn"
+      ]
+    },
+    {
+      "name": "MTUT-SB",
+      "lat": -31.5371,
+      "lon": 28.7644,
+      "country": "ZAF"
+    },
+    {
+      "name": "NSPT-SB",
+      "lat": -25.4753,
+      "lon": 30.975201,
+      "country": "ZAF"
+    },
+    {
+      "name": "NWCA-SB",
+      "lat": -27.7686,
+      "lon": 29.9767,
+      "country": "ZAF"
+    },
+    {
+      "name": "NYLS-SB",
+      "lat": -24.702999,
+      "lon": 28.406,
+      "country": "ZAF"
+    },
+    {
+      "name": "OKNB-SB",
+      "lat": -26.934,
+      "lon": 26.7381,
+      "country": "ZAF"
+    },
+    {
+      "name": "PBWA-SB",
+      "lat": -23.9515,
+      "lon": 31.1343,
+      "country": "ZAF"
+    },
+    {
+      "name": "PLBB-SB",
+      "lat": -33.984501,
+      "lon": 25.6106,
+      "country": "ZAF"
+    },
+    {
+      "name": "PLET-SB",
+      "lat": -34.055,
+      "lon": 23.366899,
+      "country": "ZAF"
+    },
+    {
+      "name": "PMBG-SB",
+      "lat": -29.6007,
+      "lon": 30.383301,
+      "country": "ZAF",
+      "groups": [
+        "kzn"
+      ]
+    },
+    {
+      "name": "POTG-SB",
+      "lat": -24.013201,
+      "lon": 28.930201,
+      "country": "ZAF"
+    },
+    {
+      "name": "PRET-SB",
+      "lat": -25.732,
+      "lon": 28.2826,
+      "country": "ZAF",
+      "groups": [
+        "gauteng"
+      ]
+    },
+    {
+      "name": "PSHP-SB",
+      "lat": -30.723101,
+      "lon": 30.4587,
+      "country": "ZAF",
+      "groups": [
+        "kzn"
+      ]
+    },
+    {
+      "name": "PSKA-SB",
+      "lat": -29.667601,
+      "lon": 22.7493,
+      "country": "ZAF"
+    },
+    {
+      "name": "PTBG-SB",
+      "lat": -23.923201,
+      "lon": 29.4657,
+      "country": "ZAF"
+    },
+    {
+      "name": "QTWN-SB",
+      "lat": -31.9081,
+      "lon": 26.9217,
+      "country": "ZAF"
+    },
+    {
+      "name": "RBAY-SB",
+      "lat": -28.7955,
+      "lon": 32.0784,
+      "country": "ZAF"
+    },
+    {
+      "name": "RUST-SB",
+      "lat": -25.653799,
+      "lon": 27.282,
+      "country": "ZAF",
+      "groups": [
+        "gauteng"
+      ]
+    },
+    {
+      "name": "SBAS-SB",
+      "lat": -34.187,
+      "lon": 18.849899,
+      "country": "ZAF",
+      "groups": [
+        "wcape"
+      ]
+    },
+    {
+      "name": "SBOK-SB",
+      "lat": -29.6693,
+      "lon": 17.8792,
+      "country": "ZAF"
+    },
+    {
+      "name": "SCOT-SB",
+      "lat": -30.2855,
+      "lon": 30.754499,
+      "country": "ZAF",
+      "groups": [
+        "kzn"
+      ]
+    },
+    {
+      "name": "SECD-SB",
+      "lat": -26.5228,
+      "lon": 29.1761,
+      "country": "ZAF",
+      "groups": [
+        "gauteng"
+      ]
+    },
+    {
+      "name": "SOSH-SB",
+      "lat": -25.4578,
+      "lon": 28.1131,
+      "country": "ZAF",
+      "groups": [
+        "gauteng"
+      ]
+    },
+    {
+      "name": "SPRT-SB",
+      "lat": -24.671499,
+      "lon": 30.1852,
+      "country": "ZAF"
+    },
+    {
+      "name": "STBS-SB",
+      "lat": -33.844601,
+      "lon": 18.8367,
+      "country": "ZAF",
+      "groups": [
+        "wcape"
+      ]
+    },
+    {
+      "name": "STNG-SB",
+      "lat": -29.345699,
+      "lon": 31.2906,
+      "country": "ZAF",
+      "groups": [
+        "kzn"
+      ]
+    },
+    {
+      "name": "SUT1-SB",
+      "lat": -32.380199,
+      "lon": 20.810499,
+      "country": "ZAF"
+    },
+    {
+      "name": "TDOU-SB",
+      "lat": -23.079901,
+      "lon": 30.384001,
+      "country": "ZAF"
+    },
+    {
+      "name": "ULDI-SB",
+      "lat": -28.2931,
+      "lon": 31.4209,
+      "country": "ZAF"
+    },
+    {
+      "name": "UPTA-SB",
+      "lat": -28.4072,
+      "lon": 21.257601,
+      "country": "ZAF"
+    },
+    {
+      "name": "VERG-SB",
+      "lat": -26.6609,
+      "lon": 27.903799,
+      "country": "ZAF",
+      "groups": [
+        "gauteng"
+      ]
+    },
+    {
+      "name": "WELK-SB",
+      "lat": -27.978001,
+      "lon": 26.737499,
+      "country": "ZAF"
+    },
+    {
+      "name": "WEST-SB",
+      "lat": -29.8339,
+      "lon": 30.911699,
+      "country": "ZAF",
+      "groups": [
+        "kzn"
+      ]
+    },
+    {
+      "name": "WORC-SB",
+      "lat": -33.644901,
+      "lon": 19.445,
+      "country": "ZAF"
+    },
+    {
+      "name": "VDAL-SB",
+      "lat": -31.7,
+      "lon": 18.5,
+      "country": "ZAF",
+      "latPrec": 1,
+      "lonPrec": 1
+    }
+  ]
+}

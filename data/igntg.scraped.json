@@ -1,0 +1,17 @@
+{
+  "last_updated": "2026-11-22T19:39:36+00:00",
+  "scraper_version": "fdc493b9ec3a",
+  "source_url": "http://sirgas-rt.espoch.edu.ec:2101/",
+  "pin_origin": "ntrip",
+  "stations": [
+    {
+      "name": "ign1",
+      "lat": 8.984885,
+      "lon": -79.535754,
+      "format": "RTCM 3.3",
+      "carrier": 2,
+      "constellations": "GPS+GLO",
+      "country": "PAN"
+    }
+  ]
+}

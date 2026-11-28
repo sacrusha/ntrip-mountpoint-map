@@ -1,0 +1,4000 @@
+{
+  "last_updated": "2026-11-28T09:38:05+00:00",
+  "scraper_version": "10eb25a72419",
+  "source_url": "https://www.gnssdata.or.kr/map/getCorsList.json",
+  "pin_origin": "register",
+  "stations": [
+    {
+      "name": "ANHN-RTCM23",
+      "lat": 36.67365531,
+      "lon": 126.13499883,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2
+    },
+    {
+      "name": "ANHN-RTCM30",
+      "lat": 36.67365531,
+      "lon": 126.13499883,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2
+    },
+    {
+      "name": "ANHN-RTCM32",
+      "lat": 36.67365531,
+      "lon": 126.13499883,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2
+    },
+    {
+      "name": "ANSG-RTCM23",
+      "lat": 37.01215217,
+      "lon": 127.26578822,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "ANSG-RTCM31",
+      "lat": 37.01215217,
+      "lon": 127.26578822,
+      "country": "KOR",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "BHAO-RTCM30",
+      "lat": 36.16374,
+      "lon": 128.97633333,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "BHAO-RTCM32",
+      "lat": 36.16374,
+      "lon": 128.97633333,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "BOEN-RTCM23",
+      "lat": 36.48836836,
+      "lon": 127.73026689,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "BOEN-RTCM31",
+      "lat": 36.48836836,
+      "lon": 127.73026689,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "BOEN-RTCM32",
+      "lat": 36.48836836,
+      "lon": 127.73026689,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "BONH-RTCM23",
+      "lat": 36.9440105,
+      "lon": 128.9145195,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "BONH-RTCM31",
+      "lat": 36.9440105,
+      "lon": 128.9145195,
+      "country": "KOR",
+      "format": "RTCM 3.x",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "BONH-RTCM32",
+      "lat": 36.9440105,
+      "lon": 128.9145195,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "BSNG-RTCM23",
+      "lat": 34.89294841,
+      "lon": 127.13497655,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "BSNG-RTCM31",
+      "lat": 34.89294841,
+      "lon": 127.13497655,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "BSNG-RTCM32",
+      "lat": 34.89294841,
+      "lon": 127.13497655,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "CCHJ-RTCM23",
+      "lat": 36.98213742,
+      "lon": 127.75461919,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2
+    },
+    {
+      "name": "CCHJ-RTCM30",
+      "lat": 36.98213742,
+      "lon": 127.75461919,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2
+    },
+    {
+      "name": "CCHJ-RTCM32",
+      "lat": 36.98213742,
+      "lon": 127.75461919,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2
+    },
+    {
+      "name": "CCHN-RTCM23",
+      "lat": 37.99449481,
+      "lon": 127.71496597,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2
+    },
+    {
+      "name": "CCHN-RTCM30",
+      "lat": 37.99449481,
+      "lon": 127.71496597,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2
+    },
+    {
+      "name": "CCHN-RTCM32",
+      "lat": 37.99449481,
+      "lon": 127.71496597,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2
+    },
+    {
+      "name": "CCSB-RTCM23",
+      "lat": 37.94756992,
+      "lon": 127.75492647,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "CCSB-RTCM31",
+      "lat": 37.94756992,
+      "lon": 127.75492647,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "CCSB-RTCM32",
+      "lat": 37.94756992,
+      "lon": 127.75492647,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "CHEN-RTCM23",
+      "lat": 36.87800867,
+      "lon": 127.15525267,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "CHEN-RTCM31",
+      "lat": 36.87800867,
+      "lon": 127.15525267,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "CHEN-RTCM32",
+      "lat": 36.87800867,
+      "lon": 127.15525267,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "CHJU-RTCM23",
+      "lat": 33.51392644,
+      "lon": 126.52982003,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "CHJU-RTCM31",
+      "lat": 33.51392644,
+      "lon": 126.52982003,
+      "country": "KOR",
+      "format": "RTCM 3.x",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "CHJU-RTCM32",
+      "lat": 33.51392644,
+      "lon": 126.52982003,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "CHLW-RTCM23",
+      "lat": 38.16448253,
+      "lon": 127.41524433,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "CHLW-RTCM31",
+      "lat": 38.16448253,
+      "lon": 127.41524433,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "CHLW-RTCM32",
+      "lat": 38.16448253,
+      "lon": 127.41524433,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "CHNG-RTCM23",
+      "lat": 35.53331125,
+      "lon": 128.47806039,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "CHNG-RTCM31",
+      "lat": 35.53331125,
+      "lon": 128.47806039,
+      "country": "KOR",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "CHNG-RTCM32",
+      "lat": 35.53331125,
+      "lon": 128.47806039,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "CHNY-RTCM30",
+      "lat": 36.4524619,
+      "lon": 126.805764,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "CHSG-RTCM23",
+      "lat": 36.43562833,
+      "lon": 129.05634597,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "CHSG-RTCM31",
+      "lat": 36.43562833,
+      "lon": 129.05634597,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "CHSG-RTCM32",
+      "lat": 36.43562833,
+      "lon": 129.05634597,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "CHUL-RTCM23",
+      "lat": 38.27326819,
+      "lon": 127.14521192,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "CHUL-RTCM31",
+      "lat": 38.27326819,
+      "lon": 127.14521192,
+      "country": "KOR",
+      "format": "RTCM 3.x",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "CHUL-RTCM32",
+      "lat": 38.27326819,
+      "lon": 127.14521192,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "CHWN-RTCM23",
+      "lat": 35.23612092,
+      "lon": 128.69299464,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "CHWN-RTCM31",
+      "lat": 35.23612092,
+      "lon": 128.69299464,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "CHWN-RTCM32",
+      "lat": 35.23612092,
+      "lon": 128.69299464,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "CHYG-RTCM23",
+      "lat": 36.45890194,
+      "lon": 126.80149514,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "CHYG-RTCM31",
+      "lat": 36.45890194,
+      "lon": 126.80149514,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "CHYG-RTCM32",
+      "lat": 36.45890194,
+      "lon": 126.80149514,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "CJDO-RTCM23",
+      "lat": 33.94512178,
+      "lon": 126.31845619,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLO"
+    },
+    {
+      "name": "CJDO-RTCM31",
+      "lat": 33.94512178,
+      "lon": 126.31845619,
+      "country": "KOR",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO"
+    },
+    {
+      "name": "CJDO-RTCM32",
+      "lat": 33.94512178,
+      "lon": 126.31845619,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+QZS"
+    },
+    {
+      "name": "CNJU-RTCM23",
+      "lat": 36.62689456,
+      "lon": 127.46122706,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "CNJU-RTCM31",
+      "lat": 36.62689456,
+      "lon": 127.46122706,
+      "country": "KOR",
+      "format": "RTCM 3.x",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "CNJU-RTCM32",
+      "lat": 36.62689456,
+      "lon": 127.46122706,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "DAEJ-RTCM30",
+      "lat": 36.39943,
+      "lon": 127.37448611,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "DAMY-RTCM23",
+      "lat": 35.23584715,
+      "lon": 127.01646613,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "DAMY-RTCM31",
+      "lat": 35.23584715,
+      "lon": 127.01646613,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "DAMY-RTCM32",
+      "lat": 35.23584715,
+      "lon": 127.01646613,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "DANG-RTCM23",
+      "lat": 34.09815225,
+      "lon": 126.60275325,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2
+    },
+    {
+      "name": "DANG-RTCM30",
+      "lat": 34.09815225,
+      "lon": 126.60275325,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2
+    },
+    {
+      "name": "DANG-RTCM32",
+      "lat": 34.09815225,
+      "lon": 126.60275325,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2
+    },
+    {
+      "name": "DANJ-RTCM23",
+      "lat": 36.89241978,
+      "lon": 126.82304625,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "DANJ-RTCM31",
+      "lat": 36.89241978,
+      "lon": 126.82304625,
+      "country": "KOR",
+      "format": "RTCM 3.x",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "DANJ-RTCM32",
+      "lat": 36.89241978,
+      "lon": 126.82304625,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "DBON-RTCM23",
+      "lat": 37.65820058,
+      "lon": 127.05111539,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "DBON-RTCM31",
+      "lat": 37.65820058,
+      "lon": 127.05111539,
+      "country": "KOR",
+      "format": "RTCM 3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "DBON-RTCM32",
+      "lat": 37.65820058,
+      "lon": 127.05111539,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+QZS"
+    },
+    {
+      "name": "DOKD-RTCM23",
+      "lat": 37.23932453,
+      "lon": 131.86986906,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2
+    },
+    {
+      "name": "DOKD-RTCM30",
+      "lat": 37.23932453,
+      "lon": 131.86986906,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2
+    },
+    {
+      "name": "DOKD-RTCM32",
+      "lat": 37.23932453,
+      "lon": 131.86986906,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2
+    },
+    {
+      "name": "DOND-RTCM23",
+      "lat": 37.90205256,
+      "lon": 127.06074006,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "DOND-RTCM31",
+      "lat": 37.90205256,
+      "lon": 127.06074006,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "DOND-RTCM32",
+      "lat": 37.90205256,
+      "lon": 127.06074006,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "DONH-RTCM23",
+      "lat": 37.50698525,
+      "lon": 129.12420347,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "DONH-RTCM31",
+      "lat": 37.50698525,
+      "lon": 129.12420347,
+      "country": "KOR",
+      "format": "RTCM 3.x",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "DONH-RTCM32",
+      "lat": 37.50698525,
+      "lon": 129.12420347,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "DONM-RTCM23",
+      "lat": 37.32874892,
+      "lon": 128.49663822,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2
+    },
+    {
+      "name": "DONM-RTCM30",
+      "lat": 37.32874892,
+      "lon": 128.49663822,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2
+    },
+    {
+      "name": "DONM-RTCM32",
+      "lat": 37.32874892,
+      "lon": 128.49663822,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2
+    },
+    {
+      "name": "EOCH-RTCM23",
+      "lat": 36.12520489,
+      "lon": 125.96847922,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2
+    },
+    {
+      "name": "EOCH-RTCM30",
+      "lat": 36.12520489,
+      "lon": 125.96847922,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2
+    },
+    {
+      "name": "EOCH-RTCM32",
+      "lat": 36.12520489,
+      "lon": 125.96847922,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2
+    },
+    {
+      "name": "GAGE-RTCM23",
+      "lat": 34.09489561,
+      "lon": 125.09891694,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2
+    },
+    {
+      "name": "GAGE-RTCM30",
+      "lat": 34.09489561,
+      "lon": 125.09891694,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2
+    },
+    {
+      "name": "GAGE-RTCM32",
+      "lat": 34.09489561,
+      "lon": 125.09891694,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2
+    },
+    {
+      "name": "GANH-RTCM23",
+      "lat": 37.71937875,
+      "lon": 126.39024044,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "GANH-RTCM31",
+      "lat": 37.71937875,
+      "lon": 126.39024044,
+      "country": "KOR",
+      "format": "RTCM 3.x",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "GANH-RTCM32",
+      "lat": 37.71937875,
+      "lon": 126.39024044,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "GANR-RTCM30",
+      "lat": 37.786215,
+      "lon": 128.872927,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "GANS-RTCM23",
+      "lat": 37.54251825,
+      "lon": 126.83832731,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "GANS-RTCM31",
+      "lat": 37.54251825,
+      "lon": 126.83832731,
+      "country": "KOR",
+      "format": "RTCM 3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "GANS-RTCM32",
+      "lat": 37.54251825,
+      "lon": 126.83832731,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+QZS"
+    },
+    {
+      "name": "GASA-RTCM23",
+      "lat": 34.46064925,
+      "lon": 126.04281714,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2
+    },
+    {
+      "name": "GASA-RTCM30",
+      "lat": 34.46064925,
+      "lon": 126.04281714,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2
+    },
+    {
+      "name": "GASA-RTCM32",
+      "lat": 34.46064925,
+      "lon": 126.04281714,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2
+    },
+    {
+      "name": "GEJE-RTCM30",
+      "lat": 34.88514,
+      "lon": 128.62069,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "GEOM-RTCM23",
+      "lat": 34.00763689,
+      "lon": 127.32229936,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2
+    },
+    {
+      "name": "GEOM-RTCM30",
+      "lat": 34.00763689,
+      "lon": 127.32229936,
+      "country": "KOR",
+      "format": "RTCM 3.x",
+      "carrier": 2
+    },
+    {
+      "name": "GEOM-RTCM32",
+      "lat": 34.00763689,
+      "lon": 127.32229936,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2
+    },
+    {
+      "name": "GGEO-RTCM23",
+      "lat": 34.07485483,
+      "lon": 125.11083167,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "GGEO-RTCM31",
+      "lat": 34.07485483,
+      "lon": 125.11083167,
+      "country": "KOR",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "GGEO-RTCM32",
+      "lat": 34.07485483,
+      "lon": 125.11083167,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS+GALILEO+BEIDOU"
+    },
+    {
+      "name": "GHDG-RTCM23",
+      "lat": 35.27053903,
+      "lon": 128.98508712,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "GHDG-RTCM31",
+      "lat": 35.27053903,
+      "lon": 128.98508712,
+      "country": "KOR",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "GHDG-RTCM32",
+      "lat": 35.27053903,
+      "lon": 128.98508712,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS+BEIDOU+GALLILEO+QZSS"
+    },
+    {
+      "name": "GIJN-RTCM30",
+      "lat": 35.24095412,
+      "lon": 129.2141138,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "GMDO-RTCM23",
+      "lat": 34.05582114,
+      "lon": 127.29806481,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLO"
+    },
+    {
+      "name": "GMDO-RTCM31",
+      "lat": 34.05582114,
+      "lon": 127.29806481,
+      "country": "KOR",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO"
+    },
+    {
+      "name": "GMDO-RTCM32",
+      "lat": 34.05582114,
+      "lon": 127.29806481,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+QZS"
+    },
+    {
+      "name": "GNGJ-RTCM23",
+      "lat": 37.72349314,
+      "lon": 128.85345734,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "GNGJ-RTCM31",
+      "lat": 37.72349314,
+      "lon": 128.85345734,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "GNGJ-RTCM32",
+      "lat": 37.72349314,
+      "lon": 128.85345734,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "GOCH-RTCM23",
+      "lat": 35.66790108,
+      "lon": 127.94333106,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "GOCH-RTCM31",
+      "lat": 35.66790108,
+      "lon": 127.94333106,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "GOCH-RTCM32",
+      "lat": 35.66790108,
+      "lon": 127.94333106,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "GOES-RTCM23",
+      "lat": 36.81649974,
+      "lon": 127.7803378,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "GOHG-RTCM23",
+      "lat": 34.56579091,
+      "lon": 127.25801031,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "GOHG-RTCM31",
+      "lat": 34.56579091,
+      "lon": 127.25801031,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "GOHG-RTCM32",
+      "lat": 34.56579091,
+      "lon": 127.25801031,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "GOHN-RTCM30",
+      "lat": 34.61396732,
+      "lon": 127.289292,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "GOJE-RTCM31",
+      "lat": 34.72178692,
+      "lon": 128.59086922,
+      "country": "KOR",
+      "format": "RTCM 3.1",
+      "carrier": 2
+    },
+    {
+      "name": "GOJE-RTCM32",
+      "lat": 34.72178692,
+      "lon": 128.59086922,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2
+    },
+    {
+      "name": "GOSG-RTCM23",
+      "lat": 34.98066372,
+      "lon": 128.30770497,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "GOSG-RTCM31",
+      "lat": 34.98066372,
+      "lon": 128.30770497,
+      "country": "KOR",
+      "format": "RTCM 3.x",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "GOSG-RTCM32",
+      "lat": 34.98066372,
+      "lon": 128.30770497,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "GSAN-RTCM23",
+      "lat": 36.81616542,
+      "lon": 127.78678989,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "GSAN-RTCM31",
+      "lat": 36.81616542,
+      "lon": 127.78678989,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "GSAN-RTCM32",
+      "lat": 36.81616542,
+      "lon": 127.78678989,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "GUMC-RTCM23",
+      "lat": 37.45888972,
+      "lon": 126.90610481,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "GUMC-RTCM31",
+      "lat": 37.45888972,
+      "lon": 126.90610481,
+      "country": "KOR",
+      "format": "RTCM 3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "GUMC-RTCM32",
+      "lat": 37.45888972,
+      "lon": 126.90610481,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+QZS"
+    },
+    {
+      "name": "GUNW-RTCM30",
+      "lat": 36.23724016,
+      "lon": 128.5677583,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "GYJU-RTCM23",
+      "lat": 35.75544997,
+      "lon": 129.03907342,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "GYJU-RTCM31",
+      "lat": 35.75544997,
+      "lon": 129.03907342,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "GYJU-RTCM32",
+      "lat": 35.75544997,
+      "lon": 129.03907342,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "GYOI-RTCM23",
+      "lat": 35.67360455,
+      "lon": 129.2886171,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "GYOI-RTCM31",
+      "lat": 35.67360455,
+      "lon": 129.2886171,
+      "country": "KOR",
+      "format": "RTCM 3.1",
+      "carrier": 2
+    },
+    {
+      "name": "GYOI-RTCM32",
+      "lat": 35.67360455,
+      "lon": 129.2886171,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS+BEIDOU+GALLILEO+QZSS"
+    },
+    {
+      "name": "HADG-RTCM23",
+      "lat": 35.16241633,
+      "lon": 127.70923481,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "HADG-RTCM31",
+      "lat": 35.16241633,
+      "lon": 127.70923481,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "HADG-RTCM32",
+      "lat": 35.16241633,
+      "lon": 127.70923481,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "HCHN-RTCM23",
+      "lat": 38.3080895,
+      "lon": 127.67954422,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "HCHN-RTCM31",
+      "lat": 38.3080895,
+      "lon": 127.67954422,
+      "country": "KOR",
+      "format": "RTCM 3.x",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "HCHN-RTCM32",
+      "lat": 38.3080895,
+      "lon": 127.67954422,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "HCSN-RTCM23",
+      "lat": 38.06291335,
+      "lon": 127.52425035,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "HCSN-RTCM31",
+      "lat": 38.06291335,
+      "lon": 127.52425035,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "HCSN-RTCM32",
+      "lat": 38.06291335,
+      "lon": 127.52425035,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "HGDO-RTCM23",
+      "lat": 34.71125722,
+      "lon": 125.20443628,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2
+    },
+    {
+      "name": "HGDO-RTCM30",
+      "lat": 34.71125722,
+      "lon": 125.20443628,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2
+    },
+    {
+      "name": "HGDO-RTCM32",
+      "lat": 34.71125722,
+      "lon": 125.20443628,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2
+    },
+    {
+      "name": "HOMI-RTCM23",
+      "lat": 36.07801114,
+      "lon": 129.5666855,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2
+    },
+    {
+      "name": "HOMI-RTCM30",
+      "lat": 36.07801114,
+      "lon": 129.5666855,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2
+    },
+    {
+      "name": "HOMI-RTCM32",
+      "lat": 36.07801114,
+      "lon": 129.5666855,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2
+    },
+    {
+      "name": "HONC-RTCM23",
+      "lat": 37.70916089,
+      "lon": 128.19432497,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "HONC-RTCM31",
+      "lat": 37.70916089,
+      "lon": 128.19432497,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "HONC-RTCM32",
+      "lat": 37.70916089,
+      "lon": 128.19432497,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "HONG-RTCM23",
+      "lat": 37.68097417,
+      "lon": 127.86898094,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2
+    },
+    {
+      "name": "HONG-RTCM30",
+      "lat": 37.68097417,
+      "lon": 127.86898094,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2
+    },
+    {
+      "name": "HONG-RTCM32",
+      "lat": 37.68097417,
+      "lon": 127.86898094,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2
+    },
+    {
+      "name": "HPCN-RTCM30",
+      "lat": 35.5659071,
+      "lon": 128.1676062,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "HSDO-RTCM23",
+      "lat": 34.68147661,
+      "lon": 125.43212839,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLO"
+    },
+    {
+      "name": "HSDO-RTCM31",
+      "lat": 34.68147661,
+      "lon": 125.43212839,
+      "country": "KOR",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO"
+    },
+    {
+      "name": "HSDO-RTCM32",
+      "lat": 34.68147661,
+      "lon": 125.43212839,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+QZS"
+    },
+    {
+      "name": "HSNG-RTCM30",
+      "lat": 37.20117144,
+      "lon": 126.8289266,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "HWCH-RTCM30",
+      "lat": 38.1101951,
+      "lon": 127.7083657,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "ICHN-RTCM23",
+      "lat": 37.11740369,
+      "lon": 127.6130355,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "ICHN-RTCM31",
+      "lat": 37.11740369,
+      "lon": 127.6130355,
+      "country": "KOR",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "ICHN-RTCM32",
+      "lat": 37.11740369,
+      "lon": 127.6130355,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS+BEIDOU+GALLILEO+QZSS"
+    },
+    {
+      "name": "ICOR-RTCM23",
+      "lat": 37.41979033,
+      "lon": 126.64384081,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "ICOR-RTCM31",
+      "lat": 37.41979033,
+      "lon": 126.64384081,
+      "country": "KOR",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "ICOR-RTCM32",
+      "lat": 37.41979033,
+      "lon": 126.64384081,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS+GALILEO+BEIDOU"
+    },
+    {
+      "name": "IMJA-RTCM23",
+      "lat": 35.08702519,
+      "lon": 126.11995176,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "IMJA-RTCM31",
+      "lat": 35.08702519,
+      "lon": 126.11995176,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "IMJA-RTCM32",
+      "lat": 35.08702519,
+      "lon": 126.11995176,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "IMSL-RTCM30",
+      "lat": 35.61916954,
+      "lon": 127.2927369,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "INCH-RTCM23",
+      "lat": 37.41985772,
+      "lon": 126.68643897,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "INCH-RTCM31",
+      "lat": 37.41985772,
+      "lon": 126.68643897,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "INCH-RTCM32",
+      "lat": 37.41985772,
+      "lon": 126.68643897,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "INJE-RTCM23",
+      "lat": 38.06946364,
+      "lon": 128.17079456,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "INJE-RTCM31",
+      "lat": 38.06946364,
+      "lon": 128.17079456,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "INJE-RTCM32",
+      "lat": 38.06946364,
+      "lon": 128.17079456,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "JAHG-RTCM23",
+      "lat": 34.67534883,
+      "lon": 126.89957094,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "JAHG-RTCM31",
+      "lat": 34.67534883,
+      "lon": 126.89957094,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "JAHG-RTCM32",
+      "lat": 34.67534883,
+      "lon": 126.89957094,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "JANS-RTCM23",
+      "lat": 35.64163038,
+      "lon": 127.52223179,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "JANS-RTCM31",
+      "lat": 35.64163038,
+      "lon": 127.52223179,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "JANS-RTCM32",
+      "lat": 35.64163038,
+      "lon": 127.52223179,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "JECH-RTCM23",
+      "lat": 36.90977234,
+      "lon": 128.16591826,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "JECH-RTCM31",
+      "lat": 36.90977234,
+      "lon": 128.16591826,
+      "country": "KOR",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "JECH-RTCM32",
+      "lat": 36.90977234,
+      "lon": 128.16591826,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS+BEIDOU+GALLILEO+QZSS"
+    },
+    {
+      "name": "JEJU-RTCM23",
+      "lat": 33.28834167,
+      "lon": 126.46218333,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "JEJU-RTCM32",
+      "lat": 33.28834167,
+      "lon": 126.46218333,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "JEOJ-RTCM23",
+      "lat": 38.55207708,
+      "lon": 128.39874406,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2
+    },
+    {
+      "name": "JEOJ-RTCM30",
+      "lat": 38.55207708,
+      "lon": 128.39874406,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2
+    },
+    {
+      "name": "JEOJ-RTCM32",
+      "lat": 38.55207708,
+      "lon": 128.39874406,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2
+    },
+    {
+      "name": "JIND-RTCM31",
+      "lat": 34.47199397,
+      "lon": 126.32373189,
+      "country": "KOR",
+      "format": "RTCM 3.1",
+      "carrier": 2
+    },
+    {
+      "name": "JIND-RTCM32",
+      "lat": 34.47199397,
+      "lon": 126.32373189,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2
+    },
+    {
+      "name": "JINJ-RTCM23",
+      "lat": 35.17308714,
+      "lon": 128.04967447,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "JINJ-RTCM31",
+      "lat": 35.17308714,
+      "lon": 128.04967447,
+      "country": "KOR",
+      "format": "RTCM 3.x",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "JINJ-RTCM32",
+      "lat": 35.17308714,
+      "lon": 128.04967447,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "JJHG-RTCM23",
+      "lat": 33.36975586,
+      "lon": 126.20639361,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "JJHG-RTCM31",
+      "lat": 33.36975586,
+      "lon": 126.20639361,
+      "country": "KOR",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "JJHG-RTCM32",
+      "lat": 33.36975586,
+      "lon": 126.20639361,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS+GALILEO+BEIDOU"
+    },
+    {
+      "name": "JJNG-RTCM23",
+      "lat": 35.16370158,
+      "lon": 128.03987406,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLO"
+    },
+    {
+      "name": "JJNG-RTCM31",
+      "lat": 35.16370158,
+      "lon": 128.03987406,
+      "country": "KOR",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO"
+    },
+    {
+      "name": "JJNG-RTCM32",
+      "lat": 35.16370158,
+      "lon": 128.03987406,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+QZS"
+    },
+    {
+      "name": "JNDO-RTCM30",
+      "lat": 34.48153424,
+      "lon": 126.261506,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "JSUN-RTCM23",
+      "lat": 37.36938136,
+      "lon": 128.68463942,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "JSUN-RTCM31",
+      "lat": 37.36938136,
+      "lon": 128.68463942,
+      "country": "KOR",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "JSUN-RTCM32",
+      "lat": 37.36938136,
+      "lon": 128.68463942,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS+BEIDOU+GALLILEO+QZSS"
+    },
+    {
+      "name": "JUKB-RTCM23",
+      "lat": 37.05807497,
+      "lon": 129.42877139,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2
+    },
+    {
+      "name": "JUKB-RTCM30",
+      "lat": 37.05807497,
+      "lon": 129.42877139,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2
+    },
+    {
+      "name": "JUKB-RTCM32",
+      "lat": 37.05807497,
+      "lon": 129.42877139,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2
+    },
+    {
+      "name": "JUMN-RTCM23",
+      "lat": 37.89782961,
+      "lon": 128.83376969,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2
+    },
+    {
+      "name": "JUMN-RTCM30",
+      "lat": 37.89782961,
+      "lon": 128.83376969,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2
+    },
+    {
+      "name": "JUMN-RTCM32",
+      "lat": 37.89782961,
+      "lon": 128.83376969,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2
+    },
+    {
+      "name": "JUNG-RTCM23",
+      "lat": 35.62276622,
+      "lon": 126.97402847,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "JUNG-RTCM31",
+      "lat": 35.62276622,
+      "lon": 126.97402847,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "JUNG-RTCM32",
+      "lat": 35.62276622,
+      "lon": 126.97402847,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "JUNJ-RTCM23",
+      "lat": 35.843452,
+      "lon": 127.13512492,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "JUNJ-RTCM31",
+      "lat": 35.843452,
+      "lon": 127.13512492,
+      "country": "KOR",
+      "format": "RTCM 3.x",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "JUNJ-RTCM32",
+      "lat": 35.843452,
+      "lon": 127.13512492,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "KAWH-RTCM30",
+      "lat": 37.74464851,
+      "lon": 126.4897711,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "KIMC-RTCM23",
+      "lat": 36.13739828,
+      "lon": 128.14229222,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "KIMC-RTCM31",
+      "lat": 36.13739828,
+      "lon": 128.14229222,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "KIMC-RTCM32",
+      "lat": 36.13739828,
+      "lon": 128.14229222,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "KUNW-RTCM23",
+      "lat": 36.23347936,
+      "lon": 128.57423969,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "KUNW-RTCM31",
+      "lat": 36.23347936,
+      "lon": 128.57423969,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "KUNW-RTCM32",
+      "lat": 36.23347936,
+      "lon": 128.57423969,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "KUSN-RTCM31",
+      "lat": 36.00547153,
+      "lon": 126.76155064,
+      "country": "KOR",
+      "format": "RTCM 3.1",
+      "carrier": 2
+    },
+    {
+      "name": "KUSN-RTCM32",
+      "lat": 36.00547153,
+      "lon": 126.76155064,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2
+    },
+    {
+      "name": "KWNJ-RTCM23",
+      "lat": 35.17837539,
+      "lon": 126.91023678,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "KWNJ-RTCM31",
+      "lat": 35.17837539,
+      "lon": 126.91023678,
+      "country": "KOR",
+      "format": "RTCM 3.x",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "KWNJ-RTCM32",
+      "lat": 35.17837539,
+      "lon": 126.91023678,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "MARA-RTCM23",
+      "lat": 33.11693114,
+      "lon": 126.269144,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2
+    },
+    {
+      "name": "MARA-RTCM30",
+      "lat": 33.11693114,
+      "lon": 126.269144,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2
+    },
+    {
+      "name": "MARA-RTCM32",
+      "lat": 33.11693114,
+      "lon": 126.269144,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2
+    },
+    {
+      "name": "MJOO-RTCM30",
+      "lat": 36.01047832,
+      "lon": 127.6657737,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "MKPO-RTCM23",
+      "lat": 34.81685,
+      "lon": 126.38141667,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "MKPO-RTCM32",
+      "lat": 34.81685,
+      "lon": 126.38141667,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "MLDO-RTCM23",
+      "lat": 35.85796075,
+      "lon": 126.31504025,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2
+    },
+    {
+      "name": "MLDO-RTCM30",
+      "lat": 35.85796075,
+      "lon": 126.31504025,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2
+    },
+    {
+      "name": "MLDO-RTCM32",
+      "lat": 35.85796075,
+      "lon": 126.31504025,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2
+    },
+    {
+      "name": "MLYN-RTCM23",
+      "lat": 35.49137,
+      "lon": 128.74397778,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "MLYN-RTCM30",
+      "lat": 35.49137,
+      "lon": 128.74397778,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "MOOJ-RTCM30",
+      "lat": 35.90346247,
+      "lon": 127.58305055,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2
+    },
+    {
+      "name": "MOOJ-RTCM32",
+      "lat": 35.90346247,
+      "lon": 127.58305055,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2
+    },
+    {
+      "name": "MUAN-RTCM23",
+      "lat": 34.81743119,
+      "lon": 126.46622592,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "MUAN-RTCM31",
+      "lat": 34.81743119,
+      "lon": 126.46622592,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "MUAN-RTCM32",
+      "lat": 34.81743119,
+      "lon": 126.46622592,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "MUJU-RTCM23",
+      "lat": 36.00328792,
+      "lon": 127.66117458,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "MUJU-RTCM31",
+      "lat": 36.00328792,
+      "lon": 127.66117458,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "MUJU-RTCM32",
+      "lat": 36.00328792,
+      "lon": 127.66117458,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "MUNG-RTCM30",
+      "lat": 36.5903205,
+      "lon": 128.18282858,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2
+    },
+    {
+      "name": "MUNG-RTCM32",
+      "lat": 36.5903205,
+      "lon": 128.18282858,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2
+    },
+    {
+      "name": "MYSO-RTCM23",
+      "lat": 35.50179417,
+      "lon": 128.81576549,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "MYSO-RTCM31",
+      "lat": 35.50179417,
+      "lon": 128.81576549,
+      "country": "KOR",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "MYSO-RTCM32",
+      "lat": 35.50179417,
+      "lon": 128.81576549,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS+BEIDOU+GALLILEO+QZSS"
+    },
+    {
+      "name": "NAJU-RTCM30",
+      "lat": 35.02287687,
+      "lon": 126.7137786,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "NAMH-RTCM23",
+      "lat": 34.72387659,
+      "lon": 127.98166891,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "NAMH-RTCM31",
+      "lat": 34.72387659,
+      "lon": 127.98166891,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "NAMH-RTCM32",
+      "lat": 34.72387659,
+      "lon": 127.98166891,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "NAMW-RTCM23",
+      "lat": 35.42304639,
+      "lon": 127.39617378,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "NAMW-RTCM31",
+      "lat": 35.42304639,
+      "lon": 127.39617378,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "NAMW-RTCM32",
+      "lat": 35.42304639,
+      "lon": 127.39617378,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "NAMY-RTCM23",
+      "lat": 37.71999201,
+      "lon": 127.30003955,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "NAMY-RTCM31",
+      "lat": 37.71999201,
+      "lon": 127.30003955,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "NAMY-RTCM32",
+      "lat": 37.71999201,
+      "lon": 127.30003955,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "NSAN-RTCM23",
+      "lat": 36.19416406,
+      "lon": 127.11232244,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "NSAN-RTCM31",
+      "lat": 36.19416406,
+      "lon": 127.11232244,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "NSAN-RTCM32",
+      "lat": 36.19416406,
+      "lon": 127.11232244,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "OJBU-RTCM23",
+      "lat": 37.75487186,
+      "lon": 127.10666579,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "OJBU-RTCM31",
+      "lat": 37.75487186,
+      "lon": 127.10666579,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "OJBU-RTCM32",
+      "lat": 37.75487186,
+      "lon": 127.10666579,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "OKCH-RTCM23",
+      "lat": 36.30275411,
+      "lon": 127.58088946,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2
+    },
+    {
+      "name": "OKCH-RTCM30",
+      "lat": 36.30275411,
+      "lon": 127.58088946,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2
+    },
+    {
+      "name": "OKCH-RTCM32",
+      "lat": 36.30275411,
+      "lon": 127.58088946,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2
+    },
+    {
+      "name": "PAJU-RTCM23",
+      "lat": 37.74640647,
+      "lon": 126.73789803,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "PAJU-RTCM31",
+      "lat": 37.74640647,
+      "lon": 126.73789803,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "PAJU-RTCM32",
+      "lat": 37.74640647,
+      "lon": 126.73789803,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "PALM-RTCM23",
+      "lat": 37.35833461,
+      "lon": 126.51126317,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2
+    },
+    {
+      "name": "PALM-RTCM30",
+      "lat": 37.35833461,
+      "lon": 126.51126317,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2
+    },
+    {
+      "name": "PALM-RTCM32",
+      "lat": 37.35833461,
+      "lon": 126.51126317,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2
+    },
+    {
+      "name": "PCHN-RTCM23",
+      "lat": 37.53466797,
+      "lon": 128.44604398,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "PCHN-RTCM31",
+      "lat": 37.53466797,
+      "lon": 128.44604398,
+      "country": "KOR",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "PCHN-RTCM32",
+      "lat": 37.53466797,
+      "lon": 128.44604398,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS+BEIDOU+GALLILEO+QZSS"
+    },
+    {
+      "name": "PJMS-RTCM23",
+      "lat": 37.88604089,
+      "lon": 126.76621374,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "PJMS-RTCM31",
+      "lat": 37.88604089,
+      "lon": 126.76621374,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "PJMS-RTCM32",
+      "lat": 37.88604089,
+      "lon": 126.76621374,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "PNCH-RTCM30",
+      "lat": 37.3687824,
+      "lon": 128.3927582,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "POCH-RTCM30",
+      "lat": 37.89072777,
+      "lon": 127.2003741,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "POCN-RTCM23",
+      "lat": 38.01858181,
+      "lon": 127.19097024,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "POCN-RTCM31",
+      "lat": 38.01858181,
+      "lon": 127.19097024,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "POCN-RTCM32",
+      "lat": 38.01858181,
+      "lon": 127.19097024,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "POHN-RTCM23",
+      "lat": 35.91014369,
+      "lon": 129.40294447,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "POHN-RTCM31",
+      "lat": 35.91014369,
+      "lon": 129.40294447,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "POHN-RTCM32",
+      "lat": 35.91014369,
+      "lon": 129.40294447,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "PSJA-RTCM23",
+      "lat": 35.38218819,
+      "lon": 129.24873601,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "PSJA-RTCM31",
+      "lat": 35.38218819,
+      "lon": 129.24873601,
+      "country": "KOR",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "PSJA-RTCM32",
+      "lat": 35.38218819,
+      "lon": 129.24873601,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS+BEIDOU+GALLILEO+QZSS"
+    },
+    {
+      "name": "PUSN-RTCM23",
+      "lat": 35.23393756,
+      "lon": 129.07484489,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "PUSN-RTCM31",
+      "lat": 35.23393756,
+      "lon": 129.07484489,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "PUSN-RTCM32",
+      "lat": 35.23393756,
+      "lon": 129.07484489,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "PYCH-RTCM23",
+      "lat": 37.34963119,
+      "lon": 128.48766114,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2
+    },
+    {
+      "name": "PYCH-RTCM30",
+      "lat": 37.34963119,
+      "lon": 128.48766114,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2
+    },
+    {
+      "name": "PYCH-RTCM32",
+      "lat": 37.34963119,
+      "lon": 128.48766114,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2
+    },
+    {
+      "name": "SAMC-RTCM23",
+      "lat": 37.43609686,
+      "lon": 129.18813036,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2
+    },
+    {
+      "name": "SAMC-RTCM30",
+      "lat": 37.43609686,
+      "lon": 129.18813036,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2
+    },
+    {
+      "name": "SAMC-RTCM32",
+      "lat": 37.43609686,
+      "lon": 129.18813036,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2
+    },
+    {
+      "name": "SBAO-RTCM23",
+      "lat": 36.93423056,
+      "lon": 128.45693611,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "SBAO-RTCM30",
+      "lat": 36.93423056,
+      "lon": 128.45693611,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "SCHN-RTCM30",
+      "lat": 36.07936532,
+      "lon": 126.6912281,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "SEJN-RTCM23",
+      "lat": 36.52221339,
+      "lon": 127.30318989,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "SEJN-RTCM31",
+      "lat": 36.52221339,
+      "lon": 127.30318989,
+      "country": "KOR",
+      "format": "RTCM 3.x",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "SEJN-RTCM32",
+      "lat": 36.52221339,
+      "lon": 127.30318989,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "SEJU-RTCM30",
+      "lat": 35.93814644,
+      "lon": 128.18328194,
+      "country": "KOR",
+      "format": "RTCM 3.x",
+      "carrier": 2
+    },
+    {
+      "name": "SEJU-RTCM32",
+      "lat": 35.93814644,
+      "lon": 128.18328194,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2
+    },
+    {
+      "name": "SEOI-RTCM23",
+      "lat": 34.78772178,
+      "lon": 128.73790133,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2
+    },
+    {
+      "name": "SEOI-RTCM30",
+      "lat": 34.78772178,
+      "lon": 128.73790133,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2
+    },
+    {
+      "name": "SEOI-RTCM32",
+      "lat": 34.78772178,
+      "lon": 128.73790133,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2
+    },
+    {
+      "name": "SEOS-RTCM23",
+      "lat": 36.77640911,
+      "lon": 126.49420269,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "SEOS-RTCM31",
+      "lat": 36.77640911,
+      "lon": 126.49420269,
+      "country": "KOR",
+      "format": "RTCM 3.x",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "SEOS-RTCM32",
+      "lat": 36.77640911,
+      "lon": 126.49420269,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "SGUI-RTCM30",
+      "lat": 33.25460397,
+      "lon": 126.5203775,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "SGWI-RTCM23",
+      "lat": 33.28663275,
+      "lon": 126.75060836,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "SGWI-RTCM31",
+      "lat": 33.28663275,
+      "lon": 126.75060836,
+      "country": "KOR",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "SGWI-RTCM32",
+      "lat": 33.28663275,
+      "lon": 126.75060836,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS+GALILEO+BEIDOU"
+    },
+    {
+      "name": "SIAN-RTCM23",
+      "lat": 34.78689093,
+      "lon": 126.148148,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "SIAN-RTCM31",
+      "lat": 34.78689093,
+      "lon": 126.148148,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "SIAN-RTCM32",
+      "lat": 34.78689093,
+      "lon": 126.148148,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "SKCH-RTCM23",
+      "lat": 38.25096,
+      "lon": 128.56475833,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "SKCH-RTCM30",
+      "lat": 38.25096,
+      "lon": 128.56475833,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "SKCH-RTCM32",
+      "lat": 38.25096,
+      "lon": 128.56475833,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "SKMA-RTCM23",
+      "lat": 37.493525,
+      "lon": 126.91800556,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "SKMA-RTCM30",
+      "lat": 37.493525,
+      "lon": 126.91800556,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "SMAN-RTCM31",
+      "lat": 35.73027475,
+      "lon": 126.52793894,
+      "country": "KOR",
+      "format": "RTCM 3.1",
+      "carrier": 2
+    },
+    {
+      "name": "SMAN-RTCM32",
+      "lat": 35.73027475,
+      "lon": 126.52793894,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2
+    },
+    {
+      "name": "SNJU-RTCM23",
+      "lat": 36.3791645,
+      "lon": 128.14447714,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "SNJU-RTCM31",
+      "lat": 36.3791645,
+      "lon": 128.14447714,
+      "country": "KOR",
+      "format": "RTCM 3.x",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "SNJU-RTCM32",
+      "lat": 36.3791645,
+      "lon": 128.14447714,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "SOCH-RTCM23",
+      "lat": 37.76035503,
+      "lon": 124.72876708,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2
+    },
+    {
+      "name": "SOCH-RTCM30",
+      "lat": 37.76035503,
+      "lon": 124.72876708,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2
+    },
+    {
+      "name": "SOCH-RTCM32",
+      "lat": 37.76035503,
+      "lon": 124.72876708,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2
+    },
+    {
+      "name": "SOKC-RTCM23",
+      "lat": 38.21388222,
+      "lon": 128.59991839,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2
+    },
+    {
+      "name": "SOKC-RTCM30",
+      "lat": 38.21388222,
+      "lon": 128.59991839,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2
+    },
+    {
+      "name": "SOKC-RTCM32",
+      "lat": 38.21388222,
+      "lon": 128.59991839,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2
+    },
+    {
+      "name": "SONC-RTCM23",
+      "lat": 34.95748208,
+      "lon": 127.48613492,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "SONC-RTCM31",
+      "lat": 34.95748208,
+      "lon": 127.48613492,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "SONC-RTCM32",
+      "lat": 34.95748208,
+      "lon": 127.48613492,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "SONP-RTCM23",
+      "lat": 37.49049647,
+      "lon": 127.14303689,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "SONP-RTCM31",
+      "lat": 37.49049647,
+      "lon": 127.14303689,
+      "country": "KOR",
+      "format": "RTCM 3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "SONP-RTCM32",
+      "lat": 37.49049647,
+      "lon": 127.14303689,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+QZS"
+    },
+    {
+      "name": "SORI-RTCM23",
+      "lat": 34.41188592,
+      "lon": 127.80106353,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2
+    },
+    {
+      "name": "SORI-RTCM30",
+      "lat": 34.41188592,
+      "lon": 127.80106353,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2
+    },
+    {
+      "name": "SORI-RTCM32",
+      "lat": 34.41188592,
+      "lon": 127.80106353,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2
+    },
+    {
+      "name": "SOUL-RTCM23",
+      "lat": 37.61855197,
+      "lon": 127.09834817,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "SOUL-RTCM31",
+      "lat": 37.61855197,
+      "lon": 127.09834817,
+      "country": "KOR",
+      "format": "RTCM 3.x",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "SOUL-RTCM32",
+      "lat": 37.61855197,
+      "lon": 127.09834817,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "SSAN-RTCM23",
+      "lat": 33.46780458,
+      "lon": 126.90471344,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "SSAN-RTCM31",
+      "lat": 33.46780458,
+      "lon": 126.90471344,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "SSAN-RTCM32",
+      "lat": 33.46780458,
+      "lon": 126.90471344,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "SUNJ-RTCM23",
+      "lat": 35.91407613,
+      "lon": 128.25612763,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "SUNJ-RTCM31",
+      "lat": 35.91407613,
+      "lon": 128.25612763,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "SUNJ-RTCM32",
+      "lat": 35.91407613,
+      "lon": 128.25612763,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "SUWN-RTCM23",
+      "lat": 37.27551469,
+      "lon": 127.05424019,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "SUWN-RTCM31",
+      "lat": 37.27551469,
+      "lon": 127.05424019,
+      "country": "KOR",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "SUWN-RTCM32",
+      "lat": 37.27551469,
+      "lon": 127.05424019,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "SWGS-RTCM23",
+      "lat": 37.25772681,
+      "lon": 126.98316186,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "SWGS-RTCM31",
+      "lat": 37.25772681,
+      "lon": 126.98316186,
+      "country": "KOR",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "SWGS-RTCM32",
+      "lat": 37.25772681,
+      "lon": 126.98316186,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS+GALILEO+BEIDOU"
+    },
+    {
+      "name": "TABK-RTCM23",
+      "lat": 37.16364592,
+      "lon": 128.98607856,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "TABK-RTCM31",
+      "lat": 37.16364592,
+      "lon": 128.98607856,
+      "country": "KOR",
+      "format": "RTCM 3.x",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "TABK-RTCM32",
+      "lat": 37.16364592,
+      "lon": 128.98607856,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "TEAN-RTCM30",
+      "lat": 36.75440084,
+      "lon": 126.2917426,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "TEGN-RTCM23",
+      "lat": 35.90630656,
+      "lon": 128.80196742,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "TEGN-RTCM31",
+      "lat": 35.90630656,
+      "lon": 128.80196742,
+      "country": "KOR",
+      "format": "RTCM 3.x",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "TEGN-RTCM32",
+      "lat": 35.90630656,
+      "lon": 128.80196742,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "ULDO-RTCM23",
+      "lat": 37.53809964,
+      "lon": 130.90698442,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLO"
+    },
+    {
+      "name": "ULDO-RTCM31",
+      "lat": 37.53809964,
+      "lon": 130.90698442,
+      "country": "KOR",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLO"
+    },
+    {
+      "name": "ULDO-RTCM32",
+      "lat": 37.53809964,
+      "lon": 130.90698442,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+QZS"
+    },
+    {
+      "name": "ULLE-RTCM23",
+      "lat": 37.518413,
+      "lon": 130.79770558,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2
+    },
+    {
+      "name": "ULLE-RTCM30",
+      "lat": 37.518413,
+      "lon": 130.79770558,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2
+    },
+    {
+      "name": "ULLE-RTCM32",
+      "lat": 37.518413,
+      "lon": 130.79770558,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2
+    },
+    {
+      "name": "ULSN-RTCM30",
+      "lat": 35.57480845,
+      "lon": 129.3088465,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "WLJN-RTCM30",
+      "lat": 36.9928232,
+      "lon": 129.4045007,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "WNDO-RTCM23",
+      "lat": 34.33536999,
+      "lon": 126.74282646,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "WNDO-RTCM31",
+      "lat": 34.33536999,
+      "lon": 126.74282646,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "WNDO-RTCM32",
+      "lat": 34.33536999,
+      "lon": 126.74282646,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "WNJU-RTCM23",
+      "lat": 37.33720708,
+      "lon": 127.94708853,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "WNJU-RTCM31",
+      "lat": 37.33720708,
+      "lon": 127.94708853,
+      "country": "KOR",
+      "format": "RTCM 3.x",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "WNJU-RTCM32",
+      "lat": 37.33720708,
+      "lon": 127.94708853,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "WOLS-RTCM23",
+      "lat": 35.50394672,
+      "lon": 129.41601483,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "WOLS-RTCM31",
+      "lat": 35.50394672,
+      "lon": 129.41601483,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "WOLS-RTCM32",
+      "lat": 35.50394672,
+      "lon": 129.41601483,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "WSJG-RTCM23",
+      "lat": 35.56568093,
+      "lon": 129.31705018,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "WSJG-RTCM31",
+      "lat": 35.56568093,
+      "lon": 129.31705018,
+      "country": "KOR",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "WSJG-RTCM32",
+      "lat": 35.56568093,
+      "lon": 129.31705018,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS+BEIDOU+GALLILEO+QZSS"
+    },
+    {
+      "name": "WSSN-RTCM23",
+      "lat": 35.54542039,
+      "lon": 129.1189628,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "WSSN-RTCM31",
+      "lat": 35.54542039,
+      "lon": 129.1189628,
+      "country": "KOR",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "WSSN-RTCM32",
+      "lat": 35.54542039,
+      "lon": 129.1189628,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS+BEIDOU+GALLILEO+QZSS"
+    },
+    {
+      "name": "WULJ-RTCM23",
+      "lat": 36.99197653,
+      "lon": 129.41299553,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "WULJ-RTCM31",
+      "lat": 36.99197653,
+      "lon": 129.41299553,
+      "country": "KOR",
+      "format": "RTCM 3.x",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "WULJ-RTCM32",
+      "lat": 36.99197653,
+      "lon": 129.41299553,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "YANJ-RTCM23",
+      "lat": 37.69689373,
+      "lon": 126.93162227,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "YANJ-RTCM31",
+      "lat": 37.69689373,
+      "lon": 126.93162227,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "YANJ-RTCM32",
+      "lat": 37.69689373,
+      "lon": 126.93162227,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "YANP-RTCM23",
+      "lat": 37.45418892,
+      "lon": 127.50562292,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "YANP-RTCM31",
+      "lat": 37.45418892,
+      "lon": 127.50562292,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "YANP-RTCM32",
+      "lat": 37.45418892,
+      "lon": 127.50562292,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "YCHG-RTCM23",
+      "lat": 35.98087475,
+      "lon": 129.10643009,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "YCHG-RTCM31",
+      "lat": 35.98087475,
+      "lon": 129.10643009,
+      "country": "KOR",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "YCHG-RTCM32",
+      "lat": 35.98087475,
+      "lon": 129.10643009,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS+BEIDOU+GALLILEO+QZSS"
+    },
+    {
+      "name": "YCIG-RTCM23",
+      "lat": 36.0527821,
+      "lon": 129.04001413,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "YCIG-RTCM31",
+      "lat": 36.0527821,
+      "lon": 129.04001413,
+      "country": "KOR",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "YCIG-RTCM32",
+      "lat": 36.0527821,
+      "lon": 129.04001413,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS+BEIDOU+GALLILEO+QZSS"
+    },
+    {
+      "name": "YCMP-RTCM23",
+      "lat": 35.97294266,
+      "lon": 128.92692406,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "YCMP-RTCM31",
+      "lat": 35.97294266,
+      "lon": 128.92692406,
+      "country": "KOR",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "YCMP-RTCM32",
+      "lat": 35.97294266,
+      "lon": 128.92692406,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS+BEIDOU+GALLILEO+QZSS"
+    },
+    {
+      "name": "YDKG-RTCM23",
+      "lat": 36.36295154,
+      "lon": 129.39043655,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "YDKG-RTCM31",
+      "lat": 36.36295154,
+      "lon": 129.39043655,
+      "country": "KOR",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "YDKG-RTCM32",
+      "lat": 36.36295154,
+      "lon": 129.39043655,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS+BEIDOU+GALLILEO+QZSS"
+    },
+    {
+      "name": "YECH-RTCM23",
+      "lat": 36.65145894,
+      "lon": 128.44633767,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "YECH-RTCM31",
+      "lat": 36.65145894,
+      "lon": 128.44633767,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "YECH-RTCM32",
+      "lat": 36.65145894,
+      "lon": 128.44633767,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "YEJU-RTCM30",
+      "lat": 37.29141467,
+      "lon": 127.6409031,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "YEOJ-RTCM23",
+      "lat": 37.27857494,
+      "lon": 127.57830358,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "YEOJ-RTCM31",
+      "lat": 37.27857494,
+      "lon": 127.57830358,
+      "country": "KOR",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "YEOJ-RTCM32",
+      "lat": 37.27857494,
+      "lon": 127.57830358,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS+BEIDOU+GALLILEO+QZSS"
+    },
+    {
+      "name": "YNDK-RTCM30",
+      "lat": 36.41244514,
+      "lon": 129.37189,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "YNDO-RTCM23",
+      "lat": 35.06218928,
+      "lon": 129.07072756,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2
+    },
+    {
+      "name": "YNDO-RTCM30",
+      "lat": 35.06218928,
+      "lon": 129.07072756,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2
+    },
+    {
+      "name": "YNDO-RTCM32",
+      "lat": 35.06218928,
+      "lon": 129.07072756,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2
+    },
+    {
+      "name": "YNGU-RTCM23",
+      "lat": 38.29083161,
+      "lon": 128.14112967,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "YNGU-RTCM31",
+      "lat": 38.29083161,
+      "lon": 128.14112967,
+      "country": "KOR",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "YNGU-RTCM32",
+      "lat": 38.29083161,
+      "lon": 128.14112967,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS+GALILEO+BEIDOU"
+    },
+    {
+      "name": "YNIN-RTCM30",
+      "lat": 37.23229669,
+      "lon": 127.2012785,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "YNJU-RTCM32",
+      "lat": 36.86570464,
+      "lon": 128.54487808,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2
+    },
+    {
+      "name": "YNJU_RTCM30",
+      "lat": 36.86570464,
+      "lon": 128.54487808,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2
+    },
+    {
+      "name": "YODK-RTCM31",
+      "lat": 36.5334615,
+      "lon": 129.40905083,
+      "country": "KOR",
+      "format": "RTCM 3.1",
+      "carrier": 2
+    },
+    {
+      "name": "YODK-RTCM32",
+      "lat": 36.5334615,
+      "lon": 129.40905083,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2
+    },
+    {
+      "name": "YONJ-RTCM30",
+      "lat": 36.80734184,
+      "lon": 128.6224851,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "YONK-RTCM23",
+      "lat": 35.27858319,
+      "lon": 126.5164705,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "YONK-RTCM31",
+      "lat": 35.27858319,
+      "lon": 126.5164705,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "YONK-RTCM32",
+      "lat": 35.27858319,
+      "lon": 126.5164705,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "YONS-RTCM23",
+      "lat": 37.54112211,
+      "lon": 127.00134461,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "YONS-RTCM31",
+      "lat": 37.54112211,
+      "lon": 127.00134461,
+      "country": "KOR",
+      "format": "RTCM 3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "YONS-RTCM32",
+      "lat": 37.54112211,
+      "lon": 127.00134461,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLO+GAL+BDS+QZS"
+    },
+    {
+      "name": "YOWL-RTCM23",
+      "lat": 37.18251822,
+      "lon": 128.46181328,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "YOWL-RTCM31",
+      "lat": 37.18251822,
+      "lon": 128.46181328,
+      "country": "KOR",
+      "format": "RTCM 3.0",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "YOWL-RTCM32",
+      "lat": 37.18251822,
+      "lon": 128.46181328,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "YYAN-RTCM23",
+      "lat": 38.10509645,
+      "lon": 128.64039118,
+      "country": "KOR",
+      "format": "RTCM 2.3",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "YYAN-RTCM31",
+      "lat": 38.10509645,
+      "lon": 128.64039118,
+      "country": "KOR",
+      "format": "RTCM 3.1",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS"
+    },
+    {
+      "name": "YYAN-RTCM32",
+      "lat": 38.10509645,
+      "lon": 128.64039118,
+      "country": "KOR",
+      "format": "RTCM 3.2",
+      "carrier": 2,
+      "constellations": "GPS+GLONASS+BEIDOU+GALLILEO+QZSS"
+    }
+  ]
+}
